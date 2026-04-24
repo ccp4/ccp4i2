@@ -26,10 +26,20 @@ export interface Threshold {
   unit: string | null;
 }
 
+/**
+ * Half-open ISO-date filter range [after, before). Either end nullable.
+ * Dates are "YYYY-MM-DD" strings.
+ */
+export interface DateRange {
+  after: string | null;
+  before: string | null;
+}
+
 export interface MeasurementFilter {
   protocol_hint: string | null;
   metric: string | null;
   threshold: Threshold | null;
+  assay_date_range?: DateRange | null;
   protocol_id?: string | null;  // set by view on continuation
 }
 
@@ -37,6 +47,7 @@ export interface CompoundSelector {
   registration_target_as_typed: string | null;
   assay_target_as_typed: string | null;
   measurement_filters: MeasurementFilter[];
+  registered_date_range?: DateRange | null;
   registration_target_id?: string | null;
   assay_target_id?: string | null;
 }

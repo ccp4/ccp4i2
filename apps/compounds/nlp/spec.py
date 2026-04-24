@@ -69,6 +69,24 @@ class Threshold:
 
 
 @dataclass
+class DateRange:
+    """ISO-date half-open filter range: [after, before).
+
+    Either end may be null (unbounded on that side). Both null is
+    treated as no filter. The half-open convention makes calendar-unit
+    phrasings exact — "in 2025" is {after: 2025-01-01, before: 2026-01-01}
+    with no fence-post ambiguity.
+
+    Dates are strings in "YYYY-MM-DD" form. The LLM interprets relative
+    phrasings ("last 30 days", "since March") against the `[Today: ...]`
+    line prepended to the user message.
+    """
+
+    after: Optional[str] = None      # inclusive lower bound
+    before: Optional[str] = None     # exclusive upper bound
+
+
+@dataclass
 class MeasurementFilter:
     """A single condition compounds must satisfy to be included in the
     selection. Multiple filters on a `CompoundSelector` are ANDed — the
@@ -87,6 +105,10 @@ class MeasurementFilter:
     protocol_hint: Optional[str] = None
     metric: Optional[str] = None
     threshold: Optional[Threshold] = None
+    # Date range on the Assay (Assay.created_at). Limits the compound set
+    # to those whose measurements under this filter's protocol fall in
+    # the window — "HTRF IC50 < 100 nM measured in Q1 2026".
+    assay_date_range: Optional[DateRange] = None
     # Pinned protocol id on clarify continuation — LLM never emits this.
     protocol_id: Optional[str] = None
 
@@ -107,6 +129,9 @@ class CompoundSelector:
     registration_target_as_typed: Optional[str] = None
     assay_target_as_typed: Optional[str] = None
     measurement_filters: List[MeasurementFilter] = field(default_factory=list)
+    # Date range on Compound.registered_at — filters the base compound
+    # scope BEFORE any measurement filters intersect.
+    registered_date_range: Optional[DateRange] = None
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None

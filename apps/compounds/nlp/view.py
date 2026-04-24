@@ -46,6 +46,7 @@ from .llm import parse_prompt
 from .spec import (
     CompoundSelection,
     CompoundSelector,
+    DateRange,
     MeasurementFilter,
     NotAQuery,
     ParseError,
@@ -109,6 +110,22 @@ def _threshold_from_dict(data: Any) -> Optional[Threshold]:
     return Threshold(op=op, value=float(value), unit=data.get("unit"))
 
 
+def _date_range_from_dict(data: Any) -> Optional[DateRange]:
+    if data is None:
+        return None
+    if not isinstance(data, dict):
+        raise ValueError("date range must be an object")
+    after = data.get("after")
+    before = data.get("before")
+    if after is None and before is None:
+        return None
+    if after is not None and not isinstance(after, str):
+        raise ValueError("date range 'after' must be a string")
+    if before is not None and not isinstance(before, str):
+        raise ValueError("date range 'before' must be a string")
+    return DateRange(after=after, before=before)
+
+
 def _filter_from_dict(data: Any) -> MeasurementFilter:
     if not isinstance(data, dict):
         raise ValueError("measurement_filter must be an object")
@@ -116,6 +133,7 @@ def _filter_from_dict(data: Any) -> MeasurementFilter:
         protocol_hint=data.get("protocol_hint"),
         metric=data.get("metric"),
         threshold=_threshold_from_dict(data.get("threshold")),
+        assay_date_range=_date_range_from_dict(data.get("assay_date_range")),
         protocol_id=data.get("protocol_id"),
     )
 
@@ -130,6 +148,7 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         registration_target_as_typed=data.get("registration_target_as_typed"),
         assay_target_as_typed=data.get("assay_target_as_typed"),
         measurement_filters=[_filter_from_dict(f) for f in raw_filters],
+        registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
     )

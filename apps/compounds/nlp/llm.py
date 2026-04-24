@@ -22,12 +22,14 @@ response. See ``test_llm.py`` for the pattern.
 
 from __future__ import annotations
 
+import datetime
 import json
-from typing import Any, List
+from typing import Any, List, Optional
 
 from .azure_client import get_azure_openai_client, get_model_name
 from .spec import (
     CompoundSelector,
+    DateRange,
     MeasurementFilter,
     NotAQuery,
     ParseError,
@@ -66,12 +68,31 @@ Rules:
   selectivity is expressed:
     "mEGFR compounds with WT IC50 < 10 uM AND TM IC50 > 1 uM"
     → two filters, one per protocol, both on metric "IC50".
-- Each filter has optional protocol_hint, metric, threshold. Null fields:
+- Each filter has optional protocol_hint, metric, threshold, assay_date_range.
+  Null fields:
   - protocol_hint null → any protocol in scope is eligible
   - metric null → any numeric KPI counts
   - threshold null → just requires a valid measurement exists
+  - assay_date_range null → no date constraint on the assay
 - threshold is {op, value, unit}. op is one of <, <=, >, >=, =, !=.
   Echo the unit verbatim as typed ("uM" not "µM").
+- Dates: both `registered_date_range` (on the selector) and
+  `assay_date_range` (on each filter) are {after, before} half-open
+  ISO-date ranges — `after` is the inclusive lower bound, `before`
+  is the EXCLUSIVE upper bound. Map calendar units exactly:
+    "in 2025"         → {after: "2025-01-01", before: "2026-01-01"}
+    "in Q1 2026"      → {after: "2026-01-01", before: "2026-04-01"}
+    "in March 2026"   → {after: "2026-03-01", before: "2026-04-01"}
+    "since 2025-03-15"→ {after: "2025-03-15", before: null}
+    "before 2024"     → {after: null, before: "2024-01-01"}
+  Relative phrasings — "last 30 days", "this week", "recently" — resolve
+  against the date given on the `[Today: YYYY-MM-DD]` line at the START
+  of each user message. For example, with Today: 2026-04-24:
+    "in the last 30 days" → {after: "2026-03-25", before: null}
+    "this quarter"        → {after: "2026-04-01", before: "2026-07-01"}
+    "yesterday"           → {after: "2026-04-23", before: "2026-04-24"}
+  Emit null dates rather than guessing when the phrasing is ambiguous
+  (e.g. "recently" without a time anchor).
 - Conversational filler nouns — "hits", "compounds", "molecules",
   "series", "analogues" — carry no structural meaning unless the user
   names an explicit cutoff. Do not synthesise a threshold from filler
@@ -91,6 +112,20 @@ entries. Only the selector shape.
 
 # JSON Schema for the response. Every property listed in `required` per
 # Azure OpenAI strict-mode rules. `additionalProperties: false` throughout.
+# Reusable date-range subschema shared by `registered_date_range` (on the
+# selector) and `assay_date_range` (on each measurement filter). Dates are
+# "YYYY-MM-DD" strings; both ends nullable (half-open ranges).
+_DATE_RANGE_SUBSCHEMA: dict = {
+    "type": ["object", "null"],
+    "additionalProperties": False,
+    "properties": {
+        "after": {"type": ["string", "null"]},
+        "before": {"type": ["string", "null"]},
+    },
+    "required": ["after", "before"],
+}
+
+
 PROMPT_SCHEMA: dict = {
     "type": "object",
     "additionalProperties": False,
@@ -99,6 +134,7 @@ PROMPT_SCHEMA: dict = {
         "reason": {"type": ["string", "null"]},
         "registration_target_as_typed": {"type": ["string", "null"]},
         "assay_target_as_typed": {"type": ["string", "null"]},
+        "registered_date_range": _DATE_RANGE_SUBSCHEMA,
         "measurement_filters": {
             "type": "array",
             "items": {
@@ -117,8 +153,9 @@ PROMPT_SCHEMA: dict = {
                         },
                         "required": ["op", "value", "unit"],
                     },
+                    "assay_date_range": _DATE_RANGE_SUBSCHEMA,
                 },
-                "required": ["protocol_hint", "metric", "threshold"],
+                "required": ["protocol_hint", "metric", "threshold", "assay_date_range"],
             },
         },
     },
@@ -127,6 +164,7 @@ PROMPT_SCHEMA: dict = {
         "reason",
         "registration_target_as_typed",
         "assay_target_as_typed",
+        "registered_date_range",
         "measurement_filters",
     ],
 }
@@ -138,6 +176,21 @@ def _threshold_from_dict(data: Any) -> Threshold:
         value=float(data["value"]),
         unit=data.get("unit"),
     )
+
+
+def _date_range_from_dict(data: Any) -> Optional[DateRange]:
+    """Build a DateRange from an LLM-emitted `{after, before}` object.
+    Returns None when the range is absent or both ends are null (treat
+    as "no date filter")."""
+    if data is None:
+        return None
+    if not isinstance(data, dict):
+        raise ValueError(f"date range not a dict: {data!r}")
+    after = data.get("after")
+    before = data.get("before")
+    if after is None and before is None:
+        return None
+    return DateRange(after=after, before=before)
 
 
 def _filter_from_dict(data: Any) -> MeasurementFilter:
@@ -156,6 +209,7 @@ def _filter_from_dict(data: Any) -> MeasurementFilter:
         protocol_hint=data.get("protocol_hint"),
         metric=data.get("metric"),
         threshold=threshold,
+        assay_date_range=_date_range_from_dict(data.get("assay_date_range")),
     )
 
 
@@ -184,8 +238,21 @@ def _to_parse_result(data: dict) -> PromptParseResult:
     return CompoundSelector(
         registration_target_as_typed=data.get("registration_target_as_typed"),
         assay_target_as_typed=data.get("assay_target_as_typed"),
+        registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
         measurement_filters=filters,
     )
+
+
+def _wrap_with_today(prompt: str, today: Optional[str] = None) -> str:
+    """Prepend a `[Today: YYYY-MM-DD]` line to the user message so the
+    LLM can resolve relative date phrasings against a known reference.
+
+    Today is prepended to the USER message, not the system prompt —
+    that way the system prompt stays static and cache-friendly (decision
+    16's intent) while still giving the model a moving reference point."""
+    if today is None:
+        today = datetime.date.today().isoformat()
+    return f"[Today: {today}]\n{prompt}"
 
 
 def parse_prompt(prompt: str) -> PromptParseResult:
@@ -207,7 +274,7 @@ def parse_prompt(prompt: str) -> PromptParseResult:
         },
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
+            {"role": "user", "content": _wrap_with_today(prompt)},
         ],
         temperature=0,
     )

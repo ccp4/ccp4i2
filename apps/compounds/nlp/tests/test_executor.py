@@ -10,11 +10,13 @@ from __future__ import annotations
 
 import pytest
 
+from datetime import datetime, timezone
 from compounds.assays.models import AnalysisResult, Assay, DataSeries, Protocol
 from compounds.nlp.executor import execute
 from compounds.nlp.spec import (
     CompoundSelector,
     CompoundSelection,
+    DateRange,
     FIELD_PROTOCOL_HINT,
     FIELD_REGISTRATION_TARGET,
     MeasurementFilter,
@@ -368,3 +370,146 @@ def test_scope_sentence_assay_only(db):
     res = execute(CompoundSelector(assay_target_as_typed="AKT"))
     assert isinstance(res, CompoundSelection)
     assert "tested against AKT" in res.scope_sentence
+
+
+# ---------------------------------------------------------------------------
+# Date filters — registered_date_range on CompoundSelector, assay_date_range
+# on MeasurementFilter
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def dated_world(db):
+    """Compounds registered across three calendar years + HTRF measurements
+    across two quarters. Lets us exercise both date filters independently."""
+    t = Target.objects.create(name="CDK4")
+    # Compounds — override registered_at post-save (auto_now_add means we
+    # can't set it on create(); update() bypasses that).
+    c_2024 = Compound.objects.create(target=t, smiles="CCO")
+    c_2025 = Compound.objects.create(target=t, smiles="CCN")
+    c_2026 = Compound.objects.create(target=t, smiles="CCC")
+    Compound.objects.filter(pk=c_2024.pk).update(
+        registered_at=datetime(2024, 6, 15, tzinfo=timezone.utc),
+    )
+    Compound.objects.filter(pk=c_2025.pk).update(
+        registered_at=datetime(2025, 8, 20, tzinfo=timezone.utc),
+    )
+    Compound.objects.filter(pk=c_2026.pk).update(
+        registered_at=datetime(2026, 2, 10, tzinfo=timezone.utc),
+    )
+    # Refresh so in-memory copies are current (some tests read them).
+    c_2024.refresh_from_db()
+    c_2025.refresh_from_db()
+    c_2026.refresh_from_db()
+
+    p = Protocol.objects.create(name="CDK4 HTRF")
+    # Two assay runs on different dates, each with measurements for some
+    # compounds. c_2024 measured in Q1 2026, c_2025 in Q2 2026.
+    assay_q1 = Assay.objects.create(protocol=p, target=t)
+    Assay.objects.filter(pk=assay_q1.pk).update(
+        created_at=datetime(2026, 2, 15, tzinfo=timezone.utc),
+    )
+    assay_q2 = Assay.objects.create(protocol=p, target=t)
+    Assay.objects.filter(pk=assay_q2.pk).update(
+        created_at=datetime(2026, 5, 20, tzinfo=timezone.utc),
+    )
+    _mk_result(assay_q1, c_2024, status="valid",
+               results={"KPI": "IC50", "IC50": 5.0, "kpi_unit": "nM"})
+    _mk_result(assay_q1, c_2025, status="valid",
+               results={"KPI": "IC50", "IC50": 10.0, "kpi_unit": "nM"})
+    _mk_result(assay_q2, c_2026, status="valid",
+               results={"KPI": "IC50", "IC50": 15.0, "kpi_unit": "nM"})
+
+    return {
+        "t": t, "c_2024": c_2024, "c_2025": c_2025, "c_2026": c_2026,
+        "assay_q1": assay_q1, "assay_q2": assay_q2,
+    }
+
+
+def test_registered_date_range_narrows_base_scope(dated_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_date_range=DateRange(after="2025-01-01", before="2026-01-01"),
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [dated_world["c_2025"].formatted_id]
+
+
+def test_registered_date_after_only(dated_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_date_range=DateRange(after="2025-01-01", before=None),
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert set(res.compound_formatted_ids) == {
+        dated_world["c_2025"].formatted_id,
+        dated_world["c_2026"].formatted_id,
+    }
+
+
+def test_registered_date_before_only(dated_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_date_range=DateRange(after=None, before="2025-01-01"),
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [dated_world["c_2024"].formatted_id]
+
+
+def test_assay_date_range_on_filter(dated_world):
+    """Only compounds whose HTRF measurement falls in Q1 2026 survive."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                threshold=Threshold(op="<", value=100, unit="nM"),
+                assay_date_range=DateRange(after="2026-01-01", before="2026-04-01"),
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    # c_2024 and c_2025 were both measured in Q1 2026. c_2026's
+    # measurement was in Q2 so it's excluded despite passing the threshold.
+    assert set(res.compound_formatted_ids) == {
+        dated_world["c_2024"].formatted_id,
+        dated_world["c_2025"].formatted_id,
+    }
+
+
+def test_combined_registration_and_assay_dates(dated_world):
+    """Registration in 2025 (narrows to c_2025) AND measurement in Q1 2026
+    (c_2025's measurement IS in Q1 2026) → exactly c_2025."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_date_range=DateRange(after="2025-01-01", before="2026-01-01"),
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                threshold=Threshold(op="<", value=100, unit="nM"),
+                assay_date_range=DateRange(after="2026-01-01", before="2026-04-01"),
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [dated_world["c_2025"].formatted_id]
+
+
+def test_scope_sentence_includes_date_phrases(dated_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_date_range=DateRange(after="2025-01-01", before="2026-01-01"),
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                threshold=Threshold(op="<", value=100, unit="nM"),
+                assay_date_range=DateRange(after="2026-01-01", before="2026-04-01"),
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "registered between 2025-01-01 and 2026-01-01" in res.scope_sentence
+    assert "measured between 2026-01-01 and 2026-04-01" in res.scope_sentence

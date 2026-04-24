@@ -36,6 +36,7 @@ import yaml
 from compounds.nlp.llm import _to_parse_result
 from compounds.nlp.spec import (
     CompoundSelector,
+    DateRange,
     MeasurementFilter,
     NotAQuery,
     ParseError,
@@ -83,6 +84,7 @@ def _expected_to_llm_output(expected: dict) -> dict:
         "reason": None,
         "registration_target_as_typed": None,
         "assay_target_as_typed": None,
+        "registered_date_range": None,
         "measurement_filters": [],
     }
     if t == "not_a_query":
@@ -94,6 +96,8 @@ def _expected_to_llm_output(expected: dict) -> dict:
         base["registration_target_as_typed"] = expected["registration_target_as_typed"]
     if "assay_target_as_typed" in expected:
         base["assay_target_as_typed"] = expected["assay_target_as_typed"]
+    if "registered_date_range" in expected:
+        base["registered_date_range"] = _date_range_payload(expected["registered_date_range"])
 
     raw_filters = expected.get("measurement_filters") or []
     filters: List[dict] = []
@@ -108,9 +112,38 @@ def _expected_to_llm_output(expected: dict) -> dict:
             "protocol_hint": flt.get("protocol_hint"),
             "metric": flt.get("metric"),
             "threshold": threshold_out,
+            "assay_date_range": _date_range_payload(flt.get("assay_date_range")),
         })
     base["measurement_filters"] = filters
     return base
+
+
+def _date_range_payload(dr: Optional[dict]) -> Optional[dict]:
+    """Convert a golden-YAML date-range dict to the strict-mode LLM-output
+    shape. Returns None when the range itself is null/absent; otherwise
+    returns `{after, before}` with both keys (null if unset)."""
+    if dr is None:
+        return None
+    return {"after": dr.get("after"), "before": dr.get("before")}
+
+
+def _date_range_diff(
+    actual: Optional[DateRange],
+    expected: Optional[dict],
+    path: str,
+) -> List[str]:
+    """Diff a golden-YAML date-range block against an actual DateRange.
+    Treat both-null / both-absent as equivalent."""
+    a_after = actual.after if actual is not None else None
+    a_before = actual.before if actual is not None else None
+    e_after = expected.get("after") if expected else None
+    e_before = expected.get("before") if expected else None
+    diffs: List[str] = []
+    if a_after != e_after:
+        diffs.append(f"{path}.after: expected {e_after!r}, got {a_after!r}")
+    if a_before != e_before:
+        diffs.append(f"{path}.before: expected {e_before!r}, got {a_before!r}")
+    return diffs
 
 
 def _filter_diff(
@@ -135,6 +168,11 @@ def _filter_diff(
             diffs.append(f"filter[{idx}].threshold.value: expected {e_t['value']}, got {a_t.value}")
         if a_t.unit != e_t.get("unit"):
             diffs.append(f"filter[{idx}].threshold.unit: expected {e_t.get('unit')!r}, got {a_t.unit!r}")
+    diffs.extend(_date_range_diff(
+        actual.assay_date_range,
+        expected.get("assay_date_range"),
+        f"filter[{idx}].assay_date_range",
+    ))
     return diffs
 
 
@@ -145,6 +183,12 @@ def _selector_diff(actual: CompoundSelector, expected: dict) -> Optional[str]:
         e = expected.get(field)
         if a != e:
             diffs.append(f"{field}: expected {e!r}, got {a!r}")
+
+    diffs.extend(_date_range_diff(
+        actual.registered_date_range,
+        expected.get("registered_date_range"),
+        "registered_date_range",
+    ))
 
     expected_filters = expected.get("measurement_filters") or []
     if len(actual.measurement_filters) != len(expected_filters):

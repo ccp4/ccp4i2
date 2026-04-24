@@ -287,13 +287,37 @@ def test_measurement_filters_items_strictly_shaped():
     assert filters["type"] == "array"
     item = filters["items"]
     assert item["additionalProperties"] is False
-    assert set(item["required"]) == {"protocol_hint", "metric", "threshold"}
+    assert set(item["required"]) == {
+        "protocol_hint", "metric", "threshold", "assay_date_range",
+    }
 
 
 def test_threshold_subschema_additional_properties_disabled():
     threshold = PROMPT_SCHEMA["properties"]["measurement_filters"]["items"]["properties"]["threshold"]
     assert threshold["additionalProperties"] is False
     assert set(threshold["required"]) == {"op", "value", "unit"}
+
+
+def test_today_is_prepended_to_user_message():
+    """The LLM needs today's date to resolve relative phrasings like
+    "last 30 days". Injected in the user message (not the system prompt)
+    so the system prompt stays static and cache-friendly."""
+    from compounds.nlp.llm import _wrap_with_today
+
+    wrapped = _wrap_with_today("CDK4 compounds registered last month", today="2026-04-24")
+    assert wrapped.startswith("[Today: 2026-04-24]\n")
+    assert "CDK4 compounds registered last month" in wrapped
+
+
+def test_parse_prompt_wraps_with_today_in_user_message():
+    """The user message the SDK sees must carry the [Today: ...] prefix."""
+    payload = _empty_payload()
+    payload["registration_target_as_typed"] = "CDK4"
+    _, client = _patched_parse("CDK4 compounds", payload)
+    messages = client.chat.completions.create.call_args.kwargs["messages"]
+    user_content = messages[1]["content"]
+    assert user_content.startswith("[Today: ")
+    assert "CDK4 compounds" in user_content
 
 
 def test_system_prompt_mentions_key_discipline_rules():

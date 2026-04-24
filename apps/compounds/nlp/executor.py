@@ -39,6 +39,7 @@ from .spec import (
     SCOPE_REG_ONLY,
     CompoundSelection,
     CompoundSelector,
+    DateRange,
     ExecutionResult,
     MeasurementFilter,
     ProtocolClarify,
@@ -89,7 +90,7 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
         resolved_protocols.append(rp)
 
     # Apply each filter and intersect the surviving compound sets.
-    base_compound_ids = _base_scope_compound_ids(rt)
+    base_compound_ids = _base_scope_compound_ids(rt, selector)
     surviving: Optional[Set[str]] = None
 
     for flt, rp in zip(selector.measurement_filters, resolved_protocols):
@@ -129,14 +130,29 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
 # ---------------------------------------------------------------------------
 
 
-def _base_scope_compound_ids(rt: ResolvedTargets) -> Set[str]:
-    """Compound IDs that pass the target scope (before any filters).
+def _apply_date_range(qs, field: str, dr: Optional[DateRange]):
+    """Apply a half-open [after, before) date range to ``qs`` against the
+    date/datetime column named ``field``. Returns the queryset unchanged
+    when dr is None or both bounds are null."""
+    if dr is None:
+        return qs
+    if dr.after:
+        qs = qs.filter(**{f"{field}__date__gte": dr.after})
+    if dr.before:
+        qs = qs.filter(**{f"{field}__date__lt": dr.before})
+    return qs
+
+
+def _base_scope_compound_ids(rt: ResolvedTargets, selector: CompoundSelector) -> Set[str]:
+    """Compound IDs that pass the target scope + registered-date filter.
 
     Each scope_kind maps to a different base query:
     - SCOPE_REG_ONLY / SCOPE_BOTH_SAME / SCOPE_CROSS: compounds registered
       to the registration target.
     - SCOPE_ASSAY_ONLY: compounds that have at least one DataSeries under
       an Assay with the given target.
+
+    ``registered_date_range`` (if set) filters on Compound.registered_at.
     """
     if rt.registration is not None:
         qs = Compound.objects.filter(target=rt.registration)
@@ -149,6 +165,8 @@ def _base_scope_compound_ids(rt: ResolvedTargets) -> Set[str]:
         # have at least one DataSeries against the assay target so we don't
         # surface "my ARd compounds" with no actual AKT data.
         qs = qs.filter(assay_results__assay__target=rt.assay).distinct()
+
+    qs = _apply_date_range(qs, "registered_at", selector.registered_date_range)
 
     return set(qs.values_list("pk", flat=True))
 
@@ -163,10 +181,13 @@ def _filter_matching_compounds(
     A row satisfies the filter iff evaluate_row returns RowMatched for it.
     The row itself is per-measurement; a compound is in the set if *any*
     of its rows pass (compound-level OR within a filter).
+
+    ``assay_date_range`` (if set) filters rows by Assay.created_at.
     """
     qs = _scoped_analysis_results(rt)
     if rp is not None:
         qs = qs.filter(data_series__assay__protocol=rp.protocol)
+    qs = _apply_date_range(qs, "data_series__assay__created_at", flt.assay_date_range)
 
     matching: Set[str] = set()
     for ar in qs.iterator():
@@ -226,8 +247,8 @@ def _scope_sentence(
     selector: CompoundSelector,
     resolved_protocols: List[Optional[ResolvedProtocol]],
 ) -> str:
-    """Human echo-back (§10). Two clauses: the target scope, and the
-    AND-joined filter list (if any)."""
+    """Human echo-back (§10). Three clauses: the target scope, an optional
+    registered-date phrase, and the AND-joined filter list (if any)."""
     reg = rt.registration.name if rt.registration is not None else ""
     assay = rt.assay.name if rt.assay is not None else ""
     if rt.scope_kind == SCOPE_BOTH_SAME:
@@ -240,6 +261,10 @@ def _scope_sentence(
         base = f"Showing compounds tested against {assay}"
     else:
         base = "Showing compounds"
+
+    reg_date_phrase = _date_range_phrase(selector.registered_date_range, "registered")
+    if reg_date_phrase:
+        base += f" ({reg_date_phrase})"
 
     filter_clauses: List[str] = []
     for flt, rp in zip(selector.measurement_filters, resolved_protocols):
@@ -266,4 +291,22 @@ def _filter_clause(
         t: Threshold = flt.threshold
         unit = f" {t.unit}" if t.unit else ""
         parts.append(f"{t.op} {t.value}{unit}")
+    date_phrase = _date_range_phrase(flt.assay_date_range, "measured")
+    if date_phrase:
+        parts.append(date_phrase)
     return " ".join(parts)
+
+
+def _date_range_phrase(dr: Optional[DateRange], verb: str) -> str:
+    """Human rendering of a DateRange — "<verb> after X", "<verb> before Y",
+    or "<verb> between X and Y". Empty string when the range is absent or
+    has neither bound set."""
+    if dr is None:
+        return ""
+    if dr.after and dr.before:
+        return f"{verb} between {dr.after} and {dr.before}"
+    if dr.after:
+        return f"{verb} after {dr.after}"
+    if dr.before:
+        return f"{verb} before {dr.before}"
+    return ""

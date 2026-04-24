@@ -387,6 +387,93 @@
         threshold: {op: "<", value: 100, unit: nM}
 
 # =============================================================================
+# Date filters — registration date on the selector, assay date per filter
+# (half-open [after, before) ranges; "before" is EXCLUSIVE upper bound)
+# =============================================================================
+
+- name: registered_in_specific_year
+  prompt: "CDK4 compounds registered in 2025"
+  expected:
+    type: selector
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    registered_date_range: {after: "2025-01-01", before: "2026-01-01"}
+    measurement_filters: []
+
+- name: registered_in_calendar_quarter
+  prompt: "ARd compounds registered in Q1 2026"
+  expected:
+    type: selector
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    registered_date_range: {after: "2026-01-01", before: "2026-04-01"}
+    measurement_filters: []
+
+- name: registered_in_specific_month
+  prompt: "CDK4 compounds registered in March 2026"
+  expected:
+    type: selector
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    registered_date_range: {after: "2026-03-01", before: "2026-04-01"}
+    measurement_filters: []
+
+- name: registered_since_absolute_date
+  prompt: "ARd compounds registered since 2025-06-01"
+  expected:
+    type: selector
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    registered_date_range: {after: "2025-06-01", before: null}
+    measurement_filters: []
+
+- name: registered_before_absolute_date
+  prompt: "ARd compounds registered before 2024-01-01"
+  expected:
+    type: selector
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    registered_date_range: {after: null, before: "2024-01-01"}
+    measurement_filters: []
+
+- name: assay_date_filter_on_filter
+  prompt: "CDK4 compounds with HTRF IC50 < 100 nM measured in Q1 2026"
+  expected:
+    type: selector
+    note: "Date filter on the ASSAY (per-filter assay_date_range), not the registration."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+        assay_date_range: {after: "2026-01-01", before: "2026-04-01"}
+
+- name: registration_and_assay_dates_combined
+  prompt: "CDK4 compounds registered in 2025 with HTRF IC50 < 100 nM measured in 2026"
+  expected:
+    type: selector
+    note: "Both registration and assay date ranges — different windows."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    registered_date_range: {after: "2025-01-01", before: "2026-01-01"}
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+        assay_date_range: {after: "2026-01-01", before: "2027-01-01"}
+
+- name: recently_is_ambiguous_filler
+  prompt: "ARd compounds registered recently"
+  expected:
+    type: selector
+    note: "'Recently' is ambiguous without a time anchor — the LLM should not guess a range. No explicit cutoff, no date range."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    registered_date_range: null
+    measurement_filters: []
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 
