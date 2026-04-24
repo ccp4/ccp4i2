@@ -129,10 +129,15 @@ export async function postNlpQuery(
  * Pin the user's clarify-picker choice on the appropriate place in the
  * selector and return the next selector to POST as a continuation.
  *
- * - Target clarify: set registration_target_id or assay_target_id on the
- *   selector (depending on `field`).
- * - Protocol clarify: set protocol_id on the specific measurement_filter
- *   identified by `filterIndex`.
+ * - Target clarify: set registration_target_id / assay_target_id AND
+ *   replace the ambiguous *_as_typed string with the picked target's
+ *   canonical name, so the selector now self-documents which programme
+ *   was chosen (otherwise the user's original "MYC" would still appear
+ *   in the selector even though Myc-Aur was picked).
+ * - Protocol clarify: same treatment on the specific measurement_filter
+ *   identified by `filterIndex` — set protocol_id and replace the
+ *   ambiguous protocol_hint ("HTRF") with the chosen protocol's name
+ *   ("CDK4-HTRF cellular rebind" etc.).
  *
  * Raises an error (rather than silently crashing) if `partial` is missing
  * or lacks `measurement_filters`. That indicates a client/server version
@@ -144,7 +149,7 @@ export async function postNlpQuery(
 export function applyClarifyPick(
   partial: CompoundSelector | undefined,
   field: string,
-  pickedId: string,
+  candidate: { id: string; name: string },
   filterIndex?: number,
 ): CompoundSelector {
   if (!partial || !Array.isArray(partial.measurement_filters)) {
@@ -159,15 +164,18 @@ export function applyClarifyPick(
     measurement_filters: partial.measurement_filters.map((f) => ({ ...f })),
   };
   if (field === FIELD_REGISTRATION_TARGET) {
-    next.registration_target_id = pickedId;
+    next.registration_target_id = candidate.id;
+    next.registration_target_as_typed = candidate.name;
   } else if (field === FIELD_ASSAY_TARGET) {
-    next.assay_target_id = pickedId;
+    next.assay_target_id = candidate.id;
+    next.assay_target_as_typed = candidate.name;
   } else if (field === FIELD_PROTOCOL_HINT) {
     const idx = filterIndex ?? 0;
     if (idx >= 0 && idx < next.measurement_filters.length) {
       next.measurement_filters[idx] = {
         ...next.measurement_filters[idx],
-        protocol_id: pickedId,
+        protocol_id: candidate.id,
+        protocol_hint: candidate.name,
       };
     }
   }

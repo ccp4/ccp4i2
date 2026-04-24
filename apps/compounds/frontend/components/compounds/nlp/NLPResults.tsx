@@ -24,7 +24,7 @@ interface Props {
   onClarifyPick: (
     partial: CompoundSelector,
     field: string,
-    pickedId: string,
+    candidate: TargetCandidate | ProtocolCandidate,
     filterIndex?: number,
   ) => void;
 }
@@ -127,7 +127,7 @@ function ClarifyView({
   onPick: (
     partial: CompoundSelector,
     field: string,
-    pickedId: string,
+    candidate: TargetCandidate | ProtocolCandidate,
     filterIndex?: number,
   ) => void;
 }) {
@@ -163,7 +163,7 @@ function ClarifyView({
             onClick={
               partialSelectorMissing
                 ? undefined
-                : () => onPick(partial_selector, field, candidate.id, filter_index)
+                : () => onPick(partial_selector, field, candidate, filter_index)
             }
             clickable={!partialSelectorMissing}
             disabled={partialSelectorMissing}
