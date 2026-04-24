@@ -1,13 +1,20 @@
+# mmcifconvert.py
+#
+# Convert mmcif reflection files to MTZ for ccp4i2
+
 import sys
 import math
 
 from lxml import etree
 
 import gemmi
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.importutils import *
-#from mmcifutils import *
-#from importutils import *
+
+try:
+    from mmcifutils import *
+    from importutils import *
+except:
+    from  pipelines.import_merged.script.mmcifutils import *
+    from  pipelines.import_merged.script.importutils import *
 
 
 class GetColumn():
@@ -73,7 +80,6 @@ class CIFReflectionData:
         self.rblock = rblock
         # hkl_list is of type numpy.ndarray
         self.hkl_list = rblock.make_miller_array()
-
         self.cifblockinfo = CifBlockInfo(rblock)
 
         self.labelsets = self.cifblockinfo.labelsets  # CIFLabelSets
@@ -85,7 +91,8 @@ class CIFReflectionData:
         # Resolution limits are in self.cifblockinfo.resolutionrange
         # Start XML report
         self.convertXML = etree.Element('MMCIF_CONVERT')
-
+        self.maxResIncluded = None
+        
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def setMTZnames(self, outfile, freerfile):
         self.outfile = outfile
@@ -100,6 +107,7 @@ class CIFReflectionData:
     def gettype(self, typelist):
         # Loop possible types in order of priority
         # Return first one found in file
+        #print(">!>", typelist, " ::: ", self.labeltypes)
         for labtype in typelist:
             if labtype in self.labeltypes:
                 foundtype = labtype
@@ -187,10 +195,9 @@ class CIFReflectionData:
 
         self.storeColumnNames(spec_lines, freerspecs)
         reducemessage = self.makereducemessage(False)
-        nreduced = 0
-        self.addtoXML(cifdatatype, len(self.hkl_list),
+        self.addtoXML(cifdatatype, mtz.nreflections,
                       'ciftomtz convert', reducemessage,
-                      haveFreeR, nreduced, resorange)
+                      haveFreeR, resorange)
 
         return True
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -206,10 +213,12 @@ class CIFReflectionData:
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def outputMTZ(self, mtz, data, outfile, resorange):
         # Set data into mtz, trim if necessary, write to outfile
+        # Returns number written
         mtz.set_data(data)
         if resorange is not None:
             mtz = self.setMtzResolutionLimits(mtz,resorange)
         mtz.write_to_file(outfile)
+        return mtz.nreflections
         
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def makereducemessage(self, reducehkl=True):
@@ -311,17 +320,14 @@ class CIFReflectionData:
 
         juniq = 0
         previoushkl = None
-        nreduced = 0
         ops = self.rblock.spacegroup.operations()
-
+        
         for i, taggedhkl in enumerate(taggedlist):
             # Loop reflections
             idx = taggedhkl.idx    # index into original list
             isym = taggedhkl.isym  # isym, odd for I/F+
             if reducehkl:
                 rhkl = taggedhkl.rhkl  # Unique hkl
-                if not self.samehkl(rhkl, self.hkl_list[idx]):
-                    nreduced += 1            
             else:
                 rhkl = self.hkl_list[idx]
                             
@@ -335,11 +341,12 @@ class CIFReflectionData:
                     frdataline = list(frdataline0)
 
                 if self.dataout:
-                    # print("*", juniq, idx,rhkl,  isym, dataline)
+                    #print("*", juniq, idx,rhkl,  isym, dataline)
                     data[juniq] = dataline
                     dataline = list(dataline0)
-
+                    
                 juniq += 1
+                    
                 previoushkl = rhkl
 
             if haveFreeR:
@@ -371,16 +378,15 @@ class CIFReflectionData:
             if self.dataout: data[juniq] = dataline
             if haveFreeR: freerdata[juniq] = frdataline
 
-        # print("Unique reflections", juniq)
-        #print("nreduced", nreduced)
+        nreflections = 0
 
         if self.dataout:
             # Start to construct the MTZ file for main data
             mtz = gemmi.Mtz(with_base=True)  # with h,k,l
             self.start_mtz(mtz, mtzspecs)
-            self.outputMTZ(mtz, data, self.outfile, resorange)
+            nreflections = self.outputMTZ(mtz, data, self.outfile, resorange)
             print("File ", self.outfile, " written, number of reflections",
-                  len(data))
+                  nreflections)
 
         # and the FreeR file
         if haveFreeR:
@@ -393,21 +399,22 @@ class CIFReflectionData:
                 #  MTZ column label, column type
                 self.addMTZcolumnLabelType(mtz, spec)
 
-            self.outputMTZ(mtz, freerdata, self.freerfile, resorange)
+            nreffr = self.outputMTZ(mtz, freerdata, self.freerfile, resorange)
             print("File ", self.freerfile, " written, number of reflections",
-                  len(freerdata))
+                  nreflections)
 
         reducemessage = self.makereducemessage(reducehkl)
-        self.addtoXML(self.cifdatatype, juniq,
+        self.addtoXML(self.cifdatatype, nreflections,
                       'combine anomalous lines',
-                      reducemessage, haveFreeR, nreduced, resorange)
+                      reducemessage, haveFreeR, resorange)
 
         return True
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def nonstandardMTZwritedata(self, cifdatatype,
                                 reducehkl=True, haveFreeR=True,
-                                freeRmissing=False, resorange=None):
+                                freeRmissing=False, resorange=None,
+                                excludemissing=False):
         # Write MTZ from cif,
         #  reducing hkl to standard CCP4 asu if reducehkl True
         # Loop possible types in order of priority
@@ -426,6 +433,7 @@ class CIFReflectionData:
                 cifdatatype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)
                 self.cifdatatype = cifdatatype
 
+            #print(">> cifdatatype ", cifdatatype)
             anomalous = False
             if 'anomalous' in cifdatatype:
                 anomalous = True
@@ -436,7 +444,7 @@ class CIFReflectionData:
             ndatacols = len(ciftags)
 
             cifdata = [self.rblock.make_float_array(tag) for tag in ciftags]
-
+            
             for i in range(ndatacols):
                 if len(cifdata[i]) != nref:
                     print("Wrong array length", nref, i, len(cifdata[i]))
@@ -463,7 +471,7 @@ class CIFReflectionData:
         self.storeColumnNames(mtzspecs, freerspecs)
 
         taggedlist = self.maketaggedlist()
-
+        
         # Now for the main cif data
         nrefunique = self.cifblockinfo.nrefunique()
         if self.dataout:
@@ -477,26 +485,27 @@ class CIFReflectionData:
 
         ops = self.rblock.spacegroup.operations()
 
+        d_array = self.rblock.make_d_array()
+        self.maxResIncluded = 10000.0
+
         juniq = 0
 
         nswaplist = 10
         nswapped = 0
-        nreduced = 0
         nallnan = 0
         nobsnanfrvalid = 0
         
         for i, taggedhkl in enumerate(taggedlist):
-            # Loop reflections
+            # Loop reflections, may contain missing ones
             idx = taggedhkl.idx    # index into original list
             isym = taggedhkl.isym  # isym, odd for I/F+
             if reducehkl:
                 rhkl = taggedhkl.rhkl  # Unique hkl
-                if self.samehkl(rhkl, self.hkl_list[idx]):
-                    nreduced += 1            
             else:
                 rhkl = self.hkl_list[idx]  # original hkl
 
-            if self.dataout:
+            missing = False
+            if self.dataout:  #  Main data (not FreeR)
                 dataline[0] = rhkl[0]
                 dataline[1] = rhkl[1]
                 dataline[2] = rhkl[2]
@@ -507,14 +516,20 @@ class CIFReflectionData:
                     d[i] = cifdata[i][idx]
                     if not math.isnan(cifdata[i][idx]):
                         allnan = False
-                #print("*",rhkl, idx, d)
+                #print("*",rhkl, idx, allnan, d)
+
                 if allnan:
                     nallnan += 1
                     if haveFreeR and not math.isnan(ciffreer[idx]):
                         nobsnanfrvalid += 1
-                        #    print("*allNan",rhkl, idx, d, ciffreer[idx])
-                    continue  # no output
-                
+
+                    if excludemissing:
+                        # print("* Exclude allNan",rhkl, idx, d, ciffreer[idx])
+                        continue  # no output, main data and freeR
+                else:
+                    # not allnan, record highest resolution included
+                    self.maxResIncluded = min(self.maxResIncluded, d_array[idx])
+    
                 if anomalous:
                     if not ops.is_reflection_centric(rhkl):
                         doswap = (isym%2 == 0)
@@ -538,13 +553,13 @@ class CIFReflectionData:
                         
                     # two pairs of columns 3,4 and 5,6, set Nan if zero
                     self.settonan(dataline, 5, 2)
-                else:
+                else:   # not anomalous
                     for i in range(ndatacols):
                         dataline[3+i] = d[i]
 
-                self.settonan(dataline, 3, 2)
+                self.settonan(dataline, 3, 2)   # if close to zero
                 
-                #print("*", juniq, idx,rhkl, juniq,  dataline)
+                #print("**", juniq, idx,rhkl, juniq,  dataline)
                 data[juniq] = dataline
 
             if haveFreeR:
@@ -554,30 +569,41 @@ class CIFReflectionData:
                 frdataline[3] = ciffreer[idx]
                 freerdata[juniq] = frdataline
 
+            #print("^^ juniq", juniq)
             juniq += 1
-    
+        # End reflection loop
+            
         if nswapped > 0:
             print(nswapped,
                   "reflections have swapped anomalous plus and minus")
             addXMLelement(self.convertXML, 'nanomswapped', str(nswapped))
 
         if nallnan > 0:
-            addXMLelement(self.convertXML, 'OmittedMissing', str(nallnan))
+            if excludemissing:
+                # excluded
+                addXMLelement(self.convertXML, 'OmittedMissing', str(nallnan))
+            else:
+                # not excluded
+                addXMLelement(self.convertXML, 'KeptMissing', str(nallnan))
             if nobsnanfrvalid > 0:
                 addXMLelement(self.convertXML, 'OmittedMissingValidFreeR',
                               str(nobsnanfrvalid))
+
             print("Omitted reflections with all values missing:", nallnan)
             print("  Number of these with valid FreeRflag:", nobsnanfrvalid)
 
-        #print("nreduced", nreduced)
-            
+        nreflections = 0
+        resorangeout = None
         if self.dataout:
             # Start to construct the MTZ file
             mtz = gemmi.Mtz(with_base=True)  # with h,k,l
             self.start_mtz(mtz, mtzspecs)
-            self.outputMTZ(mtz, data, self.outfile, resorange)
+            nreflections = \
+                self.outputMTZ(mtz, data[:juniq,:], self.outfile, resorange)
             print("File ", self.outfile, " written, number of reflections",
-                  len(data))
+                  nreflections)
+            da = mtz.make_d_array()
+            resorangeout = (max(da), min(da))
 
         # and the FreeR file
         if haveFreeR:
@@ -590,16 +616,17 @@ class CIFReflectionData:
                 #  MTZ column label, column type
                 self.addMTZcolumnLabelType(mtz, spec)
 
-            self.outputMTZ(mtz, freerdata, self.freerfile, resorange)
+            nreffr = self.outputMTZ(mtz, freerdata[:juniq,:], self.freerfile, resorange)
             print("File ", self.freerfile, " written,  number of reflections",
-                  len(freerdata))
+                  nreffr)
 
         reducemessage = self.makereducemessage(reducehkl)
         message = 'non-standard asymmetric unit'
         if freeRmissing:
             message = "missing FreeR values"
-        self.addtoXML(cifdatatype, juniq, message,
-                      reducemessage, haveFreeR, nreduced, resorange)
+
+        self.addtoXML(cifdatatype, nreflections, message,
+                      reducemessage, haveFreeR, resorangeout)
         return True
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def settonan(self, dataline, i1, n):
@@ -608,8 +635,17 @@ class CIFReflectionData:
                 dataline[i] = math.nan
         return dataline
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def areAllNan(self, dataline):
+        # Return True if all data items, excluding hkl, are NaN
+        allnan = True
+        for i in range(3,len(dataline)):
+            if not math.isnan(dataline[i]):
+                allnan = False
+        return allnan
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def maketaggedlist(self):
         # Make hkl list for sorting, to give access to I/F+- mates
+        # Tagged list may contain entries which are not actually in the file
         sg = self.rblock.spacegroup   # gemmi.SpaceGroup
         ops = sg.operations()
         asu = gemmi.ReciprocalAsu(sg)
@@ -618,10 +654,10 @@ class CIFReflectionData:
         taggedlist = []
         for i, hkl in enumerate(self.hkl_list):
             hklisym = asu.to_asu(hkl, ops)
-            #            if not self.samehkl(tuple(hklisym[0]), hkl):
+            #if not self.samehkl(tuple(hklisym[0]), hkl):
             #                print("maketaggedlist", hklisym[0], hkl)
-        
             taggedlist.append(Taggedhkl(tuple(hklisym[0]), i, hklisym[1]))
+            
 
         taggedlist.sort(key=lambda x: x.rhkl)
         return taggedlist
@@ -698,8 +734,8 @@ class CIFReflectionData:
         mtz.add_column(clabel, ctype)
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def addtoXML(self, datatype, nunique, typemessage,
-                 reducehklmessage='', haveFreeR=True, nreduced=0,
-                 resorange=None):
+                 reducehklmessage='', haveFreeR=True,
+                 resorange=None, maxResIncluded=None):
         #  Record stuff in XML
         if datatype is not None:
             addXMLelement(self.convertXML, 'datatype', datatype)
@@ -713,9 +749,15 @@ class CIFReflectionData:
         self.convertXML.append(rrngxml)
         if resorange is not None:
             if resorange[0] > 0.0 or resorange[1] > 0.0:
-                rrngxml = self.resorangeXML(resorange, 'cutresolution')
-                self.convertXML.append(rrngxml)
+                if not self.resorangesSame(self.cifblockinfo.resolutionrange, resorange):
+                    rrngxml = self.resorangeXML(resorange, 'cutresolution')
+                    self.convertXML.append(rrngxml)
 
+        # Maximum resolution for reflections not flagged or excluded
+        if self.maxResIncluded is not None:
+            addXMLelement(self.convertXML, 'maxResolutionAccepted',
+                          "{:.3f}".format(self.maxResIncluded))
+                    
         if haveFreeR:
             addXMLelement(self.convertXML,
                           'freeRwritten', str(nunique))
@@ -733,10 +775,14 @@ class CIFReflectionData:
             freerspecs = ReflectionDataTypes.REFLECTION_DATA[ftype]
             addXMLelement(self.convertXML,
                           'FreeRused', freerspecs[0].split()[0])
-
-        if nreduced != 0:
-            addXMLelement(self.convertXML,
-                          'numreducedhkl', str(nreduced))
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def resorangesSame(self, resorange1, resorange2):
+        # True is resolution ranges are essentially to same
+        lowdiff  = abs(resorange1[0] - resorange2[0])
+        highdiff = abs(resorange2[0] - resorange2[0])
+        if lowdiff < 0.001 and highdiff < 0.001:
+            return True
+        return False
                       
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def resorangeXML(self, resorange, id=None):
@@ -764,8 +810,19 @@ class CIFReflectionData:
 class ConvertCIF():
     def __init__(self, inputfilename, blockname, cifdatatype,
                  outfile, freerfile,
-                 reducehkl=True, resorange=None):
+                 reducehkl=True, resorange=None, excludemissing=False):
 
+        # Read reflection data from mmcif file into mtz file
+        
+        # inputfilename   mmcif file input
+        # blockname       cif blockname if None, use first block
+        # cifdatatype     data type selected
+        # outfile         output mtz file name
+        # freerfile       output FreeR file name
+        # reducehkl=True  reduce to standard asu if True
+        # resorange=None  select resolution range
+        # excludemissing=False  if True, remove empty (missing) reflections
+        
         print("ConvertCIF", cifdatatype)
         mmcif = gemmi.cif.read(inputfilename)
 
@@ -791,19 +848,25 @@ class ConvertCIF():
 
         blkinfo = CifBlockInfo(rblock)
         printBlockInfo(blkinfo)
+        print("\n")
 
         refdata = CIFReflectionData(rblock)
         refdata.setMTZnames(outfile, freerfile)
 
         # Do we have a FreeR column?  (status or pdbx_r_free_flag)
-        haveFreeR = blkinfo.haveFreeR()
+        self.haveFreeR = blkinfo.haveFreeR()
 
-        # Data types for cif and mtz names
-            
+        # Simple case
+        allowsimplewrite = blkinfo.allowsimplewrite(reducehkl)
+        #  unless excludemissing flag is set
+        if excludemissing:
+            allowsimplewrite = False
+        
         # Cases:
         #  1. just one asymmetric unit present
         #   a) hkl in "standard" CCP4 asu
         #      Use simple cif2mtz call, for data and FreeR
+        #        unless excludemissing flag is set        
         #   b) non-standard asu
         #      Reduce hkl to standard CCP4 asu unless reducehkl == False
         #  2. more than one asu present (nsame > 0)
@@ -814,11 +877,11 @@ class ConvertCIF():
 
         # Can we do simple write (using CifToMtz)?
         self.status = False
-        if blkinfo.allowsimplewrite(reducehkl):
+        if allowsimplewrite and not excludemissing:
             print("simple write")
             # Now write the main data
             self.status = refdata.simpleMTZwrite(cifdatatype,
-                                                 haveFreeR, resorange)
+                                                 self.haveFreeR, resorange)
         else:
             # Other cases need special treatment
             if not blkinfo.ismerged():
@@ -829,15 +892,18 @@ class ConvertCIF():
                 # Data with anomalous pairs on different lines
                 self.status = refdata.anomMTZwritedata(cifdatatype,
                                                        reducehkl,
-                                                       haveFreeR, resorange)
+                                                       self.haveFreeR, resorange)
             else:
-                if (not blkinfo.standardasu()) or blkinfo.rfreeFlagmissing():
-                    print("Non-standard asu or rfreeFlagmissing")
+                if (not blkinfo.standardasu()) or blkinfo.rfreeFlagmissing() \
+                   or excludemissing:
+                    print(\
+                     "Non-standard asu or rfreeFlag missing or excludemissing")
                     # Data in non-standard asu, reduce hkl
                     self.status = \
                        refdata.nonstandardMTZwritedata(cifdatatype,
-                                        reducehkl, haveFreeR,
-                                        blkinfo.rfreeFlagmissing(), resorange)
+                                        reducehkl, self.haveFreeR,
+                                        blkinfo.rfreeFlagmissing(),
+                                        resorange, excludemissing)
                 else:
                     # Shouldn't happen
                     print("Shouldn't happen: standard asu and more than one asu")
@@ -860,3 +926,8 @@ class ConvertCIF():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getXML(self):
             return self.XMLreport
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def freeRwritten(self):
+        return self.haveFreeR
+    
