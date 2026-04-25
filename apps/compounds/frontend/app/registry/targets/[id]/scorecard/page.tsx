@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useCallback, useEffect, useMemo, useState } from 'react';
+import { use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   Alert,
@@ -10,19 +10,23 @@ import {
   Button,
   CircularProgress,
   Container,
+  IconButton,
   Link,
   Paper,
   Stack,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import { ArrowBack, Save } from '@mui/icons-material';
+import { ArrowBack, Check, ContentCopy, Save } from '@mui/icons-material';
+import html2canvas from 'html2canvas';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAggregation } from '@/lib/compounds/aggregation-api';
 import { routes } from '@/lib/compounds/routes';
 import { ScorecardEditor } from '@/components/compounds/ScorecardEditor';
 import { CompoundSpider } from '@/components/compounds/CompoundSpider';
 import { ScorecardValuesTable } from '@/components/compounds/ScorecardValuesTable';
+import { ScorecardKeyTable } from '@/components/compounds/ScorecardKeyTable';
 import type {
   Protocol,
   ScorecardConfig,
@@ -237,9 +241,96 @@ export default function TargetScorecardPage({ params }: PageProps) {
               </Typography>
             )}
           </Paper>
+
+          <ScorecardKeyPanel
+            config={draft}
+            protocols={(sampleData as CompactAggregationResponse | undefined)?.protocols}
+          />
         </Box>
       )}
     </Container>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Compact "key" panel — explains each axis's formula + thresholds in
+// presentation-ready form. Sits in the editor's right column under the
+// live preview; copy-as-image button lets chemists drop it onto a
+// PowerPoint slide alongside spider cards. Sized to fit ~5 spider cards
+// across a slide.
+// ---------------------------------------------------------------------------
+
+function ScorecardKeyPanel({
+  config,
+  protocols,
+}: {
+  config: ScorecardConfig;
+  protocols?: import('@/types/compounds/aggregation').ProtocolInfo[];
+}) {
+  const keyRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    const node = keyRef.current;
+    if (!node) return;
+    try {
+      const canvas = await html2canvas(node, {
+        backgroundColor: '#ffffff',
+        scale: 2, // higher DPI for crisp paste at slide scale
+      });
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob }),
+          ]);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1800);
+        } catch (err) {
+          console.error('Failed to copy key to clipboard:', err);
+        }
+      }, 'image/png');
+    } catch (err) {
+      console.error('Failed to capture key:', err);
+    }
+  }, []);
+
+  if (config.axes.length === 0) return null;
+
+  return (
+    <Paper sx={{ p: 2, minWidth: 360, maxWidth: 480 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+        <Typography variant="subtitle1" fontWeight={600} sx={{ flex: 1 }}>
+          Scorecard key
+        </Typography>
+        <Tooltip title={copied ? 'Copied!' : 'Copy as image'} arrow>
+          <IconButton onClick={handleCopy} size="small">
+            {copied ? <Check fontSize="small" color="success" /> : <ContentCopy fontSize="small" />}
+          </IconButton>
+        </Tooltip>
+      </Box>
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        sx={{ display: 'block', mb: 1.5 }}
+      >
+        Drop this beside your spider cards on a slide. ★ excellent → ✗ poor.
+      </Typography>
+      <Box
+        ref={keyRef}
+        sx={{
+          // White background and a hairline frame so the captured PNG
+          // stands alone visually when pasted into a slide.
+          bgcolor: '#fff',
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: 1,
+          p: 1.5,
+        }}
+      >
+        <ScorecardKeyTable config={config} protocols={protocols} />
+      </Box>
+    </Paper>
   );
 }
 
