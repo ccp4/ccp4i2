@@ -137,9 +137,10 @@ function AxisRow({
         sx={{
           color: 'text.secondary',
           fontStyle: 'italic',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
+          // Allow long formulas (e.g. concatenated protocol names with
+          // mutation suffixes) to wrap rather than truncate; the panel
+          // width is the budget, but readability wins over single-line.
+          wordBreak: 'break-word',
         }}
         title={formulaText(axis, protocols)}
       >

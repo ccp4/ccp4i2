@@ -312,7 +312,7 @@ function ScorecardKeyPanel({
   if (config.axes.length === 0) return null;
 
   return (
-    <Paper sx={{ p: 2, minWidth: 360, maxWidth: 480 }}>
+    <Paper sx={{ p: 2, minWidth: 480, maxWidth: 800 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
         <Typography variant="subtitle1" fontWeight={600} sx={{ flex: 1 }}>
           Scorecard key
