@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { groupAxesBySector, sectorColour } from '@/lib/compounds/scorecard';
 import { formatConcentrationValue } from '@/lib/compounds/aggregation-api';
@@ -46,64 +46,57 @@ export function ScorecardKeyTable({
   }
 
   return (
+    // Native <table> rather than CSS Grid: html2canvas has only partial
+    // Grid support and was mis-positioning text in copied PNGs (words
+    // overlapping). Tables are html2canvas-friendly and render
+    // identically in the browser.
     <Box
+      component="table"
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 0.75,
-        // Designed for slide-embedded use: fixed-ish width, compact line
-        // height. Bump font sizes only via the parent if you need it
-        // larger for a particular paste.
+        width: '100%',
+        borderCollapse: 'collapse',
         fontSize: '0.78rem',
-        '& .MuiTypography-root': { fontSize: '0.78rem', lineHeight: 1.35 },
+        lineHeight: 1.35,
       }}
     >
-      {groups.map((group, gi) => (
-        <Box key={gi}>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 0.75,
-              borderBottom: '1px solid',
-              borderColor: 'divider',
-              mb: 0.25,
-              pb: 0.1,
-            }}
-          >
-            <Box
-              sx={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                bgcolor: group.sector ? sectorColour(group.sector) : 'transparent',
-                border: group.sector ? 'none' : '1px dashed rgba(0,0,0,0.3)',
-              }}
-            />
-            <Typography
-              sx={{
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                fontSize: '0.7rem',
-                color: 'text.secondary',
-                // No letter-spacing — html2canvas miscomputes widths
-                // when letter-spacing is set in em units, causing
-                // adjacent words to overlap in copied PNGs.
-              }}
-            >
-              {group.sector ?? '—'}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(110px, max-content) 1fr auto',
-              columnGap: 1.25,
-              rowGap: 0.15,
-              alignItems: 'baseline',
-              pl: 1.5,
-            }}
-          >
+      <tbody>
+        {groups.map((group, gi) => (
+          <Fragment key={gi}>
+            {/* Sector banner row spanning all columns */}
+            <tr>
+              <td
+                colSpan={3}
+                style={{
+                  borderBottom: '1px solid #e0e0e0',
+                  paddingTop: gi === 0 ? 0 : 8,
+                  paddingBottom: 1,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'inline-block',
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: group.sector ? sectorColour(group.sector) : 'transparent',
+                    border: group.sector ? 'none' : '1px dashed rgba(0,0,0,0.3)',
+                    marginRight: 6,
+                    verticalAlign: 'middle',
+                  }}
+                />
+                <span
+                  style={{
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    fontSize: '0.7rem',
+                    color: '#757575',
+                  }}
+                >
+                  {group.sector ?? '—'}
+                </span>
+              </td>
+            </tr>
             {group.items.map(({ item: axis }, i) => (
               <AxisRow
                 key={i}
@@ -112,9 +105,9 @@ export function ScorecardKeyTable({
                 concentrationDisplay={concentrationDisplay}
               />
             ))}
-          </Box>
-        </Box>
-      ))}
+          </Fragment>
+        ))}
+      </tbody>
     </Box>
   );
 }
@@ -129,27 +122,38 @@ function AxisRow({
   concentrationDisplay: ConcentrationDisplayMode;
 }) {
   return (
-    <>
-      <Typography sx={{ fontWeight: 600 }}>
+    <tr>
+      <td style={{ paddingLeft: 12, paddingRight: 10, paddingTop: 1, paddingBottom: 1, fontWeight: 600, verticalAlign: 'baseline', whiteSpace: 'nowrap' }}>
         {axis.label || <em style={{ color: '#999' }}>(unnamed)</em>}
-      </Typography>
-      <Typography
-        sx={{
-          color: 'text.secondary',
+      </td>
+      <td
+        style={{
+          paddingRight: 10,
+          paddingTop: 1,
+          paddingBottom: 1,
+          color: '#757575',
           fontStyle: 'italic',
-          // Allow long formulas (e.g. concatenated protocol names with
-          // mutation suffixes) to wrap rather than truncate; the panel
-          // width is the budget, but readability wins over single-line.
+          // Long formulas wrap within the cell rather than truncating.
           wordBreak: 'break-word',
+          verticalAlign: 'baseline',
         }}
         title={formulaText(axis, protocols)}
       >
         {formulaText(axis, protocols)}
-      </Typography>
-      <Typography sx={{ fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
+      </td>
+      <td
+        style={{
+          fontFamily: 'monospace',
+          whiteSpace: 'nowrap',
+          textAlign: 'right',
+          verticalAlign: 'baseline',
+          paddingTop: 1,
+          paddingBottom: 1,
+        }}
+      >
         {thresholdText(axis, protocols, concentrationDisplay)}
-      </Typography>
-    </>
+      </td>
+    </tr>
   );
 }
 

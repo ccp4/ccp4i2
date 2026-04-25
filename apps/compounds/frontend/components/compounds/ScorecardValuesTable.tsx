@@ -69,25 +69,33 @@ export function ScorecardValuesTable({
           {caption}
         </Typography>
       )}
+      {/* Native <table> rather than CSS Grid: html2canvas has only partial
+          Grid support and was mis-positioning text in copied PNGs (words
+          overlapping). Tables are html2canvas-friendly and render
+          identically in the browser. */}
       <Box
+        component="table"
         sx={{
-          display: 'grid',
-          gridTemplateColumns: '12px minmax(120px, 1fr) auto auto',
-          columnGap: 1.5,
-          rowGap: dense ? 0.15 : 0.25,
-          alignItems: 'center',
+          width: '100%',
+          borderCollapse: 'collapse',
           fontSize: '0.8rem',
-          '& .MuiTypography-root': { fontSize: '0.8rem' },
+          '& td': {
+            verticalAlign: 'middle',
+            paddingTop: dense ? '1px' : '2px',
+            paddingBottom: dense ? '1px' : '2px',
+          },
         }}
       >
-        {orderedEvals.map((ev, i) => (
-          <AxisRow
-            key={i}
-            evaluation={ev}
-            protocols={protocols}
-            concentrationDisplay={concentrationDisplay}
-          />
-        ))}
+        <tbody>
+          {orderedEvals.map((ev, i) => (
+            <AxisRow
+              key={i}
+              evaluation={ev}
+              protocols={protocols}
+              concentrationDisplay={concentrationDisplay}
+            />
+          ))}
+        </tbody>
       </Box>
     </Box>
   );
@@ -111,33 +119,29 @@ function AxisRow({
   );
 
   return (
-    <>
-      <Box
-        sx={{
-          width: 10,
-          height: 10,
-          borderRadius: '50%',
-          bgcolor: dotColour,
-          border: axis.sector ? 'none' : '1px dashed rgba(0,0,0,0.2)',
-        }}
-      />
-      <Typography
-        sx={{
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        }}
-        title={axis.label}
-      >
+    <tr>
+      <td style={{ width: 16, paddingRight: 8 }}>
+        <span
+          style={{
+            display: 'inline-block',
+            width: 10,
+            height: 10,
+            borderRadius: '50%',
+            background: dotColour,
+            border: axis.sector ? 'none' : '1px dashed rgba(0,0,0,0.2)',
+          }}
+        />
+      </td>
+      <td style={{ paddingRight: 12 }}>
         {axis.label || <em style={{ color: '#999' }}>(unnamed)</em>}
-      </Typography>
-      <Typography sx={{ fontFamily: 'monospace', textAlign: 'right' }}>
+      </td>
+      <td style={{ fontFamily: 'monospace', textAlign: 'right', paddingRight: 12, whiteSpace: 'nowrap' }}>
         {display}
-      </Typography>
-      <Typography sx={{ color: tierColour(t), textAlign: 'right', minWidth: 64 }}>
+      </td>
+      <td style={{ color: tierColour(t), textAlign: 'right', minWidth: 64, whiteSpace: 'nowrap' }}>
         {tierLabel(t)}
-      </Typography>
-    </>
+      </td>
+    </tr>
   );
 }
 
