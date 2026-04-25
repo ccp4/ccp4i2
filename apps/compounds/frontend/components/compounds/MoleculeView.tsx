@@ -109,7 +109,12 @@ const ENLARGED_SIZE = 350; // Size of enlarged view
 
 export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, disableHover = false }) => {
   const { rdkitModule, isLoading } = useRDKit();
-  const [svgUrl, setSvgUrl] = useState<string | null>(null);
+  // We keep BOTH the raw SVG markup and a Blob-URL flavour. The markup is
+  // rendered inline so html2canvas captures the structure cleanly (it
+  // doesn't honour object-fit on <img src=blob:…>, which causes the
+  // molecule to overflow the container in copied PNGs). The Blob URL is
+  // still used by the enlarged hover popup where capture isn't a concern.
+  const [svgMarkup, setSvgMarkup] = useState<string | null>(null);
   const [enlargedSvgUrl, setEnlargedSvgUrl] = useState<string | null>(null);
   const [showEnlarged, setShowEnlarged] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -125,12 +130,7 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
 
       const svg = mol.get_svg(size, size);
       mol.delete();
-
-      const blob = new Blob([svg], { type: 'image/svg+xml' });
-      const url = URL.createObjectURL(blob);
-      setSvgUrl(url);
-
-      return () => URL.revokeObjectURL(url);
+      setSvgMarkup(svg);
     } catch (err) {
       console.error('RDKit error:', err);
     }
@@ -187,7 +187,7 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
     return <Skeleton variant="rectangular" width={size} height={size} />;
   }
 
-  if (!svgUrl) {
+  if (!svgMarkup) {
     return (
       <Typography variant="caption" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
         {smiles.length > 20 ? smiles.slice(0, 20) + '...' : smiles}
@@ -207,14 +207,18 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
           alignItems: 'center',
           justifyContent: 'center',
           cursor: disableHover ? 'default' : 'zoom-in',
+          // Inline SVG markup so html2canvas captures the molecule
+          // natively. <img src=blob:…> + object-fit:contain causes the
+          // structure to overflow the box in copied PNGs because
+          // html2canvas doesn't honour object-fit on raster-style images.
+          '& > svg': {
+            width: '100%',
+            height: '100%',
+            display: 'block',
+          },
         }}
-      >
-        <img
-          src={svgUrl}
-          alt=""
-          style={{ width: size, height: size, objectFit: 'contain' }}
-        />
-      </Box>
+        dangerouslySetInnerHTML={{ __html: svgMarkup }}
+      />
       {!disableHover && (
         <Popper
           open={showEnlarged}
