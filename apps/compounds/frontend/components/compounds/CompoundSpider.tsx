@@ -187,9 +187,15 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
       maintainAspectRatio: true,
       // Don't bridge across nulls — missing data stays as a visible gap.
       spanGaps: false,
-      // Extra space around the chart so pointLabels don't clip at the
-      // edges of the container (especially for the small size).
-      layout: { padding: isSmall ? 4 : 8 },
+      // Generous canvas padding so axis labels don't clip on the
+      // left/right of the polygon. Chart.js radar centres each point
+      // label on its axis end; for a leftmost label like "Lipinski",
+      // half the text width sticks out past the axis end. Without
+      // padding here, the canvas crops it. Empirically:
+      //   small (220px outer)  → ~28px each side gives full labels at
+      //                           up to ~10 chars + the truncation char
+      //   large (360px outer)  → ~16px is plenty
+      layout: { padding: isSmall ? 28 : 16 },
       scales: {
         r: {
           min: 0,
@@ -200,8 +206,10 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
             font: { size: isSmall ? 9 : 11 },
             color: 'rgba(0, 0, 0, 0.75)',
             padding: isSmall ? 4 : 8,
+            // Tighten small-spider truncation to 10 chars so even axes
+            // at the leftmost/rightmost points fit inside the padded canvas.
             callback: (value: string) =>
-              truncate(String(value), isSmall ? 12 : 32),
+              truncate(String(value), isSmall ? 10 : 32),
           },
           grid: { circular: true },
           angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
@@ -238,9 +246,9 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
     };
   }, [evals, size, wedges]);
 
-  // Bump the small size to accommodate axis labels around the perimeter
-  // without squashing the plot area.
-  const dimension = size === 'small' ? 180 : 360;
+  // Outer container size. Includes the layout.padding above, so the
+  // polygon itself ends up ≈ (dimension - 2 × padding) wide.
+  const dimension = size === 'small' ? 220 : 380;
 
   if (!config?.axes?.length) {
     if (size === 'small') return null;
