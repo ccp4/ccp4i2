@@ -1,9 +1,10 @@
 'use client';
 
 import { use, useCallback, useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   Alert,
+  Autocomplete,
   Box,
   Breadcrumbs,
   Button,
@@ -12,6 +13,7 @@ import {
   Link,
   Paper,
   Stack,
+  TextField,
   Typography,
 } from '@mui/material';
 import { ArrowBack, Save } from '@mui/icons-material';
@@ -34,6 +36,8 @@ interface PageProps {
 export default function TargetScorecardPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const api = useCompoundsApi();
 
   const { data: target, isLoading: targetLoading, mutate: refreshTarget } =
@@ -50,10 +54,35 @@ export default function TargetScorecardPage({ params }: PageProps) {
     aggregations: ['geomean', 'count'],
     include_properties: ['molecular_weight', 'clogp', 'hbd', 'hba'],
   });
-  const sampleCompound = useMemo(() => {
+  const sampleCompounds = useMemo(() => {
     const compact = sampleData as CompactAggregationResponse | undefined;
-    return compact?.data?.[0] ?? null;
+    return compact?.data ?? [];
   }, [sampleData]);
+
+  // Optional URL-encoded compound choice — `?compound=NCL-00031070` pins
+  // the live preview to a specific compound for shareable bookmarks.
+  // When unset (or unmatched), default to the first compound returned by
+  // the aggregation so something always renders.
+  const pickedFormattedId = searchParams?.get('compound') ?? null;
+  const sampleCompound = useMemo(() => {
+    if (sampleCompounds.length === 0) return null;
+    if (pickedFormattedId) {
+      const match = sampleCompounds.find((c) => c.formatted_id === pickedFormattedId);
+      if (match) return match;
+    }
+    return sampleCompounds[0];
+  }, [sampleCompounds, pickedFormattedId]);
+
+  const handlePickCompound = useCallback(
+    (formattedId: string | null) => {
+      const params = new URLSearchParams(searchParams?.toString() ?? '');
+      if (formattedId) params.set('compound', formattedId);
+      else params.delete('compound');
+      const qs = params.toString();
+      router.replace(`${pathname}${qs ? '?' + qs : ''}`, { scroll: false });
+    },
+    [pathname, router, searchParams],
+  );
 
   const [draft, setDraft] = useState<ScorecardConfig>({ axes: [] });
   const [saving, setSaving] = useState(false);
@@ -166,16 +195,29 @@ export default function TargetScorecardPage({ params }: PageProps) {
             <Typography variant="subtitle1" fontWeight={600} gutterBottom>
               Live preview
             </Typography>
-            {sampleCompound ? (
+            {sampleCompounds.length > 0 ? (
               <>
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                  sx={{ display: 'block', mb: 1 }}
-                >
-                  Sample compound: <strong>{sampleCompound.formatted_id}</strong>
-                </Typography>
-                <CompoundSpider config={draft} compound={sampleCompound} size="large" />
+                <Autocomplete
+                  size="small"
+                  options={sampleCompounds}
+                  value={sampleCompound}
+                  getOptionLabel={(c) => c.formatted_id ?? ''}
+                  isOptionEqualToValue={(a, b) => a.compound_id === b.compound_id}
+                  onChange={(_, picked) =>
+                    handlePickCompound(picked?.formatted_id ?? null)
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Sample compound"
+                      helperText="Pick which compound's data to render in the preview"
+                    />
+                  )}
+                  sx={{ mb: 2 }}
+                />
+                {sampleCompound && (
+                  <CompoundSpider config={draft} compound={sampleCompound} size="large" />
+                )}
               </>
             ) : (
               <Typography variant="caption" color="text.secondary">
