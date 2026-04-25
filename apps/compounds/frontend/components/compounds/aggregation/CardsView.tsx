@@ -31,7 +31,9 @@ import {
 import { MoleculeChip, CompoundNameChip } from '../MoleculeView';
 import { DataSeriesDetailModal } from '../DataSeriesDetailModal';
 import { CompoundSpider } from '../CompoundSpider';
+import { ScorecardValuesTable } from '../ScorecardValuesTable';
 import { protocolColour } from '@/lib/compounds/protocol-colour';
+import { evaluateScorecard } from '@/lib/compounds/scorecard';
 import type { ScorecardConfig } from '@/types/compounds/models';
 import {
   Order,
@@ -48,7 +50,11 @@ import {
 } from './shared';
 
 /** Sort key type for cards view */
-type CardsSortKey = 'compound' | `property_${MolecularPropertyName}` | `protocol_${string}`;
+type CardsSortKey =
+  | 'compound'
+  | `property_${MolecularPropertyName}`
+  | `protocol_${string}`
+  | `axis_${number}`;
 
 /**
  * Cards view component (grid of compound cards).
@@ -135,10 +141,19 @@ export function CardsView({
   }, [propertyThresholds]);
 
   // Build sort options for dropdown
+  const scorecardAxes = scorecardConfig?.axes ?? [];
   const sortOptions = useMemo(() => {
     const options: { value: CardsSortKey; label: string }[] = [
       { value: 'compound', label: 'Compound ID' },
     ];
+    // Scorecard axes first (most relevant when a scorecard is in play)
+    for (let i = 0; i < scorecardAxes.length; i++) {
+      const axis = scorecardAxes[i];
+      options.push({
+        value: `axis_${i}` as CardsSortKey,
+        label: `★ ${axis.label || `axis ${i + 1}`}`,
+      });
+    }
     // Add property options
     for (const propName of includeProperties) {
       options.push({
@@ -154,11 +169,21 @@ export function CardsView({
       });
     }
     return options;
-  }, [includeProperties, protocols]);
+  }, [includeProperties, protocols, scorecardAxes]);
 
-  // Get sort value for a compound
+  // Get sort value for a compound. For scorecard axes we sort by the
+  // normalised score `t` (0–1, direction-aware) so 'best first' makes
+  // sense regardless of whether the underlying axis is lower-better
+  // (IC50) or higher-better (solubility).
   const getSortValue = useCallback((row: CompactRow, key: CardsSortKey): unknown => {
     if (key === 'compound') return row.formatted_id;
+    if (key.startsWith('axis_')) {
+      const idx = Number(key.slice(5));
+      const axis = scorecardAxes[idx];
+      if (!axis || !scorecardConfig) return null;
+      const evals = evaluateScorecard(scorecardConfig, row);
+      return evals[idx]?.t ?? null;
+    }
     if (key.startsWith('property_')) {
       const propName = key.replace('property_', '') as MolecularPropertyName;
       return row.properties?.[propName] ?? null;
@@ -171,7 +196,7 @@ export function CardsView({
       return null;
     }
     return null;
-  }, [hasGeomean, hasCount]);
+  }, [hasGeomean, hasCount, scorecardAxes, scorecardConfig]);
 
   // Sorted cards
   const sortedRows = useMemo(() => {
@@ -450,8 +475,24 @@ export function CardsView({
               </Box>
             )}
 
-            {/* Protocols — hidden when the user picked spider-only */}
-            {cardContent !== 'spider' && (
+            {/* Composite scorecard values — replaces raw protocol rows
+                when scorecard is configured AND user picked "Both", so the
+                key+value section reflects the same composited data the
+                spider is plotting (ratios, worst-of, lipinski, etc.). */}
+            {cardContent === 'both' && hasScorecard && scorecardConfig && (
+              <Box sx={{ pt: 1, borderTop: 1, borderColor: 'divider' }}>
+                <ScorecardValuesTable
+                  config={scorecardConfig}
+                  compound={row}
+                  protocols={protocols}
+                  concentrationDisplay={concentrationDisplay}
+                />
+              </Box>
+            )}
+
+            {/* Raw per-protocol rows — shown when user picked Protocols
+                only, or when no scorecard is configured at all. */}
+            {(cardContent === 'protocols' || (!hasScorecard && cardContent !== 'spider')) && (
             <Box sx={{ flex: 1, pt: 1, borderTop: 1, borderColor: 'divider' }}>
               {protocols.map((protocol) => {
                 const protocolData = row.protocols[protocol.id];

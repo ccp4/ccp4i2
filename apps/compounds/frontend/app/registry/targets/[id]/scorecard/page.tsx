@@ -22,18 +22,13 @@ import { useAggregation } from '@/lib/compounds/aggregation-api';
 import { routes } from '@/lib/compounds/routes';
 import { ScorecardEditor } from '@/components/compounds/ScorecardEditor';
 import { CompoundSpider } from '@/components/compounds/CompoundSpider';
-import {
-  evaluateScorecard,
-  groupAxesBySector,
-  sectorColour,
-  type AxisEvaluation,
-} from '@/lib/compounds/scorecard';
+import { ScorecardValuesTable } from '@/components/compounds/ScorecardValuesTable';
 import type {
   Protocol,
   ScorecardConfig,
   Target,
 } from '@/types/compounds/models';
-import type { CompactAggregationResponse, CompactRow } from '@/types/compounds/aggregation';
+import type { CompactAggregationResponse } from '@/types/compounds/aggregation';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -224,7 +219,14 @@ export default function TargetScorecardPage({ params }: PageProps) {
                 {sampleCompound && (
                   <>
                     <CompoundSpider config={draft} compound={sampleCompound} size="large" />
-                    <AxisValuesTable config={draft} compound={sampleCompound} />
+                    <Box sx={{ mt: 2 }}>
+                      <ScorecardValuesTable
+                        config={draft}
+                        compound={sampleCompound}
+                        protocols={(sampleData as CompactAggregationResponse | undefined)?.protocols}
+                        caption={`Values for ${sampleCompound.formatted_id}`}
+                      />
+                    </Box>
                   </>
                 )}
               </>
@@ -241,110 +243,3 @@ export default function TargetScorecardPage({ params }: PageProps) {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Per-axis values for the chosen exemplar compound. Same sector ordering as
-// the spider so a chemist scanning the table maps directly to a wedge.
-// Sanity-checks both that the right protocols are wired up and that the
-// excellent/poor anchors give a sensible normalised score.
-// ---------------------------------------------------------------------------
-
-function AxisValuesTable({
-  config,
-  compound,
-}: {
-  config: ScorecardConfig;
-  compound: CompactRow;
-}) {
-  const evals = useMemo(
-    () => evaluateScorecard(config, compound),
-    [config, compound],
-  );
-  const orderedEvals = useMemo<AxisEvaluation[]>(() => {
-    if (evals.length === 0) return [];
-    const groups = groupAxesBySector(evals.map((e) => e.axis));
-    return groups.flatMap((g) => g.items).map(({ index }) => evals[index]);
-  }, [evals]);
-
-  if (orderedEvals.length === 0) return null;
-
-  return (
-    <Box sx={{ mt: 2 }}>
-      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
-        Values for {compound.formatted_id}
-      </Typography>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '12px minmax(120px, 1fr) auto auto',
-          columnGap: 1.5,
-          rowGap: 0.25,
-          alignItems: 'center',
-          fontSize: '0.8rem',
-          // Tighten table-internal Typography so rows stay compact.
-          '& .MuiTypography-root': { fontSize: '0.8rem' },
-        }}
-      >
-        {orderedEvals.map((ev, i) => (
-          <AxisRow key={i} evaluation={ev} />
-        ))}
-      </Box>
-    </Box>
-  );
-}
-
-function AxisRow({ evaluation }: { evaluation: AxisEvaluation }) {
-  const { axis, value, t } = evaluation;
-  const dotColour = axis.sector ? sectorColour(axis.sector) : 'transparent';
-  return (
-    <>
-      <Box
-        sx={{
-          width: 10,
-          height: 10,
-          borderRadius: '50%',
-          bgcolor: dotColour,
-          border: axis.sector ? 'none' : '1px dashed rgba(0,0,0,0.2)',
-        }}
-      />
-      <Typography
-        sx={{
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        }}
-        title={axis.label}
-      >
-        {axis.label || <em style={{ color: '#999' }}>(unnamed)</em>}
-      </Typography>
-      <Typography sx={{ fontFamily: 'monospace', textAlign: 'right' }}>
-        {value == null ? '—' : formatValue(value)}
-      </Typography>
-      <Typography sx={{ color: tierColour(t), textAlign: 'right', minWidth: 64 }}>
-        {tierLabel(t)}
-      </Typography>
-    </>
-  );
-}
-
-function formatValue(v: number): string {
-  if (!Number.isFinite(v)) return '—';
-  if (Math.abs(v) >= 100 || Math.abs(v) < 0.1) return v.toPrecision(3);
-  return v.toFixed(2);
-}
-
-function tierLabel(t: number | null): string {
-  if (t == null) return 'no data';
-  if (t >= 1) return 'excellent';
-  if (t >= 2 / 3) return 'good';
-  if (t >= 1 / 3) return 'mid';
-  if (t > 0) return 'poor';
-  return 'failing';
-}
-
-function tierColour(t: number | null): string {
-  if (t == null) return 'rgba(0, 0, 0, 0.4)';
-  // Same hue ramp as the spider/bullets fill — green at the top end,
-  // red at the bottom — so the tier text reads as the tier visually.
-  const hue = 5 + (140 - 5) * t;
-  return `hsl(${hue.toFixed(0)}, 55%, 38%)`;
-}

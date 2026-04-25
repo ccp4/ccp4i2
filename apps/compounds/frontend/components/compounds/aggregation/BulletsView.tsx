@@ -1,19 +1,33 @@
 'use client';
 
-import { Fragment, useMemo } from 'react';
-import { Box, Paper, Typography, Tooltip, Alert } from '@mui/material';
+import { Fragment, useMemo, useState } from 'react';
+import {
+  Box,
+  Paper,
+  Typography,
+  Tooltip,
+  Alert,
+  FormControl,
+  Select,
+  MenuItem,
+  IconButton,
+} from '@mui/material';
+import { ArrowDownward, ArrowUpward } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import type {
   CompactAggregationResponse,
   CompactRow,
+  ConcentrationDisplayMode,
+  ProtocolInfo,
 } from '@/types/compounds/aggregation';
-import type { ScorecardConfig } from '@/types/compounds/models';
+import type { ScorecardAxis, ScorecardConfig } from '@/types/compounds/models';
 import {
   evaluateScorecard,
   groupAxesBySector,
   sectorColour,
   type AxisEvaluation,
 } from '@/lib/compounds/scorecard';
+import { formatConcentrationValue } from '@/lib/compounds/aggregation-api';
 import { MoleculeChip } from '../MoleculeView';
 import { routes } from '@/lib/compounds/routes';
 
@@ -22,7 +36,13 @@ interface Props {
   scorecardConfig: ScorecardConfig | null | undefined;
   fillHeight?: boolean;
   searchTerm?: string;
+  /** Used to honour units in the bullet cell text (per-protocol axes
+   *  inherit their protocol's kpi_unit). */
+  concentrationDisplay?: ConcentrationDisplayMode;
 }
+
+type SortKey = 'compound' | `axis_${number}`;
+type Order = 'asc' | 'desc';
 
 /**
  * Bullet-chart small-multiples view: one row per compound, one cell per
@@ -33,15 +53,51 @@ interface Props {
  * Cards-view spider gets tangled past ~6 compounds, but a bullets table
  * scales linearly. Same scoring logic, different layout.
  */
-export function BulletsView({ data, scorecardConfig, fillHeight, searchTerm = '' }: Props) {
+export function BulletsView({
+  data,
+  scorecardConfig,
+  fillHeight,
+  searchTerm = '',
+  concentrationDisplay = 'natural',
+}: Props) {
   const router = useRouter();
+  const [sortKey, setSortKey] = useState<SortKey>('compound');
+  // Best-first by default for axis sorts: a high `t` means "near target"
+  // regardless of whether the underlying axis is lower-better or higher-
+  // better. Compound-ID sorts default to ascending alphabetical.
+  const [order, setOrder] = useState<Order>('asc');
 
-  const rows = useMemo(() => {
+  const filteredRows = useMemo(() => {
     const all = data.data as CompactRow[];
     if (!searchTerm) return all;
     const term = searchTerm.toLowerCase();
     return all.filter((r) => r.formatted_id?.toLowerCase().includes(term));
   }, [data.data, searchTerm]);
+
+  // Sort rows. For axis sorts we use the normalised score t so 'best
+  // first' makes sense regardless of axis direction. Nulls always sink
+  // to the bottom regardless of order direction. NB: this useMemo MUST
+  // stay above the early-return guard below — declaring it after makes
+  // the component's hook count vary with scorecard state (React #310).
+  const rows = useMemo(() => {
+    const sortValue = (row: CompactRow): number | string | null => {
+      if (sortKey === 'compound') return row.formatted_id ?? '';
+      const idx = Number(sortKey.slice(5));
+      if (!scorecardConfig) return null;
+      const evals = evaluateScorecard(scorecardConfig, row);
+      return evals[idx]?.t ?? null;
+    };
+    const sign = order === 'asc' ? 1 : -1;
+    return [...filteredRows].sort((a, b) => {
+      const va = sortValue(a);
+      const vb = sortValue(b);
+      if (va == null && vb == null) return 0;
+      if (va == null) return 1; // nulls always last
+      if (vb == null) return -1;
+      if (typeof va === 'number' && typeof vb === 'number') return sign * (va - vb);
+      return sign * String(va).localeCompare(String(vb));
+    });
+  }, [filteredRows, sortKey, order, scorecardConfig]);
 
   if (!scorecardConfig?.axes?.length) {
     return (
@@ -60,6 +116,15 @@ export function BulletsView({ data, scorecardConfig, fillHeight, searchTerm = ''
   const orderedEntries = sectorGroups.flatMap((g) => g.items);
   const axes = orderedEntries.map((entry) => entry.item);
   const orderedIndices = orderedEntries.map((entry) => entry.index);
+  const protocols = data.protocols;
+
+  const sortOptions: { value: SortKey; label: string }[] = [
+    { value: 'compound', label: 'Compound ID' },
+    ...scorecardConfig.axes.map((axis, i) => ({
+      value: `axis_${i}` as SortKey,
+      label: `★ ${axis.label || `axis ${i + 1}`}`,
+    })),
+  ];
 
   return (
     <Paper
@@ -69,6 +134,41 @@ export function BulletsView({ data, scorecardConfig, fillHeight, searchTerm = ''
         ...(fillHeight && { height: '100%' }),
       }}
     >
+      {/* Sort controls */}
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
+        <Typography variant="body2" color="text.secondary">
+          Sort by:
+        </Typography>
+        <FormControl size="small" sx={{ minWidth: 200 }}>
+          <Select
+            value={sortKey}
+            onChange={(e) => setSortKey(e.target.value as SortKey)}
+            sx={{ fontSize: '0.875rem' }}
+          >
+            {sortOptions.map((opt) => (
+              <MenuItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <Tooltip title={order === 'asc' ? 'Ascending' : 'Descending'} arrow>
+          <IconButton
+            size="small"
+            onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
+          >
+            {order === 'asc' ? <ArrowUpward fontSize="small" /> : <ArrowDownward fontSize="small" />}
+          </IconButton>
+        </Tooltip>
+        <Typography variant="caption" color="text.secondary" sx={{ ml: 1 }}>
+          {sortKey.startsWith('axis_')
+            ? order === 'desc'
+              ? 'best first'
+              : 'worst first'
+            : ''}
+        </Typography>
+      </Box>
+
       <Box
         sx={{
           display: 'grid',
@@ -177,7 +277,12 @@ export function BulletsView({ data, scorecardConfig, fillHeight, searchTerm = ''
                 {row.formatted_id}
               </Typography>
               {orderedIndices.map((origIdx, i) => (
-                <BulletCell key={i} evaluation={evals[origIdx]} />
+                <BulletCell
+                  key={i}
+                  evaluation={evals[origIdx]}
+                  protocols={protocols}
+                  concentrationDisplay={concentrationDisplay}
+                />
               ))}
             </Fragment>
           );
@@ -199,10 +304,20 @@ function hueAt(t: number): number {
 /**
  * One bar in the small-multiples grid. Faint background gradient (poor→excellent)
  * with a coloured fill from 0 to t. Tooltip carries the raw value + tier so the
- * cell stays compact while remaining inspectable.
+ * cell stays compact while remaining inspectable. Cell text honours the
+ * concentration-display mode (natural/nM/uM/mM/pConc) for protocol/worst_of
+ * axes; ratios show as ×N (unitless), Lipinski as integer counts.
  */
-function BulletCell({ evaluation }: { evaluation: AxisEvaluation }) {
-  const { value, t } = evaluation;
+function BulletCell({
+  evaluation,
+  protocols,
+  concentrationDisplay,
+}: {
+  evaluation: AxisEvaluation;
+  protocols: ProtocolInfo[];
+  concentrationDisplay: ConcentrationDisplayMode;
+}) {
+  const { axis, value, t } = evaluation;
 
   if (t == null) {
     return (
@@ -229,7 +344,8 @@ function BulletCell({ evaluation }: { evaluation: AxisEvaluation }) {
   const fillColour = `hsl(${hueAt(t).toFixed(1)}, 65%, 62%)`;
   const bgGradient = `linear-gradient(to right, hsl(${RED_HUE}, 50%, 92%), hsl(${(RED_HUE + GREEN_HUE) / 2}, 50%, 92%), hsl(${GREEN_HUE}, 50%, 92%))`;
 
-  const tooltip = `${formatValue(value)}  ${tierLabel(t)}`;
+  const display = formatAxisValueForBullet(axis, value, protocols, concentrationDisplay);
+  const tooltip = `${display}  ${tierLabel(t)}`;
 
   return (
     <Tooltip title={tooltip} arrow>
@@ -267,15 +383,49 @@ function BulletCell({ evaluation }: { evaluation: AxisEvaluation }) {
             color: t > 0.5 ? 'rgba(0,0,0,0.85)' : 'text.secondary',
           }}
         >
-          {value != null ? formatValue(value) : ''}
+          {display}
         </Typography>
       </Box>
     </Tooltip>
   );
 }
 
-function formatValue(v: number | null): string {
-  if (v == null || !Number.isFinite(v)) return '—';
+function formatAxisValueForBullet(
+  axis: ScorecardAxis,
+  value: number | null,
+  protocols: ProtocolInfo[],
+  concentrationDisplay: ConcentrationDisplayMode,
+): string {
+  if (value == null || !Number.isFinite(value)) return '—';
+  switch (axis.kind) {
+    case 'protocol': {
+      const unit = protocols.find((p) => p.id === axis.protocol_id)?.kpi_unit;
+      return formatWithUnit(value, unit, concentrationDisplay);
+    }
+    case 'worst_of': {
+      const firstId = axis.protocol_ids?.[0];
+      const unit = firstId ? protocols.find((p) => p.id === firstId)?.kpi_unit : null;
+      return formatWithUnit(value, unit, concentrationDisplay);
+    }
+    case 'ratio':
+      return `${formatBare(value)}×`;
+    case 'lipinski':
+      return Number.isInteger(value) ? String(value) : value.toFixed(1);
+  }
+}
+
+function formatWithUnit(
+  value: number,
+  unit: string | null | undefined,
+  concentrationDisplay: ConcentrationDisplayMode,
+): string {
+  if (!unit) return formatBare(value);
+  const { displayValue, displayUnit } = formatConcentrationValue(value, unit, concentrationDisplay);
+  return displayUnit ? `${displayValue} ${displayUnit}` : displayValue;
+}
+
+function formatBare(v: number): string {
+  if (!Number.isFinite(v)) return '—';
   if (Math.abs(v) >= 100 || Math.abs(v) < 0.1) return v.toPrecision(3);
   return v.toFixed(2);
 }

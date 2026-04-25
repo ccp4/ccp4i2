@@ -221,6 +221,7 @@ export function AggregationTable({
           data={effectiveData}
           scorecardConfig={scorecardConfig}
           searchTerm={searchTerm}
+          concentrationDisplay={displayMode}
           fillHeight={fillHeight}
         />
       );
