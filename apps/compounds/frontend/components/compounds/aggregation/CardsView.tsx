@@ -354,7 +354,10 @@ export function CardsView({
                 {isCopied ? <Check fontSize="small" color="success" /> : <ContentCopy fontSize="small" />}
               </IconButton>
             </Tooltip>
-            {/* Header: Structure + Compound ID (+ optional per-compound spider) */}
+            {/* Header: Structure + Compound ID. Spider goes on its own
+                row below so the name chip has room to breathe at the
+                400px minimum card width — previously the spider squeezed
+                the chip down to a single character. */}
             <Box sx={{ display: 'flex', gap: 2, mb: 1.5, alignItems: 'flex-start' }}>
               {row.smiles ? (
                 <MoleculeChip smiles={row.smiles} size={180} />
@@ -375,7 +378,7 @@ export function CardsView({
                 </Box>
               )}
               <Box sx={{ flex: 1, minWidth: 0 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
                   <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" />
                   {showBatch && row.batch_number != null && (
                     <Typography variant="caption" color="text.secondary">
@@ -389,12 +392,13 @@ export function CardsView({
                   </Typography>
                 )}
               </Box>
-              {hasScorecard && cardContent !== 'protocols' && (
-                <Box sx={{ flexShrink: 0 }}>
-                  <CompoundSpider config={scorecardConfig} compound={row} size="small" />
-                </Box>
-              )}
             </Box>
+
+            {hasScorecard && cardContent !== 'protocols' && (
+              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
+                <CompoundSpider config={scorecardConfig} compound={row} size="small" />
+              </Box>
+            )}
 
             {/* Identifiers (barcode / supplier ref / aliases) */}
             {showIdentifiers && (
