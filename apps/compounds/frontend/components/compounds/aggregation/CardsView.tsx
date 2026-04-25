@@ -222,34 +222,40 @@ export function CardsView({
     setSelectedProtocol(null);
   };
 
-  // Copy card to clipboard as image
-  const handleCopyCard = useCallback(async (cardId: string, event: React.MouseEvent) => {
+  // Copy card to clipboard as image. Safari and recent Chrome both
+  // invalidate the user-gesture chain if the page awaits before calling
+  // navigator.clipboard.write — html2canvas easily takes >100ms, which
+  // breaks the gesture window and triggers NotAllowedError. Workaround:
+  // hand a Promise<Blob> directly to ClipboardItem so the spec sees the
+  // write call as a synchronous continuation of the original click.
+  const handleCopyCard = useCallback((cardId: string, event: React.MouseEvent) => {
     event.stopPropagation(); // Prevent navigation to compound
     const cardElement = cardRefs.current.get(cardId);
     if (!cardElement) return;
 
-    try {
+    const blobPromise = (async () => {
       const canvas = await html2canvas(cardElement, {
         backgroundColor: '#ffffff',
         scale: 2, // Higher resolution for presentations
         logging: false,
       });
+      return new Promise<Blob>((resolve, reject) => {
+        canvas.toBlob((blob: Blob | null) => {
+          if (blob) resolve(blob);
+          else reject(new Error('Could not convert canvas to PNG'));
+        }, 'image/png');
+      });
+    })();
 
-      canvas.toBlob(async (blob: Blob | null) => {
-        if (!blob) return;
-        try {
-          await navigator.clipboard.write([
-            new ClipboardItem({ 'image/png': blob }),
-          ]);
-          setCopiedCardId(cardId);
-          setTimeout(() => setCopiedCardId(null), 2000);
-        } catch (err) {
-          console.error('Failed to copy to clipboard:', err);
-        }
-      }, 'image/png');
-    } catch (err) {
-      console.error('Failed to capture card:', err);
-    }
+    navigator.clipboard
+      .write([new ClipboardItem({ 'image/png': blobPromise })])
+      .then(() => {
+        setCopiedCardId(cardId);
+        setTimeout(() => setCopiedCardId(null), 2000);
+      })
+      .catch((err) => {
+        console.error('Failed to copy to clipboard:', err);
+      });
   }, []);
 
   return (

@@ -270,29 +270,37 @@ function ScorecardKeyPanel({
   const keyRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = useCallback(async () => {
+  const handleCopy = useCallback(() => {
     const node = keyRef.current;
     if (!node) return;
-    try {
+    // Safari and recent Chrome both invalidate the clipboard user-gesture
+    // chain if the page awaits before calling navigator.clipboard.write.
+    // html2canvas easily takes >100ms, so awaiting the canvas first
+    // triggers NotAllowedError. Workaround: hand a Promise<Blob> directly
+    // to ClipboardItem — the spec recognises this as a continuation of
+    // the original click and the browsers honour it.
+    const blobPromise = (async () => {
       const canvas = await html2canvas(node, {
         backgroundColor: '#ffffff',
         scale: 2, // higher DPI for crisp paste at slide scale
       });
-      canvas.toBlob(async (blob) => {
-        if (!blob) return;
-        try {
-          await navigator.clipboard.write([
-            new ClipboardItem({ 'image/png': blob }),
-          ]);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1800);
-        } catch (err) {
-          console.error('Failed to copy key to clipboard:', err);
-        }
-      }, 'image/png');
-    } catch (err) {
-      console.error('Failed to capture key:', err);
-    }
+      return new Promise<Blob>((resolve, reject) => {
+        canvas.toBlob((blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error('Could not convert canvas to PNG'));
+        }, 'image/png');
+      });
+    })();
+
+    navigator.clipboard
+      .write([new ClipboardItem({ 'image/png': blobPromise })])
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1800);
+      })
+      .catch((err) => {
+        console.error('Failed to copy key to clipboard:', err);
+      });
   }, []);
 
   if (config.axes.length === 0) return null;
