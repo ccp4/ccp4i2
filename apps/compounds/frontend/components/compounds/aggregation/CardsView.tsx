@@ -376,7 +376,7 @@ export function CardsView({
               )}
               <Box sx={{ flex: 1, minWidth: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" label={String(Number(row.formatted_id.split('-').pop()))} />
+                  <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" />
                   {showBatch && row.batch_number != null && (
                     <Typography variant="caption" color="text.secondary">
                       /{row.batch_number}
