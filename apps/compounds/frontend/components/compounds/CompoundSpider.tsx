@@ -176,26 +176,16 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
 
   const options: ChartOptions<'radar'> = useMemo(() => {
     const isSmall = size === 'small';
-    // Small spiders live in a card next to the structure, so labels have to
-    // be compact. Truncate to ~10 chars so typical labels like
-    // "TM potency" or "Lipinski" fit without wrapping, but longer ones like
-    // "BAF3 mutant selectivity" still show enough to disambiguate.
-    const truncate = (label: string, max: number) =>
-      label.length > max ? label.slice(0, max - 1) + '…' : label;
     return {
       responsive: true,
       maintainAspectRatio: true,
       // Don't bridge across nulls — missing data stays as a visible gap.
       spanGaps: false,
       // Generous canvas padding so axis labels don't clip on the
-      // left/right of the polygon. Chart.js radar centres each point
-      // label on its axis end; for a leftmost label like "Lipinski",
-      // half the text width sticks out past the axis end. Without
-      // padding here, the canvas crops it. Empirically:
-      //   small (220px outer)  → ~28px each side gives full labels at
-      //                           up to ~10 chars + the truncation char
-      //   large (360px outer)  → ~16px is plenty
-      layout: { padding: isSmall ? 28 : 16 },
+      // left/right (long labels overhanging the polygon's axis end) or
+      // top/bottom (now that labels can wrap to two lines, the second
+      // line needs vertical room).
+      layout: { padding: isSmall ? 32 : 20 },
       scales: {
         r: {
           min: 0,
@@ -206,10 +196,10 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
             font: { size: isSmall ? 9 : 11 },
             color: 'rgba(0, 0, 0, 0.75)',
             padding: isSmall ? 4 : 8,
-            // Tighten small-spider truncation to 10 chars so even axes
-            // at the leftmost/rightmost points fit inside the padded canvas.
-            callback: (value: string) =>
-              truncate(String(value), isSmall ? 10 : 32),
+            // Wrap multi-word labels to up to 2 lines; truncate single
+            // long words. Chart.js renders array values on separate lines.
+            callback: (value: string | number) =>
+              wrapOrTruncate(String(value), isSmall ? 12 : 32),
           },
           grid: { circular: true },
           angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
@@ -278,6 +268,39 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
       <Radar data={data} options={options} />
     </Box>
   );
+}
+
+/**
+ * Format an axis label for display in the radar's perimeter.
+ *
+ *  - Returns the original string if it already fits (≤ maxLen chars).
+ *  - For multi-word labels longer than maxLen, packs words greedily
+ *    into a first line that fits, dumps the rest into a second line,
+ *    truncates that second line if still too long. Chart.js renders
+ *    array-valued pointLabel callbacks across multiple lines.
+ *  - For a single long word with no space to break on, falls back to
+ *    a one-line ellipsis truncation.
+ */
+function wrapOrTruncate(label: string, maxLen: number): string | string[] {
+  if (label.length <= maxLen) return label;
+
+  const words = label.split(/\s+/).filter(Boolean);
+  if (words.length < 2) {
+    return label.slice(0, maxLen - 1) + '…';
+  }
+
+  let line1 = words[0];
+  let i = 1;
+  while (i < words.length && (line1 + ' ' + words[i]).length <= maxLen) {
+    line1 += ' ' + words[i];
+    i++;
+  }
+  let line2 = words.slice(i).join(' ');
+  if (!line2) return line1;
+  if (line2.length > maxLen) {
+    line2 = line2.slice(0, maxLen - 1) + '…';
+  }
+  return [line1, line2];
 }
 
 function formatValue(v: number): string {
