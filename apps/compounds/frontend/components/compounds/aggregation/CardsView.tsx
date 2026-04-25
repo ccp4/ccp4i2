@@ -13,7 +13,7 @@ import {
   MenuItem,
   IconButton,
 } from '@mui/material';
-import { ZoomIn, ContentCopy, Check, EditOutlined, BubbleChart } from '@mui/icons-material';
+import { ZoomIn, ContentCopy, Check, EditOutlined, BubbleChart, Medication } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/navigation';
 import {
@@ -28,7 +28,7 @@ import {
   getRagStatus,
   CompactAggregationResponse,
 } from '@/types/compounds/aggregation';
-import { MoleculeChip, CompoundNameChip } from '../MoleculeView';
+import { MoleculeChip } from '../MoleculeView';
 import { DataSeriesDetailModal } from '../DataSeriesDetailModal';
 import { CompoundSpider } from '../CompoundSpider';
 import { ScorecardValuesTable } from '../ScorecardValuesTable';
@@ -407,7 +407,7 @@ export function CardsView({
               >
                 <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                    <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" />
+                    <CompoundIdBadge formattedId={row.formatted_id} />
                     {showBatch && row.batch_number != null && (
                       <Typography variant="caption" color="text.secondary">
                         /{row.batch_number}
@@ -466,7 +466,7 @@ export function CardsView({
                 )}
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                    <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" />
+                    <CompoundIdBadge formattedId={row.formatted_id} />
                     {showBatch && row.batch_number != null && (
                       <Typography variant="caption" color="text.secondary">
                         /{row.batch_number}
@@ -704,5 +704,41 @@ export function CardsView({
         />
       )}
     </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Card-internal compound-ID badge.
+//
+// MUI's <Chip> renders fine in the browser but trips up html2canvas: its
+// flexbox internals + text-overflow:ellipsis cause the captured PNG to
+// truncate the label even when there's plenty of room. The hover-popup
+// CompoundNameChip (used in tables) isn't useful here anyway because the
+// structure is already shown right next to the badge at full size. Inline
+// the styling so the captured DOM is dead simple.
+// ---------------------------------------------------------------------------
+function CompoundIdBadge({ formattedId }: { formattedId: string }) {
+  return (
+    <Box
+      component="span"
+      sx={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 0.5,
+        px: 1,
+        py: 0.25,
+        border: '1px solid',
+        borderColor: 'primary.main',
+        borderRadius: 999,
+        color: 'primary.main',
+        fontFamily: 'monospace',
+        fontSize: '0.875rem',
+        whiteSpace: 'nowrap',
+        lineHeight: 1.4,
+      }}
+    >
+      <Medication sx={{ fontSize: '1rem' }} />
+      {formattedId}
+    </Box>
   );
 }
