@@ -18,6 +18,7 @@ import html2canvas from 'html2canvas';
 import { useRouter } from 'next/navigation';
 import {
   AggregationType,
+  CardContent,
   CompactRow,
   ProtocolInfo,
   ConcentrationDisplayMode,
@@ -60,6 +61,8 @@ export function CardsView({
   onEditProtocol,
   onScatterProtocol,
   scorecardConfig,
+  cardContent: cardContentProp,
+  onCardContentChange,
 }: {
   data: CompactAggregationResponse;
   aggregations: AggregationType[];
@@ -67,6 +70,11 @@ export function CardsView({
   onEditProtocol?: (protocol: ProtocolInfo) => void;
   onScatterProtocol?: (protocol: ProtocolInfo) => void;
   scorecardConfig?: ScorecardConfig | null;
+  /** Optional controlled value for the body selector — when omitted,
+   *  CardsView falls back to internal local state. The aggregation page
+   *  threads this through so the toggle is URL-encoded. */
+  cardContent?: CardContent;
+  onCardContentChange?: (next: CardContent) => void;
 }) {
   const router = useRouter();
 
@@ -86,14 +94,19 @@ export function CardsView({
   const [order, setOrder] = useState<Order>('asc');
 
   // Card body content selector — chemists may want spider-only for SAR
-  // glance, protocols-only for raw numbers, or both. Defaults to whichever
-  // makes sense given whether a scorecard is configured. State is local
-  // (not URL-encoded) to keep the share-link URL simple.
-  type CardContent = 'protocols' | 'spider' | 'both';
+  // glance, protocols-only for raw numbers, or both. When the parent
+  // controls this (URL-encoded on the aggregation page), we use the
+  // controlled value; otherwise we fall back to local state defaulted
+  // to whichever makes sense given the scorecard configuration.
   const hasScorecard = Boolean(scorecardConfig?.axes?.length);
-  const [cardContent, setCardContent] = useState<CardContent>(
+  const [cardContentLocal, setCardContentLocal] = useState<CardContent>(
     hasScorecard ? 'both' : 'protocols',
   );
+  const cardContent = cardContentProp ?? cardContentLocal;
+  const setCardContent = (next: CardContent) => {
+    if (onCardContentChange) onCardContentChange(next);
+    else setCardContentLocal(next);
+  };
 
   // Copy to clipboard state
   const [copiedCardId, setCopiedCardId] = useState<string | null>(null);

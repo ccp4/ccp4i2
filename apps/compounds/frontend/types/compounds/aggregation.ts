@@ -62,6 +62,13 @@ export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
 /** Output format options */
 export type OutputFormat = 'compact' | 'medium' | 'long' | 'pivot' | 'cards' | 'bullets';
 
+/**
+ * Cards-view body selector — chemists choose between the protocol-list
+ * rows, the per-card scorecard spider, or both. URL-encoded so deep links
+ * preserve the chosen view.
+ */
+export type CardContent = 'protocols' | 'spider' | 'both';
+
 /** Filter predicates for querying data series */
 export interface Predicates {
   /** Target UUIDs to filter by */

@@ -11,6 +11,7 @@ import { AggregationTable } from '@/components/compounds/AggregationTable';
 import {
   Predicates,
   AggregationType,
+  CardContent,
   OutputFormat,
   AggregationResponse,
   ConcentrationDisplayMode,
@@ -80,6 +81,14 @@ function AggregationPageContent() {
   // Include identifiers defaults to true; explicit '0' disables it via URL.
   const identifiersParam = searchParams?.get('identifiers');
   const initialIncludeIdentifiers = identifiersParam === '0' ? false : true;
+  // Cards-view body selector (Cards format only). Default chosen at render
+  // time once we know whether the target has a scorecard, so we leave the
+  // initial value undefined here and let CardsView pick a sensible default.
+  const cardContentParam = searchParams?.get('cardContent');
+  const initialCardContent: CardContent | undefined =
+    (cardContentParam === 'protocols' || cardContentParam === 'spider' || cardContentParam === 'both')
+      ? cardContentParam
+      : undefined;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,6 +99,7 @@ function AggregationPageContent() {
   const [currentIncludeTestedNoData, setCurrentIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData);
   const [currentIncludeProperties, setCurrentIncludeProperties] = useState<MolecularPropertyName[]>(initialIncludeProperties || []);
   const [currentIncludeIdentifiers, setCurrentIncludeIdentifiers] = useState<boolean>(initialIncludeIdentifiers);
+  const [cardContent, setCardContent] = useState<CardContent | undefined>(initialCardContent);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
 
   // When exactly one target is selected, fetch its full record so we can pass
@@ -149,13 +159,18 @@ function AggregationPageContent() {
     if (currentState.includeIdentifiers === false) {
       params.set('identifiers', '0');
     }
+    // Cards body selector — only emit when in cards format and explicitly set,
+    // so default-state share links stay short.
+    if (currentState.outputFormat === 'cards' && cardContent) {
+      params.set('cardContent', cardContent);
+    }
 
     const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     navigator.clipboard.writeText(url).then(() => {
       setSnackbarMessage('Link copied to clipboard');
       setSnackbarOpen(true);
     });
-  }, [currentState, concentrationDisplay]);
+  }, [currentState, concentrationDisplay, cardContent]);
 
   const handleSaveToTarget = useCallback(async () => {
     if (!currentState || currentState.targets.length !== 1) return;
@@ -221,11 +236,14 @@ function AggregationPageContent() {
     if (includeIdentifiers === false) {
       params.set('identifiers', '0');
     }
+    if (outputFormat === 'cards' && cardContent) {
+      params.set('cardContent', cardContent);
+    }
 
     const queryString = params.toString();
     const newUrl = `${pathname}${queryString ? '?' + queryString : ''}`;
     router.replace(newUrl, { scroll: false });
-  }, [pathname, router, concentrationDisplay]);
+  }, [pathname, router, concentrationDisplay, cardContent]);
 
   // Update URL when concentration display changes (if we have data)
   useEffect(() => {
@@ -234,6 +252,14 @@ function AggregationPageContent() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [concentrationDisplay]);
+
+  // Update URL when the cards-view body selector changes
+  useEffect(() => {
+    if (data && currentState) {
+      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch, currentIncludeTestedNoData, currentIncludeProperties, currentIncludeIdentifiers);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cardContent]);
 
   const handleChange = useCallback(async (
     predicates: Predicates,
@@ -414,6 +440,8 @@ function AggregationPageContent() {
           concentrationDisplay={concentrationDisplay}
           onConcentrationDisplayChange={setConcentrationDisplay}
           scorecardConfig={singleTargetScorecard}
+          cardContent={cardContent}
+          onCardContentChange={setCardContent}
           fillHeight
         />
       </DetailPageLayout>

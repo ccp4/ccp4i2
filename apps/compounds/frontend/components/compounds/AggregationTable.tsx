@@ -14,6 +14,7 @@ import { Search, Clear } from '@mui/icons-material';
 import {
   AggregationResponse,
   AggregationType,
+  CardContent,
   CompactRow,
   isCompactResponse,
   isMediumResponse,
@@ -60,6 +61,11 @@ interface AggregationTableProps {
   /** Target scorecard config, used by Cards view to render a per-compound spider.
    *  Passed down from pages that filter by a single target (so the config is unambiguous). */
   scorecardConfig?: ScorecardConfig | null;
+  /** Cards-view body selector. URL-encoded on the aggregation page so deep
+   *  links preserve the chosen layout; CardsView falls back to local state
+   *  when this is omitted. */
+  cardContent?: CardContent;
+  onCardContentChange?: (next: CardContent) => void;
   /** If true, table fills available parent height instead of using fixed maxHeight */
   fillHeight?: boolean;
 }
@@ -76,6 +82,8 @@ export function AggregationTable({
   concentrationDisplay = 'natural',
   onConcentrationDisplayChange,
   scorecardConfig,
+  cardContent,
+  onCardContentChange,
   fillHeight = false,
 }: AggregationTableProps) {
   // Search state for filtering compounds in the table
@@ -202,6 +210,8 @@ export function AggregationTable({
           onEditProtocol={onEditProtocol}
           onScatterProtocol={handleScatterProtocol}
           scorecardConfig={scorecardConfig}
+          cardContent={cardContent}
+          onCardContentChange={onCardContentChange}
         />
       );
     }
