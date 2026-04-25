@@ -11,6 +11,8 @@ import {
   Select,
   MenuItem,
   IconButton,
+  ToggleButton,
+  ToggleButtonGroup,
 } from '@mui/material';
 import { ArrowDownward, ArrowUpward } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
@@ -43,6 +45,13 @@ interface Props {
 
 type SortKey = 'compound' | `axis_${number}`;
 type Order = 'asc' | 'desc';
+type ThumbSize = 'sm' | 'md' | 'lg';
+
+const THUMB_SIZES: Record<ThumbSize, number> = {
+  sm: 64,
+  md: 110,
+  lg: 180,
+};
 
 /**
  * Bullet-chart small-multiples view: one row per compound, one cell per
@@ -66,6 +75,11 @@ export function BulletsView({
   // regardless of whether the underlying axis is lower-better or higher-
   // better. Compound-ID sorts default to ascending alphabetical.
   const [order, setOrder] = useState<Order>('asc');
+  // Chemists vary on how big they want the structure thumbnail. Default
+  // to medium (110px) — generous enough to read substituents at a glance
+  // but doesn't push compound count off the screen. Local state for now.
+  const [thumbSize, setThumbSize] = useState<ThumbSize>('md');
+  const thumbPx = THUMB_SIZES[thumbSize];
 
   const filteredRows = useMemo(() => {
     const all = data.data as CompactRow[];
@@ -167,12 +181,26 @@ export function BulletsView({
               : 'worst first'
             : ''}
         </Typography>
+        <Box sx={{ flex: 1 }} />
+        <Typography variant="body2" color="text.secondary">
+          Structure:
+        </Typography>
+        <ToggleButtonGroup
+          exclusive
+          size="small"
+          value={thumbSize}
+          onChange={(_, v) => v && setThumbSize(v as ThumbSize)}
+        >
+          <ToggleButton value="sm" sx={{ px: 1, py: 0.25, fontSize: '0.75rem' }}>S</ToggleButton>
+          <ToggleButton value="md" sx={{ px: 1, py: 0.25, fontSize: '0.75rem' }}>M</ToggleButton>
+          <ToggleButton value="lg" sx={{ px: 1, py: 0.25, fontSize: '0.75rem' }}>L</ToggleButton>
+        </ToggleButtonGroup>
       </Box>
 
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: `64px minmax(140px, max-content) repeat(${axes.length}, minmax(120px, 1fr))`,
+          gridTemplateColumns: `${thumbPx}px minmax(140px, max-content) repeat(${axes.length}, minmax(120px, 1fr))`,
           rowGap: 0.5,
           columnGap: 1.5,
           alignItems: 'center',
@@ -245,12 +273,12 @@ export function BulletsView({
                 onClick={() => router.push(routes.registry.compound(row.compound_id))}
               >
                 {row.smiles ? (
-                  <MoleculeChip smiles={row.smiles} size={56} />
+                  <MoleculeChip smiles={row.smiles} size={thumbPx} />
                 ) : (
                   <Box
                     sx={{
-                      width: 56,
-                      height: 56,
+                      width: thumbPx,
+                      height: thumbPx,
                       bgcolor: 'grey.100',
                       borderRadius: 0.5,
                       display: 'flex',
