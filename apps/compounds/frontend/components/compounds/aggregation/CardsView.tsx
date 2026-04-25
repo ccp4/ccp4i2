@@ -234,6 +234,12 @@ export function CardsView({
     if (!cardElement) return;
 
     const blobPromise = (async () => {
+      // Wait for web fonts to finish loading — html2canvas otherwise
+      // captures with system-font fallback metrics, producing mis-spaced
+      // text (e.g. adjacent words overlapping in copied PNGs).
+      if (typeof document !== 'undefined' && document.fonts?.ready) {
+        await document.fonts.ready;
+      }
       const canvas = await html2canvas(cardElement, {
         backgroundColor: '#ffffff',
         scale: 2, // Higher resolution for presentations
@@ -385,49 +391,94 @@ export function CardsView({
                 {isCopied ? <Check fontSize="small" color="success" /> : <ContentCopy fontSize="small" />}
               </IconButton>
             </Tooltip>
-            {/* Header: Structure + Compound ID. Spider goes on its own
-                row below so the name chip has room to breathe at the
-                400px minimum card width — previously the spider squeezed
-                the chip down to a single character. */}
-            <Box sx={{ display: 'flex', gap: 2, mb: 1.5, alignItems: 'flex-start' }}>
-              {row.smiles ? (
-                <MoleculeChip smiles={row.smiles} size={180} />
-              ) : (
-                <Box
-                  sx={{
-                    width: 180,
-                    height: 180,
-                    bgcolor: 'grey.100',
-                    borderRadius: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                  }}
-                >
-                  <Typography variant="caption" color="text.secondary">-</Typography>
+            {hasScorecard && cardContent !== 'protocols' ? (
+              // Two-column header when spider is shown:
+              //   left  ≈ 50% : ID chip (top) → target (line below) → structure
+              //   right ≈ 50% : spider, vertically centred
+              // Each side gets ~half the card width, so neither element is
+              // squeezed and there's near-zero white space between them.
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 2,
+                  mb: 1.5,
+                  alignItems: 'center',
+                }}
+              >
+                <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                    <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" />
+                    {showBatch && row.batch_number != null && (
+                      <Typography variant="caption" color="text.secondary">
+                        /{row.batch_number}
+                      </Typography>
+                    )}
+                  </Box>
+                  {row.target_name && (
+                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                      Target: {row.target_name}
+                    </Typography>
+                  )}
+                  {row.smiles ? (
+                    <MoleculeChip smiles={row.smiles} size={180} />
+                  ) : (
+                    <Box
+                      sx={{
+                        width: 180,
+                        height: 180,
+                        bgcolor: 'grey.100',
+                        borderRadius: 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Typography variant="caption" color="text.secondary">-</Typography>
+                    </Box>
+                  )}
                 </Box>
-              )}
-              <Box sx={{ flex: 1, minWidth: 0 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                  <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" />
-                  {showBatch && row.batch_number != null && (
-                    <Typography variant="caption" color="text.secondary">
-                      /{row.batch_number}
+                <Box sx={{ flex: 1, minWidth: 0, display: 'flex', justifyContent: 'center' }}>
+                  <CompoundSpider config={scorecardConfig} compound={row} size="small" />
+                </Box>
+              </Box>
+            ) : (
+              // No spider: keep the original single-row header (structure
+              // + name + target) so the card stays compact for chemists
+              // who picked Protocols-only or who haven't configured a scorecard.
+              <Box sx={{ display: 'flex', gap: 2, mb: 1.5, alignItems: 'flex-start' }}>
+                {row.smiles ? (
+                  <MoleculeChip smiles={row.smiles} size={180} />
+                ) : (
+                  <Box
+                    sx={{
+                      width: 180,
+                      height: 180,
+                      bgcolor: 'grey.100',
+                      borderRadius: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Typography variant="caption" color="text.secondary">-</Typography>
+                  </Box>
+                )}
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                    <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" />
+                    {showBatch && row.batch_number != null && (
+                      <Typography variant="caption" color="text.secondary">
+                        /{row.batch_number}
+                      </Typography>
+                    )}
+                  </Box>
+                  {row.target_name && (
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                      Target: {row.target_name}
                     </Typography>
                   )}
                 </Box>
-                {row.target_name && (
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                    Target: {row.target_name}
-                  </Typography>
-                )}
-              </Box>
-            </Box>
-
-            {hasScorecard && cardContent !== 'protocols' && (
-              <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
-                <CompoundSpider config={scorecardConfig} compound={row} size="small" />
               </Box>
             )}
 

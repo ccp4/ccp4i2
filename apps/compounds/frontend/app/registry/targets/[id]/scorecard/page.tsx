@@ -280,6 +280,12 @@ function ScorecardKeyPanel({
     // to ClipboardItem — the spec recognises this as a continuation of
     // the original click and the browsers honour it.
     const blobPromise = (async () => {
+      // Wait for web fonts to finish loading — html2canvas otherwise
+      // captures with system-font fallback metrics, which produces
+      // mis-spaced text (e.g. "Lipinski compliance" overlapping).
+      if (typeof document !== 'undefined' && document.fonts?.ready) {
+        await document.fonts.ready;
+      }
       const canvas = await html2canvas(node, {
         backgroundColor: '#ffffff',
         scale: 2, // higher DPI for crisp paste at slide scale

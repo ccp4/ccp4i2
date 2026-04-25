@@ -222,7 +222,6 @@ export function BulletsView({
                   textAlign: 'center',
                   fontSize: '0.7rem',
                   fontWeight: 700,
-                  letterSpacing: '0.06em',
                   textTransform: 'uppercase',
                   py: 0.4,
                   borderRadius: 0.5,

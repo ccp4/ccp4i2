@@ -83,10 +83,12 @@ export function ScorecardKeyTable({
             <Typography
               sx={{
                 fontWeight: 700,
-                letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 fontSize: '0.7rem',
                 color: 'text.secondary',
+                // No letter-spacing — html2canvas miscomputes widths
+                // when letter-spacing is set in em units, causing
+                // adjacent words to overlap in copied PNGs.
               }}
             >
               {group.sector ?? '—'}
