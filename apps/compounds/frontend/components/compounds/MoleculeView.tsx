@@ -99,7 +99,15 @@ export const MoleculeView: React.FC<MoleculeViewProps> = ({
  */
 interface MoleculeChipProps {
   smiles: string;
+  /** Pixel size used to generate the SVG (also the on-screen square size
+   *  in the default fixed mode). When `fillWidth` is true, this still
+   *  drives the SVG generation but the on-screen render scales to its
+   *  container — pass a generous value (~400) to keep label / bond
+   *  rendering crisp at larger display sizes. */
   size?: number;
+  /** When true, the molecule fills 100% of the parent's width and keeps
+   *  a square aspect ratio. RDKit SVG is vector so it scales cleanly. */
+  fillWidth?: boolean;
   /** Disable hover overlay (useful when already showing large view) */
   disableHover?: boolean;
 }
@@ -110,7 +118,7 @@ const HIDE_DELAY_MS = 150;  // Grace period so the cursor can cross from
                             // popup down mid-traversal.
 const ENLARGED_SIZE = 350;  // Size of enlarged view
 
-export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, disableHover = false }) => {
+export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, fillWidth = false, disableHover = false }) => {
   const { rdkitModule, isLoading } = useRDKit();
   // We keep BOTH the raw SVG markup and a Blob-URL flavour. The markup is
   // rendered inline so html2canvas captures the structure cleanly (it
@@ -220,7 +228,9 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
   useEffect(() => () => cancelTimers(), [cancelTimers]);
 
   if (!smiles || isLoading) {
-    return <Skeleton variant="rectangular" width={size} height={size} />;
+    return fillWidth
+      ? <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '1 / 1' }} />
+      : <Skeleton variant="rectangular" width={size} height={size} />;
   }
 
   if (!svgMarkup) {
@@ -237,8 +247,9 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
         onMouseEnter={handleAnchorEnter}
         onMouseLeave={handleAnchorLeave}
         sx={{
-          width: size,
-          height: size,
+          ...(fillWidth
+            ? { width: '100%', aspectRatio: '1 / 1' }
+            : { width: size, height: size }),
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
