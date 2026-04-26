@@ -33,12 +33,35 @@ const MONOSPACE_TOKENS = /Mono|Menlo|Monaco|Consolas|Courier|monospace/i;
 export function pinCaptureFonts(clonedDoc: Document): void {
   const win = clonedDoc.defaultView;
   if (!win) return;
-  // Body first, so any element that genuinely inherits picks up the
-  // sans stack rather than the next/font wrapper.
-  clonedDoc.body.style.setProperty('font-family', CAPTURE_SANS_SERIF, 'important');
+
+  // Phase 1: walk the clone BEFORE any override and remember which
+  // elements were originally rendering with a monospace font. We need
+  // their pre-override computed style to make this call.
+  const monoElements: HTMLElement[] = [];
   clonedDoc.body.querySelectorAll<HTMLElement>('*').forEach((el) => {
-    const computed = win.getComputedStyle(el).fontFamily;
-    const target = MONOSPACE_TOKENS.test(computed) ? CAPTURE_MONOSPACE : CAPTURE_SANS_SERIF;
-    el.style.setProperty('font-family', target, 'important');
+    if (MONOSPACE_TOKENS.test(win.getComputedStyle(el).fontFamily)) {
+      monoElements.push(el);
+    }
   });
+
+  // Phase 2: inject a sweeping `!important` stylesheet that defaults
+  // every element to the system sans stack. This is the belt — it
+  // catches inheritance chains and class-level rules in browsers
+  // (Safari) that don't reliably honour onclone inline overrides
+  // before the canvas measurement pass.
+  const style = clonedDoc.createElement('style');
+  style.textContent = `
+    html, body, body * {
+      font-family: ${CAPTURE_SANS_SERIF} !important;
+    }
+  `;
+  clonedDoc.head.appendChild(style);
+
+  // Phase 3: restore monospace via inline !important on the tagged
+  // elements. Inline declarations have higher specificity than any
+  // class-based rule, so this wins over the sweeping stylesheet for
+  // exactly the elements that should keep monospace.
+  for (const el of monoElements) {
+    el.style.setProperty('font-family', CAPTURE_MONOSPACE, 'important');
+  }
 }
