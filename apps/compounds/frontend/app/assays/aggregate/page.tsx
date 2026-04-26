@@ -126,6 +126,21 @@ function AggregationPageContent() {
   // useEffect below that re-runs the query on transition).
   const requestScorecardRef = useRef<unknown>(undefined);
 
+  // Cached args from the last handleChange call. Used when the SWR
+  // scorecard fetch resolves AFTER the initial query has gone out and
+  // we need to re-fire with the exact same predicates / format / etc.
+  // — predicates are built inside PredicateBuilder and aren't directly
+  // re-derivable here, so we stash a copy when the first call comes in.
+  const lastFetchArgsRef = useRef<{
+    predicates: Predicates;
+    outputFormat: OutputFormat;
+    aggregations: AggregationType[];
+    groupByBatch: boolean;
+    includeTestedNoData: boolean;
+    includeProperties: MolecularPropertyName[];
+    includeIdentifiers: boolean;
+  } | null>(null);
+
   const handleStateChange = useCallback((state: PredicateBuilderState) => {
     setCurrentState(state);
   }, []);
@@ -306,6 +321,15 @@ function AggregationPageContent() {
       // Stamp the scorecard we used so the post-fetch effect can detect
       // a stale fetch when SWR resolves the scorecard later.
       requestScorecardRef.current = singleTargetScorecard;
+      lastFetchArgsRef.current = {
+        predicates,
+        outputFormat,
+        aggregations,
+        groupByBatch,
+        includeTestedNoData,
+        includeProperties,
+        includeIdentifiers,
+      };
       const scorecardNeeds = scorecardDataNeeds(singleTargetScorecard);
       const effectivePredicates: Predicates = scorecardNeeds.protocolIds.length > 0
         ? {
@@ -355,16 +379,17 @@ function AggregationPageContent() {
   // weren't requested. When the scorecard arrives, re-run the query
   // so the Cards view can populate those values.
   useEffect(() => {
-    if (!data || !currentState) return;
+    if (!data || !lastFetchArgsRef.current) return;
     if (requestScorecardRef.current === singleTargetScorecard) return;
+    const args = lastFetchArgsRef.current;
     handleChange(
-      currentState.predicates,
-      currentState.outputFormat,
-      currentAggregations,
-      currentGroupByBatch,
-      currentIncludeTestedNoData,
-      currentIncludeProperties,
-      currentIncludeIdentifiers,
+      args.predicates,
+      args.outputFormat,
+      args.aggregations,
+      args.groupByBatch,
+      args.includeTestedNoData,
+      args.includeProperties,
+      args.includeIdentifiers,
     );
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [singleTargetScorecard]);
