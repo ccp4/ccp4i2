@@ -29,6 +29,7 @@ import React, {
   ReactNode,
 } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { typographyOptions } from './typography';
 
 export type ThemeMode = 'light' | 'dark';
 
@@ -178,23 +179,12 @@ export const CompoundsThemeProvider: React.FC<CompoundsThemeProviderProps> = ({
     const paletteOptions =
       mode === 'light' ? lightPaletteOptions : darkPaletteOptions;
 
+    // Use the same next/font/google Roboto loader as the production
+    // shell so html2canvas font-resolution behaviour is identical
+    // between testbed and deployed image. See ./typography.ts.
     return createTheme({
       palette: paletteOptions,
-      typography: {
-        fontFamily: [
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
-          'Oxygen',
-          'Ubuntu',
-          'Cantarell',
-          '"Fira Sans"',
-          '"Droid Sans"',
-          '"Helvetica Neue"',
-          'sans-serif',
-        ].join(','),
-      },
+      typography: typographyOptions,
     });
   }, [mode]);
 
