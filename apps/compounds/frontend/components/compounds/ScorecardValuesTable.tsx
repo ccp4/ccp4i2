@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
 import {
   evaluateScorecard,
+  formatBareScalar,
   groupAxesBySector,
   sectorColour,
   type AxisEvaluation,
@@ -202,11 +203,7 @@ function formatWithUnit(
   return displayUnit ? `${displayValue} ${displayUnit}` : displayValue;
 }
 
-function formatBare(v: number): string {
-  if (!Number.isFinite(v)) return '—';
-  if (Math.abs(v) >= 100 || Math.abs(v) < 0.1) return v.toPrecision(3);
-  return v.toFixed(2);
-}
+const formatBare = formatBareScalar;
 
 function tierLabel(t: number | null): string {
   if (t == null) return 'no data';

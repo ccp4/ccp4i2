@@ -303,3 +303,39 @@ function normaliseAxis(axis: ScorecardAxis, value: number): number | null {
   const raw = (v - p) / (t - p);
   return Math.max(0, Math.min(1, raw));
 }
+
+// ---------------------------------------------------------------------------
+// Numeric formatting for scorecard values shown in the bullets / values /
+// key tables. Centralised here so both surfaces use the same scientific
+// notation rendering — JS's default `toPrecision` returns "1.28e+7", which
+// reads as a strikethrough in many fonts (the '+' baseline collides with
+// the 'e' descender). Switch to "1.28×10⁷" using Unicode superscripts:
+// real codepoints, present in any font, html2canvas captures cleanly.
+// ---------------------------------------------------------------------------
+
+const SUPERSCRIPT_DIGIT: Record<string, string> = {
+  '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+  '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+};
+
+function digitsToSuperscript(s: string): string {
+  let out = '';
+  for (const c of s) out += SUPERSCRIPT_DIGIT[c] ?? c;
+  return out;
+}
+
+export function formatScientific(v: number): string {
+  // 3 sig figs (1 + 2 decimals) — matches the precision of the legacy
+  // `toPrecision(3)` path it replaces.
+  const exp = v.toExponential(2);
+  const [mantissa, exponentRaw] = exp.split('e');
+  const sign = exponentRaw.startsWith('-') ? '⁻' : '';
+  const digits = exponentRaw.replace(/^[+-]/, '');
+  return `${mantissa}×10${sign}${digitsToSuperscript(digits)}`;
+}
+
+export function formatBareScalar(v: number): string {
+  if (!Number.isFinite(v)) return '—';
+  if (Math.abs(v) >= 100 || Math.abs(v) < 0.1) return formatScientific(v);
+  return v.toFixed(2);
+}

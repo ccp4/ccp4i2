@@ -25,6 +25,7 @@ import type {
 import type { ScorecardAxis, ScorecardConfig } from '@/types/compounds/models';
 import {
   evaluateScorecard,
+  formatBareScalar,
   groupAxesBySector,
   sectorColour,
   type AxisEvaluation,
@@ -458,11 +459,7 @@ function formatWithUnit(
   return displayUnit ? `${displayValue} ${displayUnit}` : displayValue;
 }
 
-function formatBare(v: number): string {
-  if (!Number.isFinite(v)) return '—';
-  if (Math.abs(v) >= 100 || Math.abs(v) < 0.1) return v.toPrecision(3);
-  return v.toFixed(2);
-}
+const formatBare = formatBareScalar;
 
 export function tierLabel(t: number): string {
   if (t >= 1) return '(excellent)';

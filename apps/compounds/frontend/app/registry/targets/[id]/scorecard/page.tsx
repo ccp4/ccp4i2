@@ -20,6 +20,7 @@ import {
 } from '@mui/material';
 import { ArrowBack, Check, ContentCopy, Save } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
+import { pinCaptureFonts } from '@/lib/compounds/html2canvas-fonts';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAggregation } from '@/lib/compounds/aggregation-api';
 import { routes } from '@/lib/compounds/routes';
@@ -289,6 +290,7 @@ function ScorecardKeyPanel({
       const canvas = await html2canvas(node, {
         backgroundColor: '#ffffff',
         scale: 2, // higher DPI for crisp paste at slide scale
+        onclone: pinCaptureFonts,
       });
       return new Promise<Blob>((resolve, reject) => {
         canvas.toBlob((blob) => {

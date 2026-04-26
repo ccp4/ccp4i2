@@ -16,6 +16,7 @@ import {
 import { ZoomIn, ContentCopy, Check, EditOutlined, BubbleChart, Medication, Slideshow } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 import { exportCardsToPptx } from '@/lib/compounds/pptx-export';
+import { pinCaptureFonts } from '@/lib/compounds/html2canvas-fonts';
 import { useRouter } from 'next/navigation';
 import {
   AggregationType,
@@ -261,6 +262,7 @@ export function CardsView({
         backgroundColor: '#ffffff',
         scale: 2, // Higher resolution for presentations
         logging: false,
+        onclone: pinCaptureFonts,
       });
       return new Promise<Blob>((resolve, reject) => {
         canvas.toBlob((blob: Blob | null) => {

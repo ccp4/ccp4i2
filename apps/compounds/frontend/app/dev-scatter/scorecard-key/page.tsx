@@ -23,6 +23,7 @@ import {
 } from '@mui/material';
 import { Check, ContentCopy } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
+import { pinCaptureFonts } from '@/lib/compounds/html2canvas-fonts';
 import { useRef } from 'react';
 import { ScorecardKeyTable } from '@/components/compounds/ScorecardKeyTable';
 import type { ScorecardConfig } from '@/types/compounds/models';
@@ -134,7 +135,7 @@ export default function ScorecardKeyDevPage() {
       if (typeof document !== 'undefined' && document.fonts?.ready) {
         await document.fonts.ready;
       }
-      const canvas = await html2canvas(node, { backgroundColor: '#ffffff', scale: 2 });
+      const canvas = await html2canvas(node, { backgroundColor: '#ffffff', scale: 2, onclone: pinCaptureFonts });
       return new Promise<Blob>((resolve, reject) => {
         canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob'))), 'image/png');
       });

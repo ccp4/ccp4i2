@@ -7,6 +7,7 @@
 
 import html2canvas from 'html2canvas';
 import pptxgen from 'pptxgenjs';
+import { pinCaptureFonts } from './html2canvas-fonts';
 
 export interface ExportOptions {
   /** Number of cards per slide. 6 is the sweet spot for 16:9 readability. */
@@ -51,6 +52,7 @@ async function snapNode(node: HTMLElement): Promise<CardSnap | null> {
       backgroundColor: '#ffffff',
       scale: 2,
       logging: false,
+      onclone: pinCaptureFonts,
     });
     return {
       dataUrl: canvas.toDataURL('image/png'),
