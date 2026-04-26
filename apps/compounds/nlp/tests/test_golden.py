@@ -90,6 +90,7 @@ def _expected_to_llm_output(expected: dict) -> dict:
         "registered_date_range": None,
         "registered_by_as_typed": None,
         "scaffold_hints": [],
+        "compound_refs_as_typed": [],
         "measurement_filters": [],
         "assay_selector": None,
     }
@@ -119,6 +120,8 @@ def _expected_to_llm_output(expected: dict) -> dict:
         base["registered_by_as_typed"] = expected["registered_by_as_typed"]
     if "scaffold_hints" in expected:
         base["scaffold_hints"] = list(expected["scaffold_hints"])
+    if "compound_refs_as_typed" in expected:
+        base["compound_refs_as_typed"] = list(expected["compound_refs_as_typed"])
 
     raw_filters = expected.get("measurement_filters") or []
     filters: List[dict] = []
@@ -223,6 +226,13 @@ def _selector_diff(actual: CompoundSelector, expected: dict) -> Optional[str]:
             f"scaffold_hints: expected {expected_scaffolds!r}, got {actual_scaffolds!r}"
         )
 
+    expected_pins = list(expected.get("compound_refs_as_typed") or [])
+    actual_pins = list(actual.compound_refs_as_typed or [])
+    if expected_pins != actual_pins:
+        diffs.append(
+            f"compound_refs_as_typed: expected {expected_pins!r}, got {actual_pins!r}"
+        )
+
     expected_filters = expected.get("measurement_filters") or []
     if len(actual.measurement_filters) != len(expected_filters):
         diffs.append(
@@ -299,6 +309,7 @@ def test_every_selector_entry_has_some_narrowing_predicate(db):
             entry["expected"].get("registered_by_as_typed"),
             entry["expected"].get("registered_date_range"),
             entry["expected"].get("measurement_filters"),
+            entry["expected"].get("compound_refs_as_typed"),
         ])
         assert has_other_narrowing, (
             f"entry {entry['name']!r}: target-less selector must have at "

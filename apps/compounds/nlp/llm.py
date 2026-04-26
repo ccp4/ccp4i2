@@ -124,6 +124,26 @@ Rules:
     "yesterday"           → {after: "2026-04-23", before: "2026-04-24"}
   Emit null dates rather than guessing when the phrasing is ambiguous
   (e.g. "recently" without a time anchor).
+- Compound-ID pinning: when the user names specific compounds by ID —
+  "compound 26007", "NCL-00026007", "ncl26007", "the lead compound
+  NCL-00026007", "26007 and 26012" — emit each typed reference into
+  `compound_refs_as_typed` as a single string. These are ADDITIVE
+  (pinned alongside whatever the other predicates select), so they
+  combine with filters via UNION rather than AND. Examples:
+    "compound 26007 and compounds made since January"
+      → compound_refs_as_typed: ["26007"]
+        registered_date_range: {after: "<computed>", before: null}
+    "show NCL-00026007 alongside ARd pyrimidines"
+      → compound_refs_as_typed: ["NCL-00026007"]
+        registration_target_as_typed: "ARd"
+        scaffold_hints: ["pyrimidines"]
+    "just compound 12345"
+      → compound_refs_as_typed: ["12345"]
+        (no other predicates)
+  Emit the typed reference verbatim — full prefix or bare integer is
+  fine. The backend's parser handles every variant. Do NOT emit a
+  reference for vague phrases like "my compounds" or "the lead series"
+  unless the user actually says an ID.
 - Conversational filler nouns — "hits", "compounds", "molecules",
   "series", "analogues" — carry no structural meaning unless the user
   names an explicit cutoff. Do not synthesise a threshold from filler
@@ -177,6 +197,12 @@ _SCAFFOLD_HINTS_SUBSCHEMA: dict = {
 }
 
 
+_COMPOUND_REFS_SUBSCHEMA: dict = {
+    "type": "array",
+    "items": {"type": "string"},
+}
+
+
 _ASSAY_SELECTOR_SUBSCHEMA: dict = {
     "type": ["object", "null"],
     "additionalProperties": False,
@@ -205,6 +231,7 @@ PROMPT_SCHEMA: dict = {
         "registered_date_range": _DATE_RANGE_SUBSCHEMA,
         "registered_by_as_typed": {"type": ["string", "null"]},
         "scaffold_hints": _SCAFFOLD_HINTS_SUBSCHEMA,
+        "compound_refs_as_typed": _COMPOUND_REFS_SUBSCHEMA,
         "measurement_filters": {
             "type": "array",
             "items": {
@@ -245,6 +272,7 @@ PROMPT_SCHEMA: dict = {
         "registered_date_range",
         "registered_by_as_typed",
         "scaffold_hints",
+        "compound_refs_as_typed",
         "measurement_filters",
         "assay_selector",
     ],
@@ -349,6 +377,7 @@ def _to_parse_result(data: dict) -> PromptParseResult:
         registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
         registered_by_as_typed=data.get("registered_by_as_typed"),
         scaffold_hints=list(data.get("scaffold_hints") or []),
+        compound_refs_as_typed=list(data.get("compound_refs_as_typed") or []),
         measurement_filters=filters,
     )
 

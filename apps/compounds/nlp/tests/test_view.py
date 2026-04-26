@@ -342,6 +342,33 @@ def test_target_less_selector_with_filter_runs(client, feature_on, clear_cache, 
     assert resp.data["status"] == "selection"
 
 
+def test_pinned_compound_appears_in_redirect_url(client, feature_on, clear_cache, world):
+    """A pinned compound is UNIONed onto the selection — the redirect
+    URL's `compound=` list includes it alongside whatever the filters
+    selected."""
+    parsed = CompoundSelector(
+        registration_target_as_typed="AR degraders",
+        compound_refs_as_typed=[world["compound"].formatted_id],
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {
+            "prompt": "ARd compounds and NCL-...",
+        }, format="json")
+    assert resp.status_code == 200
+    assert resp.data["status"] == "selection"
+    assert world["compound"].formatted_id in resp.data["redirect_url"]
+    assert "(pinned)" in resp.data["scope_sentence"]
+
+
+def test_unparseable_pin_returns_compound_miss(client, feature_on, clear_cache, db):
+    parsed = CompoundSelector(compound_refs_as_typed=["the lead compound"])
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "whatever"}, format="json")
+    assert resp.status_code == 200
+    assert resp.data["status"] == "miss"
+    assert resp.data["field"] == "compound_ref"
+
+
 def test_not_a_query_returns_200(client, feature_on, clear_cache, db):
     with patch(
         "compounds.nlp.view.parse_prompt",

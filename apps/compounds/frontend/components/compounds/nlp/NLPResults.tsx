@@ -14,6 +14,7 @@ import {
   AssaySelector,
   CompoundSelector,
   FIELD_ASSAYED_BY,
+  FIELD_COMPOUND_REF,
   FIELD_PROTOCOL_HINT,
   FIELD_REGISTERED_BY,
   FIELD_SCAFFOLD_HINT,
@@ -24,14 +25,27 @@ import {
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
 
-type CandidateKind = 'target' | 'protocol' | 'user' | 'scaffold';
+type CandidateKind = 'target' | 'protocol' | 'user' | 'scaffold' | 'compound';
+
+const KIND_FOR_FIELD: Record<string, CandidateKind> = {
+  [FIELD_PROTOCOL_HINT]: 'protocol',
+  [FIELD_REGISTERED_BY]: 'user',
+  [FIELD_ASSAYED_BY]: 'user',
+  [FIELD_SCAFFOLD_HINT]: 'scaffold',
+  [FIELD_COMPOUND_REF]: 'compound',
+};
 
 function kindForField(field: string): CandidateKind {
-  if (field === FIELD_PROTOCOL_HINT) return 'protocol';
-  if (field === FIELD_REGISTERED_BY || field === FIELD_ASSAYED_BY) return 'user';
-  if (field === FIELD_SCAFFOLD_HINT) return 'scaffold';
-  return 'target';
+  return KIND_FOR_FIELD[field] ?? 'target';
 }
+
+const LABEL_FOR_KIND: Record<CandidateKind, string> = {
+  protocol: 'protocol',
+  user: 'person',
+  scaffold: 'substructure',
+  compound: 'compound',
+  target: 'target',
+};
 
 const PREVIEW_COMPOUNDS = 5;
 
@@ -338,11 +352,7 @@ function MissView({
 }) {
   const { query, suggestions, field } = response;
   const kind = kindForField(field);
-  const label =
-    kind === 'protocol' ? 'protocol' :
-    kind === 'user' ? 'person' :
-    kind === 'scaffold' ? 'substructure' :
-    'target';
+  const label = LABEL_FOR_KIND[kind];
 
   const chipLabel = (
     s: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
@@ -353,11 +363,21 @@ function MissView({
     return (s as TargetCandidate).name;
   };
 
+  // Compound-ID miss is special: compound IDs are deterministic, so
+  // there are no fuzzy suggestions — instead steer the user to check
+  // the format and registration.
+  const helperText =
+    kind === 'compound'
+      ? 'Check the format (e.g. NCL-00026007 or 26007) and that the compound has been registered.'
+      : suggestions.length > 0
+        ? 'Did you mean:'
+        : '';
+
   return (
     <Alert severity="info" sx={{ alignItems: 'flex-start' }}>
       <Typography variant="body2" sx={{ mb: 1 }}>
-        No {label} matched <strong>&ldquo;{query}&rdquo;</strong>.
-        {suggestions.length > 0 ? ' Did you mean:' : ''}
+        No {label} matched <strong>&ldquo;{query}&rdquo;</strong>
+        {helperText ? `. ${helperText}` : '.'}
       </Typography>
       {suggestions.length > 0 && (
         <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>

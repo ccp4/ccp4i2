@@ -55,6 +55,7 @@ from .spec import (
     ProtocolClarify,
     ProtocolMiss,
     ScaffoldClarify,
+    CompoundMiss,
     ScaffoldMiss,
     ScopeError,
     SpecError,
@@ -162,6 +163,7 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
         registered_by_as_typed=data.get("registered_by_as_typed"),
         scaffold_hints=list(data.get("scaffold_hints") or []),
+        compound_refs_as_typed=list(data.get("compound_refs_as_typed") or []),
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
         registered_by_id=data.get("registered_by_id"),
@@ -278,8 +280,12 @@ def _serialize(
             body["partial_selector"] = dataclasses.asdict(selector)
         return body, http_status.HTTP_200_OK
 
-    if isinstance(result, (TargetMiss, ProtocolMiss, UserMiss, ScaffoldMiss)):
+    if isinstance(result, (TargetMiss, ProtocolMiss, UserMiss, ScaffoldMiss, CompoundMiss)):
         body = {"status": "miss", **dataclasses.asdict(result)}
+        if isinstance(result, CompoundMiss):
+            # Compound IDs are deterministic — no fuzzy hits to surface.
+            # Add an empty list so the frontend's miss renderer is uniform.
+            body["suggestions"] = []
         return body, http_status.HTTP_200_OK
 
     if isinstance(result, NotAQuery):

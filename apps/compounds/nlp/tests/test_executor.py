@@ -15,10 +15,12 @@ from django.contrib.auth import get_user_model
 from compounds.assays.models import AnalysisResult, Assay, DataSeries, Protocol
 from compounds.nlp.executor import execute
 from compounds.nlp.spec import (
+    CompoundMiss,
     CompoundSelector,
     CompoundSelection,
     DateRange,
     FIELD_ASSAYED_BY,
+    FIELD_COMPOUND_REF,
     FIELD_PROTOCOL_HINT,
     FIELD_REGISTERED_BY,
     FIELD_REGISTRATION_TARGET,
@@ -961,3 +963,112 @@ def test_assay_query_with_scaffold(db):
     # Only a_pyr ran on a pyridine-containing compound.
     assert res.assay_ids == [str(a_pyr.pk)]
     assert "compounds containing pyridine" in res.scope_sentence
+
+
+# ---------------------------------------------------------------------------
+# Compound-ID pinning (slice 14) — UNION semantics, not narrowing
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def pin_world(db):
+    """Two unrelated programmes with one compound each, plus an HTRF assay
+    on the ARd compound. Lets us test that pinning a CDK4 compound makes
+    it visible alongside a query scoped to ARd."""
+    ar = Target.objects.create(name="ARd")
+    cdk4 = Target.objects.create(name="CDK4")
+    c_ar = Compound.objects.create(target=ar, smiles="CCO", reg_number=10001)
+    c_cdk4 = Compound.objects.create(target=cdk4, smiles="CCN", reg_number=20002)
+    p = Protocol.objects.create(name="ARd binding HTRF")
+    a = Assay.objects.create(protocol=p, target=ar)
+    _mk_result(a, c_ar, status="valid",
+               results={"KPI": "IC50", "IC50": 5.0, "kpi_unit": "nM"})
+    return {"ar": ar, "cdk4": cdk4, "c_ar": c_ar, "c_cdk4": c_cdk4}
+
+
+def test_pinned_only_runs_with_no_other_predicate(pin_world):
+    res = execute(CompoundSelector(
+        compound_refs_as_typed=["NCL-00010001"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [pin_world["c_ar"].formatted_id]
+    assert "plus NCL-00010001 (pinned)" in res.scope_sentence
+
+
+def test_pinned_compound_appears_alongside_target_query(pin_world):
+    """Pinning a CDK4 compound while scoped to ARd surfaces both: ARd's
+    compound (from the scope) plus the CDK4 compound (from the pin)."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        compound_refs_as_typed=["NCL-00020002"],  # the CDK4 compound
+    ))
+    assert isinstance(res, CompoundSelection)
+    formatted = set(res.compound_formatted_ids)
+    assert pin_world["c_ar"].formatted_id in formatted
+    assert pin_world["c_cdk4"].formatted_id in formatted
+
+
+def test_pinned_compound_survives_strict_filter(pin_world):
+    """Even when the measurement filter excludes the pinned compound (it
+    has no HTRF data), it still appears in the final selection."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF", metric="IC50",
+                threshold=Threshold(op="<", value=10.0, unit="nM"),
+            ),
+        ],
+        compound_refs_as_typed=["NCL-00020002"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    formatted = set(res.compound_formatted_ids)
+    # c_ar passes the filter; c_cdk4 has no HTRF data but is pinned.
+    assert pin_world["c_ar"].formatted_id in formatted
+    assert pin_world["c_cdk4"].formatted_id in formatted
+
+
+def test_pinned_bare_number_resolves(pin_world):
+    res = execute(CompoundSelector(compound_refs_as_typed=["10001"]))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [pin_world["c_ar"].formatted_id]
+
+
+def test_pinned_unknown_id_returns_compound_miss(pin_world):
+    res = execute(CompoundSelector(compound_refs_as_typed=["NCL-99999999"]))
+    assert isinstance(res, CompoundMiss)
+    assert res.field == FIELD_COMPOUND_REF
+
+
+def test_pinned_unparseable_ref_returns_compound_miss(pin_world):
+    res = execute(CompoundSelector(compound_refs_as_typed=["the lead compound"]))
+    assert isinstance(res, CompoundMiss)
+
+
+def test_first_unresolvable_pin_short_circuits(pin_world):
+    """Mixed list: one valid pin and one bogus. The miss surfaces with
+    its index so the user sees which entry went wrong."""
+    res = execute(CompoundSelector(
+        compound_refs_as_typed=["NCL-00010001", "garbage"],
+    ))
+    assert isinstance(res, CompoundMiss)
+    assert res.ref_index == 1
+
+
+def test_multiple_pins_all_appear(pin_world):
+    res = execute(CompoundSelector(
+        compound_refs_as_typed=["NCL-00010001", "NCL-00020002"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert set(res.compound_formatted_ids) == {
+        pin_world["c_ar"].formatted_id,
+        pin_world["c_cdk4"].formatted_id,
+    }
+
+
+def test_scope_sentence_lists_multiple_pins(pin_world):
+    res = execute(CompoundSelector(
+        compound_refs_as_typed=["NCL-00010001", "NCL-00020002"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "plus NCL-00010001, NCL-00020002 (pinned)" in res.scope_sentence

@@ -52,6 +52,14 @@ export interface CompoundSelector {
   registered_date_range?: DateRange | null;
   registered_by_as_typed?: string | null;
   scaffold_hints?: string[];
+  /**
+   * Pinned compound IDs as the user typed them ("NCL-00026007",
+   * "26007", "compound 26007"). UNION semantics with the rest — these
+   * appear in the final selection regardless of whether they pass the
+   * other predicates. Resolved server-side via
+   * compounds.formatting.extract_reg_number.
+   */
+  compound_refs_as_typed?: string[];
   registration_target_id?: string | null;
   assay_target_id?: string | null;
   registered_by_id?: string | null;
@@ -155,6 +163,7 @@ export const FIELD_PROTOCOL_HINT = 'protocol_hint';
 export const FIELD_REGISTERED_BY = 'registered_by_as_typed';
 export const FIELD_ASSAYED_BY = 'assayed_by_as_typed';
 export const FIELD_SCAFFOLD_HINT = 'scaffold_hint';
+export const FIELD_COMPOUND_REF = 'compound_ref';
 
 
 // ---------------------------------------------------------------------------

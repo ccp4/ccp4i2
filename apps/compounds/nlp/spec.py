@@ -51,6 +51,7 @@ FIELD_PROTOCOL_HINT = "protocol_hint"
 FIELD_REGISTERED_BY = "registered_by_as_typed"
 FIELD_ASSAYED_BY = "assayed_by_as_typed"
 FIELD_SCAFFOLD_HINT = "scaffold_hint"
+FIELD_COMPOUND_REF = "compound_ref"
 
 # Filter / exclusion reasons from the row evaluator. Preserved from the pre-
 # pivot shape because the evaluator still classifies rows during selection;
@@ -181,6 +182,17 @@ class CompoundSelector:
     # Multiple hints are ANDed (each must match). Resolved via the curated
     # substructures catalog + RDKit HasSubstructMatch at query time.
     scaffold_hints: List[str] = field(default_factory=list)
+    # Compound-ID pins — *additive* (UNION), not a filter. The user names
+    # specific compounds by ID ("NCL-00026007", "compound 26007", "the
+    # lead compound NCL26007") and they appear in the final selection
+    # alongside whatever the other predicates select. Useful for
+    # "compound 26007 and compounds made since January" — the lead
+    # compound stays available for comparison alongside the recent set.
+    # Strings are emitted verbatim by the LLM and parsed by the
+    # resolver via ``compounds.formatting.extract_reg_number``, which
+    # handles every prefix variant (NCL-00026007 / NCL26007 / NCL 26007
+    # / 26007 / NCL000-26007).
+    compound_refs_as_typed: List[str] = field(default_factory=list)
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None
@@ -391,6 +403,34 @@ ScaffoldResolution = Union[ResolvedScaffold, ScaffoldClarify, ScaffoldMiss]
 
 
 # ---------------------------------------------------------------------------
+# Compound-ID pinning resolution — no clarify because compound IDs are
+# deterministic. A typed reference either resolves to a single Compound
+# or doesn't exist; the user revises their prompt on a miss.
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class ResolvedCompound:
+    # Type-any on the model to keep spec.py free of a registry import cycle.
+    compound: object
+    query: str               # the original typed reference, for round-trip
+
+
+@dataclass
+class CompoundMiss:
+    """Typed reference didn't parse as a compound ID, or referred to a
+    compound that doesn't exist. The view surfaces this as a generic
+    miss; clients should advise the user to check the ID and retry."""
+
+    query: str
+    ref_index: int = 0       # which entry of compound_refs_as_typed missed
+    field: str = ""          # FIELD_COMPOUND_REF
+
+
+CompoundResolution = Union[ResolvedCompound, CompoundMiss]
+
+
+# ---------------------------------------------------------------------------
 # Row-level evaluation (metric + unit tri-state). Evaluator module consumes
 # these — public because tests over the evaluator also do.
 # ---------------------------------------------------------------------------
@@ -468,6 +508,7 @@ ExecutionResult = Union[
     UserMiss,
     ScaffoldClarify,
     ScaffoldMiss,
+    CompoundMiss,
     SpecError,
 ]
 

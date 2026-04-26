@@ -36,12 +36,14 @@ from django.contrib.auth import get_user_model
 from django.db.models import Count, Max, Q, QuerySet
 
 from compounds.assays.models import Assay, DataSeries, Protocol
-from compounds.registry.models import Gene, Target
+from compounds.formatting import extract_reg_number
+from compounds.registry.models import Compound, Gene, Target
 from compounds.utils import normalize_ref as normalize
 
 from .spec import (
     FIELD_ASSAY_TARGET,
     FIELD_ASSAYED_BY,
+    FIELD_COMPOUND_REF,
     FIELD_PROTOCOL_HINT,
     FIELD_REGISTERED_BY,
     FIELD_REGISTRATION_TARGET,
@@ -51,6 +53,8 @@ from .spec import (
     SCOPE_CROSS,
     SCOPE_REG_ONLY,
     SCOPE_UNSCOPED,
+    CompoundMiss,
+    CompoundResolution,
     CompoundSelector,
     ProtocolCandidate,
     ProtocolClarify,
@@ -74,6 +78,7 @@ from .spec import (
     ScaffoldClarify,
     ScaffoldMiss,
     ScaffoldResolution,
+    ResolvedCompound,
     ResolvedScaffold,
 )
 from .substructures import (
@@ -692,3 +697,33 @@ def assay_creators_qs() -> QuerySet:
     """All users who have created at least one assay — the eligible pool
     for per-filter `assayed_by` resolution."""
     return User.objects.filter(created_assays__isnull=False).distinct()
+
+
+# ---------------------------------------------------------------------------
+# Compound-ID pinning resolution
+# ---------------------------------------------------------------------------
+
+
+def resolve_compound_ref(as_typed: str, *, ref_index: int = 0) -> CompoundResolution:
+    """Resolve a user-typed compound reference to a Compound model.
+
+    Accepts every shape ``compounds.formatting.extract_reg_number``
+    handles — full format ("NCL-00026007"), compact ("NCL26007"), bare
+    integer ("26007"), space- / underscore-separated, and the malformed
+    "NCL000-26007" variant. Case-insensitive prefix.
+
+    No clarify path: compound IDs are deterministic. Either the typed
+    reference parses to an existing compound or it doesn't, and the
+    user revises the prompt on a miss.
+    """
+    reg_number = extract_reg_number(as_typed or "")
+    if reg_number is None:
+        return CompoundMiss(
+            query=as_typed or "", ref_index=ref_index, field=FIELD_COMPOUND_REF,
+        )
+    compound = Compound.objects.filter(reg_number=reg_number).first()
+    if compound is None:
+        return CompoundMiss(
+            query=as_typed or "", ref_index=ref_index, field=FIELD_COMPOUND_REF,
+        )
+    return ResolvedCompound(compound=compound, query=as_typed or "")

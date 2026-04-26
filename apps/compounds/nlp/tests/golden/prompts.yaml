@@ -762,6 +762,64 @@
         threshold: {op: "<", value: 10, unit: nM}
 
 # =============================================================================
+# Compound-ID pinning (slice 14) — additive UNION with the rest of the
+# selection. Lets the user keep a known lead alongside whatever filters
+# they apply.
+# =============================================================================
+
+- name: pinned_compound_only
+  prompt: "Show me NCL-00026007"
+  expected:
+    type: selector
+    note: "Pin-only — no filters, just that one compound."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    compound_refs_as_typed: ["NCL-00026007"]
+    measurement_filters: []
+
+- name: pinned_compound_bare_number
+  prompt: "Show me compound 26007"
+  expected:
+    type: selector
+    note: "Bare integer — backend's extract_reg_number handles the parse."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    compound_refs_as_typed: ["26007"]
+    measurement_filters: []
+
+- name: pin_alongside_recent_compounds
+  prompt: "Compound 26007 and compounds made since January 2026"
+  expected:
+    type: selector
+    note: "Lead compound pinned alongside a date-bounded compound list — UNION semantics."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    compound_refs_as_typed: ["26007"]
+    registered_date_range: {after: "2026-01-01", before: null}
+    measurement_filters: []
+
+- name: pin_alongside_target_query
+  prompt: "Show NCL-00026007 alongside ARd pyrimidines"
+  expected:
+    type: selector
+    note: "Pin combines with target + scaffold predicate."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    scaffold_hints: [pyrimidines]
+    compound_refs_as_typed: ["NCL-00026007"]
+    measurement_filters: []
+
+- name: pin_two_compounds
+  prompt: "Compounds 26007 and 26012"
+  expected:
+    type: selector
+    note: "Multiple pinned compounds — both appear."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    compound_refs_as_typed: ["26007", "26012"]
+    measurement_filters: []
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 

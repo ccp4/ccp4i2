@@ -28,12 +28,14 @@ from typing import Dict, List, Optional, Set
 from django.db.models import QuerySet
 
 from compounds.assays.models import AnalysisResult
+from compounds.formatting import format_compound_id
 from compounds.registry.models import Compound, Target
 
 from .evaluator import evaluate_row
 from .resolver import (
     assay_creators_qs,
     compound_registrars_qs,
+    resolve_compound_ref,
     resolve_protocol,
     resolve_scaffold,
     resolve_target,
@@ -57,6 +59,7 @@ from .spec import (
     MeasurementFilter,
     ProtocolClarify,
     ProtocolMiss,
+    ResolvedCompound,
     ResolvedProtocol,
     ResolvedScaffold,
     ResolvedTarget,
@@ -73,23 +76,24 @@ from .spec import (
 from compounds.assays.models import Assay
 
 
-def _selector_has_no_narrowing_predicate(selector: CompoundSelector) -> bool:
-    """True iff the selector names no target, no scaffold, no user, no
-    date range, and no measurement filter — i.e. would trivially select
-    every compound in the registry."""
-    if selector.registration_target_as_typed or selector.registration_target_id:
-        return False
-    if selector.assay_target_as_typed or selector.assay_target_id:
-        return False
-    if selector.scaffold_hints or selector.scaffold_ids:
-        return False
-    if selector.registered_by_as_typed or selector.registered_by_id:
-        return False
-    if selector.registered_date_range is not None:
-        return False
-    if selector.measurement_filters:
-        return False
-    return True
+def _selector_has_non_pin_narrowing(selector: CompoundSelector) -> bool:
+    """True iff the selector has any narrowing predicate other than
+    ``compound_refs_as_typed``. Used to decide whether an unscoped
+    selector should default its base set to "every compound in the
+    registry" (so a non-pin predicate can narrow it) or to the empty
+    set (so the pin set is the entire selection)."""
+    return bool(
+        selector.registration_target_as_typed
+        or selector.registration_target_id
+        or selector.assay_target_as_typed
+        or selector.assay_target_id
+        or selector.scaffold_hints
+        or selector.scaffold_ids
+        or selector.registered_by_as_typed
+        or selector.registered_by_id
+        or selector.registered_date_range is not None
+        or selector.measurement_filters
+    )
 
 
 def execute(selector: CompoundSelector) -> ExecutionResult:
@@ -110,7 +114,7 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
     # asked for. Guard with a friendly error that actually tells them
     # what they need to add. A target-less selector is fine AS LONG AS
     # some other predicate narrows (scaffold / user / date / filter).
-    if _selector_has_no_narrowing_predicate(selector):
+    if not _selector_has_non_pin_narrowing(selector) and not selector.compound_refs_as_typed:
         return ScopeError(
             message=(
                 "Your query doesn't name anything to narrow by — no target "
@@ -201,6 +205,18 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
                 base_compound_ids & _match_compounds_by_scaffold(base_compound_ids, rs)
             )
 
+    # Pinned compound refs — UNION semantics, not narrowing. The user
+    # named specific compounds by ID and they should appear in the
+    # final selection regardless of whether they pass the other
+    # predicates. A first unresolved ref short-circuits to a
+    # CompoundMiss so the user sees which ID went wrong.
+    resolved_pins: List[ResolvedCompound] = []
+    for idx, ref in enumerate(selector.compound_refs_as_typed or []):
+        rc = resolve_compound_ref(ref, ref_index=idx)
+        if not isinstance(rc, ResolvedCompound):
+            return rc
+        resolved_pins.append(rc)
+
     surviving: Optional[Set[str]] = None
 
     for flt, rp, ru in zip(
@@ -214,6 +230,11 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
         compound_ids = base_compound_ids
     else:
         compound_ids = surviving & base_compound_ids
+    if resolved_pins:
+        # UNION the pinned set on AFTER all narrowing — the lead compound
+        # appears in the final selection even when it doesn't pass the
+        # measurement filter or sit in the target scope.
+        compound_ids |= {rc.compound.pk for rc in resolved_pins}
 
     # Hydrate compound IDs into formatted identifiers, ordered by
     # reg_number for stable URLs + predictable UI.
@@ -223,7 +244,7 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
         .order_by("reg_number")
         .values_list("reg_number", flat=True)
     )
-    formatted_ids = [_format_compound_id(rn) for rn in formatted]
+    formatted_ids = [format_compound_id(rn) for rn in formatted]
 
     target_names = _target_names(rt)
     protocol_names = [rp.protocol.name for rp in resolved_protocols if rp is not None]
@@ -238,6 +259,7 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
             resolved_registered_by=resolved_registered_by,
             resolved_assayed_bys=resolved_assayed_bys,
             resolved_scaffolds=resolved_scaffolds,
+            resolved_pins=resolved_pins,
         ),
     )
 
@@ -311,10 +333,15 @@ def _base_scope_compound_ids(
     elif rt.assay is not None:
         # assay-only scope
         qs = Compound.objects.filter(assay_results__assay__target=rt.assay).distinct()
-    else:
-        # Unscoped — no target named. Start from every compound; other
-        # predicates (scaffold, user, date, measurement filters) narrow.
+    elif _selector_has_non_pin_narrowing(selector):
+        # Unscoped, but some non-pin predicate (scaffold / user / date /
+        # filter) will narrow the result — start from every compound.
         qs = Compound.objects.all()
+    else:
+        # Pin-only selector: no target and no other narrowing predicate.
+        # Skip the "all compounds" base so the final selection is just
+        # the pinned set, not the entire registry.
+        return set()
 
     if rt.scope_kind == SCOPE_CROSS and rt.assay is not None:
         # Registration target filter above; also require the compound to
@@ -381,18 +408,6 @@ def _scoped_analysis_results(rt: ResolvedTargets) -> QuerySet:
 # ---------------------------------------------------------------------------
 
 
-def _format_compound_id(reg_number: int) -> str:
-    """Mirror the logic in registry/models.Compound.formatted_id —
-    uses the configured COMPOUND_ID_PREFIX and zero-padding.
-
-    Imported lazily via the Compound class since the values_list avoids
-    the instance hit."""
-    from django.conf import settings
-    prefix = getattr(settings, "COMPOUND_ID_PREFIX", "NCL")
-    digits = getattr(settings, "COMPOUND_ID_DIGITS", 8)
-    return f"{prefix}-{reg_number:0{digits}d}"
-
-
 def _target_names(rt: ResolvedTargets) -> List[str]:
     """Names to pass into the aggregation page's `targets=` URL param.
 
@@ -414,10 +429,11 @@ def _scope_sentence(
     resolved_registered_by: Optional[ResolvedUser] = None,
     resolved_assayed_bys: Optional[List[Optional[ResolvedUser]]] = None,
     resolved_scaffolds: Optional[List[ResolvedScaffold]] = None,
+    resolved_pins: Optional[List[ResolvedCompound]] = None,
 ) -> str:
-    """Human echo-back (§10). Target scope, optional registered-date and
-    registered-by phrases, scaffold narrowing, and the AND-joined filter
-    list (if any)."""
+    """Human echo-back. Target scope, optional registered-date and
+    registered-by phrases, scaffold narrowing, the AND-joined filter
+    list, and any pinned-compound UNION clause."""
     reg = rt.registration.name if rt.registration is not None else ""
     assay = rt.assay.name if rt.assay is not None else ""
     if rt.scope_kind == SCOPE_BOTH_SAME:
@@ -460,6 +476,10 @@ def _scope_sentence(
             filter_clauses.append(clause)
     if filter_clauses:
         base += " where " + " AND ".join(filter_clauses)
+
+    if resolved_pins:
+        pinned_ids = [format_compound_id(rc.compound.reg_number) for rc in resolved_pins]
+        base += f", plus {', '.join(pinned_ids)} (pinned)"
     return base
 
 
