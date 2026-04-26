@@ -914,6 +914,13 @@ function CompactCardBody({
 // (via shared helpers there) but tall enough to render the axis label
 // stacked above the formatted value inside the bar body. Shown only in
 // the compact card mode.
+//
+// Uses plain Box / span elements with inline styling rather than MUI
+// Typography. html2canvas mis-handles Typography variants combined with
+// `whiteSpace: nowrap` + `textOverflow: ellipsis` — spaces inside the
+// text get collapsed in the captured PNG ("Lipinski compliance" reads
+// as "Lipinskicompliance", "6.19 nM" as "6.19nM"). Same defensive
+// pattern as CompoundIdBadge.
 // ---------------------------------------------------------------------------
 function StackedBulletCell({
   evaluation,
@@ -926,6 +933,24 @@ function StackedBulletCell({
 }) {
   const { axis, value, t } = evaluation;
   const label = axis.label || '(unnamed)';
+  const labelStyle = {
+    display: 'block',
+    fontSize: '0.7rem',
+    fontWeight: 600,
+    lineHeight: 1.15,
+    letterSpacing: 0,
+    color: t != null && t > 0.5 ? 'rgba(0,0,0,0.85)' : 'rgba(0,0,0,0.65)',
+  } as const;
+  const valueStyle = {
+    display: 'block',
+    fontFamily: MONOSPACE_FONT_STACK,
+    fontSize: '0.78rem',
+    fontWeight: 700,
+    lineHeight: 1.15,
+    letterSpacing: 0,
+    color: t != null && t > 0.5 ? 'rgba(0,0,0,0.9)' : 'rgba(0,0,0,0.85)',
+  } as const;
+
   if (t == null) {
     return (
       <Tooltip title="No data" arrow>
@@ -935,23 +960,18 @@ function StackedBulletCell({
             border: '1px dashed',
             borderColor: 'divider',
             borderRadius: 0.5,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
+            textAlign: 'center',
+            py: 0.5,
             px: 1,
           }}
         >
-          <Typography variant="caption" sx={{ fontSize: '0.7rem', fontWeight: 600 }}>
-            {label}
-          </Typography>
-          <Typography variant="caption" color="text.disabled" sx={{ fontSize: '0.7rem' }}>
-            no data
-          </Typography>
+          <Box component="span" sx={labelStyle}>{label}</Box>
+          <Box component="span" sx={{ ...valueStyle, color: 'rgba(0,0,0,0.4)', fontWeight: 400 }}>no data</Box>
         </Box>
       </Tooltip>
     );
   }
+
   const fillColour = `hsl(${hueAt(t).toFixed(1)}, 65%, 62%)`;
   const display = formatAxisValueForBullet(axis, value, protocols, concentrationDisplay);
   return (
@@ -970,9 +990,7 @@ function StackedBulletCell({
         <Box
           sx={{
             position: 'absolute',
-            left: 0,
-            top: 0,
-            bottom: 0,
+            inset: 0,
             width: `${(t * 100).toFixed(1)}%`,
             backgroundColor: fillColour,
           }}
@@ -980,42 +998,13 @@ function StackedBulletCell({
         <Box
           sx={{
             position: 'relative',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 0.125,
+            textAlign: 'center',
+            py: 0.5,
             px: 1,
           }}
         >
-          <Typography
-            variant="caption"
-            sx={{
-              fontSize: '0.7rem',
-              fontWeight: 600,
-              lineHeight: 1.1,
-              color: t > 0.5 ? 'rgba(0,0,0,0.85)' : 'text.secondary',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              maxWidth: '100%',
-            }}
-          >
-            {label}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: MONOSPACE_FONT_STACK,
-              fontSize: '0.78rem',
-              fontWeight: 700,
-              lineHeight: 1.1,
-              color: t > 0.5 ? 'rgba(0,0,0,0.9)' : 'text.primary',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {display}
-          </Typography>
+          <Box component="span" sx={labelStyle}>{label}</Box>
+          <Box component="span" sx={valueStyle}>{display}</Box>
         </Box>
       </Box>
     </Tooltip>
