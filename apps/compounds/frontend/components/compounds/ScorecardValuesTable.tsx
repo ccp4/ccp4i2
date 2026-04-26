@@ -15,6 +15,7 @@ import type {
   ProtocolInfo,
 } from '@/types/compounds/aggregation';
 import type { ScorecardAxis, ScorecardConfig } from '@/types/compounds/models';
+import { MONOSPACE_FONT_STACK } from './aggregation/shared';
 
 interface Props {
   config: ScorecardConfig;
@@ -135,7 +136,7 @@ function AxisRow({
       <td style={{ paddingRight: 12 }}>
         {axis.label || <em style={{ color: '#999' }}>(unnamed)</em>}
       </td>
-      <td style={{ fontFamily: 'monospace', textAlign: 'right', paddingRight: 12, whiteSpace: 'nowrap' }}>
+      <td style={{ fontFamily: MONOSPACE_FONT_STACK, textAlign: 'right', paddingRight: 12, whiteSpace: 'nowrap' }}>
         {display}
       </td>
       <td style={{ color: tierColour(t), textAlign: 'right', minWidth: 64, whiteSpace: 'nowrap' }}>

@@ -31,6 +31,16 @@ import { protocolColour } from '@/lib/compounds/protocol-colour';
  */
 export const EMPTY_THRESHOLDS: MolecularPropertyThreshold[] = [];
 
+/**
+ * Pinned monospace font stack — use this everywhere a card renders
+ * monospace text rather than the generic `monospace` keyword.
+ * html2canvas can resolve the keyword to a different fallback than the
+ * browser, with mis-aligned glyph metrics; the dash in NCL-00030851
+ * then overlays the digits as a strike-through line in captured PNGs.
+ */
+export const MONOSPACE_FONT_STACK =
+  '"Roboto Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
+
 /** Options for concentration display mode selector */
 export const CONCENTRATION_DISPLAY_OPTIONS: { value: ConcentrationDisplayMode; label: string }[] = [
   { value: 'natural', label: 'Natural' },
@@ -75,7 +85,7 @@ export function IdentifiersCell({ identifiers }: { identifiers?: CompoundIdentif
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25, minWidth: 0 }}>
       {barcode && (
-        <Typography variant="caption" fontFamily="monospace" sx={{ lineHeight: 1.2, whiteSpace: 'nowrap' }}>
+        <Typography variant="caption" sx={{ fontFamily: MONOSPACE_FONT_STACK, lineHeight: 1.2, whiteSpace: 'nowrap' }}>
           {barcode}
         </Typography>
       )}
@@ -92,13 +102,24 @@ export function IdentifiersCell({ identifiers }: { identifiers?: CompoundIdentif
       {aliases && aliases.length > 0 && (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
           {aliases.map((alias, i) => (
-            <Chip
+            <Box
               key={`${alias}-${i}`}
-              label={alias}
-              size="small"
-              variant="outlined"
-              sx={{ height: 16, fontSize: '0.65rem', '& .MuiChip-label': { px: 0.5 } }}
-            />
+              component="span"
+              sx={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                px: 0.5,
+                height: 16,
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: 999,
+                fontSize: '0.65rem',
+                lineHeight: 1,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {alias}
+            </Box>
           ))}
         </Box>
       )}
@@ -346,7 +367,7 @@ export function NotTestedIndicator() {
         component="span"
         sx={{
           color: 'grey.400',
-          fontFamily: 'monospace',
+          fontFamily: MONOSPACE_FONT_STACK,
           fontStyle: 'italic',
           fontSize: '0.75rem',
         }}

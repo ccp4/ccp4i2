@@ -38,6 +38,7 @@ import { evaluateScorecard } from '@/lib/compounds/scorecard';
 import type { ScorecardConfig } from '@/types/compounds/models';
 import {
   Order,
+  MONOSPACE_FONT_STACK,
   PROPERTY_LABELS,
   RAG_COLORS,
   IdentifiersCell,
@@ -443,6 +444,15 @@ export function CardsView({
               '&:hover .copy-button': { opacity: 1 },
               display: 'flex',
               flexDirection: 'column',
+              // Force letterSpacing to a unit-less zero on every text node
+              // inside the card. MUI's caption / body variants ship em-based
+              // letterSpacing in the theme (~0.03em), which html2canvas
+              // mis-resolves into overlapping glyphs in the captured PNG —
+              // visible as a strike-through on the compound-ID badge and as
+              // squashed words ("TargetmEGFR") in the supporting text.
+              // Browser-side change is imperceptible at these font sizes.
+              '& .MuiTypography-root': { letterSpacing: 0 },
+              '& .MuiChip-label': { letterSpacing: 0 },
             }}
             onClick={() => router.push(`/registry/compounds/${row.compound_id}`)}
           >
@@ -598,7 +608,7 @@ export function CardsView({
                           py: 0.25,
                           borderRadius: 0.5,
                           color: RAG_COLORS[ragStatus],
-                          fontFamily: 'monospace',
+                          fontFamily: MONOSPACE_FONT_STACK,
                         }}
                       >
                         {PROPERTY_LABELS[propName]}: {formatPropertyValue(value)}
@@ -750,8 +760,8 @@ export function CardsView({
                     </Box>
                     <Typography
                       variant="body2"
-                      fontFamily="monospace"
                       sx={{
+                        fontFamily: MONOSPACE_FONT_STACK,
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         whiteSpace: 'nowrap',
@@ -808,8 +818,9 @@ function CompoundIdBadge({ formattedId }: { formattedId: string }) {
         borderColor: 'primary.main',
         borderRadius: 999,
         color: 'primary.main',
-        fontFamily: 'monospace',
+        fontFamily: MONOSPACE_FONT_STACK,
         fontSize: '0.875rem',
+        letterSpacing: 0,
         whiteSpace: 'nowrap',
         lineHeight: 1.4,
       }}
