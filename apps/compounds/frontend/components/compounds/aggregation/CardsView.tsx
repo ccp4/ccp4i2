@@ -34,12 +34,15 @@ import { DataSeriesDetailModal } from '../DataSeriesDetailModal';
 import { CompoundSpider } from '../CompoundSpider';
 import { ScorecardValuesTable } from '../ScorecardValuesTable';
 import { protocolColour } from '@/lib/compounds/protocol-colour';
-import { evaluateScorecard, type AxisEvaluation } from '@/lib/compounds/scorecard';
-import type { ScorecardAxis, ScorecardConfig } from '@/types/compounds/models';
 import {
-  bulletTrackGradient,
+  evaluateScorecard,
+  groupAxesBySector,
+  sectorColour,
+  type AxisEvaluation,
+} from '@/lib/compounds/scorecard';
+import type { ScorecardConfig } from '@/types/compounds/models';
+import {
   formatAxisValueForBullet,
-  hueAt,
   tierLabel,
 } from './BulletsView';
 import {
@@ -865,7 +868,15 @@ function CompactCardBody({
   protocols: ProtocolInfo[];
   concentrationDisplay: ConcentrationDisplayMode;
 }) {
-  const evals = useMemo(() => evaluateScorecard(config, row), [config, row]);
+  // Reorder axes by sector so adjacent bullets share a sector — same
+  // ordering the spider, bullets view, and key panel use, so a chemist
+  // only learns one mapping.
+  const evals = useMemo(() => {
+    const raw = evaluateScorecard(config, row);
+    if (raw.length === 0) return raw;
+    const groups = groupAxesBySector(raw.map((e) => e.axis));
+    return groups.flatMap((g) => g.items).map(({ index }) => raw[index]);
+  }, [config, row]);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -910,10 +921,14 @@ function CompactCardBody({
 }
 
 // ---------------------------------------------------------------------------
-// Two-line bullet: same colour palette and gradient track as BulletsView
-// (via shared helpers there) but tall enough to render the axis label
-// stacked above the formatted value inside the bar body. Shown only in
-// the compact card mode.
+// Two-line bullet for the compact card mode.
+//
+// Bar **length** encodes compliance (t, the normalised score), bar
+// **colour** encodes sector — same palette as the spider wedges and the
+// scorecard key panel, so a chemist only learns one colour mapping.
+// Track is faint grey; fill is the sector colour at 60% alpha, light
+// enough to keep the dark text inside the bar readable across all
+// sectors (potency-blue and pk-pink are darkest).
 //
 // Uses plain Box / span elements with inline styling rather than MUI
 // Typography. html2canvas mis-handles Typography variants combined with
@@ -922,6 +937,39 @@ function CompactCardBody({
 // as "Lipinskicompliance", "6.19 nM" as "6.19nM"). Same defensive
 // pattern as CompoundIdBadge.
 // ---------------------------------------------------------------------------
+
+const BULLET_TRACK_BG = 'rgba(0, 0, 0, 0.05)';
+const BULLET_FILL_ALPHA = 0.6;
+
+function hexToRgba(hex: string, alpha: number): string {
+  const m = hex.replace('#', '');
+  const expanded = m.length === 3 ? m.split('').map((c) => c + c).join('') : m;
+  const bigint = parseInt(expanded, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+const BULLET_LABEL_STYLE = {
+  display: 'block',
+  fontSize: '0.7rem',
+  fontWeight: 600,
+  lineHeight: 1.15,
+  letterSpacing: 0,
+  color: 'rgba(0,0,0,0.75)',
+} as const;
+
+const BULLET_VALUE_STYLE = {
+  display: 'block',
+  fontFamily: MONOSPACE_FONT_STACK,
+  fontSize: '0.78rem',
+  fontWeight: 700,
+  lineHeight: 1.15,
+  letterSpacing: 0,
+  color: 'rgba(0,0,0,0.9)',
+} as const;
+
 function StackedBulletCell({
   evaluation,
   protocols,
@@ -933,23 +981,6 @@ function StackedBulletCell({
 }) {
   const { axis, value, t } = evaluation;
   const label = axis.label || '(unnamed)';
-  const labelStyle = {
-    display: 'block',
-    fontSize: '0.7rem',
-    fontWeight: 600,
-    lineHeight: 1.15,
-    letterSpacing: 0,
-    color: t != null && t > 0.5 ? 'rgba(0,0,0,0.85)' : 'rgba(0,0,0,0.65)',
-  } as const;
-  const valueStyle = {
-    display: 'block',
-    fontFamily: MONOSPACE_FONT_STACK,
-    fontSize: '0.78rem',
-    fontWeight: 700,
-    lineHeight: 1.15,
-    letterSpacing: 0,
-    color: t != null && t > 0.5 ? 'rgba(0,0,0,0.9)' : 'rgba(0,0,0,0.85)',
-  } as const;
 
   if (t == null) {
     return (
@@ -965,14 +996,14 @@ function StackedBulletCell({
             px: 1,
           }}
         >
-          <Box component="span" sx={labelStyle}>{label}</Box>
-          <Box component="span" sx={{ ...valueStyle, color: 'rgba(0,0,0,0.4)', fontWeight: 400 }}>no data</Box>
+          <Box component="span" sx={BULLET_LABEL_STYLE}>{label}</Box>
+          <Box component="span" sx={{ ...BULLET_VALUE_STYLE, color: 'rgba(0,0,0,0.4)', fontWeight: 400 }}>no data</Box>
         </Box>
       </Tooltip>
     );
   }
 
-  const fillColour = `hsl(${hueAt(t).toFixed(1)}, 65%, 62%)`;
+  const fillColour = hexToRgba(sectorColour(axis.sector), BULLET_FILL_ALPHA);
   const display = formatAxisValueForBullet(axis, value, protocols, concentrationDisplay);
   return (
     <Tooltip title={`${display}  ${tierLabel(t)}`} arrow>
@@ -980,7 +1011,7 @@ function StackedBulletCell({
         sx={{
           position: 'relative',
           height: 44,
-          background: bulletTrackGradient(),
+          backgroundColor: BULLET_TRACK_BG,
           border: 1,
           borderColor: 'divider',
           borderRadius: 0.5,
@@ -1003,8 +1034,8 @@ function StackedBulletCell({
             px: 1,
           }}
         >
-          <Box component="span" sx={labelStyle}>{label}</Box>
-          <Box component="span" sx={valueStyle}>{display}</Box>
+          <Box component="span" sx={BULLET_LABEL_STYLE}>{label}</Box>
+          <Box component="span" sx={BULLET_VALUE_STYLE}>{display}</Box>
         </Box>
       </Box>
     </Tooltip>
