@@ -99,15 +99,19 @@ export const MoleculeView: React.FC<MoleculeViewProps> = ({
  */
 interface MoleculeChipProps {
   smiles: string;
-  /** Pixel size used to generate the SVG (also the on-screen square size
-   *  in the default fixed mode). When `fillWidth` is true, this still
-   *  drives the SVG generation but the on-screen render scales to its
+  /** Pixel width used to generate the SVG (also the on-screen width in
+   *  the default fixed mode). When `fillWidth` is true, this still
+   *  drives SVG generation but the on-screen render scales to its
    *  container — pass a generous value (~400) to keep label / bond
    *  rendering crisp at larger display sizes. */
   size?: number;
   /** When true, the molecule fills 100% of the parent's width and keeps
-   *  a square aspect ratio. RDKit SVG is vector so it scales cleanly. */
+   *  the configured aspect ratio. RDKit SVG is vector so it scales cleanly. */
   fillWidth?: boolean;
+  /** width/height ratio of the molecule render. Defaults to 1 (square).
+   *  Most drug-like molecules are wider than tall, so 4/3 (≈1.33) packs
+   *  the chemistry tighter and reduces the dead space above and below. */
+  aspectRatio?: number;
   /** Disable hover overlay (useful when already showing large view) */
   disableHover?: boolean;
 }
@@ -118,7 +122,10 @@ const HIDE_DELAY_MS = 150;  // Grace period so the cursor can cross from
                             // popup down mid-traversal.
 const ENLARGED_SIZE = 350;  // Size of enlarged view
 
-export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, fillWidth = false, disableHover = false }) => {
+export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, fillWidth = false, aspectRatio = 1, disableHover = false }) => {
+  const svgWidth = size;
+  const svgHeight = Math.round(size / aspectRatio);
+  const cssAspectRatio = `${aspectRatio} / 1`;
   const { rdkitModule, isLoading } = useRDKit();
   // We keep BOTH the raw SVG markup and a Blob-URL flavour. The markup is
   // rendered inline so html2canvas captures the structure cleanly (it
@@ -143,13 +150,13 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
       const mol = rdkitModule.get_mol(smiles);
       if (!mol) return;
 
-      const svg = mol.get_svg(size, size);
+      const svg = mol.get_svg(svgWidth, svgHeight);
       mol.delete();
       setSvgMarkup(svg);
     } catch (err) {
       console.error('RDKit error:', err);
     }
-  }, [smiles, rdkitModule, size]);
+  }, [smiles, rdkitModule, svgWidth, svgHeight]);
 
   // Generate enlarged SVG (only when needed)
   useEffect(() => {
@@ -229,8 +236,8 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
 
   if (!smiles || isLoading) {
     return fillWidth
-      ? <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '1 / 1' }} />
-      : <Skeleton variant="rectangular" width={size} height={size} />;
+      ? <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: cssAspectRatio }} />
+      : <Skeleton variant="rectangular" width={svgWidth} height={svgHeight} />;
   }
 
   if (!svgMarkup) {
@@ -248,8 +255,8 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
         onMouseLeave={handleAnchorLeave}
         sx={{
           ...(fillWidth
-            ? { width: '100%', aspectRatio: '1 / 1' }
-            : { width: size, height: size }),
+            ? { width: '100%', aspectRatio: cssAspectRatio }
+            : { width: svgWidth, height: svgHeight }),
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

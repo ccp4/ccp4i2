@@ -42,6 +42,7 @@ import {
   fetchProtocols,
   deleteAggregationView,
 } from '@/lib/compounds/aggregation-api';
+import { scorecardDataNeeds } from '@/lib/compounds/scorecard';
 import {
   TargetDashboard,
   DashboardProject,
@@ -92,18 +93,39 @@ export default function TargetDashboardPage({ params }: PageProps) {
           savedView.protocol_names.some((name) => p.name.toLowerCase() === name.toLowerCase())
         );
 
+        // Auto-inject the scorecard's required protocols and molecular
+        // properties so a saved cards view doesn't show "no data" for
+        // axes the scorecard depends on (Lipinski needs molecular_weight
+        // / clogp / hbd / hba; protocol/ratio/worst_of axes need their
+        // referenced protocol IDs to be in the request). Same logic as
+        // the aggregation page so behaviour matches.
+        const scorecardNeeds = scorecardDataNeeds(dashboardData.scorecard_config);
+        const scorecardProtocolIds = scorecardNeeds.protocolIds.length > 0
+          ? new Set([
+              ...matchedProtocols.map((p) => p.id),
+              ...scorecardNeeds.protocolIds,
+            ])
+          : new Set(matchedProtocols.map((p) => p.id));
+
         // Build predicates
         const predicates: any = {
           targets: [id],
         };
-        if (matchedProtocols.length > 0) {
-          predicates.protocols = matchedProtocols.map((p) => p.id);
+        if (scorecardProtocolIds.size > 0) {
+          predicates.protocols = Array.from(scorecardProtocolIds);
         }
         if (savedView.compound_search) {
           predicates.compound_search = savedView.compound_search;
         }
         // Always include status (empty string means "all")
         predicates.status = savedView.status ?? 'valid';
+
+        const effectiveProperties = Array.from(
+          new Set([
+            ...(savedView.include_properties ?? []),
+            ...scorecardNeeds.properties,
+          ]),
+        );
 
         // Run aggregation - map pivot/cards to compact for API (they use same data structure)
         const apiOutputFormat = (savedView.output_format === 'pivot' || savedView.output_format === 'cards')
@@ -114,7 +136,7 @@ export default function TargetDashboardPage({ params }: PageProps) {
           output_format: apiOutputFormat,
           aggregations: savedView.aggregations,
           // Cast to MolecularPropertyName[] - backend validates the values
-          include_properties: savedView.include_properties as any,
+          include_properties: effectiveProperties.length > 0 ? effectiveProperties as any : undefined,
           // Default to showing identifiers when the saved view predates the flag
           include_identifiers: savedView.include_identifiers ?? true,
         });
@@ -476,6 +498,12 @@ export default function TargetDashboardPage({ params }: PageProps) {
             aggregations={dashboardData.saved_aggregation_view.aggregations}
             outputFormat={dashboardData.saved_aggregation_view.output_format}
             concentrationDisplay={dashboardData.saved_aggregation_view.concentration_display}
+            // Pass the target's scorecard so the cards view can render
+            // spider / values / compact modes when one is configured. If
+            // no scorecard exists, CardsView falls back to protocols-only
+            // automatically (its `hasScorecard ? 'both' : 'protocols'`
+            // default).
+            scorecardConfig={dashboardData.scorecard_config}
           />
         )}
       </Paper>

@@ -313,25 +313,37 @@ export function PredicateBuilder({
     const initializeSelections = async () => {
       const promises: Promise<void>[] = [];
 
-      // Load targets by ID (legacy) or by names
-      if (memoizedInitialTargetId || (memoizedInitialTargetNames && memoizedInitialTargetNames.length > 0)) {
+      // Load targets by ID (legacy) or by names. For name lookups we
+      // search server-side per name so the lookup survives a paginated
+      // /targets endpoint (a target outside page 1 was previously
+      // unresolvable, manifesting as "target gets lost on reload" — the
+      // URL still carried the name but PredicateBuilder couldn't match
+      // it against the full list, so the auto-run query never fired).
+      if (memoizedInitialTargetId) {
         promises.push(
           fetchTargets().then((targets) => {
-            setTargetOptions(targets); // Also populate options
-            if (memoizedInitialTargetId) {
-              const target = targets.find((t) => t.id === memoizedInitialTargetId);
-              if (target) {
-                setSelectedTargets([target]);
-              }
-            } else if (memoizedInitialTargetNames) {
-              const matchedTargets = targets.filter((t) =>
-                memoizedInitialTargetNames.some((name) => t.name.toLowerCase() === name.toLowerCase())
-              );
-              if (matchedTargets.length > 0) {
-                setSelectedTargets(matchedTargets);
-              }
+            setTargetOptions(targets);
+            const target = targets.find((t) => t.id === memoizedInitialTargetId);
+            if (target) {
+              setSelectedTargets([target]);
             }
           })
+        );
+      } else if (memoizedInitialTargetNames && memoizedInitialTargetNames.length > 0) {
+        promises.push(
+          Promise.all(
+            memoizedInitialTargetNames.map((name) =>
+              fetchTargets({ search: name }).then((hits) =>
+                hits.find((t) => t.name.toLowerCase() === name.toLowerCase()) || null,
+              ),
+            ),
+          ).then((results) => {
+            const matched = results.filter((t): t is NonNullable<typeof t> => t !== null);
+            if (matched.length > 0) {
+              setSelectedTargets(matched);
+              setTargetOptions(matched); // seed options so the chips render
+            }
+          }),
         );
       }
 

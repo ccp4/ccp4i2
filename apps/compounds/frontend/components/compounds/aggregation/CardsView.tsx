@@ -896,17 +896,19 @@ function CompactCardBody({
       </Box>
       {row.smiles ? (
         // fillWidth: the molecule expands to the card's available inner
-        // width, with a 1:1 aspect ratio. Generous `size` keeps the SVG's
-        // intrinsic label / bond rendering crisp at the larger display
-        // dimension; vector content scales for free.
+        // width. 4:3 aspect ratio matches the natural shape of most
+        // drug-like molecules — square boxes leave conspicuous dead
+        // space above and below the chemistry. Generous `size` keeps
+        // the SVG's intrinsic label / bond rendering crisp at the
+        // larger display dimension; vector content scales for free.
         <Box sx={{ width: '100%' }}>
-          <MoleculeChip smiles={row.smiles} size={400} fillWidth />
+          <MoleculeChip smiles={row.smiles} size={400} fillWidth aspectRatio={4 / 3} />
         </Box>
       ) : (
         <Box
           sx={{
             width: '100%',
-            aspectRatio: '1 / 1',
+            aspectRatio: '4 / 3',
             bgcolor: 'grey.100',
             borderRadius: 1,
             display: 'flex',

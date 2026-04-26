@@ -118,6 +118,14 @@ function AggregationPageContent() {
   // Track current request to avoid race conditions
   const requestIdRef = useRef(0);
 
+  // Track which scorecard was in scope at the time of the last fetch,
+  // so we can detect when the SWR scorecard fetch resolves AFTER the
+  // initial aggregation request has already gone out (without it, the
+  // Lipinski axis arrives empty because molecular_weight / clogp / hbd
+  // / hba weren't auto-injected into include_properties — see the
+  // useEffect below that re-runs the query on transition).
+  const requestScorecardRef = useRef<unknown>(undefined);
+
   const handleStateChange = useCallback((state: PredicateBuilderState) => {
     setCurrentState(state);
   }, []);
@@ -295,6 +303,9 @@ function AggregationPageContent() {
       // request with the protocols and molecular properties the scorecard
       // axes need. This avoids the "my Lipinski axis is empty because I
       // didn't tick Include Properties" footgun.
+      // Stamp the scorecard we used so the post-fetch effect can detect
+      // a stale fetch when SWR resolves the scorecard later.
+      requestScorecardRef.current = singleTargetScorecard;
       const scorecardNeeds = scorecardDataNeeds(singleTargetScorecard);
       const effectivePredicates: Predicates = scorecardNeeds.protocolIds.length > 0
         ? {
@@ -335,6 +346,28 @@ function AggregationPageContent() {
       }
     }
   }, [currentState, updateUrlState, singleTargetScorecard]);
+
+  // SWR fetches the target's scorecard_config asynchronously. If
+  // PredicateBuilder fired the initial query before the scorecard
+  // resolved, the request went out without the scorecard's auto-
+  // injected protocols/properties — most visibly, a Lipinski axis
+  // shows "no data" because molecular_weight / clogp / hbd / hba
+  // weren't requested. When the scorecard arrives, re-run the query
+  // so the Cards view can populate those values.
+  useEffect(() => {
+    if (!data || !currentState) return;
+    if (requestScorecardRef.current === singleTargetScorecard) return;
+    handleChange(
+      currentState.predicates,
+      currentState.outputFormat,
+      currentAggregations,
+      currentGroupByBatch,
+      currentIncludeTestedNoData,
+      currentIncludeProperties,
+      currentIncludeIdentifiers,
+    );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [singleTargetScorecard]);
 
   // Build summary description from current state
   const getSummaryDescription = () => {
