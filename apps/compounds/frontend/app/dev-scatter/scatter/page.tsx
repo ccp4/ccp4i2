@@ -82,7 +82,11 @@ const COMPOUNDS: Array<{
   { id: 'c1', formatted_id: 'NCL-00031070', smiles: 'CC(=O)N',        values: { 'proto-tm': 11,   'proto-wt': 320,   'proto-pc9': 100,  'proto-hlm': 12, 'proto-logd': 2.4 } },
   { id: 'c2', formatted_id: 'NCL-00031071', smiles: 'CCOC',           values: { 'proto-tm': 38,   'proto-wt': 970,   'proto-pc9': 300,  'proto-hlm': 18, 'proto-logd': 1.8 } },
   { id: 'c3', formatted_id: 'NCL-00031072', smiles: 'CCN',            values: { 'proto-tm': 7.1,  'proto-wt': 46,    'proto-pc9': 100,  'proto-hlm': 8,  'proto-logd': 2.0 } },
-  { id: 'c4', formatted_id: 'NCL-00031136', smiles: 'c1ccccc1',       values: { 'proto-tm': 277,  'proto-wt': 6711,  'proto-pc9': 370,  'proto-hlm': 22, 'proto-logd': 3.1 } },
+  // c4 selectivity is large enough that the WT/TM ratio (49 100) crosses
+  // into scientific notation in the captured PNG — used to verify the
+  // formatScientific Unicode-superscript rendering on Safari without a
+  // build/deploy round-trip.
+  { id: 'c4', formatted_id: 'NCL-00031136', smiles: 'c1ccccc1',       values: { 'proto-tm': 277,  'proto-wt': 49100, 'proto-pc9': 370,  'proto-hlm': 22, 'proto-logd': 3.1 } },
   { id: 'c5', formatted_id: 'NCL-00031032', smiles: 'Cc1ccccc1',      values: { 'proto-tm': 1.5,  'proto-wt': 1.8,   'proto-pc9': 9.6,  'proto-hlm': 6,  'proto-logd': 2.5 } },
   { id: 'c6', formatted_id: 'NCL-00031200', smiles: 'CCC(=O)O',       values: { 'proto-tm': 55,   'proto-wt': 420,   'proto-pc9': 1500, 'proto-hlm': 35, 'proto-logd': 2.2 } },
   { id: 'c7', formatted_id: 'NCL-00031201', smiles: 'CCCN',           values: { 'proto-tm': 120,  'proto-wt': 2800,  'proto-pc9': 4500, 'proto-hlm': 45, 'proto-logd': 1.5 } },
