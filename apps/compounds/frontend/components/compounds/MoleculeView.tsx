@@ -105,7 +105,10 @@ interface MoleculeChipProps {
 }
 
 const HOVER_DELAY_MS = 400; // Delay before showing enlarged view
-const ENLARGED_SIZE = 350; // Size of enlarged view
+const HIDE_DELAY_MS = 150;  // Grace period so the cursor can cross from
+                            // chip to popup (or back) without tearing the
+                            // popup down mid-traversal.
+const ENLARGED_SIZE = 350;  // Size of enlarged view
 
 export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, disableHover = false }) => {
   const { rdkitModule, isLoading } = useRDKit();
@@ -118,7 +121,11 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
   const [enlargedSvgUrl, setEnlargedSvgUrl] = useState<string | null>(null);
   const [showEnlarged, setShowEnlarged] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  // Two independent timers: one delays the open (so a quick mouse-over
+  // doesn't trigger a popup), one delays the close (so traversing the
+  // gap between anchor and popup doesn't drop state).
+  const openTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Generate thumbnail SVG
   useEffect(() => {
@@ -157,31 +164,60 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
     }
   }, [smiles, rdkitModule, showEnlarged]);
 
-  const handleMouseEnter = useCallback((event: React.MouseEvent<HTMLElement>) => {
-    if (disableHover) return;
-    setAnchorEl(event.currentTarget);
-    hoverTimeoutRef.current = setTimeout(() => {
-      setShowEnlarged(true);
-    }, HOVER_DELAY_MS);
-  }, [disableHover]);
+  const cancelTimers = useCallback(() => {
+    if (openTimerRef.current) { clearTimeout(openTimerRef.current); openTimerRef.current = null; }
+    if (closeTimerRef.current) { clearTimeout(closeTimerRef.current); closeTimerRef.current = null; }
+  }, []);
 
-  const handleMouseLeave = useCallback(() => {
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current);
-      hoverTimeoutRef.current = null;
-    }
+  const closeNow = useCallback(() => {
+    cancelTimers();
     setShowEnlarged(false);
     setAnchorEl(null);
-  }, []);
+  }, [cancelTimers]);
 
-  // Cleanup timeout on unmount
+  const scheduleClose = useCallback(() => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(closeNow, HIDE_DELAY_MS);
+  }, [closeNow]);
+
+  const handleAnchorEnter = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    if (disableHover) return;
+    cancelTimers();
+    setAnchorEl(event.currentTarget);
+    openTimerRef.current = setTimeout(() => setShowEnlarged(true), HOVER_DELAY_MS);
+  }, [disableHover, cancelTimers]);
+
+  const handleAnchorLeave = useCallback(() => {
+    if (openTimerRef.current) { clearTimeout(openTimerRef.current); openTimerRef.current = null; }
+    scheduleClose();
+  }, [scheduleClose]);
+
+  const handlePopperEnter = useCallback(() => {
+    cancelTimers();
+  }, [cancelTimers]);
+
+  // Safety nets for events the chip's mouseLeave can miss: window blur
+  // (alt-tab away with cursor still on the chip), Escape key, and the
+  // browser's own document-level pointerleave (cursor leaves the
+  // viewport entirely without crossing the chip on the way out).
   useEffect(() => {
+    if (!showEnlarged) return;
+    const closeHandler = () => closeNow();
+    const keyHandler = (e: KeyboardEvent) => { if (e.key === 'Escape') closeNow(); };
+    window.addEventListener('blur', closeHandler);
+    window.addEventListener('scroll', closeHandler, { passive: true, capture: true });
+    document.addEventListener('keydown', keyHandler);
+    document.documentElement.addEventListener('pointerleave', closeHandler);
     return () => {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-      }
+      window.removeEventListener('blur', closeHandler);
+      window.removeEventListener('scroll', closeHandler, { capture: true } as EventListenerOptions);
+      document.removeEventListener('keydown', keyHandler);
+      document.documentElement.removeEventListener('pointerleave', closeHandler);
     };
-  }, []);
+  }, [showEnlarged, closeNow]);
+
+  // Cleanup timers on unmount.
+  useEffect(() => () => cancelTimers(), [cancelTimers]);
 
   if (!smiles || isLoading) {
     return <Skeleton variant="rectangular" width={size} height={size} />;
@@ -198,8 +234,8 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
   return (
     <>
       <Box
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleAnchorEnter}
+        onMouseLeave={handleAnchorLeave}
         sx={{
           width: size,
           height: size,
@@ -254,8 +290,8 @@ export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 160, 
                   border: 1,
                   borderColor: 'divider',
                 }}
-                onMouseEnter={() => setShowEnlarged(true)}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={handlePopperEnter}
+                onMouseLeave={scheduleClose}
               >
                 {enlargedSvgUrl ? (
                   <img
