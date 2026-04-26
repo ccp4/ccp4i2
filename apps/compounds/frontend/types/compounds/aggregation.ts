@@ -64,10 +64,11 @@ export type OutputFormat = 'compact' | 'medium' | 'long' | 'pivot' | 'cards' | '
 
 /**
  * Cards-view body selector — chemists choose between the protocol-list
- * rows, the per-card scorecard spider, or both. URL-encoded so deep links
- * preserve the chosen view.
+ * rows, the per-card scorecard spider, both, or the compact chemistry-
+ * first layout (large structure + vertically stacked two-line bullets).
+ * URL-encoded so deep links preserve the chosen view.
  */
-export type CardContent = 'protocols' | 'spider' | 'both';
+export type CardContent = 'protocols' | 'spider' | 'both' | 'compact';
 
 /** Filter predicates for querying data series */
 export interface Predicates {

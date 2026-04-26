@@ -321,11 +321,18 @@ export function BulletsView({
 
 // ---------------------------------------------------------------------------
 
-const GREEN_HUE = 140;
-const RED_HUE = 5;
+export const GREEN_HUE = 140;
+export const RED_HUE = 5;
 
-function hueAt(t: number): number {
+export function hueAt(t: number): number {
   return RED_HUE + (GREEN_HUE - RED_HUE) * t;
+}
+
+/** Background gradient strip (poor → mid → excellent) used as the
+ *  "track" behind a bullet's coloured fill. Same in BulletsView and the
+ *  compact card body — pulled into a helper so they cannot drift. */
+export function bulletTrackGradient(): string {
+  return `linear-gradient(to right, hsl(${RED_HUE}, 50%, 92%), hsl(${(RED_HUE + GREEN_HUE) / 2}, 50%, 92%), hsl(${GREEN_HUE}, 50%, 92%))`;
 }
 
 /**
@@ -369,7 +376,7 @@ function BulletCell({
   }
 
   const fillColour = `hsl(${hueAt(t).toFixed(1)}, 65%, 62%)`;
-  const bgGradient = `linear-gradient(to right, hsl(${RED_HUE}, 50%, 92%), hsl(${(RED_HUE + GREEN_HUE) / 2}, 50%, 92%), hsl(${GREEN_HUE}, 50%, 92%))`;
+  const bgGradient = bulletTrackGradient();
 
   const display = formatAxisValueForBullet(axis, value, protocols, concentrationDisplay);
   const tooltip = `${display}  ${tierLabel(t)}`;
@@ -417,7 +424,7 @@ function BulletCell({
   );
 }
 
-function formatAxisValueForBullet(
+export function formatAxisValueForBullet(
   axis: ScorecardAxis,
   value: number | null,
   protocols: ProtocolInfo[],
@@ -457,7 +464,7 @@ function formatBare(v: number): string {
   return v.toFixed(2);
 }
 
-function tierLabel(t: number): string {
+export function tierLabel(t: number): string {
   if (t >= 1) return '(excellent)';
   if (t >= 2 / 3) return '(good)';
   if (t >= 1 / 3) return '(mid)';

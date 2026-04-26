@@ -86,7 +86,7 @@ function AggregationPageContent() {
   // initial value undefined here and let CardsView pick a sensible default.
   const cardContentParam = searchParams?.get('cardContent');
   const initialCardContent: CardContent | undefined =
-    (cardContentParam === 'protocols' || cardContentParam === 'spider' || cardContentParam === 'both')
+    (cardContentParam === 'protocols' || cardContentParam === 'spider' || cardContentParam === 'both' || cardContentParam === 'compact')
       ? cardContentParam
       : undefined;
 

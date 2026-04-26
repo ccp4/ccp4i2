@@ -34,8 +34,14 @@ import { DataSeriesDetailModal } from '../DataSeriesDetailModal';
 import { CompoundSpider } from '../CompoundSpider';
 import { ScorecardValuesTable } from '../ScorecardValuesTable';
 import { protocolColour } from '@/lib/compounds/protocol-colour';
-import { evaluateScorecard } from '@/lib/compounds/scorecard';
-import type { ScorecardConfig } from '@/types/compounds/models';
+import { evaluateScorecard, type AxisEvaluation } from '@/lib/compounds/scorecard';
+import type { ScorecardAxis, ScorecardConfig } from '@/types/compounds/models';
+import {
+  bulletTrackGradient,
+  formatAxisValueForBullet,
+  hueAt,
+  tierLabel,
+} from './BulletsView';
 import {
   Order,
   MONOSPACE_FONT_STACK,
@@ -338,6 +344,7 @@ export function CardsView({
                   <MenuItem value="both">Both</MenuItem>
                   <MenuItem value="spider">Spider only</MenuItem>
                   <MenuItem value="protocols">Protocols only</MenuItem>
+                  <MenuItem value="compact">Compact</MenuItem>
                 </Select>
               </FormControl>
             </>
@@ -478,7 +485,15 @@ export function CardsView({
                 {isCopied ? <Check fontSize="small" color="success" /> : <ContentCopy fontSize="small" />}
               </IconButton>
             </Tooltip>
-            {hasScorecard && cardContent !== 'protocols' ? (
+            {cardContent === 'compact' && hasScorecard && scorecardConfig ? (
+              <CompactCardBody
+                row={row}
+                showBatch={showBatch}
+                config={scorecardConfig}
+                protocols={protocols}
+                concentrationDisplay={concentrationDisplay}
+              />
+            ) : hasScorecard && cardContent !== 'protocols' ? (
               // Two-column header when spider is shown:
               //   left  ≈ 50% : ID chip (top) → target (line below) → structure
               //   right ≈ 50% : spider, vertically centred
@@ -570,7 +585,7 @@ export function CardsView({
             )}
 
             {/* Identifiers (barcode / supplier ref / aliases) */}
-            {showIdentifiers && (
+            {showIdentifiers && cardContent !== 'compact' && (
               <Box
                 sx={{
                   py: 1,
@@ -583,7 +598,7 @@ export function CardsView({
             )}
 
             {/* Molecular Properties (if any) */}
-            {includeProperties.length > 0 && (
+            {includeProperties.length > 0 && cardContent !== 'compact' && (
               <Box
                 sx={{
                   display: 'flex',
@@ -828,5 +843,181 @@ function CompoundIdBadge({ formattedId }: { formattedId: string }) {
       <Medication sx={{ fontSize: '1rem' }} />
       {formattedId}
     </Box>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Compact card body: chemistry-first layout. ID chip → large structure →
+// vertically stacked two-line bullets (axis label + value inside each
+// bar's body track). Skips the identifiers / properties rows so the card
+// stays focused on the structure and the scorecard signals.
+// ---------------------------------------------------------------------------
+function CompactCardBody({
+  row,
+  showBatch,
+  config,
+  protocols,
+  concentrationDisplay,
+}: {
+  row: CompactRow;
+  showBatch?: boolean;
+  config: ScorecardConfig;
+  protocols: ProtocolInfo[];
+  concentrationDisplay: ConcentrationDisplayMode;
+}) {
+  const evals = useMemo(() => evaluateScorecard(config, row), [config, row]);
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
+        <CompoundIdBadge formattedId={row.formatted_id} />
+        {showBatch && row.batch_number != null && (
+          <Typography variant="caption" color="text.secondary">
+            /{row.batch_number}
+          </Typography>
+        )}
+      </Box>
+      {row.smiles ? (
+        <MoleculeChip smiles={row.smiles} size={240} />
+      ) : (
+        <Box
+          sx={{
+            width: 240,
+            height: 240,
+            bgcolor: 'grey.100',
+            borderRadius: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography variant="caption" color="text.secondary">-</Typography>
+        </Box>
+      )}
+      {evals.length > 0 && (
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>
+          {evals.map((evaluation, i) => (
+            <StackedBulletCell
+              key={i}
+              evaluation={evaluation}
+              protocols={protocols}
+              concentrationDisplay={concentrationDisplay}
+            />
+          ))}
+        </Box>
+      )}
+    </Box>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Two-line bullet: same colour palette and gradient track as BulletsView
+// (via shared helpers there) but tall enough to render the axis label
+// stacked above the formatted value inside the bar body. Shown only in
+// the compact card mode.
+// ---------------------------------------------------------------------------
+function StackedBulletCell({
+  evaluation,
+  protocols,
+  concentrationDisplay,
+}: {
+  evaluation: AxisEvaluation;
+  protocols: ProtocolInfo[];
+  concentrationDisplay: ConcentrationDisplayMode;
+}) {
+  const { axis, value, t } = evaluation;
+  const label = axis.label || '(unnamed)';
+  if (t == null) {
+    return (
+      <Tooltip title="No data" arrow>
+        <Box
+          sx={{
+            height: 44,
+            border: '1px dashed',
+            borderColor: 'divider',
+            borderRadius: 0.5,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            px: 1,
+          }}
+        >
+          <Typography variant="caption" sx={{ fontSize: '0.7rem', fontWeight: 600 }}>
+            {label}
+          </Typography>
+          <Typography variant="caption" color="text.disabled" sx={{ fontSize: '0.7rem' }}>
+            no data
+          </Typography>
+        </Box>
+      </Tooltip>
+    );
+  }
+  const fillColour = `hsl(${hueAt(t).toFixed(1)}, 65%, 62%)`;
+  const display = formatAxisValueForBullet(axis, value, protocols, concentrationDisplay);
+  return (
+    <Tooltip title={`${display}  ${tierLabel(t)}`} arrow>
+      <Box
+        sx={{
+          position: 'relative',
+          height: 44,
+          background: bulletTrackGradient(),
+          border: 1,
+          borderColor: 'divider',
+          borderRadius: 0.5,
+          overflow: 'hidden',
+        }}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: `${(t * 100).toFixed(1)}%`,
+            backgroundColor: fillColour,
+          }}
+        />
+        <Box
+          sx={{
+            position: 'relative',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 0.125,
+            px: 1,
+          }}
+        >
+          <Typography
+            variant="caption"
+            sx={{
+              fontSize: '0.7rem',
+              fontWeight: 600,
+              lineHeight: 1.1,
+              color: t > 0.5 ? 'rgba(0,0,0,0.85)' : 'text.secondary',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              maxWidth: '100%',
+            }}
+          >
+            {label}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: MONOSPACE_FONT_STACK,
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              lineHeight: 1.1,
+              color: t > 0.5 ? 'rgba(0,0,0,0.9)' : 'text.primary',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {display}
+          </Typography>
+        </Box>
+      </Box>
+    </Tooltip>
   );
 }
