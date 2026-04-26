@@ -12,6 +12,31 @@ const nextConfig = {
     middlewareClientMaxBodySize: '100mb',
   },
 
+  webpack: (config, { isServer, webpack }) => {
+    if (!isServer) {
+      // pptxgenjs's ESM bundle imports node:fs and node:https at the top
+      // for its Node.js execution mode. Those code paths are gated at
+      // runtime and never run in the browser, but webpack walks the tree
+      // at build time and fails on the unresolvable node: scheme. Stub
+      // both the prefixed and bare forms so the client bundle compiles.
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        https: false,
+        http: false,
+      };
+      config.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(
+          /^node:(fs|https|http)$/,
+          (resource) => {
+            resource.request = resource.request.replace(/^node:/, '');
+          },
+        ),
+      );
+    }
+    return config;
+  },
+
   // Allow images from Django backend
   images: {
     remotePatterns: [

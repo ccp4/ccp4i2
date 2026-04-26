@@ -455,7 +455,7 @@ function formatWithUnit(
 ): string {
   if (!unit) return formatBare(value);
   const { displayValue, displayUnit } = formatConcentrationValue(value, unit, concentrationDisplay);
-  return displayUnit ? `${displayValue} ${displayUnit}` : displayValue;
+  return displayUnit ? `${displayValue} ${displayUnit}` : displayValue;
 }
 
 function formatBare(v: number): string {

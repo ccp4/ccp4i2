@@ -15,7 +15,7 @@ import type {
   ProtocolInfo,
 } from '@/types/compounds/aggregation';
 import type { ScorecardAxis, ScorecardConfig } from '@/types/compounds/models';
-import { MONOSPACE_FONT_STACK } from './aggregation/shared';
+import { MONOSPACE_FONT_STACK, SANS_SERIF_FONT_STACK } from './aggregation/shared';
 
 interface Props {
   config: ScorecardConfig;
@@ -133,13 +133,13 @@ function AxisRow({
           }}
         />
       </td>
-      <td style={{ paddingRight: 12 }}>
+      <td style={{ paddingRight: 12, fontFamily: SANS_SERIF_FONT_STACK }}>
         {axis.label || <em style={{ color: '#999' }}>(unnamed)</em>}
       </td>
       <td style={{ fontFamily: MONOSPACE_FONT_STACK, textAlign: 'right', paddingRight: 12, whiteSpace: 'nowrap' }}>
         {display}
       </td>
-      <td style={{ color: tierColour(t), textAlign: 'right', minWidth: 64, whiteSpace: 'nowrap' }}>
+      <td style={{ color: tierColour(t), textAlign: 'right', minWidth: 64, whiteSpace: 'nowrap', fontFamily: SANS_SERIF_FONT_STACK }}>
         {tierLabel(t)}
       </td>
     </tr>
@@ -197,7 +197,9 @@ function formatWithUnit(
     unit,
     concentrationDisplay,
   );
-  return displayUnit ? `${displayValue} ${displayUnit}` : displayValue;
+  // Non-breaking space between value and unit so html2canvas preserves
+  // it in captured PNGs ("6.19 nM" otherwise renders as "6.19nM").
+  return displayUnit ? `${displayValue} ${displayUnit}` : displayValue;
 }
 
 function formatBare(v: number): string {

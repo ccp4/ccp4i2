@@ -48,6 +48,7 @@ import {
 import {
   Order,
   MONOSPACE_FONT_STACK,
+  SANS_SERIF_FONT_STACK,
   PROPERTY_LABELS,
   RAG_COLORS,
   IdentifiersCell,
@@ -825,7 +826,7 @@ export function CardsView({
 function CompoundIdBadge({ formattedId }: { formattedId: string }) {
   return (
     <Box
-      component="span"
+      component="div"
       sx={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -841,10 +842,14 @@ function CompoundIdBadge({ formattedId }: { formattedId: string }) {
         letterSpacing: 0,
         whiteSpace: 'nowrap',
         lineHeight: 1.4,
+        // Defensive: force NBSP so any whitespace inside the formatted
+        // ID survives html2canvas, and disable kerning so the dash in
+        // NCL-00030851 doesn't visually merge with the adjacent digits.
+        fontKerning: 'none',
       }}
     >
       <Medication sx={{ fontSize: '1rem' }} />
-      {formattedId}
+      <span>{formattedId}</span>
     </Box>
   );
 }
@@ -953,10 +958,12 @@ function hexToRgba(hex: string, alpha: number): string {
 
 const BULLET_LABEL_STYLE = {
   display: 'block',
+  fontFamily: SANS_SERIF_FONT_STACK,
   fontSize: '0.7rem',
   fontWeight: 600,
   lineHeight: 1.15,
   letterSpacing: 0,
+  fontKerning: 'none',
   color: 'rgba(0,0,0,0.75)',
 } as const;
 
@@ -967,6 +974,7 @@ const BULLET_VALUE_STYLE = {
   fontWeight: 700,
   lineHeight: 1.15,
   letterSpacing: 0,
+  fontKerning: 'none',
   color: 'rgba(0,0,0,0.9)',
 } as const;
 

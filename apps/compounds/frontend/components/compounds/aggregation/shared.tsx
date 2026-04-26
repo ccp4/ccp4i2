@@ -41,6 +41,17 @@ export const EMPTY_THRESHOLDS: MolecularPropertyThreshold[] = [];
 export const MONOSPACE_FONT_STACK =
   '"Roboto Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
 
+/**
+ * Pinned sans-serif stack for any card text that gets captured by
+ * html2canvas. Without an explicit fontFamily the inherited Roboto
+ * (loaded as a web font) often isn't available to html2canvas when it
+ * computes character widths — the fallback font has different space-
+ * char metrics, causing whitespace to collapse so "Lipinski compliance"
+ * captures as "Lipinskicompliance". System fonts are always present.
+ */
+export const SANS_SERIF_FONT_STACK =
+  'system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif';
+
 /** Options for concentration display mode selector */
 export const CONCENTRATION_DISPLAY_OPTIONS: { value: ConcentrationDisplayMode; label: string }[] = [
   { value: 'natural', label: 'Natural' },
