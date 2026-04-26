@@ -13,8 +13,9 @@ import {
   MenuItem,
   IconButton,
 } from '@mui/material';
-import { ZoomIn, ContentCopy, Check, EditOutlined, BubbleChart, Medication } from '@mui/icons-material';
+import { ZoomIn, ContentCopy, Check, EditOutlined, BubbleChart, Medication, Slideshow } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
+import { exportCardsToPptx } from '@/lib/compounds/pptx-export';
 import { useRouter } from 'next/navigation';
 import {
   AggregationType,
@@ -117,6 +118,11 @@ export function CardsView({
   // Copy to clipboard state
   const [copiedCardId, setCopiedCardId] = useState<string | null>(null);
   const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  // PowerPoint export state
+  const [exportCardsPerSlide, setExportCardsPerSlide] = useState<number>(6);
+  const [exportProgress, setExportProgress] = useState<{ done: number; total: number } | null>(null);
+  const [exportError, setExportError] = useState<string | null>(null);
 
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
@@ -264,6 +270,34 @@ export function CardsView({
       });
   }, []);
 
+  // Render-order-stable list of card DOM nodes for the PowerPoint
+  // export. The Map is populated by ref callbacks as cards mount, but
+  // its iteration order isn't necessarily the current sort order, so
+  // walk sortedRows to drive the ordering.
+  const handleExportPptx = useCallback(async () => {
+    setExportError(null);
+    const nodes: HTMLElement[] = [];
+    for (const row of sortedRows) {
+      const cardId = showBatch ? `${row.compound_id}-${row.batch_id}` : row.compound_id;
+      const node = cardRefs.current.get(cardId);
+      if (node) nodes.push(node);
+    }
+    if (nodes.length === 0) {
+      setExportError('No cards to export.');
+      return;
+    }
+    try {
+      await exportCardsToPptx(nodes, {
+        cardsPerSlide: exportCardsPerSlide,
+        onProgress: (done, total) => setExportProgress({ done, total }),
+      });
+    } catch (err) {
+      setExportError(err instanceof Error ? err.message : 'Export failed');
+    } finally {
+      setExportProgress(null);
+    }
+  }, [sortedRows, showBatch, exportCardsPerSlide]);
+
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexWrap: 'wrap', gap: 1 }}>
@@ -334,8 +368,51 @@ export function CardsView({
               {order === 'asc' ? '↑' : '↓'}
             </Button>
           </Tooltip>
+          {/* PowerPoint export — captures every card in the current
+              sort order, then bundles into a .pptx download. The
+              cards-per-slide selector matches pptx-export's gridFor
+              breakpoints (4/6/9/12). */}
+          <FormControl size="small" sx={{ minWidth: 90 }}>
+            <Select
+              value={exportCardsPerSlide}
+              onChange={(e) => setExportCardsPerSlide(Number(e.target.value))}
+              size="small"
+              sx={{ fontSize: '0.875rem' }}
+            >
+              <MenuItem value={4}>4 / slide</MenuItem>
+              <MenuItem value={6}>6 / slide</MenuItem>
+              <MenuItem value={9}>9 / slide</MenuItem>
+              <MenuItem value={12}>12 / slide</MenuItem>
+            </Select>
+          </FormControl>
+          <Tooltip
+            title={
+              exportProgress
+                ? `Capturing ${exportProgress.done}/${exportProgress.total}...`
+                : 'Download as PowerPoint (.pptx)'
+            }
+          >
+            <span>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<Slideshow fontSize="small" />}
+                onClick={handleExportPptx}
+                disabled={exportProgress !== null}
+              >
+                {exportProgress
+                  ? `${exportProgress.done}/${exportProgress.total}`
+                  : 'PPTX'}
+              </Button>
+            </span>
+          </Tooltip>
         </Box>
       </Box>
+      {exportError && (
+        <Typography variant="caption" color="error" sx={{ mb: 1, display: 'block' }}>
+          PowerPoint export failed: {exportError}
+        </Typography>
+      )}
 
       <Box
         sx={{
