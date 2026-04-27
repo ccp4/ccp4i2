@@ -167,6 +167,8 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         compound_refs_as_typed=list(data.get("compound_refs_as_typed") or []),
         rank_by=data.get("rank_by"),
         rank_top_n=data.get("rank_top_n"),
+        similar_to_as_typed=list(data.get("similar_to_as_typed") or []),
+        similar_threshold=data.get("similar_threshold"),
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
         registered_by_id=data.get("registered_by_id"),

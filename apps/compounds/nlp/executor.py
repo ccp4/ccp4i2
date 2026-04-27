@@ -89,7 +89,12 @@ def _selector_has_non_pin_narrowing(selector: CompoundSelector) -> bool:
     ``compound_refs_as_typed``. Used to decide whether an unscoped
     selector should default its base set to "every compound in the
     registry" (so a non-pin predicate can narrow it) or to the empty
-    set (so the pin set is the entire selection)."""
+    set (so the pin set is the entire selection).
+
+    Slice 21: ``similar_to_as_typed`` counts as a narrowing predicate
+    — *"compounds similar to NCL-26007"* without a target should run
+    against every compound in the registry and narrow via Tanimoto.
+    """
     return bool(
         selector.registration_target_as_typed
         or selector.registration_target_id
@@ -101,6 +106,7 @@ def _selector_has_non_pin_narrowing(selector: CompoundSelector) -> bool:
         or selector.registered_by_id
         or selector.registered_date_range is not None
         or selector.measurement_filters
+        or selector.similar_to_as_typed
     )
 
 
@@ -225,6 +231,30 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
                 base_compound_ids & _match_compounds_by_scaffold(base_compound_ids, rs)
             )
 
+    # Slice 21: Tanimoto similarity narrowing. Anchors are typed
+    # compound IDs (same resolver as compound_refs_as_typed); the
+    # narrowing is "≥ threshold similar to ANY anchor" (UNION across
+    # anchors). Applied after scaffold but before measurement filters
+    # because compound-level predicates compose cheaply at this layer.
+    # First unresolved anchor short-circuits to CompoundMiss.
+    similar_refs = list(selector.similar_to_as_typed or [])
+    resolved_similar_to: List[ResolvedCompound] = []
+    if similar_refs:
+        for idx, ref in enumerate(similar_refs):
+            rc = resolve_compound_ref(ref, ref_index=idx)
+            if not isinstance(rc, ResolvedCompound):
+                return rc
+            resolved_similar_to.append(rc)
+        from .similarity import neighbours_within_threshold, DEFAULT_SIMILAR_THRESHOLD
+        threshold = (
+            selector.similar_threshold
+            if selector.similar_threshold is not None
+            else DEFAULT_SIMILAR_THRESHOLD
+        )
+        base_compound_ids = base_compound_ids & neighbours_within_threshold(
+            [rc.compound for rc in resolved_similar_to], base_compound_ids, threshold,
+        )
+
     # Pinned compound refs — UNION semantics, not narrowing. The user
     # named specific compounds by ID and they should appear in the
     # final selection regardless of whether they pass the other
@@ -316,6 +346,8 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
             resolved_assayed_bys=resolved_assayed_bys,
             resolved_scaffolds=resolved_scaffolds,
             resolved_pins=resolved_pins,
+            resolved_similar_to=resolved_similar_to,
+            similar_threshold=selector.similar_threshold,
         ),
     )
 
@@ -647,10 +679,12 @@ def _scope_sentence(
     resolved_assayed_bys: Optional[List[Optional[ResolvedUser]]] = None,
     resolved_scaffolds: Optional[List[ResolvedScaffold]] = None,
     resolved_pins: Optional[List[ResolvedCompound]] = None,
+    resolved_similar_to: Optional[List[ResolvedCompound]] = None,
+    similar_threshold: Optional[float] = None,
 ) -> str:
     """Human echo-back. Target scope, optional registered-date and
     registered-by phrases, scaffold narrowing, the AND-joined filter
-    list, and any pinned-compound UNION clause."""
+    list, similarity narrowing, and any pinned-compound UNION clause."""
     reg = rt.registration.name if rt.registration is not None else ""
     assay = rt.assay.name if rt.assay is not None else ""
     if rt.scope_kind == SCOPE_BOTH_SAME:
@@ -695,6 +729,15 @@ def _scope_sentence(
             base += f" containing {names[0]}"
         else:
             base += " containing " + " AND ".join(names)
+
+    if resolved_similar_to:
+        ids = [
+            format_compound_id(rc.compound.reg_number) for rc in resolved_similar_to
+        ]
+        from .similarity import DEFAULT_SIMILAR_THRESHOLD
+        t = similar_threshold if similar_threshold is not None else DEFAULT_SIMILAR_THRESHOLD
+        anchors = ids[0] if len(ids) == 1 else " or ".join(ids)
+        base += f" similar to {anchors} (Tanimoto ≥ {t:g})"
 
     if resolved_assayed_bys is None:
         resolved_assayed_bys = [None] * len(selector.measurement_filters)

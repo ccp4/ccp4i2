@@ -214,6 +214,15 @@ class CompoundSelector:
     # "top 20 ARd compounds" / etc. — applied AFTER all narrowing.
     rank_by: Optional[str] = None
     rank_top_n: Optional[int] = None
+    # Slice 21: similarity search. The user names anchor compound IDs
+    # ("similar to NCL-26007") and an optional Tanimoto threshold; the
+    # executor fetches each anchor's Morgan fingerprint (computed at
+    # registration time) and narrows the surviving set to compounds
+    # whose fingerprint is at least ``similar_threshold`` similar to
+    # any of the anchors (UNION semantics). Default threshold is 0.7
+    # — the de-facto medicinal-chemistry "structurally similar" cutoff.
+    similar_to_as_typed: List[str] = field(default_factory=list)
+    similar_threshold: Optional[float] = None
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None

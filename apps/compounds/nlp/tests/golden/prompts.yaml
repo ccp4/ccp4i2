@@ -912,6 +912,72 @@
     measurement_filters: []
 
 # =============================================================================
+# Similarity search (slice 21) — Tanimoto on Morgan fingerprints,
+# computed at registration time. The LLM emits anchor compound IDs
+# verbatim (same parser as compound_refs_as_typed); the executor
+# narrows the surviving set to neighbours within `similar_threshold`
+# (default 0.7). Multiple anchors → UNION semantics.
+# =============================================================================
+
+- name: similar_to_one_anchor
+  prompt: "compounds similar to NCL-00026007"
+  expected:
+    type: selector
+    note: "Single-anchor similarity — default threshold (0.7)."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    similar_to_as_typed: ["NCL-00026007"]
+    similar_threshold: null
+    measurement_filters: []
+
+- name: similar_with_explicit_threshold
+  prompt: "ARd compounds similar to 26007 with Tanimoto > 0.5"
+  expected:
+    type: selector
+    note: "Threshold parsed numerically. Composes with target."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    similar_to_as_typed: ["26007"]
+    similar_threshold: 0.5
+    measurement_filters: []
+
+- name: similar_to_multiple_anchors
+  prompt: "anything like NCL-26007 or NCL-26012"
+  expected:
+    type: selector
+    note: "Two anchors — UNION semantics: similar to either."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    similar_to_as_typed: ["NCL-26007", "NCL-26012"]
+    similar_threshold: null
+    measurement_filters: []
+
+- name: similar_with_threshold_and_filter
+  prompt: "compounds similar to NCL-00026007 with HTRF IC50 < 100 nM"
+  expected:
+    type: selector
+    note: "Similarity narrows; measurement filter narrows further."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    similar_to_as_typed: ["NCL-00026007"]
+    similar_threshold: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+
+- name: similar_analogues_phrasing
+  prompt: "show me 26007 analogues"
+  expected:
+    type: selector
+    note: "'analogues' is a synonym for similarity."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    similar_to_as_typed: ["26007"]
+    similar_threshold: null
+    measurement_filters: []
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 

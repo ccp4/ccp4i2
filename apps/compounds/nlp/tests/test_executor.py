@@ -1482,6 +1482,131 @@ def test_unknown_rank_by_returns_spec_error(scorecard_world):
     assert isinstance(res, SpecError)
 
 
+def test_similarity_narrows_to_neighbours_of_anchor(db):
+    """End-to-end: 'compounds similar to NCL-X' returns only compounds
+    above the threshold — the anchor itself plus close analogues."""
+    from compounds.nlp.spec import CompoundSelection
+    t = Target.objects.create(name="ARd")
+    # Aspirin (anchor), salicylic acid (close analogue, ~0.45 Tanimoto),
+    # caffeine (unrelated, ~0.09 Tanimoto).
+    anchor = Compound.objects.create(
+        target=t, smiles="CC(=O)Oc1ccccc1C(=O)O", reg_number=10001,
+    )
+    analogue = Compound.objects.create(
+        target=t, smiles="Oc1ccccc1C(=O)O", reg_number=10002,
+    )
+    distant = Compound.objects.create(
+        target=t, smiles="Cn1cnc2c1c(=O)n(C)c(=O)n2C", reg_number=10003,
+    )
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        similar_to_as_typed=["NCL-00010001"],
+        similar_threshold=0.4,
+    ))
+    assert isinstance(res, CompoundSelection)
+    formatted = set(res.compound_formatted_ids)
+    assert anchor.formatted_id in formatted
+    assert analogue.formatted_id in formatted
+    assert distant.formatted_id not in formatted
+
+
+def test_similarity_uses_default_threshold_when_unspecified(db):
+    """No threshold → backend default of 0.7. Self-similarity is 1.0
+    so the anchor lands; an unrelated compound is excluded."""
+    from compounds.nlp.spec import CompoundSelection
+    t = Target.objects.create(name="ARd")
+    anchor = Compound.objects.create(
+        target=t, smiles="CC(=O)Oc1ccccc1C(=O)O", reg_number=10001,
+    )
+    Compound.objects.create(
+        target=t, smiles="Cn1cnc2c1c(=O)n(C)c(=O)n2C", reg_number=10002,
+    )
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        similar_to_as_typed=["NCL-00010001"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [anchor.formatted_id]
+
+
+def test_similarity_unknown_anchor_returns_compound_miss(db):
+    """An anchor that doesn't resolve surfaces as CompoundMiss with the
+    ref_index, same as compound_refs_as_typed."""
+    Target.objects.create(name="ARd")
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        similar_to_as_typed=["NCL-99999999"],
+    ))
+    assert isinstance(res, CompoundMiss)
+    assert res.field == FIELD_COMPOUND_REF
+
+
+def test_similarity_composes_with_other_predicates(db):
+    """Similar-to is a compound-level narrowing predicate that composes
+    cleanly with measurement filters: filter to similar compounds AND
+    those passing a threshold."""
+    from compounds.nlp.spec import CompoundSelection
+    t = Target.objects.create(name="ARd")
+    # Aspirin anchor (NCL-10001), close analogues (salicylic, methyl
+    # salicylate), unrelated potent (caffeine).
+    anchor = Compound.objects.create(
+        target=t, smiles="CC(=O)Oc1ccccc1C(=O)O", reg_number=10001,
+    )
+    analogue_potent = Compound.objects.create(
+        target=t, smiles="Oc1ccccc1C(=O)O", reg_number=10002,
+    )
+    analogue_weak = Compound.objects.create(
+        target=t, smiles="COC(=O)c1ccccc1O", reg_number=10003,
+    )
+    distant_potent = Compound.objects.create(
+        target=t, smiles="Cn1cnc2c1c(=O)n(C)c(=O)n2C", reg_number=10004,
+    )
+    p = Protocol.objects.create(name="ARd HTRF")
+    a = Assay.objects.create(protocol=p, target=t)
+    _mk_result(a, anchor, status="valid",
+               results={"KPI": "IC50", "IC50": 5.0, "kpi_unit": "nM"}, row=0)
+    _mk_result(a, analogue_potent, status="valid",
+               results={"KPI": "IC50", "IC50": 8.0, "kpi_unit": "nM"}, row=1)
+    _mk_result(a, analogue_weak, status="valid",
+               results={"KPI": "IC50", "IC50": 500.0, "kpi_unit": "nM"}, row=2)
+    _mk_result(a, distant_potent, status="valid",
+               results={"KPI": "IC50", "IC50": 1.0, "kpi_unit": "nM"}, row=3)
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        similar_to_as_typed=["NCL-00010001"],
+        similar_threshold=0.4,    # aspirin/salicylic ~0.45, others below
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF", metric="IC50",
+                threshold=Threshold(op="<", value=100, unit="nM"),
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    formatted = set(res.compound_formatted_ids)
+    # Similar AND under threshold.
+    assert anchor.formatted_id in formatted
+    assert analogue_potent.formatted_id in formatted
+    # Below similarity threshold (~0.35).
+    assert analogue_weak.formatted_id not in formatted
+    # Passes the threshold but not similar.
+    assert distant_potent.formatted_id not in formatted
+
+
+def test_similarity_scope_sentence_includes_anchors(db):
+    from compounds.nlp.spec import CompoundSelection
+    t = Target.objects.create(name="ARd")
+    Compound.objects.create(target=t, smiles="c1ccncc1", reg_number=10001)
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        similar_to_as_typed=["NCL-00010001"],
+        similar_threshold=0.5,
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "similar to NCL-00010001" in res.scope_sentence
+    assert "Tanimoto" in res.scope_sentence
+
+
 def test_ranking_skips_compounds_with_no_signal(db):
     """A compound with no measurements scores None; it's dropped from
     the ranking rather than appearing at the bottom."""

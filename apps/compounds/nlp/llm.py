@@ -148,6 +148,29 @@ Rules:
   When the user asks for ranking by something OTHER than scorecard
   ("best by potency" / "highest IC50") — leave rank_by null in v1;
   the chemist can sort manually on the aggregation page.
+- Similarity ("compounds similar to X"): when the user asks for
+  near-neighbours of a known compound — "similar to NCL-26007",
+  "compounds like 26007", "NCL-26007 analogues" — emit the anchor
+  compound IDs into `similar_to_as_typed` (verbatim, same parser
+  as `compound_refs_as_typed`). For "similar to A and B" emit BOTH
+  ids; the backend computes Tanimoto similarity against either
+  anchor (UNION). When the user names a Tanimoto cutoff
+  ("Tanimoto > 0.6", "more than 80% similar"), emit it as a
+  number in `similar_threshold`; null = backend default (0.7).
+  Examples:
+    "compounds similar to NCL-26007"
+      → similar_to_as_typed: ["NCL-26007"], similar_threshold: null
+    "ARd compounds similar to 26007 with Tanimoto > 0.5"
+      → registration_target_as_typed: "ARd"
+        similar_to_as_typed: ["26007"], similar_threshold: 0.5
+    "anything like NCL-26007 or NCL-26012"
+      → similar_to_as_typed: ["NCL-26007", "NCL-26012"]
+        similar_threshold: null
+  Don't confuse with `compound_refs_as_typed` (pinning):
+    "compound 26007 and similar compounds"  → similar_to_as_typed: ["26007"]
+                                              compound_refs_as_typed: ["26007"]
+    "compound 26007"                        → compound_refs_as_typed: ["26007"]
+                                              similar_to_as_typed: []
 - Compound-ID pinning: when the user names specific compounds by ID —
   "compound 26007", "NCL-00026007", "ncl26007", "the lead compound
   NCL-00026007", "26007 and 26012" — emit each typed reference into
@@ -258,6 +281,8 @@ PROMPT_SCHEMA: dict = {
         "compound_refs_as_typed": _COMPOUND_REFS_SUBSCHEMA,
         "rank_by": {"type": ["string", "null"]},
         "rank_top_n": {"type": ["integer", "null"]},
+        "similar_to_as_typed": _COMPOUND_REFS_SUBSCHEMA,
+        "similar_threshold": {"type": ["number", "null"]},
         "measurement_filters": {
             "type": "array",
             "items": {
@@ -301,6 +326,8 @@ PROMPT_SCHEMA: dict = {
         "compound_refs_as_typed",
         "rank_by",
         "rank_top_n",
+        "similar_to_as_typed",
+        "similar_threshold",
         "measurement_filters",
         "assay_selector",
     ],
@@ -408,6 +435,8 @@ def _to_parse_result(data: dict) -> PromptParseResult:
         compound_refs_as_typed=list(data.get("compound_refs_as_typed") or []),
         rank_by=data.get("rank_by"),
         rank_top_n=data.get("rank_top_n"),
+        similar_to_as_typed=list(data.get("similar_to_as_typed") or []),
+        similar_threshold=data.get("similar_threshold"),
         measurement_filters=filters,
     )
 

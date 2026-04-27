@@ -1059,6 +1059,21 @@ class MolecularProperties(models.Model):
         help_text="Fraction of sp3 carbons (Fsp3) - 3D complexity indicator"
     )
 
+    # Slice 21: Morgan / ECFP4 fingerprint as a 2048-character bit string
+    # ("0101..."). Used by the NLP "compounds similar to X" feature for
+    # Tanimoto similarity. Computed at registration time alongside the
+    # descriptors above; backfilled by the compute_fingerprints
+    # management command for pre-existing rows. We use ToBitString /
+    # CreateFromBitString rather than ToBinary because the latter does
+    # sparse compression that doesn't preserve the bit-vector length on
+    # round-trip — comparing two unrelated fingerprints raised
+    # "BitVects must be same length" before this fix. ~2KB per compound
+    # is fine at DDU scale (low MB total).
+    morgan_fp = models.TextField(
+        null=True, blank=True,
+        help_text='Morgan/ECFP4 fingerprint, radius 2, 2048 bits, "0101..." bit string.',
+    )
+
     # Metadata
     calculated_at = models.DateTimeField(auto_now=True)
     rdkit_version = models.CharField(
@@ -1104,6 +1119,17 @@ class MolecularProperties(models.Model):
             props.tpsa = Descriptors.TPSA(mol)
             props.rotatable_bonds = Descriptors.NumRotatableBonds(mol)
             props.fraction_sp3 = Descriptors.FractionCSP3(mol)
+            # Slice 21: Morgan fingerprint for similarity search.
+            # Stored as a 2048-character bit string for clean round-trip;
+            # see model docstring for why we don't use ToBinary().
+            try:
+                from rdkit.Chem import AllChem
+                fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048)
+                props.morgan_fp = fp.ToBitString()
+            except Exception:
+                # Fingerprint calculation is best-effort — a SMILES that
+                # blows up here shouldn't lose us the descriptor values.
+                props.morgan_fp = None
             props.rdkit_version = rdBase.rdkitVersion
             props.save()
             return props

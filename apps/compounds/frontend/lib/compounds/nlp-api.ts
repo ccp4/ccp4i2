@@ -67,6 +67,15 @@ export interface CompoundSelector {
    */
   rank_by?: string | null;
   rank_top_n?: number | null;
+  /**
+   * Slice 21: similarity anchors and Tanimoto threshold. Same shape
+   * as compound_refs_as_typed (verbatim user-typed compound IDs);
+   * the executor resolves each via extract_reg_number, fetches the
+   * pre-computed Morgan fingerprint, and narrows to neighbours
+   * within `similar_threshold` (default 0.7).
+   */
+  similar_to_as_typed?: string[];
+  similar_threshold?: number | null;
   registration_target_id?: string | null;
   assay_target_id?: string | null;
   registered_by_id?: string | null;

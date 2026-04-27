@@ -93,6 +93,8 @@ def _expected_to_llm_output(expected: dict) -> dict:
         "compound_refs_as_typed": [],
         "rank_by": None,
         "rank_top_n": None,
+        "similar_to_as_typed": [],
+        "similar_threshold": None,
         "measurement_filters": [],
         "assay_selector": None,
     }
@@ -128,6 +130,10 @@ def _expected_to_llm_output(expected: dict) -> dict:
         base["rank_by"] = expected["rank_by"]
     if "rank_top_n" in expected:
         base["rank_top_n"] = expected["rank_top_n"]
+    if "similar_to_as_typed" in expected:
+        base["similar_to_as_typed"] = list(expected["similar_to_as_typed"])
+    if "similar_threshold" in expected:
+        base["similar_threshold"] = expected["similar_threshold"]
 
     raw_filters = expected.get("measurement_filters") or []
     filters: List[dict] = []
@@ -248,6 +254,19 @@ def _selector_diff(actual: CompoundSelector, expected: dict) -> Optional[str]:
     if e_rank_top_n != a_rank_top_n:
         diffs.append(f"rank_top_n: expected {e_rank_top_n!r}, got {a_rank_top_n!r}")
 
+    e_sim_refs = list(expected.get("similar_to_as_typed") or [])
+    a_sim_refs = list(actual.similar_to_as_typed or [])
+    if e_sim_refs != a_sim_refs:
+        diffs.append(
+            f"similar_to_as_typed: expected {e_sim_refs!r}, got {a_sim_refs!r}"
+        )
+    e_sim_thresh = expected.get("similar_threshold")
+    a_sim_thresh = actual.similar_threshold
+    if e_sim_thresh != a_sim_thresh:
+        diffs.append(
+            f"similar_threshold: expected {e_sim_thresh!r}, got {a_sim_thresh!r}"
+        )
+
     expected_filters = expected.get("measurement_filters") or []
     if len(actual.measurement_filters) != len(expected_filters):
         diffs.append(
@@ -325,6 +344,7 @@ def test_every_selector_entry_has_some_narrowing_predicate(db):
             entry["expected"].get("registered_date_range"),
             entry["expected"].get("measurement_filters"),
             entry["expected"].get("compound_refs_as_typed"),
+            entry["expected"].get("similar_to_as_typed"),
         ])
         assert has_other_narrowing, (
             f"entry {entry['name']!r}: target-less selector must have at "
