@@ -74,6 +74,7 @@ export const RDKitProvider: React.FC<PropsWithChildren> = ({ children }) => {
           try {
             // @ts-ignore - initRDKitModule is defined by the loaded script
             const module = await initRDKitModule(createArgs);
+            module.prefer_coordgen(true);
             setRdkitModule(module);
             setIsLoading(false);
           } catch (err) {
