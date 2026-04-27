@@ -23,7 +23,7 @@ format, columns, aggregation mode etc. all live downstream.
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
 from django.db.models import QuerySet
 
@@ -44,10 +44,13 @@ from .resolver import (
     resolve_user,
 )
 from .spec import (
+    DEFAULT_RANK_TOP_N,
     FIELD_ASSAY_TARGET,
     FIELD_ASSAYED_BY,
     FIELD_METRIC,
+    FIELD_RANK_BY,
     FIELD_REGISTERED_BY,
+    RANK_BY_SCORECARD,
     SCOPE_ASSAY_ONLY,
     SCOPE_BOTH_SAME,
     SCOPE_CROSS,
@@ -262,15 +265,42 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
         # measurement filter or sit in the target scope.
         compound_ids |= {rc.compound.pk for rc in resolved_pins}
 
-    # Hydrate compound IDs into formatted identifiers, ordered by
-    # reg_number for stable URLs + predictable UI.
-    formatted = list(
-        Compound.objects
-        .filter(pk__in=compound_ids)
-        .order_by("reg_number")
-        .values_list("reg_number", flat=True)
-    )
-    formatted_ids = [format_compound_id(rn) for rn in formatted]
+    # Slice 19: ranking. When the chemist says "best X compounds" the
+    # LLM sets rank_by="scorecard"; we rank the surviving set by the
+    # target's scorecard score and take top N. Ranking happens AFTER
+    # all narrowing so the chemist sees the best of what matched.
+    rank_order: Optional[List[Any]] = None  # ordered list of compound pks (top first)
+    if selector.rank_by:
+        rank_result = _apply_ranking(rt, selector, compound_ids)
+        if isinstance(rank_result, SpecError):
+            return rank_result
+        compound_ids, rank_order = rank_result
+
+    # Hydrate compound IDs into formatted identifiers. When ranked, use
+    # the rank order; otherwise fall back to reg_number ASC for stable
+    # URLs.
+    if rank_order is not None:
+        formatted = list(
+            Compound.objects
+            .filter(pk__in=compound_ids)
+            .in_bulk(rank_order, field_name="pk")  # preserves dict order
+            .values()
+        )
+        formatted_ids = [format_compound_id(c.reg_number) for c in formatted]
+        # in_bulk returns a dict keyed by pk; iterate rank_order to keep
+        # the ranking order in the URL.
+        compound_lookup = {
+            c.pk: format_compound_id(c.reg_number) for c in formatted
+        }
+        formatted_ids = [compound_lookup[pk] for pk in rank_order if pk in compound_lookup]
+    else:
+        formatted = list(
+            Compound.objects
+            .filter(pk__in=compound_ids)
+            .order_by("reg_number")
+            .values_list("reg_number", flat=True)
+        )
+        formatted_ids = [format_compound_id(rn) for rn in formatted]
 
     target_names = _target_names(rt)
     protocol_names = [rp.protocol.name for rp in resolved_protocols if rp is not None]
@@ -501,6 +531,96 @@ def _scoped_analysis_results(rt: ResolvedTargets) -> QuerySet:
 
 
 # ---------------------------------------------------------------------------
+# Ranking (slice 19) — "best X compounds" / "top N X compounds"
+# ---------------------------------------------------------------------------
+
+
+def _apply_ranking(
+    rt: ResolvedTargets,
+    selector: CompoundSelector,
+    compound_ids: Set,
+) -> Union[Tuple[Set, List], SpecError]:
+    """Rank the surviving compound set by the configured ``rank_by``
+    metric and trim to ``rank_top_n``. Returns ``(top_pks, ordered_pks)``
+    on success — ``top_pks`` is the trimmed set for downstream consumers
+    that don't care about order; ``ordered_pks`` is the rank-ordered
+    list for the redirect URL.
+
+    Returns a ``SpecError`` when:
+    - ``rank_by`` is unrecognised
+    - ``rank_by == "scorecard"`` but the resolved target has no
+      ``scorecard_config`` (the chemist meant "best", but the project
+      hasn't defined what "best" means yet — surface a clear error
+      rather than silently fall back to some other metric).
+    """
+    rank_by = (selector.rank_by or "").strip()
+    if rank_by != RANK_BY_SCORECARD:
+        return SpecError(
+            field=FIELD_RANK_BY,
+            message=(
+                f"Unknown rank_by value {rank_by!r}; only "
+                f"{RANK_BY_SCORECARD!r} is supported."
+            ),
+        )
+
+    # Pick which target's scorecard to rank by. The registration target
+    # is the natural anchor (project context); fall back to the assay
+    # target if only that's set.
+    rank_target = rt.registration or rt.assay
+    if rank_target is None:
+        return SpecError(
+            field=FIELD_RANK_BY,
+            message=(
+                'Cannot rank by scorecard without a target — name a '
+                'project (e.g. "best EGFR compounds").'
+            ),
+        )
+
+    if not rank_target.scorecard_config or not (
+        rank_target.scorecard_config or {}
+    ).get("axes"):
+        return SpecError(
+            field=FIELD_RANK_BY,
+            message=(
+                f'Target {rank_target.name!r} has no scorecard '
+                'configured. Configure a scorecard for this project, '
+                'or drop the "best" phrasing and use an explicit '
+                'threshold (e.g. "HTRF IC50 < 10 nM").'
+            ),
+        )
+
+    from .scorecard_rank import rank_compounds_by_scorecard
+    try:
+        scores = rank_compounds_by_scorecard(rank_target, compound_ids)
+    except ValueError as e:
+        # Defensive — should be caught by the no-scorecard check above.
+        return SpecError(field=FIELD_RANK_BY, message=str(e))
+
+    # Sort: highest score first, then lower reg_number for stable ties.
+    # The aggregate_compact_from_compounds output keys by stringified
+    # UUIDs while compound_ids may contain UUID objects — normalise.
+    scored_pks = [
+        (pk, score) for pk, score in scores.items()
+    ]
+    scored_pks.sort(key=lambda row: (-row[1], str(row[0])))
+
+    top_n = selector.rank_top_n if selector.rank_top_n else DEFAULT_RANK_TOP_N
+    top = scored_pks[:top_n]
+
+    # Map back to the original pk type — compound_ids may contain UUID
+    # objects but the aggregator returns strings. Build a set of stringified
+    # pks for membership check, and use the original UUID where possible.
+    str_to_orig: Dict[str, Any] = {str(pk): pk for pk in compound_ids}
+    ordered_pks: List = []
+    for pk_str, _score in top:
+        orig = str_to_orig.get(str(pk_str))
+        if orig is not None:
+            ordered_pks.append(orig)
+
+    return set(ordered_pks), ordered_pks
+
+
+# ---------------------------------------------------------------------------
 # Presentation helpers
 # ---------------------------------------------------------------------------
 
@@ -592,6 +712,12 @@ def _scope_sentence(
     if resolved_pins:
         pinned_ids = [format_compound_id(rc.compound.reg_number) for rc in resolved_pins]
         base += f", plus {', '.join(pinned_ids)} (pinned)"
+
+    # Slice 19: ranking phrase prefixed onto the base sentence so the
+    # chemist sees "top 20" before reading the scope predicates.
+    if selector.rank_by == RANK_BY_SCORECARD:
+        n = selector.rank_top_n or DEFAULT_RANK_TOP_N
+        base = f"Top {n} by scorecard, " + base[0].lower() + base[1:]
     return base
 
 

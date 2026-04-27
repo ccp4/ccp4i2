@@ -60,6 +60,13 @@ export interface CompoundSelector {
    * compounds.formatting.extract_reg_number.
    */
   compound_refs_as_typed?: string[];
+  /**
+   * Slice 19: ranking metric. Currently only "scorecard" — "best X
+   * compounds" / "top N X compounds" map here. Applied after all
+   * narrowing predicates.
+   */
+  rank_by?: string | null;
+  rank_top_n?: number | null;
   registration_target_id?: string | null;
   assay_target_id?: string | null;
   registered_by_id?: string | null;

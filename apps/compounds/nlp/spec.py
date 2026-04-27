@@ -53,6 +53,16 @@ FIELD_ASSAYED_BY = "assayed_by_as_typed"
 FIELD_SCAFFOLD_HINT = "scaffold_hint"
 FIELD_COMPOUND_REF = "compound_ref"
 FIELD_METRIC = "metric"
+FIELD_RANK_BY = "rank_by"
+
+# Slice 19: rank_by values. Currently only "scorecard" — chemist's
+# "best X compounds" intent maps to "top N by the target's configured
+# scorecard score". Future values might be "potency" / "adme" / etc.
+RANK_BY_SCORECARD = "scorecard"
+# Default top-N when the chemist says "best X compounds" without
+# specifying a count. Twenty fits comfortably on a screen and is the
+# de-facto medicinal-chemistry "what should I look at" slice.
+DEFAULT_RANK_TOP_N = 20
 
 # Filter / exclusion reasons from the row evaluator. Preserved from the pre-
 # pivot shape because the evaluator still classifies rows during selection;
@@ -198,6 +208,12 @@ class CompoundSelector:
     # handles every prefix variant (NCL-00026007 / NCL26007 / NCL 26007
     # / 26007 / NCL000-26007).
     compound_refs_as_typed: List[str] = field(default_factory=list)
+    # Slice 19: ranking. ``rank_by`` names the merit metric ("scorecard"
+    # in v1 — the target's configured spider/radar). ``rank_top_n``
+    # caps the result. Together they implement "best X compounds" /
+    # "top 20 ARd compounds" / etc. — applied AFTER all narrowing.
+    rank_by: Optional[str] = None
+    rank_top_n: Optional[int] = None
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None

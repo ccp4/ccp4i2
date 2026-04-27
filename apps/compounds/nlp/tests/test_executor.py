@@ -1345,3 +1345,175 @@ def test_union_pinned_continuation_returns_same_set(hannah_executor_world):
         hannah_executor_world["registered"] + hannah_executor_world["supplied"]
     )}
     assert set(res.compound_formatted_ids) == expected
+
+
+# ---------------------------------------------------------------------------
+# Ranking — slice 19
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def scorecard_world(db):
+    """A target with a configured scorecard (single protocol axis,
+    log-scale, lower-is-better) and four compounds with a spread of
+    HTRF IC50 measurements. Ranking should put the most potent first."""
+    t = Target.objects.create(
+        name="ARd",
+        scorecard_config={
+            "axes": [
+                {
+                    "kind": "protocol",
+                    "label": "HTRF IC50",
+                    "protocol_id": None,        # set below once we have the protocol
+                    "target_value": 10,
+                    "poor_value": 10000,
+                    "threshold_scale": "log",
+                },
+            ],
+        },
+    )
+    p = Protocol.objects.create(
+        name="ARd HTRF",
+        target_value=10, poor_value=10000, threshold_scale="log",
+    )
+    # Patch the scorecard config to point at the actual protocol pk.
+    t.scorecard_config["axes"][0]["protocol_id"] = str(p.id)
+    t.save()
+    a = Assay.objects.create(protocol=p, target=t)
+
+    # Four compounds at different potencies. With log normalisation
+    # between target=10 and poor=10000, the t-scores should be
+    # ordered: 10 nM (t=1.0) > 100 nM (t=2/3) > 1000 nM (t=1/3) > 5000 nM (t≈0.1).
+    compounds = []
+    for i, ic50 in enumerate([5000, 100, 1000, 10]):
+        c = Compound.objects.create(target=t, smiles="CCO" + "C" * i)
+        _mk_result(a, c, status="valid",
+                   results={"KPI": "IC50", "IC50": ic50, "kpi_unit": "nM"},
+                   row=i)
+        compounds.append((c, ic50))
+
+    return {"target": t, "protocol": p, "assay": a, "compounds": compounds}
+
+
+def test_ranking_orders_compounds_by_scorecard_score(scorecard_world):
+    """The most potent compound should come first; the weakest last."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        rank_by="scorecard",
+    ))
+    assert isinstance(res, CompoundSelection)
+    # Compounds sorted by their potency: 10 nM > 100 nM > 1000 nM > 5000 nM.
+    by_potency = sorted(scorecard_world["compounds"], key=lambda pair: pair[1])
+    expected_order = [c.formatted_id for c, _ic50 in by_potency]
+    assert res.compound_formatted_ids == expected_order
+
+
+def test_ranking_caps_to_top_n(scorecard_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        rank_by="scorecard",
+        rank_top_n=2,
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.n_matched == 2
+    by_potency = sorted(scorecard_world["compounds"], key=lambda pair: pair[1])
+    expected_top_2 = [c.formatted_id for c, _ic50 in by_potency[:2]]
+    assert res.compound_formatted_ids == expected_top_2
+
+
+def test_ranking_default_top_n_is_twenty(scorecard_world):
+    """Four compounds in scope, default cap → all four return (cap is
+    20 by default, so it doesn't trim a small set)."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        rank_by="scorecard",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.n_matched == 4
+
+
+def test_ranking_composes_with_threshold_filter(scorecard_world):
+    """Filter narrows first; rank applies only to survivors."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF", metric="IC50",
+                threshold=Threshold(op="<", value=500, unit="nM"),
+            ),
+        ],
+        rank_by="scorecard",
+    ))
+    assert isinstance(res, CompoundSelection)
+    # Only the 10 nM and 100 nM compounds pass the filter.
+    assert res.n_matched == 2
+    # Ranked: 10 nM first.
+    by_potency = sorted(scorecard_world["compounds"], key=lambda pair: pair[1])
+    expected = [c.formatted_id for c, ic50 in by_potency if ic50 < 500]
+    assert res.compound_formatted_ids == expected
+
+
+def test_ranking_scope_sentence_includes_top_n(scorecard_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        rank_by="scorecard",
+        rank_top_n=2,
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.scope_sentence.lower().startswith("top 2 by scorecard")
+
+
+def test_ranking_without_scorecard_returns_spec_error(db):
+    """Target has no scorecard configured → SpecError, not a silent fallback."""
+    Target.objects.create(name="UnscoredTarget")  # scorecard_config defaults to None
+    res = execute(CompoundSelector(
+        registration_target_as_typed="UnscoredTarget",
+        rank_by="scorecard",
+    ))
+    assert isinstance(res, SpecError)
+    assert "scorecard" in res.message.lower()
+
+
+def test_unknown_rank_by_returns_spec_error(scorecard_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        rank_by="popularity_contest",
+    ))
+    assert isinstance(res, SpecError)
+
+
+def test_ranking_skips_compounds_with_no_signal(db):
+    """A compound with no measurements scores None; it's dropped from
+    the ranking rather than appearing at the bottom."""
+    t = Target.objects.create(
+        name="ARd",
+        scorecard_config={
+            "axes": [{
+                "kind": "protocol", "label": "HTRF",
+                "protocol_id": None,
+                "target_value": 10, "poor_value": 10000,
+                "threshold_scale": "log",
+            }],
+        },
+    )
+    p = Protocol.objects.create(
+        name="ARd HTRF",
+        target_value=10, poor_value=10000, threshold_scale="log",
+    )
+    t.scorecard_config["axes"][0]["protocol_id"] = str(p.id)
+    t.save()
+    a = Assay.objects.create(protocol=p, target=t)
+    # One compound with data, one without.
+    c_scored = Compound.objects.create(target=t, smiles="CCO")
+    c_silent = Compound.objects.create(target=t, smiles="CCN")
+    _mk_result(a, c_scored, status="valid",
+               results={"KPI": "IC50", "IC50": 50.0, "kpi_unit": "nM"})
+
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        rank_by="scorecard",
+    ))
+    assert isinstance(res, CompoundSelection)
+    # Only the scored compound makes it into the ranking.
+    assert res.compound_formatted_ids == [c_scored.formatted_id]
+    assert c_silent.formatted_id not in res.compound_formatted_ids

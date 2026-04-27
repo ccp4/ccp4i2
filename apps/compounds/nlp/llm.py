@@ -131,6 +131,23 @@ Rules:
     "yesterday"           → {after: "2026-04-23", before: "2026-04-24"}
   Emit null dates rather than guessing when the phrasing is ambiguous
   (e.g. "recently" without a time anchor).
+- Ranking ("best X compounds" / "top 20 X compounds"): when the user
+  asks for the *best* compounds, set `rank_by = "scorecard"` and
+  `rank_top_n` to the number they named (or null when they didn't —
+  the backend defaults to 20). The scorecard is the project-defined
+  merit metric, so "best" only makes sense when the prompt names a
+  target. Examples:
+    "best CDK4 compounds"                  → rank_by: "scorecard", rank_top_n: null
+    "top 10 ARd compounds"                 → rank_by: "scorecard", rank_top_n: 10
+    "show me the top 50 EGFR compounds"    → rank_by: "scorecard", rank_top_n: 50
+    "best ARd compounds with HTRF IC50 < 10 nM"
+      → rank_by: "scorecard", rank_top_n: null
+        registration_target_as_typed: "ARd"
+        measurement_filters: [{ protocol_hint: "HTRF", metric: "IC50",
+                                threshold: { op: "<", value: 10, unit: "nM" }}]
+  When the user asks for ranking by something OTHER than scorecard
+  ("best by potency" / "highest IC50") — leave rank_by null in v1;
+  the chemist can sort manually on the aggregation page.
 - Compound-ID pinning: when the user names specific compounds by ID —
   "compound 26007", "NCL-00026007", "ncl26007", "the lead compound
   NCL-00026007", "26007 and 26012" — emit each typed reference into
@@ -239,6 +256,8 @@ PROMPT_SCHEMA: dict = {
         "registered_by_as_typed": {"type": ["string", "null"]},
         "scaffold_hints": _SCAFFOLD_HINTS_SUBSCHEMA,
         "compound_refs_as_typed": _COMPOUND_REFS_SUBSCHEMA,
+        "rank_by": {"type": ["string", "null"]},
+        "rank_top_n": {"type": ["integer", "null"]},
         "measurement_filters": {
             "type": "array",
             "items": {
@@ -280,6 +299,8 @@ PROMPT_SCHEMA: dict = {
         "registered_by_as_typed",
         "scaffold_hints",
         "compound_refs_as_typed",
+        "rank_by",
+        "rank_top_n",
         "measurement_filters",
         "assay_selector",
     ],
@@ -385,6 +406,8 @@ def _to_parse_result(data: dict) -> PromptParseResult:
         registered_by_as_typed=data.get("registered_by_as_typed"),
         scaffold_hints=list(data.get("scaffold_hints") or []),
         compound_refs_as_typed=list(data.get("compound_refs_as_typed") or []),
+        rank_by=data.get("rank_by"),
+        rank_top_n=data.get("rank_top_n"),
         measurement_filters=filters,
     )
 

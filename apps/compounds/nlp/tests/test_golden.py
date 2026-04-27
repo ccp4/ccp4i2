@@ -91,6 +91,8 @@ def _expected_to_llm_output(expected: dict) -> dict:
         "registered_by_as_typed": None,
         "scaffold_hints": [],
         "compound_refs_as_typed": [],
+        "rank_by": None,
+        "rank_top_n": None,
         "measurement_filters": [],
         "assay_selector": None,
     }
@@ -122,6 +124,10 @@ def _expected_to_llm_output(expected: dict) -> dict:
         base["scaffold_hints"] = list(expected["scaffold_hints"])
     if "compound_refs_as_typed" in expected:
         base["compound_refs_as_typed"] = list(expected["compound_refs_as_typed"])
+    if "rank_by" in expected:
+        base["rank_by"] = expected["rank_by"]
+    if "rank_top_n" in expected:
+        base["rank_top_n"] = expected["rank_top_n"]
 
     raw_filters = expected.get("measurement_filters") or []
     filters: List[dict] = []
@@ -232,6 +238,15 @@ def _selector_diff(actual: CompoundSelector, expected: dict) -> Optional[str]:
         diffs.append(
             f"compound_refs_as_typed: expected {expected_pins!r}, got {actual_pins!r}"
         )
+
+    e_rank_by = expected.get("rank_by")
+    a_rank_by = actual.rank_by
+    if e_rank_by != a_rank_by:
+        diffs.append(f"rank_by: expected {e_rank_by!r}, got {a_rank_by!r}")
+    e_rank_top_n = expected.get("rank_top_n")
+    a_rank_top_n = actual.rank_top_n
+    if e_rank_top_n != a_rank_top_n:
+        diffs.append(f"rank_top_n: expected {e_rank_top_n!r}, got {a_rank_top_n!r}")
 
     expected_filters = expected.get("measurement_filters") or []
     if len(actual.measurement_filters) != len(expected_filters):

@@ -859,6 +859,59 @@
         threshold: {op: "<", value: 100, unit: nM}
 
 # =============================================================================
+# Ranking — "best X compounds" / "top N X compounds" (slice 19)
+# Maps to rank_by="scorecard" + optional rank_top_n. Backend ranks the
+# narrowed set by the target's configured scorecard score.
+# =============================================================================
+
+- name: best_target_compounds
+  prompt: "best CDK4 compounds"
+  expected:
+    type: selector
+    note: "Ranking only — no other predicates. rank_top_n null = backend default."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    rank_by: scorecard
+    rank_top_n: null
+    measurement_filters: []
+
+- name: top_n_target_compounds
+  prompt: "top 10 ARd compounds"
+  expected:
+    type: selector
+    note: "User-specified N."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    rank_by: scorecard
+    rank_top_n: 10
+    measurement_filters: []
+
+- name: best_with_threshold
+  prompt: "best ARd compounds with HTRF IC50 < 10 nM"
+  expected:
+    type: selector
+    note: "Ranking composes with narrowing predicates — filter first, rank survivors."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    rank_by: scorecard
+    rank_top_n: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 10, unit: nM}
+
+- name: top_n_show_phrasing
+  prompt: "show me the top 50 EGFR compounds"
+  expected:
+    type: selector
+    note: "'show me' is filler — same parse as 'top 50 EGFR'."
+    registration_target_as_typed: EGFR
+    assay_target_as_typed: null
+    rank_by: scorecard
+    rank_top_n: 50
+    measurement_filters: []
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 
