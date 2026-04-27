@@ -450,3 +450,74 @@ def test_metric_miss_serialises_with_available_metrics(client, feature_on, clear
     assert resp.data["field"] == "metric"
     assert resp.data["query"] == "IC50"
     assert resp.data["available_metrics"] == ["pIC50"]
+
+
+# ---------------------------------------------------------------------------
+# Slice 20: token-addressed Selection redirect for large compound lists
+# ---------------------------------------------------------------------------
+
+
+def test_small_selection_inlines_compound_ids_in_url(
+    client, feature_on, clear_cache, world,
+):
+    """Below the threshold, redirect URL inlines `?compound=` as before
+    — no Selection row is created."""
+    from compounds.registry.models import Selection
+    parsed = CompoundSelector(registration_target_as_typed="AR degraders")
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "ARd compounds"}, format="json")
+    assert resp.status_code == 200
+    assert "compound=" in resp.data["redirect_url"]
+    assert "selection=" not in resp.data["redirect_url"]
+    assert Selection.objects.count() == 0
+
+
+def test_large_selection_persists_token_and_uses_selection_param(
+    client, feature_on, clear_cache, db,
+):
+    """Above the threshold, the redirect URL switches to
+    `?selection=<uuid>` and a Selection row is created on behalf of
+    the requesting user."""
+    from compounds.registry.models import Selection
+    target = Target.objects.create(name="ARd")
+    # Create > SELECTION_TOKEN_THRESHOLD compounds to trip the switch.
+    from compounds.nlp.view import SELECTION_TOKEN_THRESHOLD
+    n_compounds = SELECTION_TOKEN_THRESHOLD + 5
+    for _ in range(n_compounds):
+        Compound.objects.create(target=target, smiles="CCO")
+
+    parsed = CompoundSelector(registration_target_as_typed="ARd")
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "all ARd compounds"}, format="json")
+
+    assert resp.status_code == 200
+    assert resp.data["n_matched"] == n_compounds
+    redirect_url = resp.data["redirect_url"]
+    assert "selection=" in redirect_url
+    assert "compound=" not in redirect_url
+
+    # Selection row was persisted with the right shape.
+    sel = Selection.objects.get()
+    assert sel.created_by == client.handler._force_user
+    assert len(sel.compound_ids) == n_compounds
+    assert sel.source_prompt == "all ARd compounds"
+    assert sel.name == resp.data["scope_sentence"]
+    assert sel.expires_at is not None  # 7-day default
+
+
+def test_large_selection_token_in_url_is_uuid_form(
+    client, feature_on, clear_cache, db,
+):
+    """The token in the URL is the Selection.id stringified — ready for
+    the aggregation page to GET /selections/<id>/."""
+    from compounds.registry.models import Selection
+    target = Target.objects.create(name="ARd")
+    from compounds.nlp.view import SELECTION_TOKEN_THRESHOLD
+    for _ in range(SELECTION_TOKEN_THRESHOLD + 1):
+        Compound.objects.create(target=target, smiles="CCO")
+
+    parsed = CompoundSelector(registration_target_as_typed="ARd")
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "x"}, format="json")
+    sel = Selection.objects.get()
+    assert f"selection={sel.id}" in resp.data["redirect_url"]

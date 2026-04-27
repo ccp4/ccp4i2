@@ -39,8 +39,25 @@ function AggregationPageContent() {
   const api = useCompoundsApi();
 
   // Read initial values from URL params for deep linking
-  // Support both single 'compound' param and multiple 'compounds' params
-  const initialCompoundSearch = searchParams?.get('compound') || searchParams?.get('compounds') || undefined;
+  // Support both single 'compound' param and multiple 'compounds' params,
+  // plus the slice-20 token-addressed `selection` param (NLP redirects
+  // through this when the compound list would exceed safe URL length).
+  const inlineCompoundSearch = searchParams?.get('compound') || searchParams?.get('compounds') || undefined;
+  const selectionToken = searchParams?.get('selection') || undefined;
+  // Selection fetch — only fires when ?selection=<uuid> is in the URL.
+  // The fetched compound_ids are joined into the same comma-separated
+  // shape as the inline ?compound= form, so everything downstream
+  // treats them identically.
+  const { data: selectionData, error: selectionError } = api.get<{
+    id: string;
+    name: string;
+    compound_ids: string[];
+  }>(selectionToken ? `selections/${selectionToken}/` : null);
+  const selectionPending = !!selectionToken && !selectionData && !selectionError;
+  const initialCompoundSearch =
+    inlineCompoundSearch ?? (selectionData?.compound_ids?.length
+      ? selectionData.compound_ids.join(',')
+      : undefined);
   const initialTargetId = searchParams?.get('target') || undefined;
   // Support multiple target names via comma-separated 'targets' param
   const initialTargetNames = searchParams?.get('targets')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
@@ -446,8 +463,23 @@ function AggregationPageContent() {
     ),
   };
 
-  // Detail content: the query builder
-  const detailContent = (
+  // Detail content: the query builder. When ?selection=<token> is in
+  // the URL, gate the builder behind the selection fetch so it mounts
+  // with the right initialCompoundSearch (slice 20 — the URL-length
+  // fix for large NLP results).
+  const detailContent = selectionPending ? (
+    <Box sx={{ py: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+      <CircularProgress size={20} />
+      <Typography variant="body2" color="text.secondary">
+        Loading selection…
+      </Typography>
+    </Box>
+  ) : selectionError ? (
+    <Alert severity="error" sx={{ mb: 2 }}>
+      Couldn&apos;t load the selection — it may have expired or been
+      created by a different user. Try re-running the original query.
+    </Alert>
+  ) : (
     <Box>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
         Aggregate KPI values across compounds and protocols

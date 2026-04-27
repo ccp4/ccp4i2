@@ -1287,3 +1287,72 @@ class ScaffoldExtension(models.Model):
     def __str__(self) -> str:
         scope = self.target.name if self.target_id else 'shared'
         return f'{self.name} ({scope})'
+
+
+class Selection(models.Model):
+    """
+    Token-addressed snapshot of a compound list (slice 20).
+
+    Solves the URL-length problem when NLP queries select more
+    compounds than fit in a query string (~150 at 12-char IDs).
+    Instead of `?compound=NCL-1,NCL-2,...,NCL-N` the redirect URL
+    becomes `?selection=<uuid>` and the aggregation page fetches the
+    list by token.
+
+    This is a *snapshot* model — `compound_ids` is a static list, not
+    a live query spec. The chemist who created the selection sees the
+    same compounds whenever they revisit the URL until expiry.
+
+    Lifecycle in v1: every Selection auto-expires after 7 days unless
+    explicitly saved (slice 22 will add the `is_saved` flag and a
+    save action). A management command sweeps expired rows.
+
+    Authorisation: only the creator can read the selection. Slice 22
+    will add a project-scoped sharing layer; v1 is creator-only.
+    """
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(
+        max_length=256,
+        blank=True,
+        help_text='Display name (typically the NLP scope sentence). Shown in the aggregation header.',
+    )
+    compound_ids = models.JSONField(
+        default=list,
+        help_text='List of compound formatted_ids (e.g. ["NCL-00026007", ...]). Same shape as the ?compound= URL param.',
+    )
+
+    # Audit / lifecycle
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='created_selections',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(
+        null=True, blank=True,
+        help_text='When this selection becomes unreachable. Null = never expires (saved). Cleanup command deletes expired rows.',
+    )
+
+    # Provenance
+    source_prompt = models.TextField(
+        blank=True,
+        help_text='Original NLP prompt that created this selection, if any.',
+    )
+
+    class Meta:
+        verbose_name = 'Selection'
+        verbose_name_plural = 'Selections'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['expires_at']),
+            models.Index(fields=['created_by', '-created_at']),
+        ]
+
+    def __str__(self) -> str:
+        return f'{self.name or "(unnamed)"} ({len(self.compound_ids)} compounds)'
+
+    @property
+    def is_expired(self) -> bool:
+        from django.utils import timezone
+        return self.expires_at is not None and self.expires_at < timezone.now()

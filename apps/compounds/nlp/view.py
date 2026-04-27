@@ -223,7 +223,20 @@ def _assay_selector_from_dict(data: Any) -> AssaySelector:
     )
 
 
-def _build_redirect_url(selection: CompoundSelection) -> str:
+# Slice 20: above this compound count, the redirect URL switches from
+# the inline `?compound=NCL-1,NCL-2,...` form (which hits browser URL
+# limits around ~150 compounds) to a token-addressed Selection row
+# (`?selection=<uuid>`). The aggregation page treats both forms
+# identically downstream.
+SELECTION_TOKEN_THRESHOLD = 100
+
+
+def _build_redirect_url(
+    selection: CompoundSelection,
+    *,
+    user=None,
+    source_prompt: str = "",
+) -> str:
     """Construct the /assays/aggregate URL from a selection.
 
     Only emits query params that differ from the aggregation page's
@@ -231,6 +244,12 @@ def _build_redirect_url(selection: CompoundSelection) -> str:
     `format=cards` IS emitted even though it's a non-default override
     from `compact`, because the NLP pivot's default destination is the
     project-card / spider-plot view (§10).
+
+    Slice 20: when the compound list exceeds
+    ``SELECTION_TOKEN_THRESHOLD``, persist as a Selection row and use
+    ``?selection=<uuid>`` instead of inlining the IDs. Avoids hitting
+    browser URL-length limits (~2 KB safe). The aggregation page
+    accepts either form.
     """
     params: List[Tuple[str, str]] = []
 
@@ -238,8 +257,30 @@ def _build_redirect_url(selection: CompoundSelection) -> str:
         params.append(("targets", ",".join(selection.target_names)))
     if selection.protocol_names:
         params.append(("protocols", ",".join(selection.protocol_names)))
-    if selection.compound_formatted_ids:
+
+    if (
+        len(selection.compound_formatted_ids) > SELECTION_TOKEN_THRESHOLD
+        and user is not None
+    ):
+        # Persist a Selection row and reference it by token. Authentication
+        # is required for both creation and read — the user that ran the
+        # NLP query owns the resulting selection.
+        from compounds.registry.models import Selection
+        from compounds.registry.selection_views import DEFAULT_EXPIRY_DAYS
+        import datetime
+        from django.utils import timezone
+
+        sel_row = Selection.objects.create(
+            name=selection.scope_sentence,
+            compound_ids=list(selection.compound_formatted_ids),
+            created_by=user,
+            expires_at=timezone.now() + datetime.timedelta(days=DEFAULT_EXPIRY_DAYS),
+            source_prompt=source_prompt,
+        )
+        params.append(("selection", str(sel_row.id)))
+    elif selection.compound_formatted_ids:
         params.append(("compound", ",".join(selection.compound_formatted_ids)))
+
     params.append(("format", REDIRECT_DEFAULT_FORMAT))
 
     encoded = "&".join(f"{k}={quote(v, safe=',')}" for k, v in params)
@@ -254,6 +295,9 @@ def _build_redirect_url(selection: CompoundSelection) -> str:
 def _serialize(
     result: Any,
     selector: Optional[Any] = None,
+    *,
+    user=None,
+    source_prompt: str = "",
 ) -> Tuple[dict, int]:
     """Map an execution / parse result to (response_body, http_status).
 
@@ -261,11 +305,18 @@ def _serialize(
     this result — echoed back as ``partial_selector`` on clarify responses
     so the client can re-POST with a pinning ID without re-calling the
     LLM (§9, decision 5).
+
+    ``user`` and ``source_prompt`` are slice-20 plumbing for the
+    ``?selection=<token>`` redirect path: when a CompoundSelection
+    exceeds the URL-length threshold, a Selection row is persisted on
+    behalf of this user with the originating prompt for audit.
     """
     if isinstance(result, CompoundSelection):
         body = {
             "status": "selection",
-            "redirect_url": _build_redirect_url(result),
+            "redirect_url": _build_redirect_url(
+                result, user=user, source_prompt=source_prompt,
+            ),
             **dataclasses.asdict(result),
         }
         return body, http_status.HTTP_200_OK
@@ -413,7 +464,12 @@ def nlp_query(request: Request) -> Response:
             status=http_status.HTTP_400_BAD_REQUEST,
         )
 
-    body_out, status_code = _serialize(result, selector=selector_for_echo)
+    body_out, status_code = _serialize(
+        result,
+        selector=selector_for_echo,
+        user=request.user if request.user.is_authenticated else None,
+        source_prompt=prompt or "",
+    )
     return Response(body_out, status=status_code)
 
 

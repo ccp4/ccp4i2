@@ -37,6 +37,7 @@ from compounds.registry.views import (
     CompoundDocumentViewSet,
 )
 from compounds.nlp.view import nlp_query, nlp_scaffold_extend
+from compounds.registry.selection_views import create_selection, get_selection
 
 from compounds.assays.views import (
     FittingMethodViewSet,
@@ -138,6 +139,13 @@ urlpatterns = [
     # Scaffold-extension endpoint (slice 17) — runtime growth of the
     # substructure catalog, scoped per-project or shared.
     path('nlp/scaffold/extend/', nlp_scaffold_extend, name='nlp-scaffold-extend'),
+
+    # Selection endpoints (slice 20) — token-addressed snapshot of a
+    # compound list. NLP creates these when its result list would
+    # exceed safe URL-encoding limits; the aggregation page reads
+    # them via GET.
+    path('selections/', create_selection, name='selection-create'),
+    path('selections/<uuid:selection_id>/', get_selection, name='selection-detail'),
 
     # Router-based endpoints
     path('', include(router.urls)),
