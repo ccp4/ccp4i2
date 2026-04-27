@@ -3,9 +3,17 @@
 Deterministic name-to-SMARTS mapping from ``compounds.nlp.substructures``.
 Three-tier match: exact → substring → fuzzy miss with suggestions.
 Pinned-id bypasses the fuzzy path.
+
+Slice 17 plumbed an optional DB-backed extension catalog into the
+resolver — these tests pin the empty-extensions state (no Target,
+no ScaffoldExtension rows) which corresponds to "fall through to the
+seed". The new test_resolver_scaffold_extensions module exercises
+the project/shared/seed priority logic when extensions are present.
 """
 
 from __future__ import annotations
+
+import pytest
 
 from compounds.nlp.resolver import resolve_scaffold
 from compounds.nlp.spec import (
@@ -14,6 +22,12 @@ from compounds.nlp.spec import (
     ScaffoldClarify,
     ScaffoldMiss,
 )
+
+
+# Resolver consults ScaffoldExtension rows even when there are none —
+# the existence query needs DB access. Apply at module scope so every
+# test gets a clean (empty) extensions table.
+pytestmark = pytest.mark.django_db
 
 
 # ---------------------------------------------------------------------------

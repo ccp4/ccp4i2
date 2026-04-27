@@ -369,3 +369,59 @@ export function applyClarifyPick(
   }
   return next;
 }
+
+
+// ---------------------------------------------------------------------------
+// Scaffold-extension fetcher (slice 17)
+// ---------------------------------------------------------------------------
+
+export interface ScaffoldExtensionRequest {
+  name: string;
+  smarts: string;
+  aliases?: string[];
+  /** Project-scoped extension when set; shared (visible everywhere) when null/omitted. */
+  target_id?: string | null;
+  notes?: string;
+  /** The original NLP prompt that triggered the addition, recorded for audit. */
+  source_prompt?: string;
+  llm_generated?: boolean;
+}
+
+export interface ScaffoldExtensionResponse {
+  status: 'created' | 'error';
+  id?: string;
+  name?: string;
+  smarts?: string;
+  aliases?: string[];
+  target_id?: string | null;
+  target_name?: string | null;
+  notes?: string;
+  kind?: string;       // present on errors
+  field?: string;
+  message?: string;
+}
+
+/**
+ * POST /api/proxy/compounds/nlp/scaffold/extend — create a runtime
+ * extension to the scaffold catalog. Returns the created entry on
+ * 201, or a structured error body on 400/404/409. Like postNlpQuery,
+ * we return the body on any HTTP status so the UI can render the
+ * structured error rather than throwing.
+ */
+export async function postNlpScaffoldExtend(
+  body: ScaffoldExtensionRequest,
+): Promise<ScaffoldExtensionResponse> {
+  const res = await authFetch('/api/proxy/compounds/nlp/scaffold/extend', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  });
+  let parsed: unknown;
+  try {
+    parsed = await res.json();
+  } catch {
+    throw new Error(
+      `NLP scaffold-extend endpoint returned non-JSON response (HTTP ${res.status})`,
+    );
+  }
+  return parsed as ScaffoldExtensionResponse;
+}

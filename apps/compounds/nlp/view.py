@@ -413,3 +413,121 @@ def nlp_query(request: Request) -> Response:
 
     body_out, status_code = _serialize(result, selector=selector_for_echo)
     return Response(body_out, status=status_code)
+
+
+# ---------------------------------------------------------------------------
+# Scaffold-extension endpoint (slice 17) — runtime extension of the
+# substructure catalog. Lets chemists add fragments the seed Python
+# module doesn't cover, scoped to a project (Target) or shared.
+# ---------------------------------------------------------------------------
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def nlp_scaffold_extend(request: Request) -> Response:
+    """Create a ScaffoldExtension row.
+
+    Body:
+        name (str, required): canonical name chemists will type.
+        smarts (str, required): SMARTS pattern.
+        aliases (list[str], optional): plurals / abbreviations.
+        target_id (str|null, optional): UUID of the project Target. Null
+            (or omitted) = shared catalog (visible to every project).
+        notes (str, optional): human gloss.
+        source_prompt (str, optional): the original NLP prompt that
+            triggered the addition, for audit.
+
+    Same feature flag as /nlp/query (so a deployment with NLP disabled
+    can't grow the catalog through this surface either). Authenticated
+    users only. Validates SMARTS via RDKit before persisting.
+    """
+    if not _feature_enabled():
+        return Response(
+            {"status": "error", "kind": "disabled",
+             "message": "NLP query feature is not enabled on this instance."},
+            status=http_status.HTTP_404_NOT_FOUND,
+        )
+
+    body = request.data or {}
+    name = (body.get("name") or "").strip()
+    smarts = (body.get("smarts") or "").strip()
+    if not name or not smarts:
+        return Response(
+            {"status": "error", "kind": "bad_request",
+             "message": "Both 'name' and 'smarts' are required."},
+            status=http_status.HTTP_400_BAD_REQUEST,
+        )
+
+    aliases = body.get("aliases") or []
+    if not isinstance(aliases, list) or not all(isinstance(a, str) for a in aliases):
+        return Response(
+            {"status": "error", "kind": "bad_request",
+             "message": "'aliases' must be a list of strings."},
+            status=http_status.HTTP_400_BAD_REQUEST,
+        )
+
+    # Validate SMARTS server-side via RDKit before persisting — a
+    # parse failure here is much cheaper than a runtime crash later
+    # when the resolver tries to use it.
+    try:
+        from rdkit import Chem
+    except ImportError:
+        return Response(
+            {"status": "error", "kind": "internal",
+             "message": "RDKit is not available on the server."},
+            status=http_status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+    if Chem.MolFromSmarts(smarts) is None:
+        return Response(
+            {"status": "error", "kind": "bad_request", "field": "smarts",
+             "message": f"SMARTS did not parse: {smarts!r}"},
+            status=http_status.HTTP_400_BAD_REQUEST,
+        )
+
+    # Resolve target (if provided).
+    target_id = body.get("target_id")
+    target_obj = None
+    if target_id:
+        from compounds.registry.models import Target
+        target_obj = Target.objects.filter(pk=target_id).first()
+        if target_obj is None:
+            return Response(
+                {"status": "error", "kind": "bad_request", "field": "target_id",
+                 "message": f"Target {target_id!r} not found."},
+                status=http_status.HTTP_400_BAD_REQUEST,
+            )
+
+    from compounds.registry.models import ScaffoldExtension
+    # Reject same-name collision in the same scope (the unique_together
+    # would do it via IntegrityError, but a clean 400 is friendlier).
+    if ScaffoldExtension.objects.filter(name=name, target=target_obj).exists():
+        scope = target_obj.name if target_obj else "shared"
+        return Response(
+            {"status": "error", "kind": "conflict", "field": "name",
+             "message": f"A scaffold extension named {name!r} already exists in scope {scope!r}."},
+            status=http_status.HTTP_409_CONFLICT,
+        )
+
+    ext = ScaffoldExtension.objects.create(
+        name=name,
+        smarts=smarts,
+        aliases=aliases,
+        target=target_obj,
+        notes=(body.get("notes") or "").strip(),
+        created_by=request.user if request.user.is_authenticated else None,
+        source_prompt=(body.get("source_prompt") or "").strip(),
+        llm_generated=bool(body.get("llm_generated", False)),
+    )
+    return Response(
+        {
+            "status": "created",
+            "id": str(ext.pk),
+            "name": ext.name,
+            "smarts": ext.smarts,
+            "aliases": list(ext.aliases or []),
+            "target_id": str(target_obj.id) if target_obj else None,
+            "target_name": target_obj.name if target_obj else None,
+            "notes": ext.notes,
+        },
+        status=http_status.HTTP_201_CREATED,
+    )

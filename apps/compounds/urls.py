@@ -36,7 +36,7 @@ from compounds.registry.views import (
     LabNotebookEntryViewSet,
     CompoundDocumentViewSet,
 )
-from compounds.nlp.view import nlp_query
+from compounds.nlp.view import nlp_query, nlp_scaffold_extend
 
 from compounds.assays.views import (
     FittingMethodViewSet,
@@ -135,6 +135,9 @@ urlpatterns = [
     # NLP query endpoint (gated by COMPOUNDS_NLP_ENABLED env var — see
     # apps/compounds/docs/NLP_QUERY_PROPOSAL.md §16.3).
     path('nlp/query/', nlp_query, name='nlp-query'),
+    # Scaffold-extension endpoint (slice 17) — runtime growth of the
+    # substructure catalog, scoped per-project or shared.
+    path('nlp/scaffold/extend/', nlp_scaffold_extend, name='nlp-scaffold-extend'),
 
     # Router-based endpoints
     path('', include(router.urls)),

@@ -1,15 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import {
   Alert,
   Box,
   Button,
   Chip,
+  CircularProgress,
   Paper,
   Stack,
+  TextField,
   Typography,
 } from '@mui/material';
-import { ArrowForward } from '@mui/icons-material';
+import { ArrowForward, AddCircleOutline } from '@mui/icons-material';
 import {
   AssaySelector,
   CompoundSelector,
@@ -25,6 +28,7 @@ import {
   SupplierCandidate,
   TargetCandidate,
   UserCandidate,
+  postNlpScaffoldExtend,
 } from '@/lib/compounds/nlp-api';
 
 type CandidateKind = 'target' | 'protocol' | 'user' | 'scaffold' | 'compound' | 'metric';
@@ -434,7 +438,95 @@ function MissView({
           ))}
         </Stack>
       )}
+      {kind === 'scaffold' && (
+        <DefineFragmentForm typedName={query} />
+      )}
     </Alert>
+  );
+}
+
+/**
+ * Slice 17: inline affordance to grow the substructure catalog when a
+ * ScaffoldMiss surfaces. The chemist types a SMARTS, clicks Add, and
+ * the entry lands as a *shared* extension consultable by every future
+ * query. (Per-project additions are supported by the backend but
+ * surfaced via a different UI in a follow-up slice; the inline form
+ * defaults to shared scope to keep the chemist out of scope-picker
+ * decisions on the miss path.)
+ */
+function DefineFragmentForm({ typedName }: { typedName: string }) {
+  const [smarts, setSmarts] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!smarts.trim()) return;
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await postNlpScaffoldExtend({
+        name: typedName,
+        smarts: smarts.trim(),
+        target_id: null,           // shared catalog
+        source_prompt: typedName,
+        llm_generated: false,
+      });
+      if (res.status === 'created') {
+        setSuccess(true);
+      } else {
+        setError(res.message ?? 'Failed to add scaffold extension.');
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (success) {
+    return (
+      <Box sx={{ mt: 2, p: 1.5, bgcolor: 'success.light', borderRadius: 1 }}>
+        <Typography variant="body2" sx={{ color: 'success.contrastText' }}>
+          Added <strong>{typedName}</strong> to the shared catalog.
+          Re-run your query to use it.
+        </Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box sx={{ mt: 2, pt: 2, borderTop: 1, borderColor: 'divider' }}>
+      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
+        Or define <strong>{typedName}</strong> as a new shared substructure:
+      </Typography>
+      <Stack direction="row" spacing={1} sx={{ alignItems: 'flex-start' }}>
+        <TextField
+          size="small"
+          fullWidth
+          placeholder="SMARTS (e.g. c1ccc2[nH]ncc2c1 for indazole)"
+          value={smarts}
+          onChange={(e) => setSmarts(e.target.value)}
+          disabled={submitting}
+          InputProps={{ sx: { fontFamily: 'monospace' } }}
+        />
+        <Button
+          size="small"
+          variant="outlined"
+          onClick={handleSubmit}
+          disabled={submitting || !smarts.trim()}
+          startIcon={submitting ? <CircularProgress size={14} /> : <AddCircleOutline />}
+          sx={{ whiteSpace: 'nowrap' }}
+        >
+          Add to catalog
+        </Button>
+      </Stack>
+      {error && (
+        <Typography variant="caption" color="error" sx={{ mt: 0.5, display: 'block' }}>
+          {error}
+        </Typography>
+      )}
+    </Box>
   );
 }
 

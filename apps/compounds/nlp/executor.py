@@ -199,9 +199,15 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
     # Align pinned list to hint positions — pad with empty strings.
     while len(pinned) < len(hints):
         pinned.append("")
+    # Slice 17: project-scoped extensions take precedence over shared
+    # extensions and seed. The registration target (when set) drives
+    # "project context"; assay-only scope falls through to shared+seed
+    # because per-project nomenclature is naturally tied to the
+    # registration programme, not the assay readout target.
+    scaffold_target = rt.registration if rt.registration is not None else None
     for idx, hint in enumerate(hints):
         rs = resolve_scaffold(
-            hint, scaffold_index=idx,
+            hint, target=scaffold_target, scaffold_index=idx,
             pinned_id=pinned[idx] if pinned[idx] else None,
         )
         if not isinstance(rs, ResolvedScaffold):
@@ -673,9 +679,13 @@ def execute_assay_query(selector: AssaySelector) -> ExecutionResult:
     pinned = list(selector.scaffold_ids or [])
     while len(pinned) < len(hints):
         pinned.append("")
+    # Slice 17: assay-side scope is the assay target, since assay
+    # queries don't have a registration-target concept distinct from
+    # the assay one. Project-scoped extensions resolve against it.
+    scaffold_target = resolved_target.target if resolved_target is not None else None
     for idx, hint in enumerate(hints):
         rs = resolve_scaffold(
-            hint, scaffold_index=idx,
+            hint, target=scaffold_target, scaffold_index=idx,
             pinned_id=pinned[idx] if pinned[idx] else None,
         )
         if not isinstance(rs, ResolvedScaffold):

@@ -621,31 +621,69 @@ def _scaffold_candidate(scaffold: Scaffold) -> ScaffoldCandidate:
     )
 
 
+def _ext_as_scaffold(ext) -> Scaffold:
+    """Adapter — wrap a ScaffoldExtension DB row as a Scaffold dataclass
+    so the matching logic doesn't care about the source."""
+    return Scaffold(
+        name=ext.name,
+        aliases=tuple(ext.aliases or []),
+        smarts=ext.smarts,
+    )
+
+
+def _combined_scaffold_pool(
+    target: Optional[Target],
+) -> List[Tuple[Scaffold, str, str]]:
+    """Priority-ordered pool: project extensions → shared extensions →
+    Python seed. Each entry is (scaffold, source, pinning_id) where
+    ``source`` is one of {"project", "shared", "seed"} for diagnostic
+    matched_via labels, and ``pinning_id`` is what goes into a
+    ScaffoldCandidate.id (ScaffoldExtension pk for DB rows; canonical
+    name for seed entries — same convention as pre-slice-17).
+
+    Same-name collisions are NOT resolved here — the consumer's match
+    logic handles "first occurrence wins" so higher-priority pool
+    entries shadow lower ones.
+    """
+    from compounds.registry.models import ScaffoldExtension
+    out: List[Tuple[Scaffold, str, str]] = []
+    if target is not None:
+        for e in ScaffoldExtension.objects.filter(target=target).order_by("name"):
+            out.append((_ext_as_scaffold(e), "project", str(e.pk)))
+    for e in ScaffoldExtension.objects.filter(target__isnull=True).order_by("name"):
+        out.append((_ext_as_scaffold(e), "shared", str(e.pk)))
+    for s in SCAFFOLDS:
+        out.append((s, "seed", s.name))
+    return out
+
+
 def resolve_scaffold(
     as_typed: str,
     *,
+    target: Optional[Target] = None,
     scaffold_index: int = 0,
     pinned_id: Optional[str] = None,
 ) -> ScaffoldResolution:
     """Resolve a typed substructure / scaffold / functional-group name
-    against the curated catalog. Three-tier match:
+    against the combined catalog (project → shared → seed). Three-tier
+    match:
 
-    1. Exact normalised match against name or alias → Resolved.
+    1. Exact normalised match against name or alias → Resolved (highest-
+       priority pool wins on name collision).
     2. Substring match on normalised pool entries → Clarify (multiple)
        or Resolved (single) — catches "pyrimidi" → "pyrimidine" and
        also surfaces the "pyrimidine vs pyrimidinone" ambiguity when
        the user types a substring that hits both.
     3. Miss with the closest matches by SequenceMatcher ratio — better
        than a blank dead end.
+
+    ``target`` (slice 17) plumbs the resolved registration target so
+    project-scoped extensions can take precedence. Pre-slice-17 callers
+    that don't pass it get the shared+seed view (which is the same
+    behaviour as before plus any shared extensions).
     """
     if pinned_id:
-        scaffold = lookup_scaffold_by_id(pinned_id)
-        if scaffold is None:
-            return ScaffoldMiss(
-                query=as_typed or "", suggestions=[],
-                scaffold_index=scaffold_index, field=FIELD_SCAFFOLD_HINT,
-            )
-        return ResolvedScaffold(scaffold=scaffold, matched_via="pinned_id", query=as_typed or "")
+        return _resolve_scaffold_pin(pinned_id, as_typed or "", scaffold_index)
 
     norm_query = normalize(as_typed or "")
     if not norm_query:
@@ -654,38 +692,105 @@ def resolve_scaffold(
             scaffold_index=scaffold_index, field=FIELD_SCAFFOLD_HINT,
         )
 
-    # Tier 1: exact normalised match.
-    exact = lookup_scaffold_by_typed(as_typed)
-    if exact is not None:
-        scaffold, matched_via = exact
-        return ResolvedScaffold(scaffold=scaffold, matched_via=matched_via, query=as_typed)
+    pool = _combined_scaffold_pool(target)
 
-    # Tier 2: substring on normalised pool entries.
-    substring_hits = list(lookup_scaffolds_by_substring(as_typed))
+    # Build the entry list (normalised key → (scaffold, source, pinning_id, matched_via))
+    # while shadowing same-name entries from lower-priority pools.
+    seen_names: set = set()
+    entries: List[Tuple[str, Scaffold, str, str, str]] = []
+    for scaffold, source, pin_id in pool:
+        if scaffold.name in seen_names:
+            continue
+        seen_names.add(scaffold.name)
+        name_norm = normalize(scaffold.name)
+        if name_norm:
+            entries.append((name_norm, scaffold, source, pin_id, "name"))
+        for alias in scaffold.aliases:
+            alias_norm = normalize(alias)
+            if alias_norm:
+                entries.append((alias_norm, scaffold, source, pin_id, "alias"))
+
+    # Tier 1: exact normalised match. First entry (highest-priority pool) wins.
+    for entry_norm, scaffold, source, _pin_id, matched_via in entries:
+        if entry_norm == norm_query:
+            via = matched_via if source == "seed" else f"{matched_via}:{source}"
+            return ResolvedScaffold(
+                scaffold=scaffold, matched_via=via, query=as_typed,
+            )
+
+    # Tier 2: substring on normalised pool entries (one chip per scaffold).
+    substring_hits: List[Tuple[Scaffold, str, str]] = []
+    seen_subs: set = set()
+    for entry_norm, scaffold, source, pin_id, _ in entries:
+        if scaffold.name in seen_subs:
+            continue
+        if norm_query in entry_norm:
+            seen_subs.add(scaffold.name)
+            substring_hits.append((scaffold, source, pin_id))
     if len(substring_hits) == 1:
-        scaffold, matched_via = substring_hits[0]
-        return ResolvedScaffold(scaffold=scaffold, matched_via=matched_via, query=as_typed)
+        scaffold, source, _pin = substring_hits[0]
+        via = "substring" if source == "seed" else f"substring:{source}"
+        return ResolvedScaffold(scaffold=scaffold, matched_via=via, query=as_typed)
     if len(substring_hits) > 1:
         return ScaffoldClarify(
             query=as_typed,
-            candidates=[_scaffold_candidate(s) for s, _ in substring_hits],
+            candidates=[
+                ScaffoldCandidate(
+                    id=pin_id, name=s.name, aliases=list(s.aliases), smarts=s.smarts,
+                )
+                for s, _, pin_id in substring_hits
+            ],
             scaffold_index=scaffold_index,
             field=FIELD_SCAFFOLD_HINT,
         )
 
-    # Miss — rank whole catalog by SequenceMatcher ratio.
-    scored: List[Tuple[float, Scaffold]] = []
-    for s in SCAFFOLDS:
-        # Use the best ratio across name + aliases.
-        best = SequenceMatcher(None, norm_query, normalize(s.name)).ratio()
-        for alias in s.aliases:
+    # Miss — rank the combined catalog by SequenceMatcher ratio.
+    scored: List[Tuple[float, Scaffold, str]] = []
+    seen_scored: set = set()
+    for _entry_norm, scaffold, _source, pin_id, _ in entries:
+        if scaffold.name in seen_scored:
+            continue
+        seen_scored.add(scaffold.name)
+        best = SequenceMatcher(None, norm_query, normalize(scaffold.name)).ratio()
+        for alias in scaffold.aliases:
             best = max(best, SequenceMatcher(None, norm_query, normalize(alias)).ratio())
-        scored.append((best, s))
+        scored.append((best, scaffold, pin_id))
     scored.sort(key=lambda row: row[0], reverse=True)
-    suggestions = [_scaffold_candidate(s) for _, s in scored[:_MISS_SUGGESTION_COUNT]]
+    suggestions = [
+        ScaffoldCandidate(
+            id=pin_id, name=s.name, aliases=list(s.aliases), smarts=s.smarts,
+        )
+        for _ratio, s, pin_id in scored[:_MISS_SUGGESTION_COUNT]
+    ]
     return ScaffoldMiss(
         query=as_typed, suggestions=suggestions,
         scaffold_index=scaffold_index, field=FIELD_SCAFFOLD_HINT,
+    )
+
+
+def _resolve_scaffold_pin(
+    pinned_id: str, as_typed: str, scaffold_index: int,
+) -> ScaffoldResolution:
+    """Pinning round-trip: a candidate's id may be either a DB
+    ScaffoldExtension pk (integer string) or a seed canonical name
+    (non-integer string). Try DB first by pk; fall back to seed by
+    canonical name."""
+    from compounds.registry.models import ScaffoldExtension
+    if pinned_id.isdigit():
+        ext = ScaffoldExtension.objects.filter(pk=int(pinned_id)).first()
+        if ext is not None:
+            return ResolvedScaffold(
+                scaffold=_ext_as_scaffold(ext),
+                matched_via="pinned_id", query=as_typed,
+            )
+    scaffold = lookup_scaffold_by_id(pinned_id)
+    if scaffold is None:
+        return ScaffoldMiss(
+            query=as_typed, suggestions=[],
+            scaffold_index=scaffold_index, field=FIELD_SCAFFOLD_HINT,
+        )
+    return ResolvedScaffold(
+        scaffold=scaffold, matched_via="pinned_id", query=as_typed,
     )
 
 

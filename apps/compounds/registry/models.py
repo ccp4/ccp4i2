@@ -1213,3 +1213,77 @@ class MolecularPropertyThreshold(models.Model):
             {'property_name': 'fraction_sp3', 'direction': 'below',
              'amber_threshold': 0.3, 'red_threshold': 0.2},
         ]
+
+
+class ScaffoldExtension(models.Model):
+    """
+    Runtime extension to the curated NLP scaffold catalog
+    (``apps/compounds/nlp/substructures.py``).
+
+    Lets chemists add fragments the seed module doesn't cover, scoped
+    either to a specific Target (project-local nomenclature like
+    "Series 1" / "the deletion compounds") or shared across the whole
+    instance (target=null). Consulted by ``resolve_scaffold`` alongside
+    the Python seed; project-scoped entries override shared, shared
+    overrides seed.
+
+    Storage is SMARTS, not SMILES — the matching engine
+    (``RDKit.Chem.MolFromSmarts`` + ``HasSubstructMatch``) is the same
+    one the seed module uses, so positional degeneracy / atom-list
+    tolerance / ring-size constraints are all expressible in the
+    ``smarts`` field. The ``notes`` column captures the human gloss.
+    """
+
+    name = models.CharField(
+        max_length=64,
+        help_text='Canonical name chemists will type ("indazole", "Series 1")',
+    )
+    smarts = models.CharField(
+        max_length=512,
+        help_text='SMARTS pattern; matched via RDKit HasSubstructMatch',
+    )
+    aliases = models.JSONField(
+        default=list, blank=True,
+        help_text='Additional typed forms that map to this entry (e.g. plurals, abbreviations)',
+    )
+    target = models.ForeignKey(
+        Target,
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name='scaffold_extensions',
+        help_text='If set, this entry only resolves under that target/project. Null = shared across all projects.',
+    )
+    notes = models.TextField(
+        blank=True,
+        help_text='Human gloss explaining what the fragment captures (e.g. "Series 1: 5-6 fused heterocycles, atoms 2/4 may be C or N")',
+    )
+
+    # Audit
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        related_name='created_scaffold_extensions',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    source_prompt = models.TextField(
+        blank=True,
+        help_text="Original NLP prompt that triggered the addition, if any",
+    )
+    llm_generated = models.BooleanField(
+        default=False,
+        help_text='True when the SMARTS was proposed by the LLM (slice 18+); False when typed by the chemist directly.',
+    )
+
+    class Meta:
+        verbose_name = 'Scaffold extension'
+        verbose_name_plural = 'Scaffold extensions'
+        # One name per scope: ('benzofuran', null) is shared, ('Series 1', ARd_pk)
+        # is project-local. The same name can exist twice across scopes
+        # — that's the per-project-overrides-shared semantics.
+        unique_together = [('name', 'target')]
+        ordering = ['target__name', 'name']
+
+    def __str__(self) -> str:
+        scope = self.target.name if self.target_id else 'shared'
+        return f'{self.name} ({scope})'
