@@ -35,6 +35,7 @@ from typing import Any, List, Optional, Tuple
 from urllib.parse import quote
 
 from django.core.cache import cache
+from django.utils import timezone
 from rest_framework import status as http_status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -225,19 +226,43 @@ def _assay_selector_from_dict(data: Any) -> AssaySelector:
     )
 
 
-# Slice 20: above this compound count, the redirect URL switches from
-# the inline `?compound=NCL-1,NCL-2,...` form (which hits browser URL
-# limits around ~150 compounds) to a token-addressed Selection row
-# (`?selection=<uuid>`). The aggregation page treats both forms
-# identically downstream.
+# Above this compound count, the redirect URL switches from the inline
+# `?compound=NCL-1,NCL-2,...` form (which hits browser URL limits around
+# ~150 compounds) to a token-addressed Selection row (`?selection=<uuid>`).
+# The aggregation page treats both forms identically downstream.
 SELECTION_TOKEN_THRESHOLD = 100
+
+
+def _persist_selection(
+    selection: CompoundSelection,
+    *,
+    user,
+    source_prompt: str,
+) -> Optional[str]:
+    """Persist a Selection row for the chemist's session list.
+
+    Returns the row id (string), or None when there's nothing useful to
+    surface (no authenticated user, or no compounds matched).
+    """
+    if user is None or not selection.compound_formatted_ids:
+        return None
+    from compounds.registry.models import Selection
+    from compounds.registry.selection_views import DEFAULT_EXPIRY_DAYS
+
+    sel_row = Selection.objects.create(
+        name=selection.scope_sentence,
+        compound_ids=list(selection.compound_formatted_ids),
+        created_by=user,
+        expires_at=timezone.now() + datetime.timedelta(days=DEFAULT_EXPIRY_DAYS),
+        source_prompt=source_prompt,
+    )
+    return str(sel_row.id)
 
 
 def _build_redirect_url(
     selection: CompoundSelection,
     *,
-    user=None,
-    source_prompt: str = "",
+    selection_id: Optional[str] = None,
 ) -> str:
     """Construct the /assays/aggregate URL from a selection.
 
@@ -247,11 +272,10 @@ def _build_redirect_url(
     from `compact`, because the NLP pivot's default destination is the
     project-card / spider-plot view (§10).
 
-    Slice 20: when the compound list exceeds
-    ``SELECTION_TOKEN_THRESHOLD``, persist as a Selection row and use
-    ``?selection=<uuid>`` instead of inlining the IDs. Avoids hitting
-    browser URL-length limits (~2 KB safe). The aggregation page
-    accepts either form.
+    When ``len(compound_formatted_ids) > SELECTION_TOKEN_THRESHOLD`` and
+    a ``selection_id`` is available, the URL uses ``?selection=<uuid>``
+    instead of inlining the IDs — avoids browser URL-length limits
+    (~2 KB safe).
     """
     params: List[Tuple[str, str]] = []
 
@@ -262,24 +286,9 @@ def _build_redirect_url(
 
     if (
         len(selection.compound_formatted_ids) > SELECTION_TOKEN_THRESHOLD
-        and user is not None
+        and selection_id is not None
     ):
-        # Persist a Selection row and reference it by token. Authentication
-        # is required for both creation and read — the user that ran the
-        # NLP query owns the resulting selection.
-        from compounds.registry.models import Selection
-        from compounds.registry.selection_views import DEFAULT_EXPIRY_DAYS
-        import datetime
-        from django.utils import timezone
-
-        sel_row = Selection.objects.create(
-            name=selection.scope_sentence,
-            compound_ids=list(selection.compound_formatted_ids),
-            created_by=user,
-            expires_at=timezone.now() + datetime.timedelta(days=DEFAULT_EXPIRY_DAYS),
-            source_prompt=source_prompt,
-        )
-        params.append(("selection", str(sel_row.id)))
+        params.append(("selection", selection_id))
     elif selection.compound_formatted_ids:
         params.append(("compound", ",".join(selection.compound_formatted_ids)))
 
@@ -308,17 +317,19 @@ def _serialize(
     so the client can re-POST with a pinning ID without re-calling the
     LLM (§9, decision 5).
 
-    ``user`` and ``source_prompt`` are slice-20 plumbing for the
-    ``?selection=<token>`` redirect path: when a CompoundSelection
-    exceeds the URL-length threshold, a Selection row is persisted on
-    behalf of this user with the originating prompt for audit.
+    ``user`` and ``source_prompt`` flow through to ``_persist_selection``:
+    every successful CompoundSelection lands as a row in the chemist's
+    session list, and the resulting id (or None when no compounds matched
+    or no user is authenticated) is included in the response body.
     """
     if isinstance(result, CompoundSelection):
+        selection_id = _persist_selection(
+            result, user=user, source_prompt=source_prompt,
+        )
         body = {
             "status": "selection",
-            "redirect_url": _build_redirect_url(
-                result, user=user, source_prompt=source_prompt,
-            ),
+            "redirect_url": _build_redirect_url(result, selection_id=selection_id),
+            "selection_id": selection_id,
             **dataclasses.asdict(result),
         }
         return body, http_status.HTTP_200_OK

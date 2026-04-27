@@ -1,9 +1,9 @@
-"""Delete expired Selection rows (slice 20).
+"""Delete expired Selection rows.
 
 Selections created via the NLP redirect path auto-expire after 7 days
 (see ``DEFAULT_EXPIRY_DAYS`` in ``selection_views``). This command
-sweeps the expired rows. Saved selections (slice 22+, ``expires_at`` is
-null) are never touched.
+sweeps the expired rows. Saved selections (``is_saved=True``) are
+never touched.
 
 Run via cron / Azure scheduled job:
     ccp4-python manage.py cleanup_selections
@@ -18,7 +18,7 @@ from compounds.registry.models import Selection
 
 
 class Command(BaseCommand):
-    help = "Delete expired Selection rows (slice 20)."
+    help = "Delete expired Selection rows."
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -29,7 +29,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, dry_run: bool = False, **options):
         now = timezone.now()
-        expired_qs = Selection.objects.filter(expires_at__lt=now)
+        expired_qs = Selection.objects.filter(
+            is_saved=False, expires_at__lt=now,
+        )
         count = expired_qs.count()
 
         if count == 0:

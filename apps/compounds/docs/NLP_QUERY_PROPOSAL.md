@@ -543,6 +543,7 @@ Work is delivered as narrow vertical slices that build the backend first and def
 | 19 | **"Best X" ranking by scorecard** — new `rank_by` + `rank_top_n` fields on CompoundSelector. Maps *"best CDK4 compounds"* / *"top 20 ARd compounds"* / *"best EGFR compounds with HTRF IC50 < 10 nM"* to: filter as before, then rank the survivors by the target's configured scorecard score (mean of per-axis t-values), trim to top-N. Targets without a scorecard config get a clear SpecError nudging the chemist to configure one. Server-side scorecard evaluator mirrors the frontend's `scorecard.ts` exactly so NLP and aggregation-page rendering agree on what's "best". | Shipped | §6 (ranking, new) |
 | 20 | **URL-length fix via token-addressed Selection** — when an NLP redirect would inline more than 100 compound IDs in the URL (hitting browser limits ~150 IDs), persist a `Selection` row server-side and redirect with `?selection=<uuid>`. The aggregation page treats both forms identically downstream. Auto-expiry after 7 days; cleanup management command sweeps. Foundation for slice 22's saved/composable selections. | Shipped | New §10 follow-up |
 | 21 | **"Compounds similar to X" via Tanimoto on Morgan fingerprints** — new `similar_to_as_typed` + `similar_threshold` fields on CompoundSelector. Anchors are user-typed compound IDs (same parser as `compound_refs_as_typed`). Morgan/ECFP4 fingerprints computed at registration time on `MolecularProperties.morgan_fp`; the executor narrows the surviving set to compounds whose Tanimoto similarity to ANY anchor is ≥ threshold (default 0.7). Backfill management command for pre-existing rows. | Shipped | §19.3 / §19.4 follow-up |
+| 22 | **Saved selections + session list panel** — promote slice 20's per-query Selection row from a URL-length workaround into the chemist's persistent session view. Adds `is_saved` (no expiry when true) and `target` (project context) fields on `Selection`. NLP view now persists a Selection row on EVERY successful compound query (regardless of size) so a fresh result lands in the session list immediately. New CRUD endpoints: `GET /selections/` (list, ordered most-recent-first, lean payload), `PATCH` (rename / save-toggle / set-target), `DELETE` — all creator-scoped. NLPPanel mounts a `SessionList` chip strip with save / open / delete actions; `?q=<prompt>` URL-state restores the last query when the chemist hits the browser back-button from `/assays/aggregate`. | Shipped | §10 follow-up, foundation for slice-22+ composition |
 
 Rollout dependencies: §16 prerequisites (Gene model + DDU hydration) are done. Demo + Kawamura backfill happens after the executor lands but before the feature flag is turned on for those instances.
 
@@ -867,6 +868,31 @@ What's deliberately out of slice 21:
 - **Intersection across anchors** (*"similar to A and B"*). Deferred until a chemist asks for it; the typical chemist phrasing maps to UNION semantics and that's what the v1 default delivers.
 - **Postgres RDKit cartridge**. The Python loop is sub-second at DDU scale (low thousands of compounds). Cartridge-based `WHERE morgan_fp % anchor > 0.7` becomes worthwhile only at 10K+ compound libraries; defer until the deployment-level decision (cartridge install) is made.
 - **Tanimoto-based ranking** (e.g. *"compounds most similar to X"* without a threshold, sorted by similarity). Composable with slice 19 if `rank_by` grows a `"similarity_to:<id>"` value, but no slice for it yet.
+
+**Slice 22 — Saved selections + session-list panel** (cumulative test count: see test_selection.py + test_view.py; +28 for the slice)
+
+Promotes slice 20's per-query `Selection` row from a URL-length workaround into the chemist's persistent session view. Concretely: every successful NLP compound query lands as a chip in the session list under the prompt bar, the chemist can save / rename / delete from there, and the browser back-button restores the last query.
+
+- **Model extensions** in [registry/models.py](apps/compounds/registry/models.py). Two new fields on `Selection`:
+  - `is_saved: bool` (default `False`). When true, `expires_at` is null; saved selections never expire.
+  - `target: ForeignKey(Target, null=True)`. Project context for slice-22-follow-up team sharing; the picker also uses it to scope which session-list rows to surface in the project NLP bar (§10).
+  - Index on `[created_by, is_saved]` for the session-list query path.
+- **NLP view persists on every successful query**, regardless of compound count. [`_build_redirect_url`](apps/compounds/nlp/view.py) now ALWAYS creates a `Selection` row when a user is authenticated and `compound_formatted_ids` is non-empty, then includes the new row's id as `selection_id` in the response body. The redirect URL form (`?compound=` inline below threshold vs `?selection=<uuid>` above) is unchanged. The frontend uses `selection_id` to refresh the session list immediately without round-tripping the list endpoint.
+- **CRUD endpoints** in [registry/selection_views.py](apps/compounds/registry/selection_views.py):
+  - `GET /api/compounds/selections/` — list the chemist's selections (saved + non-expired ephemeral). Lean payload (omits `compound_ids`); ordered most-recent-first; capped at 200. Optional `?is_saved=true|false` filter.
+  - `PATCH /api/compounds/selections/<uuid>/` — rename (`name`), toggle save state (`is_saved`), set/clear project (`target_id`). Toggling `is_saved=True` clears `expires_at`; `False` re-applies the 7-day default.
+  - `DELETE /api/compounds/selections/<uuid>/` — creator-scoped delete; 404 if the row belongs to another user.
+  - All five HTTP verbs collapse onto two URLs (`/selections/` and `/selections/<uuid>/`) via method-dispatcher `selection_collection` and `selection_detail`. `IsAuthenticated` enforced.
+- **Cleanup hardening** ([cleanup_selections.py](apps/compounds/registry/management/commands/cleanup_selections.py)) — explicit `is_saved=False` filter (defence-in-depth even though `expires_at__lt now` on a NULL is already false in SQL).
+- **Frontend `SessionList` component** at [components/compounds/nlp/SessionList.tsx](apps/compounds/frontend/components/compounds/nlp/SessionList.tsx). Chip strip rendered between the prompt bar and the result; each chip carries the scope sentence, compound count, relative timestamp, save toggle, open-in-aggregation, and delete (with confirm dialog). SWR-backed; `refreshKey` prop bumps on every successful NLP submit so a fresh result appears immediately.
+- **NLPPanel URL-state restoration** ([NLPPanel.tsx](apps/compounds/frontend/components/compounds/nlp/NLPPanel.tsx)). Reads `?q=<prompt>` on mount and re-runs that prompt; `router.replace` writes the prompt to the URL on every submit. Browser back-button from `/assays/aggregate` therefore lands the chemist back on `/nlp` with the result already restored — no need to retype.
+- **`selections-api.ts`** ([lib/compounds/selections-api.ts](apps/compounds/frontend/lib/compounds/selections-api.ts)) — typed wrappers for the four endpoints. Mirrors the `_serialize` wire format from selection_views.py.
+
+What's deliberately out of slice 22:
+
+- **Project-page-mounted NLP bar with target pre-scoping**. The infra is in place (`Selection.target` field) but the bar itself is queued behind validation of the v1 panel.
+- **Selection composition in queries** (*"Selection 1 AND Selection 2"*). Still slice-22-follow-up territory — needs a resolver, name-uniqueness story, and prompt-engineering for "Selection N" / "my hits" phrasings.
+- **Cross-user team sharing** of saved selections. The `target` foreign key is the visibility hint, but the read-side ACL is still creator-only. Team sharing waits until project membership / RBAC lands at the platform level.
 
 ### 18.3 Decisions made during implementation (additions to §13)
 

@@ -178,6 +178,8 @@ export type NLPResponse =
       protocol_names: string[];
       n_matched: number;
       scope_sentence: string;
+      // Persisted Selection row id; null when no compounds matched.
+      selection_id: string | null;
     }
   | {
       status: 'assay_selection';

@@ -453,15 +453,18 @@ def test_metric_miss_serialises_with_available_metrics(client, feature_on, clear
 
 
 # ---------------------------------------------------------------------------
-# Slice 20: token-addressed Selection redirect for large compound lists
+# Token-addressed Selection redirect for large compound lists; every
+# successful selection persists a Selection row regardless of size, so
+# the chemist's session list can surface it.
 # ---------------------------------------------------------------------------
 
 
 def test_small_selection_inlines_compound_ids_in_url(
     client, feature_on, clear_cache, world,
 ):
-    """Below the threshold, redirect URL inlines `?compound=` as before
-    — no Selection row is created."""
+    """Below the threshold, the redirect URL inlines `?compound=`. A
+    Selection row IS persisted (so the session list picks it up) but
+    the redirect form stays inline for shareable URLs."""
     from compounds.registry.models import Selection
     parsed = CompoundSelector(registration_target_as_typed="AR degraders")
     with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
@@ -469,7 +472,8 @@ def test_small_selection_inlines_compound_ids_in_url(
     assert resp.status_code == 200
     assert "compound=" in resp.data["redirect_url"]
     assert "selection=" not in resp.data["redirect_url"]
-    assert Selection.objects.count() == 0
+    assert Selection.objects.count() == 1
+    assert resp.data["selection_id"] == str(Selection.objects.get().pk)
 
 
 def test_large_selection_persists_token_and_uses_selection_param(
@@ -503,6 +507,8 @@ def test_large_selection_persists_token_and_uses_selection_param(
     assert sel.source_prompt == "all ARd compounds"
     assert sel.name == resp.data["scope_sentence"]
     assert sel.expires_at is not None  # 7-day default
+    assert sel.is_saved is False
+    assert resp.data["selection_id"] == str(sel.pk)
 
 
 def test_large_selection_token_in_url_is_uuid_form(
@@ -521,3 +527,22 @@ def test_large_selection_token_in_url_is_uuid_form(
         resp = client.post(URL, {"prompt": "x"}, format="json")
     sel = Selection.objects.get()
     assert f"selection={sel.id}" in resp.data["redirect_url"]
+
+
+def test_empty_selection_does_not_persist_row(
+    client, feature_on, clear_cache, db,
+):
+    """A selection with zero compounds doesn't create a Selection row —
+    nothing useful to surface in the session list. Target exists but
+    has zero compounds so the resolver succeeds and the executor
+    returns an empty CompoundSelection."""
+    from compounds.registry.models import Selection
+    Target.objects.create(name="ARd")
+    parsed = CompoundSelector(registration_target_as_typed="ARd")
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "ARd compounds"}, format="json")
+    assert resp.status_code == 200
+    assert resp.data["status"] == "selection"
+    assert resp.data["n_matched"] == 0
+    assert Selection.objects.count() == 0
+    assert resp.data["selection_id"] is None

@@ -1317,7 +1317,7 @@ class ScaffoldExtension(models.Model):
 
 class Selection(models.Model):
     """
-    Token-addressed snapshot of a compound list (slice 20).
+    Token-addressed snapshot of a compound list.
 
     Solves the URL-length problem when NLP queries select more
     compounds than fit in a query string (~150 at 12-char IDs).
@@ -1329,19 +1329,20 @@ class Selection(models.Model):
     a live query spec. The chemist who created the selection sees the
     same compounds whenever they revisit the URL until expiry.
 
-    Lifecycle in v1: every Selection auto-expires after 7 days unless
-    explicitly saved (slice 22 will add the `is_saved` flag and a
-    save action). A management command sweeps expired rows.
-
-    Authorisation: only the creator can read the selection. Slice 22
-    will add a project-scoped sharing layer; v1 is creator-only.
+    Invariants:
+    - ``is_saved=True`` implies ``expires_at`` is null. Saved selections
+      never expire and appear in the chemist's persistent session list;
+      unsaved ones live for the 7-day default window.
+    - Only the creator can read a selection (404 across users — don't
+      leak existence). Project-scoped sharing is reserved for a future
+      follow-up via the ``target`` field.
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(
         max_length=256,
         blank=True,
-        help_text='Display name (typically the NLP scope sentence). Shown in the aggregation header.',
+        help_text='Display name (typically the NLP scope sentence; renamable on save). Shown in the aggregation header.',
     )
     compound_ids = models.JSONField(
         default=list,
@@ -1357,7 +1358,18 @@ class Selection(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField(
         null=True, blank=True,
-        help_text='When this selection becomes unreachable. Null = never expires (saved). Cleanup command deletes expired rows.',
+        help_text='When this selection becomes unreachable. Null = saved (never expires). Cleanup command deletes expired rows.',
+    )
+    is_saved = models.BooleanField(
+        default=False,
+        help_text='Saved selections never expire and appear in the chemist\'s persistent list.',
+    )
+    target = models.ForeignKey(
+        Target,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        related_name='selections',
+        help_text='Optional project context. Used as a visibility hint for team-shared sessions.',
     )
 
     # Provenance
@@ -1373,6 +1385,7 @@ class Selection(models.Model):
         indexes = [
             models.Index(fields=['expires_at']),
             models.Index(fields=['created_by', '-created_at']),
+            models.Index(fields=['created_by', 'is_saved']),
         ]
 
     def __str__(self) -> str:

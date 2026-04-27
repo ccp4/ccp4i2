@@ -83,6 +83,7 @@ COPY apps/compounds/frontend/lib/compounds/useScrollDirection.ts ./renderer/lib/
 COPY apps/compounds/frontend/lib/compounds/protocol-colour.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/scorecard.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/nlp-api.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/selections-api.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/pptx-export.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/html2canvas-fonts.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/typography.ts ./renderer/lib/compounds/

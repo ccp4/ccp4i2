@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert,
   Box,
@@ -12,6 +12,8 @@ import {
   Typography,
 } from '@mui/material';
 import { Send } from '@mui/icons-material';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { mutate } from 'swr';
 import {
   applyClarifyPick,
   AssaySelector,
@@ -25,7 +27,9 @@ import {
   UnionCandidate,
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
+import { SELECTIONS_LIST_KEY } from '@/lib/compounds/selections-api';
 import { NLPResults } from './NLPResults';
+import { SessionList } from './SessionList';
 
 const EXAMPLE_PROMPTS = [
   'Show all CDK4 compounds',
@@ -35,10 +39,18 @@ const EXAMPLE_PROMPTS = [
 ];
 
 export function NLPPanel() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [prompt, setPrompt] = useState('');
   const [response, setResponse] = useState<NLPResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Tracks the most-recently-replayed `?q=` value so the URL-state
+  // restoration effect doesn't re-fire on every URL update we initiate.
+  const lastReplayedQuery = useRef<string | null>(null);
 
   const submitPrompt = useCallback(async (text: string) => {
     if (!text.trim()) return;
@@ -47,6 +59,7 @@ export function NLPPanel() {
     try {
       const result = await postNlpQuery({ prompt: text });
       setResponse(result);
+      mutate(SELECTIONS_LIST_KEY);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
       setResponse(null);
@@ -55,10 +68,33 @@ export function NLPPanel() {
     }
   }, []);
 
-  const handleSubmit = useCallback(
-    () => submitPrompt(prompt),
-    [prompt, submitPrompt],
+  const writeQueryParam = useCallback(
+    (text: string) => {
+      lastReplayedQuery.current = text;
+      const params = new URLSearchParams(searchParams?.toString() ?? '');
+      params.set('q', text);
+      router.replace(`${pathname}?${params.toString()}`);
+    },
+    [router, pathname, searchParams],
   );
+
+  // URL-state restoration: if the user lands here with `?q=<prompt>`
+  // (typically from the browser back-button after navigating to
+  // /assays/aggregate), re-run that prompt so the result is restored.
+  useEffect(() => {
+    const q = searchParams?.get('q');
+    if (!q || q === lastReplayedQuery.current) return;
+    lastReplayedQuery.current = q;
+    setPrompt(q);
+    submitPrompt(q);
+  }, [searchParams, submitPrompt]);
+
+  const handleSubmit = useCallback(() => {
+    const trimmed = prompt.trim();
+    if (!trimmed) return;
+    writeQueryParam(trimmed);
+    submitPrompt(trimmed);
+  }, [prompt, submitPrompt, writeQueryParam]);
 
   const handleClarifyPick = useCallback(
     async (
@@ -74,6 +110,7 @@ export function NLPPanel() {
       try {
         const result = await postNlpQuery({ selector: pinned });
         setResponse(result);
+        mutate(SELECTIONS_LIST_KEY);
       } catch (e) {
         setError(e instanceof Error ? e.message : String(e));
         setResponse(null);
@@ -87,9 +124,10 @@ export function NLPPanel() {
   const handleExampleClick = useCallback(
     (text: string) => {
       setPrompt(text);
+      writeQueryParam(text);
       submitPrompt(text);
     },
-    [submitPrompt],
+    [submitPrompt, writeQueryParam],
   );
 
   return (
@@ -145,6 +183,8 @@ export function NLPPanel() {
           </Box>
         )}
       </Paper>
+
+      <SessionList />
 
       {error && (
         <Alert severity="error">
