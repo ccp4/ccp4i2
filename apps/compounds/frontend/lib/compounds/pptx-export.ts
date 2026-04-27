@@ -206,3 +206,58 @@ function gridFor(cardsPerSlide: number): { cols: number; rows: number } {
 function todayIso(): string {
   return new Date().toISOString().slice(0, 10);
 }
+
+// ---------------------------------------------------------------------------
+// Single-node snapshot export — used by BulletsView for a "screenshot
+// of the whole table on one slide" PPTX. Capture the root once, fit it
+// into a single LAYOUT_WIDE slide preserving aspect ratio.
+//
+// For very tall tables (many compounds) the image scales down to fit
+// the slide height, narrowing it horizontally. Acceptable for an MVP
+// — row-group splitting is a follow-up if chemists routinely export
+// >30-compound bullet decks and want the per-row legibility back.
+// ---------------------------------------------------------------------------
+
+export interface SnapshotExportOptions {
+  /** PowerPoint deck title. */
+  deckTitle?: string;
+  /** Filename — should include the .pptx extension. */
+  fileName?: string;
+}
+
+export async function exportSnapshotToPptx(
+  node: HTMLElement,
+  options: SnapshotExportOptions = {},
+): Promise<void> {
+  const { deckTitle = 'Bullets table', fileName } = options;
+
+  // Same font-loading guard the cards path uses, plus a SVG presence
+  // check across all RDKit thumbnails inside the table.
+  await waitForCardsReady([node]);
+
+  const snap = await snapNode(node);
+  if (!snap) {
+    throw new Error('Failed to capture the bullets table.');
+  }
+
+  const pres = new pptxgen();
+  pres.title = deckTitle;
+  pres.layout = 'LAYOUT_WIDE';
+  const slideW = 13.333;
+  const slideH = 7.5;
+  const margin = 0.3;
+  const usable = { w: slideW - 2 * margin, h: slideH - 2 * margin };
+
+  const slide = pres.addSlide();
+  const fit = fitInCell(snap.widthPx, snap.heightPx, usable.w, usable.h);
+  slide.addImage({
+    data: snap.dataUrl,
+    x: margin + fit.xOffset,
+    y: margin + fit.yOffset,
+    w: fit.w,
+    h: fit.h,
+  });
+
+  const finalName = fileName || `bullets-${todayIso()}.pptx`;
+  await pres.writeFile({ fileName: finalName });
+}

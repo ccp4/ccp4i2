@@ -1,8 +1,9 @@
 'use client';
 
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
 import {
   Box,
+  Button,
   Paper,
   Typography,
   Tooltip,
@@ -14,7 +15,8 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from '@mui/material';
-import { ArrowDownward, ArrowUpward } from '@mui/icons-material';
+import { ArrowDownward, ArrowUpward, Slideshow } from '@mui/icons-material';
+import { exportSnapshotToPptx } from '@/lib/compounds/pptx-export';
 import { useRouter } from 'next/navigation';
 import type {
   CompactAggregationResponse,
@@ -81,6 +83,25 @@ export function BulletsView({
   // but doesn't push compound count off the screen. Local state for now.
   const [thumbSize, setThumbSize] = useState<ThumbSize>('md');
   const thumbPx = THUMB_SIZES[thumbSize];
+
+  // Ref on the bullets grid root so we can hand it to html2canvas for
+  // the PPTX export. Toolbar lives outside this ref so the captured
+  // PNG is just the table.
+  const tableRef = useRef<HTMLDivElement>(null);
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState<string | null>(null);
+  const handleExportPptx = useCallback(async () => {
+    setExportError(null);
+    if (!tableRef.current) return;
+    setExporting(true);
+    try {
+      await exportSnapshotToPptx(tableRef.current, { deckTitle: 'Bullets table' });
+    } catch (err) {
+      setExportError(err instanceof Error ? err.message : 'Export failed');
+    } finally {
+      setExporting(false);
+    }
+  }, []);
 
   const filteredRows = useMemo(() => {
     const all = data.data as CompactRow[];
@@ -196,15 +217,41 @@ export function BulletsView({
           <ToggleButton value="md" sx={{ px: 1, py: 0.25, fontSize: '0.75rem' }}>M</ToggleButton>
           <ToggleButton value="lg" sx={{ px: 1, py: 0.25, fontSize: '0.75rem' }}>L</ToggleButton>
         </ToggleButtonGroup>
+        <Tooltip
+          title={exporting ? 'Capturing…' : 'Download as PowerPoint (.pptx)'}
+          arrow
+        >
+          <span>
+            <Button
+              size="small"
+              variant="outlined"
+              startIcon={<Slideshow fontSize="small" />}
+              onClick={handleExportPptx}
+              disabled={exporting}
+              sx={{ ml: 1 }}
+            >
+              PPTX
+            </Button>
+          </span>
+        </Tooltip>
       </Box>
+      {exportError && (
+        <Typography variant="caption" color="error" sx={{ mb: 1, display: 'block' }}>
+          PowerPoint export failed: {exportError}
+        </Typography>
+      )}
 
       <Box
+        ref={tableRef}
         sx={{
           display: 'grid',
           gridTemplateColumns: `${thumbPx}px minmax(140px, max-content) repeat(${axes.length}, minmax(120px, 1fr))`,
           rowGap: 0.5,
           columnGap: 1.5,
           alignItems: 'center',
+          // White backdrop so the captured PNG isn't transparent and
+          // doesn't pick up the slide background colour.
+          bgcolor: 'background.paper',
         }}
       >
         {/* Sector banner row — one tinted band per sector spanning its
