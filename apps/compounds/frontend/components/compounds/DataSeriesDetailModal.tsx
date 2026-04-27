@@ -135,6 +135,18 @@ interface DataSeriesDetailModalProps {
 }
 
 /**
+ * Coerce a JSON-decoded number-or-string to a real number. Returns null if
+ * the value is null/undefined or doesn't parse — Postgres JSONField round-
+ * trips Decimal values as strings, and `.toExponential` / `.toFixed` would
+ * crash on those at the call site otherwise.
+ */
+function toNum(v: unknown): number | null {
+  if (v == null) return null;
+  const n = typeof v === 'number' ? v : Number(v);
+  return Number.isFinite(n) ? n : null;
+}
+
+/**
  * Extract fit parameters from analysis results for DoseResponseChart
  * Uses the KPI field to determine which result key contains the EC50/IC50/Ki value
  */
@@ -152,10 +164,10 @@ function extractFitParams(analysis: DataSeriesItem['analysis']): FitParameters |
 
   return {
     // Use KPI-indicated value, with fallbacks for legacy data
-    ec50: ec50Value ?? results.EC50 ?? results.ec50 ?? results.IC50 ?? results.ic50 ?? null,
-    hill: results.Hill ?? results.hill ?? results.hill_slope ?? results.slope ?? null,
-    minVal: results.minVal ?? results.Min ?? results.min ?? results.bottom ?? null,
-    maxVal: results.maxVal ?? results.Max ?? results.max ?? results.top ?? null,
+    ec50: toNum(ec50Value ?? results.EC50 ?? results.ec50 ?? results.IC50 ?? results.ic50),
+    hill: toNum(results.Hill ?? results.hill ?? results.hill_slope ?? results.slope),
+    minVal: toNum(results.minVal ?? results.Min ?? results.min ?? results.bottom),
+    maxVal: toNum(results.maxVal ?? results.Max ?? results.max ?? results.top),
     status: analysis.status,
     // Backend-generated curve points (algorithm-agnostic plotting)
     curvePoints: results.curve_points ?? null,
