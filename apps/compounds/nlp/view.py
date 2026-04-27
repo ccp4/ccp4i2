@@ -168,6 +168,7 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
         registered_by_id=data.get("registered_by_id"),
+        registered_by_supplier_id=data.get("registered_by_supplier_id"),
         scaffold_ids=list(data.get("scaffold_ids") or []),
     )
 

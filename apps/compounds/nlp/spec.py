@@ -176,8 +176,12 @@ class CompoundSelector:
     # Date range on Compound.registered_at — filters the base compound
     # scope BEFORE any measurement filters intersect.
     registered_date_range: Optional[DateRange] = None
-    # Name of the person who registered/made/synthesised the compound —
-    # filters on Compound.registered_by. Resolved via the user resolver.
+    # Name of the person OR supplier who registered / made / synthesised /
+    # supplied the compound — filters on Compound.registered_by (User FK)
+    # or Compound.supplier (Supplier FK, possibly user-linked). Slice 16
+    # broadened the resolver to be poly-source: a single typed phrase
+    # ("Martin", "Enamine", "Alice Jones") is matched against both pools,
+    # de-duped when a Supplier links to a User of the same name.
     registered_by_as_typed: Optional[str] = None
     # Substructure / scaffold filter — "ARd compounds containing pyrimidine".
     # Multiple hints are ANDed (each must match). Resolved via the curated
@@ -198,7 +202,11 @@ class CompoundSelector:
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None
     assay_target_id: Optional[str] = None
-    registered_by_id: Optional[str] = None
+    registered_by_id: Optional[str] = None         # User pk pinned by clarify
+    # Slice 16: when the clarify chip pinned a Supplier (rather than a
+    # User), the supplier id round-trips here. Mutually exclusive with
+    # registered_by_id at any one time, but the schema allows either.
+    registered_by_supplier_id: Optional[str] = None
     scaffold_ids: List[str] = field(default_factory=list)    # pinned canonical names
 
 
@@ -320,6 +328,12 @@ class UserCandidate:
     chip — falls through first_name+last_name → display_name → email →
     username. ``email`` is always shown as the secondary disambiguator
     in the picker since names collide (Alice J, Alice J).
+
+    ``kind`` is a discriminator (slice 16) — pickers under
+    ``registered_by_as_typed`` may also surface ``SupplierCandidate``s,
+    so the frontend dispatches on this field to pick the right
+    pin-field on continuation (``registered_by_id`` vs
+    ``registered_by_supplier_id``).
     """
 
     id: str
@@ -327,6 +341,7 @@ class UserCandidate:
     email: Optional[str] = None
     n_compounds: int = 0          # how many compounds this user registered (hint for registered-by picker)
     n_assays: int = 0             # how many assays this user created (hint for assayed-by picker)
+    kind: str = "user"
 
 
 @dataclass
@@ -341,7 +356,12 @@ class ResolvedUser:
 @dataclass
 class UserClarify:
     query: str
-    candidates: List[UserCandidate]
+    # Slice 16: registered_by clarifies may mix User and Supplier
+    # candidates (e.g. "Martin" → Martin Noble [user] + Martin Smith
+    # [supplier vendor]). The kind field on each candidate
+    # disambiguates — frontend pins to registered_by_id vs
+    # registered_by_supplier_id accordingly.
+    candidates: List[Union["UserCandidate", "SupplierCandidate"]]
     field: str = ""                # FIELD_REGISTERED_BY / FIELD_ASSAYED_BY — set by caller
     filter_index: int = 0          # only meaningful for FIELD_ASSAYED_BY
 
@@ -349,12 +369,48 @@ class UserClarify:
 @dataclass
 class UserMiss:
     query: str
-    suggestions: List[UserCandidate]
+    suggestions: List[Union["UserCandidate", "SupplierCandidate"]]
     field: str = ""
     filter_index: int = 0
 
 
-UserResolution = Union[ResolvedUser, UserClarify, UserMiss]
+UserResolution = Union[ResolvedUser, "ResolvedSupplier", UserClarify, UserMiss]
+
+
+# ---------------------------------------------------------------------------
+# Supplier (slice 16) — sibling of UserCandidate / ResolvedUser. The
+# registered_by resolver is poly-source: a typed phrase like "Enamine"
+# resolves to a Supplier, while "Alice Jones" resolves to a User. A
+# single Clarify can carry candidates of either kind so picker chips
+# render uniformly. Note: when a Supplier is user-linked (Supplier.user
+# == User), the resolver de-dupes — that's one entity from the
+# chemist's perspective.
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class SupplierCandidate:
+    """Thin JSON-serialisable view of a Supplier for clarify / miss
+    payloads. ``kind`` is the discriminator the frontend uses to pick
+    the right pin field on continuation."""
+
+    id: str
+    name: str
+    kind: str = "supplier"        # discriminator vs UserCandidate (kind="user")
+    initials: Optional[str] = None
+    n_compounds: int = 0
+    is_user_linked: bool = False  # de-duped against User candidate when True
+
+
+@dataclass
+class ResolvedSupplier:
+    # Type-any to avoid importing the Supplier model into spec.
+    supplier: object
+    matched_via: str
+    query: str
+
+
+SupplierResolution = Union[ResolvedSupplier, UserClarify, UserMiss]
 
 
 # ---------------------------------------------------------------------------

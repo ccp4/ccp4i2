@@ -20,6 +20,7 @@ import {
   postNlpQuery,
   ProtocolCandidate,
   ScaffoldCandidate,
+  SupplierCandidate,
   TargetCandidate,
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
@@ -62,7 +63,7 @@ export function NLPPanel() {
     async (
       partial: CompoundSelector | AssaySelector,
       field: string,
-      candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
+      candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
       filterIndex?: number,
       scaffoldIndex?: number,
     ) => {

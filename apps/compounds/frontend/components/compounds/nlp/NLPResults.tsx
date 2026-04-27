@@ -22,6 +22,7 @@ import {
   NLPResponse,
   ProtocolCandidate,
   ScaffoldCandidate,
+  SupplierCandidate,
   TargetCandidate,
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
@@ -57,7 +58,7 @@ interface Props {
   onClarifyPick: (
     partial: CompoundSelector | AssaySelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
     filterIndex?: number,
     scaffoldIndex?: number,
   ) => void;
@@ -224,18 +225,23 @@ function ClarifyView({
   onPick: (
     partial: CompoundSelector | AssaySelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
     filterIndex?: number,
     scaffoldIndex?: number,
   ) => void;
 }) {
   const { field, query, candidates, partial_selector, filter_index, scaffold_index } = response;
   const kind = kindForField(field);
+  // Slice 16: registered_by clarify can mix Users and Suppliers.
+  // Use a heading that reads naturally for either ("person or
+  // supplier") rather than the User-only prior wording.
   const heading =
     kind === 'protocol'
       ? `Which ${query !== '' ? `"${query}" ` : ''}protocol did you mean?`
       : kind === 'user'
-        ? `Which person did you mean by "${query}"?`
+        ? field === FIELD_REGISTERED_BY
+          ? `Which person or supplier did you mean by "${query}"?`
+          : `Which person did you mean by "${query}"?`
         : kind === 'scaffold'
           ? `Which substructure did you mean by "${query}"?`
           : `Which target did you mean by "${query}"?`;
@@ -289,7 +295,7 @@ function CandidateLabel({
   candidate,
   kind,
 }: {
-  candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate;
+  candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate;
   kind: CandidateKind;
 }) {
   if (kind === 'protocol') {
@@ -305,6 +311,22 @@ function CandidateLabel({
     );
   }
   if (kind === 'user') {
+    // Slice 16: registered_by clarify can mix Users and Suppliers.
+    // Dispatch on the candidate's own `kind` discriminator.
+    if ((candidate as SupplierCandidate).kind === 'supplier') {
+      const s = candidate as SupplierCandidate;
+      const subtitle = [
+        'supplier',
+        s.initials ? `(${s.initials})` : null,
+        s.n_compounds > 0 ? `${s.n_compounds} compounds` : null,
+      ].filter(Boolean).join(' · ');
+      return (
+        <Box>
+          <Typography variant="body2" sx={{ fontWeight: 500 }}>{s.name}</Typography>
+          <Typography variant="caption" color="text.secondary">{subtitle}</Typography>
+        </Box>
+      );
+    }
     const u = candidate as UserCandidate;
     const counts: string[] = [];
     if (u.n_compounds > 0) counts.push(`${u.n_compounds} compounds`);
@@ -358,10 +380,16 @@ function MissView({
   const label = LABEL_FOR_KIND[kind];
 
   const chipLabel = (
-    s: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
+    s: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
   ): string => {
     if (kind === 'protocol') return (s as ProtocolCandidate).name;
-    if (kind === 'user') return (s as UserCandidate).display;
+    if (kind === 'user') {
+      // Slice 16: registered_by miss may mix users and suppliers.
+      if ((s as SupplierCandidate).kind === 'supplier') {
+        return (s as SupplierCandidate).name;
+      }
+      return (s as UserCandidate).display;
+    }
     if (kind === 'scaffold') return (s as ScaffoldCandidate).name;
     return (s as TargetCandidate).name;
   };

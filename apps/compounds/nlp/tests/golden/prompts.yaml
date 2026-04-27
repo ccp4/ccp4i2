@@ -820,6 +820,45 @@
     measurement_filters: []
 
 # =============================================================================
+# Supplier-as-registrant (slice 16) — registered_by_as_typed is poly-source.
+# A vendor name like "Enamine" is just as valid as a chemist name — the
+# backend tries both pools and de-dupes user-linked Suppliers.
+# =============================================================================
+
+- name: supplier_pure_vendor
+  prompt: "ARd compounds from Enamine"
+  expected:
+    type: selector
+    note: "Pure vendor — resolves against the Supplier pool, not Users."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    registered_by_as_typed: Enamine
+    measurement_filters: []
+
+- name: supplier_supplied_by_phrasing
+  prompt: "Compounds supplied by Sigma"
+  expected:
+    type: selector
+    note: "'supplied by' is interchangeable with 'made by' / 'registered by' for the LLM — emit verbatim, backend dispatches."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    registered_by_as_typed: Sigma
+    measurement_filters: []
+
+- name: supplier_with_threshold
+  prompt: "ChemBridge compounds with HTRF IC50 < 100 nM"
+  expected:
+    type: selector
+    note: "ChemBridge as supplier name composes with a measurement filter."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    registered_by_as_typed: ChemBridge
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 

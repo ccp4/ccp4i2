@@ -74,6 +74,8 @@ from .spec import (
     UserClarify,
     UserMiss,
     UserResolution,
+    SupplierCandidate,
+    ResolvedSupplier,
     ScaffoldCandidate,
     ScaffoldClarify,
     ScaffoldMiss,
@@ -697,6 +699,190 @@ def assay_creators_qs() -> QuerySet:
     """All users who have created at least one assay — the eligible pool
     for per-filter `assayed_by` resolution."""
     return User.objects.filter(created_assays__isnull=False).distinct()
+
+
+# ---------------------------------------------------------------------------
+# Poly-source registrant resolution (slice 16) — User OR Supplier
+# ---------------------------------------------------------------------------
+
+
+def compound_suppliers_qs() -> QuerySet:
+    """All Suppliers that have at least one compound — the eligible
+    pool for the supplier half of `registered_by` resolution."""
+    from compounds.registry.models import Supplier
+    return Supplier.objects.filter(compounds__isnull=False).distinct()
+
+
+def _supplier_pool(supplier) -> set:
+    """Normalised strings a supplier's name / initials should match."""
+    pool: set = set()
+    name = (supplier.name or "").strip()
+    if name:
+        pool.add(normalize(name))
+    initials = (supplier.initials or "").strip()
+    if initials:
+        pool.add(normalize(initials))
+    pool.discard("")
+    return pool
+
+
+def _supplier_candidate(
+    supplier, *, n_compounds: int = 0, is_user_linked: bool = False,
+) -> SupplierCandidate:
+    return SupplierCandidate(
+        id=str(supplier.pk),
+        name=supplier.name or "",
+        initials=supplier.initials or None,
+        n_compounds=n_compounds,
+        is_user_linked=is_user_linked,
+    )
+
+
+def resolve_registrant(
+    as_typed: str,
+    *,
+    field: str,
+    pinned_user_id: Optional[str] = None,
+    pinned_supplier_id: Optional[str] = None,
+) -> UserResolution:
+    """Resolve a typed phrase against BOTH the User pool (chemists who
+    clicked Register) and the Supplier pool (vendors / personal-synthesis
+    sources). Returns:
+
+    - ``ResolvedUser`` when a single User matches and no Supplier
+      collides.
+    - ``ResolvedSupplier`` when a single Supplier matches and no User
+      collides.
+    - ``UserClarify`` with mixed UserCandidate + SupplierCandidate chips
+      when multiple entries in either pool match.
+    - ``UserMiss`` when nothing matches.
+
+    De-dup discipline: if a Supplier's ``user`` FK points at a User
+    that's also in the User pool with the same normalised name, the
+    Supplier is dropped — that's one entity from the chemist's
+    perspective. The User candidate is the canonical one.
+
+    Pinning: ``pinned_user_id`` short-circuits to the User pool;
+    ``pinned_supplier_id`` short-circuits to the Supplier pool. They
+    are mutually exclusive in practice but the function tolerates
+    either independently.
+    """
+    if pinned_user_id:
+        user = compound_registrars_qs().filter(pk=pinned_user_id).first()
+        if user is None:
+            return UserMiss(
+                query=as_typed or "", suggestions=[], field=field,
+            )
+        return ResolvedUser(user=user, matched_via="pinned_id", query=as_typed or "")
+
+    if pinned_supplier_id:
+        supplier = compound_suppliers_qs().filter(pk=pinned_supplier_id).first()
+        if supplier is None:
+            return UserMiss(
+                query=as_typed or "", suggestions=[], field=field,
+            )
+        return ResolvedSupplier(
+            supplier=supplier, matched_via="pinned_id", query=as_typed or "",
+        )
+
+    norm_query = normalize(as_typed or "")
+    if not norm_query:
+        return UserMiss(query=as_typed or "", suggestions=[], field=field)
+
+    # User pool (existing logic, factored).
+    users = list(
+        compound_registrars_qs()
+        .select_related("profile")
+        .annotate(_n_compounds=Count("registered_compounds", distinct=True))
+    )
+    user_exact = []
+    user_partial = []
+    for user in users:
+        pool = _user_pool(user)
+        if norm_query in pool:
+            user_exact.append(user)
+        elif any(norm_query in entry for entry in pool):
+            user_partial.append(user)
+
+    # Supplier pool (slice 16). De-dup against user-linked Suppliers
+    # whose linked User would already appear among user_exact /
+    # user_partial — those are the same entity.
+    user_pks_in_match = {u.pk for u in user_exact + user_partial}
+    suppliers = list(
+        compound_suppliers_qs()
+        .select_related("user")
+        .annotate(_n_compounds=Count("compounds", distinct=True))
+    )
+    sup_exact = []
+    sup_partial = []
+    for sup in suppliers:
+        if sup.user_id and sup.user_id in user_pks_in_match:
+            continue                             # de-duped against the User candidate
+        pool = _supplier_pool(sup)
+        if norm_query in pool:
+            sup_exact.append(sup)
+        elif any(norm_query in entry for entry in pool):
+            sup_partial.append(sup)
+
+    total_exact = len(user_exact) + len(sup_exact)
+    total_partial = len(user_partial) + len(sup_partial)
+
+    # Single resolved entity (no other pool collision).
+    if total_exact == 1 and total_partial == 0:
+        if user_exact:
+            return ResolvedUser(
+                user=user_exact[0], matched_via="exact", query=as_typed,
+            )
+        return ResolvedSupplier(
+            supplier=sup_exact[0], matched_via="exact", query=as_typed,
+        )
+
+    # Mixed clarify — render as UserClarify with mixed candidates.
+    if total_exact + total_partial > 0:
+        def _user_to_candidate(u) -> UserCandidate:
+            return _user_candidate(
+                u, n_compounds=getattr(u, "_n_compounds", 0) or 0,
+            )
+
+        def _sup_to_candidate(s) -> SupplierCandidate:
+            return _supplier_candidate(
+                s,
+                n_compounds=getattr(s, "_n_compounds", 0) or 0,
+                is_user_linked=s.user_id is not None,
+            )
+
+        # Order: user-exact, supplier-exact, user-partial, supplier-partial.
+        # Within each tier, more-prolific entries first.
+        user_exact.sort(key=lambda u: -(getattr(u, "_n_compounds", 0) or 0))
+        sup_exact.sort(key=lambda s: -(getattr(s, "_n_compounds", 0) or 0))
+        user_partial.sort(key=lambda u: -(getattr(u, "_n_compounds", 0) or 0))
+        sup_partial.sort(key=lambda s: -(getattr(s, "_n_compounds", 0) or 0))
+        candidates: List = []
+        candidates.extend(_user_to_candidate(u) for u in user_exact)
+        candidates.extend(_sup_to_candidate(s) for s in sup_exact)
+        candidates.extend(_user_to_candidate(u) for u in user_partial)
+        candidates.extend(_sup_to_candidate(s) for s in sup_partial)
+        candidates = candidates[: _CLARIFY_MAX_CANDIDATES]
+        return UserClarify(query=as_typed, candidates=candidates, field=field)
+
+    # Miss — surface the top few most-prolific entries from BOTH pools.
+    suggestions: List = []
+    users.sort(key=lambda u: -(getattr(u, "_n_compounds", 0) or 0))
+    suggestions.extend(
+        _user_candidate(u, n_compounds=getattr(u, "_n_compounds", 0) or 0)
+        for u in users[: _MISS_SUGGESTION_COUNT // 2 + 1]
+    )
+    suppliers.sort(key=lambda s: -(getattr(s, "_n_compounds", 0) or 0))
+    suggestions.extend(
+        _supplier_candidate(
+            s,
+            n_compounds=getattr(s, "_n_compounds", 0) or 0,
+            is_user_linked=s.user_id is not None,
+        )
+        for s in suppliers[: _MISS_SUGGESTION_COUNT // 2 + 1]
+    )
+    suggestions = suggestions[:_MISS_SUGGESTION_COUNT]
+    return UserMiss(query=as_typed, suggestions=suggestions, field=field)
 
 
 # ---------------------------------------------------------------------------

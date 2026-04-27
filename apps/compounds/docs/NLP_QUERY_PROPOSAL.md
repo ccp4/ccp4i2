@@ -537,6 +537,7 @@ Work is delivered as narrow vertical slices that build the backend first and def
 | 13 | **Substructure / scaffold queries** — curated name→SMARTS catalog + RDKit on-the-fly `HasSubstructMatch`; `scaffold_hints` list on both selectors; LLM emits typed names verbatim, never SMARTS | Shipped | §19.3, §19.4, §19.7 third-position update |
 | 14 | **Compound-ID pinning** — `compound_refs_as_typed` list on `CompoundSelector`; UNION semantics (additive, not narrowing); deterministic resolver via `compounds.formatting.extract_reg_number`; "compound 26007 and recent compounds" lands a known lead alongside a filtered set for comparison | Shipped | §19.7 update |
 | 15 | **Diagnostic empty selections — MetricMiss** — lenient KPI match (case + punctuation insensitive), correct `metric=None` semantics, and a `MetricMiss` with `available_metrics` when the user's typed metric isn't recorded in any in-scope row's KPI. *"ARd HTRF IC50 < 50"* with rows recording `pIC50` no longer silently returns "Found 0" — the response answers itself with the available KPIs. | Shipped | §6.3 (revisited), §18.3 slice-3 footnote |
+| 16 | **Poly-source `registered_by`** — broaden the `registered_by_as_typed` resolver to match against **both** the User pool (chemists who clicked Register) and the Supplier pool (vendors / personal-synthesis sources). De-dups user-linked Suppliers against their Users. *"compounds from Enamine"*, *"supplied by Sigma"*, *"made by Bob Smith"* (where Bob is both User and personal-Supplier) all do the natural thing. | Shipped | §6 (user resolution, broadened) |
 
 Rollout dependencies: §16 prerequisites (Gene model + DDU hydration) are done. Demo + Kawamura backfill happens after the executor lands but before the feature flag is turned on for those instances.
 
@@ -748,6 +749,27 @@ Wire-up:
 
 Tests: 5 evaluator (lenient case + punctuation, `metric=None` two ways, plus the existing strict-EC50-vs-IC50 mismatch is preserved); 4 executor (`MetricMiss` with available KPIs, `filter_index` tagging on the second filter, lenient match end-to-end, empty-scope case where `available_metrics == []`); 1 view test asserting the response shape end-to-end. **271 passing** (was 262).
 
+**Slice 16 — Poly-source `registered_by` (User + Supplier)** (288 tests cumulative; +17 for the slice)
+
+Problem: a chemist asking *"compounds from Enamine"* or *"supplied by Sigma"* got `UserMiss` because the resolver looked only at the Django User table — vendors aren't users. And *"compounds made by Bob Smith"* surfaced only Bob's *registered* compounds, not the ones supplied via his personal-Supplier link, even though the chemist mental model conflates the two. Both are slice-16 fixes.
+
+- **Resolver pool broadened.** [`resolve_registrant`](apps/compounds/nlp/resolver.py) walks the User pool first (existing logic, factored out of `resolve_user`) then the Supplier pool (new, via `compound_suppliers_qs()` — Suppliers with at least one compound). Returns `ResolvedUser` or `ResolvedSupplier` for the unique-resolved case; `UserClarify` with mixed candidates when both pools have hits.
+- **De-dup discipline.** When a Supplier's `user` FK points at a User who's already in the matched-User set, the Supplier is dropped — that's one entity from the chemist's perspective. Bob (User) + Bob (personal Supplier linked to Bob) = one chip. The deduplication is by linked-user pk, not by name match, so two unrelated "Martins" still surface as separate chips.
+- **Q-filter union in the executor.** Once resolved, the registered-by filter becomes:
+  ```python
+  if isinstance(rr, ResolvedUser):
+      qs = qs.filter(Q(registered_by=rr.user) | Q(supplier__user=rr.user))
+  else:  # ResolvedSupplier
+      qs = qs.filter(supplier=rr.supplier)
+  ```
+  The User branch's UNION captures "Bob registered some" + "Bob supplied some via his personal link" in one filter — matching how chemists actually phrase the query.
+- **Pinning continuation.** A new `registered_by_supplier_id` field on `CompoundSelector` (parallel to the existing `registered_by_id`) round-trips the picked Supplier id through clarify continuations. The frontend's `applyClarifyPick` dispatches on the candidate's `kind` field (`"user"` or `"supplier"`) to pin to the right field; the executor's pin-resolution path likewise tries `pinned_user_id` first, then `pinned_supplier_id`.
+- **Scope-sentence echo-back.** ResolvedUser renders as *"registered by Alice Jones"*; ResolvedSupplier renders as *"from Enamine"* — the verb that reads naturally for vendor provenance.
+- **System prompt update.** The "People" rules section now explicitly names suppliers and includes example mappings (*"compounds from Enamine"* → `registered_by: "Enamine"`, *"compounds supplied by Sigma"* → `registered_by: "Sigma"`). The LLM still emits the typed phrase verbatim — the resolver dispatches.
+- **Frontend.** `SupplierCandidate` type added (with `kind: 'supplier'` discriminator); `UserCandidate` gains a back-compat-default `kind?: 'user'` field. `CandidateLabel` and the miss-chip label both branch on the candidate's `kind` so supplier chips render with their initials/n_compounds subtitle and a *"supplier"* tag. The clarify heading reads *"Which person or supplier did you mean by 'X'?"* when `field === FIELD_REGISTERED_BY`.
+
+Tests: 11 new resolver tests (User-only resolution preserved, pure-vendor lookup, initials lookup, no-compounds-supplier filtered out, de-dup, mixed-pool clarify, both pinning paths, miss with mixed suggestions); 6 executor tests (User-only filter, pure-vendor filter, Q-union surfaces both bob-registered and bob-supplied compounds, *"from Enamine"* scope sentence, supplier pinning, unknown-name miss). 3 golden entries (pure vendor, "supplied by", supplier + threshold). **288 passing** (was 271).
+
 ### 18.3 Decisions made during implementation (additions to §13)
 
 These are lived-in details that aren't in §1–17. They don't contradict §13 — they extend it.
@@ -826,6 +848,13 @@ These are lived-in details that aren't in §1–17. They don't contradict §13 �
 | 15 | `MetricMiss` carries `available_metrics: List[str]`, not generic candidate suggestions | The "did you mean…" answer for KPIs is a list of the actual stored values, not a fuzzy-ranked suggestion. A flat string list is the simplest payload; the frontend renders chips off it. |
 | 15 | First filter with a metric mismatch short-circuits (rather than collecting all misses) | Mirrors the existing per-filter clarify pattern (protocol clarify, scaffold clarify): one Miss at a time, `filter_index` tagged so the UI knows which filter the user is editing. Collecting and surfacing multiple misses simultaneously is doable but adds payload complexity for unclear UX gain. |
 | 15 | Empty `available_metrics` (no rows in scope at all) is *also* a `MetricMiss`, not a separate empty-scope error | A user typing *"ARd FOO IC50 < 10 nM"* against an empty programme should see a Miss with empty `available_metrics`, which the frontend renders as "no measurements in scope under any KPI — try a different protocol". One code path, one component branch — and the right answer for the user is the same shape. |
+| 16 | Single field (`registered_by_as_typed`), not separate User and Supplier fields | Chemist phrasings (*"made by"*, *"from"*, *"supplied by"*, *"registered by"*) collapse to one intent — *"who's responsible for this compound being in our database?"*. Forcing the LLM to pick "user" vs "supplier" at parse time would make it disambiguate on a chemistry-meaningful-but-API-meaningless axis. Backend dispatch keeps the LLM contract simple. |
+| 16 | De-dup by linked-User pk, not by name | A user-linked Supplier has `Supplier.user = User` — that's the bright-line "same person" signal. De-duping by name match would risk collapsing legitimately distinct entities (two different "Martins"). The pk link is unambiguous. |
+| 16 | Q-union for the User branch (`registered_by=user OR supplier__user=user`); single filter for the Supplier branch | When the resolved entity is a User, the chemist almost certainly means "anything Bob's responsible for" — both his clicked-register compounds and the ones he supplied through his personal-Supplier. Suppliers without User links are pure vendors; only the direct-supplier filter applies. |
+| 16 | New `registered_by_supplier_id` pin field, parallel to the existing `registered_by_id` | Two entity kinds need two pin fields. Reusing `registered_by_id` with a discriminator type would couple the schema to TypeScript-style tagged unions, which the JSON schema strict-mode shape doesn't accommodate cleanly. Two nullable id fields, mutually exclusive in practice, is the simplest serialisable shape. |
+| 16 | Scope sentence renders Supplier as *"from Enamine"*, not *"registered by Enamine"* | "Registered by Enamine" reads wrong — Enamine didn't click anything. *"From"* is how chemists naturally describe vendor provenance. The User branch keeps *"registered by"* because that IS the click. |
+| 16 | `assayed_by` stays User-only | Assays are run by lab staff with Django accounts. There's no equivalent of "supplier" for an assay — a vendor doesn't run an experiment. Generalising the assayed-by field would invite false matches and gain nothing. |
+| 16 | `kind` field on candidate dataclasses is the wire-level discriminator | The frontend dispatches on `candidate.kind === "supplier"` (vs default `"user"`) to render the right chip and to pin to the right field. The chemist sees "Enamine [supplier]" and "Bob Smith [user]" as visually distinct chips without needing to read the n_compounds subtitle. |
 
 ### 18.4 Running the tests
 

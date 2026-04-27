@@ -63,6 +63,12 @@ export interface CompoundSelector {
   registration_target_id?: string | null;
   assay_target_id?: string | null;
   registered_by_id?: string | null;
+  /**
+   * Slice 16: when the registered-by clarify chip pinned a Supplier
+   * (rather than a User), the supplier id round-trips here. Mutually
+   * exclusive with registered_by_id at any one time.
+   */
+  registered_by_supplier_id?: string | null;
   scaffold_ids?: string[];
 }
 
@@ -104,6 +110,23 @@ export interface UserCandidate {
   email: string | null;
   n_compounds: number;
   n_assays: number;
+  /**
+   * Discriminator (slice 16). Picker chips under
+   * ``registered_by_as_typed`` may also carry SupplierCandidate
+   * entries; the frontend dispatches on this field to pick the right
+   * pin field on continuation. Older payloads without the field
+   * default to "user".
+   */
+  kind?: 'user';
+}
+
+export interface SupplierCandidate {
+  id: string;
+  name: string;
+  initials: string | null;
+  n_compounds: number;
+  is_user_linked: boolean;
+  kind: 'supplier';
 }
 
 export interface ScaffoldCandidate {
@@ -136,7 +159,7 @@ export type NLPResponse =
       status: 'clarify';
       field: string;
       query: string;
-      candidates: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[];
+      candidates: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[] | (UserCandidate | SupplierCandidate)[];
       filter_index?: number;           // present for protocol / assayed-by clarify
       scaffold_index?: number;         // present for scaffold clarify
       partial_selector: CompoundSelector;
@@ -145,7 +168,7 @@ export type NLPResponse =
       status: 'miss';
       field: string;
       query: string;
-      suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[];
+      suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[] | (UserCandidate | SupplierCandidate)[];
       filter_index?: number;
       scaffold_index?: number;
       /**
@@ -254,7 +277,7 @@ function applyScaffoldPin(
 export function applyClarifyPick(
   partial: CompoundSelector | AssaySelector | undefined,
   field: string,
-  candidate: { id: string; name?: string | null; display?: string | null },
+  candidate: { id: string; name?: string | null; display?: string | null; kind?: string },
   filterIndex?: number,
   scaffoldIndex?: number,
 ): CompoundSelector | AssaySelector {
@@ -307,7 +330,17 @@ export function applyClarifyPick(
     next.assay_target_id = candidate.id;
     if (canonical) next.assay_target_as_typed = canonical;
   } else if (field === FIELD_REGISTERED_BY) {
-    next.registered_by_id = candidate.id;
+    // Slice 16: pin to whichever pool the candidate came from.
+    // SupplierCandidate carries `kind: "supplier"`; UserCandidate
+    // either carries `kind: "user"` or no kind field at all (back-
+    // compat with pre-slice-16 server payloads).
+    if (candidate.kind === 'supplier') {
+      next.registered_by_supplier_id = candidate.id;
+      next.registered_by_id = null;
+    } else {
+      next.registered_by_id = candidate.id;
+      next.registered_by_supplier_id = null;
+    }
     if (canonical) next.registered_by_as_typed = canonical;
   } else if (field === FIELD_PROTOCOL_HINT) {
     const idx = filterIndex ?? 0;

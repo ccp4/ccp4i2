@@ -37,6 +37,7 @@ from .resolver import (
     compound_registrars_qs,
     resolve_compound_ref,
     resolve_protocol,
+    resolve_registrant,
     resolve_scaffold,
     resolve_target,
     resolve_targets,
@@ -64,6 +65,7 @@ from .spec import (
     ResolvedCompound,
     ResolvedProtocol,
     ResolvedScaffold,
+    ResolvedSupplier,
     ResolvedTarget,
     ResolvedTargets,
     ResolvedUser,
@@ -132,19 +134,25 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
     if not isinstance(rt, ResolvedTargets):
         return rt
 
-    # Selector-level user resolution (registered-by). Sequential clarify —
-    # any unresolved user short-circuits the whole selector.
+    # Selector-level registrant resolution — poly-source (User OR
+    # Supplier, slice 16). The chemist's "made by" / "registered by" /
+    # "from" phrasing matches against both pools; the resolver de-dupes
+    # user-linked Suppliers against their Users.
     resolved_registered_by = None
-    if selector.registered_by_as_typed or selector.registered_by_id:
-        ru = resolve_user(
+    if (
+        selector.registered_by_as_typed
+        or selector.registered_by_id
+        or selector.registered_by_supplier_id
+    ):
+        rr = resolve_registrant(
             selector.registered_by_as_typed or "",
-            compound_registrars_qs(),
             field=FIELD_REGISTERED_BY,
-            pinned_id=selector.registered_by_id,
+            pinned_user_id=selector.registered_by_id,
+            pinned_supplier_id=selector.registered_by_supplier_id,
         )
-        if not isinstance(ru, ResolvedUser):
-            return ru
-        resolved_registered_by = ru
+        if not isinstance(rr, (ResolvedUser, ResolvedSupplier)):
+            return rr
+        resolved_registered_by = rr
 
     # Resolve each filter's protocol hint + assayed-by user (if any) in
     # order. First ambiguity short-circuits — the UI clarifies one
@@ -328,7 +336,7 @@ def _apply_date_range(qs, field: str, dr: Optional[DateRange]):
 def _base_scope_compound_ids(
     rt: ResolvedTargets,
     selector: CompoundSelector,
-    resolved_registered_by: Optional[ResolvedUser],
+    resolved_registered_by: Optional[object],   # ResolvedUser | ResolvedSupplier | None
 ) -> Set[str]:
     """Compound IDs that pass the target scope + registered-date filter
     + registered-by filter.
@@ -363,7 +371,17 @@ def _base_scope_compound_ids(
     qs = _apply_date_range(qs, "registered_at", selector.registered_date_range)
 
     if resolved_registered_by is not None:
-        qs = qs.filter(registered_by=resolved_registered_by.user)
+        from django.db.models import Q
+        if isinstance(resolved_registered_by, ResolvedUser):
+            user = resolved_registered_by.user
+            # Match compounds where EITHER the registered_by FK is this
+            # user OR the supplier is this user's user-linked Supplier.
+            # Chemists conflate "registered by" with "supplied by self"
+            # routinely; exposing both via one filter mirrors that.
+            qs = qs.filter(Q(registered_by=user) | Q(supplier__user=user))
+        else:
+            # ResolvedSupplier — filter on the supplier FK directly.
+            qs = qs.filter(supplier=resolved_registered_by.supplier)
 
     return set(qs.values_list("pk", flat=True))
 
@@ -488,7 +506,7 @@ def _scope_sentence(
     selector: CompoundSelector,
     resolved_protocols: List[Optional[ResolvedProtocol]],
     *,
-    resolved_registered_by: Optional[ResolvedUser] = None,
+    resolved_registered_by: Optional[object] = None,   # ResolvedUser | ResolvedSupplier | None
     resolved_assayed_bys: Optional[List[Optional[ResolvedUser]]] = None,
     resolved_scaffolds: Optional[List[ResolvedScaffold]] = None,
     resolved_pins: Optional[List[ResolvedCompound]] = None,
@@ -514,8 +532,15 @@ def _scope_sentence(
     if reg_date_phrase:
         parens.append(reg_date_phrase)
     if resolved_registered_by is not None:
-        from .resolver import _user_display  # avoid circular at module load
-        parens.append(f"registered by {_user_display(resolved_registered_by.user)}")
+        if isinstance(resolved_registered_by, ResolvedUser):
+            from .resolver import _user_display  # avoid circular at module load
+            parens.append(
+                f"registered by {_user_display(resolved_registered_by.user)}"
+            )
+        else:
+            # ResolvedSupplier — render the supplier name verbatim. "from"
+            # reads better than "registered by" for a vendor.
+            parens.append(f"from {resolved_registered_by.supplier.name}")
     if parens:
         base += " (" + ", ".join(parens) + ")"
 

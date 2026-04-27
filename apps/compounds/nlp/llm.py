@@ -96,13 +96,20 @@ Rules:
   a piperidine"), each goes in `scaffold_hints` as its own entry.
   The same applies inside `assay_selector` — "HTRF assays on
   pyrimidines" sets `assay_selector.scaffold_hints = ["pyrimidines"]`.
-- People: `registered_by_as_typed` (on the selector) filters on WHO
-  registered / made / synthesised the compound. `assayed_by_as_typed`
-  (per filter) filters on WHO ran the assay — use for phrasings like
-  "tested by", "assayed by", "run by". Emit the name/username/email
-  VERBATIM as the user typed it; the backend resolves. Examples:
+- People AND suppliers: `registered_by_as_typed` (on the selector)
+  filters on WHO registered / made / synthesised / SUPPLIED the
+  compound. The backend resolves it against both internal user
+  accounts AND the chemical-supplier catalogue, so chemist names
+  ("Alice Jones") and vendor names ("Enamine", "Sigma", "ChemBridge")
+  are equally valid. `assayed_by_as_typed` (per filter) is User-only
+  and filters on WHO ran the assay — use for "tested by", "assayed
+  by", "run by". Emit the name / vendor / username / email VERBATIM
+  as typed; the backend resolves. Examples:
     "compounds registered by Alice"            → registered_by: "Alice"
     "compounds made by Alice Jones"            → registered_by: "Alice Jones"
+    "compounds from Enamine"                   → registered_by: "Enamine"
+    "compounds supplied by Sigma"              → registered_by: "Sigma"
+    "ChemBridge compounds"                     → registered_by: "ChemBridge" (when ChemBridge is a known supplier)
     "IC50 in HTRF tested by alice.jones"       → filter.assayed_by: "alice.jones"
     "assays run by alice.jones@ncl.ac.uk"      → filter.assayed_by: "alice.jones@ncl.ac.uk"
   If the user names themselves via "I", "me", "my" without naming a

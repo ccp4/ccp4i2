@@ -1168,3 +1168,107 @@ def test_metric_miss_when_no_rows_in_scope(db):
     ))
     assert isinstance(res, MetricMiss)
     assert res.available_metrics == []
+
+
+# ---------------------------------------------------------------------------
+# Poly-source registered_by (slice 16) — Users AND Suppliers
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def registrant_executor_world(db):
+    """Two compounds: one registered by Alice (user), one supplied by
+    Enamine (vendor). Lets us prove "registered by Alice" returns the
+    Alice-registered one and "from Enamine" returns the Enamine-supplied
+    one."""
+    from compounds.registry.models import Supplier
+    t = Target.objects.create(name="ARd")
+    alice = User.objects.create_user(
+        username="alice.jones", email="alice.jones@ncl.ac.uk",
+        first_name="Alice", last_name="Jones",
+    )
+    bob = User.objects.create_user(
+        username="bob.smith", email="bob.smith@ncl.ac.uk",
+        first_name="Bob", last_name="Smith",
+    )
+    bob_supplier = Supplier.objects.create(name="Bob Smith", user=bob)
+    enamine = Supplier.objects.create(name="Enamine", initials="ENM")
+    c_alice = Compound.objects.create(target=t, smiles="CCO", registered_by=alice)
+    c_enamine = Compound.objects.create(target=t, smiles="CCN", supplier=enamine)
+    # Bob has both a registered compound AND a personal-supplier-supplied
+    # one — both should surface under "registered by Bob" thanks to the
+    # OR'd filter.
+    c_bob_reg = Compound.objects.create(target=t, smiles="CCC", registered_by=bob)
+    c_bob_sup = Compound.objects.create(target=t, smiles="CCCC", supplier=bob_supplier)
+    return {
+        "alice": alice, "bob": bob, "enamine": enamine, "bob_supplier": bob_supplier,
+        "c_alice": c_alice, "c_enamine": c_enamine,
+        "c_bob_reg": c_bob_reg, "c_bob_sup": c_bob_sup,
+    }
+
+
+def test_registered_by_user_filters_user_compounds(registrant_executor_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="Alice Jones",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [
+        registrant_executor_world["c_alice"].formatted_id,
+    ]
+
+
+def test_registered_by_supplier_filters_supplied_compounds(registrant_executor_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="Enamine",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [
+        registrant_executor_world["c_enamine"].formatted_id,
+    ]
+
+
+def test_registered_by_user_with_personal_supplier_returns_both(registrant_executor_world):
+    """Bob has registered one compound AND supplied one via his own
+    personal-supplier. The Q-filter union surfaces BOTH under 'made
+    by Bob' — that's what a chemist actually means."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="Bob Smith",
+    ))
+    assert isinstance(res, CompoundSelection)
+    formatted = set(res.compound_formatted_ids)
+    assert registrant_executor_world["c_bob_reg"].formatted_id in formatted
+    assert registrant_executor_world["c_bob_sup"].formatted_id in formatted
+
+
+def test_scope_sentence_renders_supplier_with_from_phrasing(registrant_executor_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="Enamine",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "from Enamine" in res.scope_sentence
+
+
+def test_pinned_supplier_id_bypasses_resolver(registrant_executor_world):
+    """The frontend's clarify continuation pins via
+    registered_by_supplier_id; the executor honours it directly."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="Enamine",
+        registered_by_supplier_id=str(registrant_executor_world["enamine"].pk),
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [
+        registrant_executor_world["c_enamine"].formatted_id,
+    ]
+
+
+def test_unknown_registrant_returns_user_miss(registrant_executor_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="ZachariahNonExistent",
+    ))
+    assert isinstance(res, UserMiss)
