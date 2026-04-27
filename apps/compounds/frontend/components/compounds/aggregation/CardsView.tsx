@@ -945,16 +945,16 @@ function CompactCardBody({
 // enough to keep the dark text inside the bar readable across all
 // sectors (potency-blue and pk-pink are darkest).
 //
-// Uses plain Box / span elements with inline styling rather than MUI
-// Typography. html2canvas mis-handles Typography variants combined with
-// `whiteSpace: nowrap` + `textOverflow: ellipsis` — spaces inside the
-// text get collapsed in the captured PNG ("Lipinski compliance" reads
-// as "Lipinskicompliance", "6.19 nM" as "6.19nM"). Same defensive
-// pattern as CompoundIdBadge.
+// A single-row native <table> places label and value side by side with
+// label right-aligned and value left-aligned, meeting at the bar's
+// midline. Native tables capture cleanly under html2canvas (CSS Grid
+// and nested flex are both prior pain points); since the layout is
+// horizontal, font sizes can grow without making the bar taller.
 // ---------------------------------------------------------------------------
 
 const BULLET_TRACK_BG = 'rgba(0, 0, 0, 0.05)';
 const BULLET_FILL_ALPHA = 0.6;
+const BULLET_HEIGHT = 32;
 
 function hexToRgba(hex: string, alpha: number): string {
   const m = hex.replace('#', '');
@@ -966,27 +966,35 @@ function hexToRgba(hex: string, alpha: number): string {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-const BULLET_LABEL_STYLE = {
-  display: 'block',
+const BULLET_LABEL_CELL_STYLE: React.CSSProperties = {
+  width: '50%',
+  textAlign: 'right',
+  verticalAlign: 'middle',
+  paddingRight: 6,
   fontFamily: SANS_SERIF_FONT_STACK,
-  fontSize: '0.7rem',
+  fontSize: '0.85rem',
   fontWeight: 600,
-  lineHeight: 1.15,
+  lineHeight: 1.1,
   letterSpacing: 0,
   fontKerning: 'none',
   color: 'rgba(0,0,0,0.75)',
-} as const;
+  whiteSpace: 'nowrap',
+};
 
-const BULLET_VALUE_STYLE = {
-  display: 'block',
+const BULLET_VALUE_CELL_STYLE: React.CSSProperties = {
+  width: '50%',
+  textAlign: 'left',
+  verticalAlign: 'middle',
+  paddingLeft: 6,
   fontFamily: MONOSPACE_FONT_STACK,
-  fontSize: '0.78rem',
+  fontSize: '0.9rem',
   fontWeight: 700,
-  lineHeight: 1.15,
+  lineHeight: 1.1,
   letterSpacing: 0,
   fontKerning: 'none',
   color: 'rgba(0,0,0,0.9)',
-} as const;
+  whiteSpace: 'nowrap',
+};
 
 function StackedBulletCell({
   evaluation,
@@ -1005,17 +1013,20 @@ function StackedBulletCell({
       <Tooltip title="No data" arrow>
         <Box
           sx={{
-            height: 44,
+            height: BULLET_HEIGHT,
             border: '1px dashed',
             borderColor: 'divider',
             borderRadius: 0.5,
-            textAlign: 'center',
-            py: 0.5,
-            px: 1,
           }}
         >
-          <Box component="span" sx={BULLET_LABEL_STYLE}>{label}</Box>
-          <Box component="span" sx={{ ...BULLET_VALUE_STYLE, color: 'rgba(0,0,0,0.4)', fontWeight: 400 }}>no data</Box>
+          <table style={{ width: '100%', height: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
+            <tbody>
+              <tr>
+                <td style={BULLET_LABEL_CELL_STYLE}>{label}</td>
+                <td style={{ ...BULLET_VALUE_CELL_STYLE, color: 'rgba(0,0,0,0.4)', fontWeight: 400 }}>no data</td>
+              </tr>
+            </tbody>
+          </table>
         </Box>
       </Tooltip>
     );
@@ -1028,7 +1039,7 @@ function StackedBulletCell({
       <Box
         sx={{
           position: 'relative',
-          height: 44,
+          height: BULLET_HEIGHT,
           backgroundColor: BULLET_TRACK_BG,
           border: 1,
           borderColor: 'divider',
@@ -1044,17 +1055,22 @@ function StackedBulletCell({
             backgroundColor: fillColour,
           }}
         />
-        <Box
-          sx={{
+        <table
+          style={{
             position: 'relative',
-            textAlign: 'center',
-            py: 0.5,
-            px: 1,
+            width: '100%',
+            height: '100%',
+            borderCollapse: 'collapse',
+            tableLayout: 'fixed',
           }}
         >
-          <Box component="span" sx={BULLET_LABEL_STYLE}>{label}</Box>
-          <Box component="span" sx={BULLET_VALUE_STYLE}>{display}</Box>
-        </Box>
+          <tbody>
+            <tr>
+              <td style={BULLET_LABEL_CELL_STYLE}>{label}</td>
+              <td style={BULLET_VALUE_CELL_STYLE}>{display}</td>
+            </tr>
+          </tbody>
+        </table>
       </Box>
     </Tooltip>
   );
