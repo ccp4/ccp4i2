@@ -1272,3 +1272,76 @@ def test_unknown_registrant_returns_user_miss(registrant_executor_world):
         registered_by_as_typed="ZachariahNonExistent",
     ))
     assert isinstance(res, UserMiss)
+
+
+# ---------------------------------------------------------------------------
+# Slice 18: same-name User+Supplier merger end-to-end (Hannah Stewart)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def hannah_executor_world(db):
+    """Hannah Stewart registered three compounds AND has an unlinked
+    Supplier 'Hannah Stewart' supplying two more. Slice-18 merges
+    them into a Union; the executor's filter ORs all three paths so
+    the chemist sees ALL FIVE compounds."""
+    from compounds.registry.models import Supplier
+    t = Target.objects.create(name="ARd")
+    hannah_user = User.objects.create_user(
+        username="hannah.stewart", email="hannah.stewart@ncl.ac.uk",
+        first_name="Hannah", last_name="Stewart",
+    )
+    hannah_sup = Supplier.objects.create(name="Hannah Stewart")
+    registered = [
+        Compound.objects.create(target=t, smiles="CCO", registered_by=hannah_user),
+        Compound.objects.create(target=t, smiles="CCN", registered_by=hannah_user),
+        Compound.objects.create(target=t, smiles="CCC", registered_by=hannah_user),
+    ]
+    supplied = [
+        Compound.objects.create(target=t, smiles="CCCC", supplier=hannah_sup),
+        Compound.objects.create(target=t, smiles="CCCN", supplier=hannah_sup),
+    ]
+    return {
+        "user": hannah_user, "supplier": hannah_sup,
+        "registered": registered, "supplied": supplied,
+    }
+
+
+def test_union_filter_returns_both_registered_and_supplied(hannah_executor_world):
+    """The Hannah Stewart bug: pre-slice-18, "made by Hannah Stewart"
+    asked the chemist to pick a role; post-slice-18 it auto-resolves
+    to a Union and returns ALL FIVE compounds."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="Hannah Stewart",
+    ))
+    assert isinstance(res, CompoundSelection)
+    expected = {c.formatted_id for c in (
+        hannah_executor_world["registered"] + hannah_executor_world["supplied"]
+    )}
+    assert set(res.compound_formatted_ids) == expected
+
+
+def test_union_scope_sentence_says_registered_or_supplied(hannah_executor_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="Hannah Stewart",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "registered or supplied by Hannah Stewart" in res.scope_sentence
+
+
+def test_union_pinned_continuation_returns_same_set(hannah_executor_world):
+    """Frontend's clarify continuation sends both pin ids — the
+    executor honours that as a Union without re-running the resolver."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        registered_by_as_typed="ignored",
+        registered_by_id=str(hannah_executor_world["user"].pk),
+        registered_by_supplier_id=str(hannah_executor_world["supplier"].pk),
+    ))
+    assert isinstance(res, CompoundSelection)
+    expected = {c.formatted_id for c in (
+        hannah_executor_world["registered"] + hannah_executor_world["supplied"]
+    )}
+    assert set(res.compound_formatted_ids) == expected

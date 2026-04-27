@@ -76,6 +76,8 @@ from .spec import (
     UserResolution,
     SupplierCandidate,
     ResolvedSupplier,
+    ResolvedUnion,
+    UnionCandidate,
     ScaffoldCandidate,
     ScaffoldClarify,
     ScaffoldMiss,
@@ -843,6 +845,103 @@ def _supplier_candidate(
     )
 
 
+def _user_full_name_norm(user) -> Optional[str]:
+    """Normalised "first last" string for a User — None when either
+    name is missing. The single name we use for same-name merging
+    against Supplier.name (slice 18). Conservative: a User whose
+    full-name doesn't normalise can't be auto-merged."""
+    first = (user.first_name or "").strip()
+    last = (user.last_name or "").strip()
+    if not first or not last:
+        return None
+    norm = normalize(f"{first} {last}")
+    return norm or None
+
+
+def _merge_same_name_pairs(
+    user_exact: List, user_partial: List,
+    sup_exact: List, sup_partial: List,
+) -> Tuple[List, List, List, List, List, List]:
+    """Slice 18: collapse (User, unlinked-Supplier) pairs whose
+    full-name normalises identically into single union entries —
+    across tiers, so a User who exact-matches "hannah" via first
+    name AND a Supplier who partial-matches via substring of full
+    name still merge into one chip.
+
+    The resulting union takes the **stronger** tier (exact wins) so
+    the chemist sees the merged chip rendered prominently when at
+    least one side was an exact match.
+
+    Returns six lists: ``(exact_unions, partial_unions,
+    remaining_user_exact, remaining_user_partial,
+    remaining_sup_exact, remaining_sup_partial)``. Suppliers with a
+    ``user_id`` set are skipped — that's slice-16's user-linked case,
+    already de-duped upstream.
+    """
+    # Annotate each entity with its tier so we can merge across tiers
+    # while preserving tier info on the result.
+    annotated_users = (
+        [(u, "exact") for u in user_exact]
+        + [(u, "partial") for u in user_partial]
+    )
+    annotated_sups = (
+        [(s, "exact") for s in sup_exact]
+        + [(s, "partial") for s in sup_partial]
+    )
+
+    name_to_user_tier: Dict[str, Tuple[object, str]] = {}
+    for u, tier in annotated_users:
+        full = _user_full_name_norm(u)
+        if full and full not in name_to_user_tier:
+            name_to_user_tier[full] = (u, tier)
+
+    used_user_pks: set = set()
+    used_supplier_pks: set = set()
+    exact_unions: List = []
+    partial_unions: List = []
+    for sup, sup_tier in annotated_sups:
+        if sup.user_id is not None:
+            continue                                # not a slice-18 case
+        sup_norm = normalize(sup.name or "")
+        if not sup_norm or sup_norm not in name_to_user_tier:
+            continue
+        u, user_tier = name_to_user_tier[sup_norm]
+        if u.pk in used_user_pks or sup.pk in used_supplier_pks:
+            continue
+        merged_tier = "exact" if (user_tier == "exact" or sup_tier == "exact") else "partial"
+        if merged_tier == "exact":
+            exact_unions.append((u, sup))
+        else:
+            partial_unions.append((u, sup))
+        used_user_pks.add(u.pk)
+        used_supplier_pks.add(sup.pk)
+
+    remaining_user_exact = [u for u in user_exact if u.pk not in used_user_pks]
+    remaining_user_partial = [u for u in user_partial if u.pk not in used_user_pks]
+    remaining_sup_exact = [s for s in sup_exact if s.pk not in used_supplier_pks]
+    remaining_sup_partial = [s for s in sup_partial if s.pk not in used_supplier_pks]
+    return (
+        exact_unions, partial_unions,
+        remaining_user_exact, remaining_user_partial,
+        remaining_sup_exact, remaining_sup_partial,
+    )
+
+
+def _union_candidate(
+    user, supplier, *, n_user: int = 0, n_supplier: int = 0,
+) -> UnionCandidate:
+    return UnionCandidate(
+        # Composite id is opaque on the wire — frontend reads user_id
+        # and supplier_id directly, doesn't parse this string.
+        id=f"u:{user.pk}+s:{supplier.pk}",
+        display=_user_display(user),
+        user_id=str(user.pk),
+        supplier_id=str(supplier.pk),
+        n_compounds_user=n_user,
+        n_compounds_supplier=n_supplier,
+    )
+
+
 def resolve_registrant(
     as_typed: str,
     *,
@@ -858,20 +957,37 @@ def resolve_registrant(
       collides.
     - ``ResolvedSupplier`` when a single Supplier matches and no User
       collides.
-    - ``UserClarify`` with mixed UserCandidate + SupplierCandidate chips
-      when multiple entries in either pool match.
+    - ``ResolvedUnion`` when a User and a same-named unlinked Supplier
+      match together — the chemist's intent is the union of both sets,
+      not picking one role (slice 18).
+    - ``UserClarify`` with mixed UserCandidate / SupplierCandidate /
+      UnionCandidate chips when multiple entries match.
     - ``UserMiss`` when nothing matches.
 
-    De-dup discipline: if a Supplier's ``user`` FK points at a User
-    that's also in the User pool with the same normalised name, the
-    Supplier is dropped — that's one entity from the chemist's
-    perspective. The User candidate is the canonical one.
+    De-dup discipline:
+    - User-linked Suppliers (``Supplier.user`` points at a User in the
+      pool) are dropped (slice 16) — they're the same entity.
+    - Same-named unlinked Suppliers are merged into UnionCandidates
+      (slice 18) — same person, registered AND supplied roles are
+      ORed in the resulting filter.
 
-    Pinning: ``pinned_user_id`` short-circuits to the User pool;
-    ``pinned_supplier_id`` short-circuits to the Supplier pool. They
-    are mutually exclusive in practice but the function tolerates
-    either independently.
+    Pinning: ``pinned_user_id`` alone → ResolvedUser;
+    ``pinned_supplier_id`` alone → ResolvedSupplier; **both** set →
+    ResolvedUnion (the union-chip clarify continuation).
     """
+    # Both pinned → union case (slice-18 clarify continuation).
+    if pinned_user_id and pinned_supplier_id:
+        user = compound_registrars_qs().filter(pk=pinned_user_id).first()
+        supplier = compound_suppliers_qs().filter(pk=pinned_supplier_id).first()
+        if user is None or supplier is None:
+            return UserMiss(
+                query=as_typed or "", suggestions=[], field=field,
+            )
+        return ResolvedUnion(
+            user=user, supplier=supplier,
+            matched_via="pinned_union", query=as_typed or "",
+        )
+
     if pinned_user_id:
         user = compound_registrars_qs().filter(pk=pinned_user_id).first()
         if user is None:
@@ -929,11 +1045,29 @@ def resolve_registrant(
         elif any(norm_query in entry for entry in pool):
             sup_partial.append(sup)
 
-    total_exact = len(user_exact) + len(sup_exact)
-    total_partial = len(user_partial) + len(sup_partial)
+    # Slice 18: merge same-name (User, unlinked-Supplier) pairs into
+    # UnionCandidates so the chemist sees one chip per person, not
+    # two role-chips for the same human. Cross-tier merging — a User
+    # exact-matching via first name AND a Supplier partial-matching
+    # via substring still merge, with the resulting union taking the
+    # stronger tier.
+    (
+        exact_unions, partial_unions,
+        user_exact, user_partial,
+        sup_exact, sup_partial,
+    ) = _merge_same_name_pairs(user_exact, user_partial, sup_exact, sup_partial)
+
+    total_exact = len(user_exact) + len(sup_exact) + len(exact_unions)
+    total_partial = len(user_partial) + len(sup_partial) + len(partial_unions)
 
     # Single resolved entity (no other pool collision).
     if total_exact == 1 and total_partial == 0:
+        if exact_unions:
+            user, sup = exact_unions[0]
+            return ResolvedUnion(
+                user=user, supplier=sup,
+                matched_via="exact_union", query=as_typed,
+            )
         if user_exact:
             return ResolvedUser(
                 user=user_exact[0], matched_via="exact", query=as_typed,
@@ -956,15 +1090,26 @@ def resolve_registrant(
                 is_user_linked=s.user_id is not None,
             )
 
-        # Order: user-exact, supplier-exact, user-partial, supplier-partial.
-        # Within each tier, more-prolific entries first.
+        def _union_to_candidate(pair) -> UnionCandidate:
+            user, sup = pair
+            return _union_candidate(
+                user, sup,
+                n_user=getattr(user, "_n_compounds", 0) or 0,
+                n_supplier=getattr(sup, "_n_compounds", 0) or 0,
+            )
+
+        # Order: union-exact, user-exact, supplier-exact, then partials.
+        # Union chips lead because they're the most-likely-correct entry
+        # (chemist intent = "this person, both roles") when both match.
         user_exact.sort(key=lambda u: -(getattr(u, "_n_compounds", 0) or 0))
         sup_exact.sort(key=lambda s: -(getattr(s, "_n_compounds", 0) or 0))
         user_partial.sort(key=lambda u: -(getattr(u, "_n_compounds", 0) or 0))
         sup_partial.sort(key=lambda s: -(getattr(s, "_n_compounds", 0) or 0))
         candidates: List = []
+        candidates.extend(_union_to_candidate(p) for p in exact_unions)
         candidates.extend(_user_to_candidate(u) for u in user_exact)
         candidates.extend(_sup_to_candidate(s) for s in sup_exact)
+        candidates.extend(_union_to_candidate(p) for p in partial_unions)
         candidates.extend(_user_to_candidate(u) for u in user_partial)
         candidates.extend(_sup_to_candidate(s) for s in sup_partial)
         candidates = candidates[: _CLARIFY_MAX_CANDIDATES]

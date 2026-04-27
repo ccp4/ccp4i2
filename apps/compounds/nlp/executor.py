@@ -68,6 +68,7 @@ from .spec import (
     ResolvedSupplier,
     ResolvedTarget,
     ResolvedTargets,
+    ResolvedUnion,
     ResolvedUser,
     RowMatched,
     ScopeError,
@@ -150,7 +151,7 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
             pinned_user_id=selector.registered_by_id,
             pinned_supplier_id=selector.registered_by_supplier_id,
         )
-        if not isinstance(rr, (ResolvedUser, ResolvedSupplier)):
+        if not isinstance(rr, (ResolvedUser, ResolvedSupplier, ResolvedUnion)):
             return rr
         resolved_registered_by = rr
 
@@ -385,6 +386,16 @@ def _base_scope_compound_ids(
             # Chemists conflate "registered by" with "supplied by self"
             # routinely; exposing both via one filter mirrors that.
             qs = qs.filter(Q(registered_by=user) | Q(supplier__user=user))
+        elif isinstance(resolved_registered_by, ResolvedUnion):
+            # Slice 18: same-name (User, unlinked-Supplier) pair —
+            # union of all three paths. Hannah-Stewart-the-User's three
+            # registered compounds + Hannah-Stewart-the-Supplier's two
+            # supplied compounds, all surfaced together.
+            user = resolved_registered_by.user
+            sup = resolved_registered_by.supplier
+            qs = qs.filter(
+                Q(registered_by=user) | Q(supplier__user=user) | Q(supplier=sup)
+            )
         else:
             # ResolvedSupplier — filter on the supplier FK directly.
             qs = qs.filter(supplier=resolved_registered_by.supplier)
@@ -542,6 +553,14 @@ def _scope_sentence(
             from .resolver import _user_display  # avoid circular at module load
             parens.append(
                 f"registered by {_user_display(resolved_registered_by.user)}"
+            )
+        elif isinstance(resolved_registered_by, ResolvedUnion):
+            # Slice 18: same-name union — both roles ORed in the filter,
+            # so the prose reads "registered or supplied by".
+            from .resolver import _user_display
+            parens.append(
+                f"registered or supplied by "
+                f"{_user_display(resolved_registered_by.user)}"
             )
         else:
             # ResolvedSupplier — render the supplier name verbatim. "from"

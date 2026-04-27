@@ -356,12 +356,11 @@ class ResolvedUser:
 @dataclass
 class UserClarify:
     query: str
-    # Slice 16: registered_by clarifies may mix User and Supplier
-    # candidates (e.g. "Martin" → Martin Noble [user] + Martin Smith
-    # [supplier vendor]). The kind field on each candidate
-    # disambiguates — frontend pins to registered_by_id vs
-    # registered_by_supplier_id accordingly.
-    candidates: List[Union["UserCandidate", "SupplierCandidate"]]
+    # Slice 16/18: registered_by clarifies may mix User, Supplier, and
+    # Union candidates. The kind field on each candidate disambiguates
+    # — frontend pins to registered_by_id (user), registered_by_supplier_id
+    # (supplier), or BOTH (union) accordingly.
+    candidates: List[Union["UserCandidate", "SupplierCandidate", "UnionCandidate"]]
     field: str = ""                # FIELD_REGISTERED_BY / FIELD_ASSAYED_BY — set by caller
     filter_index: int = 0          # only meaningful for FIELD_ASSAYED_BY
 
@@ -369,12 +368,14 @@ class UserClarify:
 @dataclass
 class UserMiss:
     query: str
-    suggestions: List[Union["UserCandidate", "SupplierCandidate"]]
+    suggestions: List[Union["UserCandidate", "SupplierCandidate", "UnionCandidate"]]
     field: str = ""
     filter_index: int = 0
 
 
-UserResolution = Union[ResolvedUser, "ResolvedSupplier", UserClarify, UserMiss]
+UserResolution = Union[
+    ResolvedUser, "ResolvedSupplier", "ResolvedUnion", UserClarify, UserMiss,
+]
 
 
 # ---------------------------------------------------------------------------
@@ -405,6 +406,36 @@ class SupplierCandidate:
 @dataclass
 class ResolvedSupplier:
     # Type-any to avoid importing the Supplier model into spec.
+    supplier: object
+    matched_via: str
+    query: str
+
+
+@dataclass
+class UnionCandidate:
+    """Slice 18: surfaces when a typed phrase matches BOTH a User and a
+    same-named unlinked Supplier — e.g. "Hannah Stewart" who registered
+    three compounds AND has a personal-Supplier row supplying two more.
+    The chemist's intent is the *union* of both sets, not picking one
+    role. The frontend renders this as a single chip ("3 registered +
+    2 supplied") and the executor's Q-filter ORs all three paths."""
+
+    id: str                          # composite, opaque to the wire
+    display: str
+    user_id: str
+    supplier_id: str
+    n_compounds_user: int = 0        # how many compounds this user registered
+    n_compounds_supplier: int = 0    # how many compounds this supplier supplied
+    kind: str = "union"              # discriminator vs UserCandidate / SupplierCandidate
+
+
+@dataclass
+class ResolvedUnion:
+    """A merged User+Supplier resolution where the same-named entities
+    are treated as one entity for filtering purposes. The executor
+    ORs Q(registered_by=user) | Q(supplier__user=user) | Q(supplier=supplier)."""
+
+    user: object
     supplier: object
     matched_via: str
     query: str

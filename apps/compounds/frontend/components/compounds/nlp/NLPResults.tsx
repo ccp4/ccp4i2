@@ -27,6 +27,7 @@ import {
   ScaffoldCandidate,
   SupplierCandidate,
   TargetCandidate,
+  UnionCandidate,
   UserCandidate,
   postNlpScaffoldExtend,
 } from '@/lib/compounds/nlp-api';
@@ -62,7 +63,7 @@ interface Props {
   onClarifyPick: (
     partial: CompoundSelector | AssaySelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | UnionCandidate | ScaffoldCandidate,
     filterIndex?: number,
     scaffoldIndex?: number,
   ) => void;
@@ -229,7 +230,7 @@ function ClarifyView({
   onPick: (
     partial: CompoundSelector | AssaySelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | UnionCandidate | ScaffoldCandidate,
     filterIndex?: number,
     scaffoldIndex?: number,
   ) => void;
@@ -299,7 +300,7 @@ function CandidateLabel({
   candidate,
   kind,
 }: {
-  candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate;
+  candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | UnionCandidate | ScaffoldCandidate;
   kind: CandidateKind;
 }) {
   if (kind === 'protocol') {
@@ -315,9 +316,24 @@ function CandidateLabel({
     );
   }
   if (kind === 'user') {
-    // Slice 16: registered_by clarify can mix Users and Suppliers.
+    // Slice 16/18: registered_by clarify can mix Users, Suppliers,
+    // and Unions (same-name User+Supplier merged into one chip).
     // Dispatch on the candidate's own `kind` discriminator.
-    if ((candidate as SupplierCandidate).kind === 'supplier') {
+    const candidateKind = (candidate as { kind?: string }).kind;
+    if (candidateKind === 'union') {
+      const u = candidate as UnionCandidate;
+      const parts: string[] = [];
+      if (u.n_compounds_user > 0) parts.push(`${u.n_compounds_user} registered`);
+      if (u.n_compounds_supplier > 0) parts.push(`${u.n_compounds_supplier} supplied`);
+      const subtitle = parts.join(' + ');
+      return (
+        <Box>
+          <Typography variant="body2" sx={{ fontWeight: 500 }}>{u.display}</Typography>
+          <Typography variant="caption" color="text.secondary">{subtitle}</Typography>
+        </Box>
+      );
+    }
+    if (candidateKind === 'supplier') {
       const s = candidate as SupplierCandidate;
       const subtitle = [
         'supplier',
@@ -384,14 +400,14 @@ function MissView({
   const label = LABEL_FOR_KIND[kind];
 
   const chipLabel = (
-    s: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
+    s: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | UnionCandidate | ScaffoldCandidate,
   ): string => {
     if (kind === 'protocol') return (s as ProtocolCandidate).name;
     if (kind === 'user') {
-      // Slice 16: registered_by miss may mix users and suppliers.
-      if ((s as SupplierCandidate).kind === 'supplier') {
-        return (s as SupplierCandidate).name;
-      }
+      // Slice 16/18: registered_by miss may mix users, suppliers, and unions.
+      const k = (s as { kind?: string }).kind;
+      if (k === 'supplier') return (s as SupplierCandidate).name;
+      if (k === 'union') return (s as UnionCandidate).display;
       return (s as UserCandidate).display;
     }
     if (kind === 'scaffold') return (s as ScaffoldCandidate).name;

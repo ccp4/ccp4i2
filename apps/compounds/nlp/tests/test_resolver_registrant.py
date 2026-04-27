@@ -204,3 +204,132 @@ def test_miss_suggestions_include_both_users_and_suppliers(registrant_world):
     kinds = {getattr(c, "kind", "user") for c in res.suggestions}
     assert "user" in kinds
     assert "supplier" in kinds
+
+
+# ---------------------------------------------------------------------------
+# Slice 18: same-name User+Supplier merger (Hannah Stewart case)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def hannah_world(db):
+    """Hannah Stewart is a User who has registered three compounds AND
+    has a separate (unlinked) Supplier row "Hannah Stewart" supplying
+    two compounds. Pre-slice-18 this surfaced as two chips for the
+    same person; slice 18 merges them into one ``UnionCandidate``."""
+    from compounds.registry.models import Supplier
+    t = Target.objects.create(name="ARd")
+    hannah_user = User.objects.create_user(
+        username="hannah.stewart", email="hannah.stewart@ncl.ac.uk",
+        first_name="Hannah", last_name="Stewart",
+    )
+    # Unlinked Supplier with the same name — the slice-18 case.
+    hannah_sup = Supplier.objects.create(name="Hannah Stewart")
+    # 3 registered + 2 supplied.
+    for _ in range(3):
+        Compound.objects.create(target=t, smiles="CCO", registered_by=hannah_user)
+    for _ in range(2):
+        Compound.objects.create(target=t, smiles="CCN", supplier=hannah_sup)
+    return {"user": hannah_user, "supplier": hannah_sup}
+
+
+def test_same_name_user_and_unlinked_supplier_merge_into_resolved_union(hannah_world):
+    """Single-resolution case: only Hannah matches, and she matches in
+    BOTH pools. Should resolve to ``ResolvedUnion``, not Clarify."""
+    from compounds.nlp.spec import ResolvedUnion
+    res = resolve_registrant("Hannah Stewart", field=FIELD_REGISTERED_BY)
+    assert isinstance(res, ResolvedUnion)
+    assert res.user.pk == hannah_world["user"].pk
+    assert res.supplier.pk == hannah_world["supplier"].pk
+
+
+def test_union_resolution_persists_compound_count(hannah_world):
+    """When the resolved-union case appears in a Clarify (because of
+    other ambiguities), the chip carries the registered + supplied
+    counts so the chemist sees the merger explicitly."""
+    from compounds.nlp.spec import (
+        ResolvedUnion, UnionCandidate, UserClarify,
+    )
+    # Add a second "Hannah" to force a Clarify rather than direct resolution.
+    User.objects.create_user(
+        username="hannah.jones", email="hannah.jones@ncl.ac.uk",
+        first_name="Hannah", last_name="Jones",
+    )
+    from compounds.registry.models import Compound
+    Compound.objects.create(
+        target=Target.objects.first(),
+        smiles="CCO",
+        registered_by=User.objects.get(username="hannah.jones"),
+    )
+    res = resolve_registrant("Hannah", field=FIELD_REGISTERED_BY)
+    assert isinstance(res, UserClarify)
+    union_chips = [
+        c for c in res.candidates
+        if isinstance(c, UnionCandidate)
+    ]
+    # Hannah Stewart is the only same-name pair → one union chip.
+    assert len(union_chips) == 1
+    chip = union_chips[0]
+    assert chip.n_compounds_user == 3
+    assert chip.n_compounds_supplier == 2
+
+
+def test_unlinked_supplier_with_different_name_does_not_merge(db):
+    """If the User name and the unlinked Supplier name don't match
+    after normalisation, no merger — they're surfaced as two separate
+    chips."""
+    from compounds.registry.models import Supplier
+    from compounds.nlp.spec import (
+        ResolvedUnion, UnionCandidate, UserClarify,
+    )
+    t = Target.objects.create(name="ARd")
+    user = User.objects.create_user(
+        username="hannah.stewart", email="hannah.stewart@ncl.ac.uk",
+        first_name="Hannah", last_name="Stewart",
+    )
+    sup = Supplier.objects.create(name="Stewart Lab")  # NOT "Hannah Stewart"
+    Compound.objects.create(target=t, smiles="CCO", registered_by=user)
+    Compound.objects.create(target=t, smiles="CCN", supplier=sup)
+
+    res = resolve_registrant("Stewart", field=FIELD_REGISTERED_BY)
+    # Both match "stewart" (last name on user, first word on supplier).
+    # No merge because full normalised names differ. Two chips.
+    assert isinstance(res, UserClarify)
+    union_chips = [c for c in res.candidates if isinstance(c, UnionCandidate)]
+    assert len(union_chips) == 0
+
+
+def test_user_linked_supplier_does_not_merge_via_slice_18(db):
+    """Slice 16 already de-duped user-linked Suppliers via the user_id
+    FK. Slice 18 should NOT also try to merge them — the linked
+    case is handled upstream and the Supplier never reaches the
+    same-name merger."""
+    from compounds.registry.models import Supplier
+    from compounds.nlp.spec import ResolvedUser
+    t = Target.objects.create(name="ARd")
+    bob = User.objects.create_user(
+        username="bob.smith", email="bob.smith@ncl.ac.uk",
+        first_name="Bob", last_name="Smith",
+    )
+    bob_sup = Supplier.objects.create(name="Bob Smith", user=bob)
+    Compound.objects.create(target=t, smiles="CCO", registered_by=bob)
+    Compound.objects.create(target=t, smiles="CCN", supplier=bob_sup)
+    res = resolve_registrant("Bob Smith", field=FIELD_REGISTERED_BY)
+    # Single User entity (Supplier is de-duped via user_id), not a Union.
+    assert isinstance(res, ResolvedUser)
+    assert res.user.pk == bob.pk
+
+
+def test_pinned_union_round_trip(hannah_world):
+    """Frontend continuation: clarify chip pinned both ids → resolver
+    returns ResolvedUnion."""
+    from compounds.nlp.spec import ResolvedUnion
+    res = resolve_registrant(
+        "ignored",
+        field=FIELD_REGISTERED_BY,
+        pinned_user_id=str(hannah_world["user"].pk),
+        pinned_supplier_id=str(hannah_world["supplier"].pk),
+    )
+    assert isinstance(res, ResolvedUnion)
+    assert res.user.pk == hannah_world["user"].pk
+    assert res.supplier.pk == hannah_world["supplier"].pk

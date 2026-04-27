@@ -22,6 +22,7 @@ import {
   ScaffoldCandidate,
   SupplierCandidate,
   TargetCandidate,
+  UnionCandidate,
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
 import { NLPResults } from './NLPResults';
@@ -63,7 +64,7 @@ export function NLPPanel() {
     async (
       partial: CompoundSelector | AssaySelector,
       field: string,
-      candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | ScaffoldCandidate,
+      candidate: TargetCandidate | ProtocolCandidate | UserCandidate | SupplierCandidate | UnionCandidate | ScaffoldCandidate,
       filterIndex?: number,
       scaffoldIndex?: number,
     ) => {

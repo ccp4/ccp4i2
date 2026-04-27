@@ -129,6 +129,23 @@ export interface SupplierCandidate {
   kind: 'supplier';
 }
 
+/**
+ * Slice 18: surfaces when a typed phrase matches BOTH a User and a
+ * same-named unlinked Supplier (e.g. "Hannah Stewart" who registered
+ * three compounds and has a personal-Supplier row supplying two
+ * more). The chemist sees ONE chip; picking it pins both fields and
+ * the executor ORs all three filter paths.
+ */
+export interface UnionCandidate {
+  id: string;
+  display: string;
+  user_id: string;
+  supplier_id: string;
+  n_compounds_user: number;
+  n_compounds_supplier: number;
+  kind: 'union';
+}
+
 export interface ScaffoldCandidate {
   id: string;        // canonical name — also used as the pinning ID
   name: string;
@@ -159,7 +176,7 @@ export type NLPResponse =
       status: 'clarify';
       field: string;
       query: string;
-      candidates: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[] | (UserCandidate | SupplierCandidate)[];
+      candidates: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[] | (UserCandidate | SupplierCandidate | UnionCandidate)[];
       filter_index?: number;           // present for protocol / assayed-by clarify
       scaffold_index?: number;         // present for scaffold clarify
       partial_selector: CompoundSelector;
@@ -168,7 +185,7 @@ export type NLPResponse =
       status: 'miss';
       field: string;
       query: string;
-      suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[] | (UserCandidate | SupplierCandidate)[];
+      suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[] | (UserCandidate | SupplierCandidate | UnionCandidate)[];
       filter_index?: number;
       scaffold_index?: number;
       /**
@@ -330,11 +347,15 @@ export function applyClarifyPick(
     next.assay_target_id = candidate.id;
     if (canonical) next.assay_target_as_typed = canonical;
   } else if (field === FIELD_REGISTERED_BY) {
-    // Slice 16: pin to whichever pool the candidate came from.
-    // SupplierCandidate carries `kind: "supplier"`; UserCandidate
-    // either carries `kind: "user"` or no kind field at all (back-
-    // compat with pre-slice-16 server payloads).
-    if (candidate.kind === 'supplier') {
+    // Slice 16/18: pin to the right pool(s) based on candidate kind.
+    // - kind === 'supplier' → registered_by_supplier_id only
+    // - kind === 'union'    → BOTH (slice-18 same-name merger)
+    // - default (User)      → registered_by_id only
+    if (candidate.kind === 'union') {
+      const u = candidate as unknown as UnionCandidate;
+      next.registered_by_id = u.user_id;
+      next.registered_by_supplier_id = u.supplier_id;
+    } else if (candidate.kind === 'supplier') {
       next.registered_by_supplier_id = candidate.id;
       next.registered_by_id = null;
     } else {
