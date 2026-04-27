@@ -416,3 +416,37 @@ def test_separate_users_have_separate_caps(feature_on, clear_cache, world, db):
     with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
         assert alice_c.post(URL, {"prompt": "x"}, format="json").status_code == 429
         assert bob_c.post(URL, {"prompt": "x"}, format="json").status_code == 200
+
+
+def test_metric_miss_serialises_with_available_metrics(client, feature_on, clear_cache, db):
+    """Slice 15: a MetricMiss is rendered as status='miss' with field='metric'
+    and an `available_metrics` list — the user sees what KPIs ARE in scope."""
+    target = Target.objects.create(name="ARd")
+    compound = Compound.objects.create(target=target, smiles="CCO")
+    protocol = Protocol.objects.create(name="ARd HTRF")
+    assay = Assay.objects.create(protocol=protocol, target=target)
+    ar_row = AnalysisResult.objects.create(
+        status="valid",
+        results={"KPI": "pIC50", "pIC50": 7.5, "kpi_unit": "unitless"},
+    )
+    DataSeries.objects.create(
+        assay=assay, compound=compound, row=0, start_column=0, end_column=10,
+        analysis=ar_row,
+    )
+    parsed = CompoundSelector(
+        registration_target_as_typed="ARd",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                threshold=Threshold(op="<", value=50.0, unit=None),
+            ),
+        ],
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "ARd HTRF IC50 < 50"}, format="json")
+    assert resp.status_code == 200
+    assert resp.data["status"] == "miss"
+    assert resp.data["field"] == "metric"
+    assert resp.data["query"] == "IC50"
+    assert resp.data["available_metrics"] == ["pIC50"]

@@ -45,6 +45,7 @@ from .resolver import (
 from .spec import (
     FIELD_ASSAY_TARGET,
     FIELD_ASSAYED_BY,
+    FIELD_METRIC,
     FIELD_REGISTERED_BY,
     SCOPE_ASSAY_ONLY,
     SCOPE_BOTH_SAME,
@@ -57,6 +58,7 @@ from .spec import (
     DateRange,
     ExecutionResult,
     MeasurementFilter,
+    MetricMiss,
     ProtocolClarify,
     ProtocolMiss,
     ResolvedCompound,
@@ -219,9 +221,18 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
 
     surviving: Optional[Set[str]] = None
 
-    for flt, rp, ru in zip(
+    for idx, (flt, rp, ru) in enumerate(zip(
         selector.measurement_filters, resolved_protocols, resolved_assayed_bys,
-    ):
+    )):
+        # Slice 15: surface metric mismatches as a self-diagnostic Miss
+        # rather than letting the strict-match filter silently drop every
+        # row. If the user typed "IC50" but the rows in scope record
+        # "pIC50" / "EC50" / etc., the response answers itself with the
+        # available KPIs.
+        if flt.metric:
+            metric_miss = _check_metric_in_scope(rt, rp, flt, ru, idx)
+            if metric_miss is not None:
+                return metric_miss
         matching = _filter_matching_compounds(rt, rp, flt, ru)
         surviving = matching if surviving is None else surviving & matching
 
@@ -357,6 +368,62 @@ def _base_scope_compound_ids(
     return set(qs.values_list("pk", flat=True))
 
 
+def _filter_scope_qs(
+    rt: ResolvedTargets,
+    rp: Optional[ResolvedProtocol],
+    flt: MeasurementFilter,
+    ru: Optional[ResolvedUser],
+) -> QuerySet:
+    """The AnalysisResult queryset narrowed to the filter's scope —
+    target + protocol + assay date + assayed-by. Shared by metric
+    pre-check and matching-compound iteration."""
+    qs = _scoped_analysis_results(rt)
+    if rp is not None:
+        qs = qs.filter(data_series__assay__protocol=rp.protocol)
+    qs = _apply_date_range(qs, "data_series__assay__created_at", flt.assay_date_range)
+    if ru is not None:
+        qs = qs.filter(data_series__assay__created_by=ru.user)
+    return qs
+
+
+def _check_metric_in_scope(
+    rt: ResolvedTargets,
+    rp: Optional[ResolvedProtocol],
+    flt: MeasurementFilter,
+    ru: Optional[ResolvedUser],
+    filter_index: int,
+) -> Optional[MetricMiss]:
+    """If no row in the filter's scope has a KPI matching ``flt.metric``
+    (lenient: case + non-alphanumeric punctuation insensitive), return
+    a MetricMiss listing every distinct KPI that IS in scope. Otherwise
+    return None and let the matching loop run.
+
+    Cheap: one pass over the scope queryset, projecting just the JSON
+    KPI key. The filter scope is usually small (target-narrowed, often
+    protocol-narrowed too)."""
+    from compounds.utils import normalize_ref as normalize  # avoid module-level cycle
+    metric = flt.metric or ""
+    if not metric:
+        return None
+    target_norm = normalize(metric)
+    seen: Set[str] = set()
+    qs = _filter_scope_qs(rt, rp, flt, ru)
+    for results in qs.values_list("results", flat=True):
+        kpi = (results or {}).get("KPI") if isinstance(results, dict) else None
+        if not kpi:
+            continue
+        kpi_str = str(kpi)
+        if normalize(kpi_str) == target_norm:
+            return None  # found it — the regular evaluator will handle it
+        seen.add(kpi_str)
+    return MetricMiss(
+        query=metric,
+        available_metrics=sorted(seen),
+        filter_index=filter_index,
+        field=FIELD_METRIC,
+    )
+
+
 def _filter_matching_compounds(
     rt: ResolvedTargets,
     rp: Optional[ResolvedProtocol],
@@ -373,12 +440,7 @@ def _filter_matching_compounds(
     - ``assay_date_range`` — filters rows by Assay.created_at.
     - ``ru`` — resolved assayed-by user; filters on Assay.created_by.
     """
-    qs = _scoped_analysis_results(rt)
-    if rp is not None:
-        qs = qs.filter(data_series__assay__protocol=rp.protocol)
-    qs = _apply_date_range(qs, "data_series__assay__created_at", flt.assay_date_range)
-    if ru is not None:
-        qs = qs.filter(data_series__assay__created_by=ru.user)
+    qs = _filter_scope_qs(rt, rp, flt, ru)
 
     matching: Set[str] = set()
     for ar in qs.iterator():

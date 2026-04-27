@@ -52,6 +52,7 @@ FIELD_REGISTERED_BY = "registered_by_as_typed"
 FIELD_ASSAYED_BY = "assayed_by_as_typed"
 FIELD_SCAFFOLD_HINT = "scaffold_hint"
 FIELD_COMPOUND_REF = "compound_ref"
+FIELD_METRIC = "metric"
 
 # Filter / exclusion reasons from the row evaluator. Preserved from the pre-
 # pivot shape because the evaluator still classifies rows during selection;
@@ -431,6 +432,27 @@ CompoundResolution = Union[ResolvedCompound, CompoundMiss]
 
 
 # ---------------------------------------------------------------------------
+# Metric (KPI) miss (slice 15) — diagnostic surfacing of empty selections
+# caused by a typed metric that's not present in any row's stored KPI.
+# No clarify dataclass: the executor either finds the metric in scope and
+# proceeds, or returns a Miss listing what KPIs ARE there.
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class MetricMiss:
+    """No row in the filter's scope has a KPI matching the user's typed
+    ``metric`` (lenient match: case + punctuation insensitive). The
+    ``available_metrics`` field carries the KPIs that ARE recorded in
+    scope, so the response answers itself ("did you mean pIC50?")."""
+
+    query: str
+    available_metrics: List[str]
+    filter_index: int = 0
+    field: str = ""
+
+
+# ---------------------------------------------------------------------------
 # Row-level evaluation (metric + unit tri-state). Evaluator module consumes
 # these — public because tests over the evaluator also do.
 # ---------------------------------------------------------------------------
@@ -509,6 +531,7 @@ ExecutionResult = Union[
     ScaffoldClarify,
     ScaffoldMiss,
     CompoundMiss,
+    MetricMiss,
     SpecError,
 ]
 

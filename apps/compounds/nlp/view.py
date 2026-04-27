@@ -56,6 +56,7 @@ from .spec import (
     ProtocolMiss,
     ScaffoldClarify,
     CompoundMiss,
+    MetricMiss,
     ScaffoldMiss,
     ScopeError,
     SpecError,
@@ -280,12 +281,21 @@ def _serialize(
             body["partial_selector"] = dataclasses.asdict(selector)
         return body, http_status.HTTP_200_OK
 
-    if isinstance(result, (TargetMiss, ProtocolMiss, UserMiss, ScaffoldMiss, CompoundMiss)):
+    if isinstance(
+        result,
+        (TargetMiss, ProtocolMiss, UserMiss, ScaffoldMiss, CompoundMiss, MetricMiss),
+    ):
         body = {"status": "miss", **dataclasses.asdict(result)}
         if isinstance(result, CompoundMiss):
             # Compound IDs are deterministic — no fuzzy hits to surface.
             # Add an empty list so the frontend's miss renderer is uniform.
             body["suggestions"] = []
+        if isinstance(result, MetricMiss):
+            # MetricMiss carries `available_metrics` (the KPIs that ARE
+            # in scope) rather than fuzzy candidate suggestions; provide
+            # an empty `suggestions` so the frontend's uniform miss
+            # renderer doesn't trip.
+            body.setdefault("suggestions", [])
         return body, http_status.HTTP_200_OK
 
     if isinstance(result, NotAQuery):

@@ -21,11 +21,13 @@ from compounds.nlp.spec import (
     DateRange,
     FIELD_ASSAYED_BY,
     FIELD_COMPOUND_REF,
+    FIELD_METRIC,
     FIELD_PROTOCOL_HINT,
     FIELD_REGISTERED_BY,
     FIELD_REGISTRATION_TARGET,
     FIELD_SCAFFOLD_HINT,
     MeasurementFilter,
+    MetricMiss,
     ProtocolClarify,
     ProtocolMiss,
     ScaffoldClarify,
@@ -1072,3 +1074,97 @@ def test_scope_sentence_lists_multiple_pins(pin_world):
     ))
     assert isinstance(res, CompoundSelection)
     assert "plus NCL-00010001, NCL-00020002 (pinned)" in res.scope_sentence
+
+
+# ---------------------------------------------------------------------------
+# Metric mismatch surfacing (slice 15)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def kpi_world(db):
+    """A protocol whose rows record a KPI other than the user's typed
+    one — exposes the slice-15 MetricMiss path. ARd binding HTRF
+    cellular records pIC50 / Hill (not IC50)."""
+    t = Target.objects.create(name="ARd")
+    c1 = Compound.objects.create(target=t, smiles="CCO")
+    c2 = Compound.objects.create(target=t, smiles="CCN")
+    p = Protocol.objects.create(name="ARd binding HTRF cellular")
+    a = Assay.objects.create(protocol=p, target=t)
+    _mk_result(a, c1, status="valid",
+               results={"KPI": "pIC50", "pIC50": 7.5, "kpi_unit": "unitless"}, row=0)
+    _mk_result(a, c2, status="valid",
+               results={"KPI": "Hill", "Hill": 1.1, "kpi_unit": "unitless"}, row=1)
+    return {"t": t, "c1": c1, "c2": c2, "protocol": p}
+
+
+def test_metric_mismatch_returns_metric_miss_with_available_kpis(kpi_world):
+    """User typed 'IC50' but rows record pIC50 / Hill. Pre-slice-15
+    this silently returned 'Found 0'; now it returns a MetricMiss
+    with the available KPIs so the response answers itself."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                threshold=Threshold(op="<", value=50.0, unit=None),
+            ),
+        ],
+    ))
+    assert isinstance(res, MetricMiss)
+    assert res.field == FIELD_METRIC
+    assert res.query == "IC50"
+    assert res.filter_index == 0
+    assert set(res.available_metrics) == {"pIC50", "Hill"}
+
+
+def test_metric_mismatch_filter_index_tags_correctly(kpi_world):
+    """Two filters; first has a valid KPI, second misses. The Miss
+    carries filter_index=1 so the UI knows which filter went wrong."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        measurement_filters=[
+            MeasurementFilter(protocol_hint="HTRF", metric="pIC50"),
+            MeasurementFilter(protocol_hint="HTRF", metric="IC50"),
+        ],
+    ))
+    assert isinstance(res, MetricMiss)
+    assert res.filter_index == 1
+
+
+def test_lenient_metric_match_finds_rows_with_punctuation(db):
+    """User types 'IC50', rows are stored as 'ic-50'. The lenient
+    match in the evaluator + the metric-existence check both treat
+    them as the same KPI."""
+    t = Target.objects.create(name="ARd")
+    c = Compound.objects.create(target=t, smiles="CCO")
+    p = Protocol.objects.create(name="ARd HTRF")
+    a = Assay.objects.create(protocol=p, target=t)
+    _mk_result(a, c, status="valid",
+               results={"KPI": "ic-50", "ic-50": 5.0, "kpi_unit": "nM"})
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF", metric="IC50",
+                threshold=Threshold(op="<", value=10.0, unit="nM"),
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [c.formatted_id]
+
+
+def test_metric_miss_when_no_rows_in_scope(db):
+    """No rows in scope at all → available_metrics is empty.
+    Frontend renders 'no measurements in scope under any KPI'."""
+    Target.objects.create(name="ARd")
+    res = execute(CompoundSelector(
+        registration_target_as_typed="ARd",
+        measurement_filters=[
+            MeasurementFilter(protocol_hint=None, metric="IC50"),
+        ],
+    ))
+    assert isinstance(res, MetricMiss)
+    assert res.available_metrics == []

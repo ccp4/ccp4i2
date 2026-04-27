@@ -17,6 +17,7 @@ import operator
 from typing import Callable, Dict, Optional, Tuple
 
 from compounds.assays.kpi_utils import UNITLESS, VALID_UNITS, is_unitless, normalize_unit
+from compounds.utils import normalize_ref as normalize
 
 from .spec import (
     EXCLUDE_QUERY_MISSING_UNIT,
@@ -157,10 +158,31 @@ def evaluate_row(row, metric: str, threshold: Optional[Threshold]) -> RowOutcome
         return RowFiltered(reason=FILTER_INVALID_STATUS)
 
     results = row.results or {}
-    if results.get("KPI") != metric:
+    row_kpi = results.get("KPI")
+
+    # Slice 15: lenient metric match. The user's typed metric ("IC50",
+    # "ic50", "IC-50") matches any row KPI ("IC50", "ic50") that
+    # normalises to the same value — case + non-alphanumeric punctuation
+    # are ignored. The pre-pivot strict match silently filtered every
+    # row when a chemist typed "IC50" against rows recorded as "ic50"
+    # or "EC50_alt"; that surfaced as "Found 0" with no diagnostic.
+    # ``metric=None`` means "any KPI counts" — defer to the row's own
+    # KPI key for value lookup.
+    if metric is not None:
+        if not row_kpi or normalize(str(row_kpi)) != normalize(metric):
+            return RowFiltered(reason=FILTER_KPI_MISMATCH)
+        # Use the row's stored KPI string as the value-lookup key — the
+        # user's typed metric may differ in case/punctuation but the
+        # row's own key is the source of truth for the numeric column.
+        value_key = str(row_kpi)
+    elif row_kpi:
+        value_key = str(row_kpi)
+    else:
+        # metric=None AND no KPI on the row → no numeric column to
+        # compare against.
         return RowFiltered(reason=FILTER_KPI_MISMATCH)
 
-    value = results.get(metric)
+    value = results.get(value_key)
     if not _is_numeric(value):
         return RowFiltered(reason=FILTER_VALUE_NOT_NUMERIC)
     value = float(value)

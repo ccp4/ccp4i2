@@ -148,6 +148,12 @@ export type NLPResponse =
       suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[];
       filter_index?: number;
       scaffold_index?: number;
+      /**
+       * Present on a MetricMiss (field === FIELD_METRIC). The KPIs that
+       * ARE recorded in the filter's scope, so the response can answer
+       * itself ("did you mean pIC50?"). Absent on other miss kinds.
+       */
+      available_metrics?: string[];
     }
   | { status: 'not_a_query'; reason: string }
   | { status: 'error'; kind: string; field?: string; message: string };
@@ -164,6 +170,7 @@ export const FIELD_REGISTERED_BY = 'registered_by_as_typed';
 export const FIELD_ASSAYED_BY = 'assayed_by_as_typed';
 export const FIELD_SCAFFOLD_HINT = 'scaffold_hint';
 export const FIELD_COMPOUND_REF = 'compound_ref';
+export const FIELD_METRIC = 'metric';
 
 
 // ---------------------------------------------------------------------------

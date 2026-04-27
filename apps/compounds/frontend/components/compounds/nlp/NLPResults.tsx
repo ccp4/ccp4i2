@@ -15,6 +15,7 @@ import {
   CompoundSelector,
   FIELD_ASSAYED_BY,
   FIELD_COMPOUND_REF,
+  FIELD_METRIC,
   FIELD_PROTOCOL_HINT,
   FIELD_REGISTERED_BY,
   FIELD_SCAFFOLD_HINT,
@@ -25,7 +26,7 @@ import {
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
 
-type CandidateKind = 'target' | 'protocol' | 'user' | 'scaffold' | 'compound';
+type CandidateKind = 'target' | 'protocol' | 'user' | 'scaffold' | 'compound' | 'metric';
 
 const KIND_FOR_FIELD: Record<string, CandidateKind> = {
   [FIELD_PROTOCOL_HINT]: 'protocol',
@@ -33,6 +34,7 @@ const KIND_FOR_FIELD: Record<string, CandidateKind> = {
   [FIELD_ASSAYED_BY]: 'user',
   [FIELD_SCAFFOLD_HINT]: 'scaffold',
   [FIELD_COMPOUND_REF]: 'compound',
+  [FIELD_METRIC]: 'metric',
 };
 
 function kindForField(field: string): CandidateKind {
@@ -44,6 +46,7 @@ const LABEL_FOR_KIND: Record<CandidateKind, string> = {
   user: 'person',
   scaffold: 'substructure',
   compound: 'compound',
+  metric: 'metric',
   target: 'target',
 };
 
@@ -350,7 +353,7 @@ function MissView({
 }: {
   response: Extract<NLPResponse, { status: 'miss' }>;
 }) {
-  const { query, suggestions, field } = response;
+  const { query, suggestions, field, available_metrics } = response;
   const kind = kindForField(field);
   const label = LABEL_FOR_KIND[kind];
 
@@ -363,15 +366,25 @@ function MissView({
     return (s as TargetCandidate).name;
   };
 
+  // MetricMiss is special: no fuzzy suggestions, but the response
+  // carries `available_metrics` — the KPIs that ARE recorded in scope.
+  // Render those as chips so the user can see what to type instead.
+  const showAvailableMetrics =
+    kind === 'metric' && (available_metrics?.length ?? 0) > 0;
+
   // Compound-ID miss is special: compound IDs are deterministic, so
   // there are no fuzzy suggestions — instead steer the user to check
   // the format and registration.
   const helperText =
     kind === 'compound'
       ? 'Check the format (e.g. NCL-00026007 or 26007) and that the compound has been registered.'
-      : suggestions.length > 0
-        ? 'Did you mean:'
-        : '';
+      : kind === 'metric'
+        ? showAvailableMetrics
+          ? 'Available KPIs in scope:'
+          : 'No measurements in scope under any KPI — try a different protocol or remove the metric.'
+        : suggestions.length > 0
+          ? 'Did you mean:'
+          : '';
 
   return (
     <Alert severity="info" sx={{ alignItems: 'flex-start' }}>
@@ -379,7 +392,14 @@ function MissView({
         No {label} matched <strong>&ldquo;{query}&rdquo;</strong>
         {helperText ? `. ${helperText}` : '.'}
       </Typography>
-      {suggestions.length > 0 && (
+      {showAvailableMetrics && (
+        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
+          {available_metrics!.map((m) => (
+            <Chip key={m} size="small" label={m} />
+          ))}
+        </Stack>
+      )}
+      {!showAvailableMetrics && suggestions.length > 0 && (
         <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
           {suggestions.map((s) => (
             <Chip key={s.id} size="small" label={chipLabel(s)} />

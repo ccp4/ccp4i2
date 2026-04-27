@@ -176,6 +176,53 @@ def test_kpi_mismatch_filters():
     assert out.reason == FILTER_KPI_MISMATCH
 
 
+def test_lenient_kpi_match_case_insensitive():
+    """Slice 15: case-insensitive KPI match. Row stores 'ic50', user
+    typed 'IC50' — they refer to the same KPI."""
+    r = SimpleNamespace(
+        status="valid",
+        results={"KPI": "ic50", "ic50": 5.0, "kpi_unit": "nM"},
+    )
+    out = evaluate_row(r, metric="IC50", threshold=None)
+    assert isinstance(out, RowMatched)
+    assert out.value == 5.0
+
+
+def test_lenient_kpi_match_punctuation_insensitive():
+    """Slice 15: punctuation collapses ('IC-50' → 'ic50')."""
+    r = SimpleNamespace(
+        status="valid",
+        results={"KPI": "IC-50", "IC-50": 5.0, "kpi_unit": "nM"},
+    )
+    out = evaluate_row(r, metric="IC50", threshold=None)
+    assert isinstance(out, RowMatched)
+    assert out.value == 5.0
+
+
+def test_metric_none_means_any_kpi():
+    """Slice 15: metric=None means 'any KPI counts' (matches the system-
+    prompt contract). Pre-fix, this filtered every row that had a KPI."""
+    r = SimpleNamespace(
+        status="valid",
+        results={"KPI": "TopRel", "TopRel": 0.42, "kpi_unit": "unitless"},
+    )
+    out = evaluate_row(r, metric=None, threshold=None)
+    assert isinstance(out, RowMatched)
+    assert out.value == 0.42
+
+
+def test_metric_none_with_no_kpi_filters():
+    """metric=None still requires SOME KPI on the row — there has to be
+    a numeric column to compare against."""
+    r = SimpleNamespace(
+        status="valid",
+        results={"kpi_unit": "nM"},  # no KPI key
+    )
+    out = evaluate_row(r, metric=None, threshold=None)
+    assert isinstance(out, RowFiltered)
+    assert out.reason == FILTER_KPI_MISMATCH
+
+
 def test_value_not_numeric_filters():
     r = SimpleNamespace(status="valid", results={"KPI": "IC50", "IC50": "N/A", "kpi_unit": "nM"})
     out = evaluate_row(r, metric="IC50", threshold=None)
