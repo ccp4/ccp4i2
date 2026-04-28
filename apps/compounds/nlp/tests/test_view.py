@@ -580,33 +580,33 @@ def test_view_format_unknown_falls_back_to_cards(client, feature_on, clear_cache
     assert "format=cards" in resp.data["redirect_url"]
 
 
-def test_categorisation_phrases_resolved_to_uuids(client, feature_on, clear_cache, world):
-    """Phrases naming the user's saved selections resolve to UUIDs
-    that flow into the redirect URL as colour_by=<uuid>,<uuid>."""
-    from compounds.registry.models import Selection
-    user = client.handler._force_user
-    sel = Selection.objects.create(
-        name="my CDK4 hits", compound_ids=["NCL-X"],
-        created_by=user, is_saved=True, expires_at=None,
-    )
+def test_chemotype_phrases_resolved_to_canonical_names(
+    client, feature_on, clear_cache, world,
+):
+    """Typed chemotype phrases resolve to canonical scaffold names
+    (via the curated catalog) and flow into the redirect URL as
+    colour_by=<name>,<name>."""
     parsed = CompoundSelector(
         registration_target_as_typed="AR degraders",
         view_format="scatter",
-        categorisation_selection_phrases=["my CDK4 hits"],
+        colour_by_scaffold_phrases=["pyrimidines", "pyridines"],
     )
     with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
-        resp = client.post(URL, {"prompt": "scatter ARd hits coloured by my CDK4 hits"}, format="json")
+        resp = client.post(URL, {"prompt": "scatter ARd hits coloured by pyrimidine"}, format="json")
     assert resp.status_code == 200
-    assert f"colour_by={sel.id}" in resp.data["redirect_url"]
+    # Canonical names ("pyrimidine", "pyridine") — not the typed plurals.
+    assert "colour_by=pyrimidine,pyridine" in resp.data["redirect_url"]
 
 
-def test_unmatched_phrases_silently_dropped_from_url(client, feature_on, clear_cache, world):
-    """Phrases that don't match any saved selection don't crash and
+def test_unmatched_chemotype_phrases_silently_dropped(
+    client, feature_on, clear_cache, world,
+):
+    """Phrases that don't match any catalog scaffold don't crash and
     don't appear in the URL — chemist re-picks via the chip strip."""
     parsed = CompoundSelector(
         registration_target_as_typed="AR degraders",
         view_format="scatter",
-        categorisation_selection_phrases=["nonexistent selection name"],
+        colour_by_scaffold_phrases=["unobtainium-core"],
     )
     with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
         resp = client.post(URL, {"prompt": "scatter ..."}, format="json")
@@ -614,26 +614,19 @@ def test_unmatched_phrases_silently_dropped_from_url(client, feature_on, clear_c
     assert "colour_by=" not in resp.data["redirect_url"]
 
 
-def test_categorisation_only_resolves_against_requesting_user(
-    client, feature_on, clear_cache, db,
+def test_chemotype_phrases_dedup(
+    client, feature_on, clear_cache, world,
 ):
-    """The requesting user's typed phrase doesn't resolve against
-    another user's saved selections. Per-user scope at the view layer."""
-    from compounds.registry.models import Selection
-    other_user = User.objects.create_user(username="someone-else", email="o@example.org")
-    Selection.objects.create(
-        name="another user's hits", compound_ids=["NCL-1"],
-        created_by=other_user, is_saved=True, expires_at=None,
-    )
-    target = Target.objects.create(name="ARd")
-    Compound.objects.create(target=target, smiles="CCO")
-
+    """Two phrases that resolve to the same scaffold collapse to one
+    URL entry — duplicates would just paint the same group twice."""
     parsed = CompoundSelector(
-        registration_target_as_typed="ARd",
+        registration_target_as_typed="AR degraders",
         view_format="scatter",
-        categorisation_selection_phrases=["another user's hits"],
+        colour_by_scaffold_phrases=["pyrimidine", "pyrimidines", "pyrimidinyl"],
     )
     with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
         resp = client.post(URL, {"prompt": "..."}, format="json")
     assert resp.status_code == 200
-    assert "colour_by=" not in resp.data["redirect_url"]
+    assert "colour_by=pyrimidine" in resp.data["redirect_url"]
+    # Make sure it's not "colour_by=pyrimidine,pyrimidine".
+    assert resp.data["redirect_url"].count("pyrimidine") == 1

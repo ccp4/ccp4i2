@@ -155,12 +155,19 @@ interface ProtocolScatterPlotProps {
    */
   mode?: 'dialog' | 'inline';
   /**
-   * When non-empty, points are partitioned into colour groups by selection
-   * membership: one dataset per selection (in order), plus an "Other"
-   * dataset for compounds in none. Drives the categorisation overlay
-   * exposed via the `?colour_by=<uuid>,<uuid>` URL param.
+   * When non-empty, points are partitioned into colour groups by
+   * membership: one dataset per category (in order), plus an "Other"
+   * dataset for compounds in none. Each category's `compoundIds` set
+   * decides who lives in that colour group. Driven by the chemotype
+   * chip strip via `?colour_by=<scaffold-name>,<scaffold-name>`.
    */
   categorisationSelections?: ReadonlyArray<CategorisationSelection>;
+  /**
+   * Per-scaffold-name → matching compound formatted_ids. The chip strip
+   * uses this for relevance-filtering and match-count badges; the chart
+   * uses it indirectly via the `categorisationSelections` derived above.
+   */
+  scaffoldMatches?: ReadonlyMap<string, ReadonlySet<string>>;
 }
 
 type AxisKind = 'protocol' | 'property';
@@ -277,6 +284,7 @@ export const ProtocolScatterPlot = forwardRef<
   includedProperties = [],
   mode = 'dialog',
   categorisationSelections,
+  scaffoldMatches,
 }, ref) {
   const router = useRouter();
   const chartRef = useRef<ChartJS<'scatter'>>(null);
@@ -883,7 +891,11 @@ export const ProtocolScatterPlot = forwardRef<
               scatter view can usefully colour-by saved selections;
               the row-pencil dialog opens from a single-protocol
               context where colouring isn't part of the workflow. */}
-          {mode === 'inline' && <ScatterCategorisationStrip />}
+          {mode === 'inline' && (
+            <ScatterCategorisationStrip
+              matchesByScaffold={scaffoldMatches ?? new Map()}
+            />
+          )}
           {/* Axis controls */}
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2 }}>
             {/* X-Axis controls */}

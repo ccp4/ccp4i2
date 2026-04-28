@@ -211,26 +211,24 @@ Rules:
       → registration_target_as_typed: "ARd", view_format: "scatter",
         measurement_filters: [{protocol_hint: "HTRF", metric: "IC50",
                                threshold: {op: "<", value: 100, unit: "nM"}, ...}]
-    "show CDK4 compounds as a scatter coloured by my saved hits"
+    "scatter ARd compounds, coloured by pyrimidine vs pyridone"
       → view_format: "scatter",
-        categorisation_selection_phrases: ["my saved hits"]
-- Categorisation overlay: when the user names other selections to
-  highlight as colour groups in the scatter — *"coloured by X"*,
-  *"highlighting Y and Z"*, *"with my CDK4 hits picked out"* — emit
-  the typed phrases into `categorisation_selection_phrases`. These
-  match against the user's own saved Selection rows; the backend
-  resolves phrase → UUID. Phrases that don't match are silently
-  dropped. Only emit when `view_format = "scatter"` (the overlay is
-  scatter-only). Examples:
-    "scatter ARd compounds, colour by my saved scorecard tier"
+        colour_by_scaffold_phrases: ["pyrimidine", "pyridone"]
+- Chemotype overlay: when the user names chemotypes / substructures /
+  scaffolds to colour scatter points by — *"coloured by pyrimidine"*,
+  *"highlighting indoles vs benzimidazoles"*, *"with the pyridones
+  picked out"* — emit each typed phrase into
+  `colour_by_scaffold_phrases`. The backend matches each against the
+  curated substructure catalog (the same catalog as `scaffold_hints`).
+  Phrases that don't match are silently dropped. Only emit when
+  `view_format = "scatter"` (the overlay is scatter-only). Examples:
+    "plot CDK4 compounds, colour by pyrimidine"
       → view_format: "scatter",
-        categorisation_selection_phrases: ["my saved scorecard tier"]
-    "plot CDK4 compounds highlighting Mike's recent screen and the
-       analogue series"
+        colour_by_scaffold_phrases: ["pyrimidine"]
+    "scatter ARd compounds highlighting indoles, pyridines, and
+       triazoles"
       → view_format: "scatter",
-        categorisation_selection_phrases: [
-          "Mike's recent screen", "the analogue series"
-        ]
+        colour_by_scaffold_phrases: ["indoles", "pyridines", "triazoles"]
 - The two query families: by default the user is asking about
   COMPOUNDS ("mEGFR compounds with HTRF IC50 < 10 uM") — populate the
   top-level compound-selector fields and leave `assay_selector` null.
@@ -316,7 +314,7 @@ PROMPT_SCHEMA: dict = {
         "similar_to_as_typed": _COMPOUND_REFS_SUBSCHEMA,
         "similar_threshold": {"type": ["number", "null"]},
         "view_format": {"type": ["string", "null"]},
-        "categorisation_selection_phrases": {
+        "colour_by_scaffold_phrases": {
             "type": "array",
             "items": {"type": "string"},
         },
@@ -366,7 +364,7 @@ PROMPT_SCHEMA: dict = {
         "similar_to_as_typed",
         "similar_threshold",
         "view_format",
-        "categorisation_selection_phrases",
+        "colour_by_scaffold_phrases",
         "measurement_filters",
         "assay_selector",
     ],
@@ -477,8 +475,8 @@ def _to_parse_result(data: dict) -> PromptParseResult:
         similar_to_as_typed=list(data.get("similar_to_as_typed") or []),
         similar_threshold=data.get("similar_threshold"),
         view_format=data.get("view_format"),
-        categorisation_selection_phrases=list(
-            data.get("categorisation_selection_phrases") or []
+        colour_by_scaffold_phrases=list(
+            data.get("colour_by_scaffold_phrases") or []
         ),
         measurement_filters=filters,
     )

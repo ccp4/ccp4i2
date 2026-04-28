@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef, Suspense, useEffect } from 'react';
+import { useState, useCallback, useRef, Suspense, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { Typography, Box, Alert, CircularProgress, IconButton, Tooltip, Snackbar } from '@mui/material';
 import { TableChart, Link as LinkIcon, Save } from '@mui/icons-material';
@@ -22,7 +22,12 @@ import { scorecardDataNeeds } from '@/lib/compounds/scorecard';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { getSelection } from '@/lib/compounds/selections-api';
+import { listSubstructures, SUBSTRUCTURES_KEY } from '@/lib/compounds/substructures-api';
+import { buildScaffoldMatches } from '@/lib/compounds/scaffold-matching';
+import { useRDKit } from '@/lib/compounds/rdkit-context';
+import useSWR from 'swr';
 import type { CategorisationSelection } from '@/components/compounds/ProtocolScatterPlot';
+import type { ScaffoldDefinition } from '@/lib/compounds/scaffold-matching';
 import type { Target as TargetRecord } from '@/types/compounds/models';
 
 export default function AggregationPage() {
@@ -121,35 +126,71 @@ function AggregationPageContent() {
   const [cardContent, setCardContent] = useState<CardContent | undefined>(initialCardContent);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
 
-  // Categorisation overlay for scatter — derive directly from the URL
-  // so the chip strip's router.replace flows through without extra
-  // mirror state. Comma-joined string is the dep so React only refires
-  // when the actual list changes (not on unrelated URL edits).
-  const colourByIdsKey = searchParams?.get('colour_by') ?? '';
-  const [categorisationSelections, setCategorisationSelections] = useState<CategorisationSelection[]>([]);
-  useEffect(() => {
-    const ids = colourByIdsKey.split(',').map((s) => s.trim()).filter(Boolean);
-    if (ids.length === 0) {
-      setCategorisationSelections([]);
-      return;
+  // Categorisation overlay for scatter view — colour points by chemotype
+  // membership. URL contract: ``?colour_by=<entry>,<entry>`` where each
+  // entry is either a catalog scaffold name (``pyrimidine``) or an
+  // ad-hoc SMARTS prefixed with ``smarts:`` (``smarts:c1ccncc1``). The
+  // chip strip writes back via router.replace; this block reads.
+  const colourByKey = searchParams?.get('colour_by') ?? '';
+  const colourByEntries = useMemo(
+    () => colourByKey.split(',').map((s) => s.trim()).filter(Boolean),
+    [colourByKey],
+  );
+
+  // Catalog of scaffolds from the curated seed + per-project extensions.
+  const { data: scaffoldCatalog } = useSWR<ScaffoldDefinition[]>(
+    SUBSTRUCTURES_KEY,
+    () => listSubstructures(),
+    { revalidateOnFocus: false },
+  );
+
+  // RDKit module for client-side substructure matching.
+  const { rdkitModule } = useRDKit();
+
+  // ScaffoldDefinitions to match: the full catalog + virtual entries
+  // for any ad-hoc SMARTS in the URL. Ad-hoc entries are matched even
+  // when their SMARTS isn't in the catalog, so the chemist can paste
+  // a novel pattern and immediately see it light up.
+  const scaffoldsToMatch = useMemo<ScaffoldDefinition[]>(() => {
+    if (!scaffoldCatalog) return [];
+    const adhoc: ScaffoldDefinition[] = colourByEntries
+      .filter((e: string) => e.startsWith('smarts:'))
+      .map((e: string) => {
+        const smarts = e.slice('smarts:'.length);
+        return { name: e, aliases: [], smarts, source: 'ad-hoc' };
+      });
+    return [...scaffoldCatalog, ...adhoc];
+  }, [scaffoldCatalog, colourByEntries]);
+
+  // Compute matches when format=scatter and we have a data response.
+  // The compute is bounded (~50 scaffolds × ~500 compounds, sub-100ms)
+  // but we still gate on format=scatter to avoid the cost on cards/etc.
+  const scatterCompounds = useMemo(() => {
+    if (currentOutputFormat !== 'scatter' || !data) return [];
+    const rows = (data as any).data;
+    if (!Array.isArray(rows)) return [];
+    return rows.map((r: any) => ({ formatted_id: r.formatted_id, smiles: r.smiles }));
+  }, [data, currentOutputFormat]);
+
+  const scaffoldMatches = useMemo(() => {
+    if (!rdkitModule || scaffoldsToMatch.length === 0 || scatterCompounds.length === 0) {
+      return new Map<string, Set<string>>();
     }
-    let cancelled = false;
-    Promise.all(ids.map(async (id) => {
-      try {
-        const sel = await getSelection(id);
-        return { id: sel.id, name: sel.name, compoundIds: new Set(sel.compound_ids) } as CategorisationSelection;
-      } catch {
-        // 404 / 410 / network — drop silently; chip strip lets the
-        // chemist re-pick. Surfacing every failed lookup as an error
-        // would be noisy, especially after a Selection expired.
-        return null;
-      }
-    })).then((rows) => {
-      if (cancelled) return;
-      setCategorisationSelections(rows.filter((r): r is CategorisationSelection => r !== null));
-    });
-    return () => { cancelled = true; };
-  }, [colourByIdsKey]);
+    return buildScaffoldMatches(rdkitModule, scaffoldsToMatch, scatterCompounds);
+  }, [rdkitModule, scaffoldsToMatch, scatterCompounds]);
+
+  // Derive the colour-group selections from the active URL entries —
+  // each entry's compound set comes from the matches map. Entries
+  // whose name doesn't appear in the catalog (and isn't an ad-hoc
+  // smarts:) are dropped silently; the chip strip surfaces these.
+  const categorisationSelections = useMemo<CategorisationSelection[]>(() => {
+    return colourByEntries
+      .map((entry: string) => {
+        const compoundIds = scaffoldMatches.get(entry) ?? new Set<string>();
+        const displayName = entry.startsWith('smarts:') ? `SMARTS: ${entry.slice('smarts:'.length)}` : entry;
+        return { id: entry, name: displayName, compoundIds };
+      });
+  }, [colourByEntries, scaffoldMatches]);
 
   // When exactly one target is selected, fetch its full record so we can pass
   // its scorecard_config down to the Cards view for per-card spider rendering.
@@ -566,6 +607,7 @@ function AggregationPageContent() {
           onCardContentChange={setCardContent}
           fillHeight
           categorisationSelections={categorisationSelections}
+          scaffoldMatches={scaffoldMatches}
         />
       </DetailPageLayout>
 

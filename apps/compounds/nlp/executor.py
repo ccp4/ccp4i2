@@ -350,8 +350,8 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
             similar_threshold=selector.similar_threshold,
         ),
         view_format=selector.view_format,
-        # categorisation_selection_ids is resolved in view.py against
-        # the request user's saved selections (per-user scope).
+        # colour_by_scaffolds is resolved in view.py against the
+        # substructure catalog after execute() returns.
     )
 
 

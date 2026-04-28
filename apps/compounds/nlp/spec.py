@@ -229,13 +229,12 @@ class CompoundSelector:
     # the default. Phrases like *"plot X vs Y"*, *"scatter pIC50 against
     # MW"*, *"chart these as scatter"* map here.
     view_format: Optional[str] = None
-    # When the user names other saved selections to overlay as colour
-    # groups in scatter view (*"...coloured by my CDK4 hits"*,
-    # *"highlighting Mike's saved set"*), the LLM emits the typed
-    # phrases here. The resolver fuzzy-matches each against the user's
-    # saved Selection.name set; matched IDs flow into the redirect URL
-    # as ``colour_by=<uuid>,<uuid>``.
-    categorisation_selection_phrases: List[str] = field(default_factory=list)
+    # When the user names chemotypes to colour scatter points by
+    # (*"coloured by pyrimidine vs pyridone"*, *"highlighting indoles"*),
+    # the LLM emits the typed phrases here. The resolver matches each
+    # against the curated substructure catalog; canonical scaffold
+    # names flow into the redirect URL as ``colour_by=<name>,<name>``.
+    colour_by_scaffold_phrases: List[str] = field(default_factory=list)
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None
@@ -246,11 +245,11 @@ class CompoundSelector:
     # registered_by_id at any one time, but the schema allows either.
     registered_by_supplier_id: Optional[str] = None
     scaffold_ids: List[str] = field(default_factory=list)    # pinned canonical names
-    # Resolved from ``categorisation_selection_phrases`` by the
-    # executor — list of Selection UUIDs (strings) whose membership
-    # colours the points. Phrases that don't resolve are silently
-    # dropped (with a footnote in scope_sentence).
-    categorisation_selection_ids: List[str] = field(default_factory=list)
+    # Resolved from ``colour_by_scaffold_phrases`` by the view layer
+    # against the substructure catalog — canonical scaffold names that
+    # flow into the redirect URL as ``colour_by=<name>,<name>``.
+    # Phrases that don't resolve are silently dropped.
+    colour_by_scaffolds: List[str] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
@@ -628,9 +627,9 @@ class CompoundSelection:
     # ``format=scatter`` and the aggregation page renders the inline
     # scatter view instead of cards.
     view_format: Optional[str] = None
-    # Selection UUIDs to colour-overlay on scatter; emitted into the
-    # redirect URL as ``colour_by=<uuid>,<uuid>``.
-    categorisation_selection_ids: List[str] = field(default_factory=list)
+    # Canonical scaffold names whose substructure-membership colours
+    # the points; emitted as ``colour_by=<name>,<name>`` on the URL.
+    colour_by_scaffolds: List[str] = field(default_factory=list)
 
 
 @dataclass

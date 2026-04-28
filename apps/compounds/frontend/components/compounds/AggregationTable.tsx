@@ -43,6 +43,8 @@ interface AggregationTableProps {
   fillHeight?: boolean;
   /** Selections used to colour scatter points by membership when format=scatter. */
   categorisationSelections?: ReadonlyArray<CategorisationSelection>;
+  /** Per-scaffold-name → matching compound formatted_ids; chip strip uses this. */
+  scaffoldMatches?: ReadonlyMap<string, ReadonlySet<string>>;
 }
 
 /**
@@ -64,6 +66,7 @@ export function AggregationTable({
   onCardContentChange,
   fillHeight = false,
   categorisationSelections,
+  scaffoldMatches,
 }: AggregationTableProps) {
   const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
@@ -122,6 +125,7 @@ export function AggregationTable({
               onEditProtocol={onEditProtocol}
               onScatterProtocol={handleScatterProtocol}
               categorisationSelections={categorisationSelections}
+              scaffoldMatches={scaffoldMatches}
             />
           )}
         </Box>

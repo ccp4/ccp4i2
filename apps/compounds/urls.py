@@ -36,7 +36,7 @@ from compounds.registry.views import (
     LabNotebookEntryViewSet,
     CompoundDocumentViewSet,
 )
-from compounds.nlp.view import nlp_query, nlp_scaffold_extend
+from compounds.nlp.view import nlp_query, nlp_scaffold_extend, nlp_substructures_list
 from compounds.registry.selection_views import (
     selection_collection, selection_detail,
 )
@@ -141,6 +141,8 @@ urlpatterns = [
     # Scaffold-extension endpoint (slice 17) — runtime growth of the
     # substructure catalog, scoped per-project or shared.
     path('nlp/scaffold/extend/', nlp_scaffold_extend, name='nlp-scaffold-extend'),
+    # Substructures listing — drives the scatter view's chemotype chip strip.
+    path('nlp/substructures/', nlp_substructures_list, name='nlp-substructures-list'),
 
     # Selection endpoints (slice 20 + slice 22) — token-addressed snapshot
     # of a compound list. POST /selections/ creates (NLP does this

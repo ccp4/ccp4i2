@@ -39,6 +39,8 @@ interface Props {
   onScatterProtocol?: (protocol: ProtocolInfo) => void;
   /** When format=scatter, these selections partition points into colour groups. */
   categorisationSelections?: ReadonlyArray<CategorisationSelection>;
+  /** Per-scaffold-name → matching compound formatted_ids; used by the chemotype chip strip. */
+  scaffoldMatches?: ReadonlyMap<string, ReadonlySet<string>>;
 }
 
 /** Dispatch into the right per-format sub-view component. */
@@ -56,6 +58,7 @@ export function AggregationView({
   onEditProtocol,
   onScatterProtocol,
   categorisationSelections,
+  scaffoldMatches,
 }: Props) {
   if (outputFormat === 'scatter' && isCompactResponse(effectiveData)) {
     return (
@@ -65,6 +68,7 @@ export function AggregationView({
         protocols={aggregations.includes('geomean') ? effectiveData.protocols : []}
         includedProperties={effectiveData.meta.include_properties || []}
         categorisationSelections={categorisationSelections}
+        scaffoldMatches={scaffoldMatches}
       />
     );
   }

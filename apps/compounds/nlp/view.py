@@ -171,17 +171,15 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         similar_to_as_typed=list(data.get("similar_to_as_typed") or []),
         similar_threshold=data.get("similar_threshold"),
         view_format=data.get("view_format"),
-        categorisation_selection_phrases=list(
-            data.get("categorisation_selection_phrases") or []
+        colour_by_scaffold_phrases=list(
+            data.get("colour_by_scaffold_phrases") or []
         ),
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
         registered_by_id=data.get("registered_by_id"),
         registered_by_supplier_id=data.get("registered_by_supplier_id"),
         scaffold_ids=list(data.get("scaffold_ids") or []),
-        categorisation_selection_ids=list(
-            data.get("categorisation_selection_ids") or []
-        ),
+        colour_by_scaffolds=list(data.get("colour_by_scaffolds") or []),
     )
 
 
@@ -312,8 +310,8 @@ def _build_redirect_url(
     )
     params.append(("format", fmt))
 
-    if selection.categorisation_selection_ids:
-        params.append(("colour_by", ",".join(selection.categorisation_selection_ids)))
+    if selection.colour_by_scaffolds:
+        params.append(("colour_by", ",".join(selection.colour_by_scaffolds)))
 
     encoded = "&".join(f"{k}={quote(v, safe=',')}" for k, v in params)
     return f"{REDIRECT_BASE_PATH}?{encoded}"
@@ -503,11 +501,21 @@ def nlp_query(request: Request) -> Response:
     # than in execute(). Phrases that don't match any selection are
     # silently dropped (the chip strip lets the chemist re-pick anyway).
     if isinstance(result, CompoundSelection) and isinstance(selector_for_echo, CompoundSelector):
-        from .resolver import resolve_selection_names
-        result.categorisation_selection_ids = resolve_selection_names(
-            selector_for_echo.categorisation_selection_phrases,
-            request.user,
-        )
+        from .substructures import lookup_scaffold_by_typed
+        # Map each typed phrase to its canonical scaffold name via the
+        # catalog. Misses are silently dropped — chemist re-picks via
+        # the chip strip.
+        canonical: List[str] = []
+        seen: set = set()
+        for phrase in selector_for_echo.colour_by_scaffold_phrases:
+            hit = lookup_scaffold_by_typed(phrase)
+            if hit is None:
+                continue
+            scaffold, _via = hit
+            if scaffold.name not in seen:
+                canonical.append(scaffold.name)
+                seen.add(scaffold.name)
+        result.colour_by_scaffolds = canonical
 
     body_out, status_code = _serialize(
         result,
@@ -516,6 +524,65 @@ def nlp_query(request: Request) -> Response:
         source_prompt=prompt or "",
     )
     return Response(body_out, status=status_code)
+
+
+# ---------------------------------------------------------------------------
+# Substructures listing endpoint — returns the seed catalog (and any
+# project-scoped or shared ScaffoldExtension rows when target_id is
+# given) so the scatter view can chip-strip chemotypes for colouring.
+# Each entry carries the SMARTS so the frontend can do RDKit substructure
+# matching client-side without a per-compound round trip.
+# ---------------------------------------------------------------------------
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def nlp_substructures_list(request: Request) -> Response:
+    """List substructures available for chemotype colouring.
+
+    Query params:
+        target_id (str, optional): include this Target's project-scoped
+            ScaffoldExtension rows alongside the shared/seed catalog.
+
+    Each entry carries the SMARTS string; the frontend's RDKit context
+    matches it against the compound SMILES already in the scatter
+    response — no per-compound round-trip needed.
+    """
+    from .substructures import SCAFFOLDS
+
+    seed = [
+        {
+            "name": s.name,
+            "aliases": list(s.aliases),
+            "smarts": s.smarts,
+            "source": "seed",
+        }
+        for s in SCAFFOLDS
+    ]
+
+    from compounds.registry.models import ScaffoldExtension, Target
+
+    extensions: list = []
+    target_id = request.query_params.get("target_id")
+    if target_id:
+        target = Target.objects.filter(pk=target_id).first()
+        if target is not None:
+            for ext in ScaffoldExtension.objects.filter(target=target).order_by("name"):
+                extensions.append({
+                    "name": ext.name,
+                    "aliases": list(ext.aliases or []),
+                    "smarts": ext.smarts,
+                    "source": "extension:project",
+                })
+    for ext in ScaffoldExtension.objects.filter(target__isnull=True).order_by("name"):
+        extensions.append({
+            "name": ext.name,
+            "aliases": list(ext.aliases or []),
+            "smarts": ext.smarts,
+            "source": "extension:shared",
+        })
+
+    return Response({"scaffolds": seed + extensions}, status=http_status.HTTP_200_OK)
 
 
 # ---------------------------------------------------------------------------
