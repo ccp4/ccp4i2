@@ -312,7 +312,12 @@ export function CardsView({
   }, [sortedRows, showBatch, exportCardsPerSlide]);
 
   return (
-    <>
+    // Fill the parent's flex slot — AggregationTable lays this out as a
+    // flex column with `flex: 1, minHeight: 0`, so the cards grid below
+    // scrolls in its own region rather than overflowing the clipped
+    // Paper. The toolbar stays in view via flex layout (no sticky CSS
+    // needed: there's no scrollable ancestor to be sticky against).
+    <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       <Box sx={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -320,15 +325,7 @@ export function CardsView({
         mb: 2,
         flexWrap: 'wrap',
         gap: 1,
-        // Keep the sort / show / PPTX toolbar in view as the cards
-        // grid scrolls. Cards mode doesn't virtualise (unlike the
-        // tabular views) so the grid flows with the page; the sticky
-        // toolbar gives the chemist constant access to controls.
-        position: 'sticky',
-        top: 0,
-        zIndex: 2,
-        backgroundColor: 'background.default',
-        py: 1,
+        flexShrink: 0,
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
@@ -450,6 +447,9 @@ export function CardsView({
           gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
           gap: 2,
           p: 1,
+          flex: 1,
+          minHeight: 0,
+          overflow: 'auto',
         }}
       >
         {sortedRows.map((row) => {
@@ -825,7 +825,7 @@ export function CardsView({
           protocolName={selectedProtocol.name}
         />
       )}
-    </>
+    </Box>
   );
 }
 
