@@ -18,6 +18,8 @@ import { LongTable } from './LongTable';
 import { PivotTable } from './PivotTable';
 import { CardsView } from './CardsView';
 import { BulletsView } from './BulletsView';
+import { ProtocolScatterPlot } from '../ProtocolScatterPlot';
+import type { CategorisationSelection } from '../ProtocolScatterPlot';
 
 interface Props {
   /** Display data — incorporates threshold overrides for compact responses. */
@@ -35,6 +37,8 @@ interface Props {
   onCardContentChange?: (next: CardContent) => void;
   onEditProtocol?: (protocol: ProtocolInfo) => void;
   onScatterProtocol?: (protocol: ProtocolInfo) => void;
+  /** When format=scatter, these selections partition points into colour groups. */
+  categorisationSelections?: ReadonlyArray<CategorisationSelection>;
 }
 
 /** Dispatch into the right per-format sub-view component. */
@@ -51,7 +55,19 @@ export function AggregationView({
   onCardContentChange,
   onEditProtocol,
   onScatterProtocol,
+  categorisationSelections,
 }: Props) {
+  if (outputFormat === 'scatter' && isCompactResponse(effectiveData)) {
+    return (
+      <ProtocolScatterPlot
+        mode="inline"
+        data={effectiveData.data as CompactRow[]}
+        protocols={aggregations.includes('geomean') ? effectiveData.protocols : []}
+        includedProperties={effectiveData.meta.include_properties || []}
+        categorisationSelections={categorisationSelections}
+      />
+    );
+  }
   if (outputFormat === 'pivot' && isCompactResponse(effectiveData)) {
     return (
       <PivotTable

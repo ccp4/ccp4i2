@@ -618,6 +618,9 @@ export function PredicateBuilder({
             <ToggleButton value="bullets" sx={{ px: 1.5, py: 0.5 }}>
               Bullets
             </ToggleButton>
+            <ToggleButton value="scatter" sx={{ px: 1.5, py: 0.5 }}>
+              Scatter
+            </ToggleButton>
           </ToggleButtonGroup>
         </Box>
 

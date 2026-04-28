@@ -54,6 +54,8 @@ import {
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { useRouter } from 'next/navigation';
+import { ScatterCategorisationStrip } from './aggregation/ScatterCategorisationStrip';
+import { SCATTER_CATEGORY_COLOURS } from '@/lib/compounds/scatter-palette';
 import { ListSubheader } from '@mui/material';
 import {
   CompactRow,
@@ -130,6 +132,13 @@ function calculateRegression(
   return { slope, intercept, rSquared };
 }
 
+export interface CategorisationSelection {
+  id: string;
+  name: string;
+  /** Set for O(1) membership tests on every point. */
+  compoundIds: ReadonlySet<string>;
+}
+
 interface ProtocolScatterPlotProps {
   /** Compact aggregation data rows */
   data: CompactRow[];
@@ -137,6 +146,21 @@ interface ProtocolScatterPlotProps {
   protocols: ProtocolInfo[];
   /** Molecular properties present in the data (from meta.include_properties) */
   includedProperties?: MolecularPropertyName[];
+  /**
+   * 'dialog' (default, back-compat) — renders a "Scatter Plot" trigger button
+   *   plus a Dialog that opens to show the chart. Used by the row-pencil
+   *   "open scatter for this protocol" flow on cards / pivot views.
+   * 'inline' — renders the chart UI directly with no Button or Dialog
+   *   wrapper. Used when format=scatter is the page's primary view mode.
+   */
+  mode?: 'dialog' | 'inline';
+  /**
+   * When non-empty, points are partitioned into colour groups by selection
+   * membership: one dataset per selection (in order), plus an "Other"
+   * dataset for compounds in none. Drives the categorisation overlay
+   * exposed via the `?colour_by=<uuid>,<uuid>` URL param.
+   */
+  categorisationSelections?: ReadonlyArray<CategorisationSelection>;
 }
 
 type AxisKind = 'protocol' | 'property';
@@ -251,6 +275,8 @@ export const ProtocolScatterPlot = forwardRef<
   data,
   protocols,
   includedProperties = [],
+  mode = 'dialog',
+  categorisationSelections,
 }, ref) {
   const router = useRouter();
   const chartRef = useRef<ChartJS<'scatter'>>(null);
@@ -477,23 +503,66 @@ export const ProtocolScatterPlot = forwardRef<
       });
     }
 
+    if (!categorisationSelections || categorisationSelections.length === 0) {
+      return {
+        datasets: [
+          {
+            label: 'Compounds',
+            data: points,
+            backgroundColor: 'rgba(25, 118, 210, 0.6)',
+            borderColor: 'rgba(25, 118, 210, 1)',
+            borderWidth: 1,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            pointHoverBackgroundColor: 'rgba(25, 118, 210, 0.8)',
+          },
+        ],
+        // Store raw points for regression calculation
+        _rawPoints: points,
+      };
+    }
+
+    // First-match wins: priority order = the array given.
+    type Bucket = { x: number; y: number; compound_id: string; formatted_id: string; smiles?: string; target_name?: string };
+    const otherBucket: Bucket[] = [];
+    const namedBuckets: Bucket[][] = categorisationSelections.map(() => []);
+    for (const p of points) {
+      let placed = false;
+      for (let i = 0; i < categorisationSelections.length; i++) {
+        if (categorisationSelections[i].compoundIds.has(p.formatted_id)) {
+          namedBuckets[i].push(p);
+          placed = true;
+          break;
+        }
+      }
+      if (!placed) otherBucket.push(p);
+    }
     return {
       datasets: [
+        // "Other" goes first so the legend reads it first AND it draws
+        // BENEATH the coloured groups (Chart.js draws datasets in order).
         {
-          label: 'Compounds',
-          data: points,
-          backgroundColor: 'rgba(25, 118, 210, 0.6)',
-          borderColor: 'rgba(25, 118, 210, 1)',
+          label: 'Other',
+          data: otherBucket,
+          backgroundColor: 'rgba(150, 150, 150, 0.45)',
+          borderColor: 'rgba(120, 120, 120, 0.8)',
+          borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+        },
+        ...categorisationSelections.map((sel, i) => ({
+          label: sel.name || `Selection ${i + 1}`,
+          data: namedBuckets[i],
+          backgroundColor: SCATTER_CATEGORY_COLOURS[i % SCATTER_CATEGORY_COLOURS.length].fill,
+          borderColor: SCATTER_CATEGORY_COLOURS[i % SCATTER_CATEGORY_COLOURS.length].border,
           borderWidth: 1,
           pointRadius: 6,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: 'rgba(25, 118, 210, 0.8)',
-        },
+        })),
       ],
-      // Store raw points for regression calculation
       _rawPoints: points,
     };
-  }, [data, xAxis, yAxis, getAxisValue]);
+  }, [data, xAxis, yAxis, getAxisValue, categorisationSelections]);
 
   // Calculate regression based on current scale settings
   const regression = useMemo(() => {
@@ -509,7 +578,9 @@ export const ProtocolScatterPlot = forwardRef<
   // Calculate axis bounds, snapped to "nice" numbers so the axis-extreme
   // labels read as 1/2/5/10/20/50/100 rather than 7.9432... or 468.572...
   const axisBounds = useMemo(() => {
-    const points = chartData.datasets[0]?.data as Array<{ x: number; y: number }> || [];
+    // Read from _rawPoints — dataset[0] is no longer the full set when
+    // categorisation splits the points into "Other" + per-selection groups.
+    const points = (chartData as any)._rawPoints as Array<{ x: number; y: number }> || [];
     if (points.length === 0) {
       return { xMin: 0.01, xMax: 1000, yMin: 0.01, yMax: 1000 };
     }
@@ -768,15 +839,15 @@ export const ProtocolScatterPlot = forwardRef<
         },
       },
       onClick: (_, elements) => {
-        if (elements.length > 0) {
-          const element = elements[0];
-          // Only navigate for scatter points (dataset index 0), not regression line
-          if (element.datasetIndex === 0) {
-            const point = (finalChartData.datasets[0].data as any[])[element.index];
-            if (point?.compound_id) {
-              router.push(`/registry/compounds/${point.compound_id}`);
-            }
-          }
+        if (elements.length === 0) return;
+        const element = elements[0];
+        // Look up the clicked point in its own dataset; the regression line
+        // and isoselectivity overlays don't carry compound_id, so they
+        // self-filter via the guard below — no need to special-case index.
+        const dataset = finalChartData.datasets[element.datasetIndex];
+        const point = (dataset?.data as any[] | undefined)?.[element.index];
+        if (point?.compound_id) {
+          router.push(`/registry/compounds/${point.compound_id}`);
         }
       },
     }),
@@ -789,51 +860,30 @@ export const ProtocolScatterPlot = forwardRef<
     setYAxis((prev) => ({ ...prev, min: '', max: '' }));
   };
 
-  // Count points that will be shown
-  const pointCount = chartData.datasets[0]?.data?.length || 0;
+  const pointCount = ((chartData as any)._rawPoints as unknown[] | undefined)?.length || 0;
 
   // Only show if we have at least 2 axis candidates to plot against each other
   if (axisOptions.length < 2) {
     return null;
   }
 
-  return (
-    <>
-      <Button
-        variant="outlined"
-        startIcon={<BubbleChart />}
-        onClick={() => setOpen(true)}
-        sx={{ mb: 2 }}
-      >
-        Scatter Plot
-        {pointCount > 0 && (
-          <Chip
-            label={`${pointCount} compounds`}
-            size="small"
-            variant="outlined"
-            sx={{ ml: 1 }}
-          />
-        )}
-      </Button>
-
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        maxWidth="lg"
-        fullWidth
-        PaperProps={{ sx: { height: '80vh' } }}
-      >
-        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <BubbleChart color="primary" />
-            <Typography variant="h6">Scatter Plot</Typography>
-          </Box>
-          <IconButton onClick={() => setOpen(false)} size="small">
-            <Close />
-          </IconButton>
-        </DialogTitle>
-
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column' }}>
+  // The chart UI is identical in both modes; only the wrapper differs.
+  const panel = (
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      // Inline mode fills the page region we're handed; dialog mode lets
+      // DialogContent's own padding/overflow rules drive sizing.
+      ...(mode === 'inline' && { flex: 1, minHeight: 0 }),
+      px: mode === 'inline' ? 0 : 3,
+      py: mode === 'inline' ? 0 : 2.5,
+      overflow: 'auto',
+    }}>
+          {/* Categorisation chip strip — only the inline page-level
+              scatter view can usefully colour-by saved selections;
+              the row-pencil dialog opens from a single-protocol
+              context where colouring isn't part of the workflow. */}
+          {mode === 'inline' && <ScatterCategorisationStrip />}
           {/* Axis controls */}
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 2 }}>
             {/* X-Axis controls */}
@@ -1227,6 +1277,47 @@ export const ProtocolScatterPlot = forwardRef<
               </Fade>
             )}
           </Popper>
+    </Box>
+  );
+
+  if (mode === 'inline') return panel;
+
+  return (
+    <>
+      <Button
+        variant="outlined"
+        startIcon={<BubbleChart />}
+        onClick={() => setOpen(true)}
+        sx={{ mb: 2 }}
+      >
+        Scatter Plot
+        {pointCount > 0 && (
+          <Chip
+            label={`${pointCount} compounds`}
+            size="small"
+            variant="outlined"
+            sx={{ ml: 1 }}
+          />
+        )}
+      </Button>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        maxWidth="lg"
+        fullWidth
+        PaperProps={{ sx: { height: '80vh' } }}
+      >
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <BubbleChart color="primary" />
+            <Typography variant="h6">Scatter Plot</Typography>
+          </Box>
+          <IconButton onClick={() => setOpen(false)} size="small">
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ display: 'flex', flexDirection: 'column', p: 0 }}>
+          {panel}
         </DialogContent>
       </Dialog>
     </>

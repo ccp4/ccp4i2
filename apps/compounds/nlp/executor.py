@@ -349,6 +349,9 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
             resolved_similar_to=resolved_similar_to,
             similar_threshold=selector.similar_threshold,
         ),
+        view_format=selector.view_format,
+        # categorisation_selection_ids is resolved in view.py against
+        # the request user's saved selections (per-user scope).
     )
 
 

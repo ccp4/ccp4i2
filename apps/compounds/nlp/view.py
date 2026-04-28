@@ -170,11 +170,18 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         rank_top_n=data.get("rank_top_n"),
         similar_to_as_typed=list(data.get("similar_to_as_typed") or []),
         similar_threshold=data.get("similar_threshold"),
+        view_format=data.get("view_format"),
+        categorisation_selection_phrases=list(
+            data.get("categorisation_selection_phrases") or []
+        ),
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
         registered_by_id=data.get("registered_by_id"),
         registered_by_supplier_id=data.get("registered_by_supplier_id"),
         scaffold_ids=list(data.get("scaffold_ids") or []),
+        categorisation_selection_ids=list(
+            data.get("categorisation_selection_ids") or []
+        ),
     )
 
 
@@ -231,6 +238,12 @@ def _assay_selector_from_dict(data: Any) -> AssaySelector:
 # ~150 compounds) to a token-addressed Selection row (`?selection=<uuid>`).
 # The aggregation page treats both forms identically downstream.
 SELECTION_TOKEN_THRESHOLD = 100
+
+# View directives the redirect URL is allowed to set. Anything else on
+# CompoundSelector.view_format falls back to REDIRECT_DEFAULT_FORMAT.
+_REDIRECT_FORMAT_ALLOWED: frozenset[str] = frozenset(
+    {"cards", "compact", "pivot", "bullets", "scatter"},
+)
 
 
 def _persist_selection(
@@ -292,7 +305,15 @@ def _build_redirect_url(
     elif selection.compound_formatted_ids:
         params.append(("compound", ",".join(selection.compound_formatted_ids)))
 
-    params.append(("format", REDIRECT_DEFAULT_FORMAT))
+    fmt = (
+        selection.view_format
+        if selection.view_format in _REDIRECT_FORMAT_ALLOWED
+        else REDIRECT_DEFAULT_FORMAT
+    )
+    params.append(("format", fmt))
+
+    if selection.categorisation_selection_ids:
+        params.append(("colour_by", ",".join(selection.categorisation_selection_ids)))
 
     encoded = "&".join(f"{k}={quote(v, safe=',')}" for k, v in params)
     return f"{REDIRECT_BASE_PATH}?{encoded}"
@@ -475,6 +496,17 @@ def nlp_query(request: Request) -> Response:
             {"status": "error", "kind": "bad_request",
              "message": "Body must contain 'prompt' or 'selector'."},
             status=http_status.HTTP_400_BAD_REQUEST,
+        )
+
+    # Resolve categorisation phrases against the user's saved selections
+    # before serialising — needs the request user, so it lives here rather
+    # than in execute(). Phrases that don't match any selection are
+    # silently dropped (the chip strip lets the chemist re-pick anyway).
+    if isinstance(result, CompoundSelection) and isinstance(selector_for_echo, CompoundSelector):
+        from .resolver import resolve_selection_names
+        result.categorisation_selection_ids = resolve_selection_names(
+            selector_for_echo.categorisation_selection_phrases,
+            request.user,
         )
 
     body_out, status_code = _serialize(

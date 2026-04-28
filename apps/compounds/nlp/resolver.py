@@ -1163,3 +1163,73 @@ def resolve_compound_ref(as_typed: str, *, ref_index: int = 0) -> CompoundResolu
             query=as_typed or "", ref_index=ref_index, field=FIELD_COMPOUND_REF,
         )
     return ResolvedCompound(compound=compound, query=as_typed or "")
+
+
+# ---------------------------------------------------------------------------
+# Selection-name resolution — used by the scatter view's colour-by overlay
+# ---------------------------------------------------------------------------
+
+
+def resolve_selection_names(phrases: Iterable[str], user) -> List[str]:
+    """Map typed selection-name phrases to Selection UUIDs for the given
+    user. Used by the scatter view's colour-by overlay.
+
+    Matching is exact-then-substring-then-fuzzy on the user's own
+    Selection rows (saved + non-expired ephemeral). A phrase that
+    doesn't match any selection is silently dropped — the executor
+    annotates the scope sentence with which phrases failed so the
+    chemist can adjust.
+
+    Returns an ordered, deduplicated list of UUID strings.
+    """
+    if user is None or not getattr(user, "is_authenticated", False):
+        return []
+    phrases = [p for p in (phrases or []) if isinstance(p, str) and p.strip()]
+    if not phrases:
+        return []
+
+    from django.utils import timezone
+    from compounds.registry.models import Selection
+
+    qs = Selection.objects.filter(created_by=user).exclude(
+        is_saved=False, expires_at__lt=timezone.now(),
+    )
+    rows = list(qs.values_list("id", "name"))
+    if not rows:
+        return []
+
+    normalised: List[Tuple[str, str]] = []
+    for sel_id, name in rows:
+        norm = normalize(name or "")
+        if norm:
+            normalised.append((str(sel_id), norm))
+
+    matched: List[str] = []
+    seen: set = set()
+    for phrase in phrases:
+        norm_query = normalize(phrase)
+        if not norm_query:
+            continue
+        sel_id = _match_selection(norm_query, normalised)
+        if sel_id is not None and sel_id not in seen:
+            matched.append(sel_id)
+            seen.add(sel_id)
+    return matched
+
+
+def _match_selection(
+    norm_query: str, normalised: List[Tuple[str, str]],
+) -> Optional[str]:
+    """Three-tier match: exact, substring, fuzzy (Levenshtein-1).
+    Returns the first hit at the strongest tier."""
+    for sel_id, norm_name in normalised:
+        if norm_name == norm_query:
+            return sel_id
+    for sel_id, norm_name in normalised:
+        if norm_query in norm_name or norm_name in norm_query:
+            return sel_id
+    if len(norm_query) >= _FUZZY_MIN_QUERY_LEN:
+        for sel_id, norm_name in normalised:
+            if _edit_distance_le_1(norm_query, norm_name):
+                return sel_id
+    return None

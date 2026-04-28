@@ -196,9 +196,41 @@ Rules:
   names an explicit cutoff. Do not synthesise a threshold from filler
   words alone.
 - If the request asks for rows of specific column values, data columns,
-  phys-chem properties, or display formats — ignore those preferences.
-  Those live on the aggregation page the user lands on; your job ends
-  at the compound selection.
+  or phys-chem properties — ignore those preferences. Those live on
+  the aggregation page the user lands on; your job ends at the
+  compound selection. EXCEPTION: scatter view (see below).
+- Scatter view: when the user asks to *plot*, *chart*, *scatter*, *graph*,
+  *visualise as a scatter*, *show as scatter*, *plot X vs Y* — set
+  `view_format = "scatter"`. The chemist picks axes via the page's
+  built-in pickers; you don't extract axis names. Other display
+  formats (cards, pivot, bullets) are NOT to be set — leave
+  `view_format` null when the user doesn't ask for scatter. Examples:
+    "scatter the CDK4 compounds"
+      → registration_target_as_typed: "CDK4", view_format: "scatter"
+    "plot ARd compounds with HTRF IC50 < 100 nM"
+      → registration_target_as_typed: "ARd", view_format: "scatter",
+        measurement_filters: [{protocol_hint: "HTRF", metric: "IC50",
+                               threshold: {op: "<", value: 100, unit: "nM"}, ...}]
+    "show CDK4 compounds as a scatter coloured by my saved hits"
+      → view_format: "scatter",
+        categorisation_selection_phrases: ["my saved hits"]
+- Categorisation overlay: when the user names other selections to
+  highlight as colour groups in the scatter — *"coloured by X"*,
+  *"highlighting Y and Z"*, *"with my CDK4 hits picked out"* — emit
+  the typed phrases into `categorisation_selection_phrases`. These
+  match against the user's own saved Selection rows; the backend
+  resolves phrase → UUID. Phrases that don't match are silently
+  dropped. Only emit when `view_format = "scatter"` (the overlay is
+  scatter-only). Examples:
+    "scatter ARd compounds, colour by my saved scorecard tier"
+      → view_format: "scatter",
+        categorisation_selection_phrases: ["my saved scorecard tier"]
+    "plot CDK4 compounds highlighting Mike's recent screen and the
+       analogue series"
+      → view_format: "scatter",
+        categorisation_selection_phrases: [
+          "Mike's recent screen", "the analogue series"
+        ]
 - The two query families: by default the user is asking about
   COMPOUNDS ("mEGFR compounds with HTRF IC50 < 10 uM") — populate the
   top-level compound-selector fields and leave `assay_selector` null.
@@ -283,6 +315,11 @@ PROMPT_SCHEMA: dict = {
         "rank_top_n": {"type": ["integer", "null"]},
         "similar_to_as_typed": _COMPOUND_REFS_SUBSCHEMA,
         "similar_threshold": {"type": ["number", "null"]},
+        "view_format": {"type": ["string", "null"]},
+        "categorisation_selection_phrases": {
+            "type": "array",
+            "items": {"type": "string"},
+        },
         "measurement_filters": {
             "type": "array",
             "items": {
@@ -328,6 +365,8 @@ PROMPT_SCHEMA: dict = {
         "rank_top_n",
         "similar_to_as_typed",
         "similar_threshold",
+        "view_format",
+        "categorisation_selection_phrases",
         "measurement_filters",
         "assay_selector",
     ],
@@ -437,6 +476,10 @@ def _to_parse_result(data: dict) -> PromptParseResult:
         rank_top_n=data.get("rank_top_n"),
         similar_to_as_typed=list(data.get("similar_to_as_typed") or []),
         similar_threshold=data.get("similar_threshold"),
+        view_format=data.get("view_format"),
+        categorisation_selection_phrases=list(
+            data.get("categorisation_selection_phrases") or []
+        ),
         measurement_filters=filters,
     )
 

@@ -21,6 +21,8 @@ import { fetchAggregation, saveAggregationView } from '@/lib/compounds/aggregati
 import { scorecardDataNeeds } from '@/lib/compounds/scorecard';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { getSelection } from '@/lib/compounds/selections-api';
+import type { CategorisationSelection } from '@/components/compounds/ProtocolScatterPlot';
 import type { Target as TargetRecord } from '@/types/compounds/models';
 
 export default function AggregationPage() {
@@ -65,7 +67,7 @@ function AggregationPageContent() {
   const initialProtocolNames = searchParams?.get('protocols')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
   // Support output format via 'format' param
   const formatParam = searchParams?.get('format');
-  const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long' || formatParam === 'pivot' || formatParam === 'cards' || formatParam === 'bullets') ? formatParam : undefined;
+  const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long' || formatParam === 'pivot' || formatParam === 'cards' || formatParam === 'bullets' || formatParam === 'scatter') ? formatParam : undefined;
   // Support aggregations via comma-separated 'aggregations' param
   const aggregationsParam = searchParams?.get('aggregations');
   const validAggregations = ['geomean', 'count', 'stdev', 'list'] as const;
@@ -118,6 +120,36 @@ function AggregationPageContent() {
   const [currentIncludeIdentifiers, setCurrentIncludeIdentifiers] = useState<boolean>(initialIncludeIdentifiers);
   const [cardContent, setCardContent] = useState<CardContent | undefined>(initialCardContent);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
+
+  // Categorisation overlay for scatter — derive directly from the URL
+  // so the chip strip's router.replace flows through without extra
+  // mirror state. Comma-joined string is the dep so React only refires
+  // when the actual list changes (not on unrelated URL edits).
+  const colourByIdsKey = searchParams?.get('colour_by') ?? '';
+  const [categorisationSelections, setCategorisationSelections] = useState<CategorisationSelection[]>([]);
+  useEffect(() => {
+    const ids = colourByIdsKey.split(',').map((s) => s.trim()).filter(Boolean);
+    if (ids.length === 0) {
+      setCategorisationSelections([]);
+      return;
+    }
+    let cancelled = false;
+    Promise.all(ids.map(async (id) => {
+      try {
+        const sel = await getSelection(id);
+        return { id: sel.id, name: sel.name, compoundIds: new Set(sel.compound_ids) } as CategorisationSelection;
+      } catch {
+        // 404 / 410 / network — drop silently; chip strip lets the
+        // chemist re-pick. Surfacing every failed lookup as an error
+        // would be noisy, especially after a Selection expired.
+        return null;
+      }
+    })).then((rows) => {
+      if (cancelled) return;
+      setCategorisationSelections(rows.filter((r): r is CategorisationSelection => r !== null));
+    });
+    return () => { cancelled = true; };
+  }, [colourByIdsKey]);
 
   // When exactly one target is selected, fetch its full record so we can pass
   // its scorecard_config down to the Cards view for per-card spider rendering.
@@ -329,7 +361,7 @@ function AggregationPageContent() {
 
     try {
       // Map pivot/cards/bullets to compact for the API - they use the same data structure
-      const apiOutputFormat = (outputFormat === 'pivot' || outputFormat === 'cards' || outputFormat === 'bullets') ? 'compact' : outputFormat;
+      const apiOutputFormat = (outputFormat === 'pivot' || outputFormat === 'cards' || outputFormat === 'bullets' || outputFormat === 'scatter') ? 'compact' : outputFormat;
 
       // If a scorecard is in play for a single target, auto-augment the
       // request with the protocols and molecular properties the scorecard
@@ -533,6 +565,7 @@ function AggregationPageContent() {
           cardContent={cardContent}
           onCardContentChange={setCardContent}
           fillHeight
+          categorisationSelections={categorisationSelections}
         />
       </DetailPageLayout>
 

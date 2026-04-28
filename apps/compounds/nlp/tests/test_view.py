@@ -546,3 +546,94 @@ def test_empty_selection_does_not_persist_row(
     assert resp.data["n_matched"] == 0
     assert Selection.objects.count() == 0
     assert resp.data["selection_id"] is None
+
+
+# ---------------------------------------------------------------------------
+# Scatter view + colour-by overlay
+# ---------------------------------------------------------------------------
+
+
+def test_view_format_scatter_emits_format_param(client, feature_on, clear_cache, world):
+    """When the LLM emits view_format='scatter', the redirect URL flips
+    the format param accordingly."""
+    parsed = CompoundSelector(
+        registration_target_as_typed="AR degraders",
+        view_format="scatter",
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "scatter ARd compounds"}, format="json")
+    assert resp.status_code == 200
+    assert "format=scatter" in resp.data["redirect_url"]
+    assert "format=cards" not in resp.data["redirect_url"]
+
+
+def test_view_format_unknown_falls_back_to_cards(client, feature_on, clear_cache, world):
+    """An unrecognised view_format value doesn't break — falls through
+    to the cards default."""
+    parsed = CompoundSelector(
+        registration_target_as_typed="AR degraders",
+        view_format="ascii_art",
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "ARd compounds"}, format="json")
+    assert resp.status_code == 200
+    assert "format=cards" in resp.data["redirect_url"]
+
+
+def test_categorisation_phrases_resolved_to_uuids(client, feature_on, clear_cache, world):
+    """Phrases naming the user's saved selections resolve to UUIDs
+    that flow into the redirect URL as colour_by=<uuid>,<uuid>."""
+    from compounds.registry.models import Selection
+    user = client.handler._force_user
+    sel = Selection.objects.create(
+        name="my CDK4 hits", compound_ids=["NCL-X"],
+        created_by=user, is_saved=True, expires_at=None,
+    )
+    parsed = CompoundSelector(
+        registration_target_as_typed="AR degraders",
+        view_format="scatter",
+        categorisation_selection_phrases=["my CDK4 hits"],
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "scatter ARd hits coloured by my CDK4 hits"}, format="json")
+    assert resp.status_code == 200
+    assert f"colour_by={sel.id}" in resp.data["redirect_url"]
+
+
+def test_unmatched_phrases_silently_dropped_from_url(client, feature_on, clear_cache, world):
+    """Phrases that don't match any saved selection don't crash and
+    don't appear in the URL — chemist re-picks via the chip strip."""
+    parsed = CompoundSelector(
+        registration_target_as_typed="AR degraders",
+        view_format="scatter",
+        categorisation_selection_phrases=["nonexistent selection name"],
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "scatter ..."}, format="json")
+    assert resp.status_code == 200
+    assert "colour_by=" not in resp.data["redirect_url"]
+
+
+def test_categorisation_only_resolves_against_requesting_user(
+    client, feature_on, clear_cache, db,
+):
+    """The requesting user's typed phrase doesn't resolve against
+    another user's saved selections. Per-user scope at the view layer."""
+    from compounds.registry.models import Selection
+    other_user = User.objects.create_user(username="someone-else", email="o@example.org")
+    Selection.objects.create(
+        name="another user's hits", compound_ids=["NCL-1"],
+        created_by=other_user, is_saved=True, expires_at=None,
+    )
+    target = Target.objects.create(name="ARd")
+    Compound.objects.create(target=target, smiles="CCO")
+
+    parsed = CompoundSelector(
+        registration_target_as_typed="ARd",
+        view_format="scatter",
+        categorisation_selection_phrases=["another user's hits"],
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "..."}, format="json")
+    assert resp.status_code == 200
+    assert "colour_by=" not in resp.data["redirect_url"]

@@ -223,6 +223,19 @@ class CompoundSelector:
     # — the de-facto medicinal-chemistry "structurally similar" cutoff.
     similar_to_as_typed: List[str] = field(default_factory=list)
     similar_threshold: Optional[float] = None
+    # View directive — when set, overrides the default ``cards`` redirect
+    # destination. ``"scatter"`` lands the chemist on the aggregation page
+    # with the inline scatter view selected; other values fall back to
+    # the default. Phrases like *"plot X vs Y"*, *"scatter pIC50 against
+    # MW"*, *"chart these as scatter"* map here.
+    view_format: Optional[str] = None
+    # When the user names other saved selections to overlay as colour
+    # groups in scatter view (*"...coloured by my CDK4 hits"*,
+    # *"highlighting Mike's saved set"*), the LLM emits the typed
+    # phrases here. The resolver fuzzy-matches each against the user's
+    # saved Selection.name set; matched IDs flow into the redirect URL
+    # as ``colour_by=<uuid>,<uuid>``.
+    categorisation_selection_phrases: List[str] = field(default_factory=list)
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None
@@ -233,6 +246,11 @@ class CompoundSelector:
     # registered_by_id at any one time, but the schema allows either.
     registered_by_supplier_id: Optional[str] = None
     scaffold_ids: List[str] = field(default_factory=list)    # pinned canonical names
+    # Resolved from ``categorisation_selection_phrases`` by the
+    # executor — list of Selection UUIDs (strings) whose membership
+    # colours the points. Phrases that don't resolve are silently
+    # dropped (with a footnote in scope_sentence).
+    categorisation_selection_ids: List[str] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
@@ -606,6 +624,13 @@ class CompoundSelection:
     protocol_names: List[str]                # what goes into `protocols=` (0+ — only filter-used protocols)
     n_matched: int                           # == len(compound_formatted_ids)
     scope_sentence: str                      # human echo-back
+    # View directive — when "scatter", the redirect URL switches to
+    # ``format=scatter`` and the aggregation page renders the inline
+    # scatter view instead of cards.
+    view_format: Optional[str] = None
+    # Selection UUIDs to colour-overlay on scatter; emitted into the
+    # redirect URL as ``colour_by=<uuid>,<uuid>``.
+    categorisation_selection_ids: List[str] = field(default_factory=list)
 
 
 @dataclass

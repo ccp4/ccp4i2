@@ -13,7 +13,7 @@ import {
 import {
   ProtocolThresholdQuickEdit,
 } from './ProtocolThresholdQuickEdit';
-import type { ProtocolScatterPlotHandle } from './ProtocolScatterPlot';
+import type { ProtocolScatterPlotHandle, CategorisationSelection } from './ProtocolScatterPlot';
 import type { ScorecardConfig } from '@/types/compounds/models';
 import { AggregationStatus } from './aggregation/AggregationStatus';
 import { AggregationToolbar } from './aggregation/AggregationToolbar';
@@ -41,6 +41,8 @@ interface AggregationTableProps {
   onCardContentChange?: (next: CardContent) => void;
   /** If true, table fills available parent height instead of using fixed maxHeight */
   fillHeight?: boolean;
+  /** Selections used to colour scatter points by membership when format=scatter. */
+  categorisationSelections?: ReadonlyArray<CategorisationSelection>;
 }
 
 /**
@@ -61,6 +63,7 @@ export function AggregationTable({
   cardContent,
   onCardContentChange,
   fillHeight = false,
+  categorisationSelections,
 }: AggregationTableProps) {
   const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
@@ -118,6 +121,7 @@ export function AggregationTable({
               onCardContentChange={onCardContentChange}
               onEditProtocol={onEditProtocol}
               onScatterProtocol={handleScatterProtocol}
+              categorisationSelections={categorisationSelections}
             />
           )}
         </Box>

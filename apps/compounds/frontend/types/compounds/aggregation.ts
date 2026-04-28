@@ -60,7 +60,7 @@ export interface MolecularPropertyMeta {
 export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
 
 /** Output format options */
-export type OutputFormat = 'compact' | 'medium' | 'long' | 'pivot' | 'cards' | 'bullets';
+export type OutputFormat = 'compact' | 'medium' | 'long' | 'pivot' | 'cards' | 'bullets' | 'scatter';
 
 /**
  * Cards-view body selector — chemists choose between the protocol-list
