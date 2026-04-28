@@ -313,7 +313,23 @@ export function CardsView({
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexWrap: 'wrap', gap: 1 }}>
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        mb: 2,
+        flexWrap: 'wrap',
+        gap: 1,
+        // Keep the sort / show / PPTX toolbar in view as the cards
+        // grid scrolls. Cards mode doesn't virtualise (unlike the
+        // tabular views) so the grid flows with the page; the sticky
+        // toolbar gives the chemist constant access to controls.
+        position: 'sticky',
+        top: 0,
+        zIndex: 2,
+        backgroundColor: 'background.default',
+        py: 1,
+      }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
             {data.meta.compound_count} compounds
@@ -433,8 +449,6 @@ export function CardsView({
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
           gap: 2,
-          maxHeight: 600,
-          overflow: 'auto',
           p: 1,
         }}
       >
