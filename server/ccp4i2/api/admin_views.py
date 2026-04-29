@@ -15,15 +15,14 @@ from django.core.management import call_command
 from django.db import transaction
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
-
-from users.permissions import IsPlatformAdmin
 
 logger = logging.getLogger(__name__)
 
 
 @api_view(['POST'])
-@permission_classes([IsPlatformAdmin])
+@permission_classes([IsAdminUser])
 def import_legacy_ccp4i2(request):
     """
     Import legacy CCP4i2 dumpdata fixtures.
@@ -125,7 +124,7 @@ def import_legacy_ccp4i2(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsPlatformAdmin])
+@permission_classes([IsAdminUser])
 def import_sqlite(request):
     """
     Import legacy CCP4i2 data from a SQLite database file.
@@ -198,7 +197,7 @@ def import_sqlite(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsPlatformAdmin])
+@permission_classes([IsAdminUser])
 def validate_sqlite(request):
     """
     Validate a legacy CCP4i2 SQLite database against the filesystem.
@@ -263,7 +262,7 @@ def validate_sqlite(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsPlatformAdmin])
+@permission_classes([IsAdminUser])
 def ccp4i2_import_status(request):
     """
     Get current database counts for CCP4i2 models.
