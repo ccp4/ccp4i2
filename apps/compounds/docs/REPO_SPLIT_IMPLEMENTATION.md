@@ -11,7 +11,8 @@
 | **Git geometry on `ccp4/ccp4i2`** | `django-sliced` branch live, transitional |
 | **Deploy safety (DDU protection)** | shipped — `--env` mandatory, no `:latest`, image-lineage separation |
 | **Bilingual auth library** | scaffolded + active migration in progress |
-| **Lightweight desktop auth** | shipped — LocalSession end-to-end |
+| **Lightweight desktop auth** | shipped — LocalSession end-to-end, validated on macOS Electron |
+| **`materia/*` cloud lineage** | **shipped + validated** — `materia-demo-web` live and signed-in-against, AzureAD chain working through refactored middleware |
 | **Compounds repo cut** | not started — gated on institutional asks |
 | **Service contract for CCP4i2 REST API** | not started |
 | **Standalone Materia Docker image** | not started |
@@ -29,6 +30,7 @@ These were settled in working sessions and shouldn't be re-litigated without exp
 | Topic | Decision |
 |---|---|
 | Platform name (compounds-side) | **Materia** |
+| Materia tagline (for README first lines, search-engine discoverability) | *"An SBDD bench for compound, assay, and construct tracking"* — proper noun + descriptive subtitle pattern. Keeps Materia's brand-ability and scope-honesty while landing the SBDD keyword anywhere a peer might Google. |
 | Compounds-side repo name | `materia` |
 | Shared auth library repo | `ccp4/ccp4i2-auth` (CCP4-stewarded) |
 | npm scope | `@ccp4/ccp4i2-auth` |
@@ -118,21 +120,24 @@ The `ccp4i2-bicep-*` apps in `ccp4i2-bicep-rg-uksouth` (custom domain `ddudataba
 
 ## Open institutional asks
 
-Tracked because the technical work runs ahead of these and at some point waits on them.
+Tracked because the technical work runs ahead of these and at some point waits on them. Split into "GitHub-side asks" (require `ccp4` GitHub-org-admin = Dave Waterman / `dagewa`, the operational lead funded by STFC) and "registry-side asks" (Martin Noble can claim directly as ex-chair of the CCP4 exec committee, with co-owners added as their accounts come online).
 
-| Ask | Stakeholder | State |
+| Ask | Right contact | State |
 |---|---|---|
-| Create `ccp4/ccp4i2-auth` repo on GitHub | `ccp4` org admin (Stuart McNicholas / Paul Bond contacted) | email sent (April 2026), awaiting reply |
-| Create `@ccp4` npm organisation with publish rights for the auth lib | npm registry / `ccp4` org admin | downstream of repo creation |
-| PyPI account / project for `ccp4i2-auth` | TBD | downstream of repo creation |
-| New `materia` repo (host TBD; **not** under `newcastleuniversity` per memory note) | TBD | not yet raised |
+| Create `ccp4/ccp4i2-auth` repo on GitHub; grant maintainer access to Martin | Dave Waterman (`dagewa`) — operational org admin | initial email sent to Stuart McNicholas / Paul Bond April 2026; needs CC or follow-up to Dave (members not admins). |
+| Claim `@ccp4` npm organisation; add CCP4 admins as co-owners | Martin Noble — direct (verified-free namespace; ex-chair authority) | pending; informational note to consortium when claimed |
+| Claim `ccp4i2-auth` PyPI project; add CCP4 admins as co-maintainers | Martin Noble — direct | pending |
+| Link `@ccp4` npm org to `ccp4` GitHub org (provenance binding) | requires both Martin (npm side) + Dave (GitHub side) | pending; sequencing — claim namespaces first, link once GitHub repo exists |
+| New `materia` repo for the eventual compounds-side cut (host TBD; **not** `newcastleuniversity` per memory note) | TBD | not yet raised |
+
+**Verified namespace state (April 2026):** `@ccp4` npm scope, `@ccp4i2` npm scope, `ccp4i2-auth` PyPI, and `ccp4i2` PyPI are all unclaimed. **`materia` (bare) is taken on both registries** — Materia-side packages will need a scope or prefix.
 
 None of these block the in-tree workspace work. They become load-bearing only at the cut moment.
 
 ## Workstreams not in the proposal but added by this work
 
 - **Deploy script safety** (`--env` mandatory, no `:latest`, env-controlled `IMAGE_REPO_*` in build/deploy scripts and Bicep). Shipped on `django` (not just `django-sliced`) because it protects production deploys today.
-- **`materia/*` image lineage + `.env.demo-materia`**. Wired but **not yet built or deployed**. First validation moment is the next demo deploy.
+- **`materia/*` image lineage + `.env.demo-materia`**. Built and deployed to ccp4i2-demo-rg-uksouth as `materia-demo-{web,server,worker}` at tag `20260429-141934`. Validated end-to-end: refactored AzureADAuthMiddleware accepts real bearer tokens; the materia-demo web app is live at `https://materia-demo-web.agreeablebeach-f023b4ee.uksouth.azurecontainerapps.io`. DDU/kawamura `ccp4i2/*` images and apps untouched throughout.
 - **`DevAdminMiddleware` split + fail-closed settings**. Closes a misconfiguration backdoor that existed pre-migration (production with `CCP4I2_REQUIRE_AUTH=false` → auto-superuser). Strictly safer.
 - **`BaseAuthMiddleware` contract + `AuthenticationFailed`/`AuthorizationFailed` exceptions**. Standardises 401/403 response shape and the `_ccp4i2_auth_middleware_ran` trust flag across all auth schemes. Single point of authority for the trust contract.
 
@@ -143,8 +148,8 @@ None of these block the in-tree workspace work. They become load-bearing only at
 | DDU production user impact | Image-lineage separation, `--env` mandatory, pinned tags, deferred cutover | implemented |
 | `django-sliced` drifts too far from `django` | Forward-port discipline (weekly target) | discipline-only; no automation |
 | Materia's bilingual auth contract drifts between TS and Python | Single-repo bilingual design, single contract definition | implemented |
-| Cloud auth chain (refactored) untested in cloud | Demo deploy of `django-sliced` via materia/* lineage | open — recommended next |
-| Real Electron run with LocalSession untested | `npm run start:electron` smoke test on macOS, then Windows + Linux | open |
+| Cloud auth chain (refactored) untested in cloud | Demo deploy of `django-sliced` via materia/* lineage | **closed** — `materia-demo-*` deployed and signed-in-against April 2026 |
+| Real Electron run with LocalSession untested | `npm run start:electron` smoke test on macOS, then Windows + Linux | macOS validated; Windows + Linux pending VM availability |
 | Misconfigured cloud creates a superuser | `DevAdminMiddleware` DEBUG-gated; `settings.py` fail-closed | implemented |
 | `:latest` tag re-pointed by a stray build re-introduces a moving target | `:latest` push removed from build script | implemented |
 | Future renames of `apps/compounds/` make `git filter-repo` painful | Rename deferred to the moment of cut | discipline-only |
@@ -160,13 +165,15 @@ None of these block the in-tree workspace work. They become load-bearing only at
 
 In rough priority order:
 
-1. **Deploy `django-sliced` → ccp4i2-demo via `materia/*` image lineage.** Validates the AzureAD migration in cloud + exercises the materia/* lineage that has never been built. Catches Docker-side regressions before further migrations compound them. Wallclock ~30-60 min including build.
-2. **Real Electron smoke test** — `npm run start:electron` on macOS, watch logs end-to-end. Then ideally same on Windows and Linux, but macOS is the immediate confidence-builder.
-3. **Migrate `api-fetch.ts`** (457-line wrapper in client/renderer) into `packages/ccp4i2-auth/`. Completes the JS-side v0 surface and ends the next chunk of soon-to-be-duplicated code.
-4. **Add test infrastructure** — pytest for the Python side, vitest for the TS side, both in `packages/ccp4i2-auth/tests/`.
+1. **Migrate `api-fetch.ts`** (457-line wrapper in client/renderer) into `packages/ccp4i2-auth/`. Completes the JS-side v0 surface and ends the next chunk of soon-to-be-duplicated code.
+2. **Add test infrastructure** — pytest for the Python side, vitest for the TS side, both in `packages/ccp4i2-auth/tests/`.
+3. **Windows + Linux Electron smoke tests** — when VMs are available; macOS already validated.
+4. **Claim `@ccp4` npm + `ccp4i2-auth` PyPI** namespaces (see Open institutional asks).
 
 ### Recently completed
 
+- **Demo deploy validation** (April 2026) — `materia-demo-{web,server,worker}` deployed to `ccp4i2-demo-rg-uksouth` at image tag `20260429-141934`. Refactored AzureADAuthMiddleware accepts real Azure AD bearer tokens; sign-in flow works end-to-end. DDU and kawamura instances entirely untouched (separate `ccp4i2/*` lineage). Two small deploy-time fixes landed alongside: `@types/node` added to ccp4i2-auth devDependencies (Docker isolation surfaced what npm hoisting hid locally); `materia-demo-web.*` URLs added to the shared `ccp4i2-demo` AAD app registration's allowed redirect URIs (Azure portal). The shared AAD reg is a transition shortcut; revisit before broader cross-tenant materia user testing.
+- **macOS Electron LocalSession smoke test** (April 2026) — `npm run start` on macOS, click "Launch CCP4i2", projects load via LocalSession-authenticated requests. Caught and fixed a layout-level bug: `app/layout.tsx` was gating MsalAuthProvider on `NEXT_PUBLIC_REQUIRE_AUTH`, which doesn't apply in Electron dev. Layout now also mounts AuthProvider when `CCP4I2_LOCAL_SESSION_TOKEN` is in env (visible during SSR via the Electron-spawned Next.js server's process.env).
 - **CCP4i2 dependency on `apps/users/` dropped** (per LOCKED #1). `server/ccp4i2/api/admin_views.py` now uses `rest_framework.permissions.IsAdminUser`; the conditional `users` URL inclusion block in `api/urls.py` deleted. CCP4i2 cloud admin gating is now Django-built-in only; no role-system dependency.
 
 After each next-action lands, update the "Status snapshot" table at the top of this document and the relevant workstream below.
