@@ -19,62 +19,22 @@ The middleware validates:
 - Issuer (must match Azure AD tenant)
 """
 
-import os
 import json
-import time
 import logging
+import os
 import ssl
-import certifi
+import time
 from typing import Optional, Tuple
-from urllib.request import urlopen
 from urllib.error import URLError
+from urllib.request import urlopen
 
+import certifi
 from django.contrib.auth import get_user_model
-from django.http import JsonResponse, HttpRequest
-from rest_framework.authentication import BaseAuthentication
+from django.http import HttpRequest, JsonResponse
+
+from .base import REQUEST_FLAG_ATTR
 
 logger = logging.getLogger(__name__)
-
-
-class AzureADAuthentication(BaseAuthentication):
-    """
-    DRF authentication class that uses the user set by AzureADAuthMiddleware.
-
-    This allows DRF's IsAuthenticated permission to work with our middleware.
-    The middleware does the actual JWT validation; this class just passes
-    the authenticated user to DRF.
-
-    In dev/Electron mode (CCP4I2_REQUIRE_AUTH not set), the middleware
-    auto-assigns a dev_admin user, which this class also recognizes.
-
-    Security: Only trusts users when our middleware has explicitly processed
-    the request (marked by _ccp4i2_auth_middleware_ran attribute). This
-    prevents spoofing attacks where a request might have request.user set
-    by some other means.
-    """
-
-    def authenticate(self, request):
-        """
-        Return the user if already authenticated by middleware, None otherwise.
-
-        Returns:
-            Tuple of (user, None) if authenticated, None if not.
-        """
-        # Check if middleware already validated and set user
-        # The middleware sets these attributes on the underlying Django request
-        django_request = getattr(request, '_request', request)
-
-        # Security check: only trust users set by our middleware
-        # This prevents spoofing where request.user might be set elsewhere
-        if not getattr(django_request, '_ccp4i2_auth_middleware_ran', False):
-            return None
-
-        # Middleware ran - trust the user it set
-        user = getattr(django_request, 'user', None)
-        if user and user.is_authenticated and not user.is_anonymous:
-            return (user, None)
-
-        return None
 
 
 class AzureADTokenValidator:
@@ -297,7 +257,7 @@ class AzureADAuthMiddleware:
                 dev_user.save(update_fields=['is_staff', 'is_superuser'])
             request.user = dev_user
             # Mark that this request was processed by our middleware (prevents spoofing)
-            request._ccp4i2_auth_middleware_ran = True
+            setattr(request, REQUEST_FLAG_ATTR, True)
             return self.get_response(request)
 
         # Skip exempt paths
@@ -402,7 +362,7 @@ class AzureADAuthMiddleware:
                     status=403,
                 )
 
-            logger.info(f"✅ User {azure_ad_sub[:8]}... authorized via Teams/Groups membership")
+            logger.info(f"User {azure_ad_sub[:8]}... authorized via Teams/Groups membership")
         else:
             logger.debug("Groups authorization not configured (ALLOWED_AZURE_AD_GROUPS not set)")
         # ========================================================================
@@ -484,5 +444,5 @@ class AzureADAuthMiddleware:
 
         request.user = user
         # Mark that this request was processed by our middleware (prevents spoofing)
-        request._ccp4i2_auth_middleware_ran = True
+        setattr(request, REQUEST_FLAG_ATTR, True)
         return self.get_response(request)

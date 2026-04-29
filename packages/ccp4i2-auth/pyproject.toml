@@ -12,8 +12,12 @@ requires-python = ">=3.9"
 authors = [
     { name = "CCP4i2 contributors" }
 ]
-# Runtime deps are added as code is migrated in (PyJWT, requests, certifi, etc.)
-dependencies = []
+dependencies = [
+    "django>=4.2,<5.0",
+    "djangorestframework>=3.14",
+    "PyJWT[crypto]>=2.10",
+    "certifi>=2024.0.0",
+]
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-django"]

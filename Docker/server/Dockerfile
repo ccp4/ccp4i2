@@ -76,7 +76,12 @@ COPY apps/compounds/utils.py /usr/src/app/compounds/utils.py
 # Installed into azure_packages alongside other deps so PYTHONPATH picks it up.
 # =============================================================================
 COPY packages/ccp4i2-auth /usr/src/app/ccp4i2-auth-pkg
-RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages \
+# --no-deps: declared dependencies (django, drf, PyJWT[crypto], certifi)
+# come from the bigger pip install block below; ccp4i2-auth-pkg's own
+# source is the only thing this step needs to install. Without --no-deps,
+# pip would re-fetch the declared deps from PyPI here just to satisfy
+# the package metadata.
+RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages --no-deps \
     /usr/src/app/ccp4i2-auth-pkg
 
 # Install ALL Python dependencies to azure_packages for ccp4-python

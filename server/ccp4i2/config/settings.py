@@ -78,7 +78,7 @@ if os.environ.get("CCP4I2_LOCAL_SESSION_TOKEN"):
         "ccp4i2_auth.middleware.local_session.LocalSessionAuthMiddleware",
     )
 else:
-    MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
+    MIDDLEWARE.insert(0, "ccp4i2_auth.middleware.azure_ad.AzureADAuthMiddleware")
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
@@ -222,7 +222,7 @@ REST_FRAMEWORK = {
     # In development (no auth), this returns None and AllowAny permits access
     # In production, the middleware validates JWT and sets request.user
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "ccp4i2.middleware.azure_auth.AzureADAuthentication",
+        "ccp4i2_auth.drf.AzureADAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
