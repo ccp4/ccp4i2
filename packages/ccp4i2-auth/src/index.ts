@@ -4,3 +4,4 @@
 
 export * from "./auth-token.js";
 export * from "./providers/local-session.js";
+export * from "./api-fetch.js";
