@@ -30,56 +30,11 @@ import { DoseResponseChart, DoseResponseThumb, AggregatedDoseResponseChart, FitP
 import { AuthenticatedImage } from './AuthenticatedImage';
 import { formatKpiValue, formatKpiUnit } from '@/lib/compounds/aggregation-api';
 
-// =============================================================================
-// Authentication Integration
-// =============================================================================
-
-// Resolve auth helpers from @ccp4/ccp4i2-auth; fall back to no-ops if unavailable.
-// Falls back to no-op for standalone development
-let getAccessToken: () => Promise<string | null>;
-let getUserEmail: () => string | null;
-
-try {
-  const authModule = require('@ccp4/ccp4i2-auth');
-  getAccessToken = authModule.getAccessToken;
-  getUserEmail = authModule.getUserEmail || (() => null);
-} catch {
-  getAccessToken = async () => null;
-  getUserEmail = () => null;
-}
-
-/**
- * Authenticated fetch wrapper
- */
-async function authFetch(url: string, options: RequestInit = {}): Promise<Response> {
-  const headers: Record<string, string> = {};
-
-  const token = await getAccessToken();
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
-  }
-
-  const email = getUserEmail();
-  if (email) {
-    headers['X-User-Email'] = email;
-  }
-
-  if (options.headers) {
-    if (options.headers instanceof Headers) {
-      options.headers.forEach((value, key) => {
-        headers[key] = value;
-      });
-    } else if (Array.isArray(options.headers)) {
-      options.headers.forEach(([key, value]) => {
-        headers[key] = value;
-      });
-    } else {
-      Object.assign(headers, options.headers);
-    }
-  }
-
-  return fetch(url, { ...options, headers });
-}
+// authFetch is the shared, auth-injecting fetch wrapper from
+// ../../lib/compounds/api-fetch (a thin binding around
+// @ccp4/ccp4i2-auth's createApiFetch factory). The local copy this
+// file used to define has been removed.
+import { authFetch } from "../../lib/compounds/api-fetch";
 
 interface DataSeriesItem {
   id: string;

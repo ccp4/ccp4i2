@@ -71,6 +71,17 @@ export interface CreateApiFetchOptions {
    * Django requires; this layer never adds one.
    */
   baseUrl: string;
+
+  /**
+   * Optional callback that returns an email to inject as the
+   * ``X-User-Email`` header. Only used when the callback returns a
+   * non-empty string. Compounds-side deployments use this as a fallback
+   * for backends where access tokens don't include email claims;
+   * crystallography deployments don't need it. The header is set
+   * alongside ``Authorization: Bearer …``; both come from the same
+   * authenticated session.
+   */
+  injectUserEmail?: () => string | null;
 }
 
 /**
@@ -134,7 +145,7 @@ export interface ApiFetcher {
  * shared auth-token chain. Consumers call this once at module load.
  */
 export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
-  const { baseUrl } = options;
+  const { baseUrl, injectUserEmail } = options;
 
   function normalizeApiUrl(url: string): string {
     // Absolute URLs pass through unchanged.
@@ -178,6 +189,16 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
           "[FETCH] Token injected for:",
           normalizedUrl.substring(0, 60),
         );
+      }
+    }
+
+    // Optional X-User-Email fallback header. Used by compounds-side
+    // deployments where the JWT may not include an email claim and the
+    // backend uses the header to display friendly identity.
+    if (injectUserEmail) {
+      const email = injectUserEmail();
+      if (email) {
+        headers["X-User-Email"] = email;
       }
     }
 

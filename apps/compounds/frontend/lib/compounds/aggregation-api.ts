@@ -15,80 +15,18 @@ import {
 } from '@/types/compounds/aggregation';
 import { Target, SavedAggregationView } from '@/types/compounds/models';
 
-// =============================================================================
-// Authentication Integration
-// =============================================================================
-
-// Resolve auth helpers from @ccp4/ccp4i2-auth; fall back to no-ops if unavailable.
-// Falls back to no-op for standalone development
-let getAccessToken: () => Promise<string | null>;
-let getUserEmail: () => string | null;
-
-try {
-  const authModule = require('@ccp4/ccp4i2-auth');
-  getAccessToken = authModule.getAccessToken;
-  getUserEmail = authModule.getUserEmail || (() => null);
-} catch {
-  // Fallback for standalone development - no auth needed
-  getAccessToken = async () => null;
-  getUserEmail = () => null;
-}
+// authFetch (formerly local coreFetch) is the shared, auth-injecting
+// fetch wrapper from ./api-fetch (a thin binding around
+// @ccp4/ccp4i2-auth's createApiFetch factory). Note that this version
+// throws on non-OK responses; callers' existing res.ok checks are
+// dead code that can be cleaned up in a follow-up.
+import { authFetch as coreFetch } from "./api-fetch";
 
 // =============================================================================
 // Configuration
 // =============================================================================
 
 const API_BASE = '/api/proxy/compounds';
-
-/**
- * Core fetch wrapper with authentication support.
- * Mirrors the pattern in api.ts
- */
-async function coreFetch(
-  url: string,
-  options: RequestInit = {}
-): Promise<Response> {
-  const headers: Record<string, string> = {};
-
-  // Inject authentication token if available
-  const token = await getAccessToken();
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
-  }
-
-  // Include user email as fallback for backends where access tokens don't have email claims
-  const email = getUserEmail();
-  if (email) {
-    headers['X-User-Email'] = email;
-  }
-
-  // Merge with provided headers
-  if (options.headers) {
-    if (options.headers instanceof Headers) {
-      options.headers.forEach((value, key) => {
-        headers[key] = value;
-      });
-    } else if (Array.isArray(options.headers)) {
-      options.headers.forEach(([key, value]) => {
-        headers[key] = value;
-      });
-    } else {
-      Object.assign(headers, options.headers);
-    }
-  }
-
-  // Set Content-Type for JSON bodies (but not FormData)
-  if (options.body && !(options.body instanceof FormData)) {
-    if (!Object.keys(headers).some(k => k.toLowerCase() === 'content-type')) {
-      headers['Content-Type'] = 'application/json';
-    }
-  }
-
-  return fetch(url, {
-    ...options,
-    headers,
-  });
-}
 
 /**
  * Fetch aggregation data.

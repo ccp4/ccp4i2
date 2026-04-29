@@ -72,50 +72,26 @@ const AuthContext = createContext<AuthContextValue>(defaultContext);
 // Auth Token Helpers
 // =============================================================================
 
-// Try to import auth helpers from ccp4i2 client (when integrated)
-let getAccessToken: () => Promise<string | null>;
-let performLogout: () => void;
+// Auth helpers come from @ccp4/ccp4i2-auth (the shared bilingual
+// package). authFetch — the compounds-side auth-injecting fetch
+// wrapper — is now the canonical createApiFetch-bound apiFetch from
+// ./api-fetch. logout falls back to a root redirect in environments
+// where the package's logout handler hasn't been wired up by an
+// AuthProvider.
+import { logout as packageLogout } from "@ccp4/ccp4i2-auth";
 
-try {
-  const authModule = require('@ccp4/ccp4i2-auth');
-  getAccessToken = authModule.getAccessToken;
-  performLogout = authModule.logout || (() => {
-    // Fallback: redirect to root which will trigger re-auth
-    if (typeof window !== 'undefined') {
-      window.location.href = '/';
-    }
-  });
-} catch {
-  getAccessToken = async () => null;
-  performLogout = () => {
-    // In standalone mode, just redirect to root
-    if (typeof window !== 'undefined') {
-      window.location.href = '/';
-    }
-  };
-}
+import { authFetch } from "./api-fetch";
 
-/**
- * Fetch with authentication support
- */
-async function authFetch(url: string, options: RequestInit = {}): Promise<Response> {
-  const headers: Record<string, string> = {};
-
-  const token = await getAccessToken();
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+const performLogout: () => void = () => {
+  try {
+    packageLogout();
+  } catch {
+    // Ignore — fall through to the redirect.
   }
-
-  if (options.headers) {
-    Object.assign(headers, options.headers);
+  if (typeof window !== "undefined") {
+    window.location.href = "/";
   }
-
-  if (options.body && !(options.body instanceof FormData)) {
-    headers['Content-Type'] = 'application/json';
-  }
-
-  return fetch(url, { ...options, headers });
-}
+};
 
 /**
  * SWR fetcher for user endpoints
