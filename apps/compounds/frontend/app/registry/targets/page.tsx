@@ -25,6 +25,7 @@ import {
   Biotech,
   FiberNew,
   DeleteForever,
+  Hub,
 } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
@@ -231,6 +232,14 @@ export default function TargetsPage() {
                 startIcon={<LocalShipping />}
               >
                 Suppliers
+              </Button>
+              <Button
+                component={Link}
+                href={routes.registry.scaffoldExtensions()}
+                variant="outlined"
+                startIcon={<Hub />}
+              >
+                Scaffolds
               </Button>
               <Tooltip
                 title={canContribute ? '' : 'Requires Contributor or Admin operating level'}

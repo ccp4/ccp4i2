@@ -98,6 +98,10 @@ export const routes = {
 
     /** Register new compound */
     new: () => route('/registry/new'),
+
+    /** Manage user-defined scaffold extensions (the catalog NLP queries
+     *  and the scatter chip strip consult). */
+    scaffoldExtensions: () => route('/registry/scaffold-extensions'),
   },
 
   /** Assays app routes */

@@ -172,6 +172,19 @@ export function ScatterCategorisationStrip({ matchesByScaffold }: Props) {
             Clear all
           </Typography>
         )}
+        <Typography
+          component="a"
+          href="/registry/scaffold-extensions"
+          sx={{
+            ml: colourByEntries.length > 0 ? 1 : 'auto',
+            color: 'primary.main',
+            fontSize: '0.72rem',
+            textDecoration: 'none',
+            '&:hover': { textDecoration: 'underline' },
+          }}
+        >
+          Manage scaffolds
+        </Typography>
       </Box>
 
       <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 0.75, alignItems: 'center' }}>
