@@ -36,7 +36,7 @@ RUN apk add --no-cache jq git && \
 # Build the @ccp4/ccp4i2-auth shared package before consumer install.
 # client/package.json declares it as `file:../packages/ccp4i2-auth`; npm
 # symlinks the file: dep but does not run its build, so the package's
-# dist/ must already exist before Next.js resolves @ccp4/ccp4i2-auth.
+# lib/ must already exist before Next.js resolves @ccp4/ccp4i2-auth.
 COPY packages/ccp4i2-auth /packages/ccp4i2-auth
 RUN cd /packages/ccp4i2-auth && \
     npm install && \

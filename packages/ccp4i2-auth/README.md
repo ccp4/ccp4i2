@@ -19,8 +19,9 @@ for the architectural rationale.
 
 | Path | Purpose |
 |---|---|
-| `src/` | TypeScript source. Built to `dist/` via `npm run build`. |
-| `dist/` | Built TypeScript output. Generated; gitignored. |
+| `src/` | TypeScript source. Built to `lib/` via `npm run build`. |
+| `lib/` | Built TypeScript output. Generated; gitignored. |
+| `dist/` | Python distribution output (`python -m build`). Generated; gitignored. Kept distinct from `lib/` so `twine upload dist/*` doesn't accidentally pick up TypeScript artefacts. |
 | `ccp4i2_auth/` | Python source. Installed editable via `pip install -e .`. |
 | `tests/js/` | TypeScript tests (vitest, when added). |
 | `tests/python/` | Python tests (pytest, when added). |
@@ -55,7 +56,7 @@ contract are unchanged — only the resolution mechanism switches.
 # TypeScript
 cd packages/ccp4i2-auth
 npm install
-npm run build       # produces dist/
+npm run build       # produces lib/
 npm run watch       # rebuilds on change
 
 # Python
