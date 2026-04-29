@@ -9,9 +9,9 @@
  * directly, since MSAL's account cache isn't populated by Teams SSO.
  */
 
-type TokenGetter = () => Promise<string | null>;
-type EmailGetter = () => string | null;
-type LogoutHandler = () => void;
+export type TokenGetter = () => Promise<string | null>;
+export type EmailGetter = () => string | null;
+export type LogoutHandler = () => void;
 
 let tokenGetter: TokenGetter | null = null;
 let emailGetter: EmailGetter | null = null;

@@ -3,3 +3,4 @@
 // full scope and the README for current status.
 
 export * from "./auth-token.js";
+export * from "./providers/local-session.js";
