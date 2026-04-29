@@ -23,6 +23,13 @@ export async function generateMetadata() {
 export const dynamic = "force-dynamic";
 
 const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true";
+// Electron desktop sets CCP4I2_LOCAL_SESSION_TOKEN before spawning the
+// Next.js server, so the env var is visible during SSR. When present,
+// the renderer needs MsalAuthProvider mounted so it can wire up the
+// LocalSession token-getter (Django's LocalSessionAuthMiddleware will
+// reject every API call without a Bearer header).
+const HAS_LOCAL_SESSION = !!process.env.CCP4I2_LOCAL_SESSION_TOKEN;
+const NEEDS_AUTH_PROVIDER = REQUIRE_AUTH || HAS_LOCAL_SESSION;
 
 /**
  * Root layout - wraps all apps with theme and auth providers.
@@ -41,7 +48,7 @@ export default function RootLayout(props: PropsWithChildren) {
       <body>
         <CCP4i2ThemeProvider>
           <RDKitProvider>
-            {REQUIRE_AUTH ? (
+            {NEEDS_AUTH_PROVIDER ? (
               <MsalAuthProvider>
                 <CompoundsAuthProvider>
                   <Suspense fallback={null}>
