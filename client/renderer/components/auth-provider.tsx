@@ -11,6 +11,9 @@ import {
   setTeamsTokenRefresher,
   setTeamsToken,
   clearTeamsToken,
+  hasLocalSessionToken,
+  createLocalSessionTokenGetter,
+  createLocalSessionEmailGetter,
 } from "@ccp4/ccp4i2-auth";
 import { getAuthConfig } from "../utils/auth-config";
 
@@ -80,6 +83,21 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
+    // LocalSession path (CCP4i2 desktop): the Electron preload exposed a
+    // per-launch token via window.ccp4i2LocalSession. Use that getter and
+    // skip MSAL entirely — desktop has no Azure AD account to bind to.
+    if (hasLocalSessionToken()) {
+      setTokenGetter(createLocalSessionTokenGetter());
+      setEmailGetter(createLocalSessionEmailGetter());
+      setLogoutHandler(() => {
+        // Desktop session lives until the app process dies; logout is a no-op.
+        console.log("[AUTH] Local session active; logout is a no-op.");
+      });
+      setInitialized(true);
+      return;
+    }
+
+    // MSAL path (cloud build, or Electron without preload-injected token).
     getAuthConfig().then((config) => {
       const pca = new PublicClientApplication({
         auth: {
@@ -182,7 +200,15 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     };
   }, []);
 
-  if (!initialized || !msalInstance) return null;
+  if (!initialized) return null;
 
+  // LocalSession mode: render children directly. MsalProvider is not
+  // needed because no MSAL hooks should be reached on the desktop auth
+  // path (the renderer never sees a login flow).
+  if (hasLocalSessionToken()) {
+    return <>{children}</>;
+  }
+
+  if (!msalInstance) return null;
   return <MsalProvider instance={msalInstance}>{children}</MsalProvider>;
 }

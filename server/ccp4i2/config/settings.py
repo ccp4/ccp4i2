@@ -62,16 +62,23 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Azure AD authentication middleware
-# Always enabled to set request.user for DRF authentication.
-# Behavior depends on CCP4I2_REQUIRE_AUTH:
-#   - When true: Validates JWT tokens, requires AZURE_AD_TENANT_ID and AZURE_AD_CLIENT_ID
-#   - When false/unset: Auto-assigns dev_admin user for local/Electron development
-MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
-if os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
-    pass  # Auth required — validates JWT tokens
+# Authentication middleware selection.
+# - CCP4i2 desktop (Electron): main process generates a per-launch secret and
+#   sets CCP4I2_LOCAL_SESSION_TOKEN before spawning Django, so we install
+#   LocalSessionAuthMiddleware. It HMAC-validates the bearer token on every
+#   request and authenticates as the OS user (email passed via
+#   CCP4I2_LOCAL_USER_EMAIL).
+# - Cloud / dev: AzureADAuthMiddleware is installed (existing behaviour).
+#   Behaviour depends on CCP4I2_REQUIRE_AUTH:
+#     - When true: validates JWT tokens (cloud).
+#     - When false/unset: auto-assigns dev_admin user for local development.
+if os.environ.get("CCP4I2_LOCAL_SESSION_TOKEN"):
+    MIDDLEWARE.insert(
+        0,
+        "ccp4i2_auth.middleware.local_session.LocalSessionAuthMiddleware",
+    )
 else:
-    pass  # Dev mode — auto-assigns dev_admin user
+    MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]

@@ -18,11 +18,16 @@
  * request. Process death = secret death.
  */
 
-import type { TokenGetter } from "../auth-token.js";
+import type { EmailGetter, TokenGetter } from "../auth-token.js";
 
 interface LocalSessionWindowSurface {
   /** The per-launch secret, exposed read-only by the Electron preload. */
   readonly token: string;
+  /**
+   * The Django user email the desktop session authenticates as.
+   * Sanitised by the Electron main process from the OS username.
+   */
+  readonly userEmail?: string;
 }
 
 declare global {
@@ -51,5 +56,17 @@ export function createLocalSessionTokenGetter(): TokenGetter {
     if (typeof window === "undefined") return null;
     const token = window.ccp4i2LocalSession?.token;
     return typeof token === "string" ? token : null;
+  };
+}
+
+/**
+ * Build an EmailGetter that reads the desktop session's user email.
+ * Returns null when the email is not exposed (older preload, web build).
+ */
+export function createLocalSessionEmailGetter(): EmailGetter {
+  return () => {
+    if (typeof window === "undefined") return null;
+    const email = window.ccp4i2LocalSession?.userEmail;
+    return typeof email === "string" ? email : null;
   };
 }
