@@ -74,13 +74,13 @@ Living at [`packages/ccp4i2-auth/`](../../../packages/ccp4i2-auth/) on the `djan
 | `AzureADAuthentication` (DRF auth class) | Py | ✓ migrated to `ccp4i2_auth.drf` |
 | `DevAdminMiddleware` (split out of AzureAD's old fallback) | Py | ✓ shipped |
 | `AuthenticationFailed` / `AuthorizationFailed` exceptions | Py | ✓ shipped |
-| `api-fetch` wrapper (bearer injection, 401 emit, error normalisation) | TS | ⏳ not yet migrated |
-| `AUTH_ERROR_EVENT` protocol | TS | ⏳ not yet migrated |
+| `api-fetch` wrapper (bearer injection, 401 emit, error normalisation) | TS | ✓ migrated as `createApiFetch({ baseUrl })` factory |
+| `AUTH_ERROR_EVENT` protocol | TS | ✓ migrated (universal export at module level) |
 | Identity primitives (`compound-identity`, `construct-identity`) | TS | ⏳ blocked on inventory step |
 | Service-contract types for CCP4i2 REST API | TS | ⏳ blocked on step 4 |
-| pytest test suite | Py | ⏳ not yet added |
-| vitest test suite | TS | ⏳ not yet added |
-| CI for the package | both | ⏳ not yet added |
+| pytest test suite | Py | ✓ scaffolded with DevAdminMiddleware smoke tests |
+| vitest test suite | TS | ✓ scaffolded with createApiFetch + LocalSession smoke tests |
+| CI for the package | both | ⏳ not yet added (waits on the repo cut for `ccp4/ccp4i2-auth`) |
 
 ### 3. Compounds repo cut
 
@@ -165,13 +165,15 @@ None of these block the in-tree workspace work. They become load-bearing only at
 
 In rough priority order:
 
-1. **Migrate `api-fetch.ts`** (457-line wrapper in client/renderer) into `packages/ccp4i2-auth/`. Completes the JS-side v0 surface and ends the next chunk of soon-to-be-duplicated code.
-2. **Add test infrastructure** — pytest for the Python side, vitest for the TS side, both in `packages/ccp4i2-auth/tests/`.
-3. **Windows + Linux Electron smoke tests** — when VMs are available; macOS already validated.
-4. **Claim `@ccp4` npm + `ccp4i2-auth` PyPI** namespaces (see Open institutional asks).
+1. **Windows + Linux Electron smoke tests** — when VMs are available; macOS already validated.
+2. **Claim `@ccp4` npm + `ccp4i2-auth` PyPI** namespaces (see Open institutional asks).
+3. **Migrate compounds-frontend's `authFetch`** to consume `createApiFetch({ baseUrl: "/api/proxy/compounds/" })` from the package, ending the divergence between the renderer-side and compounds-side fetch wrappers. Mirror of the binding now in client/renderer/api-fetch.ts.
+4. **Refactor `AzureADAuthMiddleware` onto `BaseAuthMiddleware`** — currently still inherits structure from the legacy module. Bringing it onto the base contract finishes the trust-flag single-sourcing across all auth middleware.
 
 ### Recently completed
 
+- **Test infrastructure scaffolded** (April 2026) — pytest + pytest-django on the Python side with a minimal Django bootstrap and DevAdminMiddleware smoke tests; vitest + jsdom on the TypeScript side with smoke tests for `createApiFetch`, `AUTH_ERROR_EVENT`, and the LocalSession provider helpers. 12 tests, both runners green in <1s. Future test additions are mechanical drop-ins.
+- **`api-fetch.ts` migrated** (April 2026) — refactored into a `createApiFetch({ baseUrl })` factory in `packages/ccp4i2-auth/src/api-fetch.ts`. `client/renderer/api-fetch.ts` is now a 39-line thin binding to the factory, so all 21 import sites in the renderer keep working unchanged. The factory is consumer-agnostic; compounds-frontend can adopt the same canonical implementation by binding to its own baseUrl. Closes the JS-side v0 surface of the shared library.
 - **Demo deploy validation** (April 2026) — `materia-demo-{web,server,worker}` deployed to `ccp4i2-demo-rg-uksouth` at image tag `20260429-141934`. Refactored AzureADAuthMiddleware accepts real Azure AD bearer tokens; sign-in flow works end-to-end. DDU and kawamura instances entirely untouched (separate `ccp4i2/*` lineage). Two small deploy-time fixes landed alongside: `@types/node` added to ccp4i2-auth devDependencies (Docker isolation surfaced what npm hoisting hid locally); `materia-demo-web.*` URLs added to the shared `ccp4i2-demo` AAD app registration's allowed redirect URIs (Azure portal). The shared AAD reg is a transition shortcut; revisit before broader cross-tenant materia user testing.
 - **macOS Electron LocalSession smoke test** (April 2026) — `npm run start` on macOS, click "Launch CCP4i2", projects load via LocalSession-authenticated requests. Caught and fixed a layout-level bug: `app/layout.tsx` was gating MsalAuthProvider on `NEXT_PUBLIC_REQUIRE_AUTH`, which doesn't apply in Electron dev. Layout now also mounts AuthProvider when `CCP4I2_LOCAL_SESSION_TOKEN` is in env (visible during SSR via the Electron-spawned Next.js server's process.env).
 - **CCP4i2 dependency on `apps/users/` dropped** (per LOCKED #1). `server/ccp4i2/api/admin_views.py` now uses `rest_framework.permissions.IsAdminUser`; the conditional `users` URL inclusion block in `api/urls.py` deleted. CCP4i2 cloud admin gating is now Django-built-in only; no role-system dependency.
