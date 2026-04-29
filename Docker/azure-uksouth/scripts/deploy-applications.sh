@@ -7,7 +7,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENV_FILE="$SCRIPT_DIR/../.env.deployment"
+ENV_FILE=""
 
 # Parse --env flag from any position
 POSITIONAL_ARGS=()
@@ -22,6 +22,16 @@ for arg in "$@"; do
     fi
 done
 set -- "${POSITIONAL_ARGS[@]}"
+
+if [ -z "$ENV_FILE" ]; then
+    echo "❌ --env <env-file> is required"
+    echo "   Examples:"
+    echo "     $0 --env .env.demo-materia       # materia development → demo"
+    echo "     $0 --env .env.demo               # ccp4i2 stable → demo"
+    echo "     $0 --env .env.deployment         # ccp4i2 stable → DDUDatabase (production)"
+    echo "     $0 --env .env.kawamura           # ccp4i2 stable → kawamura"
+    exit 1
+fi
 
 # Load environment variables
 if [ -f "$ENV_FILE" ]; then
@@ -223,6 +233,8 @@ az deployment group create \
                acrName="$ACR_NAME" \
                postgresServerFqdn="$POSTGRES_FQDN" \
                keyVaultName="$KEY_VAULT_NAME" \
+               imageRepoWeb="${IMAGE_REPO_WEB:-ccp4i2/web}" \
+               imageRepoServer="${IMAGE_REPO_SERVER:-ccp4i2/server}" \
                imageTagWeb="${IMAGE_TAG_WEB:-latest}" \
                imageTagServer="${IMAGE_TAG_SERVER:-latest}" \
                prefix="${CONTAINER_APP_PREFIX:-ccp4i2-bicep}" \

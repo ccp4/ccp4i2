@@ -34,7 +34,7 @@ services:
         NEXT_PUBLIC_REQUIRE_AUTH: ${NEXT_PUBLIC_REQUIRE_AUTH:-false}
         NEXT_PUBLIC_BUILD_TIMESTAMP: ${NEXT_PUBLIC_BUILD_TIMESTAMP:-}
         NEXT_PUBLIC_GIT_COMMIT: ${NEXT_PUBLIC_GIT_COMMIT:-}
-    image: ${ACR_LOGIN_SERVER}/ccp4i2/web:${TIMESTAMP:-latest}
+    image: ${ACR_LOGIN_SERVER}/${IMAGE_REPO_WEB:-ccp4i2/web}:${TIMESTAMP:-latest}
 
   server:
     build:
@@ -48,4 +48,4 @@ services:
         BASE_IMAGE_NAME: ${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}
         BUILD_TIMESTAMP: ${NEXT_PUBLIC_BUILD_TIMESTAMP:-}
         GIT_COMMIT: ${NEXT_PUBLIC_GIT_COMMIT:-}
-    image: ${ACR_LOGIN_SERVER}/ccp4i2/server:${TIMESTAMP:-latest}
+    image: ${ACR_LOGIN_SERVER}/${IMAGE_REPO_SERVER:-ccp4i2/server}:${TIMESTAMP:-latest}

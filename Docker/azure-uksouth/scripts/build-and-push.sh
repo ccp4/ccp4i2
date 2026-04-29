@@ -31,7 +31,7 @@ WORKING_DIR="$(cd "$BICEP_DIR/../.." && pwd)"
 BUILD_SERVER=true
 BUILD_WEB=true
 BUILD_TARGET=""
-ENV_FILE="$BICEP_DIR/.env.deployment"
+ENV_FILE=""
 
 # Parse --env flag from any position
 POSITIONAL_ARGS=()
@@ -48,6 +48,16 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 set -- "${POSITIONAL_ARGS[@]}"
+
+if [ -z "$ENV_FILE" ]; then
+    echo -e "${RED}❌ --env <env-file> is required${NC}"
+    echo -e "${YELLOW}   Examples:${NC}"
+    echo -e "${YELLOW}     $0 --env .env.demo-materia web   # materia development → demo${NC}"
+    echo -e "${YELLOW}     $0 --env .env.demo               # ccp4i2 stable → demo${NC}"
+    echo -e "${YELLOW}     $0 --env .env.deployment         # ccp4i2 stable → DDUDatabase (production)${NC}"
+    echo -e "${YELLOW}     $0 --env .env.kawamura           # ccp4i2 stable → kawamura${NC}"
+    exit 1
+fi
 
 if [ $# -gt 0 ]; then
     case "$1" in
@@ -126,6 +136,11 @@ export ACR_LOGIN_SERVER
 export ACR_NAME
 export CCP4_VERSION="${CCP4_VERSION:-ccp4-20251105}"
 export BASE_IMAGE_NAME="${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}"
+# Image-repository names — defaults preserve historical ccp4i2 lineage; new
+# instances (e.g. materia development) override via env file to claim a separate
+# namespace in the shared ACR.
+export IMAGE_REPO_WEB="${IMAGE_REPO_WEB:-ccp4i2/web}"
+export IMAGE_REPO_SERVER="${IMAGE_REPO_SERVER:-ccp4i2/server}"
 export NEXT_PUBLIC_REQUIRE_AUTH="${NEXT_PUBLIC_REQUIRE_AUTH:-false}"
 export NEXT_PUBLIC_BUILD_TIMESTAMP="$TIMESTAMP"
 export NEXT_PUBLIC_GIT_COMMIT="$GIT_COMMIT"
@@ -135,6 +150,8 @@ echo -e "   ACR: $ACR_LOGIN_SERVER"
 echo -e "   Tag: $TIMESTAMP"
 echo -e "   Git commit: $GIT_COMMIT"
 echo -e "   Platform: linux/amd64"
+echo -e "   Web image: $ACR_LOGIN_SERVER/$IMAGE_REPO_WEB:$TIMESTAMP"
+echo -e "   Server image: $ACR_LOGIN_SERVER/$IMAGE_REPO_SERVER:$TIMESTAMP"
 if [ "$BUILD_SERVER" = true ]; then
     echo -e "   Server base: $ACR_LOGIN_SERVER/$BASE_IMAGE_NAME:$CCP4_VERSION"
 fi
@@ -164,23 +181,19 @@ fi
 
 echo -e "${GREEN}✅ Build completed${NC}"
 
-# Tag and push images
-echo -e "${YELLOW}📤 Tagging and pushing images to ACR...${NC}"
+# Push images. We do not maintain a moving `:latest` tag — every consumer must
+# reference an explicit timestamp tag. This prevents accidental "follow main"
+# behaviour on any container app, which is load-bearing for DDUDatabase safety.
+echo -e "${YELLOW}📤 Pushing images to ACR...${NC}"
 
 if [ "$BUILD_WEB" = true ]; then
-    echo -e "${YELLOW}   Tagging web image as latest...${NC}"
-    docker tag $ACR_LOGIN_SERVER/ccp4i2/web:$TIMESTAMP $ACR_LOGIN_SERVER/ccp4i2/web:latest
-    echo -e "${YELLOW}   Pushing web image...${NC}"
-    docker push $ACR_LOGIN_SERVER/ccp4i2/web:$TIMESTAMP
-    docker push $ACR_LOGIN_SERVER/ccp4i2/web:latest
+    echo -e "${YELLOW}   Pushing $IMAGE_REPO_WEB:$TIMESTAMP...${NC}"
+    docker push $ACR_LOGIN_SERVER/$IMAGE_REPO_WEB:$TIMESTAMP
 fi
 
 if [ "$BUILD_SERVER" = true ]; then
-    echo -e "${YELLOW}   Tagging server image as latest...${NC}"
-    docker tag $ACR_LOGIN_SERVER/ccp4i2/server:$TIMESTAMP $ACR_LOGIN_SERVER/ccp4i2/server:latest
-    echo -e "${YELLOW}   Pushing server image...${NC}"
-    docker push $ACR_LOGIN_SERVER/ccp4i2/server:$TIMESTAMP
-    docker push $ACR_LOGIN_SERVER/ccp4i2/server:latest
+    echo -e "${YELLOW}   Pushing $IMAGE_REPO_SERVER:$TIMESTAMP...${NC}"
+    docker push $ACR_LOGIN_SERVER/$IMAGE_REPO_SERVER:$TIMESTAMP
 fi
 
 echo -e "${GREEN}✅ Push completed${NC}"

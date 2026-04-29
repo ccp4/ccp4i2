@@ -18,6 +18,12 @@ param postgresServerFqdn string
 @description('Key Vault name - accessed via private endpoint')
 param keyVaultName string
 
+@description('Web container image repository within the ACR (e.g. ccp4i2/web, materia/web)')
+param imageRepoWeb string = 'ccp4i2/web'
+
+@description('Server container image repository within the ACR (e.g. ccp4i2/server, materia/server)')
+param imageRepoServer string = 'ccp4i2/server'
+
 @description('Web container image tag')
 param imageTagWeb string = 'latest'
 
@@ -191,7 +197,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
       containers: [
         {
           name: 'server'
-          image: '${acrLoginServer}/ccp4i2/server:${imageTagServer}'
+          image: '${acrLoginServer}/${imageRepoServer}:${imageTagServer}'
           // Use Dockerfile's ENTRYPOINT (entrypoint.sh) which sets up PYTHONPATH, DATABASE_URL, etc.
           // This ensures interactive shells (az containerapp exec) get the same environment
           resources: {
@@ -506,7 +512,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
       containers: [
         {
           name: 'worker'
-          image: '${acrLoginServer}/ccp4i2/server:${imageTagServer}'
+          image: '${acrLoginServer}/${imageRepoServer}:${imageTagServer}'
           // Use Dockerfile's ENTRYPOINT (entrypoint.sh) but override CMD to run worker script
           args: ['/usr/src/app/startup-worker.sh']
           resources: {
@@ -706,7 +712,7 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
       containers: [
         {
           name: 'web'
-          image: '${acrLoginServer}/ccp4i2/web:${imageTagWeb}'
+          image: '${acrLoginServer}/${imageRepoWeb}:${imageTagWeb}'
           resources: {
             cpu: json('1.0')
             memory: '2.0Gi'

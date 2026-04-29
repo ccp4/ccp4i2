@@ -20,6 +20,24 @@ The infrastructure template applies these settings by default:
 
 If an existing instance was deployed before these were added, apply them manually via `az` commands or re-run the infrastructure deployment (incremental).
 
+## Image-lineage discipline
+
+The shared ACR (`ccp4acrshareduk14fb`) holds two parallel image lineages during the materia transition. The rule below is load-bearing for DDUDatabase safety: a build aimed at materia development must be physically incapable of replacing DDU's image.
+
+| Lineage | ACR repos | Source branch | Consumed by |
+|---------|-----------|--------------|-------------|
+| `ccp4i2/*` (stable) | `ccp4i2/web`, `ccp4i2/server` | `django` | DDUDatabase, kawamura, ccp4i2-demo (current `ccp4i2-bicep-*` apps) |
+| `materia/*` (development) | `materia/web`, `materia/server` | `materia` | demo only (`materia-demo-*` apps) |
+
+How the separation is enforced:
+
+1. **Env files** select the lineage via `IMAGE_REPO_WEB` / `IMAGE_REPO_SERVER`. The stable env files (`.env.deployment`, `.env.demo`, `.env.kawamura`) leave these unset, so the default `ccp4i2/{web,server}` applies. Only `.env.demo-materia` sets the materia values.
+2. **`--env` is mandatory** in [build-and-push.sh](scripts/build-and-push.sh) and [deploy-applications.sh](scripts/deploy-applications.sh). There is no default, so a script invocation without `--env` errors out instead of silently aiming at DDU.
+3. **No `:latest` tag is pushed.** Every consumer references an explicit timestamp tag in its env file, so a stray re-tag in ACR cannot move any live container app.
+4. **DDU and kawamura must never be deployed with `.env.demo-materia`.** The container-app prefix in that env file (`materia-demo`) and the resource group (`ccp4i2-demo-rg-uksouth`) make a misfire visible, but the rule is the discipline, not the safeguard.
+
+DDU cutover to materia is an explicit, deferred event: rebuild from the materia branch, validate on demo, run data-migration parity tests, then deliberately point `.env.deployment` at the materia lineage inside an agreed maintenance window with rollback ready.
+
 ## Prerequisites
 
 - Azure CLI (`az`) installed and logged in
@@ -278,19 +296,26 @@ This sends a B2B guest invitation and adds the user to the access control group.
 
 ## 9. Managing Instances with Scripts
 
-The deployment scripts support an `--env` flag to target different instances:
+The deployment scripts **require** an `--env` flag — there is no implicit default. Forgetting it is the most likely way to deploy to the wrong instance, so it is a hard error.
 
 ```bash
-# Main instance (default — no flag needed)
-./scripts/build-and-push.sh web
-./scripts/deploy-applications.sh server
+# DDUDatabase (production)
+./scripts/build-and-push.sh --env .env.deployment web
+./scripts/deploy-applications.sh --env .env.deployment server
 
-# Demo instance
+# Demo (ccp4i2 stable)
 ./scripts/build-and-push.sh --env .env.demo web
 ./scripts/deploy-applications.sh --env .env.demo server
+
+# Kawamura
+./scripts/build-and-push.sh --env .env.kawamura web
+
+# Materia development → demo only (separate image lineage)
+./scripts/build-and-push.sh --env .env.demo-materia web
+./scripts/deploy-applications.sh --env .env.demo-materia server
 ```
 
-Without `--env`, scripts source `.env.deployment` (main instance). This ensures existing workflows are unaffected.
+See **Image-lineage discipline** below for the rule that protects DDUDatabase from materia development work.
 
 ## 10. Future: In-App User Management
 
