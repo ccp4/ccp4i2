@@ -13,7 +13,7 @@
 | **Bilingual auth library** | scaffolded + active migration in progress |
 | **Lightweight desktop auth** | shipped — LocalSession end-to-end, validated on macOS Electron |
 | **`materia/*` cloud lineage** | **shipped + validated** — `materia-demo-web` live and signed-in-against, AzureAD chain working through refactored middleware |
-| **Compounds repo cut** | not started — gated on institutional asks |
+| **Compounds repo cut** | `git filter-repo` plan drafted; execution gated on namespace claims + `@ccp4/ccp4i2-auth` release |
 | **Service contract for CCP4i2 REST API** | **v0 draft shipped** — TS types + narrative doc + Django-side guards |
 | **Standalone Materia Docker image** | not started |
 
@@ -84,9 +84,9 @@ Living at [`packages/ccp4i2-auth/`](../../../packages/ccp4i2-auth/) on the `djan
 
 ### 3. Compounds repo cut
 
-- `git filter-repo` plan: not yet drafted.
-- New `materia` repo creation: gated on the institutional ask (CCP4 org admin to create related repo + npm/PyPI namespaces).
-- Carry-along candidates: `apps/compounds/` (server + frontend), Azure deploy scripts and infrastructure specific to compounds-only instances, compounds-relevant docs.
+- `git filter-repo` plan: **drafted** ([REPO_SPLIT_FILTER_REPO_PLAN.md](REPO_SPLIT_FILTER_REPO_PLAN.md)). Decisions locked: home is `newcastleuniversity/materia`, full history preserved, Materia plays "external-slash-internal canary" against the published shared lib. Pre-cut validation checklist defined; not yet executed.
+- New `materia` repo creation: gated on namespaces being claimed and `@ccp4/ccp4i2-auth` having a real registry release for Materia to install from.
+- Carry-along: `apps/compounds/` (server + frontend), `apps/users/`, `Docker/azure-uksouth/.env.demo-materia`. UI primitives + deploy scripts duplicate-and-diverge at the cut moment.
 
 ### 4. CCP4i2 service interface documentation + contract tests ✓ (v0)
 
@@ -132,7 +132,7 @@ Tracked because the technical work runs ahead of these and at some point waits o
 | Claim `@ccp4` npm organisation; add CCP4 admins as co-owners | Martin Noble — direct (verified-free namespace; ex-chair authority) | pending; informational note to consortium when claimed |
 | Claim `ccp4i2-auth` PyPI project; add CCP4 admins as co-maintainers | Martin Noble — direct | pending |
 | Link `@ccp4` npm org to `ccp4` GitHub org (provenance binding) | requires both Martin (npm side) + Dave (GitHub side) | pending; sequencing — claim namespaces first, link once GitHub repo exists |
-| New `materia` repo for the eventual compounds-side cut (host TBD; **not** `newcastleuniversity` per memory note) | TBD | not yet raised |
+| New `materia` repo for the eventual compounds-side cut at `newcastleuniversity/materia` (institutional grounding aligns with sustainability narrative; CCP4i2-facing assets stay on `ccp4` org) | Martin — direct (has SSO + create access) | not yet created; held until `git filter-repo` plan ready and namespaces claimed |
 
 **Verified namespace state (April 2026):** `@ccp4` npm scope, `@ccp4i2` npm scope, `ccp4i2-auth` PyPI, and `ccp4i2` PyPI are all unclaimed. **`materia` (bare) is taken on both registries** — Materia-side packages will need a scope or prefix.
 
