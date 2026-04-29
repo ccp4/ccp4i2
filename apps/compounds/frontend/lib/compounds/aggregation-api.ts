@@ -19,14 +19,13 @@ import { Target, SavedAggregationView } from '@/types/compounds/models';
 // Authentication Integration
 // =============================================================================
 
-// For Docker integration: Try to import auth helpers from ccp4i2 client's auth-token
+// Resolve auth helpers from @ccp4/ccp4i2-auth; fall back to no-ops if unavailable.
 // Falls back to no-op for standalone development
 let getAccessToken: () => Promise<string | null>;
 let getUserEmail: () => string | null;
 
 try {
-  // This path works when overlaid into ccp4i2 client (renderer/lib/compounds/)
-  const authModule = require('../../utils/auth-token');
+  const authModule = require('@ccp4/ccp4i2-auth');
   getAccessToken = authModule.getAccessToken;
   getUserEmail = authModule.getUserEmail || (() => null);
 } catch {

@@ -71,6 +71,14 @@ COPY apps/compounds/media_views.py /usr/src/app/compounds/media_views.py
 COPY apps/compounds/validators.py /usr/src/app/compounds/validators.py
 COPY apps/compounds/utils.py /usr/src/app/compounds/utils.py
 
+# =============================================================================
+# Overlay shared @ccp4/ccp4i2-auth package (Python half: ccp4i2_auth)
+# Installed into azure_packages alongside other deps so PYTHONPATH picks it up.
+# =============================================================================
+COPY packages/ccp4i2-auth /usr/src/app/ccp4i2-auth-pkg
+RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages \
+    /usr/src/app/ccp4i2-auth-pkg
+
 # Install ALL Python dependencies to azure_packages for ccp4-python
 # This is the ONLY location for Django packages - ccp4-python uses PYTHONPATH to find them
 # entrypoint.sh sets PYTHONPATH to include azure_packages before CCP4's paths

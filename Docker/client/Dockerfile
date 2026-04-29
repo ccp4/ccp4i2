@@ -33,6 +33,15 @@ RUN apk add --no-cache jq git && \
     jq 'del(.devDependencies.electron) | del(.devDependencies["electron-builder"]) | del(.devDependencies["@electron/packager"]) | del(.dependencies["electron-store"]) | .dependencies["react-markdown"] = "^9.0.1" | .dependencies["remark-gfm"] = "^4.0.0"' package.json > package.web.json && \
     mv package.web.json package.json
 
+# Build the @ccp4/ccp4i2-auth shared package before consumer install.
+# client/package.json declares it as `file:../packages/ccp4i2-auth`; npm
+# symlinks the file: dep but does not run its build, so the package's
+# dist/ must already exist before Next.js resolves @ccp4/ccp4i2-auth.
+COPY packages/ccp4i2-auth /packages/ccp4i2-auth
+RUN cd /packages/ccp4i2-auth && \
+    npm install && \
+    npm run build
+
 # Install dependencies (excluding Electron) with retry logic
 # Using npm install instead of npm ci to auto-update lock file when package.json changes
 # --mount=type=cache persists npm cache between builds for faster installs

@@ -8,7 +8,7 @@
  * - Automatic /api/proxy/ccp4i2/ prefix for relative API endpoints
  */
 
-import { getAccessToken } from "./utils/auth-token";
+import { getAccessToken } from "@ccp4/ccp4i2-auth";
 
 // =============================================================================
 // Auth error event bus

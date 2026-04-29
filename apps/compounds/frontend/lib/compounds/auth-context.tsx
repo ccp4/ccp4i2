@@ -77,7 +77,7 @@ let getAccessToken: () => Promise<string | null>;
 let performLogout: () => void;
 
 try {
-  const authModule = require('../../utils/auth-token');
+  const authModule = require('@ccp4/ccp4i2-auth');
   getAccessToken = authModule.getAccessToken;
   performLogout = authModule.logout || (() => {
     // Fallback: redirect to root which will trigger re-auth

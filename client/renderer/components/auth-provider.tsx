@@ -11,7 +11,7 @@ import {
   setTeamsTokenRefresher,
   setTeamsToken,
   clearTeamsToken,
-} from "../utils/auth-token";
+} from "@ccp4/ccp4i2-auth";
 import { getAuthConfig } from "../utils/auth-config";
 
 /**

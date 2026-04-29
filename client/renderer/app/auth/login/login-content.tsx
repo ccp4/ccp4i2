@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useMsal } from "@azure/msal-react";
 import { InteractionStatus } from "@azure/msal-browser";
 import { useSearchParams } from "next/navigation";
-import { setTeamsToken, setTeamsTokenRefresher } from "../../../utils/auth-token";
+import { setTeamsToken, setTeamsTokenRefresher } from "@ccp4/ccp4i2-auth";
 import { getAuthConfigSync } from "../../../utils/auth-config";
 
 /**
