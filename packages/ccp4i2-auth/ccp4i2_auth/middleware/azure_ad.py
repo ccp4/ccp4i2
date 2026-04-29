@@ -30,9 +30,10 @@ from urllib.request import urlopen
 
 import certifi
 from django.contrib.auth import get_user_model
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, HttpResponse
 
-from .base import REQUEST_FLAG_ATTR
+from ..exceptions import AuthenticationFailed, AuthorizationFailed
+from .base import BaseAuthMiddleware
 
 logger = logging.getLogger(__name__)
 
@@ -202,15 +203,25 @@ def extract_token(request: HttpRequest) -> Optional[str]:
     return None
 
 
-class AzureADAuthMiddleware:
+class AzureADAuthMiddleware(BaseAuthMiddleware):
     """
-    Django middleware for Azure AD JWT validation.
+    Django middleware for Azure AD JWT validation. Cloud auth path.
 
-    Validates JWT tokens on incoming requests when CCP4I2_REQUIRE_AUTH=true.
-    Exempt paths (like health checks) are configurable.
+    Activates when ``CCP4I2_REQUIRE_AUTH=true`` (otherwise no-op, deferring
+    to whatever middleware comes next in the chain). When active, every
+    non-exempt request must carry a valid Azure AD JWT bearer token; the
+    middleware validates it, optionally enforces group-membership rules,
+    and gets-or-creates a Django user keyed on the cryptographic ``sub``.
+
+    The dev_admin auto-login path was deliberately split out into a
+    separate ``DevAdminMiddleware`` so a misconfigured cloud deploy
+    (REQUIRE_AUTH unset) cannot fall through to creating a superuser
+    automatically. See ``ccp4i2_auth.middleware.dev_admin`` for the dev
+    path; the CCP4i2 settings module is responsible for picking exactly
+    one auth middleware based on the deployment shape.
     """
 
-    # Paths that don't require authentication
+    # Paths that don't require authentication even when this middleware is active.
     EXEMPT_PATHS = [
         "/health",
         "/healthz",
@@ -221,10 +232,8 @@ class AzureADAuthMiddleware:
     ]
 
     def __init__(self, get_response):
-        self.get_response = get_response
-        self.auth_required = is_auth_required()
-
-        if self.auth_required:
+        super().__init__(get_response)
+        if self.is_active():
             logger.info("Azure AD authentication is ENABLED")
             validator = get_validator()
             if not validator:
@@ -232,156 +241,119 @@ class AzureADAuthMiddleware:
                     "Authentication required but AZURE_AD_TENANT_ID/AZURE_AD_CLIENT_ID not set!"
                 )
         else:
-            logger.info("Azure AD authentication is DISABLED")
+            logger.info("Azure AD authentication is DISABLED (CCP4I2_REQUIRE_AUTH not set)")
 
-    def __call__(self, request: HttpRequest):
-        # Skip auth if not required - auto-login as dev admin for full access
-        if not self.auth_required:
-            User = get_user_model()
-            dev_user, created = User.objects.get_or_create(
-                username='dev_admin',
-                defaults={
-                    'email': 'dev_admin@localhost',
-                    'first_name': 'Dev',
-                    'last_name': 'Admin',
-                    'is_staff': True,
-                    'is_superuser': True,
-                }
-            )
-            if created:
-                logger.info("Created dev_admin superuser for no-auth mode")
-            # Ensure dev_admin always has admin privileges (in case it was created earlier without them)
-            if not dev_user.is_staff or not dev_user.is_superuser:
-                dev_user.is_staff = True
-                dev_user.is_superuser = True
-                dev_user.save(update_fields=['is_staff', 'is_superuser'])
-            request.user = dev_user
-            # Mark that this request was processed by our middleware (prevents spoofing)
-            setattr(request, REQUEST_FLAG_ATTR, True)
-            return self.get_response(request)
+    def is_active(self) -> bool:
+        return is_auth_required()
 
-        # Skip exempt paths
-        path = request.path.rstrip("/")
-        if any(path == exempt.rstrip("/") for exempt in self.EXEMPT_PATHS):
-            return self.get_response(request)
+    def __call__(self, request: HttpRequest) -> HttpResponse:
+        # Filter exempt paths *before* delegating to BaseAuthMiddleware so
+        # health checks and version probes always bypass authentication.
+        if self.is_active():
+            path = request.path.rstrip("/")
+            if any(path == exempt.rstrip("/") for exempt in self.EXEMPT_PATHS):
+                return self.get_response(request)
+        return super().__call__(request)
 
-        # Extract token
+    def authenticate(self, request: HttpRequest):
         token = extract_token(request)
         if not token:
-            return JsonResponse(
-                {
-                    "success": False,
-                    "error": "Authentication required. Provide Authorization: Bearer <token>",
-                },
-                status=401,
+            raise AuthenticationFailed(
+                "Authentication required. Provide Authorization: Bearer <token>"
             )
 
-        # Validate token
         validator = get_validator()
         if not validator:
-            return JsonResponse(
-                {
-                    "success": False,
-                    "error": "Server authentication not configured",
-                },
-                status=500,
-            )
+            # Server misconfiguration — AZURE_AD_TENANT_ID/CLIENT_ID missing.
+            # We surface this as a 401 because to the *caller* the result is
+            # the same as a token rejection: no auth happened, retry doesn't
+            # help. The error message and the operator-facing log line above
+            # tell the operator what to fix.
+            raise AuthenticationFailed("Server authentication not configured")
 
         is_valid, claims, error = validator.validate_token(token)
         if not is_valid:
-            return JsonResponse(
-                {"success": False, "error": f"Authentication failed: {error}"},
-                status=401,
-            )
+            raise AuthenticationFailed(error)
 
-        # Attach claims to request for downstream use
+        # Attach claims to request for downstream use.
         request.azure_ad_claims = claims
         azure_ad_sub = claims.get("sub")
         request.azure_ad_user_id = azure_ad_sub
 
-        # ========================================================================
-        # TEAMS/GROUPS AUTHORIZATION CHECK
-        # ========================================================================
-        # Validate user is a member of authorized Azure AD groups (e.g., Teams)
-        # This prevents console-based bypass attacks where authenticated users
-        # who aren't in the Teams group try to access the API directly
-        #
-        # Requires:
-        # 1. Azure AD app configured to emit 'groups' claim (Token Configuration)
-        # 2. ALLOWED_AZURE_AD_GROUPS env var with comma-separated group IDs
-        # 3. Azure AD Premium P1/P2 (for groups claim in tokens)
-        #
-        # The 'groups' claim contains Object IDs of all security groups the user
-        # is a member of. We validate against the allowed list.
-        # ========================================================================
+        # Groups / Teams membership authorization.
+        self._enforce_group_membership(claims, azure_ad_sub)
+
+        email = self._extract_email(claims, request, azure_ad_sub)
+        request.azure_ad_email = email
+
+        return self._get_or_create_user(claims, azure_ad_sub, email)
+
+    # --- helper extractions kept private ------------------------------------
+
+    @staticmethod
+    def _enforce_group_membership(claims: dict, azure_ad_sub: str) -> None:
+        """Raise AuthorizationFailed if ALLOWED_AZURE_AD_GROUPS is set and
+        the user is not a member of any allowed group.
+
+        Requires:
+        1. Azure AD app configured to emit 'groups' claim (Token Configuration).
+        2. ALLOWED_AZURE_AD_GROUPS env var with comma-separated group IDs.
+        3. Azure AD Premium P1/P2 (for groups claim in tokens).
+        """
         allowed_groups_str = os.environ.get("ALLOWED_AZURE_AD_GROUPS", "")
         allowed_groups = [g.strip() for g in allowed_groups_str.split(",") if g.strip()]
-
-        if allowed_groups:
-            logger.debug(f"Groups authorization enabled. Allowed groups: {allowed_groups}")
-
-            # Extract groups claim from validated JWT token
-            user_groups = claims.get("groups", [])
-
-            # Check for group claims overage (happens when user is in >200 groups)
-            # Azure AD adds _claim_names/_claim_sources instead of full list
-            if "_claim_names" in claims or "_claim_sources" in claims:
-                logger.warning(
-                    f"Group claims overage detected for user {azure_ad_sub[:8]}. "
-                    "User is in >200 groups - cannot validate Teams membership from token. "
-                    "Consider using a dedicated app access group with fewer members."
-                )
-                return JsonResponse(
-                    {
-                        "success": False,
-                        "error": "Your account has too many group memberships to verify automatically. "
-                                 "Please contact your administrator to be added to a dedicated "
-                                 "application access group.",
-                    },
-                    status=403,
-                )
-
-            logger.debug(f"User {azure_ad_sub[:8]}... has groups: {user_groups}")
-
-            # Check if user is in any of the allowed groups
-            has_access = any(group_id in allowed_groups for group_id in user_groups)
-
-            if not has_access:
-                logger.warning(
-                    f"Access denied for user {azure_ad_sub[:8]}... - not in authorized groups. "
-                    f"User groups: {user_groups[:5]}{'...' if len(user_groups) > 5 else ''}, "
-                    f"Required: {allowed_groups}"
-                )
-                return JsonResponse(
-                    {
-                        "success": False,
-                        "error": "Access denied: You are not a member of an authorized group. "
-                                 "This application requires membership in the Newcastle Drug Discovery Unit team. "
-                                 "Please contact your administrator to request access.",
-                    },
-                    status=403,
-                )
-
-            logger.info(f"User {azure_ad_sub[:8]}... authorized via Teams/Groups membership")
-        else:
+        if not allowed_groups:
             logger.debug("Groups authorization not configured (ALLOWED_AZURE_AD_GROUPS not set)")
-        # ========================================================================
-        # END TEAMS/GROUPS AUTHORIZATION CHECK
-        # ========================================================================
+            return
 
-        # Try multiple claim fields where email might be found
+        logger.debug(f"Groups authorization enabled. Allowed groups: {allowed_groups}")
+
+        # Group claims overage — user is in >200 groups, Azure AD substitutes
+        # _claim_names/_claim_sources for the full list. We can't validate
+        # locally; surface a friendly 403 so an admin can move the user to a
+        # dedicated app-access group with fewer members.
+        if "_claim_names" in claims or "_claim_sources" in claims:
+            logger.warning(
+                f"Group claims overage detected for user {azure_ad_sub[:8]}. "
+                "User is in >200 groups - cannot validate Teams membership from token. "
+                "Consider using a dedicated app access group with fewer members."
+            )
+            raise AuthorizationFailed(
+                "Your account has too many group memberships to verify "
+                "automatically. Please contact your administrator to be "
+                "added to a dedicated application access group."
+            )
+
+        user_groups = claims.get("groups", [])
+        logger.debug(f"User {azure_ad_sub[:8]}... has groups: {user_groups}")
+
+        if not any(group_id in allowed_groups for group_id in user_groups):
+            logger.warning(
+                f"Access denied for user {azure_ad_sub[:8]}... - not in authorized groups. "
+                f"User groups: {user_groups[:5]}{'...' if len(user_groups) > 5 else ''}, "
+                f"Required: {allowed_groups}"
+            )
+            raise AuthorizationFailed(
+                "You are not a member of an authorized group. This application "
+                "requires membership in the Newcastle Drug Discovery Unit team. "
+                "Please contact your administrator to request access."
+            )
+
+        logger.info(f"User {azure_ad_sub[:8]}... authorized via Teams/Groups membership")
+
+    @staticmethod
+    def _extract_email(claims: dict, request: HttpRequest, azure_ad_sub: str) -> str:
+        # Try multiple claim fields where email might be found.
         email = (
-            claims.get("email") or
-            claims.get("preferred_username") or
-            claims.get("upn") or  # User Principal Name
-            claims.get("unique_name")  # Legacy claim
+            claims.get("email")
+            or claims.get("preferred_username")
+            or claims.get("upn")  # User Principal Name
+            or claims.get("unique_name")  # Legacy claim
         )
 
-        # Fallback: check X-User-Email header (sent by frontend from MSAL account info)
-        # This is secure because:
-        # 1. The JWT is already validated - we know WHO this is via cryptographic 'sub'
-        # 2. We use 'sub' as the primary key, not email
-        # 3. Email is just for display/lookup convenience
+        # Fallback: X-User-Email header (sent by frontend from MSAL account info).
+        # Secure because (1) JWT is already validated so we know WHO via 'sub';
+        # (2) 'sub' is the primary key, not email; (3) email is just for display.
         if not email:
             header_email = request.headers.get("X-User-Email")
             if header_email:
@@ -389,19 +361,16 @@ class AzureADAuthMiddleware:
                 email = header_email
 
         if not email:
-            # Last resort: generate placeholder from verified sub
             logger.warning(f"No email found for sub={azure_ad_sub}. Claims: {list(claims.keys())}")
             email = f"user_{azure_ad_sub[:8]}@azuread.local"
 
-        request.azure_ad_email = email
+        return email
 
-        # Get or create Django user
-        # Extract name from claims
-        # Priority: given_name/family_name > 'name' claim > empty
+    @staticmethod
+    def _get_or_create_user(claims: dict, azure_ad_sub: str, email: str):
+        # Extract name from claims (priority: given_name/family_name → 'name' → empty).
         first_name = claims.get("given_name", "")
         last_name = claims.get("family_name", "")
-
-        # If no given_name/family_name, try to parse from 'name' claim (e.g., "Martin Noble")
         if not first_name and not last_name:
             full_name = claims.get("name", "")
             if full_name:
@@ -412,8 +381,8 @@ class AzureADAuthMiddleware:
                 elif len(name_parts) == 1:
                     first_name = name_parts[0]
 
-        # Use 'sub' as the unique identifier (cryptographically verified)
-        # This prevents email header spoofing from allowing impersonation
+        # Use 'sub' as the unique identifier (cryptographically verified) —
+        # prevents email-header spoofing from enabling impersonation.
         User = get_user_model()
         username = f"aad_{azure_ad_sub[:32]}"  # Stable username from sub
         user, created = User.objects.get_or_create(
@@ -422,13 +391,12 @@ class AzureADAuthMiddleware:
                 "email": email.lower(),
                 "first_name": first_name,
                 "last_name": last_name,
-            }
+            },
         )
-
         if created:
             logger.info(f"Created user from Azure AD: {email} (sub={azure_ad_sub[:8]}...)")
 
-        # Update email and name if changed or missing
+        # Update email and name if they changed or were initially missing.
         updated = False
         if user.email != email.lower():
             user.email = email.lower()
@@ -442,7 +410,4 @@ class AzureADAuthMiddleware:
         if updated:
             user.save(update_fields=["email", "first_name", "last_name"])
 
-        request.user = user
-        # Mark that this request was processed by our middleware (prevents spoofing)
-        setattr(request, REQUEST_FLAG_ATTR, True)
-        return self.get_response(request)
+        return user

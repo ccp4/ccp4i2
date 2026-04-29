@@ -10,11 +10,13 @@ trust signal.
 from .azure_ad import AzureADAuthMiddleware
 from .base import REQUEST_FLAG_ATTR, BaseAuthMiddleware
 from .dev import DevAuthMiddleware
+from .dev_admin import DevAdminMiddleware
 from .local_session import LocalSessionAuthMiddleware
 
 __all__ = [
     "AzureADAuthMiddleware",
     "BaseAuthMiddleware",
+    "DevAdminMiddleware",
     "DevAuthMiddleware",
     "LocalSessionAuthMiddleware",
     "REQUEST_FLAG_ATTR",

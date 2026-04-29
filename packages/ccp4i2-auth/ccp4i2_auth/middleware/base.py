@@ -11,7 +11,7 @@ spoofing, mirroring the existing AzureADAuthMiddleware contract).
 
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
-from ..exceptions import AuthenticationFailed
+from ..exceptions import AuthenticationFailed, AuthorizationFailed
 
 
 # Attribute name set on ``request`` after a successful authentication.
@@ -46,7 +46,9 @@ class BaseAuthMiddleware:
         try:
             user = self.authenticate(request)
         except AuthenticationFailed as exc:
-            return self._unauthorized(str(exc))
+            return self._error_response(str(exc), status=401)
+        except AuthorizationFailed as exc:
+            return self._error_response(str(exc), status=403, prefix="Access denied")
         request.user = user
         setattr(request, REQUEST_FLAG_ATTR, True)
         return self.get_response(request)
@@ -58,8 +60,10 @@ class BaseAuthMiddleware:
         raise NotImplementedError
 
     @staticmethod
-    def _unauthorized(message: str) -> JsonResponse:
+    def _error_response(
+        message: str, status: int, prefix: str = "Authentication failed"
+    ) -> JsonResponse:
         return JsonResponse(
-            {"success": False, "error": f"Authentication failed: {message}"},
-            status=401,
+            {"success": False, "error": f"{prefix}: {message}"},
+            status=status,
         )
