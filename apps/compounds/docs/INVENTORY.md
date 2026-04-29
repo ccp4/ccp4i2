@@ -68,7 +68,7 @@ Verified by grep + visual inspection on `django-sliced` at commit `b5e4c3fd0`.
 | `apps/compounds/settings.py` | Materia | Compounds Django app settings. |
 | `apps/compounds/urls.py` | Materia | Compounds URL routing. |
 | `apps/compounds/utils.py`, `formatting.py`, `validators.py` | Materia | Compounds-specific helpers. |
-| `apps/users/` | **AMBIGUOUS — DECISION REQUIRED #1** | Heavily imported by *both* sides. Verified: 3 imports from `server/ccp4i2/`, 8+ from `apps/compounds/`. |
+| `apps/users/` | **Materia** (locked) | The desktop path never touches it (`users` not in default `INSTALLED_APPS`). The 3 CCP4i2-side imports are cloud admin features that switch to Django built-in `IsAdminUser` as part of the cleanup. See locked decision below. |
 | `packages/ccp4i2-auth/` | Shared lib | ✓ Already extracted. Bilingual TS+Python. CCP4-stewarded. |
 | `tests/` (root, `ccp4i2/tests/`) | CCP4i2 | Existing test suite — covers crystallography. (Root `tests/` is empty; real tests live at `server/ccp4i2/tests/`.) |
 | `docs/` | CCP4i2 | Crystallography documentation. |
@@ -81,49 +81,28 @@ Verified by grep + visual inspection on `django-sliced` at commit `b5e4c3fd0`.
 
 The cases below are not unilaterally settleable from a code reading. They need stakeholder input.
 
-### DECISION REQUIRED #1: `apps/users/` ownership
+### LOCKED #1: `apps/users/` → Materia
 
-Heavy cross-domain dependency. Both sides currently import from `users.permissions` and `users.models`:
+**Decision** (locked April 2026): `apps/users/` is Materia-resident. The CCP4i2 side has no dependency on it; cloud-CCP4i2 admin features use Django's built-in `IsAdminUser` (`is_staff` / `is_superuser`) for coarse admin gating.
 
-**CCP4i2 imports (3 sites):**
-- [server/ccp4i2/api/admin_views.py:20](server/ccp4i2/api/admin_views.py#L20) — `from users.permissions import IsPlatformAdmin`
-- [server/ccp4i2/api/urls.py:85](server/ccp4i2/api/urls.py#L85) — `from users.urls import urlpatterns as users_urls`
+**Rationale:** Verification showed the Electron desktop path never touches `apps/users/` — it's not in the default `INSTALLED_APPS` ([settings.py:44-53](../../../server/ccp4i2/config/settings.py#L44-L53)) and the URLs are conditionally included only when the app is. The 3 CCP4i2-side import sites are all cloud-admin features (legacy-import endpoints in `admin_views.py`); the 8+ import sites are all Materia-side (compounds admin, assays, constructs, registry). The role/permission system is genuinely a multi-user-platform concern, which is the Materia case, not the desktop case.
 
-**Materia imports (8+ sites):**
-- [apps/compounds/admin_views.py:20](apps/compounds/admin_views.py#L20) — `from users.permissions import IsPlatformAdmin` (plus `UserProfile` imports at lines 263, 532, 898)
-- [apps/compounds/assays/views.py:18](apps/compounds/assays/views.py#L18) — `IsContributorOrReadOnly`, `IsContributorCreateAdminUpdate`, `can_administer`
-- [apps/compounds/constructs/views.py:16](apps/compounds/constructs/views.py#L16) — `IsContributorOrReadOnly`
-- [apps/compounds/registry/views.py:27+](apps/compounds/registry/views.py#L27) — multiple permission classes
+**Cleanup work tracked in REPO_SPLIT_IMPLEMENTATION.md:**
 
-What it provides:
-- `UserProfile` model (role-based authz: `ROLE_USER`, `ROLE_CONTRIBUTOR`, `ROLE_ADMIN`)
-- DRF permission classes (`IsPlatformAdmin`, `IsContributorOrReadOnly`, `IsContributorCreateAdminUpdate`, `can_administer`)
-- Admin frontend (overlaid into `client/renderer/`)
+| Site | Action |
+|---|---|
+| [`server/ccp4i2/api/admin_views.py:20`](../../../server/ccp4i2/api/admin_views.py#L20) and 4 `@permission_classes([IsPlatformAdmin])` decorators | Replace with `rest_framework.permissions.IsAdminUser` |
+| [`server/ccp4i2/api/urls.py:84-94`](../../../server/ccp4i2/api/urls.py#L84) | Delete the conditional `users` URL inclusion block |
+| Comments referencing the role system in cloud-CCP4i2 settings | Update or remove |
 
-Four options, ranked by my recommendation:
+After this cleanup, `apps/users/` migrates with Materia at the `git filter-repo` cut. No second shared library is created — `ccp4i2-users` does not exist.
 
-1. **Shared library — extract `apps/users/` into a new `packages/ccp4i2-users/` package.**
-   Pro: explicit bilateral stewardship; the contract (role names, permission semantics) is single-sourced. The role/permission system is genuinely auth-adjacent — same governance as the auth lib.
-   Con: third shared package to maintain; CCP4 org would steward it (matches the auth-lib precedent).
-   Best when: roles must stay in sync between the two sides, and divergence would confuse users with cross-app accounts.
+**Trade-off:** any future pure-CCP4i2 cloud deployment that wants the CONTRIBUTOR role gets it back by either installing Materia's users module as a pip dependency or implementing its own. Realistically no such deployment exists; CCP4i2 cloud presence is the unified DDU-style deployment that keeps Materia in the build.
 
-2. **Keep in CCP4i2; Materia depends.**
-   Pro: single source of truth in one repo. CCP4i2 has the platform-admin surface; Materia is a tenant.
-   Con: bilateral-stewardship risk — CCP4i2-side changes can break Materia silently. Inverts the natural "Materia is the multi-user platform; crystallography is more individualistic" asymmetry.
-
-3. **Move to Materia; CCP4i2 depends.**
-   Pro: Materia is the multi-user app, so its needs likely drive role evolution.
-   Con: CCP4i2 (the parent of all this) becomes downstream of an extracted child. Awkward hierarchy.
-
-4. **Fork at the cut — each repo maintains its own.**
-   Pro: full autonomy; no cross-repo coordination.
-   Con: role models will drift; users with both apps may see different roles in each → UX confusion. Worth doing only if both sides clearly want different role semantics.
-
-**My recommendation: Option 1 (extract to shared library `@ccp4/ccp4i2-users` / `ccp4i2-users` on PyPI).** Roles + permissions + admin contracts feel like exactly the surface that wants single-sourcing, parallel to auth. It would be the **second** shared library after `ccp4i2-auth`.
-
-**Sub-decision if Option 1 is chosen:** does the shared lib include the *admin frontend* (admin panel UI) too? UI primitives elsewhere fork at the cut, and the proposal explicitly carves them out. The admin panel feels like a UI primitive that diverges naturally — I'd say *no*, the lib carries only the Django-side machinery (models, permissions, URL hooks); admin UI forks at the cut.
-
-**This is the biggest decision in this document.** Worth talking through.
+**Options considered and rejected:**
+- Extract to a second shared library (`ccp4i2-users`) — ruled out because the desktop doesn't need users at all; making it a shared dependency burdens the desktop case unnecessarily.
+- Keep in CCP4i2 with Materia as consumer — bilateral-stewardship risk; CCP4i2 changes could break Materia silently.
+- Fork at the cut — divergence drift; users with both apps would see inconsistent roles.
 
 ---
 

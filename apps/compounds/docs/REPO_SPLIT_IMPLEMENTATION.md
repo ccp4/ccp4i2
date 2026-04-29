@@ -44,6 +44,7 @@ These were settled in working sessions and shouldn't be re-litigated without exp
 | `DevAdminMiddleware` activation | `DEBUG=True` gated, defence-in-depth |
 | Forward-port direction | `django` → `django-sliced` regularly; rarely the other way |
 | `apps/compounds/` rename | **deferred** to the moment of `git filter-repo` extraction (no in-flight rename) |
+| `apps/users/` ownership | **Materia-resident.** No `ccp4i2-users` shared library. CCP4i2-side cloud admin uses Django built-in `IsAdminUser`. Cleanup tracked below. (Locked 2026-04-29; see [INVENTORY.md LOCKED #1](INVENTORY.md#locked-1-appsusers--materia).) |
 
 ## Proposal sequencing — execution status
 
@@ -157,10 +158,14 @@ None of these block the in-tree workspace work. They become load-bearing only at
 
 In rough priority order:
 
-1. **Deploy `django-sliced` → ccp4i2-demo via `materia/*` image lineage.** Validates the AzureAD migration in cloud + exercises the materia/* lineage that has never been built. Catches Docker-side regressions before further migrations compound them. Wallclock ~30-60 min including build.
-2. **Real Electron smoke test** — `npm run start:electron` on macOS, watch logs end-to-end. Then ideally same on Windows and Linux, but macOS is the immediate confidence-builder.
-3. **Migrate `api-fetch.ts`** (457-line wrapper in client/renderer) into `packages/ccp4i2-auth/`. Completes the JS-side v0 surface and ends the next chunk of soon-to-be-duplicated code.
-4. **Begin the broader compounds-vs-ccp4i2 inventory** (proposal step 1 completion). Joint document of what moves, what stays, what goes to the shared lib. Prerequisite for the actual repo cut.
+1. **Drop CCP4i2's dependency on `apps/users/`** (per [INVENTORY.md LOCKED #1](INVENTORY.md#locked-1-appsusers--materia)). Concrete:
+   - In [server/ccp4i2/api/admin_views.py](../../../server/ccp4i2/api/admin_views.py): replace `from users.permissions import IsPlatformAdmin` with `from rest_framework.permissions import IsAdminUser`, and update the 4 `@permission_classes([IsPlatformAdmin])` decorators to `[IsAdminUser]`.
+   - In [server/ccp4i2/api/urls.py](../../../server/ccp4i2/api/urls.py) lines 84-94: delete the conditional `users` URL inclusion block.
+   - Verify ccp4-python imports cleanly with `users` removed from the path.
+   - Lands on `django-sliced`. Doesn't need to forward-port to `django` immediately (DDU still has `users` overlaid in its image).
+2. **Deploy `django-sliced` → ccp4i2-demo via `materia/*` image lineage.** Validates the AzureAD migration in cloud + exercises the materia/* lineage that has never been built. Catches Docker-side regressions before further migrations compound them. Wallclock ~30-60 min including build.
+3. **Real Electron smoke test** — `npm run start:electron` on macOS, watch logs end-to-end. Then ideally same on Windows and Linux, but macOS is the immediate confidence-builder.
+4. **Migrate `api-fetch.ts`** (457-line wrapper in client/renderer) into `packages/ccp4i2-auth/`. Completes the JS-side v0 surface and ends the next chunk of soon-to-be-duplicated code.
 5. **Add test infrastructure** — pytest for the Python side, vitest for the TS side, both in `packages/ccp4i2-auth/tests/`.
 
 After each next-action lands, update the "Status snapshot" table at the top of this document and the relevant workstream below.
