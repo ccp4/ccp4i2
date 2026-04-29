@@ -36,7 +36,10 @@ from compounds.registry.views import (
     LabNotebookEntryViewSet,
     CompoundDocumentViewSet,
 )
-from compounds.nlp.view import nlp_query, nlp_scaffold_extend, nlp_substructures_list
+from compounds.nlp.view import (
+    nlp_query, nlp_scaffold_extend, nlp_scaffold_extension_detail,
+    nlp_substructures_list,
+)
 from compounds.registry.selection_views import (
     selection_collection, selection_detail,
 )
@@ -143,6 +146,12 @@ urlpatterns = [
     path('nlp/scaffold/extend/', nlp_scaffold_extend, name='nlp-scaffold-extend'),
     # Substructures listing — drives the scatter view's chemotype chip strip.
     path('nlp/substructures/', nlp_substructures_list, name='nlp-substructures-list'),
+    # ScaffoldExtension detail (DELETE only; creator-scoped) — drives
+    # the management page row-level delete.
+    # ScaffoldExtension.id is the default integer PK (no UUID), so the
+    # converter is <int:>; using <uuid:> here silently 404s.
+    path('nlp/scaffold/extensions/<int:extension_id>/',
+         nlp_scaffold_extension_detail, name='nlp-scaffold-extension-detail'),
 
     # Selection endpoints (slice 20 + slice 22) — token-addressed snapshot
     # of a compound list. POST /selections/ creates (NLP does this

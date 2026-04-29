@@ -598,6 +598,34 @@ def test_chemotype_phrases_resolved_to_canonical_names(
     assert "colour_by=pyrimidine,pyridine" in resp.data["redirect_url"]
 
 
+def test_colour_by_resolves_against_scaffold_extensions(
+    client, feature_on, clear_cache, db,
+):
+    """A user-saved ScaffoldExtension is visible to the colour-by
+    resolver. Pre-fix this only consulted the seed catalog and missed
+    extension rows entirely — exactly the "Pyrrolopyrimidine via NLP
+    finds nothing" bug a chemist hit on the demo instance."""
+    from compounds.registry.models import ScaffoldExtension
+    ScaffoldExtension.objects.create(
+        name="Pyrrolopyrimidine",
+        smarts="C12=C([N]C=C2)N=CN=C1",
+        aliases=["pyrrolopyrimidines"],
+        target=None,
+    )
+    target = Target.objects.create(name="ARd")
+    Compound.objects.create(target=target, smiles="CCO")
+
+    parsed = CompoundSelector(
+        registration_target_as_typed="ARd",
+        view_format="scatter",
+        colour_by_scaffold_phrases=["Pyrrolopyrimidine"],
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "..."}, format="json")
+    assert resp.status_code == 200
+    assert "colour_by=Pyrrolopyrimidine" in resp.data["redirect_url"]
+
+
 def test_unmatched_chemotype_phrases_silently_dropped(
     client, feature_on, clear_cache, world,
 ):

@@ -516,20 +516,34 @@ def nlp_query(request: Request) -> Response:
     # than in execute(). Phrases that don't match any selection are
     # silently dropped (the chip strip lets the chemist re-pick anyway).
     if isinstance(result, CompoundSelection) and isinstance(selector_for_echo, CompoundSelector):
-        from .substructures import lookup_scaffold_by_typed
-        # Map each typed phrase to its canonical scaffold name via the
-        # catalog. Misses are silently dropped — chemist re-picks via
-        # the chip strip.
+        from .resolver import resolve_scaffold
+        from .spec import ResolvedScaffold
+
+        # `resolve_scaffold` looks up the COMBINED catalog: project-scoped
+        # ScaffoldExtension rows (via the registration target) → shared
+        # ScaffoldExtension rows → curated seed. This is the same lookup
+        # path scaffold_hints uses; a colleague can save a chemotype via
+        # the slice-17 "Define this fragment" affordance and it lights
+        # up immediately for both *"compounds containing X"* and
+        # *"coloured by X"* without a separate registration step.
+        scaffold_target = None
+        rt_id = selector_for_echo.registration_target_id
+        if rt_id:
+            from compounds.registry.models import Target
+            scaffold_target = Target.objects.filter(pk=rt_id).first()
+
         canonical: List[str] = []
         seen: set = set()
         for phrase in selector_for_echo.colour_by_scaffold_phrases:
-            hit = lookup_scaffold_by_typed(phrase)
-            if hit is None:
+            rs = resolve_scaffold(phrase, target=scaffold_target)
+            # Silently skip clarify / miss — colour-by phrases are
+            # advisory; chemist re-picks via the chip strip if needed.
+            if not isinstance(rs, ResolvedScaffold):
                 continue
-            scaffold, _via = hit
-            if scaffold.name not in seen:
-                canonical.append(scaffold.name)
-                seen.add(scaffold.name)
+            name = getattr(rs.scaffold, "name", None)
+            if name and name not in seen:
+                canonical.append(name)
+                seen.add(name)
         result.colour_by_scaffolds = canonical
 
     body_out, status_code = _serialize(
@@ -550,6 +564,42 @@ def nlp_query(request: Request) -> Response:
 # ---------------------------------------------------------------------------
 
 
+def _canonicalise_smarts(raw: str) -> Optional[str]:
+    """Round-trip a chemist-supplied scaffold pattern to canonical
+    aromatic SMARTS. Tries SMILES first (forces aromatic perception
+    on Kekulé inputs like ``C12=C([N]C=C2)N=CN=C1``), falls back to
+    SMARTS for genuine pattern inputs (``[#6X3]=[NX2]`` etc.). Returns
+    None if neither parse succeeds — the caller treats this as "no
+    canonical form available" and the frontend shows only the raw
+    input. Errors are swallowed because some valid inputs trip
+    sanitisation in surprising ways and we don't want a single bad
+    row to take down the whole listing.
+    """
+    try:
+        from rdkit import Chem
+    except ImportError:
+        return None
+    try:
+        mol = Chem.MolFromSmiles(raw)
+    except Exception:
+        mol = None
+    if mol is not None:
+        try:
+            return Chem.MolToSmarts(mol)
+        except Exception:
+            pass
+    try:
+        qmol = Chem.MolFromSmarts(raw)
+    except Exception:
+        qmol = None
+    if qmol is not None:
+        try:
+            return Chem.MolToSmarts(qmol)
+        except Exception:
+            pass
+    return None
+
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def nlp_substructures_list(request: Request) -> Response:
@@ -559,18 +609,24 @@ def nlp_substructures_list(request: Request) -> Response:
         target_id (str, optional): include this Target's project-scoped
             ScaffoldExtension rows alongside the shared/seed catalog.
 
-    Each entry carries the SMARTS string; the frontend's RDKit context
-    matches it against the compound SMILES already in the scatter
-    response — no per-compound round-trip needed.
+    Each entry carries the raw SMARTS plus a canonical aromatic form
+    (when RDKit can produce one) so a management page can show the
+    chemist exactly what their stored pattern matches with after
+    aromatic perception. Extension rows additionally carry their id
+    (for DELETE) and the creator's username (so the chemist can spot
+    "this was added by a colleague").
     """
     from .substructures import SCAFFOLDS
 
     seed = [
         {
+            "id": None,
             "name": s.name,
             "aliases": list(s.aliases),
             "smarts": s.smarts,
+            "canonical_smarts": _canonicalise_smarts(s.smarts),
             "source": "seed",
+            "created_by": None,
         }
         for s in SCAFFOLDS
     ]
@@ -579,25 +635,68 @@ def nlp_substructures_list(request: Request) -> Response:
 
     extensions: list = []
     target_id = request.query_params.get("target_id")
+    target_obj: Optional["Target"] = None
     if target_id:
-        target = Target.objects.filter(pk=target_id).first()
-        if target is not None:
-            for ext in ScaffoldExtension.objects.filter(target=target).order_by("name"):
-                extensions.append({
-                    "name": ext.name,
-                    "aliases": list(ext.aliases or []),
-                    "smarts": ext.smarts,
-                    "source": "extension:project",
-                })
-    for ext in ScaffoldExtension.objects.filter(target__isnull=True).order_by("name"):
-        extensions.append({
-            "name": ext.name,
-            "aliases": list(ext.aliases or []),
-            "smarts": ext.smarts,
-            "source": "extension:shared",
-        })
+        target_obj = Target.objects.filter(pk=target_id).first()
+        if target_obj is not None:
+            for ext in (
+                ScaffoldExtension.objects
+                .filter(target=target_obj)
+                .select_related("created_by")
+                .order_by("name")
+            ):
+                extensions.append(_serialize_extension(ext, source="extension:project"))
+    for ext in (
+        ScaffoldExtension.objects
+        .filter(target__isnull=True)
+        .select_related("created_by")
+        .order_by("name")
+    ):
+        extensions.append(_serialize_extension(ext, source="extension:shared"))
 
     return Response({"scaffolds": seed + extensions}, status=http_status.HTTP_200_OK)
+
+
+def _serialize_extension(ext, *, source: str) -> dict:
+    return {
+        "id": str(ext.id),
+        "name": ext.name,
+        "aliases": list(ext.aliases or []),
+        "smarts": ext.smarts,
+        "canonical_smarts": _canonicalise_smarts(ext.smarts),
+        "source": source,
+        "notes": ext.notes,
+        "target_id": str(ext.target_id) if ext.target_id else None,
+        "target_name": ext.target.name if ext.target_id else None,
+        "created_by": (
+            getattr(ext.created_by, "username", None) if ext.created_by_id else None
+        ),
+        "created_at": ext.created_at.isoformat() if ext.created_at else None,
+    }
+
+
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def nlp_scaffold_extension_detail(request: Request, extension_id) -> Response:
+    """Delete a ScaffoldExtension row. Creator-scoped — 404 across users
+    so we don't leak existence (matches the Selection delete contract).
+
+    Same idempotent shape as the Selection delete: 204 on success, 404
+    when the row doesn't exist or belongs to someone else.
+    """
+    from compounds.registry.models import ScaffoldExtension
+
+    deleted_count, _ = (
+        ScaffoldExtension.objects
+        .filter(pk=extension_id, created_by=request.user)
+        .delete()
+    )
+    if deleted_count == 0:
+        return Response(
+            {"error": "Extension not found"},
+            status=http_status.HTTP_404_NOT_FOUND,
+        )
+    return Response(status=http_status.HTTP_204_NO_CONTENT)
 
 
 # ---------------------------------------------------------------------------
