@@ -14,7 +14,7 @@
 | **Lightweight desktop auth** | shipped — LocalSession end-to-end, validated on macOS Electron |
 | **`materia/*` cloud lineage** | **shipped + validated** — `materia-demo-web` live and signed-in-against, AzureAD chain working through refactored middleware |
 | **Compounds repo cut** | not started — gated on institutional asks |
-| **Service contract for CCP4i2 REST API** | not started |
+| **Service contract for CCP4i2 REST API** | **v0 draft shipped** — TS types + narrative doc + Django-side guards |
 | **Standalone Materia Docker image** | not started |
 
 ## Source documents (read these first)
@@ -77,8 +77,8 @@ Living at [`packages/ccp4i2-auth/`](../../../packages/ccp4i2-auth/) on the `djan
 | `api-fetch` wrapper (bearer injection, 401 emit, error normalisation) | TS | ✓ migrated as `createApiFetch({ baseUrl })` factory |
 | `AUTH_ERROR_EVENT` protocol | TS | ✓ migrated (universal export at module level) |
 | Identity primitives (`compound-identity`, `construct-identity`) | TS | ⏳ blocked on inventory step |
-| Service-contract types for CCP4i2 REST API | TS | ⏳ blocked on step 4 |
-| pytest test suite | Py | ✓ scaffolded with DevAdminMiddleware smoke tests |
+| Service-contract types for CCP4i2 REST API | TS | ✓ shipped (v0 — `contracts/ccp4i2.ts`) |
+| pytest test suite | Py | ✓ 31 tests (DevAdmin 2 + AzureAD 16 + LocalSession 13) |
 | vitest test suite | TS | ✓ scaffolded with createApiFetch + LocalSession smoke tests |
 | CI for the package | both | ⏳ not yet added (waits on the repo cut for `ccp4/ccp4i2-auth`) |
 
@@ -88,11 +88,15 @@ Living at [`packages/ccp4i2-auth/`](../../../packages/ccp4i2-auth/) on the `djan
 - New `materia` repo creation: gated on the institutional ask (CCP4 org admin to create related repo + npm/PyPI namespaces).
 - Carry-along candidates: `apps/compounds/` (server + frontend), Azure deploy scripts and infrastructure specific to compounds-only instances, compounds-relevant docs.
 
-### 4. CCP4i2 service interface documentation + contract tests
+### 4. CCP4i2 service interface documentation + contract tests ✓ (v0)
 
-- Not started.
-- Output: a versioned API contract document + TypeScript types (live in the shared lib so compounds and external integrators consume the same shape) + Django-side tests asserting the contract.
-- Discussion-needed: how strictly to commit (HTTP status codes, response field stability, deprecation policy).
+First-draft v0 contract shipped (commit `3313e8450`):
+
+- **Doc**: [`apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md`](CCP4I2_SERVICE_CONTRACT.md) — narrative for external integrators. 9 stable endpoints (`/version/`, `/health/`, `/projects/`, `/projects/{id}/`, POST `/projects/`, `/jobs/`, `/jobs/{id}/`, `/active_jobs/`, `/files/{id}/`). Conventions, type-stability promises, out-of-scope surface, versioning policy, open questions for review.
+- **TS types**: [`packages/ccp4i2-auth/src/contracts/ccp4i2.ts`](../../../packages/ccp4i2-auth/src/contracts/ccp4i2.ts) — `Project`, `ProjectListItem`, `Job`, `File`, `VersionInfo`, `HealthStatus`, `AuthErrorBody`, plus `JobStatus` / `JobEvaluation` / `FileDirectory` as `as const` numeric enums (consumers may pattern-match on values like `JobStatus.Running === 3`).
+- **Django guards**: [`server/ccp4i2/tests/api/unit/test_contract.py`](../../../server/ccp4i2/tests/api/unit/test_contract.py) — 8 tests inspecting `serializer.fields` directly (no HTTP/DB dep) so a refactor that silently drops a documented field fails this test. Pass in 1.91s.
+
+Status: **draft v0**, ready for circulation to CCP4 dev team for review. Open questions (pagination envelope, contracted query params, push channel for live job-status, rate-limit headers) listed in the doc.
 
 ### 5. Lightweight auth lands in CCP4i2 desktop ✓
 
@@ -158,8 +162,8 @@ None of these block the in-tree workspace work. They become load-bearing only at
 
 (Update this section frequently — it's the "what's on the desk right now" pointer.)
 
-- Last commit on `django-sliced`: `594065ec3` — `Close dev_admin backdoor: split DevAdminMiddleware from AzureAD; fail-closed settings`.
-- `origin/django-sliced` and `origin/django` are both up to date as of this writing.
+- Last commit on `django-sliced`: `3313e8450` — `Draft CCP4i2 service contract v0 (TS types + doc + Django guards)`.
+- `origin/django-sliced` is up to date as of this writing.
 
 ## Recommended next actions
 
@@ -171,7 +175,9 @@ In rough priority order:
 
 ### Recently completed
 
-- **AzureADAuthMiddleware pytest coverage added** (April 2026) — 16 new tests in `tests/python/test_azure_ad.py` covering activation gating, exempt-path bypass, missing/invalid token → 401, misconfigured validator → 401, group authorization (pass/deny/overage), user get-or-create from claims, and X-User-Email header fallback. JWT validation itself is mocked at the `get_validator` boundary (Azure-AD-side network avoided). Combined pytest suite now 18 tests in 0.12s.
+- **CCP4i2 service contract v0 drafted** (April 2026) — first externally-facing API contract for `ccp4/ccp4i2`. 9 stable endpoints documented in [`CCP4I2_SERVICE_CONTRACT.md`](CCP4I2_SERVICE_CONTRACT.md), with TypeScript types in `packages/ccp4i2-auth/src/contracts/ccp4i2.ts` (consumers `import type { Project, Job, File, JobStatus, ... } from "@ccp4/ccp4i2-auth"`) and 8 Django-side contract guards in `server/ccp4i2/tests/api/unit/test_contract.py`. Guards inspect `serializer.fields` directly — no HTTP/DB dep, fast (1.91s), pure shape assertion. Ready to circulate to CCP4 dev team for review.
+- **LocalSessionAuthMiddleware pytest coverage added** (April 2026) — 13 tests in `tests/python/test_local_session.py` covering activation gating (env-var presence), pass-through when inactive, missing/non-Bearer/non-matching token → 401, matching token → 200 with `_ccp4i2_auth_middleware_ran` flag set, desktop user identity (`CCP4I2_LOCAL_USER_EMAIL` and `DEFAULT_DESKTOP_EMAIL` fallback), superuser flag set, get-or-create reuse, and constant-time-compare sanity. Combined pytest suite now 31 tests in 0.09s.
+- **AzureADAuthMiddleware pytest coverage added** (April 2026) — 16 new tests in `tests/python/test_azure_ad.py` covering activation gating, exempt-path bypass, missing/invalid token → 401, misconfigured validator → 401, group authorization (pass/deny/overage), user get-or-create from claims, and X-User-Email header fallback. JWT validation itself is mocked at the `get_validator` boundary (Azure-AD-side network avoided).
 - **Compounds-frontend `authFetch` migrated onto the createApiFetch factory** (April 2026) — 5 duplicate fetch-wrapper implementations (4 `authFetch` + 1 `coreFetch` in aggregation-api.ts, all dynamic-required `@ccp4/ccp4i2-auth`) replaced with one binding at `lib/compounds/api-fetch.ts`. `createApiFetch` grew an optional `injectUserEmail` callback so the compounds-side `X-User-Email` fallback is preserved without leaking into renderer flows. Net –100 lines. Dead `if (!res.ok) throw` blocks at call sites left in place pending a behaviour-preserving cleanup pass.
 - **Test infrastructure scaffolded** (April 2026) — pytest + pytest-django on the Python side with a minimal Django bootstrap and DevAdminMiddleware smoke tests; vitest + jsdom on the TypeScript side with smoke tests for `createApiFetch`, `AUTH_ERROR_EVENT`, and the LocalSession provider helpers. 12 tests, both runners green in <1s. Future test additions are mechanical drop-ins.
 - **`api-fetch.ts` migrated** (April 2026) — refactored into a `createApiFetch({ baseUrl })` factory in `packages/ccp4i2-auth/src/api-fetch.ts`. `client/renderer/api-fetch.ts` is now a 39-line thin binding to the factory, so all 21 import sites in the renderer keep working unchanged. The factory is consumer-agnostic; compounds-frontend can adopt the same canonical implementation by binding to its own baseUrl. Closes the JS-side v0 surface of the shared library.
