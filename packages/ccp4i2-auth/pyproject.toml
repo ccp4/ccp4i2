@@ -24,3 +24,9 @@ test = ["pytest", "pytest-django"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["ccp4i2_auth"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/python"]
+python_files = ["test_*.py"]
+DJANGO_SETTINGS_MODULE = "test_settings"
+pythonpath = ["tests/python"]
