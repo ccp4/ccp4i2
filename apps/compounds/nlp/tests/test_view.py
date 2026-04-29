@@ -614,6 +614,76 @@ def test_unmatched_chemotype_phrases_silently_dropped(
     assert "colour_by=" not in resp.data["redirect_url"]
 
 
+def test_large_result_falls_back_from_cards_to_compact(
+    client, feature_on, clear_cache, db,
+):
+    """A result of >200 compounds in cards mode would render every
+    card to the DOM (no virtualisation). The redirect builder
+    transparently swaps to compact (which DOES virtualise)."""
+    target = Target.objects.create(name="ARd")
+    from compounds.nlp.view import _LARGE_RESULT_THRESHOLD
+    for _ in range(_LARGE_RESULT_THRESHOLD + 5):
+        Compound.objects.create(target=target, smiles="CCO")
+
+    parsed = CompoundSelector(registration_target_as_typed="ARd")
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "all ARd compounds"}, format="json")
+    assert resp.status_code == 200
+    assert "format=compact" in resp.data["redirect_url"]
+    assert "format=cards" not in resp.data["redirect_url"]
+
+
+def test_large_result_falls_back_from_pivot_to_compact(
+    client, feature_on, clear_cache, db,
+):
+    """Same fallback applies to other non-virtualised formats — pivot
+    and bullets share the same DOM-overload problem above the threshold."""
+    target = Target.objects.create(name="ARd")
+    from compounds.nlp.view import _LARGE_RESULT_THRESHOLD
+    for _ in range(_LARGE_RESULT_THRESHOLD + 1):
+        Compound.objects.create(target=target, smiles="CCO")
+
+    parsed = CompoundSelector(
+        registration_target_as_typed="ARd",
+        view_format="pivot",
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "..."}, format="json")
+    assert resp.status_code == 200
+    assert "format=compact" in resp.data["redirect_url"]
+
+
+def test_large_result_keeps_scatter(
+    client, feature_on, clear_cache, db,
+):
+    """Scatter mode is virtualisation-irrelevant (one chart, all points
+    in one canvas) — the threshold doesn't apply."""
+    target = Target.objects.create(name="ARd")
+    from compounds.nlp.view import _LARGE_RESULT_THRESHOLD
+    for _ in range(_LARGE_RESULT_THRESHOLD + 1):
+        Compound.objects.create(target=target, smiles="CCO")
+
+    parsed = CompoundSelector(
+        registration_target_as_typed="ARd",
+        view_format="scatter",
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "..."}, format="json")
+    assert resp.status_code == 200
+    assert "format=scatter" in resp.data["redirect_url"]
+
+
+def test_small_result_keeps_cards(
+    client, feature_on, clear_cache, world,
+):
+    """Below the threshold, cards stays the default."""
+    parsed = CompoundSelector(registration_target_as_typed="AR degraders")
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "ARd compounds"}, format="json")
+    assert resp.status_code == 200
+    assert "format=cards" in resp.data["redirect_url"]
+
+
 def test_chemotype_phrases_dedup(
     client, feature_on, clear_cache, world,
 ):

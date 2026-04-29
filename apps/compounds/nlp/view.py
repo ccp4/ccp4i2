@@ -243,6 +243,16 @@ _REDIRECT_FORMAT_ALLOWED: frozenset[str] = frozenset(
     {"cards", "compact", "pivot", "bullets", "scatter"},
 )
 
+# Cards / pivot / bullets render every row to the DOM (no virtualisation).
+# Above this threshold the page becomes sluggish and individual cards get
+# clipped. When the chemist's query lands at "cards" but the result blows
+# past this size, fall back to the only view that genuinely scales —
+# compact (uses @tanstack/react-virtual). The chemist can re-toggle
+# manually if they really want cards.
+_NON_VIRTUALISED_FORMATS: frozenset[str] = frozenset({"cards", "pivot", "bullets"})
+_LARGE_RESULT_THRESHOLD = 200
+_LARGE_RESULT_FALLBACK_FORMAT = "compact"
+
 
 def _persist_selection(
     selection: CompoundSelection,
@@ -308,6 +318,11 @@ def _build_redirect_url(
         if selection.view_format in _REDIRECT_FORMAT_ALLOWED
         else REDIRECT_DEFAULT_FORMAT
     )
+    if (
+        fmt in _NON_VIRTUALISED_FORMATS
+        and len(selection.compound_formatted_ids) > _LARGE_RESULT_THRESHOLD
+    ):
+        fmt = _LARGE_RESULT_FALLBACK_FORMAT
     params.append(("format", fmt))
 
     if selection.colour_by_scaffolds:
