@@ -27,7 +27,7 @@ The shared ACR (`ccp4acrshareduk14fb`) holds two parallel image lineages during 
 | Lineage | ACR repos | Source branch | Consumed by |
 |---------|-----------|--------------|-------------|
 | `ccp4i2/*` (stable) | `ccp4i2/web`, `ccp4i2/server` | `django` | DDUDatabase, kawamura, ccp4i2-demo (current `ccp4i2-bicep-*` apps) |
-| `materia/*` (development) | `materia/web`, `materia/server` | `materia` | demo only (`materia-demo-*` apps) |
+| `materia/*` (development) | `materia/web`, `materia/server` | `django-sliced` | demo only (`materia-demo-*` apps) |
 
 How the separation is enforced:
 
@@ -36,7 +36,7 @@ How the separation is enforced:
 3. **No `:latest` tag is pushed.** Every consumer references an explicit timestamp tag in its env file, so a stray re-tag in ACR cannot move any live container app.
 4. **DDU and kawamura must never be deployed with `.env.demo-materia`.** The container-app prefix in that env file (`materia-demo`) and the resource group (`ccp4i2-demo-rg-uksouth`) make a misfire visible, but the rule is the discipline, not the safeguard.
 
-DDU cutover to materia is an explicit, deferred event: rebuild from the materia branch, validate on demo, run data-migration parity tests, then deliberately point `.env.deployment` at the materia lineage inside an agreed maintenance window with rollback ready.
+DDU cutover to materia is an explicit, deferred event: rebuild from the `django-sliced` branch, validate on demo, run data-migration parity tests, then deliberately point `.env.deployment` at the materia lineage inside an agreed maintenance window with rollback ready. (`django-sliced` is the CCP4i2-side branch where the slice-prep work happens during the transition; the materia platform itself lives in a separate repo.)
 
 ## Prerequisites
 
