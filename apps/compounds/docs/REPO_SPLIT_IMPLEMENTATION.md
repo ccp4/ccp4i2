@@ -167,11 +167,11 @@ In rough priority order:
 
 1. **Windows + Linux Electron smoke tests** — when VMs are available; macOS already validated.
 2. **Claim `@ccp4` npm + `ccp4i2-auth` PyPI** namespaces (see Open institutional asks).
-3. **Refactor `AzureADAuthMiddleware` onto `BaseAuthMiddleware`** — currently still inherits structure from the legacy module. Bringing it onto the base contract finishes the trust-flag single-sourcing across all auth middleware.
-4. **Cleanup pass: remove dead `if (!res.ok) throw` blocks** at compounds-frontend call sites now that `authFetch` throws automatically. Behaviour-preserving simplification.
+3. **Cleanup pass: remove dead `if (!res.ok) throw` blocks** at compounds-frontend call sites now that `authFetch` throws automatically. Behaviour-preserving simplification.
 
 ### Recently completed
 
+- **AzureADAuthMiddleware pytest coverage added** (April 2026) — 16 new tests in `tests/python/test_azure_ad.py` covering activation gating, exempt-path bypass, missing/invalid token → 401, misconfigured validator → 401, group authorization (pass/deny/overage), user get-or-create from claims, and X-User-Email header fallback. JWT validation itself is mocked at the `get_validator` boundary (Azure-AD-side network avoided). Combined pytest suite now 18 tests in 0.12s.
 - **Compounds-frontend `authFetch` migrated onto the createApiFetch factory** (April 2026) — 5 duplicate fetch-wrapper implementations (4 `authFetch` + 1 `coreFetch` in aggregation-api.ts, all dynamic-required `@ccp4/ccp4i2-auth`) replaced with one binding at `lib/compounds/api-fetch.ts`. `createApiFetch` grew an optional `injectUserEmail` callback so the compounds-side `X-User-Email` fallback is preserved without leaking into renderer flows. Net –100 lines. Dead `if (!res.ok) throw` blocks at call sites left in place pending a behaviour-preserving cleanup pass.
 - **Test infrastructure scaffolded** (April 2026) — pytest + pytest-django on the Python side with a minimal Django bootstrap and DevAdminMiddleware smoke tests; vitest + jsdom on the TypeScript side with smoke tests for `createApiFetch`, `AUTH_ERROR_EVENT`, and the LocalSession provider helpers. 12 tests, both runners green in <1s. Future test additions are mechanical drop-ins.
 - **`api-fetch.ts` migrated** (April 2026) — refactored into a `createApiFetch({ baseUrl })` factory in `packages/ccp4i2-auth/src/api-fetch.ts`. `client/renderer/api-fetch.ts` is now a 39-line thin binding to the factory, so all 21 import sites in the renderer keep working unchanged. The factory is consumer-agnostic; compounds-frontend can adopt the same canonical implementation by binding to its own baseUrl. Closes the JS-side v0 surface of the shared library.
