@@ -129,12 +129,12 @@ Tracked because the technical work runs ahead of these and at some point waits o
 | Ask | Right contact | State |
 |---|---|---|
 | Create `ccp4/ccp4i2-auth` repo on GitHub; grant maintainer access to Martin | Dave Waterman (`dagewa`) — operational org admin | initial email sent to Stuart McNicholas / Paul Bond April 2026; needs CC or follow-up to Dave (members not admins). |
-| Claim `@ccp4` npm organisation; add CCP4 admins as co-owners | Martin Noble — direct (verified-free namespace; ex-chair authority) | pending; informational note to consortium when claimed |
-| Claim `ccp4i2-auth` PyPI project; add CCP4 admins as co-maintainers | Martin Noble — direct | pending |
-| Link `@ccp4` npm org to `ccp4` GitHub org (provenance binding) | requires both Martin (npm side) + Dave (GitHub side) | pending; sequencing — claim namespaces first, link once GitHub repo exists |
-| New `materia` repo for the eventual compounds-side cut at `newcastleuniversity/materia` (institutional grounding aligns with sustainability narrative; CCP4i2-facing assets stay on `ccp4` org) | Martin — direct (has SSO + create access) | not yet created; held until `git filter-repo` plan ready and namespaces claimed |
+| Claim `@ccp4` npm organisation; add CCP4 admins as co-owners | Martin Noble — direct (verified-free namespace; ex-chair authority) | **claimed (April 2026)** — co-owner add-on as CCP4 admin accounts come online |
+| Claim `ccp4i2-auth` PyPI project; add CCP4 admins as co-maintainers | Martin Noble — direct | **claimed (April 2026)** — co-maintainer add-on as CCP4 admin accounts come online |
+| Link `@ccp4` npm org to `ccp4` GitHub org (provenance binding) | requires both Martin (npm side) + Dave (GitHub side) | pending — needs `ccp4/ccp4i2-auth` GitHub repo to exist first |
+| New `materia` repo for the eventual compounds-side cut at `newcastleuniversity/materia` (institutional grounding aligns with sustainability narrative; CCP4i2-facing assets stay on `ccp4` org) | Martin — direct (has SSO + create access) | not yet created; can be done now (LICENSE + branch protection + empty README) |
 
-**Verified namespace state (April 2026):** `@ccp4` npm scope, `@ccp4i2` npm scope, `ccp4i2-auth` PyPI, and `ccp4i2` PyPI are all unclaimed. **`materia` (bare) is taken on both registries** — Materia-side packages will need a scope or prefix.
+**Verified namespace state (April 2026):** `@ccp4` npm scope and `ccp4i2-auth` PyPI are **claimed** (Martin, April 2026). `@ccp4i2` npm scope and `ccp4i2` PyPI remain unclaimed (kept as fallbacks). **`materia` (bare) is taken on both registries** — Materia-side packages will need a scope or prefix.
 
 None of these block the in-tree workspace work. They become load-bearing only at the cut moment.
 
