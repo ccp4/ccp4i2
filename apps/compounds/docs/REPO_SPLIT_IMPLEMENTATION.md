@@ -45,6 +45,8 @@ These were settled in working sessions and shouldn't be re-litigated without exp
 | Forward-port direction | `django` → `django-sliced` regularly; rarely the other way |
 | `apps/compounds/` rename | **deferred** to the moment of `git filter-repo` extraction (no in-flight rename) |
 | `apps/users/` ownership | **Materia-resident.** No `ccp4i2-users` shared library. CCP4i2-side cloud admin uses Django built-in `IsAdminUser`. Cleanup tracked below. (Locked 2026-04-29; see [INVENTORY.md LOCKED #1](INVENTORY.md#locked-1-appsusers--materia).) |
+| Identity primitives | **Deferred — not in shared lib for v0.** Cross-domain identity types live as Materia-internal types until empirical need arises in CCP4i2. Verified: CCP4i2 has zero construct/plasmid concept; protein sequence is `CAsuContent` / `CSeq` only. (Locked 2026-04-29; see [INVENTORY.md LOCKED #2](INVENTORY.md#locked-2-defer-identity-primitives).) |
+| `mddocs/` cleanup | **Keep 6 reference docs, delete 20 process artefacts.** Materia inherits a clean docs slate. Drift-guard for the multi-inheritance pattern (`STUB_IMPLEMENTATION_INHERITANCE_PATTERN.md`) is among the keepers. (Locked 2026-04-29; see [INVENTORY.md LOCKED #3](INVENTORY.md#locked-3-mddocs-cleanup--keep-6-reference-docs-delete-20-process-artefacts).) |
 
 ## Proposal sequencing — execution status
 

@@ -2,7 +2,7 @@
 
 *The fault line. Where does each part of the codebase belong after the slice?*
 
-*Companion to [REPO_SPLIT_IMPLEMENTATION.md](REPO_SPLIT_IMPLEMENTATION.md). This document is the **draft**: most cases are settled and verified, but a small number of genuinely ambiguous cases are flagged with **DECISION REQUIRED** and need stakeholder input before they can be locked.*
+*Companion to [REPO_SPLIT_IMPLEMENTATION.md](REPO_SPLIT_IMPLEMENTATION.md). All categorisations locked April 2026. The **LOCKED #1**, **LOCKED #2**, **LOCKED #3** sections below explain the genuinely difficult cases and their decision rationale so future-you can re-read the reasoning.*
 
 ## Methodology
 
@@ -58,7 +58,7 @@ Verified by grep + visual inspection on `django-sliced` at commit `b5e4c3fd0`.
 | `Docker/scripts/` | CCP4i2 | `entrypoint.sh`, `startup-server.sh`, `startup-worker.sh`. |
 | `apps/compounds/registry/` | Materia | Compound + Batch + Lab Notebook + Supplier + Target. Compounds platform. |
 | `apps/compounds/assays/` | Materia | Assay protocols, fitting, data series, analysis. |
-| `apps/compounds/constructs/` | Materia (rich) **+ Shared lib (identity primitive)** | Plasmids, cassettes, sequencing results stay in Materia. Identity type extracted to shared lib so CCP4i2 can reference constructs. See **DECISION REQUIRED #2**. |
+| `apps/compounds/constructs/` | Materia | Plasmids, cassettes, sequencing results all live in Materia. CCP4i2 has no construct concept currently (verified — see LOCKED #2), so no shared identity primitive needed for v0. |
 | `apps/compounds/nlp/` | Materia | NLP query, scaffold extension, substructure catalog. Compounds cheminformatics. |
 | `apps/compounds/frontend/` | Materia | Next.js compounds app (the standalone build target). |
 | `apps/compounds/scripts/` | Materia | Compounds-specific management commands. |
@@ -72,7 +72,7 @@ Verified by grep + visual inspection on `django-sliced` at commit `b5e4c3fd0`.
 | `packages/ccp4i2-auth/` | Shared lib | ✓ Already extracted. Bilingual TS+Python. CCP4-stewarded. |
 | `tests/` (root, `ccp4i2/tests/`) | CCP4i2 | Existing test suite — covers crystallography. (Root `tests/` is empty; real tests live at `server/ccp4i2/tests/`.) |
 | `docs/` | CCP4i2 | Crystallography documentation. |
-| `mddocs/` | **AMBIGUOUS — DECISION REQUIRED #3** | Planning notes (API harmonisation, base class decisions, async changelog). Some clearly CCP4i2; some may be cross-cutting. |
+| `mddocs/` | CCP4i2 (cleaned up) | 6 reference docs kept; 20 process artefacts deleted. See LOCKED #3 for the keep/delete split and rationale. |
 | `migration/` | **Deletable** | `migration/CData/` only. No `from migration` imports anywhere. Stale. |
 | `scripts/generate_task_interfaces.py` | CCP4i2 | Generates React task interfaces from def.xml. Crystallography. |
 | `scripts/backfill_target_genes.py` | Materia (or **Deletable**) | One-off Materia operator tool. References `Target.genes`, talks to deployed REST API. Likely move-with-materia or delete after one final use. |
@@ -106,46 +106,41 @@ After this cleanup, `apps/users/` migrates with Materia at the `git filter-repo`
 
 ---
 
-### DECISION REQUIRED #2: location of identity primitives
+### LOCKED #2: defer identity primitives
 
-Concrete primitives we'll likely want in shared form (per the "Cross-domain entities" section of the proposal):
+**Decision** (locked April 2026): no identity primitives in the shared library for v0. The shared lib stays auth-focused. Cross-domain identity types (`ConstructIdentity`, `CompoundIdentity`, `CampaignIdentity` etc.) live as Materia-internal types until empirical need arises.
 
-- `ConstructIdentity` — `id`, `formatted_id` (e.g. `NCLCON-12345678`), `name`, optional `protein_uniprot_id`, optional cassette range. Lets CCP4i2 reference a construct by identity without depending on Materia's full registry.
-- `CompoundIdentity` (perhaps later) — `id`, `compound_code`, optional `smiles`. Lets CCP4i2 record which compound a crystallographic experiment used, without dragging in the registry.
-- `CampaignIdentity` (perhaps later) — `id`, `name`. Cross-domain campaign references.
+**Rationale:** the proposal anticipated CCP4i2 wanting to reference Materia entities without dragging in Materia's full registry — and identity primitives in the shared lib were the response. **Empirical verification ([CCP4ModelData.py](../../../server/ccp4i2/core/CCP4ModelData.py)) shows CCP4i2 has no concept of constructs, plasmids, or expression vectors.** Protein-sequence handling is entirely `CAsuContent` (line 13), `CAsuContentSeq` (124), `CSequence` (2620), `CSeqDataFile` (2596), and `CSequenceAlignment` (2840) — crystallographic primitives. Zero "construct" or "plasmid" references in `core/`, `server/ccp4i2/`, `wrappers/`, `wrappers2/`, `pipelines/`, `pimple/`, `smartie/`, or `cli/`. The need the proposal anticipated has not manifested in code.
 
-**Where do these live?**
+**Implication:** designing identity primitives speculatively, before a real reference exists, risks:
+- A speculative API that doesn't match real usage when the need does arise.
+- Turning the auth library into a "miscellaneous shared types" dumping ground.
+- Carrying a maintenance burden for types nobody consumes.
 
-1. **In `packages/ccp4i2-auth/`** — same package, broader scope. Risk: name-mismatch ("auth" undersells what's there). Pro: one package to steward, one CI to watch. (The proposal noted this option already.)
+**When to revisit:** if/when CCP4i2 grows a feature that wants to reference a Materia entity (e.g., a future `Project.construct_id` foreign key, or a crystallographic dataset annotated with the construct it came from), we add the identity primitive at that point — with the actual usage informing the shape rather than designing speculatively. The shared library's contract surface is one-way extensible; nothing about the current shape closes the door.
 
-2. **In a new `packages/ccp4i2-entities/`** — cleaner separation. Risk: another package, another publish/version cycle.
-
-**My recommendation:** start by adding `ConstructIdentity` to `ccp4i2-auth/` — the surface is small, and we don't yet know how many other identity types will materialise. Split into a separate `entities` package later if (a) the entity-types section grows beyond ~5 types, or (b) third parties want entities without the auth dependency. Defer the rename/split decision until we see how it grows.
-
-**Locking this:** if you agree, I'll update REPO_SPLIT_IMPLEMENTATION.md's Locked decisions table to add: *"Identity primitives go in `packages/ccp4i2-auth/` for v0; consider extracting later if catalogue exceeds ~5 types."*
+**This is an explicit divergence from the proposal**, recorded so future-you can re-read this and know why. The proposal's framing is forward-looking; the verification shows the forward-looking concern hasn't materialised yet.
 
 ---
 
-### DECISION REQUIRED #3: `mddocs/`
+### LOCKED #3: `mddocs/` cleanup — keep 6 reference docs, delete 20 process artefacts
 
-`mddocs/` contains planning notes:
-- `API_HARMONIZATION_PLAN.md`, `API_HARMONIZATION_PROGRESS.md`
-- `BASE_CLASS_DECISION.md`
-- `CDATAFILE_STUB_ANALYSIS.md`
-- `CHANGELOG_ASYNC.md`
-- (and more — full listing in the directory)
+**Decision** (locked April 2026): the `mddocs/` folder is mostly cruft — planning notes, progress reports, decision logs, completion summaries. Most have served their purpose; their content is either applied to the codebase or superseded. Triaged into 6 keepers (live reference material) and 20 deletions (process artefacts).
 
-Some are clearly CCP4i2 historical (CDataFile, async work). Some may be cross-cutting (API harmonisation could be the cross-domain API work).
+**Keep (6 files):**
 
-**Options:**
+| File | Why |
+|---|---|
+| `README.md` | Folder index (rewritten to drop refs to deleted files) |
+| `PLUGIN_REGISTRY_README.md` | Live system documentation for the plugin registry |
+| `STUBS_README.md` | Live documentation for PySide2/Qt stub modules used in plugin discovery |
+| `STUB_IMPLEMENTATION_INHERITANCE_PATTERN.md` | **Drift-guard** for the multi-inheritance pattern (`class CObsDataFile(CObsDataFileStub, CMiniMtzDataFile)`). Prescriptive, captures non-obvious MRO concerns; deleting it would invite future contributors to re-derive the wrong way first. |
+| `qt_task_gui_guide.md` | 1471-line comprehensive guide; recently maintained (2026-02-28) |
+| `QUICK_REFERENCE.md` | Async execution infrastructure reference (recently maintained) |
 
-1. **Treat all as CCP4i2** — they live under `mddocs/` at the repo root, predate the materia split, are about the crystallography work.
-2. **Audit per-file** — slow, but might surface a couple that should travel with materia.
-3. **Mark deletable if older than the materia work** — these are historical decision logs; their relevance has often expired.
+**Delete (20 files):** all naming-pattern matches for `_PLAN`, `_PROGRESS`, `_DECISION`, `_ANALYSIS`, `_CHANGELOG`, `_COMPLETE`, `_SUCCESS`, `_SUMMARY`, `_APPLIED`, `_MILESTONE`, `_REFACTOR`, `_MIGRATION`, `_INTEGRATION`. Plus `MTZ_CONVERSION_SYSTEM.md` (status doc with `"Conversion logic pending"` marker — half-done refactor snapshot). Git history retains all of them; nothing is actually lost.
 
-**My recommendation:** **Option 1 — keep all of them in CCP4i2 by default.** They're historical artefacts of CCP4i2's evolution; even cross-cutting ones (API harmonisation) are written from CCP4i2's perspective. Materia inherits a clean docs slate at the cut; if any of these are relevant they can be referenced or copied by hand at the time. Avoids per-file audit overhead.
-
-Want me to spot-check one or two before locking?
+**Rationale:** Materia inherits a clean docs slate. CCP4i2 doesn't carry forward a folder of stale planning notes. If any specific deleted doc proves load-bearing later, it's recoverable from git. The keepers are exactly the docs that would be hard to re-derive (drift-guard, comprehensive guides, system READMEs).
 
 ---
 
@@ -179,17 +174,9 @@ Locked safeguard: DDU and kawamura pull only `ccp4i2/{web,server}`; demo-materia
 
 Components that compounds-side currently borrows from `client/renderer/` (`DataTable`, `SearchField`, `RequireAuth`, theme tokens, snackbar styling): per the proposal, **fork at the cut, no shared library**. Divergence is a *feature* for UI; bug fixes do not auto-propagate, but the trade is worth it for design autonomy. No decision needed — this is locked in the proposal.
 
-## Identity primitives — proposed shared-lib additions
+## Identity primitives — deferred (not in v0)
 
-(Subject to DECISION REQUIRED #2.)
-
-| Type | Lives in | Minimal fields | Why shared |
-|---|---|---|---|
-| `ConstructIdentity` | `packages/ccp4i2-auth/src/entities/` (or similar) | `id`, `formatted_id`, `name`, `protein_uniprot_id?`, cassette range | CCP4i2 can reference a construct without depending on Materia's full registry. Both sides agree on the wire format. |
-| `CompoundIdentity` (later) | same | `id`, `compound_code`, `smiles?` | If CCP4i2 ever records "which compound this experiment used", reference by identity. |
-| `CampaignIdentity` (later) | same | `id`, `name` | If campaigns become cross-domain. |
-
-Add these as the first non-auth contents of the shared library. Names can be tweaked at PR time.
+Per LOCKED #2: no identity primitives in the shared library for v0. Cross-domain identity types live as Materia-internal types until empirical need arises. When CCP4i2 grows a feature that wants to reference a Materia entity (e.g., a future `Project.construct_id` foreign key), we add the primitive at that point with the actual usage informing its shape.
 
 ## Open questions (further investigation)
 
@@ -201,4 +188,4 @@ Add these as the first non-auth contents of the shared library. Names can be twe
 
 ## Status
 
-This document is a **draft** until DECISIONS REQUIRED #1, #2, and #3 are locked. Once locked, it moves into REPO_SPLIT_IMPLEMENTATION.md's Locked decisions table and the working plan's "Compounds repo cut" workstream gets its concrete next-step list.
+All three LOCKED decisions are recorded above and reflected in [REPO_SPLIT_IMPLEMENTATION.md](REPO_SPLIT_IMPLEMENTATION.md)'s Locked decisions table. Proposal step 1 (Inventory) is now complete; the "Compounds repo cut" workstream can pick up next-step actions from the Recommended next actions list in the implementation plan.
