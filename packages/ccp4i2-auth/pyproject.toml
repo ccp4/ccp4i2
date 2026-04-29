@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ccp4i2-auth"
-version = "0.0.0.dev0"
+version = "0.1.0"
 description = "Shared auth + api-fetch contract for CCP4i2 and consumers"
 readme = "README.md"
 license = { text = "LGPL-3.0-or-later" }
@@ -22,8 +22,21 @@ dependencies = [
 [project.optional-dependencies]
 test = ["pytest", "pytest-django"]
 
+[project.urls]
+Homepage = "https://github.com/ccp4/ccp4i2/tree/django-sliced/packages/ccp4i2-auth"
+Repository = "https://github.com/ccp4/ccp4i2"
+Issues = "https://github.com/ccp4/ccp4i2/issues"
+
 [tool.hatch.build.targets.wheel]
 packages = ["ccp4i2_auth"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "ccp4i2_auth/",
+    "tests/python/",
+    "pyproject.toml",
+    "README.md",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests/python"]

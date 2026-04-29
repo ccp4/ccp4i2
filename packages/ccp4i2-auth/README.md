@@ -8,12 +8,16 @@ token format and 401 response shape.
 
 ## Status
 
-**Pre-publication scaffolding.** The package lives as a workspace inside the
-`ccp4/ccp4i2` repo during the monorepo phase. It will be extracted to its
-own repo (`ccp4/ccp4i2-auth`) and published to npm + PyPI as part of the
-CCP4i2 / Compounds split. See
-[`apps/compounds/docs/CCP4I2_FACING_PROPOSAL_REPO_SPLIT.md`](../../apps/compounds/docs/CCP4I2_FACING_PROPOSAL_REPO_SPLIT.md)
-for the architectural rationale.
+**Draft v0 — published to npm + PyPI from the in-tree workspace.** The
+package will move to its own repo (`ccp4/ccp4i2-auth`) once the GitHub-side
+ask lands; until then the source of truth is
+[`packages/ccp4i2-auth/`](https://github.com/ccp4/ccp4i2/tree/django-sliced/packages/ccp4i2-auth)
+inside the `ccp4/ccp4i2` monorepo on the `django-sliced` branch.
+
+Versioning follows semver from `0.x.y` onwards. The v0 contract is
+documented in
+[`apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md`](https://github.com/ccp4/ccp4i2/blob/django-sliced/apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md);
+field stability promises take effect from this version.
 
 ## Layout
 
