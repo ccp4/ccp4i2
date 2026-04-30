@@ -16,7 +16,7 @@ inside the `ccp4/ccp4i2` monorepo on the `django-sliced` branch.
 
 Versioning follows semver from `0.x.y` onwards. The v0 contract is
 documented in
-[`apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md`](https://github.com/ccp4/ccp4i2/blob/django-sliced/apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md);
+[`docs/CCP4I2_SERVICE_CONTRACT.md`](https://github.com/ccp4/ccp4i2/blob/django-sliced/docs/CCP4I2_SERVICE_CONTRACT.md);
 field stability promises take effect from this version.
 
 ## Layout

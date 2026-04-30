@@ -7,9 +7,9 @@
  * shapes; CCP4i2 commits to not removing documented fields without a
  * major version bump.
  *
- * See ``apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md`` for the
- * narrative documentation, stability promises, and out-of-scope
- * surface notes.
+ * See ``docs/CCP4I2_SERVICE_CONTRACT.md`` (in the ccp4/ccp4i2 repo)
+ * for the narrative documentation, stability promises, and
+ * out-of-scope surface notes.
  *
  * Endpoints NOT covered by these types are CCP4i2-internal and may
  * change without notice.

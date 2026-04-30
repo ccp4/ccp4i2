@@ -1,7 +1,7 @@
 """Service contract guards for CCP4i2's REST API.
 
 These tests enforce the v0 surface documented in
-``apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md`` and typed in
+``docs/CCP4I2_SERVICE_CONTRACT.md`` and typed in
 ``packages/ccp4i2-auth/src/contracts/ccp4i2.ts``. They are
 deliberately *narrow* — they assert that documented fields exist on
 the relevant DRF serializers — so future refactors that silently
@@ -109,7 +109,7 @@ def test_project_list_item_serializer_publishes_documented_fields():
     missing = PROJECT_LIST_ITEM_FIELDS - fields
     assert not missing, (
         f"ProjectListItem fields missing from ProjectListSerializer: "
-        f"{missing}. See apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md."
+        f"{missing}. See docs/CCP4I2_SERVICE_CONTRACT.md."
     )
 
 
@@ -118,7 +118,7 @@ def test_project_detail_serializer_publishes_documented_fields():
     missing = PROJECT_DETAIL_FIELDS - fields
     assert not missing, (
         f"Project fields missing from ProjectSerializer: {missing}. "
-        f"See apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md."
+        f"See docs/CCP4I2_SERVICE_CONTRACT.md."
     )
 
 
@@ -127,7 +127,7 @@ def test_job_serializer_publishes_documented_fields():
     missing = JOB_FIELDS - fields
     assert not missing, (
         f"Job fields missing from JobSerializer: {missing}. "
-        f"See apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md."
+        f"See docs/CCP4I2_SERVICE_CONTRACT.md."
     )
 
 
@@ -136,7 +136,7 @@ def test_file_serializer_publishes_documented_fields():
     missing = FILE_FIELDS - fields
     assert not missing, (
         f"File fields missing from FileSerializer: {missing}. "
-        f"See apps/compounds/docs/CCP4I2_SERVICE_CONTRACT.md."
+        f"See docs/CCP4I2_SERVICE_CONTRACT.md."
     )
 
 
