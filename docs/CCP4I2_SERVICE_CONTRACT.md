@@ -85,6 +85,231 @@ Lightweight summary suitable for per-second polling. Lists jobs whose `status` i
 
 Includes a computed `path` field (full filesystem path, derivable from `directory` + `name` + `job`).
 
+### `GET /files/{id}/download/` — file content
+
+Returns the raw file content as a stream. The `Content-Type` is derived from the file's type registration; the `Content-Disposition` header carries the original filename.
+
+### `GET /files/?job={id}` — list files of a job
+
+**Response:** `File[]`
+
+Lists every file (input + output) bound to a specific job.
+
+**Contracted query parameters:**
+- `?job={id}` — restrict to files of a specific job. (Required for this use case; the unfiltered `GET /files/` returns the global file list.)
+
+### `GET /files/?project={id}` — list files of a project
+
+**Response:** `File[]`
+
+Lists every file across all jobs of a specific project. Equivalent to fetching all of the project's jobs and unioning their files.
+
+**Contracted query parameters:**
+- `?project={id}` — restrict to files of a specific project.
+
+### `GET /files_by_uuid/{uuid}/` — file metadata by UUID
+
+**Response:** `File`
+
+Resolves a file by its UUID. CCP4i2 parameter files (`def.xml`, fileUse refs, exported job bundles) carry file references as UUIDs — they have no knowledge of deployment-local Django ids. This endpoint is the canonical resolution path for those refs.
+
+### `GET /files_by_uuid/{uuid}/download/` — file content by UUID
+
+Returns the raw file content as a stream. Same shape as `GET /files/{id}/download/`, addressed by UUID.
+
+### `GET /files_by_uuid/{uuid}/digest/` — file digest by UUID
+
+**Response:** task-specific summary JSON.
+
+Returns a JSON digest of the file's contents — sequences for FASTA, cell + spacegroup for MTZ, ligand summary for refmac dictionary, etc. The digest *shape* is content-type-specific (each file type has its own `CDataFileContent` subclass on the server); the *availability* of the endpoint is contracted, the *contents* are not. Used by the renderer to populate parameter-summary side-panels without re-downloading the full file.
+
+### `POST /projects/{id}/create_task/` — create a new job
+
+**Request body:**
+```json
+{ "task_name": "<task-name>" }
+```
+
+Creates a new job (an instance of the named task) in the specified project. The new job has a fresh container with default parameter values; consumers typically follow up with one or more `POST /jobs/{id}/set_parameter/` calls to populate it before `POST /jobs/{id}/run/`.
+
+**Response:**
+```json
+{ "success": true, "data": { "new_job": Job } }
+```
+
+The valid `task_name` values are CCP4i2-internal — see [`core/task_manager/plugin_lookup.json`](../core/task_manager/plugin_lookup.json) for the registry of installed task plugins. Names are stable but the registry list is *not* part of the contract.
+
+### `POST /projects/{id}/add_tag_by_text/` — get-or-create a tag and apply
+
+**Request body:**
+```json
+{ "text": "<tag-text>" }
+```
+
+Looks up a tag by its text; creates one if it doesn't exist; applies it to the project. Used by the renderer's batch-import flow to tag projects with site-of-origin labels without the consumer needing to know whether the tag pre-existed.
+
+**Response:**
+```json
+{
+  "status": "<created|already-applied|...>",
+  "tag": { "id": <id>, "text": "<text>" },
+  "created": <bool>,
+  "message": "<human-readable>"
+}
+```
+
+### `POST /jobs/{id}/run/` — submit a job to its queue
+
+**Request body:** `{}` (or `{ "queue": "<queue-name>" }` to override the default).
+
+Submits the job for asynchronous execution by the worker pool. Status transitions follow `Pending → Queued → Running → Finished | Failed | Interrupted`; consumers poll `GET /jobs/{id}/` or `GET /active_jobs/` for status updates.
+
+**Response:** `{ "success": true }` on submission accepted (does NOT wait for completion).
+
+### `POST /jobs/{id}/run_local/` — run a job synchronously
+
+**Request body:** `{}` (or `{ "synchronous": true }`).
+
+Runs the job in-process and returns when it completes. Used for short-running tasks (file imports, format conversions) where the caller needs to wait for the result before proceeding. Long-running tasks should always use `POST /jobs/{id}/run/` instead.
+
+**Response:** `{ "success": true, "data": { ... } }` on completion.
+
+### `POST /jobs/{id}/clone/` — clone a job for re-run
+
+**Request body:** `{}`.
+
+Creates a new job that is a parameter-by-parameter copy of this one. Useful for re-running with the same configuration, optionally after `set_parameter` tweaks. The cloned job inherits the parent project, task name, and parameter container; it does not inherit `status`, `process_id`, or output files.
+
+**Response:**
+```json
+{ "success": true, "data": { "new_job": { "id": <id>, "uuid": "<uuid>" } } }
+```
+
+### `POST /jobs/{id}/set_parameter/` — set a single parameter
+
+**Request body:**
+```json
+{ "object_path": "container.inputData.XYZIN", "value": <task-specific> }
+```
+
+Sets a single parameter on the job's container by dotted object-path. Endpoint and envelope shape are contracted; **`object_path` strings and `value` types are task-specific** and not contracted.
+
+- `object_path` syntax is `container.<section>.<param>[.<sub>...]` where `<section>` is one of `inputData` / `outputData` / `controlParameters`.
+- `value` is JSON whose shape depends on the parameter type: scalars for `CString`/`CFloat`/`CBoolean`; objects for file parameters (typically `{dbFileId: <id>}` referring to an existing `File` row); arrays for `CList` parameters.
+
+Valid `object_path` values for a given job are discoverable via `GET /jobs/{id}/container/`; per-task parameter type semantics live in `tasks/<taskname>/<taskname>.def.xml` (CCP4i2-internal, not contract).
+
+**Response:** `{ "success": true, "data": { "updated_item": ... } }` on success; error response on validation failure.
+
+### `POST /jobs/{id}/upload_file_param/` — upload content as a file parameter
+
+**Request body:** `multipart/form-data` with:
+- `object_path`: dotted object-path string (e.g. `container.inputData.XYZIN`) — same syntax as `set_parameter`'s `object_path`.
+- `file`: the file content.
+
+Uploads new file content into a file-typed parameter slot on the job's container. The server creates a `File` record + `FileImport` record, stores the content in the project's directory, and binds the parameter to the new file. If the parameter already had a file bound, the prior file's content and `FileImport` record are deleted.
+
+Use this endpoint when the file content is *new* (uploaded from the client). To bind a parameter to an *existing* file (output from a prior job, file already in the project), use `POST /jobs/{id}/set_parameter/` with `value: {dbFileId: <id>}`.
+
+**Response:** `{ "success": true, "data": { "updated_item": ... } }`.
+
+(Legacy note: older clients send the form field as `objectPath` — camelCase. The server accepts both; new clients should use snake_case `object_path` for consistency with `set_parameter`.)
+
+### `GET /jobs/{id}/container/` — job parameter container
+
+**Response:** `unknown` — a task-specific JSON tree.
+
+Returns the full CCP4i2 parameter container for the job, encoded as JSON via `CCP4i2JsonEncoder`. The endpoint is contracted; the **shape of the response body is not** — every task has its own parameter schema (RefMac differs from AimlessPipe etc.) and pipelines are trees-of-trees.
+
+Consumers wanting to read or mutate parameters generically should treat container JSON as opaque and use `POST /jobs/{id}/set_parameter/` (object-path-keyed) which abstracts the tree shape.
+
+Consumers wanting task-specific structured access should consult the per-task `.def.xml` parameter schemas in `tasks/<taskname>/` — those are CCP4i2-internal documentation, not contract.
+
+## Project groups (campaigns)
+
+Project groups bundle multiple projects under a shared parent — primarily used by the fragment-screening workflow ("campaigns") where a parent project carries reference coordinates and FreeR flags, and each member project represents a single dataset soaked with one compound. The endpoints below cover the surface needed to manage that workflow end-to-end.
+
+Types referenced (currently in `client/renderer/types/campaigns.ts`; to be lifted into `@ccp4/ccp4i2-auth/src/contracts/ccp4i2.ts` in a follow-up version): `ProjectGroup`, `ProjectGroupType` (`"general_set" | "fragment_set"`), `ProjectGroupDetail`, `ProjectGroupMembership`, `MembershipType` (`"parent" | "member"`), `MemberProjectWithSummary`, `JobSummary`, `ProjectKPIs`, `ParentFilesResponse`, `CampaignSite`.
+
+### `GET /projectgroups/` — list project groups
+
+**Response:** `ProjectGroup[]`
+
+**Contracted query parameters:**
+- `?type=fragment_set` (or `?type=general_set`) — restrict to a specific kind.
+
+### `GET /projectgroups/{id}/` — project group detail
+
+**Response:** `ProjectGroupDetail` — `ProjectGroup` augmented with a nested `memberships: ProjectGroupMembership[]` array. Memberships are bounded per-group (the inline-nesting convention); see the *Nested children* row in *Conventions*.
+
+### `POST /projectgroups/` — create a project group
+
+**Request body:** `Partial<ProjectGroup>` — minimum `{ "name": "<name>", "type": "fragment_set" | "general_set" }`.
+
+**Response:** `ProjectGroup` (201).
+
+### `POST /projectgroups/create_with_parent/` — create a group with auto-created parent project
+
+**Request body:** `{ "name": "<name>", "type": "fragment_set" | "general_set" }`.
+
+Creates the project group AND a fresh parent project of the same name in one call. Saves the consumer a separate `POST /projects/` round-trip when starting a new campaign from scratch.
+
+**Response:** `ProjectGroup` (201).
+
+### `PATCH /projectgroups/{id}/` — update a project group
+
+**Request body:** `Partial<ProjectGroup>`.
+
+**Response:** `ProjectGroup`.
+
+### `DELETE /projectgroups/{id}/` — delete a project group
+
+Deletes the group and all its memberships. Member projects are NOT deleted (they keep existing as standalone projects); only the grouping relation is removed.
+
+**Response:** `{ "success": true }` (204 conventional).
+
+### `GET /projectgroups/{id}/parent_project/` — the parent project
+
+**Response:** `Project | null`. Null when the group has no designated parent (general groups; fragment-screening campaigns always have one).
+
+### `GET /projectgroups/{id}/member_projects/` — member projects with KPIs
+
+**Response:** `MemberProjectWithSummary[]` — each member project enriched with `JobSummary[]` and `ProjectKPIs` (counts of jobs by status, latest-success metrics, etc.).
+
+This endpoint is *enrichment-bearing* (not just a filtered list of `Project`); the renderer's campaign dashboard depends on the joined shape.
+
+### `GET /projectgroups/{id}/parent_files/` — parent project's coordinate / FreeR files
+
+**Response:** `ParentFilesResponse` — references to the parent project's coordinate file(s) and FreeR flag file(s), the inputs that get propagated to each member's refinement.
+
+### `GET /projectgroups/{id}/sites/` — binding sites
+
+**Response:** `CampaignSite[]` — list of binding-site landmarks (name + Cartesian origin + optional camera quaternion / zoom). Used by the Moorhen viewer to navigate between sites of interest within a campaign.
+
+### `PUT /projectgroups/{id}/sites/` — replace binding sites
+
+**Request body:** `CampaignSite[]` — wholesale replacement of the sites list.
+
+**Response:** `CampaignSite[]` (the persisted list).
+
+### `POST /projectgroups/{id}/set_parent/` — set or replace the parent project
+
+**Request body:** `{ "project_id": <id> }`.
+
+**Response:** `ProjectGroupMembership`.
+
+### `POST /projectgroups/{id}/add_member/` — add a member project
+
+**Request body:** `{ "project_id": <id>, "type": "member" | "parent" }`.
+
+**Response:** `ProjectGroupMembership`.
+
+### `DELETE /projectgroups/{id}/members/{projectId}/` — remove a member project
+
+Removes the membership relation; the project itself is not deleted.
+
+**Response:** `{ "success": true }` (204 conventional).
+
 ## Type stability
 
 The TypeScript types in [`packages/ccp4i2-auth/src/contracts/ccp4i2.ts`](../packages/ccp4i2-auth/src/contracts/ccp4i2.ts) are the contract. Specifically:
@@ -145,6 +370,6 @@ if (myJob.status === JobStatus.Running) {
 
 1. **Pagination.** Do `/projects/`, `/jobs/`, etc. paginate when result sets grow large? Currently they don't; future versions may add cursor pagination. If/when that lands, consumers will get an envelope shape (`{results: T[], next: string | null}`) — that's a breaking change worth flagging in advance.
 2. **django-filter de facto query parameters.** Beyond the contracted query params named per-endpoint above, many list endpoints accept django-filter-style parameters (e.g. `?tags__text=foo`, `?status=3`) by virtue of how the DRF `FilterSet` is wired. These are **not contracted** — consumers may use them experimentally but should expect them to change without notice. Future contract updates may promote specific params to stable status as their semantics get scrutinised.
-3. **Surface beyond v0.** This document is the v0 surface. The renderer and `i2remote` between them consume ~67 distinct endpoints (job lifecycle, project mutations, file CRUD, the Campaigns / `projectgroups/` family, `uploads/` staged-upload flow, etc.). The audit at [`CCP4I2_SERVICE_CONTRACT_AUDIT.md`](CCP4I2_SERVICE_CONTRACT_AUDIT.md) tabulates what's used vs what's contracted. The CCP4 dev team should decide which of those candidates to promote into v0 (job lifecycle is the obvious gap — without `POST /jobs/{id}/run/` and friends, the v0 surface is read-only).
+3. **Surface beyond v0.** v0 was selected by the **"cousin principle"**: every endpoint actioned by the Campaigns code path (the closest cousin to a future external integrator) is in scope; everything else is deferred. That captures ~37 endpoints — projects + jobs core + Campaigns family + file mutations / uuid-addressed reads. The audit at [`CCP4I2_SERVICE_CONTRACT_AUDIT.md`](CCP4I2_SERVICE_CONTRACT_AUDIT.md) tabulates the remaining ~30 endpoints (additional job-lifecycle: cancel/PATCH/DELETE/preview/regenerate_report/etc.; project-tags CRUD; project-export/import; staged uploads; bulk operations; the smelly `object_method` and `params_xml` corners). The CCP4 dev team should decide which of those to promote in a future contract revision; consumers building today against v0 can do everything Campaigns does.
 
 These should be settled with the CCP4 dev team during contract review.
