@@ -636,7 +636,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       if (!isMtzFile) return;
 
       // Download and parse MTZ
-      const downloadURL = `files/${hklinValue.dbFileId}/download_by_uuid`;
+      const downloadURL = `files_by_uuid/${hklinValue.dbFileId}/download/`;
       const arrayBuffer = await doRetrieve(downloadURL, hklinValue.baseName);
       const blob = new Blob([arrayBuffer], { type: "application/CCP4-mtz-file" });
       const file = new File([blob], hklinValue.baseName, { type: "application/CCP4-mtz-file" });

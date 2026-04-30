@@ -52,7 +52,7 @@ export const CImportUnmergedElement: React.FC<CCP4i2TaskElementProps> = (
 
       const updatedValue = valueOfItem(updated);
       const digestResponse = await apiGet(
-        `files/${updatedValue.dbFileId}/digest_by_uuid`
+        `files_by_uuid/${updatedValue.dbFileId}/digest/`
       );
       const digestData = digestResponse?.data;
       if (!digestData) return;

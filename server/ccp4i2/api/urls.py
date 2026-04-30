@@ -8,7 +8,7 @@ from .ProjectViewSet import ProjectViewSet
 from .ProjectTagViewSet import ProjectTagViewSet
 from .ProjectGroupViewSet import ProjectGroupViewSet
 from .ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
-from .FileViewSet import FileViewSet
+from .FileViewSet import FileViewSet, FileByUuidViewSet
 from .FileTypeViewSet import FileTypeViewSet
 from .FileImportViewSet import FileImportViewSet
 from .FileUseViewSet import FileUseViewSet
@@ -21,6 +21,7 @@ router.register("projecttags", ProjectTagViewSet)
 router.register("projectgroups", ProjectGroupViewSet)
 router.register("projectgroupmemberships", ProjectGroupMembershipViewSet)
 router.register("files", FileViewSet)
+router.register("files_by_uuid", FileByUuidViewSet, basename="files_by_uuid")
 router.register("filetypes", FileTypeViewSet)
 router.register("fileimports", FileImportViewSet)
 router.register("fileuses", FileUseViewSet)

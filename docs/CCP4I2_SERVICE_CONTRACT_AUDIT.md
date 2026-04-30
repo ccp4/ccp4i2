@@ -4,14 +4,21 @@
 
 ## Migration log
 
-- **2026-04-30**: three nested `@action` list endpoints replaced by their filter-form equivalents on the canonical resource ViewSet — server-side `@action` methods deleted, callers in the renderer updated, ~105 lines of server code removed:
+- **2026-04-30 (a)**: three nested `@action` list endpoints replaced by their filter-form equivalents on the canonical resource ViewSet — server-side `@action` methods deleted, callers in the renderer updated, ~105 lines of server code removed:
   - `GET /projects/{id}/jobs/` → `GET /jobs/?project={id}`
   - `GET /projects/{id}/files/` → `GET /files/?project={id}` (added a clean `?project=` filter on FileViewSet that traverses File→Job→Project; the legacy `?job__project=` form is retained as a back-compat alias)
   - `GET /jobs/{id}/files/` → `GET /files/?job={id}`
 
   Side effect dropped: the deleted `@action` methods used to update `Project.last_access` on read. That side effect is now gone; `last_access` updates only on deliberate project-level engagement, which is arguably more correct anyway.
 
-  `i2remote` (in `newcastleuniversity/materia`) still uses the old nested forms and will need a parallel update before Materia's submodule pin is bumped past this commit. Tracked in the next Materia PR.
+- **2026-04-30 (b)**: uuid-addressed file endpoints canonicalised. The old `@action` methods on `FileViewSet` abused the `{pk}` URL slot to carry a uuid string (URL pattern looked id-shaped but the body did `File.objects.get(uuid=pk)`). Replaced with a separate `FileByUuidViewSet` (`ReadOnlyModelViewSet`, `lookup_field="uuid"`) registered at `files_by_uuid/`:
+  - `GET /files/{uuid}/by_uuid/` → `GET /files_by_uuid/{uuid}/`
+  - `GET /files/{uuid}/download_by_uuid/` → `GET /files_by_uuid/{uuid}/download/`
+  - `GET /files/{uuid}/digest_by_uuid/` → `GET /files_by_uuid/{uuid}/digest/`
+
+  Done now while the only consumers are the renderer + Campaigns + (potentially) `i2remote` — clean break, no back-compat. Why uuids exist on file endpoints at all: CCP4i2 parameter files (`.def.xml`, fileUse refs, exported job bundles) persist file references as uuids — they have no knowledge of the deployment-local Django integer id. `files_by_uuid/{uuid}/...` is the canonical resolution surface for those refs.
+
+  `i2remote` (in `newcastleuniversity/materia`) still uses the old nested forms (both 2026-04-30 (a) and 2026-04-30 (b) migrations) and will need a parallel update before Materia's submodule pin is bumped past this commit. Tracked in the next Materia PR.
 
 ## Why this exists
 
@@ -97,8 +104,11 @@ Legend: **R** = renderer, **i2** = i2remote, **v0** = in current v0 contract, **
 | PATCH | `/files/{id}/` | ✓ | | | **v0+** | Update file metadata (annotation, name). |
 | DELETE | `/files/{id}/` | ✓ | | | **v0+** | Delete file. |
 | GET | `/files/{id}/download/` | ✓ | | | **v0+** | Download binary content. |
-| GET | `/files/{id}/download_by_uuid/` | ✓ | | | v1 | Same content, addressed by UUID rather than ID. |
-| GET | `/files/{id}/digest/` | | ✓ | | v1 | File digest (CLI uses for checksum-based dedup). |
+| GET | `/files/{id}/download_by_uuid/` | ~~✓~~ | | | (replaced) | **Replaced 2026-04-30** by `/files_by_uuid/{uuid}/download/`. |
+| GET | `/files_by_uuid/{uuid}/` | ✓ | | | v1 | File metadata addressed by uuid (the canonical surface for parameter-file references — uuids only, no Django id). |
+| GET | `/files_by_uuid/{uuid}/download/` | ✓ | | | v1 | File content by uuid. |
+| GET | `/files_by_uuid/{uuid}/digest/` | ✓ | | | v1 | File digest by uuid. |
+| GET | `/files/{id}/digest/` | | ✓ | | v1 | File digest by id (CLI uses for checksum-based dedup). |
 | GET | `/files/{id}/usage/` | ✓ | | | v1 | Where this file is used (which jobs, as which params). |
 | POST | `/files/{id}/preview/` | ✓ | | | v1 | Launch viewer (desktop-flavoured). |
 

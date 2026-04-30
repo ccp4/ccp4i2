@@ -403,7 +403,7 @@ export function useApi() {
      */
     fileTextContent(djangoFile: any) {
       const swrKey = djangoFile?.dbFileId
-        ? `files/${djangoFile.dbFileId}/download_by_uuid`
+        ? `files_by_uuid/${djangoFile.dbFileId}/download/`
         : null;
       return useSWR<string>(swrKey, apiText);
     },

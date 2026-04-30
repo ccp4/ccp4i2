@@ -1286,7 +1286,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
     //console.log("dbFileId", JSON.stringify(dbFileId));
     // Return null key when dbFileId is falsey - this prevents SWR from fetching
-    const swrKey = dbFileId ? `files/${dbFileId}/download_by_uuid` : null;
+    const swrKey = dbFileId ? `files_by_uuid/${dbFileId}/download/` : null;
 
     const fetcher = async (): Promise<string> => {
       if (!swrKey) {
