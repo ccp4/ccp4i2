@@ -84,7 +84,7 @@ export function FreeRImportDialog({
 
       const fSigFFormData = new FormData();
       fSigFFormData.append("file", fSigFFile, fSigFFile.name);
-      fSigFFormData.append("objectPath", "freerflag.inputData.F_SIGF");
+      fSigFFormData.append("object_path", "freerflag.inputData.F_SIGF");
 
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, fSigFFormData);
 
@@ -95,7 +95,7 @@ export function FreeRImportDialog({
 
         const freeRFormData = new FormData();
         freeRFormData.append("file", freeRFile, freeRFile.name);
-        freeRFormData.append("objectPath", "freerflag.inputData.FREERFLAG");
+        freeRFormData.append("object_path", "freerflag.inputData.FREERFLAG");
 
         await apiUpload(`jobs/${newJobId}/upload_file_param/`, freeRFormData);
       }

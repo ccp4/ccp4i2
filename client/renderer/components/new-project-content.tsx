@@ -166,13 +166,13 @@ export const NewProjectContent: React.FC = () => {
       });
       const uploadForm = new FormData();
       uploadForm.append("file", df.file, df.file.name);
-      uploadForm.append("objectPath", `${taskName}.container.${actualParam}`);
+      uploadForm.append("object_path", `${taskName}.container.${actualParam}`);
       await apiPost(`jobs/${jobId}/upload_file_param/`, uploadForm);
     } else {
       // Standard file upload
       const uploadForm = new FormData();
       uploadForm.append("file", df.file, df.file.name);
-      uploadForm.append("objectPath", `${taskName}.container.${paramPath}`);
+      uploadForm.append("object_path", `${taskName}.container.${paramPath}`);
       await apiPost(`jobs/${jobId}/upload_file_param/`, uploadForm);
     }
 

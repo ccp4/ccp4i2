@@ -1084,7 +1084,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
       return parameterQueue.enqueue(async () => {
         try {
           const formData = new FormData();
-          formData.append("objectPath", objectPath);
+          formData.append("object_path", objectPath);
           formData.append("file", file, fileName);
           if (columnSelector?.trim()) {
             formData.append("column_selector", columnSelector);

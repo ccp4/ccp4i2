@@ -184,7 +184,7 @@ export function BatchImportDialog({
 
       const coordsFormData = new FormData();
       coordsFormData.append("file", coordsBlob, coordsFileName);
-      coordsFormData.append("objectPath", "SubstituteLigand.inputData.XYZIN");
+      coordsFormData.append("object_path", "SubstituteLigand.inputData.XYZIN");
 
       // Use apiUpload for authenticated upload
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, coordsFormData);
@@ -219,7 +219,7 @@ export function BatchImportDialog({
       dispatch({ type: "UPDATE_STATUS", file, status: "uploading_reflections" });
       const reflFormData = new FormData();
       reflFormData.append("file", file, file.name);
-      reflFormData.append("objectPath", "SubstituteLigand.inputData.UNMERGEDFILES[0].file");
+      reflFormData.append("object_path", "SubstituteLigand.inputData.UNMERGEDFILES[0].file");
 
       // Use apiUpload for authenticated upload
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, reflFormData);

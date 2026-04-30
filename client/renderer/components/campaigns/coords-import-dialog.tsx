@@ -72,7 +72,7 @@ export function CoordsImportDialog({
       // objectPath follows the pattern: taskname.inputData.PARAMNAME
       const formData = new FormData();
       formData.append("file", coordFile, coordFile.name);
-      formData.append("objectPath", "coordinate_selector.inputData.XYZIN");
+      formData.append("object_path", "coordinate_selector.inputData.XYZIN");
 
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, formData);
 
