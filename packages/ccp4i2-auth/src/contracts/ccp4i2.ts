@@ -214,3 +214,126 @@ export interface File {
   /** Computed: full filesystem path, derivable from directory+name+job. */
   path: string | null;
 }
+
+// ---------------------------------------------------------------------------
+// Project groups (campaigns)
+// ---------------------------------------------------------------------------
+
+/**
+ * Project-group kind. Membership of this union is contracted: adding a
+ * new value is a minor change; removing or renaming an existing value
+ * is a major change.
+ */
+export type ProjectGroupType = "general_set" | "fragment_set";
+
+/** Membership type within a project group. */
+export type MembershipType = "parent" | "member";
+
+/**
+ * Saved view-state landmark within a campaign. Used by the Moorhen
+ * viewer to navigate between binding-site origins of interest.
+ */
+export interface CampaignSite {
+  /** Display name for the site. */
+  name: string;
+  /** View origin coordinates [x, y, z]. */
+  origin: [number, number, number];
+  /** View orientation quaternion [x, y, z, w] (optional). */
+  quat?: [number, number, number, number];
+  /** Zoom level (optional). */
+  zoom?: number;
+}
+
+/**
+ * Project-group shape returned by ``GET /api/ccp4i2/projectgroups/``
+ * (list) and embedded in detail responses.
+ */
+export interface ProjectGroup {
+  id: number;
+  name: string;
+  type: ProjectGroupType;
+  /** Saved binding sites for Moorhen viewer navigation. */
+  sites?: CampaignSite[];
+}
+
+/**
+ * A membership tying a Project to a ProjectGroup.
+ */
+export interface ProjectGroupMembership {
+  id: number;
+  group: number;
+  project: number;
+  type: MembershipType;
+}
+
+/**
+ * Full project-group shape returned by
+ * ``GET /api/ccp4i2/projectgroups/{id}/``, including its memberships
+ * inline. Memberships are bounded per-group (not an unbounded child
+ * collection — they're inlined per the *Nested children* convention).
+ */
+export interface ProjectGroupDetail extends ProjectGroup {
+  memberships: ProjectGroupMembership[];
+}
+
+/**
+ * Counts of jobs in a member project, broken down by status. Inlined
+ * into MemberProjectWithSummary.
+ */
+export interface JobSummary {
+  total: number;
+  finished: number;
+  failed: number;
+  running: number;
+  pending: number;
+}
+
+/**
+ * Key Performance Indicators extracted from job results. Documented
+ * keys are stable; the dictionary may carry additional task-specific
+ * keys, which consumers should treat as opaque.
+ */
+export interface ProjectKPIs {
+  RFactor?: number;
+  RFree?: number;
+  highResLimit?: number;
+  [key: string]: string | number | undefined;
+}
+
+/**
+ * Minimal per-job info inlined into MemberProjectWithSummary for
+ * campaign-dashboard rendering.
+ */
+export interface CampaignJobInfo {
+  id: number;
+  uuid: UuidV4;
+  number: string;
+  task_name: string;
+  status: JobStatusValue;
+  title: string;
+}
+
+/**
+ * Member project enriched with job summary, per-job info, and KPIs.
+ * Returned by ``GET /api/ccp4i2/projectgroups/{id}/member_projects/``.
+ * This is an enrichment-bearing endpoint, not a filtered list of
+ * Project — the embedded summaries are computed server-side.
+ *
+ * Uses Omit<Project, "jobs"> defensively: if Project ever gains a
+ * "jobs" field, the enriched shape stays self-consistent.
+ */
+export interface MemberProjectWithSummary extends Omit<Project, "jobs"> {
+  job_summary: JobSummary;
+  jobs: CampaignJobInfo[];
+  kpis: ProjectKPIs;
+}
+
+/**
+ * Coordinate and FreeR file references from a campaign's parent
+ * project. Returned by ``GET /api/ccp4i2/projectgroups/{id}/parent_files/``.
+ * Used by member projects to inherit reference inputs.
+ */
+export interface ParentFilesResponse {
+  coordinates: File[];
+  freer: File[];
+}
