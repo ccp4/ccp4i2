@@ -41,6 +41,12 @@ class FileViewSet(ModelViewSet):
         directory = self.request.query_params.get("directory")
         if directory is not None:
             queryset = queryset.filter(directory=directory)
+        # `?project={id}` filters files transitively through Job→Project.
+        # Replaces the deleted ProjectViewSet.files @action; the legacy
+        # `?job__project={id}` form is retained as an alias for back-compat.
+        project_id = self.request.query_params.get("project")
+        if project_id is not None:
+            queryset = queryset.filter(job__project_id=project_id)
         job_project = self.request.query_params.get("job__project")
         if job_project is not None:
             queryset = queryset.filter(job__project_id=job_project)

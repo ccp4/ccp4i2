@@ -1671,59 +1671,10 @@ class JobViewSet(ModelViewSet):
             logging.exception("Failed to retrieve job with id %s", pk, exc_info=err)
             return api_error(str(err), status=404)
 
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.FileSerializer,
-    )
-    def files(self, request, pk=None):
-        """
-        Retrieve files associated with a specific job.
-
-        Returns a complete list of input and output files for the job,
-        including file metadata and access information.
-
-        Args:
-            request (Request): HTTP request object
-            pk (int): Primary key of the job
-
-        Returns:
-            Response: Serialized list of file objects
-
-        Response Format:
-            [
-                {
-                    "id": 789,
-                    "uuid": "file-uuid",
-                    "filename": "structure.pdb",
-                    "file_type": "PDB",
-                    "size": 12345,
-                    "job_param_name": "XYZIN",
-                    "is_input": true,
-                    "created_date": "2024-01-01T12:00:00Z"
-                }
-            ]
-
-        File Categories:
-            - Input files: User-provided data
-            - Output files: Generated results
-            - Intermediate files: Processing artifacts
-            - Log files: Execution records
-
-        Side Effects:
-            - Updates project last_access timestamp
-            - Enables project activity tracking
-
-        Example:
-            GET /api/jobs/123/files/
-        """
-        job = models.Job.objects.get(pk=pk)
-        serializer = serializers.FileSerializer(
-            models.File.objects.filter(job=job), many=True
-        )
-        job.project.last_access = datetime.datetime.now(tz=timezone("UTC"))
-        job.project.save()
-        return Response(serializer.data)
+    # files() @action removed — consumers should hit /files/?job={id} instead.
+    # FileViewSet's filterset_fields=["job"] supports this natively; the
+    # last_access-on-read side effect is dropped (and was always tangential —
+    # listing files of a job is not necessarily project-level engagement).
 
     @action(
         detail=True,

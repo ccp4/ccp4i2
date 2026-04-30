@@ -78,7 +78,7 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
   }, [effectiveMetadata, projects]);
 
   const { data: jobs, mutate: mutateJobs } = api.get<JobInfo[]>(
-    `projects/${selectedProject?.id}/jobs/`
+    `jobs/?project=${selectedProject?.id}`
   );
 
   const handlePushToCCP4i2 = useCallback(async () => {

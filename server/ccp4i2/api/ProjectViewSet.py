@@ -205,31 +205,10 @@ class ProjectViewSet(ModelViewSet):
 
         return api_success({"imported": True})
 
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.FileSerializer,
-    )
-    def files(self, request, pk=None):
-        """
-        Retrieve a list of files associated with a specific project.
-
-        Parameters:
-
-            request (Request): The HTTP request object.
-            pk (int, optional): The primary key of the project.
-
-        Returns:
-            Response: A Response object containing serialized file data.
-        """
-
-        project = models.Project.objects.get(pk=pk)
-        serializer = serializers.FileSerializer(
-            models.File.objects.filter(job__project=project), many=True
-        )
-        project.last_access = datetime.datetime.now(tz=timezone("UTC"))
-        project.save()
-        return Response(serializer.data)
+    # files() @action removed — consumers should hit /files/?project={id} instead.
+    # The FileViewSet supports the project filter natively; consolidating on the
+    # filter form removes a duplicate code path and a tangential
+    # last_access-on-read side effect.
 
     @action(
         detail=True,
@@ -257,33 +236,9 @@ class ProjectViewSet(ModelViewSet):
         project.save()
         return Response(serializer.data)
 
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.JobSerializer,
-        parser_classes=[
-            JSONParser,
-            FormParser,
-            MultiPartParser,
-        ],  # Allow JSON and form data
-    )
-    def jobs(self, request, pk=None):
-        """
-        Retrieve a list of jobs associated with a specific project.
-        Args:
-            request (Request): The HTTP request object.
-            pk (int, optional): The primary key of the project.
-        Returns:
-            Response: A Response object containing serialized job data.
-        """
-
-        project = models.Project.objects.get(pk=pk)
-        serializer = serializers.JobSerializer(
-            models.Job.objects.filter(project=project), many=True
-        )
-        project.last_access = datetime.datetime.now(tz=timezone("UTC"))
-        project.save()
-        return Response(serializer.data)
+    # jobs() @action removed — consumers should hit /jobs/?project={id} instead.
+    # JobViewSet's existing filterset_fields=["project"] supports this natively;
+    # last_access-on-read removed for the same reason as files() above.
 
     @action(
         detail=True,

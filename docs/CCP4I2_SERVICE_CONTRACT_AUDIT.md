@@ -2,6 +2,17 @@
 
 *Companion to [`CCP4I2_SERVICE_CONTRACT.md`](CCP4I2_SERVICE_CONTRACT.md). The contract document is the *promise*. This document is the *evidence*: every CCP4i2 REST endpoint hit by the two known consumer codebases — the React renderer (`client/renderer/`) and the [`i2remote` CLI](https://github.com/newcastleuniversity/materia/blob/main/Docker/cli/i2remote.py) — tabulated against v0 to expose the gap.*
 
+## Migration log
+
+- **2026-04-30**: three nested `@action` list endpoints replaced by their filter-form equivalents on the canonical resource ViewSet — server-side `@action` methods deleted, callers in the renderer updated, ~105 lines of server code removed:
+  - `GET /projects/{id}/jobs/` → `GET /jobs/?project={id}`
+  - `GET /projects/{id}/files/` → `GET /files/?project={id}` (added a clean `?project=` filter on FileViewSet that traverses File→Job→Project; the legacy `?job__project=` form is retained as a back-compat alias)
+  - `GET /jobs/{id}/files/` → `GET /files/?job={id}`
+
+  Side effect dropped: the deleted `@action` methods used to update `Project.last_access` on read. That side effect is now gone; `last_access` updates only on deliberate project-level engagement, which is arguably more correct anyway.
+
+  `i2remote` (in `newcastleuniversity/materia`) still uses the old nested forms and will need a parallel update before Materia's submodule pin is bumped past this commit. Tracked in the next Materia PR.
+
 ## Why this exists
 
 The v0 contract documents 9 endpoints. The renderer alone consumes ~67 distinct endpoints; `i2remote` consumes ~46 distinct endpoints (substantial overlap with the renderer + a `/uploads/*` family of its own). v0 is therefore far too thin to be useful as a contract for any operational consumer — at present it's read-only-summary-only, and even that is incomplete (no field-level promise on the file detail shape, no contracted query parameters, etc.).
@@ -33,9 +44,9 @@ Legend: **R** = renderer, **i2** = i2remote, **v0** = in current v0 contract, **
 | POST | `/projects/` | ✓ | ✓ | ✓ | — | Create |
 | PATCH | `/projects/{id}/` | ✓ | | | **v0+** | Rename / update metadata. Materia would need this. |
 | DELETE | `/projects/{id}/` | ✓ | | | **v0+** | Project deletion. Operational must-have. |
-| GET | `/projects/{id}/jobs/` | ✓ | ✓ | | **v0+** | List jobs in project. Clear semantics; both consumers use it. |
+| GET | `/projects/{id}/jobs/` | ~~✓~~ | ~~✓~~ | | (replaced) | **Replaced 2026-04-30** by `/jobs/?project={id}` (filter form). Server `@action` removed. |
 | GET | `/projects/{id}/job_tree/` | | ✓ | | v1 | Hierarchical job view. CLI-shaped output; possibly renderer too. |
-| GET | `/projects/{id}/files/` | ✓ | | | **v0+** | List files in project. |
+| GET | `/projects/{id}/files/` | ~~✓~~ | | | (replaced) | **Replaced 2026-04-30** by `/files/?project={id}` (filter form). Server `@action` removed. |
 | GET | `/projects/{id}/directory/` | ✓ | | | v1 | Filesystem directory tree; OS-leaky shape. Worth deliberation. |
 | GET | `/projects/{id}/tags/` | ✓ | | | v1 | Project-tag listing. |
 | POST | `/projects/{id}/tags/` | ✓ | | | v1 | Add tag. |
@@ -66,7 +77,7 @@ Legend: **R** = renderer, **i2** = i2remote, **v0** = in current v0 contract, **
 | POST | `/jobs/{id}/upload_file_param/` | ✓ | ✓ | | **v0+** | Multipart upload of a file parameter. Different shape from JSON-body endpoints. |
 | POST | `/jobs/{id}/set_context_job/` | ✓ | | | v1 | Set "context" parent job for inherited parameters. |
 | GET | `/jobs/{id}/container/` | ✓ | ✓ | | **v0+** | Fetch the parameter container as JSON. Heavily used. |
-| GET | `/jobs/{id}/files/` | ✓ | ✓ | | **v0+** | List files associated with the job (inputs + outputs). |
+| GET | `/jobs/{id}/files/` | ~~✓~~ | ~~✓~~ | | (replaced) | **Replaced 2026-04-30** by `/files/?job={id}` (filter form). Server `@action` removed. |
 | GET | `/jobs/{id}/dependent_jobs/` | ✓ | | | v1 | Jobs that depend on this job's outputs. |
 | GET | `/jobs/{id}/validation/` | ✓ | | | v1 | Pre-run validation results (errors + warnings, severity-classified). |
 | GET | `/jobs/{id}/run_time_validation/` | ✓ | | | v1 | Pre-flight validation including expensive checks (file content). |
@@ -149,12 +160,14 @@ i2remote-only family for resumable / chunked / large-file uploads. Server-side l
 These are the gaps that genuinely block "operational consumer". A consumer with only the current v0 surface can list and inspect; with the additions below, they can *use* the system.
 
 - `PATCH /projects/{id}/`, `DELETE /projects/{id}/`
-- `GET /projects/{id}/jobs/`, `GET /projects/{id}/files/`
+- **`GET /jobs/?project={id}`** (replaces nested `/projects/{id}/jobs/`, migrated 2026-04-30)
+- **`GET /files/?project={id}`** (replaces nested `/projects/{id}/files/`, migrated 2026-04-30)
 - `POST /projects/{id}/create_task/`, `POST /projects/{id}/export/`
 - `PATCH /jobs/{id}/`, `DELETE /jobs/{id}/`
 - `POST /jobs/{id}/run/`, `POST /jobs/{id}/run_local/`, `POST /jobs/{id}/clone/`, `POST /jobs/{id}/cancel/`
 - `POST /jobs/{id}/set_parameter/`, `POST /jobs/{id}/upload_file_param/`
-- `GET /jobs/{id}/container/`, `GET /jobs/{id}/files/`
+- `GET /jobs/{id}/container/`
+- **`GET /files/?job={id}`** (replaces nested `/jobs/{id}/files/`, migrated 2026-04-30)
 - `POST /files/`, `PATCH /files/{id}/`, `DELETE /files/{id}/`, `GET /files/{id}/download/`
 - `GET /task_lookup/`
 
