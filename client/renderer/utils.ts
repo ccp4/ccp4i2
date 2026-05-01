@@ -720,11 +720,12 @@ export const useProject = (projectId: number | null | undefined): ProjectData =>
   // Subscribe to job_tree — shared SWR key with ClassicJobsList (which polls it)
   const { jobs, mutateJobs } = useProjectJobs(projectId);
 
-  const { data: files, mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>({
-    type: "projects",
-    id: projectId,
-    endpoint: "files",
-  });
+  // The /projects/<id>/files @action was retired in favour of the flat-list
+  // filter `/files/?project=<id>` (see server/ccp4i2/api/ProjectViewSet.py
+  // line 208). Response shape is unchanged (DjangoFile[]).
+  const { data: files, mutate: mutateFiles } = api.get<DjangoFile[]>(
+    projectId ? `files/?project=${projectId}` : null
+  );
 
   return {
     project,
@@ -763,14 +764,9 @@ export const useProjectFiles = (
 
   const pollInterval = shouldPoll ? FILES_POLL_INTERVAL : 0;
 
-  const { data: files, mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>(
-    projectId
-      ? {
-          type: "projects",
-          id: projectId,
-          endpoint: "files",
-        }
-      : null,
+  // /files/?project=<id> replaces the retired /projects/<id>/files @action.
+  const { data: files, mutate: mutateFiles } = api.get<DjangoFile[]>(
+    projectId ? `files/?project=${projectId}` : null,
     pollInterval
   );
 
