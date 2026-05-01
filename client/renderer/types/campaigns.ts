@@ -176,14 +176,6 @@ export interface BatchFileItem {
 export const NCL_ID_PATTERN = /ncl[-_](\d{1,8})/i;
 
 /**
- * Legacy strict pattern for backwards compatibility.
- * Only matches the original expected format.
- * @deprecated Use NCL_ID_PATTERN for more flexible matching
- */
-export const DATASET_FILENAME_PATTERN =
-  /^(?<visit>[^_]+)_(?<crystal>[^_]+)_NCL[-_](?<nclId>\d{8})_(?<processing>.+)$/;
-
-/**
  * Parse a filename to extract campaign metadata.
  * The NCL ID is the critical piece - extracted case-insensitively from anywhere in the filename.
  * Other fields (visit, crystal, processing) are extracted on a best-effort basis.

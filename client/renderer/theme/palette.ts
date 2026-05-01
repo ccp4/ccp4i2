@@ -88,7 +88,7 @@ export const lightCustomColors = {
     "-": "#ffffff", // Gap
     ".": "#ffffff", // Gap
     " ": "#ffffff", // Space
-  },
+  } as Record<string, string>,
   // UI background colors
   ui: {
     lightGray: "#f9f9f9",
@@ -126,7 +126,7 @@ export const darkCustomColors = {
     "-": "#404040", // Gap - dark gray for dark mode
     ".": "#404040", // Gap - dark gray for dark mode
     " ": "#404040", // Space - dark gray for dark mode
-  },
+  } as Record<string, string>,
   // UI background colors for dark mode
   ui: {
     lightGray: "#2a2a2a",

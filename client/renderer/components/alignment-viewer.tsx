@@ -121,7 +121,8 @@ export const AlignmentViewer: React.FC<AlignmentViewerProps> = ({
       }
 
       // Parse sequence blocks
-      let seqStartPos, seqBlockLength;
+      let seqStartPos = 0;
+      let seqBlockLength = 0;
       for (let i = startIndex; i < lines.length; i++) {
         const line = lines[i];
 
