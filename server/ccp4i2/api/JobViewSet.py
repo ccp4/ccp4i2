@@ -148,7 +148,11 @@ class JobViewSet(ModelViewSet):
         ```
     """
 
-    queryset = models.Job.objects.all()
+    # Prefetch the KPI reverse-FKs so JobSerializer's float_values /
+    # char_values method fields don't N+1 on list/detail endpoints.
+    queryset = models.Job.objects.all().prefetch_related(
+        "float_values", "char_values"
+    )
     serializer_class = serializers.JobSerializer
     parser_classes = [FormParser, MultiPartParser, JSONParser]
     filterset_fields = ["project"]
@@ -715,7 +719,12 @@ class JobViewSet(ModelViewSet):
         try:
             the_job = models.Job.objects.get(id=pk)
             dependent_jobs = find_dependent_jobs(the_job)
-            serializer = serializers.JobSerializer(dependent_jobs, many=True)
+            # Re-fetch through the prefetched queryset so JobSerializer's
+            # float_values / char_values don't N+1 over the dependency chain.
+            dep_ids = [j.id for j in dependent_jobs]
+            dep_map = {j.id: j for j in self.get_queryset().filter(id__in=dep_ids)}
+            ordered = [dep_map[i] for i in dep_ids if i in dep_map]
+            serializer = serializers.JobSerializer(ordered, many=True)
             # DRF standard for list endpoints - return array directly
             return Response(serializer.data)
         except (ValueError, models.Job.DoesNotExist) as err:
@@ -740,13 +749,18 @@ class JobViewSet(ModelViewSet):
 
         try:
             bulk_info = find_bulk_dependent_jobs(job_ids)
+            # Re-fetch through prefetched queryset so JobSerializer's
+            # float_values / char_values don't N+1 across the bulk set.
+            all_ids = (
+                [j.id for j in bulk_info["selected_jobs"]]
+                + [j.id for j in bulk_info["additional_dependents"]]
+            )
+            qs_map = {j.id: j for j in self.get_queryset().filter(id__in=all_ids)}
+            sel = [qs_map[j.id] for j in bulk_info["selected_jobs"] if j.id in qs_map]
+            add = [qs_map[j.id] for j in bulk_info["additional_dependents"] if j.id in qs_map]
             return api_success({
-                "selected_jobs": serializers.JobSerializer(
-                    bulk_info["selected_jobs"], many=True
-                ).data,
-                "additional_dependents": serializers.JobSerializer(
-                    bulk_info["additional_dependents"], many=True
-                ).data,
+                "selected_jobs": serializers.JobSerializer(sel, many=True).data,
+                "additional_dependents": serializers.JobSerializer(add, many=True).data,
                 "total_to_delete": len(bulk_info["all_jobs_to_delete"]),
                 "has_active_dependents": bulk_info["has_active_dependents"],
             })

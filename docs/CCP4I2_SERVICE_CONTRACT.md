@@ -73,6 +73,8 @@ Lists all jobs across projects the caller has access to.
 
 **Response:** `Job`
 
+The `Job` shape inlines two KPI dictionaries — `float_values` and `char_values` — keyed by KPI name (e.g. `{RfreeFinal: 0.234, ...}` and `{SpaceGroup: "P 21 21 21", ...}`). The set of names is task-specific (refmac emits `RfreeFinal`, aimless emits `ResolutionLow`, etc.); consumers should treat both dicts as open-ended and look up names they care about, not iterate exhaustively. Empty objects when the job hasn't produced KPIs yet (pending / running jobs, or tasks that don't emit any). Promoted to v0 in 0.3.0; consumers building against earlier versions of this contract should default both fields to `{}` for robustness.
+
 ### `GET /active_jobs/` — currently-running jobs
 
 **Response:** `ActiveJobsResponse`
@@ -215,6 +217,37 @@ Use this endpoint when the file content is *new* (uploaded from the client). To 
 
 (Legacy note: older clients send the form field as `objectPath` — camelCase. The server accepts both; new clients should use snake_case `object_path` for consistency with `set_parameter`.)
 
+### `GET /jobs/{id}/report_xml/` — job report as XML
+
+**Response Content-Type:** `application/json`. **Response body:** `{ "success": true, "xml": "<report>...</report>" }` — the XML report is delivered as a string inside the standard JSON envelope (not as a raw `text/xml` payload). Consumers parse it client-side (DOMParser in the renderer; an XML lib in CLI consumers) into a structured tree.
+
+The report is the canonical task-output document — what the renderer's report panel renders, what `i2run`'s `--report` flag writes to disk. The XML *schema* is task-specific (every CCP4i2 task has its own report structure) and is **not part of this contract** — only the endpoint and envelope are. The server caches the rendered report to `report_xml.xml` in the job directory and re-uses it across requests; pass `?regenerate=true` to force regeneration.
+
+Returns `success: false` (404) if the job has not produced a report (typical for pending / failed jobs).
+
+### `GET /projects/{id}/resolve_fileuse/?fileuse=<expr>` — resolve a fileUse DSL string
+
+**Response:** `ResolveFileUseResponse` on success; `{ "success": false, "error": "<reason>" }` on failure (no matching job, param name not found, index out of range, etc.).
+
+The `fileuse` query parameter is a string in CCP4i2's fileUse DSL, used to reference a previous job's output without knowing the deployment-local file id ahead of time. Four supported syntactic forms:
+
+```
+task_name[jobIndex].jobParamName[paramIndex]      # full
+[jobIndex].jobParamName[paramIndex]               # no task name
+task_name[jobIndex].jobParamName                  # no param index
+[jobIndex].jobParamName                           # minimal
+```
+
+`jobIndex` is positive (count from the start of the project's job list) or negative (count back from the end). `paramIndex` defaults to 0. If `task_name` is given, only jobs of that task are considered. Examples:
+
+- `[-1].XYZOUT[0]` — first XYZOUT from the most recent job in the project
+- `prosmart_refmac[-1].XYZOUT` — XYZOUT from the most recent prosmart_refmac job
+- `refmac[-2].HKLOUT[0]` — HKLOUT from the second-to-last refmac job
+
+The typical caller flow is `resolve_fileuse → set_parameter({dbFileId})` — this endpoint is the wiring primitive that pairs with `POST /jobs/{id}/set_parameter/` whenever the input being bound is the output of a previous job (rather than freshly uploaded content).
+
+Note: the response field names (`dbFileId`, `baseName`, etc.) intentionally mirror what `set_parameter` consumes; they are **not** the same as `File`'s field names (`id`, `name`). Treat the response as a resolution result, not a `File`.
+
 ### `GET /jobs/{id}/container/` — job parameter container
 
 **Response:** `unknown` — a task-specific JSON tree.
@@ -329,6 +362,18 @@ The TypeScript types in [`packages/ccp4i2-auth/src/contracts/ccp4i2.ts`](../pack
 - The async execution / process-manager surface.
 
 External consumers should NOT depend on these surfaces. If a consumer needs functionality not in v0, raise an issue against this document so the surface can be considered for inclusion in v1.
+
+## Deliberately omitted
+
+These surfaces *exist* server-side and are reachable, but are intentionally not promoted to the contract. The reasoning is recorded here so the question doesn't get re-litigated.
+
+### `GET /jobs/{id}/get_parameter/?object_path=<path>`
+
+**Status:** server endpoint exists; not contracted.
+
+**Reason:** for read-side parameter access, use `GET /jobs/{id}/container/` (already contracted). The per-call cost of `get_parameter` is dominated by container construction (loading the plugin, instantiating its `CContainer`, overlaying `input_params.xml` and walking the object-path) — not by JSON encoding or wire size. Returning the whole tree once is, on the round-trip economics, the same cost as returning a single field, so a separate read endpoint doesn't earn its keep. `set_parameter` *is* contracted because writes inherently address a single parameter; reads do not.
+
+Consumers wanting structured per-task parameter access should consult the task's `def.xml` and read against the container response. If a profiling case emerges where this analysis is wrong (a hot path that needs a single field many times per second and can't cache the container), reopen.
 
 ## How a consumer adopts the contract
 
