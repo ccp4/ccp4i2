@@ -90,12 +90,12 @@ MIDDLEWARE = [
 if os.environ.get("CCP4I2_LOCAL_SESSION_TOKEN"):
     MIDDLEWARE.insert(
         0,
-        "ccp4i2_auth.middleware.local_session.LocalSessionAuthMiddleware",
+        "ccp4i2_api.middleware.local_session.LocalSessionAuthMiddleware",
     )
 elif os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
-    MIDDLEWARE.insert(0, "ccp4i2_auth.middleware.azure_ad.AzureADAuthMiddleware")
+    MIDDLEWARE.insert(0, "ccp4i2_api.middleware.azure_ad.AzureADAuthMiddleware")
 elif DEBUG:  # noqa: F821 — DEBUG is defined earlier in this settings file.
-    MIDDLEWARE.insert(0, "ccp4i2_auth.middleware.dev_admin.DevAdminMiddleware")
+    MIDDLEWARE.insert(0, "ccp4i2_api.middleware.dev_admin.DevAdminMiddleware")
 # else: no auth middleware. AnonymousUser + DRF IsAuthenticated → 401.
 
 REST_FRAMEWORK = {
@@ -240,7 +240,7 @@ REST_FRAMEWORK = {
     # In development (no auth), this returns None and AllowAny permits access
     # In production, the middleware validates JWT and sets request.user
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "ccp4i2_auth.drf.AzureADAuthentication",
+        "ccp4i2_api.drf.AzureADAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",

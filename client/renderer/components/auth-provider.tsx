@@ -14,7 +14,7 @@ import {
   hasLocalSessionToken,
   createLocalSessionTokenGetter,
   createLocalSessionEmailGetter,
-} from "@ccp4/ccp4i2-auth";
+} from "@ccp4/ccp4i2-api";
 import { getAuthConfig } from "../utils/auth-config";
 
 /**

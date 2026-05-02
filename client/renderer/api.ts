@@ -9,7 +9,7 @@ import {
   apiPatch,
   apiDelete,
 } from "./api-fetch";
-import { getAccessToken } from "@ccp4/ccp4i2-auth";
+import { getAccessToken } from "@ccp4/ccp4i2-api";
 
 // =============================================================================
 // Constants

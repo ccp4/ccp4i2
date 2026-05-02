@@ -4,7 +4,7 @@
 
 ## Migration log
 
-- **2026-05-02**: contract widened to v0.3 (`@ccp4/ccp4i2-auth` 0.2.0 → 0.3.0). Three surfaces promoted, one deliberately omitted:
+- **2026-05-02**: contract widened to v0.3 (`@ccp4/ccp4i2-api` 0.2.0 → 0.3.0). Three surfaces promoted, one deliberately omitted:
   - **Per-job KPIs inlined on `Job`** — `float_values: {keyName: number}` and `char_values: {keyName: string}` are now contracted fields on the Job payload, served by `GET /jobs/` and `GET /jobs/{id}/`. Required a server change: `JobSerializer` gained two `SerializerMethodField`s (the model's reverse-FK relations weren't included by `fields = "__all__"`), and `JobViewSet.queryset` now prefetches both reverse-FKs to avoid N+1. The shape mirrors the dict form already used by `GET /projects/{id}/job_tree/` and by Materia's `MemberProjectWithSummary.kpis`. Materia's `Docker/cli/i2remote.py` `get_job_kpi` was updated in lockstep — it had been silently returning `[]` previously because the field was never present on the wire.
   - **`GET /jobs/{id}/report_xml/`** — promoted from v1-candidate to v0. Documentation only; the endpoint already existed, its envelope (`{success, xml}`) was unchanged.
   - **`GET /projects/{id}/resolve_fileuse/?fileuse=<expr>`** — promoted from v1-candidate to v0. New TS type `ResolveFileUseResponse`. The fileUse DSL is documented inline in the contract (the four supported syntactic forms + `jobIndex` semantics).
@@ -223,5 +223,5 @@ Worth especially close review:
 ## How to use this document
 
 - For the contract review meeting: walk the v0+ list first (small, uncontroversial). Then debate the v1 candidates one resource family at a time. Then decide what to do about the smelly bits.
-- After ratification: add the agreed v0+ rows to [`CCP4I2_SERVICE_CONTRACT.md`](CCP4I2_SERVICE_CONTRACT.md) "Stable endpoints", commit a corresponding npm minor (latest is `@ccp4/ccp4i2-auth` 0.3.0 as of 2026-05-02), and add the relevant Django shape guards to [`server/ccp4i2/tests/api/unit/test_contract.py`](../server/ccp4i2/tests/api/unit/test_contract.py).
+- After ratification: add the agreed v0+ rows to [`CCP4I2_SERVICE_CONTRACT.md`](CCP4I2_SERVICE_CONTRACT.md) "Stable endpoints", commit a corresponding npm minor (latest is `@ccp4/ccp4i2-api` 0.3.0 as of 2026-05-02), and add the relevant Django shape guards to [`server/ccp4i2/tests/api/unit/test_contract.py`](../server/ccp4i2/tests/api/unit/test_contract.py).
 - This audit document gets re-generated when a new significant consumer comes online or when a meaningful chunk of new endpoints lands in the codebase. Otherwise it's a one-shot snapshot.

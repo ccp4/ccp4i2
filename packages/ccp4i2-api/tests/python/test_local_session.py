@@ -16,8 +16,8 @@ import pytest
 from django.http import HttpResponse
 from django.test import RequestFactory
 
-from ccp4i2_auth.middleware.base import REQUEST_FLAG_ATTR
-from ccp4i2_auth.middleware.local_session import (
+from ccp4i2_api.middleware.base import REQUEST_FLAG_ATTR
+from ccp4i2_api.middleware.local_session import (
     DEFAULT_DESKTOP_EMAIL,
     LocalSessionAuthMiddleware,
 )

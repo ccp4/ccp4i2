@@ -216,7 +216,7 @@ class AzureADAuthMiddleware(BaseAuthMiddleware):
     The dev_admin auto-login path was deliberately split out into a
     separate ``DevAdminMiddleware`` so a misconfigured cloud deploy
     (REQUIRE_AUTH unset) cannot fall through to creating a superuser
-    automatically. See ``ccp4i2_auth.middleware.dev_admin`` for the dev
+    automatically. See ``ccp4i2_api.middleware.dev_admin`` for the dev
     path; the CCP4i2 settings module is responsible for picking exactly
     one auth middleware based on the deployment shape.
     """

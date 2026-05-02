@@ -1,13 +1,13 @@
 /**
  * Campaign (Fragment Screening) type definitions — *renderer-internal*.
  *
- * The corresponding *contract* types live in `@ccp4/ccp4i2-auth`'s
+ * The corresponding *contract* types live in `@ccp4/ccp4i2-api`'s
  * `contracts/ccp4i2.ts` and represent the narrow, externally-promised
  * shape. The renderer's types here are intentionally RICHER — they
  * include Django reverse-relation fields (e.g. `exports`, `fileimport`,
  * tag `children`) that the API exposes today but that aren't part of
  * the v0 contract. Materia and other external consumers should import
- * the narrow shapes from `@ccp4/ccp4i2-auth`.
+ * the narrow shapes from `@ccp4/ccp4i2-api`.
  */
 
 import { Project, File as DbFile, Job } from "./models";

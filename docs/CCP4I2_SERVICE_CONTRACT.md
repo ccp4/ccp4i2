@@ -7,7 +7,7 @@ This document is the externally-facing answer to that question. The contract is 
 ## Status
 
 - **Draft v0**, circulating with the CCP4i2 dev team for review.
-- TypeScript types live in [`packages/ccp4i2-auth/src/contracts/ccp4i2.ts`](../packages/ccp4i2-auth/src/contracts/ccp4i2.ts) and re-export from [`@ccp4/ccp4i2-auth`](https://www.npmjs.com/package/@ccp4/ccp4i2-auth) on npm. External consumers `import type { Project, Job, File, ... } from "@ccp4/ccp4i2-auth"`.
+- TypeScript types live in [`packages/ccp4i2-api/src/contracts/ccp4i2.ts`](../packages/ccp4i2-api/src/contracts/ccp4i2.ts) and re-export from [`@ccp4/ccp4i2-api`](https://www.npmjs.com/package/@ccp4/ccp4i2-api) on npm. External consumers `import type { Project, Job, File, ... } from "@ccp4/ccp4i2-api"`.
 - The first known external consumer is [Materia](https://github.com/newcastleuniversity/materia) (Newcastle's SBDD bench, which embeds CCP4i2 as a Python+JS component). The strategic context behind the contract — why split, why a stable surface, what CCP4i2 commits to — lives in Materia's [`apps/compounds/docs/`](https://github.com/newcastleuniversity/materia/tree/main/apps/compounds/docs) (specifically `CCP4I2_FACING_PROPOSAL_REPO_SPLIT.md` and `CCP4I2_RELATIONSHIP_AND_SUSTAINABILITY.md`); read those if you want the _why_. This document is the _what_.
 
 ## Conventions
@@ -15,7 +15,7 @@ This document is the externally-facing answer to that question. The contract is 
 | Concern | Decision |
 | --- | --- |
 | Base URL | Relative to deployment, typically `/api/ccp4i2/`. The proxy / ingress prefix (`/api/proxy/ccp4i2/`) is a deployment-specific concern. |
-| Authentication | `Authorization: Bearer <token>`. The bearer-token shape is the contract; how the consumer acquires it is consumer-specific. `@ccp4/ccp4i2-auth` includes provider abstractions for the two browser/Electron contexts (`MsalBearerTokenProvider` for cloud, `LocalSessionTokenProvider` for desktop); CLI clients like `i2remote` supply tokens directly (e.g. via `az account get-access-token` or a service-principal credential). The server validates per the configured middleware (LocalSession / AzureAD). |
+| Authentication | `Authorization: Bearer <token>`. The bearer-token shape is the contract; how the consumer acquires it is consumer-specific. `@ccp4/ccp4i2-api` includes provider abstractions for the two browser/Electron contexts (`MsalBearerTokenProvider` for cloud, `LocalSessionTokenProvider` for desktop); CLI clients like `i2remote` supply tokens directly (e.g. via `az account get-access-token` or a service-principal credential). The server validates per the configured middleware (LocalSession / AzureAD). |
 | 401/403 response shape | `{success: false, error: string}`. Pattern-matched by `AUTH_ERROR_EVENT` listeners. Stable. |
 | Date format | ISO 8601 strings, UTC (e.g., `"2026-04-29T13:21:24.854154Z"`). Stable. |
 | ID types | `id` is integer (Django PK), unique within a single deployment. `uuid` is a UUID v4 string, globally unique. **Most endpoints address resources by `{id}`** (e.g. `/projects/{id}/`, `/jobs/{id}/`); a small **uuid-addressed surface exists on files** (`/files_by_uuid/{uuid}/`, `/download/`, `/digest/`) for cross-deployment references — the parameter-file format only knows uuids, not deployment-local ids. Both fields are stable. Use `id` for normal in-deployment work; use `uuid` when the reference must survive a deployment boundary or be embedded in cross-system data. |
@@ -262,7 +262,7 @@ Consumers wanting task-specific structured access should consult the per-task `.
 
 Project groups bundle multiple projects under a shared parent — primarily used by the fragment-screening workflow ("campaigns") where a parent project carries reference coordinates and FreeR flags, and each member project represents a single dataset soaked with one compound. The endpoints below cover the surface needed to manage that workflow end-to-end.
 
-Types referenced (currently in `client/renderer/types/campaigns.ts`; to be lifted into `@ccp4/ccp4i2-auth/src/contracts/ccp4i2.ts` in a follow-up version): `ProjectGroup`, `ProjectGroupType` (`"general_set" | "fragment_set"`), `ProjectGroupDetail`, `ProjectGroupMembership`, `MembershipType` (`"parent" | "member"`), `MemberProjectWithSummary`, `JobSummary`, `ProjectKPIs`, `ParentFilesResponse`, `CampaignSite`.
+Types referenced (currently in `client/renderer/types/campaigns.ts`; to be lifted into `@ccp4/ccp4i2-api/src/contracts/ccp4i2.ts` in a follow-up version): `ProjectGroup`, `ProjectGroupType` (`"general_set" | "fragment_set"`), `ProjectGroupDetail`, `ProjectGroupMembership`, `MembershipType` (`"parent" | "member"`), `MemberProjectWithSummary`, `JobSummary`, `ProjectKPIs`, `ParentFilesResponse`, `CampaignSite`.
 
 ### `GET /projectgroups/` — list project groups
 
@@ -345,9 +345,9 @@ Removes the membership relation; the project itself is not deleted.
 
 ## Type stability
 
-The TypeScript types in [`packages/ccp4i2-auth/src/contracts/ccp4i2.ts`](../packages/ccp4i2-auth/src/contracts/ccp4i2.ts) are the contract. Specifically:
+The TypeScript types in [`packages/ccp4i2-api/src/contracts/ccp4i2.ts`](../packages/ccp4i2-api/src/contracts/ccp4i2.ts) are the contract. Specifically:
 
-- **Documented fields are stable.** They will not be removed, renamed, or have their type changed without a major version bump of `@ccp4/ccp4i2-auth`.
+- **Documented fields are stable.** They will not be removed, renamed, or have their type changed without a major version bump of `@ccp4/ccp4i2-api`.
 - **Numeric enum values are stable.** `JobStatus.Running === 3` is part of the contract — consumers may pattern-match on values directly.
 - **Undocumented fields are unstable.** They may exist in responses today (Django serializers using `fields = "__all__"`) but are not part of the contract; CCP4i2 may remove them at any time.
 - **The auth-error response shape** (`{success: false, error: string}`) is stable across all endpoints.
@@ -385,8 +385,8 @@ import type {
   JobStatus,
   File,
   VersionInfo,
-} from "@ccp4/ccp4i2-auth";
-import { createApiFetch } from "@ccp4/ccp4i2-auth";
+} from "@ccp4/ccp4i2-api";
+import { createApiFetch } from "@ccp4/ccp4i2-api";
 
 // The factory binds auth + base URL; the bound apiJson<T> typesafely
 // returns the contracted shape.
@@ -407,7 +407,7 @@ if (myJob.status === JobStatus.Running) {
 
 ## Versioning policy
 
-- **Patch / minor changes** to `@ccp4/ccp4i2-auth` may add new types, add optional fields, or relax types. Consumers don't need to update.
+- **Patch / minor changes** to `@ccp4/ccp4i2-api` may add new types, add optional fields, or relax types. Consumers don't need to update.
 - **Major version bumps** are required for: removing a field, renaming a field, changing a field's type in an incompatible way, changing a numeric enum value, changing the 401/403 response shape.
 - The CCP4i2 deployment carries a runtime `version` (visible at `/version/`). Consumers are encouraged to log or display it for debugging — but the type contract is what they build against, not the runtime version.
 

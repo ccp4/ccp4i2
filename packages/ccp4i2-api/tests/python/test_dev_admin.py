@@ -14,8 +14,8 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.test import RequestFactory
 
-from ccp4i2_auth.middleware.base import REQUEST_FLAG_ATTR
-from ccp4i2_auth.middleware.dev_admin import DevAdminMiddleware
+from ccp4i2_api.middleware.base import REQUEST_FLAG_ATTR
+from ccp4i2_api.middleware.dev_admin import DevAdminMiddleware
 
 
 @pytest.fixture

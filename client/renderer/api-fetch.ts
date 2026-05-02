@@ -1,7 +1,7 @@
 /**
  * CCP4i2-specific binding of the shared api-fetch wrapper.
  *
- * The generic implementation lives in @ccp4/ccp4i2-auth's
+ * The generic implementation lives in @ccp4/ccp4i2-api's
  * ``createApiFetch`` factory; this file binds it to the
  * ``/api/proxy/ccp4i2/`` proxy prefix used by the desktop renderer and
  * the cloud web app, and re-exports the bound helpers under their
@@ -17,7 +17,7 @@ import {
   AUTH_ERROR_EVENT,
   type AuthErrorDetail,
   createApiFetch,
-} from "@ccp4/ccp4i2-auth";
+} from "@ccp4/ccp4i2-api";
 
 export { AUTH_ERROR_EVENT };
 export type { AuthErrorDetail };

@@ -17,7 +17,7 @@ from ..exceptions import AuthenticationFailed, AuthorizationFailed
 # Attribute name set on ``request`` after a successful authentication.
 # The DRF authentication class trusts ``request.user`` only when this is
 # set, preventing spoofing via direct attribute writes from other code.
-REQUEST_FLAG_ATTR = "_ccp4i2_auth_middleware_ran"
+REQUEST_FLAG_ATTR = "_ccp4i2_api_middleware_ran"
 
 
 class BaseAuthMiddleware:

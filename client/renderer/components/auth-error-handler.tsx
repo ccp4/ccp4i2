@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { AUTH_ERROR_EVENT, AuthErrorDetail } from "../api-fetch";
-import { logout } from "@ccp4/ccp4i2-auth";
+import { logout } from "@ccp4/ccp4i2-api";
 
 /**
  * Listens for 401/403 auth errors from the API layer and surfaces them

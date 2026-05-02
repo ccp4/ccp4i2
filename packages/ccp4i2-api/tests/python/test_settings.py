@@ -1,4 +1,4 @@
-"""Minimal Django settings for the ccp4i2-auth package's pytest suite.
+"""Minimal Django settings for the ccp4i2-api package's pytest suite.
 
 Used by ``pytest --ds=test_settings`` (configured via the
 ``DJANGO_SETTINGS_MODULE`` key in ``pyproject.toml``'s

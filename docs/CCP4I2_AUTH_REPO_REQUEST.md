@@ -1,5 +1,12 @@
 # Request: please create `ccp4/ccp4i2-auth` on GitHub
 
+> **Historical (May 2026).** This is the ask Paul Bond actioned to create
+> the GitHub repo. The package has since been renamed
+> `@ccp4/ccp4i2-auth` → `@ccp4/ccp4i2-api` (and `ccp4i2-auth` → `ccp4i2-api`
+> on PyPI) because its scope grew beyond auth to cover the broader API
+> contract. The GitHub repo is being renamed to `ccp4/ccp4i2-api` to match.
+> Original wording preserved below for archaeology.
+
 *A focused ask. The full proposal lives in [`apps/compounds/docs/CCP4I2_FACING_PROPOSAL_REPO_SPLIT.md`](https://github.com/newcastleuniversity/materia/blob/main/apps/compounds/docs/CCP4I2_FACING_PROPOSAL_REPO_SPLIT.md) (in the Materia repo post-cut); this doc is the one-page version that the GitHub repo creation gates on.*
 
 ## The ask (one sentence)

@@ -2,7 +2,7 @@
 
 These tests enforce the v0 surface documented in
 ``docs/CCP4I2_SERVICE_CONTRACT.md`` and typed in
-``packages/ccp4i2-auth/src/contracts/ccp4i2.ts``. They are
+``packages/ccp4i2-api/src/contracts/ccp4i2.ts``. They are
 deliberately *narrow* — they assert that documented fields exist on
 the relevant DRF serializers — so future refactors that silently
 rename or remove a documented field fail this test rather than
@@ -29,7 +29,7 @@ from ccp4i2.api import serializers
 
 
 # Fields each contract type documents. Source of truth:
-# packages/ccp4i2-auth/src/contracts/ccp4i2.ts.
+# packages/ccp4i2-api/src/contracts/ccp4i2.ts.
 PROJECT_LIST_ITEM_FIELDS = {
     "id",
     "uuid",
@@ -261,7 +261,7 @@ def test_auth_error_response_shape_is_stable():
     binding). Encoded into ``BaseAuthMiddleware._error_response`` —
     this guard fails if the shape drifts.
     """
-    from ccp4i2_auth.middleware.base import BaseAuthMiddleware
+    from ccp4i2_api.middleware.base import BaseAuthMiddleware
 
     response = BaseAuthMiddleware._error_response("nope", status=401)
     body = json.loads(response.content.decode())

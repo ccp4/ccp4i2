@@ -18,9 +18,9 @@ import pytest
 from django.http import HttpResponse
 from django.test import RequestFactory
 
-import ccp4i2_auth.middleware.azure_ad as azure_ad_module
-from ccp4i2_auth.middleware.azure_ad import AzureADAuthMiddleware
-from ccp4i2_auth.middleware.base import REQUEST_FLAG_ATTR
+import ccp4i2_api.middleware.azure_ad as azure_ad_module
+from ccp4i2_api.middleware.azure_ad import AzureADAuthMiddleware
+from ccp4i2_api.middleware.base import REQUEST_FLAG_ATTR
 
 
 @pytest.fixture(autouse=True)

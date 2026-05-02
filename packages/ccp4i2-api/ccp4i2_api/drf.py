@@ -1,7 +1,7 @@
 """DRF authentication classes for CCP4i2.
 
 These classes work in tandem with the middleware in
-``ccp4i2_auth.middleware`` — the middleware validates the bearer token
+``ccp4i2_api.middleware`` — the middleware validates the bearer token
 and sets ``request.user`` plus the ``REQUEST_FLAG_ATTR`` trust flag; the
 DRF auth class checks the flag and surfaces ``request.user`` to DRF's
 ``IsAuthenticated`` permission.
