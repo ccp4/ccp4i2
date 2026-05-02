@@ -13,9 +13,10 @@ channel.
 **Draft v0 — published to npm + PyPI from the in-tree workspace.** Source
 of truth lives at
 [`packages/ccp4i2-api/`](https://github.com/ccp4/ccp4i2/tree/django-sliced/packages/ccp4i2-api)
-inside the `ccp4/ccp4i2` monorepo on the `django-sliced` branch and stays
-there. The companion `ccp4/ccp4i2-api` GitHub repo (created for the npm
-namespace and external visibility) does not host source.
+inside the `ccp4/ccp4i2` monorepo on the `django-sliced` branch. The npm
+scope `@ccp4` and the PyPI name `ccp4i2-api` are CCP4-owned (claimed
+April 2026); a dedicated `ccp4/ccp4i2-api` GitHub repo may follow later
+but is not required while the monorepo hosts the source.
 
 Versions `0.1.0`–`0.3.0` were published under the previous name
 `@ccp4/ccp4i2-auth` / `ccp4i2-auth`; the package was renamed at `0.3.0`
