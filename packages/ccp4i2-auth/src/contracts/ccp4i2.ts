@@ -155,6 +155,21 @@ export type JobEvaluationValue =
   (typeof JobEvaluation)[keyof typeof JobEvaluation];
 
 /**
+ * Per-job KPI dictionaries, keyed by KPI name. The set of names is
+ * task-specific (refmac emits ``RfreeFinal``, aimless emits
+ * ``ResolutionLow``, etc.); consumers should treat the dict as
+ * open-ended and look up names they care about, not iterate
+ * exhaustively. Empty objects when the job hasn't produced KPIs yet
+ * (pending / running jobs, or tasks that don't emit any).
+ */
+export interface JobFloatValues {
+  [keyName: string]: number;
+}
+export interface JobCharValues {
+  [keyName: string]: string;
+}
+
+/**
  * Job shape returned by ``GET /api/ccp4i2/jobs/`` (list) and
  * ``GET /api/ccp4i2/jobs/{id}/`` (detail). The shape is identical for
  * both endpoints — all fields below are guaranteed.
@@ -173,6 +188,10 @@ export interface Job {
   finish_time: Iso8601 | null;
   task_name: string;
   process_id: number | null;
+  /** Per-job float-valued KPIs, keyed by KPI name (e.g. ``RfreeFinal``). */
+  float_values: JobFloatValues;
+  /** Per-job string-valued KPIs, keyed by KPI name (e.g. ``SpaceGroup``). */
+  char_values: JobCharValues;
 }
 
 /**
@@ -336,4 +355,37 @@ export interface MemberProjectWithSummary extends Omit<Project, "jobs"> {
 export interface ParentFilesResponse {
   coordinates: File[];
   freer: File[];
+}
+
+// ---------------------------------------------------------------------------
+// FileUse resolution
+// ---------------------------------------------------------------------------
+
+/**
+ * Result of resolving a fileUse DSL string against a project.
+ * Returned by ``GET /api/ccp4i2/projects/{id}/resolve_fileuse/``.
+ *
+ * The fileUse DSL syntax (``[task_name]?[jobIndex].jobParamName[paramIndex]?``)
+ * lets a caller reference a previous job's output without knowing the
+ * deployment-local file id ahead of time — the typical wiring step
+ * before binding the resolved file to a parameter via ``set_parameter``
+ * with ``value: { dbFileId: <id> }``.
+ *
+ * Note: the field names here intentionally mirror what consumers
+ * already pass to ``set_parameter`` (``dbFileId`` etc.) — they are
+ * **not** the same as the canonical {@link File} shape's keys
+ * (``id`` / ``name``). Treat this type as the resolution result, not
+ * a File.
+ */
+export interface ResolveFileUseResponse {
+  /** Owning project's UUID, dashes stripped. */
+  project: string;
+  /** File's basename. */
+  baseName: string;
+  /** File's UUID, dashes stripped — usable as ``set_parameter``'s ``dbFileId``. */
+  dbFileId: string;
+  /** Path relative to the project root (e.g. ``CCP4_JOBS/job_3``). */
+  relPath: string;
+  /** Full filesystem path. */
+  fullPath: string;
 }

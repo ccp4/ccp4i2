@@ -70,6 +70,8 @@ JOB_FIELDS = {
     "finish_time",
     "task_name",
     "process_id",
+    "float_values",
+    "char_values",
 }
 
 FILE_FIELDS = {
@@ -195,6 +197,62 @@ def test_file_directory_numeric_values_are_stable():
 # ---------------------------------------------------------------------------
 # AuthErrorBody (any 401/403 response across the API)
 # ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# Action endpoints (existence + URL-name stability)
+# ---------------------------------------------------------------------------
+
+
+def test_report_xml_action_is_registered_on_jobviewset():
+    """``GET /jobs/{id}/report_xml/`` is contracted; the action must
+    remain a registered @action on JobViewSet (renaming or removing it
+    is a breaking change). The body shape is XML-flavoured and not
+    typed in TS, so this is presence-only.
+    """
+    from ccp4i2.api.JobViewSet import JobViewSet
+
+    method = getattr(JobViewSet, "report_xml", None)
+    assert method is not None, "JobViewSet.report_xml action removed"
+    bind = getattr(method, "mapping", None) or getattr(method, "bind_to_methods", None)
+    # DRF stores the http-method binding on @action-decorated methods;
+    # we don't assert the exact attribute name (varies across DRF versions),
+    # only that *something* is bound — the action exists, not just any callable.
+    assert bind, "JobViewSet.report_xml is not a registered DRF @action"
+
+
+def test_resolve_fileuse_parser_returns_documented_shape():
+    """The fileUse DSL is contracted; the parser's return shape (the
+    four keys ``task_name`` / ``jobIndex`` / ``jobParamName`` /
+    ``paramIndex``) is what the resolver consumes and what consumers
+    pattern-match on. Pure-function, no DB.
+    """
+    from ccp4i2.lib.utils.files.resolve_fileuse import parse_fileuse
+
+    expected_keys = {"task_name", "jobIndex", "jobParamName", "paramIndex"}
+
+    # Each of the four contracted syntactic forms.
+    cases = [
+        # task_name[jobIndex].jobParamName[paramIndex]
+        ("refmac[-2].HKLOUT[0]", {"task_name": "refmac", "jobIndex": -2, "jobParamName": "HKLOUT", "paramIndex": 0}),
+        # [jobIndex].jobParamName[paramIndex]
+        ("[-1].XYZOUT[0]", {"task_name": None, "jobIndex": -1, "jobParamName": "XYZOUT", "paramIndex": 0}),
+        # task_name[jobIndex].jobParamName
+        ("prosmart_refmac[-1].XYZOUT", {"task_name": "prosmart_refmac", "jobIndex": -1, "jobParamName": "XYZOUT", "paramIndex": 0}),
+        # [jobIndex].jobParamName
+        ("[-1].HKLOUT", {"task_name": None, "jobIndex": -1, "jobParamName": "HKLOUT", "paramIndex": 0}),
+    ]
+
+    for fileuse, expected in cases:
+        parsed = parse_fileuse(fileuse)
+        assert set(parsed.keys()) == expected_keys, (
+            f"parse_fileuse({fileuse!r}) returned keys {set(parsed.keys())}; "
+            f"contract requires {expected_keys}"
+        )
+        for key, value in expected.items():
+            assert parsed[key] == value, (
+                f"parse_fileuse({fileuse!r}) -> {key}={parsed[key]!r}; expected {value!r}"
+            )
 
 
 def test_auth_error_response_shape_is_stable():

@@ -4,6 +4,12 @@
 
 ## Migration log
 
+- **2026-05-02**: contract widened to v0.3 (`@ccp4/ccp4i2-auth` 0.2.0 → 0.3.0). Three surfaces promoted, one deliberately omitted:
+  - **Per-job KPIs inlined on `Job`** — `float_values: {keyName: number}` and `char_values: {keyName: string}` are now contracted fields on the Job payload, served by `GET /jobs/` and `GET /jobs/{id}/`. Required a server change: `JobSerializer` gained two `SerializerMethodField`s (the model's reverse-FK relations weren't included by `fields = "__all__"`), and `JobViewSet.queryset` now prefetches both reverse-FKs to avoid N+1. The shape mirrors the dict form already used by `GET /projects/{id}/job_tree/` and by Materia's `MemberProjectWithSummary.kpis`. Materia's `Docker/cli/i2remote.py` `get_job_kpi` was updated in lockstep — it had been silently returning `[]` previously because the field was never present on the wire.
+  - **`GET /jobs/{id}/report_xml/`** — promoted from v1-candidate to v0. Documentation only; the endpoint already existed, its envelope (`{success, xml}`) was unchanged.
+  - **`GET /projects/{id}/resolve_fileuse/?fileuse=<expr>`** — promoted from v1-candidate to v0. New TS type `ResolveFileUseResponse`. The fileUse DSL is documented inline in the contract (the four supported syntactic forms + `jobIndex` semantics).
+  - **`GET /jobs/{id}/get_parameter/`** — explicitly *not* promoted; recorded under a new "Deliberately omitted" section in the contract doc with the cost-symmetry rationale (reads should use `container/`).
+
 - **2026-04-30 (a)**: three nested `@action` list endpoints replaced by their filter-form equivalents on the canonical resource ViewSet — server-side `@action` methods deleted, callers in the renderer updated, ~105 lines of server code removed:
   - `GET /projects/{id}/jobs/` → `GET /jobs/?project={id}`
   - `GET /projects/{id}/files/` → `GET /files/?project={id}` (added a clean `?project=` filter on FileViewSet that traverses File→Job→Project; the legacy `?job__project=` form is retained as a back-compat alias)
@@ -61,7 +67,7 @@ Legend: **R** = renderer, **i2** = i2remote, **v0** = in current v0 contract, **
 | POST | `/projects/{id}/add_tag_by_text/` | ✓ | | | v1 | Get-or-create tag by text. Used by Campaigns batch-import. |
 | POST | `/projects/{id}/create_task/` | ✓ | | | **v0+** | **Create a job in a project.** Without this, the contract is read-only. |
 | POST | `/projects/{id}/export/` | ✓ | ✓ | | **v0+** | Start project export. Both consumers use it. |
-| GET | `/projects/{id}/resolve_fileuse/` | | ✓ | | v1 | Resolve a `fileUse:projN/jobM/paramX` reference to a concrete file ID. |
+| GET | `/projects/{id}/resolve_fileuse/` | | ✓ | ✓ | — | Promoted to v0 in 0.3.0 (2026-05-02). Resolve a fileUse DSL string to a concrete file ref. |
 
 ### `/jobs/`
 
@@ -79,7 +85,7 @@ Legend: **R** = renderer, **i2** = i2remote, **v0** = in current v0 contract, **
 | POST | `/jobs/{id}/preview/` | ✓ | | | v1 | Launch a viewer (coot / viewhkl / ccp4mg / terminal). Desktop-Electron-flavoured; less obvious for cloud consumers. |
 | POST | `/jobs/{id}/regenerate_report/` | ✓ | | | v1 | Re-render the job's HTML report. |
 | POST | `/jobs/{id}/set_parameter/` | ✓ | ✓ | | **v0+** | Set a single parameter on a job (object-path-keyed). |
-| GET | `/jobs/{id}/get_parameter/` | | ✓ | | v1 | Read a single parameter. CLI uses for scripted edit-then-run. |
+| GET | `/jobs/{id}/get_parameter/` | | ✓ | | omitted | Deliberately omitted from v0.3 (2026-05-02) — see *Deliberately omitted* in the contract doc. Reads should use `container/`. |
 | PUT | `/jobs/{id}/params_xml/` | ✓ | | | v1 | Replace parameters as a wholesale XML document. Power-user surface. |
 | POST | `/jobs/{id}/upload_file_param/` | ✓ | ✓ | | **v0+** | Multipart upload of a file parameter. Different shape from JSON-body endpoints. |
 | POST | `/jobs/{id}/set_context_job/` | ✓ | | | v1 | Set "context" parent job for inherited parameters. |
@@ -90,7 +96,7 @@ Legend: **R** = renderer, **i2** = i2remote, **v0** = in current v0 contract, **
 | GET | `/jobs/{id}/run_time_validation/` | ✓ | | | v1 | Pre-flight validation including expensive checks (file content). |
 | GET | `/jobs/{id}/what_next/` | ✓ | | | v1 | Suggested follow-on tasks given this job's outputs. |
 | GET | `/jobs/{id}/object_method/` | ✓ | | | v1 | Generic RPC into a Python object on the server (e.g., weight calc). Powerful but smelly; review before contracting. |
-| GET | `/jobs/{id}/report_xml/` | ✓ | ✓ | | v1 | Job-report XML document. Both consumers; shape is XML-flavoured. |
+| GET | `/jobs/{id}/report_xml/` | ✓ | ✓ | ✓ | — | Promoted to v0 in 0.3.0 (2026-05-02). Envelope `{success, xml}` with the XML report as a string. |
 | GET | `/jobs/{id}/export_job/` | | ✓ | | v1 | Single-job export bundle (CLI-flavoured). |
 | POST | `/jobs/bulk_dependent_jobs/` | ✓ | | | v1 | Batch dependent-jobs lookup; used by jobs-list rendering. |
 | POST | `/jobs/bulk_delete/` | ✓ | | | v1 | Batch delete. |
@@ -217,5 +223,5 @@ Worth especially close review:
 ## How to use this document
 
 - For the contract review meeting: walk the v0+ list first (small, uncontroversial). Then debate the v1 candidates one resource family at a time. Then decide what to do about the smelly bits.
-- After ratification: add the agreed v0+ rows to [`CCP4I2_SERVICE_CONTRACT.md`](CCP4I2_SERVICE_CONTRACT.md) "Stable endpoints", commit a corresponding npm minor (0.2.0), and add the relevant Django shape guards to [`server/ccp4i2/tests/api/unit/test_contract.py`](../server/ccp4i2/tests/api/unit/test_contract.py).
+- After ratification: add the agreed v0+ rows to [`CCP4I2_SERVICE_CONTRACT.md`](CCP4I2_SERVICE_CONTRACT.md) "Stable endpoints", commit a corresponding npm minor (latest is `@ccp4/ccp4i2-auth` 0.3.0 as of 2026-05-02), and add the relevant Django shape guards to [`server/ccp4i2/tests/api/unit/test_contract.py`](../server/ccp4i2/tests/api/unit/test_contract.py).
 - This audit document gets re-generated when a new significant consumer comes online or when a meaningful chunk of new endpoints lands in the codebase. Otherwise it's a one-shot snapshot.

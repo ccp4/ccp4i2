@@ -149,9 +149,19 @@ class FileSerializer(ModelSerializer):
 
 
 class JobSerializer(ModelSerializer):
+    float_values = SerializerMethodField()
+    char_values = SerializerMethodField()
+
     class Meta:
         model = models.Job
         fields = "__all__"
+
+    def get_float_values(self, obj):
+        # JobValueKey.name is the PK, so kv.key_id is the KPI name string.
+        return {kv.key_id: kv.value for kv in obj.float_values.all()}
+
+    def get_char_values(self, obj):
+        return {kv.key_id: kv.value for kv in obj.char_values.all()}
 
 
 class FileUseSerializer(ModelSerializer):
