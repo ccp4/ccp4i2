@@ -143,25 +143,47 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             await setAuthSessionCookie();
           }
 
-          // Set up the token and email getters for API calls
+          // Set up the token and email getters for API calls.
+          //
+          // Silent-only path with one retry. We deliberately do NOT fall back
+          // to acquireTokenPopup here: tokenGetter is invoked from inside
+          // fetch wrappers, which are not a user-gesture context, so popup
+          // calls would be blocked by the browser anyway. When silent fails
+          // we return null; the api-fetch layer turns the resulting 401 into
+          // an AUTH_ERROR_EVENT, which AuthErrorHandler surfaces as a
+          // snackbar + auto-redirect to sign-in.
+          //
+          // The single retry catches the common transient case: parallel
+          // fetches racing the underlying MSAL refresh, where the second
+          // call sees the in-flight refresh and silent throws even though
+          // a fresh token is about to land. Discovered when long sequences
+          // (Moorhen panel mounts, R-group decomposition on Materia's
+          // AggregationPage) triggered "Your session has expired"
+          // snackbars: the popup fallback couldn't fire from the fetch
+          // path so the request went out tokenless and got a real 401
+          // anyway.
           setTokenGetter(async () => {
             const accounts = pca.getAllAccounts();
             if (accounts.length === 0) return null;
+            const params = {
+              scopes: [`${config.clientId}/.default`],
+              account: accounts[0],
+            };
             try {
-              const resp = await pca.acquireTokenSilent({
-                scopes: [`${config.clientId}/.default`],
-                account: accounts[0],
-              });
+              const resp = await pca.acquireTokenSilent(params);
               return resp.accessToken;
-            } catch {
+            } catch (firstError: any) {
+              // Brief delay lets any in-flight refresh on a sibling call
+              // finish populating MSAL's account cache before we retry.
+              await new Promise((resolve) => setTimeout(resolve, 250));
               try {
-                const resp = await pca.acquireTokenPopup({
-                  scopes: [`${config.clientId}/.default`],
-                  account: accounts[0],
-                });
+                const resp = await pca.acquireTokenSilent(params);
                 return resp.accessToken;
-              } catch (interactiveError: any) {
-                console.error("[AUTH] Token acquisition failed:", interactiveError?.message || interactiveError);
+              } catch (secondError: any) {
+                console.error(
+                  "[AUTH] Silent token acquisition failed (after retry):",
+                  secondError?.message || secondError
+                );
                 return null;
               }
             }
