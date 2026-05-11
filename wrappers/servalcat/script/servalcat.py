@@ -424,17 +424,15 @@ class servalcat(CPluginScript):
                     else:
                         print(f"WARNING: input restraint dictionary {dictionary} does not exist and so will not be used.")
         # Weight
-        if str(self.container.controlParameters.WEIGHT_OPT) == "MANUAL":
-            if self.container.controlParameters.WEIGHT.isSet():
-                self.appendCommandLine(['--weight', str(self.container.controlParameters.WEIGHT)])
-        else:  # WEIGHT_OPT == "AUTO":
-            if self.container.controlParameters.WEIGHT_NO_ADJUST:
-                self.appendCommandLine(['--no_weight_adjust'])
-            elif self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN.isSet() and \
-                    self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX.isSet():
-                self.appendCommandLine(['--target_bond_rmsz_range',
-                                        str(self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN),
-                                        str(self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX)])
+        if self.container.controlParameters.WEIGHT.isSet():
+            self.appendCommandLine(['--weight', str(self.container.controlParameters.WEIGHT)])
+        if self.container.controlParameters.WEIGHT_NO_ADJUST:
+            self.appendCommandLine(['--no_weight_adjust'])
+        elif self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN.isSet() and \
+                self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX.isSet():
+            self.appendCommandLine(['--target_bond_rmsz_range',
+                                    str(self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN),
+                                    str(self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX)])
         # ADP
         if str(self.container.controlParameters.B_REFINEMENT_MODE) == "aniso":
             self.appendCommandLine(['--adp', 'aniso'])
