@@ -773,5 +773,19 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                retval = msg.exec_()
                invalidElements.append(self.container.controlParameters.RES_MIN)
 
+      # Check conditional requirement: WEIGHT is required when WEIGHT_OPT is MANUAL
+      if str(self.container.controlParameters.WEIGHT_OPT) == 'MANUAL':
+         if not self.container.controlParameters.WEIGHT.isSet():
+            if functionNames[-2] == 'runTask':
+               from PySide2.QtWidgets import QMessageBox
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+               msg.setText("Error")
+               msg.setInformativeText("When weight option is set to MANUAL, a weight value must be provided.")
+               msg.setWindowTitle("Weight value required")
+               msg.setStandardButtons(QMessageBox.Cancel)
+               retval = msg.exec_()
+            invalidElements.append(self.container.controlParameters.WEIGHT)
+
       return invalidElements
 
