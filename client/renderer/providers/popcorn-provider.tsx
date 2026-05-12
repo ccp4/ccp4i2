@@ -24,11 +24,16 @@ type PopcornContextType = {
 
 const PopcornContext = createContext<PopcornContextType | undefined>(undefined);
 
-export const usePopcorn = () => {
-  const ctx = useContext(PopcornContext);
-  if (!ctx) throw new Error("usePopcorn must be used within a PopcornProvider");
-  return ctx;
+const noopPopcorn: PopcornContextType = {
+  setMessage: () => {},
+  setError: () => {},
 };
+
+// /ccp4i2/config sits outside the (authed) provider stack on purpose so it
+// remains reachable when Django isn't running. Components that work both
+// inside and outside that tree (ConfigContent etc.) get a no-op fallback
+// rather than throwing.
+export const usePopcorn = () => useContext(PopcornContext) ?? noopPopcorn;
 
 export const PopcornProvider: React.FC<{ children: ReactNode }> = ({
   children,
