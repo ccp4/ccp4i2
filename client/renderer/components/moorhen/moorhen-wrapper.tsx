@@ -275,7 +275,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           newMolecule.addDict(fileContent),
         ]);
         if (!centredFirst) {
-          newMolecule.centreAndAlignViewOn("/*/*/*/*", false, 100);
+          // Pass "" (not "/*/*/*/*"): centreAndAlignViewOn appends "*" and
+          // "CA" to the CID internally, so passing "/*/*/*/*" produces the
+          // malformed "/*/*/*/**" selector and a WebAssembly.Exception from
+          // Coot. The empty-string branch in moorhen's implementation falls
+          // back to the correct "/*/*/*/*" wildcard internally.
+          newMolecule.centreAndAlignViewOn("", false, 100);
           centredFirst = true;
         }
         await newMolecule.fetchIfDirtyAndDraw("ligands");
