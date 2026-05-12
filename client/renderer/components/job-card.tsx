@@ -16,7 +16,7 @@ import {
   styled,
   Toolbar,
 } from "@mui/material";
-import { Job } from "../types/models";
+import { Job, isTerminalJobStatus } from "../types/models";
 import { useCallback, useMemo, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { MyExpandMore } from "./expand-more";
@@ -217,10 +217,8 @@ export const JobCard: React.FC<JobCardProps> = ({
             )}
           </Paper>,
         ],
-        deleteDisabled: !(
-          (dependentJobs && dependentJobs?.length == 0) ||
-          (dependentJobs &&
-            dependentJobs.some((dependentJob: Job) => dependentJob.status == 6))
+        deleteDisabled: !!dependentJobs?.some(
+          (dependentJob: Job) => !isTerminalJobStatus(dependentJob.status)
         ),
       });
   }, [dependentJobs, mutateJobs]);

@@ -46,6 +46,31 @@ export class ProjectImport {
     public time: string
   ) {}
 }
+// Mirrors server/ccp4i2/db/models.py Job.Status (IntegerChoices).
+export enum JobStatus {
+  UNKNOWN = 0,
+  PENDING = 1,
+  QUEUED = 2,
+  RUNNING = 3,
+  INTERRUPTED = 4,
+  FAILED = 5,
+  FINISHED = 6,
+  RUNNING_REMOTELY = 7,
+  FILE_HOLDER = 8,
+  TO_DELETE = 9,
+  UNSATISFACTORY = 10,
+}
+
+const TERMINAL_JOB_STATUSES: ReadonlySet<JobStatus> = new Set([
+  JobStatus.INTERRUPTED,
+  JobStatus.FAILED,
+  JobStatus.FINISHED,
+  JobStatus.UNSATISFACTORY,
+]);
+
+export const isTerminalJobStatus = (status: number): boolean =>
+  TERMINAL_JOB_STATUSES.has(status as JobStatus);
+
 export class Job {
   constructor(
     //public children: number[],

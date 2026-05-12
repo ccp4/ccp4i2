@@ -8,7 +8,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { Job, File as DjangoFile } from "../types/models";
+import { Job, File as DjangoFile, isTerminalJobStatus } from "../types/models";
 import { doDownload, useApi } from "../api";
 import { useRouter } from "next/navigation";
 import { useDeleteDialog } from "./delete-dialog";
@@ -422,12 +422,8 @@ export const JobMenu: React.FC = () => {
               )}
             </Paper>,
           ],
-          deleteDisabled: !(
-            (dependentJobs && dependentJobs?.length == 0) ||
-            (dependentJobs &&
-              dependentJobs.some(
-                (dependentJob: Job) => dependentJob.status == 6
-              ))
+          deleteDisabled: !!dependentJobs?.some(
+            (dependentJob: Job) => !isTerminalJobStatus(dependentJob.status)
           ),
         });
     },
