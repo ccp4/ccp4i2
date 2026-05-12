@@ -53,7 +53,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       if (!dbFileId) return;
 
       try {
-        const response = await apiGet(`files/${dbFileId}/digest_by_uuid`);
+        const response = await apiGet(`files_by_uuid/${dbFileId}/digest/`);
         const sequences: Record<string, string> = response?.data?.sequences;
         if (sequences && Object.keys(sequences).length > 0) {
           const fastaText = Object.entries(sequences)
@@ -79,7 +79,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       if (!dbFileId) return;
 
       try {
-        const content = await apiText(`files/${dbFileId}/download_by_uuid`);
+        const content = await apiText(`files_by_uuid/${dbFileId}/download/`);
         if (content) {
           await forceSetSEQUENCETEXT(content);
         }

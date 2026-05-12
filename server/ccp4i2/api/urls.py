@@ -8,7 +8,7 @@ from .ProjectViewSet import ProjectViewSet
 from .ProjectTagViewSet import ProjectTagViewSet
 from .ProjectGroupViewSet import ProjectGroupViewSet
 from .ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
-from .FileViewSet import FileViewSet
+from .FileViewSet import FileViewSet, FileByUuidViewSet
 from .FileTypeViewSet import FileTypeViewSet
 from .FileImportViewSet import FileImportViewSet
 from .FileUseViewSet import FileUseViewSet
@@ -21,6 +21,7 @@ router.register("projecttags", ProjectTagViewSet)
 router.register("projectgroups", ProjectGroupViewSet)
 router.register("projectgroupmemberships", ProjectGroupMembershipViewSet)
 router.register("files", FileViewSet)
+router.register("files_by_uuid", FileByUuidViewSet, basename="files_by_uuid")
 router.register("filetypes", FileTypeViewSet)
 router.register("fileimports", FileImportViewSet)
 router.register("fileuses", FileUseViewSet)
@@ -79,16 +80,11 @@ if "azure_extensions" in settings.INSTALLED_APPS:
     except ImportError as e:
         print(f"Warning: azure_extensions in INSTALLED_APPS but import failed: {e}")
 
-# Include users URLs if the app is installed
-if "users" in settings.INSTALLED_APPS:
-    try:
-        from users.urls import urlpatterns as users_urls
-        urlpatterns = urlpatterns + [
-            path("api/users/", include((users_urls, "users"))),
-        ]
-        print("Users URLs loaded at /api/users/")
-    except ImportError as e:
-        print(f"Warning: users in INSTALLED_APPS but import failed: {e}")
+# Note: the `users` app is Materia-resident (LOCKED #1 in
+# apps/compounds/docs/INVENTORY.md). CCP4i2 cloud admin uses Django's
+# built-in IsAdminUser permission instead. If a deployment overlays
+# the materia users app on top of CCP4i2 (current DDU pattern), it
+# is responsible for registering its own /api/users/ routes.
 
 # Include compounds URLs if the app is enabled
 # Compounds is a separate app, so it gets its own API namespace /api/compounds/

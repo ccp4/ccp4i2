@@ -1,13 +1,13 @@
 /**
- * Campaign (Fragment Screening) type definitions.
+ * Campaign (Fragment Screening) type definitions — *renderer-internal*.
  *
- * These map to the Django models ProjectGroup and ProjectGroupMembership
- * in server/ccp4i2/db/models.py.
- *
- * Campaigns organize multiple projects for batch crystallographic processing,
- * typically for fragment screening where a parent project provides reference
- * coordinates and FreeR flags, and member projects each represent a dataset
- * soaked with a different compound.
+ * The corresponding *contract* types live in `@ccp4/ccp4i2-api`'s
+ * `contracts/ccp4i2.ts` and represent the narrow, externally-promised
+ * shape. The renderer's types here are intentionally RICHER — they
+ * include Django reverse-relation fields (e.g. `exports`, `fileimport`,
+ * tag `children`) that the API exposes today but that aren't part of
+ * the v0 contract. Materia and other external consumers should import
+ * the narrow shapes from `@ccp4/ccp4i2-api`.
  */
 
 import { Project, File as DbFile, Job } from "./models";
@@ -174,14 +174,6 @@ export interface BatchFileItem {
  * - test_NCL_12345_data
  */
 export const NCL_ID_PATTERN = /ncl[-_](\d{1,8})/i;
-
-/**
- * Legacy strict pattern for backwards compatibility.
- * Only matches the original expected format.
- * @deprecated Use NCL_ID_PATTERN for more flexible matching
- */
-export const DATASET_FILENAME_PATTERN =
-  /^(?<visit>[^_]+)_(?<crystal>[^_]+)_NCL[-_](?<nclId>\d{8})_(?<processing>.+)$/;
 
 /**
  * Parse a filename to extract campaign metadata.

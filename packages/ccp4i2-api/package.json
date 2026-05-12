@@ -1,0 +1,44 @@
+{
+  "name": "@ccp4/ccp4i2-api",
+  "version": "0.3.0",
+  "description": "Shared API contract (auth, api-fetch, request/response types) for CCP4i2 and consumers (CCP4i2 Compounds, third-party integrators)",
+  "license": "LGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ccp4/ccp4i2.git",
+    "directory": "packages/ccp4i2-api"
+  },
+  "homepage": "https://github.com/ccp4/ccp4i2/tree/django-sliced/packages/ccp4i2-api#readme",
+  "bugs": "https://github.com/ccp4/ccp4i2/issues",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    }
+  },
+  "files": [
+    "lib",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "watch": "tsc -p tsconfig.build.json --watch",
+    "clean": "rm -rf lib",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "jsdom": "^24.1.3",
+    "typescript": "^5.0.0",
+    "vitest": "^2.1.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

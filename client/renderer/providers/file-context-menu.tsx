@@ -109,11 +109,10 @@ export const FileMenu: React.FC = () => {
   const api = useApi();
   const { setContentSpecification } = useFilePreviewContext();
   const router = useRouter();
-  const { mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>({
-    type: "projects",
-    id: projectId || 0,
-    endpoint: "files",
-  });
+  // /files/?project=<id> replaces the retired /projects/<id>/files @action.
+  const { mutate: mutateFiles } = api.get<DjangoFile[]>(
+    projectId ? `files/?project=${projectId}` : null
+  );
 
   // State for annotation editor popper
   const [annotationPopperAnchorEl, setAnnotationPopperAnchorEl] =

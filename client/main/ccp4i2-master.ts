@@ -4,6 +4,12 @@ import fs from "fs";
 import Store from "electron-store";
 import detectPort from "detect-port";
 import { fileURLToPath } from "node:url";
+// Side-effect import: generates the per-launch local-session token and
+// installs CCP4I2_LOCAL_SESSION_TOKEN + CCP4I2_LOCAL_USER_EMAIL on
+// process.env, so they propagate to both the Django child process and
+// the Electron preload. Must be imported before any BrowserWindow is
+// created or the Django server is spawned.
+import "./ccp4i2-local-session";
 import { startNextServer } from "./ccp4i2-next-server";
 import { installIpcHandlers } from "./ccp4i2-ipc";
 import { Server } from "node:http";

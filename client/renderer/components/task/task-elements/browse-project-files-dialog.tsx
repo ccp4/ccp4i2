@@ -413,11 +413,11 @@ export const BrowseProjectFilesDialog: React.FC<
   const { jobs } = useProjectJobs(selectedProject?.id, 10000);
   const jobsLoading = !jobs && !!selectedProject;
 
+  // /files/?job=<id> replaces the retired /jobs/<id>/files @action
+  // (see server/ccp4i2/api/JobViewSet.py line 1674).
   const { data: files, isLoading: filesLoading, error: filesError } =
-    api.get_endpoint<DjangoFile[]>(
-      selectedJob
-        ? { type: "jobs", id: selectedJob.id, endpoint: "files" }
-        : null
+    api.get<DjangoFile[]>(
+      selectedJob ? `files/?job=${selectedJob.id}` : null
     );
 
   // ----- Filtered lists -----

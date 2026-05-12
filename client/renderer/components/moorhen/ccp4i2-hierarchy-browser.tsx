@@ -425,16 +425,13 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
   const jobsLoading = !jobs && !!selectedProject;
   const jobsError = undefined;
 
+  // /files/?job=<id> replaces the retired /jobs/<id>/files @action.
   const {
     data: files,
     isLoading: filesLoading,
     error: filesError,
-  } = api.get_endpoint<DjangoFile[]>(
-    {
-      type: "jobs",
-      id: selectedJob?.id,
-      endpoint: "files",
-    },
+  } = api.get<DjangoFile[]>(
+    selectedJob?.id ? `files/?job=${selectedJob.id}` : null,
     getFilesRefreshInterval(selectedJob)
   );
 

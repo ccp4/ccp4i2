@@ -35,8 +35,8 @@ export const ProjectNetwork = ({ projectId }: ProjectNetworkProps) => {
   const { data: fileUses } = api.get<FileUseInfo[]>(
     `projects/${projectId}/file_uses/`
   );
-  const { data: files } = api.get<FileInfo[]>(`projects/${projectId}/files/`);
-  const { data: jobs } = api.get<JobInfo[]>(`projects/${projectId}/jobs/`);
+  const { data: files } = api.get<FileInfo[]>(`files/?project=${projectId}`);
+  const { data: jobs } = api.get<JobInfo[]>(`jobs/?project=${projectId}`);
 
   const topLevelJobs = useMemo(
     () => (jobs ? jobs.filter((job) => job.parent === null) : []),

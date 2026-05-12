@@ -171,7 +171,7 @@ export function BatchImportDialog({
 
       // 3. Upload reference coordinates using upload_file_param endpoint
       dispatch({ type: "UPDATE_STATUS", file, status: "uploading_coords" });
-      // Get coords file content (use download/ with numeric id, not download_by_uuid/)
+      // Get coords file content (id-addressed: files/{id}/download/, not files_by_uuid/{uuid}/download/)
       // Use apiFetch for authenticated download
       const coordsResponse = await apiFetch(
         `files/${latestCoordsFileId}/download/`
@@ -184,7 +184,7 @@ export function BatchImportDialog({
 
       const coordsFormData = new FormData();
       coordsFormData.append("file", coordsBlob, coordsFileName);
-      coordsFormData.append("objectPath", "SubstituteLigand.inputData.XYZIN");
+      coordsFormData.append("object_path", "SubstituteLigand.inputData.XYZIN");
 
       // Use apiUpload for authenticated upload
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, coordsFormData);
@@ -219,7 +219,7 @@ export function BatchImportDialog({
       dispatch({ type: "UPDATE_STATUS", file, status: "uploading_reflections" });
       const reflFormData = new FormData();
       reflFormData.append("file", file, file.name);
-      reflFormData.append("objectPath", "SubstituteLigand.inputData.UNMERGEDFILES[0].file");
+      reflFormData.append("object_path", "SubstituteLigand.inputData.UNMERGEDFILES[0].file");
 
       // Use apiUpload for authenticated upload
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, reflFormData);

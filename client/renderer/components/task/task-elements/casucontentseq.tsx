@@ -341,7 +341,7 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
                 }}
                 onChange={async (updatedItem: any) => {
                   const { dbFileId, annotation } = valueOfItem(updatedItem);
-                  const digest = await apiGet(`files/${dbFileId}/digest_by_uuid`);
+                  const digest = await apiGet(`files_by_uuid/${dbFileId}/digest/`);
                   setSEQUENCEFromSEQIN(digest, annotation);
                 }}
                 suppressMutations={true}

@@ -163,9 +163,9 @@ export const InlineTaskModal: React.FC<InlineTaskModalProps> = ({
         }
 
         // Fetch the helper job's output files via GET
-        // The files endpoint returns a plain array (not wrapped in {success, data})
+        // /files/?job=N returns a plain array (not wrapped in {success, data})
         const files: DjangoFile[] = await apiJson<DjangoFile[]>(
-          `jobs/${helperJob.id}/files/`
+          `files/?job=${helperJob.id}`
         );
 
         const outputFile = files.find(

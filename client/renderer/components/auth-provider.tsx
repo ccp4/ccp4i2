@@ -11,7 +11,10 @@ import {
   setTeamsTokenRefresher,
   setTeamsToken,
   clearTeamsToken,
-} from "../utils/auth-token";
+  hasLocalSessionToken,
+  createLocalSessionTokenGetter,
+  createLocalSessionEmailGetter,
+} from "@ccp4/ccp4i2-api";
 import { getAuthConfig } from "../utils/auth-config";
 
 /**
@@ -80,6 +83,21 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
+    // LocalSession path (CCP4i2 desktop): the Electron preload exposed a
+    // per-launch token via window.ccp4i2LocalSession. Use that getter and
+    // skip MSAL entirely — desktop has no Azure AD account to bind to.
+    if (hasLocalSessionToken()) {
+      setTokenGetter(createLocalSessionTokenGetter());
+      setEmailGetter(createLocalSessionEmailGetter());
+      setLogoutHandler(() => {
+        // Desktop session lives until the app process dies; logout is a no-op.
+        console.log("[AUTH] Local session active; logout is a no-op.");
+      });
+      setInitialized(true);
+      return;
+    }
+
+    // MSAL path (cloud build, or Electron without preload-injected token).
     getAuthConfig().then((config) => {
       const pca = new PublicClientApplication({
         auth: {
@@ -125,25 +143,47 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             await setAuthSessionCookie();
           }
 
-          // Set up the token and email getters for API calls
+          // Set up the token and email getters for API calls.
+          //
+          // Silent-only path with one retry. We deliberately do NOT fall back
+          // to acquireTokenPopup here: tokenGetter is invoked from inside
+          // fetch wrappers, which are not a user-gesture context, so popup
+          // calls would be blocked by the browser anyway. When silent fails
+          // we return null; the api-fetch layer turns the resulting 401 into
+          // an AUTH_ERROR_EVENT, which AuthErrorHandler surfaces as a
+          // snackbar + auto-redirect to sign-in.
+          //
+          // The single retry catches the common transient case: parallel
+          // fetches racing the underlying MSAL refresh, where the second
+          // call sees the in-flight refresh and silent throws even though
+          // a fresh token is about to land. Discovered when long sequences
+          // (Moorhen panel mounts, R-group decomposition on Materia's
+          // AggregationPage) triggered "Your session has expired"
+          // snackbars: the popup fallback couldn't fire from the fetch
+          // path so the request went out tokenless and got a real 401
+          // anyway.
           setTokenGetter(async () => {
             const accounts = pca.getAllAccounts();
             if (accounts.length === 0) return null;
+            const params = {
+              scopes: [`${config.clientId}/.default`],
+              account: accounts[0],
+            };
             try {
-              const resp = await pca.acquireTokenSilent({
-                scopes: [`${config.clientId}/.default`],
-                account: accounts[0],
-              });
+              const resp = await pca.acquireTokenSilent(params);
               return resp.accessToken;
-            } catch {
+            } catch (firstError: any) {
+              // Brief delay lets any in-flight refresh on a sibling call
+              // finish populating MSAL's account cache before we retry.
+              await new Promise((resolve) => setTimeout(resolve, 250));
               try {
-                const resp = await pca.acquireTokenPopup({
-                  scopes: [`${config.clientId}/.default`],
-                  account: accounts[0],
-                });
+                const resp = await pca.acquireTokenSilent(params);
                 return resp.accessToken;
-              } catch (interactiveError: any) {
-                console.error("[AUTH] Token acquisition failed:", interactiveError?.message || interactiveError);
+              } catch (secondError: any) {
+                console.error(
+                  "[AUTH] Silent token acquisition failed (after retry):",
+                  secondError?.message || secondError
+                );
                 return null;
               }
             }
@@ -182,7 +222,15 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     };
   }, []);
 
-  if (!initialized || !msalInstance) return null;
+  if (!initialized) return null;
 
+  // LocalSession mode: render children directly. MsalProvider is not
+  // needed because no MSAL hooks should be reached on the desktop auth
+  // path (the renderer never sees a login flow).
+  if (hasLocalSessionToken()) {
+    return <>{children}</>;
+  }
+
+  if (!msalInstance) return null;
   return <MsalProvider instance={msalInstance}>{children}</MsalProvider>;
 }

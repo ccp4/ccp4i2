@@ -681,7 +681,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         const coordFile = new File([coordBlob], `${mol.name || "coords"}${ext}`);
         const coordFormData = new FormData();
         coordFormData.append("file", coordFile);
-        coordFormData.append("objectPath", "servalcat_pipe.inputData.XYZIN");
+        coordFormData.append("object_path", "servalcat_pipe.inputData.XYZIN");
         await apiUpload(`jobs/${newJobId}/upload_file_param/`, coordFormData);
 
         // Step 4: Link reflections via database file reference
@@ -710,7 +710,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           const dictFile = new File([dictBlob], "ligand.cif");
           const dictFormData = new FormData();
           dictFormData.append("file", dictFile);
-          dictFormData.append("objectPath", "servalcat_pipe.inputData.DICT_LIST[0]");
+          dictFormData.append("object_path", "servalcat_pipe.inputData.DICT_LIST[0]");
           await apiUpload(`jobs/${newJobId}/upload_file_param/`, dictFormData);
         }
 

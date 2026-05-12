@@ -78,7 +78,7 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
   }, [effectiveMetadata, projects]);
 
   const { data: jobs, mutate: mutateJobs } = api.get<JobInfo[]>(
-    `projects/${selectedProject?.id}/jobs/`
+    `jobs/?project=${selectedProject?.id}`
   );
 
   const handlePushToCCP4i2 = useCallback(async () => {
@@ -120,7 +120,7 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
           (format === "mmcif" ? ".cif" : ".pdb");
 
         const formData = new FormData();
-        formData.append("objectPath", "coordinate_selector.inputData.XYZIN");
+        formData.append("object_path", "coordinate_selector.inputData.XYZIN");
         formData.append(
           "file",
           new Blob([modelCoords], {

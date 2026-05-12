@@ -62,16 +62,41 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Azure AD authentication middleware
-# Always enabled to set request.user for DRF authentication.
-# Behavior depends on CCP4I2_REQUIRE_AUTH:
-#   - When true: Validates JWT tokens, requires AZURE_AD_TENANT_ID and AZURE_AD_CLIENT_ID
-#   - When false/unset: Auto-assigns dev_admin user for local/Electron development
-MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
-if os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
-    pass  # Auth required — validates JWT tokens
-else:
-    pass  # Dev mode — auto-assigns dev_admin user
+# Authentication middleware selection — fail-closed three-way switch.
+#
+# Exactly one auth middleware is inserted, picked by deployment shape:
+#
+# 1. Desktop (Electron):  CCP4I2_LOCAL_SESSION_TOKEN is set
+#                         → LocalSessionAuthMiddleware (HMAC against
+#                           per-launch secret, request.user is the OS user)
+# 2. Cloud (production):  CCP4I2_REQUIRE_AUTH=true
+#                         → AzureADAuthMiddleware (JWT validation, group
+#                           authorization, no dev fallback)
+# 3. Local dev:           neither of the above, AND DEBUG=True
+#                         → DevAdminMiddleware (auto-creates dev_admin
+#                           superuser; DEBUG-gated inside the middleware
+#                           too as defence in depth)
+# 4. Otherwise:           NO auth middleware installed. Requests fall
+#                         through with AnonymousUser; DRF's IsAuthenticated
+#                         rejects them with 401. This is the "production
+#                         shaped but missing REQUIRE_AUTH" case — strictly
+#                         safer than auto-creating a superuser.
+#
+# The previous "AzureADAuthMiddleware always inserted, branches internally
+# on REQUIRE_AUTH" pattern was a misconfiguration backdoor: a production
+# deploy with REQUIRE_AUTH accidentally false would auto-assign dev_admin.
+# The new layout keeps each middleware single-responsibility and forces
+# misconfiguration to fail closed.
+if os.environ.get("CCP4I2_LOCAL_SESSION_TOKEN"):
+    MIDDLEWARE.insert(
+        0,
+        "ccp4i2_api.middleware.local_session.LocalSessionAuthMiddleware",
+    )
+elif os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
+    MIDDLEWARE.insert(0, "ccp4i2_api.middleware.azure_ad.AzureADAuthMiddleware")
+elif DEBUG:  # noqa: F821 — DEBUG is defined earlier in this settings file.
+    MIDDLEWARE.insert(0, "ccp4i2_api.middleware.dev_admin.DevAdminMiddleware")
+# else: no auth middleware. AnonymousUser + DRF IsAuthenticated → 401.
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
@@ -215,7 +240,7 @@ REST_FRAMEWORK = {
     # In development (no auth), this returns None and AllowAny permits access
     # In production, the middleware validates JWT and sets request.user
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "ccp4i2.middleware.azure_auth.AzureADAuthentication",
+        "ccp4i2_api.drf.AzureADAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",

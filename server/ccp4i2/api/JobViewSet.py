@@ -148,7 +148,11 @@ class JobViewSet(ModelViewSet):
         ```
     """
 
-    queryset = models.Job.objects.all()
+    # Prefetch the KPI reverse-FKs so JobSerializer's float_values /
+    # char_values method fields don't N+1 on list/detail endpoints.
+    queryset = models.Job.objects.all().prefetch_related(
+        "float_values", "char_values"
+    )
     serializer_class = serializers.JobSerializer
     parser_classes = [FormParser, MultiPartParser, JSONParser]
     filterset_fields = ["project"]
@@ -715,7 +719,12 @@ class JobViewSet(ModelViewSet):
         try:
             the_job = models.Job.objects.get(id=pk)
             dependent_jobs = find_dependent_jobs(the_job)
-            serializer = serializers.JobSerializer(dependent_jobs, many=True)
+            # Re-fetch through the prefetched queryset so JobSerializer's
+            # float_values / char_values don't N+1 over the dependency chain.
+            dep_ids = [j.id for j in dependent_jobs]
+            dep_map = {j.id: j for j in self.get_queryset().filter(id__in=dep_ids)}
+            ordered = [dep_map[i] for i in dep_ids if i in dep_map]
+            serializer = serializers.JobSerializer(ordered, many=True)
             # DRF standard for list endpoints - return array directly
             return Response(serializer.data)
         except (ValueError, models.Job.DoesNotExist) as err:
@@ -740,13 +749,18 @@ class JobViewSet(ModelViewSet):
 
         try:
             bulk_info = find_bulk_dependent_jobs(job_ids)
+            # Re-fetch through prefetched queryset so JobSerializer's
+            # float_values / char_values don't N+1 across the bulk set.
+            all_ids = (
+                [j.id for j in bulk_info["selected_jobs"]]
+                + [j.id for j in bulk_info["additional_dependents"]]
+            )
+            qs_map = {j.id: j for j in self.get_queryset().filter(id__in=all_ids)}
+            sel = [qs_map[j.id] for j in bulk_info["selected_jobs"] if j.id in qs_map]
+            add = [qs_map[j.id] for j in bulk_info["additional_dependents"] if j.id in qs_map]
             return api_success({
-                "selected_jobs": serializers.JobSerializer(
-                    bulk_info["selected_jobs"], many=True
-                ).data,
-                "additional_dependents": serializers.JobSerializer(
-                    bulk_info["additional_dependents"], many=True
-                ).data,
+                "selected_jobs": serializers.JobSerializer(sel, many=True).data,
+                "additional_dependents": serializers.JobSerializer(add, many=True).data,
                 "total_to_delete": len(bulk_info["all_jobs_to_delete"]),
                 "has_active_dependents": bulk_info["has_active_dependents"],
             })
@@ -1671,59 +1685,10 @@ class JobViewSet(ModelViewSet):
             logging.exception("Failed to retrieve job with id %s", pk, exc_info=err)
             return api_error(str(err), status=404)
 
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.FileSerializer,
-    )
-    def files(self, request, pk=None):
-        """
-        Retrieve files associated with a specific job.
-
-        Returns a complete list of input and output files for the job,
-        including file metadata and access information.
-
-        Args:
-            request (Request): HTTP request object
-            pk (int): Primary key of the job
-
-        Returns:
-            Response: Serialized list of file objects
-
-        Response Format:
-            [
-                {
-                    "id": 789,
-                    "uuid": "file-uuid",
-                    "filename": "structure.pdb",
-                    "file_type": "PDB",
-                    "size": 12345,
-                    "job_param_name": "XYZIN",
-                    "is_input": true,
-                    "created_date": "2024-01-01T12:00:00Z"
-                }
-            ]
-
-        File Categories:
-            - Input files: User-provided data
-            - Output files: Generated results
-            - Intermediate files: Processing artifacts
-            - Log files: Execution records
-
-        Side Effects:
-            - Updates project last_access timestamp
-            - Enables project activity tracking
-
-        Example:
-            GET /api/jobs/123/files/
-        """
-        job = models.Job.objects.get(pk=pk)
-        serializer = serializers.FileSerializer(
-            models.File.objects.filter(job=job), many=True
-        )
-        job.project.last_access = datetime.datetime.now(tz=timezone("UTC"))
-        job.project.save()
-        return Response(serializer.data)
+    # files() @action removed — consumers should hit /files/?job={id} instead.
+    # FileViewSet's filterset_fields=["job"] supports this natively; the
+    # last_access-on-read side effect is dropped (and was always tangential —
+    # listing files of a job is not necessarily project-level engagement).
 
     @action(
         detail=True,

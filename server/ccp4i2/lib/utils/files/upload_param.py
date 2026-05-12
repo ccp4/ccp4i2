@@ -216,7 +216,10 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
     plugin = plugin_result.data
     container = plugin.container
-    object_path = request.POST.get("objectPath")
+    # Prefer snake_case `object_path` (matches set_parameter's JSON body
+    # convention); accept legacy `objectPath` (camelCase) as a back-compat
+    # alias for older clients (i2remote, third-party integrators).
+    object_path = request.POST.get("object_path") or request.POST.get("objectPath")
     files = request.FILES.getlist("file")
 
     logger.info("object_path from request: %s", object_path)

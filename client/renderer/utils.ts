@@ -720,11 +720,12 @@ export const useProject = (projectId: number | null | undefined): ProjectData =>
   // Subscribe to job_tree — shared SWR key with ClassicJobsList (which polls it)
   const { jobs, mutateJobs } = useProjectJobs(projectId);
 
-  const { data: files, mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>({
-    type: "projects",
-    id: projectId,
-    endpoint: "files",
-  });
+  // The /projects/<id>/files @action was retired in favour of the flat-list
+  // filter `/files/?project=<id>` (see server/ccp4i2/api/ProjectViewSet.py
+  // line 208). Response shape is unchanged (DjangoFile[]).
+  const { data: files, mutate: mutateFiles } = api.get<DjangoFile[]>(
+    projectId ? `files/?project=${projectId}` : null
+  );
 
   return {
     project,
@@ -763,14 +764,9 @@ export const useProjectFiles = (
 
   const pollInterval = shouldPoll ? FILES_POLL_INTERVAL : 0;
 
-  const { data: files, mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>(
-    projectId
-      ? {
-          type: "projects",
-          id: projectId,
-          endpoint: "files",
-        }
-      : null,
+  // /files/?project=<id> replaces the retired /projects/<id>/files @action.
+  const { data: files, mutate: mutateFiles } = api.get<DjangoFile[]>(
+    projectId ? `files/?project=${projectId}` : null,
     pollInterval
   );
 
@@ -1084,7 +1080,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
       return parameterQueue.enqueue(async () => {
         try {
           const formData = new FormData();
-          formData.append("objectPath", objectPath);
+          formData.append("object_path", objectPath);
           formData.append("file", file, fileName);
           if (columnSelector?.trim()) {
             formData.append("column_selector", columnSelector);
@@ -1286,7 +1282,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
     //console.log("dbFileId", JSON.stringify(dbFileId));
     // Return null key when dbFileId is falsey - this prevents SWR from fetching
-    const swrKey = dbFileId ? `files/${dbFileId}/download_by_uuid` : null;
+    const swrKey = dbFileId ? `files_by_uuid/${dbFileId}/download/` : null;
 
     const fetcher = async (): Promise<string> => {
       if (!swrKey) {

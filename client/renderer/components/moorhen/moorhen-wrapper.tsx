@@ -497,7 +497,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         const coordFile = new File([coordBlob], `${mol.name || "coords"}${ext}`);
         const formData = new FormData();
         formData.append("file", coordFile);
-        formData.append("objectPath", "servalcat_pipe.inputData.XYZIN");
+        formData.append("object_path", "servalcat_pipe.inputData.XYZIN");
         await apiUpload(`jobs/${newJobId}/upload_file_param/`, formData);
 
         // Run the job

@@ -3,10 +3,14 @@ import React, { PropsWithChildren, useState, useCallback, useMemo } from "react"
 import { CCP4i2Context } from "../app-context";
 import { CssBaseline } from "@mui/material";
 import { File, Job } from "../types/models";
-import { PopcornProvider, usePopcorn } from "./popcorn-provider";
+import { usePopcorn } from "./popcorn-provider";
 import { RunCheckProvider } from "./run-check-provider";
 import { useStalledJobWarnings } from "./recently-started-jobs-context";
-import { AuthErrorHandler } from "../components/auth-error-handler";
+// PopcornProvider + AuthErrorHandler are mounted by the
+// app/ccp4i2/(authed)/layout.tsx route group, so all real ccp4i2 routes
+// share one snackbar surface and one 401 handler — including modals and
+// dialogs that mount outside the CCP4i2App shell. /ccp4i2/config lives
+// outside (authed) and so does NOT get them, by design.
 
 /**
  * Component to display stalled job warnings via Popcorn.
@@ -58,16 +62,13 @@ export const CCP4i2App = (props: PropsWithChildren) => {
   );
 
   return (
-    <PopcornProvider>
-      <CCP4i2Context.Provider value={contextValue}>
-        <CssBaseline />
-        <AuthErrorHandler />
-        <RunCheckProvider>
-          <StalledJobWarningsHandler>
-            {props.children}
-          </StalledJobWarningsHandler>
-        </RunCheckProvider>
-      </CCP4i2Context.Provider>
-    </PopcornProvider>
+    <CCP4i2Context.Provider value={contextValue}>
+      <CssBaseline />
+      <RunCheckProvider>
+        <StalledJobWarningsHandler>
+          {props.children}
+        </StalledJobWarningsHandler>
+      </RunCheckProvider>
+    </CCP4i2Context.Provider>
   );
 };

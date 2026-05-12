@@ -307,7 +307,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   // Fetch file metadata by UUID if not found in fileOptions
   // This handles files from subjobs or external sources (drag-drop, etc.)
   const { data: fetchedFile } = api.get<CCP4i2File>(
-    dbFileId && !selectedFileInOptions ? `files/${dbFileId}/by_uuid` : null
+    dbFileId && !selectedFileInOptions ? `files_by_uuid/${dbFileId}/` : null
   );
 
   // Combine fileOptions with fetched external file if needed

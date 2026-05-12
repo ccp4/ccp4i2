@@ -27,7 +27,7 @@ import { ProjectExport } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
 import { useProject } from "../utils";
 import { useApi } from "../api";
-import { getAccessToken } from "../utils/auth-token";
+import { getAccessToken } from "@ccp4/ccp4i2-api";
 
 interface ProjectExportsDialogProps {
   open: boolean;

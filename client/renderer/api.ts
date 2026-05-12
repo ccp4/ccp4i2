@@ -9,7 +9,7 @@ import {
   apiPatch,
   apiDelete,
 } from "./api-fetch";
-import { getAccessToken } from "./utils/auth-token";
+import { getAccessToken } from "@ccp4/ccp4i2-api";
 
 // =============================================================================
 // Constants
@@ -403,7 +403,7 @@ export function useApi() {
      */
     fileTextContent(djangoFile: any) {
       const swrKey = djangoFile?.dbFileId
-        ? `files/${djangoFile.dbFileId}/download_by_uuid`
+        ? `files_by_uuid/${djangoFile.dbFileId}/download/`
         : null;
       return useSWR<string>(swrKey, apiText);
     },

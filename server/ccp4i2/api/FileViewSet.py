@@ -13,7 +13,7 @@ from ..lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 from ..lib.utils.files.preview import preview_file
 from xml.etree import ElementTree as ET
 from rest_framework.parsers import FormParser, MultiPartParser
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from . import serializers
@@ -41,6 +41,12 @@ class FileViewSet(ModelViewSet):
         directory = self.request.query_params.get("directory")
         if directory is not None:
             queryset = queryset.filter(directory=directory)
+        # `?project={id}` filters files transitively through Job→Project.
+        # Replaces the deleted ProjectViewSet.files @action; the legacy
+        # `?job__project={id}` form is retained as an alias for back-compat.
+        project_id = self.request.query_params.get("project")
+        if project_id is not None:
+            queryset = queryset.filter(job__project_id=project_id)
         job_project = self.request.query_params.get("job__project")
         if job_project is not None:
             queryset = queryset.filter(job__project_id=job_project)
@@ -49,19 +55,10 @@ class FileViewSet(ModelViewSet):
             queryset = queryset.filter(job__parent__isnull=parent_isnull.lower() == "true")
         return queryset
 
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.FileSerializer,
-    )
-    def by_uuid(self, request, pk=None):
-        try:
-            the_file = models.File.objects.get(uuid=pk)
-            serializer = serializers.FileSerializer(the_file, many=False)
-            return Response(serializer.data)
-        except models.File.DoesNotExist as err:
-            logging.exception("Failed to retrieve file with id %s", pk, exc_info=err)
-            return api_error(str(err), status=404)
+    # by_uuid() / download_by_uuid() / digest_by_uuid() @actions removed —
+    # consumers should hit /files_by_uuid/{uuid}/ (FileByUuidViewSet) instead.
+    # The old actions abused the {pk} URL slot to carry a uuid; the new
+    # viewset uses lookup_field="uuid" so the URL pattern is honest.
 
     @action(
         detail=True,
@@ -71,19 +68,6 @@ class FileViewSet(ModelViewSet):
     def download(self, request, pk=None):
         try:
             the_file = models.File.objects.get(id=pk)
-            return FileResponse(open(the_file.path, "rb"), filename=the_file.name)
-        except models.File.DoesNotExist as err:
-            logging.exception("Failed to retrieve file with id %s", pk, exc_info=err)
-            return api_error(str(err), status=404)
-
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.FileSerializer,
-    )
-    def download_by_uuid(self, request, pk=None):
-        try:
-            the_file = models.File.objects.get(uuid=pk)
             return FileResponse(open(the_file.path, "rb"), filename=the_file.name)
         except models.File.DoesNotExist as err:
             logging.exception("Failed to retrieve file with id %s", pk, exc_info=err)
@@ -120,39 +104,6 @@ class FileViewSet(ModelViewSet):
             return api_error("File not found", status=404)
         except Exception as err:
             logger.exception("Failed to digest file %s", pk, exc_info=err)
-            return api_error(str(err), status=500)
-
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.FileSerializer,
-    )
-    def digest_by_uuid(self, request, pk=None):
-        """
-        Get digest (summary) of file contents by UUID.
-
-        Uses modern digest utility that:
-        - Loads CDataFileContent subclass based on file type
-        - Returns JSON dictionary representation
-        - Tries to infer file type if not explicit
-
-        Returns dict with file metadata like sequences, composition, cell, etc.
-        """
-        try:
-            the_file = models.File.objects.get(uuid=pk)
-            result = digest_file(the_file)
-
-            # Check if digest returned an error
-            if isinstance(result, dict) and result.get("status") == "Failed":
-                return api_error(result.get("reason", "Digest failed"), status=400)
-
-            return api_success(result)
-
-        except models.File.DoesNotExist:
-            logger.exception("File with UUID %s not found", pk)
-            return api_error("File not found", status=404)
-        except Exception as err:
-            logger.exception("Failed to digest file with UUID %s", pk, exc_info=err)
             return api_error(str(err), status=500)
 
     @action(
@@ -263,4 +214,60 @@ class FileViewSet(ModelViewSet):
             return api_error("MolBlock conversion not available (missing RDKit/gemmi)", status=500)
         except Exception as err:
             logger.exception("Failed to convert file %s to molblock", pk, exc_info=err)
+            return api_error(str(err), status=500)
+
+
+class FileByUuidViewSet(ReadOnlyModelViewSet):
+    """
+    Read-only view of files addressed by UUID rather than Django PK.
+
+    CCP4i2 parameter files (def.xml, fileUse refs, exported job bundles)
+    persist file references as UUIDs — they have no knowledge of the
+    deployment-local Django integer ID. This viewset gives consumers a
+    canonical way to resolve those refs:
+
+        GET /files_by_uuid/{uuid}/           — file metadata
+        GET /files_by_uuid/{uuid}/download/  — file content
+        GET /files_by_uuid/{uuid}/digest/    — file content digest
+
+    Mutations remain on the id-addressed FileViewSet; uuid is a lookup
+    surface for read paths only.
+    """
+    queryset = models.File.objects.all()
+    serializer_class = serializers.FileSerializer
+    lookup_field = "uuid"
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=True, methods=["get"])
+    def download(self, request, uuid=None):
+        try:
+            the_file = self.get_object()
+            return FileResponse(open(the_file.path, "rb"), filename=the_file.name)
+        except models.File.DoesNotExist as err:
+            logging.exception("File with uuid %s not found", uuid, exc_info=err)
+            return api_error(str(err), status=404)
+
+    @action(detail=True, methods=["get"])
+    def digest(self, request, uuid=None):
+        """
+        Get digest (summary) of file contents.
+
+        Uses modern digest utility that:
+        - Loads CDataFileContent subclass based on file type
+        - Returns JSON dictionary representation
+        - Tries to infer file type if not explicit
+
+        Returns dict with file metadata like sequences, composition, cell, etc.
+        """
+        try:
+            the_file = self.get_object()
+            result = digest_file(the_file)
+            if isinstance(result, dict) and result.get("status") == "Failed":
+                return api_error(result.get("reason", "Digest failed"), status=400)
+            return api_success(result)
+        except models.File.DoesNotExist:
+            logger.exception("File with uuid %s not found", uuid)
+            return api_error("File not found", status=404)
+        except Exception as err:
+            logger.exception("Failed to digest file with uuid %s", uuid, exc_info=err)
             return api_error(str(err), status=500)

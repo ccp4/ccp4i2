@@ -22,13 +22,13 @@ export const JobCommentEditor: React.FC<{
     };
   }, []);
 
-  const handleChange = (value: string, event: any) => {
+  const handleChange = (value: string | undefined, event: any) => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
 
     timerRef.current = setTimeout(() => {
-      saveComments(value);
+      saveComments(value ?? "");
     }, 2000);
   };
 
