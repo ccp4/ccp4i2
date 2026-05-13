@@ -424,9 +424,8 @@ class servalcat(CPluginScript):
                     else:
                         print(f"WARNING: input restraint dictionary {dictionary} does not exist and so will not be used.")
         # Weight
-        if str(self.container.controlParameters.WEIGHT_OPT) == "MANUAL":
-            if self.container.controlParameters.WEIGHT.isSet():
-                self.appendCommandLine(['--weight', str(self.container.controlParameters.WEIGHT)])
+        if self.container.controlParameters.WEIGHT.isSet():
+            self.appendCommandLine(['--weight', str(self.container.controlParameters.WEIGHT)])
         if self.container.controlParameters.WEIGHT_NO_ADJUST:
             self.appendCommandLine(['--no_weight_adjust'])
         elif self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN.isSet() and \
