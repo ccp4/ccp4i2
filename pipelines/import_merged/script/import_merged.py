@@ -532,9 +532,7 @@ class import_merged(CPluginScript):
         # print("convertmmcif files", outfile, freerfile)
         resorange = self.makeResoRange()
 
-        excludemissing = False
-        if self.container.controlParameters.EXCLUDE_MISSING:
-            excludemissing = True
+        excludemissing = bool(self.container.controlParameters.EXCLUDE_MISSING)
 
         cifcontenttype = str(self.container.inputData.MMCIF_SELECTED_CONTENT)
         convertcif = ConvertCIF(filename, blockname, cifcontenttype,
@@ -604,10 +602,8 @@ class import_merged(CPluginScript):
         reducehkl = True  # for now
         resorange = self.makeResoRange()
 
-        excludemissing = False
-        if self.container.controlParameters.EXCLUDE_MISSING:
-            excludemissing = True
-        
+        excludemissing = bool(self.container.controlParameters.EXCLUDE_MISSING)
+
         mtzimport = ImportMTZ(filename, outfile, freerfile,
                               obsColLabels, int(self.contentFlag),
                               freeRcolumnLabel,
