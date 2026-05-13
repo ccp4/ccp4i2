@@ -1,8 +1,9 @@
 # CCP4i2 Changelog
 
-## [2.6.2] - 2026-04-16
+## [2.6.2] - 2026-05-13
 
-- Added a Lorestr test
+- Fix to Density Calculator task
+- Added i2run tests Lorestr and Density Calculator
 - Updated Servalcat 7beq electron test R-work threshold
 - Updated ModelCraft task title
 
