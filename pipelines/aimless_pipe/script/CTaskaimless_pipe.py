@@ -1104,7 +1104,7 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
         idxblkinfo = []  # index into main list for accepted blocks
         otheridxblkinfo = [] # ... and for unaccepted ones
         self.hasfreer = False  # true if any accepted blocks have FreeR data
-        for idx, cifinfo in enumerate(self.cifblockinfo):            
+        for idx, cifinfo in enumerate(self.cifblockinfo):
             if (acceptMerged and cifinfo.merged_diffn_data()) or \
                ((not acceptMerged) and (not cifinfo.ismerged())):
                 # merged and merged or unmerged and unmerged
