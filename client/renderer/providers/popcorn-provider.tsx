@@ -17,8 +17,17 @@ import Button from "@mui/material/Button";
 
 type MessageSeverity = "info" | "success" | "warning" | "error";
 
+export type SnackbarAction = {
+  label: string;
+  onClick: () => void;
+};
+
 type PopcornContextType = {
-  setMessage: (msg: string, severity?: MessageSeverity) => void;
+  setMessage: (
+    msg: string,
+    severity?: MessageSeverity,
+    action?: SnackbarAction,
+  ) => void;
   setError: (msg: string) => void; // Modal error - requires user acknowledgment
 };
 
@@ -40,13 +49,20 @@ export const PopcornProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
   const [snackbarSeverity, setSnackbarSeverity] = useState<MessageSeverity>("info");
+  const [snackbarAction, setSnackbarAction] = useState<SnackbarAction | null>(null);
   const [errorDialogMessage, setErrorDialogMessage] = useState<string | null>(null);
 
-  // Show a snackbar message (auto-hides after duration based on severity)
-  const showMessage = useCallback((msg: string, severity: MessageSeverity = "info") => {
-    setSnackbarSeverity(severity);
-    setSnackbarMessage(msg);
-  }, []);
+  // Show a snackbar message (auto-hides after duration based on severity).
+  // Optional `action` renders an inline button (e.g. "Sign in" on auth errors)
+  // so users can recover without typing a URL.
+  const showMessage = useCallback(
+    (msg: string, severity: MessageSeverity = "info", action?: SnackbarAction) => {
+      setSnackbarSeverity(severity);
+      setSnackbarMessage(msg);
+      setSnackbarAction(action ?? null);
+    },
+    [],
+  );
 
   // Show a modal error dialog (requires user to click OK)
   const showError = useCallback((msg: string) => {
@@ -55,14 +71,22 @@ export const PopcornProvider: React.FC<{ children: ReactNode }> = ({
 
   const handleSnackbarClose = useCallback(() => {
     setSnackbarMessage(null);
+    setSnackbarAction(null);
   }, []);
 
   const handleErrorDialogClose = useCallback(() => {
     setErrorDialogMessage(null);
   }, []);
 
-  // Determine auto-hide duration based on severity
-  const getAutoHideDuration = (severity: MessageSeverity) => {
+  // Determine auto-hide duration based on severity.
+  // Snackbars with an action button don't auto-hide -- the user has a
+  // decision to make (e.g. clicking Sign in), and dismissing it for them
+  // defeats the purpose.
+  function getAutoHideDuration(
+    severity: MessageSeverity,
+    hasAction: boolean,
+  ): number | null {
+    if (hasAction) return null;
     switch (severity) {
       case "error":
         return 6000; // Errors stay longer
@@ -73,7 +97,7 @@ export const PopcornProvider: React.FC<{ children: ReactNode }> = ({
       default:
         return 4000;
     }
-  };
+  }
 
   const contextValue = useMemo(
     () => ({ setMessage: showMessage, setError: showError }),
@@ -87,13 +111,28 @@ export const PopcornProvider: React.FC<{ children: ReactNode }> = ({
         open={!!snackbarMessage}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         onClose={handleSnackbarClose}
-        autoHideDuration={getAutoHideDuration(snackbarSeverity)}
+        autoHideDuration={getAutoHideDuration(snackbarSeverity, snackbarAction !== null)}
       >
         <Alert
           onClose={handleSnackbarClose}
           severity={snackbarSeverity}
           variant="filled"
           sx={{ width: "100%" }}
+          action={
+            snackbarAction ? (
+              <Button
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  const fn = snackbarAction.onClick;
+                  handleSnackbarClose();
+                  fn();
+                }}
+              >
+                {snackbarAction.label}
+              </Button>
+            ) : undefined
+          }
         >
           {snackbarMessage}
         </Alert>
