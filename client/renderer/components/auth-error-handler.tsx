@@ -34,9 +34,15 @@ export const AuthErrorHandler: React.FC = () => {
       lastNotifiedAt.current = now;
 
       if (status === 401) {
-        setMessage(message, "error");
-        // Give the user a moment to read the snackbar before redirecting
-        setTimeout(() => logout(), 2000);
+        // Show snackbar with an explicit "Sign in" action so the user
+        // can recover deliberately. No auto-logout: yanking the user
+        // away after 2s gives them no time to read the message and no
+        // agency to wait/cancel. The snackbar stays put (popcorn's
+        // action-snackbars don't auto-hide) until they click.
+        setMessage(message, "error", {
+          label: "Sign in",
+          onClick: () => logout(),
+        });
       } else {
         // 403 — don't redirect, just inform
         setMessage(message, "warning");

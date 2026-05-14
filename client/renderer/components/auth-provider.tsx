@@ -105,6 +105,19 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           authority: `https://login.microsoftonline.com/${config.tenantId}`,
           redirectUri: "/auth/callback",
         },
+        cache: {
+          // localStorage (not the MSAL default of sessionStorage) so MSAL's
+          // account + refresh-token cache survives across tabs/windows of the
+          // same origin. Moorhen and Materia open job/file viewers in new
+          // windows via window.open(_, "_blank"); with sessionStorage MSAL
+          // the new window starts with zero accounts -> tokenGetter returns
+          // null -> proxy forwards without Authorization -> Django 401 ->
+          // auth-error-handler bounces the user to the AAD "choose account
+          // to log out" page. localStorage scope is per-origin, so the new
+          // window finds the same cached account.
+          cacheLocation: "localStorage",
+          storeAuthStateInCookie: false,
+        },
       });
 
       pca
