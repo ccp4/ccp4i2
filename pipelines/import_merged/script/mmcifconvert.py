@@ -887,7 +887,8 @@ class ConvertCIF():
             if not blkinfo.ismerged():
                 # Unmerged data
                 print("Can't convert unmerged data")
-            elif blkinfo.allowanomalouswrite():
+                return
+            if blkinfo.allowanomalouswrite():
                 print("anom pairs")
                 # Data with anomalous pairs on different lines
                 self.status = refdata.anomMTZwritedata(cifdatatype,
