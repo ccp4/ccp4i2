@@ -4,8 +4,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Box,
-  Button,
   IconButton,
   useTheme,
   useMediaQuery,
@@ -17,8 +15,8 @@ import {
   Chip,
   Tooltip,
 } from "@mui/material";
-import { Home, ArrowBack, Person, Logout, Science as ScienceIcon } from "@mui/icons-material";
-import { useRouter, usePathname } from "next/navigation";
+import { ArrowBack, Person, Logout } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 import { useMsal } from "@azure/msal-react";
 import HelpMenu from "./help-menu";
 import { isElectron } from "../utils/platform";
@@ -41,7 +39,6 @@ export default function CCP4i2TopBar({
   backPath,
 }: CCP4i2TopBarProps) {
   const router = useRouter();
-  const pathname = usePathname();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(
@@ -55,20 +52,12 @@ export default function CCP4i2TopBar({
   const instance = msalContext?.instance;
   const currentUser = accounts[0];
 
-  // Determine if we're in the root of ccp4i2 (project list)
-  const isProjectList = pathname === "/ccp4i2";
-
   const handleBack = () => {
     if (backPath) {
       router.push(backPath);
     } else {
       router.back();
     }
-  };
-
-  const handleHome = () => {
-    // Go to app selector if available, otherwise projects list
-    router.push("/");
   };
 
   const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -89,8 +78,8 @@ export default function CCP4i2TopBar({
   return (
     <AppBar position="static" sx={{ mb: 2 }}>
       <Toolbar variant={isMobile ? "dense" : "regular"}>
-        {/* Home / Back button */}
-        {showBackButton ? (
+        {/* Back button */}
+        {showBackButton && (
           <IconButton
             edge="start"
             color="inherit"
@@ -99,16 +88,6 @@ export default function CCP4i2TopBar({
             sx={{ mr: 1 }}
           >
             <ArrowBack />
-          </IconButton>
-        ) : (
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={handleHome}
-            aria-label="Home"
-            sx={{ mr: 1 }}
-          >
-            <Home />
           </IconButton>
         )}
 
@@ -120,24 +99,6 @@ export default function CCP4i2TopBar({
         >
           {title}
         </Typography>
-
-        {/* Campaigns link */}
-        <Tooltip title="Fragment Screening Campaigns">
-          <Button
-            color="inherit"
-            startIcon={<ScienceIcon />}
-            onClick={() => router.push("/ccp4i2/campaigns")}
-            sx={{
-              mr: 1,
-              textTransform: "none",
-              ...(pathname?.startsWith("/ccp4i2/campaigns") && {
-                bgcolor: "rgba(255,255,255,0.15)",
-              }),
-            }}
-          >
-            {!isMobile && "Campaigns"}
-          </Button>
-        </Tooltip>
 
         {/* Help menu */}
         <HelpMenu />
