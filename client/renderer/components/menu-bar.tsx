@@ -34,7 +34,7 @@ interface CampaignInfo {
 }
 
 export default function MenuBar() {
-  const { projectId, jobId, devMode, setDevMode } = useCCP4i2Window();
+  const { projectId, jobId, setDevMode } = useCCP4i2Window();
   const api = useApi();
   const { data: project, mutate: mutateProject } = api.get<Project>(
     `projects/${projectId}`
