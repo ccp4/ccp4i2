@@ -224,7 +224,7 @@ export const NewProjectContent: React.FC = () => {
     if (customDirectory && directory.length === 0)
       return "Directory is required";
     else if (directory.length > 0 && directoryExists)
-      return "Directory already exist";
+      return "Directory already exists";
     return "";
   }, [directoryExists, customDirectory, directory]);
 
