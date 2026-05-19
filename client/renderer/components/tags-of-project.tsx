@@ -12,7 +12,6 @@ import { Add as AddIcon, LocalOffer as TagIcon } from "@mui/icons-material";
 import { useApi } from "../api";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { ProjectTag } from "../types/models";
-import { useProject } from "../utils";
 
 interface TagOption {
   id?: number;
@@ -24,7 +23,6 @@ interface TagOption {
 export const TagsOfProject: React.FC<{
   projectId: number;
 }> = ({ projectId }) => {
-  const { project } = useProject(projectId);
   const api = useApi();
   const { setMessage } = usePopcorn();
 
@@ -255,23 +253,6 @@ export const TagsOfProject: React.FC<{
 
   return (
     <Box display="flex" alignItems="center" gap={1} sx={{ minHeight: 40 }}>
-      {/* Tag icon */}
-      <TagIcon sx={{ fontSize: 20, color: "text.secondary" }} />
-
-      {/* Count chip */}
-      <Chip
-        label={selectedTags.length}
-        size="small"
-        variant="outlined"
-        sx={{
-          minWidth: 32,
-          height: 24,
-          fontSize: "0.75rem",
-          color: "text.secondary",
-          borderColor: "divider",
-        }}
-      />
-
       {/* Autocomplete field */}
       <Box sx={{ flex: 1, minWidth: 200 }}>
         <Autocomplete
