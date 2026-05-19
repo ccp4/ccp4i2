@@ -252,50 +252,44 @@ export const TagsOfProject: React.FC<{
   }
 
   return (
-    <Box display="flex" alignItems="center" gap={1} sx={{ minHeight: 40 }}>
-      {/* Autocomplete field */}
-      <Box sx={{ flex: 1, minWidth: 200 }}>
-        <Autocomplete
-          multiple
-          value={selectedTags}
-          onChange={handleTagChange}
-          inputValue={inputValue}
-          onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
-          options={availableOptions}
-          filterOptions={filterOptions}
-          getOptionLabel={(option) => option.text}
-          isOptionEqualToValue={(option, value) => option.text === value.text}
-          renderOption={renderOption}
-          renderTags={renderTags}
-          loading={isSubmitting}
-          disabled={isSubmitting}
-          selectOnFocus
-          clearOnBlur
-          handleHomeEndKeys
+    <Autocomplete
+      multiple
+      value={selectedTags}
+      onChange={handleTagChange}
+      inputValue={inputValue}
+      onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+      options={availableOptions}
+      filterOptions={filterOptions}
+      getOptionLabel={(option) => option.text}
+      isOptionEqualToValue={(option, value) => option.text === value.text}
+      renderOption={renderOption}
+      renderTags={renderTags}
+      loading={isSubmitting}
+      disabled={isSubmitting}
+      selectOnFocus
+      clearOnBlur
+      handleHomeEndKeys
+      size="small"
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          placeholder={
+            selectedTags.length === 0 ? "Add tags..." : "Add more tags..."
+          }
+          variant="outlined"
           size="small"
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              placeholder={
-                selectedTags.length === 0 ? "Add tags..." : "Add more tags..."
-              }
-              variant="outlined"
-              size="small"
-              InputProps={{
-                ...params.InputProps,
-                sx: { height: 32 }, // Consistent height
-                endAdornment: (
-                  <>
-                    {isSubmitting && <CircularProgress size={16} />}
-                    {params.InputProps.endAdornment}
-                  </>
-                ),
-              }}
-            />
-          )}
-          PaperComponent={(props) => <Paper {...props} sx={{ mt: 1 }} />}
+          InputProps={{
+            ...params.InputProps,
+            sx: { minWidth: 200 },
+            endAdornment: (
+              <>
+                {isSubmitting && <CircularProgress size={16} />}
+                {params.InputProps.endAdornment}
+              </>
+            ),
+          }}
         />
-      </Box>
-    </Box>
+      )}
+    />
   );
 };
