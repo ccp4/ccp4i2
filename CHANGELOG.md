@@ -1,11 +1,12 @@
 # CCP4i2 Changelog
 
-## [2.6.2] - 2026-05-14
+## [2.6.2] - 2026-05-21
 
 - Added a Lorestr test
 - Updated Servalcat 7beq electron test R-work threshold
 - Updated ModelCraft task title
 - Allow DUI2 to continue from previous jobs regardless of status
+- Fix for opening MTZ files in Coot 1 on Windows
 
 ## [2.6.1] - 2026-04-09
 
