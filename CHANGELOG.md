@@ -1,5 +1,16 @@
 # CCP4i2 Changelog
 
+## [2.6.2] - 2026-05-14
+
+- Added a Lorestr test
+- Updated Servalcat 7beq electron test R-work threshold
+- Updated ModelCraft task title
+- Allow DUI2 to continue from previous jobs regardless of status
+
+## [2.6.1] - 2026-04-09
+
+- Fixed Coot 1 path on Mac/Linux for 9.0.015
+
 ## [2.6.0] - 2026-03-26
 
 - New NucleoFind task for predicting locations of nucleic acid features in maps

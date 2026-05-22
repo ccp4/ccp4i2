@@ -4,7 +4,7 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 
 class modelcraft_gui(CTaskWidget):
     TASKMODULE = "model_building"
-    TASKTITLE = "Autobuild with ModelCraft, Buccaneer and Nautilus"
+    TASKTITLE = "Autobuild with ModelCraft, Buccaneer and NucleoFind"
     SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"
     TASKVERSION = 0.1
