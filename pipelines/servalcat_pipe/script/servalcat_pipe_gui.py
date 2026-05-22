@@ -252,6 +252,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine([
        'label', 'Starting weight for experimental data versus the restraints:',
        'widget', 'WEIGHT',
+       'label', '(automatic if blank)'
        ])
     self.createLine( [ 'widget', 'WEIGHT_NO_ADJUST', 'label', 'Do not adjust weight during refinement'] )
     self.createLine( ['label', 'Bond RMSZ range for weight adjustment:', 'stretch',
