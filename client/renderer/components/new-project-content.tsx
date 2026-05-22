@@ -1,22 +1,20 @@
 "use client";
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import path from "path";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Button,
   CircularProgress,
   Container,
   Stack,
-  TextField,
-  ToggleButton,
-  ToggleButtonGroup,
   Typography,
 } from "@mui/material";
-import { Folder } from "@mui/icons-material";
 import { useApi } from "../api";
 import { apiPost } from "../api-fetch";
 import { Project } from "../types/models";
 import EditTags from "./edit-tags";
+import { ProjectNameField, getProjectNameError } from "./project-name-field";
+import { ProjectDirectoryField } from "./project-directory-field";
+import { useProjectDirectory } from "../hooks/use-project-directory";
 import {
   DroppedFile,
   FileDropZone,
@@ -29,57 +27,19 @@ export const NewProjectContent: React.FC = () => {
   const api = useApi();
   const router = useRouter();
   const [name, setName] = useState("");
-  const [customDirectory, setCustomDirectory] = useState(false);
-  const [ccp4i2ProjectDirectory, setCcp4i2ProjectDirectory] = useState<string>(
-    "/home/user/CCP4X_PROJECTS"
-  );
-  const [directoryExists, setDirectoryExists] = useState(true);
-  const [electronAPIAvailable, setElectronAPIAvailable] =
-    useState<boolean>(false);
   const [tags, setTags] = useState<number[]>([]);
   const [droppedFiles, setDroppedFiles] = useState<DroppedFile[]>([]);
   const [isCreating, setIsCreating] = useState(false);
   const { data: projects } = api.get<Project[]>("projects");
 
-  useEffect(() => {
-    // Send a message to the main process to get the config
-    if (window.electronAPI) {
-      setElectronAPIAvailable(true);
-      window.electronAPI.sendMessage("get-config");
-      // Listen for messages from the main process
-      window.electronAPI.onMessage(
-        "message-from-main",
-        (event: any, data: any) => {
-          if (data.message === "get-config") {
-            setCcp4i2ProjectDirectory(data.config.CCP4I2_PROJECTS_DIR);
-          }
-          if (data.message === "check-file-exists") {
-            setDirectoryExists(data.exists);
-          }
-        }
-      );
-    } else {
-      setDirectoryExists(false); // Assume directory does not exist in web mode
-    }
-  }, []);
-
-  const directory = useMemo(() => {
-    const result = path.join(
-      ccp4i2ProjectDirectory || "",
-      name.toLocaleLowerCase()
-    );
-    if (typeof window !== "undefined" && window.electronAPI) {
-      window.electronAPI.sendMessage("check-file-exists", { path: result });
-    }
-    return result;
-  }, [ccp4i2ProjectDirectory, name]);
+  const dir = useProjectDirectory(name, "create");
 
   async function createProject() {
     setIsCreating(true);
     try {
       const formData = new FormData();
       formData.append("name", name);
-      formData.append("directory", customDirectory ? directory : "__default__");
+      formData.append("directory", dir.effectiveDirectory ?? "__default__");
       const project = await api.post<Project>("projects", formData);
 
       // Apply tags to the new project
@@ -183,102 +143,20 @@ export const NewProjectContent: React.FC = () => {
     }
   }
 
-  function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
-    setName(event.target.value);
-  }
-
-  function handleNameKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter" && nameError.length === 0 && directoryError.length === 0) {
-      createProject();
-    }
-  }
-
-  function handleCustomDirectoryChange(
-    event: React.MouseEvent<HTMLElement>,
-    value: any
-  ) {
-    if (value !== null) {
-      setCustomDirectory(value);
-    }
-  }
-
-  function handleDirectoryChange() {
-    if (typeof window !== "undefined") {
-      if (window.electronAPI) {
-        window.electronAPI.sendMessage("locate-ccp4i2-project-directory");
-      } else {
-        console.error("Electron API is not available");
-      }
-    }
-  }
-
-  let nameError = "";
-  if (name.length === 0) nameError = "Name is required";
-  else if (!name.match("^[A-z0-9_-]+$"))
-    nameError =
-      "Name can only contain letters, numbers, underscores, and hyphens";
-  else if (projects?.find((p) => p.name === name))
-    nameError = "Name is already taken";
-
-  const directoryError = useMemo(() => {
-    if (customDirectory && directory.length === 0)
-      return "Directory is required";
-    else if (directory.length > 0 && directoryExists)
-      return "Directory already exists";
-    return "";
-  }, [directoryExists, customDirectory, directory]);
+  const nameError = getProjectNameError(name, projects);
 
   return (
     <Container maxWidth="sm" sx={{ my: 3 }}>
       <Stack spacing={2}>
         <Typography variant="h4">Create Project</Typography>
-        <TextField
-          label="Name"
+        <ProjectNameField
           value={name}
-          onChange={handleNameChange}
-          onKeyDown={handleNameKeyDown}
-          required
-          error={nameError.length > 0}
-          helperText={nameError}
+          onChange={setName}
+          onSubmit={createProject}
+          error={nameError}
           autoFocus
         />
-        <ToggleButtonGroup
-          exclusive
-          value={customDirectory}
-          onChange={handleCustomDirectoryChange}
-          fullWidth
-        >
-          <ToggleButton value={false}>Default Directory</ToggleButton>
-          <ToggleButton value={true}>Custom Directory</ToggleButton>
-        </ToggleButtonGroup>
-        {customDirectory && electronAPIAvailable && (
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <TextField
-              label="Parent directory where the project directory will be created"
-              value={ccp4i2ProjectDirectory}
-              disabled={true}
-              sx={{ flexGrow: 1 }}
-              required
-            />
-            <Button
-              variant="outlined"
-              startIcon={<Folder />}
-              onClick={handleDirectoryChange}
-            >
-              Select
-            </Button>
-          </Stack>
-        )}
-        <Stack direction="row">
-          <TextField
-            label="Resulting name for project directory"
-            value={directory}
-            disabled={true}
-            error={directoryError.length > 0}
-            helperText={directoryError}
-            sx={{ flexGrow: 1 }}
-          />
-        </Stack>
+        <ProjectDirectoryField mode="create" {...dir} />
 
         <EditTags tags={tags} onChange={setTags} />
 
@@ -296,7 +174,7 @@ export const NewProjectContent: React.FC = () => {
             variant="contained"
             onClick={createProject}
             disabled={
-              nameError.length > 0 || directoryError.length > 0 || isCreating
+              nameError.length > 0 || dir.directoryHasError || isCreating
             }
             startIcon={isCreating ? <CircularProgress size={16} /> : undefined}
           >

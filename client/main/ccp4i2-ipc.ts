@@ -189,6 +189,28 @@ export const installIpcHandlers = (
     });
   });
 
+  // IPC communication to open a directory picker and return the selected path without
+  // persisting it to the store. Used by the edit-project page for moving a project.
+  ipcMain.on("select-directory", (event, _data) => {
+    const mainWindow: BrowserWindow | null = getMainWindow();
+    if (!mainWindow) {
+      console.error("Main window is not available");
+      return;
+    }
+    dialog
+      .showOpenDialog(mainWindow, {
+        properties: ["openDirectory", "createDirectory"],
+      })
+      .then((result) => {
+        if (!result.canceled) {
+          event.reply("message-from-main", {
+            message: "select-directory",
+            path: result.filePaths[0],
+          });
+        }
+      });
+  });
+
   // IPC communication to trigger file dialog to select parent directory for new projects
   // and set the CCP4I2_PROJECTS_DIR in the store
   ipcMain.on("locate-ccp4i2-project-directory", (event, data) => {

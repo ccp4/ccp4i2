@@ -4,6 +4,7 @@ import logging
 import os
 import pathlib
 import platform
+import shutil
 import subprocess
 
 from asgiref.sync import async_to_sync
@@ -914,6 +915,65 @@ class ProjectViewSet(ModelViewSet):
                 {"error": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+    @action(
+        detail=True,
+        methods=["post"],
+        url_path="move_directory",
+    )
+    def move_directory(self, request, pk=None):
+        """
+        Move the project's directory to a new location on the filesystem
+        and update the project record in the database.
+
+        POST body: { "new_directory": "/absolute/path/to/new/location" }
+        """
+        try:
+            project = models.Project.objects.get(pk=pk)
+            new_directory = request.data.get("new_directory")
+
+            if not new_directory:
+                return api_error("new_directory is required", status=400)
+
+            # "__default__" means: move to the standard location derived from
+            # the project name (mirrors behaviour in the create flow).
+            if new_directory == "__default__":
+                new_directory = str(
+                    pathlib.Path(settings.CCP4I2_PROJECTS_DIR) / slugify(project.name)
+                )
+
+            old_directory = project.directory
+
+            if old_directory == new_directory:
+                return api_success({"directory": old_directory, "message": "Directory unchanged"})
+
+            new_path = pathlib.Path(new_directory)
+
+            if new_path.exists():
+                return api_error("Target directory already exists", status=400)
+
+            # Ensure the parent of the target exists
+            new_path.parent.mkdir(parents=True, exist_ok=True)
+
+            # Move the directory
+            shutil.move(old_directory, new_directory)
+
+            # Update the database record
+            project.directory = new_directory
+            project.last_access = datetime.datetime.now(tz=timezone("UTC"))
+            project.save()
+
+            logger.info("Moved project %s directory from %s to %s", project.id, old_directory, new_directory)
+            return api_success({
+                "directory": new_directory,
+                "message": f"Project moved to {new_directory}",
+            })
+
+        except models.Project.DoesNotExist:
+            return api_error("Project not found", status=404)
+        except Exception as e:
+            logger.exception("Failed to move project directory", exc_info=e)
+            return api_error(str(e), status=500)
 
     @action(
         detail=True,

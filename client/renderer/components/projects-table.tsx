@@ -26,6 +26,7 @@ import {
   Science,
   StarBorder,
   Science as CampaignIcon,
+  Edit,
 } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
 import { useApi } from "../api";
@@ -580,11 +581,18 @@ export default function ProjectsTable() {
             justifyContent="flex-end"
             onClick={(e) => e.stopPropagation()}
           >
+            <Tooltip title="Edit project details">
+              <IconButton
+                size="small"
+                onClick={() => router.push(`/ccp4i2/edit-project/${project.id}`)}
+              >
+                <Edit fontSize="small" />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Export project">
               <IconButton
                 size="small"
                 onClick={() => exportProject(project)}
-                sx={{ color: "primary.main" }}
               >
                 <Download fontSize="small" />
               </IconButton>
