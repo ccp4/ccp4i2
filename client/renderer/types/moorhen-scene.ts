@@ -1,0 +1,373 @@
+/**
+ * Moorhen Scene types.
+ *
+ * A Scene is a portable, human-editable description of how to render one
+ * or more structures in Moorhen: which files to load, what domains to
+ * recognise, what representations and colour rules to apply, and where the
+ * camera should sit.
+ *
+ * Scenes are designed to be re-applied across different PDB files of the
+ * same protein. Residue ranges in domain definitions are resolved against
+ * the actual residues present in each loaded structure at apply-time, with
+ * the resolver policy controlled by the `resolver` block.
+ *
+ * Two related artefacts:
+ *   - `*.scene.yaml`  — this format; the only file a human writes/edits.
+ *   - `*.session.json` — Moorhen-native backupSession, regenerable from
+ *                       (scene, structure). Disposable cache.
+ *
+ * See `moorhen-scene.md` for the full grammar and worked examples.
+ */
+
+// --------------------------------------------------------------------------
+// Top-level Scene
+// --------------------------------------------------------------------------
+
+/** Current schema version. Bump on breaking changes; readers may refuse
+ *  to load scenes with a higher major version than they support. */
+export const SCENE_SCHEMA_VERSION = 1 as const;
+
+export interface MoorhenScene {
+  /** Human-readable identifier for the scene. Free text. */
+  scene: string;
+
+  /** Schema version. Must equal SCENE_SCHEMA_VERSION for v1 readers. */
+  version: number;
+
+  /** Provenance: where this scene was authored. Never consulted by the
+   *  resolver — only shown to humans and surfaced in bug reports. */
+  authoredIn?: SceneProvenance;
+
+  /** Files to load, named so that elements can reference them. */
+  files?: SceneFileRef[];
+
+  /** Superpositions to apply after fetching but before rendering. Each
+   *  entry aligns one file (`move`) onto another (`onto`). Applied in
+   *  declared order. */
+  superpose?: SceneSuperpose[];
+
+  /** Dictionary file names (from the `files:` block, with kind:
+   *  dictionary) loaded globally — visible to every coordinate molecule
+   *  in the scene. Use for cofactors, common buffer components, etc.
+   *  Loaded before any coordinate molecules so coords containing those
+   *  monomers parse correctly. */
+  globalDictionaries?: string[];
+
+  /** Reusable domain definitions, referenced by `colour: by-domain`
+   *  inside elements. Hoisted to the top level so a multi-structure
+   *  scene doesn't duplicate them per element. */
+  domains?: SceneDomain[];
+
+  /** Per-file rendering instructions: representations and colour rules. */
+  elements?: SceneElement[];
+
+  /** Camera, clip, fog, background. Portable subset of Moorhen's
+   *  viewDataSession; lighting/SSAO/shadow params intentionally omitted. */
+  view?: SceneView;
+
+  /** Apply-time policy. */
+  resolver?: SceneResolverOptions;
+}
+
+// --------------------------------------------------------------------------
+// Provenance
+// --------------------------------------------------------------------------
+
+export interface SceneProvenance {
+  projectId?: string;       // UUID of the authoring project
+  projectName?: string;     // human-readable name (advisory)
+  createdAt?: string;       // ISO-8601 timestamp
+  createdBy?: string;       // email or username
+  ccp4i2Version?: string;   // for debugging
+}
+
+// --------------------------------------------------------------------------
+// File references
+// --------------------------------------------------------------------------
+
+/**
+ * A named file reference. Exactly one of {pdb, url, fileId+project,
+ * job+param+project, path} should be set. The resolver first looks for an
+ * already-loaded molecule that matches; failing that (and when the ref
+ * carries enough info), the resolver fetches the coords and registers a
+ * new molecule before binding.
+ */
+export interface SceneFileRef {
+  /** Local name used by elements (e.g. "protein", "apo", "ref"). Unique
+   *  within the files block. */
+  name: string;
+
+  /** What kind of file this ref points at. Defaults to "coordinates".
+   *  "dictionary" refs are CIF monomer dicts (refmac/coot format) that
+   *  the resolver loads into Coot's dictionary store rather than as
+   *  separate molecules; they're then scoped to specific molecules via
+   *  the per-element `dictionaries:` list. */
+  kind?: "coordinates" | "dictionary";
+
+  /** PDB ID (4-letter or extended). Fetched via the PDBe proxy on apply
+   *  if not already loaded. The most portable, share-friendly form for
+   *  deposited structures. Only meaningful for `kind: coordinates`. */
+  pdb?: string;
+
+  /** Inline CIF text — only valid on `kind: dictionary` refs. Used by
+   *  the lifter for dicts loaded from job outputs (no stable URL). The
+   *  resolver hands the text straight to Coot's `read_dictionary_string`
+   *  without any network round-trip. Multi-block dicts work in one shot
+   *  because Coot parses every `data_comp_*` block in the input. */
+  cifText?: string;
+
+  /** Asset path inside a scene bundle (`.scene.zip`). Resolved against
+   *  the in-memory asset map the editor populates when a .zip is opened.
+   *  The portable shape for sharing scenes with their data attached —
+   *  works for both coord and dictionary refs, and round-trips across
+   *  machines without needing local filesystem access. */
+  bundle?: string;
+
+  /** Fully qualified URL — most portable across machines for non-PDB
+   *  structures (refined coords on a shared server, e.g.). */
+  url?: string;
+
+  /** Absolute path on the local filesystem. Not portable. */
+  path?: string;
+
+  // -- ccp4i2 project-internal references --------------------------------
+
+  /** UUID of the project containing the file. Required for `fileId` or
+   *  `job`+`param` references. */
+  projectId?: string;
+
+  /** Project name (advisory; for human inspection only). */
+  projectName?: string;
+
+  /** Stable file id within the project. */
+  fileId?: number;
+
+  /** Job number within the project. Pair with `param`. */
+  job?: number;
+
+  /** Job parameter name, e.g. "XYZOUT". Pair with `job`. */
+  param?: string;
+}
+
+// --------------------------------------------------------------------------
+// Domains
+// --------------------------------------------------------------------------
+
+export interface SceneDomain {
+  /** Free-text name used in `colour: by-domain` and in the resolver log. */
+  name: string;
+
+  /** Chain selector. Three forms:
+   *
+   *   - `"A"` (or any non-`*` string) — single chain.
+   *   - `"*"` — every chain present in the structure (useful for symmetric
+   *     assemblies like the apoptosome heptamer).
+   *   - `["A", "B", "C"]` — explicit list, applied to each chain in turn.
+   *
+   *  At apply-time the resolver fans the domain out across the resolved
+   *  chain list and clamps the range per-chain. */
+  chain: string | string[];
+
+  /** Inclusive residue range "start-end", e.g. "1-120". The resolver
+   *  clamps this to the residues actually present in each loaded
+   *  structure (see SceneResolverOptions.onMissingResidues). */
+  range: string;
+
+  /** Hex colour, e.g. "#4b8bbe". */
+  color: string;
+}
+
+// --------------------------------------------------------------------------
+// Superpose
+// --------------------------------------------------------------------------
+
+/**
+ * Align one loaded structure onto another. Run after fetch, before
+ * representations/camera, so the saved view's quaternion is meaningful
+ * against the aligned coords. Mutates the moving structure's display
+ * transform in place; does not write to disk.
+ *
+ * Two methods, mirroring Moorhen's own API:
+ *
+ *   - `ssm`: secondary-structure matching. Cheap default; needs one
+ *     chain id per side. Use for homologues or different conformations
+ *     of the same chain.
+ *
+ *   - `lsq`: least-squares on explicit residue ranges. Use when you
+ *     know the correspondences (e.g. matching specific binding-site
+ *     residues across distantly related structures).
+ */
+export type SceneSuperpose = SceneSuperposeSsm | SceneSuperposeLsq;
+
+export interface SceneSuperposeSsm {
+  method: "ssm";
+  /** File name (from the `files:` block) being transformed. */
+  move: string;
+  /** File name being aligned to (reference; unchanged). */
+  onto: string;
+  /** Chain id in the moving structure to use for the alignment. */
+  movChain: string;
+  /** Chain id in the reference structure to use for the alignment. */
+  refChain: string;
+}
+
+export interface SceneSuperposeLsq {
+  method: "lsq";
+  move: string;
+  onto: string;
+  /** Per-range correspondences. Each entry pairs a residue range in the
+   *  reference with one in the moving structure. Omit when using the
+   *  `chain`+`range` shorthand below. */
+  matches?: SceneLsqMatch[];
+  /** Shorthand chain id, applied to both reference and moving structures.
+   *  Use with `range:` when the simple "same chain, same residue numbers
+   *  on both sides" case applies — saves writing a single-entry `matches`
+   *  block. Mutually exclusive with `matches`. */
+  chain?: string;
+  /** Shorthand residue range "start-end", applied to both sides. Paired
+   *  with `chain:`. */
+  range?: string;
+  /** Which atoms to fit:
+   *   - `"all"`   — all atoms in the residue ranges
+   *   - `"main"`  — main-chain atoms only (default; usually what you want)
+   *   - `"ca"`    — Cα atoms only (fastest, most tolerant of differences) */
+  matchType?: "all" | "main" | "ca";
+}
+
+export interface SceneLsqMatch {
+  refChain: string;
+  /** Inclusive residue range "start-end" in the reference. */
+  refRange: string;
+  movChain: string;
+  /** Inclusive residue range "start-end" in the moving structure. */
+  movRange: string;
+}
+
+// --------------------------------------------------------------------------
+// Elements
+// --------------------------------------------------------------------------
+
+export interface SceneElement {
+  /** Name of a file from the top-level `files:` block. */
+  file: string;
+
+  /** Dictionary file names (with `kind: dictionary`) to associate with
+   *  this molecule specifically. Loaded globally first (so the coord
+   *  parses) then re-associated with this molecule's molNo. This is the
+   *  pattern that lets two molecules both call their ligand "LIG" with
+   *  different chemistry — each gets its own scoped dictionary. */
+  dictionaries?: string[];
+
+  /** Representations to draw on this file. */
+  representations?: SceneRepresentation[];
+}
+
+export interface SceneRepresentation {
+  /** Moorhen RepresentationStyle, e.g. "CRs" (ribbons), "CBs" (sticks),
+   *  "MolecularSurface", "ligands". See moorhen.RepresentationStyles
+   *  for the full set of 27 styles. */
+  style: string;
+
+  /** CID selection, e.g. "//A" (chain A), "//STAR/LIG" (all ligands
+   *  named LIG, where STAR is the wildcard). Default is the all-atoms
+   *  wildcard CID. */
+  selection?: string;
+
+  /** Colour specification — see SceneColour for the variants. */
+  colour?: SceneColour;
+}
+
+/**
+ * Colour specification. Three v0 shapes:
+ *
+ *   1. Hex literal:        colour: "#4b8bbe"
+ *   2. Named scheme:       colour: by-domain | b-factor | af2-plddt | ...
+ *   3. Raw escape hatch:   colour: { raw: { ruleType, args } }
+ *
+ * `by-domain` compiles to a single multi-rule built from the top-level
+ * `domains:` block. Named schemes map 1:1 to Moorhen's existing multi-rule
+ * ruleTypes. The raw form preserves anything we can't lift to a higher
+ * abstraction (lossless but ugly).
+ */
+export type SceneColour = string | SceneNamedColour | SceneRawColour;
+
+export type SceneNamedColour =
+  | "by-domain"
+  | "b-factor"
+  | "b-factor-norm"
+  | "af2-plddt"
+  | "secondary-structure"
+  | "jones-rainbow"
+  | "mol-symm";
+
+export interface SceneRawColour {
+  raw: {
+    ruleType: string;
+    args: (string | number)[];
+    isMultiColourRule?: boolean;
+    applyColourToNonCarbonAtoms?: boolean;
+  };
+}
+
+// --------------------------------------------------------------------------
+// View
+// --------------------------------------------------------------------------
+
+export interface SceneView {
+  origin?: [number, number, number];
+  quat?: [number, number, number, number];
+  zoom?: number;
+  clipStart?: number;
+  clipEnd?: number;
+  fogStart?: number;
+  fogEnd?: number;
+  background?: string;        // hex
+}
+
+// --------------------------------------------------------------------------
+// Resolver options
+// --------------------------------------------------------------------------
+
+export interface SceneResolverOptions {
+  /**
+   * Policy when a domain's residue range references residues that aren't
+   * present in the loaded structure.
+   *
+   *   "clamp-and-log"  — clamp endpoints inward to the nearest present
+   *                      residue, split across internal gaps, write a
+   *                      sidecar log entry. Render silently. (Default.)
+   *   "strict"         — fail to apply the scene; surface an error.
+   */
+  onMissingResidues?: "clamp-and-log" | "strict";
+}
+
+// --------------------------------------------------------------------------
+// Type guards
+// --------------------------------------------------------------------------
+
+const NAMED_COLOURS: ReadonlySet<string> = new Set([
+  "by-domain",
+  "b-factor",
+  "b-factor-norm",
+  "af2-plddt",
+  "secondary-structure",
+  "jones-rainbow",
+  "mol-symm",
+]);
+
+export function isSceneHexColour(c: SceneColour): c is string {
+  return typeof c === "string" && c.startsWith("#");
+}
+
+export function isSceneNamedColour(c: SceneColour): c is SceneNamedColour {
+  return typeof c === "string" && NAMED_COLOURS.has(c);
+}
+
+export function isSceneRawColour(c: SceneColour): c is SceneRawColour {
+  return (
+    typeof c === "object" &&
+    c !== null &&
+    "raw" in c &&
+    typeof (c as SceneRawColour).raw === "object"
+  );
+}
