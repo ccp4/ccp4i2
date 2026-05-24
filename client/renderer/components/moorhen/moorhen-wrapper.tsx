@@ -29,10 +29,16 @@ import {
 import { moorhen } from "moorhen/types/moorhen";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { webGL } from "moorhen/types/mgWebGL";
-import { MoorhenControlPanel } from "./moorhen-control-panel";
+import { MoorhenCcp4i2TabbedPanel } from "./moorhen-ccp4i2-tabbed-panel";
 import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import { parseScene } from "../../lib/moorhen-scene";
+import { applyScene, SceneResolveResult, SceneFileFetcher } from "../../lib/moorhen-scene-resolver";
+import type { SceneFileRef } from "../../types/moorhen-scene";
+import type { SceneBundleAssets } from "./moorhen-scenes-panel";
+import { liftSceneToBundle, SceneLiftHints } from "../../lib/moorhen-scene-lifter";
+import type { MoorhenScene } from "../../types/moorhen-scene";
 import {
   MoorhenFallback,
   MoorhenErrorBoundary,
@@ -95,7 +101,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     dispatch(setTheme(theme.mode === "light" ? "flatly" : "darkly"));
   }, [theme.mode]);
 
-  // Auto-open the CCP4i2 controls side panel
+  // Auto-open the (single) CCP4i2 side panel on mount. Multi-panel
+  // registration in Moorhen's extension API has a bug where only one
+  // tab renders even with both panels in extraSidePanels; sub-tabs for
+  // scenes vs controls are handled inside the panel content via MUI Tabs
+  // instead.
   useEffect(() => {
     dispatch(setShownSidePanel("ccp4i2Controls"));
   }, [dispatch]);
@@ -123,8 +133,25 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     return state.glRef.origin;
   }, [store]);
 
-  const fetchMolecule = useCallback(async (url: string, molName: string) => {
-    if (!commandCentre.current) return;
+  /**
+   * Core "fetch text, build MoorhenMolecule, register in store" path.
+   * Returns the molecule so callers (notably the scene fetcher) can use
+   * the result; fetchMolecule below wraps this and returns void to keep
+   * existing callers' contract unchanged.
+   */
+  /**
+   * Build a MoorhenMolecule from already-fetched coord text and register
+   * it in the store. Use when bytes are in memory (e.g. from a scene
+   * bundle); skips the apiText round-trip that loadStructure does.
+   * Sets uniqueId from the supplied marker so callers can later identify
+   * the molecule (e.g. `bundle:assets/foo.pdb`).
+   */
+  const loadStructureFromText = useCallback(async (
+    coordText: string,
+    molName: string,
+    uniqueIdMarker: string,
+  ): Promise<moorhen.Molecule | null> => {
+    if (!commandCentre.current) return null;
     const newMolecule = new MoorhenMolecule(
       commandCentre as RefObject<moorhen.CommandCentre>,
       store as any,
@@ -133,12 +160,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     newMolecule.setBackgroundColour(backgroundColor);
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
-      const pdbData = await apiText(url);
-      await newMolecule.loadToCootFromString(pdbData, molName);
+      await newMolecule.loadToCootFromString(coordText, molName);
       if (newMolecule.molNo === -1) {
         throw new Error("Cannot read the fetched molecule...");
       }
-      newMolecule.uniqueId = url;
+      newMolecule.uniqueId = uniqueIdMarker;
 
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
@@ -152,17 +178,37 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       try {
         await newMolecule.addRepresentation("ligands", "/*/*/*/*");
       } catch {
-        console.warn("[fetchMolecule] Ligands representation failed");
+        console.warn("[loadStructureFromText] Ligands representation failed");
       }
 
       await newMolecule.centreOn("/*/*/*/*", false, true);
       dispatch(addMolecule(newMolecule));
       dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
+      return newMolecule;
+    } catch (err) {
+      console.warn(err);
+      console.warn(`Cannot parse coords for ${molName} (${uniqueIdMarker})`);
+      return null;
+    }
+  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch]);
+
+  const loadStructure = useCallback(async (
+    url: string,
+    molName: string,
+  ): Promise<moorhen.Molecule | null> => {
+    try {
+      const pdbData = await apiText(url);
+      return loadStructureFromText(pdbData, molName, url);
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch PDB entry from ${url}, doing nothing...`);
+      return null;
     }
-  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch]);
+  }, [loadStructureFromText]);
+
+  const fetchMolecule = useCallback(async (url: string, molName: string) => {
+    await loadStructure(url, molName);
+  }, [loadStructure]);
 
   const fetchMap = useCallback(async (
     url: string,
@@ -522,13 +568,219 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     [jobId]
   );
 
-  // Custom side panel containing our control panel
+  // Scene fetcher: invoked by the resolver for file refs that aren't
+  // already loaded. Routes by ref shape:
+  //   pdb:                       → PDBe proxy (mmCIF)
+  //   fileId + projectId         → ccp4i2 proxy (per-project file id)
+  //   url:                       → direct URL fetch
+  // Returns the molecule that ends up in the store, or null if the fetch
+  // path fails (the resolver then leaves it in unresolvedFiles).
+  //
+  // Bundle assets are kept in a ref that handleApplyScene refreshes
+  // before each apply — keeps the fetcher callbacks stable while
+  // letting per-apply asset maps reach them.
+  const bundleAssetsRef = useRef<SceneBundleAssets>(new Map());
+
+  const handleFetchSceneFile: SceneFileFetcher = useCallback(
+    async (ref: SceneFileRef) => {
+      // Bundle: decode bytes from the in-memory asset map and hand the
+      // text straight to loadStructureFromText — no network round-trip,
+      // no Blob URL (which would get prefixed by the ccp4i2 api-fetch
+      // helper and 404).
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) {
+          console.warn(
+            `[scene] bundle lookup miss: wanted "${ref.bundle}"; keys in map (${bundleAssetsRef.current.size}):`,
+            Array.from(bundleAssetsRef.current.keys()).slice(0, 10),
+          );
+          return null;
+        }
+        try {
+          const coordText = new TextDecoder("utf-8").decode(buf);
+          return await loadStructureFromText(
+            coordText,
+            ref.name || ref.bundle,
+            // Sentinel so matchOneFile recognises re-applies of the
+            // same bundle ref instead of re-fetching.
+            `bundle:${ref.bundle}`,
+          );
+        } catch (err) {
+          console.warn(`[scene] failed to load bundle coord ${ref.bundle}:`, err);
+          return null;
+        }
+      }
+      if (ref.pdb) {
+        const pdbId = ref.pdb.toLowerCase();
+        const url = `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`;
+        return loadStructure(url, ref.name || pdbId);
+      }
+      if (ref.fileId !== undefined && ref.projectId) {
+        const url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+        return loadStructure(url, ref.name || `file_${ref.fileId}`);
+      }
+      if (ref.url) {
+        return loadStructure(ref.url, ref.name || ref.url);
+      }
+      return null;
+    },
+    [loadStructure],
+  );
+
+  // Dictionary fetcher: returns raw CIF text for a `kind: dictionary`
+  // ref. PDB id form is not allowed (validator should reject) — only
+  // url, path, fileId+projectId, cifText, and bundle are valid for dicts.
+  // Dicts may contain multiple `data_comp_*` blocks; the resolver hands
+  // the whole text to Coot in one call so all blocks get parsed in one shot.
+  const handleFetchSceneDictionary = useCallback(
+    async (ref: SceneFileRef): Promise<string | null> => {
+      // Inline text: no network needed. The lifter produces these for
+      // dicts loaded from job outputs where there's no stable URL.
+      if (ref.cifText) return ref.cifText;
+      // Bundle: decode the asset bytes as UTF-8 text.
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) return null;
+        try {
+          return new TextDecoder("utf-8").decode(buf);
+        } catch (err) {
+          console.warn(`[scene] dictionary ${ref.name} bundle decode failed:`, err);
+          return null;
+        }
+      }
+      let url: string | null = null;
+      if (ref.fileId !== undefined && ref.projectId) {
+        url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+      } else if (ref.url) {
+        url = ref.url;
+      }
+      if (!url) return null;
+      try {
+        return await apiText(url);
+      } catch (err) {
+        console.warn(`[scene] failed to fetch dictionary ${ref.name}:`, err);
+        return null;
+      }
+    },
+    [],
+  );
+
+  // Dictionary loader: tells Coot to parse the given CIF and associate
+  // it with the given molNo (use -999999 for global). Matches the
+  // existing fragment-campaign pattern in fetchJobFiles.
+  const handleLoadSceneDictionary = useCallback(
+    async (dictText: string, molNo: number): Promise<void> => {
+      if (!commandCentre.current) return;
+      await commandCentre.current.cootCommand(
+        {
+          returnType: "status",
+          command: "read_dictionary_string",
+          commandArgs: [dictText, molNo],
+          changesMolecules: molNo >= 0 ? [molNo] : [],
+        },
+        false,
+      );
+    },
+    [],
+  );
+
+  // Apply a scene YAML: validate, then hand to the resolver with the
+  // refs/state it needs. Defined here because the wrapper owns dispatch
+  // and the command-centre ref. The optional assets map carries bytes
+  // for any `bundle:` refs the YAML uses; the Scenes panel passes it
+  // when a .scene.zip is loaded.
+  const handleApplyScene = useCallback(
+    async (
+      yamlText: string,
+      assets: SceneBundleAssets = new Map(),
+    ): Promise<SceneResolveResult> => {
+      // Refresh the bundle-assets ref so the (stable-identity) fetchers
+      // see this apply's assets. Cleared back to empty by the next
+      // non-bundled apply.
+      bundleAssetsRef.current = assets;
+      const scene = parseScene(yamlText);
+      return applyScene({
+        scene,
+        molecules,
+        dispatch,
+        fetcher: handleFetchSceneFile,
+        dictionaryFetcher: handleFetchSceneDictionary,
+        dictionaryLoader: handleLoadSceneDictionary,
+      });
+    },
+    [
+      molecules,
+      dispatch,
+      handleFetchSceneFile,
+      handleFetchSceneDictionary,
+      handleLoadSceneDictionary,
+    ],
+  );
+
+  // Resolve project context from jobId so downloaded scenes can include
+  // a stable projectId on their file references. Looked up once on mount;
+  // null when the wrapper isn't tied to a job.
+  const [projectInfo, setProjectInfo] = useState<{ id: string; name?: string } | null>(null);
+  useEffect(() => {
+    if (!jobId) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const jobInfo = await apiGet(`jobs/${jobId}`);
+        if (cancelled || !jobInfo?.project) return;
+        // jobInfo.project is the project pk; fetch the uuid + name.
+        const proj = await apiGet(`projects/${jobInfo.project}`);
+        if (cancelled || !proj?.uuid) return;
+        setProjectInfo({ id: proj.uuid, name: proj.name });
+      } catch (err) {
+        console.warn("[wrapper] failed to resolve project for scene authoring:", err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [jobId]);
+
+  // Capture current state as a scene. Pulls glRef from the store on each
+  // click so the camera reflects the most recent rotation. Uses the
+  // bundle-aware lifter: if any molecule's source isn't portable (no
+  // pdb id / fileId / url) the lifter inlines its coords into the
+  // returned asset map, the YAML gets bundle: refs, and Save writes a
+  // .scene.zip. Portable refs (pdb / fileId / url) stay as-is.
+  const handleCaptureScene = useCallback(async (): Promise<{
+    scene: MoorhenScene;
+    hints: SceneLiftHints;
+    assets: SceneBundleAssets;
+  }> => {
+    const state = store.getState() as moorhen.State;
+    const glRefState = (state as unknown as { glRef: {
+      origin: number[] | Float32Array;
+      quat: number[] | Float32Array;
+      zoom: number;
+      clipStart?: number;
+      clipEnd?: number;
+      fogStart?: number;
+      fogEnd?: number;
+    } }).glRef;
+    return liftSceneToBundle({
+      molecules,
+      glRef: glRefState,
+      projectId: projectInfo?.id,
+      projectName: projectInfo?.name,
+    });
+  }, [store, molecules, projectInfo]);
+
+  // Custom side panels: CCP4i2 controls + Scenes (YAML editor + lifter +
+  // apply). Scene operations live in the Scenes panel exclusively; the
+  // CCP4i2 control row no longer carries the inline Apply/Download buttons.
+  // Single Moorhen side-panel registration whose content is our own MUI
+  // Tabs container hosting Controls and Scenes sub-panels. This sidesteps
+  // an upstream Moorhen quirk where registering two extraSidePanels only
+  // surfaces one tab in the panel switcher.
   const extraSidePanels: Record<string, MoorhenPanel> = useMemo(() => ({
     ccp4i2Controls: {
       icon: "MatSymSettings",
       label: "CCP4i2",
       panelContent: (
-        <MoorhenControlPanel
+        <MoorhenCcp4i2TabbedPanel
           onFileSelect={fetchFile}
           onJobLoad={fetchJobFiles}
           getViewUrl={getViewUrl}
@@ -537,10 +789,13 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           onMapContourLevelChange={handleMapContourLevelChange}
           onRunServalcat={jobId ? handleRunServalcat : undefined}
           servalcatStatus={servalcatStatus}
+          onApplyScene={handleApplyScene}
+          onCaptureScene={handleCaptureScene}
+          cootInitialized={cootInitialized}
         />
       ),
     },
-  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus]);
+  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, cootInitialized]);
 
   const collectedProps = useMemo(() => ({
     glRef,

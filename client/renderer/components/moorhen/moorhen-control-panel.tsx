@@ -32,6 +32,8 @@ import {
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { CopyViewLinkButton } from "./copy-view-link-button";
 import { PasteViewLinkField } from "./paste-view-link-field";
+// Scene-related UI (upload/download/edit) lives in the dedicated Scenes
+// side-panel (moorhen-scenes-panel.tsx). Don't add scene buttons here.
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
 import { useTheme } from "../../theme/theme-provider";
 
@@ -204,8 +206,9 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
     <Stack
       direction="column"
       sx={{
-        height: "calc(100vh - 100px)",
+        height: "100%",
         width: "100%",
+        minWidth: 0,
       }}
     >
       {/* Copy / Paste View Link */}
