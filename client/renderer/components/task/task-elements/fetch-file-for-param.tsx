@@ -170,18 +170,28 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   const handleEbiCoordFetch = useCallback(async () => {
     if (identifier) {
       try {
-        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/files/${identifier.toLowerCase()}`;
+        // Route through the local /api/proxy/pdbe/... proxy so the response
+        // carries Cross-Origin-Resource-Policy: cross-origin and survives
+        // the Moorhen COEP page. Direct fetches to www.ebi.ac.uk surface
+        // as TypeError: Failed to fetch under COEP.
+        const url = `/api/proxy/pdbe/api/pdb/entry/files/${identifier.toLowerCase()}`;
         const result = await apiFetch(url);
         const data = await result.json();
         if (data && data[identifier.toLowerCase()]) {
           const file = data[identifier.toLowerCase()];
-          let fetchURL = file.PDB.downloads
+          const upstreamURL = file.PDB.downloads
             .filter((item: any) => item.label === "Archive mmCIF file")
             .at(0).url;
-          setMessage(`Fetching file from ${fetchURL}`);
+          // The PDBe API returns absolute URLs into www.ebi.ac.uk/pdbe/...
+          // Rewrite through the same proxy so the download is COEP-safe.
+          const fetchURL = upstreamURL.replace(
+            /^https?:\/\/www\.ebi\.ac\.uk\/pdbe\//,
+            "/api/proxy/pdbe/",
+          );
+          setMessage(`Fetching file from ${upstreamURL}`);
           const content = await apiBlob(fetchURL);
-          setMessage(`Fetched file from ${fetchURL}`);
-          uploadFile(content, fetchURL.split("/").at(-1));
+          setMessage(`Fetched file from ${upstreamURL}`);
+          uploadFile(content, upstreamURL.split("/").at(-1));
           onClose();
         } else {
           const errorText = await result.text();
