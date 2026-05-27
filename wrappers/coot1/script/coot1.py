@@ -40,14 +40,14 @@ class coot1(CPluginScript):
         script = ["import coot"]
         if inputData.FPHIIN_LIST.isSet():
             for path in inputData.FPHIIN_LIST:
-                script.append(f"coot.read_mtz('{path}', 'F', 'PHI', '', False, False)")
+                script.append(f"coot.read_mtz(r'{path}', 'F', 'PHI', '', False, False)")
         if inputData.DELFPHIIN_LIST.isSet():
             for path in inputData.DELFPHIIN_LIST:
-                script.append(f"coot.read_mtz('{path}', 'F', 'PHI', '', False, True)")
+                script.append(f"coot.read_mtz(r'{path}', 'F', 'PHI', '', False, True)")
         if inputData.DELFPHIINANOM_LIST.isSet():
             for path in inputData.DELFPHIINANOM_LIST:
                 script.append(
-                    f"imap = coot.read_mtz('{path}', 'F', 'PHI', '', False, True)"
+                    f"imap = coot.read_mtz(r'{path}', 'F', 'PHI', '', False, True)"
                 )
                 script.append("coot.set_map_colour(imap, 0.75, 0.9, 0.75)")
         scriptPath = Path(self.getWorkDirectory(), "coot_script.py")
