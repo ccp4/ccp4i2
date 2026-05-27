@@ -3,7 +3,7 @@
 ## [2.6.2] - 2026-05-27
 
 - Fix to Density Calculator task
-- Added i2run tests Lorestr and Density Calculator
+- Added Lorestr and Density Calculator i2run tests
 - Updated Servalcat 7beq electron test R-work threshold
 - Updated ModelCraft task title
 - Allow DUI2 to continue from previous jobs regardless of status
