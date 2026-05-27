@@ -202,9 +202,9 @@ class servalcat_pipe(CPluginScript):
         if status == CPluginScript.FAILED:
             self.reportStatus(status)
 
-    def executeFirstServalcat(self, withWeight=-1):
+    def executeFirstServalcat(self):
         #create wrapper
-        self.firstServalcat = self.createServalcatJob(withWeight)
+        self.firstServalcat = self.createServalcatJob()
         # Run asynchronously ...this is needed so that commands downstream of process launch
         # (i.e. logwatcher) will be calledbefore process completion
         self.firstServalcat.doAsync = self.doAsync
@@ -267,7 +267,7 @@ class servalcat_pipe(CPluginScript):
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength = len(newXml)
 
-    def createServalcatJob(self, withWeight=-1, inputCoordinates=None, ncyc=-1):
+    def createServalcatJob(self, inputCoordinates=None, ncyc=-1):
         result = self.makePluginObject('servalcat')
         #input data for this servalcat instance is the same as the input data for the program
         result.container.inputData.copyData(self.container.inputData)
@@ -306,11 +306,6 @@ class servalcat_pipe(CPluginScript):
             result.container.controlParameters.PROSMART_NUCLEICACID_ALPHA=self.container.prosmartNucleicAcid.ALPHA
             result.container.controlParameters.PROSMART_NUCLEICACID_DMAX=self.container.prosmartNucleicAcid.DMAX
             result.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS=self.prosmart_nucleicacid.container.outputData.RESTRAINTS
-
-        #Specify weight if a meaningful one has been offered
-        if withWeight>=0.:
-            result.container.controlParameters.WEIGHT_OPT='MANUAL'
-            result.container.controlParameters.WEIGHT = withWeight
 
         if inputCoordinates is not None:
             result.container.inputData.XYZIN.set(inputCoordinates)
