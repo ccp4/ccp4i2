@@ -8,6 +8,7 @@
 - Updated ModelCraft task title
 - Allow DUI2 to continue from previous jobs regardless of status
 - Updated interface for the Servalcat refinement weight setting
+- Fix for opening MTZ files in Coot 1 on Windows
 
 ## [2.6.1] - 2026-04-09
 
