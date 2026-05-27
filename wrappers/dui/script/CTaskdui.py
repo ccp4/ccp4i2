@@ -1,6 +1,5 @@
 from pathlib import Path
 from core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER
-from dbapi.CCP4DbApi import JOB_STATUS_FINISHED
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 class CTaskdui(CTaskWidget):
@@ -21,7 +20,6 @@ class CTaskdui(CTaskWidget):
         enumerators = [""]
         jobList = PROJECTSMANAGER().db().getProjectJobListInfo(
             projectId=self.projectId(),
-            jobStatus=[JOB_STATUS_FINISHED],
             mode=['jobid', 'jobnumber', 'taskname', 'jobtitle'],
             topLevelOnly=True,
             order='DESC',

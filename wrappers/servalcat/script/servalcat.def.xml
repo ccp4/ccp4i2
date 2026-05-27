@@ -313,21 +313,11 @@ hydrogens are only to be used if already present in the input coordinate file.</
                  <toolTip>No positional restraints</toolTip>
              </qualifiers>
           </content>
-          <content id="WEIGHT_OPT">
-            <className>CString</className>
-            <qualifiers>
-              <onlyEnumerators>True</onlyEnumerators>
-              <enumerators>AUTO,MANUAL</enumerators>
-              <menuText>automatic,manual</menuText>
-              <default>AUTO</default>
-                <toolTip>If automatic weighting is selected, Refmac will adjust the weight each refinement cycle in order to try and ensure reasonable geometry on average.</toolTip>
-            </qualifiers>
-          </content>
             <content id="WEIGHT">
                 <className>CFloat</className>
                 <qualifiers>
                     <min>0.0</min>
-                    <toolTip>Constant weight controlling the relative contribution of data (reflections) and restraint (geometry) terms.</toolTip>
+                    <toolTip>Starting weight controlling the relative contribution of experiment data and restraint (geometry) terms.</toolTip>
                 </qualifiers>
             </content>
             <content id="WEIGHT_NO_ADJUST">
