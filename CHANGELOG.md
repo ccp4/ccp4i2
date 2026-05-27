@@ -1,11 +1,13 @@
 # CCP4i2 Changelog
 
-## [2.6.2] - 2026-05-13
+## [2.6.2] - 2026-05-27
 
 - Fix to Density Calculator task
 - Added i2run tests Lorestr and Density Calculator
 - Updated Servalcat 7beq electron test R-work threshold
 - Updated ModelCraft task title
+- Allow DUI2 to continue from previous jobs regardless of status
+- Updated interface for the Servalcat refinement weight setting
 
 ## [2.6.1] - 2026-04-09
 
