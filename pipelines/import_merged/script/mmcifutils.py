@@ -193,7 +193,13 @@ class CifBlockInfo:
 
         self.bname = self.rblock.block.name
         self.entry_id = rblock.entry_id
-        self.unmerged = self.rblock.is_unmerged()
+
+        # Gemmi assessment of merged status is unreliable
+        #  it is based on the assumption that _diffrn_refln. block is unmerged,
+        #  and a _refln. block is merged, and that is not necessarily true
+        # Use the hklcheck assessment instead, reset later below
+        self.unmerged = self.rblock.is_unmerged() # from Gemmi
+
         # cell as a list
         self.cell = [rblock.cell.a,rblock.cell.b,rblock.cell.c,
                      rblock.cell.alpha,rblock.cell.beta,rblock.cell.gamma]
@@ -222,6 +228,7 @@ class CifBlockInfo:
         # Reflection loops contain either items
         #   1) _refln.*          usually merged data, True, or 
         #   2) _diffrn_refln.*   unmerged data, False
+        # but merged status is unreliable
         self.reflnlooptype = True
         if '_diffrn_refln.' in self.categories:
             self.reflnlooptype = False
@@ -248,6 +255,9 @@ class CifBlockInfo:
         self.hklcheckformat = self.hklstatus.formathklstatus()
         self.nunique = hklcheck.nrefunique() # Number of unique reflections
 
+        # Reset merged flag
+        self.unmerged = not self.ismerged()
+        
         # inspect FreeR
         self.freerStatus = None
         self.freerMissing = None
@@ -296,7 +306,7 @@ class CifBlockInfo:
         return self.hklstatus.standardasu
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def ismerged(self):
-        return not self.unmerged
+        return not self.unmerged   # from hklcheck
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def nrefunique(self):
         # Number of unique reflections

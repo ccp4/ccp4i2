@@ -1,3 +1,5 @@
+# CTaskaimless_pipe.py
+
 from __future__ import print_function
 
 """
@@ -311,7 +313,7 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
                          'than the THRESHOLD set here or by default. KEEP and REMOVE options are unconditional'\
                          ])
         self.createLine(['widget','LATTICE_CENTERING_THRESHOLD',
-                         'label','Probability threshold for removing centred lattice reflections'],
+                         'label','Score threshold for removing centred lattice reflections'],
                         toggleFunction=[self.displayThreshold,
                                         ['KEEP_LATTICE_CENTERING', 'REMOVE_LATTICE_CENTERING']])
 
@@ -423,6 +425,7 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
                 xdsformat = True
             else:
                 self.container.inputData.HKLIN_FORMAT.set('OTHER')
+
             if fformat == 'mmcif':
                 if i == 0:
                     # 1st file is MMCIF
@@ -461,8 +464,8 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
             # cell from file or GUI
             filecell = self.container.inputData.UNMERGEDFILES[i].cell
             contentcell = self.container.inputData.UNMERGEDFILES[i].file.fileContent.cell
-            print("Filecell, knowncell: ", filecell, knowncell)
-            print("contentcell", contentcell, contentcell.isSet())
+            #print("Filecell, knowncell: ", filecell, knowncell)
+            #print("contentcell", contentcell, contentcell.isSet())
             if knowncell:
                 # cell from file or GUI
                 if contentcell.isSet():
@@ -554,15 +557,15 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
                 
         nfmult = 0
         for i in range(len(self.container.inputData.UNMERGEDFILES)):
-            print(">> getUnknownCell  filecontent",
-                self.container.inputData.UNMERGEDFILES[i].file.fileContent)
+            #print(">> getUnknownCell  filecontent",
+            #    self.container.inputData.UNMERGEDFILES[i].file.fileContent)
             ndatasets = self.container.inputData.UNMERGEDFILES[i].file.fileContent.numberofdatasets
-            print("ndatasets", ndatasets, type(ndatasets))
+            #print("ndatasets", ndatasets, type(ndatasets))
             if ndatasets:
                 ndatasets = int(ndatasets)
             else:
                 ndatasets = 1
-            print("ndatasets", ndatasets, type(ndatasets))
+            #print("ndatasets", ndatasets, type(ndatasets))
             self.container.inputData.NUMBER_OF_DATASETS.append(ndatasets)
             if ndatasets > 1:
                 xdname = 'Multiple'
@@ -571,8 +574,8 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
                 nfmult += 1
 
             self.container.guiParameters.NFILES_WITH_MULTIPLE_DATASETS.set(nfmult)
-            print(">> getUnknownCell end filecontent",
-                self.container.inputData.UNMERGEDFILES[i].file.fileContent)
+            #print(">> getUnknownCell end filecontent",
+            #   self.container.inputData.UNMERGEDFILES[i].file.fileContent)
 
         print("**returning")
         return (not anyunknowncell)

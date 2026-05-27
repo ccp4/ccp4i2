@@ -103,7 +103,7 @@ class CTaskimport_merged(CTaskWidget):
                      toggle=['STARANISO_DATA', 'closed', [False]])
     self.createLine (['label',
                       'By default the FreeR flag will be imported unchanged without completion'],
-                     toggle=['STARANISO_DATA', 'closed', [False]])
+                     toggleFunction=[self.toggleSkip, ['STARANISO_DATA', 'HASFREER']])
     
     # Optional resolution cutoff
     line = self.createLine( ['label','Select resolution range (\xc5)',
@@ -115,15 +115,32 @@ class CTaskimport_merged(CTaskWidget):
     self.maximum_resolution_label = line.layout().itemAt(3).widget()
     self.container.inputData.RESOLUTION_RANGE.dataChanged.connect(self.resorangeset)
 
-    self.createLine (['label',
-       'Any FreeR in the input data will be automatically read and completed'],
-                     toggle=['STARANISO_DATA', 'open', [False]])
-    self.createLine (['label',
-       'If no FreeR is present, a new set will be generated, or an existing FreeR set may be defined below'],
-                     toggle=['STARANISO_DATA', 'open', [False]])
+    # Option to exclude reflections where all selected columns are missing
+    # Default for StarAniso data, allow for any MTZ file
+    self.createLine (['widget', 'EXCLUDE_MISSING',
+                      'label','Exclude reflections with all items missing (default for StarAniso data)'],
+                     toggleFunction=[self.toggleExcludeMissing, ['STARANISO_DATA']])
+    self.createLine (['widget', 'EXCLUDE_MISSING',
+                      'label','Exclude reflections with all items missing'],
+                     toggleFunction=[self.toggleExcludeMissing2, ['STARANISO_DATA']])
+
     self.createLine (['label',''])
+
+    #  FreeR present in file
+    self.createLine (['label', 'The input file contains FreeR data'],
+                     toggle=['HASFREER','open',[True]])
     self.createLine (['label',
-       'You can define a pre-existing FreeR set below to override a FreeR set from the input data'])
+                      'You can choose a pre-existing FreeR set below to override a FreeR set from the input data'],
+                     toggle=['HASFREER','open',[True]])
+
+    # No FreeR in file
+    self.createLine (['label', 'No FreeR data in the input file'],
+                     toggle=['HASFREER','open',[False]])
+    self.createLine (['label',
+                      'A new set FreeR will be generated, or an existing FreeR set may be chosen below'],
+                     toggle=['HASFREER','open',[False]])
+
+    self.createLine (['label',''])
     self.createLine (['subtitle','If a FreeR set is neither present in the input, nor given explicitly, then one will be generated'])
 
     self.createLine( ['widget', 'FREERFLAG'] )
@@ -133,17 +150,23 @@ class CTaskimport_merged(CTaskWidget):
                      'label',
                      'Cut resolution of FreeR set if necessary to match the data'],
                     toggleFunction=[self.toggleCutResolution, ['FREERFLAG']])
+
+    # No display if  FREERFLAG True (previous set) or HASFREER (in input file)
     self.createLine(['label', 'Fraction of reflections in generated freeR set',
                      'widget','FREER_FRACTION',
-                     'advice', 'Default fraction is 0.05',
-                     'advice',
-                     'Potential twinning operations will be taken into account'],
+                     'advice', 'Default fraction is 0.05'],
                     toggleFunction=[self.toggleFraction, ['FREERFLAG', 'HASFREER']])
+    self.createLine(['advice',
+                     'Potential twinning operations will be taken into account for the FreeR set'],
+                    toggleFunction=[self.toggleFraction, ['FREERFLAG', 'HASFREER']])
+
+    # not FREERFLAG (chosen set) and HASFREER and not StarAniso
     self.createLine(['widget', 'SKIP_FREER',
                      'label', 'Leave input FreeR set unchanged'],
                     toggleFunction=[self.toggleSkip, ['FREERFLAG', 'HASFREER', 'STARANISO_DATA']])
+    # not FREERFLAG (chosen set) and HASFREER and is StarAniso
     self.createLine(['widget', 'SKIP_FREER',
-                     'label', 'Leave input FreeR set unchanged (recommended for StarAniso data)'],
+                     'label', 'Leave input FreeR set unchanged (defauil for StarAniso data)'],
                     toggleFunction=[self.toggleSkip2, ['FREERFLAG', 'HASFREER', 'STARANISO_DATA']])
 
     # Parameters for Free R
@@ -292,18 +315,33 @@ class CTaskimport_merged(CTaskWidget):
         self.container.controlParameters.SKIP_FREER.set(False)
         self.container.controlParameters.STARANISO_DATA.set(False)
         self.container.inputData.HASFREER.set(False)
+        self.container.controlParameters.EXCLUDE_MISSING.set(False)
+
+        # MTZ file from StarAniso may have columns labelled:
+        #   SA_flag, SIGNAL_value, SIGNAL_class
+        isStarAniso = False
+        
         for column in fileContent.listOfColumns:
           if 'FREE' in str(column.columnLabel).upper():
           # if 'FREER' in str(column.columnLabel).upper():
             self.container.inputData.HASFREER.set(True)
-          if str(column.columnLabel) == 'SA_flag':
-            # Data comes from StarAniso
-            #print('>>** found SA_FLAG')
-            self.container.controlParameters.STARANISO_DATA.set(True)
-            self.container.controlParameters.SKIP_FREER.set(True)
-            self.container.controlParameters.COMPLETE.set(False)
-            self.container.inputData.FREERFLAG.unSet()
-            self.container.inputData.HASFREER.unSet()
+          scl = str(column.columnLabel)
+          if (scl == 'SA_flag') or (scl == 'SIGNAL_value') or (scl == 'SIGNAL_class'):
+            isStarAniso = True
+        
+        if isStarAniso:
+          # Data comes from StarAniso
+          self.container.controlParameters.STARANISO_DATA.set(True)
+          # Default to Exclude Missing
+          self.container.controlParameters.EXCLUDE_MISSING.set(True)
+
+          if self.container.inputData.HASFREER:
+            # If there is a freeR column in StarAniso file,
+            #   then set defaults to leave it as is
+            self.container.controlParameters.SKIP_FREER.set(True)  # Skip generation
+            self.container.controlParameters.COMPLETE.set(False)   # don't complete
+            self.container.inputData.FREERFLAG.unSet()             # no separate FreeR file
+
 
         # MTZ
         self.selectObsColumns()
@@ -450,6 +488,7 @@ class CTaskimport_merged(CTaskWidget):
     return False
   # -------------------------------------------------------------
   def toggleFraction(self):
+    # False if FREERFLAG True (previous set) or HASFREER (in input file)
     #print('>> toggleFraction FRF', self.container.inputData.FREERFLAG.isSet(),
     #      "HF", self.container.inputData.HASFREER)
     if self.container.inputData.FREERFLAG.isSet():
@@ -457,6 +496,25 @@ class CTaskimport_merged(CTaskWidget):
     if self.container.inputData.HASFREER:
       return False
     return True
+  # -------------------------------------------------------------
+  def toggleExcludeMissing(self):
+    # True if StarAniso file
+    if self.container.controlParameters.STARANISO_DATA:
+      return True
+    return False
+  # -------------------------------------------------------------
+  def toggleExcludeMissing2(self):
+    # True if not StarAniso file
+    if not self.container.controlParameters.STARANISO_DATA:
+      return True
+    return False
+  # -------------------------------------------------------------
+  def toggleSAfreeR(self):
+    # True if StarAniso file and has FreeR
+    if self.container.controlParameters.STARANISO_DATA:
+      if self.container.inputData.HASFREER:
+        return True
+    return False
     
   # -------------------------------------------------------------
   def toggleSkip2(self):
@@ -570,6 +628,7 @@ class CTaskimport_merged(CTaskWidget):
     for idx, cifinfo in enumerate(self.cifblockinfo):
       #print(">>>")
       #printBlockInfo(cifinfo)
+      #print("><", cifinfo.info)
       if cifinfo.merged_diffn_data():
         # block contains Is or Fs
         idxblkinfo.append(idx)
@@ -594,9 +653,9 @@ class CTaskimport_merged(CTaskWidget):
       else:
         otherlist.append(self.otherinfo(cifinfo))
 
-    #print("detailslist", len(detailslist), detailslist)
-    #print("infolist", infolist)
-    #print("columnlist", columnlist)
+    #print("%sdetailslist", len(detailslist), detailslist)
+    #print("%infolist", infolist)
+    #print("%columnlist", columnlist)
     self.container.guiParameters.MMCIF_INDICES.set(idxblkinfo)
     self.container.guiParameters.MMCIF_BLOCKNAMES.set(ids)
     self.container.guiParameters.MMCIF_BLOCK_DETAILS.set(detailslist)
@@ -762,6 +821,12 @@ class CTaskimport_merged(CTaskWidget):
       if not merged:
           mess = QtWidgets.QMessageBox.warning(self,'Importing merged file','This apppears to be an unmerged data block - please use the Data Reduction task to import it')
 
+      if self.container.controlParameters.STARANISO_DATA:
+        # Default to Exclude Missing for Staraniso data
+        self.container.controlParameters.EXCLUDE_MISSING.set(True)
+        print(">>> Is STARANISO",
+              self.container.controlParameters.EXCLUDE_MISSING)
+        
       # Check reflection label sets
       if not cifinfo.OK:
           # Probably not a reflection block, eg maybe coordinates
@@ -808,12 +873,9 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def infoList(self):
     # Get list of column content types from selected Cif block
-    contents = str(self.container.inputData.MMCIF_SELECTED_INFO).split(',')
-    # Remove leading spaces, if present
-    for idx, ct in enumerate(contents):
-      contents[idx] = ct.strip()
-
-    return contents
+    # MMCIF_SELECTED_INFO  contains content types followed by other info
+    contents = str(self.container.inputData.MMCIF_SELECTED_INFO).split('\n')
+    return contents[0]
     
   # -------------------------------------------------------------
   def cifColumnSelect(self):
@@ -837,6 +899,8 @@ class CTaskimport_merged(CTaskWidget):
     contents = self.infoList()
     #print("contents", contents)
     #print("Ctypes", ReflectionDataTypes.DATA_PRIORITY)
+    #print("M_B_C",self.container.guiParameters.MMCIF_BLOCK_COLUMNS)
+
     ntypefound = 0
     ctypefound = None
     choices = []
@@ -955,7 +1019,7 @@ class CTaskimport_merged(CTaskWidget):
 
   # -------------------------------------------------------------
   def checkForStarAniso(self):
-    # current check loop for _software.name == STARANISO in 1st block
+    # current check mmcif loop for _software.name == STARANISO in 1st block
     self.container.controlParameters.STARANISO_DATA.set(False)
 
     block = self.rblocks[0].block
