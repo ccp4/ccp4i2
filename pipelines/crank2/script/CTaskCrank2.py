@@ -34,7 +34,7 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='Automated structure solution - CRANK2 phasing and building'
   SHORTTASKTITLE='CRANK2'
   DESCRIPTION='CRANK2 experimental phasing pipeline'
-  WHATNEXT = ['coot_rebuild','coot1','prosmart_refmac',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
+  WHATNEXT = ['coot1','prosmart_refmac',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
   MGDISPLAYFILES = ['XYZOUT']
   RANK=1
 
@@ -1045,7 +1045,7 @@ def whatNext(jobId,childTaskName,childJobNumber,projectName):
   whatnext = []
   cont = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId)
   if cont.outputData.XYZOUT.isSet():
-    whatnext.extend(['coot_rebuild','prosmart_refmac'])
+    whatnext.extend(['coot1','prosmart_refmac'])
   if cont.outputData.FPHOUT_HL.isSet():
     whatnext.append(['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml'])
     whatnext.append('arp_warp_classic')

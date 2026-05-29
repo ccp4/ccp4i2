@@ -35,7 +35,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     if jobStatus == 'Unsatisfactory':
         returnList = ['molrep_pipe', 'phaser_pipeline']
     else:
-        returnList = ['modelcraft', 'prosmart_refmac', 'coot_rebuild','coot1']
+        returnList = ['modelcraft', 'prosmart_refmac', 'coot1']
     return returnList
 
 class Cmolrep_pipe(CCP4TaskWidget.CTaskWidget):
@@ -43,7 +43,7 @@ class Cmolrep_pipe(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'molrep_pipe'
   TASKVERSION = 0.0
   TASKMODULE='molecular_replacement'
-  WHATNEXT = ['prosmart_refmac','coot_rebuild']
+  WHATNEXT = ['prosmart_refmac','coot1']
   TASKTITLE = 'Molecular Replacement and refinement - MOLREP'
   SHORTTASKTITLE = 'MOLREP'
   DESCRIPTION='Molecular replacement (Molrep)'

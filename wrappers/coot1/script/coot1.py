@@ -23,7 +23,7 @@ class coot1(CPluginScript):
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "paul.bond@york.ac.uk"
-    WHATNEXT = ["prosmart_refmac", "coot_rebuild",'coot1', "modelcraft"]
+    WHATNEXT = ["prosmart_refmac", "coot1", "modelcraft"]
 
     ERROR_CODES = {}
 

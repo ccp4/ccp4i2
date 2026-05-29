@@ -35,7 +35,7 @@ class Cmolrep_mr(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'molrep_mr'
   TASKVERSION = 0.0
   TASKMODULE='test'
-  WHATNEXT = ['prosmart_refmac','coot_rebuild','coot1']
+  WHATNEXT = ['prosmart_refmac','coot1']
   TASKTITLE = 'Molecular Replacement and refinement- MOLREP'
   SHORTTASKTITLE='MOLREP MR'
   DESCRIPTION='Molecular replacement (Molrep)'

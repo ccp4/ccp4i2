@@ -30,9 +30,9 @@ from qtgui import CCP4Widgets
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
   #print 'buccaneer_build_refine_mr.whatNext',projectName
   if childJobNumber is None:
-    return ['coot_rebuild','coot1','edstats','prosmart_refmac','modelcraft']
+    return ['coot1','edstats','prosmart_refmac','modelcraft']
   elif childTaskName == 'refmac':
-    return  ['coot_rebuild','coot1','edstats','prosmart_refmac','modelcraft']
+    return  ['coot1','edstats','prosmart_refmac','modelcraft']
   else:
     return [['prosmart_refmac','Refine this model before continuing']]
 
@@ -47,7 +47,7 @@ class CTaskbuccaneer_build_refine_mr(CCP4TaskWidget.CTaskWidget):
   TASKLABEL = 'bucanr'
   DESCRIPTION = 'Iterations of model building (Buccaneer) and refinement (Refmac5, Prosmart and Coot)'
   MGDISPLAYFILES = ['XYZOUT']
-  WHATNEXT = ['coot_rebuild','prosmart_refmac','modelcraft', 'edstats']
+  WHATNEXT = ['coot1','prosmart_refmac','modelcraft', 'edstats']
   PROGRAMHELP = ['cbuccaneer','refmac5']
   RANK=1
   EXPORTMTZPARAMS = [ 'F_SIGF','FPHIOUT', ['DIFFPHIOUT' ,'diff' ] , 'ABCDOUT' ]
