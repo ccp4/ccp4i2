@@ -9,7 +9,7 @@ import os,re,time,sys
 class coot_rebuild(CPluginScript):
 #class coot_rebuild(CInternalPlugin):
 
-    TASKMODULE = 'model_building'                               # Where this plugin will appear on the gui
+    TASKMODULE = 'deprecated'                               # Where this plugin will appear on the gui
     TASKTITLE = 'Rebuild model with coot'     # A short title for gui menu
     TASKNAME = 'coot_rebuild'                                  # Task name - should be same as class name
     TASKCOMMAND = 'coot'                                     # The command to run the executable

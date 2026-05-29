@@ -8,7 +8,7 @@ from core import CCP4Utils
 
 class coot_script_lines(CPluginScript):
     
-    TASKMODULE = 'model_building'                               # Where this plugin will appear on the gui
+    TASKMODULE = 'deprecated'                               # Where this plugin will appear on the gui
     TASKTITLE = 'Execute arbitrary script code within Coot'     # A short title for gui menu
     TASKNAME = 'coot_script_lines'                                  # Task name - should be same as class name
     TASKCOMMAND = 'coot'                                     # The command to run the executable

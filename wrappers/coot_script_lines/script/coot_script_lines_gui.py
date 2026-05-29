@@ -13,7 +13,7 @@ class Ccoot_script_lines(CTaskWidget):
     # Subclass CTaskWidget to give specific task window
     TASKNAME = 'coot_script_lines'
     TASKVERSION = 0.1
-    TASKMODULE='model_building'
+    TASKMODULE='deprecated'
     TASKTITLE  = 'Scripted model building - COOT'
     SHORTTASKTITLE  = 'Scripted COOT'
     DESCRIPTION='''Use scripts to fit sidechains, perform stepped refinement, fill and fit... (non-interactive Coot)'''

@@ -14,7 +14,7 @@ class Ccoot_rebuild(CTaskWidget):
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'coot_rebuild'
   TASKVERSION = 0.1
-  TASKMODULE='model_building'
+  TASKMODULE='deprecated'
   TASKTITLE='Model building - COOT 0.9'
   SHORTTASKTITLE='COOT'
   DESCRIPTION='Interactive building (Coot 0.9)'
