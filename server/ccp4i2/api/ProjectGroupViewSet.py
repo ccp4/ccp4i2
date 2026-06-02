@@ -645,7 +645,7 @@ class ProjectGroupViewSet(ModelViewSet):
                         continue
 
                     # Dimple job directory
-                    dimple_dir = Path(dimple_job.job_directory)
+                    dimple_dir = Path(dimple_job.directory)
                     final_pdb = dimple_dir / "final.pdb"
                     final_mtz = dimple_dir / "final.mtz"
 
@@ -673,7 +673,7 @@ class ProjectGroupViewSet(ModelViewSet):
                     )
 
                     if acedrg_job:
-                        acedrg_dir = Path(acedrg_job.job_directory)
+                        acedrg_dir = Path(acedrg_job.directory)
                         # Check for both possible dictionary names
                         dict_cif = acedrg_dir / "LIG.cif"
                         if not dict_cif.exists():
