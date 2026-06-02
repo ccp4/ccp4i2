@@ -30,6 +30,8 @@ import {
   SceneDomain,
   SceneElement,
   SceneFileRef,
+  SceneMap,
+  SceneMapColumns,
   SceneRepresentation,
   SceneView,
 } from "../types/moorhen-scene";
@@ -66,6 +68,37 @@ export interface LiftCtx {
    *  cofactors (ATP, HEM, NAD, …) don't bloat the captured YAML.
    *  Without it, only the built-in STANDARD_MONOMERS set is skipped. */
   monomerLibraryPath?: string;
+  /** Moorhen maps currently in the store. Each must carry a populated
+   *  uniqueId (the MTZ loader URL) plus selectedColumns + isDifference
+   *  for the lifter to emit a SceneMap. */
+  maps?: moorhen.Map[];
+  /** Per-map render state from the mapContourSettings slice, keyed by
+   *  map.molNo. The wrapper flattens this from the store before calling
+   *  lift — keeps the lifter store-agnostic and easier to unit-test. */
+  mapState?: Record<number, MapRenderState>;
+  /** molNo of the currently-active map (state.generalStates.activeMap.molNo).
+   *  Drives scene.activeMap. */
+  activeMapMolNo?: number;
+}
+
+/**
+ * Per-map render state pulled from Moorhen's redux slices and handed to
+ * the lifter in LiftCtx.mapState. All fields optional — the lifter only
+ * emits the ones whose captured value differs from Moorhen's defaults
+ * so the YAML stays terse.
+ */
+export interface MapRenderState {
+  contourLevel?: number;
+  radius?: number;
+  alpha?: number;
+  style?: "lines" | "solid" | "lit-lines";
+  /** Hex (#rrggbb) — for non-difference maps. */
+  colour?: string;
+  /** Hex — for the positive lobe of a difference map. */
+  positiveColour?: string;
+  /** Hex — for the negative lobe of a difference map. */
+  negativeColour?: string;
+  visible?: boolean;
 }
 
 /**
@@ -126,6 +159,31 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
   }
 
   if (elements.length > 0) scene.elements = elements;
+
+  // Maps. Each map gets a SceneFileRef (kind: "mtz") appended to
+  // scene.files plus a SceneMap entry referencing it by name. The
+  // wrapper flattens map render state from the contour-settings slice
+  // into LiftCtx.mapState; activeMap is the molNo whose name we
+  // promote to scene.activeMap.
+  if (ctx.maps && ctx.maps.length > 0) {
+    const maps: SceneMap[] = [];
+    ctx.maps.forEach((map, i) => {
+      const fileRef = liftMapFileRef(map, ctx, i);
+      // De-dupe file refs by name. (Possible if a map and a molecule
+      // share a sanitised loader URL — rare but defensive.)
+      if (!(scene.files ?? []).some((f) => f.name === fileRef.name)) {
+        scene.files = scene.files ?? [];
+        scene.files.push(fileRef);
+      }
+      const mapName = sanitiseName(map.name) || `map${i}`;
+      const sceneMap = liftSceneMap(map, fileRef.name, mapName, ctx.mapState);
+      maps.push(sceneMap);
+      if (ctx.activeMapMolNo !== undefined && map.molNo === ctx.activeMapMolNo) {
+        scene.activeMap = mapName;
+      }
+    });
+    if (maps.length > 0) scene.maps = maps;
+  }
 
   return scene;
 }
@@ -501,6 +559,7 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
  */
 function extForRef(ref: SceneFileRef, url: string): string {
   if (ref.kind === "dictionary") return "cif";
+  if (ref.kind === "mtz") return "mtz";
   const m = /\.([A-Za-z0-9]{2,4})(?:\?|$)/.exec(url);
   if (m) return m[1].toLowerCase();
   return "cif";
@@ -566,6 +625,96 @@ function liftFileRef(mol: moorhen.Molecule, ctx: LiftCtx): SceneFileRef {
 
   // Last resort: a placeholder url that the user will edit.
   return { name, url: "TODO: source URL for this molecule" };
+}
+
+// --------------------------------------------------------------------------
+// Maps
+// --------------------------------------------------------------------------
+
+/**
+ * Lift a SceneFileRef for an MTZ-loaded map. Mirrors liftFileRef for
+ * coordinate molecules but tags the ref with kind: "mtz" and disambiguates
+ * the name from any coord ref by suffixing with the map index.
+ */
+function liftMapFileRef(map: moorhen.Map, ctx: LiftCtx, index: number): SceneFileRef {
+  const baseName = sanitiseName(map.name) || `map${index}`;
+  const name = `${baseName}__mtz`;
+
+  const fileId = extractFileIdFromUniqueId(map.uniqueId ?? "");
+  if (fileId !== null && ctx.projectId) {
+    return {
+      name,
+      kind: "mtz",
+      projectId: ctx.projectId,
+      projectName: ctx.projectName,
+      fileId,
+    };
+  }
+  if (map.uniqueId && /^https?:\/\//.test(map.uniqueId)) {
+    return { name, kind: "mtz", url: map.uniqueId };
+  }
+  if (map.uniqueId) {
+    return { name, kind: "mtz", path: map.uniqueId };
+  }
+  return { name, kind: "mtz", url: "TODO: MTZ URL for this map" };
+}
+
+/**
+ * Build a SceneMap entry for a loaded MoorhenMap. Pulls the column
+ * spec straight from `map.selectedColumns` and reads optional render
+ * state from the wrapper-supplied `mapState` keyed by molNo. Difference
+ * maps only emit positive/negative colours; non-difference maps emit
+ * a single `colour` field.
+ */
+function liftSceneMap(
+  map: moorhen.Map,
+  fileName: string,
+  mapName: string,
+  mapState?: Record<number, MapRenderState>,
+): SceneMap {
+  const columns = stripUndefinedColumns(map.selectedColumns);
+  const out: SceneMap = {
+    name: mapName,
+    file: fileName,
+    columns,
+  };
+  if (map.isDifference) out.isDifference = true;
+
+  const s = mapState?.[map.molNo];
+  if (!s) return out;
+
+  if (s.contourLevel !== undefined) out.contourLevel = round(s.contourLevel, 4);
+  if (s.radius !== undefined) out.radius = round(s.radius, 2);
+  if (s.alpha !== undefined && s.alpha !== 1) out.alpha = round(s.alpha, 3);
+  if (s.style && s.style !== "lit-lines") out.style = s.style;
+  if (s.visible === false) out.visible = false;
+
+  // Colour fields: difference maps split into positive/negative;
+  // non-difference maps carry a single colour.
+  if (map.isDifference) {
+    if (s.positiveColour) out.positiveColour = s.positiveColour;
+    if (s.negativeColour) out.negativeColour = s.negativeColour;
+  } else if (s.colour) {
+    out.colour = s.colour;
+  }
+  return out;
+}
+
+/**
+ * Drop undefined / empty-string fields from a column spec so the YAML
+ * doesn't carry no-op entries like `Fobs:` (with no value).
+ */
+function stripUndefinedColumns(c: Partial<SceneMapColumns> | undefined): SceneMapColumns {
+  const out: SceneMapColumns = {};
+  if (!c) return out;
+  const strKeys: (keyof SceneMapColumns)[] = ["F", "PHI", "Fobs", "SigFobs", "FreeR"];
+  for (const k of strKeys) {
+    const v = c[k];
+    if (typeof v === "string" && v.length > 0) (out as Record<string, unknown>)[k] = v;
+  }
+  if (c.useWeight) out.useWeight = true;
+  if (c.calcStructFact) out.calcStructFact = true;
+  return out;
 }
 
 // --------------------------------------------------------------------------

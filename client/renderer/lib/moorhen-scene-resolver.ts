@@ -29,6 +29,16 @@ import {
   setRequestDrawScene,
   addCustomRepresentation,
   removeCustomRepresentation,
+  setContourLevel,
+  setMapRadius,
+  setMapAlpha,
+  setMapStyle,
+  setMapColours,
+  setPositiveMapColours,
+  setNegativeMapColours,
+  showMap,
+  hideMap,
+  setActiveMap,
 } from "moorhen";
 import type { moorhen } from "moorhen/types/moorhen";
 
@@ -45,6 +55,7 @@ import {
   SceneColour,
   SceneDomain,
   SceneFileRef,
+  SceneMap,
   SceneRepresentation,
   SceneLsqMatch,
   SceneSuperpose,
@@ -113,9 +124,26 @@ export type SceneDictionaryLoader = (
   molNo: number,
 ) => Promise<void>;
 
+/**
+ * Fetch an MTZ file ref's bytes and load it into Coot as a Moorhen map
+ * with the given column spec. Owned by the wrapper because it
+ * instantiates MoorhenMap and dispatches addMap — neither of which
+ * belong in the resolver.
+ *
+ * Returns the resulting moorhen.Map (so the resolver can pick up its
+ * molNo for redux state updates), or null on fetch / parse failure.
+ */
+export type SceneMapFetcher = (
+  ref: SceneFileRef,
+  sceneMap: SceneMap,
+) => Promise<moorhen.Map | null>;
+
 interface ResolveCtx {
   scene: MoorhenScene;
   molecules: moorhen.Molecule[];
+  /** Maps currently loaded in Moorhen. Used to match scene.maps entries
+   *  to existing maps before falling back to mapFetcher. */
+  maps?: moorhen.Map[];
   dispatch: Dispatch;
   /** Optional. When provided, the resolver fetches structures that aren't
    *  already loaded but whose file ref carries enough info (pdb, url,
@@ -128,6 +156,9 @@ interface ResolveCtx {
   /** Optional. Required for any dictionary scoping to take effect. The
    *  resolver calls this once per (dict, molecule) pair. */
   dictionaryLoader?: SceneDictionaryLoader;
+  /** Optional. Required for scene.maps[] to be applied. Without it,
+   *  map entries are dropped with a log entry. */
+  mapFetcher?: SceneMapFetcher;
 }
 
 /**
@@ -138,7 +169,8 @@ interface ResolveCtx {
  * structures and domain clamping are reported in the result, not raised.
  */
 export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
-  const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader } = ctx;
+  const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader, mapFetcher } = ctx;
+  const maps = ctx.maps ?? [];
   const result: SceneResolveResult = {
     unresolvedFiles: [],
     log: [],
@@ -362,6 +394,63 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     });
   }
 
+  // 2.5 Maps. For each scene.maps entry: bind to a loaded map if one
+  //     matches the file ref; otherwise fetch+load via mapFetcher.
+  //     Then dispatch contour/colour/style/visibility updates, and
+  //     promote the named activeMap (if any).
+  const liveMapPool: moorhen.Map[] = [...maps];
+  const mapBindings = new Map<string, moorhen.Map>();
+  for (const sceneMap of scene.maps ?? []) {
+    const fileRef = (scene.files ?? []).find((f) => f.name === sceneMap.file);
+    if (!fileRef) {
+      result.log.push({
+        file: sceneMap.file,
+        domain: `map ${sceneMap.name}`,
+        message: `map references unknown file "${sceneMap.file}"`,
+      });
+      continue;
+    }
+    const existing = matchOneMap(fileRef, liveMapPool);
+    let map: moorhen.Map | null = existing;
+    if (!map && mapFetcher && isFetchable(fileRef)) {
+      try {
+        map = await mapFetcher(fileRef, sceneMap);
+        if (map) liveMapPool.push(map);
+      } catch (e) {
+        result.log.push({
+          file: sceneMap.file,
+          domain: `map ${sceneMap.name}`,
+          message: `MTZ fetch failed: ${e instanceof Error ? e.message : "unknown"}`,
+        });
+        continue;
+      }
+    }
+    if (!map) {
+      result.log.push({
+        file: sceneMap.file,
+        domain: `map ${sceneMap.name}`,
+        message: mapFetcher
+          ? "no matching loaded map and ref is not fetchable"
+          : "no matching loaded map (no mapFetcher provided)",
+      });
+      continue;
+    }
+    mapBindings.set(sceneMap.name, map);
+    applyMapState(map, sceneMap, dispatch);
+  }
+  if (scene.activeMap) {
+    const active = mapBindings.get(scene.activeMap);
+    if (active) {
+      dispatch(setActiveMap(active));
+    } else {
+      result.log.push({
+        file: "",
+        domain: `activeMap ${scene.activeMap}`,
+        message: `activeMap "${scene.activeMap}" not bound to any loaded map`,
+      });
+    }
+  }
+
   // 3. Camera. Mirror PasteViewLinkField exactly so behaviour matches.
   if (scene.view) {
     if (scene.view.origin) dispatch(setOrigin(scene.view.origin));
@@ -449,6 +538,91 @@ function matchOneFile(
   }
 
   return null;
+}
+
+/**
+ * Same shape as matchOneFile but for maps. Maps are keyed by molNo via
+ * extractFileIdFromUniqueId (when loaded from a ccp4i2 file), by URL,
+ * or by the bundle: sentinel for re-applied bundle scenes.
+ */
+function matchOneMap(fr: SceneFileRef, maps: moorhen.Map[]): moorhen.Map | null {
+  if (fr.fileId !== undefined) {
+    for (const m of maps) {
+      const fid = extractFileIdFromUniqueId(m.uniqueId || "");
+      if (fid === fr.fileId) return m;
+    }
+  }
+  if (fr.bundle) {
+    const sentinel = `bundle:${fr.bundle}`;
+    for (const m of maps) {
+      if (m.uniqueId === sentinel) return m;
+    }
+  }
+  const candidates = [fr.url, fr.path].filter(Boolean) as string[];
+  for (const c of candidates) {
+    for (const m of maps) {
+      if (m.uniqueId === c) return m;
+    }
+  }
+  return null;
+}
+
+/**
+ * Apply a SceneMap's render state to a loaded map by dispatching the
+ * relevant Moorhen actions. Difference maps split colour into positive
+ * + negative lobes; non-difference use the single mapColours slot.
+ *
+ * No-op when a field is undefined — Moorhen defaults stand.
+ */
+function applyMapState(
+  map: moorhen.Map,
+  sceneMap: SceneMap,
+  dispatch: Dispatch,
+): void {
+  const molNo = map.molNo;
+  if (sceneMap.contourLevel !== undefined) {
+    // setContourLevel's typings have drifted across Moorhen versions;
+    // cast keeps the resolver compatible with the installed shape.
+    dispatch(setContourLevel({ molNo, contourLevel: sceneMap.contourLevel } as never));
+  }
+  if (sceneMap.radius !== undefined) {
+    dispatch(setMapRadius({ molNo, radius: sceneMap.radius } as never));
+  }
+  if (sceneMap.alpha !== undefined) {
+    dispatch(setMapAlpha({ molNo, alpha: sceneMap.alpha } as never));
+  }
+  if (sceneMap.style) {
+    dispatch(setMapStyle({ molNo, style: sceneMap.style } as never));
+  }
+  if (sceneMap.isDifference) {
+    if (sceneMap.positiveColour) {
+      const rgb = hexToRgb01(sceneMap.positiveColour);
+      if (rgb) dispatch(setPositiveMapColours({ molNo, rgb } as never));
+    }
+    if (sceneMap.negativeColour) {
+      const rgb = hexToRgb01(sceneMap.negativeColour);
+      if (rgb) dispatch(setNegativeMapColours({ molNo, rgb } as never));
+    }
+  } else if (sceneMap.colour) {
+    const rgb = hexToRgb01(sceneMap.colour);
+    if (rgb) dispatch(setMapColours({ molNo, rgb } as never));
+  }
+  if (sceneMap.visible === false) {
+    dispatch(hideMap(map as never));
+  } else if (sceneMap.visible === true) {
+    dispatch(showMap(map as never));
+  }
+}
+
+/** Parse #rrggbb / #rrggbbaa into the {r,g,b} 0-1 shape Moorhen wants. */
+function hexToRgb01(hex: string): { r: number; g: number; b: number } | null {
+  const m = /^#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})(?:[0-9a-fA-F]{2})?$/.exec(hex);
+  if (!m) return null;
+  return {
+    r: parseInt(m[1], 16) / 255,
+    g: parseInt(m[2], 16) / 255,
+    b: parseInt(m[3], 16) / 255,
+  };
 }
 
 // --------------------------------------------------------------------------

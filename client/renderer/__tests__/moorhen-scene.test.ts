@@ -569,7 +569,7 @@ version: 1
 files:
   - { name: f, kind: weird, url: https://example/f.cif }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "coordinates" or "dictionary"/);
+    expect(() => parseScene(yaml)).toThrow(/must be "coordinates", "dictionary", or "mtz"/);
   });
 
   it("rejects pdb: on a dictionary ref (pdb makes no sense for dicts)", () => {
@@ -831,5 +831,183 @@ superpose:
     const scene = parseScene(yaml);
     const sp = scene.superpose![0] as { range: string };
     expect(sp.range).toBe("200-200");
+  });
+});
+
+describe("parseScene — maps block", () => {
+  it("parses a minimal MTZ map", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/best.mtz
+maps:
+  - name: best
+    file: mtz1
+    columns: { F: FWT, PHI: PHWT }
+`;
+    const scene = parseScene(yaml);
+    expect(scene.maps).toHaveLength(1);
+    expect(scene.maps![0]).toMatchObject({
+      name: "best",
+      file: "mtz1",
+      columns: { F: "FWT", PHI: "PHWT" },
+    });
+  });
+
+  it("captures full render state and difference-map colours", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/diff.mtz
+maps:
+  - name: fofc
+    file: mtz1
+    columns: { F: DELFWT, PHI: PHDELWT }
+    isDifference: true
+    contourLevel: 3.2
+    radius: 17.5
+    alpha: 0.85
+    style: solid
+    positiveColour: "#00ff00"
+    negativeColour: "#ff0000aa"
+    visible: false
+activeMap: fofc
+`;
+    const scene = parseScene(yaml);
+    expect(scene.maps![0]).toMatchObject({
+      isDifference: true,
+      contourLevel: 3.2,
+      radius: 17.5,
+      alpha: 0.85,
+      style: "solid",
+      positiveColour: "#00ff00",
+      negativeColour: "#ff0000aa",
+      visible: false,
+    });
+    expect(scene.activeMap).toBe("fofc");
+  });
+
+  it("rejects a map referencing a non-existent file", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/best.mtz
+maps:
+  - name: best
+    file: nope
+    columns: { F: FWT, PHI: PHWT }
+`;
+    expect(() => parseScene(yaml)).toThrow(/unknown file "nope"/);
+  });
+
+  it("rejects a map pointing at a coord file", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: coords
+    url: https://example/model.pdb
+maps:
+  - name: best
+    file: coords
+    columns: { F: FWT, PHI: PHWT }
+`;
+    expect(() => parseScene(yaml)).toThrow(/must be a file with kind: "mtz"/);
+  });
+
+  it("rejects a map without F+PHI (and no calcStructFact)", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/best.mtz
+maps:
+  - name: best
+    file: mtz1
+    columns: { F: FWT }
+`;
+    expect(() => parseScene(yaml)).toThrow(/must set F \+ PHI/);
+  });
+
+  it("accepts calcStructFact when Fobs+SigFobs are supplied", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/data.mtz
+maps:
+  - name: calc
+    file: mtz1
+    columns: { Fobs: FP, SigFobs: SIGFP, FreeR: FREE, calcStructFact: true }
+`;
+    const scene = parseScene(yaml);
+    expect(scene.maps![0].columns.calcStructFact).toBe(true);
+  });
+
+  it("rejects an unknown style", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/best.mtz
+maps:
+  - name: best
+    file: mtz1
+    columns: { F: FWT, PHI: PHWT }
+    style: chunky
+`;
+    expect(() => parseScene(yaml)).toThrow(/must be "lines", "solid", or "lit-lines"/);
+  });
+
+  it("rejects activeMap referencing a non-existent entry", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/best.mtz
+maps:
+  - name: best
+    file: mtz1
+    columns: { F: FWT, PHI: PHWT }
+activeMap: missing
+`;
+    expect(() => parseScene(yaml)).toThrow(/does not name any entry in maps:/);
+  });
+
+  it("round-trips maps through serialise → parse", async () => {
+    const { serialiseScene } = await import("../lib/moorhen-scene");
+    const scene = parseScene(`scene: round
+version: 1
+files:
+  - name: mtz1
+    kind: mtz
+    url: https://example/best.mtz
+maps:
+  - name: best
+    file: mtz1
+    columns: { F: FWT, PHI: PHWT }
+    contourLevel: 1.2
+    colour: "#336699"
+activeMap: best
+`);
+    const yaml = serialiseScene(scene);
+    const parsed = parseScene(yaml);
+    expect(parsed.maps![0]).toMatchObject({
+      name: "best",
+      file: "mtz1",
+      columns: { F: "FWT", PHI: "PHWT" },
+      contourLevel: 1.2,
+      colour: "#336699",
+    });
+    expect(parsed.activeMap).toBe("best");
   });
 });

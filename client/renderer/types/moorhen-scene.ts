@@ -61,6 +61,17 @@ export interface MoorhenScene {
   /** Per-file rendering instructions: representations and colour rules. */
   elements?: SceneElement[];
 
+  /** Map instances to render, each referencing an MTZ file from the
+   *  `files:` block (kind: "mtz") with a column-label spec and optional
+   *  contour/colour/style. v1 supports MTZ refs only — pre-computed
+   *  CCP4 map files and PDB-fetched maps will land in a later version. */
+  maps?: SceneMap[];
+
+  /** Name of the map (from `maps:`) that should be Moorhen's active
+   *  map after apply. Moorhen refines against the active map, so this
+   *  is normally the best/calculated map (not a difference map). */
+  activeMap?: string;
+
   /** Camera, clip, fog, background. Portable subset of Moorhen's
    *  viewDataSession; lighting/SSAO/shadow params intentionally omitted. */
   view?: SceneView;
@@ -101,8 +112,10 @@ export interface SceneFileRef {
    *  "dictionary" refs are CIF monomer dicts (refmac/coot format) that
    *  the resolver loads into Coot's dictionary store rather than as
    *  separate molecules; they're then scoped to specific molecules via
-   *  the per-element `dictionaries:` list. */
-  kind?: "coordinates" | "dictionary";
+   *  the per-element `dictionaries:` list. "mtz" refs are reflection
+   *  data — referenced by entries in the `maps:` block which carry the
+   *  column-label spec and contour/colour settings. */
+  kind?: "coordinates" | "dictionary" | "mtz";
 
   /** PDB ID (4-letter or extended). Fetched via the PDBe proxy on apply
    *  if not already loaded. The most portable, share-friendly form for
@@ -307,6 +320,85 @@ export interface SceneRawColour {
     isMultiColourRule?: boolean;
     applyColourToNonCarbonAtoms?: boolean;
   };
+}
+
+// --------------------------------------------------------------------------
+// Maps
+// --------------------------------------------------------------------------
+
+/**
+ * Column-label spec for reading an MTZ. Mirrors moorhen.selectedMtzColumns
+ * but kept as a scene-local type so the YAML grammar isn't tied to the
+ * installed Moorhen version. F + PHI are the minimum for a coefficient
+ * map; Fobs/SigFobs/FreeR appear when the caller wants Moorhen to do its
+ * own coefficient calculation (calcStructFact).
+ */
+export interface SceneMapColumns {
+  /** Structure-factor label (e.g. "FWT", "F"). */
+  F?: string;
+  /** Phase label (e.g. "PHWT", "PHI"). */
+  PHI?: string;
+  /** Observed structure factor (when calcStructFact = true). */
+  Fobs?: string;
+  /** Sigma of observed F (when calcStructFact = true). */
+  SigFobs?: string;
+  /** Free-R flag column (when calcStructFact = true). */
+  FreeR?: string;
+  /** Weight column (FOM). */
+  useWeight?: boolean;
+  /** True iff Moorhen should compute coefficients on the fly
+   *  rather than reading FWT/PHWT directly. */
+  calcStructFact?: boolean;
+}
+
+/**
+ * One Moorhen map. References an MTZ file from the `files:` block and
+ * carries the column-label spec plus optional render state.
+ *
+ * Render-state fields are all optional — any omitted, Moorhen's
+ * defaults apply at load time. The lifter only emits a field when its
+ * captured value differs from those defaults, so the YAML stays small.
+ */
+export interface SceneMap {
+  /** Local name, unique within the maps block. Used by `activeMap:` at
+   *  the scene root and as a join key for the lifter/promoter. */
+  name: string;
+
+  /** Name of an entry in `files:` (must have `kind: "mtz"`). */
+  file: string;
+
+  /** Column-label spec for reading the referenced MTZ. */
+  columns: SceneMapColumns;
+
+  /** Difference-map flag. Maps with this set render both positive and
+   *  negative contour lobes using `positiveColour` / `negativeColour`. */
+  isDifference?: boolean;
+
+  /** Contour level (rmsd-relative for Moorhen). */
+  contourLevel?: number;
+
+  /** Map radius (Å) — sphere around the camera origin to contour. */
+  radius?: number;
+
+  /** Opacity (0–1). */
+  alpha?: number;
+
+  /** Render style. "lit-lines" is Moorhen's prettier default for
+   *  workstation-class GPUs. */
+  style?: "lines" | "solid" | "lit-lines";
+
+  /** Hex colour (#rrggbb or #rrggbbaa). For non-difference maps only;
+   *  difference maps use `positiveColour` + `negativeColour`. */
+  colour?: string;
+
+  /** Hex colour for the positive contour lobe of a difference map. */
+  positiveColour?: string;
+
+  /** Hex colour for the negative contour lobe of a difference map. */
+  negativeColour?: string;
+
+  /** Whether the map is visible. Defaults to true. */
+  visible?: boolean;
 }
 
 // --------------------------------------------------------------------------

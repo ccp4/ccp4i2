@@ -34,11 +34,17 @@ import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-f
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
-import { applyScene, SceneResolveResult, SceneFileFetcher } from "../../lib/moorhen-scene-resolver";
+import {
+  applyScene,
+  SceneFileFetcher,
+  SceneMapFetcher,
+  SceneResolveResult,
+} from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 import {
   liftSceneToBundle,
+  MapRenderState,
   promoteSceneToPortable,
   SceneLiftHints,
   SceneRefUrlResolver,
@@ -689,6 +695,79 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     [],
   );
 
+  // Centralised URL-derivation for any URL-shaped ref kind. Shared by
+  // the fetcher (apply path), the map fetcher, and the promoter (export
+  // path) so they agree on what counts as "a resolvable ref". Declared
+  // here (above the consumers) so the closures pick it up cleanly.
+  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback((ref) => {
+    if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
+    if (ref.fileId !== undefined && ref.projectId) {
+      return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+    }
+    if (ref.url) return ref.url;
+    return null;
+  }, []);
+
+  // Map fetcher: produces a loaded MoorhenMap for a scene `kind: "mtz"`
+  // ref + SceneMap column spec. Bundle-asset bytes short-circuit the
+  // network; URL-resolvable refs go via the existing scene-file URL
+  // logic. Always uses loadToCootFromMtzData (taking raw bytes) so the
+  // bundle path doesn't need a Blob round-trip.
+  const handleFetchSceneMap: SceneMapFetcher = useCallback(
+    async (ref, sceneMap) => {
+      if (!commandCentre.current) return null;
+      let bytes: ArrayBuffer | null = null;
+      let uniqueId: string | null = null;
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) {
+          console.warn(`[scene] map bundle miss: ${ref.bundle}`);
+          return null;
+        }
+        bytes = buf;
+        uniqueId = `bundle:${ref.bundle}`;
+      } else {
+        const url = resolveSceneRefUrl(ref);
+        if (!url) return null;
+        try {
+          bytes = await apiArrayBuffer(url);
+          uniqueId = url;
+        } catch (err) {
+          console.warn(`[scene] map fetch failed for ${ref.name}:`, err);
+          return null;
+        }
+      }
+      try {
+        const newMap = new MoorhenMap(
+          commandCentre as RefObject<moorhen.CommandCentre>,
+          store as any,
+        );
+        await newMap.loadToCootFromMtzData(
+          new Uint8Array(bytes as ArrayBuffer),
+          sceneMap.name,
+          {
+            F: sceneMap.columns.F,
+            PHI: sceneMap.columns.PHI,
+            Fobs: sceneMap.columns.Fobs,
+            SigFobs: sceneMap.columns.SigFobs,
+            FreeR: sceneMap.columns.FreeR,
+            useWeight: !!sceneMap.columns.useWeight,
+            calcStructFact: !!sceneMap.columns.calcStructFact,
+            isDifference: !!sceneMap.isDifference,
+          } as moorhen.selectedMtzColumns,
+        );
+        if (newMap.molNo === -1) return null;
+        if (uniqueId) newMap.uniqueId = uniqueId;
+        dispatch(addMap(newMap));
+        return newMap;
+      } catch (err) {
+        console.warn(`[scene] failed to load MTZ for ${ref.name}:`, err);
+        return null;
+      }
+    },
+    [commandCentre, store, dispatch, resolveSceneRefUrl],
+  );
+
   // Apply a scene YAML: validate, then hand to the resolver with the
   // refs/state it needs. Defined here because the wrapper owns dispatch
   // and the command-centre ref. The optional assets map carries bytes
@@ -707,18 +786,22 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       return applyScene({
         scene,
         molecules,
+        maps,
         dispatch,
         fetcher: handleFetchSceneFile,
         dictionaryFetcher: handleFetchSceneDictionary,
         dictionaryLoader: handleLoadSceneDictionary,
+        mapFetcher: handleFetchSceneMap,
       });
     },
     [
       molecules,
+      maps,
       dispatch,
       handleFetchSceneFile,
       handleFetchSceneDictionary,
       handleLoadSceneDictionary,
+      handleFetchSceneMap,
     ],
   );
 
@@ -743,24 +826,6 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     })();
     return () => { cancelled = true; };
   }, [jobId]);
-
-  // Capture current state as a scene. Pulls glRef from the store on each
-  // click so the camera reflects the most recent rotation. Uses the
-  // bundle-aware lifter: if any molecule's source isn't portable (no
-  // pdb id / fileId / url) the lifter inlines its coords into the
-  // returned asset map, the YAML gets bundle: refs, and Save writes a
-  // .scene.zip. Portable refs (pdb / fileId / url) stay as-is.
-  // Centralised URL-derivation for any URL-shaped ref kind. Shared by
-  // the fetcher (apply path) and the promoter (export path) so they
-  // agree on what counts as "a resolvable ref".
-  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback((ref) => {
-    if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
-    if (ref.fileId !== undefined && ref.projectId) {
-      return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
-    }
-    if (ref.url) return ref.url;
-    return null;
-  }, []);
 
   // Promote an editor YAML to a fully self-contained scene + asset
   // bundle: every URL-resolvable ref is fetched into assets/ and
@@ -800,6 +865,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       fogStart?: number;
       fogEnd?: number;
     } }).glRef;
+    // Flatten Moorhen's per-attribute contour slices into one
+    // MapRenderState per molNo. mapContourSettings is keyed by
+    // molNo across several parallel lists in the redux slice; we
+    // gather them so the lifter can read off a single object.
+    const mapState = collectMapRenderState(state);
+    const activeMapMolNo =
+      (state as unknown as { generalStates?: { activeMap?: moorhen.Map | null } })
+        .generalStates?.activeMap?.molNo;
     return liftSceneToBundle({
       molecules,
       glRef: glRefState,
@@ -809,8 +882,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // root (all molecules share it via the wrapper's construction).
       // Without it the lifter falls back to STANDARD_MONOMERS only.
       monomerLibraryPath: molecules[0]?.monomerLibraryPath,
+      maps,
+      mapState,
+      activeMapMolNo: typeof activeMapMolNo === "number" ? activeMapMolNo : undefined,
     });
-  }, [store, molecules, projectInfo]);
+  }, [store, molecules, maps, projectInfo]);
 
   // Custom side panels: CCP4i2 controls + Scenes (YAML editor + lifter +
   // apply). Scene operations live in the Scenes panel exclusively; the
@@ -899,3 +975,74 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 };
 
 export default MoorhenWrapper;
+
+// --------------------------------------------------------------------------
+// Helpers — capture-path
+// --------------------------------------------------------------------------
+
+interface ContourEntry {
+  molNo: number;
+  contourLevel?: number;
+  radius?: number;
+  alpha?: number;
+  style?: "lines" | "solid" | "lit-lines";
+  rgb?: { r: number; g: number; b: number };
+}
+
+/**
+ * Flatten Moorhen's mapContourSettings slice — which stores per-attribute
+ * arrays keyed by molNo — into a single MapRenderState per molNo for the
+ * lifter to consume. Defensive: every field is optional, and we tolerate
+ * the slice being absent (older Moorhen versions, or no maps loaded).
+ */
+function collectMapRenderState(
+  state: unknown,
+): Record<number, MapRenderState> {
+  const out: Record<number, MapRenderState> = {};
+  const slice = (state as { mapContourSettings?: Record<string, unknown> })
+    .mapContourSettings;
+  if (!slice) return out;
+  const ensure = (molNo: number): MapRenderState => {
+    if (!out[molNo]) out[molNo] = {};
+    return out[molNo];
+  };
+  const merge = (
+    rows: unknown,
+    setter: (s: MapRenderState, v: ContourEntry) => void,
+  ) => {
+    if (!Array.isArray(rows)) return;
+    for (const row of rows as ContourEntry[]) {
+      if (typeof row?.molNo === "number") setter(ensure(row.molNo), row);
+    }
+  };
+  merge(slice.contourLevels, (s, v) => { if (v.contourLevel !== undefined) s.contourLevel = v.contourLevel; });
+  merge(slice.mapRadii, (s, v) => { if (v.radius !== undefined) s.radius = v.radius; });
+  merge(slice.mapAlpha, (s, v) => { if (v.alpha !== undefined) s.alpha = v.alpha; });
+  merge(slice.mapStyles, (s, v) => { if (v.style) s.style = v.style; });
+  merge(slice.mapColours, (s, v) => { if (v.rgb) s.colour = rgb01ToHex(v.rgb); });
+  merge(slice.positiveMapColours, (s, v) => { if (v.rgb) s.positiveColour = rgb01ToHex(v.rgb); });
+  merge(slice.negativeMapColours, (s, v) => { if (v.rgb) s.negativeColour = rgb01ToHex(v.rgb); });
+  const visible = (slice as { visibleMaps?: unknown }).visibleMaps;
+  if (Array.isArray(visible)) {
+    const visibleSet = new Set<number>(
+      (visible as unknown[]).filter((n): n is number => typeof n === "number"),
+    );
+    // visibleMaps lists the *visible* molNos; map state already includes
+    // every molNo we've seen, but make sure we don't drop a map that has
+    // no other contour settings touched.
+    for (const molNo of visibleSet) ensure(molNo);
+    for (const molNo of Object.keys(out).map(Number)) {
+      out[molNo].visible = visibleSet.has(molNo);
+    }
+  }
+  return out;
+}
+
+/** Convert Moorhen's {r,g,b} 0-1 shape to a 6-hex string. */
+function rgb01ToHex(rgb: { r: number; g: number; b: number }): string {
+  const to8 = (v: number) =>
+    Math.max(0, Math.min(255, Math.round(v * 255)))
+      .toString(16)
+      .padStart(2, "0");
+  return `#${to8(rgb.r)}${to8(rgb.g)}${to8(rgb.b)}`;
+}

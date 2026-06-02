@@ -445,3 +445,132 @@ describe("liftScene — dictionary lifting", () => {
     expect(dictRefs).toHaveLength(0);
   });
 });
+
+function fakeMap(opts: {
+  name: string;
+  molNo: number;
+  uniqueId: string;
+  isDifference?: boolean;
+  selectedColumns?: Partial<moorhen.selectedMtzColumns>;
+}): moorhen.Map {
+  return {
+    name: opts.name,
+    molNo: opts.molNo,
+    uniqueId: opts.uniqueId,
+    isDifference: !!opts.isDifference,
+    selectedColumns: (opts.selectedColumns ?? { F: "FWT", PHI: "PHWT" }) as moorhen.selectedMtzColumns,
+  } as unknown as moorhen.Map;
+}
+
+describe("liftScene — maps", () => {
+  it("emits an MTZ file ref + SceneMap with columns + isDifference", () => {
+    const scene = liftScene({
+      molecules: [],
+      glRef: fakeGlRef,
+      maps: [
+        fakeMap({
+          name: "best",
+          molNo: 5,
+          uniqueId: "https://example/best.mtz",
+          selectedColumns: { F: "FWT", PHI: "PHWT" },
+        }),
+        fakeMap({
+          name: "diff",
+          molNo: 6,
+          uniqueId: "https://example/diff.mtz",
+          isDifference: true,
+          selectedColumns: { F: "DELFWT", PHI: "PHDELWT" },
+        }),
+      ],
+    });
+    const mtzFiles = scene.files!.filter((f) => f.kind === "mtz");
+    expect(mtzFiles).toHaveLength(2);
+    expect(scene.maps).toHaveLength(2);
+    expect(scene.maps![0]).toMatchObject({
+      file: mtzFiles[0].name,
+      columns: { F: "FWT", PHI: "PHWT" },
+    });
+    expect(scene.maps![0].isDifference).toBeUndefined();
+    expect(scene.maps![1].isDifference).toBe(true);
+  });
+
+  it("uses fileId+projectId for ccp4i2-loaded MTZs", () => {
+    const scene = liftScene({
+      molecules: [],
+      glRef: fakeGlRef,
+      projectId: "proj-uuid",
+      projectName: "Demo",
+      maps: [
+        fakeMap({
+          name: "best",
+          molNo: 5,
+          uniqueId: "/api/proxy/ccp4i2/files/777/download/",
+        }),
+      ],
+    });
+    const mtzFile = scene.files!.find((f) => f.kind === "mtz");
+    expect(mtzFile).toMatchObject({
+      fileId: 777,
+      projectId: "proj-uuid",
+      projectName: "Demo",
+    });
+  });
+
+  it("promotes activeMap by molNo to scene.activeMap", () => {
+    const scene = liftScene({
+      molecules: [],
+      glRef: fakeGlRef,
+      maps: [
+        fakeMap({ name: "best", molNo: 5, uniqueId: "https://example/best.mtz" }),
+        fakeMap({ name: "diff", molNo: 6, uniqueId: "https://example/diff.mtz", isDifference: true }),
+      ],
+      activeMapMolNo: 5,
+    });
+    expect(scene.activeMap).toBe(scene.maps![0].name);
+  });
+
+  it("captures render state from mapState keyed by molNo", () => {
+    const scene = liftScene({
+      molecules: [],
+      glRef: fakeGlRef,
+      maps: [
+        fakeMap({ name: "best", molNo: 5, uniqueId: "https://example/best.mtz" }),
+      ],
+      mapState: {
+        5: {
+          contourLevel: 1.234,
+          radius: 17.5,
+          alpha: 0.9,
+          style: "solid",
+          colour: "#336699",
+          visible: false,
+        },
+      },
+    });
+    expect(scene.maps![0]).toMatchObject({
+      contourLevel: 1.234,
+      radius: 17.5,
+      alpha: 0.9,
+      style: "solid",
+      colour: "#336699",
+      visible: false,
+    });
+  });
+
+  it("emits positive/negative colours only for difference maps", () => {
+    const scene = liftScene({
+      molecules: [],
+      glRef: fakeGlRef,
+      maps: [
+        fakeMap({ name: "diff", molNo: 5, uniqueId: "https://example/diff.mtz", isDifference: true }),
+      ],
+      mapState: {
+        5: { colour: "#000000", positiveColour: "#00ff00", negativeColour: "#ff0000" },
+      },
+    });
+    const m = scene.maps![0];
+    expect(m.positiveColour).toBe("#00ff00");
+    expect(m.negativeColour).toBe("#ff0000");
+    expect(m.colour).toBeUndefined();
+  });
+});

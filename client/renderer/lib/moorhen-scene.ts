@@ -19,6 +19,8 @@ import {
   SceneFileRef,
   SceneElement,
   SceneLsqMatch,
+  SceneMap,
+  SceneMapColumns,
   SceneRepresentation,
   SceneColour,
   SceneSuperpose,
@@ -145,6 +147,31 @@ export function validateScene(raw: unknown): {
     );
   }
 
+  if ("maps" in raw) {
+    out.maps = validateMaps(
+      (raw as Record<string, unknown>).maps,
+      out.files ?? [],
+      errors,
+    );
+  }
+
+  if ("activeMap" in raw) {
+    const am = optStr(raw, "activeMap", "activeMap", errors);
+    if (am) {
+      // Validate cross-reference against the maps block. The maps block
+      // is optional, so we accept any string here when it isn't present
+      // (the resolver will warn at apply time).
+      if (out.maps && !out.maps.some((m) => m.name === am)) {
+        errors.push({
+          path: "activeMap",
+          message: `"${am}" does not name any entry in maps:`,
+        });
+      } else {
+        out.activeMap = am;
+      }
+    }
+  }
+
   if ("view" in raw) {
     const v = (raw as Record<string, unknown>).view;
     if (isObject(v)) {
@@ -215,12 +242,12 @@ function validateFiles(
     const ref: SceneFileRef = { name };
     if ("kind" in entry) {
       const kind = optStr(entry, "kind", `${p}.kind`, errors);
-      if (kind && kind !== "coordinates" && kind !== "dictionary") {
+      if (kind && kind !== "coordinates" && kind !== "dictionary" && kind !== "mtz") {
         errors.push({
           path: `${p}.kind`,
-          message: `must be "coordinates" or "dictionary", got "${kind}"`,
+          message: `must be "coordinates", "dictionary", or "mtz", got "${kind}"`,
         });
-      } else if (kind === "coordinates" || kind === "dictionary") {
+      } else if (kind === "coordinates" || kind === "dictionary" || kind === "mtz") {
         ref.kind = kind;
       }
     }
@@ -643,6 +670,130 @@ function validateElements(
   return out;
 }
 
+function validateMaps(
+  raw: unknown,
+  files: SceneFileRef[],
+  errors: SceneValidationError[],
+): SceneMap[] | undefined {
+  if (!Array.isArray(raw)) {
+    errors.push({ path: "maps", message: "must be a sequence" });
+    return undefined;
+  }
+  const fileNames = new Set(files.map((f) => f.name));
+  const mtzFileNames = new Set(
+    files.filter((f) => f.kind === "mtz").map((f) => f.name),
+  );
+  const seen = new Set<string>();
+  const out: SceneMap[] = [];
+  raw.forEach((entry, i) => {
+    const p = `maps[${i}]`;
+    if (!isObject(entry)) {
+      errors.push({ path: p, message: "must be a mapping" });
+      return;
+    }
+    const name = strField(entry, "name", "", errors, p);
+    if (!name) {
+      errors.push({ path: `${p}.name`, message: "required" });
+    } else if (seen.has(name)) {
+      errors.push({ path: `${p}.name`, message: `duplicate map name "${name}"` });
+    } else {
+      seen.add(name);
+    }
+
+    const file = strField(entry, "file", "", errors, p);
+    if (!file) {
+      errors.push({ path: `${p}.file`, message: "required" });
+    } else if (files.length > 0 && !fileNames.has(file)) {
+      errors.push({
+        path: `${p}.file`,
+        message: `unknown file "${file}" (not in top-level files block)`,
+      });
+    } else if (fileNames.has(file) && !mtzFileNames.has(file)) {
+      errors.push({
+        path: `${p}.file`,
+        message: `"${file}" must be a file with kind: "mtz"`,
+      });
+    }
+
+    const columnsRaw = (entry as Record<string, unknown>).columns;
+    let columns: SceneMapColumns = {};
+    if (!isObject(columnsRaw)) {
+      errors.push({ path: `${p}.columns`, message: "required mapping (F + PHI minimum)" });
+    } else {
+      columns = {
+        F: optStr(columnsRaw, "F", `${p}.columns.F`, errors),
+        PHI: optStr(columnsRaw, "PHI", `${p}.columns.PHI`, errors),
+        Fobs: optStr(columnsRaw, "Fobs", `${p}.columns.Fobs`, errors),
+        SigFobs: optStr(columnsRaw, "SigFobs", `${p}.columns.SigFobs`, errors),
+        FreeR: optStr(columnsRaw, "FreeR", `${p}.columns.FreeR`, errors),
+        useWeight: optBool(columnsRaw, "useWeight", `${p}.columns.useWeight`, errors),
+        calcStructFact: optBool(columnsRaw, "calcStructFact", `${p}.columns.calcStructFact`, errors),
+      };
+      // Drop undefined fields so the round-trip stays clean.
+      (Object.keys(columns) as (keyof SceneMapColumns)[]).forEach((k) => {
+        if (columns[k] === undefined) delete columns[k];
+      });
+      // Need F + PHI unless calcStructFact (then Moorhen computes them
+      // from Fobs/SigFobs/FreeR).
+      const haveFP = !!columns.F && !!columns.PHI;
+      const haveCalc = columns.calcStructFact && !!columns.Fobs && !!columns.SigFobs;
+      if (!haveFP && !haveCalc) {
+        errors.push({
+          path: `${p}.columns`,
+          message: "must set F + PHI (or calcStructFact + Fobs + SigFobs)",
+        });
+      }
+    }
+
+    const map: SceneMap = { name, file, columns };
+
+    if ("isDifference" in entry) {
+      map.isDifference = optBool(entry, "isDifference", `${p}.isDifference`, errors);
+    }
+    if ("contourLevel" in entry) {
+      map.contourLevel = optNum(entry, "contourLevel", `${p}.contourLevel`, errors);
+    }
+    if ("radius" in entry) {
+      map.radius = optNum(entry, "radius", `${p}.radius`, errors);
+    }
+    if ("alpha" in entry) {
+      map.alpha = optNum(entry, "alpha", `${p}.alpha`, errors);
+    }
+    if ("style" in entry) {
+      const s = optStr(entry, "style", `${p}.style`, errors);
+      if (s && s !== "lines" && s !== "solid" && s !== "lit-lines") {
+        errors.push({
+          path: `${p}.style`,
+          message: `must be "lines", "solid", or "lit-lines", got "${s}"`,
+        });
+      } else if (s) {
+        map.style = s as SceneMap["style"];
+      }
+    }
+    for (const k of ["colour", "positiveColour", "negativeColour"] as const) {
+      if (k in entry) {
+        const c = optStr(entry, k, `${p}.${k}`, errors);
+        if (c) {
+          if (!isHexColor(c)) {
+            errors.push({
+              path: `${p}.${k}`,
+              message: `must be hex like "#rrggbb" or "#rrggbbaa", got "${c}"`,
+            });
+          } else {
+            map[k] = c;
+          }
+        }
+      }
+    }
+    if ("visible" in entry) {
+      map.visible = optBool(entry, "visible", `${p}.visible`, errors);
+    }
+
+    out.push(map);
+  });
+  return out;
+}
+
 function validateRepresentation(
   raw: unknown,
   path: string,
@@ -788,6 +939,28 @@ function buildOrderedScene(scene: MoorhenScene): Record<string, unknown> {
       }
       return out;
     });
+  }
+  if (scene.maps && scene.maps.length > 0) {
+    ordered.maps = scene.maps.map((m) => {
+      const out: Record<string, unknown> = {
+        name: m.name,
+        file: m.file,
+        columns: stripUndefined(m.columns),
+      };
+      // Optional render-state fields: emit only the ones the lifter
+      // (or hand-author) set, so the YAML stays small.
+      const optional: (keyof SceneMap)[] = [
+        "isDifference", "contourLevel", "radius", "alpha", "style",
+        "colour", "positiveColour", "negativeColour", "visible",
+      ];
+      for (const k of optional) {
+        if (m[k] !== undefined) out[k] = m[k];
+      }
+      return out;
+    });
+  }
+  if (scene.activeMap) {
+    ordered.activeMap = scene.activeMap;
   }
   if (scene.view && hasAnyValue(scene.view)) {
     ordered.view = stripUndefined(scene.view);
