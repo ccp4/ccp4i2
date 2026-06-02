@@ -131,6 +131,12 @@ def build_pandda_zip(group, temp_dir: Optional[Path] = None) -> PanddaExportResu
 
     zip_path = temp_dir / f"pandda_{group.name}.zip"
     included_count = 0
+    # Maps the synthetic ``xtal-NNNN`` directory name (which is what
+    # PANDDA2 reads as the crystal number) back to the original
+    # project name, written out as ``Projects.csv`` at the ZIP root.
+    # The same CSV is consumed by MoorhenPanddaInspect to surface the
+    # original provenance as a subtitle alongside each xtal id.
+    manifest_rows = []
 
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
         for project, dimple_job, acedrg_job in collect_pandda_datasets(group):
@@ -147,7 +153,8 @@ def build_pandda_zip(group, temp_dir: Optional[Path] = None) -> PanddaExportResu
                 )
                 continue
 
-            dataset_path = f"datasets/{project.name}"
+            xtal_name = f"xtal-{included_count:04d}"
+            dataset_path = f"datasets/{xtal_name}"
             try:
                 mtz_to_write = prepare_mtz_for_pandda(final_mtz, temp_dir)
             except Exception as relabel_err:
@@ -159,11 +166,17 @@ def build_pandda_zip(group, temp_dir: Optional[Path] = None) -> PanddaExportResu
 
             zf.write(str(final_pdb), f"{dataset_path}/final.pdb")
             zf.write(str(mtz_to_write), f"{dataset_path}/final.mtz")
+            manifest_rows.append((xtal_name, project.name))
             included_count += 1
 
             dict_cif = _find_dictionary_cif(acedrg_job)
             if dict_cif is not None:
                 zf.write(str(dict_cif), f"{dataset_path}/dict.cif")
+
+        if manifest_rows:
+            csv_lines = ["Dataset, Project"]
+            csv_lines.extend(f"{xtal}, {name}" for xtal, name in manifest_rows)
+            zf.writestr("Projects.csv", "\n".join(csv_lines) + "\n")
 
     return PanddaExportResult(
         zip_path=zip_path,
