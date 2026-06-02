@@ -60,6 +60,12 @@ export interface LiftCtx {
   sceneName?: string;
   /** Optional: who is authoring (email/username). */
   createdBy?: string;
+  /** Optional: Moorhen's monomer library URL root (e.g. "/baby-gru/monomers").
+   *  When set, the lifter HEAD-probes `${monomerLibraryPath}/<l>/<UPPER>.cif`
+   *  per ligand and skips dicts that already resolve there, so common
+   *  cofactors (ATP, HEM, NAD, …) don't bloat the captured YAML.
+   *  Without it, only the built-in STANDARD_MONOMERS set is skipped. */
+  monomerLibraryPath?: string;
 }
 
 /**
@@ -244,6 +250,39 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
   const { scene, hints } = liftSceneWithHints(ctx);
   const assets = new Map<string, ArrayBuffer>();
 
+  // 0. Drop dict refs whose comp_id is already in Moorhen's monomer
+  //    library: when the receiving Moorhen loads coords, its
+  //    loadMissingMonomer machinery will fetch the same dict from the
+  //    same library, so carrying our copy in the scene only bloats the
+  //    YAML and risks shipping a stale variant. The probe is keyed off
+  //    the comp_id, which we rebuild by mirroring liftDictionariesForMolecule.
+  if (ctx.monomerLibraryPath) {
+    const libraryHas = await probeMonomerLibrary(
+      ctx.molecules,
+      ctx.monomerLibraryPath,
+    );
+    if (libraryHas.size > 0) {
+      const dropNames = new Set<string>();
+      for (const ref of scene.files ?? []) {
+        if (ref.kind !== "dictionary") continue;
+        // Names are `dict-<molFileName>-<COMP_ID>` from liftDictionariesForMolecule.
+        // Pull the trailing comp_id off rather than slicing on first hyphen
+        // (the molFileName may itself contain hyphens).
+        const m = /^dict-.*-([A-Za-z0-9]+)$/.exec(ref.name);
+        if (!m) continue;
+        if (libraryHas.has(m[1].toUpperCase())) dropNames.add(ref.name);
+      }
+      if (dropNames.size > 0) {
+        scene.files = (scene.files ?? []).filter((f) => !dropNames.has(f.name));
+        for (const el of scene.elements ?? []) {
+          if (!el.dictionaries) continue;
+          el.dictionaries = el.dictionaries.filter((n) => !dropNames.has(n));
+          if (el.dictionaries.length === 0) delete el.dictionaries;
+        }
+      }
+    }
+  }
+
   // 1. Replace each coord file ref with a bundle: ref carrying the
   //    current coords. Skip refs the lifter wrote as PDB IDs / project
   //    fileIds — those are already self-resolving and don't need
@@ -293,6 +332,208 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
   }
 
   return { scene, hints, assets };
+}
+
+/**
+ * Resolve a SceneFileRef to a URL the browser can `fetch()`, or null
+ * if the ref doesn't carry enough information (e.g. a bare `path:` or
+ * an already-bundled ref). Supplied by the wrapper, which knows the
+ * site-specific proxy routes.
+ */
+export type SceneRefUrlResolver = (ref: SceneFileRef) => string | null;
+
+export interface PromoteCtx {
+  /** Parsed scene to promote. Mutated in place; pass a clone if you
+   *  need the original. */
+  scene: MoorhenScene;
+  /** Asset bytes already present (e.g. from a .scene.zip the user opened).
+   *  New assets are merged into a fresh map so the caller can choose to
+   *  keep, discard, or diff. */
+  existingAssets: Map<string, ArrayBuffer>;
+  /** Function that yields a fetchable URL for any URL-shaped ref kind
+   *  (pdb / url / fileId+projectId / path-as-URL). */
+  resolveUrl: SceneRefUrlResolver;
+  /** Live molecules — used to re-collect library-resolvable dicts that
+   *  the lifter omitted from the YAML. Optional: if not provided, no
+   *  library-dict re-collection happens. */
+  molecules?: moorhen.Molecule[];
+  /** Optional monomer library URL root for library-dict re-collection. */
+  monomerLibraryPath?: string;
+}
+
+/**
+ * Walk a scene and gather every external dependency into a single
+ * self-contained bundle. For each URL-resolvable ref (pdb / url /
+ * fileId+projectId / path), fetch the bytes and rewrite the ref to
+ * `bundle: assets/<unique>.<ext>`. For each ligand whose dict was
+ * skipped at lift time (because it lives in the monomer library),
+ * fetch it from the library and add a fresh dict ref.
+ *
+ * Asset paths are name-mangled on collision (`name.cif`, `name-2.cif`).
+ *
+ * Returns the in-place-mutated scene and a fresh assets map (merging
+ * `existingAssets` with all newly-fetched bytes). The caller is
+ * responsible for serialising the scene to YAML and zipping the assets.
+ */
+export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
+  scene: MoorhenScene;
+  assets: Map<string, ArrayBuffer>;
+  warnings: string[];
+}> {
+  const { scene, existingAssets, resolveUrl, molecules, monomerLibraryPath } = ctx;
+  const assets = new Map(existingAssets);
+  const warnings: string[] = [];
+
+  // Names already taken in the asset map — used to mangle on collision.
+  const usedPaths = new Set<string>(assets.keys());
+  const claim = (preferred: string): string => {
+    if (!usedPaths.has(preferred)) {
+      usedPaths.add(preferred);
+      return preferred;
+    }
+    const dot = preferred.lastIndexOf(".");
+    const base = dot > 0 ? preferred.slice(0, dot) : preferred;
+    const ext = dot > 0 ? preferred.slice(dot) : "";
+    for (let i = 2; ; i++) {
+      const candidate = `${base}-${i}${ext}`;
+      if (!usedPaths.has(candidate)) {
+        usedPaths.add(candidate);
+        return candidate;
+      }
+    }
+  };
+
+  // 1. URL-resolvable refs → bundle. Coord and dict refs alike: anything
+  //    with a fetchable URL gets pulled and stashed under assets/.
+  for (const ref of scene.files ?? []) {
+    if (ref.bundle) continue; // already bundled
+    if (ref.kind === "dictionary" && ref.cifText) {
+      // Inline cifText: move it to a bundle asset (mirrors liftSceneToBundle
+      // step 2). Cheaper than refetching and works without a URL.
+      const assetPath = claim(`assets/${ref.name}.cif`);
+      assets.set(assetPath, new TextEncoder().encode(ref.cifText).buffer);
+      ref.bundle = assetPath;
+      delete ref.cifText;
+      continue;
+    }
+    const url = resolveUrl(ref);
+    if (!url) {
+      warnings.push(`No URL for ref "${ref.name}"; left as-is`);
+      continue;
+    }
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        warnings.push(`Fetch ${url} for "${ref.name}" returned ${res.status}; left as-is`);
+        continue;
+      }
+      const buf = await res.arrayBuffer();
+      const ext = extForRef(ref, url);
+      const assetPath = claim(`assets/${ref.name}.${ext}`);
+      assets.set(assetPath, buf);
+      // Replace symbolic source fields with the bundle reference. Keep
+      // `kind` since downstream resolver cares.
+      delete ref.pdb;
+      delete ref.url;
+      delete ref.path;
+      delete ref.fileId;
+      delete ref.projectId;
+      delete ref.projectName;
+      ref.bundle = assetPath;
+    } catch (err) {
+      warnings.push(
+        `Fetch ${url} for "${ref.name}" failed (${err instanceof Error ? err.message : "unknown"}); left as-is`,
+      );
+    }
+  }
+
+  // 2. Library-dict re-collection. The lifter strips dicts whose
+  //    comp_id resolves to the monomer library; self-contained mode
+  //    wants them back. Walk live molecules; for each non-standard
+  //    comp_id that the library has AND isn't already in the scene's
+  //    dict refs, fetch it and append a fresh ref.
+  if (molecules && monomerLibraryPath) {
+    const existingDictNames = new Set(
+      (scene.files ?? []).filter((f) => f.kind === "dictionary").map((f) => f.name),
+    );
+    for (const mol of molecules) {
+      const molFileName = findFileNameForMol(scene, mol);
+      if (!molFileName) continue;
+      const ligands = mol.ligands ?? [];
+      const compIds = Array.from(new Set(ligands.map((l) => l.resName).filter(Boolean)));
+      for (const compId of compIds) {
+        if (STANDARD_MONOMERS.has(compId)) continue; // never travelled
+        const dictName = `dict-${molFileName}-${compId}`;
+        if (existingDictNames.has(dictName)) continue;
+        const url = `${monomerLibraryPath}/${compId[0].toLowerCase()}/${compId.toUpperCase()}.cif`;
+        try {
+          const res = await fetch(url);
+          if (!res.ok) continue;
+          const buf = await res.arrayBuffer();
+          const assetPath = claim(`assets/${dictName}.cif`);
+          assets.set(assetPath, buf);
+          const newRef: SceneFileRef = {
+            name: dictName,
+            kind: "dictionary",
+            bundle: assetPath,
+          };
+          (scene.files ??= []).push(newRef);
+          existingDictNames.add(dictName);
+          const el = (scene.elements ?? []).find((e) => e.file === molFileName);
+          if (el) {
+            el.dictionaries = el.dictionaries ?? [];
+            if (!el.dictionaries.includes(dictName)) el.dictionaries.push(dictName);
+          }
+        } catch {
+          // network errors → leave the dict out; receiver's own Moorhen
+          // will fetch from its own library at apply time.
+        }
+      }
+    }
+  }
+
+  return { scene, assets, warnings };
+}
+
+/**
+ * Best-effort extension picker for a fetched asset. Dict refs are CIF;
+ * coord refs fall back to the URL's trailing extension, else "cif".
+ */
+function extForRef(ref: SceneFileRef, url: string): string {
+  if (ref.kind === "dictionary") return "cif";
+  const m = /\.([A-Za-z0-9]{2,4})(?:\?|$)/.exec(url);
+  if (m) return m[1].toLowerCase();
+  return "cif";
+}
+
+/**
+ * Find which scene.files entry corresponds to a loaded molecule, using
+ * the same heuristics as liftScene: sanitised name or mol-index. Used
+ * by promote to attach re-collected dict refs to the right element.
+ */
+function findFileNameForMol(
+  scene: MoorhenScene,
+  mol: moorhen.Molecule,
+): string | null {
+  const sanitised = sanitiseName(mol.name);
+  for (const f of scene.files ?? []) {
+    if (f.name === sanitised) return f.name;
+  }
+  // Project-internal: match by fileId in uniqueId.
+  const fid = extractFileIdFromUniqueId(mol.uniqueId ?? "");
+  if (fid !== null) {
+    for (const f of scene.files ?? []) {
+      if (f.fileId === fid) return f.name;
+    }
+  }
+  // Bundle round-trip: uniqueId is `bundle:<path>`.
+  if (mol.uniqueId?.startsWith("bundle:")) {
+    const path = mol.uniqueId.slice("bundle:".length);
+    for (const f of scene.files ?? []) {
+      if (f.bundle === path) return f.name;
+    }
+  }
+  return null;
 }
 
 // --------------------------------------------------------------------------
@@ -404,7 +645,9 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
 
   // 2. Single-colour rule with a hex colour (Moorhen's "molecule" ruleType
   //    or anything with isMultiColourRule=false).
-  if (!r.isMultiColourRule && typeof r.color === "string" && /^#[0-9a-fA-F]{6}$/.test(r.color)) {
+  // Accept 6-hex (#rrggbb) and 8-hex with alpha (#rrggbbaa) — Moorhen's
+  // default per-chain rules typically come out as 8-hex.
+  if (!r.isMultiColourRule && typeof r.color === "string" && /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/.test(r.color)) {
     return r.color;
   }
 
@@ -416,7 +659,7 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
   if (
     r.isMultiColourRule &&
     typeof r.args?.[0] === "string" &&
-    /^\/\/[^/]+\/-?\d+--?\d+\^#[0-9a-fA-F]{6}(\|\/\/[^/]+\/-?\d+--?\d+\^#[0-9a-fA-F]{6})*$/.test(
+    /^\/\/[^/]+\/-?\d+--?\d+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?(\|\/\/[^/]+\/-?\d+--?\d+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?)*$/.test(
       r.args[0] as string,
     )
   ) {
@@ -463,4 +706,42 @@ function round(n: number, dp: number): number {
 
 function hasAnyValue(o: Record<string, unknown>): boolean {
   return Object.values(o).some((v) => v !== undefined);
+}
+
+/**
+ * HEAD-probe each candidate comp_id against the monomer library and
+ * return the set that resolves there (uppercase). A non-2xx (or thrown
+ * fetch) is treated as "not present" — conservative: we'd rather ship
+ * a dict the receiver might already have than drop one they don't.
+ *
+ * `STANDARD_MONOMERS` are short-circuited (always treated as present)
+ * so we don't issue probes for the 20 amino acids on every capture.
+ */
+async function probeMonomerLibrary(
+  molecules: moorhen.Molecule[],
+  monomerLibraryPath: string,
+): Promise<Set<string>> {
+  const compIds = new Set<string>();
+  for (const mol of molecules) {
+    for (const lig of mol.ligands ?? []) {
+      if (lig.resName) compIds.add(lig.resName.toUpperCase());
+    }
+  }
+  const present = new Set<string>();
+  await Promise.all(
+    [...compIds].map(async (cid) => {
+      if (STANDARD_MONOMERS.has(cid)) {
+        present.add(cid);
+        return;
+      }
+      const url = `${monomerLibraryPath}/${cid[0].toLowerCase()}/${cid}.cif`;
+      try {
+        const res = await fetch(url, { method: "HEAD" });
+        if (res.ok) present.add(cid);
+      } catch {
+        // network errors → treat as not-present; the dict will travel.
+      }
+    }),
+  );
+  return present;
 }

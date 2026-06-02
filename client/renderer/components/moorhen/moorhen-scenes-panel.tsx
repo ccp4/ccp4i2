@@ -25,9 +25,11 @@ import React, {
 import {
   Box,
   Button,
+  ButtonGroup,
   Checkbox,
   FormControlLabel,
-  IconButton,
+  Menu,
+  MenuItem,
   Stack,
   Tooltip,
   Typography,
@@ -37,6 +39,7 @@ import {
   FileOpen as OpenIcon,
   Save as SaveIcon,
   PlayArrow as ApplyIcon,
+  ArrowDropDown as DropDownIcon,
 } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
 import JSZip from "jszip";
@@ -95,6 +98,18 @@ interface MoorhenScenesPanelProps {
     hints: SceneLiftHints;
     assets: SceneBundleAssets;
   }>;
+  /** Promote the editor YAML to a fully self-contained scene: every
+   *  URL-resolvable ref is fetched, library-dict comp_ids are re-
+   *  collected, and everything lands in the returned asset map under
+   *  bundle: paths. Used by Save (self-contained). */
+  onPromoteSceneToPortable: (
+    yamlText: string,
+    currentAssets: SceneBundleAssets,
+  ) => Promise<{
+    yamlText: string;
+    assets: SceneBundleAssets;
+    warnings: string[];
+  }>;
   /** True once Moorhen / Coot is ready. Disables apply until then. */
   enabled: boolean;
 }
@@ -110,6 +125,7 @@ interface PanelMessage {
 export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   onApplyScene,
   onCaptureScene,
+  onPromoteSceneToPortable,
   enabled,
 }) => {
   const [yamlText, setYamlText] = useState<string>("");
@@ -268,53 +284,121 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
     void applyNow(yamlText, { silentOnParseError: false });
   }, [applyNow, yamlText]);
 
-  const handleSave = useCallback(async () => {
+  // --- save (light vs self-contained) ------------------------------------
+  //
+  // Light: write whatever the editor holds. If any ref already uses a
+  // bundle: path AND we have bytes for it, emit a .scene.zip carrying
+  // only the referenced assets (orphan assets from a previously-opened
+  // zip are dropped — they're not the saved scene's concern). Otherwise
+  // emit a plain .scene.yaml.
+  //
+  // Self-contained: hand the YAML to the wrapper's promoter, which
+  // fetches every URL-resolvable ref into bundle assets and re-collects
+  // library-resolvable ligand dicts. Always emits a .scene.zip.
+
+  const triggerDownload = useCallback((blob: Blob, filename: string) => {
+    const a = document.createElement("a");
+    document.body.appendChild(a);
+    const url = URL.createObjectURL(blob);
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  }, []);
+
+  const handleSaveLight = useCallback(async () => {
     if (!yamlText.trim()) {
       setMessage({ severity: "warning", text: "Nothing to save" });
       return;
     }
     let sceneName = "scene";
-    let hasBundleRefs = false;
+    let referencedBundlePaths: Set<string> | null = null;
     try {
       const parsed = parseScene(yamlText);
       sceneName = parsed.scene || "scene";
-      hasBundleRefs = (parsed.files ?? []).some((f) => !!f.bundle);
+      referencedBundlePaths = new Set(
+        (parsed.files ?? []).filter((f) => !!f.bundle).map((f) => f.bundle as string),
+      );
     } catch {
       // Save the raw text anyway so the user doesn't lose work in progress.
     }
 
     const safe = sceneName.replace(/[^A-Za-z0-9._-]+/g, "_");
-    const a = document.createElement("a");
-    document.body.appendChild(a);
+    const shouldBundle =
+      referencedBundlePaths !== null &&
+      referencedBundlePaths.size > 0 &&
+      [...referencedBundlePaths].some((p) => assetsRef.current.has(p));
 
-    // Save as .scene.zip when the scene has any bundle: refs AND we
-    // have asset bytes for them — otherwise the zip would be missing
-    // its own attachments. Falls back to plain yaml if there's nothing
-    // to attach.
-    const shouldBundle = hasBundleRefs && assetsRef.current.size > 0;
     if (shouldBundle) {
       const zip = new JSZip();
       zip.file("scene.yaml", yamlText);
+      // Only include assets the YAML actually references; orphans from
+      // a previous-opened zip are noise and bloat the save.
+      let kept = 0;
       for (const [relPath, buf] of assetsRef.current.entries()) {
+        if (referencedBundlePaths!.has(relPath)) {
+          zip.file(relPath, buf);
+          kept++;
+        }
+      }
+      const blob = await zip.generateAsync({ type: "blob" });
+      triggerDownload(blob, `${safe}.scene.zip`);
+      setMessage({
+        severity: "info",
+        text: `Saved ${safe}.scene.zip (${kept} bundled asset${kept === 1 ? "" : "s"})`,
+      });
+    } else {
+      const blob = new Blob([yamlText], { type: "application/x-yaml;charset=utf-8" });
+      triggerDownload(blob, `${safe}.scene.yaml`);
+      setMessage({ severity: "info", text: `Saved ${safe}.scene.yaml` });
+    }
+  }, [yamlText, triggerDownload]);
+
+  const handleSaveSelfContained = useCallback(async () => {
+    if (!yamlText.trim()) {
+      setMessage({ severity: "warning", text: "Nothing to save" });
+      return;
+    }
+    setMessage({ severity: "info", text: "Gathering assets…" });
+    try {
+      const { yamlText: portableYaml, assets, warnings } =
+        await onPromoteSceneToPortable(yamlText, assetsRef.current);
+      let sceneName = "scene";
+      try {
+        sceneName = parseScene(portableYaml).scene || "scene";
+      } catch {
+        /* fall back to "scene" */
+      }
+      const safe = sceneName.replace(/[^A-Za-z0-9._-]+/g, "_");
+      const zip = new JSZip();
+      zip.file("scene.yaml", portableYaml);
+      for (const [relPath, buf] of assets.entries()) {
         zip.file(relPath, buf);
       }
       const blob = await zip.generateAsync({ type: "blob" });
-      const url = URL.createObjectURL(blob);
-      a.href = url;
-      a.download = `${safe}.scene.zip`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } else {
-      const blob = new Blob([yamlText], { type: "application/x-yaml;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      a.href = url;
-      a.download = `${safe}.scene.yaml`;
-      a.click();
-      URL.revokeObjectURL(url);
+      triggerDownload(blob, `${safe}.scene.zip`);
+      // Adopt the promoted YAML + assets into the editor so subsequent
+      // Apply / Save use the now-self-contained scene without a re-promote.
+      setYamlText(portableYaml);
+      assetsRef.current = assets;
+      setMessage({
+        severity: warnings.length > 0 ? "warning" : "success",
+        text:
+          `Saved ${safe}.scene.zip (${assets.size} asset${assets.size === 1 ? "" : "s"})` +
+          (warnings.length > 0 ? ` — ${warnings.length} warning${warnings.length === 1 ? "" : "s"}` : ""),
+        log: warnings.map((w) => ({ file: "", domain: "promote", message: w })),
+      });
+    } catch (err) {
+      setMessage({
+        severity: "error",
+        text: `Self-contained save failed: ${err instanceof Error ? err.message : "unknown error"}`,
+      });
     }
-    document.body.removeChild(a);
-    setMessage({ severity: "info", text: `Saved ${a.download}` });
-  }, [yamlText]);
+  }, [yamlText, onPromoteSceneToPortable, triggerDownload]);
+
+  // Split-button state for the Save dropdown.
+  const [saveMenuAnchor, setSaveMenuAnchor] = useState<HTMLElement | null>(null);
 
   // --- live apply ---------------------------------------------------------
 
@@ -392,13 +476,41 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
           </span>
         </Tooltip>
 
-        <Tooltip title="Save the editor's YAML to disk">
-          <span>
-            <IconButton size="small" onClick={handleSave}>
-              <SaveIcon fontSize="small" />
-            </IconButton>
-          </span>
-        </Tooltip>
+        <ButtonGroup variant="outlined" size="small" sx={{ "& .MuiButton-root": { fontSize: "0.75rem", textTransform: "none" } }}>
+          <Tooltip title="Save the editor's YAML (zips only the assets the YAML references)">
+            <Button startIcon={<SaveIcon />} onClick={handleSaveLight}>
+              Save
+            </Button>
+          </Tooltip>
+          <Tooltip title="More save options">
+            <Button
+              size="small"
+              onClick={(e) => setSaveMenuAnchor(e.currentTarget)}
+              sx={{ px: 0.5, minWidth: 0 }}
+            >
+              <DropDownIcon fontSize="small" />
+            </Button>
+          </Tooltip>
+        </ButtonGroup>
+        <Menu
+          anchorEl={saveMenuAnchor}
+          open={Boolean(saveMenuAnchor)}
+          onClose={() => setSaveMenuAnchor(null)}
+        >
+          <MenuItem
+            onClick={() => {
+              setSaveMenuAnchor(null);
+              void handleSaveSelfContained();
+            }}
+          >
+            <Stack>
+              <Typography variant="body2">Save self-contained…</Typography>
+              <Typography variant="caption" sx={{ color: "#666" }}>
+                Fetch every URL-resolvable ref and bundle into one .scene.zip
+              </Typography>
+            </Stack>
+          </MenuItem>
+        </Menu>
 
         <FormControlLabel
           control={

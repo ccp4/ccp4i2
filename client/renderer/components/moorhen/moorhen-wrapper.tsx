@@ -33,11 +33,16 @@ import { MoorhenCcp4i2TabbedPanel } from "./moorhen-ccp4i2-tabbed-panel";
 import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
-import { parseScene } from "../../lib/moorhen-scene";
+import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
 import { applyScene, SceneResolveResult, SceneFileFetcher } from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
-import { liftSceneToBundle, SceneLiftHints } from "../../lib/moorhen-scene-lifter";
+import {
+  liftSceneToBundle,
+  promoteSceneToPortable,
+  SceneLiftHints,
+  SceneRefUrlResolver,
+} from "../../lib/moorhen-scene-lifter";
 import type { MoorhenScene } from "../../types/moorhen-scene";
 import {
   MoorhenFallback,
@@ -745,6 +750,41 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // pdb id / fileId / url) the lifter inlines its coords into the
   // returned asset map, the YAML gets bundle: refs, and Save writes a
   // .scene.zip. Portable refs (pdb / fileId / url) stay as-is.
+  // Centralised URL-derivation for any URL-shaped ref kind. Shared by
+  // the fetcher (apply path) and the promoter (export path) so they
+  // agree on what counts as "a resolvable ref".
+  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback((ref) => {
+    if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
+    if (ref.fileId !== undefined && ref.projectId) {
+      return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+    }
+    if (ref.url) return ref.url;
+    return null;
+  }, []);
+
+  // Promote an editor YAML to a fully self-contained scene + asset
+  // bundle: every URL-resolvable ref is fetched into assets/ and
+  // rewritten to bundle: form; ligand dicts that live in Moorhen's
+  // monomer library are re-collected (the lifter omits them so the
+  // captured YAML stays small, but self-contained mode wants them).
+  const handlePromoteSceneToPortable = useCallback(
+    async (
+      yamlText: string,
+      currentAssets: SceneBundleAssets,
+    ): Promise<{ yamlText: string; assets: SceneBundleAssets; warnings: string[] }> => {
+      const scene = parseScene(yamlText);
+      const { scene: out, assets, warnings } = await promoteSceneToPortable({
+        scene,
+        existingAssets: currentAssets,
+        resolveUrl: resolveSceneRefUrl,
+        molecules,
+        monomerLibraryPath: molecules[0]?.monomerLibraryPath,
+      });
+      return { yamlText: serialiseScene(out), assets, warnings };
+    },
+    [molecules, resolveSceneRefUrl],
+  );
+
   const handleCaptureScene = useCallback(async (): Promise<{
     scene: MoorhenScene;
     hints: SceneLiftHints;
@@ -765,6 +805,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       glRef: glRefState,
       projectId: projectInfo?.id,
       projectName: projectInfo?.name,
+      // First molecule's monomerLibraryPath is the canonical Moorhen
+      // root (all molecules share it via the wrapper's construction).
+      // Without it the lifter falls back to STANDARD_MONOMERS only.
+      monomerLibraryPath: molecules[0]?.monomerLibraryPath,
     });
   }, [store, molecules, projectInfo]);
 
@@ -791,11 +835,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           servalcatStatus={servalcatStatus}
           onApplyScene={handleApplyScene}
           onCaptureScene={handleCaptureScene}
+          onPromoteSceneToPortable={handlePromoteSceneToPortable}
           cootInitialized={cootInitialized}
         />
       ),
     },
-  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, cootInitialized]);
+  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, cootInitialized]);
 
   const collectedProps = useMemo(() => ({
     glRef,

@@ -656,12 +656,16 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
   if (!rep.colour) return [];
 
   if (isSceneHexColour(rep.colour)) {
+    // libcoot's add_colour_rule reads cid+colour from args, not from
+    // this.cid/this.color (which are only consulted by the bond-style
+    // shim_set_bond_colours path). Without [cid, colour] in args,
+    // ribbons / MolecularSurface / etc. silently no-op.
     return [
       {
         ruleType: "molecule",
         cid: defaultCid,
         color: rep.colour,
-        args: [],
+        args: [defaultCid, rep.colour],
         isMultiColourRule: false,
       },
     ];

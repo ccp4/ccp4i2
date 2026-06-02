@@ -577,7 +577,7 @@ function validateDomains(
     } else if (!isHexColor(color)) {
       errors.push({
         path: `${p}.color`,
-        message: `must be hex like "#rrggbb", got "${color}"`,
+        message: `must be hex like "#rrggbb" or "#rrggbbaa", got "${color}"`,
       });
     }
     if (name) {
@@ -677,7 +677,7 @@ function validateColour(
     if (isSceneNamedColour(raw as SceneColour)) return raw as SceneColour;
     errors.push({
       path,
-      message: `unknown colour "${raw}" — expected hex (#rrggbb) or named scheme`,
+      message: `unknown colour "${raw}" — expected hex (#rrggbb or #rrggbbaa) or named scheme`,
     });
     return null;
   }
@@ -807,7 +807,11 @@ function isObject(x: unknown): x is Record<string, unknown> {
 }
 
 function isHexColor(s: string): boolean {
-  return /^#[0-9a-fA-F]{6}$/.test(s);
+  // 6-hex (#rrggbb) or 8-hex with alpha (#rrggbbaa). Moorhen's own
+  // MoorhenColourRule.parseHexToRgba accepts both, and Moorhen's
+  // default per-chain colour rules come out as 8-hex, so the scene
+  // format mirrors that.
+  return /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/.test(s);
 }
 
 function hasAnyValue(o: object): boolean {

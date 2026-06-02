@@ -41,12 +41,21 @@ export interface MoorhenCcp4i2TabbedPanelProps {
     hints: SceneLiftHints;
     assets: SceneBundleAssets;
   }>;
+  onPromoteSceneToPortable: (
+    yamlText: string,
+    currentAssets: SceneBundleAssets,
+  ) => Promise<{
+    yamlText: string;
+    assets: SceneBundleAssets;
+    warnings: string[];
+  }>;
   cootInitialized: boolean;
 }
 
 export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> = ({
   onApplyScene,
   onCaptureScene,
+  onPromoteSceneToPortable,
   cootInitialized,
   ...controlsProps
 }) => {
@@ -77,10 +86,11 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
       <MoorhenScenesPanel
         onApplyScene={onApplyScene}
         onCaptureScene={onCaptureScene}
+        onPromoteSceneToPortable={onPromoteSceneToPortable}
         enabled={cootInitialized}
       />
     ),
-    [onApplyScene, onCaptureScene, cootInitialized],
+    [onApplyScene, onCaptureScene, onPromoteSceneToPortable, cootInitialized],
   );
 
   return (
