@@ -11,6 +11,7 @@ import os
 import zipfile
 import tempfile
 from pathlib import Path
+import gemmi
 from django.http import FileResponse
 from django.conf import settings
 from rest_framework.viewsets import ModelViewSet
@@ -24,6 +25,41 @@ from ..db import models
 from ..lib.response import api_success, api_error
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
+
+
+PANDDA_FREER_LABELS = ("FREE", "FreeR_flag", "R-free-flags")
+COMMON_FREER_LABELS = (
+    "FREER",
+    "FREE",
+    "FreeR_flag",
+    "FreeRflag",
+    "FreeR",
+    "R-free-flags",
+    "free",
+)
+
+
+def _prepare_mtz_for_pandda(src_path, staging_dir):
+    """Return a path to an MTZ whose FreeR column carries a PANDDA-accepted label.
+
+    PANDDA2 only recognises 'FREE', 'FreeR_flag', or 'R-free-flags'. If the
+    source MTZ already has one of those, the original path is returned (no
+    rewrite). Otherwise the first column matching a common FreeR convention
+    (e.g. CCP4's 'FREER') is renamed to 'FreeR_flag' and the rewritten file
+    is placed in staging_dir. If no FreeR-like column is found at all, the
+    source path is returned unchanged.
+    """
+    mtz = gemmi.read_mtz_file(str(src_path))
+    labels = [col.label for col in mtz.columns]
+    if any(label in PANDDA_FREER_LABELS for label in labels):
+        return src_path
+    for col in mtz.columns:
+        if col.label in COMMON_FREER_LABELS:
+            col.label = "FreeR_flag"
+            out_path = Path(staging_dir) / f"{src_path.stem}_pandda.mtz"
+            mtz.write_to_file(str(out_path))
+            return out_path
+    return src_path
 
 
 class ProjectGroupViewSet(ModelViewSet):
@@ -655,10 +691,18 @@ class ProjectGroupViewSet(ModelViewSet):
                         )
                         continue
 
-                    # Add dimple outputs
+                    # Add dimple outputs (relabel FreeR for PANDDA if needed)
                     dataset_path = f"datasets/{project.name}"
+                    try:
+                        mtz_to_write = _prepare_mtz_for_pandda(final_mtz, temp_dir)
+                    except Exception as relabel_err:
+                        logger.warning(
+                            "FreeR relabel failed for %s, using original MTZ: %s",
+                            project.name, relabel_err,
+                        )
+                        mtz_to_write = final_mtz
                     zf.write(str(final_pdb), f"{dataset_path}/final.pdb")
-                    zf.write(str(final_mtz), f"{dataset_path}/final.mtz")
+                    zf.write(str(mtz_to_write), f"{dataset_path}/final.mtz")
                     included_count += 1
 
                     # Find LidiaAcedrgNew job for dictionary
