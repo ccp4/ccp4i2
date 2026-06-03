@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ccp4i2-api"
-version = "0.3.0"
+version = "0.3.1"
 description = "Shared API contract (auth, api-fetch, request/response types) for CCP4i2 and consumers"
 readme = "README.md"
 license = { text = "LGPL-3.0-or-later" }
@@ -13,7 +13,7 @@ authors = [
     { name = "CCP4i2 contributors" }
 ]
 dependencies = [
-    "django>=4.2,<5.0",
+    "django>=4.2,<6.0",
     "djangorestframework>=3.14",
     "PyJWT[crypto]>=2.10",
     "certifi>=2024.0.0",
