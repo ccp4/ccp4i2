@@ -163,6 +163,17 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
+      # actions/setup-node@v4 with Node 20 ships npm 10.8.x, which only
+      # supports OIDC for provenance signing (sigstore) but NOT for the
+      # registry PUT itself. OIDC-based registry auth without a stored
+      # NPM_TOKEN landed in npm 11.5. Without this upgrade, the publish
+      # step succeeds at provenance signing then 404s on the registry
+      # PUT ("'@ccp4/ccp4i2-api@x.y.z' is not in this registry") because
+      # the call is effectively unauthenticated. Caught at 0.3.3 (PyPI
+      # published, npm failed); see also packages/ccp4i2-api/RELEASING.md.
+      - name: Upgrade npm for OIDC registry auth (needs >=11.5)
+        run: npm install -g npm@latest
+
       - name: Install + build
         run: |
           npm ci
