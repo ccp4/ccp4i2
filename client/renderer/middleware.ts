@@ -35,21 +35,30 @@ const AUTH_EXEMPT_PATHS = [
                         // probes need to reach it without an auth-session cookie.
 ];
 
-// Paths that accept Bearer token authentication (for CLI tools like i2remote)
-// These paths handle their own auth validation in the route handler
+// Paths that accept Bearer token authentication (for CLI tools like i2remote).
+// These paths handle their own auth validation in the route handler downstream.
+//
+// IMPORTANT: list each prefix WITHOUT a trailing slash. Next.js's default
+// `trailingSlash: false` canonicalizer strips trailing slashes from incoming
+// URLs before middleware sees them -- so a request to `/api/proxy/pandda/runs/`
+// arrives here as `/api/proxy/pandda/runs`, and a rule of
+// `/api/proxy/pandda/runs/` would never match via `startsWith()`. The bug
+// manifests as CLI POSTs (no auth cookie) silently redirecting to /auth/login.
+// Listing the no-slash prefix matches both `/runs` and `/runs/2` (or any
+// deeper sub-path), which is what we want.
 const BEARER_AUTH_PATHS = [
-  "/api/proxy/ccp4i2/", // CCP4i2 API proxy - validates Bearer token in route handler
-  "/api/proxy/compounds/", // Compounds API proxy - validates Bearer token in route handler
-  "/api/proxy/pandda/runs/", // PanDDA run-lifecycle proxy (POST trigger, GET poll, cancel).
-                             // The route handler forwards the user's Authorization header
-                             // to Reinspect; Reinspect's ccp4i2-api middleware validates
-                             // the AAD JWT and stamps Run.triggered_by_oid.
-  "/reinspect/", // Reinspect SPA + asset + API proxy. Browser navigation reaches it
-                 // with an auth-session cookie (cookie-or-Bearer suffices for the
-                 // middleware); programmatic /api/v1/* calls from the SPA include
-                 // a Bearer token via MSAL. Reinspect's middleware then validates
-                 // the AAD JWT downstream (auth at the edge here is just gating
-                 // unknown traffic; the real check is on Reinspect's side).
+  "/api/proxy/ccp4i2", // CCP4i2 API proxy - validates Bearer token in route handler
+  "/api/proxy/compounds", // Compounds API proxy - validates Bearer token in route handler
+  "/api/proxy/pandda/runs", // PanDDA run-lifecycle proxy (POST trigger, GET poll, cancel).
+                            // The route handler forwards the user's Authorization header
+                            // to Reinspect; Reinspect's ccp4i2-api middleware validates
+                            // the AAD JWT and stamps Run.triggered_by_oid.
+  "/reinspect", // Reinspect SPA + asset + API proxy. Browser navigation reaches it
+                // with an auth-session cookie (cookie-or-Bearer suffices for the
+                // middleware); programmatic /api/v1/* calls from the SPA include
+                // a Bearer token via MSAL. Reinspect's middleware then validates
+                // the AAD JWT downstream (auth at the edge here is just gating
+                // unknown traffic; the real check is on Reinspect's side).
 ];
 
 // Check if path is exempt from authentication
