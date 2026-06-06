@@ -29,6 +29,10 @@ const AUTH_EXEMPT_PATHS = [
   "/auth/teams-callback", // Teams auth callback (receives token)
   "/_next", // Next.js internals (static assets, webpack HMR)
   "/favicon.ico",
+  "/reinspect/healthz", // Reinspect's readiness probe (DB-checked, auth-exempt on
+                        // Reinspect's side too -- see pandda-inspect-api
+                        // CLOUD_DEPLOYMENT.md §"Health probe"). Liveness/readiness
+                        // probes need to reach it without an auth-session cookie.
 ];
 
 // Paths that accept Bearer token authentication (for CLI tools like i2remote)
@@ -36,6 +40,16 @@ const AUTH_EXEMPT_PATHS = [
 const BEARER_AUTH_PATHS = [
   "/api/proxy/ccp4i2/", // CCP4i2 API proxy - validates Bearer token in route handler
   "/api/proxy/compounds/", // Compounds API proxy - validates Bearer token in route handler
+  "/api/proxy/pandda/runs/", // PanDDA run-lifecycle proxy (POST trigger, GET poll, cancel).
+                             // The route handler forwards the user's Authorization header
+                             // to Reinspect; Reinspect's ccp4i2-api middleware validates
+                             // the AAD JWT and stamps Run.triggered_by_oid.
+  "/reinspect/", // Reinspect SPA + asset + API proxy. Browser navigation reaches it
+                 // with an auth-session cookie (cookie-or-Bearer suffices for the
+                 // middleware); programmatic /api/v1/* calls from the SPA include
+                 // a Bearer token via MSAL. Reinspect's middleware then validates
+                 // the AAD JWT downstream (auth at the edge here is just gating
+                 // unknown traffic; the real check is on Reinspect's side).
 ];
 
 // Check if path is exempt from authentication
