@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>ImportMap</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="ImportMap">
+    <container id="inputData">
+      <content id="MAPIN">
+        <className>CMapDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <guiLabel>Map file</guiLabel>
+          <toolTip>A CCP4 or MRC format map file to import into the project</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters"/>
+    <container id="outputData">
+      <content id="MAPOUT">
+        <className>CMapDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

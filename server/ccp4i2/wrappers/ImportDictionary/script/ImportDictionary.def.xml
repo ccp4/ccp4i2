@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>ImportDictionary</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="ImportDictionary">
+    <container id="inputData">
+      <content id="DICTIN">
+        <className>CDictDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <guiLabel>Dictionary file</guiLabel>
+          <toolTip>A monomer / restraint dictionary (CIF) to import into the project</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters"/>
+    <container id="outputData">
+      <content id="DICTOUT">
+        <className>CDictDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>
