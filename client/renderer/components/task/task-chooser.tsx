@@ -40,6 +40,11 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "coordinate_selector",
       "splitMtz",
       "import_serial_pipe",
+      "ImportCoordinate",
+      "ImportSequence",
+      "ImportAsuContent",
+      "ImportDictionary",
+      "ImportMap",
     ],
   },
   {
@@ -191,6 +196,10 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "density_calculator",
       "freerflag",
       "matthews",
+      "ImportObs",
+      "ImportMapCoeffs",
+      "ImportFreeR",
+      "ImportPhases",
     ],
   },
   {

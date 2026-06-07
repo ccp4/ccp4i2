@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>ImportAsuContent</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="ImportAsuContent">
+    <container id="inputData">
+      <content id="ASUIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <guiLabel>ASU contents file</guiLabel>
+          <toolTip>An existing ASU contents definition (.asu.xml) to import into the project</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters"/>
+    <container id="outputData">
+      <content id="ASUOUT">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>
