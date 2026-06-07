@@ -210,6 +210,19 @@ const nextConfig: NextConfig = {
           source: "/ccp4i2/moorhen-page/:path*",
           headers: [...devCommonHeaders, ...webAssemblyHeaders],
         },
+        // Reinspect SPA is path-mounted at /reinspect/* and instantiates
+        // Moorhen for event review; same COOP/COEP requirement as
+        // /ccp4i2/moorhen-page above. Mirror it here so dev-mode parity
+        // with production is maintained. See production block for full
+        // rationale.
+        {
+          source: "/reinspect",
+          headers: [...devCommonHeaders, ...webAssemblyHeaders],
+        },
+        {
+          source: "/reinspect/:path*",
+          headers: [...devCommonHeaders, ...webAssemblyHeaders],
+        },
         // All other routes
         {
           source: "/:path*",
@@ -310,6 +323,26 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/ccp4i2/moorhen-page/:path*",
+        headers: [...commonHeaders, ...webAssemblyHeaders],
+      },
+      // Reinspect SPA is path-mounted at /reinspect/* and instantiates Moorhen
+      // (via CootWorker.js) when it shows event review pages. The SPA page
+      // therefore needs the same cross-origin-isolation pair (COOP same-origin
+      // + COEP require-corp) that /ccp4i2/moorhen-page gets, so the browser
+      // accepts SharedArrayBuffer and Worker construction. The Reinspect
+      // upstream sets these too (CLOUD_DEPLOYMENT.md "Cross-Origin headers")
+      // and our /reinspect/* proxy preserves them, but emitting them at the
+      // Materia edge as well guarantees consistency across the redirect chain
+      // (the SPA index.html, the Reinspect API responses, asset 404 / error
+      // pages, ...) -- without this, the WASM Worker load was blocked with
+      // "Refused to load worker because of Cross-Origin-Embedder-Policy"
+      // (BAZ2B smoke, 2026-06-07).
+      {
+        source: "/reinspect",
+        headers: [...commonHeaders, ...webAssemblyHeaders],
+      },
+      {
+        source: "/reinspect/:path*",
         headers: [...commonHeaders, ...webAssemblyHeaders],
       },
       // All other routes - no cross-origin isolation, allows Teams embedding
