@@ -136,10 +136,6 @@ class phaser_pipeline(CPluginScript):
             self.runCsymmatch()
             XYZIN_TOUSE = self.container.outputData.XYZOUT_CSYMMATCH
 
-        if self.container.inputData.RUNCOOT:
-            self.runCoot(MAPIN=self.container.outputData.MAPOUT[0], XYZIN=XYZIN_TOUSE)
-            XYZIN_TOUSE = self.container.outputData.XYZOUT_COOT
-        
         if self.container.inputData.RUNSHEETBEND:
             self.runSheetbend(F_SIGF=F_SIGF_TOUSE, FREERFLAG=FREERFLAG_TOUSE, XYZIN=XYZIN_TOUSE)
             XYZIN_TOUSE = self.container.outputData.XYZOUT_SHEETBEND
@@ -198,45 +194,6 @@ class phaser_pipeline(CPluginScript):
             pipelineOutputs.XYZOUT_CSYMMATCH.annotation.set('Coordinates moved to match reference structure')
         except:
             self.appendErrorReport(204,'csymmatch')
-            self.reportStatus(CPluginScript.FAILED)
-        return CPluginScript.SUCCEEDED
-
-    def runCoot(self, MAPIN=None, XYZIN=None):
-        try:
-            try:
-                cootPlugin = self.makePluginObject('coot_script_lines')
-                xyzinList = cootPlugin.container.inputData.XYZIN
-                xyzinList.append(xyzinList.makeItem())
-                xyzinList[-1].set(XYZIN)
-                fphiinList = cootPlugin.container.inputData.FPHIIN
-                fphiinList.append(fphiinList.makeItem())
-                fphiinList[-1].set(MAPIN)
-                cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-fit_protein(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-            except:
-                self.appendErrorReport(204,'coot_script_lines -setup')
-                self.reportStatus(CPluginScript.FAILED)
-            try:
-                cootPlugin.doAsync=False
-                rv = cootPlugin.process()
-                if rv != CPluginScript.SUCCEEDED: self.reportStatus(rv)
-            except:
-                self.appendErrorReport(204,'coot_script_lines -execute')
-                self.reportStatus(CPluginScript.FAILED)
-            try:
-                pluginOutputs = cootPlugin.container.outputData
-                pipelineOutputs = self.container.outputData
-
-                self.harvestFile(pluginOutputs.XYZOUT[0], pipelineOutputs.XYZOUT_COOT)
-                self.appendXML(cootPlugin.makeFileName('PROGRAMXML'),'coot_script_lines')
-                pipelineOutputs.XYZOUT_COOT.annotation.set('Coordinates filled and fitted by COOT')
-            except:
-                self.appendErrorReport(204,'coot_script_lines -postprocess')
-                self.reportStatus(CPluginScript.FAILED)
-        except:
-            self.appendErrorReport(204,'coot_script_lines')
             self.reportStatus(CPluginScript.FAILED)
         return CPluginScript.SUCCEEDED
 

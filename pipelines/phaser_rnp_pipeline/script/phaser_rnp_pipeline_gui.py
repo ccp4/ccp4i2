@@ -37,9 +37,6 @@ class phaser_rnp_pipeline_gui(phaser_MR_RNP_gui.phaser_MR_RNP_gui):
         #Open a folder to deal with UI for extra steps
         self.openFolder(folderFunction='extraSteps', title='Extra steps')
         self.createLine(['advice',''])
-        self.createLine(['advice','Optionally run COOT to fill and fit partial residues'])
-        self.createLine(['widget','RUNCOOT','label','Run COOT to fit and fill partial residues'])
-        self.createLine(['advice',''])
         self.createLine(['advice','Optionally run a simple 10-cycle refmac job'])
         self.createLine(['widget','RUNREFMAC','label','Run REFMAC on top output solution'])
 
