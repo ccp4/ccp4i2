@@ -676,39 +676,16 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             self.reportStatus(status)
         print("\n\n1","beyond")
 
-        self.harvestFile(self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
+        self.harvestFile(self.cootPlugin.container.outputData.XYZOUT, self.container.outputData.XYZOUT)
         self.container.outputData.XYZOUT.annotation.set('Atomic model after buccaneer and coot add ligand')
         self.reportStatus(status)
 
     def cootAddLigand(self):
-        self.cootPlugin = self.makePluginObject('coot_script_lines')
-        xyzinList = self.cootPlugin.container.inputData.XYZIN
-        xyzinList.append(xyzinList.makeItem())
-        xyzinList[-1].set(self.coordinatesForCoot)
-        fphiinList = self.cootPlugin.container.inputData.FPHIIN
-        fphiinList.append(fphiinList.makeItem())
-        fphiinList[-1].set(self.mapToUse)
+        self.cootPlugin = self.makePluginObject('coot_find_ligand')
+        self.cootPlugin.container.inputData.XYZIN.set(self.coordinatesForCoot)
+        self.cootPlugin.container.inputData.FPHI.set(self.mapToUse)
         self.cootPlugin.container.inputData.DICT.set(self.dictToUse)
-        self.cootPlugin.container.controlParameters.SCRIPT.set('''#Script to fit ligand into density
-monomerMolNo = get_monomer('DRG')
-add_ligand_clear_ligands()
-set_ligand_search_protein_molecule(MolHandle_1)
-set_ligand_search_map_molecule(MapHandle_1)
-add_ligand_search_wiggly_ligand_molecule(monomerMolNo)
-#Execute search
-nToCopy = 0
-ligandsFound=execute_ligand_search()
-if ligandsFound is not False:
-    nToCopy = len(ligandsFound)
-#Check on ncs
-equivs = ncs_chain_ids(0)
-if equivs is not False and len(equivs)>0:
-    nToCopy = min(len(ligandsFound),len(equivs[0]))
-if nToCopy > 0:
-    ligandsToCopy = ligandsFound[0:nToCopy]
-    merge_molecules(ligandsToCopy,0)
-
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
+        self.cootPlugin.container.inputData.COMPID.set("DRG")
         self.connectSignal(self.cootPlugin,'finished',self.cootPlugin_finished)
         self.cootPlugin.process()
 
