@@ -1,24 +1,13 @@
-from os import environ
 from pathlib import Path
-from sys import platform
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ModelData import CPdbDataFile
-
-
-def coot1Command():
-    ccp4 = Path(environ["CCP4"])
-    if platform == "win32":
-        return str(ccp4 / ".." / "WinCoot1" / "wincoot.bat")
-    if platform == "darwin":
-        return str(ccp4 / "libexec" / "coot-1")
-    return str(ccp4 / "coot_py3" / "bin" / "coot-1")
 
 
 class coot1(CPluginScript):
     TASKNAME = "coot1"
     TASKMODULE = "model_building"
     TASKTITLE = "Coot 1"
-    TASKCOMMAND = coot1Command()
+    TASKCOMMAND = "coot-1"
     TASKVERSION = 0.1
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
