@@ -968,6 +968,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     path = fItem.filePath()
                     if os.path.splitext(path)[1] in ['.mtz', '.pdb']:
                         fileList.append(fItem.filePath())
+            if mode == 'coot':
+                mode = 'coot0'
             LAUNCHER().openInViewer(viewer=mode, fileName=fileList)
 
     @QtCore.Slot(str,str,str)

@@ -347,7 +347,7 @@ class CLauncher(QtCore.QObject):
         elif viewer.lower() == 'pdbview':
             argList = [fileName]
             self.launch(viewer='PdbView',argList=argList,projectId=projectId,guiParent=guiParent)
-        elif viewer.lower() == 'coot':
+        elif viewer.lower() == 'coot0':
             argList = self.cootComLine(fileName=fileName,jobId=jobId)
             self.launch(viewer='coot',argList=argList,projectId=projectId,guiParent=guiParent)
             #else:
