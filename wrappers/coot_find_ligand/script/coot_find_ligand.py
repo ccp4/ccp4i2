@@ -11,7 +11,7 @@ from core.CCP4PluginScript import CPluginScript
 
 
 class coot_find_ligand(CPluginScript):
-    TASKMODULE = "model_building"
+    TASKMODULE = "wrappers"
     TASKTITLE = "Find a ligand with Coot API"
     TASKNAME = "coot_find_ligand"
     TASKVERSION = 0.0

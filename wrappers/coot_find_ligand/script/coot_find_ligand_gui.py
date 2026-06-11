@@ -4,7 +4,7 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 class Ccoot_find_ligand(CTaskWidget):
     TASKNAME = "coot_find_ligand"
     TASKVERSION = 0.0
-    TASKMODULE = "model_building"
+    TASKMODULE = "wrappers"
     TASKTITLE = "Find a ligand with Coot API"
     DESCRIPTION = "Find and flexibly fit a ligand (non-interactive Coot)"
 
