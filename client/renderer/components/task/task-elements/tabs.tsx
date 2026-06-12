@@ -17,6 +17,13 @@ export const CCP4i2Tabs: React.FC<PropsWithChildren<CCP4i2TabsProps>> = ({
   visibility,
 }) => {
   const [value, setValue] = useState<number>(0);
+  const isVisible =
+    visibility === undefined
+      ? true
+      : typeof visibility === "function"
+        ? visibility()
+        : visibility;
+  if (!isVisible) return null;
   return (
     <>
       <Tabs
@@ -24,7 +31,7 @@ export const CCP4i2Tabs: React.FC<PropsWithChildren<CCP4i2TabsProps>> = ({
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-        aria-label="basic tabs example"
+        aria-label="Task parameter tabs"
       >
         {Children.map(children, (child: any, iChild) => (
           <Tab
@@ -67,7 +74,6 @@ export const CCP4i2TabPanel: React.FC<
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      sx={{ p: 0 }}
       {...other}
     >
       {value === index && <Box sx={{ p: 1 }}>{children}</Box>}

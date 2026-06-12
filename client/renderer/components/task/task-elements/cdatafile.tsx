@@ -24,6 +24,7 @@ import {
   TextField,
   Tooltip,
 } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import {
   Menu as MenuIcon,
   ChevronRight as ChevronRightIcon,
@@ -600,7 +601,10 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
             cursor: hasFile ? "grab" : "context-menu",
             transition: "box-shadow 0.2s ease",
             "&:hover": hasFile
-              ? { boxShadow: "0 0 0 3px rgba(25, 118, 210, 0.5)" }
+              ? {
+                  boxShadow: (theme) =>
+                    `0 0 0 3px ${alpha(theme.palette.primary.main, 0.5)}`,
+                }
               : {},
           }}
         />

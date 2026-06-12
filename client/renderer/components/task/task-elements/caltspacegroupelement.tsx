@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-  Autocomplete,
-  Card,
-  CardContent,
-  CardHeader,
-  TextField,
-} from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 
 import { CCP4i2TaskElementProps } from "./task-element";
 import { SpaceGroup, spaceGroups } from "../../../spacegroups";
 import { useTaskInterface } from "../../../providers/task-provider";
 import { useContainerField } from "./hooks/useContainerField";
+import { FieldShell } from "./field-shell";
 
 export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
   props
@@ -56,35 +51,32 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
   if (!isVisible) return null;
 
   return (
-    <Card sx={{ border: "3px solid", borderColor: validationColor }}>
-      <CardHeader title={qualifiers?.guiLabel} sx={{ borderColor: validationColor }} />
-      <CardContent sx={{ my: 0, py: 0 }}>
-        {item && (
-          <Autocomplete
-            sx={{
-              mt: 1,
-              backgroundColor: inFlight ? "#ffeebe" : "palette.common.white",
-            }}
-            id="autocomplete-spacegroup"
-            disabled={isDisabled}
-            multiple={false}
-            options={spaceGroups}
-            getOptionLabel={(option: SpaceGroup) => option.name}
-            getOptionKey={(option: SpaceGroup) => option.name}
-            value={value}
-            style={{ minWidth: "15rem" }}
-            onChange={(
-              _event: React.SyntheticEvent<Element, Event>,
-              newValue: SpaceGroup | null
-            ) => {
-              if (newValue) handleInputChanged(newValue);
-            }}
-            renderInput={(params: any) => (
-              <TextField {...params} label="Space groups" />
-            )}
-          />
-        )}
-      </CardContent>
-    </Card>
+    <FieldShell title={qualifiers?.guiLabel} borderColor={validationColor}>
+      {item && (
+        <Autocomplete
+          sx={{
+            backgroundColor: inFlight ? "warning.light" : "background.paper",
+          }}
+          id="autocomplete-spacegroup"
+          size="small"
+          disabled={isDisabled}
+          multiple={false}
+          options={spaceGroups}
+          getOptionLabel={(option: SpaceGroup) => option.name}
+          getOptionKey={(option: SpaceGroup) => option.name}
+          value={value}
+          style={{ minWidth: "15rem" }}
+          onChange={(
+            _event: React.SyntheticEvent<Element, Event>,
+            newValue: SpaceGroup | null
+          ) => {
+            if (newValue) handleInputChanged(newValue);
+          }}
+          renderInput={(params: any) => (
+            <TextField {...params} label="Space groups" size="small" />
+          )}
+        />
+      )}
+    </FieldShell>
   );
 };

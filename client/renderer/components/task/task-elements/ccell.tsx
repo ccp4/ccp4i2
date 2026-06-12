@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
-import { Box } from "@mui/material";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob } from "../../../utils";
 import { FieldRow } from "./field-row";
-import { FIELD_SPACING } from "./field-sizes";
+import { FieldShell } from "./field-shell";
 
 /**
  * CCellElement - displays unit cell parameters (a, b, c, alpha, beta, gamma) in a row.
@@ -50,16 +49,7 @@ export const CCellElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   if (!isVisible || !item) return null;
 
   return (
-    <Box
-      sx={{
-        mx: 2,
-        px: 2,
-        py: 1,
-        border: 2,
-        borderColor: "divider",
-        borderRadius: 1,
-      }}
-    >
+    <FieldShell hoverable={false}>
       {/* Container controls width - children are full-width and get constrained here */}
       <FieldRow equalWidth={false} size="xs">
         {childNames.map((childName: string) => {
@@ -73,6 +63,6 @@ export const CCellElement: React.FC<CCP4i2TaskElementProps> = (props) => {
           );
         })}
       </FieldRow>
-    </Box>
+    </FieldShell>
   );
 };

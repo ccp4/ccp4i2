@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import { Box } from "@mui/material";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob } from "../../../utils";
 import { FieldRow } from "./field-row";
+import { FieldShell } from "./field-shell";
 
 /**
  * CReindexOperatorElement - displays reindex operator matrix values in a row.
@@ -40,16 +40,7 @@ export const CReindexOperatorElement: React.FC<CCP4i2TaskElementProps> = (
   if (!isVisible || !item) return null;
 
   return (
-    <Box
-      sx={{
-        mx: 2,
-        px: 2,
-        py: 1,
-        border: 2,
-        borderColor: "divider",
-        borderRadius: 1,
-      }}
-    >
+    <FieldShell hoverable={false}>
       {/* Container controls width - 'xs' gives ~8rem per field, good for small integers */}
       <FieldRow equalWidth={false} size="xs">
         {childNames.map((childName: string) => {
@@ -63,6 +54,6 @@ export const CReindexOperatorElement: React.FC<CCP4i2TaskElementProps> = (
           );
         })}
       </FieldRow>
-    </Box>
+    </FieldShell>
   );
 };

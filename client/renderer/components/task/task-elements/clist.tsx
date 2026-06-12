@@ -1,9 +1,6 @@
-import React, { useMemo } from "react";
+import React from "react";
 import {
   Box,
-  Card,
-  CardContent,
-  CardHeader,
   IconButton,
   Stack,
   Tooltip,
@@ -15,6 +12,7 @@ import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useProject } from "../../../utils";
 import { useCCP4i2Window } from "../../../app-context";
 import { ErrorTrigger } from "./error-info";
+import { FieldShell } from "./field-shell";
 import { useContainerList } from "./hooks/useContainerList";
 
 interface CListElementProps extends CCP4i2TaskElementProps {
@@ -57,43 +55,30 @@ export const CListElement: React.FC<CListElementProps> = ({
 
   const borderColor = itemName && item ? validationColor : "divider";
 
-  const cardSx = useMemo(
-    () => ({
-      mx: 1,
-      border: 1,
-      borderColor,
-      borderRadius: 2,
-      boxShadow: "none",
-      "&:hover": {
-        borderColor:
-          borderColor === "divider" ? "primary.light" : borderColor,
-      },
-    }),
-    [borderColor]
-  );
-
   if (!isVisible) return null;
 
   return (
-    <Card sx={cardSx}>
-      <CardHeader
-        title={<Typography variant="body2">{guiLabel}</Typography>}
-        action={
-          <Stack direction="row" alignItems="center">
+    <FieldShell
+      title={guiLabel}
+      borderColor={borderColor}
+      action={
+        <Tooltip title="Add item">
+          <span>
             <IconButton
               disabled={!isEditable}
               onClick={() => addItem()}
               size="small"
-              sx={{ color: "primary.text" }}
+              color="primary"
               aria-label="Add new item to list"
             >
-              <Add />
+              <Add fontSize="small" />
             </IconButton>
-            <ErrorTrigger item={item} job={job} />
-          </Stack>
-        }
-      />
-      <CardContent>
+          </span>
+        </Tooltip>
+      }
+      errorTrigger={<ErrorTrigger item={item} job={job} />}
+    >
+      <Box>
         {items.length === 0 ? (
           <Typography
             variant="caption"
@@ -138,7 +123,7 @@ export const CListElement: React.FC<CListElementProps> = ({
                       color="error"
                       aria-label={`Delete item ${index + 1}`}
                     >
-                      <Delete />
+                      <Delete fontSize="small" />
                     </IconButton>
                   </Tooltip>
                 </Stack>
@@ -146,8 +131,8 @@ export const CListElement: React.FC<CListElementProps> = ({
             })}
           </Stack>
         )}
-      </CardContent>
-    </Card>
+      </Box>
+    </FieldShell>
   );
 };
 
