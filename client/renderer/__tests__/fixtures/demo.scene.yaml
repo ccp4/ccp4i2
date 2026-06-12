@@ -1,0 +1,32 @@
+scene: gamma-demo
+version: 1
+
+# Sample scene for verifying the upload flow.
+#
+# Designed against demo_data/gamma/gamma_model.pdb (chain A, residues
+# 703-822). The three named domains slice that range into three blocks
+# with distinct colours. The fourth ("tail") deliberately extends past
+# residue 822 to exercise the clamp-and-log resolver path — when applied
+# you'll see it clamped to 800-822 in the resolver log.
+#
+# v0 file-matching: this scene's `files:` entry uses path-only matching,
+# which works when you've loaded gamma_model.pdb in the file browser.
+# (When ccp4i2 fileId matching is the path actually used, you'd swap
+# to fileId/projectId. Either form should resolve.)
+
+files:
+  - name: gamma
+    path: demo_data/gamma/gamma_model.pdb
+
+domains:
+  - { name: head,   chain: A, range: 703-740, color: "#4b8bbe" }
+  - { name: middle, chain: A, range: 741-780, color: "#f1c40f" }
+  - { name: tail,   chain: A, range: 800-900, color: "#e74c3c" }
+
+elements:
+  - file: gamma
+    representations:
+      - { style: CRs, selection: "//A", colour: by-domain }
+
+resolver:
+  onMissingResidues: clamp-and-log
