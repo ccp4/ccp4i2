@@ -12,6 +12,7 @@ import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob } from "../../../utils";
 import { ExpandMore } from "@mui/icons-material";
 import { FIELD_SPACING } from "./field-sizes";
+import { FieldShell } from "./field-shell";
 import { useExpertLevel } from "./expert-level-context";
 
 interface CCP4i2ContainerElementProps extends CCP4i2TaskElementProps {
@@ -185,23 +186,6 @@ export const CCP4i2ContainerElement: React.FC<
     return null;
   }, [children]);
 
-  // Row-level styling - horizontal flow with tighter spacing
-  const rowSx = useMemo(
-    () => ({
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "center",
-      gap: 1,
-      mx: 2,
-      px: 2,
-      py: 1,
-      border: 2,
-      borderColor: validationBorderColor,
-      borderRadius: 1,
-    }),
-    [validationBorderColor]
-  );
-
   if (!inferredVisibility) return null;
 
   if (containerHint === "FolderLevel") {
@@ -209,7 +193,12 @@ export const CCP4i2ContainerElement: React.FC<
       <Accordion disableGutters defaultExpanded={initiallyOpen}>
         <AccordionSummary
           expandIcon={<ExpandMore />}
-          sx={{ backgroundColor: "#eee" }}
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+          }}
         >
           <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
             {qualifiers?.guiLabel}
@@ -246,10 +235,14 @@ export const CCP4i2ContainerElement: React.FC<
 
   if (containerHint === "RowLevel") {
     return (
-      <Box sx={rowSx}>
+      <FieldShell
+        borderColor={validationBorderColor}
+        hoverable={false}
+        contentSx={{ p: 0 }}
+      >
         {rowContent}
         {rowChildren}
-      </Box>
+      </FieldShell>
     );
   }
 

@@ -467,19 +467,20 @@ export const ErrorPopper: React.FC<ErrorPopperProps> = memo(() => {
               width: "8px",
             },
             "&::-webkit-scrollbar-track": {
-              backgroundColor: "rgba(0,0,0,0.05)",
+              backgroundColor: (theme) => theme.palette.action.hover,
               borderRadius: "4px",
             },
             "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "rgba(0,0,0,0.2)",
+              backgroundColor: (theme) => theme.palette.action.disabled,
               borderRadius: "4px",
               "&:hover": {
-                backgroundColor: "rgba(0,0,0,0.3)",
+                backgroundColor: (theme) => theme.palette.action.active,
               },
             },
             // Firefox scrollbar styling
             scrollbarWidth: "thin",
-            scrollbarColor: "rgba(0,0,0,0.2) rgba(0,0,0,0.05)",
+            scrollbarColor: (theme) =>
+              `${theme.palette.action.disabled} ${theme.palette.action.hover}`,
           }}
         >
           <Stack spacing={2}>
