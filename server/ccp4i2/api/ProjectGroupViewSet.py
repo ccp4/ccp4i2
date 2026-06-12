@@ -7,10 +7,6 @@ coordinates and FreeR flags, and member projects each represent a dataset
 soaked with a different compound.
 """
 import logging
-import os
-import zipfile
-import tempfile
-from pathlib import Path
 from django.http import FileResponse
 from django.conf import settings
 from rest_framework.viewsets import ModelViewSet
@@ -22,6 +18,7 @@ from rest_framework import status
 from . import serializers
 from ..db import models
 from ..lib.response import api_success, api_error
+from ..lib import pandda_export
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -545,45 +542,18 @@ class ProjectGroupViewSet(ModelViewSet):
         """
         try:
             group = self.get_object()
-            member_memberships = group.memberships.filter(
-                type=models.ProjectGroupMembership.MembershipType.MEMBER
-            ).select_related("project")
-
             datasets = []
-            for membership in member_memberships:
-                project = membership.project
-
-                # Find the most recent finished i2Dimple job
-                dimple_job = (
-                    models.Job.objects.filter(
-                        project=project,
-                        task_name__in=["i2Dimple", "dimple"],
-                        status=models.Job.Status.FINISHED,
-                    )
-                    .order_by("-id")
-                    .first()
-                )
-
-                # Find the most recent finished LidiaAcedrgNew job
-                acedrg_job = (
-                    models.Job.objects.filter(
-                        project=project,
-                        task_name__in=["LidiaAcedrgNew", "acedrg"],
-                        status=models.Job.Status.FINISHED,
-                    )
-                    .order_by("-id")
-                    .first()
-                )
-
-                if dimple_job:
-                    datasets.append({
-                        "project_name": project.name,
-                        "project_id": project.id,
-                        "dimple_job_id": dimple_job.id if dimple_job else None,
-                        "acedrg_job_id": acedrg_job.id if acedrg_job else None,
-                        "has_dimple": dimple_job is not None,
-                        "has_acedrg": acedrg_job is not None,
-                    })
+            for project, dimple_job, acedrg_job in pandda_export.collect_pandda_datasets(group):
+                if not dimple_job:
+                    continue
+                datasets.append({
+                    "project_name": project.name,
+                    "project_id": project.id,
+                    "dimple_job_id": dimple_job.id,
+                    "acedrg_job_id": acedrg_job.id if acedrg_job else None,
+                    "has_dimple": True,
+                    "has_acedrg": acedrg_job is not None,
+                })
 
             return Response({
                 "datasets": datasets,
@@ -616,85 +586,19 @@ class ProjectGroupViewSet(ModelViewSet):
         """
         try:
             group = self.get_object()
-            member_memberships = group.memberships.filter(
-                type=models.ProjectGroupMembership.MembershipType.MEMBER
-            ).select_related("project")
+            result = pandda_export.build_pandda_zip(group)
 
-            # Create temporary directory for ZIP
-            temp_dir = tempfile.mkdtemp(prefix="pandda_export_")
-            zip_path = os.path.join(temp_dir, f"pandda_{group.name}.zip")
-
-            included_count = 0
-
-            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
-                for membership in member_memberships:
-                    project = membership.project
-
-                    # Find the most recent finished i2Dimple job
-                    dimple_job = (
-                        models.Job.objects.filter(
-                            project=project,
-                            task_name__in=["i2Dimple", "dimple"],
-                            status=models.Job.Status.FINISHED,
-                        )
-                        .order_by("-id")
-                        .first()
-                    )
-
-                    if not dimple_job:
-                        continue
-
-                    # Dimple job directory
-                    dimple_dir = Path(dimple_job.job_directory)
-                    final_pdb = dimple_dir / "final.pdb"
-                    final_mtz = dimple_dir / "final.mtz"
-
-                    if not final_pdb.exists() or not final_mtz.exists():
-                        logger.warning(
-                            "Dimple outputs not found for project %s", project.name
-                        )
-                        continue
-
-                    # Add dimple outputs
-                    dataset_path = f"datasets/{project.name}"
-                    zf.write(str(final_pdb), f"{dataset_path}/final.pdb")
-                    zf.write(str(final_mtz), f"{dataset_path}/final.mtz")
-                    included_count += 1
-
-                    # Find LidiaAcedrgNew job for dictionary
-                    acedrg_job = (
-                        models.Job.objects.filter(
-                            project=project,
-                            task_name__in=["LidiaAcedrgNew", "acedrg"],
-                            status=models.Job.Status.FINISHED,
-                        )
-                        .order_by("-id")
-                        .first()
-                    )
-
-                    if acedrg_job:
-                        acedrg_dir = Path(acedrg_job.job_directory)
-                        # Check for both possible dictionary names
-                        dict_cif = acedrg_dir / "LIG.cif"
-                        if not dict_cif.exists():
-                            dict_cif = acedrg_dir / "DRG.cif"
-
-                        if dict_cif.exists():
-                            zf.write(str(dict_cif), f"{dataset_path}/dict.cif")
-
-            if included_count == 0:
+            if result.included_count == 0:
                 return api_error(
                     "No datasets with finished Dimple jobs found", status=400
                 )
 
-            # Return the ZIP file
-            response = FileResponse(
-                open(zip_path, "rb"),
+            return FileResponse(
+                open(result.zip_path, "rb"),
                 content_type="application/zip",
                 as_attachment=True,
-                filename=f"pandda_{group.name}.zip",
+                filename=result.zip_path.name,
             )
-            return response
 
         except Exception as e:
             logger.exception(

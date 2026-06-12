@@ -89,7 +89,8 @@ export function PanddaExportDialog({
     try {
       const response = await apiFetch(
         `projectgroups/${campaignId}/export_pandda/`,
-        { method: "POST" }
+        { method: "POST" },
+        { timeout: 10 * 60 * 1000 }
       );
 
       // Download the ZIP file
