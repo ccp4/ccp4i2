@@ -84,15 +84,22 @@ class i2Dimple(CPluginScript):
                     phaserElement = etree.SubElement(xmlStructure,"PHASER")
                     phaserElement.text = configParser.get("phaser","status")
                 refmacCycleArrays = {}
-                #Extract refmac5 jelly cycles output
-                if "refmac5 jelly"  in configParser.sections():
+                #Extract refmac jelly/restr cycle output. Newer dimple renamed
+                #its refinement sections from "refmac5 {jelly,restr}" to
+                #"refmacat {jelly,restr}" (refmacat = the Servalcat-based refmac),
+                #so accept both schemes. Read the sections in the order they
+                #appear in the log so jelly cycles precede restr cycles.
+                refinementSections = [
+                    section for section in configParser.sections()
+                    if len(section.split()) == 2
+                    and section.split()[0] in ("refmac5", "refmacat")
+                    and section.split()[1] in ("jelly", "restr")
+                ]
+                for section in refinementSections:
                     for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
-                        perCycleArray = json.loads(configParser.get("refmac5 jelly",property))
-                        refmacCycleArrays[property] = perCycleArray
-                #Extract refmac5 jelly cycles output
-                if "refmac5 restr"  in configParser.sections():
-                    for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
-                        perCycleArray = json.loads(configParser.get("refmac5 restr",property))
+                        if not configParser.has_option(section, property):
+                            continue
+                        perCycleArray = json.loads(configParser.get(section,property))
                         if property in refmacCycleArrays: refmacCycleArrays[property] += perCycleArray
                         else: refmacCycleArrays[property] = perCycleArray
                 #Identify if pointless has spotted a better reindexing
