@@ -1,163 +1,138 @@
-# Preferences Handling: Proposal for Harmonization
+# Preferences Handling: Design
 
-**Status:** Proposal
-**Date:** 2025-03-11
+**Status:** Accepted — supersedes the 2025-03-11 proposal (in git history).
+**Date:** 2026-06-13
 **Authors:** Martin Noble, Claude
 
-## Problem
+This document replaces the earlier *Proposal for Harmonization*. That proposal
+debated database-backed (A) vs file (B) vs hybrid (C) storage and leaned toward A.
+We now have three concrete deployment perspectives in hand — **cloud/container**,
+**desktop Electron app**, and the **`i2`/`i2run` CLI** — and together they collapse
+that debate. The good ideas from the proposal are carried forward below.
 
-Legacy CCP4i2 managed 60+ preferences via a hierarchical XML system:
-site defaults (`<install>/local_setup/`) merged with user overrides (`~/.CCP4I2/configs/`).
-Many of these preferences are *functional* — wrapper code queries them at runtime
-for paths to external programs (Coot, SHELX, BUSTER, DIALS), PDB-REDO credentials,
-diagnostic flags, and more.
+## What the fuller overview settles
 
-The current Electron/Django branch has only 6 preferences (CCP4Dir, projects dir,
-zoom, theme, devMode, projectRoot), all stored in Electron's own config.json.
-The Django backend provides a `_PreferencesStub` that returns `None` for every
-attribute — meaning wrapper code that asks for `PREFERENCES().SHELXDIR` silently
-gets nothing.
+1. **Bootstrap settings cannot be database-backed.** Where the database is, where
+   projects live, and where CCP4 is are needed *before* you can open the database —
+   chicken-and-egg. So they must come from a **file** (or env). This rules out pure
+   Option A for the settings that matter most.
+2. **Cloud doesn't need the file.** Containers set everything via environment
+   variables (including secrets from Key Vault), so as long as **env wins**, the file
+   is inert in cloud. The proposal's main objection to a file ("needs a volume mount
+   in cloud") dissolves. Verified against Materia: it sets `DATABASE_URL` /
+   `CCP4I2_PROJECTS_DIR` in `entrypoint.sh` and ships no `preferences.json`.
+3. **i2run and the GUI must agree, and both boot the same `settings.py`.** A file read
+   during settings load makes the CLI and the control plane coherent for free.
 
-This gap blocks two things:
-1. **Migration** — users cannot bring their settings from legacy to new.
-2. **Functionality** — features that depend on configured paths or tokens are broken.
+**Decision: file-based JSON (the proposal's Option B2), with environment-variable
+override and an optional site-defaults layer.** This is B2 with its two cons —
+"no cloud story" and "no API/CLI" — neutralised by env-precedence and by adding
+accessors over the same file.
 
-## Preferences That Matter
+## The store
 
-Not all 60+ legacy preferences need to survive. Many were Qt GUI concerns
-(toolbar button visibility, font sizes, frame styles) that the new React UI
-handles differently. The preferences that *do* matter fall into two groups:
+| Layer | Location | Holds | Audience |
+|-------|----------|-------|----------|
+| **User preferences** | `~/.ccp4i2/preferences.json` (home overridable via `CCP4I2_HOME`) | bootstrap + functional preferences | GUI + CLI + control plane + worker |
+| **Site defaults** (optional) | `CCP4I2_SITE_PREFERENCES` env, else `$CCP4I2_ROOT/local_setup/site_preferences.json` | institutional defaults | admins |
+| **UI chrome** | Electron `electron-store` (`userData`) | window geometry, zoom, theme | GUI only |
 
-**Functional (consumed by Python wrappers/pipelines):**
-- `SHELXDIR`, `DIALSDIR`, `BUSTERDIR` — external program directories
-- `COOT_EXECUTABLE`, `CCP4MG_EXECUTABLE` — external program paths
-- `EXEPATHLIST` — additional binary search paths
-- `PDB_REDO_TOKEN_ID`, `PDB_REDO_TOKEN_SECRET` — service credentials
-- `RETAIN_DIAGNOSTIC_FILES` — runtime behavior flag
+`~/.ccp4i2` is the modern, lowercase home that already holds the SQLite database and
+the project store — one directory for all per-user state. JSON so the Electron/JS
+side reads and writes it as easily as Python. It is the descendant of classic (Qt)
+CCP4i2's `~/.CCP4I2` XML preferences.
 
-**UI (consumed by the frontend):**
-- `theme`, `zoomLevel`, `devMode` — already handled by electron-store
-- Any new UI preferences the React app needs
+**Why the file (not the DB) for the canonical store:** the bootstrap subset is
+file-resident by necessity (point 1 above); keeping the functional preferences in the
+*same* file avoids two sources of truth, and is human-readable, portable, and
+diff-able. The DB/API is a *projection* for the GUI (see Consumers), not the source.
 
-## Options
+## Resolution precedence (every setting)
 
-### Option A: Database-backed preferences (Django model + CLI + API)
-
-Store functional preferences in the Django database. Provide access via:
-- **REST API** (`GET/PATCH /api/preferences/`) for the frontend
-- **CLI** (`i2 preferences list|get|set|reset|migrate`) for terminal use
-- **Python accessor** (replace `_PreferencesStub` with a real object)
-
-Resolution order: environment variable > user DB value > site defaults file > None.
-
-Electron-only UI preferences (zoom, theme) stay in electron-store where they belong.
-
-**Pros:**
-- Single source of truth accessible from Python, CLI, API, and GUI
-- Works in Docker/cloud deployment (no filesystem assumptions)
-- `i2 preferences set SHELXDIR /opt/shelx` is simple and scriptable
-- Site admins can seed defaults via fixture or `local_setup/site_preferences.json`
-- Natural extension of the existing `i2` CLI and Django REST patterns
-
-**Cons:**
-- Preference values live in SQLite/PostgreSQL, not in a directly editable text file
-- Users cannot simply open a file in a text editor to inspect or change preferences
-- Adds a database migration
-
-### Option B: File-based preferences (XML or JSON on disk)
-
-Keep preferences in a structured file on disk, similar to legacy. Either:
-- **B1: Retain the legacy XML format** (`guipreferences.params.xml`)
-- **B2: Use JSON** (simpler parsing, aligns with Electron conventions)
-
-The file would live at `~/.CCP4I2/configs/preferences.{xml,json}`.
-Site defaults would remain in `<install>/local_setup/`.
-
-Replace `_PreferencesStub` with a file-reading object that loads and merges
-site + user files on startup.
-
-**Pros:**
-- Human-readable and directly editable with any text editor
-- Familiar to legacy users — same location, similar format (if XML)
-- No database dependency
-- Simple to inspect, back up, copy between machines
-
-**Cons:**
-- No API access without additional plumbing (would need a read/write endpoint
-  that proxies the file, with locking/conflict concerns)
-- CLI management still desirable — would need a script that parses and rewrites the file
-- Docker/cloud deployment needs a volume mount or alternative mechanism for the config file
-- Two sources of truth if Electron preferences remain separate
-
-### Option C: Hybrid — file as source of truth, cached in DB
-
-Preferences stored on disk (XML or JSON), but loaded into the database on startup
-and exposed via API. Edits through the API or CLI write back to the file.
-
-**Pros:**
-- Human-readable file *and* API/CLI access
-- File remains the canonical, portable artifact
-
-**Cons:**
-- Complexity of keeping file and DB in sync
-- Race conditions if file is edited externally while app is running
-- More code to maintain for marginal benefit
-
-## CLI Management (applies to all options)
-
-Regardless of storage backend, CLI access to preferences is valuable.
-The `i2` command already handles `projects`, `jobs`, `files`, etc. Adding
-`preferences` as a resource is natural:
-
-```bash
-i2 preferences list                          # show all with current values
-i2 preferences list --category paths         # filter by category
-i2 preferences get SHELXDIR                  # show one preference
-i2 preferences set SHELXDIR /opt/shelx       # set a value
-i2 preferences reset SHELXDIR                # revert to default
-i2 preferences migrate                       # import from legacy XML
+```
+environment variable  >  user preferences.json  >  site defaults  >  built-in default
 ```
 
-For Option A this calls Django management commands. For Option B/C this
-reads/writes the config file directly.
+- **Cloud:** env vars are set for everything → files never consulted → strict no-op.
+- **Desktop:** the user file is the persistence layer; site defaults seed institutions.
 
-## Migration Path (applies to all options)
+## Three preference classes
 
-A one-time import from legacy files:
+1. **Bootstrap / environment** — `ccp4Dir`, `projectsDir`, `database`, `ccp4i2Root`.
+   Consumed by `config/settings.py`. File-resident by necessity. **Implemented.**
+2. **Functional** — consumed by wrappers/pipelines via a `PREFERENCES()` accessor:
+   `SHELXDIR`, `DIALSDIR`, `BUSTERDIR`, `COOT_EXECUTABLE`, `CCP4MG_EXECUTABLE`,
+   `EXEPATHLIST`, `PDB_REDO_TOKEN_ID`, `PDB_REDO_TOKEN_SECRET`,
+   `RETAIN_DIAGNOSTIC_FILES`, … In cloud these are supplied as **env vars / secrets**;
+   on desktop they live in the file.
+3. **UI chrome** — `theme`, `zoomLevel`, `devMode` — stay in `electron-store`; the CLI
+   has no interest in them.
 
-1. Detect `~/.CCP4I2/configs/guipreferences.params.xml`
-2. Parse the XML (reuse existing `CContainer.loadDataFromXml`)
-3. Map legacy keys to new keys (simple dictionary)
-4. Write to the chosen store (DB or file)
+## Schema (`preferences.json`)
 
-This could run automatically on first launch or explicitly via
-`i2 preferences migrate`.
+```json
+{
+  "version": 1,
+  "ccp4Dir":     "/path/to/ccp4",
+  "projectsDir": "/path/to/projects",
+  "database":    "sqlite:////abs/db.sqlite3",   // or postgres://…  (env DATABASE_URL)
+  "ccp4i2Root":  "/path/to/.../ccp4i2",
+  "userPreferences": {                          // functional class (class 2)
+    "SHELXDIR": "/opt/shelx",
+    "PDB_REDO_TOKEN_ID": "…",
+    "RETAIN_DIAGNOSTIC_FILES": false
+  }
+}
+```
 
-## Site-Level Defaults (applies to all options)
+Top-level keys are the bootstrap class (mapped to env vars in `settings.py`);
+`userPreferences` is the functional bag the `PREFERENCES()` accessor exposes.
 
-Institutional deployments need a way for admins to set defaults.
-A file in `<install>/local_setup/` (JSON or XML) serves as the base layer,
-overridden by user-level settings. This preserves the existing admin workflow.
+## Consumers — one store, several readers
 
-## Recommendation
+| # | Consumer | Mechanism | Status |
+|---|----------|-----------|--------|
+| 1 | `config/settings.py` (bootstrap) | `preferences.resolve(key, env, default)` | **Done** |
+| 2 | `PREFERENCES()` accessor (wrappers) | real object over the same file+precedence, replacing the `None`-returning `CPreferencesStub` | Planned |
+| 3 | `i2 preferences get/set/list/reset/migrate` | reads/writes the file | Planned |
+| 4 | `GET/PATCH /api/preferences/` (GUI settings panel) | projects the file over REST | Planned |
+| 5 | Electron main (CCP4-dir / projects pickers) | writes bootstrap keys to the file | Planned (desktop step 3) |
 
-**Option A** (database-backed) is the cleanest fit for the architecture we're
-building — it aligns with how projects, jobs, and files are already managed,
-works across desktop and cloud deployments, and the CLI provides the
-"human interface" that compensates for preferences not being in a plain text file.
+Single store; the API and CLI are interfaces onto it, not separate truths.
 
-However, the readability concern is legitimate: being able to `cat` a config file
-and see what's set, or copy it to another machine, is a real workflow. If this
-is a strong requirement, **Option B2** (JSON file) is the pragmatic choice —
-it's human-readable, simple to parse, and avoids the XML baggage.
+## CLI (carried from the proposal)
 
-**Option C** adds complexity without proportionate benefit and is not recommended.
+```bash
+i2 preferences list                      # all keys + effective values (+ source layer)
+i2 preferences get SHELXDIR
+i2 preferences set SHELXDIR /opt/shelx   # writes user preferences.json
+i2 preferences reset SHELXDIR            # drop user value (fall back to site/default)
+i2 preferences migrate                   # import from legacy ~/.CCP4I2 XML
+```
 
-## Questions for Discussion
+Because storage is the file, these are thin read/modify/write operations (atomic
+write already provided by `config/preferences.save_preferences`).
 
-1. How important is direct text-file editability of preferences in practice?
-   (vs. using `i2 preferences set` or the GUI)
-2. Do we need to support the legacy XML format specifically, or is JSON acceptable?
-3. Should migration from legacy be automatic on first launch, or explicit?
-4. Are there other legacy preferences (beyond the functional ones listed) that
-   need to survive?
+## Migration from legacy (carried from the proposal)
+
+One-time import, on first launch or via `i2 preferences migrate`:
+detect `~/.CCP4I2/configs/guipreferences.params.xml` → parse → map legacy keys to the
+schema above → write `~/.ccp4i2/preferences.json`. Note the case change
+(`.CCP4I2` → `.ccp4i2`); on case-insensitive filesystems they coincide.
+
+## Implementation status
+
+- **Done:** `ccp4i2/config/preferences.py` (load/save/atomic/`resolve`, `CCP4I2_HOME`
+  override) + `config/settings.py` resolving bootstrap settings as
+  `env > preferences.json > default`; unit + end-to-end tests passing on slim CPython
+  and ccp4-python; cloud path verified unaffected.
+- **Next:** site-defaults layer in `resolve()`; the `PREFERENCES()` accessor over the
+  functional class (closes the wrapper gap); Electron write-side; `i2 preferences`
+  CLI; `/api/preferences/`; legacy migration.
+
+## Cloud invariance (new, and load-bearing)
+
+The env-first precedence guarantees containers are unaffected: Materia/cloud sets
+config (and secrets) via env, ships no `preferences.json`, and the file layer returns
+empty. The file is exclusively the desktop persistence layer; functional secrets like
+`PDB_REDO_TOKEN_*` come from env/Key Vault in cloud and from the user file on desktop.
