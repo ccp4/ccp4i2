@@ -13,26 +13,35 @@ from ccp4i2.core.cdata_stubs.CCP4XtalData import CAltSpaceGroupStub, CAltSpaceGr
 
 
 def cells_are_compatible(params1, params2, tolerance=1.0):
-    """Compare two unit cells using Clipper's reciprocal-space algorithm.
+    """Compare two unit cells using Clipper's Cell::equals() algorithm.
 
-    Two cells disagree if the difference in their orthogonalisation matrices
-    is sufficient to map a reflection from one cell onto a different reflection
-    in the other cell at the given tolerance (resolution in Angstroms).
+    This is a direct numpy port of ``clipper::Cell::equals(other, tol)``
+    (clipper/core/cell.cpp), so no clipper/CCP4 binary is required.  Clipper's
+    test compares the *fractionalisation* matrices (the inverse of the
+    orthogonalisation matrix, mapping orthogonal -> fractional coordinates),
+    scaled by the cell volume:
 
-    This implements the Clipper Cell::equals() algorithm which considers
-    reciprocal space vectors and finds the resolution at which reflections
-    would be mis-indexed by more than 0.5 reciprocal lattice units.
+        s = sum_ij ( frac1[i,j] - frac2[i,j] )^2
+        compatible  <=>  s < tol^2 / vol1^1.333
+
+    Equivalently ``sqrt(s) * vol1^0.6665 < tol``.  Because the fractionalisation
+    matrix is in reciprocal (1/Angstrom) units, a length change on a long axis
+    counts less than the same change on a short axis, and the vol^1.333 scaling
+    restores Angstrom-like units for the tolerance.  Verified bit-for-bit against
+    clipper (see tests/parity/test_cell_compatibility_clipper_parity.py).
+
+    Note the (deliberate, clipper-matching) asymmetry: the volume used is that of
+    ``params1`` — i.e. this mirrors ``cell1.equals(cell2, tol)``.
 
     Known limitation — alternative indexing:
-        This test compares cell *dimensions* in reciprocal space but cannot
-        detect when two datasets have been indexed on different settings of
-        the same lattice (e.g. b and c swapped in orthorhombic with b ≈ c).
-        In such cases the cells appear metrically identical yet reflections
-        are associated with the wrong indices.  Detecting this requires
-        comparison of the actual reflection data — pointless (CCP4) or
-        dials.reindex can identify and correct alternative settings.  A
-        future enhancement could call one of these tools as a pre-flight
-        check when sameCrystalAs is declared.
+        This metric test compares cell *geometry* but cannot detect when two
+        datasets have been indexed on different settings of the same lattice
+        (e.g. b and c swapped in orthorhombic with b ≈ c).  In such cases the
+        cells appear metrically identical yet reflections are associated with the
+        wrong indices.  Detecting this requires comparison of the actual
+        reflection data — pointless (CCP4) or dials.reindex can identify and
+        correct alternative settings.  A future enhancement could call one of
+        these tools as a pre-flight check when sameCrystalAs is declared.
 
     Used by:
         - CMtzData.clipperSameCell()  — content-level cell comparison
@@ -42,18 +51,16 @@ def cells_are_compatible(params1, params2, tolerance=1.0):
     Args:
         params1: Tuple of (a, b, c, alpha, beta, gamma) for cell 1
         params2: Tuple of (a, b, c, alpha, beta, gamma) for cell 2
-        tolerance: Resolution tolerance in Angstroms (default 1.0).
-                  Cells are compatible if mis-indexing doesn't occur
-                  until resolution coarser than this value (larger d).
+        tolerance: Frobenius-norm tolerance in Angstroms (default 1.0, matching
+                  clipper's default).  Smaller = stricter.
 
     Returns:
         dict with keys:
             'validity': bool - True if cells are compatible at tolerance
-            'tolerance': float - the resolution tolerance value
-            'difference': float - critical d-spacing where mis-indexing
-                          starts (Å); large value means cells are similar
-            'maximumResolution1': float - max resolution for cell1
-            'maximumResolution2': float - max resolution for cell2
+            'tolerance': float - the tolerance value
+            'difference': float - ||orth1 - orth2||_F (Angstroms); 0 = identical
+            'maximumResolution1': float - nominal max resolution for cell1
+            'maximumResolution2': float - nominal max resolution for cell2
     """
     import math
     import numpy as np
@@ -82,30 +89,25 @@ def cells_are_compatible(params1, params2, tolerance=1.0):
     orth1 = build_orth_matrix(a1, b1, c1, alpha1, beta1, gamma1)
     orth2 = build_orth_matrix(a2, b2, c2, alpha2, beta2, gamma2)
 
-    # Find the resolution at which a reflection would be mis-indexed
-    # by 0.5 reciprocal lattice units or more.  Test along a*, b*, c*.
-    max_resolution = 1000.0
-    orth1_inv = np.linalg.inv(orth1).T
-    orth2_inv = np.linalg.inv(orth2).T
+    # clipper::Cell::equals (clipper/core/cell.cpp):
+    #   s = sum_ij (frac1 - frac2)^2 ; return s < tol^2 / vol^1.333
+    # frac is the fractionalisation matrix (inverse of orthogonalisation) and
+    # vol is the volume of *this* cell (cell 1).
+    frac1 = np.linalg.inv(orth1)
+    frac2 = np.linalg.inv(orth2)
+    s = float(np.sum((frac1 - frac2) ** 2))
+    vol1 = float(np.linalg.det(orth1))
+    threshold = (tolerance ** 2) / (vol1 ** 1.333)
 
-    for axis in [(1, 0, 0), (0, 1, 0), (0, 0, 1)]:
-        hkl = np.array(axis)
-        s1 = orth1_inv @ hkl
-        s2 = orth2_inv @ hkl
-        diff = np.linalg.norm(s1 - s2)
-        if diff > 1e-10:
-            critical_res = 0.5 / (diff * np.linalg.norm(hkl))
-            max_resolution = min(max_resolution, critical_res)
-
-    max_res1 = min(a1, b1, c1) / 2.0
-    max_res2 = min(a2, b2, c2) / 2.0
+    # report a tolerance-comparable scalar: sqrt(s) * vol1^0.6665  (< tolerance)
+    difference = float(np.sqrt(s) * (vol1 ** (1.333 / 2.0)))
 
     return {
-        'validity': max_resolution >= tolerance,
+        'validity': s < threshold,
         'tolerance': tolerance,
-        'difference': max_resolution,
-        'maximumResolution1': max_res1,
-        'maximumResolution2': max_res2
+        'difference': difference,
+        'maximumResolution1': min(a1, b1, c1) / 2.0,
+        'maximumResolution2': min(a2, b2, c2) / 2.0
     }
 
 
