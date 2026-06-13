@@ -24,8 +24,8 @@
     "electron-postinstall": "electron-builder install-app-deps",
     "build": "npm run build:electron",
     "start": "npm run start:electron",
-    "build:electron": "npm run electron-postinstall && cross-env BUILD_TARGET=electron npm run copy-assets && next build renderer && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts",
-    "start:electron": "npm run electron-postinstall && cross-env BUILD_TARGET=electron npm run copy-assets && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts && electron dist/main.js",
+    "build:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && next build renderer && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts",
+    "start:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts && electron dist/main.js",
     "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next build",
     "start:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next dev",
     "export:web": "cross-env BUILD_TARGET=web npm run build:web && cd renderer && next export",
@@ -119,6 +119,7 @@
     "appId": "com.ccp4.ccp4i2-django",
     "productName": "ccp4i2-django",
     "electronVersion": "33.4.11",
+    "npmRebuild": false,
     "icon": "assets/ccp4i2.png",
     "files": [
       "dist/**",
