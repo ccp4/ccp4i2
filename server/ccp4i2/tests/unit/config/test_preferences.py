@@ -155,3 +155,48 @@ def test_settings_env_overrides_preferences(tmp_path):
         extra_env={"CCP4I2_PROJECTS_DIR": str(tmp_path / "fromenv")},
     )
     assert out["projects"] == str(tmp_path / "fromenv")
+
+
+# ---------------------------------------------------------------------------
+# functional preferences (the userPreferences bag) and the PREFERENCES() accessor
+# ---------------------------------------------------------------------------
+
+def test_user_preference_unset_returns_default(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.delenv("SHELXDIR", raising=False)
+    assert preferences.user_preference("SHELXDIR") is None
+    assert preferences.user_preference("SHELXDIR", default="/fallback") == "/fallback"
+
+
+def test_user_preference_from_file(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.delenv("SHELXDIR", raising=False)
+    preferences.save_preferences({"userPreferences": {"SHELXDIR": "/opt/shelx"}})
+    assert preferences.user_preference("SHELXDIR") == "/opt/shelx"
+
+
+def test_user_preference_env_overrides_file(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    preferences.save_preferences({"userPreferences": {"SHELXDIR": "/from/file"}})
+    monkeypatch.setenv("SHELXDIR", "/from/env")
+    assert preferences.user_preference("SHELXDIR") == "/from/env"
+
+
+def test_user_preference_preserves_json_bool(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.delenv("RETAIN_DIAGNOSTIC_FILES", raising=False)
+    preferences.save_preferences({"userPreferences": {"RETAIN_DIAGNOSTIC_FILES": False}})
+    # a real JSON bool comes back as a bool (not the truthy string "False")
+    assert preferences.user_preference("RETAIN_DIAGNOSTIC_FILES") is False
+
+
+def test_PREFERENCES_accessor(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.delenv("SHELXDIR", raising=False)
+    monkeypatch.delenv("BUSTERDIR", raising=False)
+    preferences.save_preferences({"userPreferences": {"SHELXDIR": "/opt/shelx"}})
+
+    from ccp4i2.core import CCP4Modules
+    prefs = CCP4Modules.PREFERENCES()
+    assert prefs.SHELXDIR == "/opt/shelx"      # from file
+    assert prefs.BUSTERDIR is None             # unset -> None, never raises

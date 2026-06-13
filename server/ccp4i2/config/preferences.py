@@ -121,3 +121,20 @@ def resolve(key: str, env: str = None, default=None, prefs: dict = None):
     if file_val not in (None, ""):
         return file_val
     return default
+
+
+def user_preference(name: str, default=None):
+    """Resolve a *functional* preference (from the ``userPreferences`` bag).
+
+    These are the preferences consumed by wrappers/pipelines via the
+    ``PREFERENCES()`` accessor — e.g. ``SHELXDIR``, ``BUSTERDIR``,
+    ``COOT_EXECUTABLE``, ``PDB_REDO_TOKEN_ID``, ``RETAIN_DIAGNOSTIC_FILES``.
+
+    Precedence is the standard ``env var > preferences.json > default``; the
+    environment variable name is the preference name itself, so in cloud these
+    arrive as plain env vars / Key Vault secrets and on desktop from the file's
+    ``userPreferences`` object.
+    """
+    bag = load_preferences().get("userPreferences", {})
+    bag = bag if isinstance(bag, dict) else {}
+    return resolve(name, env=name, default=default, prefs=bag)
