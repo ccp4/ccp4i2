@@ -554,8 +554,6 @@ class CCP4i2DjangoDbApi(object):
             return []
 
     def getFullPath(self, fileId=None):
-        import clipper
-
         try:
             if fileId is None:
                 logger.warning("getFullPath called with no fileId")
