@@ -1,15 +1,11 @@
-import math
 import os
 import re
 
-import clipper
-from iotbx import mtz
+import gemmi
 from lxml import etree
-from mmtbx.command_line import molprobity
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.mgimports import mmdb2
 from ccp4i2.wrappers.validate_protein.script import validate_protein
 
 
@@ -34,23 +30,14 @@ class tableone(CPluginScript):
         self.run_molprobity()
         self.xml_root.append(x1)
         self.xml_root.append(x2)
-        f = clipper.MMDBfile()
-        f.read_file(str(self.container.inputData.XYZIN))
-        mmol = clipper.MiniMol()
-        f.import_minimol(mmol)
-        spg = mmol.spacegroup()
-        cel = mmol.cell()
-        spgt = spg.symbol_hm()
+        st = gemmi.read_structure(str(self.container.inputData.XYZIN))
+        cel = st.cell
+        spgt = st.spacegroup_hm
         clenw = ["a", "b", "c"]
         cangw = ["alpha", "beta", "gamma"]
-        clen = []
-        cang = []
-        clen.append(str(cel.a()))
-        clen.append(str(cel.a()))
-        clen.append(str(cel.c()))
-        cang.append(str(math.degrees(cel.alpha())))
-        cang.append(str(math.degrees(cel.beta())))
-        cang.append(str(math.degrees(cel.gamma())))
+        # gemmi cell lengths are Angstrom and angles are degrees already.
+        clen = [str(cel.a), str(cel.b), str(cel.c)]
+        cang = [str(cel.alpha), str(cel.beta), str(cel.gamma)]
         xmlpdb = etree.SubElement(self.xml_root, "PdbInfo")
         etree.SubElement(xmlpdb, "SpaceGroup").text = spgt
         for t1, v1, t2, v2 in zip(clenw, clen, cangw, cang):
@@ -59,6 +46,7 @@ class tableone(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def PreparePdbForMolprobity(self, pdbin, workdir):
+        from ccp4i2.core.mgimports import mmdb2  # lazy: ccp4mg/mmdb, only at execution (worker)
         # Again had to split off & replicate.
         file_name = os.path.basename(pdbin)
         wrkdirnm = os.path.join(workdir, file_name)
@@ -86,6 +74,7 @@ class tableone(CPluginScript):
         return sanitized_pdbin, file_root
 
     def run_molprobity(self):
+        from mmtbx.command_line import molprobity  # lazy: cctbx tool, only at execution (worker)
         # Unfortunate, but need to replicate part of the validate_protein code for time being.
         sanitized_pdbin, file_root = self.PreparePdbForMolprobity(str(self.container.inputData.XYZIN), self.workDirectory)
         self.mlog_filename = os.path.join(self.workDirectory, "molprobity.log")
@@ -107,10 +96,9 @@ class tableone(CPluginScript):
         self.appendCommandLine(str(self.container.inputData.UNMERGED.fullPath))
         self.appendCommandLine("labels=I,SIGI")
         # Get the resolution bounds from the merged mtz file
-        mobj = mtz.object(str(self.container.inputData.F_SIGF.fullPath))
-        resol = mobj.max_min_resolution()
-        maxr = resol[0]
-        minr = resol[1]
+        mobj = gemmi.read_mtz_file(str(self.container.inputData.F_SIGF.fullPath))
+        maxr = mobj.resolution_low()   # d_max (low-resolution limit)
+        minr = mobj.resolution_high()  # d_min (high-resolution limit)
         self.appendCommandLine("high_resolution=%s"%str(minr))
         self.appendCommandLine("low_resolution=%s"%str(maxr))
         self.xmlout = self.makeFileName('PROGRAMXML')
