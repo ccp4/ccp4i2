@@ -57,18 +57,44 @@ class dm_multidomain_report(Report):
         except Exception as e:
             parent.append(f"<p>Problem reporting NCS correlations: {e}</p>")
 
-        # ---- per-cycle convergence ----------------------------------------
+        # ---- per-cycle progress plots -------------------------------------
         try:
             cycles = self.xmlnode.findall('PerCycle/Cycle')
             if cycles:
-                first = cycles[0].get('gamma')
-                last = cycles[-1].get('gamma')
-                parent.append(
-                    f"<p>Perturbation-gamma converged over {len(cycles)} cycles "
-                    f"({first} to {last}). See the Free-R / FOM graphs "
-                    f"below.</p>")
+                # columns present (Number first), in child order
+                cols = [c.tag for c in cycles[0]]
+                idx = {tag: i + 1 for i, tag in enumerate(cols)}
+                graph = parent.addFlotGraph(
+                    title="Progress by cycle", xmlnode=self.xmlnode,
+                    select=".//PerCycle/Cycle",
+                    style="width:500px;height:320px;margin:0 auto;border:0px;")
+                for tag in cols:
+                    graph.addData(title=tag, select=tag)
+
+                # Plot 1: map quality (FOM + per-domain NCS correlation)
+                quality = [t for t in cols
+                           if t == 'FOM' or t.startswith('Corr_')]
+                if quality:
+                    p = graph.addPlotObject()
+                    p.append('title', 'FOM and per-domain NCS correlation')
+                    p.append('plottype', 'xy')
+                    p.append('xintegral', 'true')
+                    p.append('xlabel', 'Cycle')
+                    p.append('yrange', min='0.0', max='1.0')
+                    for tag in quality:
+                        p.append('plotline', xcol=idx['Number'], ycol=idx[tag])
+
+                # Plot 2: convergence (perturbation gamma)
+                if 'Gamma' in idx:
+                    p = graph.addPlotObject()
+                    p.append('title', 'Perturbation gamma (convergence)')
+                    p.append('plottype', 'xy')
+                    p.append('xintegral', 'true')
+                    p.append('xlabel', 'Cycle')
+                    p.append('plotline', xcol=idx['Number'], ycol=idx['Gamma'])
+                parent.addDiv(style="clear:both;")
         except Exception as e:
-            print(e)
+            parent.append(f"<p>Problem reporting per-cycle graphs: {e}</p>")
 
         # ---- native dm loggraph tables ------------------------------------
         try:
