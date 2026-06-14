@@ -2,10 +2,10 @@ import csv
 import re
 import pathlib
 
+import gemmi
+
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4Utils
-from ccp4i2.core.mgimports import mmut
-from ccp4i2.core.mgimports import pygl_coord
 
 class gesamt(CPluginScript):
 
@@ -183,12 +183,23 @@ class gesamt(CPluginScript):
             if len(transformationMatrix) == 12:
                 inp = self.container.inputData
                 xyzin_query_file = str( inp.XYZIN_QUERY.fullPath )
-                molHnd = mmut.CMMANManager()
-                molHnd.ReadCoorFile(xyzin_query_file)
-                mat = pygl_coord.matrix(4,4,transformationMatrix + [0.,0.,0.,1.])
-                molHnd.SetTransform(mat,False)
-                molHnd.FinishStructEdit()
-                molHnd.WritePDBASCII(str(out.XYZOUT_QUERY.fullPath))
+                # Apply the GESAMT superposition to the query coordinates.
+                # transformationMatrix is the 12-element row-major top three rows
+                # of the 4x4 transform: each row is [r r r t].
+                tm = transformationMatrix
+                transform = gemmi.Transform()
+                transform.mat.fromlist([[tm[0], tm[1], tm[2]],
+                                        [tm[4], tm[5], tm[6]],
+                                        [tm[8], tm[9], tm[10]]])
+                transform.vec.fromlist([tm[3], tm[7], tm[11]])
+                st = gemmi.read_structure(xyzin_query_file)
+                for st_model in st:
+                    for st_chain in st_model:
+                        for st_residue in st_chain:
+                            for st_atom in st_residue:
+                                v = transform.apply(st_atom.pos)
+                                st_atom.pos = gemmi.Position(v.x, v.y, v.z)
+                st.write_pdb(str(out.XYZOUT_QUERY.fullPath))
                 out.XYZOUT_QUERY.annotation.set("Transformed query model")
             else:
                 print("Hmm, transformationMatrix is length",len(transformationMatrix))
