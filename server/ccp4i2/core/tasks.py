@@ -609,6 +609,7 @@ TASKS = {
         shortTitle="DM multi-domain",
         pluginPath="ccp4i2.wrappers.dm_multidomain.script.dm_multidomain:dm_multidomain",
         defXmlPath="wrappers/dm_multidomain/script/dm_multidomain.def.xml",
+        reportPath="ccp4i2.wrappers.dm_multidomain.script.dm_multidomain_report:dm_multidomain_report",
     ),
     "dr_mr_modelbuild_pipeline": Task(
         title="Data Reduction, MR, Model build pipeline",
