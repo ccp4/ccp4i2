@@ -129,7 +129,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
   {
     icon: "density_modification",
     title: "Density modification",
-    tasks: ["acorn", "parrot"],
+    tasks: ["acorn", "parrot", "dm_multidomain"],
   },
   {
     icon: "model_building",

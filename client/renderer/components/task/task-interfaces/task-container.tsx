@@ -49,6 +49,7 @@ import Crank2Interface from "./crank2";
 import CSymmatchInterface from "./csymmatch";
 import CtruncateInterface from "./ctruncate";
 import DensityCalculatorInterface from "./density_calculator";
+import DmMultidomainInterface from "./dm_multidomain";
 import DialsImageInterface from "./dials_image";
 import DialsRlatticeInterface from "./dials_rlattice";
 import DrMrModelbuildPipelineInterface from "./dr_mr_modelbuild_pipeline";
@@ -190,6 +191,7 @@ const TASK_INTERFACES: Record<
   csymmatch: CSymmatchInterface,
   ctruncate: CtruncateInterface,
   density_calculator: DensityCalculatorInterface,
+  dm_multidomain: DmMultidomainInterface,
   dials_image: DialsImageInterface,
   dials_rlattice: DialsRlatticeInterface,
   dr_mr_modelbuild_pipeline: DrMrModelbuildPipelineInterface,
