@@ -4,8 +4,6 @@ import pathlib
 import shutil
 import xml.etree.ElementTree as ET
 
-import coot_headless_api
-
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -15,6 +13,7 @@ class coot_find_ligand(CPluginScript):
     WHATNEXT = ["prosmart_refmac"]
 
     def startProcess(self):
+        import coot_headless_api  # lazy: external Coot API, only needed at execution (worker)
         inputData = self.container.inputData
         outputData = self.container.outputData
         params = self.container.controlParameters

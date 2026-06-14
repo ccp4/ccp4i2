@@ -6,7 +6,10 @@ from math import sqrt
 from pathlib import Path
 
 import gemmi
-from dxtbx.model.experiment_list import ExperimentList
+try:  # dxtbx present only in the execution (worker) env, not the slim API
+    from dxtbx.model.experiment_list import ExperimentList
+except ImportError:
+    ExperimentList = None
 from lxml import etree
 
 from ccp4i2.core import CCP4Container, CCP4XtalData

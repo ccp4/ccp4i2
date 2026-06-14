@@ -1,12 +1,17 @@
-import clipper
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class SubtractNative(CPluginScript):
+    """DEPRECATED. Computes a "binding event"-style difference map by subtracting
+    model-calculated density from the observed map. Slated for replacement by an
+    interactive Moorhen feature; kept for backward compatibility only. Still uses
+    clipper at execution (imported lazily, below) — not ported to gemmi on purpose.
+    """
     TASKNAME = "SubtractNative"
+    DEPRECATED = True
 
     def startProcess(self):
+        import clipper  # lazy: deprecated task, clipper only needed at execution (worker)
         mtz_file = clipper.CCP4MTZfile()
         hkl_info = clipper.HKL_info()
         coefficientsPath = str(self.container.inputData.MAPIN.fullPath)
