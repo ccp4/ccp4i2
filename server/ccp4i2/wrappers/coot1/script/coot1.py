@@ -6,7 +6,13 @@ from ccp4i2.core.CCP4ModelData import CPdbDataFile
 
 
 def coot1Command():
-    ccp4 = Path(environ["CCP4"])
+    ccp4 = environ.get("CCP4")
+    if ccp4 is None:
+        # CCP4 absent (e.g. the slim, CCP4-free API used only to configure the
+        # task) -- the full path is resolved at execution time on the worker,
+        # which always has $CCP4 set.
+        return "coot"
+    ccp4 = Path(ccp4)
     if platform == "win32":
         return str(ccp4 / ".." / "WinCoot1" / "wincoot.bat")
     return str(ccp4 / "coot_py3" / "bin" / "coot")

@@ -14,7 +14,13 @@ logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 class clustalw(CPluginScript):
     TASKNAME = 'clustalw'
-    TASKCOMMAND = shutil.which("clustalw2", path=Path(os.environ["CCP4"], "libexec"))
+    # Resolve the binary under $CCP4/libexec when CCP4 is present; fall back to a
+    # bare command name on the slim, CCP4-free API (which only configures the
+    # task and never executes it -- the worker always has $CCP4 set).
+    TASKCOMMAND = (
+        shutil.which("clustalw2", path=Path(os.environ["CCP4"], "libexec"))
+        if "CCP4" in os.environ else "clustalw2"
+    )
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to catenate sequences' },201 : { 'description' : 'Failed to setFullPath' },}
     
