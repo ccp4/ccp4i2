@@ -1,8 +1,5 @@
 from future.utils import raise_
 import os
-import re
-import shutil
-import subprocess
 import sys
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -510,48 +507,39 @@ class crank2(CPluginScript):
     return ""
 
   def compute_anomalous_scattering(self, atom_type, wavelength):
-    """Compute f' and f'' by running the CCP4 crossec binary directly.
+    """Compute f' and f'' from element + wavelength using gemmi (Cromer-Liberman).
+
+    Pure gemmi/Python, so this runs on a CCP4-free interpreter — it is reachable
+    from the API (the plugin_method endpoint) and must not require the CCP4 install
+    or the crossec binary. Matches crossec to ~1e-2 (e.g. Se @ 12 keV: fp -2.510,
+    fpp 0.550).
 
     Args:
-        atom_type: Element symbol (e.g. "SE", "S", "Xe")
+        atom_type: Element symbol (e.g. "SE", "S", "Xe"); case-insensitive.
         wavelength: X-ray wavelength in Angstroms (e.g. 0.9793)
 
     Returns:
-        dict with "fp" and "fpp" floats, or "error" string on failure.
+        dict with "fp" and "fpp" floats, or {"error": ...} on failure.
     """
-    crossec_binary = os.path.join(os.environ.get('CCP4', ''), 'bin', 'crossec')
-    if not os.path.isfile(crossec_binary):
-      crossec_binary = shutil.which('crossec')
-      if not crossec_binary:
-        return {"error": "crossec binary not found"}
+    import gemmi
 
-    stdin_text = "ATOM {}\nNWAV 1 {}\nEND\n".format(atom_type, wavelength)
-
+    z = gemmi.Element(str(atom_type)).atomic_number
+    if not z:
+      return {"error": "Unknown element: {}".format(atom_type)}
     try:
-      result = subprocess.run(
-        [crossec_binary],
-        input=stdin_text,
-        capture_output=True,
-        text=True,
-        timeout=10,
-      )
-    except subprocess.TimeoutExpired:
-      return {"error": "crossec timed out"}
-    except FileNotFoundError:
-      return {"error": "crossec binary not found"}
+      wl = float(wavelength)
+    except (TypeError, ValueError):
+      return {"error": "Invalid wavelength: {}".format(wavelength)}
+    if wl <= 0.0:
+      return {"error": "Invalid wavelength: {}".format(wavelength)}
 
-    if result.returncode != 0:
-      return {"error": "crossec failed: {}".format(result.stderr[:200])}
+    energy_ev = gemmi.hc / wl  # gemmi.hc is in eV.Angstrom
+    result = gemmi.cromer_liberman(z=z, energy=energy_ev)
+    if result is None:
+      return {"error": "No Cromer-Liberman data for {} at {} A".format(atom_type, wavelength)}
 
-    # Parse output line: <ATOM>  <wavelength>  <fp>  <fpp>
-    pattern = re.compile(
-      re.escape(atom_type.upper()) + r"\s+\d+\.\d+\s+(\S+)\s+(\S+)"
-    )
-    match = pattern.search(result.stdout)
-    if match:
-      return {"fp": float(match.group(1)), "fpp": float(match.group(2))}
-
-    return {"error": "Could not parse crossec output for {}".format(atom_type)}
+    fp, fpp = result
+    return {"fp": float(fp), "fpp": float(fpp)}
 
   def estimate_num_substructure(self, atom_type):
     """Estimate the number of anomalous scatterers from the sequence.
