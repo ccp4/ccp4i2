@@ -2,11 +2,14 @@ import os
 import sys
 
 import gemmi
-import iotbx.phil
-from iotbx.data_manager import DataManager
 from lxml import etree
-from mmtbx import process_predicted_model
-from mmtbx.domains_from_pae import parse_pae_file
+try:  # iotbx/mmtbx (cctbx) present only in the execution (worker) env, not the slim API
+    import iotbx.phil
+    from iotbx.data_manager import DataManager
+    from mmtbx import process_predicted_model
+    from mmtbx.domains_from_pae import parse_pae_file
+except ImportError:
+    iotbx = DataManager = process_predicted_model = parse_pae_file = None
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 

@@ -5,7 +5,10 @@ import traceback
 
 from lxml import etree
 
-import coot_headless_api
+try:  # external Coot API, present only in the execution (worker) env, not the slim API
+    import coot_headless_api
+except ImportError:
+    coot_headless_api = None
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript

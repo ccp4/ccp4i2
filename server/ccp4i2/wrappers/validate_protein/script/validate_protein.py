@@ -9,10 +9,13 @@ import traceback
 import warnings
 from math import pi
 
-import iris_validation
 import numpy as np
-from iris_validation.graphics import Panel
-from iris_validation.metrics import metrics_model_series_from_files
+try:
+    import iris_validation
+    from iris_validation.graphics import Panel
+    from iris_validation.metrics import metrics_model_series_from_files
+except ImportError:  # `iris_validation` present only in the execution (worker) env, not the slim API
+    iris_validation = Panel = metrics_model_series_from_files = None
 from lxml import etree
 
 from ccp4i2.core import CCP4Modules, CCP4Utils, CCP4XtalData

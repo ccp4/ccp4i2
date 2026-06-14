@@ -1,8 +1,11 @@
 import os
 import shutil
 
-from simbad.util import SIMBAD_DIRNAME
-from simbad.util.simbad_results import SimbadResults
+try:
+    from simbad.util import SIMBAD_DIRNAME
+    from simbad.util.simbad_results import SimbadResults
+except ImportError:  # `simbad` is present only in the execution (worker) env, not on the slim API
+    SIMBAD_DIRNAME = SimbadResults = None
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 

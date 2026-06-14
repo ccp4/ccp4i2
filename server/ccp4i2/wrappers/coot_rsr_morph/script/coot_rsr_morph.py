@@ -2,8 +2,6 @@ import os
 import shutil
 import pathlib
 
-import coot_headless_api
-
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -14,6 +12,7 @@ class coot_rsr_morph(CPluginScript):
     ASYNCHRONOUS = True
 
     def startProcess(self):
+        import coot_headless_api  # lazy: external Coot API, only needed at execution (worker)
         outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"
         oldFullPath = pathlib.Path(str(self.container.outputData.XYZOUT.fullPath))
         if outFormat == "cif":
