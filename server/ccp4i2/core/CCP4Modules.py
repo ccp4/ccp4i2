@@ -16,33 +16,39 @@ from .CCP4ProcessManager import PROCESSMANAGER
 __all__ = ['PROJECTSMANAGER', 'PROCESSMANAGER', 'PREFERENCES']
 
 
-class _PreferencesStub:
-    """Stub for legacy PREFERENCES object.
+class _Preferences:
+    """Accessor for functional user preferences.
 
-    Legacy code checks for attributes like SHELXDIR on the preferences object.
-    This stub allows attribute access without raising errors.
+    Legacy/wrapper code reads attributes like ``SHELXDIR``, ``BUSTERDIR``,
+    ``COOT_EXECUTABLE``, ``PDB_REDO_TOKEN_ID`` and ``RETAIN_DIAGNOSTIC_FILES`` off
+    the preferences object. Each attribute is resolved from the shared store with
+    precedence ``env var > ~/.ccp4i2/preferences.json (userPreferences) > None``
+    (see ccp4i2.config.preferences). Unknown preferences return None, so attribute
+    access never raises — preserving the previous stub's safety.
     """
-    def __init__(self):
-        pass
 
     def __getattr__(self, name):
-        # Return None for any requested attribute (preferences not set)
-        return None
+        # __getattr__ only fires for attributes not found normally, so this never
+        # shadows real methods. Resolve via the shared preferences store.
+        from ccp4i2.config import preferences
+        return preferences.user_preference(name, default=None)
 
 
 def PREFERENCES():
     """
-    Get the user preferences object (stub for legacy compatibility).
+    Get the user preferences accessor.
 
-    This replaces the legacy CCP4Modules.PREFERENCES() function from classic ccp4i2.
-    Returns a stub object that returns None for any attribute access.
+    Replaces the legacy CCP4Modules.PREFERENCES() from classic ccp4i2. Attribute
+    access (e.g. ``PREFERENCES().SHELXDIR``) resolves from the shared store —
+    ``env var > ~/.ccp4i2/preferences.json (userPreferences) > None`` — so the
+    GUI, the i2/i2run CLI, and job execution all see the same values. Unknown
+    preferences return None.
 
     Returns:
-        _PreferencesStub: A stub preferences object
+        _Preferences: the user preferences accessor
 
     Example:
         >>> from ccp4i2.core import CCP4Modules
-        >>> prefs = CCP4Modules.PREFERENCES()
-        >>> shelx_dir = prefs.SHELXDIR  # Returns None
+        >>> CCP4Modules.PREFERENCES().SHELXDIR   # value from env/file, else None
     """
-    return _PreferencesStub()
+    return _Preferences()
