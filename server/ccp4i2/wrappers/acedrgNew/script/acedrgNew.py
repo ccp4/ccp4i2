@@ -7,7 +7,10 @@ from lxml import etree
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
-from . import atomMatching, cifToMolBlock
+# NB atomMatching (ccp4srs/mmdb2) and cifToMolBlock (rdkit) are imported lazily
+# inside the execution methods below, so this plugin stays importable on the
+# slim, CCP4-free API where those toolkits are absent. They run only at job
+# execution time (on the worker), never during GUI configuration/validation.
 
 
 class acedrgNew(CPluginScript):
@@ -91,6 +94,7 @@ class acedrgNew(CPluginScript):
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             print(self.originalMolFilePath)
             try:
+                from . import cifToMolBlock  # lazy: rdkit, only at execution (worker)
                 if self.container.inputData.DICTIN2.isSet():
                     molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
                 else:
@@ -199,7 +203,8 @@ class acedrgNew(CPluginScript):
         retMatches = {}
         if os.path.isfile(pdbFilePath):
             try:
-                import ccp4srs
+                import ccp4srs  # lazy: CCP4 SRS, only at execution (worker)
+                from . import atomMatching  # lazy: ccp4srs/mmdb2, only at execution
                 dummy = ccp4srs.Graph()
                 print("Atom name matching available ...")
                 if self.container.inputData.ATOMMATCHOPTION.__str__() == 'MONLIBCODE':
