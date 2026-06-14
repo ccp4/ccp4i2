@@ -18,10 +18,11 @@
       <content id="ABCD">
         <className>CPhsDataFile</className>
         <qualifiers>
-          <mustExist>True</mustExist>
+          <mustExist>False</mustExist>
           <fromPreviousJob>True</fromPreviousJob>
-          <allowUndefined>False</allowUndefined>
+          <allowUndefined>True</allowUndefined>
           <sameCrystalAs>F_SIGF</sameCrystalAs>
+          <toolTip>Starting phases (required unless calculating from the model)</toolTip>
         </qualifiers>
       </content>
       <content id="FREERFLAG">
@@ -61,6 +62,16 @@
       </content>
     </container>
     <container id="controlParameters">
+      <content id="PHASE_SOURCE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>input,model</enumerators>
+          <menuText>Use supplied phases,Calculate from model (servalcat sigmaa)</menuText>
+          <default>input</default>
+          <toolTip>Where the starting phases come from</toolTip>
+        </qualifiers>
+      </content>
       <content id="DOMAINS">
         <className>CList</className>
         <qualifiers>

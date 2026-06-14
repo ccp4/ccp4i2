@@ -25,18 +25,59 @@ class dm_multidomain(CPluginScript):
     TASKCOMMAND = 'dm'
     PERFORMANCECLASS = 'CExpPhasPerformance'
 
+    def validity(self):
+        # CCP4-free: only inspects container parameters.
+        error = super(dm_multidomain, self).validity()
+        ctrl = self.container.controlParameters
+        phase_source = (str(ctrl.PHASE_SOURCE)
+                        if ctrl.PHASE_SOURCE.isSet() else 'input')
+        if phase_source == 'input' and \
+                not self.container.inputData.ABCD.isSet():
+            error.append(
+                klass=self.TASKNAME, code=201,
+                details='Starting phases (ABCD) are required unless phases '
+                        'are calculated from the model',
+                name=f'{self.TASKNAME}.container.inputData.ABCD',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        return error
+
     def processInputFiles(self):
         import gemmi
 
         inp = self.container.inputData
         ctrl = self.container.controlParameters
 
-        # 1. merge F + phases (+ optional free-R) into one MTZ for dm LABIN
-        cols = [['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'ABCD']
-        if inp.FREERFLAG.isSet():
-            cols.append('FREERFLAG')
-        self.hklin, _, error = self.makeHklin0(cols)
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        # 1. build the dm input MTZ + LABIN, from either supplied phases (ABCD)
+        #    or phases CALCULATED from the model with servalcat sigmaa (bulk
+        #    solvent + sigmaA weighting). dm consumes phase + FOM, never map
+        #    coefficients, so the sigmaA weighting is delivered via FOMO.
+        phase_source = (str(ctrl.PHASE_SOURCE)
+                        if ctrl.PHASE_SOURCE.isSet() else 'input')
+        try:
+            if phase_source == 'model':
+                self.hklin, self._labin, self._has_free = self._phases_from_model()
+            else:
+                cols = [['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],
+                        'ABCD']
+                if inp.FREERFLAG.isSet():
+                    cols.append('FREERFLAG')
+                self.hklin, _, error = self.makeHklin0(cols)
+                if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+                    return CPluginScript.FAILED
+                inp.ABCD.setContentFlag()
+                if inp.ABCD.contentFlag == \
+                        CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
+                    phase = "HLA=ABCD_HLA HLB=ABCD_HLB HLC=ABCD_HLC HLD=ABCD_HLD"
+                else:
+                    phase = "PHIO=ABCD_PHI FOMO=ABCD_FOM"
+                self._labin = f"FP=F_SIGF_F SIGFP=F_SIGF_SIGF {phase}"
+                self._has_free = bool(inp.FREERFLAG.isSet())
+                if self._has_free:
+                    self._labin += " FREE=FREERFLAG_FREER"
+        except Exception as exc:
+            import traceback
+            traceback.print_exc()
+            self.appendErrorReport(203, f'Phase preparation failed: {exc}')
             return CPluginScript.FAILED
 
         # 2. derive per-domain operators + averaging masks from the model.
@@ -105,8 +146,37 @@ class dm_multidomain(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self):
+    def _phases_from_model(self):
+        """Calculate sigmaA-weighted, bulk-solvent-corrected starting phases
+        from XYZIN with `servalcat sigmaa`. Returns (hklin, labin, has_free).
+
+        dm gets the OBSERVED amplitudes (FP/SIGFP) plus the sigmaA map phase
+        (PHWT, == model phase) and the sigmaA FOM -- so the weighting enters
+        through FOMO, exactly the channel dm uses.
+        """
+        import subprocess
         inp = self.container.inputData
+        f_mtz, _, error = self.makeHklin0(
+            [['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
+        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+            raise RuntimeError('could not prepare F/SIGF for servalcat')
+        prefix = os.path.join(self.workDirectory, 'sigmaa')
+        cmd = ['servalcat', 'sigmaa', '--hklin', f_mtz,
+               '--labin', 'F_SIGF_F,F_SIGF_SIGF',
+               '--model', str(inp.XYZIN.fullPath),
+               '--source', 'xray', '-o', prefix]
+        print('dm_multidomain: ' + ' '.join(cmd))
+        result = subprocess.run(cmd, cwd=self.workDirectory,
+                                capture_output=True, text=True, timeout=600)
+        sa_mtz = prefix + '.mtz'
+        if result.returncode != 0 or not os.path.exists(sa_mtz):
+            raise RuntimeError(
+                f'servalcat sigmaa failed (rc={result.returncode}): '
+                f'{result.stderr[-400:]}')
+        # FP/SIGFP = observed; PHWT = sigmaA map phase; FOM = sigmaA weight
+        return sa_mtz, 'FP=FP SIGFP=SIGFP PHIO=PHWT FOMO=FOM', False
+
+    def makeCommandAndScript(self):
         ctrl = self.container.controlParameters
         self.hklout = os.path.join(self.workDirectory, "hklout.mtz")
 
@@ -115,23 +185,17 @@ class dm_multidomain(CPluginScript):
         for i, (_, mask) in enumerate(self._ncsin, start=1):
             self.appendCommandLine([f'NCSIN{i}', mask])
 
-        # LABIN: F + phases (HL if present, else PHI/FOM)
-        inp.ABCD.setContentFlag()
-        if inp.ABCD.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
-            phase = "HLA=ABCD_HLA HLB=ABCD_HLB HLC=ABCD_HLC HLD=ABCD_HLD"
-        else:
-            phase = "PHIO=ABCD_PHI FOMO=ABCD_FOM"
-        labin = f"FP=F_SIGF_F SIGFP=F_SIGF_SIGF {phase}"
-        if inp.FREERFLAG.isSet():
-            labin += " FREE=FREERFLAG_FREER"
+        labin = self._labin
         labout = "PHIDM=PHIDM FOMDM=FOMDM FCDM=FCDM PHICDM=PHICDM"
+        # cross-validate (free-R per cycle) when a free set is available
+        ncross = 2 if self._has_free else 1
 
         ncycle = int(ctrl.NCYCLES) if ctrl.NCYCLES.isSet() else 10
         for line in dm_ncs_lib.build_keyword_script(
                 self._domains, self._operators_by_domain, self._solc, ncycle,
                 mode_solv=bool(ctrl.MODE_SOLVENT),
                 mode_hist=bool(ctrl.MODE_HISTOGRAM),
-                labin=labin, labout=labout):
+                labin=labin, labout=labout, ncross=ncross):
             self.appendCommandScript(line)
 
         return CPluginScript.SUCCEEDED
@@ -189,17 +253,71 @@ class dm_multidomain(CPluginScript):
                 smartieNode.append(CCP4LogToEtree(table.rawtable()))
 
     def _add_per_cycle(self, rootNode, logtext):
-        """Per-cycle convergence: dm prints one 'Overall value' (perturbation
-        gamma) per cycle. Emit as a graph-ready table (cycle vs gamma)."""
-        vals = re.findall(r'Overall value\s+([-\d.]+)', logtext)
-        if not vals:
+        """Per-cycle metrics for graphing: perturbation gamma, mean combined
+        FOM, and the mean NCS correlation of each masked domain. Emitted as
+        child elements (Number/Gamma/FOM/Corr_<n>) so the report can plot them.
+        """
+        text = re.sub(r'<[^>]+>', '', logtext)   # cycle blocks are plain text
+        # segment by the "Cycle    N" section headers
+        marks = list(re.finditer(r'\n\s*Cycle\s+(\d+)\s*\n', text))
+        if not marks:
             return
         node = etree.SubElement(rootNode, 'PerCycle')
-        node.set('title', 'Convergence per cycle')
-        for i, v in enumerate(vals, start=1):
+        node.set('title', 'Per-cycle statistics')
+        for k, m in enumerate(marks):
+            start = m.end()
+            end = marks[k + 1].start() if k + 1 < len(marks) else len(text)
+            seg = text[start:end]
             row = etree.SubElement(node, 'Cycle')
-            row.set('number', str(i))
-            row.set('gamma', v)
+            etree.SubElement(row, 'Number').text = m.group(1)
+            gm = re.search(r'Overall value\s+([-\d.]+)', seg)
+            if gm:
+                etree.SubElement(row, 'Gamma').text = gm.group(1)
+            fom = self._cycle_fom(seg)
+            if fom is not None:
+                etree.SubElement(row, 'FOM').text = f"{fom:.4f}"
+            for dom, corr in self._cycle_domain_correlations(seg).items():
+                etree.SubElement(row, f'Corr_{dom}').text = f"{corr:.4f}"
+
+    @staticmethod
+    def _cycle_fom(seg):
+        """NREFLS-weighted mean of the combined FOM (col 8) of the per-cycle
+        sigma-a table (cols: RMIN RMAX S^2 NREFLS SIGMAA FOMobs FOMcalc
+        FOMcomb DPHI*3)."""
+        num, den = 0.0, 0.0
+        for line in seg.splitlines():
+            f = line.split()
+            if len(f) == 11:
+                try:
+                    nref = float(f[3])
+                    num += nref * float(f[7])
+                    den += nref
+                except ValueError:
+                    pass
+        return num / den if den else None
+
+    @staticmethod
+    def _cycle_domain_correlations(seg):
+        """Mean off-diagonal of each domain's per-cycle NCS correlation matrix
+        (the last matrix printed for each domain in the cycle)."""
+        out = {}
+        for m in re.finditer(
+                r'CORRELATIONS BETWEEN REGIONS IN DOMAIN\s+(\d+)(.*?)'
+                r'(?=CORRELATIONS BETWEEN REGIONS|\Z)', seg, re.S):
+            rows = []
+            for line in m.group(2).splitlines():
+                vals = re.findall(r'[-\d]+\.\d+', line)
+                if len(vals) >= 3 and all(
+                        abs(float(v)) <= 1.5 for v in vals):
+                    rows.append([float(v) for v in vals])
+                elif rows:
+                    break
+            n = len(rows)
+            if n >= 2 and all(len(r) == n for r in rows):
+                off = [rows[i][j] for i in range(n) for j in range(n) if i != j]
+                if off:
+                    out[m.group(1)] = sum(off) / len(off)
+        return out
 
     def _add_ncs_correlations(self, rootNode, logtext):
         """Per-domain NCS averaging correlation, initial vs final (+ dm's

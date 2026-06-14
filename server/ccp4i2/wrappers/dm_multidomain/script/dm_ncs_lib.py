@@ -180,7 +180,8 @@ def write_domain_mask(model, ref, lo, hi, cell, spacegroup, path,
 def build_keyword_script(domains, operators_by_domain, solc, ncycle,
                          mode_solv=True, mode_hist=True,
                          labin="FP=FP SIGFP=SIGFP PHIO=PHIO FOMO=FOMO",
-                         labout="FDM=FDM PHIDM=PHIDM FOMDM=FOMDM"):
+                         labout="FDM=FDM PHIDM=PHIDM FOMDM=FOMDM",
+                         ncross=1):
     """Assemble the `dm` keyword (stdin) script.
 
     domains: ordered list of parsed-domain dicts (exclude ones are skipped).
@@ -193,6 +194,9 @@ def build_keyword_script(domains, operators_by_domain, solc, ncycle,
         modes.insert(0, "SOLV")
     if mode_hist:
         modes.insert(1 if mode_solv else 0, "HIST")
+    # NB: dm computes free-R from the FREE column in LABIN automatically; it
+    # does NOT accept "FREE <ncross>" as an NCYCLE sub-keyword (that is dmmulti
+    # syntax) -- so ncross is not emitted here.
     lines = [f"SOLC {solc}", "MODE " + " ".join(modes), f"NCYCLE {ncycle}"]
     dnum = 0
     for d in domains:

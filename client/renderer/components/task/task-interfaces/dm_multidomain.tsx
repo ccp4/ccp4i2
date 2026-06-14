@@ -5,6 +5,7 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { InlineField } from "../task-elements/inline-field";
+import { useJob } from "../../../utils";
 
 /**
  * dm_multidomain - multi-domain NCS averaging via dm.
@@ -15,6 +16,11 @@ import { InlineField } from "../task-elements/inline-field";
  * refined, or excluded independently.
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { job } = props;
+  const { useTaskItem } = useJob(job.id);
+  const { value: PHASE_SOURCE } = useTaskItem("PHASE_SOURCE");
+  const fromModel = PHASE_SOURCE === "model";
+
   return (
     <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
       <CCP4i2Tabs {...props}>
@@ -28,8 +34,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           >
             <CCP4i2TaskElement itemName="F_SIGF" {...props}
               qualifiers={{ guiLabel: "Reflections (F/SIGF or intensities)" }} />
+            <InlineField label="Starting phases from">
+              <CCP4i2TaskElement itemName="PHASE_SOURCE" {...props}
+                qualifiers={{ guiLabel: " " }} />
+            </InlineField>
+            {/* input phases shown only when not calculating from the model */}
             <CCP4i2TaskElement itemName="ABCD" {...props}
-              qualifiers={{ guiLabel: "Starting phases" }} />
+              qualifiers={{ guiLabel: "Starting phases" }}
+              visibility={() => !fromModel} />
+            {fromModel && (
+              <Typography variant="body2" sx={{ pl: 1, color: "text.secondary" }}>
+                Phases will be calculated from the model with servalcat sigmaa
+                (bulk solvent + sigmaA weighting).
+              </Typography>
+            )}
             <CCP4i2TaskElement itemName="FREERFLAG" {...props}
               qualifiers={{ guiLabel: "Free R set (optional)" }} />
           </CCP4i2ContainerElement>
