@@ -28,6 +28,7 @@ import { CSimpleDataFileElement } from "./csimpledatafile";
 import { CReindexOperatorElement } from "./creindexoperator";
 import { CRunBatchRangeElement } from "./crunbatchrange";
 import { CRangeElement } from "./crange";
+import { CDmDomainElement } from "./cdmdomain";
 import { v4 as uuid4 } from "uuid";
 import { CAsuContentSeqElement } from "./casucontentseq";
 import { CColumnGroupElement } from "./ccolumngroup";
@@ -178,6 +179,7 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   CReindexOperator: { component: CReindexOperatorElement },
   CColumnGroup: { component: CColumnGroupElement },
   CRunBatchRange: { component: CRunBatchRangeElement },
+  CDmDomain: { component: CDmDomainElement },
 };
 
 /**
