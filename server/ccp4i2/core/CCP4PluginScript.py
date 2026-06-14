@@ -2480,6 +2480,18 @@ class CPluginScript(CData):
             if ccp4:
                 monlib_dir = os.path.join(ccp4, 'lib', 'data', 'monomers')
 
+        # Without the CCP4 monomer library this check cannot run meaningfully.
+        # That is the case on a CCP4-free interpreter — e.g. the slim Django
+        # API server, where runTimeValidity() is polled at submission but no
+        # CCP4 suite is installed. Reading the library is impossible, so every
+        # residue (standard amino acids included) would be reported as having
+        # "no dictionary at all". Defer to the worker's process(), which runs
+        # runTimeValidity() again with the library present, rather than block
+        # submission with a spurious error. (Mirrors the other "don't block;
+        # refinement itself will catch it" guards below.)
+        if not monlib_dir or not os.path.isdir(monlib_dir):
+            return self.SUCCEEDED
+
         # Read the structure
         try:
             st = gemmi.read_structure(str(xyzin_path))
@@ -2528,8 +2540,20 @@ class CPluginScript(CData):
 
         missing_from_model = topo.find_missing_atoms()
 
-        # Identify residues with no dictionary at all
-        no_dict = sorted(c for c in all_codes if c not in ml.monomers)
+        # Identify residues with no dictionary at all. Standard amino acids /
+        # nucleotides and water are handled by the refinement program's
+        # built-in machinery and never need an explicit monomer dictionary, so
+        # they must not be flagged here regardless of whether the library
+        # happens to define them. This is the docstring's "non-polymer
+        # residues" intent: only ligands / modified residues need coverage.
+        def _builtin_residue(code):
+            info = gemmi.find_tabulated_residue(code)
+            return info is not None and (info.is_standard() or info.is_water())
+
+        no_dict = sorted(
+            c for c in all_codes
+            if c not in ml.monomers and not _builtin_residue(c)
+        )
 
         if not no_dict and not unrestrained:
             return self.SUCCEEDED
