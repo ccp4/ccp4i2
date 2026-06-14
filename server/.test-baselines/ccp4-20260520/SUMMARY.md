@@ -1,8 +1,14 @@
 # i2run candidate run — ccp4-20260520 (near-release ccp4-10)
 
-- **Date:** 2026-06-12
+> **Refreshed 2026-06-14 (commit 267c6b07d):** 171 tests · **151 passed · 2
+> failed · 18 skipped** · 61.3 min. Only `test_1hr2` / `test_1hr2_raw`
+> (NucleoFind) remain red. The 6 previously-red tests are resolved — see
+> "UPDATE 2026-06-14" at the bottom. The analysis below is the original
+> 2026-06-12 investigation and is kept as the migration record.
+
+- **Date (original investigation):** 2026-06-12
 - **Commit:** f2e0cf700 (django)
-- **Result:** 170 tests · **143 passed · 8 failed · 19 skipped** · 65.1 min
+- **Result (original):** 170 tests · **143 passed · 8 failed · 19 skipped** · 65.1 min
 - **Baseline:** ccp4-20251105 = 148 pass / 4 fail / 18 skip
 - **Stack pinned to baseline** (CCP4-only variable): Django 4.2.30, pytest 8.4.2,
   pytest-django 4.11.1, pytest-asyncio 1.3.0, xdist 3.8.0, django-filter 24.3.
@@ -123,3 +129,27 @@ certainly this machine's full-disk unpack.
 **Further correction:** SHELX absence is also NOT a CCP4 build issue — SHELX is
 installed separately under its own (Sheldrick) license. So nothing here is
 actionable for CCP4 maintainers; the only real changes were the two ccp4i2 fixes.
+
+---
+
+## UPDATE 2026-06-14 — baseline refreshed (8 → 2 failures)
+
+Re-ran on merged `django` (267c6b07d), which now includes the slim/CCP4-free
+server work (clipper factored out + gemmi-native phase/obs conversions, crank2
+f'/f'' via gemmi, shared preferences, 12 plugins made configurable CCP4-free)
+**plus** the SHELX-threshold decision below. Result: **151 passed · 2 failed ·
+18 skipped**. Diff vs the original 2026-06-12 run:
+
+- **`test_gamma_sad` / `test_gamma_siras` → PASS.** Resolved by relaxing the
+  R-work ceilings to 0.27 (the "relax thresholds" option recommended in the
+  *Open item* above) — the ccp4-20260520 refinement deterministically lands
+  R-work ~0.242 / ~0.244 for a correctly-phased result; a genuine failure is
+  0.4+. (`test_shelx.py`.)
+- **`test_8xfm` / `test_gamma_ep` (modelcraft), `test_substitute_ligand_*` → PASS**
+  on this run (the i2Dimple/modelcraft fixes noted above, now merged).
+- **Still red: `test_1hr2` / `test_1hr2_raw` (NucleoFind)** — `SystemExit 2`
+  (`manage.py: unrecognized arguments --FPHIIN … --OUTPUT_TYPE RAW`); pre-existing
+  env/tooling gap, not a ccp4i2 regression.
+
+The full slim-server change set was separately confirmed to introduce **zero new
+i2run failures** (diffed against this baseline before the refresh).
