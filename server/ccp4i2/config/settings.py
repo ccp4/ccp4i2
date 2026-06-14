@@ -161,6 +161,11 @@ if DATABASE_URL:
         # Handle SQLite DATABASE_URL (format: sqlite:///path/to/db.sqlite)
         # The path is everything after sqlite:// (url.path contains the full path)
         db_path = url.path
+        # Windows drive paths arrive as "/C:/..." (urlparse keeps a leading slash
+        # before the drive letter); strip it so SQLite gets "C:/...". POSIX paths
+        # ("/data/...") have no drive letter and are left unchanged.
+        if len(db_path) >= 3 and db_path[0] == "/" and db_path[1].isalpha() and db_path[2] == ":":
+            db_path = db_path[1:]
         DATABASES = {
             "default": {
                 "ENGINE": "django.db.backends.sqlite3",

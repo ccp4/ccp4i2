@@ -200,3 +200,23 @@ def test_PREFERENCES_accessor(monkeypatch, tmp_path):
     prefs = CCP4Modules.PREFERENCES()
     assert prefs.SHELXDIR == "/opt/shelx"      # from file
     assert prefs.BUSTERDIR is None             # unset -> None, never raises
+
+
+# ---------------------------------------------------------------------------
+# sqlite "database" URL parsing (cross-platform — the form the Electron app writes)
+# ---------------------------------------------------------------------------
+
+def test_settings_sqlite_url_posix(tmp_path):
+    home = tmp_path / "home"
+    out = _probe_settings(home, {"database": "sqlite:///data/proj/db.sqlite3"})
+    assert out["engine"] == "django.db.backends.sqlite3"
+    assert out["name"] == "/data/proj/db.sqlite3"
+
+
+def test_settings_sqlite_url_windows_drive(tmp_path):
+    # urlparse keeps the leading slash before the drive letter ("/C:/...");
+    # settings.py strips it so SQLite gets "C:/...".
+    home = tmp_path / "home"
+    out = _probe_settings(home, {"database": "sqlite:///C:/proj/db.sqlite3"})
+    assert out["engine"] == "django.db.backends.sqlite3"
+    assert out["name"] == "C:/proj/db.sqlite3"
