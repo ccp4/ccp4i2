@@ -74,3 +74,17 @@ export function updatePreferences(patch: CCP4i2Preferences): CCP4i2Preferences {
   savePreferences(merged);
   return merged;
 }
+
+/**
+ * Build a `settings.py`-parseable SQLite URL for an absolute DB path.
+ *
+ * Produces `sqlite:///<path>` with forward slashes. The Python side
+ * (`config/settings.py`) strips the leading slash before a Windows drive letter
+ * (`/C:/...` -> `C:/...`), so this works on both POSIX and Windows:
+ *   POSIX   /data/proj/db.sqlite3   -> sqlite:///data/proj/db.sqlite3
+ *   Windows C:\proj\db.sqlite3      -> sqlite:///C:/proj/db.sqlite3
+ */
+export function sqliteUrl(dbPath: string): string {
+  const forward = dbPath.replace(/\\/g, "/").replace(/^\/+/, "");
+  return "sqlite:///" + forward;
+}

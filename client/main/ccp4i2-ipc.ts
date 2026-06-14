@@ -9,7 +9,7 @@ import { spawn, ChildProcessWithoutNullStreams } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
-import { loadPreferences, updatePreferences } from "./ccp4i2-preferences";
+import { loadPreferences, updatePreferences, sqliteUrl } from "./ccp4i2-preferences";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -214,9 +214,15 @@ export const installIpcHandlers = (
       .then((result) => {
         if (!result.canceled) {
           console.log("Selected directory:", result.filePaths);
-          store.set("CCP4I2_PROJECTS_DIR", result.filePaths[0]);
-          // Write the shared key so the server and the i2/i2run CLI see it too.
-          updatePreferences({ projectsDir: result.filePaths[0] });
+          const projectsDir = result.filePaths[0];
+          store.set("CCP4I2_PROJECTS_DIR", projectsDir);
+          // Write the shared keys so the server and the i2/i2run CLI agree —
+          // including the database location, so all three open the SAME
+          // db.sqlite3 inside the projects dir (not a divergent default).
+          updatePreferences({
+            projectsDir,
+            database: sqliteUrl(path.join(projectsDir, "db.sqlite3")),
+          });
           event.reply("message-from-main", getConfigResponse());
         }
       });
