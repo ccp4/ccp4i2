@@ -18,6 +18,12 @@ class Task:
     reportPath: str = None
     runningReport: bool = False
     watchedFile: str = None
+    # True only if the task's execution needs NO CCP4 binary or $CCP4 environment
+    # (e.g. pure gemmi/python). Such tasks may run inline on a CCP4-free server.
+    # Conservative default False: a task is assumed to need CCP4 until proven
+    # otherwise (and verified by the CCP4-free behavioural guard). See
+    # lib/utils/jobs/context_run.can_run_local().
+    ccp4_free: bool = False
 
 
 TASKS = {
@@ -129,6 +135,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents:ProvideAsuContents",
         defXmlPath="wrappers/ProvideAsuContents/script/ProvideAsuContents.def.xml",
         reportPath="ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report:ProvideAsuContents_report",
+        ccp4_free=True,  # gemmi-native Matthews (no matthews_coef binary)
     ),
     "ProvideSequence": Task(
         shortTitle="Import Sequence",
@@ -391,6 +398,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coordinate_selector.script.coordinate_selector:coordinate_selector",
         defXmlPath="wrappers/coordinate_selector/script/coordinate_selector.def.xml",
         reportPath="ccp4i2.wrappers.coordinate_selector.script.coordinate_selector_report:coordinate_selector_report",
+        ccp4_free=True,  # pure gemmi/file ops
     ),
     "coot1": Task(
         title="Coot 1",
@@ -947,6 +955,7 @@ TASKS = {
         shortTitle="MTZ Header",
         pluginPath="ccp4i2.wrappers.mtzheader.script.mtzheader:mtzheader",
         defXmlPath="wrappers/mtzheader/script/mtzheader.def.xml",
+        ccp4_free=True,  # gemmi-native MTZ header read
     ),
     "mtzutils": Task(
         title="Add or delete MTZ columns",
@@ -1347,6 +1356,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.splitMtz.script.splitMtz:splitMtz",
         defXmlPath="wrappers/splitMtz/script/splitMtz.def.xml",
         reportPath="ccp4i2.wrappers.splitMtz.script.splitMtz_report:splitMtz_report",
+        ccp4_free=True,  # gemmi-native MTZ split
     ),
     "tableone": Task(
         title="Generate Table One",
