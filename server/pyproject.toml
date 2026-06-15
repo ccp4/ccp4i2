@@ -25,18 +25,30 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Chemistry",
 ]
 requires-python = ">=3.9"
+# Runtime dependencies for the CCP4-free control plane (API, container/validation,
+# digest). These are pip wheels that the package imports at module scope, so they
+# must be declared for `pip install ccp4i2` to import cleanly on a stock Python
+# with no CCP4 installation. Verified empirically against a slim CPython 3.13 venv
+# (imports all plugins + passes the unit suite). Heavy, execution-only packages
+# (rdkit/scipy/pandas) are lazy-imported and live under the [science] extra; the
+# CCP4 native toolkits (clipper, iotbx, mmtbx, ccp4mg, ccp4srs, phaser, dials,
+# xia2, ...) are provided by the CCP4 suite at job-execution time and are
+# deliberately NOT declared here.
 dependencies = [
-    "autopep8",
+    "django",              # the web framework this whole backend is built on
+    "gemmi",               # MTZ/PDB/mmCIF + crystallographic maths (clipper replacement)
+    "numpy",
+    "lxml",                # XML throughout core/containers/reports
+    "lxml_html_clean",     # lxml.html.clean moved to separate package
+    "pytz",
+    "psutil",
+    "future",              # used by crank2
+    "requests",            # pdb_redo_api and other HTTP clients
     "biopython>=1.80",     # used by adding_stats_to_mmcif (sequence alignment)
     "ccp4i2-api>=0.3.4",   # auth middleware + DRF auth classes (config/settings.py)
+    "djangorestframework",
     "django-cors-headers",
     "django-filter",
-    "djangorestframework",
-    "lxml_html_clean",     # lxml.html.clean moved to separate package
-    "mypy",
-    "pytest-asyncio",
-    "pytest-django",
-    "pytest-xdist",
     "python-docx>=0.8.11",
     "requests-cache",
     "uvicorn",
@@ -44,52 +56,32 @@ dependencies = [
     "openpyxl",            # Excel file parsing for ADME importers
 ]
 
-# Dependencies in CCP4 site-packages:
-# - acedrg
-# - adding_stats_to_mmcif
-# - ample
-# - asgiref
-# - biopython (now in [project] dependencies)
-# - ccp4mg
-# - ccp4srs
-# - chardet
-# - chem_data
-# - clipper
-# - dials
-# - django
-# - dxtbx
-# - gemmi
-# - iotbx
-# - iris_validation
-# - lxml
-# - matplotlib
-# - mmtbx
-# - mrbump
-# - mrcfile
-# - mrparse
-# - networkx
-# - onedep_api
-# - pandas
-# - paramiko
-# - phaser
-# - phaser_ext
-# - psutil
-# - pyrvapi
-# - PySide2
-# - pytest
-# - python-dateutil
-# - python-docx
-# - pytz
-# - rdkit
-# - requests
-# - scipy
-# - shiboken2
-# - simbad
-# - svgwrite
-# - xia2
+[project.optional-dependencies]
+# Heavy packages imported lazily, only when the relevant job actually runs.
+# Install with `pip install ccp4i2[science]` for fuller local execution.
+science = [
+    "rdkit",               # prosmart_refmac ligand SVG, acedrgNew
+    "scipy",               # modelASUCheck (Hungarian assignment)
+    "pandas",              # servalcat_pipe difference monitoring
+]
+# Test/lint toolchain — not needed at runtime. `pip install ccp4i2[dev]`.
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-django",
+    "pytest-xdist",
+    "mypy",
+    "autopep8",
+    "black",
+    "isort",
+]
 
-# Dependencies outside site-packages included by modifying sys.path:
-# - pycofe
+# Dependencies provided by the CCP4 suite at job-execution time (NOT pip-declared;
+# present in CCP4 site-packages, or added to sys.path by CCP4): acedrg,
+# adding_stats_to_mmcif, ample, ccp4mg, ccp4srs, chem_data, clipper, dials, dxtbx,
+# iotbx, iris_validation, mmtbx, mrbump, mrcfile, mrparse, phaser, phaser_ext,
+# pyrvapi, simbad, xia2, pycofe (sys.path). Optional report/plotting extras
+# (matplotlib, networkx, svgwrite) are likewise only needed at execution.
 
 [project.urls]
 Homepage = "https://www.ccp4.ac.uk/"
@@ -105,6 +97,19 @@ version = { attr = "ccp4i2.__version__" }
 
 [tool.setuptools.package-data]
 ccp4i2 = ["**/*"]
+
+# Keep the wheel lean: demo_data is ~417 MB (far over PyPI limits) and is only
+# needed when running the test/demo workflows from a repo checkout, not at
+# runtime from an installed package. It is distributed out-of-band (release asset
+# / fetch helper). This drops the wheel from >400 MB to ~50 MB. (The bundled test
+# suite ~1 MB and in-app help under docs/ ~38 MB are retained for now; either can
+# be trimmed later if an even slimmer wheel is wanted.)
+[tool.setuptools.exclude-package-data]
+ccp4i2 = [
+    "demo_data/*",
+    "demo_data/**/*",
+    "**/*.pyc",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
