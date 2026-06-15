@@ -675,6 +675,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.freerflag.script.freerflag:freerflag",
         defXmlPath="wrappers/freerflag/script/freerflag.def.xml",
         reportPath="ccp4i2.wrappers.freerflag.script.freerflag_report:freerflag_report",
+        ccp4_free=True,  # gemmi-native free-R generation (no freerflag binary)
     ),
     "gesamt": Task(
         title="Structural alignment - Gesamt",
