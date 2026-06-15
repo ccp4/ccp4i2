@@ -1,9 +1,10 @@
 import os
 
+import gemmi
+
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.mgimports import mmdb2 as mmdb
 
 
 class i2Dimple(CPluginScript):
@@ -25,11 +26,14 @@ class i2Dimple(CPluginScript):
         self.xyzin = os.path.join(self.getWorkDirectory(),"selected_xyzin.pdb")
 
         #A work around to cast input coordinates into PDB format for dimple if necessary
-        testLoader = mmdb.Manager()
-        result = testLoader.ReadCIFASCII(str(self.container.inputData.XYZIN.fullPath))
-        if result == 0:
+        # dimple needs PDB input. If XYZIN is mmCIF, convert it to PDB first so the
+        # (PDB-based) atom-selection machinery can be applied; otherwise use XYZIN
+        # directly. gemmi auto-detects the input format, replacing the previous
+        # mmdb2 ReadCIFASCII/WritePDBASCII cast (which needed the CCP4 toolkit).
+        structure = gemmi.read_structure(str(self.container.inputData.XYZIN.fullPath))
+        if structure.input_format == gemmi.CoorFormat.Mmcif:
             temp_pdb = os.path.join(self.getWorkDirectory(),"selected_xyzin_temp.pdb")
-            RC=testLoader.WritePDBASCII(self.xyzin)
+            structure.write_pdb(self.xyzin)
             from ccp4i2.core.CCP4ModelData import CPdbDataFile
             temporaryObject = CPdbDataFile(fullPath=self.xyzin)
             temporaryObject.loadFile()
