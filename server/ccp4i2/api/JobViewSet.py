@@ -950,18 +950,62 @@ class JobViewSet(ModelViewSet):
             - Synchronous mode is useful for scripting and automation
         """
         try:
-            from ..lib.utils.jobs.context_run import run_job_context_aware
+            from ..lib.utils.jobs.context_run import (
+                run_job_context_aware,
+                can_run_local,
+                ccp4_available,
+            )
 
             job = models.Job.objects.get(id=pk)
 
-            # Parse synchronous parameter from request body
+            # Parse request body: synchronous, and an optional on_unavailable hint
+            # ("queue" => fall back to async dispatch instead of being told no).
             synchronous = False
+            on_unavailable = None
             if request.body:
                 try:
                     body_data = json.loads(request.body.decode("utf-8"))
                     synchronous = body_data.get("synchronous", False)
+                    on_unavailable = body_data.get("on_unavailable")
                 except (json.JSONDecodeError, UnicodeDecodeError):
-                    pass  # Use default (False) if body is invalid
+                    pass  # Use defaults if body is invalid
+
+            # Pre-flight feasibility: the client *requests* local execution, but the
+            # server decides whether it is actually possible here. A task that needs
+            # a CCP4 binary cannot run inline on a CCP4-free server.
+            if not can_run_local(job.task_name):
+                if on_unavailable == "queue":
+                    # Caller opted into async fallback: dispatch via the normal
+                    # (environment-determined) execution path rather than forcing local.
+                    logger.info(
+                        "Local execution not possible for job %s (task=%s, no CCP4); "
+                        "caller requested queue fallback",
+                        job.id, job.task_name,
+                    )
+                    result = run_job_context_aware(job, synchronous=False)
+                    if result["success"]:
+                        return Response(
+                            {"disposition": "queued",
+                             "reason": "local execution unavailable; dispatched asynchronously",
+                             "job": serializers.JobSerializer(result["data"]).data},
+                            status=202,
+                        )
+                    return api_error(result["error"], status=result["status"])
+
+                # Default: notify and let the caller decide what to do.
+                logger.info(
+                    "Refusing local execution for job %s: task=%s needs CCP4, none on this server",
+                    job.id, job.task_name,
+                )
+                return Response(
+                    {"error": "local_execution_unavailable",
+                     "task": job.task_name,
+                     "reason": (f"task '{job.task_name}' requires a CCP4 installation, "
+                                "which is not present on this server"),
+                     "ccp4_available": ccp4_available(),
+                     "async_available": True},
+                    status=409,
+                )
 
             logger.info(
                 "Forcing local execution for job %s (uuid=%s, task=%s, synchronous=%s)",

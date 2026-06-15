@@ -29,11 +29,54 @@ Example Usage:
 import os
 import json
 import logging
+import functools
+import shutil
 import subprocess
 import pathlib
 import sys
 
 logger = logging.getLogger(__name__)
+
+
+@functools.lru_cache(maxsize=1)
+def ccp4_available():
+    """True if this server has a usable CCP4 installation (can run CCP4 binaries).
+
+    A CCP4-free deployment (e.g. the slim Django API container) returns False, so
+    callers can decide not to attempt local execution of tasks that need a binary.
+    Cached: the environment is fixed for the life of the server process.
+    """
+    ccp4 = os.environ.get("CCP4")
+    if not ccp4 or not os.path.isdir(ccp4):
+        return False
+    # Probe a core CCP4 program ('cad' is present in any real install).
+    if shutil.which("cad"):
+        return True
+    return os.path.exists(os.path.join(ccp4, "bin", "cad"))
+
+
+def task_requires_ccp4(task_name):
+    """True unless the task is declared ccp4_free in the registry.
+
+    Conservative: an unknown or unflagged task is assumed to need CCP4.
+    """
+    try:
+        from ccp4i2.core.tasks import TASKS
+        task = TASKS.get(task_name)
+    except Exception:
+        task = None
+    return not bool(task and getattr(task, "ccp4_free", False))
+
+
+def can_run_local(task_name):
+    """Whether `task_name` can be executed locally in this environment.
+
+    True if either the server has CCP4, or the task needs no CCP4 (ccp4_free).
+    This is the server-side feasibility decision behind the run_local endpoint:
+    the client may *request* local execution, but the server reports whether it
+    is actually possible here.
+    """
+    return ccp4_available() or not task_requires_ccp4(task_name)
 
 
 def _lazy_import_azure_servicebus():
