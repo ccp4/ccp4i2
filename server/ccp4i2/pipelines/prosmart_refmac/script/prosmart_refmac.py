@@ -4,7 +4,7 @@ import shutil
 import traceback
 
 from lxml import etree
-from rdkit import Chem
+# rdkit imported lazily below — only used at execution to render a ligand SVG
 
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4ErrorHandling import CErrorReport
@@ -289,6 +289,7 @@ class prosmart_refmac(CPluginScript):
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             if os.path.isfile(self.firstRefmac.container.outputData.LIBOUT.__str__()):
                 from ccp4i2.wrappers.acedrg.script import acedrg
+                from rdkit import Chem  # lazy: pip dep, only at execution (worker)
                 try:
                     rdkitMol = acedrg.molFromDict(self.firstRefmac.container.outputData.LIBOUT.__str__())
                     molRemovedHs = Chem.RemoveHs(rdkitMol)
