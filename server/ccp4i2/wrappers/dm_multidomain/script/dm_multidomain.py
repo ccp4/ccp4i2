@@ -112,7 +112,7 @@ class dm_multidomain(CPluginScript):
                 if d['mode'] == 'exclude':
                     continue
                 ops, rmsds = dm_ncs_lib.domain_operators(
-                    model, ref, copies, d['lo'], d['hi'])
+                    model, ref, copies, d['lo'], d['hi'], cell=cell)
                 operators_by_domain[d['name']] = ops
                 rmsd_str = ", ".join(f"{c}:{r:.2f}" for c, r in rmsds.items())
                 print(f"  domain {d['name']} ({d['lo']}-{d['hi']}, {d['mode']}): "
