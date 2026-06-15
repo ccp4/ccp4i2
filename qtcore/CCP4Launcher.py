@@ -347,9 +347,9 @@ class CLauncher(QtCore.QObject):
         elif viewer.lower() == 'pdbview':
             argList = [fileName]
             self.launch(viewer='PdbView',argList=argList,projectId=projectId,guiParent=guiParent)
-        elif viewer.lower() == 'coot0':
+        elif viewer.lower() == 'coot1':
             argList = self.cootComLine(fileName=fileName,jobId=jobId)
-            self.launch(viewer='coot',argList=argList,projectId=projectId,guiParent=guiParent)
+            self.launch(viewer='coot-1',argList=argList,projectId=projectId,guiParent=guiParent)
             #else:
             #  self.launch(viewer='moorhen',argList=argList)
         elif viewer.lower() == 'coot_job' or viewer.lower() == 'coot':
@@ -413,7 +413,7 @@ class CLauncher(QtCore.QObject):
         if projectId is None:
             projectId = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(contextJobId,'projectid')
         openJob = CCP4DbUtils.COpenJob(projectId=projectId)
-        openJob.createJob(taskName='coot_rebuild',contextJobId=contextJobId)
+        openJob.createJob(taskName='coot1',contextJobId=contextJobId)
         if fileName is not None:
             #need to establish what sort of file we are trying to view...difficult from here since we have only a fileName
             #and a projectId
