@@ -1,7 +1,7 @@
 # This script runs all three versions of arcimboldo
 
 import os
-from distutils.dir_util import copy_tree
+import shutil
 
 from lxml import etree
 
@@ -164,7 +164,9 @@ class arcimboldo(CPluginScript):
         if exitCode != 0:
             return CPluginScript.FAILED
         if developerOptions.DEVELOPER_MODE == 'EXISTING':
-            copy_tree(str(developerOptions.EXISTING_FOLDER), str(self.getWorkDirectory()), update=1)
+            # shutil.copytree(dirs_exist_ok=True) merges into the (freshly created)
+            # work directory, matching distutils copy_tree (removed in Python 3.12).
+            shutil.copytree(str(developerOptions.EXISTING_FOLDER), str(self.getWorkDirectory()), dirs_exist_ok=True)
         self.generateBor(self.hklin, self.columns)
         self.generateProgram()
         return CPluginScript.SUCCEEDED
