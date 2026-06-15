@@ -108,12 +108,36 @@ def _rmsd(a, b):
          for p, q in zip(a, b)])))
 
 
-def operator_ref_to_copy(model, ref, copy, lo, hi):
+def _lattice_shift(positions, cell):
+    """Integer lattice vector that brings the centroid of `positions` into the
+    primary cell [0,1). Computed from CA-style positions so the mask and the
+    operators use an IDENTICAL shift."""
+    import math
+    fr = [cell.fractionalize(p) for p in positions]
+    n = len(fr)
+    cen = (sum(f.x for f in fr) / n, sum(f.y for f in fr) / n,
+           sum(f.z for f in fr) / n)
+    return (-math.floor(cen[0]), -math.floor(cen[1]), -math.floor(cen[2]))
+
+
+def _shift(p, s, cell):
+    f = cell.fractionalize(p)
+    return cell.orthogonalize(gemmi.Fractional(f.x + s[0], f.y + s[1],
+                                               f.z + s[2]))
+
+
+def operator_ref_to_copy(model, ref, copy, lo, hi, cell=None):
     """(gemmi.Transform T, rmsd) with T mapping REFERENCE coords -> COPY coords.
 
     Self-orienting: compute a superposition, then keep whichever of T / T^-1
     actually maps ref->copy. Independent of gemmi's internal convention.
     Raises ValueError if fewer than 3 common CA atoms are available.
+
+    If `cell` is given, the reference is first brought into the primary unit
+    cell (rigid lattice shift) so the operator shares the frame of the
+    PBC-wrapped averaging mask -- otherwise, for a reference copy outside
+    [0,1), dm would average density displaced by a lattice vector and report
+    spurious ~0 NCS correlation.
     """
     ref_ca = ca_positions(model, ref, lo, hi)
     cp_ca = ca_positions(model, copy, lo, hi)
@@ -123,6 +147,9 @@ def operator_ref_to_copy(model, ref, copy, lo, hi):
             f"<3 common CA atoms between {ref} and {copy} in {lo}-{hi}")
     ref_pts = [ref_ca[n] for n in common]
     cp_pts = [cp_ca[n] for n in common]
+    if cell is not None:
+        s = _lattice_shift(ref_pts, cell)
+        ref_pts = [_shift(p, s, cell) for p in ref_pts]
 
     sup = gemmi.superpose_positions(cp_pts, ref_pts)
     T = sup.transform
@@ -143,7 +170,7 @@ def transform_to_dm(T):
     return rota, tran
 
 
-def domain_operators(model, ref, copies, lo, hi):
+def domain_operators(model, ref, copies, lo, hi, cell=None):
     """List of (rota, tran) dm lines for a domain: identity first, then ref->copy_n.
 
     Also returns the per-copy RMSDs for diagnostics/logging.
@@ -151,7 +178,7 @@ def domain_operators(model, ref, copies, lo, hi):
     ops = [IDENTITY_DM]
     rmsds = {}
     for c in copies:
-        T, rmsd = operator_ref_to_copy(model, ref, c, lo, hi)
+        T, rmsd = operator_ref_to_copy(model, ref, c, lo, hi, cell=cell)
         ops.append(transform_to_dm(T))
         rmsds[c] = rmsd
     return ops, rmsds
@@ -168,8 +195,12 @@ def write_domain_mask(model, ref, lo, hi, cell, spacegroup, path,
     g.unit_cell = cell
     g.spacegroup = spacegroup
     g.set_size_from_spacing(spacing, gemmi.GridSizeRounding.Up)
+    # Bring the reference into the cell with the SAME shift the operators use
+    # (computed from the reference CA centroid), so set_points_around's PBC
+    # wrap cannot displace the mask relative to the operators.
+    s = _lattice_shift(list(ca_positions(model, ref, lo, hi).values()), cell)
     for p in all_atom_positions(model, ref, lo, hi):
-        g.set_points_around(p, radius=radius, value=1)
+        g.set_points_around(_shift(p, s, cell), radius=radius, value=1)
     ccp4 = gemmi.Ccp4Mask()
     ccp4.grid = g
     ccp4.update_ccp4_header()
