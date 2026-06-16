@@ -5,6 +5,8 @@
 import json
 import os
 import shutil
+import subprocess
+import sys
 import traceback
 import warnings
 from math import pi
@@ -23,6 +25,31 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Ignore NumPy warnings
 warnings.filterwarnings('ignore')
+
+
+def clipper_can_read(path):
+    """Probe, in a subprocess, whether Iris's clipper/MMDB read of `path` succeeds.
+
+    Iris reads models via clipper.MMDBfile (_get_minimol_from_path), whose MMDB
+    cannot parse some mmCIF -- gemmi-written output (Error_MissgCIFLoopField) and
+    certain models (Error_NoData) -- and aborts with clipper::Message_fatal. That
+    is a C++ terminate, not a Python exception, so it sails through Iris's own
+    try/except and kills the whole pipeline process (validate_protein runs
+    in-process). Probing the identical read in a subprocess isolates that abort:
+    we only let Iris read in-process when it is known safe, otherwise Iris is
+    skipped and the refinement result survives (validation is non-fatal).
+    """
+    if not path or not os.path.isfile(path):
+        return False
+    probe = ("import sys, clipper\n"
+             "f = clipper.MMDBfile(); f.read_file(sys.argv[1])\n"
+             "m = clipper.MiniMol(); f.import_minimol(m)\n")
+    try:
+        result = subprocess.run([sys.executable, '-c', probe, path],
+                                capture_output=True, text=True, timeout=180)
+        return result.returncode == 0
+    except Exception:
+        return False
 
 
 class validate_protein(CPluginScript):
@@ -96,6 +123,13 @@ class validate_protein(CPluginScript):
         return CPluginScript.SUCCEEDED
 
 
+    def _guard_iris_readable(self, *paths):
+        unreadable = [p for p in paths if p and not clipper_can_read(p)]
+        if unreadable:
+            raise RuntimeError(
+                "Iris/clipper cannot read model file(s) %s (e.g. gemmi-style mmCIF); "
+                "skipping Iris validation to avoid a fatal clipper abort." % unreadable)
+
     def calculate_iris_metrics(self):
         log_string = ''
         xml_root = etree.Element('Model_info')
@@ -113,6 +147,7 @@ class validate_protein(CPluginScript):
                     [['F_SIGF_2', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], hklin='F_SIGF_2'
                 )
             print("PATHS\n", xyzin1, xyzin2, fsigf1, fsigf2)
+            self._guard_iris_readable(xyzin1, xyzin2)
             self.model_series = metrics_model_series_from_files(model_paths=(xyzin1, xyzin2),
                                                                 reflections_paths=(fsigf1, fsigf2),
                                                                 sequence_paths=(None, None),
@@ -127,6 +162,7 @@ class validate_protein(CPluginScript):
             return log_string, xml_root
         else :
             print("PATHS\n", xyzin1, fsigf1)
+            self._guard_iris_readable(xyzin1)
             self.model_series = metrics_model_series_from_files(model_paths=(xyzin1,),
                                                                 reflections_paths=(fsigf1,),
                                                                 sequence_paths=(None,),
