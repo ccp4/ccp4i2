@@ -273,12 +273,23 @@ def run_ccp4_analysis(parameters):
                 "stderr": result.stderr,
             }
         else:
-            logger.error("CCP4 analysis failed with return code %s", result.returncode)
+            # Distinguish a native crash of the job subprocess (signal death /
+            # NTSTATUS) from a clean non-zero exit where run_job reported failure
+            # itself. The former means the job process died in native code without
+            # getting to record its own status - worth surfacing explicitly.
+            from ccp4i2.core.CCP4PluginScript import describe_signal_exit
+            crash = describe_signal_exit(result.returncode)
+            if crash is not None:
+                error = "Job process crashed: %s (return code %s)" % (crash, result.returncode)
+                logger.error("CCP4 analysis crashed: %s", crash)
+            else:
+                error = "Command failed with return code %s" % result.returncode
+                logger.error("CCP4 analysis failed with return code %s", result.returncode)
             logger.error("STDOUT: %s", result.stdout)
             logger.error("STDERR: %s", result.stderr)
             return {
                 "status": "failed",
-                "error": "Command failed with return code %s" % result.returncode,
+                "error": error,
                 "stdout": result.stdout,
                 "stderr": result.stderr,
             }
