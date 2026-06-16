@@ -41,15 +41,40 @@ def clipper_can_read(path):
     """
     if not path or not os.path.isfile(path):
         return False
-    probe = ("import sys, clipper\n"
-             "f = clipper.MMDBfile(); f.read_file(sys.argv[1])\n"
-             "m = clipper.MiniMol(); f.import_minimol(m)\n")
     try:
-        result = subprocess.run([sys.executable, '-c', probe, path],
+        result = subprocess.run([sys.executable, '-c', _CLIPPER_READ_PROBE, path],
                                 capture_output=True, text=True, timeout=180)
         return result.returncode == 0
     except Exception:
         return False
+
+
+# Probe script for clipper_can_read(). The core isolation (run in a subprocess,
+# inspect the return code) is platform-agnostic. The signal block is a best-effort
+# nicety that turns abort()/segfault into a clean _exit so the probe terminates
+# WITHOUT tripping the OS crash reporter (macOS's "quit unexpectedly" dialog;
+# Windows Error Reporting). It only registers signals that exist on the platform,
+# loads the C runtime portably, and is wrapped in try/except -- if any of it is
+# unavailable the probe still works, it just may show the OS dialog. On Linux
+# (headless servers) there is no dialog regardless.
+_CLIPPER_READ_PROBE = (
+    "import sys\n"
+    "try:\n"
+    "    import ctypes, signal\n"
+    "    libc = ctypes.CDLL('msvcrt') if sys.platform == 'win32' else ctypes.CDLL(None)\n"
+    "    libc.signal.restype = ctypes.c_void_p\n"
+    "    libc.signal.argtypes = [ctypes.c_int, ctypes.c_void_p]\n"
+    "    ep = ctypes.cast(libc._exit, ctypes.c_void_p)\n"
+    "    for _n in ('SIGABRT', 'SIGSEGV', 'SIGILL', 'SIGBUS'):\n"
+    "        _s = getattr(signal, _n, None)\n"
+    "        if _s is not None:\n"
+    "            libc.signal(int(_s), ep)\n"
+    "except Exception:\n"
+    "    pass\n"
+    "import clipper\n"
+    "f = clipper.MMDBfile(); f.read_file(sys.argv[1])\n"
+    "m = clipper.MiniMol(); f.import_minimol(m)\n"
+)
 
 
 class validate_protein(CPluginScript):

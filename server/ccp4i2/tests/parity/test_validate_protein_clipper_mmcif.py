@@ -37,14 +37,20 @@ def gemmi_mmcif(tmp_path):
     return str(out)
 
 
-def test_clipper_aborts_on_gemmi_mmcif(gemmi_mmcif):
-    """Document the bug: clipper's MMDB read of gemmi-written mmCIF aborts."""
-    probe = ("import sys, clipper\n"
-             "f = clipper.MMDBfile(); f.read_file(sys.argv[1])\n"
-             "m = clipper.MiniMol(); f.import_minimol(m)\n")
-    rc = subprocess.run([sys.executable, "-c", probe, gemmi_mmcif],
+def test_guarded_probe_fails_but_exits_cleanly(gemmi_mmcif):
+    """The fix's probe (validate_protein's _CLIPPER_READ_PROBE) detects that
+    clipper cannot read the gemmi-written mmCIF (returncode != 0) but exits
+    *cleanly* -- a normal _exit code, NOT a signal -- so the OS crash reporter
+    (macOS "quit unexpectedly" dialog / Windows Error Reporting) never engages.
+
+    NB: deliberately NOT exercising the *raw* unguarded read here -- that would
+    abort and pop the very crash dialog this whole change exists to prevent.
+    """
+    from ccp4i2.wrappers.validate_protein.script.validate_protein import _CLIPPER_READ_PROBE
+    rc = subprocess.run([sys.executable, "-c", _CLIPPER_READ_PROBE, gemmi_mmcif],
                         capture_output=True).returncode
-    assert rc != 0, "expected clipper/MMDB to abort reading gemmi-written mmCIF"
+    assert rc != 0, "expected clipper to fail reading gemmi-written mmCIF"
+    assert rc > 0, "probe must exit cleanly (not via a signal) -> no crash dialog"
 
 
 def test_probe_isolates_the_abort(gemmi_mmcif):
