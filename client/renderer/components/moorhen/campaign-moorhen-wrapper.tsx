@@ -26,11 +26,10 @@ import {
   MoorhenContainer,
   MoorhenMolecule,
   MoorhenMap,
-} from "moorhen";
-// @ts-ignore - moorhen 0.23 exports may lack .d.ts depending on build
-import { setShownSidePanel, MoorhenInstanceProvider } from "moorhen";
+} from "moorhen/react-lib";
+import { setShownSidePanel, MoorhenInstanceProvider, MoorhenMenuSystem } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenPanel } from "moorhen";
+import type { MoorhenPanel } from "moorhen/react-lib";
 
 import {
   RefObject,
@@ -729,6 +728,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [selectedMemberProjectId, memberProjects, ligandDictFileId, setMessage]
   );
 
+  // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
+  // (it builds the per-instance MoorhenInstance from it).
+  const menuSystem = useMemo(() => new MoorhenMenuSystem(), []);
+
   // Custom side panel containing our campaign control panel
   const extraSidePanels: Record<string, MoorhenPanel> = {
     campaignControls: {
@@ -794,7 +797,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     <div ref={moorhenContainerRef}>
       <MoorhenErrorBoundary fallback={<MoorhenFallback reason="runtime_error" capabilities={capabilities} />}>
         {store && (
-          <MoorhenInstanceProvider>
+          <MoorhenInstanceProvider menuSystem={menuSystem}>
             <MoorhenContainer {...collectedProps} />
           </MoorhenInstanceProvider>
         )}

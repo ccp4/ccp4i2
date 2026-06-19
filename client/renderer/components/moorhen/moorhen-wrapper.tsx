@@ -12,11 +12,10 @@ import {
   MoorhenContainer,
   MoorhenMolecule,
   MoorhenMap,
-} from "moorhen";
-// @ts-ignore - moorhen 0.23 exports may lack .d.ts depending on build
-import { MoorhenInstanceProvider, setShownSidePanel } from "moorhen";
+} from "moorhen/react-lib";
+import { MoorhenInstanceProvider, MoorhenMenuSystem, setShownSidePanel } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenPanel } from "moorhen";
+import type { MoorhenPanel } from "moorhen/react-lib";
 
 import {
   RefObject,
@@ -918,6 +917,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     },
   }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, cootInitialized]);
 
+  // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
+  // (it builds the per-instance MoorhenInstance from it). One per wrapper.
+  const menuSystem = useMemo(() => new MoorhenMenuSystem(), []);
+
   const collectedProps = useMemo(() => ({
     glRef,
     timeCapsuleRef,
@@ -965,7 +968,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
       >
         {store && (
-          <MoorhenInstanceProvider>
+          <MoorhenInstanceProvider menuSystem={menuSystem}>
             <MoorhenContainer {...collectedProps} />
           </MoorhenInstanceProvider>
         )}

@@ -39,10 +39,10 @@ import {
   showMap,
   hideMap,
   setActiveMap,
-} from "moorhen";
+} from "moorhen/react-lib";
 import type { moorhen } from "moorhen/types/moorhen";
 
-// We deliberately don't import MoorhenColourRule from "moorhen". Although
+// We deliberately don't import MoorhenColourRule from "moorhen/react-lib". Although
 // the class is exported in Moorhen's source, the installed package's
 // bundled moorhen.js does not re-expose it on the package export object
 // (runtime "is not a constructor"). Instead, we add colour rules via

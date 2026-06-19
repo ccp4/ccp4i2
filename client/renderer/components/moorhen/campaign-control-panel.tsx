@@ -19,7 +19,7 @@ import {
   showMolecule,
   removeMolecule,
   setRequestDrawScene,
-} from "moorhen";
+} from "moorhen/react-lib";
 import {
   Box,
   Typography,

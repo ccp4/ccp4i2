@@ -20,7 +20,7 @@ import {
   setFogStart,
   setFogEnd,
   setRequestDrawScene,
-} from "moorhen";
+} from "moorhen/react-lib";
 import { decodeViewState } from "../../lib/moorhen-view-state";
 import { MOORHEN_DEFAULTS } from "../../types/moorhen-view-state";
 import { usePopcorn } from "../../providers/popcorn-provider";

@@ -6,7 +6,7 @@ import {
   showMolecule,
   removeMolecule,
   setRequestDrawScene,
-} from "moorhen";
+} from "moorhen/react-lib";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
