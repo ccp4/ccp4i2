@@ -1800,7 +1800,15 @@ class CPdbData(CPdbDataStub):
                         for atom in by_model_chain[model_idx][chain_id][res_key]:
                             # Create a copy of the atom
                             new_atom = gemmi.Atom()
-                            new_atom.name = atom.name
+                            # Defensive trim: some upstream writers (notably older
+                            # Moorhen builds that serialised coot/mmdb molecules via
+                            # gemmi) emit mmCIF atom names with PDB column padding
+                            # (e.g. ' CA '). gemmi preserves the spaces on read, and
+                            # re-emitting them produces quoted ' CA ' that fails
+                            # monomer-dictionary matching in refinement. Atom names
+                            # never carry semantic leading/trailing whitespace, so
+                            # strip it here regardless of source.
+                            new_atom.name = atom.name.strip()
                             new_atom.element = atom.element
                             new_atom.pos = atom.pos
                             new_atom.occ = atom.occ
