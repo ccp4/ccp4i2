@@ -69,7 +69,7 @@ import {
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
-import { applyMaskDefaults, isMaskSubType } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap } from "../../lib/moorhen-map-file";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
@@ -456,7 +456,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             !!sceneMap.isDifference,
           );
           (newMap as any).isCcp4MapFile = true;
-          if (sceneMap.isMask) (newMap as any).isCcp4Mask = true;
+          if (sceneMap.isMask) markMaskMap(newMap);
         } else {
           const cols = sceneMap.columns ?? {};
           await newMap.loadToCootFromMtzData(
@@ -801,7 +801,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       newMap.uniqueId = url;
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
       (newMap as any).isCcp4MapFile = true;
-      if (opts.isMask) (newMap as any).isCcp4Mask = true;
+      if (opts.isMask) {
+        markMaskMap(newMap);
+      }
       dispatch(addMap(newMap));
       if (opts.isMask) {
         applyMaskDefaults(dispatch, newMap.molNo);

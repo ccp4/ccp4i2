@@ -33,6 +33,25 @@ export function isMaskSubType(subType: number | null | undefined): boolean {
 }
 
 /**
+ * Tag a freshly-loaded MoorhenMap as a mask. Sets:
+ *  - `isCcp4Mask` — read by the lifter (with `isCcp4MapFile`) to emit isMask;
+ *  - `mapSubType` — so the contour-slider label reads "Mask" (not "2Fo-Fc");
+ *  - `isEM` — so Moorhen contours it in absolute (EM-style) mode rather than
+ *    rmsd-relative: a mask holds 0..1 region values, not crystallographic
+ *    density, so the rmsd path gives a degenerate histogram / contour range.
+ */
+export function markMaskMap(map: unknown): void {
+  const m = map as {
+    isCcp4Mask?: boolean;
+    mapSubType?: number;
+    isEM?: boolean;
+  };
+  m.isCcp4Mask = true;
+  m.mapSubType = MASK_SUBTYPE;
+  m.isEM = true;
+}
+
+/**
  * Apply the default mask look to a freshly-loaded Moorhen map. Dispatched as
  * separate actions (mirroring the resolver's applyMapState) because the
  * Moorhen map-setting action typings have drifted across versions — the casts

@@ -44,7 +44,7 @@ import {
 } from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
-import { applyMaskDefaults, isMaskSubType } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap } from "../../lib/moorhen-map-file";
 import {
   liftSceneToBundle,
   MapRenderState,
@@ -297,7 +297,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       newMap.uniqueId = url;
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
       (newMap as any).isCcp4MapFile = true;
-      if (opts.isMask) (newMap as any).isCcp4Mask = true;
+      if (opts.isMask) {
+        markMaskMap(newMap);
+      }
       dispatch(addMap(newMap));
       if (opts.isMask) {
         applyMaskDefaults(dispatch, newMap.molNo);
@@ -793,7 +795,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
             !!sceneMap.isDifference,
           );
           (newMap as any).isCcp4MapFile = true;
-          if (sceneMap.isMask) (newMap as any).isCcp4Mask = true;
+          if (sceneMap.isMask) markMaskMap(newMap);
         } else {
           const cols = sceneMap.columns ?? {};
           await newMap.loadToCootFromMtzData(

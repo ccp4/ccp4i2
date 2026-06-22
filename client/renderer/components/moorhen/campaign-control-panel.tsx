@@ -387,8 +387,8 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             };
 
             const sliderPosition = valueToSlider(level);
-            // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom)
-            const shortName = mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
+            // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom), 4=mask (Mask)
+            const shortName = mapSubType === 4 ? "Mask" : mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
 
             return (
               <Stack key={map.molNo ?? map.uniqueId} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
