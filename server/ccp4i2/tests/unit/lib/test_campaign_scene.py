@@ -132,16 +132,20 @@ def test_dictionary_present_but_ligand_absent_is_not_a_hit(tmp_path):
     assert campaign_scene.detect_ligands(coords, dictf) == []
 
 
-def test_fallback_codes_when_no_dictionary(tmp_path):
-    """Without a dictionary, LIG/DRG/UNL placeholder codes still register."""
+def test_placeholder_code_without_dictionary(tmp_path):
+    """Without a dictionary, a placeholder LIG still registers."""
     coords = _write_pdb(tmp_path / "model.pdb", ligand_code="LIG")
     assert campaign_scene.detect_ligands(coords, dict_path=None) == ["LIG"]
 
 
-def test_fallback_ignores_unknown_code_without_dictionary(tmp_path):
-    """A real 3-letter code is invisible to the no-dictionary fallback."""
-    coords = _write_pdb(tmp_path / "model.pdb", ligand_code="ABC")
-    assert campaign_scene.detect_ligands(coords, dict_path=None) == []
+def test_real_ligand_code_detected_without_dictionary(tmp_path):
+    """A real soaked-fragment code (e.g. NUT) is detected even with no dict.
+
+    Fragment campaigns refined with servalcat often carry no restraint
+    dictionary, so detection must not depend on one.
+    """
+    coords = _write_pdb(tmp_path / "model.pdb", ligand_code="NUT")
+    assert campaign_scene.detect_ligands(coords, dict_path=None) == ["NUT"]
 
 
 def test_merged_dict_with_standard_monomers_does_not_false_positive(tmp_path):

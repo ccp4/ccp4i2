@@ -12,6 +12,7 @@
 
 import {
   addMolecule,
+  showMolecule,
   addMap,
   removeMolecule,
   removeMap,
@@ -42,7 +43,6 @@ import {
 import { moorhen } from "moorhen/types/moorhen";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { webGL } from "moorhen/types/mgWebGL";
-import { CampaignControlPanel } from "./campaign-control-panel";
 import { apiText, apiArrayBuffer, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
@@ -65,18 +65,25 @@ import {
   SceneFileFetcher,
   SceneDictionaryFetcher,
   SceneDictionaryLoader,
+  SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
+import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
+import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
+import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 
 type FileSource =
   | { type: "none" }
   | { type: "files"; fileIds: number[] }
-  | { type: "job"; jobId: number }
-  | { type: "scene"; scene: MoorhenScene };
+  | { type: "job"; jobId: number };
 
 export interface CampaignMoorhenWrapperProps {
   campaign: ProjectGroup;
   fileSource: FileSource;
+  /** Campaign summary scene (built server-side). When set, it's seeded into
+   *  the Scenes panel and auto-applied through that panel's own parse/apply
+   *  path — the single rendering pathway shared with hand-edited scenes. */
+  summaryScene?: MoorhenScene | null;
   viewParam?: string | null;
   sites: CampaignSite[];
   onUpdateSites: (sites: CampaignSite[]) => Promise<void>;
@@ -89,6 +96,7 @@ export interface CampaignMoorhenWrapperProps {
 const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   campaign,
   fileSource,
+  summaryScene,
   viewParam,
   sites,
   onUpdateSites,
@@ -259,13 +267,22 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // dictionary dance the fragment-campaign case needs.
   // ----------------------------------------------------------------------
 
-  // Bare structure load for the scene fetcher: load coords and register the
-  // molecule, but DON'T impose representations — the scene owns the look
-  // (the resolver hides loader defaults and applies the scene's reps).
-  const loadSceneStructure = useCallback(
+  // Bundle assets (from an opened .scene.zip in the Scenes panel) live in a
+  // ref so the stable-identity fetchers below can reach this apply's assets;
+  // refreshed at the top of each apply.
+  const bundleAssetsRef = useRef<SceneBundleAssets>(new Map());
+
+  // Structure load for the scene fetcher. Mirrors the generic wrapper's
+  // proven loadStructureFromText: load coords, add default reps, centre, and
+  // crucially dispatch(showMolecule) so the molecule is actually visible. The
+  // resolver then hides these loader-default reps and applies the scene's own
+  // (so "scene owns the look" still holds) — but without showMolecule the
+  // molecule loads invisibly and the viewer stays blank.
+  const loadSceneStructureFromText = useCallback(
     async (
-      url: string,
+      coordText: string,
       molName: string,
+      uniqueId: string,
     ): Promise<moorhen.Molecule | null> => {
       if (!commandCentre.current) return null;
       const newMolecule = new MoorhenMolecule(
@@ -276,22 +293,62 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       newMolecule.setBackgroundColour(backgroundColor);
       newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
       try {
-        const pdbData = await apiText(url);
-        await newMolecule.loadToCootFromString(pdbData, molName);
+        await newMolecule.loadToCootFromString(coordText, molName);
         if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
-        newMolecule.uniqueId = url;
+        newMolecule.uniqueId = uniqueId;
+        // Ribbon first (protein overview), fall back to sticks. These get
+        // hidden by the resolver and replaced with the scene's reps.
+        try {
+          await newMolecule.addRepresentation("CRs", "/*/*/*/*");
+        } catch {
+          await newMolecule.addRepresentation("CBs", "/*/*/*/*");
+        }
+        try {
+          await newMolecule.addRepresentation("ligands", "/*/*/*/*");
+        } catch {
+          /* no ligands present — fine */
+        }
+        await newMolecule.centreOn("/*/*/*/*", false, true);
         dispatch(addMolecule(newMolecule));
+        dispatch(showMolecule({ molNo: newMolecule.molNo } as never));
         return newMolecule;
       } catch (err) {
-        console.warn(`[scene] failed to load ${molName} from ${url}:`, err);
+        console.warn(`[scene] failed to load ${molName} (${uniqueId}):`, err);
         return null;
       }
     },
     [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch],
   );
 
+  const loadSceneStructure = useCallback(
+    async (url: string, molName: string): Promise<moorhen.Molecule | null> => {
+      try {
+        const pdbData = await apiText(url);
+        return loadSceneStructureFromText(pdbData, molName, url);
+      } catch (err) {
+        console.warn(`[scene] failed to fetch ${molName} from ${url}:`, err);
+        return null;
+      }
+    },
+    [loadSceneStructureFromText],
+  );
+
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
     async (ref: SceneFileRef) => {
+      // Bundle: decode bytes from the in-memory asset map (no network).
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) {
+          console.warn(`[scene] bundle lookup miss: ${ref.bundle}`);
+          return null;
+        }
+        const coordText = new TextDecoder("utf-8").decode(buf);
+        return loadSceneStructureFromText(
+          coordText,
+          ref.name || ref.bundle,
+          `bundle:${ref.bundle}`,
+        );
+      }
       if (ref.fileId !== undefined && ref.projectId) {
         return loadSceneStructure(
           `/api/proxy/ccp4i2/files/${ref.fileId}/download/`,
@@ -308,12 +365,17 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       if (ref.url) return loadSceneStructure(ref.url, ref.name || ref.url);
       return null;
     },
-    [loadSceneStructure],
+    [loadSceneStructure, loadSceneStructureFromText],
   );
 
   const handleFetchSceneDictionary: SceneDictionaryFetcher = useCallback(
     async (ref: SceneFileRef): Promise<string | null> => {
       if (ref.cifText) return ref.cifText;
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) return null;
+        return new TextDecoder("utf-8").decode(buf);
+      }
       let url: string | null = null;
       if (ref.fileId !== undefined && ref.projectId) {
         url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
@@ -347,8 +409,13 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [],
   );
 
-  const handleApplyScene = useCallback(
-    async (scene: MoorhenScene) => {
+  // Core apply: hand a parsed scene + bundle assets to the resolver.
+  const runScene = useCallback(
+    async (
+      scene: MoorhenScene,
+      assets: SceneBundleAssets = new Map(),
+    ): Promise<SceneResolveResult> => {
+      bundleAssetsRef.current = assets;
       const result = await applyScene({
         scene,
         molecules,
@@ -359,16 +426,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         dictionaryLoader: handleLoadSceneDictionary,
       });
       dispatch(setRequestDrawScene(true));
-      const shown = result.applied.length;
-      if (shown === 0) {
-        setMessage(
-          "No fragment hits to display — no member dataset had a ligand in its refined model.",
-        );
-      } else if (result.unresolvedFiles.length > 0) {
-        setMessage(
-          `Showing ${shown} structure(s); ${result.unresolvedFiles.length} could not be loaded.`,
-        );
-      }
       return result;
     },
     [
@@ -378,8 +435,17 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       handleFetchSceneFile,
       handleFetchSceneDictionary,
       handleLoadSceneDictionary,
-      setMessage,
     ],
+  );
+
+  // Scenes-panel path: parse the editor YAML and apply (with bundle assets
+  // when opened from a .scene.zip). This is the single apply entry — the
+  // summary view drives it too, via the panel's auto-apply.
+  const handleApplyScene = useCallback(
+    (yamlText: string, assets: SceneBundleAssets): Promise<SceneResolveResult> => {
+      return runScene(parseScene(yamlText), assets);
+    },
+    [runScene],
   );
 
   // Load files when fileSource changes
@@ -404,10 +470,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       });
     } else if (fileSource.type === "job") {
       fetchJobFiles(fileSource.jobId);
-    } else if (fileSource.type === "scene") {
-      handleApplyScene(fileSource.scene);
     }
-  }, [fileSource, cootInitialized, cleanupLoadedContent, handleApplyScene]);
+    // The summary scene is applied by the Scenes panel (auto-apply), not here,
+    // so it shares one rendering pathway with hand-edited scenes.
+  }, [fileSource, cootInitialized, cleanupLoadedContent]);
 
   // Dimension updates are handled by Moorhen's MainContainer automatically
 
@@ -876,34 +942,54 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // (it builds the per-instance MoorhenInstance from it).
   const menuSystem = useMemo(() => new MoorhenMenuSystem(), []);
 
-  // Custom side panel containing our campaign control panel
+  // When viewing the campaign summary, serialise the scene to YAML so the
+  // Scenes panel can show it in the editor and auto-apply it through its own
+  // parse/apply path (one shared rendering pathway).
+  const summarySceneYaml = useMemo(() => {
+    if (!summaryScene) return undefined;
+    try {
+      return serialiseScene(summaryScene);
+    } catch (err) {
+      console.warn("[scene] failed to serialise summary scene for editor:", err);
+      return undefined;
+    }
+  }, [summaryScene]);
+
+  // Custom side panel: campaign Controls + Scenes editor under one Moorhen
+  // side-panel registration (matching the job/file viewers' tabbed panel).
   const extraSidePanels: Record<string, MoorhenPanel> = {
     campaignControls: {
       icon: "MatSymSettings",
       label: "Campaign",
       panelContent: (
-        <CampaignControlPanel
-          campaign={campaign}
-          sites={sites}
-          onGoToSite={handleGoToSite}
-          onSaveCurrentAsSite={handleSaveCurrentAsSite}
-          onUpdateSite={handleUpdateSite}
-          onDeleteSite={handleDeleteSite}
-          memberProjects={memberProjects}
-          selectedMemberProjectId={selectedMemberProjectId}
-          onSelectMemberProject={onSelectMemberProject}
-          parentProject={parentProject}
-          getViewUrl={getViewUrl}
-          molecules={molecules}
-          visibleRepresentations={visibleRepresentations}
-          onRepresentationsChange={setVisibleRepresentations}
-          ligandDictFileId={ligandDictFileId}
-          ligandName={ligandName}
-          maps={maps}
-          onMapContourLevelChange={handleMapContourLevelChange}
-          onTagProjectWithSite={handleTagProjectWithSite}
-          onFileSelect={fetchFile}
-          onRunServalcat={handleRunServalcat}
+        <CampaignMoorhenTabbedPanel
+          controlPanelProps={{
+            campaign,
+            sites,
+            onGoToSite: handleGoToSite,
+            onSaveCurrentAsSite: handleSaveCurrentAsSite,
+            onUpdateSite: handleUpdateSite,
+            onDeleteSite: handleDeleteSite,
+            memberProjects,
+            selectedMemberProjectId,
+            onSelectMemberProject,
+            parentProject,
+            getViewUrl,
+            molecules,
+            visibleRepresentations,
+            onRepresentationsChange: setVisibleRepresentations,
+            ligandDictFileId,
+            ligandName,
+            maps,
+            onMapContourLevelChange: handleMapContourLevelChange,
+            onTagProjectWithSite: handleTagProjectWithSite,
+            onFileSelect: fetchFile,
+            onRunServalcat: handleRunServalcat,
+          }}
+          onApplyScene={handleApplyScene}
+          cootInitialized={cootInitialized}
+          initialSceneYaml={summarySceneYaml}
+          autoApplyInitialScene={!!summarySceneYaml}
         />
       ),
     },

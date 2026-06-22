@@ -92,8 +92,10 @@ interface MoorhenScenesPanelProps {
   /** Capture the current view as a scene + lift hints + bundle assets.
    *  The lifter may inline non-portable molecule coords/dicts into the
    *  assets map; the panel will save as .scene.zip when assets are
-   *  present, plain .scene.yaml otherwise. */
-  onCaptureScene: () => Promise<{
+   *  present, plain .scene.yaml otherwise. Optional — when omitted the
+   *  Capture button is hidden (e.g. the campaign viewer, which applies
+   *  scenes but doesn't lift them). */
+  onCaptureScene?: () => Promise<{
     scene: MoorhenScene;
     hints: SceneLiftHints;
     assets: SceneBundleAssets;
@@ -101,8 +103,9 @@ interface MoorhenScenesPanelProps {
   /** Promote the editor YAML to a fully self-contained scene: every
    *  URL-resolvable ref is fetched, library-dict comp_ids are re-
    *  collected, and everything lands in the returned asset map under
-   *  bundle: paths. Used by Save (self-contained). */
-  onPromoteSceneToPortable: (
+   *  bundle: paths. Used by Save (self-contained). Optional — when
+   *  omitted the "Save self-contained" menu item is hidden. */
+  onPromoteSceneToPortable?: (
     yamlText: string,
     currentAssets: SceneBundleAssets,
   ) => Promise<{
@@ -112,6 +115,15 @@ interface MoorhenScenesPanelProps {
   }>;
   /** True once Moorhen / Coot is ready. Disables apply until then. */
   enabled: boolean;
+  /** Optional initial YAML to seed the editor with (e.g. the campaign
+   *  summary scene). Applied only while the editor is still untouched, so
+   *  it never clobbers what the user has typed. */
+  initialYaml?: string;
+  /** When true, `initialYaml` is not just shown in the editor but also
+   *  applied automatically (once, as soon as Coot is ready) through this
+   *  panel's own parse/apply path — so the summary view and hand-edited
+   *  scenes share exactly one rendering/orienting pathway. */
+  autoApplyInitial?: boolean;
 }
 
 type Severity = "info" | "success" | "warning" | "error";
@@ -127,8 +139,20 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   onCaptureScene,
   onPromoteSceneToPortable,
   enabled,
+  initialYaml,
+  autoApplyInitial,
 }) => {
   const [yamlText, setYamlText] = useState<string>("");
+
+  // Seed the editor with a supplied scene (e.g. the campaign summary) the
+  // first time it arrives, but only while the editor is still empty so we
+  // never overwrite the user's own edits.
+  useEffect(() => {
+    if (initialYaml && !yamlText.trim()) {
+      setYamlText(initialYaml);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialYaml]);
   // Live apply is opt-in. Loading / capturing a scene populates the editor
   // but does not touch the viewer until the user clicks Apply (or enables
   // Live apply). This lets the user inspect/edit a YAML before committing.
@@ -143,6 +167,7 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   // --- actions ------------------------------------------------------------
 
   const handleCapture = useCallback(async () => {
+    if (!onCaptureScene) return;
     try {
       const { scene, hints, assets } = await onCaptureScene();
       const yaml = serialiseSceneWithComments(scene, hints.fileComments);
@@ -284,6 +309,17 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
     void applyNow(yamlText, { silentOnParseError: false });
   }, [applyNow, yamlText]);
 
+  // Auto-apply a supplied scene (the campaign summary) through this panel's
+  // own apply path, once, as soon as Coot is ready. Keyed on the YAML value
+  // so a different summary re-applies but the user's own edits never do.
+  const autoAppliedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!autoApplyInitial || !enabled || !initialYaml) return;
+    if (autoAppliedRef.current === initialYaml) return;
+    autoAppliedRef.current = initialYaml;
+    void applyNow(initialYaml, { silentOnParseError: false });
+  }, [autoApplyInitial, enabled, initialYaml, applyNow]);
+
   // --- save (light vs self-contained) ------------------------------------
   //
   // Light: write whatever the editor holds. If any ref already uses a
@@ -356,6 +392,7 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   }, [yamlText, triggerDownload]);
 
   const handleSaveSelfContained = useCallback(async () => {
+    if (!onPromoteSceneToPortable) return;
     if (!yamlText.trim()) {
       setMessage({ severity: "warning", text: "Nothing to save" });
       return;
@@ -433,19 +470,21 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
     >
       {/* Toolbar */}
       <Stack direction="row" spacing={0.5} sx={{ flexWrap: "wrap", alignItems: "center" }}>
-        <Tooltip title="Capture the current view into the editor (lifter)">
-          <span>
-            <Button
-              size="small"
-              variant="outlined"
-              startIcon={<CaptureIcon />}
-              onClick={handleCapture}
-              sx={{ fontSize: "0.75rem", textTransform: "none" }}
-            >
-              Capture
-            </Button>
-          </span>
-        </Tooltip>
+        {onCaptureScene && (
+          <Tooltip title="Capture the current view into the editor (lifter)">
+            <span>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<CaptureIcon />}
+                onClick={handleCapture}
+                sx={{ fontSize: "0.75rem", textTransform: "none" }}
+              >
+                Capture
+              </Button>
+            </span>
+          </Tooltip>
+        )}
 
         <Tooltip title="Open a .scene.yaml or .scene.zip from disk (zips bring their bundled assets along)">
           <span>
@@ -482,35 +521,39 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
               Save
             </Button>
           </Tooltip>
-          <Tooltip title="More save options">
-            <Button
-              size="small"
-              onClick={(e) => setSaveMenuAnchor(e.currentTarget)}
-              sx={{ px: 0.5, minWidth: 0 }}
-            >
-              <DropDownIcon fontSize="small" />
-            </Button>
-          </Tooltip>
+          {onPromoteSceneToPortable && (
+            <Tooltip title="More save options">
+              <Button
+                size="small"
+                onClick={(e) => setSaveMenuAnchor(e.currentTarget)}
+                sx={{ px: 0.5, minWidth: 0 }}
+              >
+                <DropDownIcon fontSize="small" />
+              </Button>
+            </Tooltip>
+          )}
         </ButtonGroup>
-        <Menu
-          anchorEl={saveMenuAnchor}
-          open={Boolean(saveMenuAnchor)}
-          onClose={() => setSaveMenuAnchor(null)}
-        >
-          <MenuItem
-            onClick={() => {
-              setSaveMenuAnchor(null);
-              void handleSaveSelfContained();
-            }}
+        {onPromoteSceneToPortable && (
+          <Menu
+            anchorEl={saveMenuAnchor}
+            open={Boolean(saveMenuAnchor)}
+            onClose={() => setSaveMenuAnchor(null)}
           >
-            <Stack>
-              <Typography variant="body2">Save self-contained…</Typography>
-              <Typography variant="caption" sx={{ color: "#666" }}>
-                Fetch every URL-resolvable ref and bundle into one .scene.zip
-              </Typography>
-            </Stack>
-          </MenuItem>
-        </Menu>
+            <MenuItem
+              onClick={() => {
+                setSaveMenuAnchor(null);
+                void handleSaveSelfContained();
+              }}
+            >
+              <Stack>
+                <Typography variant="body2">Save self-contained…</Typography>
+                <Typography variant="caption" sx={{ color: "#666" }}>
+                  Fetch every URL-resolvable ref and bundle into one .scene.zip
+                </Typography>
+              </Stack>
+            </MenuItem>
+          </Menu>
+        )}
 
         <FormControlLabel
           control={
