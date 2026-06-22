@@ -266,6 +266,9 @@ class dm_multidomain(CPluginScript):
             if os.path.exists(path):
                 maskout.append(maskout.makeItem())
                 maskout[-1].setFullPath(path)
+                # Mark as a mask (not a density map): gleaned to File.sub_type
+                # so the Moorhen viewers / scene format render it as a mask.
+                maskout[-1].subType.set(maskout[-1].SUBTYPE_MASK)
                 maskout[-1].annotation = \
                     self.jobNumberString() + f' NCS averaging mask: {name}'
 
