@@ -5,6 +5,7 @@ import { ClientStoreProvider } from "@/providers/client-store-provider";
 import { useCampaignsApi } from "@/lib/campaigns-api";
 import { useMoorhenBreadcrumbs } from "@/providers/moorhen-breadcrumb-context";
 import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrapper";
+import type { MoorhenScene } from "@/types/moorhen-scene";
 
 // Inner component that uses useSearchParams (requires Suspense boundary)
 function CampaignPageContent() {
@@ -13,6 +14,7 @@ function CampaignPageContent() {
   const searchParams = useSearchParams();
   const viewParam = searchParams?.get("view");
   const jobParam = searchParams?.get("job"); // Optional: specific job to load
+  const summaryMode = searchParams?.get("summary") === "1"; // Campaign overview
   const campaignId = id ? parseInt(id as string) : null;
   const initialJobId = jobParam ? parseInt(jobParam) : null;
 
@@ -54,8 +56,40 @@ function CampaignPageContent() {
     setSelectedJobId(null); // Reset to auto-select latest job
   }, []);
 
+  // Summary mode: fetch the campaign overview scene once on entry.
+  const [summaryScene, setSummaryScene] = useState<MoorhenScene | null>(null);
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  useEffect(() => {
+    if (!summaryMode || campaignId === null || summaryScene !== null || summaryLoading) {
+      return;
+    }
+    let cancelled = false;
+    setSummaryLoading(true);
+    campaignsApi
+      .fetchSummaryScene(campaignId)
+      .then((res) => {
+        if (!cancelled) setSummaryScene(res.scene);
+      })
+      .catch((err) => {
+        console.error("Failed to load campaign summary scene:", err);
+      })
+      .finally(() => {
+        if (!cancelled) setSummaryLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [summaryMode, campaignId, summaryScene, summaryLoading, campaignsApi]);
+
   // Determine which files to load based on selection
   const fileIds = useMemo(() => {
+    // Summary overview: the whole-campaign scene (parent + all fragments).
+    if (summaryMode) {
+      return summaryScene
+        ? { type: "scene" as const, scene: summaryScene }
+        : { type: "none" as const };
+    }
+
     // If a specific job is selected, load that job
     if (selectedJobId !== null) {
       return { type: "job" as const, jobId: selectedJobId };
@@ -94,7 +128,7 @@ function CampaignPageContent() {
     }
     // Note: maps would need to be added here when parent has map files
     return { type: "files" as const, fileIds: ids };
-  }, [parentFiles, selectedMemberProjectId, selectedJobId, memberProjects]);
+  }, [parentFiles, selectedMemberProjectId, selectedJobId, memberProjects, summaryMode, summaryScene]);
 
   // Build breadcrumbs for the layout AppBar
   const { setBreadcrumbs } = useMoorhenBreadcrumbs();
