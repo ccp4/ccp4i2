@@ -3674,6 +3674,16 @@ class CMapDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
+    # Subtype constants -- what kind of real-space map this CCP4-map file holds.
+    # Persisted to File.sub_type by the gleaner and read by the Moorhen viewers
+    # and the scene format to render each kind appropriately. MASK lets a mask
+    # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
+    # an ordinary density map, which is otherwise the same FileType.
+    SUBTYPE_NORMAL = 1           # normal (electron density) map
+    SUBTYPE_DIFFERENCE = 2       # difference map (Fo-Fc)
+    SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
+    SUBTYPE_MASK = 4             # real-space mask (mode-0 region map)
+
     project: Optional[CProjectIdStub] = None
     baseName: Optional[CFilePathStub] = None
     relPath: Optional[CFilePathStub] = None
