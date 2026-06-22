@@ -19,6 +19,7 @@ from . import serializers
 from ..db import models
 from ..lib.response import api_success, api_error
 from ..lib import pandda_export
+from ..lib import campaign_scene
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -564,6 +565,31 @@ class ProjectGroupViewSet(ModelViewSet):
         except Exception as e:
             logger.exception(
                 "Failed to get PANDDA data for group %s", pk, exc_info=e
+            )
+            return api_error(str(e), status=500)
+
+    @action(detail=True, methods=["get"], )
+    def summary_scene(self, request, pk=None):
+        """
+        Build a Moorhen summary scene for a fragment campaign.
+
+        Returns a scene that overlays every discovered fragment hit on the
+        parent reference structure: the parent as a ribbon, and each hit
+        dataset's ligand as sticks scoped to its own restraint dictionary.
+        A dataset counts as a hit when its refined coordinates contain the
+        ligand its dictionary describes (see ``lib.campaign_scene``).
+
+        Returns:
+            Response: ``{"scene": <MoorhenScene>, "stats": {...}}`` where
+                ``scene`` is a JSON-serialisable scene the frontend applies
+                directly via the scene resolver.
+        """
+        try:
+            group = self.get_object()
+            return Response(campaign_scene.build_summary_scene(group))
+        except Exception as e:
+            logger.exception(
+                "Failed to build summary scene for group %s", pk, exc_info=e
             )
             return api_error(str(e), status=500)
 

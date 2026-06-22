@@ -60,11 +60,19 @@ import {
   useMoorhenCapabilities,
   isSafariBrowser,
 } from "./moorhen-capability-check";
+import {
+  applyScene,
+  SceneFileFetcher,
+  SceneDictionaryFetcher,
+  SceneDictionaryLoader,
+} from "../../lib/moorhen-scene-resolver";
+import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 
 type FileSource =
   | { type: "none" }
   | { type: "files"; fileIds: number[] }
-  | { type: "job"; jobId: number };
+  | { type: "job"; jobId: number }
+  | { type: "scene"; scene: MoorhenScene };
 
 export interface CampaignMoorhenWrapperProps {
   campaign: ProjectGroup;
@@ -240,6 +248,140 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     hasInitializedReps.current = false;
   }, [molecules, maps, dispatch]);
 
+  // ----------------------------------------------------------------------
+  // Scene apply path (used by the campaign "Summary View")
+  //
+  // A summary scene (built server-side by lib/campaign_scene.py) overlays
+  // every discovered fragment on the parent ribbon, each fragment scoped to
+  // its own restraint dictionary. We drive it through the shared scene
+  // resolver (applyScene) rather than the ad-hoc job loader above, because
+  // the resolver already does the load-global-then-scope-per-molecule
+  // dictionary dance the fragment-campaign case needs.
+  // ----------------------------------------------------------------------
+
+  // Bare structure load for the scene fetcher: load coords and register the
+  // molecule, but DON'T impose representations — the scene owns the look
+  // (the resolver hides loader defaults and applies the scene's reps).
+  const loadSceneStructure = useCallback(
+    async (
+      url: string,
+      molName: string,
+    ): Promise<moorhen.Molecule | null> => {
+      if (!commandCentre.current) return null;
+      const newMolecule = new MoorhenMolecule(
+        commandCentre as RefObject<moorhen.CommandCentre>,
+        store as any,
+        monomerLibraryPath,
+      );
+      newMolecule.setBackgroundColour(backgroundColor);
+      newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
+      try {
+        const pdbData = await apiText(url);
+        await newMolecule.loadToCootFromString(pdbData, molName);
+        if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
+        newMolecule.uniqueId = url;
+        dispatch(addMolecule(newMolecule));
+        return newMolecule;
+      } catch (err) {
+        console.warn(`[scene] failed to load ${molName} from ${url}:`, err);
+        return null;
+      }
+    },
+    [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch],
+  );
+
+  const handleFetchSceneFile: SceneFileFetcher = useCallback(
+    async (ref: SceneFileRef) => {
+      if (ref.fileId !== undefined && ref.projectId) {
+        return loadSceneStructure(
+          `/api/proxy/ccp4i2/files/${ref.fileId}/download/`,
+          ref.name || `file_${ref.fileId}`,
+        );
+      }
+      if (ref.pdb) {
+        const pdbId = ref.pdb.toLowerCase();
+        return loadSceneStructure(
+          `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`,
+          ref.name || pdbId,
+        );
+      }
+      if (ref.url) return loadSceneStructure(ref.url, ref.name || ref.url);
+      return null;
+    },
+    [loadSceneStructure],
+  );
+
+  const handleFetchSceneDictionary: SceneDictionaryFetcher = useCallback(
+    async (ref: SceneFileRef): Promise<string | null> => {
+      if (ref.cifText) return ref.cifText;
+      let url: string | null = null;
+      if (ref.fileId !== undefined && ref.projectId) {
+        url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+      } else if (ref.url) {
+        url = ref.url;
+      }
+      if (!url) return null;
+      try {
+        return await apiText(url);
+      } catch (err) {
+        console.warn(`[scene] failed to fetch dictionary ${ref.name}:`, err);
+        return null;
+      }
+    },
+    [],
+  );
+
+  const handleLoadSceneDictionary: SceneDictionaryLoader = useCallback(
+    async (dictText: string, molNo: number): Promise<void> => {
+      if (!commandCentre.current) return;
+      await commandCentre.current.cootCommand(
+        {
+          returnType: "status",
+          command: "read_dictionary_string",
+          commandArgs: [dictText, molNo],
+          changesMolecules: molNo >= 0 ? [molNo] : [],
+        },
+        false,
+      );
+    },
+    [],
+  );
+
+  const handleApplyScene = useCallback(
+    async (scene: MoorhenScene) => {
+      const result = await applyScene({
+        scene,
+        molecules,
+        maps,
+        dispatch,
+        fetcher: handleFetchSceneFile,
+        dictionaryFetcher: handleFetchSceneDictionary,
+        dictionaryLoader: handleLoadSceneDictionary,
+      });
+      dispatch(setRequestDrawScene(true));
+      const shown = result.applied.length;
+      if (shown === 0) {
+        setMessage(
+          "No fragment hits to display — no member dataset had a ligand in its refined model.",
+        );
+      } else if (result.unresolvedFiles.length > 0) {
+        setMessage(
+          `Showing ${shown} structure(s); ${result.unresolvedFiles.length} could not be loaded.`,
+        );
+      }
+      return result;
+    },
+    [
+      molecules,
+      maps,
+      dispatch,
+      handleFetchSceneFile,
+      handleFetchSceneDictionary,
+      handleLoadSceneDictionary,
+      setMessage,
+    ],
+  );
+
   // Load files when fileSource changes
   useEffect(() => {
     if (!cootInitialized) return;
@@ -262,8 +404,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       });
     } else if (fileSource.type === "job") {
       fetchJobFiles(fileSource.jobId);
+    } else if (fileSource.type === "scene") {
+      handleApplyScene(fileSource.scene);
     }
-  }, [fileSource, cootInitialized, cleanupLoadedContent]);
+  }, [fileSource, cootInitialized, cleanupLoadedContent, handleApplyScene]);
 
   // Dimension updates are handled by Moorhen's MainContainer automatically
 

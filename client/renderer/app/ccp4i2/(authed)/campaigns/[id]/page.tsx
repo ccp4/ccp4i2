@@ -79,6 +79,11 @@ function getFileDisplayLabel(file: CCP4File): string {
   return file.name;
 }
 
+// Refinement tasks whose finished jobs carry ligand-bound coordinates.
+// Mirrors REFINE_TASK_NAMES in server/ccp4i2/lib/campaign_scene.py and the
+// auto-select set in the campaign Moorhen page.
+const REFINEMENT_TASK_NAMES = ["refmac", "i2Refmac", "i2Dimple", "dimple"];
+
 interface CampaignDetailPageProps {
   params: Promise<{ id: string }>;
 }
@@ -478,25 +483,18 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                   variant="outlined"
                   startIcon={<PreviewIcon />}
                   onClick={() => {
-                    // Open Summary View - Moorhen with all finished refmac jobs overlaid
-                    // For now, navigate to parent project's Moorhen view if there's a reference structure
-                    if (parentFiles?.coordinates?.[0]) {
-                      // Find first member with finished refmac
-                      const memberWithRefmac = memberProjects?.find(p =>
-                        p.jobs?.some(j => j.task_name === "refmac" && j.status === 6)
-                      );
-                      if (memberWithRefmac) {
-                        const refmacJob = memberWithRefmac.jobs?.find(
-                          j => j.task_name === "refmac" && j.status === 6
-                        );
-                        if (refmacJob) {
-                          window.open(`/ccp4i2/moorhen-page/job-by-id/${refmacJob.id}`, '_blank');
-                        }
-                      }
-                    }
+                    // Open the campaign Summary View: a Moorhen scene showing
+                    // the parent ribbon with every discovered fragment overlaid
+                    // (built server-side; see lib/campaign_scene.py).
+                    window.open(
+                      `/ccp4i2/moorhen-page/campaign/${campaignId}?summary=1`,
+                      "_blank"
+                    );
                   }}
                   disabled={!memberProjects?.some(p =>
-                    p.jobs?.some(j => j.task_name === "refmac" && j.status === 6)
+                    p.jobs?.some(j =>
+                      REFINEMENT_TASK_NAMES.includes(j.task_name) && j.status === 6
+                    )
                   )}
                 >
                   Summary View

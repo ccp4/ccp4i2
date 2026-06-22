@@ -1,12 +1,18 @@
-# Moorhen Scenes — branch handover
+# Moorhen Scenes — implementer notes
 
-A working summary of the `moorhen-scenes` feature work — what it does,
+A working summary of the `moorhen-scenes` feature — what it does,
 which files implement it, the design decisions worth knowing about,
 and what's deliberately not done yet.
 
 For the **authoring** reference (how to write a `.scene.yaml`), see
 [`types/moorhen-scene.md`](renderer/types/moorhen-scene.md). This
 document is the implementer's-eye view.
+
+**Status:** merged to `django` via PR #164 and live in the app. Runs
+against **Moorhen 1.0.0-alpha.3** (the `extraSidePanels` callback wiring
+in `moorhen-wrapper.tsx` tracks that version's API). MTZ map support
+landed after the initial merge; the lifter/resolver capture and re-apply
+maps as well as coordinates.
 
 ## What it is
 
@@ -22,8 +28,8 @@ my-view.scene.zip                     ┌─────────────
 ├── scene.yaml         drop on ─────► │  Moorhen Scenes panel   │
 └── assets/                            │  • Open / Apply / Save  │
     ├── coords/x0034.cif               │  • Live Monaco editor   │
-    └── dict/x0034_LIG.cif             │  • Validation messages  │
-                                       └─────────────────────────┘
+    ├── dict/x0034_LIG.cif             │  • Validation messages  │
+    └── mtz/x0034.mtz                  └─────────────────────────┘
 ```
 
 The format supports:
@@ -34,6 +40,8 @@ The format supports:
   where two molecules carry same-named ligands with different chemistry.
 - **Domain definitions** with by-domain colouring.
 - **SSM and LSQ superpositions** (with a `chain`+`range` shorthand).
+- **Electron-density maps** from MTZ refs (`kind: mtz` + a `maps:`
+  block), including difference maps and an `activeMap:` for refinement.
 - **Inline dict text** (`cifText:`) and **bundle: assets/...**
   references for sources without a stable URL.
 
@@ -51,13 +59,13 @@ The format supports:
 
 | File | Role |
 |------|------|
-| `renderer/lib/moorhen-scene-resolver.ts`  | The apply-time engine. Fetches files, runs superpositions, applies representations, sets the camera. Exposes a couple of small pure helpers (`splitMultiCid`, `clampRangeToPresent`, `expandLsqMatches`, `isFetchable`) for unit testing. |
+| `renderer/lib/moorhen-scene-resolver.ts`  | The apply-time engine. Fetches files, runs superpositions, applies representations, loads/contours maps, sets the camera. Exposes a couple of small pure helpers (`splitMultiCid`, `clampRangeToPresent`, `expandLsqMatches`, `isFetchable`) for unit testing. |
 
 ### Lifter (Moorhen state → scene)
 
 | File | Role |
 |------|------|
-| `renderer/lib/moorhen-scene-lifter.ts`    | The capture-time engine. `liftScene` writes a plain YAML; `liftSceneToBundle` inlines local coord/dict text into a returned asset map suitable for zipping. Conservative — only lifts things it recognises. |
+| `renderer/lib/moorhen-scene-lifter.ts`    | The capture-time engine. `liftScene` writes a plain YAML; `liftSceneToBundle` inlines local coord/dict/MTZ data into a returned asset map suitable for zipping. Captures loaded maps (columns + render state) alongside coordinates. Conservative — only lifts things it recognises. |
 
 ### UI
 
@@ -80,11 +88,11 @@ The format supports:
 
 | File | Tests |
 |------|-------|
-| `renderer/__tests__/moorhen-scene.test.ts`          | Schema, validator, serialiser, round-trip stability (65 tests) |
-| `renderer/__tests__/moorhen-scene-resolver.test.ts` | Pure resolver helpers — clamping, multi-CID splitting, LSQ expansion, isFetchable, chain selectors (28 tests) |
-| `renderer/__tests__/moorhen-scene-lifter.test.ts`   | Lifter behaviour, dict enumeration, round-trip via fake molecules (15 tests) |
+| `renderer/__tests__/moorhen-scene.test.ts`          | Schema, validator, serialiser, round-trip stability — including the `maps:` / `activeMap:` block (74 cases) |
+| `renderer/__tests__/moorhen-scene-resolver.test.ts` | Pure resolver helpers — clamping, multi-CID splitting, LSQ expansion, isFetchable, chain selectors (28 cases) |
+| `renderer/__tests__/moorhen-scene-lifter.test.ts`   | Lifter behaviour, dict enumeration, map capture, round-trip via fake molecules (20 cases) |
 
-**Total: 112 tests**, all passing. Run with `cd client && npx vitest run`.
+**~120 tests**, all passing. Run with `cd client && npx vitest run` for the live count.
 
 The resolver itself (the bit that drives Moorhen) is exercised by
 manual verification in the browser — too much runtime state to mock.
@@ -159,6 +167,18 @@ authoring doc tells the converter to use `style: CBs` with an
 explicit residue-name CID like `//*/(LIG)` for ligand sticks.
 This avoids the auto-discovery path entirely.
 
+### Maps are best-effort, never fatal
+
+A `maps:` entry needs the wrapper's map-fetcher to be wired in and an
+MTZ ref it can actually fetch. If either is missing, the resolver
+**drops the map with a log entry and carries on** — coordinates,
+representations, and camera still apply. A scene that can't find its
+density never renders as a hard failure. The lifter only emits
+render-state fields (`contourLevel`, `style`, colours, …) when the
+captured value differs from Moorhen's load-time default, so captured
+map blocks stay small. v1 handles MTZ refs only; pre-computed CCP4
+`.map` files and PDB-fetched maps are deferred.
+
 ### Camera handling: portable subset only
 
 The `view:` block captures origin, quat, zoom, optionally clip and
@@ -220,22 +240,23 @@ the round-trip works on a fresh install:
 5. Should see a structure load from PDBe and render with two
    coloured blocks on chain A.
 
-## Branching suggestion
+## How it landed, and the Materia pin
 
-Worth its own branch off the current `django` branch — the change
-set is large enough (12 new files, ~3000 lines including tests)
-that reviewers will want to read it in one place. Suggested name:
-`moorhen-scenes`. The Electron menu addition in
-`client/main/ccp4i2-menu.ts` is the only main-process touch; the
-rest is renderer-side.
+The feature merged to `django` via **PR #164**
+(`moorhen-scenes-into-django`). Follow-up commits added hex-alpha
+colours, an ATP-class dict skip, and MTZ map capture/apply. The
+Electron menu addition in `client/main/ccp4i2-menu.ts` is the only
+main-process touch; everything else is renderer-side.
 
 Two existing files are touched non-trivially:
 
 - `client/renderer/components/moorhen/moorhen-wrapper.tsx` —
-  +279 lines, mostly the scene callbacks and the bundle/dict
-  fetcher wiring.
+  the scene callbacks and the bundle/dict/map fetcher wiring.
 - `client/renderer/components/task/task-elements/fetch-file-for-param.tsx` —
-  a small change that routes PDBe fetches through the new
-  `/api/proxy/pdbe` route. Worth a separate commit so it can be
-  cherry-picked back to `django` independently if needed (it's
-  not scenes-specific).
+  routes PDBe fetches through the `/api/proxy/pdbe` route (not
+  scenes-specific; a drive-by COEP/CORP fix).
+
+Materia tracks scene work through its submodule pin — see
+[`packages/ccp4i2-api/RELEASING.md`](../../packages/ccp4i2-api/RELEASING.md)
+for the cherry-pick/branch convention when shipping scene changes
+that Materia needs ahead of a `django` merge.

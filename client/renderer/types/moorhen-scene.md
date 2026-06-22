@@ -37,11 +37,13 @@ authoredIn:                          # optional: provenance (never resolved)
   createdBy: <author>                # optional
   ccp4i2Version: <string>            # optional
 
-files: [ ... ]                       # optional: named coord + dict refs
+files: [ ... ]                       # optional: named coord + dict + mtz refs
 superpose: [ ... ]                   # optional: alignments, applied in order
 globalDictionaries: [ <name>, ... ]  # optional: dicts loaded on every molecule
 domains: [ ... ]                     # optional: reusable named residue blocks
 elements: [ ... ]                    # optional: per-file rendering instructions
+maps: [ ... ]                        # optional: electron-density maps from MTZ refs
+activeMap: <name>                    # optional: which map Moorhen refines against
 view: { ... }                        # optional: camera, clip, fog, background
 
 resolver:                            # optional: apply-time policy
@@ -55,7 +57,8 @@ Order of evaluation at apply-time:
 3. **Scope dictionaries** per element (re-associate to that molecule's molNo).
 4. **Run superpositions** (mutate moving structures' transforms).
 5. **Apply representations** per element.
-6. **Set camera**.
+6. **Load maps** (fetch/bind each MTZ, apply contour/colour/style, set `activeMap`).
+7. **Set camera**.
 
 ## `files`
 
@@ -66,7 +69,12 @@ file and doesn't have to mean anything outside.
 Each entry has:
 
 - `name`: **required**, unique within the block.
-- `kind`: optional, `"coordinates"` (default) or `"dictionary"`.
+- `kind`: optional, `"coordinates"` (default), `"dictionary"`, or `"mtz"`.
+  - `"coordinates"` — a PDB/mmCIF structure, loaded as a molecule.
+  - `"dictionary"` — a refmac/coot monomer CIF, loaded into Coot's
+    dictionary store and scoped to molecules via `dictionaries:`.
+  - `"mtz"` — reflection data, *not* loaded directly; referenced by an
+    entry in the [`maps:`](#maps) block that carries the column labels.
 - Exactly one resolution method:
 
   | Field                              | Use when                                                                                                                 |
@@ -349,7 +357,7 @@ row today. The practical advice:
 Four forms:
 
 ```yaml
-colour: "#4b8bbe"             # 1. Hex literal
+colour: "#4b8bbe"             # 1. Hex literal (#rrggbb or #rrggbbaa)
 colour: by-domain             # 2. Compile from the domains: block
 colour: b-factor              # 3. Named Moorhen scheme
 colour:                       # 4. Raw escape hatch (lossless, ugly)
@@ -358,6 +366,10 @@ colour:                       # 4. Raw escape hatch (lossless, ugly)
     args: [...]
     isMultiColourRule: <bool>
 ```
+
+Hex literals accept both 6-digit (`#rrggbb`) and 8-digit
+(`#rrggbbaa`, with alpha) forms — Moorhen's own per-chain rules come
+out as 8-hex, so the lifter round-trips them losslessly.
 
 Named schemes available out of the box:
 `by-domain`, `b-factor`, `b-factor-norm`, `af2-plddt`,
@@ -423,6 +435,99 @@ The LSQ `matchType` controls which atoms are fitted:
 
 `gesamt` is not currently supported because the Moorhen build doesn't
 expose it; the schema may grow to include it in a later version.
+
+## `maps`
+
+Electron-density (and difference) maps to contour. Each entry references
+an MTZ from the `files:` block — one declared with `kind: mtz` — and
+carries the column-label spec plus optional render state. The MTZ file
+ref itself is never loaded as a molecule; it exists only to be pointed
+at by a `maps:` entry.
+
+```yaml
+files:
+  - { name: refined,    pdb: 1m17 }
+  - { name: refl,       kind: mtz, url: https://example.org/refmac.mtz }
+
+maps:
+  # 2Fo-Fc style "best" map read straight from FWT/PHWT.
+  - name: best
+    file: refl
+    columns: { F: FWT, PHI: PHWT }
+    contourLevel: 1.5            # rmsd-relative
+    colour: "#3060c0"
+
+  # Fo-Fc difference map: two contour lobes, green/red by convention.
+  - name: diff
+    file: refl
+    columns: { F: DELFWT, PHI: PHDELWT }
+    isDifference: true
+    contourLevel: 3.0
+    positiveColour: "#00c000"
+    negativeColour: "#c00000"
+
+activeMap: best                 # Moorhen refines against this one
+```
+
+### Column spec (`columns`)
+
+Two ways to give Moorhen a map:
+
+- **Read coefficients directly** — set `F` + `PHI` (e.g. `FWT`/`PHWT`,
+  or `DELFWT`/`PHDELWT` for a difference map). This is the usual case
+  and the minimum required.
+- **Let Moorhen compute coefficients** — set `calcStructFact: true`
+  together with `Fobs` + `SigFobs` (and optionally `FreeR`). Moorhen
+  runs its own structure-factor calculation rather than reading
+  pre-computed `FWT`/`PHWT`.
+
+| Field            | Meaning                                                       |
+| ---------------- | ------------------------------------------------------------ |
+| `F`              | Structure-factor amplitude label (`FWT`, `F`, `DELFWT`).     |
+| `PHI`            | Phase label (`PHWT`, `PHI`, `PHDELWT`).                       |
+| `Fobs`           | Observed amplitude (only with `calcStructFact`).             |
+| `SigFobs`        | Sigma of `Fobs` (only with `calcStructFact`).               |
+| `FreeR`          | Free-R flag column (optional, with `calcStructFact`).        |
+| `useWeight`      | Apply the FOM weight column.                                  |
+| `calcStructFact` | Compute coefficients on the fly instead of reading `F`/`PHI`. |
+
+The validator requires **either** `F` + `PHI`, **or** `calcStructFact`
++ `Fobs` + `SigFobs`. Anything else is a validation error.
+
+### Render state (all optional)
+
+Any field you omit keeps Moorhen's load-time default; the lifter only
+emits a field when the captured value differs from that default, so
+captured scenes stay small.
+
+| Field             | Meaning                                                          |
+| ----------------- | ---------------------------------------------------------------- |
+| `isDifference`    | Render positive + negative lobes (uses the two `*Colour` fields).|
+| `contourLevel`    | Contour level, rmsd-relative.                                    |
+| `radius`          | Contour radius (Å) around the camera origin.                    |
+| `alpha`           | Opacity, 0–1.                                                    |
+| `style`           | `"lines"`, `"solid"`, or `"lit-lines"`.                          |
+| `colour`          | Hex (`#rrggbb` / `#rrggbbaa`). Non-difference maps only.         |
+| `positiveColour`  | Hex for the positive lobe of a difference map.                  |
+| `negativeColour`  | Hex for the negative lobe of a difference map.                  |
+| `visible`         | Whether the map is shown. Defaults to `true`.                   |
+
+### `activeMap`
+
+A top-level field (sibling of `maps:`, not nested inside it) naming the
+map Moorhen should make active after apply. Moorhen refines against the
+active map, so this is normally the best/calculated map — never a
+difference map. The value must match a `name` in the `maps:` block.
+
+### Map resolution at apply-time
+
+Maps need a map-fetcher to be wired into the resolver (the Moorhen
+wrapper provides one). If the host hasn't supplied a fetcher, or the
+MTZ ref isn't fetchable, the map entry is **dropped with a log entry**
+and the rest of the scene still applies — coordinates and
+representations never fail just because a map couldn't load. Today only
+MTZ refs are supported; pre-computed CCP4 `.map` files and
+PDB-fetched maps are planned for a later schema version.
 
 ## `view`
 
@@ -595,3 +700,43 @@ resolver:
 Drop that into the Scenes editor, click Apply, and you have two
 APAF-1 structures aligned on their NBDs with matching colour schemes
 — ready to compare conformations.
+
+### With electron density
+
+A refined model with its 2Fo-Fc and Fo-Fc maps, ready for inspection:
+
+```yaml
+scene: refined-with-density
+version: 1
+
+files:
+  - { name: model, fileId: 482, projectId: 3f8a-aaaa-bbbb-cccc-uuid }
+  - { name: refl,  kind: mtz, fileId: 483, projectId: 3f8a-aaaa-bbbb-cccc-uuid }
+
+elements:
+  - file: model
+    representations:
+      - { style: CRs, colour: secondary-structure }
+      - { style: CBs, selection: "//*/(LIG)", colour: "#2ecc71" }
+
+maps:
+  - name: best
+    file: refl
+    columns: { F: FWT, PHI: PHWT }
+    contourLevel: 1.5
+  - name: diff
+    file: refl
+    columns: { F: DELFWT, PHI: PHDELWT }
+    isDifference: true
+    contourLevel: 3.0
+
+activeMap: best
+
+view:
+  origin: [12.4, 8.1, -3.6]
+  zoom: 0.4
+```
+
+(The `fileId` + `projectId` refs resolve against the ccp4i2 project the
+recipient has open; share as a `.scene.zip` with the coords and MTZ
+bundled if the recipient won't have the project.)

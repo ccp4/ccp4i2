@@ -8,7 +8,7 @@
 import { useMemo } from "react";
 import useSWR, { mutate } from "swr";
 import { useApi } from "../api";
-import { apiPost, apiDelete, apiPatch, apiPut, apiFetch } from "../api-fetch";
+import { apiGet, apiPost, apiDelete, apiPatch, apiPut, apiFetch } from "../api-fetch";
 import {
   ProjectGroup,
   ProjectGroupDetail,
@@ -19,6 +19,27 @@ import {
   CampaignSite,
 } from "../types/campaigns";
 import { Project } from "../types/models";
+import type { MoorhenScene } from "../types/moorhen-scene";
+
+/** A dataset the summary scene could not include, with the reason. */
+export interface SummarySceneSkip {
+  project: string;
+  reason: string;
+}
+
+/** Counts returned alongside a campaign summary scene. */
+export interface SummarySceneStats {
+  members_total: number;
+  hits: number;
+  skipped: SummarySceneSkip[];
+  parent_present: boolean;
+}
+
+/** Response of GET projectgroups/{id}/summary_scene. */
+export interface SummarySceneResponse {
+  scene: MoorhenScene;
+  stats: SummarySceneStats;
+}
 
 // =============================================================================
 // Hook for campaign operations
@@ -75,6 +96,16 @@ export function useCampaignsApi() {
         ? `projectgroups/${campaignId}/parent_files`
         : null;
       return api.get<ParentFilesResponse>(endpoint, refreshInterval);
+    },
+
+    /**
+     * Build the fragment-campaign summary scene (parent ribbon + every
+     * discovered fragment overlaid as ligand sticks, each scoped to its
+     * own restraint dictionary). Imperative: called once when the Moorhen
+     * page enters summary mode.
+     */
+    async fetchSummaryScene(campaignId: number): Promise<SummarySceneResponse> {
+      return apiGet(`projectgroups/${campaignId}/summary_scene`);
     },
 
     /**
