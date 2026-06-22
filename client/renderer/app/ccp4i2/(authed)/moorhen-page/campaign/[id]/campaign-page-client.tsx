@@ -56,15 +56,19 @@ function CampaignPageContent() {
     setSelectedJobId(null); // Reset to auto-select latest job
   }, []);
 
-  // Summary mode: fetch the campaign overview scene once on entry.
+  // Summary mode: fetch the campaign overview scene.
+  //
+  // The deps here must stay free of unstable values. `campaignsApi` is a fresh
+  // object every render, and `summaryLoading`-style state we set in the effect
+  // would also churn the deps — either makes the effect re-run mid-flight, fire
+  // its cleanup, and cancel the in-flight fetch, so the scene gets fetched and
+  // then silently discarded. We depend only on the stable inputs and rely on
+  // the `cancelled` flag (which is StrictMode-safe: the second mount re-fetches
+  // and wins).
   const [summaryScene, setSummaryScene] = useState<MoorhenScene | null>(null);
-  const [summaryLoading, setSummaryLoading] = useState(false);
   useEffect(() => {
-    if (!summaryMode || campaignId === null || summaryScene !== null || summaryLoading) {
-      return;
-    }
+    if (!summaryMode || campaignId === null) return;
     let cancelled = false;
-    setSummaryLoading(true);
     campaignsApi
       .fetchSummaryScene(campaignId)
       .then((res) => {
@@ -72,22 +76,19 @@ function CampaignPageContent() {
       })
       .catch((err) => {
         console.error("Failed to load campaign summary scene:", err);
-      })
-      .finally(() => {
-        if (!cancelled) setSummaryLoading(false);
       });
     return () => {
       cancelled = true;
     };
-  }, [summaryMode, campaignId, summaryScene, summaryLoading, campaignsApi]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [summaryMode, campaignId]);
 
   // Determine which files to load based on selection
   const fileIds = useMemo(() => {
-    // Summary overview: the whole-campaign scene (parent + all fragments).
+    // Summary overview: the scene is applied by the Scenes panel (via the
+    // summaryScene prop), not the file loader — so load nothing here.
     if (summaryMode) {
-      return summaryScene
-        ? { type: "scene" as const, scene: summaryScene }
-        : { type: "none" as const };
+      return { type: "none" as const };
     }
 
     // If a specific job is selected, load that job
@@ -128,7 +129,7 @@ function CampaignPageContent() {
     }
     // Note: maps would need to be added here when parent has map files
     return { type: "files" as const, fileIds: ids };
-  }, [parentFiles, selectedMemberProjectId, selectedJobId, memberProjects, summaryMode, summaryScene]);
+  }, [parentFiles, selectedMemberProjectId, selectedJobId, memberProjects, summaryMode]);
 
   // Build breadcrumbs for the layout AppBar
   const { setBreadcrumbs } = useMoorhenBreadcrumbs();
@@ -199,6 +200,7 @@ function CampaignPageContent() {
       <CampaignMoorhenWrapper
         campaign={campaign}
         fileSource={fileIds}
+        summaryScene={summaryMode ? summaryScene : null}
         viewParam={viewParam}
         sites={sites || []}
         onUpdateSites={handleUpdateSites}

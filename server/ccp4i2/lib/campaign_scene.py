@@ -39,13 +39,20 @@ logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 # Refinement tasks whose latest finished job carries the ligand-bound
-# coordinates. Mirrors the set the campaign Moorhen page already uses to
-# auto-select a member's job (campaign-page-client.tsx).
-REFINE_TASK_NAMES = ("refmac", "i2Refmac", "i2Dimple", "dimple")
-
-# Placeholder ligand codes used when a member has no dictionary to key
-# detection off (the user's original heuristic).
-FALLBACK_LIGAND_CODES = frozenset({"LIG", "DRG", "UNL"})
+# coordinates. Fragment campaigns here refine with servalcat (via
+# servalcat_pipe), so that must come first / be present — otherwise the
+# latest finished job falls back to an early apo refmac/dimple model and the
+# soaked ligand is missed. order doesn't affect selection (we take the
+# highest-id finished job among these), but servalcat_pipe is the canonical
+# campaign refinement and its XYZOUT is the final ligand-bound model.
+REFINE_TASK_NAMES = (
+    "servalcat_pipe",
+    "prosmart_refmac",
+    "refmac",
+    "i2Refmac",
+    "i2Dimple",
+    "dimple",
+)
 
 # Crystallisation additives, cryoprotectants and ions that commonly appear
 # as HET residues but are NOT a fragment hit. A refmac LIBOUT can also carry
@@ -141,10 +148,18 @@ def coordinate_residue_names(coord_path) -> set:
 def detect_ligands(coord_path, dict_path: Optional[object] = None) -> list:
     """Return the ligand codes a dataset should be judged a hit on.
 
-    Dictionary-driven: the intersection of the dictionary's comp_ids with
-    the residue names actually present in the coordinates. When no
-    dictionary is available (or it yields no match), fall back to the
-    conventional placeholder codes (LIG/DRG/UNL) found in the coords.
+    A dataset is a hit if its refined coordinates contain a *fragment-like*
+    HET residue: anything that isn't a standard amino acid / nucleic acid /
+    water / common crystallisation additive (see ``_is_fragment_code``). This
+    catches real three-letter ligand codes (e.g. ``NUT`` for Nutlin), not just
+    the conventional placeholders, and works even when no restraint dictionary
+    is present — fragment campaigns refined with servalcat often have none.
+
+    When a dictionary *is* available, the dictionary-confirmed subset is
+    preferred: it pins the comp_id we render and gives the scoped dictionary
+    that lets same-named ligands with different chemistry coexist. If the
+    dictionary covers none of the candidates, we still fall back to the
+    coordinate-derived candidates.
 
     Returns a sorted list (possibly empty -> not a hit).
     """
@@ -154,13 +169,16 @@ def detect_ligands(coord_path, dict_path: Optional[object] = None) -> list:
         logger.warning("Could not read coordinates %s: %s", coord_path, exc)
         return []
 
-    if dict_path is not None:
-        candidates = dictionary_comp_ids(dict_path) & coord_names
-        hits = sorted(c for c in candidates if _is_fragment_code(c))
-        if hits:
-            return hits
+    candidates = {name for name in coord_names if _is_fragment_code(name)}
+    if not candidates:
+        return []
 
-    return sorted(coord_names & FALLBACK_LIGAND_CODES)
+    if dict_path is not None:
+        confirmed = sorted(candidates & dictionary_comp_ids(dict_path))
+        if confirmed:
+            return confirmed
+
+    return sorted(candidates)
 
 
 # --------------------------------------------------------------------------
