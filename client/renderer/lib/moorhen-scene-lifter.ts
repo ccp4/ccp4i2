@@ -631,32 +631,39 @@ function liftFileRef(mol: moorhen.Molecule, ctx: LiftCtx): SceneFileRef {
 // Maps
 // --------------------------------------------------------------------------
 
+/** True if a loaded MoorhenMap came from a real-space CCP4 map file (incl. a
+ *  mask), tagged at load by the wrapper map loaders, rather than from MTZ. */
+function isCcp4MapFile(map: moorhen.Map): boolean {
+  return !!(map as unknown as { isCcp4MapFile?: boolean }).isCcp4MapFile;
+}
+
 /**
- * Lift a SceneFileRef for an MTZ-loaded map. Mirrors liftFileRef for
- * coordinate molecules but tags the ref with kind: "mtz" and disambiguates
- * the name from any coord ref by suffixing with the map index.
+ * Lift a SceneFileRef for a loaded map. MTZ maps get kind: "mtz"; real-space
+ * CCP4 map files (incl. masks) get kind: "map". The name is disambiguated
+ * from any coord ref by a kind suffix.
  */
 function liftMapFileRef(map: moorhen.Map, ctx: LiftCtx, index: number): SceneFileRef {
+  const kind: SceneFileRef["kind"] = isCcp4MapFile(map) ? "map" : "mtz";
   const baseName = sanitiseName(map.name) || `map${index}`;
-  const name = `${baseName}__mtz`;
+  const name = `${baseName}__${kind}`;
 
   const fileId = extractFileIdFromUniqueId(map.uniqueId ?? "");
   if (fileId !== null && ctx.projectId) {
     return {
       name,
-      kind: "mtz",
+      kind,
       projectId: ctx.projectId,
       projectName: ctx.projectName,
       fileId,
     };
   }
   if (map.uniqueId && /^https?:\/\//.test(map.uniqueId)) {
-    return { name, kind: "mtz", url: map.uniqueId };
+    return { name, kind, url: map.uniqueId };
   }
   if (map.uniqueId) {
-    return { name, kind: "mtz", path: map.uniqueId };
+    return { name, kind, path: map.uniqueId };
   }
-  return { name, kind: "mtz", url: "TODO: MTZ URL for this map" };
+  return { name, kind, url: "TODO: URL for this map" };
 }
 
 /**
@@ -672,12 +679,14 @@ function liftSceneMap(
   mapName: string,
   mapState?: Record<number, MapRenderState>,
 ): SceneMap {
-  const columns = stripUndefinedColumns(map.selectedColumns);
-  const out: SceneMap = {
-    name: mapName,
-    file: fileName,
-    columns,
-  };
+  // Real-space CCP4 map files (incl. masks) carry no columns; MTZ maps do.
+  const mapFile = isCcp4MapFile(map);
+  const out: SceneMap = mapFile
+    ? { name: mapName, file: fileName }
+    : { name: mapName, file: fileName, columns: stripUndefinedColumns(map.selectedColumns) };
+  if (mapFile && (map as unknown as { isCcp4Mask?: boolean }).isCcp4Mask) {
+    out.isMask = true;
+  }
   if (map.isDifference) out.isDifference = true;
 
   const s = mapState?.[map.molNo];

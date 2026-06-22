@@ -948,7 +948,53 @@ maps:
     columns: { Fobs: FP, SigFobs: SIGFP, FreeR: FREE, calcStructFact: true }
 `;
     const scene = parseScene(yaml);
-    expect(scene.maps![0].columns.calcStructFact).toBe(true);
+    expect(scene.maps![0].columns!.calcStructFact).toBe(true);
+  });
+
+  it("parses a real-space map / mask (kind: map, no columns)", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: msk
+    kind: map
+    url: https://example/mask.map
+maps:
+  - name: domainA
+    file: msk
+    isMask: true
+`;
+    const scene = parseScene(yaml);
+    expect(scene.maps).toHaveLength(1);
+    expect(scene.maps![0]).toMatchObject({ name: "domainA", file: "msk", isMask: true });
+    expect(scene.maps![0].columns).toBeUndefined();
+  });
+
+  it("rejects columns on a kind: map (real-space) file", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: msk
+    kind: map
+    url: https://example/mask.map
+maps:
+  - name: domainA
+    file: msk
+    columns: { F: FWT, PHI: PHWT }
+`;
+    expect(() => parseScene(yaml)).toThrow(/not allowed for kind: "map"/);
+  });
+
+  it("requires kind mtz or map for a maps[] file", () => {
+    const yaml = `scene: x
+version: 1
+files:
+  - name: coords
+    pdb: 1abc
+maps:
+  - name: m
+    file: coords
+`;
+    expect(() => parseScene(yaml)).toThrow(/must be a file with kind: "mtz" or "map"/);
   });
 
   it("rejects an unknown style", () => {

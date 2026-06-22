@@ -42,6 +42,9 @@ The format supports:
 - **SSM and LSQ superpositions** (with a `chain`+`range` shorthand).
 - **Electron-density maps** from MTZ refs (`kind: mtz` + a `maps:`
   block), including difference maps and an `activeMap:` for refinement.
+- **Real-space CCP4 maps and masks** (`kind: map` + a `maps:` entry,
+  no columns); masks (`isMask: true`, `File.sub_type ==
+  CMapDataFile.SUBTYPE_MASK`) default to a translucent solid surface.
 - **Inline dict text** (`cifText:`) and **bundle: assets/...**
   references for sources without a stable URL.
 

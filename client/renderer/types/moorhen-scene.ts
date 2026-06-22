@@ -61,10 +61,11 @@ export interface MoorhenScene {
   /** Per-file rendering instructions: representations and colour rules. */
   elements?: SceneElement[];
 
-  /** Map instances to render, each referencing an MTZ file from the
-   *  `files:` block (kind: "mtz") with a column-label spec and optional
-   *  contour/colour/style. v1 supports MTZ refs only — pre-computed
-   *  CCP4 map files and PDB-fetched maps will land in a later version. */
+  /** Map instances to render. Each references either an MTZ file from the
+   *  `files:` block (kind: "mtz") with a column-label spec, or a real-space
+   *  CCP4 map file (kind: "map", incl. masks) which needs no columns. Carries
+   *  optional contour/colour/style; masks default to a translucent solid
+   *  surface. */
   maps?: SceneMap[];
 
   /** Name of the map (from `maps:`) that should be Moorhen's active
@@ -114,8 +115,11 @@ export interface SceneFileRef {
    *  separate molecules; they're then scoped to specific molecules via
    *  the per-element `dictionaries:` list. "mtz" refs are reflection
    *  data — referenced by entries in the `maps:` block which carry the
-   *  column-label spec and contour/colour settings. */
-  kind?: "coordinates" | "dictionary" | "mtz";
+   *  column-label spec and contour/colour settings. "map" refs are
+   *  real-space CCP4 map files (application/CCP4-map), including masks —
+   *  also referenced by `maps:` entries, but loaded directly (no columns)
+   *  via loadToCootFromMapData. */
+  kind?: "coordinates" | "dictionary" | "mtz" | "map";
 
   /** PDB ID (4-letter or extended). Fetched via the PDBe proxy on apply
    *  if not already loaded. The most portable, share-friendly form for
@@ -364,11 +368,19 @@ export interface SceneMap {
    *  the scene root and as a join key for the lifter/promoter. */
   name: string;
 
-  /** Name of an entry in `files:` (must have `kind: "mtz"`). */
+  /** Name of an entry in `files:` (kind: "mtz" or "map"). */
   file: string;
 
-  /** Column-label spec for reading the referenced MTZ. */
-  columns: SceneMapColumns;
+  /** Column-label spec for reading the referenced MTZ. Required for
+   *  `kind: "mtz"` files; omitted for `kind: "map"` (real-space CCP4 maps
+   *  / masks are read directly, no columns). */
+  columns?: SceneMapColumns;
+
+  /** Mark this entry as a mask (a real-space region map). Advisory: when
+   *  set and style/contour/alpha are not otherwise specified, the resolver
+   *  applies the translucent solid-surface mask defaults. Only meaningful
+   *  for `kind: "map"` files. */
+  isMask?: boolean;
 
   /** Difference-map flag. Maps with this set render both positive and
    *  negative contour lobes using `positiveColour` / `negativeColour`. */

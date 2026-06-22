@@ -5,6 +5,9 @@ import {
   addMap,
   setActiveMap,
   setContourLevel,
+  setMapStyle,
+  setMapAlpha,
+  setMapColours,
   setTheme,
   setBackgroundColor,
   setRequestDrawScene,
@@ -41,6 +44,7 @@ import {
 } from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
+import { applyMaskDefaults, isMaskSubType } from "../../lib/moorhen-map-file";
 import {
   liftSceneToBundle,
   MapRenderState,
@@ -273,6 +277,38 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     return newMap;
   }, [commandCentre, store, dispatch]);
 
+  // Load a real-space CCP4 map file (application/CCP4-map), e.g. a mask. Unlike
+  // fetchMap (MTZ coefficients), this uses loadToCootFromMapData. Masks get the
+  // shared translucent-solid defaults and are never made the active map.
+  const fetchMapFile = useCallback(async (
+    url: string,
+    mapName: string,
+    opts: { isMask?: boolean } = {},
+  ) => {
+    if (!commandCentre.current) return;
+    const newMap = new MoorhenMap(
+      commandCentre as RefObject<moorhen.CommandCentre>,
+      store as any
+    );
+    try {
+      const mapData = await apiArrayBuffer(url);
+      await newMap.loadToCootFromMapData(new Uint8Array(mapData), mapName, false);
+      if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
+      newMap.uniqueId = url;
+      // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
+      (newMap as any).isCcp4MapFile = true;
+      if (opts.isMask) (newMap as any).isCcp4Mask = true;
+      dispatch(addMap(newMap));
+      if (opts.isMask) {
+        applyMaskDefaults(dispatch, newMap.molNo);
+      }
+    } catch (err) {
+      console.warn(err);
+      console.warn(`Cannot fetch map file from ${url}`);
+    }
+    return newMap;
+  }, [commandCentre, store, dispatch]);
+
   const fetchDict = useCallback(async (url: string) => {
     if (!commandCentre.current) return;
     const fileContent = await apiText(url);
@@ -361,11 +397,15 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       const molName = fileInfo.name || fileInfo.job_param_name;
       const mapSubType = fileInfo.sub_type || 1;
       await fetchMap(url, molName, mapSubType);
+    } else if (fileInfo.type === "application/CCP4-map") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      const molName = fileInfo.annotation || fileInfo.name || fileInfo.job_param_name;
+      await fetchMapFile(url, molName, { isMask: isMaskSubType(fileInfo.sub_type) });
     } else if (fileInfo.type === "application/refmac-dictionary") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       await fetchDict(url);
     }
-  }, [fetchMolecule, fetchMap, fetchDict]);
+  }, [fetchMolecule, fetchMap, fetchMapFile, fetchDict]);
 
   /**
    * Load all output files from a job into Moorhen.
@@ -478,13 +518,17 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     }
 
-    // STEP 3: Load all maps
+    // STEP 3: Load all maps (MTZ coefficients and real-space CCP4 maps / masks)
     for (const file of jobOutputFiles) {
       if (file.type === "application/CCP4-mtz-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
         const mapName = file.name || file.job_param_name;
         const mapSubType = file.sub_type || 1;
         await fetchMap(url, mapName, mapSubType);
+      } else if (file.type === "application/CCP4-map") {
+        const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
+        const mapName = file.annotation || file.name || file.job_param_name;
+        await fetchMapFile(url, mapName, { isMask: isMaskSubType(file.sub_type) });
       }
     }
 
@@ -498,7 +542,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
       dispatch(setRequestDrawScene(true));
     }
-  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch, fetchMap, getOrigin]);
+  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch, fetchMap, fetchMapFile, getOrigin]);
 
   // Handle map contour level changes from the control panel slider
   const handleMapContourLevelChange = useCallback(
@@ -741,26 +785,38 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           commandCentre as RefObject<moorhen.CommandCentre>,
           store as any,
         );
-        await newMap.loadToCootFromMtzData(
-          new Uint8Array(bytes as ArrayBuffer),
-          sceneMap.name,
-          {
-            F: sceneMap.columns.F,
-            PHI: sceneMap.columns.PHI,
-            Fobs: sceneMap.columns.Fobs,
-            SigFobs: sceneMap.columns.SigFobs,
-            FreeR: sceneMap.columns.FreeR,
-            useWeight: !!sceneMap.columns.useWeight,
-            calcStructFact: !!sceneMap.columns.calcStructFact,
-            isDifference: !!sceneMap.isDifference,
-          } as moorhen.selectedMtzColumns,
-        );
+        if (ref.kind === "map") {
+          // Real-space CCP4 map file (incl. masks): load directly, no columns.
+          await newMap.loadToCootFromMapData(
+            new Uint8Array(bytes as ArrayBuffer),
+            sceneMap.name,
+            !!sceneMap.isDifference,
+          );
+          (newMap as any).isCcp4MapFile = true;
+          if (sceneMap.isMask) (newMap as any).isCcp4Mask = true;
+        } else {
+          const cols = sceneMap.columns ?? {};
+          await newMap.loadToCootFromMtzData(
+            new Uint8Array(bytes as ArrayBuffer),
+            sceneMap.name,
+            {
+              F: cols.F,
+              PHI: cols.PHI,
+              Fobs: cols.Fobs,
+              SigFobs: cols.SigFobs,
+              FreeR: cols.FreeR,
+              useWeight: !!cols.useWeight,
+              calcStructFact: !!cols.calcStructFact,
+              isDifference: !!sceneMap.isDifference,
+            } as moorhen.selectedMtzColumns,
+          );
+        }
         if (newMap.molNo === -1) return null;
         if (uniqueId) newMap.uniqueId = uniqueId;
         dispatch(addMap(newMap));
         return newMap;
       } catch (err) {
-        console.warn(`[scene] failed to load MTZ for ${ref.name}:`, err);
+        console.warn(`[scene] failed to load map for ${ref.name}:`, err);
         return null;
       }
     },

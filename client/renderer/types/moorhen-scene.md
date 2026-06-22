@@ -438,11 +438,13 @@ expose it; the schema may grow to include it in a later version.
 
 ## `maps`
 
-Electron-density (and difference) maps to contour. Each entry references
-an MTZ from the `files:` block — one declared with `kind: mtz` — and
-carries the column-label spec plus optional render state. The MTZ file
-ref itself is never loaded as a molecule; it exists only to be pointed
-at by a `maps:` entry.
+Maps to contour. Each entry references a file from the `files:` block —
+either an MTZ (`kind: mtz`, with a column-label spec) or a real-space
+CCP4 map / mask (`kind: map`, no columns; see
+[Real-space maps and masks](#real-space-maps-and-masks-kind-map)) — plus
+optional render state. The referenced file is never loaded as a
+molecule; it exists only to be pointed at by a `maps:` entry. The
+MTZ-based examples below cover electron-density and difference maps.
 
 ```yaml
 files:
@@ -519,15 +521,47 @@ map Moorhen should make active after apply. Moorhen refines against the
 active map, so this is normally the best/calculated map — never a
 difference map. The value must match a `name` in the `maps:` block.
 
+### Real-space maps and masks (`kind: map`)
+
+A `maps:` entry can also reference a **real-space CCP4 map file**
+(`application/CCP4-map`, a `.map`) instead of an MTZ — including a
+**mask** (e.g. an NCS-averaging or region mask). Declare the file with
+`kind: map` and **omit `columns`** (a `.map` is read directly, no
+column spec):
+
+```yaml
+files:
+  - { name: refined, fileId: 482, projectId: <uuid> }
+  - { name: ncsA,    kind: map, fileId: 540, projectId: <uuid> }   # a mask
+
+maps:
+  - name: domainA
+    file: ncsA
+    isMask: true          # translucent solid surface by default
+```
+
+`isMask: true` is advisory: when set and you haven't given `style` /
+`contourLevel` / `alpha` / `colour`, the resolver applies the mask
+defaults — a **solid, semi-transparent surface** (contour 0.5, alpha
+0.4, a soft blue) so the mask reads as the *region* it covers. Override
+any of those fields to taste; they apply to map-kind entries exactly as
+they do to MTZ maps. `columns` is **not allowed** on a `kind: map`
+entry.
+
+> A mask is the same FileType as a density map, distinguished by its
+> `subType` (`CMapDataFile.SUBTYPE_MASK`, gleaned to `File.sub_type`).
+> The Moorhen job/file/campaign viewers also render real-space CCP4 maps
+> automatically — masks load as a translucent solid surface, other
+> CCP4 maps with ordinary map defaults.
+
 ### Map resolution at apply-time
 
 Maps need a map-fetcher to be wired into the resolver (the Moorhen
 wrapper provides one). If the host hasn't supplied a fetcher, or the
-MTZ ref isn't fetchable, the map entry is **dropped with a log entry**
-and the rest of the scene still applies — coordinates and
-representations never fail just because a map couldn't load. Today only
-MTZ refs are supported; pre-computed CCP4 `.map` files and
-PDB-fetched maps are planned for a later schema version.
+ref isn't fetchable, the map entry is **dropped with a log entry** and
+the rest of the scene still applies — coordinates and representations
+never fail just because a map couldn't load. Both MTZ refs (`kind: mtz`)
+and real-space CCP4 map / mask refs (`kind: map`) are supported.
 
 ## `view`
 
