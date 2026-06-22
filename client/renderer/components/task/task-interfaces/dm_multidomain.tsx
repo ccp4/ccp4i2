@@ -68,34 +68,38 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2ContainerElement
             {...props}
             itemName=""
-            qualifiers={{ guiLabel: "NCS copies" }}
+            qualifiers={{ guiLabel: "NCS assembly" }}
             containerHint="BlockLevel"
           >
             <Typography variant="body2" sx={{ mb: 1 }}>
-              Leave blank to auto-detect the reference copy (first protein chain)
-              and its NCS copies (the rest).
+              One row per NCS copy; the first row is the reference. Each row maps
+              entities to chains as space-separated <code>role=chain</code>{" "}
+              tokens (e.g. <code>CDK=A cyclin=B</code>). For a homomer just give a
+              bare chain id per row (<code>A</code>, <code>B</code>, …) — they
+              share a single implicit role. Omit a role from a row for a partial
+              copy (A<sub>m</sub>B<sub>n</sub>). Leave the list empty to
+              auto-detect a homomer (first protein chain = reference, the rest
+              its copies).
             </Typography>
-            <InlineField label="Reference chain">
-              <CCP4i2TaskElement itemName="REFERENCE_CHAIN" {...props}
-                qualifiers={{ guiLabel: " " }} />
-            </InlineField>
-            <InlineField label="Copy chains (comma-separated)">
-              <CCP4i2TaskElement itemName="COPY_CHAINS" {...props}
-                qualifiers={{ guiLabel: " " }} />
-            </InlineField>
+            <CCP4i2TaskElement itemName="ASSEMBLY" {...props}
+              qualifiers={{ guiLabel: " " }} />
           </CCP4i2ContainerElement>
 
           <CCP4i2ContainerElement
             {...props}
             itemName=""
-            qualifiers={{ guiLabel: "Domains (residue range + averaging mode)" }}
+            qualifiers={{ guiLabel: "Rigid bodies (segments + averaging mode)" }}
             containerHint="BlockLevel"
           >
             <Typography variant="body2" sx={{ mb: 1 }}>
-              One row per domain. Each domain is superposed independently across
-              the NCS copies, so different domains may follow different NCS
-              transformations. Mode: <b>average</b> (rigid NCS), <b>refine</b>
-              (let dm refine the operators), or <b>exclude</b>.
+              One row per rigid body. <b>segments</b> is a comma-separated list of{" "}
+              <code>role:first-last</code> residue ranges that move together —{" "}
+              <code>340-485</code> for a homomer, or a cross-chain body such as{" "}
+              <code>cyclin:10-95,CDK:45-60</code> (the CDK C-helix travelling with
+              the cyclin N-lobe). Each body is superposed independently across the
+              copies, so different bodies may follow different NCS transformations.
+              Mode: <b>average</b> (rigid NCS), <b>refine</b> (let dm refine the
+              operators), or <b>exclude</b>.
             </Typography>
             <CCP4i2TaskElement itemName="DOMAINS" {...props}
               qualifiers={{ guiLabel: " " }} />

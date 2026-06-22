@@ -4,15 +4,17 @@ import { FIELD_SIZES } from "./field-sizes";
 import { useInferredVisibility } from "./hooks/useInferredVisibility";
 
 /**
- * CDmDomainElement — one multi-domain-NCS domain as a compact inline row:
+ * CDmDomainElement — one rigid body (dm "domain") as a compact inline row:
  *
- *   Chain [A]  residues [340] to [485]  mode [average ▾]
+ *   segments [ cyclin:10-95,CDK:45-60 ]   mode [average ▾]
  *
- * Composed from the inherited CResidueRange fields (chainId / firstRes /
- * lastRes) plus the averaging `mode` enumerator. Each sub-field is wrapped in a
- * fixed-width Box (its CString/COneWord renderer is full-width by default), so a
- * narrow panel wraps between whole units rather than splitting a field from its
- * label -- same idiom as CRangeElement.
+ * A rigid body is a set of residue-range segments that move together, plus an
+ * averaging mode. Segments are "role:first-last" ranges; a bare range uses the
+ * single implicit role (homomer), and mixing roles expresses a cross-chain body
+ * (the CDK C-helix travelling with the cyclin N-lobe). The role→chain mapping
+ * for each NCS copy lives in the task's ASSEMBLY list, not here. Each sub-field
+ * is wrapped in a fixed-width Box so a narrow panel wraps between whole units
+ * rather than splitting a field from its label.
  */
 export const CDmDomainElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   const isVisible = useInferredVisibility(props.visibility);
@@ -36,12 +38,7 @@ export const CDmDomainElement: React.FC<CCP4i2TaskElementProps> = (props) => {
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
-      {sub("chainId", "Chain", FIELD_SIZES.xs)}
-      {sub("firstRes", "residues", FIELD_SIZES.xs)}
-      <Typography variant="body2" sx={{ flexShrink: 0 }}>
-        to
-      </Typography>
-      {sub("lastRes", "", FIELD_SIZES.xs)}
+      {sub("segments", "segments", FIELD_SIZES.lg)}
       {sub("mode", "mode", FIELD_SIZES.sm)}
     </Box>
   );

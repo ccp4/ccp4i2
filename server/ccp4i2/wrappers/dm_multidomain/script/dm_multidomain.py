@@ -90,41 +90,87 @@ class dm_multidomain(CPluginScript):
             cell = structure.cell
             sg = structure.find_spacegroup()
 
+            # NCS instances (role->chain per copy), index 0 == reference. From
+            # ASSEMBLY if supplied, else auto-detect a homomer (first protein
+            # chain reference, the rest its copies).
+            if ctrl.ASSEMBLY.isSet() and len(ctrl.ASSEMBLY) > 0:
+                instances = dm_ncs_lib.parse_assembly_rows(
+                    [str(r) for r in ctrl.ASSEMBLY])
+            else:
+                ref, copies = dm_ncs_lib.detect_reference_and_copies(model)
+                instances = dm_ncs_lib.parse_assembly_rows([ref] + copies)
+            if not instances:
+                self.appendErrorReport(
+                    201, 'No NCS instances (ASSEMBLY empty and auto-detect '
+                         'found no protein chains)')
+                return CPluginScript.FAILED
+            ref_inst = instances[0]
+            print(f"dm_multidomain: {len(instances)} instances, reference "
+                  f"{dm_ncs_lib.instance_label(ref_inst)}")
+
+            # rigid bodies: each a list of (role, lo, hi) segments + a mode.
             domains = []
             for i, d in enumerate(ctrl.DOMAINS, start=1):
-                bounds = d.residue_bounds()
-                if bounds is None:
-                    raise ValueError(f"domain {i}: firstRes/lastRes not set")
-                lo, hi = bounds
-                prefix = (str(d.chainId) + '_') if d.chainId.isSet() else ''
-                domains.append(dict(name=f"{prefix}{lo}_{hi}", lo=lo, hi=hi,
-                                    mode=d.averaging_mode()))
-            ref, copies = dm_ncs_lib.detect_reference_and_copies(
-                model,
-                reference=str(ctrl.REFERENCE_CHAIN) if ctrl.REFERENCE_CHAIN.isSet() else None,
-                copies=str(ctrl.COPY_CHAINS).split(',') if ctrl.COPY_CHAINS.isSet() else None)
-            print(f"dm_multidomain: reference {ref}, copies {copies}")
+                spec = d.segments_spec()
+                if not spec:
+                    raise ValueError(f"domain {i}: no segments set")
+                segments = dm_ncs_lib.parse_segments(spec)
+                missing = [r for r in dm_ncs_lib.body_segment_roles(segments)
+                           if not ref_inst.get(r)]
+                if missing:
+                    raise ValueError(
+                        f"domain {i} ({spec}): reference instance "
+                        f"{dm_ncs_lib.instance_label(ref_inst)} lacks role(s) "
+                        f"{missing} -- add them to the reference ASSEMBLY row")
+                domains.append(dict(name=dm_ncs_lib.body_name(segments),
+                                    segments=segments, mode=d.averaging_mode()))
 
             radius = float(ctrl.MASK_RADIUS) if ctrl.MASK_RADIUS.isSet() else 2.5
+            # 1. operators per averaged body (skip excluded; skip bodies no copy
+            #    shares -- nothing to average against).
             operators_by_domain = {}
-            ncsin = []   # ordered [(domain_name, mask_path)] for non-excluded
+            averaged = []   # bodies that survive, in command-line order
             for d in domains:
                 if d['mode'] == 'exclude':
                     continue
-                ops, rmsds = dm_ncs_lib.domain_operators(
-                    model, ref, copies, d['lo'], d['hi'], cell=cell)
+                ops, rmsds = dm_ncs_lib.body_operators(
+                    model, instances, d['segments'], cell=cell)
+                if len(ops) < 2:
+                    print(f"  body {d['name']} ({d['mode']}): no copies share "
+                          f"its roles -- skipped")
+                    continue
                 operators_by_domain[d['name']] = ops
                 rmsd_str = ", ".join(f"{c}:{r:.2f}" for c, r in rmsds.items())
-                print(f"  domain {d['name']} ({d['lo']}-{d['hi']}, {d['mode']}): "
-                      f"RMSD A {rmsd_str}")
-                mask = os.path.join(self.workDirectory, f"mask_{d['name']}.msk")
-                nset = dm_ncs_lib.write_domain_mask(
-                    model, ref, d['lo'], d['hi'], cell, sg, mask, radius=radius)
-                print(f"    mask {os.path.basename(mask)}: {nset} points")
-                ncsin.append((d['name'], mask))
+                print(f"  body {d['name']} ({d['mode']}): RMSD {rmsd_str}")
+                averaged.append(d)
 
+            # 2. masks for the surviving bodies, written together so a nearest-
+            #    atom competition makes them DISJOINT (dm needs non-overlapping
+            #    NCS masks; the radius dilation otherwise bleeds across abutting
+            #    boundaries).
+            ncsin = []   # ordered [(domain_name, mask_path)], in step with above
+            if averaged:
+                # .map (not .msk) so the gleaned MASKOUT is an unambiguous CCP4
+                # map for the viewer; dm reads it as NCSIN regardless.
+                mask_paths = [os.path.join(self.workDirectory,
+                                           f"mask_{d['name']}.map")
+                              for d in averaged]
+                nsets, n_contested = dm_ncs_lib.write_partitioned_masks(
+                    model, ref_inst, [d['segments'] for d in averaged],
+                    cell, sg, mask_paths, radius=radius)
+                if n_contested:
+                    print(f"  resolved {n_contested} overlapping mask points "
+                          f"(nearest-atom partition) -> disjoint masks")
+                for d, path, nset in zip(averaged, mask_paths, nsets):
+                    print(f"    mask {os.path.basename(path)}: {nset} points")
+                    ncsin.append((d['name'], path))
+
+            # keep the script's domain list in step with the NCSIN<n> order.
+            domains = averaged
             if not ncsin:
-                self.appendErrorReport(201, 'No domains to average (all excluded)')
+                self.appendErrorReport(
+                    201, 'No domains to average (all excluded, or no copies '
+                         'share any body\'s roles)')
                 return CPluginScript.FAILED
 
             # solvent content: explicit override or Matthews estimate
@@ -210,6 +256,18 @@ class dm_multidomain(CPluginScript):
         self.container.outputData.FPHIOUT.subType.set(1)
         self.container.outputData.FPHIOUT.annotation = \
             self.jobNumberString() + ' Map coefficients from multi-domain dm'
+
+        # capture the per-body averaging masks (disjoint mode-0 CCP4 maps) as
+        # outputs, so they can be gleaned and overlaid (e.g. in Moorhen) to
+        # inspect/verify the domain partition. self._ncsin is [(name, path)] in
+        # NCSIN order; the files were written by write_partitioned_masks.
+        maskout = self.container.outputData.MASKOUT
+        for name, path in getattr(self, '_ncsin', []):
+            if os.path.exists(path):
+                maskout.append(maskout.makeItem())
+                maskout[-1].setFullPath(path)
+                maskout[-1].annotation = \
+                    self.jobNumberString() + f' NCS averaging mask: {name}'
 
         # build the result XML: loggraph tables + per-cycle + per-domain NCS
         # correlations, as substrate for a graphically rich report.

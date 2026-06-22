@@ -60,6 +60,18 @@
       <content id="PERFORMANCE">
         <className>CExpPhasPerformance</className>
       </content>
+      <content id="MASKOUT">
+        <className>CList</className>
+        <qualifiers>
+          <toolTip>Per-body NCS averaging masks (one disjoint mode-0 CCP4 map per averaged rigid body), for inspection/overlay</toolTip>
+        </qualifiers>
+        <subItem>
+          <className>CMapDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
     </container>
     <container id="controlParameters">
       <content id="PHASE_SOURCE">
@@ -72,30 +84,27 @@
           <toolTip>Where the starting phases come from</toolTip>
         </qualifiers>
       </content>
+      <content id="ASSEMBLY">
+        <className>CList</className>
+        <qualifiers>
+          <listMinLength>0</listMinLength>
+          <toolTip>NCS instances, one row per copy (row 0 = reference). Each row is space-separated role=chain tokens, e.g. "CDK=A cyclin=B"; a bare chain id uses the single implicit role (homomer), so ["A","B","C"] is n copies of one entity. Blank = auto-detect from the model.</toolTip>
+        </qualifiers>
+        <subItem>
+          <className>CString</className>
+          <qualifiers/>
+        </subItem>
+      </content>
       <content id="DOMAINS">
         <className>CList</className>
         <qualifiers>
           <listMinLength>1</listMinLength>
-          <toolTip>One per domain: residue range (firstRes-lastRes) on the reference copy + averaging mode</toolTip>
+          <toolTip>One per rigid body: comma-separated role:first-last residue ranges that move together + averaging mode. Homomer: "340-485". Cross-chain (CDK C-helix with cyclin N-lobe): "cyclin:10-95,CDK:45-60".</toolTip>
         </qualifiers>
         <subItem>
           <className>CDmDomain</className>
           <qualifiers/>
         </subItem>
-      </content>
-      <content id="REFERENCE_CHAIN">
-        <className>CString</className>
-        <qualifiers>
-          <allowUndefined>True</allowUndefined>
-          <toolTip>Reference NCS-copy chain id (blank = first protein chain)</toolTip>
-        </qualifiers>
-      </content>
-      <content id="COPY_CHAINS">
-        <className>CString</className>
-        <qualifiers>
-          <allowUndefined>True</allowUndefined>
-          <toolTip>Comma-separated NCS-copy chain ids (blank = all other protein chains)</toolTip>
-        </qualifiers>
       </content>
       <content id="MODE_SOLVENT">
         <className>CBoolean</className>

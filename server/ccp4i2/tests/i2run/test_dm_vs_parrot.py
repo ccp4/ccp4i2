@@ -103,9 +103,9 @@ def test_dm_multidomain_recovery():
         "--F_SIGF", demoData("ahir", "ahir_fmodel.mtz"),
         "--ABCD", demoData("ahir", "ahir_phases_mr.mtz"),
         "--XYZIN", demoData("ahir", "ahir_model.cif"),
-        "--DOMAINS", "chainId=A", "firstRes=340", "lastRes=485", "mode=average",
-        "--DOMAINS", "chainId=A", "firstRes=140", "lastRes=339", "mode=average",
-        "--DOMAINS", "chainId=A", "firstRes=13", "lastRes=139", "mode=average",
+        "--DOMAINS", "segments=340-485", "mode=average",
+        "--DOMAINS", "segments=140-339", "mode=average",
+        "--DOMAINS", "segments=13-139", "mode=average",
         "--NCYCLES", "10"])
 
     prior = {}

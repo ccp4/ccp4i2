@@ -18,13 +18,24 @@ def test_dm_multidomain():
     args += ["--ABCD", demoData("ahir", "ahir_phases.mtz")]
     args += ["--FREERFLAG", demoData("ahir", "ahir_freer.mtz")]
     args += ["--XYZIN", demoData("ahir", "ahir_model.cif")]
-    args += ["--DOMAINS", "chainId=A", "firstRes=340", "lastRes=485", "mode=average"]
-    args += ["--DOMAINS", "chainId=A", "firstRes=140", "lastRes=339", "mode=refine"]
-    args += ["--DOMAINS", "chainId=A", "firstRes=13", "lastRes=139", "mode=exclude"]
+    # homomer: ASSEMBLY auto-detected (chains A-F); segments use the implicit
+    # role, so they are bare residue ranges on the reference copy.
+    args += ["--DOMAINS", "segments=340-485", "mode=average"]
+    args += ["--DOMAINS", "segments=140-339", "mode=refine"]
+    args += ["--DOMAINS", "segments=13-139", "mode=exclude"]
     with i2run(args) as job:
         for name in ["ABCDOUT", "FPHIOUT"]:
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
         ET.parse(job / "program.xml")
+        # the two averaged bodies each yield a captured mask; the excluded
+        # 13-139 yields none. The masks must be DISJOINT (nearest-atom
+        # partition) -- dm needs non-overlapping NCS masks.
+        import numpy as np
+        masks = sorted(job.glob("mask_*.map"))
+        assert [m.name for m in masks] == ["mask_140_339.map", "mask_340_485.map"]
+        g0 = np.array(gemmi.read_ccp4_mask(str(masks[0])).grid, copy=False) > 0
+        g1 = np.array(gemmi.read_ccp4_mask(str(masks[1])).grid, copy=False) > 0
+        assert int(np.count_nonzero(g0 & g1)) == 0
 
 
 def test_dm_multidomain_phases_from_model():
@@ -35,9 +46,29 @@ def test_dm_multidomain_phases_from_model():
     args += ["--F_SIGF", demoData("ahir", "ahir_observed.mtz")]
     args += ["--XYZIN", demoData("ahir", "ahir_model.cif")]
     args += ["--PHASE_SOURCE", "model"]
-    args += ["--DOMAINS", "chainId=A", "firstRes=340", "lastRes=485", "mode=average"]
-    args += ["--DOMAINS", "chainId=A", "firstRes=140", "lastRes=339", "mode=average"]
-    args += ["--DOMAINS", "chainId=A", "firstRes=13", "lastRes=139", "mode=average"]
+    args += ["--DOMAINS", "segments=340-485", "mode=average"]
+    args += ["--DOMAINS", "segments=140-339", "mode=average"]
+    args += ["--DOMAINS", "segments=13-139", "mode=average"]
+    with i2run(args) as job:
+        for name in ["ABCDOUT", "FPHIOUT"]:
+            gemmi.read_mtz_file(str(job / f"{name}.mtz"))
+        ET.parse(job / "program.xml")
+
+
+def test_dm_multidomain_explicit_assembly():
+    """Same homomer case but with an EXPLICIT ASSEMBLY (named role 'm' over
+    chains A-F) and role-qualified segments -- exercises the ASSEMBLY parsing
+    and the (role, seqid) correspondence path end-to-end, rather than the
+    auto-detect / implicit-role shortcut.
+    """
+    args = ["dm_multidomain"]
+    args += ["--F_SIGF", demoData("ahir", "ahir_observed.mtz")]
+    args += ["--ABCD", demoData("ahir", "ahir_phases.mtz")]
+    args += ["--XYZIN", demoData("ahir", "ahir_model.cif")]
+    for ch in ["A", "B", "C", "D", "E", "F"]:
+        args += ["--ASSEMBLY", f"m={ch}"]
+    args += ["--DOMAINS", "segments=m:340-485", "mode=average"]
+    args += ["--DOMAINS", "segments=m:140-339", "mode=average"]
     with i2run(args) as job:
         for name in ["ABCDOUT", "FPHIOUT"]:
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
