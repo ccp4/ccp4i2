@@ -17,7 +17,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
     #-------------------------------------------------------------------
     TASKMODULE = 'ligands'       # Where this plugin will appear on the gui
     TASKTITLE = 'Make Ligand - AceDRG'     # A short title for gui menu
-    DESCRIPTION = 'Generate a PDB file and dictionary (acedrg) from MOL file, SMILES string/file, or sketch (lidia).<br>Optionally match atom names to known structures.'
+    DESCRIPTION = 'Generate a PDB file and dictionary (acedrg) from MOL file, SMILES string/file, or sketch.<br>Optionally match atom names to known structures.'
     TASKVERSION = 0.1
     TASKNAME = 'LidiaAcedrgNew'
     RANK=1
@@ -35,8 +35,8 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.createLine ( [ 'label','Start with molecular structure from ','stretch','widget','MOLSMILESORSKETCH' ] )
         self.connectDataChanged('MOLSMILESORSKETCH', self.ToggleShowContainsMetal)
         
-        self.createLine ( [ 'advice', 'Will launch Lidia to sketch molecule. Click Apply <b>and</b> Close in Lidia when sketch is ready.' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
-        self.createLine ( [ 'advice', 'Optionally can provide a starting monomer for the Lidia sketch:' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
+        self.createLine ( [ 'advice', 'Will launch Layla to sketch molecule. Click Apply <b>and</b> Close in Layla when sketch is ready.' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
+        self.createLine ( [ 'advice', 'Optionally can provide a starting monomer for the sketch:' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
         
         self.createLine ( [ 'widget','MOLIN' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH','MOL']] )
         self.createLine ( [ 'widget','MOL2IN' ], toggle=['MOLSMILESORSKETCH','open',['MOL2']] )

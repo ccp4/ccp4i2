@@ -31,10 +31,10 @@ class lidiaAcedrgNew_report(Report):
         structureFold = parent.addFold(label='2D Structures',initiallyOpen=True)
         structureGallery = structureFold.addObjectGallery(style='float:left;border:1px solid black;',height='360px', tableWidth='260px', contentWidth='360px')
         clearingDiv = parent.addDiv(style="clear:both;")
-        svgNodes = self.xmlnode.findall('.//Lidia/SVGNode')
+        svgNodes = self.xmlnode.findall('.//Layla/SVGNode')
         for svgNode in svgNodes:
             #Append the pretty printed svg for each SVGNode
-            structureDiv = structureGallery.addDiv(label='From Lidia', title='From Lidia',style='width:355px;height:355px;border:0px solid white;')
+            structureDiv = structureGallery.addDiv(label='From Layla', title='From Layla',style='width:355px;height:355px;border:0px solid white;')
             structureDiv.append(etree.tostring(svgNode[0]).decode("utf-8"))
         svgNodes = self.xmlnode.findall('.//Acedrg/SVGNode')
         for svgNode in svgNodes:
