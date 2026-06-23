@@ -935,13 +935,6 @@ class ProjectViewSet(ModelViewSet):
             if not new_directory:
                 return api_error("new_directory is required", status=400)
 
-            # "__default__" means: move to the standard location derived from
-            # the project name (mirrors behaviour in the create flow).
-            if new_directory == "__default__":
-                new_directory = str(
-                    pathlib.Path(settings.CCP4I2_PROJECTS_DIR) / slugify(project.name)
-                )
-
             old_directory = project.directory
 
             if old_directory == new_directory:

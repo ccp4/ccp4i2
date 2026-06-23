@@ -76,25 +76,6 @@ class ProjectSerializer(ModelSerializer):
         model = models.Project
         fields = "__all__"
 
-    def validate(self, attrs):
-        # Validation will depend on whether this is a new project or an update
-        # If this is a new project (i.e. no existing instance), we need to provide a default for the directory
-        instance = (
-            self.instance
-        )  # This is the instance being updated (or None if creating)
-
-        if instance is None:
-            if (
-                "directory" not in attrs
-                or not attrs["directory"]
-                or len(attrs["directory"]) == 0
-                or attrs["directory"] == "__default__"
-            ):
-                attrs["directory"] = str(
-                    Path(settings.CCP4I2_PROJECTS_DIR) / slugify(attrs["name"])
-                )
-        return super().validate(attrs)
-
     def create(self, validated_data):
 
         Path(validated_data["directory"]).mkdir(parents=True, exist_ok=True)

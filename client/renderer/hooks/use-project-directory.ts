@@ -5,7 +5,7 @@ import path from "path";
  * Manages directory selection state and Electron IPC for the project directory
  * field on both the new-project ("create") and edit-project ("move") forms.
  *
- * Create mode: shows a Default/Custom toggle; uses "locate-ccp4i2-project-directory"
+ * Create mode: shows a Default/Custom toggle; uses ""
  *   so the parent-directory choice is persisted to the Electron store.
  * Move mode: shows the current directory read-only; uses "select-directory"
  *   for a one-off pick that does NOT alter the global default.
@@ -123,13 +123,11 @@ export function useProjectDirectory(name: string, mode: "create" | "move") {
    * - create + default mode     → null           (server picks its own default)
    * - create + custom mode      → computedDirectory
    * - move  + "keep"            → null           (no move)
-   * - move  + "default"         → "__default__"  (server computes default path)
    * - move  + "custom" + parent → computedDirectory
    * - move  + "custom" + empty  → null           (picker not yet used)
    */
   const effectiveDirectory = useMemo<string | null>(() => {
     if (mode === "create") return customMode ? computedDirectory : null;
-    if (moveMode === "default") return "__default__";
     if (moveMode === "custom" && parentDirectory) return computedDirectory;
     return null;
   }, [mode, customMode, moveMode, computedDirectory, parentDirectory]);

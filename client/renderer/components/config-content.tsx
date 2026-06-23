@@ -68,12 +68,6 @@ export const ConfigContent: React.FC = () => {
         router.push("/ccp4i2");
       } else if (data.message === "check-file-exists") {
         if (config) {
-          if (data.path === config.CCP4I2_PROJECTS_DIR) {
-            setExistingFiles((prevState: any) => ({
-              ...prevState,
-              CCP4I2_PROJECTS_DIR: data.exists,
-            }));
-          }
           if (data.path === config.CCP4Dir) {
             setExistingFiles((prevState: any) => ({
               ...prevState,
@@ -129,9 +123,6 @@ export const ConfigContent: React.FC = () => {
         );
         window.electronAPI.onMessage("message-from-main", messageHandler);
         window.electronAPI.sendMessage("check-file-exists", {
-          path: config.CCP4I2_PROJECTS_DIR,
-        });
-        window.electronAPI.sendMessage("check-file-exists", {
           path: config.CCP4Dir,
         });
         window.electronAPI.sendMessage("check-file-exists", {
@@ -155,14 +146,6 @@ export const ConfigContent: React.FC = () => {
   const onLaunchBrowser = async () => {
     if (typeof window !== "undefined" && window?.electronAPI) {
       window.electronAPI.sendMessage("locate-ccp4");
-    } else {
-      console.error("Electron API is not available");
-    }
-  };
-
-  const onSelectProjectsDir = async () => {
-    if (typeof window !== "undefined" && window.electronAPI) {
-      window.electronAPI.sendMessage("locate-ccp4i2-project-directory");
     } else {
       console.error("Electron API is not available");
     }
@@ -325,39 +308,6 @@ export const ConfigContent: React.FC = () => {
                 >
                   {config.venv_python || "Not found"}
                 </Typography>
-              </Stack>
-
-              {/* Projects Directory */}
-              <Stack direction="row" alignItems="center" spacing={1}>
-                {existingFiles?.CCP4I2_PROJECTS_DIR ? (
-                  <Check color="success" fontSize="small" />
-                ) : (
-                  <Cancel color="error" fontSize="small" />
-                )}
-                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
-                  Projects
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    flex: 1,
-                    fontFamily: "monospace",
-                    fontSize: "0.75rem",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {config.CCP4I2_PROJECTS_DIR}
-                </Typography>
-                <Button
-                  size="small"
-                  onClick={onSelectProjectsDir}
-                  disabled={!(typeof window !== "undefined" && window.electronAPI)}
-                >
-                  Change
-                </Button>
               </Stack>
 
               {/* Requirements */}

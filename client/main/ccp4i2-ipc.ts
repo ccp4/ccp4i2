@@ -179,8 +179,6 @@ export const installIpcHandlers = (
       });
   });
 
-  // IPC communication to trigger file dialog to select parent directory for new projects
-  // and set the CCP4I2_PROJECTS_DIR in the store
   ipcMain.on("check-file-exists", (event, data) => {
     event.reply("message-from-main", {
       message: "check-file-exists",
@@ -211,27 +209,6 @@ export const installIpcHandlers = (
       });
   });
 
-  // IPC communication to trigger file dialog to select parent directory for new projects
-  // and set the CCP4I2_PROJECTS_DIR in the store
-  ipcMain.on("locate-ccp4i2-project-directory", (event, data) => {
-    const mainWindow: BrowserWindow | null = getMainWindow();
-    if (!mainWindow) {
-      console.error("Main window is not available");
-      return;
-    }
-    dialog
-      .showOpenDialog(mainWindow, {
-        properties: ["openDirectory", "createDirectory"],
-      })
-      .then((result) => {
-        if (!result.canceled) {
-          console.log("Selected directory:", result.filePaths);
-          store.set("CCP4I2_PROJECTS_DIR", result.filePaths[0]);
-          event.reply("message-from-main", getConfigResponse());
-        }
-      });
-  });
-
   // IPC communication to trigger file dialog to start the uvicorn (django) server
   ipcMain.on("start-uvicorn", async (event, _data) => {
     if (!djangoServerPort) return;
@@ -241,8 +218,7 @@ export const installIpcHandlers = (
       getProjectRoot(), // Always computed, not from store
       djangoServerPort,
       nextServerPort,
-      isDev,
-      store.get("CCP4I2_PROJECTS_DIR")
+      isDev
     );
     setDjangoServer(djangoServer);
     event.reply("message-from-main", {

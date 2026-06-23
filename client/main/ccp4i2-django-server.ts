@@ -87,7 +87,6 @@ export function findPython(CCP4Dir: string, projectRoot: string): string | null 
  * @param UVICORN_PORT - The port number for the Uvicorn server.
  * @param NEXT_PORT - The port number for the Next.js server.
  * @param isDev - A boolean flag indicating whether the server is running in development mode.
- * @param CCP4I2_PROJECTS_DIR - The directory where CCP4i2 projects are stored.
  * @returns The spawned Python process running the Uvicorn server.
  */
 export async function startDjangoServer(
@@ -96,7 +95,6 @@ export async function startDjangoServer(
   UVICORN_PORT: number,
   NEXT_PORT: number,
   isDev: boolean = false,
-  CCP4I2_PROJECTS_DIR: string = ""
 ) {
   // Set up CCP4 environment variables (still needed for $CLIBD, $CBIN, etc.)
   if (process.platform === "win32") {
@@ -112,11 +110,6 @@ export async function startDjangoServer(
       `Could not find Python interpreter. ` +
         `Please ensure CCP4 is installed with ccp4-python in ${CCP4Dir}/bin.`
     );
-  }
-
-  if (CCP4I2_PROJECTS_DIR.length > 0) {
-    process.env.CCP4I2_PROJECTS_DIR = CCP4I2_PROJECTS_DIR;
-    process.env.CCP4I2_DB_FILE = path.join(CCP4I2_PROJECTS_DIR, "db.sqlite3");
   }
 
   console.log(`🚀 Next.js running on http://localhost:${NEXT_PORT}`);
