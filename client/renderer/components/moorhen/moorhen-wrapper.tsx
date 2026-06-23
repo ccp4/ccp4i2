@@ -79,14 +79,26 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     viewParam: viewParam ?? null,
     onViewRestored: () => {},
   });
-  // Container ref for measuring available height below the AppBar
+  // Container ref for measuring available height below the AppBar.
+  // Moorhen 1.0 no longer accepts a setMoorhenDimensions callback; it takes a
+  // static `size` prop and otherwise defaults to the full window.innerHeight,
+  // which overflows the viewport because the viewer renders under a toolbar.
+  // So we measure the container's offset and feed Moorhen an explicit size,
+  // keeping it in sync on window resize.
   const moorhenContainerRef = useRef<HTMLDivElement>(null);
-  const setMoorhenDimensions = useCallback((): [number, number] => {
-    if (moorhenContainerRef.current) {
-      const top = moorhenContainerRef.current.getBoundingClientRect().top;
-      return [window.innerWidth, window.innerHeight - top];
-    }
-    return [window.innerWidth, window.innerHeight];
+  const [size, setSize] = useState<[number, number]>(() =>
+    typeof window === "undefined"
+      ? [0, 0]
+      : [window.innerWidth, window.innerHeight]
+  );
+  useEffect(() => {
+    const measure = () => {
+      const top = moorhenContainerRef.current?.getBoundingClientRect().top ?? 0;
+      setSize([window.innerWidth, window.innerHeight - top]);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
@@ -1002,8 +1014,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     store,
     viewOnly: false,
     extraSidePanels,
-    setMoorhenDimensions,
-  }), [urlPrefix, store, extraSidePanels, setMoorhenDimensions]);
+    size,
+  }), [urlPrefix, store, extraSidePanels, size]);
 
   useEffect(() => {
     if (fileIds && cootInitialized) {
