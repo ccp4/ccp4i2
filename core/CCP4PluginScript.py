@@ -204,16 +204,6 @@ class CPluginScript(CObject):
     def setCommand(self,command):
         self._command = command
 
-    def modifyCootBat(self, cootBat):
-        from core import CCP4Utils
-        if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
-            return None
-        text = CCP4Utils.readFile(cootBat)
-        text0 = re.sub('start /affinity 1 coot-bin.exe %*', 'start /wait /affinity 1 coot-bin.exe %*', text)
-        modFile = os.path.join(CCP4Utils.getDotDirectory(), 'runwincoot.bat')
-        CCP4Utils.saveFile(modFile, text0, overwrite=True)
-        return modFile
-
     def getCommand(self, exeName=None):
         if not self.RUNEXTERNALPROCESS:
             return None
@@ -225,18 +215,6 @@ class CPluginScript(CObject):
         #print 'CPluginScript.getCommand exeName',exeName
         if exeName is None:
             return None
-        if exeName == 'coot':
-            #if sys.platform == 'win32':
-            #  exePath = os.path.join(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE),'bin','coot-real.exe')
-            #else:
-            exePath = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
-            if sys.platform == 'win32':
-                altpath = self.modifyCootBat(exePath)
-                if altpath is not None and os.path.exists(altpath):
-                    exePath = altpath
-                    print("Using ",exePath)
-            if exePath is not None and not os.path.exists(exePath):
-                exePath = None
         elif exeName == 'ccp4mg':
             exePath = str(CCP4Modules.PREFERENCES().CCP4MG_EXECUTABLE)
             if exePath is None or not  os.path.exists(exePath):
