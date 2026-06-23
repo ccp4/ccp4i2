@@ -435,6 +435,16 @@ def write_partitioned_masks(model, ref_inst, segments_list, cell, spacegroup,
 
     nsets = []
     for g, arr, path in zip(grids, arrs, paths):
+        # Stamp the header spacegroup to P1, AFTER sizing/filling/competition.
+        # An NCS averaging mask is a shape that does not obey crystallographic
+        # symmetry (dm takes the crystal symmetry from the MTZ, not the mask);
+        # the crystal spacegroup in the header only makes viewers draw spurious
+        # symmetry mates. set_points_around is spacegroup-agnostic, so this is
+        # data- and grid-dimension-identical -- the build above keeps the
+        # crystal spacegroup so the sampling stays the symmetry-compatible grid
+        # dm expects; we change only ISPG here. (The PBC wrap into [0,1) and the
+        # lattice shift -- which the operators share -- are left untouched.)
+        g.spacegroup = gemmi.SpaceGroup('P 1')
         ccp4 = gemmi.Ccp4Mask()
         ccp4.grid = g
         ccp4.update_ccp4_header()
