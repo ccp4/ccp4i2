@@ -5,6 +5,7 @@ import { ClientStoreProvider } from "@/providers/client-store-provider";
 import { useCampaignsApi } from "@/lib/campaigns-api";
 import { useMoorhenBreadcrumbs } from "@/providers/moorhen-breadcrumb-context";
 import CampaignMoorhenWrapper from "@/components/moorhen/campaign-moorhen-wrapper";
+import type { MoorhenScene } from "@/types/moorhen-scene";
 
 // Inner component that uses useSearchParams (requires Suspense boundary)
 function CampaignPageContent() {
@@ -13,6 +14,7 @@ function CampaignPageContent() {
   const searchParams = useSearchParams();
   const viewParam = searchParams?.get("view");
   const jobParam = searchParams?.get("job"); // Optional: specific job to load
+  const summaryMode = searchParams?.get("summary") === "1"; // Campaign overview
   const campaignId = id ? parseInt(id as string) : null;
   const initialJobId = jobParam ? parseInt(jobParam) : null;
 
@@ -54,8 +56,41 @@ function CampaignPageContent() {
     setSelectedJobId(null); // Reset to auto-select latest job
   }, []);
 
+  // Summary mode: fetch the campaign overview scene.
+  //
+  // The deps here must stay free of unstable values. `campaignsApi` is a fresh
+  // object every render, and `summaryLoading`-style state we set in the effect
+  // would also churn the deps — either makes the effect re-run mid-flight, fire
+  // its cleanup, and cancel the in-flight fetch, so the scene gets fetched and
+  // then silently discarded. We depend only on the stable inputs and rely on
+  // the `cancelled` flag (which is StrictMode-safe: the second mount re-fetches
+  // and wins).
+  const [summaryScene, setSummaryScene] = useState<MoorhenScene | null>(null);
+  useEffect(() => {
+    if (!summaryMode || campaignId === null) return;
+    let cancelled = false;
+    campaignsApi
+      .fetchSummaryScene(campaignId)
+      .then((res) => {
+        if (!cancelled) setSummaryScene(res.scene);
+      })
+      .catch((err) => {
+        console.error("Failed to load campaign summary scene:", err);
+      });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [summaryMode, campaignId]);
+
   // Determine which files to load based on selection
   const fileIds = useMemo(() => {
+    // Summary overview: the scene is applied by the Scenes panel (via the
+    // summaryScene prop), not the file loader — so load nothing here.
+    if (summaryMode) {
+      return { type: "none" as const };
+    }
+
     // If a specific job is selected, load that job
     if (selectedJobId !== null) {
       return { type: "job" as const, jobId: selectedJobId };
@@ -94,7 +129,7 @@ function CampaignPageContent() {
     }
     // Note: maps would need to be added here when parent has map files
     return { type: "files" as const, fileIds: ids };
-  }, [parentFiles, selectedMemberProjectId, selectedJobId, memberProjects]);
+  }, [parentFiles, selectedMemberProjectId, selectedJobId, memberProjects, summaryMode]);
 
   // Build breadcrumbs for the layout AppBar
   const { setBreadcrumbs } = useMoorhenBreadcrumbs();
@@ -165,6 +200,7 @@ function CampaignPageContent() {
       <CampaignMoorhenWrapper
         campaign={campaign}
         fileSource={fileIds}
+        summaryScene={summaryMode ? summaryScene : null}
         viewParam={viewParam}
         sites={sites || []}
         onUpdateSites={handleUpdateSites}

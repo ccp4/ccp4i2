@@ -6,7 +6,9 @@ from lxml import etree
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.mgimports import PhmmerReportNoGui
+# PhmmerReportNoGui (via ccp4mg) imported lazily at its point of use below, so
+# this plugin stays importable on the slim, CCP4-free API. It runs only at job
+# execution on the CCP4-bearing worker, which also launches CCP4MG itself.
 
 
 class ccp4mg_edit_model(CPluginScript):
@@ -205,6 +207,7 @@ class ccp4mg_edit_model(CPluginScript):
                             shutil.copyfile(log, os.path.join(self.workDirectory,"mrbump_"+os.path.basename(log)))
                     if mrBumpDir is not None:
                         try:
+                            from ccp4i2.core.mgimports import PhmmerReportNoGui  # lazy: ccp4mg, execution only
                             win = PhmmerReportNoGui()
                             win.setResultsDir(mrBumpDir)
                             svg = win.svg(500,short=True)

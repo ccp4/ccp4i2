@@ -111,7 +111,7 @@ export const store = new Store<StoreSchema>({
     CCP4Dir: getDefaultCCP4Dir(),
     projectRoot: getProjectRoot(), // Computed, not user-configurable
     devMode: false,
-    zoomLevel: -2,
+    zoomLevel: 0,
     theme: "dark",
   },
 });

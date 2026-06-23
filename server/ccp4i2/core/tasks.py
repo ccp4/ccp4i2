@@ -18,6 +18,12 @@ class Task:
     reportPath: str = None
     runningReport: bool = False
     watchedFile: str = None
+    # True only if the task's execution needs NO CCP4 binary or $CCP4 environment
+    # (e.g. pure gemmi/python). Such tasks may run inline on a CCP4-free server.
+    # Conservative default False: a task is assumed to need CCP4 until proven
+    # otherwise (and verified by the CCP4-free behavioural guard). See
+    # lib/utils/jobs/context_run.can_run_local().
+    ccp4_free: bool = False
 
 
 TASKS = {
@@ -129,6 +135,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents:ProvideAsuContents",
         defXmlPath="wrappers/ProvideAsuContents/script/ProvideAsuContents.def.xml",
         reportPath="ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report:ProvideAsuContents_report",
+        ccp4_free=True,  # gemmi-native Matthews (no matthews_coef binary)
     ),
     "ProvideSequence": Task(
         shortTitle="Import Sequence",
@@ -391,6 +398,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coordinate_selector.script.coordinate_selector:coordinate_selector",
         defXmlPath="wrappers/coordinate_selector/script/coordinate_selector.def.xml",
         reportPath="ccp4i2.wrappers.coordinate_selector.script.coordinate_selector_report:coordinate_selector_report",
+        ccp4_free=True,  # pure gemmi/file ops
     ),
     "coot1": Task(
         title="Coot 1",
@@ -603,6 +611,14 @@ TASKS = {
         defXmlPath="wrappers/dials_rlattice/script/dials_rlattice.def.xml",
         reportPath="ccp4i2.wrappers.dials_rlattice.script.dials_rlattice_report:dials_rlattice_report",
     ),
+    "dm_multidomain": Task(
+        title="Multi-domain NCS averaging (dm)",
+        description="Improve phases by NCS averaging with per-domain operators (dm)",
+        shortTitle="DM multi-domain",
+        pluginPath="ccp4i2.wrappers.dm_multidomain.script.dm_multidomain:dm_multidomain",
+        defXmlPath="wrappers/dm_multidomain/script/dm_multidomain.def.xml",
+        reportPath="ccp4i2.wrappers.dm_multidomain.script.dm_multidomain_report:dm_multidomain_report",
+    ),
     "dr_mr_modelbuild_pipeline": Task(
         title="Data Reduction, MR, Model build pipeline",
         shortTitle="Data Reduction, MR, model building",
@@ -659,6 +675,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.freerflag.script.freerflag:freerflag",
         defXmlPath="wrappers/freerflag/script/freerflag.def.xml",
         reportPath="ccp4i2.wrappers.freerflag.script.freerflag_report:freerflag_report",
+        ccp4_free=True,  # gemmi-native free-R generation (no freerflag binary)
     ),
     "gesamt": Task(
         title="Structural alignment - Gesamt",
@@ -690,6 +707,70 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.imosflm.script.imosflm:imosflm",
         defXmlPath="wrappers/imosflm/script/imosflm.def.xml",
         reportPath="ccp4i2.wrappers.imosflm.script.imosflm_report:imosflm_report",
+    ),
+    # --- Simple single-datatype import tasks (CLI/API file ingestion) ---
+    "ImportCoordinate": Task(
+        title="Import a coordinate file",
+        description="Import a PDB or mmCIF coordinate file into the project",
+        shortTitle="Import coordinates",
+        pluginPath="ccp4i2.wrappers.ImportCoordinate.script.ImportCoordinate:ImportCoordinate",
+        defXmlPath="wrappers/ImportCoordinate/script/ImportCoordinate.def.xml",
+    ),
+    "ImportDictionary": Task(
+        title="Import a restraint dictionary",
+        description="Import a monomer / restraint dictionary (CIF) into the project",
+        shortTitle="Import dictionary",
+        pluginPath="ccp4i2.wrappers.ImportDictionary.script.ImportDictionary:ImportDictionary",
+        defXmlPath="wrappers/ImportDictionary/script/ImportDictionary.def.xml",
+    ),
+    "ImportMap": Task(
+        title="Import a map file",
+        description="Import a CCP4 / MRC format map file into the project",
+        shortTitle="Import map",
+        pluginPath="ccp4i2.wrappers.ImportMap.script.ImportMap:ImportMap",
+        defXmlPath="wrappers/ImportMap/script/ImportMap.def.xml",
+    ),
+    "ImportSequence": Task(
+        title="Import a sequence file",
+        description="Import a FASTA / PIR / plain sequence file into the project",
+        shortTitle="Import sequence",
+        pluginPath="ccp4i2.wrappers.ImportSequence.script.ImportSequence:ImportSequence",
+        defXmlPath="wrappers/ImportSequence/script/ImportSequence.def.xml",
+    ),
+    "ImportAsuContent": Task(
+        title="Import ASU contents",
+        description="Import an existing ASU contents definition (.asu.xml) into the project",
+        shortTitle="Import ASU contents",
+        pluginPath="ccp4i2.wrappers.ImportAsuContent.script.ImportAsuContent:ImportAsuContent",
+        defXmlPath="wrappers/ImportAsuContent/script/ImportAsuContent.def.xml",
+    ),
+    "ImportObs": Task(
+        title="Import observed reflections",
+        description="Extract an observed-reflections mini-MTZ from a full MTZ file",
+        shortTitle="Import observations",
+        pluginPath="ccp4i2.wrappers.ImportObs.script.ImportObs:ImportObs",
+        defXmlPath="wrappers/ImportObs/script/ImportObs.def.xml",
+    ),
+    "ImportMapCoeffs": Task(
+        title="Import map coefficients",
+        description="Extract a map-coefficient (F,PHI) mini-MTZ from a full MTZ file",
+        shortTitle="Import map coefficients",
+        pluginPath="ccp4i2.wrappers.ImportMapCoeffs.script.ImportMapCoeffs:ImportMapCoeffs",
+        defXmlPath="wrappers/ImportMapCoeffs/script/ImportMapCoeffs.def.xml",
+    ),
+    "ImportFreeR": Task(
+        title="Import free-R flags",
+        description="Extract a free-R flag mini-MTZ from a full MTZ file",
+        shortTitle="Import free-R",
+        pluginPath="ccp4i2.wrappers.ImportFreeR.script.ImportFreeR:ImportFreeR",
+        defXmlPath="wrappers/ImportFreeR/script/ImportFreeR.def.xml",
+    ),
+    "ImportPhases": Task(
+        title="Import phases",
+        description="Extract a phase (HL or Phi/FOM) mini-MTZ from a full MTZ file",
+        shortTitle="Import phases",
+        pluginPath="ccp4i2.wrappers.ImportPhases.script.ImportPhases:ImportPhases",
+        defXmlPath="wrappers/ImportPhases/script/ImportPhases.def.xml",
     ),
     "import_merged": Task(
         title="Import merged reflection data",
@@ -875,6 +956,7 @@ TASKS = {
         shortTitle="MTZ Header",
         pluginPath="ccp4i2.wrappers.mtzheader.script.mtzheader:mtzheader",
         defXmlPath="wrappers/mtzheader/script/mtzheader.def.xml",
+        ccp4_free=True,  # gemmi-native MTZ header read
     ),
     "mtzutils": Task(
         title="Add or delete MTZ columns",
@@ -1275,6 +1357,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.splitMtz.script.splitMtz:splitMtz",
         defXmlPath="wrappers/splitMtz/script/splitMtz.def.xml",
         reportPath="ccp4i2.wrappers.splitMtz.script.splitMtz_report:splitMtz_report",
+        ccp4_free=True,  # gemmi-native MTZ split
     ),
     "tableone": Task(
         title="Generate Table One",

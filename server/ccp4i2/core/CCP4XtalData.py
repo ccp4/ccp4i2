@@ -13,26 +13,35 @@ from ccp4i2.core.cdata_stubs.CCP4XtalData import CAltSpaceGroupStub, CAltSpaceGr
 
 
 def cells_are_compatible(params1, params2, tolerance=1.0):
-    """Compare two unit cells using Clipper's reciprocal-space algorithm.
+    """Compare two unit cells using Clipper's Cell::equals() algorithm.
 
-    Two cells disagree if the difference in their orthogonalisation matrices
-    is sufficient to map a reflection from one cell onto a different reflection
-    in the other cell at the given tolerance (resolution in Angstroms).
+    This is a direct numpy port of ``clipper::Cell::equals(other, tol)``
+    (clipper/core/cell.cpp), so no clipper/CCP4 binary is required.  Clipper's
+    test compares the *fractionalisation* matrices (the inverse of the
+    orthogonalisation matrix, mapping orthogonal -> fractional coordinates),
+    scaled by the cell volume:
 
-    This implements the Clipper Cell::equals() algorithm which considers
-    reciprocal space vectors and finds the resolution at which reflections
-    would be mis-indexed by more than 0.5 reciprocal lattice units.
+        s = sum_ij ( frac1[i,j] - frac2[i,j] )^2
+        compatible  <=>  s < tol^2 / vol1^1.333
+
+    Equivalently ``sqrt(s) * vol1^0.6665 < tol``.  Because the fractionalisation
+    matrix is in reciprocal (1/Angstrom) units, a length change on a long axis
+    counts less than the same change on a short axis, and the vol^1.333 scaling
+    restores Angstrom-like units for the tolerance.  Verified bit-for-bit against
+    clipper (see tests/parity/test_cell_compatibility_clipper_parity.py).
+
+    Note the (deliberate, clipper-matching) asymmetry: the volume used is that of
+    ``params1`` — i.e. this mirrors ``cell1.equals(cell2, tol)``.
 
     Known limitation — alternative indexing:
-        This test compares cell *dimensions* in reciprocal space but cannot
-        detect when two datasets have been indexed on different settings of
-        the same lattice (e.g. b and c swapped in orthorhombic with b ≈ c).
-        In such cases the cells appear metrically identical yet reflections
-        are associated with the wrong indices.  Detecting this requires
-        comparison of the actual reflection data — pointless (CCP4) or
-        dials.reindex can identify and correct alternative settings.  A
-        future enhancement could call one of these tools as a pre-flight
-        check when sameCrystalAs is declared.
+        This metric test compares cell *geometry* but cannot detect when two
+        datasets have been indexed on different settings of the same lattice
+        (e.g. b and c swapped in orthorhombic with b ≈ c).  In such cases the
+        cells appear metrically identical yet reflections are associated with the
+        wrong indices.  Detecting this requires comparison of the actual
+        reflection data — pointless (CCP4) or dials.reindex can identify and
+        correct alternative settings.  A future enhancement could call one of
+        these tools as a pre-flight check when sameCrystalAs is declared.
 
     Used by:
         - CMtzData.clipperSameCell()  — content-level cell comparison
@@ -42,18 +51,16 @@ def cells_are_compatible(params1, params2, tolerance=1.0):
     Args:
         params1: Tuple of (a, b, c, alpha, beta, gamma) for cell 1
         params2: Tuple of (a, b, c, alpha, beta, gamma) for cell 2
-        tolerance: Resolution tolerance in Angstroms (default 1.0).
-                  Cells are compatible if mis-indexing doesn't occur
-                  until resolution coarser than this value (larger d).
+        tolerance: Frobenius-norm tolerance in Angstroms (default 1.0, matching
+                  clipper's default).  Smaller = stricter.
 
     Returns:
         dict with keys:
             'validity': bool - True if cells are compatible at tolerance
-            'tolerance': float - the resolution tolerance value
-            'difference': float - critical d-spacing where mis-indexing
-                          starts (Å); large value means cells are similar
-            'maximumResolution1': float - max resolution for cell1
-            'maximumResolution2': float - max resolution for cell2
+            'tolerance': float - the tolerance value
+            'difference': float - ||orth1 - orth2||_F (Angstroms); 0 = identical
+            'maximumResolution1': float - nominal max resolution for cell1
+            'maximumResolution2': float - nominal max resolution for cell2
     """
     import math
     import numpy as np
@@ -82,30 +89,25 @@ def cells_are_compatible(params1, params2, tolerance=1.0):
     orth1 = build_orth_matrix(a1, b1, c1, alpha1, beta1, gamma1)
     orth2 = build_orth_matrix(a2, b2, c2, alpha2, beta2, gamma2)
 
-    # Find the resolution at which a reflection would be mis-indexed
-    # by 0.5 reciprocal lattice units or more.  Test along a*, b*, c*.
-    max_resolution = 1000.0
-    orth1_inv = np.linalg.inv(orth1).T
-    orth2_inv = np.linalg.inv(orth2).T
+    # clipper::Cell::equals (clipper/core/cell.cpp):
+    #   s = sum_ij (frac1 - frac2)^2 ; return s < tol^2 / vol^1.333
+    # frac is the fractionalisation matrix (inverse of orthogonalisation) and
+    # vol is the volume of *this* cell (cell 1).
+    frac1 = np.linalg.inv(orth1)
+    frac2 = np.linalg.inv(orth2)
+    s = float(np.sum((frac1 - frac2) ** 2))
+    vol1 = float(np.linalg.det(orth1))
+    threshold = (tolerance ** 2) / (vol1 ** 1.333)
 
-    for axis in [(1, 0, 0), (0, 1, 0), (0, 0, 1)]:
-        hkl = np.array(axis)
-        s1 = orth1_inv @ hkl
-        s2 = orth2_inv @ hkl
-        diff = np.linalg.norm(s1 - s2)
-        if diff > 1e-10:
-            critical_res = 0.5 / (diff * np.linalg.norm(hkl))
-            max_resolution = min(max_resolution, critical_res)
-
-    max_res1 = min(a1, b1, c1) / 2.0
-    max_res2 = min(a2, b2, c2) / 2.0
+    # report a tolerance-comparable scalar: sqrt(s) * vol1^0.6665  (< tolerance)
+    difference = float(np.sqrt(s) * (vol1 ** (1.333 / 2.0)))
 
     return {
-        'validity': max_resolution >= tolerance,
+        'validity': s < threshold,
         'tolerance': tolerance,
-        'difference': max_resolution,
-        'maximumResolution1': max_res1,
-        'maximumResolution2': max_res2
+        'difference': difference,
+        'maximumResolution1': min(a1, b1, c1) / 2.0,
+        'maximumResolution2': min(a2, b2, c2) / 2.0
     }
 
 
@@ -1844,37 +1846,42 @@ class CMtzData(CMtzDataStub):
 
     def matthewsCoeff(self, seqDataFile=None, nRes=None, molWt=None, polymerMode=""):
         """
-        Calculate Matthews coefficient using the CCP4 matthews_coef program.
+        Calculate the Matthews coefficient (gemmi/numpy-native, no CCP4 binary).
 
-        This provides estimates of the number of molecules in the asymmetric unit
-        based on cell volume, space group, and molecular weight.
+        Estimates the number of molecules in the asymmetric unit from cell volume,
+        space group multiplicity and molecular weight. For each candidate count it
+        returns the Matthews coefficient Vm, the percent solvent and the Matthews
+        probability.
+
+        This reimplements the CCP4 ``matthews_coef`` program so the calculation runs
+        on a CCP4-free server (e.g. the inline ProvideAsuContents path). Vm and
+        percent-solvent are exact arithmetic; the probability reproduces
+        matthews_coef's Matthews-1968 distribution from a precomputed density curve
+        (see core/_matthews_data.py), validated to < 1e-3 against the binary across
+        modes P/D/C. No resolution dependence (matthews_coef uses none without a
+        RESO card).
 
         Args:
             seqDataFile: Optional sequence data file to get molecular weight from
-            nRes: Optional number of residues (will estimate MW as 112.5 * nRes)
+            nRes: Optional number of residues (estimates MW as 112.5 * nRes)
             molWt: Optional molecular weight in Daltons (preferred if known)
-            polymerMode: Optional polymer mode string for matthews_coef
+            polymerMode: 'P' protein (default), 'D' nucleic, 'C' complex
 
         Returns:
-            dict: Results containing:
-                - cell_volume: Unit cell volume
-                - results: List of dicts with nmol_in_asu, matth_coef, percent_solvent, prob_matth
+            dict: {'cell_volume': float,
+                   'results': [{'nmol_in_asu', 'matth_coef', 'percent_solvent',
+                                'prob_matth'}, ...]}
 
         Raises:
-            CException: If molecular weight cannot be determined or program fails
-
-        Example:
-            >>> mtz = CMtzDataFile()
-            >>> mtz.setFullPath('/path/to/data.mtz')
-            >>> mtz.loadFile()
-            >>> result = mtz.fileContent.matthewsCoeff(molWt=25000)
-            >>> for r in result['results']:
-            ...     print(f"{r['nmol_in_asu']} copies: {r['percent_solvent']:.1f}% solvent")
+            CException: If molecular weight cannot be determined
         """
-        import os
-        import tempfile
         import math
+        import gemmi
+        import numpy as np
         from ccp4i2.core.base_object.error_reporting import CException
+        from ccp4i2.core._matthews_data import (
+            VM_GRID_START, VM_GRID_STEP, VM_GRID_N, SOLVENT_K, DENSITY,
+        )
 
         # Determine molecular weight
         if seqDataFile is not None:
@@ -1886,124 +1893,77 @@ class CMtzData(CMtzDataStub):
             # Estimated residue weight as per ccp4 matthews_coeff documentation
             molWt = 112.5 * float(nRes)
 
-        if molWt is None or molWt < 0.01:
+        if molWt is None or float(molWt) < 0.01:
             raise CException(self.__class__, 410, str(seqDataFile))
+        molWt = float(molWt)
 
-        # Create temporary files for output
-        f1 = tempfile.mkstemp()
-        os.close(f1[0])
-        f2 = tempfile.mkstemp()
-        os.close(f2[0])
+        def _num(x):
+            return float(x.value) if hasattr(x, 'value') else float(x)
 
-        try:
-            # Build command text for matthews_coef
-            com_text = f'MOLWEIGHT {molWt}\nCELL'
+        # Cell volume via gemmi (handles the triclinic formula); angles in degrees
+        a, b, c = (_num(getattr(self.cell, p)) for p in ('a', 'b', 'c'))
+        angles = []
+        for p in ('alpha', 'beta', 'gamma'):
+            ang = _num(getattr(self.cell, p))
+            if ang < 3.0:  # stored in radians
+                ang = ang * 180.0 / math.pi
+            angles.append(ang)
+        cell_volume = gemmi.UnitCell(a, b, c, *angles).volume
 
-            # Get cell parameters
-            for p in ['a', 'b', 'c']:
-                cell_val = getattr(self.cell, p, None)
-                if cell_val is not None:
-                    if hasattr(cell_val, 'value'):
-                        com_text += f' {cell_val.value}'
-                    else:
-                        com_text += f' {cell_val}'
+        # Symmetry multiplicity (number of symmetry operations) via gemmi
+        sg = None
+        spg = getattr(self, 'spaceGroup', None)
+        if spg is not None:
+            if hasattr(spg, 'number'):
+                try:
+                    sg = gemmi.SpaceGroup(int(spg.number()))
+                except Exception:
+                    sg = None
+            if sg is None:
+                try:
+                    sg = gemmi.SpaceGroup(str(spg.value if hasattr(spg, 'value') else spg))
+                except Exception:
+                    sg = None
+        if sg is None:
+            sg = gemmi.SpaceGroup(1)
+        nsym = len(sg.operations())
 
-            for p in ['alpha', 'beta', 'gamma']:
-                angle = getattr(self.cell, p, None)
-                if angle is not None:
-                    if hasattr(angle, 'value'):
-                        a = float(angle.value)
-                    else:
-                        a = float(angle)
-                    # Convert from radians if needed
-                    if a < 3.0:
-                        a = a * 180.0 / math.pi
-                    com_text += f' {a}'
+        # Polymer mode -> solvent constant + probability density curve
+        mode = (str(polymerMode).strip().upper() or 'P')[:1]
+        if mode not in SOLVENT_K:
+            mode = 'P'
+        k = SOLVENT_K[mode]
+        density = DENSITY[mode]
+        grid = [VM_GRID_START + i * VM_GRID_STEP for i in range(VM_GRID_N)]
 
-            # Get space group number
-            sg_number = 1
-            if hasattr(self, 'spaceGroup') and self.spaceGroup is not None:
-                if hasattr(self.spaceGroup, 'number'):
-                    sg_number = self.spaceGroup.number()
-                elif hasattr(self.spaceGroup, 'value'):
-                    # Try to get number from space group name
-                    try:
-                        import gemmi
-                        sg = gemmi.SpaceGroup(str(self.spaceGroup.value))
-                        sg_number = sg.number
-                    except Exception:
-                        sg_number = 1
+        # Candidate molecule counts: matthews_coef reports nmol while solvent > 0
+        rv = {'cell_volume': cell_volume, 'results': []}
+        nmol = 1
+        while True:
+            Vm = cell_volume / (nmol * nsym * molWt)
+            percent_solvent = 100.0 * (1.0 - k / Vm)
+            if percent_solvent <= 0.0:
+                break
+            rv['results'].append({
+                'nmol_in_asu': nmol,
+                'matth_coef': Vm,
+                'percent_solvent': percent_solvent,
+            })
+            nmol += 1
+            if nmol > 2000:  # safety bound (matthews_coef also caps its output)
+                break
 
-            com_text += f'\nSYMM {sg_number}\n'
-            com_text += 'XMLO\nAUTO\n'
+        # Matthews probability: density at each Vm, normalised across the candidates
+        if rv['results']:
+            vms = [r['matth_coef'] for r in rv['results']]
+            probs = np.interp(vms, grid, density, left=density[0], right=density[-1])
+            total = probs.sum()
+            if total > 0:
+                probs = probs / total
+            for r, p in zip(rv['results'], probs):
+                r['prob_matth'] = float(p)
 
-            if polymerMode:
-                com_text += f'\nMODE {polymerMode}'
-
-            # Run matthews_coef using subprocess
-            import subprocess
-            import shutil
-
-            # Find matthews_coef executable
-            ccp4_bin = os.environ.get('CCP4', os.environ.get('CBIN', ''))
-            if ccp4_bin:
-                matthews_exe = os.path.join(ccp4_bin, 'bin', 'matthews_coef')
-            else:
-                # Fall back to PATH
-                matthews_exe = shutil.which('matthews_coef')
-
-            if not matthews_exe or not os.path.exists(matthews_exe):
-                raise CException(self.__class__, 411, 'matthews_coef executable not found')
-
-            # Run the command
-            cmd = [matthews_exe, 'XMLFILE', f1[1]]
-            with open(f2[1], 'w') as log_file:
-                result = subprocess.run(
-                    cmd,
-                    input=com_text,
-                    capture_output=True,
-                    text=True,
-                    timeout=30
-                )
-                log_file.write(result.stdout)
-                if result.stderr:
-                    log_file.write('\n--- STDERR ---\n')
-                    log_file.write(result.stderr)
-
-            if result.returncode != 0 or not os.path.exists(f1[1]):
-                raise CException(self.__class__, 411, f'matthews_coef failed: {result.stderr}')
-
-            # Parse results from XML file
-            rv = {'results': []}
-
-            from ccp4i2.core.CCP4Utils import openFileToEtree
-            x_tree = openFileToEtree(fileName=f1[1])
-
-            try:
-                rv['cell_volume'] = float(x_tree.xpath('cell')[0].get('volume'))
-            except Exception:
-                pass
-
-            x_result_list = x_tree.xpath('result')
-            for x_result in x_result_list:
-                rv['results'].append({
-                    'nmol_in_asu': int(x_result.get('nmol_in_asu'))
-                })
-                for item in ['matth_coef', 'percent_solvent', 'prob_matth']:
-                    rv['results'][-1][item] = float(x_result.get(item))
-
-            return rv
-
-        finally:
-            # Clean up temporary files
-            try:
-                os.unlink(f1[1])
-            except Exception:
-                pass
-            try:
-                os.unlink(f2[1])
-            except Exception:
-                pass
+        return rv
 
 
 class CMtzDataFile(CMtzDataFileStub):

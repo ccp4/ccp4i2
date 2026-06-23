@@ -24,7 +24,17 @@ export const createWindow = async (
     return { action: "deny" }; // Prevent default behavior
   });
   newWindow.webContents.on("did-finish-load", () => {
-    newWindow.webContents.setZoomLevel(store.get("zoomLevel"));
+    // Restore the persisted zoom level, but guard against corrupted/out-of-range
+    // values. A stray accumulated value (e.g. -10.5) renders the whole UI
+    // unusably tiny; and because this runs on *every* load — including dev
+    // hot-reloads — such a value also defeats menu/keyboard zoom, which gets
+    // reset on the next reload. Reset anything outside a sane range back to 0.
+    let zoom = store.get("zoomLevel");
+    if (typeof zoom !== "number" || !Number.isFinite(zoom) || zoom < -3 || zoom > 3) {
+      zoom = 0;
+      store.set("zoomLevel", zoom);
+    }
+    newWindow.webContents.setZoomLevel(zoom);
   });
   // Relay find-in-page results back to renderer
   newWindow.webContents.on("found-in-page", (_event, result) => {

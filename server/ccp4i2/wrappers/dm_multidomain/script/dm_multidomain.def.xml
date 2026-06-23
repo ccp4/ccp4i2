@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>dm_multidomain</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="dm_multidomain">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <requiredContentFlag>4</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="ABCD">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+          <toolTip>Starting phases (required unless calculating from the model)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>False</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+          <sameCrystalLevel>1</sameCrystalLevel>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>Model providing the NCS copies (one chain per copy)</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="ABCDOUT">
+        <className>CPhsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default><subType>1</subType><contentFlag>1</contentFlag></default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CExpPhasPerformance</className>
+      </content>
+      <content id="MASKOUT">
+        <className>CList</className>
+        <qualifiers>
+          <toolTip>Per-body NCS averaging masks (one disjoint mode-0 CCP4 map per averaged rigid body), for inspection/overlay</toolTip>
+        </qualifiers>
+        <subItem>
+          <className>CMapDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <default><subType>4</subType></default>
+          </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="PHASE_SOURCE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>input,model</enumerators>
+          <menuText>Use supplied phases,Calculate from model (servalcat sigmaa)</menuText>
+          <default>input</default>
+          <toolTip>Where the starting phases come from</toolTip>
+        </qualifiers>
+      </content>
+      <content id="ASSEMBLY">
+        <className>CList</className>
+        <qualifiers>
+          <listMinLength>0</listMinLength>
+          <toolTip>NCS instances, one row per copy (row 0 = reference). Each row is space-separated role=chain tokens, e.g. "CDK=A cyclin=B"; a bare chain id uses the single implicit role (homomer), so ["A","B","C"] is n copies of one entity. Blank = auto-detect from the model.</toolTip>
+        </qualifiers>
+        <subItem>
+          <className>CString</className>
+          <qualifiers/>
+        </subItem>
+      </content>
+      <content id="DOMAINS">
+        <className>CList</className>
+        <qualifiers>
+          <listMinLength>1</listMinLength>
+          <toolTip>One per rigid body: comma-separated role:first-last residue ranges that move together + averaging mode. Homomer: "340-485". Cross-chain (CDK C-helix with cyclin N-lobe): "cyclin:10-95,CDK:45-60".</toolTip>
+        </qualifiers>
+        <subItem>
+          <className>CDmDomain</className>
+          <qualifiers/>
+        </subItem>
+      </content>
+      <content id="MODE_SOLVENT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="MODE_HISTOGRAM">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="SOLVENT_CONTENT">
+        <className>CFloat</className>
+        <qualifiers>
+          <max>1.0</max>
+          <min>0.0</min>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>Solvent fraction (blank = estimate from model and cell)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="NCYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <default>10</default>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="MASK_RADIUS">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>2.5</default>
+          <max>6.0</max>
+          <min>1.0</min>
+          <toolTip>Atom radius (A) for building per-domain averaging masks</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

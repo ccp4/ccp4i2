@@ -52,6 +52,15 @@ export function addNewWindowMenuItem(NEXT_PORT: number, DJANGO_PORT: number) {
         },
       })
     );
+    fileMenu.submenu?.append(
+      new MenuItem({
+        label: "Moorhen",
+        accelerator: "CmdOrCtrl+Shift+M",
+        click: () => {
+          createWindow(`http://localhost:${NEXT_PORT}/ccp4i2/moorhen-page`, store);
+        },
+      })
+    );
   }
 
   // Find the Edit menu and add Find item

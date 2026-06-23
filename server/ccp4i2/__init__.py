@@ -16,7 +16,7 @@ MINOR = 0
 PATCH = 0
 
 __version__ = f"{MAJOR}.{MINOR}.{PATCH}"
-__version_date__ = datetime(2025, 12, 10)
+__version_date__ = datetime(2026, 6, 15)
 __version_info__ = (MAJOR, MINOR, PATCH)
 
 I2_TOP = Path(__file__).resolve().parent

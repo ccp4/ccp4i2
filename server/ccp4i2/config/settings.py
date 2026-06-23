@@ -137,12 +137,20 @@ TEMPLATES = [
 STATIC_URL = "/djangostatic/"
 MEDIA_URL = "/files/"
 
-USER_DIR = Path.home().resolve() / ".ccp4i2"
-USER_DIR.mkdir(exist_ok=True)
+from ccp4i2.config import preferences as _preferences
+
+# Shared user preferences (~/.ccp4i2/preferences.json). Precedence for every
+# setting resolved below is: environment variable > preferences.json > default.
+# Cloud (env-driven) is therefore unaffected; the file is the desktop layer that
+# the GUI and the i2/i2run CLI both read, so they stay coherent.
+_PREFS = _preferences.load_preferences()
+
+USER_DIR = _preferences.ccp4i2_home()
+USER_DIR.mkdir(parents=True, exist_ok=True)
 MEDIA_ROOT = USER_DIR / "files"
 
-# Database configuration with DATABASE_URL support
-DATABASE_URL = os.environ.get("DATABASE_URL")
+# Database configuration (env DATABASE_URL > preferences "database" > SQLite default)
+DATABASE_URL = _preferences.resolve("database", env="DATABASE_URL", prefs=_PREFS)
 
 if DATABASE_URL:
     # Parse the DATABASE_URL
@@ -153,6 +161,11 @@ if DATABASE_URL:
         # Handle SQLite DATABASE_URL (format: sqlite:///path/to/db.sqlite)
         # The path is everything after sqlite:// (url.path contains the full path)
         db_path = url.path
+        # Windows drive paths arrive as "/C:/..." (urlparse keeps a leading slash
+        # before the drive letter); strip it so SQLite gets "C:/...". POSIX paths
+        # ("/data/...") have no drive letter and are left unchanged.
+        if len(db_path) >= 3 and db_path[0] == "/" and db_path[1].isalpha() and db_path[2] == ":":
+            db_path = db_path[1:]
         DATABASES = {
             "default": {
                 "ENGINE": "django.db.backends.sqlite3",
@@ -254,11 +267,8 @@ STATICFILES_STORAGE = (
 # Defaults to BASE_DIR (the ccp4i2/ package directory) which is correct for all
 # deployment modes: pip-installed, Electron, Docker, Azure.
 # Environment variable override is available for tests or special configurations.
-CCP4I2_ROOT_ENV = os.environ.get("CCP4I2_ROOT")
-if CCP4I2_ROOT_ENV:
-    CCP4I2_ROOT = Path(CCP4I2_ROOT_ENV)
-else:
-    CCP4I2_ROOT = BASE_DIR
+_ccp4i2_root = _preferences.resolve("ccp4i2Root", env="CCP4I2_ROOT", prefs=_PREFS)
+CCP4I2_ROOT = Path(_ccp4i2_root) if _ccp4i2_root else BASE_DIR
 
 # Note: Static files (icons, report assets) are now served by Next.js from public/
 # Django staticfiles is only used for Electron desktop app where Next.js handles statics

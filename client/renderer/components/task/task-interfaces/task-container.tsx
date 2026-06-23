@@ -16,6 +16,15 @@ import AddFractionalCoordsInterface from "./add_fractional_coords";
 import AddingStatsToMmcifI2Interface from "./adding_stats_to_mmcif_i2";
 import AimlessPipeInterface from "./aimless-pipe";
 import AlternativeImportXIA2Interface from "./AlternativeImportXIA2";
+import ImportAsuContentInterface from "./ImportAsuContent";
+import ImportCoordinateInterface from "./ImportCoordinate";
+import ImportDictionaryInterface from "./ImportDictionary";
+import ImportFreeRInterface from "./ImportFreeR";
+import ImportMapInterface from "./ImportMap";
+import ImportMapCoeffsInterface from "./ImportMapCoeffs";
+import ImportObsInterface from "./ImportObs";
+import ImportPhasesInterface from "./ImportPhases";
+import ImportSequenceInterface from "./ImportSequence";
 import AMPLEInterface from "./ample";
 import ArcimboldoInterface from "./arcimboldo";
 import ArpWarpClassicInterface from "./arp_warp_classic";
@@ -40,6 +49,7 @@ import Crank2Interface from "./crank2";
 import CSymmatchInterface from "./csymmatch";
 import CtruncateInterface from "./ctruncate";
 import DensityCalculatorInterface from "./density_calculator";
+import DmMultidomainInterface from "./dm_multidomain";
 import DialsImageInterface from "./dials_image";
 import DialsRlatticeInterface from "./dials_rlattice";
 import DrMrModelbuildPipelineInterface from "./dr_mr_modelbuild_pipeline";
@@ -148,6 +158,15 @@ const TASK_INTERFACES: Record<
   adding_stats_to_mmcif_i2: AddingStatsToMmcifI2Interface,
   aimless_pipe: AimlessPipeInterface,
   AlternativeImportXIA2: AlternativeImportXIA2Interface,
+  ImportAsuContent: ImportAsuContentInterface,
+  ImportCoordinate: ImportCoordinateInterface,
+  ImportDictionary: ImportDictionaryInterface,
+  ImportFreeR: ImportFreeRInterface,
+  ImportMap: ImportMapInterface,
+  ImportMapCoeffs: ImportMapCoeffsInterface,
+  ImportObs: ImportObsInterface,
+  ImportPhases: ImportPhasesInterface,
+  ImportSequence: ImportSequenceInterface,
   AMPLE: AMPLEInterface,
   arcimboldo: ArcimboldoInterface,
   arp_warp_classic: ArpWarpClassicInterface,
@@ -172,6 +191,7 @@ const TASK_INTERFACES: Record<
   csymmatch: CSymmatchInterface,
   ctruncate: CtruncateInterface,
   density_calculator: DensityCalculatorInterface,
+  dm_multidomain: DmMultidomainInterface,
   dials_image: DialsImageInterface,
   dials_rlattice: DialsRlatticeInterface,
   dr_mr_modelbuild_pipeline: DrMrModelbuildPipelineInterface,

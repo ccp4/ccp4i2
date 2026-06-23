@@ -66,6 +66,7 @@ class DefXmlParser:
                 'CCP4Preferences',
                 'CCP4RefmacData',
                 'CCP4XtalData',
+                'CDmDomain',
             ]
 
             for module_name in implementation_modules:

@@ -14,7 +14,7 @@ __version__ = "0.5"
 
 from argparse import ArgumentParser
 import gemmi
-import pandas as pd
+# pandas imported lazily inside main() — only needed at execution (worker)
 
 
 def makeAddressStr(cra):
@@ -59,6 +59,7 @@ def search(st1Cras, st2Cras, output, minCoordDev, minAdpDev):
 
 
 def main(file1, file2, output=None, minCoordDev=0, minAdpDev=0, useHydrogens=False):
+    import pandas as pd  # lazy: pip dep, only at execution (worker)
     print("File 1 is " + file1 + ".")
     print("File 2 is " + file2 + ".")
     try:

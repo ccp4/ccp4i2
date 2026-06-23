@@ -12,7 +12,10 @@ See:
 import math
 import os
 
-import phaser
+try:  # `phaser` present only in the execution (worker) env, not the slim API
+    import phaser
+except ImportError:
+    phaser = None
 from lxml import etree
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript

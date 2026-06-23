@@ -4,7 +4,10 @@ import os
 import shutil
 from math import sqrt
 
-from dxtbx.model.experiment_list import ExperimentList
+try:  # dxtbx present only in the execution (worker) env, not the slim API
+    from dxtbx.model.experiment_list import ExperimentList
+except ImportError:
+    ExperimentList = None
 
 from lxml import etree
 

@@ -7,7 +7,7 @@ import {
   removeMap,
   removeMolecule,
   setRequestDrawScene,
-} from "moorhen";
+} from "moorhen/react-lib";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Box,

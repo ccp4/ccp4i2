@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>ImportPhases</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="ImportPhases">
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <guiLabel>MTZ file</guiLabel>
+          <toolTip>A full MTZ file from which to extract phases (HL coefficients or Phi/FOM)</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="COLUMNS">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <guiLabel>Columns</guiLabel>
+          <toolTip>Comma-separated source phase column labels (HLA,HLB,HLC,HLD or PHI,FOM). Leave blank to auto-detect; required when the file has more than one phase column group.</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="PHSOUT">
+        <className>CPhsDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

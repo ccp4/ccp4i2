@@ -1,9 +1,12 @@
 import os
 import shutil
 
-from ample.constants import AMPLE_PKL
-from ample.util import mrbump_util
-from ample.util.ample_util import I2DIR
+try:
+    from ample.constants import AMPLE_PKL
+    from ample.util import mrbump_util
+    from ample.util.ample_util import I2DIR
+except ImportError:  # `ample` is present only in the execution (worker) env, not on the slim API
+    AMPLE_PKL = mrbump_util = I2DIR = None
 from lxml import etree
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript

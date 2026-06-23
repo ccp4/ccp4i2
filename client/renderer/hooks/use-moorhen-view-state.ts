@@ -20,7 +20,7 @@ import {
   setRequestDrawScene,
   hideMolecule,
   hideMap,
-} from "moorhen";
+} from "moorhen/react-lib";
 import { MoorhenViewState, MOORHEN_DEFAULTS } from "../types/moorhen-view-state";
 import {
   decodeViewState,

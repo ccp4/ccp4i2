@@ -1,0 +1,183 @@
+# Publish ccp4i2-api to PyPI + npm on tag push
+# ============================================================================
+# What this workflow does:
+#   * Runs the package's Python test matrix on every PR or push that touches
+#     packages/ccp4i2-api/ (Python 3.9/3.11/3.12 x Django 4.2/5.2, minus the
+#     impossible 3.9 + 5.2 combination -- Django 5.0 dropped Python 3.9).
+#   * On a tag matching ccp4i2-api-v* (e.g. ccp4i2-api-v0.3.3), additionally:
+#       - builds the Python sdist + wheel and publishes to PyPI via OIDC
+#         (no stored token; PyPI validates the GitHub Actions identity token);
+#       - builds the TypeScript artefacts and publishes to npm via OIDC with
+#         --provenance (no stored token; npm signs the package at build time).
+#
+# Why OIDC instead of stored tokens:
+#   We've burned hand-time twice this week on manual auth flows for 5-line
+#   metadata bumps -- ratio of friction to substance is wrong. OIDC removes
+#   the per-release credential dance entirely: tag the release, push, walk
+#   away.
+#
+# One-time prerequisites BEFORE the first tag triggers this workflow:
+#   1. PyPI: add a Trusted Publisher under
+#      https://pypi.org/manage/project/ccp4i2-api/settings/publishing/
+#        Owner:           ccp4
+#        Repository:      ccp4i2
+#        Workflow:        publish-ccp4i2-api.yml
+#        Environment:     pypi   (matches `environment:` below)
+#   2. npm: add a Trusted Publisher in the package settings at
+#      https://www.npmjs.com/package/@ccp4/ccp4i2-api/access  (Trusted
+#      Publishers tab), with the same owner/repo/workflow/environment.
+#   3. GitHub: optionally create the `pypi` and `npm` environments under
+#      Settings -> Environments and add required reviewers for a manual
+#      gate -- not strictly needed, but cheap insurance against an
+#      accidental tag triggering a publish.
+#
+# Behaviour summary by event:
+#   * PR (paths-filtered to the package)   -> tests only
+#   * push to django or moorhen-scenes,
+#     paths-filtered to the package        -> tests only
+#   * push of tag ccp4i2-api-v*            -> tests + PyPI + npm publish
+#   * manual workflow_dispatch from a tag  -> tests + PyPI + npm publish
+#   * manual workflow_dispatch from branch -> tests only
+# ============================================================================
+
+name: Publish ccp4i2-api
+
+on:
+  push:
+    branches: [django, moorhen-scenes]
+    paths:
+      - 'packages/ccp4i2-api/**'
+      - '.github/workflows/publish-ccp4i2-api.yml'
+    tags:
+      - 'ccp4i2-api-v*'
+  pull_request:
+    paths:
+      - 'packages/ccp4i2-api/**'
+      - '.github/workflows/publish-ccp4i2-api.yml'
+  workflow_dispatch:
+
+# Prevent concurrent publishes from racing each other on the same tag.
+concurrency:
+  group: publish-ccp4i2-api-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test (py${{ matrix.python }} / django${{ matrix.django }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.9', '3.11', '3.12']
+        django: ['4.2', '5.2']
+        exclude:
+          # Django 5.0+ dropped Python 3.9.
+          - python: '3.9'
+            django: '5.2'
+    defaults:
+      run:
+        working-directory: packages/ccp4i2-api
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install package + test extras
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[test]"
+
+      - name: Pin Django ${{ matrix.django }} over the package's loose floor
+        run: |
+          pip install "django~=${{ matrix.django }}.0" "djangorestframework>=3.15"
+
+      - name: Show resolved versions
+        run: |
+          python -c "import django, sys; print('python', sys.version_info); print('django', django.__version__)"
+          pip show ccp4i2-api djangorestframework | grep -E '^Name|^Version'
+
+      - name: Run pytest
+        run: python -m pytest tests/python -v
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/ccp4i2-api-v')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/ccp4i2-api/${{ github.ref_name }}/
+    permissions:
+      # `id-token: write` is what makes the OIDC handshake work. The
+      # action exchanges the GitHub token for a short-lived PyPI token
+      # via PyPI's trusted-publishers config.
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build sdist + wheel
+        working-directory: packages/ccp4i2-api
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+          ls -la dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: packages/ccp4i2-api/dist/
+          # Default repository-url is PyPI proper. Override for TestPyPI
+          # rehearsals by adding repository-url: https://test.pypi.org/legacy/
+
+  publish-npm:
+    name: Publish to npm
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/ccp4i2-api-v')
+    runs-on: ubuntu-latest
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/@ccp4/ccp4i2-api/v/${{ github.ref_name }}
+    permissions:
+      # id-token: write enables npm OIDC trusted publishing + provenance.
+      # contents: read needed for the package's source files.
+      id-token: write
+      contents: read
+    defaults:
+      run:
+        working-directory: packages/ccp4i2-api
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      # actions/setup-node@v4 with Node 20 ships npm 10.8.x, which only
+      # supports OIDC for provenance signing (sigstore) but NOT for the
+      # registry PUT itself. OIDC-based registry auth without a stored
+      # NPM_TOKEN landed in npm 11.5. Without this upgrade, the publish
+      # step succeeds at provenance signing then 404s on the registry
+      # PUT ("'@ccp4/ccp4i2-api@x.y.z' is not in this registry") because
+      # the call is effectively unauthenticated. Caught at 0.3.3 (PyPI
+      # published, npm failed); see also packages/ccp4i2-api/RELEASING.md.
+      - name: Upgrade npm for OIDC registry auth (needs >=11.5)
+        run: npm install -g npm@latest
+
+      - name: Install + build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Publish to npm (with provenance)
+        run: npm publish --access public --provenance

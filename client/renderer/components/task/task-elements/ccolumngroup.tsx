@@ -1,8 +1,6 @@
 import { CCP4i2TaskElementProps } from "./task-element";
 import {
   Box,
-  Card,
-  CardContent,
   Chip,
   FormControlLabel,
   Stack,
@@ -12,6 +10,7 @@ import {
 import { useMemo } from "react";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import { useContainerField } from "./hooks/useContainerField";
+import { FieldShell } from "./field-shell";
 
 // Color mapping for column group types
 const TYPE_COLORS: Record<string, "primary" | "secondary" | "success" | "warning" | "info"> = {
@@ -103,95 +102,71 @@ export const CColumnGroupElement: React.FC<CCP4i2TaskElementProps> = (props) => 
   }
 
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        borderColor: validationColor,
-        borderWidth: 2,
-        bgcolor: selected ? "action.selected" : "background.paper",
-        transition: "all 0.2s ease-in-out",
-        "&:hover": {
-          boxShadow: 2,
-        },
-      }}
-    >
-      <CardContent sx={{ py: 1.5, px: 2, "&:last-child": { pb: 1.5 } }}>
-        <Stack spacing={1}>
-          {/* Header row: Type chip, dataset, selection toggle */}
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            spacing={1}
-          >
-            <Stack direction="row" alignItems="center" spacing={1} sx={{ flex: 1 }}>
-              <Chip
-                icon={<TableChartIcon />}
-                label={typeLabel}
-                color={chipColor}
-                size="small"
-                sx={{ fontWeight: 600 }}
-              />
-              {dataset && (
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {dataset}
-                </Typography>
-              )}
-            </Stack>
-
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={selected}
-                    onChange={handleSelectionChange}
-                    disabled={!isEditable}
-                    size="small"
-                    color="primary"
-                  />
-                }
-                label=""
-                sx={{ m: 0 }}
-              />
-            </Stack>
-          </Stack>
-
-          {/* Column list */}
-          {columnList.length > 0 && (
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 0.5,
-              }}
+    <FieldShell
+      borderColor={validationColor}
+      selected={selected}
+      title={
+        <Stack direction="row" alignItems="center" spacing={1} sx={{ flex: 1, minWidth: 0 }}>
+          <Chip
+            icon={<TableChartIcon />}
+            label={typeLabel}
+            color={chipColor}
+            size="small"
+            sx={{ fontWeight: 600 }}
+          />
+          {dataset && (
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              noWrap
             >
-              {columnList.map((col: string, index: number) => (
-                <Chip
-                  key={`${col}-${index}`}
-                  label={col}
-                  size="small"
-                  variant="outlined"
-                  sx={{
-                    height: 22,
-                    fontSize: "0.75rem",
-                    fontFamily: "monospace",
-                    bgcolor: "background.default",
-                  }}
-                />
-              ))}
-            </Box>
+              {dataset}
+            </Typography>
           )}
         </Stack>
-      </CardContent>
-    </Card>
+      }
+      action={
+        <FormControlLabel
+          control={
+            <Switch
+              checked={selected}
+              onChange={handleSelectionChange}
+              disabled={!isEditable}
+              size="small"
+              color="primary"
+            />
+          }
+          label=""
+          sx={{ m: 0 }}
+        />
+      }
+    >
+      {/* Column list */}
+      {columnList.length > 0 && (
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 0.5,
+          }}
+        >
+          {columnList.map((col: string, index: number) => (
+            <Chip
+              key={`${col}-${index}`}
+              label={col}
+              size="small"
+              variant="outlined"
+              sx={{
+                height: 22,
+                fontSize: "0.75rem",
+                fontFamily: "monospace",
+                bgcolor: "background.default",
+              }}
+            />
+          ))}
+        </Box>
+      )}
+    </FieldShell>
   );
 };
 

@@ -5,6 +5,9 @@ import {
   addMap,
   setActiveMap,
   setContourLevel,
+  setMapStyle,
+  setMapAlpha,
+  setMapColours,
   setTheme,
   setBackgroundColor,
   setRequestDrawScene,
@@ -12,11 +15,10 @@ import {
   MoorhenContainer,
   MoorhenMolecule,
   MoorhenMap,
-} from "moorhen";
-// @ts-ignore - moorhen 0.23 exports may lack .d.ts depending on build
-import { MoorhenInstanceProvider, setShownSidePanel } from "moorhen";
+} from "moorhen/react-lib";
+import { MoorhenInstanceProvider, MoorhenMenuSystem, setShownSidePanel } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenPanel } from "moorhen";
+import type { MoorhenPanel } from "moorhen/react-lib";
 
 import {
   RefObject,
@@ -29,10 +31,28 @@ import {
 import { moorhen } from "moorhen/types/moorhen";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { webGL } from "moorhen/types/mgWebGL";
-import { MoorhenControlPanel } from "./moorhen-control-panel";
+import { MoorhenCcp4i2TabbedPanel } from "./moorhen-ccp4i2-tabbed-panel";
 import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
+import {
+  applyScene,
+  SceneFileFetcher,
+  SceneMapFetcher,
+  SceneResolveResult,
+} from "../../lib/moorhen-scene-resolver";
+import type { SceneFileRef } from "../../types/moorhen-scene";
+import type { SceneBundleAssets } from "./moorhen-scenes-panel";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
+import {
+  liftSceneToBundle,
+  MapRenderState,
+  promoteSceneToPortable,
+  SceneLiftHints,
+  SceneRefUrlResolver,
+} from "../../lib/moorhen-scene-lifter";
+import type { MoorhenScene } from "../../types/moorhen-scene";
 import {
   MoorhenFallback,
   MoorhenErrorBoundary,
@@ -59,14 +79,26 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     viewParam: viewParam ?? null,
     onViewRestored: () => {},
   });
-  // Container ref for measuring available height below the AppBar
+  // Container ref for measuring available height below the AppBar.
+  // Moorhen 1.0 no longer accepts a setMoorhenDimensions callback; it takes a
+  // static `size` prop and otherwise defaults to the full window.innerHeight,
+  // which overflows the viewport because the viewer renders under a toolbar.
+  // So we measure the container's offset and feed Moorhen an explicit size,
+  // keeping it in sync on window resize.
   const moorhenContainerRef = useRef<HTMLDivElement>(null);
-  const setMoorhenDimensions = useCallback((): [number, number] => {
-    if (moorhenContainerRef.current) {
-      const top = moorhenContainerRef.current.getBoundingClientRect().top;
-      return [window.innerWidth, window.innerHeight - top];
-    }
-    return [window.innerWidth, window.innerHeight];
+  const [size, setSize] = useState<[number, number]>(() =>
+    typeof window === "undefined"
+      ? [0, 0]
+      : [window.innerWidth, window.innerHeight]
+  );
+  useEffect(() => {
+    const measure = () => {
+      const top = moorhenContainerRef.current?.getBoundingClientRect().top ?? 0;
+      setSize([window.innerWidth, window.innerHeight - top]);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
@@ -95,7 +127,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     dispatch(setTheme(theme.mode === "light" ? "flatly" : "darkly"));
   }, [theme.mode]);
 
-  // Auto-open the CCP4i2 controls side panel
+  // Auto-open the (single) CCP4i2 side panel on mount. Multi-panel
+  // registration in Moorhen's extension API has a bug where only one
+  // tab renders even with both panels in extraSidePanels; sub-tabs for
+  // scenes vs controls are handled inside the panel content via MUI Tabs
+  // instead.
   useEffect(() => {
     dispatch(setShownSidePanel("ccp4i2Controls"));
   }, [dispatch]);
@@ -123,8 +159,25 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     return state.glRef.origin;
   }, [store]);
 
-  const fetchMolecule = useCallback(async (url: string, molName: string) => {
-    if (!commandCentre.current) return;
+  /**
+   * Core "fetch text, build MoorhenMolecule, register in store" path.
+   * Returns the molecule so callers (notably the scene fetcher) can use
+   * the result; fetchMolecule below wraps this and returns void to keep
+   * existing callers' contract unchanged.
+   */
+  /**
+   * Build a MoorhenMolecule from already-fetched coord text and register
+   * it in the store. Use when bytes are in memory (e.g. from a scene
+   * bundle); skips the apiText round-trip that loadStructure does.
+   * Sets uniqueId from the supplied marker so callers can later identify
+   * the molecule (e.g. `bundle:assets/foo.pdb`).
+   */
+  const loadStructureFromText = useCallback(async (
+    coordText: string,
+    molName: string,
+    uniqueIdMarker: string,
+  ): Promise<moorhen.Molecule | null> => {
+    if (!commandCentre.current) return null;
     const newMolecule = new MoorhenMolecule(
       commandCentre as RefObject<moorhen.CommandCentre>,
       store as any,
@@ -133,12 +186,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     newMolecule.setBackgroundColour(backgroundColor);
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
-      const pdbData = await apiText(url);
-      await newMolecule.loadToCootFromString(pdbData, molName);
+      await newMolecule.loadToCootFromString(coordText, molName);
       if (newMolecule.molNo === -1) {
         throw new Error("Cannot read the fetched molecule...");
       }
-      newMolecule.uniqueId = url;
+      newMolecule.uniqueId = uniqueIdMarker;
 
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
@@ -152,17 +204,37 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       try {
         await newMolecule.addRepresentation("ligands", "/*/*/*/*");
       } catch {
-        console.warn("[fetchMolecule] Ligands representation failed");
+        console.warn("[loadStructureFromText] Ligands representation failed");
       }
 
       await newMolecule.centreOn("/*/*/*/*", false, true);
       dispatch(addMolecule(newMolecule));
       dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
+      return newMolecule;
+    } catch (err) {
+      console.warn(err);
+      console.warn(`Cannot parse coords for ${molName} (${uniqueIdMarker})`);
+      return null;
+    }
+  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch]);
+
+  const loadStructure = useCallback(async (
+    url: string,
+    molName: string,
+  ): Promise<moorhen.Molecule | null> => {
+    try {
+      const pdbData = await apiText(url);
+      return loadStructureFromText(pdbData, molName, url);
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch PDB entry from ${url}, doing nothing...`);
+      return null;
     }
-  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch]);
+  }, [loadStructureFromText]);
+
+  const fetchMolecule = useCallback(async (url: string, molName: string) => {
+    await loadStructure(url, molName);
+  }, [loadStructure]);
 
   const fetchMap = useCallback(async (
     url: string,
@@ -213,6 +285,44 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch map from ${url}`);
+    }
+    return newMap;
+  }, [commandCentre, store, dispatch]);
+
+  // Load a real-space CCP4 map file (application/CCP4-map), e.g. a mask. Unlike
+  // fetchMap (MTZ coefficients), this uses loadToCootFromMapData. Masks get the
+  // shared translucent-solid defaults and are never made the active map.
+  const fetchMapFile = useCallback(async (
+    url: string,
+    mapName: string,
+    opts: { isMask?: boolean } = {},
+  ) => {
+    if (!commandCentre.current) return;
+    const newMap = new MoorhenMap(
+      commandCentre as RefObject<moorhen.CommandCentre>,
+      store as any
+    );
+    try {
+      // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
+      // (no-op if already float). For masks, also nudge the P1/orthogonal cell
+      // off 90° so coot contours periodically instead of clamping to the cell box.
+      let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
+      if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
+      await newMap.loadToCootFromMapData(new Uint8Array(mapData), mapName, false);
+      if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
+      newMap.uniqueId = url;
+      // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
+      (newMap as any).isCcp4MapFile = true;
+      if (opts.isMask) {
+        markMaskMap(newMap);
+      }
+      dispatch(addMap(newMap));
+      if (opts.isMask) {
+        await applyMaskDefaults(dispatch, newMap as any);
+      }
+    } catch (err) {
+      console.warn(err);
+      console.warn(`Cannot fetch map file from ${url}`);
     }
     return newMap;
   }, [commandCentre, store, dispatch]);
@@ -305,11 +415,15 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       const molName = fileInfo.name || fileInfo.job_param_name;
       const mapSubType = fileInfo.sub_type || 1;
       await fetchMap(url, molName, mapSubType);
+    } else if (fileInfo.type === "application/CCP4-map") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      const molName = fileInfo.annotation || fileInfo.name || fileInfo.job_param_name;
+      await fetchMapFile(url, molName, { isMask: isMaskSubType(fileInfo.sub_type) });
     } else if (fileInfo.type === "application/refmac-dictionary") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       await fetchDict(url);
     }
-  }, [fetchMolecule, fetchMap, fetchDict]);
+  }, [fetchMolecule, fetchMap, fetchMapFile, fetchDict]);
 
   /**
    * Load all output files from a job into Moorhen.
@@ -422,13 +536,17 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     }
 
-    // STEP 3: Load all maps
+    // STEP 3: Load all maps (MTZ coefficients and real-space CCP4 maps / masks)
     for (const file of jobOutputFiles) {
       if (file.type === "application/CCP4-mtz-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
         const mapName = file.name || file.job_param_name;
         const mapSubType = file.sub_type || 1;
         await fetchMap(url, mapName, mapSubType);
+      } else if (file.type === "application/CCP4-map") {
+        const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
+        const mapName = file.annotation || file.name || file.job_param_name;
+        await fetchMapFile(url, mapName, { isMask: isMaskSubType(file.sub_type) });
       }
     }
 
@@ -442,7 +560,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
       dispatch(setRequestDrawScene(true));
     }
-  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch, fetchMap, getOrigin]);
+  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch, fetchMap, fetchMapFile, getOrigin]);
 
   // Handle map contour level changes from the control panel slider
   const handleMapContourLevelChange = useCallback(
@@ -522,13 +640,345 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     [jobId]
   );
 
-  // Custom side panel containing our control panel
+  // Scene fetcher: invoked by the resolver for file refs that aren't
+  // already loaded. Routes by ref shape:
+  //   pdb:                       → PDBe proxy (mmCIF)
+  //   fileId + projectId         → ccp4i2 proxy (per-project file id)
+  //   url:                       → direct URL fetch
+  // Returns the molecule that ends up in the store, or null if the fetch
+  // path fails (the resolver then leaves it in unresolvedFiles).
+  //
+  // Bundle assets are kept in a ref that handleApplyScene refreshes
+  // before each apply — keeps the fetcher callbacks stable while
+  // letting per-apply asset maps reach them.
+  const bundleAssetsRef = useRef<SceneBundleAssets>(new Map());
+
+  const handleFetchSceneFile: SceneFileFetcher = useCallback(
+    async (ref: SceneFileRef) => {
+      // Bundle: decode bytes from the in-memory asset map and hand the
+      // text straight to loadStructureFromText — no network round-trip,
+      // no Blob URL (which would get prefixed by the ccp4i2 api-fetch
+      // helper and 404).
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) {
+          console.warn(
+            `[scene] bundle lookup miss: wanted "${ref.bundle}"; keys in map (${bundleAssetsRef.current.size}):`,
+            Array.from(bundleAssetsRef.current.keys()).slice(0, 10),
+          );
+          return null;
+        }
+        try {
+          const coordText = new TextDecoder("utf-8").decode(buf);
+          return await loadStructureFromText(
+            coordText,
+            ref.name || ref.bundle,
+            // Sentinel so matchOneFile recognises re-applies of the
+            // same bundle ref instead of re-fetching.
+            `bundle:${ref.bundle}`,
+          );
+        } catch (err) {
+          console.warn(`[scene] failed to load bundle coord ${ref.bundle}:`, err);
+          return null;
+        }
+      }
+      if (ref.pdb) {
+        const pdbId = ref.pdb.toLowerCase();
+        const url = `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`;
+        return loadStructure(url, ref.name || pdbId);
+      }
+      if (ref.fileId !== undefined && ref.projectId) {
+        const url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+        return loadStructure(url, ref.name || `file_${ref.fileId}`);
+      }
+      if (ref.url) {
+        return loadStructure(ref.url, ref.name || ref.url);
+      }
+      return null;
+    },
+    [loadStructure],
+  );
+
+  // Dictionary fetcher: returns raw CIF text for a `kind: dictionary`
+  // ref. PDB id form is not allowed (validator should reject) — only
+  // url, path, fileId+projectId, cifText, and bundle are valid for dicts.
+  // Dicts may contain multiple `data_comp_*` blocks; the resolver hands
+  // the whole text to Coot in one call so all blocks get parsed in one shot.
+  const handleFetchSceneDictionary = useCallback(
+    async (ref: SceneFileRef): Promise<string | null> => {
+      // Inline text: no network needed. The lifter produces these for
+      // dicts loaded from job outputs where there's no stable URL.
+      if (ref.cifText) return ref.cifText;
+      // Bundle: decode the asset bytes as UTF-8 text.
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) return null;
+        try {
+          return new TextDecoder("utf-8").decode(buf);
+        } catch (err) {
+          console.warn(`[scene] dictionary ${ref.name} bundle decode failed:`, err);
+          return null;
+        }
+      }
+      let url: string | null = null;
+      if (ref.fileId !== undefined && ref.projectId) {
+        url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+      } else if (ref.url) {
+        url = ref.url;
+      }
+      if (!url) return null;
+      try {
+        return await apiText(url);
+      } catch (err) {
+        console.warn(`[scene] failed to fetch dictionary ${ref.name}:`, err);
+        return null;
+      }
+    },
+    [],
+  );
+
+  // Dictionary loader: tells Coot to parse the given CIF and associate
+  // it with the given molNo (use -999999 for global). Matches the
+  // existing fragment-campaign pattern in fetchJobFiles.
+  const handleLoadSceneDictionary = useCallback(
+    async (dictText: string, molNo: number): Promise<void> => {
+      if (!commandCentre.current) return;
+      await commandCentre.current.cootCommand(
+        {
+          returnType: "status",
+          command: "read_dictionary_string",
+          commandArgs: [dictText, molNo],
+          changesMolecules: molNo >= 0 ? [molNo] : [],
+        },
+        false,
+      );
+    },
+    [],
+  );
+
+  // Centralised URL-derivation for any URL-shaped ref kind. Shared by
+  // the fetcher (apply path), the map fetcher, and the promoter (export
+  // path) so they agree on what counts as "a resolvable ref". Declared
+  // here (above the consumers) so the closures pick it up cleanly.
+  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback((ref) => {
+    if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
+    if (ref.fileId !== undefined && ref.projectId) {
+      return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+    }
+    if (ref.url) return ref.url;
+    return null;
+  }, []);
+
+  // Map fetcher: produces a loaded MoorhenMap for a scene `kind: "mtz"`
+  // ref + SceneMap column spec. Bundle-asset bytes short-circuit the
+  // network; URL-resolvable refs go via the existing scene-file URL
+  // logic. Always uses loadToCootFromMtzData (taking raw bytes) so the
+  // bundle path doesn't need a Blob round-trip.
+  const handleFetchSceneMap: SceneMapFetcher = useCallback(
+    async (ref, sceneMap) => {
+      if (!commandCentre.current) return null;
+      let bytes: ArrayBuffer | null = null;
+      let uniqueId: string | null = null;
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) {
+          console.warn(`[scene] map bundle miss: ${ref.bundle}`);
+          return null;
+        }
+        bytes = buf;
+        uniqueId = `bundle:${ref.bundle}`;
+      } else {
+        const url = resolveSceneRefUrl(ref);
+        if (!url) return null;
+        try {
+          bytes = await apiArrayBuffer(url);
+          uniqueId = url;
+        } catch (err) {
+          console.warn(`[scene] map fetch failed for ${ref.name}:`, err);
+          return null;
+        }
+      }
+      try {
+        const newMap = new MoorhenMap(
+          commandCentre as RefObject<moorhen.CommandCentre>,
+          store as any,
+        );
+        if (ref.kind === "map") {
+          // Real-space CCP4 map file (incl. masks): load directly, no columns.
+          // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
+          const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
+          await newMap.loadToCootFromMapData(
+            new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
+            sceneMap.name,
+            !!sceneMap.isDifference,
+          );
+          (newMap as any).isCcp4MapFile = true;
+          if (sceneMap.isMask) markMaskMap(newMap);
+        } else {
+          const cols = sceneMap.columns ?? {};
+          await newMap.loadToCootFromMtzData(
+            new Uint8Array(bytes as ArrayBuffer),
+            sceneMap.name,
+            {
+              F: cols.F,
+              PHI: cols.PHI,
+              Fobs: cols.Fobs,
+              SigFobs: cols.SigFobs,
+              FreeR: cols.FreeR,
+              useWeight: !!cols.useWeight,
+              calcStructFact: !!cols.calcStructFact,
+              isDifference: !!sceneMap.isDifference,
+            } as moorhen.selectedMtzColumns,
+          );
+        }
+        if (newMap.molNo === -1) return null;
+        if (uniqueId) newMap.uniqueId = uniqueId;
+        dispatch(addMap(newMap));
+        if (ref.kind === "map" && sceneMap.isMask) {
+          await applyMaskDefaults(dispatch, newMap as any);
+        }
+        return newMap;
+      } catch (err) {
+        console.warn(`[scene] failed to load map for ${ref.name}:`, err);
+        return null;
+      }
+    },
+    [commandCentre, store, dispatch, resolveSceneRefUrl],
+  );
+
+  // Apply a scene YAML: validate, then hand to the resolver with the
+  // refs/state it needs. Defined here because the wrapper owns dispatch
+  // and the command-centre ref. The optional assets map carries bytes
+  // for any `bundle:` refs the YAML uses; the Scenes panel passes it
+  // when a .scene.zip is loaded.
+  const handleApplyScene = useCallback(
+    async (
+      yamlText: string,
+      assets: SceneBundleAssets = new Map(),
+    ): Promise<SceneResolveResult> => {
+      // Refresh the bundle-assets ref so the (stable-identity) fetchers
+      // see this apply's assets. Cleared back to empty by the next
+      // non-bundled apply.
+      bundleAssetsRef.current = assets;
+      const scene = parseScene(yamlText);
+      return applyScene({
+        scene,
+        molecules,
+        maps,
+        dispatch,
+        fetcher: handleFetchSceneFile,
+        dictionaryFetcher: handleFetchSceneDictionary,
+        dictionaryLoader: handleLoadSceneDictionary,
+        mapFetcher: handleFetchSceneMap,
+      });
+    },
+    [
+      molecules,
+      maps,
+      dispatch,
+      handleFetchSceneFile,
+      handleFetchSceneDictionary,
+      handleLoadSceneDictionary,
+      handleFetchSceneMap,
+    ],
+  );
+
+  // Resolve project context from jobId so downloaded scenes can include
+  // a stable projectId on their file references. Looked up once on mount;
+  // null when the wrapper isn't tied to a job.
+  const [projectInfo, setProjectInfo] = useState<{ id: string; name?: string } | null>(null);
+  useEffect(() => {
+    if (!jobId) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const jobInfo = await apiGet(`jobs/${jobId}`);
+        if (cancelled || !jobInfo?.project) return;
+        // jobInfo.project is the project pk; fetch the uuid + name.
+        const proj = await apiGet(`projects/${jobInfo.project}`);
+        if (cancelled || !proj?.uuid) return;
+        setProjectInfo({ id: proj.uuid, name: proj.name });
+      } catch (err) {
+        console.warn("[wrapper] failed to resolve project for scene authoring:", err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [jobId]);
+
+  // Promote an editor YAML to a fully self-contained scene + asset
+  // bundle: every URL-resolvable ref is fetched into assets/ and
+  // rewritten to bundle: form; ligand dicts that live in Moorhen's
+  // monomer library are re-collected (the lifter omits them so the
+  // captured YAML stays small, but self-contained mode wants them).
+  const handlePromoteSceneToPortable = useCallback(
+    async (
+      yamlText: string,
+      currentAssets: SceneBundleAssets,
+    ): Promise<{ yamlText: string; assets: SceneBundleAssets; warnings: string[] }> => {
+      const scene = parseScene(yamlText);
+      const { scene: out, assets, warnings } = await promoteSceneToPortable({
+        scene,
+        existingAssets: currentAssets,
+        resolveUrl: resolveSceneRefUrl,
+        molecules,
+        monomerLibraryPath: molecules[0]?.monomerLibraryPath,
+      });
+      return { yamlText: serialiseScene(out), assets, warnings };
+    },
+    [molecules, resolveSceneRefUrl],
+  );
+
+  const handleCaptureScene = useCallback(async (): Promise<{
+    scene: MoorhenScene;
+    hints: SceneLiftHints;
+    assets: SceneBundleAssets;
+  }> => {
+    const state = store.getState() as moorhen.State;
+    const glRefState = (state as unknown as { glRef: {
+      origin: number[] | Float32Array;
+      quat: number[] | Float32Array;
+      zoom: number;
+      clipStart?: number;
+      clipEnd?: number;
+      fogStart?: number;
+      fogEnd?: number;
+    } }).glRef;
+    // Flatten Moorhen's per-attribute contour slices into one
+    // MapRenderState per molNo. mapContourSettings is keyed by
+    // molNo across several parallel lists in the redux slice; we
+    // gather them so the lifter can read off a single object.
+    const mapState = collectMapRenderState(state);
+    const activeMapMolNo =
+      (state as unknown as { generalStates?: { activeMap?: moorhen.Map | null } })
+        .generalStates?.activeMap?.molNo;
+    return liftSceneToBundle({
+      molecules,
+      glRef: glRefState,
+      projectId: projectInfo?.id,
+      projectName: projectInfo?.name,
+      // First molecule's monomerLibraryPath is the canonical Moorhen
+      // root (all molecules share it via the wrapper's construction).
+      // Without it the lifter falls back to STANDARD_MONOMERS only.
+      monomerLibraryPath: molecules[0]?.monomerLibraryPath,
+      maps,
+      mapState,
+      activeMapMolNo: typeof activeMapMolNo === "number" ? activeMapMolNo : undefined,
+    });
+  }, [store, molecules, maps, projectInfo]);
+
+  // Custom side panels: CCP4i2 controls + Scenes (YAML editor + lifter +
+  // apply). Scene operations live in the Scenes panel exclusively; the
+  // CCP4i2 control row no longer carries the inline Apply/Download buttons.
+  // Single Moorhen side-panel registration whose content is our own MUI
+  // Tabs container hosting Controls and Scenes sub-panels. This sidesteps
+  // an upstream Moorhen quirk where registering two extraSidePanels only
+  // surfaces one tab in the panel switcher.
   const extraSidePanels: Record<string, MoorhenPanel> = useMemo(() => ({
     ccp4i2Controls: {
       icon: "MatSymSettings",
       label: "CCP4i2",
       panelContent: (
-        <MoorhenControlPanel
+        <MoorhenCcp4i2TabbedPanel
           onFileSelect={fetchFile}
           onJobLoad={fetchJobFiles}
           getViewUrl={getViewUrl}
@@ -537,10 +987,18 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           onMapContourLevelChange={handleMapContourLevelChange}
           onRunServalcat={jobId ? handleRunServalcat : undefined}
           servalcatStatus={servalcatStatus}
+          onApplyScene={handleApplyScene}
+          onCaptureScene={handleCaptureScene}
+          onPromoteSceneToPortable={handlePromoteSceneToPortable}
+          cootInitialized={cootInitialized}
         />
       ),
     },
-  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus]);
+  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, cootInitialized]);
+
+  // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
+  // (it builds the per-instance MoorhenInstance from it). One per wrapper.
+  const menuSystem = useMemo(() => new MoorhenMenuSystem(), []);
 
   const collectedProps = useMemo(() => ({
     glRef,
@@ -556,8 +1014,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     store,
     viewOnly: false,
     extraSidePanels,
-    setMoorhenDimensions,
-  }), [urlPrefix, store, extraSidePanels, setMoorhenDimensions]);
+    size,
+  }), [urlPrefix, store, extraSidePanels, size]);
 
   useEffect(() => {
     if (fileIds && cootInitialized) {
@@ -589,7 +1047,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
       >
         {store && (
-          <MoorhenInstanceProvider>
+          <MoorhenInstanceProvider menuSystem={menuSystem}>
             <MoorhenContainer {...collectedProps} />
           </MoorhenInstanceProvider>
         )}
@@ -599,3 +1057,74 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 };
 
 export default MoorhenWrapper;
+
+// --------------------------------------------------------------------------
+// Helpers — capture-path
+// --------------------------------------------------------------------------
+
+interface ContourEntry {
+  molNo: number;
+  contourLevel?: number;
+  radius?: number;
+  alpha?: number;
+  style?: "lines" | "solid" | "lit-lines";
+  rgb?: { r: number; g: number; b: number };
+}
+
+/**
+ * Flatten Moorhen's mapContourSettings slice — which stores per-attribute
+ * arrays keyed by molNo — into a single MapRenderState per molNo for the
+ * lifter to consume. Defensive: every field is optional, and we tolerate
+ * the slice being absent (older Moorhen versions, or no maps loaded).
+ */
+function collectMapRenderState(
+  state: unknown,
+): Record<number, MapRenderState> {
+  const out: Record<number, MapRenderState> = {};
+  const slice = (state as { mapContourSettings?: Record<string, unknown> })
+    .mapContourSettings;
+  if (!slice) return out;
+  const ensure = (molNo: number): MapRenderState => {
+    if (!out[molNo]) out[molNo] = {};
+    return out[molNo];
+  };
+  const merge = (
+    rows: unknown,
+    setter: (s: MapRenderState, v: ContourEntry) => void,
+  ) => {
+    if (!Array.isArray(rows)) return;
+    for (const row of rows as ContourEntry[]) {
+      if (typeof row?.molNo === "number") setter(ensure(row.molNo), row);
+    }
+  };
+  merge(slice.contourLevels, (s, v) => { if (v.contourLevel !== undefined) s.contourLevel = v.contourLevel; });
+  merge(slice.mapRadii, (s, v) => { if (v.radius !== undefined) s.radius = v.radius; });
+  merge(slice.mapAlpha, (s, v) => { if (v.alpha !== undefined) s.alpha = v.alpha; });
+  merge(slice.mapStyles, (s, v) => { if (v.style) s.style = v.style; });
+  merge(slice.mapColours, (s, v) => { if (v.rgb) s.colour = rgb01ToHex(v.rgb); });
+  merge(slice.positiveMapColours, (s, v) => { if (v.rgb) s.positiveColour = rgb01ToHex(v.rgb); });
+  merge(slice.negativeMapColours, (s, v) => { if (v.rgb) s.negativeColour = rgb01ToHex(v.rgb); });
+  const visible = (slice as { visibleMaps?: unknown }).visibleMaps;
+  if (Array.isArray(visible)) {
+    const visibleSet = new Set<number>(
+      (visible as unknown[]).filter((n): n is number => typeof n === "number"),
+    );
+    // visibleMaps lists the *visible* molNos; map state already includes
+    // every molNo we've seen, but make sure we don't drop a map that has
+    // no other contour settings touched.
+    for (const molNo of visibleSet) ensure(molNo);
+    for (const molNo of Object.keys(out).map(Number)) {
+      out[molNo].visible = visibleSet.has(molNo);
+    }
+  }
+  return out;
+}
+
+/** Convert Moorhen's {r,g,b} 0-1 shape to a 6-hex string. */
+function rgb01ToHex(rgb: { r: number; g: number; b: number }): string {
+  const to8 = (v: number) =>
+    Math.max(0, Math.min(255, Math.round(v * 255)))
+      .toString(16)
+      .padStart(2, "0");
+  return `#${to8(rgb.r)}${to8(rgb.g)}${to8(rgb.b)}`;
+}

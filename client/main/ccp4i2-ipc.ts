@@ -9,6 +9,7 @@ import { spawn, ChildProcessWithoutNullStreams } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
+import { loadPreferences, updatePreferences, sqliteUrl } from "./ccp4i2-preferences";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -96,7 +97,10 @@ export const installIpcHandlers = (
 ) => {
   const getConfigResponse = () => {
     const projectRoot = getProjectRoot(); // Always computed, not from store
-    const CCP4Dir = store.get("CCP4Dir") || "";
+    // Shared bootstrap keys live in ~/.ccp4i2/preferences.json (the file the
+    // server and the i2/i2run CLI also read). Prefer it, fall back to the store.
+    const filePrefs = loadPreferences();
+    const CCP4Dir = filePrefs.ccp4Dir || store.get("CCP4Dir") || "";
     // Prefer ccp4-python from CCP4 installation, fall back to venv
     const python_path = findPython(CCP4Dir, projectRoot);
     const config: any = store.store; // Retrieve all values from the electron-store
@@ -106,6 +110,10 @@ export const installIpcHandlers = (
     config.venv_python = python_path;
     config.UVICORN_PORT = djangoServerPort;
     config.NEXT_PORT = nextServerPort;
+    // Overlay the shared keys so the GUI reflects what the server/CLI will use
+    // (including values set via the file or a future `i2 preferences set`).
+    config.CCP4Dir = CCP4Dir;
+    if (filePrefs.projectsDir) config.CCP4I2_PROJECTS_DIR = filePrefs.projectsDir;
     return {
       message: "get-config",
       status: "Success",
@@ -139,6 +147,8 @@ export const installIpcHandlers = (
         if (!result.canceled) {
           console.log("Selected CCP4 directory:", result.filePaths);
           store.set("CCP4Dir", result.filePaths[0]);
+          // Write the shared key so the server and the i2/i2run CLI see it too.
+          updatePreferences({ ccp4Dir: result.filePaths[0] });
           event.reply("message-from-main", getConfigResponse());
           process.env.CCP4 = result.filePaths[0];
         }
@@ -213,8 +223,11 @@ export const installIpcHandlers = (
   ipcMain.on("start-uvicorn", async (event, _data) => {
     if (!djangoServerPort) return;
     if (!nextServerPort) return;
+    // Use the canonical shared values (file first, store fallback) so the server
+    // is launched with the same CCP4 / projects dir the GUI shows and the CLI reads.
+    const filePrefs = loadPreferences();
     const djangoServer = await startDjangoServer(
-      store.get("CCP4Dir"),
+      filePrefs.ccp4Dir || store.get("CCP4Dir"),
       getProjectRoot(), // Always computed, not from store
       djangoServerPort,
       nextServerPort,

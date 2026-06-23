@@ -1,7 +1,6 @@
 import traceback
 
 from lxml import etree
-from scipy.optimize import linear_sum_assignment
 import gemmi
 import numpy as np
 
@@ -28,6 +27,7 @@ class modelASUCheck(CPluginScript):
 
 
 def sequenceAlignment(xyzinPath, asuin):
+    from scipy.optimize import linear_sum_assignment  # lazy: pip dep, execution only
     structure = gemmi.read_structure(xyzinPath)
     structure.setup_entities()
 

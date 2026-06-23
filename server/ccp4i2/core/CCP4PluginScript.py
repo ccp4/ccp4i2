@@ -24,6 +24,53 @@ from ccp4i2.core.base_object.class_metadata import cdata_class
 logger = logging.getLogger(__name__)
 
 
+# Windows native-crash exit codes (NTSTATUS, returned as large unsigned ints by
+# subprocess). Unlike POSIX, Windows has no negative "killed by signal" code, so
+# crashes surface as these.
+_WINDOWS_CRASH_CODES = {
+    0xC0000005: 'access violation (segfault)',
+    0xC000001D: 'illegal instruction',
+    0xC0000094: 'integer divide by zero',
+    0xC00000FD: 'stack overflow',
+    0xC0000409: 'stack buffer overrun',
+    0xC0000374: 'heap corruption',
+    0x80000003: 'breakpoint / abort',
+}
+
+
+def describe_signal_exit(returncode):
+    """Classify a subprocess return code as a *native crash* vs. a clean error.
+
+    A process that ran and reported a problem exits with a small positive code
+    (1, 2, ...). A process killed by a signal (segfault, abort, illegal
+    instruction) is a different class of failure: the program did not get to
+    report anything, the failure is in native code, and it is worth surfacing
+    distinctly across every executor.
+
+    On POSIX, ``subprocess`` reports signal death as a NEGATIVE return code
+    (``-N`` for signal ``N``). On Windows there are no negative codes; native
+    crashes appear as large unsigned NTSTATUS values (e.g. 0xC0000005).
+
+    Returns a human-readable description if ``returncode`` denotes such a crash,
+    otherwise ``None`` (clean exit, or an ordinary non-zero program error).
+    """
+    if returncode is None:
+        return None
+    if returncode < 0:  # POSIX: terminated by signal -returncode
+        signum = -returncode
+        try:
+            import signal
+            name = signal.Signals(signum).name
+        except (ValueError, AttributeError, ImportError):
+            name = f'SIG{signum}'
+        return f'terminated by {name} (signal {signum})'
+    code = returncode & 0xFFFFFFFF
+    if code >= 0x80000000:  # Windows NTSTATUS crash code
+        desc = _WINDOWS_CRASH_CODES.get(code, 'abnormal termination')
+        return f'{desc} (NTSTATUS 0x{code:08X})'
+    return None
+
+
 @cdata_class(
     error_codes={
         '200': {'description': 'Error merging MTZ files'},
@@ -1749,12 +1796,23 @@ class CPluginScript(CData):
 
             # Check return code
             if result.returncode != 0:
-                error.append(
-                    klass=self.__class__.__name__,
-                    code=101,
-                    details=f"Process {self.TASKCOMMAND} exited with code {result.returncode}",
-                    severity=4  # ERROR
-                )
+                crash = describe_signal_exit(result.returncode)
+                if crash is not None:
+                    # A native crash (signal death / NTSTATUS), not a clean
+                    # program error - flag it as its own class with code 105.
+                    error.append(
+                        klass=self.__class__.__name__,
+                        code=105,
+                        details=f"Process {self.TASKCOMMAND} crashed: {crash}",
+                        severity=4  # ERROR
+                    )
+                else:
+                    error.append(
+                        klass=self.__class__.__name__,
+                        code=101,
+                        details=f"Process {self.TASKCOMMAND} exited with code {result.returncode}",
+                        severity=4  # ERROR
+                    )
 
                 # Read stderr for error details
                 if os.path.exists(stderr_path):
@@ -2072,7 +2130,11 @@ class CPluginScript(CData):
             exit_status = self._exitStatus if hasattr(self, '_exitStatus') else (0 if exit_code == 0 else 1)
             if exit_code != 0:
                 # Process failed - error already added by _startProcessSync
-                logger.debug(f"[postProcessCheck] Returning FAILED due to non-zero exit code: {exit_code}")
+                crash = describe_signal_exit(exit_code)
+                if crash is not None:
+                    logger.warning(f"[postProcessCheck] {self.TASKCOMMAND} crashed: {crash}")
+                else:
+                    logger.debug(f"[postProcessCheck] Returning FAILED due to non-zero exit code: {exit_code}")
                 status = self.FAILED
 
         # For async processes, check the exit code from the process manager
@@ -2085,11 +2147,17 @@ class CPluginScript(CData):
 
             if exit_code is not None and exit_code != 0:
                 # Process failed - add to error report
+                crash = describe_signal_exit(exit_code)
+                if crash is not None:
+                    details = (f'Program {self.TASKCOMMAND} crashed: {crash}. '
+                               f'Check {self.makeFileName("LOG")} and {self.makeFileName("STDERR")} for details.')
+                else:
+                    details = (f'Program {self.TASKCOMMAND} exited with error code {exit_code}. '
+                               f'Check {self.makeFileName("LOG")} and {self.makeFileName("STDERR")} for details.')
                 self.errorReport.append(
                     klass=self.__class__.__name__,
                     code=993,
-                    details=f'Program {self.TASKCOMMAND} exited with error code {exit_code}. '
-                           f'Check {self.makeFileName("LOG")} and {self.makeFileName("STDERR")} for details.',
+                    details=details,
                     name='postProcessCheck',
                     severity=4  # ERROR
                 )
@@ -2480,6 +2548,18 @@ class CPluginScript(CData):
             if ccp4:
                 monlib_dir = os.path.join(ccp4, 'lib', 'data', 'monomers')
 
+        # Without the CCP4 monomer library this check cannot run meaningfully.
+        # That is the case on a CCP4-free interpreter — e.g. the slim Django
+        # API server, where runTimeValidity() is polled at submission but no
+        # CCP4 suite is installed. Reading the library is impossible, so every
+        # residue (standard amino acids included) would be reported as having
+        # "no dictionary at all". Defer to the worker's process(), which runs
+        # runTimeValidity() again with the library present, rather than block
+        # submission with a spurious error. (Mirrors the other "don't block;
+        # refinement itself will catch it" guards below.)
+        if not monlib_dir or not os.path.isdir(monlib_dir):
+            return self.SUCCEEDED
+
         # Read the structure
         try:
             st = gemmi.read_structure(str(xyzin_path))
@@ -2528,8 +2608,20 @@ class CPluginScript(CData):
 
         missing_from_model = topo.find_missing_atoms()
 
-        # Identify residues with no dictionary at all
-        no_dict = sorted(c for c in all_codes if c not in ml.monomers)
+        # Identify residues with no dictionary at all. Standard amino acids /
+        # nucleotides and water are handled by the refinement program's
+        # built-in machinery and never need an explicit monomer dictionary, so
+        # they must not be flagged here regardless of whether the library
+        # happens to define them. This is the docstring's "non-polymer
+        # residues" intent: only ligands / modified residues need coverage.
+        def _builtin_residue(code):
+            info = gemmi.find_tabulated_residue(code)
+            return info is not None and (info.is_standard() or info.is_water())
+
+        no_dict = sorted(
+            c for c in all_codes
+            if c not in ml.monomers and not _builtin_residue(c)
+        )
 
         if not no_dict and not unrestrained:
             return self.SUCCEEDED

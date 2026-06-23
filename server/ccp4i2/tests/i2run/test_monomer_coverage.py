@@ -247,6 +247,34 @@ class TestCheckMonomeCoverage:
         finally:
             os.unlink(path)
 
+    def test_no_monomer_library_defers(self, plugin, monkeypatch):
+        """Without a CCP4 monomer library the check must defer, not flag.
+
+        On a CCP4-free interpreter — e.g. the slim Django API server, where
+        runTimeValidity() is polled at submission but no CCP4 suite is
+        installed — neither CLIBD_MON nor CCP4 is set, so the monomer library
+        cannot be read. Previously every residue, standard amino acids
+        included, was reported as "no dictionary at all" (a plain protein
+        refinement was blocked at the Confirm dialog). The check must instead
+        return SUCCEEDED and defer to the worker's process(), which re-runs
+        runTimeValidity() with the library present.
+        """
+        monkeypatch.delenv("CLIBD_MON", raising=False)
+        monkeypatch.delenv("CCP4", raising=False)
+        # Includes an unknown ligand that WOULD fail if a library were present,
+        # proving the deferral is unconditional when no library is available.
+        path = _make_structure([
+            ("A", "ALA", 1, gemmi.EntityType.Polymer,
+             [("N", "N"), ("CA", "C"), ("C", "C"), ("O", "O"), ("CB", "C")]),
+            ("A", "QQQ", 2, gemmi.EntityType.NonPolymer,
+             [("C1", "C"), ("N1", "N"), ("O1", "O")]),
+        ])
+        try:
+            assert plugin.checkMonomeCoverage(path) == CPluginScript.SUCCEEDED
+            assert plugin.errorReport.count() == 0
+        finally:
+            os.unlink(path)
+
     def test_empty_structure_passes(self, plugin):
         """Empty structure should pass (nothing to check)."""
         st = gemmi.Structure()

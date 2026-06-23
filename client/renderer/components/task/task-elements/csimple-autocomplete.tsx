@@ -16,7 +16,7 @@ import { CCP4i2CSimpleElementProps } from "./csimple";
 import { ErrorTrigger } from "./error-info";
 import {
   FULL_WIDTH_FIELD_STYLES,
-  getFieldSizeStyles,
+  getContainerSizeStyles,
 } from "./field-sizes";
 import { FieldWrapper } from "./field-wrapper";
 import {
@@ -100,7 +100,7 @@ export const CSimpleAutocompleteElement: React.FC<
 
   const calculatedSx = useMemo(
     () => ({
-      ...(sizeProp ? getFieldSizeStyles(sizeProp) : FULL_WIDTH_FIELD_STYLES),
+      ...(sizeProp ? getContainerSizeStyles(sizeProp) : FULL_WIDTH_FIELD_STYLES),
       marginTop: 0,
       verticalAlign: "top",
       ...sx,

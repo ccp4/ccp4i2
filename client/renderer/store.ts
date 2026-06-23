@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 // @ts-ignore - MoorhenStoreReducers may lack .d.ts depending on build
-import { MoorhenStoreReducers } from "moorhen";
+import { MoorhenStoreReducers } from "moorhen/react-lib";
 import { createContext } from "react";
 
 export const store = configureStore({

@@ -24,8 +24,8 @@
     "electron-postinstall": "electron-builder install-app-deps",
     "build": "npm run build:electron",
     "start": "npm run start:electron",
-    "build:electron": "npm run electron-postinstall && cross-env BUILD_TARGET=electron npm run copy-assets && next build renderer && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts",
-    "start:electron": "npm run electron-postinstall && cross-env BUILD_TARGET=electron npm run copy-assets && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts && electron dist/main.js",
+    "build:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && next build renderer && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts",
+    "start:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts && electron dist/main.js",
     "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next build",
     "start:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next dev",
     "export:web": "cross-env BUILD_TARGET=web npm run build:web && cd renderer && next export",
@@ -72,7 +72,8 @@
     "jquery": "^3.7.1",
     "jspdf": "^3.0.4",
     "jspdf-autotable": "^5.0.2",
-    "moorhen": "file:moorhen-0.23.1-alpha.0.tgz",
+    "jszip": "^3.10.1",
+    "moorhen": "file:moorhen-1.0.0-alpha.3-dev.g065becee.tgz",
     "next": "^15.3.0",
     "pptxgenjs": "^4.0.1",
     "react": "^19.2.0",
@@ -88,7 +89,8 @@
     "uuid": "^11.0.5",
     "vis-data": "^8.0.3",
     "vis-network": "^10.0.2",
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.6.2",
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
     "@electron/packager": "^18.3.6",
@@ -117,6 +119,7 @@
     "appId": "com.ccp4.ccp4i2-django",
     "productName": "ccp4i2-django",
     "electronVersion": "33.4.11",
+    "npmRebuild": false,
     "icon": "assets/ccp4i2.png",
     "files": [
       "dist/**",

@@ -2,7 +2,10 @@ import os
 import sys
 import traceback
 
-import clipper
+# clipper is imported lazily inside the execution methods below (it is used only
+# for the anisotropy correction + E-value calculation at run time, on the
+# CCP4-bearing worker). Keeping it out of module scope lets this plugin import on
+# the slim, CCP4-free API so the task can be configured in the GUI.
 
 from ccp4i2.core import CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -14,8 +17,9 @@ class acorn(CPluginScript):
     PERFORMANCECLASS = 'CExpPhasPerformance'
 
     def processInputFiles(self):
+        import clipper  # lazy: anisotropy/E-value calc, only at execution (worker)
         print("Processing INPUT Files - (Acorn)")
-        
+
         # Need to input the necessary input files for an Acorn Run. This will be conditional.
         self.hklin, error = self.makeHklInput([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
@@ -111,6 +115,7 @@ class acorn(CPluginScript):
                 return CPluginScript.FAILED
 
     def processOutputFiles(self):
+        import clipper  # lazy: mini-MTZ generation, only at execution (worker)
         # Parse the output text file to create an xml file which can then be parsed by the report to make html .......
         from lxml import etree
         rootNode = etree.Element("acorn")

@@ -31,9 +31,9 @@ async def inspect_database(project_uuid: uuid_module.UUID):
     project_data = await sync_to_async(lambda: {
         "UUID": str(project.uuid),
         "Name": project.name,
-        "Title": project.title or "N/A",
+        "Description": project.description or "N/A",
         "Directory": project.directory,
-        "Created": project.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+        "Created": project.creation_time.strftime("%Y-%m-%d %H:%M:%S"),
     })()
     for key, value in project_data.items():
         print(f"  {key:15} : {value}")
@@ -42,7 +42,7 @@ async def inspect_database(project_uuid: uuid_module.UUID):
     print("\n⚙️  JOBS")
     print("-" * 80)
     jobs = await sync_to_async(list)(
-        models.Job.objects.filter(project=project).order_by('created_at')
+        models.Job.objects.filter(project=project).order_by('creation_time')
     )
 
     print(f"{'Job #':<8} {'Task':<15} {'Title':<25} {'Status':<12} {'Started':<10} {'Finished':<10}")
@@ -53,7 +53,7 @@ async def inspect_database(project_uuid: uuid_module.UUID):
             j.task_name,
             (j.title or "N/A")[:24],
             j.get_status_display(),
-            j.created_at.strftime("%H:%M:%S"),
+            j.creation_time.strftime("%H:%M:%S"),
             j.finish_time.strftime("%H:%M:%S") if j.finish_time else "N/A",
         ))()
         print(f"{job_data[0]:<8} {job_data[1]:<15} {job_data[2]:<25} {job_data[3]:<12} {job_data[4]:<10} {job_data[5]:<10}")
