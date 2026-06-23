@@ -36,15 +36,10 @@ export const MASK_SUBTYPE = 4;
 
 // CCP4 map header layout (256 4-byte words). Byte offsets we touch:
 const OFF_NC = 0, OFF_NR = 4, OFF_NS = 8, OFF_MODE = 12;
-const OFF_DMIN = 76, OFF_DMAX = 80, OFF_DMEAN = 84, OFF_NSYMBT = 92;
+const OFF_CELL_ALPHA = 52, OFF_CELL_BETA = 56, OFF_CELL_GAMMA = 60;
+const OFF_DMIN = 76, OFF_DMAX = 80, OFF_DMEAN = 84, OFF_ISPG = 88, OFF_NSYMBT = 92;
 const OFF_MACHST = 212, OFF_RMS = 216;
 const CCP4_HEADER_BYTES = 1024;
-
-/** CCP4 map MODE word (0=int8, 1=int16, 2=float32, ...), or null if too short. */
-export function ccp4MapMode(buffer: ArrayBuffer, littleEndian = true): number | null {
-  if (buffer.byteLength < CCP4_HEADER_BYTES) return null;
-  return new DataView(buffer).getInt32(OFF_MODE, littleEndian);
-}
 
 /**
  * Convert a mode-0 (signed int8) CCP4 map to mode-2 (float32), recomputing the
@@ -98,6 +93,53 @@ export function ccp4Mode0ToFloat(buffer: ArrayBuffer): ArrayBuffer {
   return out;
 }
 
+// --------------------------------------------------------------------------
+// Dodge coot's EM-map heuristic so a P1 mask contours periodically
+//
+// coot tags a CCP4 map IS_SLURPABLE_EM_MAP when (space group == 1 AND all three
+// cell angles == 90°) — which is exactly a crystallographic P1 mask in an
+// orthogonal cell. That flag drives two behaviours that break mask display
+// (traced in coot's slurp-map.cc / CIsoSurface.cpp):
+//   1. the marching-cubes output is CLAMPED to the [0, cell] box: every triangle
+//      whose midpoint falls outside a unit-cell face is discarded — so a domain
+//      that straddles a boundary is cut in half (the rest wraps to the far face);
+//   2. the contour is centred on the map's own box rather than following the view.
+// The underlying clipper Xmap is genuinely periodic; the clamp just deletes the
+// out-of-cell triangles.
+//
+// Fix: keep space group P1 (so there are NO symmetry mates) but set one cell
+// angle a hair off 90°. coot then reads it as triclinic-P1 — still no symmetry —
+// and contours it periodically across cell boundaries, so the mask follows the
+// model wherever the domain sits. The sub-0.1° tweak displaces the mask <0.1 Å
+// relative to the model. Display-only: the on-disk mask dm reads stays exactly
+// orthogonal P1.
+// --------------------------------------------------------------------------
+
+/** One cell angle (deg, off 90) that defeats coot's "all angles == 90°" EM test
+ *  while keeping the cell metrically orthogonal to <0.1 Å over the box. */
+export const EM_DODGE_ANGLE = 89.9;
+
+/**
+ * If `buffer` is a P1 + orthogonal CCP4 map (the case coot misreads as EM),
+ * return a copy with one cell angle nudged off 90° so coot contours it
+ * periodically instead of clamping to the unit cell. Anything else (non-P1,
+ * already non-orthogonal, too short) is returned unchanged. Apply only to masks.
+ */
+export function ccp4DodgeEmClamp(buffer: ArrayBuffer): ArrayBuffer {
+  if (buffer.byteLength < CCP4_HEADER_BYTES) return buffer;
+  const dv = new DataView(buffer);
+  const le = dv.getUint8(OFF_MACHST) !== 0x11;
+  let ispg = dv.getInt32(OFF_ISPG, le);
+  if (ispg === 0) ispg = 1;   // coot maps space group 0 -> 1 (EM/chimera)
+  const alpha = dv.getFloat32(OFF_CELL_ALPHA, le);
+  const beta = dv.getFloat32(OFF_CELL_BETA, le);
+  const gamma = dv.getFloat32(OFF_CELL_GAMMA, le);
+  if (!(ispg === 1 && alpha === 90 && beta === 90 && gamma === 90)) return buffer;
+  const out = buffer.slice(0);
+  new DataView(out).setFloat32(OFF_CELL_GAMMA, EM_DODGE_ANGLE, le);
+  return out;
+}
+
 /** Default mask look: a translucent solid surface in a soft blue. NB Moorhen's
  *  setMapColours expects 0-255 components (it divides by 255 internally) — 0-1
  *  floats render as a near-black mesh. */
@@ -114,10 +156,12 @@ export function isMaskSubType(subType: number | null | undefined): boolean {
 /**
  * Tag a freshly-loaded MoorhenMap as a mask. Sets:
  *  - `isCcp4Mask` — read by the lifter (with `isCcp4MapFile`) to emit isMask;
- *  - `mapSubType` — so the contour-slider label reads "Mask" (not "2Fo-Fc");
- *  - `isEM` — so Moorhen contours it in absolute (EM-style) mode rather than
- *    rmsd-relative: a mask holds 0..1 region values, not crystallographic
- *    density, so the rmsd path gives a degenerate histogram / contour range.
+ *  - `mapSubType` — so the contour-slider label reads "Mask" (not "2Fo-Fc").
+ *
+ * Note: we do NOT set `isEM`. coot's is_EM_map heuristic would otherwise flag a
+ * P1/orthogonal mask as EM and clamp its contour to the unit cell; ccp4DodgeEmClamp
+ * sidesteps that at load time (one cell angle nudged off 90°) so the mask contours
+ * periodically and follows the model across cell boundaries.
  */
 export function markMaskMap(map: unknown): void {
   const m = map as {

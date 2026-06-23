@@ -44,7 +44,7 @@ import {
 } from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import {
   liftSceneToBundle,
   MapRenderState,
@@ -292,8 +292,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     );
     try {
       // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
-      // (no-op for maps that are already float).
-      const mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
+      // (no-op if already float). For masks, also nudge the P1/orthogonal cell
+      // off 90° so coot contours periodically instead of clamping to the cell box.
+      let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
+      if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
       await newMap.loadToCootFromMapData(new Uint8Array(mapData), mapName, false);
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
@@ -791,9 +793,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         );
         if (ref.kind === "map") {
           // Real-space CCP4 map file (incl. masks): load directly, no columns.
-          // mode-0 -> float so Moorhen reads sane stats (no-op if already float).
+          // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
+          const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
           await newMap.loadToCootFromMapData(
-            new Uint8Array(ccp4Mode0ToFloat(bytes as ArrayBuffer)),
+            new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
             sceneMap.name,
             !!sceneMap.isDifference,
           );
