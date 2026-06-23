@@ -128,20 +128,8 @@ class CLauncher(QtCore.QObject):
             if  os.path.exists(path): return path
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
-        elif  viewer == 'coot':
-            path = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
-            #print 'CLauncher.getExecutable  prfrences coot',path
-            if path is not None and os.path.isfile(path) and os.access(path, os.X_OK):
-                if sys.platform == 'win32':
-                    altpath = self.modifyCootBat()
-                    if altpath is not None: return altpath
-                return path
-            if CCP4Utils.which(viewer) is not None: return viewer
-            #from core import CCP4Config
-            #path = CCP4Config.PATH(viewer)
-            if guiParent is not None:
-                return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         elif  viewer == 'lidia':
+            # TODO
             path = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
             #print 'CLauncher.getExecutable  prfrences coot',path
             if  path is not None and os.path.isfile(path) and os.access(path, os.X_OK):
@@ -251,53 +239,6 @@ class CLauncher(QtCore.QObject):
             p.start(exe,qArgList)
         return p
 
-    '''
-    # This version attempts to open viewer and then send commands through sockets
-    # mg does not allow socket input
-    def openInViewer(self,viewer=None,fileName=None,jobId=None):
-      print 'CLauncher.openInViewer',viewer,fileName,jobId
-      if fileName is not None:
-        comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileName)
-      elif jobId is not None:
-        # This will open just one file - need to talk to Stuart
-        from core import CCP4Modules
-        
-        fileList = CCP4Modules.PROJECTSMANAGER().db().getJobFiles(jobId=jobId,mode='fullPath')
-        if len(fileList)>0:
-          comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileList[0])
-      #print 'CLauncher.openInViewer command',str(comLine)
-      if comLine is None:
-        print 'Can not create launcher command for:',viewer,fileName,jobId
-        return
-
-      if self.sockets.has_key(viewer):
-        try:
-          self.sockets[viewer].sendall(comLine)
-        except:
-          # Send failed - assume the socket broken and try resetting
-          self.sockets[viewer].close()
-          del self.sockets[viewer]
-
-      if not self.sockets.has_key(viewer):
-        if not self.hostPorts.has_key(viewer):
-          print 'Do not know hostname,port for viewer:',viewer
-          return
-        hostname= self.hostPorts[viewer]['hostname']
-        port = self.hostPorts[viewer]['port']
-        self.openSocket(hostname,port,viewer,comLine)
-    '''
-    def modifyCootBat(self):
-        from core import CCP4Modules
-        from core import CCP4Utils
-        cootBat = CCP4Modules.PREFERENCES().COOT_EXECUTABLE.__str__()
-        if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
-            return None
-        text = CCP4Utils.readFile(cootBat)
-        text0 = re.sub('start .* coot-bin.exe', 'coot-bin.exe', text)
-        modFile = os.path.join(CCP4Utils.getDotDirectory(), 'runwincoot.bat')
-        CCP4Utils.saveFile(modFile, text0, overwrite=True)
-        return modFile
-
     def modifyLidiaBat(self):
         from core import CCP4Modules
         from core import CCP4Utils
@@ -360,7 +301,7 @@ class CLauncher(QtCore.QObject):
                 if os.path.isfile(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)):
                     cootExeDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
             if cootExeDir is None:
-                cootExeDir = CCP4Utils.which('coot')
+                cootExeDir = CCP4Utils.which('coot-1')
             cootDir = os.path.normpath(os.path.dirname(os.path.dirname(cootExeDir)))
             envEdit = [['COOT_PREFIX', cootDir]]
             COOT_DATA_DIR = os.path.normpath(os.path.join(cootDir, 'share', 'coot'))
