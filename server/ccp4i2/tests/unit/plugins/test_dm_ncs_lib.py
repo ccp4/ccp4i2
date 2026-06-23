@@ -1,10 +1,12 @@
 """Unit tests for dm_multidomain's gemmi-only NCS helpers (no CCP4 binaries).
 
-Guards the mask/operator frame-consistency bug: the AHIR reference DARPIN sits
-OUTSIDE the primary unit cell (fractional y<0), so a naive set_points_around
-PBC-wraps the averaging mask ~118 A away from where the operators point, and dm
-then reports spurious ~0 NCS correlation. write_domain_mask and
-operator_ref_to_copy must bring the reference into the cell with the SAME shift.
+Guards mask/operator frame consistency: the AHIR reference DARPIN sits OUTSIDE
+the primary unit cell (fractional y<0). The averaging mask carries a single
+CONTIGUOUS copy of the domain at its real position as a signed-NSTART sub-volume
+(write_domain_mask / write_partitioned_masks) -- not a PBC-wrapped image -- and
+operator_ref_to_copy maps the real reference onto each copy. Mask and operator
+share the crystal frame; if they ever diverged by a lattice vector dm would
+report spurious ~0 NCS correlation.
 """
 import os
 
@@ -36,6 +38,28 @@ def test_reference_darpin_is_outside_cell(model):
     assert min(f.y for f in fr) < 0.0   # DARPIN reaches outside [0,1)
 
 
+def _subvolume_world_points(mask_path, cell):
+    """Real-space (crystal-frame) positions of a sub-volume mask's set voxels.
+
+    The mask is a contiguous NSTART sub-volume: voxel (i,j,k) of the written
+    block sits at parent grid index (NSTART + (i,j,k)), i.e. fractional
+    ((NSTART_x+i)/MX, ...) in the crystal cell. We reconstruct that explicitly
+    (gemmi's get_position would use the block's box-local cell, not the crystal
+    frame the NSTART/MX header encodes)."""
+    mp = gemmi.read_ccp4_map(mask_path)
+    arr = np.array(mp.grid, copy=False)
+    NS = [mp.header_i32(5), mp.header_i32(6), mp.header_i32(7)]
+    M = [mp.header_i32(8), mp.header_i32(9), mp.header_i32(10)]
+    idx = np.argwhere(arr > 0)
+    out = []
+    for i, j, k in idx:
+        f = gemmi.Fractional((NS[0] + i) / M[0], (NS[1] + j) / M[1],
+                             (NS[2] + k) / M[2])
+        p = cell.orthogonalize(f)
+        out.append([p.x, p.y, p.z])
+    return np.array(out), idx
+
+
 def test_mask_lands_on_domain_not_lattice_image(model, tmp_path):
     m = model[0]
     cell, sg = model.cell, model.find_spacegroup()
@@ -43,20 +67,22 @@ def test_mask_lands_on_domain_not_lattice_image(model, tmp_path):
     n = L.write_domain_mask(m, "A", 13, 139, cell, sg, mask, radius=2.5)
     assert n > 1000
 
-    # reference atoms shifted into the cell with the SAME shift the mask used
-    s = L._lattice_shift(list(L.ca_positions(m, "A", 13, 139).values()), cell)
-    ref = np.array([list(L._shift(p, s, cell))
+    # reference atoms at their REAL position (no lattice shift) -- the mask now
+    # carries a contiguous copy there, via signed NSTART
+    ref = np.array([[p.x, p.y, p.z]
                     for p in L.all_atom_positions(m, "A", 13, 139)])
 
-    grid = gemmi.read_ccp4_mask(mask).grid
-    idx = np.argwhere(np.array(grid, copy=False) > 0)[:3000]
-    pos = np.array([list(grid.get_position(int(i), int(j), int(k)))
-                    for i, j, k in idx])
-    # every mask point must sit within ~ (radius + a grid step) of the domain,
-    # NOT a lattice vector (~100 A) away
+    pos, _ = _subvolume_world_points(mask, cell)
+    # every mask point must sit within ~ (radius + a grid step) of the domain at
+    # its real position, NOT a lattice vector (~100 A) away
     from scipy.spatial import cKDTree
-    d = cKDTree(ref).query(pos)[0]
+    d = cKDTree(ref).query(pos[:3000])[0]
     assert d.mean() < 3.0, f"mask displaced from domain (mean {d.mean():.1f} A)"
+
+    # the header places it at the domain's REAL cell, which reaches y<0: a
+    # negative NSTART proves it is NOT wrapped into the primary cell
+    mp = gemmi.read_ccp4_map(mask)
+    assert mp.header_i32(6) < 0   # NSTART_y negative (DARPIN reaches outside [0,1))
 
 
 def test_operator_targets_intended_copy(model):
@@ -139,23 +165,31 @@ def test_partitioned_masks_are_disjoint(model, tmp_path):
     segs_a = [("_", 140, 339)]
     segs_b = [("_", 340, 485)]
 
+    # Each body is written as its own NSTART sub-volume, so disjointness/union
+    # are checked in the shared PARENT grid frame (NSTART + local index), not by
+    # overlaying differently-sized blocks.
+    def parent_voxels(mask_path):
+        mp = gemmi.read_ccp4_map(mask_path)
+        arr = np.array(mp.grid, copy=False)
+        NS = (mp.header_i32(5), mp.header_i32(6), mp.header_i32(7))
+        return {(NS[0] + i, NS[1] + j, NS[2] + k)
+                for i, j, k in np.argwhere(arr > 0)}
+
     # precondition: independent masks DO overlap at the shared boundary
     ma, mb = str(tmp_path / "a.msk"), str(tmp_path / "b.msk")
     L.write_body_mask(m, {"_": "A"}, segs_a, cell, sg, ma, radius=2.5)
     L.write_body_mask(m, {"_": "A"}, segs_b, cell, sg, mb, radius=2.5)
-    ga = np.array(gemmi.read_ccp4_mask(ma).grid, copy=False) > 0
-    gb = np.array(gemmi.read_ccp4_mask(mb).grid, copy=False) > 0
-    assert int(np.count_nonzero(ga & gb)) > 0
+    ga, gb = parent_voxels(ma), parent_voxels(mb)
+    assert len(ga & gb) > 0
 
     # partitioned masks are disjoint, and their union == the independent union
     pa, pb = str(tmp_path / "pa.msk"), str(tmp_path / "pb.msk")
     nsets, n_contested = L.write_partitioned_masks(
         m, {"_": "A"}, [segs_a, segs_b], cell, sg, [pa, pb], radius=2.5)
     assert n_contested > 0
-    qa = np.array(gemmi.read_ccp4_mask(pa).grid, copy=False) > 0
-    qb = np.array(gemmi.read_ccp4_mask(pb).grid, copy=False) > 0
-    assert int(np.count_nonzero(qa & qb)) == 0
-    assert int(np.count_nonzero(qa | qb)) == int(np.count_nonzero(ga | gb))
+    qa, qb = parent_voxels(pa), parent_voxels(pb)
+    assert len(qa & qb) == 0
+    assert (qa | qb) == (ga | gb)
 
 
 def test_body_operators_skips_partial_instance(model):

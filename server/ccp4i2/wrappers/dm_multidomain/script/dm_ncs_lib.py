@@ -248,20 +248,19 @@ def operator_ref_to_copy_body(model, ref_inst, copy_inst, segments, cell=None):
 
     Raises ValueError if fewer than 3 common CA atoms are available.
 
-    If `cell` is given, the reference is first brought into the primary unit
-    cell (rigid lattice shift) so the operator shares the frame of the
-    PBC-wrapped averaging mask -- otherwise, for a reference copy outside
-    [0,1), dm would average density displaced by a lattice vector and report
-    spurious ~0 NCS correlation.
+    T maps the reference at its REAL position (no lattice shift) onto the copy,
+    so it shares the frame of the averaging mask -- which now carries a
+    contiguous copy of the domain at its real place via a signed NSTART
+    sub-volume (see write_partitioned_masks), not a PBC-wrapped image. Mask and
+    operator move together in the crystal frame; dm averages along the operator
+    from the masked region with no spurious lattice-vector displacement. `cell`
+    is accepted for back-compat but no longer used.
     """
     ref_pts, cp_pts = body_ca_correspondence(model, ref_inst, copy_inst, segments)
     if len(ref_pts) < 3:
         raise ValueError(
             f"<3 common CA atoms for body {body_name(segments)} between "
             f"{instance_label(ref_inst)} and {instance_label(copy_inst)}")
-    if cell is not None:
-        s = _lattice_shift(ref_pts, cell)
-        ref_pts = [_shift(p, s, cell) for p in ref_pts]
     return _superpose_ref_to_copy(ref_pts, cp_pts)
 
 
@@ -335,6 +334,136 @@ def body_all_atom_positions(model, instance, segments):
     return pts
 
 
+def _parent_sampling(cell, spacegroup, spacing):
+    """Symmetry-compatible full-cell sampling (MX, MY, MZ) -- the grid dm's
+    working map uses. Sub-volume masks share this sampling (and the crystal cell)
+    so they overlay that map voxel-for-voxel."""
+    g = gemmi.Int8Grid()
+    g.unit_cell = cell
+    g.spacegroup = spacegroup
+    g.set_size_from_spacing(spacing, gemmi.GridSizeRounding.Up)
+    return (g.nu, g.nv, g.nw)
+
+
+def _build_disjoint_box(model, ref_inst, segments_list, cell, spacegroup,
+                        spacing, radius):
+    """Build per-body masks on a SHARED padded sub-volume box and resolve their
+    overlaps, returning (arrs, NS, M, sp, n_contested).
+
+    The box is a contiguous parallelepiped in the parent grid (sampling M, signed
+    origin NS in voxels) padded by enough voxels that the `radius` dilation never
+    reaches a face -- so set_points_around's PBC wrap is a no-op and each body is
+    placed at its REAL position (no lattice shift). All bodies share this one box
+    so the nearest-atom overlap competition runs in a single index frame; arrs[b]
+    is body b's disjoint int8 mask on that box.
+    """
+    M = _parent_sampling(cell, spacegroup, spacing)
+    sp = (cell.a / M[0], cell.b / M[1], cell.c / M[2])
+    body_atoms = [body_all_atom_positions(model, ref_inst, segs)
+                  for segs in segments_list]
+
+    # Box bounds in parent-voxel coords (frac * M), padded for the dilation shell
+    # + a closure margin. min(sp) over-pads coarser axes, which is safe.
+    pad = int(np.ceil(radius / min(sp))) + 2
+    allv = np.array([[(lambda f: (f.x * M[0], f.y * M[1], f.z * M[2]))(
+        cell.fractionalize(p))] for b in body_atoms for p in b]).reshape(-1, 3)
+    NS = (np.floor(allv.min(0)) - pad).astype(int)
+    NC = (np.ceil(allv.max(0)) + pad - NS + 1).astype(int)
+
+    # Box-local cell preserves the parent per-voxel metric + angles, so a 2.5 A
+    # set_points_around radius means the same physical distance as in the crystal.
+    box_cell = gemmi.UnitCell(NC[0] * sp[0], NC[1] * sp[1], NC[2] * sp[2],
+                              cell.alpha, cell.beta, cell.gamma)
+
+    def to_box(pts):
+        out = []
+        for p in pts:
+            f = cell.fractionalize(p)
+            out.append(box_cell.orthogonalize(gemmi.Fractional(
+                (f.x * M[0] - NS[0]) / NC[0], (f.y * M[1] - NS[1]) / NC[1],
+                (f.z * M[2] - NS[2]) / NC[2])))
+        return out
+
+    grids, box_atoms = [], []
+    for pts in body_atoms:
+        g = gemmi.Int8Grid(int(NC[0]), int(NC[1]), int(NC[2]))
+        g.set_unit_cell(box_cell)
+        g.spacegroup = gemmi.SpaceGroup('P 1')
+        bp = to_box(pts)
+        for q in bp:
+            g.set_points_around(q, radius=radius, value=1)
+        grids.append(g)
+        box_atoms.append(np.array([[q.x, q.y, q.z] for q in bp]) if bp
+                         else np.empty((0, 3)))
+
+    arrs = [np.array(g, copy=False) for g in grids]   # views: edits write through
+    claimed = np.stack([a > 0 for a in arrs])         # (nbody, ni, nj, nk)
+    overlap = claimed.sum(0) > 1
+    n_contested = int(np.count_nonzero(overlap))
+    if n_contested and len(grids) > 1:
+        idx = np.argwhere(overlap)                    # (P, 3) box indices
+        cellpos = np.array([list(grids[0].get_position(int(i), int(j), int(k)))
+                            for i, j, k in idx])       # (P, 3) box-local orthogonal
+        BIG = 1e30
+        dists = np.full((len(grids), idx.shape[0]), BIG)
+        contest = claimed[:, overlap]                  # (nbody, P)
+        for b, ab in enumerate(box_atoms):
+            if ab.shape[0] == 0 or not contest[b].any():
+                continue
+            d = np.sqrt(((cellpos[:, None, :] - ab[None, :, :]) ** 2)
+                        .sum(-1)).min(1)               # (P,)
+            dists[b] = np.where(contest[b], d, BIG)
+        winner = dists.argmin(0)                       # (P,)
+        for b in range(len(grids)):
+            lose = (winner != b) & contest[b]
+            for (i, j, k) in idx[lose]:
+                arrs[b][int(i), int(j), int(k)] = 0
+    return arrs, NS, M, sp, n_contested
+
+
+def _write_subvolume_mask(arr, NS, M, sp, cell, path):
+    """Extract the tight set-voxel sub-box of `arr` (+1 voxel closure margin) and
+    write it as a mode-0, P1 CCP4 mask whose NSTART / MX-MY-MZ / cell place the
+    contiguous domain copy at its REAL position in the parent grid.
+
+    The header re-stamp happens AFTER update_ccp4_header (which resets NSTART to 0
+    and MX/MY/MZ to the written block's own dims): we then set NSTART = the box
+    origin in the parent grid, MX/MY/MZ = the parent sampling, and the crystal
+    cell -- so gridding/origin match the map dm averages while NSTART + extent
+    define the parallelepiped. Returns voxels set.
+    """
+    NSv = np.asarray(NS, dtype=int)
+    sv = np.argwhere(arr > 0)
+    if len(sv) == 0:
+        tNS = NSv
+        tarr = np.zeros((1, 1, 1), np.int8)
+    else:
+        dims = np.array(arr.shape)
+        lo = np.maximum(sv.min(0) - 1, 0)             # 1-voxel zero margin for
+        hi = np.minimum(sv.max(0) + 1, dims - 1)      # iso-surface closure
+        tarr = np.ascontiguousarray(
+            arr[lo[0]:hi[0] + 1, lo[1]:hi[1] + 1, lo[2]:hi[2] + 1]).astype(np.int8)
+        tNS = NSv + lo
+    tN = tarr.shape
+    tcell = gemmi.UnitCell(tN[0] * sp[0], tN[1] * sp[1], tN[2] * sp[2],
+                           cell.alpha, cell.beta, cell.gamma)
+    tg = gemmi.Int8Grid(int(tN[0]), int(tN[1]), int(tN[2]))
+    tg.set_unit_cell(tcell)
+    tg.spacegroup = gemmi.SpaceGroup('P 1')
+    np.array(tg, copy=False)[:] = tarr
+    ccp4 = gemmi.Ccp4Mask()
+    ccp4.grid = tg
+    ccp4.update_ccp4_header()
+    for w, v in [(5, int(tNS[0])), (6, int(tNS[1])), (7, int(tNS[2])),
+                 (8, int(M[0])), (9, int(M[1])), (10, int(M[2]))]:
+        ccp4.set_header_i32(w, v)
+    for w, v in [(11, cell.a), (12, cell.b), (13, cell.c),
+                 (14, cell.alpha), (15, cell.beta), (16, cell.gamma)]:
+        ccp4.set_header_float(w, float(v))
+    ccp4.write_ccp4_map(path)
+    return int(np.count_nonzero(tarr))
+
+
 def write_body_mask(model, ref_inst, segments, cell, spacegroup, path,
                     spacing=1.0, radius=2.5):
     """Write a CCP4 mode-0 mask covering the reference rigid body (union of its
@@ -342,26 +471,14 @@ def write_body_mask(model, ref_inst, segments, cell, spacegroup, path,
     a sub-range belongs to a different body, e.g. the C-helix excised from the
     CDK N-lobe).
 
-    No symmetry expansion: the mask covers a single copy, as `dm` expects for an
-    NCS averaging mask. A single lattice shift (from the body's combined CA
-    centroid) keeps the mask in the operators' frame. Returns the number of grid
-    points set.
+    No symmetry expansion: the mask carries a single, CONTIGUOUS copy of the
+    domain at its real position, as an NSTART sub-volume (see
+    _write_subvolume_mask) -- the shape dm expects for an NCS averaging mask.
+    Returns the number of grid points set.
     """
-    g = gemmi.Int8Grid()
-    g.unit_cell = cell
-    g.spacegroup = spacegroup
-    g.set_size_from_spacing(spacing, gemmi.GridSizeRounding.Up)
-    # Bring the reference into the cell with the SAME shift the operators use
-    # (computed from the body's combined CA centroid), so set_points_around's PBC
-    # wrap cannot displace the mask relative to the operators.
-    s = _lattice_shift(body_ca_positions(model, ref_inst, segments), cell)
-    for p in body_all_atom_positions(model, ref_inst, segments):
-        g.set_points_around(_shift(p, s, cell), radius=radius, value=1)
-    ccp4 = gemmi.Ccp4Mask()
-    ccp4.grid = g
-    ccp4.update_ccp4_header()
-    ccp4.write_ccp4_map(path)
-    return int(np.count_nonzero(np.array(g, copy=False)))
+    arrs, NS, M, sp, _ = _build_disjoint_box(
+        model, ref_inst, [segments], cell, spacegroup, spacing, radius)
+    return _write_subvolume_mask(arrs[0], NS, M, sp, cell, path)
 
 
 def write_domain_mask(model, ref, lo, hi, cell, spacegroup, path,
@@ -387,69 +504,26 @@ def write_partitioned_masks(model, ref_inst, segments_list, cell, spacegroup,
 
     Resolution is a nearest-atom competition: every contested grid point is kept
     only for the body whose reference atoms are closest, so the masks tile the
-    molecule envelope without overlap. Each body still uses its own lattice shift
-    (so its mask stays in its operators' frame); competition is computed in
-    orthogonal space, where contested cells -- being co-located by definition --
-    need no minimum-image correction.
+    molecule envelope without overlap. All bodies are masked on ONE shared,
+    padded sub-volume box (so the competition runs in a single index frame, where
+    contested cells -- being co-located by definition -- need no minimum-image
+    correction); each body's disjoint result is then written as its own tight
+    NSTART sub-volume placing a contiguous copy of the domain at its REAL
+    position (no lattice shift, no PBC wrap). The masks and the operators
+    (operator_ref_to_copy_body) thus share the crystal frame and move together.
+
+    An NCS averaging mask is a shape that does not obey crystallographic symmetry
+    (dm takes the crystal symmetry from the MTZ, not the mask), so each is written
+    P1 -- only the NSTART/extent and parent sampling tie it back to the working
+    map's grid.
 
     segments_list and paths are parallel (same order). Returns
     (nset_per_body, n_contested_points).
     """
-    grids, atoms = [], []
-    for segs in segments_list:
-        g = gemmi.Int8Grid()
-        g.unit_cell = cell
-        g.spacegroup = spacegroup
-        g.set_size_from_spacing(spacing, gemmi.GridSizeRounding.Up)
-        s = _lattice_shift(body_ca_positions(model, ref_inst, segs), cell)
-        pts = [_shift(p, s, cell)
-               for p in body_all_atom_positions(model, ref_inst, segs)]
-        for p in pts:
-            g.set_points_around(p, radius=radius, value=1)
-        grids.append(g)
-        atoms.append(np.array([[p.x, p.y, p.z] for p in pts]) if pts
-                     else np.empty((0, 3)))
-
-    arrs = [np.array(g, copy=False) for g in grids]   # views: edits write through
-    claimed = np.stack([a > 0 for a in arrs])         # (nbody, ni, nj, nk)
-    overlap = claimed.sum(0) > 1
-    n_contested = int(np.count_nonzero(overlap))
-    if n_contested and len(grids) > 1:
-        idx = np.argwhere(overlap)                    # (P, 3) grid indices
-        cellpos = np.array([list(grids[0].get_position(int(i), int(j), int(k)))
-                            for i, j, k in idx])       # (P, 3) orthogonal
-        BIG = 1e30
-        dists = np.full((len(grids), idx.shape[0]), BIG)
-        contest = claimed[:, overlap]                  # (nbody, P)
-        for b, ab in enumerate(atoms):
-            if ab.shape[0] == 0 or not contest[b].any():
-                continue
-            d = np.sqrt(((cellpos[:, None, :] - ab[None, :, :]) ** 2)
-                        .sum(-1)).min(1)               # (P,)
-            dists[b] = np.where(contest[b], d, BIG)
-        winner = dists.argmin(0)                       # (P,)
-        for b in range(len(grids)):
-            lose = (winner != b) & contest[b]
-            for (i, j, k) in idx[lose]:
-                arrs[b][int(i), int(j), int(k)] = 0
-
-    nsets = []
-    for g, arr, path in zip(grids, arrs, paths):
-        # Stamp the header spacegroup to P1, AFTER sizing/filling/competition.
-        # An NCS averaging mask is a shape that does not obey crystallographic
-        # symmetry (dm takes the crystal symmetry from the MTZ, not the mask);
-        # the crystal spacegroup in the header only makes viewers draw spurious
-        # symmetry mates. set_points_around is spacegroup-agnostic, so this is
-        # data- and grid-dimension-identical -- the build above keeps the
-        # crystal spacegroup so the sampling stays the symmetry-compatible grid
-        # dm expects; we change only ISPG here. (The PBC wrap into [0,1) and the
-        # lattice shift -- which the operators share -- are left untouched.)
-        g.spacegroup = gemmi.SpaceGroup('P 1')
-        ccp4 = gemmi.Ccp4Mask()
-        ccp4.grid = g
-        ccp4.update_ccp4_header()
-        ccp4.write_ccp4_map(path)
-        nsets.append(int(np.count_nonzero(arr)))
+    arrs, NS, M, sp, n_contested = _build_disjoint_box(
+        model, ref_inst, segments_list, cell, spacegroup, spacing, radius)
+    nsets = [_write_subvolume_mask(arr, NS, M, sp, cell, path)
+             for arr, path in zip(arrs, paths)]
     return nsets, n_contested
 
 
