@@ -328,47 +328,9 @@ class CProcessManager(QtCore.QObject):
                     processEnvironment.remove(editItem[0])
                 else:
                     processEnvironment.insert(editItem[0], editItem[1])
-            #if self.processInfo[pid]['command'].count('coot') and sys.platform == 'win32':
-            #  processEnvironment = self.setCootWindowsEnvironment(processEnvironment)
             p.setProcessEnvironment(processEnvironment)
         if pwdDir is not None:
             p.setWorkingDirectory(pwdDir)
-
-    def setCootWindowsEnvironment(self, p):
-        cootDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
-        COOT_GUILE_PREFIX = re.sub(r"\\\\",r"/", cootDir)
-        #print 'setCootWindowsEnvironment', cootDir, COOT_GUILE_PREFIX
-        coot_locations = {'COOT_PREFIX' : cootDir, 'COOT_GUILE_PREFIX' : COOT_GUILE_PREFIX, 'COOT_HOME': cootDir,
-                          'COOT_BACKUP_DIR' : os.path.join(cootDir, 'coot-backup'), 'COOT_SHARE' : os.path.join(cootDir, 'share'),
-                          'COOT_SCHEME_DIR' : os.path.join(cootDir, 'share', 'coot', 'scheme'),
-                          'COOT_STANDARD_RESIDUES' : os.path.join(cootDir, 'share', 'coot', 'standard-residues.pdb'),
-                          'COOT_PIXMAPS_DIR' : os.path.join(cootDir, 'share', 'coot', 'pixmaps'),
-                          'COOT_RESOURCES_FILE' : os.path.join(cootDir, 'share', 'coot', 'cootrc'),
-                          'COOT_DATA_DIR' : os.path.join(cootDir, 'share', 'coot'),
-                          'COOT_REF_STRUCTS' :  os.path.join(cootDir, 'share', 'coot', 'reference-structures'),
-                          'COOT_PYTHON_DIR' : os.path.join(cootDir, 'share', 'coot', 'python'),
-                          'COOT_REF_SEC_STRUCTS' : os.path.join(cootDir, 'share', 'coot', 'ss-reference-structures'),
-                          'PYTHONPATH' : os.path.join(cootDir, 'share', 'coot', 'python'),
-                          'PYTHONHOME' : os.path.join(cootDir, 'bin'),
-                          'SYMINFO': os.path.join(cootDir, 'share', 'coot', 'syminfo.lib'),
-                          'GUILE_LOAD_PATH' : os.path.join(COOT_GUILE_PREFIX, 'share', 'guile', '1.8') + ';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile') + ';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','gtk-2.0') + ';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','gui')+';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','www')+';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','site')}
-        for key,value in list(coot_locations.items()):
-            p.insert(key, value)
-        if p.contains('PATH'):
-            p.insert('PATH', os.path.join(cootDir,'bin') + ';' + os.path.join(cootDir, 'lib') + ';' + p.value('PATH', ''))
-        else:
-            p.insert('PATH', os.path.join(cootDir,'bin') + ';' + os.path.join(cootDir, 'lib'))
-        return p
-        """
-              if not exist "%CLIBD_MON%" (
-          echo no $CLIBD_MON found setting COOT_REFMAC_LIB_DIR
-          set COOT_REFMAC_LIB_DIR=%COOT_SHARE%\coot\lib
-        """
 
     @QtCore.Slot(str,str)
     def printFinished(self, code, stat):
