@@ -1,7 +1,7 @@
 import glob
 import os
 from pathlib import Path
-import platform
+import shutil
 import sys
 from PySide2 import QtCore
 from lxml import etree
@@ -14,7 +14,7 @@ class lidia(CPluginScript):
     TASKTITLE = 'Lidia'  # A short title for gui menu
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'Lidia'  # Task name - should be same as class name
-    TASKCOMMAND = 'lidia.bat' if platform.system() == "Windows" else 'lidia'  # The command to run the executable
+    TASKCOMMAND = shutil.which('layla')  # The command to run the executable
     TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
@@ -25,7 +25,7 @@ class lidia(CPluginScript):
                    201 : {'description' : 'Failed to setFullPath'},}
     
     def startProcess(self, command, **kw):
-        viewer = 'lidia'
+        viewer = 'layla'
         argList = []
         lidiaPath = _lidiaPath()
         if not sys.platform.startswith("win"):
