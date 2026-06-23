@@ -133,7 +133,6 @@ class CGuiPreferences(CTaskWidget):
     self.openFolder(title='Other software')
     
     self.createLine( ['label' , 'CCP4mg executable full path', 'widget','-jobCombo',False,'CCP4MG_EXECUTABLE' ] )
-    self.createLine( ['label' , 'Coot executable full path', 'widget','-jobCombo',False,'COOT_EXECUTABLE' ] )
     self.createLine( ['label' , 'Directory containing Shelx programs', 'widget','-jobCombo',False,'SHELXDIR' ] )
     self.createLine( ['label' , 'Directory containing DIALS programs', 'widget','-jobCombo',False,'DIALSDIR' ] )
     self.createLine(['label', 'Directory containing BUSTER (GPL)', 'widget', '-jobCombo', False, 'BUSTERDIR'])
