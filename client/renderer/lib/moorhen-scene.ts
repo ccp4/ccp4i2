@@ -680,9 +680,7 @@ function validateMaps(
     return undefined;
   }
   const fileNames = new Set(files.map((f) => f.name));
-  const mtzFileNames = new Set(
-    files.filter((f) => f.kind === "mtz").map((f) => f.name),
-  );
+  const kindByName = new Map(files.map((f) => [f.name, f.kind ?? "coordinates"]));
   const seen = new Set<string>();
   const out: SceneMap[] = [];
   raw.forEach((entry, i) => {
@@ -701,6 +699,7 @@ function validateMaps(
     }
 
     const file = strField(entry, "file", "", errors, p);
+    const fileKind = file ? kindByName.get(file) : undefined;
     if (!file) {
       errors.push({ path: `${p}.file`, message: "required" });
     } else if (files.length > 0 && !fileNames.has(file)) {
@@ -708,16 +707,26 @@ function validateMaps(
         path: `${p}.file`,
         message: `unknown file "${file}" (not in top-level files block)`,
       });
-    } else if (fileNames.has(file) && !mtzFileNames.has(file)) {
+    } else if (fileNames.has(file) && fileKind !== "mtz" && fileKind !== "map") {
       errors.push({
         path: `${p}.file`,
-        message: `"${file}" must be a file with kind: "mtz"`,
+        message: `"${file}" must be a file with kind: "mtz" or "map"`,
       });
     }
 
+    // `kind: "map"` files (real-space CCP4 maps / masks) take no columns —
+    // they're read directly. Only `kind: "mtz"` files need a column spec.
+    const isMapFile = fileKind === "map";
     const columnsRaw = (entry as Record<string, unknown>).columns;
-    let columns: SceneMapColumns = {};
-    if (!isObject(columnsRaw)) {
+    let columns: SceneMapColumns | undefined;
+    if (isMapFile) {
+      if (columnsRaw !== undefined) {
+        errors.push({
+          path: `${p}.columns`,
+          message: `not allowed for kind: "map" file "${file}" (read directly, no columns)`,
+        });
+      }
+    } else if (!isObject(columnsRaw)) {
       errors.push({ path: `${p}.columns`, message: "required mapping (F + PHI minimum)" });
     } else {
       columns = {
@@ -731,7 +740,7 @@ function validateMaps(
       };
       // Drop undefined fields so the round-trip stays clean.
       (Object.keys(columns) as (keyof SceneMapColumns)[]).forEach((k) => {
-        if (columns[k] === undefined) delete columns[k];
+        if (columns![k] === undefined) delete columns![k];
       });
       // Need F + PHI unless calcStructFact (then Moorhen computes them
       // from Fobs/SigFobs/FreeR).
@@ -745,8 +754,11 @@ function validateMaps(
       }
     }
 
-    const map: SceneMap = { name, file, columns };
+    const map: SceneMap = columns ? { name, file, columns } : { name, file };
 
+    if ("isMask" in entry) {
+      map.isMask = optBool(entry, "isMask", `${p}.isMask`, errors);
+    }
     if ("isDifference" in entry) {
       map.isDifference = optBool(entry, "isDifference", `${p}.isDifference`, errors);
     }
@@ -945,12 +957,13 @@ function buildOrderedScene(scene: MoorhenScene): Record<string, unknown> {
       const out: Record<string, unknown> = {
         name: m.name,
         file: m.file,
-        columns: stripUndefined(m.columns),
       };
+      // columns only for MTZ-backed maps; real-space map/mask refs omit it.
+      if (m.columns !== undefined) out.columns = stripUndefined(m.columns);
       // Optional render-state fields: emit only the ones the lifter
       // (or hand-author) set, so the YAML stays small.
       const optional: (keyof SceneMap)[] = [
-        "isDifference", "contourLevel", "radius", "alpha", "style",
+        "isMask", "isDifference", "contourLevel", "radius", "alpha", "style",
         "colour", "positiveColour", "negativeColour", "visible",
       ];
       for (const k of optional) {

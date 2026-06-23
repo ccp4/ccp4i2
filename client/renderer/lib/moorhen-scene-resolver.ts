@@ -580,6 +580,9 @@ function applyMapState(
   dispatch: Dispatch,
 ): void {
   const molNo = map.molNo;
+  // Mask styling (incl. Coot's suggested contour level/radius) is applied by
+  // applyMaskDefaults at load time in the wrapper's map fetcher; here we apply
+  // only the scene's explicit overrides, for masks and ordinary maps alike.
   if (sceneMap.contourLevel !== undefined) {
     // setContourLevel's typings have drifted across Moorhen versions;
     // cast keeps the resolver compatible with the installed shape.

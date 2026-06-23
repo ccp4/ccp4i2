@@ -515,13 +515,15 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
 
               const sliderPosition = valueToSlider(level);
               const shortName =
-                mapSubType === 3
-                  ? "Anom"
-                  : mapSubType === 2
-                    ? "Fo-Fc"
-                    : isDiff
+                mapSubType === 4
+                  ? "Mask"
+                  : mapSubType === 3
+                    ? "Anom"
+                    : mapSubType === 2
                       ? "Fo-Fc"
-                      : "2Fo-Fc";
+                      : isDiff
+                        ? "Fo-Fc"
+                        : "2Fo-Fc";
 
               return (
                 <Stack

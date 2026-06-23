@@ -65,9 +65,11 @@ import {
   SceneFileFetcher,
   SceneDictionaryFetcher,
   SceneDictionaryLoader,
+  SceneMapFetcher,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
@@ -409,6 +411,86 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [],
   );
 
+  // Map fetcher: loads a scene maps[] entry. Real-space CCP4 map files
+  // (kind: "map", incl. masks) load via loadToCootFromMapData; MTZ refs via
+  // loadToCootFromMtzData with the column spec. applyMapState (in the resolver)
+  // then applies contour/style/colour, incl. the mask defaults.
+  const handleFetchSceneMap: SceneMapFetcher = useCallback(
+    async (ref, sceneMap) => {
+      if (!commandCentre.current) return null;
+      let bytes: ArrayBuffer | null = null;
+      let uniqueId: string | null = null;
+      if (ref.bundle) {
+        const buf = bundleAssetsRef.current.get(ref.bundle);
+        if (!buf) {
+          console.warn(`[scene] map bundle miss: ${ref.bundle}`);
+          return null;
+        }
+        bytes = buf;
+        uniqueId = `bundle:${ref.bundle}`;
+      } else {
+        let url: string | null = null;
+        if (ref.fileId !== undefined && ref.projectId) {
+          url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+        } else if (ref.url) {
+          url = ref.url;
+        }
+        if (!url) return null;
+        try {
+          bytes = await apiArrayBuffer(url);
+          uniqueId = url;
+        } catch (err) {
+          console.warn(`[scene] map fetch failed for ${ref.name}:`, err);
+          return null;
+        }
+      }
+      try {
+        const newMap = new MoorhenMap(
+          commandCentre as RefObject<moorhen.CommandCentre>,
+          store as any,
+        );
+        if (ref.kind === "map") {
+          // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
+          const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
+          await newMap.loadToCootFromMapData(
+            new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
+            sceneMap.name,
+            !!sceneMap.isDifference,
+          );
+          (newMap as any).isCcp4MapFile = true;
+          if (sceneMap.isMask) markMaskMap(newMap);
+        } else {
+          const cols = sceneMap.columns ?? {};
+          await newMap.loadToCootFromMtzData(
+            new Uint8Array(bytes as ArrayBuffer),
+            sceneMap.name,
+            {
+              F: cols.F,
+              PHI: cols.PHI,
+              Fobs: cols.Fobs,
+              SigFobs: cols.SigFobs,
+              FreeR: cols.FreeR,
+              useWeight: !!cols.useWeight,
+              calcStructFact: !!cols.calcStructFact,
+              isDifference: !!sceneMap.isDifference,
+            } as moorhen.selectedMtzColumns,
+          );
+        }
+        if (newMap.molNo === -1) return null;
+        if (uniqueId) newMap.uniqueId = uniqueId;
+        dispatch(addMap(newMap));
+        if (ref.kind === "map" && sceneMap.isMask) {
+          await applyMaskDefaults(dispatch, newMap as any);
+        }
+        return newMap;
+      } catch (err) {
+        console.warn(`[scene] failed to load map for ${ref.name}:`, err);
+        return null;
+      }
+    },
+    [commandCentre, store, dispatch],
+  );
+
   // Core apply: hand a parsed scene + bundle assets to the resolver.
   const runScene = useCallback(
     async (
@@ -424,6 +506,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         fetcher: handleFetchSceneFile,
         dictionaryFetcher: handleFetchSceneDictionary,
         dictionaryLoader: handleLoadSceneDictionary,
+        mapFetcher: handleFetchSceneMap,
       });
       dispatch(setRequestDrawScene(true));
       return result;
@@ -435,6 +518,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       handleFetchSceneFile,
       handleFetchSceneDictionary,
       handleLoadSceneDictionary,
+      handleFetchSceneMap,
     ],
   );
 
@@ -493,6 +577,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       // subType: 1=normal, 2=difference, 3=anomalous difference
       const mapSubType = fileInfo.sub_type || 1;
       await fetchMap(url, molName, mapSubType);
+    } else if (fileInfo.type === "application/CCP4-map") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      const molName = fileInfo.annotation || fileInfo.name || fileInfo.job_param_name;
+      await fetchMapFile(url, molName, { isMask: isMaskSubType(fileInfo.sub_type) });
     }
   };
 
@@ -550,7 +638,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       await fetchMolecule(url, molName);
     }
 
-    // STEP 3: Load map files
+    // STEP 3: Load map files (MTZ coefficients and real-space CCP4 maps / masks)
     for (const file of jobOutputFiles) {
       if (file.type === "application/CCP4-mtz-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
@@ -558,6 +646,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         // subType: 1=normal, 2=difference, 3=anomalous difference
         const mapSubType = file.sub_type || 1;
         await fetchMap(url, molName, mapSubType);
+      } else if (file.type === "application/CCP4-map") {
+        const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
+        const molName = file.annotation || file.name || file.job_param_name;
+        await fetchMapFile(url, molName, { isMask: isMaskSubType(file.sub_type) });
       }
     }
   };
@@ -691,6 +783,43 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch map from ${url}`);
+    }
+  };
+
+  // Load a real-space CCP4 map file (application/CCP4-map), e.g. a mask. Uses
+  // loadToCootFromMapData (not the MTZ path); masks get the shared translucent
+  // solid defaults and are never the active map.
+  const fetchMapFile = async (
+    url: string,
+    mapName: string,
+    opts: { isMask?: boolean } = {}
+  ) => {
+    if (!commandCentre.current) return;
+    const newMap = new MoorhenMap(
+      commandCentre as RefObject<moorhen.CommandCentre>,
+      store as any
+    );
+    try {
+      // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
+      // (no-op if already float). For masks, also nudge the P1/orthogonal cell
+      // off 90° so coot contours periodically instead of clamping to the cell box.
+      let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
+      if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
+      await newMap.loadToCootFromMapData(new Uint8Array(mapData), mapName, false);
+      if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
+      newMap.uniqueId = url;
+      // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
+      (newMap as any).isCcp4MapFile = true;
+      if (opts.isMask) {
+        markMaskMap(newMap);
+      }
+      dispatch(addMap(newMap));
+      if (opts.isMask) {
+        await applyMaskDefaults(dispatch, newMap as any);
+      }
+    } catch (err) {
+      console.warn(err);
+      console.warn(`Cannot fetch map file from ${url}`);
     }
   };
 
