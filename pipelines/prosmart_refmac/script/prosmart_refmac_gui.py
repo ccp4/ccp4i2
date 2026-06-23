@@ -37,7 +37,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
-        returnList = ['LidiaAcedrg', 'prosmart_refmac']
+        returnList = ['LidiaAcedrgNew', 'prosmart_refmac']
     else:
         returnList = ['prosmart_refmac', 'coot1', 'modelcraft']
     return returnList
