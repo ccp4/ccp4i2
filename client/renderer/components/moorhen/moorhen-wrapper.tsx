@@ -44,7 +44,7 @@ import {
 } from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
-import { applyMaskDefaults, isMaskSubType, markMaskMap } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat } from "../../lib/moorhen-map-file";
 import {
   liftSceneToBundle,
   MapRenderState,
@@ -291,7 +291,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       store as any
     );
     try {
-      const mapData = await apiArrayBuffer(url);
+      // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
+      // (no-op for maps that are already float).
+      const mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
       await newMap.loadToCootFromMapData(new Uint8Array(mapData), mapName, false);
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
@@ -789,8 +791,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         );
         if (ref.kind === "map") {
           // Real-space CCP4 map file (incl. masks): load directly, no columns.
+          // mode-0 -> float so Moorhen reads sane stats (no-op if already float).
           await newMap.loadToCootFromMapData(
-            new Uint8Array(bytes as ArrayBuffer),
+            new Uint8Array(ccp4Mode0ToFloat(bytes as ArrayBuffer)),
             sceneMap.name,
             !!sceneMap.isDifference,
           );
