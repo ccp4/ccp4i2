@@ -478,6 +478,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         if (newMap.molNo === -1) return null;
         if (uniqueId) newMap.uniqueId = uniqueId;
         dispatch(addMap(newMap));
+        if (ref.kind === "map" && sceneMap.isMask) {
+          await applyMaskDefaults(dispatch, newMap as any);
+        }
         return newMap;
       } catch (err) {
         console.warn(`[scene] failed to load map for ${ref.name}:`, err);
@@ -809,7 +812,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       }
       dispatch(addMap(newMap));
       if (opts.isMask) {
-        applyMaskDefaults(dispatch, newMap.molNo);
+        await applyMaskDefaults(dispatch, newMap as any);
       }
     } catch (err) {
       console.warn(err);

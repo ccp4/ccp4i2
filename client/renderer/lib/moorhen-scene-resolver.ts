@@ -63,12 +63,6 @@ import {
   isSceneNamedColour,
   isSceneRawColour,
 } from "../types/moorhen-scene";
-import {
-  MASK_STYLE,
-  MASK_ALPHA,
-  MASK_CONTOUR_LEVEL,
-  MASK_COLOUR,
-} from "./moorhen-map-file";
 
 // --------------------------------------------------------------------------
 // Result + log entries
@@ -586,27 +580,22 @@ function applyMapState(
   dispatch: Dispatch,
 ): void {
   const molNo = map.molNo;
-  // Masks default to a translucent solid surface, unless the scene overrides
-  // the individual fields. (For non-masks these resolve to the scene's own
-  // values, so behaviour is unchanged.)
-  const isMask = !!sceneMap.isMask;
-  const contourLevel = sceneMap.contourLevel ?? (isMask ? MASK_CONTOUR_LEVEL : undefined);
-  const alpha = sceneMap.alpha ?? (isMask ? MASK_ALPHA : undefined);
-  const style = sceneMap.style ?? (isMask ? MASK_STYLE : undefined);
-  const colour = sceneMap.colour ?? (isMask ? MASK_COLOUR : undefined);
-  if (contourLevel !== undefined) {
+  // Mask styling (incl. Coot's suggested contour level/radius) is applied by
+  // applyMaskDefaults at load time in the wrapper's map fetcher; here we apply
+  // only the scene's explicit overrides, for masks and ordinary maps alike.
+  if (sceneMap.contourLevel !== undefined) {
     // setContourLevel's typings have drifted across Moorhen versions;
     // cast keeps the resolver compatible with the installed shape.
-    dispatch(setContourLevel({ molNo, contourLevel } as never));
+    dispatch(setContourLevel({ molNo, contourLevel: sceneMap.contourLevel } as never));
   }
   if (sceneMap.radius !== undefined) {
     dispatch(setMapRadius({ molNo, radius: sceneMap.radius } as never));
   }
-  if (alpha !== undefined) {
-    dispatch(setMapAlpha({ molNo, alpha } as never));
+  if (sceneMap.alpha !== undefined) {
+    dispatch(setMapAlpha({ molNo, alpha: sceneMap.alpha } as never));
   }
-  if (style) {
-    dispatch(setMapStyle({ molNo, style } as never));
+  if (sceneMap.style) {
+    dispatch(setMapStyle({ molNo, style: sceneMap.style } as never));
   }
   if (sceneMap.isDifference) {
     if (sceneMap.positiveColour) {
@@ -617,8 +606,8 @@ function applyMapState(
       const rgb = hexToRgb01(sceneMap.negativeColour);
       if (rgb) dispatch(setNegativeMapColours({ molNo, rgb } as never));
     }
-  } else if (colour) {
-    const rgb = hexToRgb01(colour);
+  } else if (sceneMap.colour) {
+    const rgb = hexToRgb01(sceneMap.colour);
     if (rgb) dispatch(setMapColours({ molNo, rgb } as never));
   }
   if (sceneMap.visible === false) {

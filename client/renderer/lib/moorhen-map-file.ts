@@ -13,6 +13,7 @@ import type { Dispatch } from "redux";
 import {
   setMapStyle,
   setMapAlpha,
+  setMapRadius,
   setContourLevel,
   setMapColours,
 } from "moorhen/react-lib";
@@ -97,12 +98,13 @@ export function ccp4Mode0ToFloat(buffer: ArrayBuffer): ArrayBuffer {
   return out;
 }
 
-/** Default mask look: a translucent solid surface in a soft blue. */
+/** Default mask look: a translucent solid surface in a soft blue. NB Moorhen's
+ *  setMapColours expects 0-255 components (it divides by 255 internally) — 0-1
+ *  floats render as a near-black mesh. */
 export const MASK_STYLE = "solid" as const;
-export const MASK_ALPHA = 0.4;
-export const MASK_CONTOUR_LEVEL = 0.5;
+export const MASK_ALPHA = 0.45;
 export const MASK_COLOUR = "#7e9cd8";
-export const MASK_COLOUR_RGB = { r: 0.494, g: 0.612, b: 0.847 };
+export const MASK_COLOUR_RGB = { r: 126, g: 156, b: 216 };
 
 /** True if a DB file's sub_type marks it as a mask. */
 export function isMaskSubType(subType: number | null | undefined): boolean {
@@ -121,22 +123,51 @@ export function markMaskMap(map: unknown): void {
   const m = map as {
     isCcp4Mask?: boolean;
     mapSubType?: number;
-    isEM?: boolean;
   };
   m.isCcp4Mask = true;
   m.mapSubType = MASK_SUBTYPE;
-  m.isEM = true;
 }
 
 /**
- * Apply the default mask look to a freshly-loaded Moorhen map. Dispatched as
- * separate actions (mirroring the resolver's applyMapState) because the
- * Moorhen map-setting action typings have drifted across versions — the casts
- * keep this compatible with the installed shape.
+ * Apply the default mask look to a freshly-loaded Moorhen map.
+ *
+ * Crucially the contour LEVEL and RADIUS are taken from Coot's own
+ * getSuggestedSettings(), not hardcoded: Coot reads contour level in sigma
+ * units, and a mask (mostly 0, with 1s) has a tiny sigma, so a "sensible"
+ * absolute level clears nothing -> empty mesh -> undefined bounding sphere ->
+ * crash. We override only cosmetics (style / alpha / colour), then force a
+ * contour + colour flush so the GL buffers actually pick them up.
+ *
+ * (Lesson set distilled from the FragVol sub-volume work.)
  */
-export function applyMaskDefaults(dispatch: Dispatch, molNo: number): void {
+export async function applyMaskDefaults(
+  dispatch: Dispatch,
+  map: { molNo: number; suggestedContourLevel?: number; suggestedRadius?: number;
+         getSuggestedSettings?: () => Promise<void>;
+         drawMapContour?: () => Promise<void>;
+         fetchColourAndRedraw?: () => Promise<void>; },
+): Promise<void> {
+  const molNo = map.molNo;
+  try {
+    await map.getSuggestedSettings?.();
+  } catch {
+    /* fall back to whatever level Coot already has */
+  }
+  if (typeof map.suggestedContourLevel === "number") {
+    dispatch(setContourLevel({ molNo, contourLevel: map.suggestedContourLevel } as never));
+  }
+  if (typeof map.suggestedRadius === "number") {
+    dispatch(setMapRadius({ molNo, radius: map.suggestedRadius } as never));
+  }
+  // Cosmetics only.
   dispatch(setMapStyle({ molNo, style: MASK_STYLE } as never));
   dispatch(setMapAlpha({ molNo, alpha: MASK_ALPHA } as never));
-  dispatch(setContourLevel({ molNo, contourLevel: MASK_CONTOUR_LEVEL } as never));
   dispatch(setMapColours({ molNo, rgb: MASK_COLOUR_RGB } as never));
+  // The colour/level don't reach the GL buffers until a contour runs.
+  try {
+    await map.drawMapContour?.();
+    await map.fetchColourAndRedraw?.();
+  } catch {
+    /* best-effort flush */
+  }
 }
