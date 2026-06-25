@@ -27,6 +27,7 @@ import {
   MoorhenScene,
   SCENE_SCHEMA_VERSION,
   SceneColour,
+  SceneColourSelection,
   SceneDomain,
   SceneElement,
   SceneFileRef,
@@ -184,6 +185,10 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
     });
     if (maps.length > 0) scene.maps = maps;
   }
+
+  // Fold any whole-chain colour lists into domains: + colour: by-domain, so a
+  // molecule's per-chain colouring is stated once rather than inline per rep.
+  hoistPerChainColours(scene);
 
   return scene;
 }
@@ -771,6 +776,11 @@ function liftRepresentation(rep: moorhen.MoleculeRepresentation): SceneRepresent
   const colour = liftColour(rep.colourRules ?? []);
   if (colour !== undefined) out.colour = colour;
 
+  // Per-representation opacity (Moorhen `nonCustomOpacity`); only emit a
+  // non-default value (default 1 = opaque ⇒ omit, matching the map `alpha`).
+  const a = (rep as { nonCustomOpacity?: number }).nonCustomOpacity;
+  if (typeof a === "number" && a < 1) out.alpha = round(a, 3);
+
   return out;
 }
 
@@ -787,13 +797,27 @@ const NAMED_MULTI_RULES = new Set([
   "mol-symm",
 ]);
 
+const HEX_RE = /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/;
+
+/** A single-colour rule with a hex colour (Moorhen "molecule" ruleType etc.). */
+function isSingleHexRule(r: moorhen.ColourRule): boolean {
+  return !r.isMultiColourRule && typeof r.color === "string" && HEX_RE.test(r.color);
+}
+
 function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
   if (rules.length === 0) return undefined;
 
-  // We only attempt to lift the *first* rule. Multiple rules per
-  // representation is rare in normal Moorhen UI flows; if we see it,
-  // the safer thing is to emit the first one and drop the rest rather
-  // than invent some lossy merge. (A future v2 could lift a sequence.)
+  // All single-colour rules → a single hex (one rule) or a per-selection list
+  // (many). The list is the faithful capture of coot's default per-chain
+  // colouring: one entry per chain with the colour coot assigned — instead of
+  // mistaking the first chain's hex for the whole representation. Whole-chain
+  // and residue-range CIDs are the same shape, so by-domain re-applies through
+  // the same path.
+  if (rules.every(isSingleHexRule)) {
+    if (rules.length === 1) return rules[0].color;
+    return rules.map((r) => ({ selection: r.cid, colour: r.color }));
+  }
+
   const r = rules[0];
 
   // 1. Named multi-rule scheme (b-factor, etc.).
@@ -801,12 +825,22 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
     return r.ruleType as SceneColour;
   }
 
-  // 2. Single-colour rule with a hex colour (Moorhen's "molecule" ruleType
-  //    or anything with isMultiColourRule=false).
-  // Accept 6-hex (#rrggbb) and 8-hex with alpha (#rrggbbaa) — Moorhen's
-  // default per-chain rules typically come out as 8-hex.
-  if (!r.isMultiColourRule && typeof r.color === "string" && /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/.test(r.color)) {
-    return r.color;
+  // 2. A compiled WHOLE-CHAIN per-selection rule: one multi-rule whose args[0]
+  //    is `//chain^#hex|...` (no residue range). This is what applying a
+  //    hoisted per-chain colouring (domains: + by-domain) produces, so decompose
+  //    it back to the list — hoistPerChainColours then re-folds it into
+  //    domains: + by-domain, keeping capture→apply→capture stable.
+  if (
+    r.isMultiColourRule &&
+    typeof r.args?.[0] === "string" &&
+    /^\/\/[^/^|]+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?(\|\/\/[^/^|]+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?)*$/.test(
+      r.args[0] as string,
+    )
+  ) {
+    return (r.args[0] as string).split("|").map((seg) => {
+      const ix = seg.lastIndexOf("^");
+      return { selection: seg.slice(0, ix), colour: seg.slice(ix + 1) };
+    });
   }
 
   // 3. by-domain shape: a single multi-rule whose args[0] is a string
@@ -833,6 +867,55 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
       applyColourToNonCarbonAtoms: r.applyColourToNonCarbonAtoms,
     },
   };
+}
+
+/** Chain id of a whole-chain CID ("//A", "/1/A"), else null (has residue/atom
+ *  parts, or is a wildcard). */
+function chainOfWholeChainCid(cid: string): string | null {
+  const parts = cid.split("/"); // "//A" -> ["","","A"]; "/1/A" -> ["","1","A"]
+  if (parts.length === 3 && parts[2] !== "" && parts[2] !== "*") return parts[2];
+  return null;
+}
+
+/**
+ * Hoist whole-chain colour lists into the shared `domains:` block + `colour:
+ * by-domain` on the representations, so a molecule's per-chain colouring is
+ * stated ONCE instead of repeated inline on every representation — the same
+ * "define a colour map once, representations adopt it" pattern by-domain already
+ * uses, at whole-chain granularity.
+ *
+ * Conservative: only fires when every adopting rep's colour list is entirely
+ * whole-chain CIDs, the chain→colour mapping is consistent across reps, and the
+ * `domains:` block is empty (so authored domains are never disturbed). Anything
+ * else (residue-range lists, conflicting per-chain colours) is left inline.
+ */
+function hoistPerChainColours(scene: MoorhenScene): void {
+  if (!scene.elements || (scene.domains && scene.domains.length > 0)) return;
+  const chainColour = new Map<string, string>();
+  const adopters: SceneRepresentation[] = [];
+  let conflict = false;
+  for (const el of scene.elements) {
+    for (const rep of el.representations ?? []) {
+      const c = rep.colour;
+      if (!Array.isArray(c) || c.length === 0) continue;
+      const chains = c.map((e) => chainOfWholeChainCid(e.selection));
+      if (chains.some((ch) => ch === null)) continue; // not all whole-chain
+      adopters.push(rep);
+      c.forEach((e, i) => {
+        const ch = chains[i] as string;
+        const prev = chainColour.get(ch);
+        if (prev !== undefined && prev !== e.colour) conflict = true;
+        chainColour.set(ch, e.colour);
+      });
+    }
+  }
+  if (conflict || chainColour.size === 0 || adopters.length === 0) return;
+  scene.domains = [...chainColour.entries()].map(([chain, color]) => ({
+    name: chain,
+    selection: `//${chain}`, // whole chain, CID form
+    color,
+  }));
+  for (const rep of adopters) rep.colour = "by-domain";
 }
 
 // --------------------------------------------------------------------------

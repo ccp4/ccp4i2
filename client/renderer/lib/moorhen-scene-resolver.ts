@@ -53,6 +53,7 @@ import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import {
   MoorhenScene,
   SceneColour,
+  SceneColourSelection,
   SceneDomain,
   SceneFileRef,
   SceneMap,
@@ -762,6 +763,11 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
         true, // isCustom — keeps it under our control to clear later
       );
       if (!created) continue;
+      // Per-representation opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque).
+      // Applies to surfaces as well as ribbons/sticks. Set before the redraw so
+      // the buffers pick up the transparent flag; absent ⇒ left at the default 1.
+      const hasAlpha = typeof rep.alpha === "number" && rep.alpha < 1;
+      if (hasAlpha) created.setNonCustomOpacity(rep.alpha as number);
       if (pendingRules.length > 0) {
         for (const r of pendingRules) {
           // Colour rule CID stays as authored — the rule's CID and the
@@ -777,6 +783,10 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
             r.applyColourToNonCarbonAtoms ?? false,
           );
         }
+      }
+      // Redraw if we changed colour rules or opacity (either needs the buffers
+      // rebuilt to reach the GL state).
+      if (pendingRules.length > 0 || hasAlpha) {
         await molecule.redrawRepresentation(created.uniqueId);
       }
       dispatch(addCustomRepresentation(created));
@@ -831,6 +841,20 @@ function extractRepError(e: unknown): string {
 function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] {
   const { molecule, rep, domains, fileName, log, policy } = ctx;
   if (!rep.colour) return [];
+
+  if (Array.isArray(rep.colour)) {
+    // Per-selection colour list: one single-colour rule per entry. A whole-chain
+    // CID ("//A") and a residue range ("//A/121-130") apply identically here —
+    // it's the general form by-domain compiles to, and what coot's default
+    // per-chain colouring round-trips through.
+    return rep.colour.map((c) => ({
+      ruleType: "molecule",
+      cid: c.selection,
+      color: c.colour,
+      args: [c.selection, c.colour],
+      isMultiColourRule: false,
+    }));
+  }
 
   if (isSceneHexColour(rep.colour)) {
     // libcoot's add_colour_rule reads cid+colour from args, not from
@@ -887,6 +911,55 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
 // by-domain compilation: clamp ranges, build pipe-delimited args
 // --------------------------------------------------------------------------
 
+/**
+ * Turn a domain CID `selection` into colour-rule segments. When the CID is the
+ * `//chain/start-end` shape (a concrete chain + numeric range) it is clamped to
+ * the residues present and warned about — diagnostic parity with the legacy
+ * chain+range form. Any other CID (whole chain `//F`, residue names, atoms,
+ * wildcard chains) passes straight through to Coot.
+ */
+function selectionToSegments(
+  selection: string,
+  color: string,
+  domainName: string,
+  presentByChain: Map<string, Set<number>>,
+  log: SceneResolveLogEntry[],
+  fileName: string,
+  policy: "clamp-and-log" | "strict",
+): string[] {
+  const m = /^(\/[^/]*\/([^/*]+))\/(-?\d+)-(-?\d+)$/.exec(selection);
+  if (!m) return [`${selection}^${color}`];
+  const prefix = m[1];
+  const chainId = m[2];
+  const start = parseInt(m[3], 10);
+  const end = parseInt(m[4], 10);
+  const present = presentByChain.get(chainId);
+  if (!present) {
+    log.push({ file: fileName, domain: domainName, message: `chain ${chainId} not present in molecule; skipped` });
+    return [];
+  }
+  const subRanges = clampRangeToPresent(start, end, present);
+  if (subRanges.length === 0) {
+    log.push({ file: fileName, domain: domainName, message: `range ${start}-${end} has no present residues in chain ${chainId}; skipped` });
+    return [];
+  }
+  if (subRanges.length > 1 || subRanges[0][0] !== start || subRanges[0][1] !== end) {
+    log.push({
+      file: fileName,
+      domain: domainName,
+      message: `chain ${chainId}: range ${start}-${end} resolved to ${subRanges
+        .map(([s, e]) => `${s}-${e}`)
+        .join(", ")} after clamping to present residues`,
+    });
+    if (policy === "strict") {
+      throw new Error(
+        `Scene resolver in strict mode: domain "${domainName}" range ${start}-${end} not fully present in chain ${chainId}`,
+      );
+    }
+  }
+  return subRanges.map(([s, e]) => `${prefix}/${s}-${e}^${color}`);
+}
+
 function buildByDomainPendingRule(
   molecule: moorhen.Molecule,
   domains: SceneDomain[],
@@ -906,12 +979,19 @@ function buildByDomainPendingRule(
 
   const segments: string[] = [];
   for (const d of domains) {
-    const m = /^(-?\d+)-(-?\d+)$/.exec(d.range);
-    if (!m) continue;
-    const start = parseInt(m[1], 10);
-    const end = parseInt(m[2], 10);
+    // Preferred CID form: clamp the //chain/start-end shape (diagnostic parity
+    // with chain+range), pass any other CID straight through.
+    if (d.selection) {
+      segments.push(
+        ...selectionToSegments(
+          d.selection, d.color, d.name, presentByChain, log, fileName, policy,
+        ),
+      );
+      continue;
+    }
+    if (!d.chain) continue; // neither selection nor chain (invalid; validated upstream)
 
-    // Resolve the domain's chain selector into concrete chain ids.
+    // Legacy: resolve the chain selector into concrete chain ids.
     // - "*"      → every chain present in the structure
     // - "A"      → exactly chain A (legacy single-chain form)
     // - ["A","B"] → exactly those chains
@@ -927,6 +1007,19 @@ function buildByDomainPendingRule(
       });
       continue;
     }
+
+    // Range-less domain ⇒ the WHOLE chain: one `//chain` segment per chain, no
+    // residue range (so a molecule's per-chain colouring is a set of whole-chain
+    // "domains" adopted via colour: by-domain, the same path as range domains).
+    if (!d.range) {
+      for (const chainId of targetChains) segments.push(`//${chainId}^${d.color}`);
+      continue;
+    }
+
+    const m = /^(-?\d+)-(-?\d+)$/.exec(d.range);
+    if (!m) continue;
+    const start = parseInt(m[1], 10);
+    const end = parseInt(m[2], 10);
 
     for (const chainId of targetChains) {
       const present = presentByChain.get(chainId);

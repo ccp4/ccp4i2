@@ -172,6 +172,66 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![0].colour).toBe("#2ecc71");
   });
 
+  it("hoists coot's per-chain default into domains: + colour: by-domain", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 0,
+          uniqueId: "x",
+          representations: [
+            {
+              style: "CRs",
+              visible: true,
+              colourRules: [
+                { ruleType: "molecule", cid: "//A", color: "#a08766", isMultiColourRule: false } as unknown as moorhen.ColourRule,
+                { ruleType: "molecule", cid: "//B", color: "#7e9cd8", isMultiColourRule: false } as unknown as moorhen.ColourRule,
+              ],
+            } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    // per-chain colouring is stated once in domains: (whole-chain CID selection)…
+    expect(scene.domains).toEqual([
+      { name: "A", selection: "//A", color: "#a08766" },
+      { name: "B", selection: "//B", color: "#7e9cd8" },
+    ]);
+    // …and the representation adopts it.
+    expect(scene.elements![0].representations![0].colour).toBe("by-domain");
+  });
+
+  it("captures a non-default nonCustomOpacity as alpha", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 0,
+          uniqueId: "x",
+          representations: [
+            {
+              style: "MolecularSurface",
+              visible: true,
+              colourRules: [],
+              nonCustomOpacity: 0.4,
+            } as Partial<moorhen.MoleculeRepresentation>,
+            // Fully opaque (default) → alpha omitted.
+            {
+              style: "CRs",
+              visible: true,
+              colourRules: [],
+              nonCustomOpacity: 1,
+            } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    expect(scene.elements![0].representations![0].alpha).toBe(0.4);
+    expect(scene.elements![0].representations![1].alpha).toBeUndefined();
+  });
+
   it("recognises by-domain pipe-delimited args", () => {
     const scene = liftScene({
       molecules: [

@@ -117,33 +117,53 @@ files:
 
 ## `domains`
 
-Reusable named residue blocks, referenced from `colour: by-domain`
+Reusable named colour blocks, referenced from `colour: by-domain`
 inside an element. Hoisted to the top level so a multi-structure scene
 doesn't duplicate them per element.
 
 ```yaml
 domains:
-  - { name: CARD, chain: A, range: 1-92,    color: "#4b8bbe" }
-  - { name: NBD,  chain: A, range: 104-260, color: "#2ecc71" }
-  - { name: HD1,  chain: A, range: 261-330, color: "#9b59b6" }
+  - { name: CARD, selection: "//A/1-92",    color: "#4b8bbe" }
+  - { name: NBD,  selection: "//A/104-260", color: "#2ecc71" }
+  - { name: HD1,  selection: "//A/261-330", color: "#9b59b6" }
 ```
 
 Fields:
 
 - `name`: required.
-- `chain`: required. Three forms:
-  - `"A"` — a single chain.
-  - `"*"` — every chain present in the structure (useful for symmetric
-    assemblies like the apoptosome heptamer).
-  - `["A", "B", "C"]` — explicit list, applied to each chain in turn.
-- `range`: required. Two forms:
-  - `"start-end"` (string) — inclusive range, e.g. `"100-200"`.
-  - `<integer>` (bare int) — single residue; the validator normalises
-    `115` to `"115-115"` so downstream code only sees one shape.
+- `selection`: a Coot **CID** — the preferred, general form. Any valid CID:
+  - `"//F"` — the whole of chain F.
+  - `"//F/32-64"` — residues 32-64 of chain F.
+  - a wildcard chain — that residue range across every chain.
+  - `"//A/(ALA,GLY)"`, `"//A/55/CA[C]"` — residue names, atoms, … things
+    `chain`+`range` can't express.
+
+  When the CID is the `//chain/start-end` shape the resolver still clamps the
+  range to present residues and warns (parity with the legacy form, see
+  `resolver.onMissingResidues`); any other CID is passed straight to Coot.
 - `color`: required hex `#rrggbb`.
 
-The resolver clamps each range to the residues actually present in the
-loaded structure (see `resolver.onMissingResidues`).
+**Legacy (deprecated, accepted for a short migration window — prefer
+`selection`):** instead of `selection` you may give `chain` + optional `range`:
+
+- `chain`: `"A"` (single), `"*"` (every chain present), or `["A","B","C"]`.
+- `range`: `"start-end"`, a bare int (single residue), or **omitted ⇒ whole
+  chain**.
+
+```yaml
+# Per-chain colouring, stated once and adopted by representations:
+domains:
+  - { name: A, selection: "//A", color: "#a08766" }   # whole chain A
+  - { name: B, selection: "//B", color: "#6ca066" }   # whole chain B
+elements:
+  - file: my_structure
+    representations:
+      - { style: CRs, colour: by-domain, alpha: 0.5 }
+```
+
+This is exactly what coot's default per-chain colouring **lifts to** — the
+lifter folds it into `domains:` (whole-chain `selection`) + `colour: by-domain`
+so it isn't repeated inline on every representation.
 
 ## `elements`
 
@@ -354,13 +374,16 @@ row today. The practical advice:
 
 ### `colour`
 
-Four forms:
+Five forms:
 
 ```yaml
 colour: "#4b8bbe"             # 1. Hex literal (#rrggbb or #rrggbbaa)
 colour: by-domain             # 2. Compile from the domains: block
 colour: b-factor              # 3. Named Moorhen scheme
-colour:                       # 4. Raw escape hatch (lossless, ugly)
+colour:                       # 4. Per-selection list (general; see below)
+  - { selection: "//A", colour: "#a08766" }
+  - { selection: "//B", colour: "#7e9cd8" }
+colour:                       # 5. Raw escape hatch (lossless, ugly)
   raw:
     ruleType: <string>
     args: [...]
@@ -378,6 +401,36 @@ Named schemes available out of the box:
 `by-domain` compiles to a single multi-residue colour rule built from
 the top-level `domains:` block. So one element with `colour: by-domain`
 on a ribbon gives you the whole domain-coloured protein in one rep.
+
+**Per-selection list** is the general "colour these CIDs these colours"
+form: one `{ selection, colour }` entry per CID, each applied as a single
+colour rule. A whole chain (`//A`) and a residue range (`//A/121-130`)
+are the same shape at different granularities — `by-domain` is just the
+named shortcut that compiles the `domains:` block into this. Crucially,
+**this is what coot's default per-chain colouring lifts to** — one entry
+per chain with the colour coot assigned — so a captured scene records the
+real per-chain colours instead of a single misleading hex. (`alpha` is a
+separate field, so you can always add it to make a per-chain-coloured
+surface translucent.)
+
+### `alpha`
+
+Opacity in `[0, 1]` (1 = fully opaque). Omitted ⇒ opaque, so existing
+scenes are unchanged. Maps to Moorhen's per-representation
+`nonCustomOpacity`, so it applies to **surfaces** (`MolecularSurface`,
+`VdWSurface`, `gaussian`, `MetaBalls`) as well as ribbons and sticks —
+a translucent molecular surface over a cartoon is the canonical use.
+
+```yaml
+representations:
+  - { style: CRs,              selection: "//A", colour: secondary-structure }
+  - { style: MolecularSurface, selection: "//A", colour: "#9bbcd8", alpha: 0.4 }
+```
+
+This is the opacity used when colour is scene-driven (rules / hex /
+named schemes). A colour hand-picked with Moorhen's colour-picker
+instead carries its alpha in the colour's own RGBA; scenes don't author
+those, so `alpha` is the single lever here.
 
 ### `dictionaries`
 

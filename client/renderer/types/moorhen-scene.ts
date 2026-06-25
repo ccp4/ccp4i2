@@ -174,21 +174,28 @@ export interface SceneDomain {
   /** Free-text name used in `colour: by-domain` and in the resolver log. */
   name: string;
 
-  /** Chain selector. Three forms:
+  /** CID selection — the preferred, general form. Any valid Coot CID:
    *
-   *   - `"A"` (or any non-`*` string) — single chain.
-   *   - `"*"` — every chain present in the structure (useful for symmetric
-   *     assemblies like the apoptosome heptamer).
-   *   - `["A", "B", "C"]` — explicit list, applied to each chain in turn.
+   *   - `"//F"`        — the whole of chain F.
+   *   - `"//F/32-64"`  — residues 32-64 of chain F.
+   *   - a wildcard chain (`//<star>/32-64`) — that range across every chain.
+   *   - `"//A/(ALA,GLY)"`, `"//A/55/CA[C]"` — residue names, atoms, … things
+   *     the chain+range form can't express.
    *
-   *  At apply-time the resolver fans the domain out across the resolved
-   *  chain list and clamps the range per-chain. */
-  chain: string | string[];
+   *  When the CID is the `//chain/start-end` shape the resolver still clamps the
+   *  range to present residues and warns (parity with `chain`+`range`); any other
+   *  CID is passed straight to Coot. Use this in preference to `chain`+`range`. */
+  selection?: string;
 
-  /** Inclusive residue range "start-end", e.g. "1-120". The resolver
-   *  clamps this to the residues actually present in each loaded
-   *  structure (see SceneResolverOptions.onMissingResidues). */
-  range: string;
+  /** @deprecated Legacy chain selector — use `selection`. Kept for a short
+   *  migration window. Forms: `"A"` (single chain), `"*"` (every chain present),
+   *  `["A","B","C"]` (explicit list). The resolver fans out across the resolved
+   *  chains and clamps the range per-chain. */
+  chain?: string | string[];
+
+  /** @deprecated Legacy inclusive residue range "start-end" — use `selection`.
+   *  Omitted ⇒ the whole chain. Clamped to present residues by the resolver. */
+  range?: string;
 
   /** Hex colour, e.g. "#4b8bbe". */
   color: string;
@@ -292,21 +299,45 @@ export interface SceneRepresentation {
 
   /** Colour specification — see SceneColour for the variants. */
   colour?: SceneColour;
+
+  /** Opacity in [0, 1] (1 = fully opaque). Maps to Moorhen's per-representation
+   *  `nonCustomOpacity`; applies to surfaces (MolecularSurface, VdWSurface,
+   *  gaussian, MetaBalls) as well as ribbons/sticks. Omitted ⇒ opaque. This is
+   *  the opacity used when colour is scene-driven (rules / hex / named schemes);
+   *  a hand-picked colour-picker colour would instead carry alpha in its RGBA. */
+  alpha?: number;
 }
 
 /**
- * Colour specification. Three v0 shapes:
+ * Colour specification. Shapes:
  *
- *   1. Hex literal:        colour: "#4b8bbe"
- *   2. Named scheme:       colour: by-domain | b-factor | af2-plddt | ...
- *   3. Raw escape hatch:   colour: { raw: { ruleType, args } }
+ *   1. Hex literal:           colour: "#4b8bbe"
+ *   2. Named scheme:          colour: by-domain | b-factor | af2-plddt | ...
+ *   3. Per-selection list:    colour: [ { selection: "//A", colour: "#a08766" }, ... ]
+ *   4. Raw escape hatch:      colour: { raw: { ruleType, args } }
  *
- * `by-domain` compiles to a single multi-rule built from the top-level
- * `domains:` block. Named schemes map 1:1 to Moorhen's existing multi-rule
- * ruleTypes. The raw form preserves anything we can't lift to a higher
- * abstraction (lossless but ugly).
+ * The per-selection list is the general "colour these CIDs these colours" form:
+ * one entry per selection, each compiled to a single colour rule. A whole chain
+ * (`//A`) and a residue range (`//A/121-130`) are the same shape at different
+ * granularities — so this is what coot's default per-chain colouring lifts to
+ * (one entry per chain, the colour coot assigned), instead of a single
+ * misleading hex. `by-domain` is the named shortcut that compiles the top-level
+ * `domains:` block into this same form. Named schemes map 1:1 to Moorhen's
+ * multi-rule ruleTypes. The raw form preserves anything we can't lift.
  */
-export type SceneColour = string | SceneNamedColour | SceneRawColour;
+export type SceneColour =
+  | string
+  | SceneNamedColour
+  | SceneColourSelection[]
+  | SceneRawColour;
+
+/** One entry of a per-selection colour list: a CID and the hex it gets. */
+export interface SceneColourSelection {
+  /** CID, e.g. "//A" (whole chain) or "//A/121-130" (residue range). */
+  selection: string;
+  /** Hex colour (#rrggbb or #rrggbbaa). */
+  colour: string;
+}
 
 export type SceneNamedColour =
   | "by-domain"

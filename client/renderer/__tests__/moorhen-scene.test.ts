@@ -108,6 +108,123 @@ describe("Moorhen scene — worked kinase example", () => {
 });
 
 // --------------------------------------------------------------------------
+// Representation alpha (per-representation opacity → nonCustomOpacity).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — representation alpha", () => {
+  const withAlpha = (alpha: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+    `elements:\n  - file: p\n    representations:\n` +
+    `      - style: MolecularSurface\n        selection: //A\n` +
+    `        colour: "#9bbcd8"\n        alpha: ${alpha}\n`;
+
+  it("accepts alpha in [0,1] and round-trips it", () => {
+    const scene = parseScene(withAlpha("0.4"));
+    expect(scene.elements![0].representations![0].alpha).toBe(0.4);
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("omits alpha when absent (default opaque)", () => {
+    const yaml =
+      `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+      `elements:\n  - file: p\n    representations:\n      - style: CRs\n`;
+    expect(
+      parseScene(yaml).elements![0].representations![0].alpha,
+    ).toBeUndefined();
+  });
+
+  it("rejects alpha outside [0,1]", () => {
+    expect(() => parseScene(withAlpha("1.5"))).toThrow(/in \[0, 1\]/);
+    expect(() => parseScene(withAlpha("-0.2"))).toThrow(/in \[0, 1\]/);
+  });
+
+  it("rejects non-numeric alpha", () => {
+    expect(() => parseScene(withAlpha('"opaque"'))).toThrow(/must be a number/);
+  });
+});
+
+// --------------------------------------------------------------------------
+// Per-selection colour list (the general "colour these CIDs these colours"
+// form; what coot's default per-chain colouring lifts to).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — per-selection colour list", () => {
+  const repWith = (colour: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+    `elements:\n  - file: p\n    representations:\n      - style: CRs\n        colour: ${colour}\n`;
+
+  it("accepts a per-chain colour list and round-trips it", () => {
+    const scene = parseScene(
+      repWith(`[{ selection: "//A", colour: "#a08766" }, { selection: "//B", colour: "#7e9cd8" }]`),
+    );
+    expect(scene.elements![0].representations![0].colour).toEqual([
+      { selection: "//A", colour: "#a08766" },
+      { selection: "//B", colour: "#7e9cd8" },
+    ]);
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("rejects a list entry with no colour", () => {
+    expect(() => parseScene(repWith(`[{ selection: "//A" }]`))).toThrow(
+      /colour.*required/,
+    );
+  });
+
+  it("rejects a list entry with a bad hex", () => {
+    expect(() =>
+      parseScene(repWith(`[{ selection: "//A", colour: "notahex" }]`)),
+    ).toThrow(/must be hex/);
+  });
+});
+
+// --------------------------------------------------------------------------
+// Whole-chain domains (range omitted ⇒ the whole chain; what coot's per-chain
+// colouring hoists to, adopted via colour: by-domain).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — domain selection (CID) + legacy chain+range", () => {
+  it("accepts a CID selection domain and round-trips it", () => {
+    const scene = parseScene(
+      `scene: x\nversion: 1\ndomains:\n  - { name: F, selection: "//F/32-64", color: "#a06695" }\n`,
+    );
+    expect(scene.domains![0]).toEqual({
+      name: "F",
+      selection: "//F/32-64",
+      color: "#a06695",
+    });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("still accepts the legacy chain+range form (whole chain too)", () => {
+    const whole = parseScene(
+      `scene: x\nversion: 1\ndomains:\n  - { name: A, chain: A, color: "#a08766" }\n`,
+    );
+    expect(whole.domains![0]).toEqual({ name: "A", chain: "A", color: "#a08766" });
+    expect(whole.domains![0].range).toBeUndefined();
+    expect(parseScene(serialiseScene(whole))).toEqual(whole);
+  });
+
+  it("requires selection or chain", () => {
+    expect(() =>
+      parseScene(`scene: x\nversion: 1\ndomains:\n  - { name: d, color: "#ffffff" }\n`),
+    ).toThrow(/required \(or use .selection.\)/);
+  });
+
+  it("still validates a range when one IS given", () => {
+    expect(
+      parseScene(
+        `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1-50", color: "#fff000" }\n`,
+      ).domains![0].range,
+    ).toBe("1-50");
+    expect(() =>
+      parseScene(
+        `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1to50", color: "#fff000" }\n`,
+      ),
+    ).toThrow(/start-end/);
+  });
+});
+
+// --------------------------------------------------------------------------
 // Validation: each error class.
 // --------------------------------------------------------------------------
 
