@@ -46,7 +46,7 @@ import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import {
-  liftSceneToBundle,
+  liftSceneWithHints,
   MapRenderState,
   promoteSceneToPortable,
   SceneLiftHints,
@@ -951,7 +951,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     const activeMapMolNo =
       (state as unknown as { generalStates?: { activeMap?: moorhen.Map | null } })
         .generalStates?.activeMap?.molNo;
-    return liftSceneToBundle({
+    // STRAIGHT lift: keep each file's real provenance (fileId+projectId / url /
+    // path) so the captured YAML re-applies against the SAME source. Bundling
+    // (bundle: assets/…) is deliberately NOT done here — it belongs only to the
+    // explicit "Save self-contained" action (handlePromoteSceneToPortable),
+    // which fetches the bytes into a .scene.zip. Eager-bundling on capture would
+    // hide provenance and, if the edited YAML is re-applied, load duplicate
+    // copies of each molecule.
+    const { scene, hints } = liftSceneWithHints({
       molecules,
       glRef: glRefState,
       projectId: projectInfo?.id,
@@ -964,6 +971,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       mapState,
       activeMapMolNo: typeof activeMapMolNo === "number" ? activeMapMolNo : undefined,
     });
+    return { scene, hints, assets: new Map() as SceneBundleAssets };
   }, [store, molecules, maps, projectInfo]);
 
   // Custom side panels: CCP4i2 controls + Scenes (YAML editor + lifter +
