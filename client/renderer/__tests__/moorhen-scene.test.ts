@@ -108,6 +108,42 @@ describe("Moorhen scene — worked kinase example", () => {
 });
 
 // --------------------------------------------------------------------------
+// Representation alpha (per-representation opacity → nonCustomOpacity).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — representation alpha", () => {
+  const withAlpha = (alpha: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+    `elements:\n  - file: p\n    representations:\n` +
+    `      - style: MolecularSurface\n        selection: //A\n` +
+    `        colour: "#9bbcd8"\n        alpha: ${alpha}\n`;
+
+  it("accepts alpha in [0,1] and round-trips it", () => {
+    const scene = parseScene(withAlpha("0.4"));
+    expect(scene.elements![0].representations![0].alpha).toBe(0.4);
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("omits alpha when absent (default opaque)", () => {
+    const yaml =
+      `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+      `elements:\n  - file: p\n    representations:\n      - style: CRs\n`;
+    expect(
+      parseScene(yaml).elements![0].representations![0].alpha,
+    ).toBeUndefined();
+  });
+
+  it("rejects alpha outside [0,1]", () => {
+    expect(() => parseScene(withAlpha("1.5"))).toThrow(/in \[0, 1\]/);
+    expect(() => parseScene(withAlpha("-0.2"))).toThrow(/in \[0, 1\]/);
+  });
+
+  it("rejects non-numeric alpha", () => {
+    expect(() => parseScene(withAlpha('"opaque"'))).toThrow(/must be a number/);
+  });
+});
+
+// --------------------------------------------------------------------------
 // Validation: each error class.
 // --------------------------------------------------------------------------
 

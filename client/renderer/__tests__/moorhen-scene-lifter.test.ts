@@ -172,6 +172,36 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![0].colour).toBe("#2ecc71");
   });
 
+  it("captures a non-default nonCustomOpacity as alpha", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 0,
+          uniqueId: "x",
+          representations: [
+            {
+              style: "MolecularSurface",
+              visible: true,
+              colourRules: [],
+              nonCustomOpacity: 0.4,
+            } as Partial<moorhen.MoleculeRepresentation>,
+            // Fully opaque (default) → alpha omitted.
+            {
+              style: "CRs",
+              visible: true,
+              colourRules: [],
+              nonCustomOpacity: 1,
+            } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    expect(scene.elements![0].representations![0].alpha).toBe(0.4);
+    expect(scene.elements![0].representations![1].alpha).toBeUndefined();
+  });
+
   it("recognises by-domain pipe-delimited args", () => {
     const scene = liftScene({
       molecules: [

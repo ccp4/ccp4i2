@@ -771,6 +771,11 @@ function liftRepresentation(rep: moorhen.MoleculeRepresentation): SceneRepresent
   const colour = liftColour(rep.colourRules ?? []);
   if (colour !== undefined) out.colour = colour;
 
+  // Per-representation opacity (Moorhen `nonCustomOpacity`); only emit a
+  // non-default value (default 1 = opaque ⇒ omit, matching the map `alpha`).
+  const a = (rep as { nonCustomOpacity?: number }).nonCustomOpacity;
+  if (typeof a === "number" && a < 1) out.alpha = round(a, 3);
+
   return out;
 }
 

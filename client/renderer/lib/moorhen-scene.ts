@@ -827,6 +827,16 @@ function validateRepresentation(
     const c = (raw as Record<string, unknown>).colour;
     rep.colour = validateColour(c, `${path}.colour`, errors) ?? undefined;
   }
+  if ("alpha" in raw) {
+    const a = optNum(raw, "alpha", `${path}.alpha`, errors);
+    if (a !== undefined) {
+      if (a < 0 || a > 1) {
+        errors.push({ path: `${path}.alpha`, message: "must be in [0, 1]" });
+      } else {
+        rep.alpha = a;
+      }
+    }
+  }
   return rep;
 }
 

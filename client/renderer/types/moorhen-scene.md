@@ -379,6 +379,25 @@ Named schemes available out of the box:
 the top-level `domains:` block. So one element with `colour: by-domain`
 on a ribbon gives you the whole domain-coloured protein in one rep.
 
+### `alpha`
+
+Opacity in `[0, 1]` (1 = fully opaque). Omitted ⇒ opaque, so existing
+scenes are unchanged. Maps to Moorhen's per-representation
+`nonCustomOpacity`, so it applies to **surfaces** (`MolecularSurface`,
+`VdWSurface`, `gaussian`, `MetaBalls`) as well as ribbons and sticks —
+a translucent molecular surface over a cartoon is the canonical use.
+
+```yaml
+representations:
+  - { style: CRs,              selection: "//A", colour: secondary-structure }
+  - { style: MolecularSurface, selection: "//A", colour: "#9bbcd8", alpha: 0.4 }
+```
+
+This is the opacity used when colour is scene-driven (rules / hex /
+named schemes). A colour hand-picked with Moorhen's colour-picker
+instead carries its alpha in the colour's own RGBA; scenes don't author
+those, so `alpha` is the single lever here.
+
 ### `dictionaries`
 
 A list of dictionary file names (from `files:` with `kind: dictionary`).

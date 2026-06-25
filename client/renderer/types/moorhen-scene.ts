@@ -292,6 +292,13 @@ export interface SceneRepresentation {
 
   /** Colour specification — see SceneColour for the variants. */
   colour?: SceneColour;
+
+  /** Opacity in [0, 1] (1 = fully opaque). Maps to Moorhen's per-representation
+   *  `nonCustomOpacity`; applies to surfaces (MolecularSurface, VdWSurface,
+   *  gaussian, MetaBalls) as well as ribbons/sticks. Omitted ⇒ opaque. This is
+   *  the opacity used when colour is scene-driven (rules / hex / named schemes);
+   *  a hand-picked colour-picker colour would instead carry alpha in its RGBA. */
+  alpha?: number;
 }
 
 /**
