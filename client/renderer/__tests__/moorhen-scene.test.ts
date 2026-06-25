@@ -225,6 +225,65 @@ describe("Moorhen scene — domain selection (CID) + legacy chain+range", () => 
 });
 
 // --------------------------------------------------------------------------
+// Campaign summary scene shape (regression).
+//
+// The campaign summary scene is built SERVER-SIDE (server/.../campaign_scene.py
+// build_summary_scene), serialised to YAML, and loaded through this exact
+// parse/validate/resolve path. The Python builder is a SEPARATE implementation
+// of the format, so nothing couples it to these TS types — pin its shape here so
+// a format change that would break the summary scene fails loudly in CI.
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — campaign summary scene shape", () => {
+  // Mirrors build_summary_scene output: fileId coords, a fileId dictionary, an
+  // inline-cifText dictionary (disk-only acedrg fallback), a hex-coloured parent
+  // ribbon, an uncoloured member-ligand CBs rep with a scoped dict, resolver +
+  // view, and crucially NO domains block.
+  const SUMMARY_YAML = `
+scene: My Campaign - fragment summary
+version: 1
+authoredIn:
+  projectName: My Campaign
+files:
+  - { name: reference, kind: coordinates, fileId: 10, projectId: parent-uuid }
+  - { name: x0034, kind: coordinates, fileId: 20, projectId: x0034-uuid }
+  - { name: x0034_dict, kind: dictionary, fileId: 21, projectId: x0034-uuid }
+  - name: x0099_dict
+    kind: dictionary
+    cifText: |
+      data_comp_list
+      data_comp_DRG
+elements:
+  - file: reference
+    representations:
+      - { style: CRs, selection: "/*/*/*/*", colour: "#b0bec5" }
+  - file: x0034
+    dictionaries: [x0034_dict]
+    representations:
+      - { style: CBs, selection: "//*/(LIG)||//*/(DRG)" }
+resolver:
+  onMissingResidues: clamp-and-log
+view:
+  origin: [1, 2, 3]
+  quat: [0, 0, 0, -1]
+  zoom: 2.5
+`;
+
+  it("parses, validates, and round-trips", () => {
+    const scene = parseScene(SUMMARY_YAML);
+    expect(scene.files).toHaveLength(4);
+    expect(scene.files![0]).toMatchObject({ name: "reference", kind: "coordinates", fileId: 10 });
+    expect(scene.files![2]).toMatchObject({ name: "x0034_dict", kind: "dictionary", fileId: 21 });
+    expect(scene.files![3].cifText).toContain("data_comp_DRG");
+    expect(scene.elements![0].representations![0].colour).toBe("#b0bec5");
+    expect(scene.elements![1].representations![0].colour).toBeUndefined(); // coot default
+    expect(scene.elements![1].dictionaries).toEqual(["x0034_dict"]);
+    expect(scene.domains).toBeUndefined(); // builder emits no domains, by design
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // stable round-trip
+  });
+});
+
+// --------------------------------------------------------------------------
 // Validation: each error class.
 // --------------------------------------------------------------------------
 
