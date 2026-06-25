@@ -53,6 +53,7 @@ import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import {
   MoorhenScene,
   SceneColour,
+  SceneColourSelection,
   SceneDomain,
   SceneFileRef,
   SceneMap,
@@ -840,6 +841,20 @@ function extractRepError(e: unknown): string {
 function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] {
   const { molecule, rep, domains, fileName, log, policy } = ctx;
   if (!rep.colour) return [];
+
+  if (Array.isArray(rep.colour)) {
+    // Per-selection colour list: one single-colour rule per entry. A whole-chain
+    // CID ("//A") and a residue range ("//A/121-130") apply identically here —
+    // it's the general form by-domain compiles to, and what coot's default
+    // per-chain colouring round-trips through.
+    return rep.colour.map((c) => ({
+      ruleType: "molecule",
+      cid: c.selection,
+      color: c.colour,
+      args: [c.selection, c.colour],
+      isMultiColourRule: false,
+    }));
+  }
 
   if (isSceneHexColour(rep.colour)) {
     // libcoot's add_colour_rule reads cid+colour from args, not from

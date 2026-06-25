@@ -354,13 +354,16 @@ row today. The practical advice:
 
 ### `colour`
 
-Four forms:
+Five forms:
 
 ```yaml
 colour: "#4b8bbe"             # 1. Hex literal (#rrggbb or #rrggbbaa)
 colour: by-domain             # 2. Compile from the domains: block
 colour: b-factor              # 3. Named Moorhen scheme
-colour:                       # 4. Raw escape hatch (lossless, ugly)
+colour:                       # 4. Per-selection list (general; see below)
+  - { selection: "//A", colour: "#a08766" }
+  - { selection: "//B", colour: "#7e9cd8" }
+colour:                       # 5. Raw escape hatch (lossless, ugly)
   raw:
     ruleType: <string>
     args: [...]
@@ -378,6 +381,17 @@ Named schemes available out of the box:
 `by-domain` compiles to a single multi-residue colour rule built from
 the top-level `domains:` block. So one element with `colour: by-domain`
 on a ribbon gives you the whole domain-coloured protein in one rep.
+
+**Per-selection list** is the general "colour these CIDs these colours"
+form: one `{ selection, colour }` entry per CID, each applied as a single
+colour rule. A whole chain (`//A`) and a residue range (`//A/121-130`)
+are the same shape at different granularities — `by-domain` is just the
+named shortcut that compiles the `domains:` block into this. Crucially,
+**this is what coot's default per-chain colouring lifts to** — one entry
+per chain with the colour coot assigned — so a captured scene records the
+real per-chain colours instead of a single misleading hex. (`alpha` is a
+separate field, so you can always add it to make a per-chain-coloured
+surface translucent.)
 
 ### `alpha`
 

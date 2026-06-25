@@ -302,18 +302,35 @@ export interface SceneRepresentation {
 }
 
 /**
- * Colour specification. Three v0 shapes:
+ * Colour specification. Shapes:
  *
- *   1. Hex literal:        colour: "#4b8bbe"
- *   2. Named scheme:       colour: by-domain | b-factor | af2-plddt | ...
- *   3. Raw escape hatch:   colour: { raw: { ruleType, args } }
+ *   1. Hex literal:           colour: "#4b8bbe"
+ *   2. Named scheme:          colour: by-domain | b-factor | af2-plddt | ...
+ *   3. Per-selection list:    colour: [ { selection: "//A", colour: "#a08766" }, ... ]
+ *   4. Raw escape hatch:      colour: { raw: { ruleType, args } }
  *
- * `by-domain` compiles to a single multi-rule built from the top-level
- * `domains:` block. Named schemes map 1:1 to Moorhen's existing multi-rule
- * ruleTypes. The raw form preserves anything we can't lift to a higher
- * abstraction (lossless but ugly).
+ * The per-selection list is the general "colour these CIDs these colours" form:
+ * one entry per selection, each compiled to a single colour rule. A whole chain
+ * (`//A`) and a residue range (`//A/121-130`) are the same shape at different
+ * granularities — so this is what coot's default per-chain colouring lifts to
+ * (one entry per chain, the colour coot assigned), instead of a single
+ * misleading hex. `by-domain` is the named shortcut that compiles the top-level
+ * `domains:` block into this same form. Named schemes map 1:1 to Moorhen's
+ * multi-rule ruleTypes. The raw form preserves anything we can't lift.
  */
-export type SceneColour = string | SceneNamedColour | SceneRawColour;
+export type SceneColour =
+  | string
+  | SceneNamedColour
+  | SceneColourSelection[]
+  | SceneRawColour;
+
+/** One entry of a per-selection colour list: a CID and the hex it gets. */
+export interface SceneColourSelection {
+  /** CID, e.g. "//A" (whole chain) or "//A/121-130" (residue range). */
+  selection: string;
+  /** Hex colour (#rrggbb or #rrggbbaa). */
+  colour: string;
+}
 
 export type SceneNamedColour =
   | "by-domain"

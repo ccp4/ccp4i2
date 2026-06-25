@@ -27,6 +27,7 @@ import {
   MoorhenScene,
   SCENE_SCHEMA_VERSION,
   SceneColour,
+  SceneColourSelection,
   SceneDomain,
   SceneElement,
   SceneFileRef,
@@ -792,26 +793,32 @@ const NAMED_MULTI_RULES = new Set([
   "mol-symm",
 ]);
 
+const HEX_RE = /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/;
+
+/** A single-colour rule with a hex colour (Moorhen "molecule" ruleType etc.). */
+function isSingleHexRule(r: moorhen.ColourRule): boolean {
+  return !r.isMultiColourRule && typeof r.color === "string" && HEX_RE.test(r.color);
+}
+
 function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
   if (rules.length === 0) return undefined;
 
-  // We only attempt to lift the *first* rule. Multiple rules per
-  // representation is rare in normal Moorhen UI flows; if we see it,
-  // the safer thing is to emit the first one and drop the rest rather
-  // than invent some lossy merge. (A future v2 could lift a sequence.)
+  // All single-colour rules → a single hex (one rule) or a per-selection list
+  // (many). The list is the faithful capture of coot's default per-chain
+  // colouring: one entry per chain with the colour coot assigned — instead of
+  // mistaking the first chain's hex for the whole representation. Whole-chain
+  // and residue-range CIDs are the same shape, so by-domain re-applies through
+  // the same path.
+  if (rules.every(isSingleHexRule)) {
+    if (rules.length === 1) return rules[0].color;
+    return rules.map((r) => ({ selection: r.cid, colour: r.color }));
+  }
+
   const r = rules[0];
 
   // 1. Named multi-rule scheme (b-factor, etc.).
   if (NAMED_MULTI_RULES.has(r.ruleType)) {
     return r.ruleType as SceneColour;
-  }
-
-  // 2. Single-colour rule with a hex colour (Moorhen's "molecule" ruleType
-  //    or anything with isMultiColourRule=false).
-  // Accept 6-hex (#rrggbb) and 8-hex with alpha (#rrggbbaa) — Moorhen's
-  // default per-chain rules typically come out as 8-hex.
-  if (!r.isMultiColourRule && typeof r.color === "string" && /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/.test(r.color)) {
-    return r.color;
   }
 
   // 3. by-domain shape: a single multi-rule whose args[0] is a string

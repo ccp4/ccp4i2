@@ -23,6 +23,7 @@ import {
   SceneMapColumns,
   SceneRepresentation,
   SceneColour,
+  SceneColourSelection,
   SceneSuperpose,
   isSceneHexColour,
   isSceneNamedColour,
@@ -845,6 +846,27 @@ function validateColour(
   path: string,
   errors: SceneValidationError[],
 ): SceneColour | null {
+  if (Array.isArray(raw)) {
+    // Per-selection colour list: [{ selection, colour }, ...].
+    const list: SceneColourSelection[] = [];
+    raw.forEach((entry, i) => {
+      const ep = `${path}[${i}]`;
+      if (!isObject(entry)) {
+        errors.push({ path: ep, message: "must be a mapping { selection, colour }" });
+        return;
+      }
+      const selection = strField(entry, "selection", "", errors, ep);
+      if (!selection) errors.push({ path: `${ep}.selection`, message: "required" });
+      const colour = strField(entry, "colour", "", errors, ep);
+      if (!colour) {
+        errors.push({ path: `${ep}.colour`, message: "required" });
+      } else if (!isHexColor(colour)) {
+        errors.push({ path: `${ep}.colour`, message: "must be hex (#rrggbb or #rrggbbaa)" });
+      }
+      if (selection && colour && isHexColor(colour)) list.push({ selection, colour });
+    });
+    return list.length > 0 ? list : null;
+  }
   if (typeof raw === "string") {
     if (isHexColor(raw)) return raw;
     if (isSceneNamedColour(raw as SceneColour)) return raw as SceneColour;
@@ -883,7 +905,11 @@ function validateColour(
       },
     };
   }
-  errors.push({ path, message: "must be a hex string, named scheme, or { raw: ... }" });
+  errors.push({
+    path,
+    message:
+      "must be a hex string, named scheme, per-selection list, or { raw: ... }",
+  });
   return null;
 }
 

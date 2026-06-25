@@ -144,6 +144,40 @@ describe("Moorhen scene — representation alpha", () => {
 });
 
 // --------------------------------------------------------------------------
+// Per-selection colour list (the general "colour these CIDs these colours"
+// form; what coot's default per-chain colouring lifts to).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — per-selection colour list", () => {
+  const repWith = (colour: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+    `elements:\n  - file: p\n    representations:\n      - style: CRs\n        colour: ${colour}\n`;
+
+  it("accepts a per-chain colour list and round-trips it", () => {
+    const scene = parseScene(
+      repWith(`[{ selection: "//A", colour: "#a08766" }, { selection: "//B", colour: "#7e9cd8" }]`),
+    );
+    expect(scene.elements![0].representations![0].colour).toEqual([
+      { selection: "//A", colour: "#a08766" },
+      { selection: "//B", colour: "#7e9cd8" },
+    ]);
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("rejects a list entry with no colour", () => {
+    expect(() => parseScene(repWith(`[{ selection: "//A" }]`))).toThrow(
+      /colour.*required/,
+    );
+  });
+
+  it("rejects a list entry with a bad hex", () => {
+    expect(() =>
+      parseScene(repWith(`[{ selection: "//A", colour: "notahex" }]`)),
+    ).toThrow(/must be hex/);
+  });
+});
+
+// --------------------------------------------------------------------------
 // Validation: each error class.
 // --------------------------------------------------------------------------
 

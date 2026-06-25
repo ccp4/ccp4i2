@@ -172,6 +172,33 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![0].colour).toBe("#2ecc71");
   });
 
+  it("captures coot's per-chain default (many single rules) as a colour list", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 0,
+          uniqueId: "x",
+          representations: [
+            {
+              style: "CRs",
+              visible: true,
+              colourRules: [
+                { ruleType: "molecule", cid: "//A", color: "#a08766", isMultiColourRule: false } as unknown as moorhen.ColourRule,
+                { ruleType: "molecule", cid: "//B", color: "#7e9cd8", isMultiColourRule: false } as unknown as moorhen.ColourRule,
+              ],
+            } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    expect(scene.elements![0].representations![0].colour).toEqual([
+      { selection: "//A", colour: "#a08766" },
+      { selection: "//B", colour: "#7e9cd8" },
+    ]);
+  });
+
   it("captures a non-default nonCustomOpacity as alpha", () => {
     const scene = liftScene({
       molecules: [
