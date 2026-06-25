@@ -327,6 +327,58 @@ describe("liftScene", () => {
   });
 });
 
+describe("liftScene — dictionary provenance", () => {
+  it("emits a fileId dict ref (deduped, scoped) when the dict has a project source", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 7,
+          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+          ligands: [{ resName: "LIG" }],
+          dicts: { LIG: "data_comp_LIG\n# would-be cifText" },
+          representations: [
+            { style: "ligands", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+      projectId: "proj-uuid",
+      dictSources: new Map([[7, new Map([["LIG", { fileId: 100 }]])]]),
+    });
+    const dictRef = scene.files!.find((f) => f.kind === "dictionary");
+    expect(dictRef).toMatchObject({
+      name: "dict-file-100",
+      kind: "dictionary",
+      fileId: 100,
+      projectId: "proj-uuid",
+    });
+    expect(dictRef!.cifText).toBeUndefined(); // not inlined
+    expect(scene.elements![0].dictionaries).toEqual(["dict-file-100"]);
+  });
+
+  it("falls back to inline cifText when the dict has no project source", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 7,
+          uniqueId: "x",
+          ligands: [{ resName: "XYZ" }],
+          dicts: { XYZ: "data_comp_XYZ\nstuff" },
+          representations: [
+            { style: "ligands", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    const dictRef = scene.files!.find((f) => f.kind === "dictionary");
+    expect(dictRef).toMatchObject({ kind: "dictionary", cifText: "data_comp_XYZ\nstuff" });
+    expect(dictRef!.fileId).toBeUndefined();
+  });
+});
+
 describe("serialiseSceneWithComments", () => {
   it("attaches a per-file comment above the corresponding entry", () => {
     const { scene, hints } = liftSceneWithHints({

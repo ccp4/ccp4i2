@@ -46,7 +46,7 @@ import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import {
-  liftSceneWithHints,
+  liftSceneStraight,
   MapRenderState,
   promoteSceneToPortable,
   SceneLiftHints,
@@ -65,6 +65,18 @@ export interface MoorhenWrapperProps {
   fileIds?: number[];
   viewParam?: string | null;
   jobId?: number | null;
+}
+
+/** comp_ids defined by a refmac/coot dictionary CIF (its `data_comp_<X>`
+ *  blocks, excluding the `data_comp_list` header). */
+function extractDictCompIds(cifText: string): string[] {
+  const out: string[] = [];
+  const re = /^data_comp_(\S+)/gm;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(cifText)) !== null) {
+    if (m[1] !== "list") out.push(m[1]);
+  }
+  return out;
 }
 
 const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId }) => {
@@ -107,6 +119,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   const mapsRef = useRef<null | moorhen.Map[]>(null);
   const activeMapRef = useRef<moorhen.Map>(null);
   const lastHoveredAtom = useRef<null | moorhen.HoveredAtom>(null);
+  // Per-molecule dictionary provenance: molNo → (comp_id → source project file).
+  // Populated when a job's dicts + coords load together; read by Capture so the
+  // lifter can emit terse fileId dict refs instead of inlining cifText.
+  const dictSourcesRef = useRef<Map<number, Map<string, { fileId: number; projectId?: string }>>>(new Map());
   const prevActiveMoleculeRef = useRef<null | moorhen.Molecule>(null);
   const timeCapsuleRef = useRef(null);
   const cootInitialized = useSelector(
@@ -450,6 +466,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       (f: { type: string }) => f.type === "application/refmac-dictionary"
     );
     const dictContents: string[] = [];
+    // Track which project dict file provides each comp_id, so Capture can emit
+    // terse fileId dict refs (scoped per-molecule once the molNo is known below).
+    const jobDictSources = new Map<string, { fileId: number; projectId?: string }>();
     for (const dictFile of dictFiles) {
       const dictUrl = `/api/proxy/ccp4i2/files/${dictFile.id}/download/`;
       try {
@@ -465,6 +484,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           false
         );
         dictContents.push(content);
+        for (const compId of extractDictCompIds(content)) {
+          jobDictSources.set(compId, { fileId: dictFile.id, projectId: projectInfo?.id });
+        }
       } catch (err) {
         console.warn("[fetchJobFiles] Failed to load dictionary:", err);
       }
@@ -531,6 +553,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         dispatch(addMolecule(newMolecule));
         dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
         loadedMolecule = newMolecule;
+        // Scope this job's dict provenance to THIS molecule's molNo (so two
+        // molecules whose ligands are both called LIG, from different dict
+        // files, stay distinct at capture time).
+        if (newMolecule.molNo != null && jobDictSources.size > 0) {
+          dictSourcesRef.current.set(newMolecule.molNo, jobDictSources);
+        }
       } catch (err) {
         console.warn("[fetchJobFiles] Failed to load coordinates:", err);
       }
@@ -957,8 +985,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     // explicit "Save self-contained" action (handlePromoteSceneToPortable),
     // which fetches the bytes into a .scene.zip. Eager-bundling on capture would
     // hide provenance and, if the edited YAML is re-applied, load duplicate
-    // copies of each molecule.
-    const { scene, hints } = liftSceneWithHints({
+    // copies of each molecule. liftSceneStraight also drops dict refs the
+    // receiver's monomer library already has (library monomers travel as
+    // nothing; project ligand dicts travel as terse fileId refs).
+    const { scene, hints } = await liftSceneStraight({
       molecules,
       glRef: glRefState,
       projectId: projectInfo?.id,
@@ -970,6 +1000,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       maps,
       mapState,
       activeMapMolNo: typeof activeMapMolNo === "number" ? activeMapMolNo : undefined,
+      // Per-molecule dict provenance gathered at load time.
+      dictSources: dictSourcesRef.current,
     });
     return { scene, hints, assets: new Map() as SceneBundleAssets };
   }, [store, molecules, maps, projectInfo]);

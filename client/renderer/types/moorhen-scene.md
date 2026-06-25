@@ -451,6 +451,26 @@ elements:
 For dictionaries that should apply to *every* molecule (cofactors,
 common ions), use the top-level `globalDictionaries:` block instead.
 
+**What the lifter emits.** When you capture a scene, each ligand dict is
+recorded in the most portable form available, in this order:
+
+1. **Library monomers are omitted entirely.** If the comp_id resolves in the
+   receiver's CCP4 monomer library (`CL`, `ATP`, standard residues, …), no dict
+   ref is written — the consuming Moorhen fetches it from its own library. Keeps
+   captures terse.
+2. **Project ligand dicts become `fileId` refs.** A dict that came from a project
+   file (e.g. an AceDRG output) is emitted as
+   `{ kind: dictionary, fileId, projectId }` — one ref per source file (deduped),
+   listed in the owning molecule's `dictionaries:`. This makes a many-ligand
+   campaign capture compact while staying per-molecule-scoped: two molecules
+   whose ligand is both called `LIG` reference *different* `fileId`s.
+3. **`cifText` is the fallback.** Only when a non-library dict has no project
+   source does the lifter inline it.
+
+(The omission in (1) is safe precisely because the receiver has the library;
+custom ligands never get omitted, because a project-supplied dict always travels
+— even if its comp_id name collides with a library entry.)
+
 ## `superpose`
 
 Alignments to apply after fetching but before rendering. Each entry
