@@ -174,25 +174,27 @@ export interface SceneDomain {
   /** Free-text name used in `colour: by-domain` and in the resolver log. */
   name: string;
 
-  /** Chain selector. Three forms:
+  /** CID selection — the preferred, general form. Any valid Coot CID:
    *
-   *   - `"A"` (or any non-`*` string) — single chain.
-   *   - `"*"` — every chain present in the structure (useful for symmetric
-   *     assemblies like the apoptosome heptamer).
-   *   - `["A", "B", "C"]` — explicit list, applied to each chain in turn.
+   *   - `"//F"`        — the whole of chain F.
+   *   - `"//F/32-64"`  — residues 32-64 of chain F.
+   *   - a wildcard chain (`//<star>/32-64`) — that range across every chain.
+   *   - `"//A/(ALA,GLY)"`, `"//A/55/CA[C]"` — residue names, atoms, … things
+   *     the chain+range form can't express.
    *
-   *  At apply-time the resolver fans the domain out across the resolved
-   *  chain list and clamps the range per-chain. */
-  chain: string | string[];
+   *  When the CID is the `//chain/start-end` shape the resolver still clamps the
+   *  range to present residues and warns (parity with `chain`+`range`); any other
+   *  CID is passed straight to Coot. Use this in preference to `chain`+`range`. */
+  selection?: string;
 
-  /** Inclusive residue range "start-end", e.g. "1-120". The resolver
-   *  clamps this to the residues actually present in each loaded
-   *  structure (see SceneResolverOptions.onMissingResidues).
-   *
-   *  OMITTED ⇒ the whole chain — a "domain" that is just `//chain`. This is
-   *  how a molecule's per-chain colouring is stated once (one range-less
-   *  entry per chain) and adopted by representations via `colour: by-domain`,
-   *  the same path as residue-range domains at a coarser granularity. */
+  /** @deprecated Legacy chain selector — use `selection`. Kept for a short
+   *  migration window. Forms: `"A"` (single chain), `"*"` (every chain present),
+   *  `["A","B","C"]` (explicit list). The resolver fans out across the resolved
+   *  chains and clamps the range per-chain. */
+  chain?: string | string[];
+
+  /** @deprecated Legacy inclusive residue range "start-end" — use `selection`.
+   *  Omitted ⇒ the whole chain. Clamped to present residues by the resolver. */
   range?: string;
 
   /** Hex colour, e.g. "#4b8bbe". */

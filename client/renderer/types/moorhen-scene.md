@@ -117,44 +117,44 @@ files:
 
 ## `domains`
 
-Reusable named residue blocks, referenced from `colour: by-domain`
+Reusable named colour blocks, referenced from `colour: by-domain`
 inside an element. Hoisted to the top level so a multi-structure scene
 doesn't duplicate them per element.
 
 ```yaml
 domains:
-  - { name: CARD, chain: A, range: 1-92,    color: "#4b8bbe" }
-  - { name: NBD,  chain: A, range: 104-260, color: "#2ecc71" }
-  - { name: HD1,  chain: A, range: 261-330, color: "#9b59b6" }
+  - { name: CARD, selection: "//A/1-92",    color: "#4b8bbe" }
+  - { name: NBD,  selection: "//A/104-260", color: "#2ecc71" }
+  - { name: HD1,  selection: "//A/261-330", color: "#9b59b6" }
 ```
 
 Fields:
 
 - `name`: required.
-- `chain`: required. Three forms:
-  - `"A"` — a single chain.
-  - `"*"` — every chain present in the structure (useful for symmetric
-    assemblies like the apoptosome heptamer).
-  - `["A", "B", "C"]` — explicit list, applied to each chain in turn.
-- `range`: **optional**. Forms:
-  - `"start-end"` (string) — inclusive range, e.g. `"100-200"`.
-  - `<integer>` (bare int) — single residue; the validator normalises
-    `115` to `"115-115"` so downstream code only sees one shape.
-  - **omitted ⇒ the whole chain** — the domain is just `//chain`. This is
-    how a molecule's per-chain colouring is expressed: one range-less entry
-    per chain. (A whole chain is just a coarse domain — same `by-domain`
-    application path as residue ranges.)
+- `selection`: a Coot **CID** — the preferred, general form. Any valid CID:
+  - `"//F"` — the whole of chain F.
+  - `"//F/32-64"` — residues 32-64 of chain F.
+  - a wildcard chain — that residue range across every chain.
+  - `"//A/(ALA,GLY)"`, `"//A/55/CA[C]"` — residue names, atoms, … things
+    `chain`+`range` can't express.
+
+  When the CID is the `//chain/start-end` shape the resolver still clamps the
+  range to present residues and warns (parity with the legacy form, see
+  `resolver.onMissingResidues`); any other CID is passed straight to Coot.
 - `color`: required hex `#rrggbb`.
 
-The resolver clamps each range to the residues actually present in the
-loaded structure (see `resolver.onMissingResidues`); a range-less
-(whole-chain) domain needs no clamping.
+**Legacy (deprecated, accepted for a short migration window — prefer
+`selection`):** instead of `selection` you may give `chain` + optional `range`:
+
+- `chain`: `"A"` (single), `"*"` (every chain present), or `["A","B","C"]`.
+- `range`: `"start-end"`, a bare int (single residue), or **omitted ⇒ whole
+  chain**.
 
 ```yaml
 # Per-chain colouring, stated once and adopted by representations:
 domains:
-  - { name: A, chain: A, color: "#a08766" }   # whole chain A
-  - { name: B, chain: B, color: "#6ca066" }   # whole chain B
+  - { name: A, selection: "//A", color: "#a08766" }   # whole chain A
+  - { name: B, selection: "//B", color: "#6ca066" }   # whole chain B
 elements:
   - file: my_structure
     representations:
@@ -162,8 +162,8 @@ elements:
 ```
 
 This is exactly what coot's default per-chain colouring **lifts to** — the
-lifter folds it into `domains:` + `colour: by-domain` so it isn't repeated
-inline on every representation.
+lifter folds it into `domains:` (whole-chain `selection`) + `colour: by-domain`
+so it isn't repeated inline on every representation.
 
 ## `elements`
 

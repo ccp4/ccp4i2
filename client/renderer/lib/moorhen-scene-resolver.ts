@@ -911,6 +911,55 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
 // by-domain compilation: clamp ranges, build pipe-delimited args
 // --------------------------------------------------------------------------
 
+/**
+ * Turn a domain CID `selection` into colour-rule segments. When the CID is the
+ * `//chain/start-end` shape (a concrete chain + numeric range) it is clamped to
+ * the residues present and warned about — diagnostic parity with the legacy
+ * chain+range form. Any other CID (whole chain `//F`, residue names, atoms,
+ * wildcard chains) passes straight through to Coot.
+ */
+function selectionToSegments(
+  selection: string,
+  color: string,
+  domainName: string,
+  presentByChain: Map<string, Set<number>>,
+  log: SceneResolveLogEntry[],
+  fileName: string,
+  policy: "clamp-and-log" | "strict",
+): string[] {
+  const m = /^(\/[^/]*\/([^/*]+))\/(-?\d+)-(-?\d+)$/.exec(selection);
+  if (!m) return [`${selection}^${color}`];
+  const prefix = m[1];
+  const chainId = m[2];
+  const start = parseInt(m[3], 10);
+  const end = parseInt(m[4], 10);
+  const present = presentByChain.get(chainId);
+  if (!present) {
+    log.push({ file: fileName, domain: domainName, message: `chain ${chainId} not present in molecule; skipped` });
+    return [];
+  }
+  const subRanges = clampRangeToPresent(start, end, present);
+  if (subRanges.length === 0) {
+    log.push({ file: fileName, domain: domainName, message: `range ${start}-${end} has no present residues in chain ${chainId}; skipped` });
+    return [];
+  }
+  if (subRanges.length > 1 || subRanges[0][0] !== start || subRanges[0][1] !== end) {
+    log.push({
+      file: fileName,
+      domain: domainName,
+      message: `chain ${chainId}: range ${start}-${end} resolved to ${subRanges
+        .map(([s, e]) => `${s}-${e}`)
+        .join(", ")} after clamping to present residues`,
+    });
+    if (policy === "strict") {
+      throw new Error(
+        `Scene resolver in strict mode: domain "${domainName}" range ${start}-${end} not fully present in chain ${chainId}`,
+      );
+    }
+  }
+  return subRanges.map(([s, e]) => `${prefix}/${s}-${e}^${color}`);
+}
+
 function buildByDomainPendingRule(
   molecule: moorhen.Molecule,
   domains: SceneDomain[],
@@ -930,7 +979,19 @@ function buildByDomainPendingRule(
 
   const segments: string[] = [];
   for (const d of domains) {
-    // Resolve the domain's chain selector into concrete chain ids.
+    // Preferred CID form: clamp the //chain/start-end shape (diagnostic parity
+    // with chain+range), pass any other CID straight through.
+    if (d.selection) {
+      segments.push(
+        ...selectionToSegments(
+          d.selection, d.color, d.name, presentByChain, log, fileName, policy,
+        ),
+      );
+      continue;
+    }
+    if (!d.chain) continue; // neither selection nor chain (invalid; validated upstream)
+
+    // Legacy: resolve the chain selector into concrete chain ids.
     // - "*"      → every chain present in the structure
     // - "A"      → exactly chain A (legacy single-chain form)
     // - ["A","B"] → exactly those chains

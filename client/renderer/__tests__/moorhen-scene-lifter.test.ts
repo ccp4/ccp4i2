@@ -193,10 +193,10 @@ describe("liftScene", () => {
       ],
       glRef: fakeGlRef,
     });
-    // per-chain colouring is stated once in domains: (range-less = whole chain)…
+    // per-chain colouring is stated once in domains: (whole-chain CID selection)…
     expect(scene.domains).toEqual([
-      { name: "A", chain: "A", color: "#a08766" },
-      { name: "B", chain: "B", color: "#7e9cd8" },
+      { name: "A", selection: "//A", color: "#a08766" },
+      { name: "B", selection: "//B", color: "#7e9cd8" },
     ]);
     // …and the representation adopts it.
     expect(scene.elements![0].representations![0].colour).toBe("by-domain");

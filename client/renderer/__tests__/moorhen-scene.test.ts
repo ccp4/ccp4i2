@@ -182,14 +182,32 @@ describe("Moorhen scene — per-selection colour list", () => {
 // colouring hoists to, adopted via colour: by-domain).
 // --------------------------------------------------------------------------
 
-describe("Moorhen scene — whole-chain domains", () => {
-  it("accepts a range-less domain and round-trips it", () => {
+describe("Moorhen scene — domain selection (CID) + legacy chain+range", () => {
+  it("accepts a CID selection domain and round-trips it", () => {
     const scene = parseScene(
+      `scene: x\nversion: 1\ndomains:\n  - { name: F, selection: "//F/32-64", color: "#a06695" }\n`,
+    );
+    expect(scene.domains![0]).toEqual({
+      name: "F",
+      selection: "//F/32-64",
+      color: "#a06695",
+    });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("still accepts the legacy chain+range form (whole chain too)", () => {
+    const whole = parseScene(
       `scene: x\nversion: 1\ndomains:\n  - { name: A, chain: A, color: "#a08766" }\n`,
     );
-    expect(scene.domains![0]).toEqual({ name: "A", chain: "A", color: "#a08766" });
-    expect(scene.domains![0].range).toBeUndefined();
-    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+    expect(whole.domains![0]).toEqual({ name: "A", chain: "A", color: "#a08766" });
+    expect(whole.domains![0].range).toBeUndefined();
+    expect(parseScene(serialiseScene(whole))).toEqual(whole);
+  });
+
+  it("requires selection or chain", () => {
+    expect(() =>
+      parseScene(`scene: x\nversion: 1\ndomains:\n  - { name: d, color: "#ffffff" }\n`),
+    ).toThrow(/required \(or use .selection.\)/);
   });
 
   it("still validates a range when one IS given", () => {

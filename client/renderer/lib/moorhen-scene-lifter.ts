@@ -912,7 +912,7 @@ function hoistPerChainColours(scene: MoorhenScene): void {
   if (conflict || chainColour.size === 0 || adopters.length === 0) return;
   scene.domains = [...chainColour.entries()].map(([chain, color]) => ({
     name: chain,
-    chain,
+    selection: `//${chain}`, // whole chain, CID form
     color,
   }));
   for (const rep of adopters) rep.colour = "by-domain";

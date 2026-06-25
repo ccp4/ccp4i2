@@ -576,32 +576,10 @@ function validateDomains(
       errors.push({ path: p, message: "must be a mapping" });
       return;
     }
+    const e = entry as Record<string, unknown>;
     const name = strField(entry, "name", "", errors, p);
-    const chain = parseChainField(entry, `${p}.chain`, errors);
-    // range OMITTED ⇒ whole chain (a //chain "domain"). Only validate if present.
-    const hasRange = "range" in (entry as Record<string, unknown>);
-    const range = hasRange ? rangeField(entry, "range", errors, p) ?? "" : undefined;
     const color = strField(entry, "color", "", errors, p);
     if (!name) errors.push({ path: `${p}.name`, message: "required" });
-    if (chain === undefined) errors.push({ path: `${p}.chain`, message: "required" });
-    if (hasRange) {
-      if (!range || !RANGE_RE.test(range)) {
-        errors.push({
-          path: `${p}.range`,
-          message: `must be "start-end", got "${range}"`,
-        });
-      } else {
-        const m = RANGE_RE.exec(range)!;
-        const start = parseInt(m[1], 10);
-        const end = parseInt(m[2], 10);
-        if (end < start) {
-          errors.push({
-            path: `${p}.range`,
-            message: `end (${end}) must be >= start (${start})`,
-          });
-        }
-      }
-    }
     if (!color) {
       errors.push({ path: `${p}.color`, message: "required" });
     } else if (!isHexColor(color)) {
@@ -616,8 +594,40 @@ function validateDomains(
       }
       seen.add(name);
     }
-    const domain: SceneDomain = { name, chain: chain ?? "", color };
-    if (range) domain.range = range;
+
+    const domain: SceneDomain = { name, color };
+    if ("selection" in e) {
+      // Preferred CID form.
+      const sel = strField(entry, "selection", "", errors, p);
+      if (!sel) {
+        errors.push({ path: `${p}.selection`, message: "must be a non-empty CID string" });
+      } else {
+        domain.selection = sel;
+      }
+    } else {
+      // Legacy chain + optional range (omitted ⇒ whole chain).
+      const chain = parseChainField(entry, `${p}.chain`, errors);
+      if (chain === undefined) {
+        errors.push({ path: `${p}.chain`, message: "required (or use `selection`)" });
+      } else {
+        domain.chain = chain;
+      }
+      if ("range" in e) {
+        const range = rangeField(entry, "range", errors, p) ?? "";
+        if (!range || !RANGE_RE.test(range)) {
+          errors.push({ path: `${p}.range`, message: `must be "start-end", got "${range}"` });
+        } else {
+          const m = RANGE_RE.exec(range)!;
+          const start = parseInt(m[1], 10);
+          const end = parseInt(m[2], 10);
+          if (end < start) {
+            errors.push({ path: `${p}.range`, message: `end (${end}) must be >= start (${start})` });
+          } else {
+            domain.range = range;
+          }
+        }
+      }
+    }
     out.push(domain);
   });
   return out;
