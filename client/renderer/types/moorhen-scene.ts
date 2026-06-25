@@ -187,8 +187,13 @@ export interface SceneDomain {
 
   /** Inclusive residue range "start-end", e.g. "1-120". The resolver
    *  clamps this to the residues actually present in each loaded
-   *  structure (see SceneResolverOptions.onMissingResidues). */
-  range: string;
+   *  structure (see SceneResolverOptions.onMissingResidues).
+   *
+   *  OMITTED ⇒ the whole chain — a "domain" that is just `//chain`. This is
+   *  how a molecule's per-chain colouring is stated once (one range-less
+   *  entry per chain) and adopted by representations via `colour: by-domain`,
+   *  the same path as residue-range domains at a coarser granularity. */
+  range?: string;
 
   /** Hex colour, e.g. "#4b8bbe". */
   color: string;

@@ -578,26 +578,28 @@ function validateDomains(
     }
     const name = strField(entry, "name", "", errors, p);
     const chain = parseChainField(entry, `${p}.chain`, errors);
-    const range = rangeField(entry, "range", errors, p) ?? "";
+    // range OMITTED ⇒ whole chain (a //chain "domain"). Only validate if present.
+    const hasRange = "range" in (entry as Record<string, unknown>);
+    const range = hasRange ? rangeField(entry, "range", errors, p) ?? "" : undefined;
     const color = strField(entry, "color", "", errors, p);
     if (!name) errors.push({ path: `${p}.name`, message: "required" });
     if (chain === undefined) errors.push({ path: `${p}.chain`, message: "required" });
-    if (!range) {
-      errors.push({ path: `${p}.range`, message: "required" });
-    } else if (!RANGE_RE.test(range)) {
-      errors.push({
-        path: `${p}.range`,
-        message: `must be "start-end", got "${range}"`,
-      });
-    } else {
-      const m = RANGE_RE.exec(range)!;
-      const start = parseInt(m[1], 10);
-      const end = parseInt(m[2], 10);
-      if (end < start) {
+    if (hasRange) {
+      if (!range || !RANGE_RE.test(range)) {
         errors.push({
           path: `${p}.range`,
-          message: `end (${end}) must be >= start (${start})`,
+          message: `must be "start-end", got "${range}"`,
         });
+      } else {
+        const m = RANGE_RE.exec(range)!;
+        const start = parseInt(m[1], 10);
+        const end = parseInt(m[2], 10);
+        if (end < start) {
+          errors.push({
+            path: `${p}.range`,
+            message: `end (${end}) must be >= start (${start})`,
+          });
+        }
       }
     }
     if (!color) {
@@ -614,7 +616,9 @@ function validateDomains(
       }
       seen.add(name);
     }
-    out.push({ name, chain: chain ?? "", range, color });
+    const domain: SceneDomain = { name, chain: chain ?? "", color };
+    if (range) domain.range = range;
+    out.push(domain);
   });
   return out;
 }

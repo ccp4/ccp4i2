@@ -930,11 +930,6 @@ function buildByDomainPendingRule(
 
   const segments: string[] = [];
   for (const d of domains) {
-    const m = /^(-?\d+)-(-?\d+)$/.exec(d.range);
-    if (!m) continue;
-    const start = parseInt(m[1], 10);
-    const end = parseInt(m[2], 10);
-
     // Resolve the domain's chain selector into concrete chain ids.
     // - "*"      → every chain present in the structure
     // - "A"      → exactly chain A (legacy single-chain form)
@@ -951,6 +946,19 @@ function buildByDomainPendingRule(
       });
       continue;
     }
+
+    // Range-less domain ⇒ the WHOLE chain: one `//chain` segment per chain, no
+    // residue range (so a molecule's per-chain colouring is a set of whole-chain
+    // "domains" adopted via colour: by-domain, the same path as range domains).
+    if (!d.range) {
+      for (const chainId of targetChains) segments.push(`//${chainId}^${d.color}`);
+      continue;
+    }
+
+    const m = /^(-?\d+)-(-?\d+)$/.exec(d.range);
+    if (!m) continue;
+    const start = parseInt(m[1], 10);
+    const end = parseInt(m[2], 10);
 
     for (const chainId of targetChains) {
       const present = presentByChain.get(chainId);

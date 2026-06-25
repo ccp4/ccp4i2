@@ -136,14 +136,34 @@ Fields:
   - `"*"` — every chain present in the structure (useful for symmetric
     assemblies like the apoptosome heptamer).
   - `["A", "B", "C"]` — explicit list, applied to each chain in turn.
-- `range`: required. Two forms:
+- `range`: **optional**. Forms:
   - `"start-end"` (string) — inclusive range, e.g. `"100-200"`.
   - `<integer>` (bare int) — single residue; the validator normalises
     `115` to `"115-115"` so downstream code only sees one shape.
+  - **omitted ⇒ the whole chain** — the domain is just `//chain`. This is
+    how a molecule's per-chain colouring is expressed: one range-less entry
+    per chain. (A whole chain is just a coarse domain — same `by-domain`
+    application path as residue ranges.)
 - `color`: required hex `#rrggbb`.
 
 The resolver clamps each range to the residues actually present in the
-loaded structure (see `resolver.onMissingResidues`).
+loaded structure (see `resolver.onMissingResidues`); a range-less
+(whole-chain) domain needs no clamping.
+
+```yaml
+# Per-chain colouring, stated once and adopted by representations:
+domains:
+  - { name: A, chain: A, color: "#a08766" }   # whole chain A
+  - { name: B, chain: B, color: "#6ca066" }   # whole chain B
+elements:
+  - file: my_structure
+    representations:
+      - { style: CRs, colour: by-domain, alpha: 0.5 }
+```
+
+This is exactly what coot's default per-chain colouring **lifts to** — the
+lifter folds it into `domains:` + `colour: by-domain` so it isn't repeated
+inline on every representation.
 
 ## `elements`
 

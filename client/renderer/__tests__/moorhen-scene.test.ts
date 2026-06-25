@@ -178,6 +178,35 @@ describe("Moorhen scene — per-selection colour list", () => {
 });
 
 // --------------------------------------------------------------------------
+// Whole-chain domains (range omitted ⇒ the whole chain; what coot's per-chain
+// colouring hoists to, adopted via colour: by-domain).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — whole-chain domains", () => {
+  it("accepts a range-less domain and round-trips it", () => {
+    const scene = parseScene(
+      `scene: x\nversion: 1\ndomains:\n  - { name: A, chain: A, color: "#a08766" }\n`,
+    );
+    expect(scene.domains![0]).toEqual({ name: "A", chain: "A", color: "#a08766" });
+    expect(scene.domains![0].range).toBeUndefined();
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("still validates a range when one IS given", () => {
+    expect(
+      parseScene(
+        `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1-50", color: "#fff000" }\n`,
+      ).domains![0].range,
+    ).toBe("1-50");
+    expect(() =>
+      parseScene(
+        `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1to50", color: "#fff000" }\n`,
+      ),
+    ).toThrow(/start-end/);
+  });
+});
+
+// --------------------------------------------------------------------------
 // Validation: each error class.
 // --------------------------------------------------------------------------
 

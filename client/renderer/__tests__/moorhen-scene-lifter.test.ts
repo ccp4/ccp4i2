@@ -172,7 +172,7 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![0].colour).toBe("#2ecc71");
   });
 
-  it("captures coot's per-chain default (many single rules) as a colour list", () => {
+  it("hoists coot's per-chain default into domains: + colour: by-domain", () => {
     const scene = liftScene({
       molecules: [
         fakeMol({
@@ -193,10 +193,13 @@ describe("liftScene", () => {
       ],
       glRef: fakeGlRef,
     });
-    expect(scene.elements![0].representations![0].colour).toEqual([
-      { selection: "//A", colour: "#a08766" },
-      { selection: "//B", colour: "#7e9cd8" },
+    // per-chain colouring is stated once in domains: (range-less = whole chain)…
+    expect(scene.domains).toEqual([
+      { name: "A", chain: "A", color: "#a08766" },
+      { name: "B", chain: "B", color: "#7e9cd8" },
     ]);
+    // …and the representation adopts it.
+    expect(scene.elements![0].representations![0].colour).toBe("by-domain");
   });
 
   it("captures a non-default nonCustomOpacity as alpha", () => {
