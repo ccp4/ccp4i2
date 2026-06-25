@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.6.3] - 2026-06-25
+
+- Replace adding_stats_to_mmcif with pdbdepo.py
+
 ## [2.6.2] - 2026-05-27
 
 - Fix to Density Calculator task
