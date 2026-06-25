@@ -80,6 +80,13 @@ export interface LiftCtx {
   /** molNo of the currently-active map (state.generalStates.activeMap.molNo).
    *  Drives scene.activeMap. */
   activeMapMolNo?: number;
+  /** Per-molecule dictionary provenance: molNo → (comp_id → source project
+   *  file). When a ligand's dict came from a project file, the lifter emits a
+   *  `kind: dictionary` ref by `fileId` (terse, re-fetchable) instead of inlining
+   *  cifText. Keyed by molNo (NOT comp_id alone) so two molecules that both call
+   *  their ligand LIG, with different chemistry from different dict files, stay
+   *  distinct and per-molecule-scoped. */
+  dictSources?: Map<number, Map<string, { fileId: number; projectId?: string }>>;
 }
 
 /**
@@ -140,7 +147,11 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
   const liftedDicts: { mol: moorhen.Molecule; molFileName: string; refs: { name: string; comp_id: string }[] }[] = [];
   ctx.molecules.forEach((mol, i) => {
     const molFileName = scene.files?.[i]?.name ?? `mol${i}`;
-    const liftedRefs = liftDictionariesForMolecule(mol, molFileName, scene.files!);
+    const liftedRefs = liftDictionariesForMolecule(
+      mol, molFileName, scene.files!,
+      mol.molNo != null ? ctx.dictSources?.get(mol.molNo) : undefined,
+      ctx.projectId,
+    );
     if (liftedRefs.length > 0) {
       liftedDicts.push({ mol, molFileName, refs: liftedRefs });
     }
@@ -208,6 +219,8 @@ function liftDictionariesForMolecule(
   mol: moorhen.Molecule,
   molFileName: string,
   allFiles: SceneFileRef[],
+  sources?: Map<string, { fileId: number; projectId?: string }>,
+  fallbackProjectId?: string,
 ): { name: string; comp_id: string }[] {
   const ligands = mol.ligands ?? [];
   // Dedupe by comp_id — multiple instances of the same ligand share a dict.
@@ -216,26 +229,40 @@ function liftDictionariesForMolecule(
 
   for (const comp_id of compIds) {
     if (STANDARD_MONOMERS.has(comp_id)) continue;
+
+    // Preferred: the dict came from a project file → emit a terse, re-fetchable
+    // `fileId` ref instead of inlining cifText. Deduped by fileId (a multi-comp
+    // dict shared by several ligands becomes ONE ref); per-molecule scoping is
+    // preserved by listing it in THIS molecule's `dictionaries:`.
+    const source = sources?.get(comp_id);
+    if (source) {
+      const name = `dict-file-${source.fileId}`;
+      if (!allFiles.some((f) => f.name === name)) {
+        allFiles.push({
+          name,
+          kind: "dictionary",
+          fileId: source.fileId,
+          projectId: source.projectId ?? fallbackProjectId,
+        });
+      }
+      out.push({ name, comp_id });
+      continue;
+    }
+
+    // No project source → inline cifText. dropLibraryDicts() may later remove
+    // it if the comp_id resolves in the receiver's monomer library.
     let dictText = "";
     try {
       dictText = mol.getDict(comp_id) || "";
     } catch {
-      // getDict may throw for comp_ids without a stored dict — that's
-      // fine, just skip them.
+      // getDict may throw for comp_ids without a stored dict — skip them.
       continue;
     }
     if (!dictText) continue;
 
     const name = `dict-${molFileName}-${comp_id}`;
-    // Skip if a ref with this name already exists (shouldn't happen but
-    // defensive against pathological dupe-suppression).
     if (allFiles.some((f) => f.name === name)) continue;
-
-    allFiles.push({
-      name,
-      kind: "dictionary",
-      cifText: dictText,
-    });
+    allFiles.push({ name, kind: "dictionary", cifText: dictText });
     out.push({ name, comp_id });
   }
   return out;
@@ -292,6 +319,56 @@ export function liftSceneWithHints(ctx: LiftCtx): {
 }
 
 /**
+ * STRAIGHT lift for Capture: real provenance + hints, NO bundling — but it DOES
+ * drop dict refs the receiver's monomer library already has, so library monomers
+ * (CL, ATP, …) aren't carried; the receiving Moorhen resolves those itself. Custom
+ * ligand dicts stay — as terse `fileId` refs when the project supplied them, or
+ * inline `cifText` otherwise. Async because the library check is a HEAD probe.
+ */
+export async function liftSceneStraight(ctx: LiftCtx): Promise<{
+  scene: MoorhenScene;
+  hints: SceneLiftHints;
+}> {
+  const { scene, hints } = liftSceneWithHints(ctx);
+  if (ctx.monomerLibraryPath) {
+    await dropLibraryDicts(scene, ctx.molecules, ctx.monomerLibraryPath);
+  }
+  return { scene, hints };
+}
+
+/**
+ * Remove INLINE (cifText) dictionary refs whose comp_id resolves in the
+ * receiver's monomer library — the receiving Moorhen fetches the same dict from
+ * the same library when it loads the coords, so carrying our copy only bloats the
+ * YAML (and risks a stale variant). `fileId`/`url`/`bundle` dict refs are NEVER
+ * dropped: a project explicitly supplied that dict, so it must travel and win
+ * even if its comp_id name collides with a library entry.
+ */
+async function dropLibraryDicts(
+  scene: MoorhenScene,
+  molecules: moorhen.Molecule[],
+  monomerLibraryPath: string,
+): Promise<void> {
+  const libraryHas = await probeMonomerLibrary(molecules, monomerLibraryPath);
+  if (libraryHas.size === 0) return;
+  const dropNames = new Set<string>();
+  for (const ref of scene.files ?? []) {
+    if (ref.kind !== "dictionary" || !ref.cifText) continue; // only inline dicts
+    // Names are `dict-<molFileName>-<COMP_ID>`; take the trailing comp_id (the
+    // molFileName may itself contain hyphens).
+    const m = /^dict-.*-([A-Za-z0-9]+)$/.exec(ref.name);
+    if (m && libraryHas.has(m[1].toUpperCase())) dropNames.add(ref.name);
+  }
+  if (dropNames.size === 0) return;
+  scene.files = (scene.files ?? []).filter((f) => !dropNames.has(f.name));
+  for (const el of scene.elements ?? []) {
+    if (!el.dictionaries) continue;
+    el.dictionaries = el.dictionaries.filter((n) => !dropNames.has(n));
+    if (el.dictionaries.length === 0) delete el.dictionaries;
+  }
+}
+
+/**
  * Lift a scene AND a parallel asset map suitable for bundling into a
  * `.scene.zip`. Compared to liftScene/liftSceneWithHints, this:
  *
@@ -313,37 +390,10 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
   const { scene, hints } = liftSceneWithHints(ctx);
   const assets = new Map<string, ArrayBuffer>();
 
-  // 0. Drop dict refs whose comp_id is already in Moorhen's monomer
-  //    library: when the receiving Moorhen loads coords, its
-  //    loadMissingMonomer machinery will fetch the same dict from the
-  //    same library, so carrying our copy in the scene only bloats the
-  //    YAML and risks shipping a stale variant. The probe is keyed off
-  //    the comp_id, which we rebuild by mirroring liftDictionariesForMolecule.
+  // 0. Drop inline dict refs the receiver's monomer library already has (shared
+  //    with the straight-lift path).
   if (ctx.monomerLibraryPath) {
-    const libraryHas = await probeMonomerLibrary(
-      ctx.molecules,
-      ctx.monomerLibraryPath,
-    );
-    if (libraryHas.size > 0) {
-      const dropNames = new Set<string>();
-      for (const ref of scene.files ?? []) {
-        if (ref.kind !== "dictionary") continue;
-        // Names are `dict-<molFileName>-<COMP_ID>` from liftDictionariesForMolecule.
-        // Pull the trailing comp_id off rather than slicing on first hyphen
-        // (the molFileName may itself contain hyphens).
-        const m = /^dict-.*-([A-Za-z0-9]+)$/.exec(ref.name);
-        if (!m) continue;
-        if (libraryHas.has(m[1].toUpperCase())) dropNames.add(ref.name);
-      }
-      if (dropNames.size > 0) {
-        scene.files = (scene.files ?? []).filter((f) => !dropNames.has(f.name));
-        for (const el of scene.elements ?? []) {
-          if (!el.dictionaries) continue;
-          el.dictionaries = el.dictionaries.filter((n) => !dropNames.has(n));
-          if (el.dictionaries.length === 0) delete el.dictionaries;
-        }
-      }
-    }
+    await dropLibraryDicts(scene, ctx.molecules, ctx.monomerLibraryPath);
   }
 
   // 1. Replace each coord file ref with a bundle: ref carrying the
