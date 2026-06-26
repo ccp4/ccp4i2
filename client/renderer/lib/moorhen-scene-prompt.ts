@@ -118,6 +118,41 @@ export function buildManifestBlock(
   return lines.join("\n");
 }
 
+// ── Interpretation guidance ─────────────────────────────────────────────────
+
+// Static guidance teaching the model to turn everyday phrasing into concrete
+// selections against the contents it was given. The high-value, reliably
+// meetable cases are back-references ("the dimer" = the chains just named) and
+// "the ligand" = the single ligand present; genuinely ambiguous cases (which
+// dimer in a tetramer) are handled by "pick the most likely reading and proceed".
+const INTERPRETATION_GUIDANCE = [
+  "=== INTERPRETING THE REQUEST ===",
+  "Turn everyday phrasing into concrete selections using the CONTENTS and PROJECT",
+  "above. Never invent chains, ligands, or residues that are not listed.",
+  "- Back-references point to what the request already named: \"the dimer\", \"the",
+  "  complex\", \"it\", \"both\", \"that\" refer to the chains/entities mentioned earlier",
+  "  in the SAME request. After \"chains A and B ...\", \"the dimer\" means chains A and B.",
+  "- When a representation is requested \"of\"/\"for\" an entity, scope THAT",
+  "  representation's selection to the same entity. \"a surface of the dimer\" after",
+  "  \"chains A and B\" => a MolecularSurface whose selection covers chains A and B.",
+  "- \"the protein\" / \"the model\" / \"everything\" => all polymer chains.",
+  "- \"monomer\" => one polymer chain; \"dimer\"/\"trimer\"/... => that many polymer",
+  "  chains (prefer the chains the request names; otherwise the polymer chains",
+  "  present, in order).",
+  "- A ligand named or given by 3-letter code (\"ATP\", \"the ligand\", \"the inhibitor\",",
+  "  \"the drug\") => the matching ligand CID from the contents. If exactly one ligand",
+  "  is present, \"the ligand\" means it.",
+  "- \"active site\" / \"binding site\" / \"around the ligand\" => the ligand and its",
+  "  surroundings (a neighbourhood selection if the grammar supports one, else the",
+  "  ligand's chain/residue).",
+  "- Colour cues: \"by domain\" => the domains block; \"by chain\" / \"rainbow\" /",
+  "  \"spectrum\" => the matching colour scheme in the grammar.",
+  "- To cover several chains/residues in one selection, combine them using the",
+  "  selection syntax in the grammar above.",
+  "If something is genuinely ambiguous, choose the most likely reading and proceed;",
+  "do not emit comments or questions — output only the YAML.",
+].join("\n");
+
 // ── Whole prompt ────────────────────────────────────────────────────────────
 
 export function buildAuthoringPrompt(opts: {
@@ -159,6 +194,8 @@ export function buildAuthoringPrompt(opts: {
     "",
     "=== LOADED STRUCTURE CONTENTS ===",
     opts.contents,
+    "",
+    INTERPRETATION_GUIDANCE,
     "",
     "=== REQUEST ===",
     "Produce a scene YAML that satisfies the following request, and output ONLY",
