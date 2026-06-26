@@ -590,10 +590,15 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
         });
       } else if (cid.includes("||")) {
         // mol.centreOn feeds gemmi a single CID; for a "||"-union compute the
-        // centroid ourselves and set the origin to it.
+        // centroid ourselves and set the origin to it. Moorhen's origin is the
+        // translation that brings a point to screen centre — i.e. the NEGATIVE of
+        // the coordinates (see centreOnGemmiAtoms, which returns -centroid). Our
+        // sphere.centre is the raw centroid, so negate it; otherwise the camera
+        // jumps to the point reflected through the molecule origin.
         const sphere = selectionBoundingSphere(mol, cid);
         if (sphere) {
-          dispatch(setOrigin(sphere.centre));
+          const [cx, cy, cz] = sphere.centre;
+          dispatch(setOrigin([-cx, -cy, -cz]));
         } else {
           result.log.push({
             file: ref,
