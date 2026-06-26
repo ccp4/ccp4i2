@@ -972,11 +972,7 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
         true, // isCustom — keeps it under our control to clear later
       );
       if (!created) continue;
-      // Per-representation opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque).
-      // Applies to surfaces as well as ribbons/sticks. Set before the redraw so
-      // the buffers pick up the transparent flag; absent ⇒ left at the default 1.
       const hasAlpha = typeof rep.alpha === "number" && rep.alpha < 1;
-      if (hasAlpha) created.setNonCustomOpacity(rep.alpha as number);
       if (pendingRules.length > 0) {
         for (const r of pendingRules) {
           // Colour rule CID stays as authored — the rule's CID and the
@@ -992,12 +988,17 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
             r.applyColourToNonCarbonAtoms ?? false,
           );
         }
-      }
-      // Redraw if we changed colour rules or opacity (either needs the buffers
-      // rebuilt to reach the GL state).
-      if (pendingRules.length > 0 || hasAlpha) {
+        // Rebuild the buffers with the colour rules applied.
         await molecule.redrawRepresentation(created.uniqueId);
       }
+      // Opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque; surfaces included)
+      // MUST be applied LAST, after any redraw. setNonCustomOpacity rewrites the
+      // alpha of the *current* buffers, but Moorhen's draw()/redraw() rebuild
+      // buffers opaque and do NOT re-apply nonCustomOpacity — so setting it
+      // before the redraw above is silently clobbered when the rebuild lands
+      // (the "transparent while loading, opaque once drawn" flip). Setting it
+      // here, on the final buffers, makes it stick; it requests its own redraw.
+      if (hasAlpha) created.setNonCustomOpacity(rep.alpha as number);
       dispatch(addCustomRepresentation(created));
       anySucceeded = true;
     } catch (e) {
