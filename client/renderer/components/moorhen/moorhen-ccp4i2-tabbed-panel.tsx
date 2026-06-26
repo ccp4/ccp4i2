@@ -49,6 +49,7 @@ export interface MoorhenCcp4i2TabbedPanelProps {
     assets: SceneBundleAssets;
     warnings: string[];
   }>;
+  onBuildAuthoringPrompt?: () => Promise<string>;
   cootInitialized: boolean;
 }
 
@@ -56,6 +57,7 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
   onApplyScene,
   onCaptureScene,
   onPromoteSceneToPortable,
+  onBuildAuthoringPrompt,
   cootInitialized,
   ...controlsProps
 }) => {
@@ -87,10 +89,11 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
         onApplyScene={onApplyScene}
         onCaptureScene={onCaptureScene}
         onPromoteSceneToPortable={onPromoteSceneToPortable}
+        onBuildAuthoringPrompt={onBuildAuthoringPrompt}
         enabled={cootInitialized}
       />
     ),
-    [onApplyScene, onCaptureScene, onPromoteSceneToPortable, cootInitialized],
+    [onApplyScene, onCaptureScene, onPromoteSceneToPortable, onBuildAuthoringPrompt, cootInitialized],
   );
 
   return (

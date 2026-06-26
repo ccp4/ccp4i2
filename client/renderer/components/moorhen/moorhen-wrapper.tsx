@@ -44,6 +44,12 @@ import {
 } from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
+import { extractFileIdFromUniqueId } from "../../lib/moorhen-view-state";
+import {
+  buildContentsBlock,
+  buildManifestBlock,
+  buildAuthoringPrompt,
+} from "../../lib/moorhen-scene-prompt";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
@@ -77,6 +83,31 @@ function extractDictCompIds(cifText: string): string[] {
     if (m[1] !== "list") out.push(m[1]);
   }
   return out;
+}
+
+/**
+ * Resolve a scene `job` (number, e.g. "1" or "1.1") + output `param` (e.g.
+ * "XYZOUT") to a project file's proxy download URL, using the existing REST:
+ * jobs in the project → match number → that job's output files (directory=1)
+ * → match job_param_name. Returns null if anything along the chain is missing.
+ */
+async function resolveJobParamUrl(
+  projectPk: number,
+  jobNumber: number | string,
+  param: string,
+): Promise<string | null> {
+  const jobs = await apiGet(`jobs/?project=${projectPk}`);
+  if (!Array.isArray(jobs)) return null;
+  const job = jobs.find((j: { number?: string }) => String(j.number) === String(jobNumber));
+  if (!job) return null;
+  const files = await apiGet(`files/?job=${job.id}`);
+  if (!Array.isArray(files)) return null;
+  const file = files.find(
+    (f: { job_param_name?: string; directory: number }) =>
+      f.job_param_name === param && f.directory === 1,
+  );
+  if (!file) return null;
+  return `/api/proxy/ccp4i2/files/${file.id}/download/`;
 }
 
 const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId }) => {
@@ -124,6 +155,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // lifter can emit terse fileId dict refs instead of inlining cifText.
   const dictSourcesRef = useRef<Map<number, Map<string, { fileId: number; projectId?: string }>>>(new Map());
   const prevActiveMoleculeRef = useRef<null | moorhen.Molecule>(null);
+  // Project pk, mirrored into a ref so the (stable-identity) scene fetcher can
+  // resolve job+param refs against the current project without re-binding.
+  const projectPkRef = useRef<number | null>(null);
   const timeCapsuleRef = useRef(null);
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -719,6 +753,15 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         const url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
         return loadStructure(url, ref.name || `file_${ref.fileId}`);
       }
+      // job + output param → resolve to a project file in the current project.
+      if (ref.job !== undefined && ref.param) {
+        const projectPk = projectPkRef.current;
+        if (projectPk == null) return null;
+        const url = await resolveJobParamUrl(projectPk, ref.job, ref.param);
+        return url
+          ? loadStructure(url, ref.name || `job_${ref.job}_${ref.param}`)
+          : null;
+      }
       if (ref.url) {
         return loadStructure(ref.url, ref.name || ref.url);
       }
@@ -929,6 +972,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       try {
         const jobInfo = await apiGet(`jobs/${jobId}`);
         if (cancelled || !jobInfo?.project) return;
+        projectPkRef.current = jobInfo.project;
         // jobInfo.project is the project pk; fetch the uuid + name.
         const proj = await apiGet(`projects/${jobInfo.project}`);
         if (cancelled || !proj?.uuid) return;
@@ -939,6 +983,43 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     })();
     return () => { cancelled = true; };
   }, [jobId]);
+
+  // Assemble the LLM "Copy prompt" scaffold: the embedded scene grammar + a
+  // manifest of the project's referenceable job outputs + a ground-truth
+  // contents summary of the loaded structure (chains + ligand CIDs, from the
+  // coordinate digest). The user appends a request and pastes it into a chatbot.
+  const handleBuildAuthoringPrompt = useCallback(async (): Promise<string> => {
+    let contentsBlock = "(no structure loaded)";
+    const mol = molecules[0];
+    if (mol) {
+      const fid = extractFileIdFromUniqueId(mol.uniqueId || "");
+      if (fid != null) {
+        try {
+          const resp = await apiGet(`files/${fid}/digest/`);
+          const digest = resp?.data ?? resp;
+          contentsBlock = buildContentsBlock(digest, mol.name || `file_${fid}`);
+        } catch (err) {
+          console.warn("[scene-prompt] digest failed:", err);
+        }
+      }
+    }
+    let manifestBlock = "(no project context)";
+    const pk = projectPkRef.current;
+    if (pk != null) {
+      try {
+        const [jobs, files] = await Promise.all([
+          apiGet(`jobs/?project=${pk}`),
+          apiGet(`files/?project=${pk}`),
+        ]);
+        if (Array.isArray(jobs) && Array.isArray(files)) {
+          manifestBlock = buildManifestBlock(jobs, files, projectInfo?.id);
+        }
+      } catch (err) {
+        console.warn("[scene-prompt] manifest failed:", err);
+      }
+    }
+    return buildAuthoringPrompt({ contents: contentsBlock, manifest: manifestBlock });
+  }, [molecules, projectInfo]);
 
   // Promote an editor YAML to a fully self-contained scene + asset
   // bundle: every URL-resolvable ref is fetched into assets/ and
@@ -1037,11 +1118,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           onApplyScene={handleApplyScene}
           onCaptureScene={handleCaptureScene}
           onPromoteSceneToPortable={handlePromoteSceneToPortable}
+          onBuildAuthoringPrompt={handleBuildAuthoringPrompt}
           cootInitialized={cootInitialized}
         />
       ),
     },
-  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, cootInitialized]);
+  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, handleBuildAuthoringPrompt, cootInitialized]);
 
   // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
   // (it builds the per-instance MoorhenInstance from it). One per wrapper.

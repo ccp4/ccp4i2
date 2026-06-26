@@ -98,6 +98,13 @@ const nextConfig: NextConfig = {
         ),
       );
     }
+    // Import .md files as raw source strings (e.g. the scene grammar embedded
+    // into the LLM "Copy prompt" scaffold). No .md import is treated as a module
+    // elsewhere, so this is safe across the whole tree.
+    config.module.rules.push({
+      test: /\.md$/,
+      type: "asset/source",
+    });
     // Note: we intentionally do NOT set config.target = "electron-renderer".
     // Our Electron uses contextIsolation:true + nodeIntegration:false, so the
     // renderer is a standard browser environment. The electron-renderer target

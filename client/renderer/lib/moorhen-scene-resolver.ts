@@ -686,13 +686,15 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
  * True iff the resolver could ask the fetcher to load this ref on its
  * own — i.e. the ref carries enough info to know where to fetch from.
  * `path:` alone is not fetchable (we don't read arbitrary local paths
- * from the browser); `job+param` would need an extra ccp4i2 API lookup
- * we haven't built yet, so for now it's also not fetchable.
+ * from the browser). `job+param` IS fetchable: the host fetcher resolves
+ * the job number + output param to a project file via the ccp4i2 REST API
+ * (jobs → files) and loads it through the same proxy URL as fileId refs.
  */
 export function isFetchable(fr: SceneFileRef): boolean {
   if (fr.pdb) return true;
   if (fr.url) return true;
   if (fr.fileId !== undefined && fr.projectId) return true;
+  if (fr.job !== undefined && fr.param) return true;
   // Inline dict text: trivially "fetchable" — the fetcher just returns
   // the text. Only valid on dictionary refs (validator enforces this).
   if (fr.cifText && fr.kind === "dictionary") return true;

@@ -40,6 +40,7 @@ import {
   Save as SaveIcon,
   PlayArrow as ApplyIcon,
   ArrowDropDown as DropDownIcon,
+  AutoAwesome as PromptIcon,
 } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
 import JSZip from "jszip";
@@ -113,6 +114,10 @@ interface MoorhenScenesPanelProps {
     assets: SceneBundleAssets;
     warnings: string[];
   }>;
+  /** Assemble the LLM authoring "Copy prompt" scaffold (embedded grammar +
+   *  project manifest + loaded-structure contents). Optional — when omitted
+   *  the "Copy prompt" button is hidden (e.g. the campaign viewer). */
+  onBuildAuthoringPrompt?: () => Promise<string>;
   /** True once Moorhen / Coot is ready. Disables apply until then. */
   enabled: boolean;
   /** Optional initial YAML to seed the editor with (e.g. the campaign
@@ -138,6 +143,7 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   onApplyScene,
   onCaptureScene,
   onPromoteSceneToPortable,
+  onBuildAuthoringPrompt,
   enabled,
   initialYaml,
   autoApplyInitial,
@@ -191,6 +197,30 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
       });
     }
   }, [onCaptureScene]);
+
+  // Assemble the LLM authoring prompt (grammar + manifest + contents) and copy
+  // it to the clipboard. The user pastes it into a chatbot, appends their
+  // request, and pastes the returned YAML back into this editor.
+  const [promptBusy, setPromptBusy] = useState<boolean>(false);
+  const handleCopyPrompt = useCallback(async () => {
+    if (!onBuildAuthoringPrompt) return;
+    setPromptBusy(true);
+    try {
+      const prompt = await onBuildAuthoringPrompt();
+      await navigator.clipboard.writeText(prompt);
+      setMessage({
+        severity: "success",
+        text: "Authoring prompt copied — paste it into a chatbot, add your request, then paste the YAML back here.",
+      });
+    } catch (err) {
+      setMessage({
+        severity: "error",
+        text: `Could not build prompt: ${err instanceof Error ? err.message : "unknown error"}`,
+      });
+    } finally {
+      setPromptBusy(false);
+    }
+  }, [onBuildAuthoringPrompt]);
 
   const handleOpenClick = useCallback(() => {
     fileInputRef.current?.click();
@@ -481,6 +511,23 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
                 sx={{ fontSize: "0.75rem", textTransform: "none" }}
               >
                 Capture
+              </Button>
+            </span>
+          </Tooltip>
+        )}
+
+        {onBuildAuthoringPrompt && (
+          <Tooltip title="Copy an LLM prompt (scene grammar + this project's files + the loaded structure's chains & ligands) to draft a scene in any chatbot">
+            <span>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<PromptIcon />}
+                onClick={handleCopyPrompt}
+                disabled={promptBusy}
+                sx={{ fontSize: "0.75rem", textTransform: "none" }}
+              >
+                Copy prompt
               </Button>
             </span>
           </Tooltip>

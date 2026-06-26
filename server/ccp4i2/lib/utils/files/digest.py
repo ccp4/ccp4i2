@@ -385,6 +385,42 @@ def _extract_chain_sequences(gemmi_structure):
     return sequences
 
 
+def _extract_ligands(gemmi_structure):
+    """Extract non-polymer, non-water residues (ligands and ions) from a gemmi
+    Structure.
+
+    Returns a list of dicts with the residue code, its chain, sequence number,
+    and a Moorhen/coot CID (`/model/chain/seqnum(NAME)`) — the form a scene
+    selection uses. This lets a scene author (a person, or an LLM) reference a
+    ligand precisely instead of guessing where it sits. Classification uses
+    gemmi's residue tables; anything not recognised as an amino acid, nucleic
+    acid, or water is treated as a ligand (so novel compounds are included).
+    """
+    import gemmi
+
+    ligands = []
+    if len(gemmi_structure) == 0:
+        return ligands
+
+    model = gemmi_structure[0]
+    for chain in model:
+        for res in chain:
+            info = gemmi.find_tabulated_residue(res.name)
+            if info is not None and (
+                info.is_amino_acid() or info.is_nucleic_acid() or info.is_water()
+            ):
+                continue
+            seq_num = res.seqid.num
+            ligands.append({
+                "chainId": chain.name,
+                "name": res.name,
+                "seqNum": seq_num,
+                "cid": f"/1/{chain.name}/{seq_num}({res.name})",
+                "nAtoms": len(res),
+            })
+    return ligands
+
+
 def digest_cpdbdata_file_object(file_object: CPdbDataFile):
     content_dict = {}
     if not isinstance(file_object, CCP4ModelData.CPdbDataFile):
@@ -412,6 +448,8 @@ def digest_cpdbdata_file_object(file_object: CPdbDataFile):
             gemmi_struct = getattr(contents, '_gemmi_structure', None)
             if gemmi_struct is not None and 'sequences' not in content_dict:
                 content_dict['sequences'] = _extract_chain_sequences(gemmi_struct)
+            if gemmi_struct is not None and 'ligands' not in content_dict:
+                content_dict['ligands'] = _extract_ligands(gemmi_struct)
 
         return content_dict
     except Exception as err:
