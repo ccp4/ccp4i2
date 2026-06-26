@@ -430,9 +430,18 @@ describe("Moorhen scene — validation errors", () => {
 
   it("requires projectId when fileId is set", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: f\n    fileId: 42\n`;
-    expect(() => parseScene(yaml)).toThrow(
-      /projectId.*required when fileId or job\+param is set/,
-    );
+    expect(() => parseScene(yaml)).toThrow(/projectId.*required when fileId is set/);
+  });
+
+  it("accepts job+param with projectName instead of projectId", () => {
+    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: m\n    job: 21\n    param: XYZOUT\n    projectName: GammaBySAD\n`;
+    const scene = parseScene(yaml);
+    expect(scene.files![0]).toMatchObject({ job: 21, param: "XYZOUT", projectName: "GammaBySAD" });
+  });
+
+  it("requires a project identifier when job+param is set", () => {
+    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: m\n    job: 21\n    param: XYZOUT\n`;
+    expect(() => parseScene(yaml)).toThrow(/required when job\+param is set/);
   });
 
   it("requires job and param to be set together", () => {

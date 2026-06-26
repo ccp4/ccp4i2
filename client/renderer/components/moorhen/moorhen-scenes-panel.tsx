@@ -27,10 +27,16 @@ import {
   Button,
   ButtonGroup,
   Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   FormControlLabel,
   Menu,
   MenuItem,
   Stack,
+  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -40,6 +46,7 @@ import {
   Save as SaveIcon,
   PlayArrow as ApplyIcon,
   ArrowDropDown as DropDownIcon,
+  AutoAwesome as PromptIcon,
 } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
 import JSZip from "jszip";
@@ -113,6 +120,11 @@ interface MoorhenScenesPanelProps {
     assets: SceneBundleAssets;
     warnings: string[];
   }>;
+  /** Assemble the LLM authoring prompt (embedded grammar + project manifest +
+   *  loaded-structure contents) wrapped around the user's natural-language
+   *  request. Optional — when omitted the "Generate prompt" button is hidden
+   *  (e.g. the campaign viewer). */
+  onBuildAuthoringPrompt?: (request: string) => Promise<string>;
   /** True once Moorhen / Coot is ready. Disables apply until then. */
   enabled: boolean;
   /** Optional initial YAML to seed the editor with (e.g. the campaign
@@ -138,6 +150,7 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   onApplyScene,
   onCaptureScene,
   onPromoteSceneToPortable,
+  onBuildAuthoringPrompt,
   enabled,
   initialYaml,
   autoApplyInitial,
@@ -191,6 +204,34 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
       });
     }
   }, [onCaptureScene]);
+
+  // Generate an LLM authoring prompt: the user types a natural-language scene
+  // description in a modal, and we wrap it with the grammar + project manifest +
+  // structure contents and copy the whole thing to the clipboard. One paste into
+  // a chatbot then returns YAML to drop back into this editor.
+  const [promptModalOpen, setPromptModalOpen] = useState<boolean>(false);
+  const [promptRequest, setPromptRequest] = useState<string>("");
+  const [promptBusy, setPromptBusy] = useState<boolean>(false);
+  const handleCopyAsPrompt = useCallback(async () => {
+    if (!onBuildAuthoringPrompt) return;
+    setPromptBusy(true);
+    try {
+      const prompt = await onBuildAuthoringPrompt(promptRequest);
+      await navigator.clipboard.writeText(prompt);
+      setPromptModalOpen(false);
+      setMessage({
+        severity: "success",
+        text: "Prompt copied — paste it into a chatbot, then paste the returned YAML back here and Apply.",
+      });
+    } catch (err) {
+      setMessage({
+        severity: "error",
+        text: `Could not build prompt: ${err instanceof Error ? err.message : "unknown error"}`,
+      });
+    } finally {
+      setPromptBusy(false);
+    }
+  }, [onBuildAuthoringPrompt, promptRequest]);
 
   const handleOpenClick = useCallback(() => {
     fileInputRef.current?.click();
@@ -486,6 +527,22 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
           </Tooltip>
         )}
 
+        {onBuildAuthoringPrompt && (
+          <Tooltip title="Describe a view in words; we bundle it with the scene grammar, this project's files, and the loaded structure's chains & ligands into one prompt for any chatbot">
+            <span>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<PromptIcon />}
+                onClick={() => setPromptModalOpen(true)}
+                sx={{ fontSize: "0.75rem", textTransform: "none" }}
+              >
+                Generate prompt…
+              </Button>
+            </span>
+          </Tooltip>
+        )}
+
         <Tooltip title="Open a .scene.yaml or .scene.zip from disk (zips bring their bundled assets along)">
           <span>
             <Button
@@ -637,6 +694,52 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
         style={{ display: "none" }}
         onChange={handleOpenFile}
       />
+
+      {/* Generate-prompt modal: the user describes a view in words; on "Copy as
+          prompt" we bundle it with the grammar + project files + structure
+          contents and copy the whole prompt for pasting into a chatbot. */}
+      <Dialog
+        open={promptModalOpen}
+        onClose={() => setPromptModalOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>Generate a scene-authoring prompt</DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ mb: 1.5, fontSize: "0.85rem" }}>
+            Describe the view you want in plain language. We bundle your
+            description with the scene grammar, this project&apos;s files, and the
+            loaded structure&apos;s chains &amp; ligands into one prompt. Paste it
+            into any chatbot, then paste the returned YAML back here and Apply.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            multiline
+            minRows={4}
+            fullWidth
+            placeholder={
+              "e.g. Chains A and B as ribbon coloured by domain; the ATP ligand as " +
+              "ball-and-stick; centre on the dimer and slab to it."
+            }
+            value={promptRequest}
+            onChange={(e) => setPromptRequest(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setPromptModalOpen(false)} sx={{ textTransform: "none" }}>
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            startIcon={<PromptIcon />}
+            onClick={handleCopyAsPrompt}
+            disabled={promptBusy || !promptRequest.trim()}
+            sx={{ textTransform: "none" }}
+          >
+            Copy as prompt
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Stack>
   );
 };

@@ -309,11 +309,22 @@ function validateFiles(
         message: "must set one of: pdb, url, path, bundle, fileId (+projectId), job+param (+projectId), or cifText (for dictionaries)",
       });
     }
-    // Project-internal forms need a projectId.
-    if ((hasFileId || hasJobParam) && !ref.projectId) {
+    // fileId form: needs projectId (the lifter always pairs them, and the
+    // resolver's fileId branch guards on it).
+    if (hasFileId && !ref.projectId) {
       errors.push({
         path: `${p}.projectId`,
-        message: "required when fileId or job+param is set",
+        message: "required when fileId is set",
+      });
+    }
+    // job+param: needs a project identifier — projectId (a UUID, preferred for
+    // portability) OR projectName (the human/LLM-friendly form the manifest
+    // shows). The resolver keys job+param off the current project, so either is
+    // accepted as an advisory label.
+    if (hasJobParam && !ref.projectId && !ref.projectName) {
+      errors.push({
+        path: `${p}.projectId`,
+        message: "required when job+param is set (or give projectName)",
       });
     }
     // job and param are paired.
