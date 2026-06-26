@@ -84,7 +84,6 @@ const RENDERABLE_TYPES = new Set([
 export function buildManifestBlock(
   jobs: ManifestJob[],
   files: ManifestFile[],
-  projectId: string | undefined,
 ): string {
   const jobByPk = new Map<number, ManifestJob>(jobs.map((j) => [j.id, j]));
   // group renderable output files by their producing job
@@ -100,7 +99,6 @@ export function buildManifestBlock(
   if (byJob.size === 0) return "No referenceable job outputs in this project yet.";
 
   const lines: string[] = [];
-  if (projectId) lines.push(`projectId for every job/param reference: ${projectId}`);
   lines.push("Referenceable files (use { job: <number>, param: <PARAM>, projectId }):");
   // stable order by job number (numeric-ish)
   const jobPks = [...byJob.keys()].sort((a, b) => {
@@ -123,15 +121,34 @@ export function buildManifestBlock(
 // ── Whole prompt ────────────────────────────────────────────────────────────
 
 export function buildAuthoringPrompt(opts: {
+  project?: { name?: string; id?: string };
   contents: string;
   manifest: string;
 }): string {
+  const projName = opts.project?.name;
+  const projId = opts.project?.id;
+  // Pin the project identity hard and up front: the single most important
+  // constraint, because a chat model carrying context from an earlier project
+  // will otherwise reference the wrong one. Every job/param ref must carry these.
+  const projectLines: string[] = ["=== CURRENT PROJECT (use ONLY this one) ==="];
+  if (projName) projectLines.push(`projectName: ${projName}`);
+  if (projId) projectLines.push(`projectId: ${projId}`);
+  if (!projName && !projId) {
+    projectLines.push("(project identity unavailable — ask the user before referencing job/param files)");
+  }
+  projectLines.push(
+    "Every { job, param } reference MUST include the projectId above (or projectName).",
+    "Ignore any project mentioned earlier in this conversation; use ONLY the project above.",
+  );
+
   return [
     "You are drafting a Moorhen \"scene\": a YAML document describing a molecular",
     "view. Follow the grammar below EXACTLY and output ONLY the YAML (no prose, no",
     "code fences). Reference project files with { job, param, projectId } using the",
     "manifest; use pdb:/url: only for structures not in the project; never use path:.",
     "Use the exact ligand CIDs from the contents summary for ligand selections.",
+    "",
+    projectLines.join("\n"),
     "",
     "=== SCENE GRAMMAR ===",
     sceneGrammar,

@@ -1004,21 +1004,30 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     }
     let manifestBlock = "(no project context)";
+    // Resolve project identity robustly — prefer the resolved projectInfo, but
+    // fall back to a fresh fetch so the prompt always pins the current project
+    // (otherwise a chat model can drift into a project from earlier context).
+    let project: { name?: string; id?: string } | undefined =
+      projectInfo ? { name: projectInfo.name, id: projectInfo.id } : undefined;
     const pk = projectPkRef.current;
     if (pk != null) {
       try {
+        if (!project?.id) {
+          const proj = await apiGet(`projects/${pk}`);
+          if (proj?.uuid) project = { name: proj.name, id: proj.uuid };
+        }
         const [jobs, files] = await Promise.all([
           apiGet(`jobs/?project=${pk}`),
           apiGet(`files/?project=${pk}`),
         ]);
         if (Array.isArray(jobs) && Array.isArray(files)) {
-          manifestBlock = buildManifestBlock(jobs, files, projectInfo?.id);
+          manifestBlock = buildManifestBlock(jobs, files);
         }
       } catch (err) {
         console.warn("[scene-prompt] manifest failed:", err);
       }
     }
-    return buildAuthoringPrompt({ contents: contentsBlock, manifest: manifestBlock });
+    return buildAuthoringPrompt({ project, contents: contentsBlock, manifest: manifestBlock });
   }, [molecules, projectInfo]);
 
   // Promote an editor YAML to a fully self-contained scene + asset
