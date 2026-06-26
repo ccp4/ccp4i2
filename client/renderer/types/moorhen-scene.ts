@@ -449,7 +449,12 @@ export interface SceneMap {
 // --------------------------------------------------------------------------
 
 export interface SceneView {
+  /** Camera centre as an explicit Cartesian point. */
   origin?: [number, number, number];
+  /** Camera centre derived from a selection's centroid — the resolver computes
+   *  it at apply-time, so "centred on chain A" needs no coordinates. Takes
+   *  precedence over `origin` when both are present. */
+  centre?: SceneCentre;
   quat?: [number, number, number, number];
   zoom?: number;
   clipStart?: number;
@@ -457,6 +462,14 @@ export interface SceneView {
   fogStart?: number;
   fogEnd?: number;
   background?: string;        // hex
+}
+
+/** Selection whose centroid the camera centres on (see SceneView.centre). */
+export interface SceneCentre {
+  /** Name of a file from the top-level `files:` block. */
+  file: string;
+  /** CID selection within that file; omitted ⇒ the whole molecule. */
+  selection?: string;
 }
 
 // --------------------------------------------------------------------------

@@ -22,6 +22,7 @@ import {
   SceneMap,
   SceneMapColumns,
   SceneRepresentation,
+  SceneCentre,
   SceneColour,
   SceneColourSelection,
   SceneSuperpose,
@@ -178,6 +179,7 @@ export function validateScene(raw: unknown): {
     if (isObject(v)) {
       out.view = {
         origin: tupleField<3>(v, "origin", 3, "view.origin", errors),
+        centre: validateCentre(v.centre, out.files ?? [], errors),
         quat: tupleField<4>(v, "quat", 4, "view.quat", errors),
         zoom: optNum(v, "zoom", "view.zoom", errors),
         clipStart: optNum(v, "clipStart", "view.clipStart", errors),
@@ -853,6 +855,47 @@ function validateRepresentation(
     }
   }
   return rep;
+}
+
+function validateCentre(
+  raw: unknown,
+  files: SceneFileRef[],
+  errors: SceneValidationError[],
+): SceneCentre | undefined {
+  if (raw === undefined) return undefined;
+  if (!isObject(raw)) {
+    errors.push({ path: "view.centre", message: "must be a mapping { file, selection? }" });
+    return undefined;
+  }
+  // centre takes only file + selection. Reject anything else loudly — it's a
+  // typo (e.g. "-selection"), and silently dropping it gives a wrong-but-quiet
+  // centre (the whole molecule instead of the intended selection).
+  for (const k of Object.keys(raw as Record<string, unknown>)) {
+    if (k !== "file" && k !== "selection") {
+      errors.push({
+        path: `view.centre.${k}`,
+        message: `unknown key "${k}" — centre takes only "file" and "selection"`,
+      });
+    }
+  }
+  const file = strField(raw, "file", "", errors, "view.centre");
+  if (!file) {
+    errors.push({ path: "view.centre.file", message: "required" });
+    return undefined;
+  }
+  if (files.length > 0 && !files.some((f) => f.name === file)) {
+    errors.push({
+      path: "view.centre.file",
+      message: `unknown file "${file}" (not in top-level files block)`,
+    });
+    return undefined;
+  }
+  const centre: SceneCentre = { file };
+  if ("selection" in (raw as Record<string, unknown>)) {
+    const sel = optStr(raw, "selection", "view.centre.selection", errors);
+    if (sel) centre.selection = sel;
+  }
+  return centre;
 }
 
 function validateColour(

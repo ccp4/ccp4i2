@@ -454,7 +454,33 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 
   // 3. Camera. Mirror PasteViewLinkField exactly so behaviour matches.
   if (scene.view) {
-    if (scene.view.origin) dispatch(setOrigin(scene.view.origin));
+    // Selection-based centre takes precedence over an explicit origin: Moorhen
+    // computes the selection's centroid and sets the origin, so "centre on
+    // chain A" needs no coordinates.
+    if (scene.view.centre) {
+      const { file, selection } = scene.view.centre;
+      const cid = selection ?? "/*/*/*/*";
+      const mol = fileBindings.get(file);
+      if (!mol) {
+        result.log.push({
+          file,
+          domain: "view.centre",
+          message: `cannot centre: file "${file}" not bound to a loaded molecule`,
+        });
+      } else {
+        try {
+          await mol.centreOn(cid, false, false); // no animate, don't touch zoom
+        } catch (e) {
+          result.log.push({
+            file,
+            domain: "view.centre",
+            message: `centre on "${cid}" failed: ${e instanceof Error ? e.message : "unknown error"}`,
+          });
+        }
+      }
+    } else if (scene.view.origin) {
+      dispatch(setOrigin(scene.view.origin));
+    }
     if (scene.view.quat) dispatch(setQuat(scene.view.quat));
     if (scene.view.zoom !== undefined) dispatch(setZoom(scene.view.zoom));
     if (scene.view.clipStart !== undefined) dispatch(setClipStart(scene.view.clipStart));

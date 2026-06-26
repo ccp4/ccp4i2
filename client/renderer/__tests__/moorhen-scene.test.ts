@@ -284,6 +284,47 @@ view:
 });
 
 // --------------------------------------------------------------------------
+// view.centre — selection-based camera centring.
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — view.centre", () => {
+  const withView = (view: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - { name: apo, pdb: 1m17 }\nview:\n${view}`;
+
+  it("accepts file + selection and round-trips", () => {
+    const scene = parseScene(
+      withView(`  centre: { file: apo, selection: "//A" }\n  zoom: 1\n`),
+    );
+    expect(scene.view!.centre).toEqual({ file: "apo", selection: "//A" });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("accepts a centre with no selection (whole molecule)", () => {
+    expect(
+      parseScene(withView(`  centre: { file: apo }\n`)).view!.centre,
+    ).toEqual({ file: "apo" });
+  });
+
+  it("rejects a centre referencing an unknown file", () => {
+    expect(() => parseScene(withView(`  centre: { file: nope }\n`))).toThrow(
+      /unknown file "nope"/,
+    );
+  });
+
+  it("rejects a centre with no file", () => {
+    expect(() =>
+      parseScene(withView(`  centre: { selection: "//A" }\n`)),
+    ).toThrow(/centre\.file.*required/);
+  });
+
+  it("rejects an unknown key (catches typos like -selection)", () => {
+    expect(() =>
+      parseScene(withView(`  centre: { file: apo, "-selection": "//A" }\n`)),
+    ).toThrow(/unknown key "-selection"/);
+  });
+});
+
+// --------------------------------------------------------------------------
 // Validation: each error class.
 // --------------------------------------------------------------------------
 

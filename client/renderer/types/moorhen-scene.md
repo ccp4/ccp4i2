@@ -653,6 +653,28 @@ view:
   background: "#ffffff"                  # hex
 ```
 
+### `centre` — centre on a selection
+
+Instead of an explicit `origin:`, you can centre the camera on the **centroid
+of a selection**, computed at apply-time. This is the natural form for an
+authored or generated scene: "centred on chain A" needs no coordinates.
+
+```yaml
+view:
+  centre: { file: apo, selection: "//A" }   # whole chain A
+  # selection: omitted ⇒ the whole molecule
+  zoom: 1.5
+```
+
+- `file`: required — a name from the top-level `files:` block.
+- `selection`: optional CID; omitted means the whole molecule.
+
+`centre` takes **precedence over `origin`** when both are present. If the file
+isn't loaded or the selection matches nothing, the resolver logs it and leaves
+the camera where it is (it does not fail). The lifter still captures the
+resolved Cartesian `origin:` — `centre:` is an input convenience, so a captured
+scene records the concrete point.
+
 ## `resolver`
 
 Apply-time policy. Currently one option:
