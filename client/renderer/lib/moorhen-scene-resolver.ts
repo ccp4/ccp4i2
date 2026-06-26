@@ -248,6 +248,34 @@ function selectionBoundingSphere(
 }
 
 /**
+ * Resolve the molecule a view directive (centre/slab) acts on. With an explicit
+ * `file`, look it up. Without one, default to the sole loaded molecule — the
+ * common "only one structure open" case — and report an error otherwise (none
+ * loaded, or ambiguous with several). `ref` is a display string for logging.
+ */
+function resolveViewMolecule(
+  file: string | undefined,
+  fileBindings: Map<string, moorhen.Molecule>,
+): { mol?: moorhen.Molecule; ref: string; error?: string } {
+  if (file !== undefined) {
+    const mol = fileBindings.get(file);
+    return mol
+      ? { mol, ref: file }
+      : { ref: file, error: `file "${file}" not bound to a loaded molecule` };
+  }
+  if (fileBindings.size === 1) {
+    return { mol: [...fileBindings.values()][0], ref: "(sole molecule)" };
+  }
+  return {
+    ref: "(unspecified)",
+    error:
+      fileBindings.size === 0
+        ? "no file specified and no molecule loaded"
+        : `no file specified but ${fileBindings.size} molecules loaded — add a file:`,
+  };
+}
+
+/**
  * Apply a scene to the currently-loaded molecules.
  *
  * Returns a SceneResolveResult describing what was applied and what
@@ -544,19 +572,19 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     // clip, so it pre-empts centre/origin (below) and clip (further down).
     let slabDepth: number | undefined;
     if (scene.view.slab) {
-      const { file, selection, pad } = scene.view.slab;
+      const { selection, pad } = scene.view.slab;
       const cid = selection ?? "/*/*/*/*";
-      const mol = fileBindings.get(file);
-      if (!mol) {
+      const { mol, ref, error } = resolveViewMolecule(scene.view.slab.file, fileBindings);
+      if (error || !mol) {
         result.log.push({
-          file, domain: "view.slab",
-          message: `cannot slab: file "${file}" not bound to a loaded molecule`,
+          file: ref, domain: "view.slab",
+          message: `cannot slab: ${error}`,
         });
       } else {
         const sphere = selectionBoundingSphere(mol, cid);
         if (!sphere) {
           result.log.push({
-            file, domain: "view.slab",
+            file: ref, domain: "view.slab",
             message: `slab: selection "${cid}" matched no atoms (or gemmi unavailable)`,
           });
         } else {
@@ -564,7 +592,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
             await mol.centreOn(cid, false, false);
           } catch (e) {
             result.log.push({
-              file, domain: "view.slab",
+              file: ref, domain: "view.slab",
               message: `centre on "${cid}" failed: ${e instanceof Error ? e.message : "unknown error"}`,
             });
           }
@@ -572,21 +600,21 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
         }
       }
     } else if (scene.view.centre) {
-      const { file, selection } = scene.view.centre;
+      const { selection } = scene.view.centre;
       const cid = selection ?? "/*/*/*/*";
-      const mol = fileBindings.get(file);
-      if (!mol) {
+      const { mol, ref, error } = resolveViewMolecule(scene.view.centre.file, fileBindings);
+      if (error || !mol) {
         result.log.push({
-          file,
+          file: ref,
           domain: "view.centre",
-          message: `cannot centre: file "${file}" not bound to a loaded molecule`,
+          message: `cannot centre: ${error}`,
         });
       } else {
         try {
           await mol.centreOn(cid, false, false); // no animate, don't touch zoom
         } catch (e) {
           result.log.push({
-            file,
+            file: ref,
             domain: "view.centre",
             message: `centre on "${cid}" failed: ${e instanceof Error ? e.message : "unknown error"}`,
           });

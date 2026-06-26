@@ -498,8 +498,9 @@ export interface SceneClipFieldDepth {
 
 /** Selection whose centroid the camera centres on (see SceneView.centre). */
 export interface SceneCentre {
-  /** Name of a file from the top-level `files:` block. */
-  file: string;
+  /** Name of a file from the top-level `files:` block. Optional when exactly one
+   *  molecule is loaded — the resolver then defaults to it. */
+  file?: string;
   /** CID selection within that file; omitted ⇒ the whole molecule. */
   selection?: string;
 }
@@ -511,8 +512,9 @@ export interface SceneCentre {
  * sphere); once `orient` exists it can tighten to the depth along the view axis.
  */
 export interface SceneSlab {
-  /** Name of a file from the top-level `files:` block. */
-  file: string;
+  /** Name of a file from the top-level `files:` block. Optional when exactly one
+   *  molecule is loaded — the resolver then defaults to it. */
+  file?: string;
   /** CID selection within that file; omitted ⇒ the whole molecule. */
   selection?: string;
   /** Extra Ångström added to the radius on each side (default 0). */

@@ -333,6 +333,12 @@ describe("Moorhen scene — view.slab", () => {
     expect(parseScene(withSlab(`{ file: apo }`)).view!.slab).toEqual({ file: "apo" });
   });
 
+  it("accepts slab with no file (defaults to the sole molecule at apply)", () => {
+    expect(parseScene(withSlab(`{ selection: "//A" }`)).view!.slab).toEqual({
+      selection: "//A",
+    });
+  });
+
   it("rejects an unknown file", () => {
     expect(() => parseScene(withSlab(`{ file: nope }`))).toThrow(/unknown file "nope"/);
   });
@@ -372,10 +378,10 @@ describe("Moorhen scene — view.centre", () => {
     );
   });
 
-  it("rejects a centre with no file", () => {
-    expect(() =>
-      parseScene(withView(`  centre: { selection: "//A" }\n`)),
-    ).toThrow(/centre\.file.*required/);
+  it("accepts a centre with no file (defaults to the sole molecule at apply)", () => {
+    expect(
+      parseScene(withView(`  centre: { selection: "//A" }\n`)).view!.centre,
+    ).toEqual({ selection: "//A" });
   });
 
   it("rejects an unknown key (catches typos like -selection)", () => {

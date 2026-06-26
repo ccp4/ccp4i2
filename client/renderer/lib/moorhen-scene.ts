@@ -879,19 +879,24 @@ function validateSlab(
       });
     }
   }
-  const file = strField(raw, "file", "", errors, "view.slab");
-  if (!file) {
-    errors.push({ path: "view.slab.file", message: "required" });
-    return undefined;
+  // file is optional: omitted ⇒ the resolver defaults to the sole loaded
+  // molecule (and logs if that's ambiguous). When given, cross-check it.
+  const slab: SceneSlab = {};
+  if ("file" in (raw as Record<string, unknown>)) {
+    const file = strField(raw, "file", "", errors, "view.slab");
+    if (!file) {
+      errors.push({ path: "view.slab.file", message: "must be a non-empty string" });
+      return undefined;
+    }
+    if (files.length > 0 && !files.some((f) => f.name === file)) {
+      errors.push({
+        path: "view.slab.file",
+        message: `unknown file "${file}" (not in top-level files block)`,
+      });
+      return undefined;
+    }
+    slab.file = file;
   }
-  if (files.length > 0 && !files.some((f) => f.name === file)) {
-    errors.push({
-      path: "view.slab.file",
-      message: `unknown file "${file}" (not in top-level files block)`,
-    });
-    return undefined;
-  }
-  const slab: SceneSlab = { file };
   if ("selection" in (raw as Record<string, unknown>)) {
     const sel = optStr(raw, "selection", "view.slab.selection", errors);
     if (sel) slab.selection = sel;
@@ -956,19 +961,24 @@ function validateCentre(
       });
     }
   }
-  const file = strField(raw, "file", "", errors, "view.centre");
-  if (!file) {
-    errors.push({ path: "view.centre.file", message: "required" });
-    return undefined;
+  // file is optional: omitted ⇒ the resolver defaults to the sole loaded
+  // molecule (and logs if that's ambiguous). When given, cross-check it.
+  const centre: SceneCentre = {};
+  if ("file" in (raw as Record<string, unknown>)) {
+    const file = strField(raw, "file", "", errors, "view.centre");
+    if (!file) {
+      errors.push({ path: "view.centre.file", message: "must be a non-empty string" });
+      return undefined;
+    }
+    if (files.length > 0 && !files.some((f) => f.name === file)) {
+      errors.push({
+        path: "view.centre.file",
+        message: `unknown file "${file}" (not in top-level files block)`,
+      });
+      return undefined;
+    }
+    centre.file = file;
   }
-  if (files.length > 0 && !files.some((f) => f.name === file)) {
-    errors.push({
-      path: "view.centre.file",
-      message: `unknown file "${file}" (not in top-level files block)`,
-    });
-    return undefined;
-  }
-  const centre: SceneCentre = { file };
   if ("selection" in (raw as Record<string, unknown>)) {
     const sel = optStr(raw, "selection", "view.centre.selection", errors);
     if (sel) centre.selection = sel;

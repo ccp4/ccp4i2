@@ -691,7 +691,8 @@ view:
   zoom: 1.5
 ```
 
-- `file`: required — a name from the top-level `files:` block.
+- `file`: a name from the top-level `files:` block. Optional when exactly one
+  molecule is loaded — it then defaults to that molecule.
 - `selection`: optional CID; omitted means the whole molecule.
 
 `centre` takes **precedence over `origin`** when both are present. If the file
@@ -711,7 +712,8 @@ view:
   slab: { file: apo, selection: "//A", pad: 2 }
 ```
 
-- `file`: required — a name from the top-level `files:` block.
+- `file`: a name from the top-level `files:` block. Optional when exactly one
+  molecule is loaded — it then defaults to that molecule.
 - `selection`: optional CID; omitted means the whole molecule.
 - `pad`: optional Å added to the radius on each side (default 0).
 
