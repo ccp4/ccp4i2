@@ -461,7 +461,34 @@ export interface SceneView {
   clipEnd?: number;
   fogStart?: number;
   fogEnd?: number;
+  /** Clip/fog intent. Coot derives clip and fog from zoom and a shared pair of
+   *  field depths, and recomputes them on zoom unless told not to. This is the
+   *  stable, intent-level control over that. See SceneClip. When present it
+   *  drives clip/fog (and the lock); the raw clipStart/End/fogStart/End above
+   *  stay as an escape hatch. */
+  clip?: SceneClip;
   background?: string;        // hex
+}
+
+/**
+ * Clip/fog intent:
+ *
+ *   - `"auto"`              — let coot recompute clip+fog from zoom (its default).
+ *   - `"lock"`             — freeze the current clip+fog so zoom won't change them.
+ *   - `{ front, back }`    — set coot's field depths (zoom-independent depth of
+ *                            field, in front of / behind the centre) and lock.
+ *                            Drives clip AND fog together, the way coot does.
+ *
+ * Any explicit `clipStart/End/fogStart/End` are also locked on apply, so a
+ * scene's clip sticks instead of being recomputed away on the next zoom.
+ */
+export type SceneClip = "auto" | "lock" | SceneClipFieldDepth;
+
+export interface SceneClipFieldDepth {
+  /** Depth of field in front of the view centre (coot default 8). */
+  front: number;
+  /** Depth of field behind the view centre (coot default 21). */
+  back: number;
 }
 
 /** Selection whose centroid the camera centres on (see SceneView.centre). */

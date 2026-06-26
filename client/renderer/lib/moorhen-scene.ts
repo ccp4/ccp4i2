@@ -23,6 +23,7 @@ import {
   SceneMapColumns,
   SceneRepresentation,
   SceneCentre,
+  SceneClip,
   SceneColour,
   SceneColourSelection,
   SceneSuperpose,
@@ -186,6 +187,7 @@ export function validateScene(raw: unknown): {
         clipEnd: optNum(v, "clipEnd", "view.clipEnd", errors),
         fogStart: optNum(v, "fogStart", "view.fogStart", errors),
         fogEnd: optNum(v, "fogEnd", "view.fogEnd", errors),
+        clip: validateClip(v.clip, errors),
         background: optStr(v, "background", "view.background", errors),
       };
     } else {
@@ -855,6 +857,35 @@ function validateRepresentation(
     }
   }
   return rep;
+}
+
+function validateClip(
+  raw: unknown,
+  errors: SceneValidationError[],
+): SceneClip | undefined {
+  if (raw === undefined) return undefined;
+  if (raw === "auto" || raw === "lock") return raw;
+  if (typeof raw === "string" || !isObject(raw)) {
+    errors.push({
+      path: "view.clip",
+      message: `must be "auto", "lock", or { front, back }`,
+    });
+    return undefined;
+  }
+  for (const k of Object.keys(raw as Record<string, unknown>)) {
+    if (k !== "front" && k !== "back") {
+      errors.push({
+        path: `view.clip.${k}`,
+        message: `unknown key "${k}" — field-depth clip takes only "front" and "back"`,
+      });
+    }
+  }
+  const front = optNum(raw, "front", "view.clip.front", errors);
+  const back = optNum(raw, "back", "view.clip.back", errors);
+  if (front === undefined) errors.push({ path: "view.clip.front", message: "required" });
+  if (back === undefined) errors.push({ path: "view.clip.back", message: "required" });
+  if (front === undefined || back === undefined) return undefined;
+  return { front, back };
 }
 
 function validateCentre(

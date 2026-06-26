@@ -889,11 +889,17 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // non-bundled apply.
       bundleAssetsRef.current = assets;
       const scene = parseScene(yamlText);
+      // Live glRef snapshot for view.clip: { front, back } (clip = zoom*depth,
+      // fog offset by fogClipOffset).
+      const gl = (store.getState() as moorhen.State).glRef as unknown as {
+        zoom: number; fogClipOffset: number;
+      };
       return applyScene({
         scene,
         molecules,
         maps,
         dispatch,
+        glRef: { zoom: gl.zoom, fogClipOffset: gl.fogClipOffset },
         fetcher: handleFetchSceneFile,
         dictionaryFetcher: handleFetchSceneDictionary,
         dictionaryLoader: handleLoadSceneDictionary,
@@ -901,6 +907,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       });
     },
     [
+      store,
       molecules,
       maps,
       dispatch,

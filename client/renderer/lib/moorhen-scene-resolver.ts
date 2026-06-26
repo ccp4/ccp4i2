@@ -25,6 +25,7 @@ import {
   setClipEnd,
   setFogStart,
   setFogEnd,
+  setResetClippingFogging,
   setBackgroundColor,
   setRequestDrawScene,
   addCustomRepresentation,
@@ -160,6 +161,10 @@ interface ResolveCtx {
   /** Optional. Required for scene.maps[] to be applied. Without it,
    *  map entries are dropped with a log entry. */
   mapFetcher?: SceneMapFetcher;
+  /** Live glRef snapshot (zoom, fogClipOffset). Used by `view.clip:
+   *  { front, back }` to derive clip/fog the way coot does (clip = zoom*depth,
+   *  fog offset by fogClipOffset). Falls back to sane defaults if absent. */
+  glRef?: { zoom: number; fogClipOffset: number };
 }
 
 /**
@@ -483,10 +488,37 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     }
     if (scene.view.quat) dispatch(setQuat(scene.view.quat));
     if (scene.view.zoom !== undefined) dispatch(setZoom(scene.view.zoom));
-    if (scene.view.clipStart !== undefined) dispatch(setClipStart(scene.view.clipStart));
-    if (scene.view.clipEnd !== undefined) dispatch(setClipEnd(scene.view.clipEnd));
-    if (scene.view.fogStart !== undefined) dispatch(setFogStart(scene.view.fogStart));
-    if (scene.view.fogEnd !== undefined) dispatch(setFogEnd(scene.view.fogEnd));
+
+    // Clip & fog. Coot derives both from zoom and a shared pair of field depths
+    // (Å in front of / behind the centre, default 8/21) and recomputes them on
+    // zoom UNLESS resetClippingFogging is off. So a scene that sets clip/fog also
+    // pins that flag, and `clip` gives intent-level control over the depths.
+    const clip = scene.view.clip;
+    const zoom = scene.view.zoom ?? ctx.glRef?.zoom ?? 1;
+    const fco = ctx.glRef?.fogClipOffset ?? 250;
+    if (clip === "auto") {
+      dispatch(setResetClippingFogging(true)); // let coot recompute from zoom
+    } else if (clip && typeof clip === "object") {
+      // Field depths in Å; clip = zoom*depth, fog offset by fogClipOffset —
+      // coot's own formula with author depths. Drives clip AND fog together.
+      dispatch(setClipStart(zoom * clip.front));
+      dispatch(setClipEnd(zoom * clip.back));
+      dispatch(setFogStart(fco - zoom * clip.front));
+      dispatch(setFogEnd(fco + zoom * clip.back));
+      dispatch(setResetClippingFogging(false));
+    } else {
+      // Explicit numbers (or `clip: "lock"`): set what's given and freeze, so
+      // coot doesn't recompute them away on the next zoom.
+      const setAny =
+        scene.view.clipStart !== undefined || scene.view.clipEnd !== undefined ||
+        scene.view.fogStart !== undefined || scene.view.fogEnd !== undefined;
+      if (scene.view.clipStart !== undefined) dispatch(setClipStart(scene.view.clipStart));
+      if (scene.view.clipEnd !== undefined) dispatch(setClipEnd(scene.view.clipEnd));
+      if (scene.view.fogStart !== undefined) dispatch(setFogStart(scene.view.fogStart));
+      if (scene.view.fogEnd !== undefined) dispatch(setFogEnd(scene.view.fogEnd));
+      if (clip === "lock" || setAny) dispatch(setResetClippingFogging(false));
+    }
+
     if (scene.view.background) {
       const rgba = hexToRgba01(scene.view.background);
       if (rgba) dispatch(setBackgroundColor(rgba));
