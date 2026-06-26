@@ -319,6 +319,41 @@ describe("Moorhen scene — view.clip", () => {
   });
 });
 
+describe("Moorhen scene — view.slab", () => {
+  const withSlab = (slab: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - { name: apo, pdb: 1m17 }\nview:\n  slab: ${slab}\n`;
+
+  it("accepts file + selection + pad and round-trips", () => {
+    const scene = parseScene(withSlab(`{ file: apo, selection: "//A", pad: 2 }`));
+    expect(scene.view!.slab).toEqual({ file: "apo", selection: "//A", pad: 2 });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("accepts slab with just a file (whole molecule, no pad)", () => {
+    expect(parseScene(withSlab(`{ file: apo }`)).view!.slab).toEqual({ file: "apo" });
+  });
+
+  it("accepts slab with no file (defaults to the sole molecule at apply)", () => {
+    expect(parseScene(withSlab(`{ selection: "//A" }`)).view!.slab).toEqual({
+      selection: "//A",
+    });
+  });
+
+  it("rejects an unknown file", () => {
+    expect(() => parseScene(withSlab(`{ file: nope }`))).toThrow(/unknown file "nope"/);
+  });
+
+  it("rejects a negative pad", () => {
+    expect(() => parseScene(withSlab(`{ file: apo, pad: -1 }`))).toThrow(/pad.*>= 0/);
+  });
+
+  it("rejects an unknown key", () => {
+    expect(() => parseScene(withSlab(`{ file: apo, radius: 5 }`))).toThrow(
+      /unknown key "radius"/,
+    );
+  });
+});
+
 describe("Moorhen scene — view.centre", () => {
   const withView = (view: string) =>
     `scene: x\nversion: 1\nfiles:\n  - { name: apo, pdb: 1m17 }\nview:\n${view}`;
@@ -343,10 +378,10 @@ describe("Moorhen scene — view.centre", () => {
     );
   });
 
-  it("rejects a centre with no file", () => {
-    expect(() =>
-      parseScene(withView(`  centre: { selection: "//A" }\n`)),
-    ).toThrow(/centre\.file.*required/);
+  it("accepts a centre with no file (defaults to the sole molecule at apply)", () => {
+    expect(
+      parseScene(withView(`  centre: { selection: "//A" }\n`)).view!.centre,
+    ).toEqual({ selection: "//A" });
   });
 
   it("rejects an unknown key (catches typos like -selection)", () => {

@@ -24,6 +24,7 @@ import {
   SceneRepresentation,
   SceneCentre,
   SceneClip,
+  SceneSlab,
   SceneColour,
   SceneColourSelection,
   SceneSuperpose,
@@ -188,6 +189,7 @@ export function validateScene(raw: unknown): {
         fogStart: optNum(v, "fogStart", "view.fogStart", errors),
         fogEnd: optNum(v, "fogEnd", "view.fogEnd", errors),
         clip: validateClip(v.clip, errors),
+        slab: validateSlab(v.slab, out.files ?? [], errors),
         background: optStr(v, "background", "view.background", errors),
       };
     } else {
@@ -859,6 +861,56 @@ function validateRepresentation(
   return rep;
 }
 
+function validateSlab(
+  raw: unknown,
+  files: SceneFileRef[],
+  errors: SceneValidationError[],
+): SceneSlab | undefined {
+  if (raw === undefined) return undefined;
+  if (!isObject(raw)) {
+    errors.push({ path: "view.slab", message: "must be a mapping { file, selection?, pad? }" });
+    return undefined;
+  }
+  for (const k of Object.keys(raw as Record<string, unknown>)) {
+    if (k !== "file" && k !== "selection" && k !== "pad") {
+      errors.push({
+        path: `view.slab.${k}`,
+        message: `unknown key "${k}" — slab takes only "file", "selection", "pad"`,
+      });
+    }
+  }
+  // file is optional: omitted ⇒ the resolver defaults to the sole loaded
+  // molecule (and logs if that's ambiguous). When given, cross-check it.
+  const slab: SceneSlab = {};
+  if ("file" in (raw as Record<string, unknown>)) {
+    const file = strField(raw, "file", "", errors, "view.slab");
+    if (!file) {
+      errors.push({ path: "view.slab.file", message: "must be a non-empty string" });
+      return undefined;
+    }
+    if (files.length > 0 && !files.some((f) => f.name === file)) {
+      errors.push({
+        path: "view.slab.file",
+        message: `unknown file "${file}" (not in top-level files block)`,
+      });
+      return undefined;
+    }
+    slab.file = file;
+  }
+  if ("selection" in (raw as Record<string, unknown>)) {
+    const sel = optStr(raw, "selection", "view.slab.selection", errors);
+    if (sel) slab.selection = sel;
+  }
+  if ("pad" in (raw as Record<string, unknown>)) {
+    const pad = optNum(raw, "pad", "view.slab.pad", errors);
+    if (pad !== undefined) {
+      if (pad < 0) errors.push({ path: "view.slab.pad", message: "must be >= 0" });
+      else slab.pad = pad;
+    }
+  }
+  return slab;
+}
+
 function validateClip(
   raw: unknown,
   errors: SceneValidationError[],
@@ -909,19 +961,24 @@ function validateCentre(
       });
     }
   }
-  const file = strField(raw, "file", "", errors, "view.centre");
-  if (!file) {
-    errors.push({ path: "view.centre.file", message: "required" });
-    return undefined;
+  // file is optional: omitted ⇒ the resolver defaults to the sole loaded
+  // molecule (and logs if that's ambiguous). When given, cross-check it.
+  const centre: SceneCentre = {};
+  if ("file" in (raw as Record<string, unknown>)) {
+    const file = strField(raw, "file", "", errors, "view.centre");
+    if (!file) {
+      errors.push({ path: "view.centre.file", message: "must be a non-empty string" });
+      return undefined;
+    }
+    if (files.length > 0 && !files.some((f) => f.name === file)) {
+      errors.push({
+        path: "view.centre.file",
+        message: `unknown file "${file}" (not in top-level files block)`,
+      });
+      return undefined;
+    }
+    centre.file = file;
   }
-  if (files.length > 0 && !files.some((f) => f.name === file)) {
-    errors.push({
-      path: "view.centre.file",
-      message: `unknown file "${file}" (not in top-level files block)`,
-    });
-    return undefined;
-  }
-  const centre: SceneCentre = { file };
   if ("selection" in (raw as Record<string, unknown>)) {
     const sel = optStr(raw, "selection", "view.centre.selection", errors);
     if (sel) centre.selection = sel;

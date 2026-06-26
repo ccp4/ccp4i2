@@ -167,6 +167,114 @@ interface ResolveCtx {
   glRef?: { zoom: number; fogClipOffset: number };
 }
 
+// --------------------------------------------------------------------------
+// Geometry: bounding sphere of a selection (for view.slab)
+// --------------------------------------------------------------------------
+
+interface GemmiVec<T> { size(): number; get(i: number): T; delete(): void; }
+interface GemmiAtom { pos: { x: number; y: number; z: number }; }
+interface CCP4GemmiModule {
+  Selection: new (cid: string) => { delete: () => void };
+  selection_get_models(sel: unknown, struct: unknown): GemmiVec<unknown>;
+  selection_get_chains(sel: unknown, model: unknown): GemmiVec<unknown>;
+  selection_get_residues(sel: unknown, chain: unknown): GemmiVec<unknown>;
+  selection_get_atoms(sel: unknown, residue: unknown): GemmiVec<GemmiAtom>;
+}
+
+/**
+ * Centroid + bounding radius (Å) of a CID selection, walked over the molecule's
+ * cached gemmi structure via the gemmi WASM module Moorhen exposes as
+ * `window.CCP4Module`. Orientation-independent. Returns null if gemmi / the
+ * structure is unavailable or the selection matched no atoms. emscripten objects
+ * are .delete()d so the WASM heap doesn't grow on repeated applies.
+ */
+function selectionBoundingSphere(
+  mol: moorhen.Molecule,
+  cid: string,
+): { centre: [number, number, number]; radius: number } | null {
+  const M =
+    typeof window !== "undefined"
+      ? (window as unknown as { CCP4Module?: CCP4GemmiModule }).CCP4Module
+      : undefined;
+  const struct = (mol as unknown as { gemmiStructure?: unknown }).gemmiStructure;
+  if (!M || !struct || typeof M.Selection !== "function") return null;
+
+  const del = (x: unknown) => {
+    try { (x as { delete?: () => void } | null)?.delete?.(); } catch { /* ignore */ }
+  };
+  const xs: number[] = [], ys: number[] = [], zs: number[] = [];
+  let sel: { delete: () => void } | null = null;
+  try {
+    sel = new M.Selection(cid);
+    const models = M.selection_get_models(sel, struct);
+    for (let i = 0; i < models.size(); i++) {
+      const model = models.get(i);
+      const chains = M.selection_get_chains(sel, model);
+      for (let j = 0; j < chains.size(); j++) {
+        const chain = chains.get(j);
+        const residues = M.selection_get_residues(sel, chain);
+        for (let k = 0; k < residues.size(); k++) {
+          const res = residues.get(k);
+          const atoms = M.selection_get_atoms(sel, res);
+          for (let l = 0; l < atoms.size(); l++) {
+            const a = atoms.get(l);
+            xs.push(a.pos.x); ys.push(a.pos.y); zs.push(a.pos.z);
+            del(a);
+          }
+          atoms.delete(); del(res);
+        }
+        residues.delete(); del(chain);
+      }
+      chains.delete(); del(model);
+    }
+    models.delete();
+  } catch {
+    return null; // gemmi/binding error → degrade gracefully (logged by caller)
+  } finally {
+    del(sel);
+  }
+
+  const n = xs.length;
+  if (n === 0) return null;
+  const cx = xs.reduce((s, v) => s + v, 0) / n;
+  const cy = ys.reduce((s, v) => s + v, 0) / n;
+  const cz = zs.reduce((s, v) => s + v, 0) / n;
+  let r = 0;
+  for (let i = 0; i < n; i++) {
+    const d = Math.hypot(xs[i] - cx, ys[i] - cy, zs[i] - cz);
+    if (d > r) r = d;
+  }
+  return { centre: [cx, cy, cz], radius: r };
+}
+
+/**
+ * Resolve the molecule a view directive (centre/slab) acts on. With an explicit
+ * `file`, look it up. Without one, default to the sole loaded molecule — the
+ * common "only one structure open" case — and report an error otherwise (none
+ * loaded, or ambiguous with several). `ref` is a display string for logging.
+ */
+function resolveViewMolecule(
+  file: string | undefined,
+  fileBindings: Map<string, moorhen.Molecule>,
+): { mol?: moorhen.Molecule; ref: string; error?: string } {
+  if (file !== undefined) {
+    const mol = fileBindings.get(file);
+    return mol
+      ? { mol, ref: file }
+      : { ref: file, error: `file "${file}" not bound to a loaded molecule` };
+  }
+  if (fileBindings.size === 1) {
+    return { mol: [...fileBindings.values()][0], ref: "(sole molecule)" };
+  }
+  return {
+    ref: "(unspecified)",
+    error:
+      fileBindings.size === 0
+        ? "no file specified and no molecule loaded"
+        : `no file specified but ${fileBindings.size} molecules loaded — add a file:`,
+  };
+}
+
 /**
  * Apply a scene to the currently-loaded molecules.
  *
@@ -459,25 +567,54 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 
   // 3. Camera. Mirror PasteViewLinkField exactly so behaviour matches.
   if (scene.view) {
-    // Selection-based centre takes precedence over an explicit origin: Moorhen
-    // computes the selection's centroid and sets the origin, so "centre on
-    // chain A" needs no coordinates.
-    if (scene.view.centre) {
-      const { file, selection } = scene.view.centre;
+    // Slab: isolate a selection — centre on it AND clip/fog to its bounding
+    // sphere. Computed from the selection's atoms; it drives both centre and
+    // clip, so it pre-empts centre/origin (below) and clip (further down).
+    let slabDepth: number | undefined;
+    if (scene.view.slab) {
+      const { selection, pad } = scene.view.slab;
       const cid = selection ?? "/*/*/*/*";
-      const mol = fileBindings.get(file);
-      if (!mol) {
+      const { mol, ref, error } = resolveViewMolecule(scene.view.slab.file, fileBindings);
+      if (error || !mol) {
         result.log.push({
-          file,
+          file: ref, domain: "view.slab",
+          message: `cannot slab: ${error}`,
+        });
+      } else {
+        const sphere = selectionBoundingSphere(mol, cid);
+        if (!sphere) {
+          result.log.push({
+            file: ref, domain: "view.slab",
+            message: `slab: selection "${cid}" matched no atoms (or gemmi unavailable)`,
+          });
+        } else {
+          try {
+            await mol.centreOn(cid, false, false);
+          } catch (e) {
+            result.log.push({
+              file: ref, domain: "view.slab",
+              message: `centre on "${cid}" failed: ${e instanceof Error ? e.message : "unknown error"}`,
+            });
+          }
+          slabDepth = sphere.radius + (pad ?? 0);
+        }
+      }
+    } else if (scene.view.centre) {
+      const { selection } = scene.view.centre;
+      const cid = selection ?? "/*/*/*/*";
+      const { mol, ref, error } = resolveViewMolecule(scene.view.centre.file, fileBindings);
+      if (error || !mol) {
+        result.log.push({
+          file: ref,
           domain: "view.centre",
-          message: `cannot centre: file "${file}" not bound to a loaded molecule`,
+          message: `cannot centre: ${error}`,
         });
       } else {
         try {
           await mol.centreOn(cid, false, false); // no animate, don't touch zoom
         } catch (e) {
           result.log.push({
-            file,
+            file: ref,
             domain: "view.centre",
             message: `centre on "${cid}" failed: ${e instanceof Error ? e.message : "unknown error"}`,
           });
@@ -496,7 +633,19 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     const clip = scene.view.clip;
     const zoom = scene.view.zoom ?? ctx.glRef?.zoom ?? 1;
     const fco = ctx.glRef?.fogClipOffset ?? 250;
-    if (clip === "auto") {
+    if (slabDepth !== undefined) {
+      // Slab: clip/fog the selection's bounding sphere. clipStart/clipEnd are an
+      // ABSOLUTE half-thickness in world Å about the fogClipOffset plane — the
+      // eye-space z is never scaled by zoom (only x/y are, in the projection), so
+      // the depth is the bounding radius (+pad) directly, NOT zoom*radius. (The
+      // field-depth `clip` form below DOES multiply by zoom because there the
+      // author gives coot's pre-zoom field depths, not an absolute distance.)
+      dispatch(setClipStart(slabDepth));
+      dispatch(setClipEnd(slabDepth));
+      dispatch(setFogStart(fco - slabDepth));
+      dispatch(setFogEnd(fco + slabDepth));
+      dispatch(setResetClippingFogging(false));
+    } else if (clip === "auto") {
       dispatch(setResetClippingFogging(true)); // let coot recompute from zoom
     } else if (clip && typeof clip === "object") {
       // Field depths in Å; clip = zoom*depth, fog offset by fogClipOffset —
