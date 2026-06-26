@@ -704,8 +704,12 @@ scene records the concrete point.
 ### `slab` — isolate a selection
 
 One directive that does centre **and** clip: it walks the selection's atoms for
-a centroid and bounding radius `R`, centres on the centroid, and sets a symmetric
-clip/fog field depth of `R + pad` (Å). "Show just chain A's region."
+a centroid and bounding radius `R`, centres on the centroid, and clips/fogs to a
+symmetric half-thickness of `R + pad` Å about it. "Show just chain A's region."
+
+Unlike `clip: { front, back }` (whose field depths are coot's pre-zoom knobs,
+multiplied by zoom), the slab depth is an **absolute** world-Å distance, so it is
+applied directly — not scaled by zoom.
 
 ```yaml
 view:
