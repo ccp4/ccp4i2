@@ -867,6 +867,17 @@ function validateCentre(
     errors.push({ path: "view.centre", message: "must be a mapping { file, selection? }" });
     return undefined;
   }
+  // centre takes only file + selection. Reject anything else loudly — it's a
+  // typo (e.g. "-selection"), and silently dropping it gives a wrong-but-quiet
+  // centre (the whole molecule instead of the intended selection).
+  for (const k of Object.keys(raw as Record<string, unknown>)) {
+    if (k !== "file" && k !== "selection") {
+      errors.push({
+        path: `view.centre.${k}`,
+        message: `unknown key "${k}" — centre takes only "file" and "selection"`,
+      });
+    }
+  }
   const file = strField(raw, "file", "", errors, "view.centre");
   if (!file) {
     errors.push({ path: "view.centre.file", message: "required" });

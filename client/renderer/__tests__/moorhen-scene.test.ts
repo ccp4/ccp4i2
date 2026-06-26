@@ -316,6 +316,12 @@ describe("Moorhen scene — view.centre", () => {
       parseScene(withView(`  centre: { selection: "//A" }\n`)),
     ).toThrow(/centre\.file.*required/);
   });
+
+  it("rejects an unknown key (catches typos like -selection)", () => {
+    expect(() =>
+      parseScene(withView(`  centre: { file: apo, "-selection": "//A" }\n`)),
+    ).toThrow(/unknown key "-selection"/);
+  });
 });
 
 // --------------------------------------------------------------------------
