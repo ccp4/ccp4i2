@@ -49,7 +49,7 @@ export interface MoorhenCcp4i2TabbedPanelProps {
     assets: SceneBundleAssets;
     warnings: string[];
   }>;
-  onBuildAuthoringPrompt?: () => Promise<string>;
+  onBuildAuthoringPrompt?: (request: string) => Promise<string>;
   cootInitialized: boolean;
 }
 

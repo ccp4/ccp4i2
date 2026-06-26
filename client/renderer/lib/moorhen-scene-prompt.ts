@@ -124,6 +124,7 @@ export function buildAuthoringPrompt(opts: {
   project?: { name?: string; id?: string };
   contents: string;
   manifest: string;
+  request: string;
 }): string {
   const projName = opts.project?.name;
   const projId = opts.project?.id;
@@ -159,8 +160,13 @@ export function buildAuthoringPrompt(opts: {
     "=== LOADED STRUCTURE CONTENTS ===",
     opts.contents,
     "",
-    "=== YOUR REQUEST ===",
-    "Describe the view you want, then produce the scene YAML:",
+    "=== REQUEST ===",
+    "Produce a scene YAML that satisfies the following request, and output ONLY",
+    "the YAML (no prose, no code fences). Use the project, files, and CIDs above;",
+    "where the request is ambiguous, choose sensible defaults consistent with the",
+    "grammar. The request:",
+    "",
+    opts.request.trim() || "(no request given — produce a clear default overview of the loaded structure)",
     "",
   ].join("\n");
 }

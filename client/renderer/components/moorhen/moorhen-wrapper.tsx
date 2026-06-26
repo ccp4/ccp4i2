@@ -988,7 +988,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // manifest of the project's referenceable job outputs + a ground-truth
   // contents summary of the loaded structure (chains + ligand CIDs, from the
   // coordinate digest). The user appends a request and pastes it into a chatbot.
-  const handleBuildAuthoringPrompt = useCallback(async (): Promise<string> => {
+  const handleBuildAuthoringPrompt = useCallback(async (request: string): Promise<string> => {
     let contentsBlock = "(no structure loaded)";
     const mol = molecules[0];
     if (mol) {
@@ -1027,7 +1027,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         console.warn("[scene-prompt] manifest failed:", err);
       }
     }
-    return buildAuthoringPrompt({ project, contents: contentsBlock, manifest: manifestBlock });
+    return buildAuthoringPrompt({ project, contents: contentsBlock, manifest: manifestBlock, request });
   }, [molecules, projectInfo]);
 
   // Promote an editor YAML to a fully self-contained scene + asset
