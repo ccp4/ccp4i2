@@ -152,7 +152,7 @@ const INTERPRETATION_GUIDANCE = [
   "For minor ambiguity, choose the most likely reading and proceed. Ask a concise",
   "clarifying question ONLY when the ambiguity would materially change the scene and",
   "no reasonable default exists (e.g. which two chains form \"the dimer\" in a",
-  "tetramer) — ask once, then output only the YAML once answered.",
+  "tetramer) — ask once, then return the YAML code block once answered.",
 ].join("\n");
 
 // ── Whole prompt ────────────────────────────────────────────────────────────
@@ -181,10 +181,13 @@ export function buildAuthoringPrompt(opts: {
 
   return [
     "You are drafting a Moorhen \"scene\": a YAML document describing a molecular",
-    "view. Follow the grammar below EXACTLY. When you produce the scene, output ONLY",
-    "the YAML (no prose, no code fences). If — and only if — the request is materially",
-    "ambiguous and no reasonable default exists, you may FIRST ask one concise",
-    "clarifying question in plain text and wait for the reply before producing the YAML.",
+    "view. Follow the grammar below EXACTLY. Return the scene as a SINGLE fenced YAML",
+    "code block (```yaml ... ```) and nothing else outside it — YAML is",
+    "whitespace-sensitive, and a code block lets the chat UI show a copy button that",
+    "preserves the exact indentation (selecting the text by hand does not). If — and",
+    "only if — the request is materially ambiguous and no reasonable default exists,",
+    "you may FIRST ask one concise clarifying question in plain text and wait for the",
+    "reply before producing the code block.",
     "Reference project files with { job, param, projectId } using the manifest; use",
     "pdb:/url: only for structures not in the project; never use path:.",
     "Use the exact ligand CIDs from the contents summary for ligand selections.",
@@ -206,8 +209,8 @@ export function buildAuthoringPrompt(opts: {
     "Produce a scene YAML that satisfies the following request. Use the project,",
     "files, and CIDs above. For minor ambiguity choose sensible defaults; only for a",
     "material ambiguity with no reasonable default, ask one concise question first.",
-    "When you produce the scene, output ONLY the YAML (no prose, no code fences).",
-    "The request:",
+    "When you produce the scene, return it as a SINGLE ```yaml fenced code block and",
+    "nothing else outside it. The request:",
     "",
     opts.request.trim() || "(no request given — produce a clear default overview of the loaded structure)",
     "",
