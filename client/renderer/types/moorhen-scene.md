@@ -653,6 +653,31 @@ view:
   background: "#ffffff"                  # hex
 ```
 
+### `clip` — clip/fog intent
+
+Coot derives both the clip slab and the fog from zoom and a shared pair of
+**field depths** (Å in front of / behind the view centre, default 8 and 21), and
+recomputes them on every zoom *unless told not to*. So a raw `clipStart: 8` is a
+zoom- and size-specific number that coot will overwrite. `clip` is the stable,
+intent-level control:
+
+```yaml
+view:
+  clip: auto                  # let coot recompute clip+fog from zoom (its default)
+  # clip: lock                # freeze the current clip+fog; zoom won't change them
+  # clip: { front: 6, back: 12 }   # set the field depths (Å) and lock; drives fog too
+```
+
+- `auto` — defer to coot's zoom-coupled behaviour.
+- `lock` — pin the current clip+fog so a later zoom leaves them alone.
+- `{ front, back }` — set the depth of field (Å) in front of and behind the
+  centre, and lock. Clip **and** fog follow, the way coot computes them — you
+  don't author fog separately.
+
+Any explicit `clipStart/clipEnd/fogStart/fogEnd` are also locked on apply, so a
+scene's clip sticks instead of being recomputed on the next zoom. Like the rest
+of the view, the lifter captures the resolved numbers; `clip` is an input form.
+
 ### `centre` — centre on a selection
 
 Instead of an explicit `origin:`, you can centre the camera on the **centroid

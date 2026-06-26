@@ -287,6 +287,38 @@ view:
 // view.centre — selection-based camera centring.
 // --------------------------------------------------------------------------
 
+describe("Moorhen scene — view.clip", () => {
+  const withClip = (clip: string) =>
+    `scene: x\nversion: 1\nview:\n  clip: ${clip}\n`;
+
+  it("accepts auto / lock and round-trips", () => {
+    expect(parseScene(withClip("auto")).view!.clip).toBe("auto");
+    const locked = parseScene(withClip("lock"));
+    expect(locked.view!.clip).toBe("lock");
+    expect(parseScene(serialiseScene(locked))).toEqual(locked);
+  });
+
+  it("accepts field depths { front, back } and round-trips", () => {
+    const scene = parseScene(withClip("{ front: 8, back: 21 }"));
+    expect(scene.view!.clip).toEqual({ front: 8, back: 21 });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene);
+  });
+
+  it("rejects an unknown string", () => {
+    expect(() => parseScene(withClip("wide"))).toThrow(/"auto", "lock", or/);
+  });
+
+  it("rejects field depths missing a side", () => {
+    expect(() => parseScene(withClip("{ front: 8 }"))).toThrow(/clip\.back.*required/);
+  });
+
+  it("rejects an unknown field-depth key", () => {
+    expect(() => parseScene(withClip("{ front: 8, back: 21, side: 5 }"))).toThrow(
+      /unknown key "side"/,
+    );
+  });
+});
+
 describe("Moorhen scene — view.centre", () => {
   const withView = (view: string) =>
     `scene: x\nversion: 1\nfiles:\n  - { name: apo, pdb: 1m17 }\nview:\n${view}`;
