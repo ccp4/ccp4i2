@@ -634,12 +634,16 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     const zoom = scene.view.zoom ?? ctx.glRef?.zoom ?? 1;
     const fco = ctx.glRef?.fogClipOffset ?? 250;
     if (slabDepth !== undefined) {
-      // Slab: a symmetric field depth = the selection's bounding radius (+pad),
-      // in Å, applied through coot's clip/fog formula and locked.
-      dispatch(setClipStart(zoom * slabDepth));
-      dispatch(setClipEnd(zoom * slabDepth));
-      dispatch(setFogStart(fco - zoom * slabDepth));
-      dispatch(setFogEnd(fco + zoom * slabDepth));
+      // Slab: clip/fog the selection's bounding sphere. clipStart/clipEnd are an
+      // ABSOLUTE half-thickness in world Å about the fogClipOffset plane — the
+      // eye-space z is never scaled by zoom (only x/y are, in the projection), so
+      // the depth is the bounding radius (+pad) directly, NOT zoom*radius. (The
+      // field-depth `clip` form below DOES multiply by zoom because there the
+      // author gives coot's pre-zoom field depths, not an absolute distance.)
+      dispatch(setClipStart(slabDepth));
+      dispatch(setClipEnd(slabDepth));
+      dispatch(setFogStart(fco - slabDepth));
+      dispatch(setFogEnd(fco + slabDepth));
       dispatch(setResetClippingFogging(false));
     } else if (clip === "auto") {
       dispatch(setResetClippingFogging(true)); // let coot recompute from zoom
