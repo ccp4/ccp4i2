@@ -319,6 +319,24 @@ describe("Moorhen scene — view.clip", () => {
   });
 });
 
+describe("Moorhen scene — code-fence tolerance", () => {
+  const body = `scene: x\nversion: 1\nfiles:\n  - { name: s, pdb: 1m17 }`;
+
+  it("parses YAML wrapped in a ```yaml fenced block", () => {
+    const fenced = "```yaml\n" + body + "\n```";
+    expect(parseScene(fenced).scene).toBe("x");
+  });
+
+  it("parses a bare ``` fence and ignores surrounding prose", () => {
+    const fenced = "Here is your scene:\n\n```\n" + body + "\n```\n\nHope that helps!";
+    expect(parseScene(fenced).scene).toBe("x");
+  });
+
+  it("still parses plain YAML with no fence", () => {
+    expect(parseScene(body).scene).toBe("x");
+  });
+});
+
 describe("Moorhen scene — view.slab", () => {
   const withSlab = (slab: string) =>
     `scene: x\nversion: 1\nfiles:\n  - { name: apo, pdb: 1m17 }\nview:\n  slab: ${slab}\n`;

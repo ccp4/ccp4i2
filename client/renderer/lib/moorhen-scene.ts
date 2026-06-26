@@ -62,10 +62,23 @@ export class SceneParseError extends Error {
  * Parse a YAML scene document into a typed MoorhenScene.
  * Throws SceneParseError if validation fails.
  */
+/**
+ * Strip a Markdown code fence around the YAML if present. LLMs are asked to
+ * return a ```yaml block (so the chat UI's copy button preserves indentation),
+ * but a hand-copied response can carry the ``` fences — and surrounding prose —
+ * into the editor. Extract the first fenced block's contents; if there's no
+ * fence, return the text unchanged. Plain YAML never starts a line with ```, so
+ * this is safe for non-LLM input too.
+ */
+function stripCodeFence(text: string): string {
+  const m = text.match(/```[ \t]*[\w+-]*[ \t]*\r?\n([\s\S]*?)\r?\n?```/);
+  return m ? m[1] : text;
+}
+
 export function parseScene(yamlText: string): MoorhenScene {
   let raw: unknown;
   try {
-    raw = YAML.parse(yamlText);
+    raw = YAML.parse(stripCodeFence(yamlText));
   } catch (e) {
     throw new SceneParseError([
       { path: "", message: `YAML parse error: ${(e as Error).message}` },
