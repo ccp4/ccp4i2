@@ -693,7 +693,9 @@ view:
 
 - `file`: a name from the top-level `files:` block. Optional when exactly one
   molecule is loaded — it then defaults to that molecule.
-- `selection`: optional CID; omitted means the whole molecule.
+- `selection`: optional CID; omitted means the whole molecule. Several chains or
+  ranges can be joined with `||` (e.g. `//A||//B`), the same form representations
+  use.
 
 `centre` takes **precedence over `origin`** when both are present. If the file
 isn't loaded or the selection matches nothing, the resolver logs it and leaves
@@ -718,7 +720,9 @@ view:
 
 - `file`: a name from the top-level `files:` block. Optional when exactly one
   molecule is loaded — it then defaults to that molecule.
-- `selection`: optional CID; omitted means the whole molecule.
+- `selection`: optional CID; omitted means the whole molecule. Several chains or
+  ranges can be joined with `||` (e.g. `//A||//B`), the same form representations
+  use.
 - `pad`: optional Å added to the radius on each side (default 0).
 
 `slab` drives both centre and clip, so it takes **precedence over `centre`/`origin`

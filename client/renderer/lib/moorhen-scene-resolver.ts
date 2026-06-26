@@ -203,35 +203,43 @@ function selectionBoundingSphere(
     try { (x as { delete?: () => void } | null)?.delete?.(); } catch { /* ignore */ }
   };
   const xs: number[] = [], ys: number[] = [], zs: number[] = [];
-  let sel: { delete: () => void } | null = null;
-  try {
-    sel = new M.Selection(cid);
-    const models = M.selection_get_models(sel, struct);
-    for (let i = 0; i < models.size(); i++) {
-      const model = models.get(i);
-      const chains = M.selection_get_chains(sel, model);
-      for (let j = 0; j < chains.size(); j++) {
-        const chain = chains.get(j);
-        const residues = M.selection_get_residues(sel, chain);
-        for (let k = 0; k < residues.size(); k++) {
-          const res = residues.get(k);
-          const atoms = M.selection_get_atoms(sel, res);
-          for (let l = 0; l < atoms.size(); l++) {
-            const a = atoms.get(l);
-            xs.push(a.pos.x); ys.push(a.pos.y); zs.push(a.pos.z);
-            del(a);
+  // Accept "||"-separated CIDs (the representation-path union operator) as well
+  // as primitive gemmi CIDs, so one selection syntax works everywhere — a scene
+  // author shouldn't have to know that view directives feed gemmi directly while
+  // representations split on "||". Walk each sub-selection and union its atoms; a
+  // malformed part is skipped, not fatal.
+  const parts = cid.split("||").map((s) => s.trim()).filter(Boolean);
+  for (const part of parts.length ? parts : [cid]) {
+    let sel: { delete: () => void } | null = null;
+    try {
+      sel = new M.Selection(part);
+      const models = M.selection_get_models(sel, struct);
+      for (let i = 0; i < models.size(); i++) {
+        const model = models.get(i);
+        const chains = M.selection_get_chains(sel, model);
+        for (let j = 0; j < chains.size(); j++) {
+          const chain = chains.get(j);
+          const residues = M.selection_get_residues(sel, chain);
+          for (let k = 0; k < residues.size(); k++) {
+            const res = residues.get(k);
+            const atoms = M.selection_get_atoms(sel, res);
+            for (let l = 0; l < atoms.size(); l++) {
+              const a = atoms.get(l);
+              xs.push(a.pos.x); ys.push(a.pos.y); zs.push(a.pos.z);
+              del(a);
+            }
+            atoms.delete(); del(res);
           }
-          atoms.delete(); del(res);
+          residues.delete(); del(chain);
         }
-        residues.delete(); del(chain);
+        chains.delete(); del(model);
       }
-      chains.delete(); del(model);
+      models.delete();
+    } catch {
+      // skip this sub-selection; other parts may still contribute atoms
+    } finally {
+      del(sel);
     }
-    models.delete();
-  } catch {
-    return null; // gemmi/binding error → degrade gracefully (logged by caller)
-  } finally {
-    del(sel);
   }
 
   const n = xs.length;
@@ -588,14 +596,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
             message: `slab: selection "${cid}" matched no atoms (or gemmi unavailable)`,
           });
         } else {
-          try {
-            await mol.centreOn(cid, false, false);
-          } catch (e) {
-            result.log.push({
-              file: ref, domain: "view.slab",
-              message: `centre on "${cid}" failed: ${e instanceof Error ? e.message : "unknown error"}`,
-            });
-          }
+          // Centre on the centroid we just computed — not mol.centreOn(cid),
+          // which would re-parse the CID through gemmi/coot and choke on a
+          // "||"-union. setOrigin takes the [x,y,z] directly.
+          dispatch(setOrigin(sphere.centre));
           slabDepth = sphere.radius + (pad ?? 0);
         }
       }
@@ -609,6 +613,19 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
           domain: "view.centre",
           message: `cannot centre: ${error}`,
         });
+      } else if (cid.includes("||")) {
+        // mol.centreOn feeds gemmi a single CID; for a "||"-union compute the
+        // centroid ourselves and set the origin to it.
+        const sphere = selectionBoundingSphere(mol, cid);
+        if (sphere) {
+          dispatch(setOrigin(sphere.centre));
+        } else {
+          result.log.push({
+            file: ref,
+            domain: "view.centre",
+            message: `centre: selection "${cid}" matched no atoms (or gemmi unavailable)`,
+          });
+        }
       } else {
         try {
           await mol.centreOn(cid, false, false); // no animate, don't touch zoom
