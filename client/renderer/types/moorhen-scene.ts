@@ -467,10 +467,12 @@ export interface SceneView {
    *  drives clip/fog (and the lock); the raw clipStart/End/fogStart/End above
    *  stay as an escape hatch. */
   clip?: SceneClip;
-  /** Isolate a selection: centre on it AND clip/fog to its bounding sphere. A
-   *  one-directive "show just chain A's region". Computed at apply-time from the
-   *  selection's atoms, so it needs no coordinates. Drives centre + clip, so it
-   *  takes precedence over `centre`/`origin` and `clip` when present. */
+  /** Set the clip/fog DEPTH window to a selection's bounding sphere — a z-depth
+   *  control only. Computed at apply-time from the selection's atoms. It does NOT
+   *  move the camera: the slab brackets the current origin in depth, so to "show
+   *  just chain A's region" pair it with `centre` on the same selection. `slab`
+   *  and `centre` are independent and both settable. Takes precedence over
+   *  `clip` when present (both control the same clip planes). */
   slab?: SceneSlab;
   background?: string;        // hex
 }
@@ -506,10 +508,11 @@ export interface SceneCentre {
 }
 
 /**
- * Isolate a selection (see SceneView.slab). The resolver walks the selection's
- * atoms for a centroid and bounding radius R, centres on the centroid, and sets
- * a symmetric clip/fog field depth of R + pad. Orientation-independent (a
- * sphere); once `orient` exists it can tighten to the depth along the view axis.
+ * Z-depth clip window for a selection (see SceneView.slab). The resolver walks
+ * the selection's atoms for a bounding radius R and sets a symmetric clip/fog
+ * depth of R + pad about the current origin. It does NOT centre — pair it with
+ * `centre` on the same selection to frame it. Orientation-independent (a sphere);
+ * once `orient` exists it can tighten to the depth along the view axis.
  */
 export interface SceneSlab {
   /** Name of a file from the top-level `files:` block. Optional when exactly one

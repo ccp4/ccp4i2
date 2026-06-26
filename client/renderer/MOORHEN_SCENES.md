@@ -203,15 +203,18 @@ say what to look at rather than where the camera sits:
   `lock` freezes the current planes; `{ front, back }` sets coot's
   *field depths* (pre-zoom Å, multiplied by zoom — the same knobs the
   default 8/21 use).
-- **`slab: { file?, selection?, pad? }`** — centre on a selection *and*
-  clip/fog to its bounding sphere. Walks the selection's atoms over the
-  molecule's cached gemmi structure (`window.CCP4Module`) for a centroid
-  and radius `R`, centres, and sets clip/fog to an **absolute** half-
-  thickness of `R + pad` Å. Note the asymmetry with `clip`: clip's
-  field depths are zoom-multiplied (coot semantics), but the slab depth
-  is an absolute world-Å distance, so it is *not* multiplied by zoom —
-  the eye-space z is never scaled by zoom (only x/y are). `slab` drives
-  both centre and clip, so it pre-empts `centre`/`origin` and `clip`.
+- **`slab: { file?, selection?, pad? }`** — a **z-depth control only**:
+  clip/fog the depth window to a selection's bounding sphere. Walks the
+  selection's atoms over the molecule's cached gemmi structure
+  (`window.CCP4Module`) for a radius `R` and sets clip/fog to an
+  **absolute** half-thickness of `R + pad` Å about the current origin. It
+  does **not** move the camera — `centre`/`origin` and `slab` are
+  independent and both settable; the slab only "contains" its selection
+  when `centre` has put the origin there, so pair them to frame a region.
+  Note the asymmetry with `clip`: clip's field depths are zoom-multiplied
+  (coot semantics), but the slab depth is an absolute world-Å distance, so
+  it is *not* multiplied by zoom — the eye-space z is never scaled by zoom
+  (only x/y are). `slab` takes precedence over `clip` (same planes).
 
 These are input-only conveniences: the lifter still captures the
 resolved numeric `origin`/`clip`, so a captured scene records concrete
