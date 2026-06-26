@@ -467,6 +467,11 @@ export interface SceneView {
    *  drives clip/fog (and the lock); the raw clipStart/End/fogStart/End above
    *  stay as an escape hatch. */
   clip?: SceneClip;
+  /** Isolate a selection: centre on it AND clip/fog to its bounding sphere. A
+   *  one-directive "show just chain A's region". Computed at apply-time from the
+   *  selection's atoms, so it needs no coordinates. Drives centre + clip, so it
+   *  takes precedence over `centre`/`origin` and `clip` when present. */
+  slab?: SceneSlab;
   background?: string;        // hex
 }
 
@@ -497,6 +502,21 @@ export interface SceneCentre {
   file: string;
   /** CID selection within that file; omitted ⇒ the whole molecule. */
   selection?: string;
+}
+
+/**
+ * Isolate a selection (see SceneView.slab). The resolver walks the selection's
+ * atoms for a centroid and bounding radius R, centres on the centroid, and sets
+ * a symmetric clip/fog field depth of R + pad. Orientation-independent (a
+ * sphere); once `orient` exists it can tighten to the depth along the view axis.
+ */
+export interface SceneSlab {
+  /** Name of a file from the top-level `files:` block. */
+  file: string;
+  /** CID selection within that file; omitted ⇒ the whole molecule. */
+  selection?: string;
+  /** Extra Ångström added to the radius on each side (default 0). */
+  pad?: number;
 }
 
 // --------------------------------------------------------------------------

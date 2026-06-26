@@ -700,6 +700,28 @@ the camera where it is (it does not fail). The lifter still captures the
 resolved Cartesian `origin:` — `centre:` is an input convenience, so a captured
 scene records the concrete point.
 
+### `slab` — isolate a selection
+
+One directive that does centre **and** clip: it walks the selection's atoms for
+a centroid and bounding radius `R`, centres on the centroid, and sets a symmetric
+clip/fog field depth of `R + pad` (Å). "Show just chain A's region."
+
+```yaml
+view:
+  slab: { file: apo, selection: "//A", pad: 2 }
+```
+
+- `file`: required — a name from the top-level `files:` block.
+- `selection`: optional CID; omitted means the whole molecule.
+- `pad`: optional Å added to the radius on each side (default 0).
+
+`slab` drives both centre and clip, so it takes **precedence over `centre`/`origin`
+and `clip`** when present. (For centre and clip on *different* things, use those
+two directly.) The radius is a bounding sphere, so it's correct from any
+orientation but not minimal; once orientation directives exist it can tighten to
+the selection's depth along the view axis. If the selection matched no atoms (or
+gemmi is unavailable) the resolver logs it and leaves the view alone.
+
 ## `resolver`
 
 Apply-time policy. Currently one option:
