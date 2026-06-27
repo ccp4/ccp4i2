@@ -221,6 +221,23 @@ def test_report_xml_action_is_registered_on_jobviewset():
     assert bind, "JobViewSet.report_xml is not a registered DRF @action"
 
 
+def test_filter_backend_is_configured():
+    """The DjangoFilterBackend must stay wired into REST_FRAMEWORK so every
+    viewset's ``filterset_fields`` actually filters. A previous *duplicate*
+    REST_FRAMEWORK definition silently dropped DEFAULT_FILTER_BACKENDS, making
+    e.g. ``jobs/?project=<pk>`` return jobs from every project — which broke
+    scene job+param resolution. Guard against that regressing (a re-introduced
+    second REST_FRAMEWORK block would fail here).
+    """
+    from django.conf import settings
+
+    backends = settings.REST_FRAMEWORK.get("DEFAULT_FILTER_BACKENDS", [])
+    assert any("DjangoFilterBackend" in b for b in backends), (
+        "DjangoFilterBackend missing from REST_FRAMEWORK.DEFAULT_FILTER_BACKENDS "
+        "— filterset_fields is inert API-wide"
+    )
+
+
 def test_resolve_fileuse_parser_returns_documented_shape():
     """The fileUse DSL is contracted; the parser's return shape (the
     four keys ``task_name`` / ``jobIndex`` / ``jobParamName`` /
