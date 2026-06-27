@@ -90,17 +90,20 @@ function extractDictCompIds(cifText: string): string[] {
  *  have the pk, otherwise look it up in the projects list. Returns null (and
  *  logs) if it can't be resolved. */
 async function resolveProjectPk(
-  wantUuid: string | undefined,
+  want: { uuid?: string; name?: string },
   current: { uuid: string | null; pk: number | null },
 ): Promise<number | null> {
-  if (!wantUuid) return current.pk; // no scene projectId → page context
-  if (wantUuid === current.uuid && current.pk != null) return current.pk;
-  // Cross-project or page not project-scoped: resolve uuid → pk via the list.
+  if (!want.uuid && !want.name) return current.pk; // no scene project ref → page context
+  if (want.uuid && want.uuid === current.uuid && current.pk != null) return current.pk;
+  // Cross-project or page not project-scoped: resolve uuid/name → pk via the list.
   const resp = await apiGet(`projects/`);
   const list = Array.isArray(resp) ? resp : (resp?.results ?? []);
-  const proj = list.find((p: { uuid?: string }) => p.uuid === wantUuid);
+  const proj = list.find(
+    (p: { uuid?: string; name?: string }) =>
+      (want.uuid && p.uuid === want.uuid) || (want.name && p.name === want.name),
+  );
   if (proj?.id != null) return proj.id;
-  console.warn(`[scene] job+param: project uuid ${wantUuid} not found; page pk = ${current.pk}`);
+  console.warn(`[scene] job+param: project "${want.uuid ?? want.name}" not found; falling back to page pk ${current.pk}`);
   return current.pk; // last resort: the page's project
 }
 
@@ -112,12 +115,12 @@ async function resolveProjectPk(
  * job_param_name. Returns null (and logs the reason) if anything is missing.
  */
 async function resolveJobParamUrl(
-  ref: { job: number | string; param: string; projectId?: string },
+  ref: { job: number | string; param: string; projectId?: string; projectName?: string },
   current: { uuid: string | null; pk: number | null },
 ): Promise<string | null> {
-  const projectPk = await resolveProjectPk(ref.projectId, current);
+  const projectPk = await resolveProjectPk({ uuid: ref.projectId, name: ref.projectName }, current);
   if (projectPk == null) {
-    console.warn(`[scene] job+param ${ref.job}/${ref.param}: no project context (projectId=${ref.projectId ?? "none"}, page pk null)`);
+    console.warn(`[scene] job+param ${ref.job}/${ref.param}: no project context (projectId=${ref.projectId ?? "none"}, projectName=${ref.projectName ?? "none"}, page pk null)`);
     return null;
   }
   const jobs = await apiGet(`jobs/?project=${projectPk}`);
@@ -795,7 +798,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // projectId (uuid), falling back to this page's project context.
       if (ref.job !== undefined && ref.param) {
         const url = await resolveJobParamUrl(
-          { job: ref.job, param: ref.param, projectId: ref.projectId },
+          { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
           { uuid: projectUuidRef.current, pk: projectPkRef.current },
         );
         return url
