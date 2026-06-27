@@ -94,34 +94,32 @@ async function resolveProjectPk(
   current: { uuid: string | null; name: string | null; pk: number | null },
 ): Promise<number | null> {
   if (!want.uuid && !want.name) return current.pk; // no scene project ref → page context
-  // The current window's project is authoritative: if the scene names it (by
-  // uuid OR name), use its pk directly and never do a projects/ lookup (which
-  // can match a different same-named project — the source of the wrong-project
-  // bug).
+  // The current window's project is authoritative when the scene names it (by
+  // uuid OR name) — use its pk directly, no lookup.
   if (current.pk != null) {
     if (want.uuid && want.uuid === current.uuid) return current.pk;
     if (want.name && want.name === current.name) return current.pk;
   }
-  // Cross-project or page not project-scoped: resolve uuid/name → pk via the
-  // list. Wrapped so a projects/ hiccup falls back to the page pk rather than
-  // throwing out as an opaque "fetch failed".
+  // Otherwise resolve the *named* project exactly via the server-side uuid/name
+  // filter (no list paging, no same-name ambiguity from the full list).
+  const query = want.uuid
+    ? `projects/?uuid=${encodeURIComponent(want.uuid)}`
+    : `projects/?name=${encodeURIComponent(want.name as string)}`;
   try {
-    const resp = await apiGet(`projects/`);
+    const resp = await apiGet(query);
     const list = Array.isArray(resp) ? resp : (resp?.results ?? []);
-    const matches = list.filter(
-      (p: { uuid?: string; name?: string }) =>
-        (want.uuid && p.uuid === want.uuid) || (want.name && p.name === want.name),
-    );
-    if (matches.length === 1 && matches[0]?.id != null) return matches[0].id;
-    if (matches.length > 1) {
-      console.warn(`[scene] job+param: project name "${want.name}" is ambiguous (${matches.length} matches); using page pk ${current.pk}`);
+    if (list.length === 1 && list[0]?.id != null) return list[0].id;
+    if (list.length > 1) {
+      console.warn(`[scene] project+job+param: "${want.uuid ?? want.name}" matched ${list.length} projects — cannot disambiguate`);
     } else {
-      console.warn(`[scene] job+param: project "${want.uuid ?? want.name}" not found; falling back to page pk ${current.pk}`);
+      console.warn(`[scene] project+job+param: project "${want.uuid ?? want.name}" not found`);
     }
   } catch (e) {
-    console.warn(`[scene] job+param: project lookup failed; falling back to page pk ${current.pk}`, e);
+    console.warn(`[scene] project+job+param: project lookup failed for "${want.uuid ?? want.name}"`, e);
   }
-  return current.pk; // last resort: the page's project
+  // A project was explicitly named but couldn't be resolved. Do NOT fall back to
+  // the window's project — that silently loads files from the wrong project.
+  return null;
 }
 
 /**
@@ -137,25 +135,25 @@ async function resolveJobParamUrl(
 ): Promise<string | null> {
   const projectPk = await resolveProjectPk({ uuid: ref.projectId, name: ref.projectName }, current);
   if (projectPk == null) {
-    console.warn(`[scene] job+param ${ref.job}/${ref.param}: no project context (projectId=${ref.projectId ?? "none"}, projectName=${ref.projectName ?? "none"}, page pk null)`);
+    console.warn(`[scene] project+job+param ${ref.job}/${ref.param}: no project context (projectId=${ref.projectId ?? "none"}, projectName=${ref.projectName ?? "none"}, page pk null)`);
     return null;
   }
   const jobsResp = await apiGet(`jobs/?project=${projectPk}`);
   const jobs = Array.isArray(jobsResp) ? jobsResp : (jobsResp?.results ?? []);
   if (jobs.length === 0) {
-    console.warn(`[scene] job+param: no jobs returned for project pk ${projectPk} (resp shape: ${Array.isArray(jobsResp) ? "array" : typeof jobsResp})`);
+    console.warn(`[scene] project+job+param: no jobs returned for project pk ${projectPk} (resp shape: ${Array.isArray(jobsResp) ? "array" : typeof jobsResp})`);
     return null;
   }
   const job = jobs.find((j: { number?: string }) => String(j.number) === String(ref.job));
   if (!job) {
     const nums = jobs.map((j: { number?: string }) => j.number).join(", ");
-    console.warn(`[scene] job+param: job number "${ref.job}" not found in project pk ${projectPk}. Job numbers present: ${nums}`);
+    console.warn(`[scene] project+job+param: job number "${ref.job}" not found in project pk ${projectPk}. Job numbers present: ${nums}`);
     return null;
   }
   const filesResp = await apiGet(`files/?job=${job.id}`);
   const files = Array.isArray(filesResp) ? filesResp : (filesResp?.results ?? []);
   if (files.length === 0) {
-    console.warn(`[scene] job+param: no files returned for job ${ref.job} (pk ${job.id})`);
+    console.warn(`[scene] project+job+param: no files returned for job ${ref.job} (pk ${job.id})`);
     return null;
   }
   // Match by output param name only — do NOT filter on directory. Job outputs
@@ -169,7 +167,7 @@ async function resolveJobParamUrl(
       .filter((f) => f.job_param_name)
       .map((f) => `${f.job_param_name} (dir ${f.directory}, ${f.type})`)
       .join("; ");
-    console.warn(`[scene] job+param: param "${ref.param}" not found in job ${ref.job}. Available: ${avail || "none"}`);
+    console.warn(`[scene] project+job+param: param "${ref.param}" not found in job ${ref.job}. Available: ${avail || "none"}`);
     return null;
   }
   return `/api/proxy/ccp4i2/files/${file.id}/download/`;
