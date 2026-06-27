@@ -21,6 +21,12 @@ import {
   ChainSequenceInfo,
 } from "./mmcif-sequence-parser";
 import { ChainPickerDialog } from "./chain-picker-dialog";
+import {
+  toExtendedPdbId,
+  toShortPdbId,
+  toDisplayPdbId,
+  pdbEntryPayload,
+} from "./pdb-id";
 
 /** Human-readable labels for download modes shown in the dropdown */
 const MODE_LABELS: Record<string, string> = {
@@ -34,12 +40,12 @@ const MODE_LABELS: Record<string, string> = {
 
 /** Placeholder text for the accession code field per mode */
 const MODE_PLACEHOLDERS: Record<string, string> = {
-  ebiPdb: "e.g. 1cbs",
-  rcsbPdb: "e.g. 1cbs",
+  ebiPdb: "e.g. 1cbs or pdb_00001cbs",
+  rcsbPdb: "e.g. 1cbs or pdb_00001cbs",
   uniprotAFPdb: "e.g. P07550",
-  ebiSFs: "e.g. 1cbs",
+  ebiSFs: "e.g. 1cbs or pdb_00001cbs",
   uniprotFasta: "e.g. P07550 or CDK2_HUMAN",
-  "Uppsala-EDS": "e.g. 1cbs",
+  "Uppsala-EDS": "e.g. 1cbs or pdb_00001cbs",
 };
 
 /** Modes that fetch PDB coordinate files */
@@ -158,7 +164,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   /** Upload a selected chain as a FASTA file */
   const uploadChainAsFasta = useCallback(
     (chain: ChainSequenceInfo) => {
-      const pdbId = pendingPdbId || identifier || "unknown";
+      const pdbId = pendingPdbId || (identifier ? toDisplayPdbId(identifier) : "unknown");
       const fastaContent = buildFasta(pdbId, chain);
       const blob = new Blob([fastaContent], { type: "text/plain" });
       uploadFile(blob, `${pdbId.toUpperCase()}_${chain.chainId}.fasta`);
@@ -174,11 +180,13 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
         // carries Cross-Origin-Resource-Policy: cross-origin and survives
         // the Moorhen COEP page. Direct fetches to www.ebi.ac.uk surface
         // as TypeError: Failed to fetch under COEP.
-        const url = `/api/proxy/pdbe/api/pdb/entry/files/${identifier.toLowerCase()}`;
+        // Query with the extended id (the 4-char endpoints are deprecated);
+        // PDBe keys the response by the legacy 4-char id, so resolve tolerantly.
+        const url = `/api/proxy/pdbe/api/pdb/entry/files/${toExtendedPdbId(identifier)}`;
         const result = await apiFetch(url);
         const data = await result.json();
-        if (data && data[identifier.toLowerCase()]) {
-          const file = data[identifier.toLowerCase()];
+        const file = pdbEntryPayload(data, identifier);
+        if (file) {
           const upstreamURL = file.PDB.downloads
             .filter((item: any) => item.label === "Archive mmCIF file")
             .at(0).url;
@@ -208,18 +216,25 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   const handleEbiSFsFetch = useCallback(async () => {
     if (identifier) {
       try {
-        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/files/${identifier.toLowerCase()}`;
+        // Route through the local proxy (COEP-safe) and query with the extended
+        // id; PDBe keys the response by the legacy 4-char id, so resolve tolerantly.
+        const url = `/api/proxy/pdbe/api/pdb/entry/files/${toExtendedPdbId(identifier)}`;
         const result = await apiFetch(url);
         const data = await result.json();
-        if (data && data[identifier.toLowerCase()]) {
-          const file = data[identifier.toLowerCase()];
-          let fetchURL = file.PDB.downloads
+        const file = pdbEntryPayload(data, identifier);
+        if (file) {
+          const upstreamURL = file.PDB.downloads
             .filter((item: any) => item.label === "Structure Factors")
             .at(0).url;
-          setMessage(`Fetching file from ${fetchURL}`);
+          // Rewrite the absolute www.ebi.ac.uk URL through the proxy (COEP-safe).
+          const fetchURL = upstreamURL.replace(
+            /^https?:\/\/www\.ebi\.ac\.uk\/pdbe\//,
+            "/api/proxy/pdbe/",
+          );
+          setMessage(`Fetching file from ${upstreamURL}`);
           const content = await apiBlob(fetchURL);
-          setMessage(`Fetched file from ${fetchURL}`);
-          uploadFile(content, fetchURL.split("/").at(-1));
+          setMessage(`Fetched file from ${upstreamURL}`);
+          uploadFile(content, upstreamURL.split("/").at(-1));
           onClose();
         } else {
           const errorText = await result.text();
@@ -247,7 +262,8 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
 
   const handleRcsbPdbFetch = useCallback(async () => {
     if (identifier) {
-      const id = identifier.toLowerCase();
+      // RCSB downloads accept the extended id (the 4-char form is deprecated).
+      const id = toExtendedPdbId(identifier);
       const fetchURL = `https://files.rcsb.org/download/${id}.cif`;
       setMessage(`Fetching coordinates from RCSB for ${id}`);
       try {
@@ -280,7 +296,8 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   const handleUppsalaEdsFetch = useCallback(async () => {
     // Uppsala EDS was retired in 2017 — fetch from PDB-REDO instead
     if (identifier) {
-      const id = identifier.toLowerCase();
+      // PDB-REDO accepts the extended id (the 4-char form is deprecated).
+      const id = toExtendedPdbId(identifier);
       const fetchURL = `https://pdb-redo.eu/db/${id}/${id}_final.mtz`;
       setMessage(`Fetching map coefficients from PDB-REDO for ${id}`);
       try {
@@ -299,7 +316,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
    * Returns ChainSequenceInfo[] from the /api/pdb/entry/molecules/{id} endpoint.
    */
   const parsePdbeMolecules = useCallback((data: any, pdbId: string): ChainSequenceInfo[] => {
-    const entities = data[pdbId.toLowerCase()];
+    const entities = pdbEntryPayload(data, pdbId);
     if (!Array.isArray(entities)) return [];
     const chains: ChainSequenceInfo[] = [];
     for (const entity of entities) {
@@ -331,20 +348,30 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
    */
   const handlePdbSequenceFetch = useCallback(async (source: "ebi" | "rcsb") => {
     if (!identifier) return;
-    const id = identifier.toLowerCase();
+    const id = toDisplayPdbId(identifier);
     try {
       setMessage(`Fetching sequences for ${id.toUpperCase()}...`);
       let chains: ChainSequenceInfo[];
 
       if (source === "ebi") {
-        // PDBe molecules API returns structured JSON with sequences per entity
-        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/${id}`;
+        // PDBe molecules API returns structured JSON with sequences per entity.
+        // Query with the extended id; the response is keyed by the legacy id,
+        // so parsePdbeMolecules resolves it tolerantly.
+        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/${toExtendedPdbId(identifier)}`;
         const result = await apiFetch(url);
         const data = await result.json();
-        chains = parsePdbeMolecules(data, id);
+        chains = parsePdbeMolecules(data, identifier);
       } else {
-        // RCSB provides a proper FASTA endpoint
-        const fastaUrl = `https://www.rcsb.org/fasta/entry/${id.toUpperCase()}`;
+        // RCSB's FASTA endpoint accepts ONLY the legacy 4-char code (the
+        // extended form 404s here), so use the short id.
+        const shortId = toShortPdbId(identifier);
+        if (!shortId) {
+          setMessage(
+            `RCSB FASTA does not support extended PDB ids — try PDBe for ${id.toUpperCase()}`,
+          );
+          return;
+        }
+        const fastaUrl = `https://www.rcsb.org/fasta/entry/${shortId.toUpperCase()}`;
         const fastaText = await apiText(fastaUrl);
         chains = parseMultiChainFasta(fastaText);
       }
