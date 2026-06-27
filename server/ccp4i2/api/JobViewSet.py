@@ -158,6 +158,22 @@ class JobViewSet(ModelViewSet):
     filterset_fields = ["project"]
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        # Manual ?project= / ?project__uuid= filtering. The DjangoFilterBackend is
+        # NOT active (a second REST_FRAMEWORK block in settings.py drops
+        # DEFAULT_FILTER_BACKENDS), so filterset_fields=["project"] is inert and
+        # `jobs/?project=<pk>` would otherwise return jobs across ALL projects —
+        # which made scene job+param resolution pick a job-number-1 from the wrong
+        # project. Mirror FileViewSet's own manual get_queryset filtering.
+        queryset = super().get_queryset()
+        project = self.request.query_params.get("project")
+        if project is not None:
+            queryset = queryset.filter(project_id=project)
+        project_uuid = self.request.query_params.get("project__uuid")
+        if project_uuid is not None:
+            queryset = queryset.filter(project__uuid=project_uuid)
+        return queryset
+
     def destroy(self, request, *args, **kwargs):
         """
         Delete a job and all its dependent jobs.
