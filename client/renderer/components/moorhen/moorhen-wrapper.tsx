@@ -129,12 +129,18 @@ async function resolveJobParamUrl(
   }
   const files = await apiGet(`files/?job=${job.id}`);
   if (!Array.isArray(files)) return null;
+  // Match by output param name only — do NOT filter on directory. Job outputs
+  // live in the job dir (directory 1), but imported coordinates live in the
+  // import dir (directory 2); both are legitimate job+param targets.
   const file = files.find(
-    (f: { job_param_name?: string; directory: number }) =>
-      f.job_param_name === ref.param && f.directory === 1,
+    (f: { job_param_name?: string }) => f.job_param_name === ref.param,
   );
   if (!file) {
-    console.warn(`[scene] job+param: output param "${ref.param}" (directory 1) not found in job ${ref.job}`);
+    const avail = (files as { job_param_name?: string; directory?: number; type?: string }[])
+      .filter((f) => f.job_param_name)
+      .map((f) => `${f.job_param_name} (dir ${f.directory}, ${f.type})`)
+      .join("; ");
+    console.warn(`[scene] job+param: param "${ref.param}" not found in job ${ref.job}. Available: ${avail || "none"}`);
     return null;
   }
   return `/api/proxy/ccp4i2/files/${file.id}/download/`;

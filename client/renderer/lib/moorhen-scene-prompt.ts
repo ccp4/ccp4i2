@@ -86,17 +86,18 @@ export function buildManifestBlock(
   files: ManifestFile[],
 ): string {
   const jobByPk = new Map<number, ManifestJob>(jobs.map((j) => [j.id, j]));
-  // group renderable output files by their producing job
+  // group renderable referenceable files by their producing job. Include both
+  // job-output-dir (1) and import-dir (2) files: imported coordinates carry a
+  // job + param too and are valid job+param targets.
   const byJob = new Map<number, ManifestFile[]>();
   for (const f of files) {
-    if (f.directory !== 1) continue; // job outputs only
     if (!f.job_param_name) continue;
     if (!f.type || !RENDERABLE_TYPES.has(f.type)) continue;
     const arr = byJob.get(f.job) ?? [];
     arr.push(f);
     byJob.set(f.job, arr);
   }
-  if (byJob.size === 0) return "No referenceable job outputs in this project yet.";
+  if (byJob.size === 0) return "No referenceable files in this project yet.";
 
   const lines: string[] = [];
   lines.push("Reference files by { job: <number>, param: <PARAM>, projectId }.");
