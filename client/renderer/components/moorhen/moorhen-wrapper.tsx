@@ -71,6 +71,9 @@ export interface MoorhenWrapperProps {
   fileIds?: number[];
   viewParam?: string | null;
   jobId?: number | null;
+  /** Project pk for a project-scoped Moorhen page: provides project context
+   *  (manifest + job/param resolution) without loading any specific file/job. */
+  projectId?: number | null;
 }
 
 /** comp_ids defined by a refmac/coot dictionary CIF (its `data_comp_<X>`
@@ -173,7 +176,7 @@ async function resolveJobParamUrl(
   return `/api/proxy/ccp4i2/files/${file.id}/download/`;
 }
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId }) => {
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId }) => {
   const capabilities = useMoorhenCapabilities();
   const [isSafari] = useState(() => isSafariBrowser());
   const { setMessage } = usePopcorn();
@@ -1030,28 +1033,33 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   );
 
   // Resolve project context so scene authoring (manifest + projectId) and
-  // job+param resolution work. Prefer jobId; otherwise derive the project from
-  // the first loaded file (file → job → project), which covers the file viewer
-  // and any fileIds-only context. Null only on a truly contextless page.
+  // job+param resolution work. Prefer an explicit projectId (the project-scoped
+  // Moorhen page); else jobId; else derive from the first loaded file
+  // (file → job → project), covering the file viewer. Null only on the truly
+  // contextless blank page.
   const [projectInfo, setProjectInfo] = useState<{ id: string; name?: string } | null>(null);
   const firstFileId = fileIds?.[0];
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        // Find the producing job pk: directly from jobId, else via the file.
-        let jobPk: number | null = jobId ?? null;
-        if (jobPk == null && firstFileId != null) {
-          const fileInfo = await apiGet(`files/${firstFileId}`);
-          if (cancelled) return;
-          jobPk = fileInfo?.job ?? null;
+        // Find the project pk: directly (project page), else via job, else file.
+        let projPk: number | null = projectId ?? null;
+        if (projPk == null) {
+          let jobPk: number | null = jobId ?? null;
+          if (jobPk == null && firstFileId != null) {
+            const fileInfo = await apiGet(`files/${firstFileId}`);
+            if (cancelled) return;
+            jobPk = fileInfo?.job ?? null;
+          }
+          if (jobPk == null) return;
+          const jobInfo = await apiGet(`jobs/${jobPk}`);
+          if (cancelled || !jobInfo?.project) return;
+          projPk = jobInfo.project;
         }
-        if (jobPk == null) return;
-        const jobInfo = await apiGet(`jobs/${jobPk}`);
-        if (cancelled || !jobInfo?.project) return;
-        projectPkRef.current = jobInfo.project;
-        // jobInfo.project is the project pk; fetch the uuid + name.
-        const proj = await apiGet(`projects/${jobInfo.project}`);
+        if (projPk == null) return;
+        projectPkRef.current = projPk;
+        const proj = await apiGet(`projects/${projPk}`);
         if (cancelled || !proj?.uuid) return;
         projectUuidRef.current = proj.uuid;
         projectNameRef.current = proj.name ?? null;
@@ -1061,7 +1069,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     })();
     return () => { cancelled = true; };
-  }, [jobId, firstFileId]);
+  }, [jobId, firstFileId, projectId]);
 
   // Assemble the LLM "Copy prompt" scaffold: the embedded scene grammar + a
   // manifest of the project's referenceable job outputs + a ground-truth
