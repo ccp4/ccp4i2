@@ -989,26 +989,17 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // contents summary of the loaded structure (chains + ligand CIDs, from the
   // coordinate digest). The user appends a request and pastes it into a chatbot.
   const handleBuildAuthoringPrompt = useCallback(async (request: string): Promise<string> => {
-    let contentsBlock = "(no structure loaded)";
     const mol = molecules[0];
-    if (mol) {
-      const fid = extractFileIdFromUniqueId(mol.uniqueId || "");
-      if (fid != null) {
-        try {
-          const resp = await apiGet(`files/${fid}/digest/`);
-          const digest = resp?.data ?? resp;
-          contentsBlock = buildContentsBlock(digest, mol.name || `file_${fid}`);
-        } catch (err) {
-          console.warn("[scene-prompt] digest failed:", err);
-        }
-      }
-    }
+    const fid = mol ? extractFileIdFromUniqueId(mol.uniqueId || "") : null;
+
+    // Project identity + manifest. Resolve the project robustly (prefer the
+    // cached projectInfo, else fetch) so the prompt always pins the current
+    // project, and keep the files list so we can label the loaded structure by
+    // its annotation below.
     let manifestBlock = "(no project context)";
-    // Resolve project identity robustly — prefer the resolved projectInfo, but
-    // fall back to a fresh fetch so the prompt always pins the current project
-    // (otherwise a chat model can drift into a project from earlier context).
     let project: { name?: string; id?: string } | undefined =
       projectInfo ? { name: projectInfo.name, id: projectInfo.id } : undefined;
+    let projectFiles: { id?: number; annotation?: string }[] = [];
     const pk = projectPkRef.current;
     if (pk != null) {
       try {
@@ -1021,12 +1012,30 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           apiGet(`files/?project=${pk}`),
         ]);
         if (Array.isArray(jobs) && Array.isArray(files)) {
+          projectFiles = files;
           manifestBlock = buildManifestBlock(jobs, files);
         }
       } catch (err) {
         console.warn("[scene-prompt] manifest failed:", err);
       }
     }
+
+    // Contents summary, labelled by the file's annotation where we have one
+    // (e.g. "CDK2-Cyclin A") so the model's selections read against a meaningful
+    // name; fall back to the molecule name, then the file id.
+    let contentsBlock = "(no structure loaded)";
+    if (mol && fid != null) {
+      try {
+        const resp = await apiGet(`files/${fid}/digest/`);
+        const digest = resp?.data ?? resp;
+        const annotation = projectFiles.find((f) => f.id === fid)?.annotation;
+        const label = annotation || mol.name || `file_${fid}`;
+        contentsBlock = buildContentsBlock(digest, label);
+      } catch (err) {
+        console.warn("[scene-prompt] digest failed:", err);
+      }
+    }
+
     return buildAuthoringPrompt({ project, contents: contentsBlock, manifest: manifestBlock, request });
   }, [molecules, projectInfo]);
 

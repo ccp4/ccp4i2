@@ -99,7 +99,9 @@ export function buildManifestBlock(
   if (byJob.size === 0) return "No referenceable job outputs in this project yet.";
 
   const lines: string[] = [];
-  lines.push("Referenceable files (use { job: <number>, param: <PARAM>, projectId }):");
+  lines.push("Reference files by { job: <number>, param: <PARAM>, projectId }.");
+  lines.push('A quoted name (e.g. — "CDK2") is a human label to help you choose the');
+  lines.push("right file; it is NOT a reference key — always reference by job + param.");
   // stable order by job number (numeric-ish)
   const jobPks = [...byJob.keys()].sort((a, b) => {
     const na = parseFloat(jobByPk.get(a)?.number ?? "0");
@@ -112,7 +114,10 @@ export function buildManifestBlock(
     lines.push(header);
     for (const f of byJob.get(pk)!) {
       const mask = f.sub_type === 4 ? ", mask" : "";
-      lines.push(`    - param ${f.job_param_name} -> ${f.type}${mask}`);
+      // The annotation is a human label (e.g. "CDK2-Cyclin A") to help pick the
+      // right file — it is NOT how the file is referenced (use job + param).
+      const ann = f.annotation ? `  — "${f.annotation}"` : "";
+      lines.push(`    - param ${f.job_param_name} -> ${f.type}${mask}${ann}`);
     }
   }
   return lines.join("\n");
