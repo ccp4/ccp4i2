@@ -98,9 +98,11 @@ elif DEBUG:  # noqa: F821 — DEBUG is defined earlier in this settings file.
     MIDDLEWARE.insert(0, "ccp4i2_api.middleware.dev_admin.DevAdminMiddleware")
 # else: no auth middleware. AnonymousUser + DRF IsAuthenticated → 401.
 
-REST_FRAMEWORK = {
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
-}
+# NOTE: REST_FRAMEWORK is defined once, below. There used to be a second
+# definition here that set DEFAULT_FILTER_BACKENDS; because the later assignment
+# wins, that one was silently dropping the filter backend and rendering every
+# viewset's `filterset_fields` inert. The settings are now merged into the single
+# block below.
 
 # CORS configuration with environment variable support
 CORS_ALLOWED_ORIGINS_ENV = os.environ.get("CORS_ALLOWED_ORIGINS")
@@ -252,6 +254,12 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
     ),
+    # Enables every viewset's `filterset_fields` (e.g. JobViewSet ?project=,
+    # FileViewSet ?job=). Previously set in a separate REST_FRAMEWORK block that
+    # was clobbered by this one, so filterset_fields was inert API-wide.
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
     # Authentication: AzureADAuthentication reads from middleware-validated users
     # In development (no auth), this returns None and AllowAny permits access
     # In production, the middleware validates JWT and sets request.user
