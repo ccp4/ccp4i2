@@ -22,7 +22,7 @@ import {
 } from "./mmcif-sequence-parser";
 import { ChainPickerDialog } from "./chain-picker-dialog";
 import {
-  toExtendedPdbId,
+  toFetchPdbId,
   toShortPdbId,
   toDisplayPdbId,
   pdbEntryPayload,
@@ -180,9 +180,11 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
         // carries Cross-Origin-Resource-Policy: cross-origin and survives
         // the Moorhen COEP page. Direct fetches to www.ebi.ac.uk surface
         // as TypeError: Failed to fetch under COEP.
-        // Query with the extended id (the 4-char endpoints are deprecated);
-        // PDBe keys the response by the legacy 4-char id, so resolve tolerantly.
-        const url = `/api/proxy/pdbe/api/pdb/entry/files/${toExtendedPdbId(identifier)}`;
+        // Query with the host-preferred id (legacy 4-char where it exists): the
+        // PDBe download host only serves the 4-char filename, and the queried
+        // form dictates the download URL the API echoes back. PDBe keys the
+        // response by the legacy id regardless, so resolve tolerantly.
+        const url = `/api/proxy/pdbe/api/pdb/entry/files/${toFetchPdbId(identifier)}`;
         const result = await apiFetch(url);
         const data = await result.json();
         const file = pdbEntryPayload(data, identifier);
@@ -216,9 +218,10 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   const handleEbiSFsFetch = useCallback(async () => {
     if (identifier) {
       try {
-        // Route through the local proxy (COEP-safe) and query with the extended
-        // id; PDBe keys the response by the legacy 4-char id, so resolve tolerantly.
-        const url = `/api/proxy/pdbe/api/pdb/entry/files/${toExtendedPdbId(identifier)}`;
+        // Route through the local proxy (COEP-safe) and query with the
+        // host-preferred id; the download host serves only the 4-char filename
+        // and PDBe keys the response by the legacy id, so resolve tolerantly.
+        const url = `/api/proxy/pdbe/api/pdb/entry/files/${toFetchPdbId(identifier)}`;
         const result = await apiFetch(url);
         const data = await result.json();
         const file = pdbEntryPayload(data, identifier);
@@ -262,8 +265,9 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
 
   const handleRcsbPdbFetch = useCallback(async () => {
     if (identifier) {
-      // RCSB downloads accept the extended id (the 4-char form is deprecated).
-      const id = toExtendedPdbId(identifier);
+      // RCSB downloads accept both forms; use the host-preferred (legacy where
+      // it exists, extended only for genuinely-new entries).
+      const id = toFetchPdbId(identifier);
       const fetchURL = `https://files.rcsb.org/download/${id}.cif`;
       setMessage(`Fetching coordinates from RCSB for ${id}`);
       try {
@@ -296,8 +300,9 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   const handleUppsalaEdsFetch = useCallback(async () => {
     // Uppsala EDS was retired in 2017 — fetch from PDB-REDO instead
     if (identifier) {
-      // PDB-REDO accepts the extended id (the 4-char form is deprecated).
-      const id = toExtendedPdbId(identifier);
+      // PDB-REDO serves only the legacy 4-char form (extended 500s), so use the
+      // host-preferred id.
+      const id = toFetchPdbId(identifier);
       const fetchURL = `https://pdb-redo.eu/db/${id}/${id}_final.mtz`;
       setMessage(`Fetching map coefficients from PDB-REDO for ${id}`);
       try {
@@ -355,9 +360,9 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
 
       if (source === "ebi") {
         // PDBe molecules API returns structured JSON with sequences per entity.
-        // Query with the extended id; the response is keyed by the legacy id,
+        // Use the host-preferred id; the response is keyed by the legacy id,
         // so parsePdbeMolecules resolves it tolerantly.
-        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/${toExtendedPdbId(identifier)}`;
+        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/${toFetchPdbId(identifier)}`;
         const result = await apiFetch(url);
         const data = await result.json();
         chains = parsePdbeMolecules(data, identifier);

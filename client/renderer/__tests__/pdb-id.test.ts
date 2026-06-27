@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   toExtendedPdbId,
   toShortPdbId,
+  toFetchPdbId,
   toDisplayPdbId,
   pdbEntryPayload,
 } from "../components/task/task-elements/pdb-id";
@@ -30,6 +31,17 @@ describe("toShortPdbId", () => {
   it("returns null for a genuinely-extended id beyond the 4-char namespace", () => {
     expect(toShortPdbId("pdb_00abcdef")).toBeNull();
     expect(toShortPdbId("notapdb")).toBeNull();
+  });
+});
+
+describe("toFetchPdbId", () => {
+  it("prefers the legacy 4-char form for entries that have one", () => {
+    expect(toFetchPdbId("1jst")).toBe("1jst");
+    expect(toFetchPdbId("pdb_00001jst")).toBe("1jst");
+    expect(toFetchPdbId("PDB_00001JST")).toBe("1jst");
+  });
+  it("falls back to extended for genuinely-new entries with no legacy form", () => {
+    expect(toFetchPdbId("pdb_00abcdef")).toBe("pdb_00abcdef");
   });
 });
 
