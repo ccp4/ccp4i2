@@ -74,6 +74,14 @@ class ProjectViewSet(ModelViewSet):
     def get_queryset(self):
         """Optimize queryset based on action."""
         queryset = super().get_queryset()
+        # Exact lookups by uuid / name so a client can resolve a project
+        # authoritatively (e.g. a scene's projectId) without paging the full list.
+        uuid = self.request.query_params.get("uuid")
+        if uuid is not None:
+            queryset = queryset.filter(uuid=uuid)
+        name = self.request.query_params.get("name")
+        if name is not None:
+            queryset = queryset.filter(name=name)
         if self.action == 'list':
             # List view: order by most recent first, prefetch tags
             return queryset.prefetch_related('tags').order_by('-last_access')

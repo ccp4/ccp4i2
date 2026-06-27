@@ -10,7 +10,7 @@ import {
   Tooltip,
   Chip,
 } from "@mui/material";
-import { MoreHoriz, Home, Science as ScienceIcon } from "@mui/icons-material";
+import { MoreHoriz, Home, Science as ScienceIcon, ViewInAr } from "@mui/icons-material";
 import EditMenu from "./edit-menu";
 import FileMenu from "./file-menu";
 import HelpMenu from "./help-menu";
@@ -136,6 +136,12 @@ export default function MenuBar() {
     }
   };
 
+  const handleOpenMoorhen = () => {
+    if (projectId) {
+      router.push(`/ccp4i2/moorhen-page/project/${projectId}`);
+    }
+  };
+
   return (
     <AppBar position="static">
       <HistoryToolbar>
@@ -184,6 +190,22 @@ export default function MenuBar() {
                 },
               }}
             />
+          </Tooltip>
+        )}
+
+        {/* Moorhen (project-scoped): opens the 3D viewer with this project's
+            context for scene authoring + job/param file resolution. */}
+        {projectId && (
+          <Tooltip title="Open Moorhen for this project (scenes)">
+            <IconButton
+              color="inherit"
+              onClick={handleOpenMoorhen}
+              aria-label="Open Moorhen for this project"
+              size="small"
+              sx={{ ml: 0.5 }}
+            >
+              <ViewInAr />
+            </IconButton>
           </Tooltip>
         )}
 

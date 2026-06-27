@@ -71,6 +71,9 @@ export interface MoorhenWrapperProps {
   fileIds?: number[];
   viewParam?: string | null;
   jobId?: number | null;
+  /** Project pk for a project-scoped Moorhen page: provides project context
+   *  (manifest + job/param resolution) without loading any specific file/job. */
+  projectId?: number | null;
 }
 
 /** comp_ids defined by a refmac/coot dictionary CIF (its `data_comp_<X>`
@@ -85,32 +88,95 @@ function extractDictCompIds(cifText: string): string[] {
   return out;
 }
 
+/** Map a project UUID to its primary key (the form the REST filters need). The
+ *  scene carries the uuid; if it matches the current page's project we already
+ *  have the pk, otherwise look it up in the projects list. Returns null (and
+ *  logs) if it can't be resolved. */
+async function resolveProjectPk(
+  want: { uuid?: string; name?: string },
+  current: { uuid: string | null; name: string | null; pk: number | null },
+): Promise<number | null> {
+  if (!want.uuid && !want.name) return current.pk; // no scene project ref → page context
+  // The current window's project is authoritative when the scene names it (by
+  // uuid OR name) — use its pk directly, no lookup.
+  if (current.pk != null) {
+    if (want.uuid && want.uuid === current.uuid) return current.pk;
+    if (want.name && want.name === current.name) return current.pk;
+  }
+  // Otherwise resolve the *named* project exactly via the server-side uuid/name
+  // filter (no list paging, no same-name ambiguity from the full list).
+  const query = want.uuid
+    ? `projects/?uuid=${encodeURIComponent(want.uuid)}`
+    : `projects/?name=${encodeURIComponent(want.name as string)}`;
+  try {
+    const resp = await apiGet(query);
+    const list = Array.isArray(resp) ? resp : (resp?.results ?? []);
+    if (list.length === 1 && list[0]?.id != null) return list[0].id;
+    if (list.length > 1) {
+      console.warn(`[scene] project+job+param: "${want.uuid ?? want.name}" matched ${list.length} projects — cannot disambiguate`);
+    } else {
+      console.warn(`[scene] project+job+param: project "${want.uuid ?? want.name}" not found`);
+    }
+  } catch (e) {
+    console.warn(`[scene] project+job+param: project lookup failed for "${want.uuid ?? want.name}"`, e);
+  }
+  // A project was explicitly named but couldn't be resolved. Do NOT fall back to
+  // the window's project — that silently loads files from the wrong project.
+  return null;
+}
+
 /**
  * Resolve a scene `job` (number, e.g. "1" or "1.1") + output `param` (e.g.
  * "XYZOUT") to a project file's proxy download URL, using the existing REST:
- * jobs in the project → match number → that job's output files (directory=1)
- * → match job_param_name. Returns null if anything along the chain is missing.
+ * resolve the project pk (preferring the scene's projectId) → jobs in that
+ * project → match number → that job's output files (directory=1) → match
+ * job_param_name. Returns null (and logs the reason) if anything is missing.
  */
 async function resolveJobParamUrl(
-  projectPk: number,
-  jobNumber: number | string,
-  param: string,
+  ref: { job: number | string; param: string; projectId?: string; projectName?: string },
+  current: { uuid: string | null; name: string | null; pk: number | null },
 ): Promise<string | null> {
-  const jobs = await apiGet(`jobs/?project=${projectPk}`);
-  if (!Array.isArray(jobs)) return null;
-  const job = jobs.find((j: { number?: string }) => String(j.number) === String(jobNumber));
-  if (!job) return null;
-  const files = await apiGet(`files/?job=${job.id}`);
-  if (!Array.isArray(files)) return null;
+  const projectPk = await resolveProjectPk({ uuid: ref.projectId, name: ref.projectName }, current);
+  if (projectPk == null) {
+    console.warn(`[scene] project+job+param ${ref.job}/${ref.param}: no project context (projectId=${ref.projectId ?? "none"}, projectName=${ref.projectName ?? "none"}, page pk null)`);
+    return null;
+  }
+  const jobsResp = await apiGet(`jobs/?project=${projectPk}`);
+  const jobs = Array.isArray(jobsResp) ? jobsResp : (jobsResp?.results ?? []);
+  if (jobs.length === 0) {
+    console.warn(`[scene] project+job+param: no jobs returned for project pk ${projectPk} (resp shape: ${Array.isArray(jobsResp) ? "array" : typeof jobsResp})`);
+    return null;
+  }
+  const job = jobs.find((j: { number?: string }) => String(j.number) === String(ref.job));
+  if (!job) {
+    const nums = jobs.map((j: { number?: string }) => j.number).join(", ");
+    console.warn(`[scene] project+job+param: job number "${ref.job}" not found in project pk ${projectPk}. Job numbers present: ${nums}`);
+    return null;
+  }
+  const filesResp = await apiGet(`files/?job=${job.id}`);
+  const files = Array.isArray(filesResp) ? filesResp : (filesResp?.results ?? []);
+  if (files.length === 0) {
+    console.warn(`[scene] project+job+param: no files returned for job ${ref.job} (pk ${job.id})`);
+    return null;
+  }
+  // Match by output param name only — do NOT filter on directory. Job outputs
+  // live in the job dir (directory 1), but imported coordinates live in the
+  // import dir (directory 2); both are legitimate job+param targets.
   const file = files.find(
-    (f: { job_param_name?: string; directory: number }) =>
-      f.job_param_name === param && f.directory === 1,
+    (f: { job_param_name?: string }) => f.job_param_name === ref.param,
   );
-  if (!file) return null;
+  if (!file) {
+    const avail = (files as { job_param_name?: string; directory?: number; type?: string }[])
+      .filter((f) => f.job_param_name)
+      .map((f) => `${f.job_param_name} (dir ${f.directory}, ${f.type})`)
+      .join("; ");
+    console.warn(`[scene] project+job+param: param "${ref.param}" not found in job ${ref.job}. Available: ${avail || "none"}`);
+    return null;
+  }
   return `/api/proxy/ccp4i2/files/${file.id}/download/`;
 }
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId }) => {
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId }) => {
   const capabilities = useMoorhenCapabilities();
   const [isSafari] = useState(() => isSafariBrowser());
   const { setMessage } = usePopcorn();
@@ -155,9 +221,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // lifter can emit terse fileId dict refs instead of inlining cifText.
   const dictSourcesRef = useRef<Map<number, Map<string, { fileId: number; projectId?: string }>>>(new Map());
   const prevActiveMoleculeRef = useRef<null | moorhen.Molecule>(null);
-  // Project pk, mirrored into a ref so the (stable-identity) scene fetcher can
-  // resolve job+param refs against the current project without re-binding.
+  // Current project pk + uuid, mirrored into refs so the (stable-identity) scene
+  // fetcher can resolve job+param refs without re-binding. The uuid lets it map a
+  // scene's projectId (a uuid) to the pk the REST filters need.
   const projectPkRef = useRef<number | null>(null);
+  const projectUuidRef = useRef<string | null>(null);
+  const projectNameRef = useRef<string | null>(null);
   const timeCapsuleRef = useRef(null);
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -753,11 +822,13 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         const url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
         return loadStructure(url, ref.name || `file_${ref.fileId}`);
       }
-      // job + output param → resolve to a project file in the current project.
+      // job + output param → resolve to a project file. Prefer the scene's own
+      // projectId (uuid), falling back to this page's project context.
       if (ref.job !== undefined && ref.param) {
-        const projectPk = projectPkRef.current;
-        if (projectPk == null) return null;
-        const url = await resolveJobParamUrl(projectPk, ref.job, ref.param);
+        const url = await resolveJobParamUrl(
+          { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
+          { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
+        );
         return url
           ? loadStructure(url, ref.name || `job_${ref.job}_${ref.param}`)
           : null;
@@ -961,28 +1032,44 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     ],
   );
 
-  // Resolve project context from jobId so downloaded scenes can include
-  // a stable projectId on their file references. Looked up once on mount;
-  // null when the wrapper isn't tied to a job.
+  // Resolve project context so scene authoring (manifest + projectId) and
+  // job+param resolution work. Prefer an explicit projectId (the project-scoped
+  // Moorhen page); else jobId; else derive from the first loaded file
+  // (file → job → project), covering the file viewer. Null only on the truly
+  // contextless blank page.
   const [projectInfo, setProjectInfo] = useState<{ id: string; name?: string } | null>(null);
+  const firstFileId = fileIds?.[0];
   useEffect(() => {
-    if (!jobId) return;
     let cancelled = false;
     (async () => {
       try {
-        const jobInfo = await apiGet(`jobs/${jobId}`);
-        if (cancelled || !jobInfo?.project) return;
-        projectPkRef.current = jobInfo.project;
-        // jobInfo.project is the project pk; fetch the uuid + name.
-        const proj = await apiGet(`projects/${jobInfo.project}`);
+        // Find the project pk: directly (project page), else via job, else file.
+        let projPk: number | null = projectId ?? null;
+        if (projPk == null) {
+          let jobPk: number | null = jobId ?? null;
+          if (jobPk == null && firstFileId != null) {
+            const fileInfo = await apiGet(`files/${firstFileId}`);
+            if (cancelled) return;
+            jobPk = fileInfo?.job ?? null;
+          }
+          if (jobPk == null) return;
+          const jobInfo = await apiGet(`jobs/${jobPk}`);
+          if (cancelled || !jobInfo?.project) return;
+          projPk = jobInfo.project;
+        }
+        if (projPk == null) return;
+        projectPkRef.current = projPk;
+        const proj = await apiGet(`projects/${projPk}`);
         if (cancelled || !proj?.uuid) return;
+        projectUuidRef.current = proj.uuid;
+        projectNameRef.current = proj.name ?? null;
         setProjectInfo({ id: proj.uuid, name: proj.name });
       } catch (err) {
         console.warn("[wrapper] failed to resolve project for scene authoring:", err);
       }
     })();
     return () => { cancelled = true; };
-  }, [jobId]);
+  }, [jobId, firstFileId, projectId]);
 
   // Assemble the LLM "Copy prompt" scaffold: the embedded scene grammar + a
   // manifest of the project's referenceable job outputs + a ground-truth
