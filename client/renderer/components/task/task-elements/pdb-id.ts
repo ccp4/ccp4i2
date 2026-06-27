@@ -3,21 +3,26 @@
  *
  * The PDB is migrating from the legacy 4-character codes (e.g. `1jst`) to the
  * 12-character extended format `pdb_0000XXXX` (e.g. `pdb_00001jst`), because the
- * 4-character namespace is nearly exhausted. The APIs we call behave as follows
+ * 4-character namespace is nearly exhausted. The hosts we call behave as follows
  * (verified against the live endpoints):
  *
- *   - PDBe `api/pdb/entry/files` and `api/pdb/entry/molecules`: accept BOTH
- *     forms, but always KEY the JSON response by the legacy 4-char id even when
- *     queried with the extended id. So a request for `pdb_00001jst` returns
- *     `{ "1jst": { ... } }`. Tolerant key lookup is therefore mandatory.
+ *   - PDBe `api/pdb/entry/files` and `api/pdb/entry/molecules` (metadata JSON):
+ *     accept BOTH forms, but always KEY the response by the legacy 4-char id
+ *     even when queried with the extended id (`pdb_00001jst` -> `{ "1jst": … }`).
+ *     The download URLs they echo back mirror the queried form.
+ *   - PDBe download host (`entry-files/download`): serves ONLY the legacy 4-char
+ *     filename. `pdb_00001jst.cif` 404s; `1jst.cif` works.
+ *   - PDB-REDO (`pdb-redo.eu/db`): serves ONLY the legacy 4-char form (extended 500s).
+ *   - RCSB FASTA (`rcsb.org/fasta/entry`): accepts ONLY the legacy 4-char form
+ *     (extended 404s).
  *   - RCSB downloads (`files.rcsb.org/download`): accept both forms.
- *   - PDB-REDO (`pdb-redo.eu/db`): accept both forms.
- *   - RCSB FASTA (`rcsb.org/fasta/entry`): accepts ONLY the 4-char form;
- *     the extended form 404s. Use {@link toShortPdbId} for that endpoint.
  *
- * Policy: when an endpoint accepts both, we send the extended (future-proof)
- * form; when an endpoint only accepts the legacy form, we send the short form.
- * Either form may be typed by the user.
+ * So the legacy 4-char form is the universally-working one for entries that have
+ * one; the extended form is needed only for genuinely-new entries beyond the
+ * 4-char namespace (which have no legacy form). Policy: PREFER the legacy form
+ * ({@link toFetchPdbId}), falling back to extended only when no legacy form
+ * exists. Tolerant key lookup ({@link pdbEntryPayload}) absorbs PDBe keying by
+ * the legacy id. Either form may be typed by the user.
  */
 
 /** A legacy 4-char PDB code: a digit followed by three alphanumerics. */
@@ -48,6 +53,18 @@ export function toShortPdbId(raw: string): string | null {
   if (SHORT_RE.test(id)) return id;
   const m = id.match(EXTENDED_LEGACY_RE);
   return m ? m[1] : null;
+}
+
+/**
+ * Id to use when issuing a fetch against any PDB host (API query or file
+ * download). Prefers the legacy 4-char form — the only form the download/file
+ * hosts serve for legacy entries — and falls back to the extended form for
+ * genuinely-new entries that have no legacy form. For PDBe metadata queries the
+ * queried form also dictates the form of the download URLs echoed back, so this
+ * keeps those URLs resolvable.
+ */
+export function toFetchPdbId(raw: string): string {
+  return toShortPdbId(raw) ?? toExtendedPdbId(raw);
 }
 
 /**
