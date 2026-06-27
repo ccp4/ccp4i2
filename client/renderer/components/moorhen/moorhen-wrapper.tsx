@@ -1001,16 +1001,25 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     ],
   );
 
-  // Resolve project context from jobId so downloaded scenes can include
-  // a stable projectId on their file references. Looked up once on mount;
-  // null when the wrapper isn't tied to a job.
+  // Resolve project context so scene authoring (manifest + projectId) and
+  // job+param resolution work. Prefer jobId; otherwise derive the project from
+  // the first loaded file (file → job → project), which covers the file viewer
+  // and any fileIds-only context. Null only on a truly contextless page.
   const [projectInfo, setProjectInfo] = useState<{ id: string; name?: string } | null>(null);
+  const firstFileId = fileIds?.[0];
   useEffect(() => {
-    if (!jobId) return;
     let cancelled = false;
     (async () => {
       try {
-        const jobInfo = await apiGet(`jobs/${jobId}`);
+        // Find the producing job pk: directly from jobId, else via the file.
+        let jobPk: number | null = jobId ?? null;
+        if (jobPk == null && firstFileId != null) {
+          const fileInfo = await apiGet(`files/${firstFileId}`);
+          if (cancelled) return;
+          jobPk = fileInfo?.job ?? null;
+        }
+        if (jobPk == null) return;
+        const jobInfo = await apiGet(`jobs/${jobPk}`);
         if (cancelled || !jobInfo?.project) return;
         projectPkRef.current = jobInfo.project;
         // jobInfo.project is the project pk; fetch the uuid + name.
@@ -1023,7 +1032,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     })();
     return () => { cancelled = true; };
-  }, [jobId]);
+  }, [jobId, firstFileId]);
 
   // Assemble the LLM "Copy prompt" scaffold: the embedded scene grammar + a
   // manifest of the project's referenceable job outputs + a ground-truth
