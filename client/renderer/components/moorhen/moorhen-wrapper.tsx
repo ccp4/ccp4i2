@@ -91,19 +91,36 @@ function extractDictCompIds(cifText: string): string[] {
  *  logs) if it can't be resolved. */
 async function resolveProjectPk(
   want: { uuid?: string; name?: string },
-  current: { uuid: string | null; pk: number | null },
+  current: { uuid: string | null; name: string | null; pk: number | null },
 ): Promise<number | null> {
   if (!want.uuid && !want.name) return current.pk; // no scene project ref → page context
-  if (want.uuid && want.uuid === current.uuid && current.pk != null) return current.pk;
-  // Cross-project or page not project-scoped: resolve uuid/name → pk via the list.
-  const resp = await apiGet(`projects/`);
-  const list = Array.isArray(resp) ? resp : (resp?.results ?? []);
-  const proj = list.find(
-    (p: { uuid?: string; name?: string }) =>
-      (want.uuid && p.uuid === want.uuid) || (want.name && p.name === want.name),
-  );
-  if (proj?.id != null) return proj.id;
-  console.warn(`[scene] job+param: project "${want.uuid ?? want.name}" not found; falling back to page pk ${current.pk}`);
+  // The current window's project is authoritative: if the scene names it (by
+  // uuid OR name), use its pk directly and never do a projects/ lookup (which
+  // can match a different same-named project — the source of the wrong-project
+  // bug).
+  if (current.pk != null) {
+    if (want.uuid && want.uuid === current.uuid) return current.pk;
+    if (want.name && want.name === current.name) return current.pk;
+  }
+  // Cross-project or page not project-scoped: resolve uuid/name → pk via the
+  // list. Wrapped so a projects/ hiccup falls back to the page pk rather than
+  // throwing out as an opaque "fetch failed".
+  try {
+    const resp = await apiGet(`projects/`);
+    const list = Array.isArray(resp) ? resp : (resp?.results ?? []);
+    const matches = list.filter(
+      (p: { uuid?: string; name?: string }) =>
+        (want.uuid && p.uuid === want.uuid) || (want.name && p.name === want.name),
+    );
+    if (matches.length === 1 && matches[0]?.id != null) return matches[0].id;
+    if (matches.length > 1) {
+      console.warn(`[scene] job+param: project name "${want.name}" is ambiguous (${matches.length} matches); using page pk ${current.pk}`);
+    } else {
+      console.warn(`[scene] job+param: project "${want.uuid ?? want.name}" not found; falling back to page pk ${current.pk}`);
+    }
+  } catch (e) {
+    console.warn(`[scene] job+param: project lookup failed; falling back to page pk ${current.pk}`, e);
+  }
   return current.pk; // last resort: the page's project
 }
 
@@ -116,22 +133,31 @@ async function resolveProjectPk(
  */
 async function resolveJobParamUrl(
   ref: { job: number | string; param: string; projectId?: string; projectName?: string },
-  current: { uuid: string | null; pk: number | null },
+  current: { uuid: string | null; name: string | null; pk: number | null },
 ): Promise<string | null> {
   const projectPk = await resolveProjectPk({ uuid: ref.projectId, name: ref.projectName }, current);
   if (projectPk == null) {
     console.warn(`[scene] job+param ${ref.job}/${ref.param}: no project context (projectId=${ref.projectId ?? "none"}, projectName=${ref.projectName ?? "none"}, page pk null)`);
     return null;
   }
-  const jobs = await apiGet(`jobs/?project=${projectPk}`);
-  if (!Array.isArray(jobs)) return null;
-  const job = jobs.find((j: { number?: string }) => String(j.number) === String(ref.job));
-  if (!job) {
-    console.warn(`[scene] job+param: job number ${ref.job} not found in project pk ${projectPk}`);
+  const jobsResp = await apiGet(`jobs/?project=${projectPk}`);
+  const jobs = Array.isArray(jobsResp) ? jobsResp : (jobsResp?.results ?? []);
+  if (jobs.length === 0) {
+    console.warn(`[scene] job+param: no jobs returned for project pk ${projectPk} (resp shape: ${Array.isArray(jobsResp) ? "array" : typeof jobsResp})`);
     return null;
   }
-  const files = await apiGet(`files/?job=${job.id}`);
-  if (!Array.isArray(files)) return null;
+  const job = jobs.find((j: { number?: string }) => String(j.number) === String(ref.job));
+  if (!job) {
+    const nums = jobs.map((j: { number?: string }) => j.number).join(", ");
+    console.warn(`[scene] job+param: job number "${ref.job}" not found in project pk ${projectPk}. Job numbers present: ${nums}`);
+    return null;
+  }
+  const filesResp = await apiGet(`files/?job=${job.id}`);
+  const files = Array.isArray(filesResp) ? filesResp : (filesResp?.results ?? []);
+  if (files.length === 0) {
+    console.warn(`[scene] job+param: no files returned for job ${ref.job} (pk ${job.id})`);
+    return null;
+  }
   // Match by output param name only — do NOT filter on directory. Job outputs
   // live in the job dir (directory 1), but imported coordinates live in the
   // import dir (directory 2); both are legitimate job+param targets.
@@ -199,6 +225,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // scene's projectId (a uuid) to the pk the REST filters need.
   const projectPkRef = useRef<number | null>(null);
   const projectUuidRef = useRef<string | null>(null);
+  const projectNameRef = useRef<string | null>(null);
   const timeCapsuleRef = useRef(null);
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -799,7 +826,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       if (ref.job !== undefined && ref.param) {
         const url = await resolveJobParamUrl(
           { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
-          { uuid: projectUuidRef.current, pk: projectPkRef.current },
+          { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
         );
         return url
           ? loadStructure(url, ref.name || `job_${ref.job}_${ref.param}`)
@@ -1029,6 +1056,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         const proj = await apiGet(`projects/${jobInfo.project}`);
         if (cancelled || !proj?.uuid) return;
         projectUuidRef.current = proj.uuid;
+        projectNameRef.current = proj.name ?? null;
         setProjectInfo({ id: proj.uuid, name: proj.name });
       } catch (err) {
         console.warn("[wrapper] failed to resolve project for scene authoring:", err);
