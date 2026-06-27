@@ -44,8 +44,13 @@ async function proxy(
     const headers = new Headers();
     const contentType = res.headers.get("Content-Type");
     if (contentType) headers.set("Content-Type", contentType);
-    const contentLength = res.headers.get("Content-Length");
-    if (contentLength) headers.set("Content-Length", contentLength);
+    // Deliberately do NOT forward the upstream Content-Length. Node's fetch
+    // transparently decompresses gzip/br responses, so `body` here is the
+    // decoded payload, but the upstream Content-Length reflects the *encoded*
+    // (compressed) size. Forwarding it makes the browser read only that many
+    // bytes and truncate the rest — surfacing as "Unterminated string in JSON
+    // at position <compressed-length>". Let NextResponse derive the correct
+    // length from the actual buffer instead.
     headers.set("Cross-Origin-Resource-Policy", "cross-origin");
 
     return new NextResponse(body, { status: res.status, headers });
