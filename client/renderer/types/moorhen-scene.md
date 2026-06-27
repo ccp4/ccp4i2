@@ -703,20 +703,23 @@ the camera where it is (it does not fail). The lifter still captures the
 resolved Cartesian `origin:` — `centre:` is an input convenience, so a captured
 scene records the concrete point.
 
-### `slab` — isolate a selection
+### `slab` — set the clip depth to a selection
 
-One directive that does centre **and** clip: it walks the selection's atoms for
-a centroid and bounding radius `R`, centres on the centroid, and clips/fogs to a
-symmetric half-thickness of `R + pad` Å about it. "Show just chain A's region."
-
-Unlike `clip: { front, back }` (whose field depths are coot's pre-zoom knobs,
-multiplied by zoom), the slab depth is an **absolute** world-Å distance, so it is
-applied directly — not scaled by zoom.
+A **z-depth control only**: it walks the selection's atoms for a bounding radius
+`R` and sets the clip/fog to a symmetric half-thickness of `R + pad` Å about the
+view centre. It does **not** move the camera.
 
 ```yaml
 view:
-  slab: { file: apo, selection: "//A", pad: 2 }
+  centre: { selection: "//A" }            # camera target
+  slab:   { selection: "//A", pad: 2 }    # depth window about it
 ```
+
+Because the slab brackets the **current origin** in depth, it only "contains" its
+selection when the camera is centred on that selection. So to frame a region,
+pair `slab` with a `centre` on the same selection — they are **independent and
+both settable**. (Centre without slab = move the camera but keep the current
+depth; slab without centre = set the depth about wherever the camera already is.)
 
 - `file`: a name from the top-level `files:` block. Optional when exactly one
   molecule is loaded — it then defaults to that molecule.
@@ -725,12 +728,13 @@ view:
   use.
 - `pad`: optional Å added to the radius on each side (default 0).
 
-`slab` drives both centre and clip, so it takes **precedence over `centre`/`origin`
-and `clip`** when present. (For centre and clip on *different* things, use those
-two directly.) The radius is a bounding sphere, so it's correct from any
+Unlike `clip: { front, back }` (whose field depths are coot's pre-zoom knobs,
+multiplied by zoom), the slab depth is an **absolute** world-Å distance, applied
+directly. `slab` takes precedence over `clip` when both are present (they control
+the same planes). The radius is a bounding sphere, so it's correct from any
 orientation but not minimal; once orientation directives exist it can tighten to
 the selection's depth along the view axis. If the selection matched no atoms (or
-gemmi is unavailable) the resolver logs it and leaves the view alone.
+gemmi is unavailable) the resolver logs it and leaves the clip alone.
 
 ## `resolver`
 

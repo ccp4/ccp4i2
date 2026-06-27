@@ -575,35 +575,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 
   // 3. Camera. Mirror PasteViewLinkField exactly so behaviour matches.
   if (scene.view) {
-    // Slab: isolate a selection — centre on it AND clip/fog to its bounding
-    // sphere. Computed from the selection's atoms; it drives both centre and
-    // clip, so it pre-empts centre/origin (below) and clip (further down).
-    let slabDepth: number | undefined;
-    if (scene.view.slab) {
-      const { selection, pad } = scene.view.slab;
-      const cid = selection ?? "/*/*/*/*";
-      const { mol, ref, error } = resolveViewMolecule(scene.view.slab.file, fileBindings);
-      if (error || !mol) {
-        result.log.push({
-          file: ref, domain: "view.slab",
-          message: `cannot slab: ${error}`,
-        });
-      } else {
-        const sphere = selectionBoundingSphere(mol, cid);
-        if (!sphere) {
-          result.log.push({
-            file: ref, domain: "view.slab",
-            message: `slab: selection "${cid}" matched no atoms (or gemmi unavailable)`,
-          });
-        } else {
-          // Centre on the centroid we just computed — not mol.centreOn(cid),
-          // which would re-parse the CID through gemmi/coot and choke on a
-          // "||"-union. setOrigin takes the [x,y,z] directly.
-          dispatch(setOrigin(sphere.centre));
-          slabDepth = sphere.radius + (pad ?? 0);
-        }
-      }
-    } else if (scene.view.centre) {
+    // Camera target — where the view points. `centre` centres on a selection's
+    // centroid; `origin` is an explicit point. This is the ONLY thing that moves
+    // the camera; the slab below is independent (z-depth only).
+    if (scene.view.centre) {
       const { selection } = scene.view.centre;
       const cid = selection ?? "/*/*/*/*";
       const { mol, ref, error } = resolveViewMolecule(scene.view.centre.file, fileBindings);
@@ -615,10 +590,15 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
         });
       } else if (cid.includes("||")) {
         // mol.centreOn feeds gemmi a single CID; for a "||"-union compute the
-        // centroid ourselves and set the origin to it.
+        // centroid ourselves and set the origin to it. Moorhen's origin is the
+        // translation that brings a point to screen centre — i.e. the NEGATIVE of
+        // the coordinates (see centreOnGemmiAtoms, which returns -centroid). Our
+        // sphere.centre is the raw centroid, so negate it; otherwise the camera
+        // jumps to the point reflected through the molecule origin.
         const sphere = selectionBoundingSphere(mol, cid);
         if (sphere) {
-          dispatch(setOrigin(sphere.centre));
+          const [cx, cy, cz] = sphere.centre;
+          dispatch(setOrigin([-cx, -cy, -cz]));
         } else {
           result.log.push({
             file: ref,
@@ -639,6 +619,34 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       }
     } else if (scene.view.origin) {
       dispatch(setOrigin(scene.view.origin));
+    }
+
+    // Slab: a z-depth clip/fog window ONLY (see the clip block below). It sizes
+    // the depth to the selection's bounding radius but does NOT move the camera —
+    // the clip brackets the current origin in depth, so a slab only "contains"
+    // its selection when `centre` has put the origin on that selection. centre
+    // and slab are independent and both settable; pair them to frame a selection.
+    let slabDepth: number | undefined;
+    if (scene.view.slab) {
+      const { selection, pad } = scene.view.slab;
+      const cid = selection ?? "/*/*/*/*";
+      const { mol, ref, error } = resolveViewMolecule(scene.view.slab.file, fileBindings);
+      if (error || !mol) {
+        result.log.push({
+          file: ref, domain: "view.slab",
+          message: `cannot slab: ${error}`,
+        });
+      } else {
+        const sphere = selectionBoundingSphere(mol, cid);
+        if (!sphere) {
+          result.log.push({
+            file: ref, domain: "view.slab",
+            message: `slab: selection "${cid}" matched no atoms (or gemmi unavailable)`,
+          });
+        } else {
+          slabDepth = sphere.radius + (pad ?? 0);
+        }
+      }
     }
     if (scene.view.quat) dispatch(setQuat(scene.view.quat));
     if (scene.view.zoom !== undefined) dispatch(setZoom(scene.view.zoom));
