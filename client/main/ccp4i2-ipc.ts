@@ -1,6 +1,6 @@
 import { BrowserWindow } from "electron";
 import { startDjangoServer } from "./ccp4i2-django-server";
-import { platform } from "node:os";
+import os, { platform } from "node:os";
 import Store from "electron-store";
 import { dialog } from "electron";
 import path from "node:path";
@@ -10,6 +10,10 @@ import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
 import { loadPreferences, updatePreferences, sqliteUrl } from "./ccp4i2-preferences";
+import {
+  CCP4I2_SERVER_VERSION_FLOOR,
+  meetsServerVersionFloor,
+} from "./ccp4i2-server-version";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -341,29 +345,91 @@ export const installIpcHandlers = (
     });
   });
 
-  ipcMain.on("check-requirements", (event, _data) => {
+  // Probe whether this python can actually run the django backend, and reply on
+  // "message-from-main" with requirements-exist (carrying the version) or
+  // requirements-missing (carrying a real diagnostic). Shared by the
+  // check-requirements handler and the post-install recheck so the readiness
+  // verdict — including the packaged version-floor gate — is computed in exactly
+  // one place. `send` is event.reply / event.sender.send (same target).
+  const runRequirementsProbe = (send: (payload: any) => void) => {
     const projectRoot = store.get("projectRoot") || "";
     const CCP4Dir = store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
 
-
     // Validate that the executable exists before spawning
     if (!pythonPath) {
-      event.reply("message-from-main", {
+      send({
         message: "requirements-missing",
         error: `Python not found. Please configure CCP4 installation or project virtual environment.`,
       });
       return;
     }
 
+    // Probe the *actual* server entrypoint rather than a transitive dependency.
+    // `import rest_framework` only proves some DRF is installed somewhere; it
+    // says nothing about whether ccp4i2 is present, importable, or which
+    // version. Instead we construct the same ASGI application uvicorn loads at
+    // launch (ccp4i2.config.asgi:application) — if that succeeds the server
+    // will boot — and emit ccp4i2.__version__ so the UI can show / gate on it.
+    // Run with the same DJANGO_SETTINGS_MODULE and, in dev, the same server/
+    // cwd as startDjangoServer so the probe can't diverge from the real launch.
+    //
+    // The probe is written to a temp .py file and run as `python <file>` rather
+    // than `python -c "<multi-statement string>"`. On Windows the multi-line
+    // string (quotes, JSON braces, semicolons) would be mangled by cmd.exe if
+    // spawned with shell:true, and ccp4-python is a .bat that historically
+    // wanted a shell. A plain file path is a single clean argv that needs no
+    // shell on any platform — matching the (working, shell-less) install spawn.
+    const probeSource = [
+      "import json, ccp4i2",
+      "from ccp4i2.config.asgi import application",
+      'print(json.dumps({"version": ccp4i2.__version__}))',
+      "",
+    ].join("\n");
+
+    let probePath: string;
+    try {
+      probePath = path.join(os.tmpdir(), `ccp4i2-probe-${process.pid}.py`);
+      fs.writeFileSync(probePath, probeSource);
+    } catch (error) {
+      send({
+        message: "requirements-missing",
+        error: `Could not write probe file: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      });
+      return;
+    }
+
+    const cleanupProbe = () => {
+      try {
+        fs.unlinkSync(probePath);
+      } catch {
+        /* best-effort */
+      }
+    };
+
+    const serverCwd = isDev
+      ? path.join(process.cwd(), "..", "server")
+      : undefined;
+
+    let stdoutBuf = "";
     let errorOutput = "";
 
     // Add error handling for spawn
     try {
-      const child = spawn(pythonPath, ["-c", "import rest_framework"], {
-        stdio: ["ignore", "ignore", "pipe"],
-        // Add shell option for Windows compatibility
-        shell: process.platform === "win32",
+      const child = spawn(pythonPath, [probePath], {
+        stdio: ["ignore", "pipe", "pipe"],
+        env: {
+          ...process.env,
+          DJANGO_SETTINGS_MODULE: "ccp4i2.config.settings",
+          MPLBACKEND: "Agg",
+        },
+        ...(serverCwd && { cwd: serverCwd }),
+      });
+
+      child.stdout?.on("data", (data: Buffer) => {
+        stdoutBuf += data.toString();
       });
 
       child.stderr?.on("data", (data: Buffer) => {
@@ -371,10 +437,33 @@ export const installIpcHandlers = (
       });
 
       child.on("exit", (code: number) => {
+        cleanupProbe();
         if (code === 0) {
-          event.reply("message-from-main", { message: "requirements-exist" });
+          let version: string | undefined;
+          try {
+            version = JSON.parse(stdoutBuf.trim()).version;
+          } catch {
+            // ASGI app built but version line unparseable — still "ready".
+          }
+          // Packaged app: an importable-but-stale backend is "not ready" so the
+          // UI can offer an upgrade. Dev mode (unpacked) uses the local tree and
+          // is never floor-gated — whatever the checkout provides is what runs.
+          if (!isDev && !meetsServerVersionFloor(version)) {
+            send({
+              message: "requirements-missing",
+              version,
+              error:
+                `Installed ccp4i2 ${version || "(unknown)"} is older than the ` +
+                `required ${CCP4I2_SERVER_VERSION_FLOOR}. Click Install to upgrade.`,
+            });
+            return;
+          }
+          send({
+            message: "requirements-exist",
+            version,
+          });
         } else {
-          event.reply("message-from-main", {
+          send({
             message: "requirements-missing",
             error: errorOutput.trim() || `Process exited with code ${code}`,
           });
@@ -382,32 +471,28 @@ export const installIpcHandlers = (
       });
 
       child.on("error", (error: Error) => {
+        cleanupProbe();
         console.error("Spawn error:", error);
-        event.reply("message-from-main", {
+        send({
           message: "requirements-missing",
           error: `Failed to execute: ${error.message}`,
         });
       });
     } catch (error) {
+      cleanupProbe();
       console.error("Failed to spawn process:", error);
-      event.reply("message-from-main", {
+      send({
         message: "requirements-missing",
         error: `Spawn failed: ${error instanceof Error ? error.message : String(error)}`,
       });
     }
+  };
+
+  ipcMain.on("check-requirements", (event, _data) => {
+    runRequirementsProbe((payload) => event.reply("message-from-main", payload));
   });
 
   ipcMain.on("install-requirements", (event, _config) => {
-    // In packaged mode, dependencies are managed by the CCP4 installation (pip install)
-    if (!isDev) {
-      event.sender.send("message-from-main", {
-        message: "install-requirements-progress",
-        status: "failed",
-        output: "Dependencies are managed by the CCP4 installation. Please reinstall or update CCP4.",
-      });
-      return;
-    }
-
     const projectRoot = store.get("projectRoot") || "";
     const CCP4Dir = store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
@@ -421,19 +506,35 @@ export const installIpcHandlers = (
       return;
     }
 
-    // In dev mode, install from pyproject.toml
-    const serverPath = path.join(process.cwd(), "..", "server");
-    const requirementsPath = path.join(serverPath, "requirements.txt");
+    // Mode is keyed strictly on app.isPackaged (isDev):
+    //   • Packaged → install the django backend from PyPI as a version floor.
+    //     `--upgrade "ccp4i2>=<floor>"` brings a stale/absent backend up to at
+    //     least the tested minimum while still letting users pick up newer
+    //     compatible releases without an app rebuild.
+    //   • Dev (unpacked) → editable install of the local checkout so the
+    //     developer's tree is what runs. `-e ./server` also pulls the same
+    //     declared dependencies (it reads pyproject.toml), so it strictly
+    //     supersedes the old `-r requirements.txt` install.
+    const pipArgs = isDev
+      ? [
+          "-m",
+          "pip",
+          "install",
+          "-e",
+          path.join(process.cwd(), "..", "server"),
+          "--verbose",
+        ]
+      : [
+          "-m",
+          "pip",
+          "install",
+          "--upgrade",
+          `ccp4i2>=${CCP4I2_SERVER_VERSION_FLOOR}`,
+          "--verbose",
+        ];
 
     // Spawn pip install process
-    const pipProcess = spawn(pythonPath, [
-      "-m",
-      "pip",
-      "install",
-      "-r",
-      requirementsPath,
-      "--verbose", // For more detailed output
-    ]);
+    const pipProcess = spawn(pythonPath, pipArgs);
 
     // Send start message
     event.sender.send("message-from-main", {
@@ -461,25 +562,49 @@ export const installIpcHandlers = (
       });
     });
 
-    // Handle completion
+    // Handle completion.
+    //
+    // Pip's exit code is NOT treated as the authority on success. Hand-rolled
+    // CCP4 python environments can carry distributions with corrupt *.dist-info
+    // metadata (e.g. meson/scons with a missing `Version:` field); modern pip
+    // iterates all installed dists to print its post-install summary and
+    // crashes with BadMetadata AFTER the requested package is already fully
+    // installed — exiting non-zero on a successful install. The real authority
+    // is the probe: can we import and build ccp4i2.config.asgi (and, packaged,
+    // meet the version floor)? So on ANY exit we run the probe and let its
+    // verdict decide. Pip's own output is surfaced as the diagnostic only if
+    // the probe also says the backend isn't usable.
     pipProcess.on("close", (code) => {
-      if (code === 0) {
-        event.sender.send("message-from-main", {
-          message: "install-requirements-progress",
-          status: "completed",
-          output: "All requirements installed successfully",
-        });
-        // Recheck requirements
-        event.sender.send("message-from-main", {
-          message: "requirements-exist",
-        });
-      } else {
-        event.sender.send("message-from-main", {
-          message: "install-requirements-progress",
-          status: "failed",
-          output: `Installation failed with code ${code}`,
-        });
-      }
+      runRequirementsProbe((payload) => {
+        const probeSucceeded = payload.message === "requirements-exist";
+        if (probeSucceeded) {
+          // Backend imports — install effectively succeeded, even if pip exited
+          // non-zero on a broken-metadata summary crash.
+          event.sender.send("message-from-main", {
+            message: "install-requirements-progress",
+            status: "completed",
+            output:
+              code === 0
+                ? "ccp4i2 installed successfully"
+                : `ccp4i2 installed successfully (pip exited ${code}, likely ` +
+                  `a benign metadata-summary error in the CCP4 environment; ` +
+                  `the backend imports correctly).`,
+          });
+        } else {
+          // Backend still not usable — a genuine failure. Prefer pip's exit
+          // code context, fall back to the probe's diagnostic.
+          event.sender.send("message-from-main", {
+            message: "install-requirements-progress",
+            status: "failed",
+            output:
+              `Installation did not produce a usable ccp4i2 backend ` +
+              `(pip exit ${code}). ${payload.error || ""}`.trim(),
+          });
+        }
+        // Forward the probe verdict itself so the config page updates its
+        // requirements/version state (requirements-exist | requirements-missing).
+        event.sender.send("message-from-main", payload);
+      });
     });
 
     // Handle errors

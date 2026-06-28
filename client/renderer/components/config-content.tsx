@@ -29,6 +29,7 @@ export const ConfigContent: React.FC = () => {
   const { devMode, setDevMode } = useCCP4i2Window();
   const [existingFiles, setExistingFiles] = useState<any | null>(null);
   const [requirementsExist, setRequirementsExist] = useState<boolean>(false);
+  const [serverVersion, setServerVersion] = useState<string | null>(null);
   const { setMessage } = usePopcorn();
   const [installProgress, setInstallProgress] = useState<{
     isInstalling: boolean;
@@ -89,8 +90,10 @@ export const ConfigContent: React.FC = () => {
         }
       } else if (data.message === "requirements-exist") {
         setRequirementsExist(true);
+        setServerVersion(data.version || null);
       } else if (data.message === "requirements-missing") {
         setRequirementsExist(false);
+        setServerVersion(null);
         setMessage(data.error || "Requirements are missing");
       }
       // Add new handler for installation progress
@@ -371,7 +374,11 @@ export const ConfigContent: React.FC = () => {
                   Requirements
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ flex: 1 }}>
-                  {requirementsExist ? "Installed" : "Not installed"}
+                  {requirementsExist
+                    ? serverVersion
+                      ? `ccp4i2 ${serverVersion}`
+                      : "Installed"
+                    : "Not installed"}
                 </Typography>
                 <Button
                   size="small"
