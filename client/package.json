@@ -90,10 +90,13 @@
     "vis-data": "^8.0.3",
     "vis-network": "^10.0.2",
     "xml2js": "^0.6.2",
-    "yaml": "^2.9.0"
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@electron/packager": "^18.3.6",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/chart.js": "^4.0.1",
     "@types/cytoscape": "^3.21.9",
     "@types/electron": "^1.4.38",
@@ -108,6 +111,7 @@
     "electron": "^33.4.11",
     "electron-builder": "latest",
     "install": "^0.13.0",
+    "jsdom": "^26.1.0",
     "npm": "^11.3.0",
     "vite": "latest",
     "vitest": "^2.1.9"

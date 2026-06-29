@@ -51,7 +51,9 @@ import {
 import { Editor } from "@monaco-editor/react";
 import JSZip from "jszip";
 
-import { parseScene, serialiseSceneWithComments, SceneParseError } from "../../lib/moorhen-scene";
+import { parseScene, SceneParseError } from "../../lib/scene";
+import { sceneMarkers } from "../../lib/scene/yaml-markers";
+import { serialiseSceneWithComments } from "../../lib/moorhen-scene";
 import type { MoorhenScene } from "../../types/moorhen-scene";
 import type {
   SceneResolveResult,
@@ -156,6 +158,28 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   autoApplyInitial,
 }) => {
   const [yamlText, setYamlText] = useState<string>("");
+  // Monaco refs + live conformance markers (red squiggles) from the Zod
+  // contract — see lib/scene/yaml-markers. No monaco-yaml/worker setup needed.
+  // Loosely typed: monaco-editor is CDN-loaded, not a typed dependency here.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const monacoRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const editorRef = useRef<any>(null);
+  const refreshMarkers = useCallback(() => {
+    const monaco = monacoRef.current;
+    const editor = editorRef.current;
+    if (!monaco || !editor) return;
+    const model = editor.getModel();
+    if (!model) return;
+    monaco.editor.setModelMarkers(
+      model,
+      "moorhen-scene",
+      sceneMarkers(yamlText, monaco.MarkerSeverity.Error),
+    );
+  }, [yamlText]);
+  useEffect(() => {
+    refreshMarkers();
+  }, [refreshMarkers]);
 
   // Seed the editor with a supplied scene (e.g. the campaign summary) the
   // first time it arrives, but only while the editor is still empty so we
@@ -643,6 +667,12 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
             placeholder: DEFAULT_PLACEHOLDER,
           }}
           onChange={(v) => setYamlText(v ?? "")}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onMount={(editor: any, monaco: any) => {
+            editorRef.current = editor;
+            monacoRef.current = monaco;
+            refreshMarkers();
+          }}
         />
       </Box>
 

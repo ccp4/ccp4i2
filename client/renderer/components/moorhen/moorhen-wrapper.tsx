@@ -35,7 +35,7 @@ import { MoorhenCcp4i2TabbedPanel } from "./moorhen-ccp4i2-tabbed-panel";
 import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
-import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
+import { parseScene, serialiseScene } from "../../lib/scene";
 import {
   applyScene,
   SceneFileFetcher,

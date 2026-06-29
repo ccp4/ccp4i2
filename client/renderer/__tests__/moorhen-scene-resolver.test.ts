@@ -9,13 +9,48 @@
 import { describe, it, expect } from "vitest";
 import {
   clampRangeToPresent,
+  directionToLightPosition,
   expandLsqMatches,
+  geometryToM2tParams,
   isFetchable,
   resolveChainSelector,
   splitMultiCid,
 } from "../lib/moorhen-scene-resolver";
 
 const present = (...nums: number[]) => new Set(nums);
+
+describe("geometryToM2tParams (honoured geometry → Moorhen m2tParameters)", () => {
+  it("maps each field to its m2tParameters key, merged onto the base", () => {
+    const base = { ribbonStyleHelixWidth: 1.0, cylindersStyleCylinderRadius: 0.1 };
+    const out = geometryToM2tParams(
+      { bondRadius: 0.18, probeRadius: 1.4, ribbonHelixWidth: 1.4 },
+      base,
+    );
+    expect(out.cylindersStyleCylinderRadius).toBe(0.18); // overrides base
+    expect(out.surfaceStyleProbeRadius).toBe(1.4);
+    expect(out.ribbonStyleHelixWidth).toBe(1.4);
+  });
+
+  it("leaves unspecified params untouched", () => {
+    const out = geometryToM2tParams({ bondRadius: 0.2 }, { foo: 1 });
+    expect(out.foo).toBe(1);
+    expect(out.cylindersStyleCylinderRadius).toBe(0.2);
+    expect("surfaceStyleProbeRadius" in out).toBe(false);
+  });
+});
+
+describe("directionToLightPosition (scene direction → Moorhen lightPosition)", () => {
+  it("normalises to Moorhen's default magnitude with w=1", () => {
+    expect(directionToLightPosition([0, 0, 1])).toEqual([0, 0, 60, 1]);
+  });
+  it("preserves direction but fixes the magnitude (not passed raw)", () => {
+    const p = directionToLightPosition([0.2, 0.2, 1.0]);
+    expect(Math.hypot(p[0], p[1], p[2])).toBeCloseTo(60, 5);
+    expect(p[3]).toBe(1);
+    // direction preserved: ratios match the input
+    expect(p[0] / p[2]).toBeCloseTo(0.2, 5);
+  });
+});
 
 describe("clampRangeToPresent", () => {
   it("returns the request unchanged when all residues are present", () => {
@@ -116,8 +151,8 @@ describe("isFetchable", () => {
     expect(isFetchable({ name: "x", fileId: 42 })).toBe(false);
   });
 
-  it("returns false for a path-only ref (we don't read local paths from the browser)", () => {
-    expect(isFetchable({ name: "x", path: "/abs/foo.pdb" })).toBe(false);
+  it("returns false for a relativeUrl-only ref (resolver can't fetch it standalone)", () => {
+    expect(isFetchable({ name: "x", relativeUrl: "/api/proxy/pdbe/x.cif" })).toBe(false);
   });
 
   it("returns false for an empty ref", () => {

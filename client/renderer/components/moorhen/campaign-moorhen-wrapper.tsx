@@ -68,7 +68,7 @@ import {
   SceneMapFetcher,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
-import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
+import { parseScene, serialiseScene } from "../../lib/scene";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
