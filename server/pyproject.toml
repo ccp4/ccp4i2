@@ -98,12 +98,19 @@ version = { attr = "ccp4i2.__version__" }
 [tool.setuptools.package-data]
 ccp4i2 = ["**/*"]
 
-# Keep the wheel lean: demo_data is ~417 MB (far over PyPI limits) and is only
-# needed when running the test/demo workflows from a repo checkout, not at
-# runtime from an installed package. It is distributed out-of-band (release asset
-# / fetch helper). This drops the wheel from >400 MB to ~50 MB. (The bundled test
-# suite ~1 MB and in-app help under docs/ ~38 MB are retained for now; either can
-# be trimmed later if an even slimmer wheel is wanted.)
+# Keep the wheel lean. The big-ticket exclusions live in MANIFEST.in:
+#   demo_data (~417 MB) — test/demo fixtures, over PyPI's 100 MB per-file limit
+#   docs      (~41 MB)  — legacy Qt-era HTML help; the app links to the hosted
+#                         site https://ccp4i2.gitlab.io/rstdocs/, not this dir
+#   tests     (~25 MB)  — test suite, never needed at runtime
+# None are read at runtime by an installed package; all remain available from a
+# repo checkout. Pruning them takes the wheel/sdist from ~197 MB to ~10 MB.
+#
+# IMPORTANT: the authoritative exclusion is MANIFEST.in (`prune ...`). The
+# exclude-package-data rules below do NOT reliably override the recursive
+# package-data include ("**/*") above in current setuptools — demo_data leaked
+# into the wheel despite them until MANIFEST.in was added. Keep both, but
+# MANIFEST.in is what actually works.
 [tool.setuptools.exclude-package-data]
 ccp4i2 = [
     "demo_data/*",

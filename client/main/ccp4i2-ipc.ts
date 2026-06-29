@@ -1,15 +1,19 @@
 import { BrowserWindow } from "electron";
 import { startDjangoServer } from "./ccp4i2-django-server";
-import { platform } from "node:os";
+import os, { platform } from "node:os";
 import Store from "electron-store";
 import { dialog } from "electron";
 import path from "node:path";
 import fs from "node:fs";
-import { spawn, ChildProcessWithoutNullStreams } from "node:child_process";
+import { spawn, execSync, ChildProcessWithoutNullStreams } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
 import { loadPreferences, updatePreferences, sqliteUrl } from "./ccp4i2-preferences";
+import {
+  CCP4I2_SERVER_VERSION_FLOOR,
+  meetsServerVersionFloor,
+} from "./ccp4i2-server-version";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -341,29 +345,91 @@ export const installIpcHandlers = (
     });
   });
 
-  ipcMain.on("check-requirements", (event, _data) => {
+  // Probe whether this python can actually run the django backend, and reply on
+  // "message-from-main" with requirements-exist (carrying the version) or
+  // requirements-missing (carrying a real diagnostic). Shared by the
+  // check-requirements handler and the post-install recheck so the readiness
+  // verdict — including the packaged version-floor gate — is computed in exactly
+  // one place. `send` is event.reply / event.sender.send (same target).
+  const runRequirementsProbe = (send: (payload: any) => void) => {
     const projectRoot = store.get("projectRoot") || "";
     const CCP4Dir = store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
 
-
     // Validate that the executable exists before spawning
     if (!pythonPath) {
-      event.reply("message-from-main", {
+      send({
         message: "requirements-missing",
         error: `Python not found. Please configure CCP4 installation or project virtual environment.`,
       });
       return;
     }
 
+    // Probe the *actual* server entrypoint rather than a transitive dependency.
+    // `import rest_framework` only proves some DRF is installed somewhere; it
+    // says nothing about whether ccp4i2 is present, importable, or which
+    // version. Instead we construct the same ASGI application uvicorn loads at
+    // launch (ccp4i2.config.asgi:application) — if that succeeds the server
+    // will boot — and emit ccp4i2.__version__ so the UI can show / gate on it.
+    // Run with the same DJANGO_SETTINGS_MODULE and, in dev, the same server/
+    // cwd as startDjangoServer so the probe can't diverge from the real launch.
+    //
+    // The probe is written to a temp .py file and run as `python <file>` rather
+    // than `python -c "<multi-statement string>"`. On Windows the multi-line
+    // string (quotes, JSON braces, semicolons) would be mangled by cmd.exe if
+    // spawned with shell:true, and ccp4-python is a .bat that historically
+    // wanted a shell. A plain file path is a single clean argv that needs no
+    // shell on any platform — matching the (working, shell-less) install spawn.
+    const probeSource = [
+      "import json, ccp4i2",
+      "from ccp4i2.config.asgi import application",
+      'print(json.dumps({"version": ccp4i2.__version__}))',
+      "",
+    ].join("\n");
+
+    let probePath: string;
+    try {
+      probePath = path.join(os.tmpdir(), `ccp4i2-probe-${process.pid}.py`);
+      fs.writeFileSync(probePath, probeSource);
+    } catch (error) {
+      send({
+        message: "requirements-missing",
+        error: `Could not write probe file: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      });
+      return;
+    }
+
+    const cleanupProbe = () => {
+      try {
+        fs.unlinkSync(probePath);
+      } catch {
+        /* best-effort */
+      }
+    };
+
+    const serverCwd = isDev
+      ? path.join(process.cwd(), "..", "server")
+      : undefined;
+
+    let stdoutBuf = "";
     let errorOutput = "";
 
     // Add error handling for spawn
     try {
-      const child = spawn(pythonPath, ["-c", "import rest_framework"], {
-        stdio: ["ignore", "ignore", "pipe"],
-        // Add shell option for Windows compatibility
-        shell: process.platform === "win32",
+      const child = spawn(pythonPath, [probePath], {
+        stdio: ["ignore", "pipe", "pipe"],
+        env: {
+          ...process.env,
+          DJANGO_SETTINGS_MODULE: "ccp4i2.config.settings",
+          MPLBACKEND: "Agg",
+        },
+        ...(serverCwd && { cwd: serverCwd }),
+      });
+
+      child.stdout?.on("data", (data: Buffer) => {
+        stdoutBuf += data.toString();
       });
 
       child.stderr?.on("data", (data: Buffer) => {
@@ -371,10 +437,33 @@ export const installIpcHandlers = (
       });
 
       child.on("exit", (code: number) => {
+        cleanupProbe();
         if (code === 0) {
-          event.reply("message-from-main", { message: "requirements-exist" });
+          let version: string | undefined;
+          try {
+            version = JSON.parse(stdoutBuf.trim()).version;
+          } catch {
+            // ASGI app built but version line unparseable — still "ready".
+          }
+          // Packaged app: an importable-but-stale backend is "not ready" so the
+          // UI can offer an upgrade. Dev mode (unpacked) uses the local tree and
+          // is never floor-gated — whatever the checkout provides is what runs.
+          if (!isDev && !meetsServerVersionFloor(version)) {
+            send({
+              message: "requirements-missing",
+              version,
+              error:
+                `Installed ccp4i2 ${version || "(unknown)"} is older than the ` +
+                `required ${CCP4I2_SERVER_VERSION_FLOOR}. Click Install to upgrade.`,
+            });
+            return;
+          }
+          send({
+            message: "requirements-exist",
+            version,
+          });
         } else {
-          event.reply("message-from-main", {
+          send({
             message: "requirements-missing",
             error: errorOutput.trim() || `Process exited with code ${code}`,
           });
@@ -382,32 +471,28 @@ export const installIpcHandlers = (
       });
 
       child.on("error", (error: Error) => {
+        cleanupProbe();
         console.error("Spawn error:", error);
-        event.reply("message-from-main", {
+        send({
           message: "requirements-missing",
           error: `Failed to execute: ${error.message}`,
         });
       });
     } catch (error) {
+      cleanupProbe();
       console.error("Failed to spawn process:", error);
-      event.reply("message-from-main", {
+      send({
         message: "requirements-missing",
         error: `Spawn failed: ${error instanceof Error ? error.message : String(error)}`,
       });
     }
+  };
+
+  ipcMain.on("check-requirements", (event, _data) => {
+    runRequirementsProbe((payload) => event.reply("message-from-main", payload));
   });
 
   ipcMain.on("install-requirements", (event, _config) => {
-    // In packaged mode, dependencies are managed by the CCP4 installation (pip install)
-    if (!isDev) {
-      event.sender.send("message-from-main", {
-        message: "install-requirements-progress",
-        status: "failed",
-        output: "Dependencies are managed by the CCP4 installation. Please reinstall or update CCP4.",
-      });
-      return;
-    }
-
     const projectRoot = store.get("projectRoot") || "";
     const CCP4Dir = store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
@@ -421,74 +506,148 @@ export const installIpcHandlers = (
       return;
     }
 
-    // In dev mode, install from pyproject.toml
-    const serverPath = path.join(process.cwd(), "..", "server");
-    const requirementsPath = path.join(serverPath, "requirements.txt");
-
-    // Spawn pip install process
-    const pipProcess = spawn(pythonPath, [
-      "-m",
-      "pip",
-      "install",
-      "-r",
-      requirementsPath,
-      "--verbose", // For more detailed output
-    ]);
-
-    // Send start message
-    event.sender.send("message-from-main", {
-      message: "install-requirements-progress",
-      status: "started",
-    });
-
-    // Capture stdout
-    pipProcess.stdout.on("data", (data) => {
-      const output = data.toString();
+    const sendProgress = (status: string, output?: string) =>
       event.sender.send("message-from-main", {
         message: "install-requirements-progress",
-        status: "installing",
-        output: output,
+        status,
+        ...(output !== undefined && { output }),
       });
-    });
 
-    // Capture stderr (pip sends progress info here too)
-    pipProcess.stderr.on("data", (data) => {
-      const output = data.toString();
-      event.sender.send("message-from-main", {
-        message: "install-requirements-progress",
-        status: "installing",
-        output: output,
+    // Run one pip step, streaming stdout+stderr to the progress dialog. Resolves
+    // with the exit code (never rejects) so the caller can sequence steps and
+    // defer the success verdict to the probe. Pip's exit code is intentionally
+    // NOT treated as authoritative: hand-rolled CCP4 environments carry corrupt
+    // *.dist-info metadata that crashes pip's post-install summary (and even its
+    // resolver) AFTER the requested package is installed — a non-zero exit on a
+    // genuinely successful install. The probe is the authority.
+    const runPipStep = (args: string[]): Promise<number> =>
+      new Promise((resolve) => {
+        const proc = spawn(pythonPath, args);
+        proc.stdout.on("data", (d) => sendProgress("installing", d.toString()));
+        proc.stderr.on("data", (d) => sendProgress("installing", d.toString()));
+        proc.on("close", (code) => resolve(code ?? 0));
+        proc.on("error", (err) => {
+          sendProgress("installing", `Error: ${err.message}\n`);
+          resolve(-1);
+        });
       });
-    });
 
-    // Handle completion
-    pipProcess.on("close", (code) => {
-      if (code === 0) {
-        event.sender.send("message-from-main", {
-          message: "install-requirements-progress",
-          status: "completed",
-          output: "All requirements installed successfully",
-        });
-        // Recheck requirements
-        event.sender.send("message-from-main", {
-          message: "requirements-exist",
-        });
-      } else {
-        event.sender.send("message-from-main", {
-          message: "install-requirements-progress",
-          status: "failed",
-          output: `Installation failed with code ${code}`,
-        });
+    sendProgress("started");
+
+    // Build the install step(s), keyed strictly on app.isPackaged (isDev).
+    //
+    // Dev (unpacked): editable install of the local checkout so the developer's
+    // tree is what runs. `-e ./server` reads pyproject.toml and pulls deps
+    // normally — a dev .venv is clean, so the resolver works fine here.
+    //
+    // Packaged: install into the user's ccp4-python. Those distros carry corrupt
+    // *.dist-info that crashes pip's RESOLVER, so a normal `pip install ccp4i2`
+    // aborts before installing anything. We therefore do a TWO-STEP --no-deps
+    // install (the resolver is never invoked):
+    //   1. --no-deps ccp4i2>=floor      → the wheel + its bundled runtime lock
+    //   2. --no-deps -r <that lock>      → the curated dep closure (modern
+    //      django/asgiref to clear CCP4's stale-stack skew; CCP4's ABI-native
+    //      numpy/gemmi/lxml are deliberately excluded from the lock, untouched).
+    // The lock ships inside the package at ccp4i2/requirements-runtime.txt; we
+    // resolve its path via ccp4i2.__file__ after step 1. See that file's header.
+    const runInstall = async (): Promise<void> => {
+      if (isDev) {
+        const code = await runPipStep([
+          "-m", "pip", "install", "-e",
+          path.join(process.cwd(), "..", "server"),
+          "--verbose",
+        ]);
+        finish(code);
+        return;
       }
-    });
 
-    // Handle errors
-    pipProcess.on("error", (error) => {
-      event.sender.send("message-from-main", {
-        message: "install-requirements-progress",
-        status: "failed",
-        output: `Error: ${error.message}`,
+      // Step 1: the wheel itself (and, with it, the runtime lock on disk).
+      sendProgress("installing", `\n[1/2] Installing ccp4i2 (no-deps)…\n`);
+      const code1 = await runPipStep([
+        "-m", "pip", "install", "--no-deps", "--upgrade",
+        `ccp4i2>=${CCP4I2_SERVER_VERSION_FLOOR}`, "--verbose",
+      ]);
+
+      // Locate the bundled lock via the just-installed package. Resolve the
+      // package dir and the lock separately so we can tell "ccp4i2 absent" from
+      // "ccp4i2 present but lock missing" — the latter happens when an OLD wheel
+      // (published before the lock existed, e.g. 3.0.0) is what got installed.
+      let pkgDir: string | null = null;
+      try {
+        pkgDir = execSync(
+          `"${pythonPath}" -c "import ccp4i2, os; print(os.path.dirname(ccp4i2.__file__))"`,
+          { encoding: "utf8" }
+        ).trim();
+        if (!pkgDir || !fs.existsSync(pkgDir)) pkgDir = null;
+      } catch {
+        pkgDir = null;
+      }
+      const lockPath = pkgDir
+        ? path.join(pkgDir, "requirements-runtime.txt")
+        : null;
+
+      if (lockPath && fs.existsSync(lockPath)) {
+        sendProgress("installing", `\n[2/2] Installing dependencies from runtime lock…\n`);
+        // --ignore-installed is ESSENTIAL, not optional. --no-deps alone does
+        // NOT fully avoid pip's resolver: when a locked dep is already installed
+        // at a different version (e.g. CCP4's stale asgiref 3.3 vs the lock's
+        // 3.11), pip's _get_installed_candidate reads installed_dist.version to
+        // check the specifier — and crashes on the corrupt *.dist-info in CCP4
+        // environments, BEFORE upgrading. --ignore-installed makes pip install
+        // the lock's versions outright without inspecting installed ones, so the
+        // stale django/asgiref are actually replaced. Safe because the lock is
+        // curated to EXCLUDE CCP4's ABI-native packages (numpy/gemmi/lxml/…), so
+        // nothing compiled is overwritten.
+        await runPipStep([
+          "-m", "pip", "install", "--no-deps", "--ignore-installed",
+          "-r", lockPath, "--verbose",
+        ]);
+      } else if (pkgDir) {
+        // ccp4i2 IS installed, but its wheel predates requirements-runtime.txt
+        // (published before the lock existed). Its dependency closure — notably
+        // a modern django/asgiref — cannot be applied, so the server import will
+        // fail the asgiref skew. Surface this precisely rather than blaming step 1.
+        sendProgress(
+          "installing",
+          `\n[2/2] Skipped: ccp4i2 is installed but ships no ` +
+            `requirements-runtime.txt — this is an OLD wheel (pre-3.0.1). ` +
+            `Its dependencies cannot be applied. Update the app (which pins a ` +
+            `newer floor) so a lock-bearing wheel is installed.\n`
+        );
+      } else {
+        sendProgress(
+          "installing",
+          `\n[2/2] Skipped: ccp4i2 did not import after step 1 — the install ` +
+            `did not produce an importable package. The probe will report why.\n`
+        );
+      }
+      finish(code1);
+    };
+
+    // After install, the probe — not pip's exit code — decides success.
+    const finish = (lastCode: number) => {
+      runRequirementsProbe((payload) => {
+        const ok = payload.message === "requirements-exist";
+        if (ok) {
+          sendProgress(
+            "completed",
+            lastCode === 0
+              ? "ccp4i2 installed successfully"
+              : `ccp4i2 installed successfully (pip exited ${lastCode}; a benign ` +
+                  `metadata error in the CCP4 environment — the backend imports correctly).`
+          );
+        } else {
+          sendProgress(
+            "failed",
+            `Installation did not produce a usable ccp4i2 backend ` +
+              `(pip exit ${lastCode}). ${payload.error || ""}`.trim()
+          );
+        }
+        // Forward the probe verdict so the config page updates requirements/version.
+        event.sender.send("message-from-main", payload);
       });
-    });
+    };
+
+    void runInstall();
   });
 };

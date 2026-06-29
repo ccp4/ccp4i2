@@ -13,7 +13,7 @@ from pathlib import Path
 
 MAJOR = 3
 MINOR = 0
-PATCH = 0
+PATCH = 1
 
 __version__ = f"{MAJOR}.{MINOR}.{PATCH}"
 __version_date__ = datetime(2026, 6, 15)
