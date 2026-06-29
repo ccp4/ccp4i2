@@ -206,6 +206,10 @@ A `colour` is one of:
 `by-domain` colours by the top-level `domains:` block: define domains
 (`name` + `selection` + `color`) and set `colour: by-domain` on the reps.
 
+Colour cascades over two levels (matching Moorhen's molecule-level colour):
+`element.colour` is the molecule-wide default inherited by every representation
+of that file, and a representation's own `colour` overrides it for that rep.
+
 ## Geometry and hints
 
 - `geometry` (per representation) is **honoured** — physical dimensions in

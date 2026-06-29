@@ -42,7 +42,7 @@ import {
   SceneMapFetcher,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
-import type { SceneFileRef } from "../../types/moorhen-scene";
+import type { SceneFileRef, SceneSuperpose } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 import { extractFileIdFromUniqueId } from "../../lib/moorhen-view-state";
 import {
@@ -785,6 +785,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // before each apply — keeps the fetcher callbacks stable while
   // letting per-apply asset maps reach them.
   const bundleAssetsRef = useRef<SceneBundleAssets>(new Map());
+  // Remember the last-applied scene's superpose so capture can re-emit it
+  // (SSM/LSQ move coords inside coot — nothing to lift from the molecule).
+  const lastAppliedSuperposeRef = useRef<SceneSuperpose[] | undefined>(undefined);
 
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
     async (ref: SceneFileRef) => {
@@ -1005,6 +1008,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // non-bundled apply.
       bundleAssetsRef.current = assets;
       const scene = parseScene(yamlText);
+      // Remember this scene's superpose so a later capture can re-emit it.
+      lastAppliedSuperposeRef.current = scene.superpose;
       // Live glRef snapshot for view.clip: { front, back } (clip = zoom*depth,
       // fog offset by fogClipOffset).
       const gl = (store.getState() as moorhen.State).glRef as unknown as {
@@ -1223,6 +1228,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       molecules,
       glRef: glRefState,
       sceneSettings: sceneSettingsState,
+      superpose: lastAppliedSuperposeRef.current,
       projectId: projectInfo?.id,
       projectName: projectInfo?.name,
       // First molecule's monomerLibraryPath is the canonical Moorhen

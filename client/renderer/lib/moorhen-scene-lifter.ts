@@ -35,6 +35,7 @@ import {
   SceneMap,
   SceneMapColumns,
   SceneRepresentation,
+  SceneSuperpose,
   SceneView,
 } from "../types/moorhen-scene";
 
@@ -79,6 +80,13 @@ export interface LiftCtx {
     depthBlurDepth?: number | null;
     doPerspectiveProjection?: boolean | null;
   };
+  /** Superpose directives from the LAST-applied scene, remembered by the host.
+   *  SSM/LSQ move coordinates *inside* coot (there is no display transform to
+   *  capture), so superposition can't be reverse-engineered from a lifted
+   *  molecule. Re-emitting the remembered directives — filtered to those whose
+   *  move/onto files are still present in the lift — keeps superposed scenes
+   *  round-tripping. */
+  superpose?: SceneSuperpose[];
   /** Optional: the ccp4i2 project UUID. If set, file refs get both
    *  projectId and (derivable) fileId. */
   projectId?: string;
@@ -187,6 +195,17 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
 
   const hints = liftHints(ctx.glRef, ctx.sceneSettings);
   if (hints) scene.hints = hints;
+
+  // Re-emit the last-applied superpose (coot moved the coords; there's no
+  // transform to capture). Keep only entries whose move + onto files survived
+  // into this lift, so we never emit a dangling reference.
+  if (ctx.superpose?.length) {
+    const fileNames = new Set((scene.files ?? []).map((f) => f.name));
+    const kept = ctx.superpose.filter(
+      (sp) => fileNames.has(sp.move) && fileNames.has(sp.onto),
+    );
+    if (kept.length) scene.superpose = kept;
+  }
 
   const elements = ctx.molecules
     .map((mol, i) => liftElement(mol, scene.files?.[i]?.name ?? `mol${i}`))
