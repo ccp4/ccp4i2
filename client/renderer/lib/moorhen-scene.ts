@@ -1195,6 +1195,9 @@ function buildOrderedScene(scene: MoorhenScene): Record<string, unknown> {
   if (scene.view && hasAnyValue(scene.view)) {
     ordered.view = stripUndefined(scene.view);
   }
+  if (scene.hints && hasAnyValue(scene.hints)) {
+    ordered.hints = stripUndefined(scene.hints);
+  }
   if (scene.resolver && scene.resolver.onMissingResidues) {
     ordered.resolver = { onMissingResidues: scene.resolver.onMissingResidues };
   }
