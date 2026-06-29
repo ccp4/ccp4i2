@@ -15,6 +15,7 @@ import {
   serialiseScene,
   serialiseSceneWithComments,
 } from "../lib/moorhen-scene";
+import { parseScene as parseSceneZod } from "../lib/scene";
 
 // Build a fake-but-valid molecule by hand. Cast to moorhen.Molecule via
 // unknown — the lifter only reads `name`, `molNo`, `uniqueId`, and
@@ -45,6 +46,70 @@ const fakeGlRef = {
   quat: [0, 0, 0, -1],
   zoom: 1.5,
 };
+
+describe("liftHints (lighting + effects capture, emit-only-non-default)", () => {
+  const mols = [
+    fakeMol({
+      name: "m",
+      molNo: 0,
+      uniqueId: "https://e/x.cif",
+      representations: [
+        { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+      ],
+    }),
+  ];
+
+  it("emits no hints when lighting/effects are at Moorhen defaults", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: {
+        origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1,
+        lightPosition: [25, 25, 50, 1], ambient: [0.2, 0.2, 0.2, 1],
+        diffuse: [1, 1, 1, 1], specular: [0.6, 0.6, 0.6, 1], specularPower: 64,
+      },
+      sceneSettings: { doSSAO: null, doEdgeDetect: null },
+    });
+    expect(scene.hints).toBeUndefined();
+  });
+
+  it("captures non-default lighting: direction normalised, shininess, hex; defaults omitted", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: {
+        origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1,
+        lightPosition: [1, 1, 1, 1], specularPower: 24, ambient: [0.1, 0.1, 0.1, 1],
+      },
+    });
+    const l = scene.hints!.lighting!;
+    expect(l.direction![0]).toBeCloseTo(0.5774, 3);
+    expect(l.shininess).toBe(24);
+    expect(l.ambient).toBe("#1a1a1a");
+    expect(l.diffuse).toBeUndefined(); // not provided → omitted
+  });
+
+  it("captures effects that are on; off/false omitted", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: { origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1 },
+      sceneSettings: { doSSAO: true, ssaoRadius: 0.5, doEdgeDetect: true, doShadow: false },
+    });
+    expect(scene.hints!.effects!.ssao).toEqual({ enabled: true, radius: 0.5 });
+    expect(scene.hints!.effects!.edgeDetect).toEqual({ enabled: true });
+    expect(scene.hints!.effects!.shadows).toBeUndefined();
+  });
+
+  it("round-trips lift → serialise → Zod parse (the real capture path)", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: { origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1, lightPosition: [1, 1, 1, 1], specularPower: 24 },
+      sceneSettings: { doSSAO: true, doEdgeDetect: true },
+    });
+    const reparsed = parseSceneZod(serialiseScene(scene));
+    expect(reparsed.hints?.lighting?.shininess).toBe(24);
+    expect(reparsed.hints?.effects?.edgeDetect?.enabled).toBe(true);
+    expect(reparsed.hints?.effects?.ssao?.enabled).toBe(true);
+  });
+});
 
 describe("liftScene", () => {
   it("captures camera and a single file with a single visible representation", () => {

@@ -31,6 +31,7 @@ import {
   SceneDomain,
   SceneElement,
   SceneFileRef,
+  SceneHints,
   SceneMap,
   SceneMapColumns,
   SceneRepresentation,
@@ -44,7 +45,8 @@ import {
 export interface LiftCtx {
   /** The molecules currently in Moorhen. */
   molecules: moorhen.Molecule[];
-  /** glRef state (origin, quat, zoom, clip*, fog*). Pass `store.getState().glRef`. */
+  /** glRef state (origin, quat, zoom, clip*, fog*, + lighting). Pass
+   *  `store.getState().glRef`. The lighting fields feed hints.lighting. */
   glRef: {
     origin: number[] | Float32Array;
     quat: number[] | Float32Array;
@@ -53,6 +55,29 @@ export interface LiftCtx {
     clipEnd?: number;
     fogStart?: number;
     fogEnd?: number;
+    lightPosition?: number[] | Float32Array;
+    ambient?: number[] | Float32Array;
+    diffuse?: number[] | Float32Array;
+    specular?: number[] | Float32Array;
+    specularPower?: number;
+  };
+  /** sceneSettings slice (effect toggles + params). Pass
+   *  `store.getState().sceneSettings`. Feeds hints.effects. Optional — omit
+   *  and no effects are captured. */
+  sceneSettings?: {
+    doSSAO?: boolean | null;
+    ssaoRadius?: number | null;
+    ssaoBias?: number | null;
+    doEdgeDetect?: boolean | null;
+    edgeDetectDepthThreshold?: number | null;
+    edgeDetectNormalThreshold?: number | null;
+    edgeDetectDepthScale?: number | null;
+    edgeDetectNormalScale?: number | null;
+    doShadow?: boolean | null;
+    useOffScreenBuffers?: number | boolean | null;
+    depthBlurRadius?: number | null;
+    depthBlurDepth?: number | null;
+    doPerspectiveProjection?: boolean | null;
   };
   /** Optional: the ccp4i2 project UUID. If set, file refs get both
    *  projectId and (derivable) fileId. */
@@ -159,6 +184,9 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
 
   const view = liftView(ctx.glRef);
   if (view) scene.view = view;
+
+  const hints = liftHints(ctx.glRef, ctx.sceneSettings);
+  if (hints) scene.hints = hints;
 
   const elements = ctx.molecules
     .map((mol, i) => liftElement(mol, scene.files?.[i]?.name ?? `mol${i}`))
@@ -803,6 +831,98 @@ function liftView(glRef: LiftCtx["glRef"]): SceneView | undefined {
   if (typeof glRef.fogStart === "number") view.fogStart = glRef.fogStart;
   if (typeof glRef.fogEnd === "number") view.fogEnd = glRef.fogEnd;
   return Object.keys(view).length > 0 ? view : undefined;
+}
+
+// --------------------------------------------------------------------------
+// Hints (lighting + effects)
+// --------------------------------------------------------------------------
+
+// Moorhen defaults (glRefSlice). Emit-only-non-default: a captured scene omits
+// any value equal to these, so it stays terse and a viewer falls back to
+// Moorhen's own defaults for anything unspecified.
+const LIGHT_DEFAULTS = {
+  lightPosition: [25, 25, 50, 1],
+  ambient: [0.2, 0.2, 0.2, 1],
+  specular: [0.6, 0.6, 0.6, 1],
+  diffuse: [1, 1, 1, 1],
+  specularPower: 64,
+};
+
+function approxVecEqual(a: number[] | undefined, b: number[], eps = 1e-3): boolean {
+  return !!a && b.every((v, i) => Math.abs((a[i] ?? NaN) - v) < eps);
+}
+
+/** [r,g,b,a] in 0..1 → "#rrggbb" (alpha dropped — lights are opaque). */
+function rgbaToHex(rgba: number[]): string {
+  const h = (x: number) =>
+    Math.max(0, Math.min(255, Math.round(x * 255))).toString(16).padStart(2, "0");
+  return `#${h(rgba[0])}${h(rgba[1])}${h(rgba[2])}`;
+}
+
+/** Moorhen lightPosition (a position) → a unit direction. The resolver
+ *  re-scales on apply, so a unit vector round-trips. */
+function lightPositionToDirection(pos: number[]): [number, number, number] {
+  const [x, y, z] = pos;
+  const len = Math.hypot(x, y, z) || 1;
+  return [round(x / len, 4), round(y / len, 4), round(z / len, 4)];
+}
+
+/**
+ * Capture scene-global lighting + effects as hints — emit-only-non-default,
+ * the inverse of the resolver's applyHints. Returns undefined when nothing
+ * differs from Moorhen's defaults, so most scenes carry no `hints` at all.
+ */
+function liftHints(
+  glRef: LiftCtx["glRef"],
+  sceneSettings: LiftCtx["sceneSettings"],
+): SceneHints | undefined {
+  const hints: SceneHints = {};
+
+  if (glRef) {
+    const lighting: NonNullable<SceneHints["lighting"]> = {};
+    const lp = toArray4(glRef.lightPosition);
+    if (lp && !approxVecEqual(lp, LIGHT_DEFAULTS.lightPosition))
+      lighting.direction = lightPositionToDirection(lp);
+    const amb = toArray4(glRef.ambient);
+    if (amb && !approxVecEqual(amb, LIGHT_DEFAULTS.ambient)) lighting.ambient = rgbaToHex(amb);
+    const dif = toArray4(glRef.diffuse);
+    if (dif && !approxVecEqual(dif, LIGHT_DEFAULTS.diffuse)) lighting.diffuse = rgbaToHex(dif);
+    const spec = toArray4(glRef.specular);
+    if (spec && !approxVecEqual(spec, LIGHT_DEFAULTS.specular)) lighting.specular = rgbaToHex(spec);
+    if (
+      typeof glRef.specularPower === "number" &&
+      Math.abs(glRef.specularPower - LIGHT_DEFAULTS.specularPower) > 1e-6
+    )
+      lighting.shininess = glRef.specularPower;
+    if (Object.keys(lighting).length) hints.lighting = lighting;
+  }
+
+  const s = sceneSettings;
+  if (s) {
+    const effects: NonNullable<SceneHints["effects"]> = {};
+    if (s.doSSAO) {
+      effects.ssao = { enabled: true };
+      if (typeof s.ssaoRadius === "number") effects.ssao.radius = s.ssaoRadius;
+      if (typeof s.ssaoBias === "number") effects.ssao.bias = s.ssaoBias;
+    }
+    if (s.doEdgeDetect) {
+      effects.edgeDetect = { enabled: true };
+      if (typeof s.edgeDetectDepthThreshold === "number") effects.edgeDetect.depthThreshold = s.edgeDetectDepthThreshold;
+      if (typeof s.edgeDetectNormalThreshold === "number") effects.edgeDetect.normalThreshold = s.edgeDetectNormalThreshold;
+      if (typeof s.edgeDetectDepthScale === "number") effects.edgeDetect.depthScale = s.edgeDetectDepthScale;
+      if (typeof s.edgeDetectNormalScale === "number") effects.edgeDetect.normalScale = s.edgeDetectNormalScale;
+    }
+    if (s.doShadow) effects.shadows = true;
+    if (s.doPerspectiveProjection) effects.perspective = true;
+    if (s.useOffScreenBuffers) {
+      effects.depthBlur = {};
+      if (typeof s.depthBlurRadius === "number") effects.depthBlur.radius = s.depthBlurRadius;
+      if (typeof s.depthBlurDepth === "number") effects.depthBlur.depth = s.depthBlurDepth;
+    }
+    if (Object.keys(effects).length) hints.effects = effects;
+  }
+
+  return Object.keys(hints).length ? hints : undefined;
 }
 
 // --------------------------------------------------------------------------

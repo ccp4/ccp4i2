@@ -1177,7 +1177,31 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       clipEnd?: number;
       fogStart?: number;
       fogEnd?: number;
+      lightPosition?: number[] | Float32Array;
+      ambient?: number[] | Float32Array;
+      diffuse?: number[] | Float32Array;
+      specular?: number[] | Float32Array;
+      specularPower?: number;
     } }).glRef;
+    // sceneSettings carries the effect toggles (SSAO / edge-detect / shadows /
+    // depth-blur / perspective) the lifter folds into hints.effects.
+    const sceneSettingsState = (state as unknown as {
+      sceneSettings: {
+        doSSAO?: boolean | null;
+        ssaoRadius?: number | null;
+        ssaoBias?: number | null;
+        doEdgeDetect?: boolean | null;
+        edgeDetectDepthThreshold?: number | null;
+        edgeDetectNormalThreshold?: number | null;
+        edgeDetectDepthScale?: number | null;
+        edgeDetectNormalScale?: number | null;
+        doShadow?: boolean | null;
+        useOffScreenBuffers?: number | boolean | null;
+        depthBlurRadius?: number | null;
+        depthBlurDepth?: number | null;
+        doPerspectiveProjection?: boolean | null;
+      };
+    }).sceneSettings;
     // Flatten Moorhen's per-attribute contour slices into one
     // MapRenderState per molNo. mapContourSettings is keyed by
     // molNo across several parallel lists in the redux slice; we
@@ -1198,6 +1222,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     const { scene, hints } = await liftSceneStraight({
       molecules,
       glRef: glRefState,
+      sceneSettings: sceneSettingsState,
       projectId: projectInfo?.id,
       projectName: projectInfo?.name,
       // First molecule's monomerLibraryPath is the canonical Moorhen
