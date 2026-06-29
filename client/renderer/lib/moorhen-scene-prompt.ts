@@ -1,13 +1,50 @@
 // Build the "Copy prompt" scaffold for authoring a Moorhen scene with an LLM.
 //
-// The prompt has four parts: instructions, the scene grammar (embedded verbatim
-// from types/moorhen-scene.md — the same contract the validator enforces), a
-// manifest of the project's referenceable files, and a ground-truth summary of
-// the loaded structure's chains and ligands. The user appends their request and
-// pastes the whole thing into any chatbot; the returned YAML goes back into the
-// scene editor, which validates and applies it. No API key, provider-free.
+// The prompt has four parts: instructions, the scene grammar (a compact brief
+// GENERATED from the committed JSON Schema contract, so it can never drift from
+// what the validator enforces), a manifest of the project's referenceable
+// files, and a ground-truth summary of the loaded structure's chains and
+// ligands. The user appends their request and pastes the whole thing into any
+// chatbot; the returned YAML goes back into the scene editor, which validates
+// and applies it. No API key, provider-free.
 
-import sceneGrammar from "../types/moorhen-scene.md";
+import { buildSceneBrief } from "./scene/brief";
+
+// Conventions the schema can't express (CID syntax, by-domain, colour forms,
+// ||-join) — the curated semantic supplement to the generated grammar.
+const SCENE_CONVENTIONS = [
+  "=== CONVENTIONS ===",
+  "- Selections are Coot CIDs: //A (whole chain A), //A/703-740 (residue range),",
+  "  //*/LIG (residues named LIG), //A/750/CA (one atom). Join several with || :",
+  "  //A||//B. Same syntax in representation `selection` and in view.centre/slab.",
+  "- A representation draws its own `selection` (the WHOLE molecule if omitted);",
+  "  colour does NOT limit what is drawn — scope the selection to limit it.",
+  "- colour is a hex \"#rrggbb\"; OR a named scheme (by-domain, b-factor, af2-plddt,",
+  "  secondary-structure, jones-rainbow, mol-symm); OR a per-selection list",
+  "  [{selection, colour}]. `by-domain` colours by the top-level `domains:` block:",
+  "  define domains (name + selection + color) and set `colour: by-domain` on reps.",
+  "- geometry dimensions are Ångström. `hints` (lighting/effects) are ADVISORY —",
+  "  a viewer may ignore them; never rely on them for what must be visible.",
+].join("\n");
+
+const WORKED_EXAMPLE = [
+  "=== EXAMPLE (shape only — use the PROJECT/CONTENTS below for real refs) ===",
+  "```yaml",
+  "scene: example",
+  "version: 1",
+  "files:",
+  "  - { name: prot, pdb: 1ABC }",
+  "domains:",
+  "  - { name: nterm, selection: \"//A/1-100\",   color: \"#4b8bbe\" }",
+  "  - { name: cterm, selection: \"//A/101-200\", color: \"#e74c3c\" }",
+  "elements:",
+  "  - file: prot",
+  "    representations:",
+  "      - { style: CRs, selection: \"//A\", colour: by-domain }",
+  "view:",
+  "  centre: { file: prot, selection: \"//A\" }",
+  "```",
+].join("\n");
 
 // ── Contents summary (from the coordinate `digest` endpoint) ────────────────
 
@@ -206,13 +243,17 @@ export function buildAuthoringPrompt(opts: {
     "you may FIRST ask one concise clarifying question in plain text and wait for the",
     "reply before producing the code block.",
     "Reference project files with { job, param, projectId } using the manifest; use",
-    "pdb:/url: only for structures not in the project; never use path:.",
+    "pdb:/url: only for structures not in the project; never use relativeUrl:.",
     "Use the exact ligand CIDs from the contents summary for ligand selections.",
     "",
     projectLines.join("\n"),
     "",
     "=== SCENE GRAMMAR ===",
-    sceneGrammar,
+    buildSceneBrief(),
+    "",
+    SCENE_CONVENTIONS,
+    "",
+    WORKED_EXAMPLE,
     "",
     "=== REFERENCEABLE PROJECT FILES ===",
     opts.manifest,

@@ -1,932 +1,245 @@
-# Moorhen Scene format — v1
+<!-- GENERATED from the Zod schema via buildSceneMarkdown(); do not edit by hand.
+     The Grammar section below is authoritative. Edit lib/scene/core.ts (the Zod
+     source) and regenerate (UPDATE_SCHEMA=1 vitest run scene-schema). -->
+# Moorhen Scene format
 
-A **scene** is a portable, human-editable YAML description of how to
-render one or more structures in Moorhen. It captures *intent*
-(domains, colour rules, representations, superpositions, camera)
-separately from any specific PDB file, so the same visual treatment
-can be re-applied across different structures of the same protein.
+A Moorhen **scene** is a portable YAML description of how to render one or more
+structures: which files to load, which domains to recognise, what
+representations and colours to apply, and where the camera sits. Scenes validate
+against the published contract (`moorhen-scene.core.v1.json`, or
+`moorhen-scene.ccp4i2.v1.json` for project references) and can be re-applied
+across different structures of the same protein.
 
-This document is the authoring reference — written for a person (or a
-script) building a scene from outside Moorhen. The TypeScript types
-live in [`moorhen-scene.ts`](./moorhen-scene.ts); parse/serialise
-logic lives in [`../lib/moorhen-scene.ts`](../lib/moorhen-scene.ts).
+## Grammar
 
-## File extensions
-
-| Suffix             | Purpose                                                              |
-| ------------------ | -------------------------------------------------------------------- |
-| `*.scene.yaml`     | The scene as a plain YAML file. Use when all file refs are portable. |
-| `*.scene.zip`      | Bundle: `scene.yaml` at root + `assets/` directory of attached data. |
-| `*.session.json`   | Moorhen-native cache, regenerable. Not for hand-authoring.           |
-
-The bundle is the right shape when the scene references local files
-(coords or dictionaries) that aren't otherwise reachable by URL or PDB
-ID. The yaml inside uses `bundle: <relpath>` to point at zipped
-assets. Both forms parse identically — the yaml is the source of truth.
-
-## Top-level grammar
+Fields marked `?` are optional. `A | B` is a choice; `T[]` is a list of `T`.
 
 ```yaml
-scene: <string>                      # required: human-readable identifier
-version: 1                           # required: schema version
+Moorhen scene — YAML grammar (fields, ? = optional):
 
-authoredIn:                          # optional: provenance (never resolved)
-  projectId: <uuid>                  # optional
-  projectName: <name>                # optional
-  createdAt: <iso-8601>              # optional
-  createdBy: <author>                # optional
-  ccp4i2Version: <string>            # optional
-
-files: [ ... ]                       # optional: named coord + dict + mtz refs
-superpose: [ ... ]                   # optional: alignments, applied in order
-globalDictionaries: [ <name>, ... ]  # optional: dicts loaded on every molecule
-domains: [ ... ]                     # optional: reusable named residue blocks
-elements: [ ... ]                    # optional: per-file rendering instructions
-maps: [ ... ]                        # optional: electron-density maps from MTZ refs
-activeMap: <name>                    # optional: which map Moorhen refines against
-view: { ... }                        # optional: camera, clip, fog, background
-
-resolver:                            # optional: apply-time policy
-  onMissingResidues: clamp-and-log   # | strict
+scene: string  # human-readable scene name
+version: number  # must equal 1
+authoredIn?: {
+  projectId?: string
+  projectName?: string
+  createdAt?: string
+  createdBy?: string
+  ccp4i2Version?: string
+}
+files?: ({
+  name: string  # local name referenced by elements/maps
+  kind?: "coordinates"|"dictionary"|"mtz"|"map"  # default "coordinates"
+  pdb?: string  # PDB id; fetched via proxy on apply
+  url?: string  # absolute URL (portable)
+  bundle?: string  # asset path inside a .scene.zip
+  cifText?: string  # inline CIF (dictionary refs only)
+  relativeUrl?: string  # origin-relative URL (/api/…); not portable across deployments
+  projectId?: string  # UUID; required with fileId or job+param
+  projectName?: string  # advisory
+  fileId?: number
+  job?: number  # pair with param
+  param?: string  # job parameter, e.g. "XYZOUT"
+})[]
+superpose?: ({
+  method: "ssm"
+  move: string  # file being transformed
+  onto: string  # reference file (unchanged)
+  movChain: string
+  refChain: string
+} | {
+  method: "lsq"
+  move: string
+  onto: string
+  matches?: {
+    refChain: string
+    refRange: string
+    movChain: string
+    movRange: string
+  }[]
+  chain?: string  # shorthand chain, both sides
+  range?: string  # shorthand range, both sides
+  matchType?: "all"|"main"|"ca"  # default "main"
+})[]
+globalDictionaries?: string[]
+domains?: { name: string, selection: string, color: string }[]
+elements?: ({
+  file: string  # name of a files[] entry
+  dictionaries?: string[]
+  representations?: ({
+    style: "VdwSpheres"|"ligands"|"CAs"|"CBs"|"CDs"|"gaussian"|"allHBonds"|"rama"|"rotamer"|"CRs"|"MolecularSurface"|"DishyBases"|"VdWSurface"|"Calpha"|"unitCell"|"hover"|"environment"|"ligand_environment"|"contact_dots"|"chemical_features"|"ligand_validation"|"glycoBlocks"|"restraints"|"residueSelection"|"MetaBalls"|"adaptativeBonds"|"StickBases"|"residue_environment"|"transformation"  # Moorhen RepresentationStyle, e.g. "CRs", "CBs"
+    selection?: string  # CID; default all-atoms
+    colour?: string | "by-domain"|"b-factor"|"b-factor-norm"|"af2-plddt"|"secondary-structure"|"jones-rainbow"|"mol-symm" | { selection: string, colour: string }[] | {
+      raw: {
+        ruleType: string
+        args: (string | number)[]
+        isMultiColourRule?: boolean
+        applyColourToNonCarbonAtoms?: boolean
+      }
+    }
+    alpha?: number  # opacity 0..1 (honoured: governs visibility)
+    geometry?: {
+      bondRadius?: number  # bond cylinder radius (Å)
+      ballRadius?: number  # ball-and-stick atom ball radius (Å)
+      vdwScale?: number  # VdW sphere radius multiplier (×element radius)
+      probeRadius?: number  # molecular-surface solvent probe radius (Å)
+      ribbonCoilThickness?: number  # ribbon coil thickness (Å)
+      ribbonHelixWidth?: number  # ribbon helix width (Å)
+      ribbonStrandWidth?: number  # ribbon strand width (Å)
+      ribbonArrowWidth?: number  # ribbon arrow width (Å)
+      ribbonDNARNAWidth?: number  # nucleotide ribbon width (Å)
+    }
+  })[]
+})[]
+maps?: ({
+  name: string
+  file: string  # name of a files[] entry (kind mtz or map)
+  columns?: {
+    F?: string
+    PHI?: string
+    Fobs?: string
+    SigFobs?: string
+    FreeR?: string
+    useWeight?: boolean
+    calcStructFact?: boolean
+  }  # required for mtz, omit for map
+  isMask?: boolean
+  isDifference?: boolean
+  contourLevel?: number  # rmsd-relative
+  radius?: number  # contour radius (Å)
+  alpha?: number
+  style?: "lines"|"solid"|"lit-lines"
+  colour?: string  # non-difference maps only
+  positiveColour?: string  # hex colour #rrggbb or #rrggbbaa
+  negativeColour?: string  # hex colour #rrggbb or #rrggbbaa
+  visible?: boolean
+})[]
+activeMap?: string
+view?: {
+  origin?: [number, number, number]
+  centre?: { file?: string, selection?: string }  # centroid of a selection; beats origin
+  quat?: [number, number, number, number]
+  zoom?: number
+  clipStart?: number
+  clipEnd?: number
+  fogStart?: number
+  fogEnd?: number
+  clip?: "auto" | "lock" | { front: number, back: number }
+  slab?: { file?: string, selection?: string, pad?: number }  # z-depth window for a selection; beats clip
+  background?: string  # hex colour #rrggbb or #rrggbbaa
+}
+hints?: {
+  lighting?: {
+    direction?: [number, number, number]  # principal directional light vector → Moorhen lightPosition
+    ambient?: string  # ambient light colour
+    diffuse?: string  # diffuse light colour
+    specular?: string  # specular light colour
+    shininess?: number  # specular power → Moorhen specularPower
+  }
+  effects?: {
+    ssao?: { enabled?: boolean, radius?: number, bias?: number }  # screen-space ambient occlusion
+    edgeDetect?: {
+      enabled?: boolean
+      depthThreshold?: number
+      normalThreshold?: number
+      depthScale?: number
+      normalScale?: number
+    }
+    shadows?: boolean
+    depthBlur?: { radius?: number, depth?: number }  # depth-of-field blur
+    perspective?: boolean  # perspective vs orthographic
+  }
+}
+resolver?: { onMissingResidues?: "clamp-and-log"|"strict" }
 ```
 
-Order of evaluation at apply-time:
+## File references
 
-1. **Fetch dictionaries** (load each globally, so coords parse).
-2. **Fetch coordinates** (in declared order).
-3. **Scope dictionaries** per element (re-associate to that molecule's molNo).
-4. **Run superpositions** (mutate moving structures' transforms).
-5. **Apply representations** per element.
-6. **Load maps** (fetch/bind each MTZ, apply contour/colour/style, set `activeMap`).
-7. **Set camera**.
+Each `files[]` entry sets **exactly one** source:
 
-## `files`
+| Ref | Meaning | Portable? |
+|-----|---------|-----------|
+| `pdb` | PDB id, fetched via the PDBe proxy | yes (core) |
+| `url` | absolute URL | yes (core) |
+| `bundle` | asset inside a `.scene.zip` | yes (core) |
+| `cifText` | inline dictionary CIF (`kind: dictionary` only) | yes (core) |
+| `relativeUrl` | origin-relative URL (`/api/…`) | within one deployment |
+| `fileId` (+`projectId`) | ccp4i2 project file | within one deployment |
+| `job`+`param` (+`projectId`) | ccp4i2 job output | within one deployment |
 
-A list of named file references. The name (e.g. `protein`, `apo`,
-`x0034`) is what other parts of the scene refer to; it's local to this
-file and doesn't have to mean anything outside.
+The resolver matches a ref against an already-loaded molecule by its loader URL
+(or by `fileId` extracted from it); a `pdb`/`url`/`bundle`/`job+param` ref is
+fetched if not present. A molecule's identity is its loader URL, never a bare
+path — so `relativeUrl` matches loaded molecules, it does not read local files.
 
-Each entry has:
+## Selections (Coot CIDs)
 
-- `name`: **required**, unique within the block.
-- `kind`: optional, `"coordinates"` (default), `"dictionary"`, or `"mtz"`.
-  - `"coordinates"` — a PDB/mmCIF structure, loaded as a molecule.
-  - `"dictionary"` — a refmac/coot monomer CIF, loaded into Coot's
-    dictionary store and scoped to molecules via `dictionaries:`.
-  - `"mtz"` — reflection data, *not* loaded directly; referenced by an
-    entry in the [`maps:`](#maps) block that carries the column labels.
-- Exactly one resolution method:
+Selections everywhere (representation `selection`, `view.centre`/`slab`,
+domains) are Coot CIDs:
 
-  | Field                              | Use when                                                                                                                 |
-  | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-  | `pdb: <id>`                        | Deposited structure. Fetched via PDBe. Most portable. Coordinates only.                                                  |
-  | `url: <https://...>`               | Coord or dict published at a CORS-friendly URL.                                                                          |
-  | `fileId: <int>` + `projectId: <uuid>` | Project-internal ref to a ccp4i2 file.                                                                                |
-  | `job: <int>` + `param: <str>` + `projectId` | Project-internal ref to a job's output parameter.                                                              |
-  | `bundle: <relpath>`                | Asset packaged inside a `.scene.zip` (e.g. `assets/coords/x0034.cif`).                                                   |
-  | `cifText: \|<inline cif>`          | Dictionary text inlined directly. Only valid for `kind: dictionary`.                                                     |
-  | `path: <abspath>`                  | Local-only. Won't resolve on another machine. Mostly used as a marker.                                                   |
+- `//A` — the whole of chain A
+- `//A/703-740` — residues 703–740 of chain A
+- `//*/LIG` — every residue named LIG
+- `//A/750/CA` — one atom
+- join several with `||`: `//A||//B`
 
-### Examples
+A representation draws **its own** `selection` (the whole molecule if omitted);
+colour does **not** limit what is drawn — scope the selection to limit it.
+
+## Colours
+
+A `colour` is one of:
+
+1. a hex string — `"#4b8bbe"` (or `#rrggbbaa`);
+2. a named scheme — `by-domain`, `b-factor`, `b-factor-norm`, `af2-plddt`,
+   `secondary-structure`, `jones-rainbow`, `mol-symm`;
+3. a per-selection list — `[{ selection: "//A", colour: "#a08766" }, …]`;
+4. a raw Coot rule (escape hatch).
+
+`by-domain` colours by the top-level `domains:` block: define domains
+(`name` + `selection` + `color`) and set `colour: by-domain` on the reps.
+
+## Geometry and hints
+
+- `geometry` (per representation) is **honoured** — physical dimensions in
+  Ångström a renderer must reproduce (bond/ball radii, ribbon widths, …).
+- `hints` (scene-level lighting + effects) are **advisory** — a renderer may
+  ignore them and still produce a correct image. `hints.lighting.direction` is
+  a direction vector (+x right, +y up, +z toward the viewer); effects are
+  scene-authoritative (an `effects` block fully determines effect state).
+
+## Examples
+
+Minimal portable scene:
 
 ```yaml
-files:
-  # A deposited structure — most portable.
-  - { name: ref, pdb: 1m17 }
-
-  # Project-internal ccp4i2 file.
-  - name: refined
-    projectId: 3f8a-aaaa-bbbb-cccc-uuid
-    fileId: 482
-
-  # Multiple coord files via a single bundle.
-  - { name: x0034, bundle: assets/coords/x0034.cif }
-  - { name: x0092, bundle: assets/coords/x0092.cif }
-
-  # A scoped dictionary, bundled alongside its coords.
-  - { name: lig-A, kind: dictionary, bundle: assets/dict/lig-A.cif }
-
-  # Inline dict (cifText) — verbose but always works on any machine.
-  - name: minimal-dict
-    kind: dictionary
-    cifText: |
-      data_comp_LIG
-      _chem_comp.id LIG
-      ...
-```
-
-## `domains`
-
-Reusable named colour blocks, referenced from `colour: by-domain`
-inside an element. Hoisted to the top level so a multi-structure scene
-doesn't duplicate them per element.
-
-```yaml
-domains:
-  - { name: CARD, selection: "//A/1-92",    color: "#4b8bbe" }
-  - { name: NBD,  selection: "//A/104-260", color: "#2ecc71" }
-  - { name: HD1,  selection: "//A/261-330", color: "#9b59b6" }
-```
-
-Fields:
-
-- `name`: required.
-- `selection`: a Coot **CID** — the preferred, general form. Any valid CID:
-  - `"//F"` — the whole of chain F.
-  - `"//F/32-64"` — residues 32-64 of chain F.
-  - a wildcard chain — that residue range across every chain.
-  - `"//A/(ALA,GLY)"`, `"//A/55/CA[C]"` — residue names, atoms, … things
-    `chain`+`range` can't express.
-
-  When the CID is the `//chain/start-end` shape the resolver still clamps the
-  range to present residues and warns (parity with the legacy form, see
-  `resolver.onMissingResidues`); any other CID is passed straight to Coot.
-- `color`: required hex `#rrggbb`.
-
-**Legacy (deprecated, accepted for a short migration window — prefer
-`selection`):** instead of `selection` you may give `chain` + optional `range`:
-
-- `chain`: `"A"` (single), `"*"` (every chain present), or `["A","B","C"]`.
-- `range`: `"start-end"`, a bare int (single residue), or **omitted ⇒ whole
-  chain**.
-
-```yaml
-# Per-chain colouring, stated once and adopted by representations:
-domains:
-  - { name: A, selection: "//A", color: "#a08766" }   # whole chain A
-  - { name: B, selection: "//B", color: "#6ca066" }   # whole chain B
-elements:
-  - file: my_structure
-    representations:
-      - { style: CRs, colour: by-domain, alpha: 0.5 }
-```
-
-This is exactly what coot's default per-chain colouring **lifts to** — the
-lifter folds it into `domains:` (whole-chain `selection`) + `colour: by-domain`
-so it isn't repeated inline on every representation.
-
-## `elements`
-
-Per-file rendering instructions: which representations to draw, with
-what colour, on which selection.
-
-```yaml
-elements:
-  - file: protein                        # name from the files: block
-    dictionaries: [lig-A, cofactor]      # optional: per-molecule dict scoping
-    representations:
-      - { style: CRs,      selection: "//A",       colour: by-domain }
-      - { style: ligands,  selection: "//*/(LIG)", colour: "#2ecc71" }
-      # Multi-residue highlight: || joins single-residue / range CIDs.
-      - { style: CBs,      selection: "//A/115||//A/116||//A/121-122", colour: "#e74c3c" }
-```
-
-### `style`
-
-Any [Moorhen representation
-style](https://github.com/moorhen-coot/Moorhen/) (27 supported as of
-v1). The common ones:
-
-| Style              | What it draws                       |
-| ------------------ | ----------------------------------- |
-| `CRs`              | Cartoon ribbons.                    |
-| `CBs`              | All-atom sticks (carbon bonds).     |
-| `CAs`              | Cα-only trace.                      |
-| `MolecularSurface` | Smooth molecular surface.           |
-| `VdwSpheres`       | Van-der-Waals spheres.              |
-| `ligands`          | Stick representation of HET atoms.  |
-| `DishyBases`       | Cartoon-style nucleotide bases.     |
-| `allHBonds`        | Hydrogen bonds.                     |
-
-### `selection`
-
-A Coot CID string (gemmi-parsed selection syntax). Format:
-`/<model>/<chain>/<residue>/<atom>`. Wildcards: `*` matches any one
-component; omitting trailing components defaults them to `*`.
-
-The residue field accepts **either a single residue number, or a
-single `start-end` range** — *not* a comma-separated list. Comma lists
-ARE valid for residue *names* (`(ALA,GLY,SER)`) and *elements*
-(`[N,O,S]`), but not for residue numbers.
-
-| Pattern                    | Meaning                                            |
-| -------------------------- | -------------------------------------------------- |
-| `/*/*/*/*`                 | Every atom (the default if `selection` is omitted) |
-| `//A`                      | Chain A, all residues                              |
-| `//A/115`                  | Residue 115 of chain A                             |
-| `//A/115-200`              | Residues 115–200 inclusive                         |
-| `//*/(LIG)`                | Every chain, residue name LIG (parens are required)|
-| `//A/(ALA,GLY)`            | Chain A, residue name ALA or GLY                   |
-| `//A/115/CA[C]`            | The Cα atom of residue 115, element carbon         |
-
-**Comma-separated residue numbers are NOT valid.** Coot's parser
-rejects `//A/115,116,121` with `Invalid selection syntax`.
-
-### Multiple disjoint residues: `||`-joined multi-CID
-
-To select several non-contiguous residues on the same chain (a common
-need for highlighting catalytic / binding / mutation hotspots), join
-single-residue or single-range CIDs with `||`:
-
-```yaml
-# Correct: || is the only way to express "these N disjoint residues"
-- style: CBs
-  selection: "//A/115||//A/122||//A/155||//A/210||//A/221||//A/233-234||//A/246"
-  colour: "#e74c3c"
-```
-
-The resolver splits on `||` and emits **one representation per chunk**,
-each sharing the same style and colour. This is correct, but every
-chunk becomes a row in Moorhen's Models drawer. For seven highlights
-you get seven rows; for fifty, fifty.
-
-**There is currently no compact form that produces one row.** The
-mmdb/gemmi CID grammar simply doesn't have one. If panel-row count
-matters for you, group highlights into contiguous ranges where you
-can, and accept the row-per-chunk cost where you can't. Improving
-this needs a Moorhen API change — see the upstream issue tracker.
-
-## Common authoring pitfalls
-
-A small set of CID and rep-shape mistakes account for almost every
-"why isn't anything rendering?" problem. If you're writing a converter
-that produces scenes from another tool (PyMOL `.pse`, ChimeraX
-session, etc.), check these first.
-
-### Never emit `selection: //`
-
-`//` is **not** a valid CID. Coot reads it as "model nothing, chain
-nothing" and the selection comes back empty, so the representation
-renders no atoms. The viewer will look broken or near-empty.
-
-To mean "the whole molecule", do one of:
-
-```yaml
-# Best: omit `selection:` entirely. The resolver defaults to /*/*/*/*.
-- { style: CRs, colour: by-domain }
-
-# Equivalent: explicit wildcard.
-- { style: CRs, selection: "/*/*/*/*", colour: by-domain }
-
-# Single chain.
-- { style: CRs, selection: "//A", colour: by-domain }
-```
-
-**Never** emit `selection: //`, `selection: ""`, `selection: "/"`, or
-any partially-empty CID. They all evaluate to "select nothing" and the
-rep silently draws nothing.
-
-### `style: ligands` — always emit an explicit selection
-
-Moorhen's `ligands` style does its own non-polymer atom-discovery
-inside Coot, which depends on entity types and parsing quirks of the
-loaded cif. In practice this misbehaves on cifs from many sources:
-it can pick up amino-acid residues (especially glycines) as
-"ligands", miss the actual fragment ligand entirely, or — worst —
-share an auto-discovered list across all molecules in a multi-load
-session, so every fragment in a campaign renders the *same* ligand
-neighbourhood instead of its own.
-
-**Always specify the ligand explicitly** by residue name. The CID
-form is `//*/(COMPID)`:
-
-```yaml
-- file: x0682
-  dictionaries: [x0682_LIG]
-  representations:
-    - style: ligands
-      selection: "//*/(LIG)"          # only LIG, by residue name
-```
-
-`//*/(LIG)` reads as: any chain, any residue with name `LIG`. The
-parentheses are required — they tell the gemmi CID parser this is a
-residue-name selector, not a sequence number.
-
-If the fragment comp_id varies per structure (typical in a fragment
-campaign — each soaked compound has its own three-letter code), the
-converter should read the comp_id out of the dict file's
-`data_comp_<X>` line and emit the right name per element. **The
-converter knows what the ligand is — there's a dict for it.** Anything
-the converter knows should be expressed explicitly; don't trust
-Moorhen's auto-discovery for anything load-bearing.
-
-For multiple distinct ligands on one molecule, `||`-join them as
-usual:
-
-```yaml
-- style: ligands
-  selection: "//*/(LIG)||//*/(ADP)"
-```
-
-**Why the doc previously said the opposite:** earlier versions of this
-file recommended bare `style: ligands` with no selection, relying on
-Moorhen's auto-discovery. That advice produced wrong renderings on
-real cifs and has been retracted.
-
-### Don't lift `view.clipStart` / `clipEnd` from PyMOL
-
-PyMOL's view state uses massive clip-plane values (often ±10000+ Å)
-because PyMOL works in a much larger conceptual volume than Moorhen.
-Importing those verbatim into a scene's `view:` block will push
-Moorhen's depth-test out so far that fog culling / depth buffer
-precision break down and the structure may render as a blank canvas
-or with severe z-fighting.
-
-**Either omit `clipStart` / `clipEnd` entirely** (the resolver leaves
-Moorhen's defaults of 0 / 1000) **or clamp at author time** to
-Moorhen-sensible values. The same applies to `fogStart` / `fogEnd`.
-
-```yaml
-# Good: omit, let Moorhen pick defaults
-view:
-  origin: [2.5, 16.6, -8.6]
-  quat: [0.64, 0.67, -0.01, 0.37]
-  zoom: 2.5
-
-# Bad: PyMOL-derived values that don't translate
-view:
-  clipStart: -12586.35       # nope
-  clipEnd: 13099.16          # nope
-```
-
-`origin`, `quat`, `zoom`, and `background` translate cleanly between
-viewers and are safe to copy verbatim.
-
-### Highlights produce one drawer row per CID chunk
-
-The Coot CID grammar does not have a compact form for "these N
-disjoint residue numbers" — comma lists of residue numbers are
-rejected. The only way to express disjoint residues is a `||`-joined
-multi-CID, and the resolver renders each chunk as a separate
-representation, each of which becomes a row in Moorhen's Models drawer.
-
-There's nothing the author can do to collapse N highlights into one
-row today. The practical advice:
-
-- Group highlights into contiguous ranges where you can.
-  `//A/115-117` is one rep / one row; `//A/115||//A/116||//A/117`
-  is three.
-- Accept the row-count cost otherwise. Twelve catalytic residues
-  produce twelve rows.
-- If you want a *single* colour applied across a whole multi-highlight
-  set, all the chunks share the same colour anyway — the picture
-  reads as one logical thing even if the drawer has many rows.
-
-### `colour`
-
-Five forms:
-
-```yaml
-colour: "#4b8bbe"             # 1. Hex literal (#rrggbb or #rrggbbaa)
-colour: by-domain             # 2. Compile from the domains: block
-colour: b-factor              # 3. Named Moorhen scheme
-colour:                       # 4. Per-selection list (general; see below)
-  - { selection: "//A", colour: "#a08766" }
-  - { selection: "//B", colour: "#7e9cd8" }
-colour:                       # 5. Raw escape hatch (lossless, ugly)
-  raw:
-    ruleType: <string>
-    args: [...]
-    isMultiColourRule: <bool>
-```
-
-Hex literals accept both 6-digit (`#rrggbb`) and 8-digit
-(`#rrggbbaa`, with alpha) forms — Moorhen's own per-chain rules come
-out as 8-hex, so the lifter round-trips them losslessly.
-
-Named schemes available out of the box:
-`by-domain`, `b-factor`, `b-factor-norm`, `af2-plddt`,
-`secondary-structure`, `jones-rainbow`, `mol-symm`.
-
-`by-domain` compiles to a single multi-residue colour rule built from
-the top-level `domains:` block. So one element with `colour: by-domain`
-on a ribbon gives you the whole domain-coloured protein in one rep.
-
-**Per-selection list** is the general "colour these CIDs these colours"
-form: one `{ selection, colour }` entry per CID, each applied as a single
-colour rule. A whole chain (`//A`) and a residue range (`//A/121-130`)
-are the same shape at different granularities — `by-domain` is just the
-named shortcut that compiles the `domains:` block into this. Crucially,
-**this is what coot's default per-chain colouring lifts to** — one entry
-per chain with the colour coot assigned — so a captured scene records the
-real per-chain colours instead of a single misleading hex. (`alpha` is a
-separate field, so you can always add it to make a per-chain-coloured
-surface translucent.)
-
-### `alpha`
-
-Opacity in `[0, 1]` (1 = fully opaque). Omitted ⇒ opaque, so existing
-scenes are unchanged. Maps to Moorhen's per-representation
-`nonCustomOpacity`, so it applies to **surfaces** (`MolecularSurface`,
-`VdWSurface`, `gaussian`, `MetaBalls`) as well as ribbons and sticks —
-a translucent molecular surface over a cartoon is the canonical use.
-
-```yaml
-representations:
-  - { style: CRs,              selection: "//A", colour: secondary-structure }
-  - { style: MolecularSurface, selection: "//A", colour: "#9bbcd8", alpha: 0.4 }
-```
-
-This is the opacity used when colour is scene-driven (rules / hex /
-named schemes). A colour hand-picked with Moorhen's colour-picker
-instead carries its alpha in the colour's own RGBA; scenes don't author
-those, so `alpha` is the single lever here.
-
-### `dictionaries`
-
-A list of dictionary file names (from `files:` with `kind: dictionary`).
-The resolver loads each globally first (so the coord parses), then
-re-associates with the specific molecule's molNo. This is the key
-mechanism for fragment-campaign work: two molecules with same-named
-ligands can carry different chemistry because each gets its own scoped
-dictionary.
-
-```yaml
-elements:
-  - file: x0034
-    dictionaries: [x0034_LIG, x0034_ADP]      # scoped to this molecule only
-    representations: [ ... ]
-```
-
-For dictionaries that should apply to *every* molecule (cofactors,
-common ions), use the top-level `globalDictionaries:` block instead.
-
-**What the lifter emits.** When you capture a scene, each ligand dict is
-recorded in the most portable form available, in this order:
-
-1. **Library monomers are omitted entirely.** If the comp_id resolves in the
-   receiver's CCP4 monomer library (`CL`, `ATP`, standard residues, …), no dict
-   ref is written — the consuming Moorhen fetches it from its own library. Keeps
-   captures terse.
-2. **Project ligand dicts become `fileId` refs.** A dict that came from a project
-   file (e.g. an AceDRG output) is emitted as
-   `{ kind: dictionary, fileId, projectId }` — one ref per source file (deduped),
-   listed in the owning molecule's `dictionaries:`. This makes a many-ligand
-   campaign capture compact while staying per-molecule-scoped: two molecules
-   whose ligand is both called `LIG` reference *different* `fileId`s.
-3. **`cifText` is the fallback.** Only when a non-library dict has no project
-   source does the lifter inline it.
-
-(The omission in (1) is safe precisely because the receiver has the library;
-custom ligands never get omitted, because a project-supplied dict always travels
-— even if its comp_id name collides with a library entry.)
-
-## `superpose`
-
-Alignments to apply after fetching but before rendering. Each entry
-mutates the *moving* structure's display transform in place; the
-reference is untouched.
-
-```yaml
-superpose:
-  # SSM — secondary-structure matching. Cheapest default; needs one
-  # chain id on each side. Good for homologues / different conformations
-  # of the same chain.
-  - { method: ssm, move: holo, onto: apo, movChain: A, refChain: A }
-
-  # LSQ on explicit residue ranges. Use when you know correspondences
-  # or want to control which region drives the fit (e.g. align on a
-  # binding-site loop only).
-  - method: lsq
-    move: nod-x
-    onto: closed
-    matches:
-      - { refChain: A, refRange: 104-260, movChain: A, movRange: 104-260 }
-      - { refChain: B, refRange: 50-150,  movChain: B, movRange: 60-160 }
-    matchType: main      # one of: all | main | ca   (default: main)
-
-  # LSQ convenience shorthand for the common "same chain + same range
-  # on both sides" case. Mutually exclusive with `matches`.
-  - { method: lsq, move: holo, onto: apo, chain: A, range: 104-260 }
-```
-
-The LSQ `matchType` controls which atoms are fitted:
-
-- `all` — every atom in the named residue ranges.
-- `main` — main-chain atoms only (default; usually what you want).
-- `ca` — Cα atoms only (fastest, most tolerant of side-chain differences).
-
-`gesamt` is not currently supported because the Moorhen build doesn't
-expose it; the schema may grow to include it in a later version.
-
-## `maps`
-
-Maps to contour. Each entry references a file from the `files:` block —
-either an MTZ (`kind: mtz`, with a column-label spec) or a real-space
-CCP4 map / mask (`kind: map`, no columns; see
-[Real-space maps and masks](#real-space-maps-and-masks-kind-map)) — plus
-optional render state. The referenced file is never loaded as a
-molecule; it exists only to be pointed at by a `maps:` entry. The
-MTZ-based examples below cover electron-density and difference maps.
-
-```yaml
-files:
-  - { name: refined,    pdb: 1m17 }
-  - { name: refl,       kind: mtz, url: https://example.org/refmac.mtz }
-
-maps:
-  # 2Fo-Fc style "best" map read straight from FWT/PHWT.
-  - name: best
-    file: refl
-    columns: { F: FWT, PHI: PHWT }
-    contourLevel: 1.5            # rmsd-relative
-    colour: "#3060c0"
-
-  # Fo-Fc difference map: two contour lobes, green/red by convention.
-  - name: diff
-    file: refl
-    columns: { F: DELFWT, PHI: PHDELWT }
-    isDifference: true
-    contourLevel: 3.0
-    positiveColour: "#00c000"
-    negativeColour: "#c00000"
-
-activeMap: best                 # Moorhen refines against this one
-```
-
-### Column spec (`columns`)
-
-Two ways to give Moorhen a map:
-
-- **Read coefficients directly** — set `F` + `PHI` (e.g. `FWT`/`PHWT`,
-  or `DELFWT`/`PHDELWT` for a difference map). This is the usual case
-  and the minimum required.
-- **Let Moorhen compute coefficients** — set `calcStructFact: true`
-  together with `Fobs` + `SigFobs` (and optionally `FreeR`). Moorhen
-  runs its own structure-factor calculation rather than reading
-  pre-computed `FWT`/`PHWT`.
-
-| Field            | Meaning                                                       |
-| ---------------- | ------------------------------------------------------------ |
-| `F`              | Structure-factor amplitude label (`FWT`, `F`, `DELFWT`).     |
-| `PHI`            | Phase label (`PHWT`, `PHI`, `PHDELWT`).                       |
-| `Fobs`           | Observed amplitude (only with `calcStructFact`).             |
-| `SigFobs`        | Sigma of `Fobs` (only with `calcStructFact`).               |
-| `FreeR`          | Free-R flag column (optional, with `calcStructFact`).        |
-| `useWeight`      | Apply the FOM weight column.                                  |
-| `calcStructFact` | Compute coefficients on the fly instead of reading `F`/`PHI`. |
-
-The validator requires **either** `F` + `PHI`, **or** `calcStructFact`
-+ `Fobs` + `SigFobs`. Anything else is a validation error.
-
-### Render state (all optional)
-
-Any field you omit keeps Moorhen's load-time default; the lifter only
-emits a field when the captured value differs from that default, so
-captured scenes stay small.
-
-| Field             | Meaning                                                          |
-| ----------------- | ---------------------------------------------------------------- |
-| `isDifference`    | Render positive + negative lobes (uses the two `*Colour` fields).|
-| `contourLevel`    | Contour level, rmsd-relative.                                    |
-| `radius`          | Contour radius (Å) around the camera origin.                    |
-| `alpha`           | Opacity, 0–1.                                                    |
-| `style`           | `"lines"`, `"solid"`, or `"lit-lines"`.                          |
-| `colour`          | Hex (`#rrggbb` / `#rrggbbaa`). Non-difference maps only.         |
-| `positiveColour`  | Hex for the positive lobe of a difference map.                  |
-| `negativeColour`  | Hex for the negative lobe of a difference map.                  |
-| `visible`         | Whether the map is shown. Defaults to `true`.                   |
-
-### `activeMap`
-
-A top-level field (sibling of `maps:`, not nested inside it) naming the
-map Moorhen should make active after apply. Moorhen refines against the
-active map, so this is normally the best/calculated map — never a
-difference map. The value must match a `name` in the `maps:` block.
-
-### Real-space maps and masks (`kind: map`)
-
-A `maps:` entry can also reference a **real-space CCP4 map file**
-(`application/CCP4-map`, a `.map`) instead of an MTZ — including a
-**mask** (e.g. an NCS-averaging or region mask). Declare the file with
-`kind: map` and **omit `columns`** (a `.map` is read directly, no
-column spec):
-
-```yaml
-files:
-  - { name: refined, fileId: 482, projectId: <uuid> }
-  - { name: ncsA,    kind: map, fileId: 540, projectId: <uuid> }   # a mask
-
-maps:
-  - name: domainA
-    file: ncsA
-    isMask: true          # translucent solid surface by default
-```
-
-`isMask: true` is advisory: when set and you haven't given `style` /
-`contourLevel` / `alpha` / `colour`, the resolver applies the mask
-defaults — a **solid, semi-transparent surface** (contour 0.5, alpha
-0.4, a soft blue) so the mask reads as the *region* it covers. Override
-any of those fields to taste; they apply to map-kind entries exactly as
-they do to MTZ maps. `columns` is **not allowed** on a `kind: map`
-entry.
-
-> A mask is the same FileType as a density map, distinguished by its
-> `subType` (`CMapDataFile.SUBTYPE_MASK`, gleaned to `File.sub_type`).
-> The Moorhen job/file/campaign viewers also render real-space CCP4 maps
-> automatically — masks load as a translucent solid surface, other
-> CCP4 maps with ordinary map defaults.
-
-### Map resolution at apply-time
-
-Maps need a map-fetcher to be wired into the resolver (the Moorhen
-wrapper provides one). If the host hasn't supplied a fetcher, or the
-ref isn't fetchable, the map entry is **dropped with a log entry** and
-the rest of the scene still applies — coordinates and representations
-never fail just because a map couldn't load. Both MTZ refs (`kind: mtz`)
-and real-space CCP4 map / mask refs (`kind: map`) are supported.
-
-## `view`
-
-The portable subset of Moorhen's view state. Anything you omit is left
-alone at apply-time.
-
-```yaml
-view:
-  origin: [10.5, 20.0, -5.25]            # camera origin
-  quat:   [0, 0, 0, -1]                  # camera quaternion
-  zoom:   1.5
-  clipStart: 0
-  clipEnd:   1000
-  fogStart:  250
-  fogEnd:    1250
-  background: "#ffffff"                  # hex
-```
-
-### `clip` — clip/fog intent
-
-Coot derives both the clip slab and the fog from zoom and a shared pair of
-**field depths** (Å in front of / behind the view centre, default 8 and 21), and
-recomputes them on every zoom *unless told not to*. So a raw `clipStart: 8` is a
-zoom- and size-specific number that coot will overwrite. `clip` is the stable,
-intent-level control:
-
-```yaml
-view:
-  clip: auto                  # let coot recompute clip+fog from zoom (its default)
-  # clip: lock                # freeze the current clip+fog; zoom won't change them
-  # clip: { front: 6, back: 12 }   # set the field depths (Å) and lock; drives fog too
-```
-
-- `auto` — defer to coot's zoom-coupled behaviour.
-- `lock` — pin the current clip+fog so a later zoom leaves them alone.
-- `{ front, back }` — set the depth of field (Å) in front of and behind the
-  centre, and lock. Clip **and** fog follow, the way coot computes them — you
-  don't author fog separately.
-
-Any explicit `clipStart/clipEnd/fogStart/fogEnd` are also locked on apply, so a
-scene's clip sticks instead of being recomputed on the next zoom. Like the rest
-of the view, the lifter captures the resolved numbers; `clip` is an input form.
-
-### `centre` — centre on a selection
-
-Instead of an explicit `origin:`, you can centre the camera on the **centroid
-of a selection**, computed at apply-time. This is the natural form for an
-authored or generated scene: "centred on chain A" needs no coordinates.
-
-```yaml
-view:
-  centre: { file: apo, selection: "//A" }   # whole chain A
-  # selection: omitted ⇒ the whole molecule
-  zoom: 1.5
-```
-
-- `file`: a name from the top-level `files:` block. Optional when exactly one
-  molecule is loaded — it then defaults to that molecule.
-- `selection`: optional CID; omitted means the whole molecule. Several chains or
-  ranges can be joined with `||` (e.g. `//A||//B`), the same form representations
-  use.
-
-`centre` takes **precedence over `origin`** when both are present. If the file
-isn't loaded or the selection matches nothing, the resolver logs it and leaves
-the camera where it is (it does not fail). The lifter still captures the
-resolved Cartesian `origin:` — `centre:` is an input convenience, so a captured
-scene records the concrete point.
-
-### `slab` — set the clip depth to a selection
-
-A **z-depth control only**: it walks the selection's atoms for a bounding radius
-`R` and sets the clip/fog to a symmetric half-thickness of `R + pad` Å about the
-view centre. It does **not** move the camera.
-
-```yaml
-view:
-  centre: { selection: "//A" }            # camera target
-  slab:   { selection: "//A", pad: 2 }    # depth window about it
-```
-
-Because the slab brackets the **current origin** in depth, it only "contains" its
-selection when the camera is centred on that selection. So to frame a region,
-pair `slab` with a `centre` on the same selection — they are **independent and
-both settable**. (Centre without slab = move the camera but keep the current
-depth; slab without centre = set the depth about wherever the camera already is.)
-
-- `file`: a name from the top-level `files:` block. Optional when exactly one
-  molecule is loaded — it then defaults to that molecule.
-- `selection`: optional CID; omitted means the whole molecule. Several chains or
-  ranges can be joined with `||` (e.g. `//A||//B`), the same form representations
-  use.
-- `pad`: optional Å added to the radius on each side (default 0).
-
-Unlike `clip: { front, back }` (whose field depths are coot's pre-zoom knobs,
-multiplied by zoom), the slab depth is an **absolute** world-Å distance, applied
-directly. `slab` takes precedence over `clip` when both are present (they control
-the same planes). The radius is a bounding sphere, so it's correct from any
-orientation but not minimal; once orientation directives exist it can tighten to
-the selection's depth along the view axis. If the selection matched no atoms (or
-gemmi is unavailable) the resolver logs it and leaves the clip alone.
-
-## `resolver`
-
-Apply-time policy. Currently one option:
-
-```yaml
-resolver:
-  onMissingResidues: clamp-and-log   # default
-  # onMissingResidues: strict        # fail loudly instead of silently clamping
-```
-
-`clamp-and-log` is the right default. The resolver clamps domain
-ranges to the residues actually present in the loaded structure, splits
-across internal gaps, and writes a sidecar log noting what was modified.
-`strict` raises an error when any clamping or splitting would happen
-— useful when you're authoring against a structure you know exactly.
-
-## Authoring tips
-
-### Keep the model panel manageable
-
-Every representation entry — and every `||`-split chunk inside one —
-becomes a row in Moorhen's Models drawer. For a scene with many
-molecules each carrying many highlighted residues, the drawer can
-become unwieldy. To keep it tractable:
-
-- **Group highlights into ranges where you can.** `//A/115-117` is
-  one chunk / one row; `//A/115||//A/116||//A/117` is three.
-- **Use `by-domain` colouring instead of one rep per coloured block.**
-  A ribbon with `colour: by-domain` is one row that colours the whole
-  protein by the domain map; doing the same with N hex-coloured reps
-  produces N rows.
-- For repeated patterns across molecules (a fragment campaign), the
-  same selection on N molecules costs N rows total, not N×M; you only
-  pay for repeats *within* a single molecule.
-
-### Naming bundle assets
-
-Inside the `bundle:` value, use a sensible directory structure:
-
-```
-my-scene.scene.zip
-├── scene.yaml
-└── assets/
-    ├── coords/
-    │   ├── x0034.cif
-    │   ├── x0092.cif
-    │   └── ...
-    └── dict/
-        ├── x0034_LIG.cif
-        ├── x0092_LIG.cif
-        └── ...
-```
-
-The path inside `bundle:` matches the path inside the zip — pick
-something stable and human-readable. `assets/` is convention; the
-schema doesn't enforce it.
-
-### Multi-comp dictionaries
-
-A single `.cif` file can declare several `data_comp_*` blocks. Coot's
-`read_dictionary_string` parses all of them in one call, so the
-resolver doesn't need to split. One file ref = all blocks loaded.
-
-### Bare-int ranges
-
-Use bare integers for single residues. `range: 115` is more readable
-than `range: "115-115"`, and parses to the same internal form. Same
-applies inside LSQ matches:
-
-```yaml
-domains:
-  - { name: catalytic, chain: A, range: 245, color: "#e74c3c" }   # bare int
-  - { name: helix-A,   chain: A, range: 100-130, color: "#4b8bbe" }  # range
-```
-
-### Disjoint residues on one chain need `||`
-
-The Coot CID grammar does **not** accept comma-separated residue
-numbers — `//A/115,116,121` is a parse error. The only valid form for
-disjoint residues is `||`-joined single-residue or single-range CIDs:
-
-```yaml
-# Correct: || joins single-residue / single-range CIDs
-- style: CBs
-  selection: "//A/115||//A/116||//A/121-122||//A/146||//A/155||//A/192||//A/198||//A/201||//A/204-205||//A/208||//A/213"
-  colour: "#e74c3c"
-```
-
-Each `||` chunk becomes its own row in the Models drawer (the
-resolver splits and emits one rep per chunk). Group adjacent
-residues into ranges where you can to keep the count down.
-
-### Multi-structure scenes share the same domains and view
-
-When you're comparing 25 fragment-soak structures, write the domains
-block *once* and one element per molecule that references it:
-
-```yaml
-domains:
-  - { name: NBD, chain: A, range: 104-260, color: "#2ecc71" }
-  - { name: HD1, chain: A, range: 261-330, color: "#9b59b6" }
-  ...
-
-elements:
-  - file: x0034
-    representations:
-      - { style: CRs, selection: "//A", colour: by-domain }
-  - file: x0092
-    representations:
-      - { style: CRs, selection: "//A", colour: by-domain }
-  ...
-```
-
-For comparing conformations, add a `superpose:` block so the camera
-stays meaningful across all of them.
-
-## Worked example
-
-A minimal scene that fetches two PDB entries, aligns them on the NBD,
-and renders both with domain colouring:
-
-```yaml
-scene: apaf1-nod-aligned
+scene: minimal
 version: 1
-
 files:
-  - { name: closed, pdb: 1z6t }
-  - { name: nod-x,  pdb: 3sfz }
-
-superpose:
-  - { method: lsq, move: nod-x, onto: closed, chain: A, range: 104-260 }
-
-domains:
-  - { name: CARD, chain: A, range: 1-92,    color: "#4b8bbe" }
-  - { name: NBD,  chain: A, range: 104-260, color: "#2ecc71" }
-  - { name: HD1,  chain: A, range: 261-330, color: "#9b59b6" }
-  - { name: WHD,  chain: A, range: 331-415, color: "#f1c40f" }
-  - { name: HD2,  chain: A, range: 416-586, color: "#e67e22" }
-
+  - { name: prot, pdb: 1ABC }
 elements:
-  - file: closed
+  - file: prot
     representations:
-      - { style: CRs, selection: "//A", colour: by-domain }
-  - file: nod-x
-    representations:
-      - { style: CRs, selection: "//A", colour: by-domain }
+      - { style: CRs, selection: "//A", colour: secondary-structure }
+```
 
+Domains, honoured geometry, advisory hints (validates under the core schema):
+
+```yaml
+scene: gamma-demo
+version: 1
+files:
+  - { name: gamma, pdb: 1B9K }
+domains:
+  - { name: head,   selection: "//A/703-740",  color: "#4b8bbe" }
+  - { name: tail,   selection: "//A/900-1000", color: "#e74c3c" }  # clamps to 938
+elements:
+  - file: gamma
+    representations:
+      - { style: CRs, selection: "//A", colour: by-domain }
+      - { style: CBs, selection: "//A/750", geometry: { bondRadius: 0.18 } }
+hints:
+  lighting: { direction: [1, 1, 1], shininess: 24 }
+  effects:  { ssao: { enabled: true }, edgeDetect: { enabled: true } }
 resolver:
   onMissingResidues: clamp-and-log
 ```
-
-Drop that into the Scenes editor, click Apply, and you have two
-APAF-1 structures aligned on their NBDs with matching colour schemes
-— ready to compare conformations.
-
-### With electron density
-
-A refined model with its 2Fo-Fc and Fo-Fc maps, ready for inspection:
-
-```yaml
-scene: refined-with-density
-version: 1
-
-files:
-  - { name: model, fileId: 482, projectId: 3f8a-aaaa-bbbb-cccc-uuid }
-  - { name: refl,  kind: mtz, fileId: 483, projectId: 3f8a-aaaa-bbbb-cccc-uuid }
-
-elements:
-  - file: model
-    representations:
-      - { style: CRs, colour: secondary-structure }
-      - { style: CBs, selection: "//*/(LIG)", colour: "#2ecc71" }
-
-maps:
-  - name: best
-    file: refl
-    columns: { F: FWT, PHI: PHWT }
-    contourLevel: 1.5
-  - name: diff
-    file: refl
-    columns: { F: DELFWT, PHI: PHDELWT }
-    isDifference: true
-    contourLevel: 3.0
-
-activeMap: best
-
-view:
-  origin: [12.4, 8.1, -3.6]
-  zoom: 0.4
-```
-
-(The `fileId` + `projectId` refs resolve against the ccp4i2 project the
-recipient has open; share as a `.scene.zip` with the coords and MTZ
-bundled if the recipient won't have the project.)

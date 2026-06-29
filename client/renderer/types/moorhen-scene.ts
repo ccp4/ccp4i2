@@ -74,11 +74,51 @@ export interface MoorhenScene {
   activeMap?: string;
 
   /** Camera, clip, fog, background. Portable subset of Moorhen's
-   *  viewDataSession; lighting/SSAO/shadow params intentionally omitted. */
+   *  viewDataSession; lighting/effects live in `hints`. */
   view?: SceneView;
+
+  /** Advisory render hints — lighting + perceptual effects. A conforming
+   *  renderer MAY ignore any of these and still produce a correct image
+   *  (see MOORHEN_SCENES_SCHEMA_V1_DESIGN.md §3, §4). */
+  hints?: SceneHints;
 
   /** Apply-time policy. */
   resolver?: SceneResolverOptions;
+}
+
+// --------------------------------------------------------------------------
+// Hints (advisory render layer)
+// --------------------------------------------------------------------------
+
+export interface SceneHints {
+  lighting?: SceneLighting;
+  effects?: SceneEffects;
+}
+
+/** Scene-global light, mirroring Moorhen's single light (glRefSlice).
+ *  Colours are hex; `direction` maps to Moorhen lightPosition. */
+export interface SceneLighting {
+  direction?: [number, number, number];
+  ambient?: string;
+  diffuse?: string;
+  specular?: string;
+  shininess?: number;
+}
+
+/** Perceptual post-processing. Each has a meaningful "off"; omitting one
+ *  yields a correct-but-plainer render. */
+export interface SceneEffects {
+  ssao?: { enabled?: boolean; radius?: number; bias?: number };
+  edgeDetect?: {
+    enabled?: boolean;
+    depthThreshold?: number;
+    normalThreshold?: number;
+    depthScale?: number;
+    normalScale?: number;
+  };
+  shadows?: boolean;
+  depthBlur?: { radius?: number; depth?: number };
+  perspective?: boolean;
 }
 
 // --------------------------------------------------------------------------
@@ -99,7 +139,7 @@ export interface SceneProvenance {
 
 /**
  * A named file reference. Exactly one of {pdb, url, fileId+project,
- * job+param+project, path} should be set. The resolver first looks for an
+ * job+param+project, relativeUrl} should be set. The resolver first looks for an
  * already-loaded molecule that matches; failing that (and when the ref
  * carries enough info), the resolver fetches the coords and registers a
  * new molecule before binding.
@@ -144,8 +184,12 @@ export interface SceneFileRef {
    *  structures (refined coords on a shared server, e.g.). */
   url?: string;
 
-  /** Absolute path on the local filesystem. Not portable. */
-  path?: string;
+  /** Origin-relative loader URL, e.g. "/api/proxy/pdbe/entry-files/download/1abc.cif"
+   *  or "/api/ccp4i2/download?fileId=…". Portable only WITHIN the serving
+   *  deployment (it resolves against the app's own origin); lowered to a
+   *  `bundle:` asset or absolute `url:` on a strict-portable export.
+   *  Renamed from the misleading `path` — it never held a filesystem path. */
+  relativeUrl?: string;
 
   // -- ccp4i2 project-internal references --------------------------------
 
@@ -306,6 +350,24 @@ export interface SceneRepresentation {
    *  the opacity used when colour is scene-driven (rules / hex / named schemes);
    *  a hand-picked colour-picker colour would instead carry alpha in its RGBA. */
   alpha?: number;
+
+  /** Honoured geometry — physical dimensions (Å) a conforming renderer MUST
+   *  reproduce. Maps to Moorhen's per-representation m2tParameters. */
+  geometry?: SceneGeometry;
+}
+
+/** Per-representation honoured geometry. All dimensions are Ångström (except
+ *  vdwScale, a multiplier). See moorhen m2tParameters. */
+export interface SceneGeometry {
+  bondRadius?: number;
+  ballRadius?: number;
+  vdwScale?: number;
+  probeRadius?: number;
+  ribbonCoilThickness?: number;
+  ribbonHelixWidth?: number;
+  ribbonStrandWidth?: number;
+  ribbonArrowWidth?: number;
+  ribbonDNARNAWidth?: number;
 }
 
 /**

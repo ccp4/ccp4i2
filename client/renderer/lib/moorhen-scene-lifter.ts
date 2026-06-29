@@ -421,9 +421,9 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
       const ext = (mol.coordsFormat === "mmcif" || mol.coordsFormat === "mmjson") ? "cif" : "pdb";
       const assetPath = `assets/${ref.name}.${ext}`;
       assets.set(assetPath, new TextEncoder().encode(coordText).buffer);
-      // Replace the unresolvable path: form with the portable bundle: form.
+      // Replace the unresolvable relativeUrl: form with the portable bundle: form.
       ref.bundle = assetPath;
-      delete ref.path;
+      delete ref.relativeUrl;
       // Preserve the original path as a comment so the round-tripped
       // YAML still records where the user originally pulled this from.
       if (mol.uniqueId && !hints.fileComments[ref.name]) {
@@ -548,7 +548,7 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
       // `kind` since downstream resolver cares.
       delete ref.pdb;
       delete ref.url;
-      delete ref.path;
+      delete ref.relativeUrl;
       delete ref.fileId;
       delete ref.projectId;
       delete ref.projectName;
@@ -673,9 +673,10 @@ function liftFileRef(mol: moorhen.Molecule, ctx: LiftCtx): SceneFileRef {
     return { name, url: mol.uniqueId };
   }
 
-  // Path fallback for local fetches that don't look like URLs.
+  // Fallback: a uniqueId that isn't an absolute URL is an origin-relative
+  // loader URL (e.g. /api/proxy/pdbe/…) — emit it as relativeUrl.
   if (mol.uniqueId) {
-    return { name, path: mol.uniqueId };
+    return { name, relativeUrl: mol.uniqueId };
   }
 
   // Last resort: a placeholder url that the user will edit.
@@ -716,7 +717,7 @@ function liftMapFileRef(map: moorhen.Map, ctx: LiftCtx, index: number): SceneFil
     return { name, kind, url: map.uniqueId };
   }
   if (map.uniqueId) {
-    return { name, kind, path: map.uniqueId };
+    return { name, kind, relativeUrl: map.uniqueId };
   }
   return { name, kind, url: "TODO: URL for this map" };
 }

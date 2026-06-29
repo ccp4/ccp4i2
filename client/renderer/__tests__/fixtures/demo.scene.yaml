@@ -1,32 +1,51 @@
+# yaml-language-server: $schema=../../lib/scene/moorhen-scene.core.v1.json
 scene: gamma-demo
 version: 1
 
-# Sample scene for verifying the upload flow.
+# Canonical valid example — exercises the full v1 surface, and is PORTABLE
+# (validates under the core schema, no ccp4i2 dialect) and self-contained.
 #
-# Designed against demo_data/gamma/gamma_model.pdb (chain A, residues
-# 703-822). The three named domains slice that range into three blocks
-# with distinct colours. The fourth ("tail") deliberately extends past
-# residue 822 to exercise the clamp-and-log resolver path — when applied
-# you'll see it clamped to 800-822 in the resolver log.
+# gamma-crystallin, deposited as PDB 1B9K — chain A spans residues 702-938
+# (verified with gemmi). Three domains slice the region into colour bands;
+# "tail" deliberately runs past the last modelled residue (938) to exercise the
+# clamp-and-log resolver path (clamped to 900-938, logged on apply).
 #
-# v0 file-matching: this scene's `files:` entry uses path-only matching,
-# which works when you've loaded gamma_model.pdb in the file browser.
-# (When ccp4i2 fileId matching is the path actually used, you'd swap
-# to fileId/projectId. Either form should resolve.)
+# `pdb:` fetches via the PDBe proxy and matches the loaded molecule by its
+# download URL — runnable with no project setup. (A molecule's uniqueId is a
+# loader URL, never a bare path, so path/relativeUrl would not match.)
 
 files:
   - name: gamma
-    path: demo_data/gamma/gamma_model.pdb
+    pdb: 1B9K
 
 domains:
-  - { name: head,   chain: A, range: 703-740, color: "#4b8bbe" }
-  - { name: middle, chain: A, range: 741-780, color: "#f1c40f" }
-  - { name: tail,   chain: A, range: 800-900, color: "#e74c3c" }
+  - { name: head, selection: "//A/703-740", color: "#4b8bbe" }
+  - { name: middle, selection: "//A/741-780", color: "#f1c40f" }
+  - { name: tail, selection: "//A/900-1000", color: "#e74c3c" } # 900-938 present; 939-1000 clamped
 
 elements:
   - file: gamma
     representations:
       - { style: CRs, selection: "//A", colour: by-domain }
+      # honoured geometry: bond cylinder radius in Å
+      - {
+          style: CBs,
+          selection: "//A/750",
+          colour: "#888888",
+          geometry: { bondRadius: 0.18 },
+        }
+      # translucent surface — ambient occlusion (hints.effects.ssao) reads best here
+      - {
+          style: MolecularSurface,
+          selection: "//A",
+          colour: "#dddddd",
+          alpha: 0.6,
+        }
+
+# Advisory render hints — a conforming renderer MAY ignore any of these.
+hints:
+  lighting: { direction: [1.0, 1.0, 1.0], shininess: 24 } # +x right, +y up, +z toward viewer → upper-right-front
+  effects: { ssao: { enabled: true }, edgeDetect: { enabled: true } }
 
 resolver:
   onMissingResidues: clamp-and-log

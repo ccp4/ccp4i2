@@ -40,7 +40,7 @@ files:
   - name: reference
     url: https://ddudatabase/api/ccp4i2/fileBy/abc
   - name: external
-    path: /abs/path/to/foo.pdb
+    relativeUrl: /api/proxy/pdbe/entry-files/download/foo.cif
 domains:
   - name: N-lobe
     chain: A
@@ -426,7 +426,7 @@ describe("Moorhen scene — validation errors", () => {
   it("rejects a file ref with no resolution method", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: orphan\n`;
     expect(() => parseScene(yaml)).toThrow(
-      /must set one of: pdb, url, path, bundle, fileId/,
+      /must set one of: pdb, url, relativeUrl, bundle, fileId/,
     );
   });
 
@@ -880,7 +880,7 @@ version: 1
 files:
   - { name: f, kind: weird, url: https://example/f.cif }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "coordinates", "dictionary", or "mtz"/);
+    expect(() => parseScene(yaml)).toThrow(/must be "coordinates", "dictionary", "mtz", or "map"/);
   });
 
   it("rejects pdb: on a dictionary ref (pdb makes no sense for dicts)", () => {

@@ -262,12 +262,23 @@ function validateFiles(
     const ref: SceneFileRef = { name };
     if ("kind" in entry) {
       const kind = optStr(entry, "kind", `${p}.kind`, errors);
-      if (kind && kind !== "coordinates" && kind !== "dictionary" && kind !== "mtz") {
+      if (
+        kind &&
+        kind !== "coordinates" &&
+        kind !== "dictionary" &&
+        kind !== "mtz" &&
+        kind !== "map"
+      ) {
         errors.push({
           path: `${p}.kind`,
-          message: `must be "coordinates", "dictionary", or "mtz", got "${kind}"`,
+          message: `must be "coordinates", "dictionary", "mtz", or "map", got "${kind}"`,
         });
-      } else if (kind === "coordinates" || kind === "dictionary" || kind === "mtz") {
+      } else if (
+        kind === "coordinates" ||
+        kind === "dictionary" ||
+        kind === "mtz" ||
+        kind === "map"
+      ) {
         ref.kind = kind;
       }
     }
@@ -275,7 +286,8 @@ function validateFiles(
     if ("cifText" in entry) ref.cifText = optStr(entry, "cifText", `${p}.cifText`, errors);
     if ("bundle" in entry) ref.bundle = optStr(entry, "bundle", `${p}.bundle`, errors);
     if ("url" in entry) ref.url = optStr(entry, "url", `${p}.url`, errors);
-    if ("path" in entry) ref.path = optStr(entry, "path", `${p}.path`, errors);
+    if ("relativeUrl" in entry)
+      ref.relativeUrl = optStr(entry, "relativeUrl", `${p}.relativeUrl`, errors);
     if ("projectId" in entry) ref.projectId = optStr(entry, "projectId", `${p}.projectId`, errors);
     if ("projectName" in entry) ref.projectName = optStr(entry, "projectName", `${p}.projectName`, errors);
     if ("fileId" in entry) ref.fileId = optNum(entry, "fileId", `${p}.fileId`, errors);
@@ -313,13 +325,13 @@ function validateFiles(
     const hasCifText = !!ref.cifText;
     const hasBundle = !!ref.bundle;
     const hasUrl = !!ref.url;
-    const hasPath = !!ref.path;
+    const hasRelativeUrl = !!ref.relativeUrl;
     const hasFileId = ref.fileId !== undefined;
     const hasJobParam = ref.job !== undefined && !!ref.param;
-    if (!hasPdb && !hasCifText && !hasBundle && !hasUrl && !hasPath && !hasFileId && !hasJobParam) {
+    if (!hasPdb && !hasCifText && !hasBundle && !hasUrl && !hasRelativeUrl && !hasFileId && !hasJobParam) {
       errors.push({
         path: p,
-        message: "must set one of: pdb, url, path, bundle, fileId (+projectId), job+param (+projectId), or cifText (for dictionaries)",
+        message: "must set one of: pdb, url, relativeUrl, bundle, fileId (+projectId), job+param (+projectId), or cifText (for dictionaries)",
       });
     }
     // fileId form: needs projectId (the lifter always pairs them, and the

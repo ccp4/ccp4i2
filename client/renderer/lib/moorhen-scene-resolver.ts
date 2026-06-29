@@ -27,6 +27,24 @@ import {
   setFogEnd,
   setResetClippingFogging,
   setBackgroundColor,
+  setLightPosition,
+  setAmbient,
+  setDiffuse,
+  setSpecular,
+  setSpecularPower,
+  setDoSSAO,
+  setSsaoRadius,
+  setSsaoBias,
+  setDoEdgeDetect,
+  setEdgeDetectDepthThreshold,
+  setEdgeDetectNormalThreshold,
+  setEdgeDetectDepthScale,
+  setEdgeDetectNormalScale,
+  setUseOffScreenBuffers,
+  setDoShadow,
+  setDepthBlurRadius,
+  setDepthBlurDepth,
+  setDoPerspectiveProjection,
   setRequestDrawScene,
   addCustomRepresentation,
   removeCustomRepresentation,
@@ -57,6 +75,8 @@ import {
   SceneColourSelection,
   SceneDomain,
   SceneFileRef,
+  SceneGeometry,
+  SceneHints,
   SceneMap,
   SceneRepresentation,
   SceneLsqMatch,
@@ -698,6 +718,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       if (rgba) dispatch(setBackgroundColor(rgba));
     }
   }
+
+  // Scene-level render hints (lighting + effects). Advisory; applied once.
+  if (scene.hints) applyHints(scene.hints, dispatch);
+
   dispatch(setRequestDrawScene(true));
 
   return result;
@@ -710,8 +734,9 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 /**
  * True iff the resolver could ask the fetcher to load this ref on its
  * own — i.e. the ref carries enough info to know where to fetch from.
- * `path:` alone is not fetchable (we don't read arbitrary local paths
- * from the browser). `job+param` IS fetchable: the host fetcher resolves
+ * `relativeUrl:` alone is not fetchable here (it's an origin-relative loader
+ * URL used for matching already-loaded molecules, not for standalone fetch).
+ * `job+param` IS fetchable: the host fetcher resolves
  * the job number + output param to a project file via the ccp4i2 REST API
  * (jobs → files) and loads it through the same proxy URL as fileId refs.
  */
@@ -764,8 +789,8 @@ function matchOneFile(
     }
   }
 
-  // 4. Match by URL or path (uniqueId is set to the loader's URL/path).
-  const candidates = [fr.url, fr.path].filter(Boolean) as string[];
+  // 4. Match by URL (uniqueId is set to the loader's absolute or origin-relative URL).
+  const candidates = [fr.url, fr.relativeUrl].filter(Boolean) as string[];
   for (const c of candidates) {
     for (const mol of molecules) {
       if (mol.uniqueId === c) return mol;
@@ -793,7 +818,7 @@ function matchOneMap(fr: SceneFileRef, maps: moorhen.Map[]): moorhen.Map | null 
       if (m.uniqueId === sentinel) return m;
     }
   }
-  const candidates = [fr.url, fr.path].filter(Boolean) as string[];
+  const candidates = [fr.url, fr.relativeUrl].filter(Boolean) as string[];
   for (const c of candidates) {
     for (const m of maps) {
       if (m.uniqueId === c) return m;
@@ -947,6 +972,45 @@ export function splitMultiCid(cid: string): string[] {
     .filter((s) => s.length > 0);
 }
 
+/**
+ * Honoured-geometry → Moorhen m2tParameters key map. Every SceneGeometry field
+ * has a direct m2tParameters counterpart (all are world-space Å except vdwScale,
+ * a multiplier). See MoorhenMoleculeRepresentation.m2tParameters.
+ */
+const GEOMETRY_TO_M2T: Record<keyof SceneGeometry, string> = {
+  bondRadius: "cylindersStyleCylinderRadius",
+  ballRadius: "cylindersStyleBallRadius",
+  vdwScale: "ballsStyleRadiusMultiplier",
+  probeRadius: "surfaceStyleProbeRadius",
+  ribbonCoilThickness: "ribbonStyleCoilThickness",
+  ribbonHelixWidth: "ribbonStyleHelixWidth",
+  ribbonStrandWidth: "ribbonStyleStrandWidth",
+  ribbonArrowWidth: "ribbonStyleArrowWidth",
+  ribbonDNARNAWidth: "ribbonStyleDNARNAWidth",
+};
+
+/**
+ * Merge a scene's honoured geometry onto a representation's existing
+ * m2tParameters. Pure (no Moorhen instance) so it is unit-testable; the caller
+ * applies the result via representation.setM2tParams + useDefaultM2tParams=false.
+ */
+export function geometryToM2tParams(
+  geom: SceneGeometry,
+  base: Record<string, unknown> = {},
+): Record<string, unknown> {
+  const out: Record<string, unknown> = { ...base };
+  for (const key of Object.keys(GEOMETRY_TO_M2T) as (keyof SceneGeometry)[]) {
+    const v = geom[key];
+    if (typeof v === "number") out[GEOMETRY_TO_M2T[key]] = v;
+  }
+  return out;
+}
+
+/** True iff a SceneGeometry carries at least one numeric override. */
+function hasGeometry(geom?: SceneGeometry): geom is SceneGeometry {
+  return !!geom && Object.values(geom).some((v) => typeof v === "number");
+}
+
 // --------------------------------------------------------------------------
 // Representations
 // --------------------------------------------------------------------------
@@ -998,6 +1062,18 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
       );
       if (!created) continue;
       const hasAlpha = typeof rep.alpha === "number" && rep.alpha < 1;
+      const geomSet = hasGeometry(rep.geometry);
+      // Honoured geometry → m2tParameters. Applied before the redraw so the
+      // rebuilt buffers use the new dimensions.
+      if (geomSet) {
+        created.useDefaultM2tParams = false;
+        created.setM2tParams(
+          geometryToM2tParams(
+            rep.geometry as SceneGeometry,
+            created.m2tParams as unknown as Record<string, unknown>,
+          ) as unknown as typeof created.m2tParams,
+        );
+      }
       if (pendingRules.length > 0) {
         for (const r of pendingRules) {
           // Colour rule CID stays as authored — the rule's CID and the
@@ -1013,7 +1089,9 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
             r.applyColourToNonCarbonAtoms ?? false,
           );
         }
-        // Rebuild the buffers with the colour rules applied.
+      }
+      // Rebuild the buffers once if colour rules and/or geometry changed.
+      if (pendingRules.length > 0 || geomSet) {
         await molecule.redrawRepresentation(created.uniqueId);
       }
       // Opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque; surfaces included)
@@ -1388,4 +1466,77 @@ function hexToRgba01(hex: string): [number, number, number, number] | null {
   const g = parseInt(hex.slice(3, 5), 16) / 255;
   const b = parseInt(hex.slice(5, 7), 16) / 255;
   return [r, g, b, 1];
+}
+
+/**
+ * Convert a scene's conceptual light DIRECTION into Moorhen's lightPosition,
+ * which is a POSITION (default [25,25,50,1], |·|≈61, w=1) — not a unit vector.
+ * Normalise the direction and place the light at `distance` along it, w=1, so
+ * "lit from this direction" maps to a sensible far light rather than one sitting
+ * at the model centre. See MOORHEN_SCENES_SCHEMA_V1_DESIGN.md §4b.
+ */
+export function directionToLightPosition(
+  dir: [number, number, number],
+  distance = 60,
+): [number, number, number, number] {
+  const [x, y, z] = dir;
+  const len = Math.hypot(x, y, z) || 1;
+  const s = distance / len;
+  return [x * s, y * s, z * s, 1];
+}
+
+/**
+ * Apply scene-level render hints (lighting + perceptual effects) to the Moorhen
+ * store. Advisory: every field is optional and only dispatched when present, so
+ * a scene with no hints leaves Moorhen's current state untouched. Lighting is
+ * the "substituted" class (a renderer falls back to its default if absent);
+ * effects are additive toggles.
+ */
+function applyHints(hints: SceneHints, dispatch: Dispatch): void {
+  const l = hints.lighting;
+  if (l) {
+    if (l.direction) dispatch(setLightPosition(directionToLightPosition(l.direction)));
+    if (l.ambient) {
+      const c = hexToRgba01(l.ambient);
+      if (c) dispatch(setAmbient(c));
+    }
+    if (l.diffuse) {
+      const c = hexToRgba01(l.diffuse);
+      if (c) dispatch(setDiffuse(c));
+    }
+    if (l.specular) {
+      const c = hexToRgba01(l.specular);
+      if (c) dispatch(setSpecular(c));
+    }
+    if (typeof l.shininess === "number") dispatch(setSpecularPower(l.shininess));
+  }
+  // Effects are scene-AUTHORITATIVE: when an `effects` block is present it fully
+  // determines effect state, so an effect the scene doesn't mention is reset to
+  // its Moorhen default (off). This makes a scene reproduce its look regardless
+  // of prior UI fiddling (design doc §4b). Lighting (above) stays additive.
+  const e = hints.effects;
+  if (e) {
+    dispatch(setDoSSAO(e.ssao?.enabled ?? false));
+    if (typeof e.ssao?.radius === "number") dispatch(setSsaoRadius(e.ssao.radius));
+    if (typeof e.ssao?.bias === "number") dispatch(setSsaoBias(e.ssao.bias));
+
+    dispatch(setDoEdgeDetect(e.edgeDetect?.enabled ?? false));
+    const ed = e.edgeDetect;
+    if (ed) {
+      if (typeof ed.depthThreshold === "number") dispatch(setEdgeDetectDepthThreshold(ed.depthThreshold));
+      if (typeof ed.normalThreshold === "number") dispatch(setEdgeDetectNormalThreshold(ed.normalThreshold));
+      if (typeof ed.depthScale === "number") dispatch(setEdgeDetectDepthScale(ed.depthScale));
+      if (typeof ed.normalScale === "number") dispatch(setEdgeDetectNormalScale(ed.normalScale));
+    }
+
+    dispatch(setDoShadow(e.shadows ?? false));
+    dispatch(setDoPerspectiveProjection(e.perspective ?? false));
+
+    // depthBlur maps to Moorhen's `useOffScreenBuffers` (historically named).
+    dispatch(setUseOffScreenBuffers(!!e.depthBlur));
+    if (e.depthBlur) {
+      if (typeof e.depthBlur.radius === "number") dispatch(setDepthBlurRadius(e.depthBlur.radius));
+      if (typeof e.depthBlur.depth === "number") dispatch(setDepthBlurDepth(e.depthBlur.depth));
+    }
+  }
 }
