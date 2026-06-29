@@ -568,30 +568,57 @@ export const installIpcHandlers = (
         `ccp4i2>=${CCP4I2_SERVER_VERSION_FLOOR}`, "--verbose",
       ]);
 
-      // Locate the bundled lock via the just-installed package. If ccp4i2 didn't
-      // import, step 1 truly failed — let the probe report it.
-      let lockPath: string | null = null;
+      // Locate the bundled lock via the just-installed package. Resolve the
+      // package dir and the lock separately so we can tell "ccp4i2 absent" from
+      // "ccp4i2 present but lock missing" — the latter happens when an OLD wheel
+      // (published before the lock existed, e.g. 3.0.0) is what got installed.
+      let pkgDir: string | null = null;
       try {
-        lockPath = execSync(
-          `"${pythonPath}" -c "import ccp4i2, os; print(os.path.join(os.path.dirname(ccp4i2.__file__), 'requirements-runtime.txt'))"`,
+        pkgDir = execSync(
+          `"${pythonPath}" -c "import ccp4i2, os; print(os.path.dirname(ccp4i2.__file__))"`,
           { encoding: "utf8" }
         ).trim();
-        if (!lockPath || !fs.existsSync(lockPath)) lockPath = null;
+        if (!pkgDir || !fs.existsSync(pkgDir)) pkgDir = null;
       } catch {
-        lockPath = null;
+        pkgDir = null;
       }
+      const lockPath = pkgDir
+        ? path.join(pkgDir, "requirements-runtime.txt")
+        : null;
 
-      if (lockPath) {
+      if (lockPath && fs.existsSync(lockPath)) {
         sendProgress("installing", `\n[2/2] Installing dependencies from runtime lock…\n`);
+        // --ignore-installed is ESSENTIAL, not optional. --no-deps alone does
+        // NOT fully avoid pip's resolver: when a locked dep is already installed
+        // at a different version (e.g. CCP4's stale asgiref 3.3 vs the lock's
+        // 3.11), pip's _get_installed_candidate reads installed_dist.version to
+        // check the specifier — and crashes on the corrupt *.dist-info in CCP4
+        // environments, BEFORE upgrading. --ignore-installed makes pip install
+        // the lock's versions outright without inspecting installed ones, so the
+        // stale django/asgiref are actually replaced. Safe because the lock is
+        // curated to EXCLUDE CCP4's ABI-native packages (numpy/gemmi/lxml/…), so
+        // nothing compiled is overwritten.
         await runPipStep([
-          "-m", "pip", "install", "--no-deps", "--upgrade",
+          "-m", "pip", "install", "--no-deps", "--ignore-installed",
           "-r", lockPath, "--verbose",
         ]);
+      } else if (pkgDir) {
+        // ccp4i2 IS installed, but its wheel predates requirements-runtime.txt
+        // (published before the lock existed). Its dependency closure — notably
+        // a modern django/asgiref — cannot be applied, so the server import will
+        // fail the asgiref skew. Surface this precisely rather than blaming step 1.
+        sendProgress(
+          "installing",
+          `\n[2/2] Skipped: ccp4i2 is installed but ships no ` +
+            `requirements-runtime.txt — this is an OLD wheel (pre-3.0.1). ` +
+            `Its dependencies cannot be applied. Update the app (which pins a ` +
+            `newer floor) so a lock-bearing wheel is installed.\n`
+        );
       } else {
         sendProgress(
           "installing",
-          `\n[2/2] Skipped: could not locate requirements-runtime.txt ` +
-            `(ccp4i2 may not have installed in step 1). The probe will confirm.\n`
+          `\n[2/2] Skipped: ccp4i2 did not import after step 1 — the install ` +
+            `did not produce an importable package. The probe will report why.\n`
         );
       }
       finish(code1);
