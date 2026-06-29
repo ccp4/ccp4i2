@@ -111,6 +111,32 @@ describe("liftHints (lighting + effects capture, emit-only-non-default)", () => 
   });
 });
 
+describe("superpose round-trip (re-emit remembered, filtered by present files)", () => {
+  it("re-emits remembered superpose, dropping entries whose files are absent", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({ name: "a", molNo: 0, uniqueId: "ua", representations: [{ style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>] }),
+        fakeMol({ name: "b", molNo: 1, uniqueId: "ub", representations: [{ style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>] }),
+      ],
+      glRef: fakeGlRef,
+      superpose: [
+        { method: "ssm", move: "b", onto: "a", movChain: "A", refChain: "A" },
+        { method: "ssm", move: "ghost", onto: "a", movChain: "A", refChain: "A" },
+      ],
+    });
+    expect(scene.superpose).toHaveLength(1);
+    expect(scene.superpose![0].move).toBe("b");
+  });
+
+  it("emits no superpose when none was remembered", () => {
+    const scene = liftScene({
+      molecules: [fakeMol({ name: "a", molNo: 0, uniqueId: "ua", representations: [{ style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>] })],
+      glRef: fakeGlRef,
+    });
+    expect(scene.superpose).toBeUndefined();
+  });
+});
+
 describe("liftScene", () => {
   it("captures camera and a single file with a single visible representation", () => {
     const scene = liftScene({
