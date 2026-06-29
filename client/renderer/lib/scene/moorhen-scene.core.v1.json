@@ -228,6 +228,91 @@
               "type": "string"
             }
           },
+          "colour": {
+            "description": "molecule-scoped colour: the default for every representation of this file; a representation's own `colour` overrides it",
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$",
+                "description": "hex colour #rrggbb or #rrggbbaa"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "by-domain",
+                  "b-factor",
+                  "b-factor-norm",
+                  "af2-plddt",
+                  "secondary-structure",
+                  "jones-rainbow",
+                  "mol-symm"
+                ]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "selection": {
+                      "type": "string",
+                      "description": "CID, e.g. \"//A\" or \"//A/121-130\""
+                    },
+                    "colour": {
+                      "type": "string",
+                      "pattern": "^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$",
+                      "description": "hex colour #rrggbb or #rrggbbaa"
+                    }
+                  },
+                  "required": [
+                    "selection",
+                    "colour"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "raw": {
+                    "type": "object",
+                    "properties": {
+                      "ruleType": {
+                        "type": "string"
+                      },
+                      "args": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      },
+                      "isMultiColourRule": {
+                        "type": "boolean"
+                      },
+                      "applyColourToNonCarbonAtoms": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "ruleType",
+                      "args"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "raw"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
           "representations": {
             "type": "array",
             "items": {

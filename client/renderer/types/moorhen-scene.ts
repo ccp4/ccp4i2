@@ -326,6 +326,11 @@ export interface SceneElement {
    *  different chemistry — each gets its own scoped dictionary. */
   dictionaries?: string[];
 
+  /** Molecule-scoped colour: the default colour rules for every
+   *  representation of this file (maps to Moorhen's molecule-level colour).
+   *  A representation's own `colour` overrides it for that representation. */
+  colour?: SceneColour;
+
   /** Representations to draw on this file. */
   representations?: SceneRepresentation[];
 }

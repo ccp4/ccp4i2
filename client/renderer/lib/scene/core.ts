@@ -229,6 +229,9 @@ export const Element = z
   .object({
     file: z.string().describe("name of a files[] entry"),
     dictionaries: z.array(z.string()).optional(),
+    colour: Colour.optional().describe(
+      "molecule-scoped colour: the default for every representation of this file; a representation's own `colour` overrides it",
+    ),
     representations: z.array(Representation).optional(),
   })
   .strict();
