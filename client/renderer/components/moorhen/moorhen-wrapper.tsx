@@ -49,6 +49,8 @@ import {
   buildContentsBlock,
   buildManifestBlock,
   buildAuthoringPrompt,
+  extractPdbIds,
+  fetchPdbContents,
 } from "../../lib/moorhen-scene-prompt";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import {
@@ -1107,21 +1109,33 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     }
 
-    // Contents summary, labelled by the file's annotation where we have one
-    // (e.g. "CDK2-Cyclin A") so the model's selections read against a meaningful
-    // name; fall back to the molecule name, then the file id.
-    let contentsBlock = "(no structure loaded)";
+    // Contents summary. One block per source: the loaded structure (labelled by
+    // the file's annotation where we have one, e.g. "CDK2-Cyclin A"), plus a
+    // PDBe digest for any PDB id named in the request (so the model authoring a
+    // `pdb:` ref gets accurate chains + ligand CIDs — it can't fetch them itself).
+    const contentsParts: string[] = [];
     if (mol && fid != null) {
       try {
         const resp = await apiGet(`files/${fid}/digest/`);
         const digest = resp?.data ?? resp;
         const annotation = projectFiles.find((f) => f.id === fid)?.annotation;
         const label = annotation || mol.name || `file_${fid}`;
-        contentsBlock = buildContentsBlock(digest, label);
+        contentsParts.push(buildContentsBlock(digest, label));
       } catch (err) {
         console.warn("[scene-prompt] digest failed:", err);
       }
     }
+    try {
+      const pdbBlocks = await Promise.all(
+        extractPdbIds(request).map((id) => fetchPdbContents(id)),
+      );
+      for (const block of pdbBlocks) if (block) contentsParts.push(block);
+    } catch (err) {
+      console.warn("[scene-prompt] PDB digest failed:", err);
+    }
+    const contentsBlock = contentsParts.length
+      ? contentsParts.join("\n\n")
+      : "(no structure loaded)";
 
     return buildAuthoringPrompt({ project, contents: contentsBlock, manifest: manifestBlock, request });
   }, [molecules, projectInfo]);
