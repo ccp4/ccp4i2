@@ -696,6 +696,19 @@ function liftFileRef(mol: moorhen.Molecule, ctx: LiftCtx): SceneFileRef {
     };
   }
 
+  // PDBe-fetched structures: recover the portable `pdb:` ref from the proxy
+  // download URL (absolute or origin-relative), e.g.
+  //   /api/proxy/pdbe/entry-files/download/1ogu.cif  ->  pdb: 1OGU
+  // Mirrors the resolver's matchOneFile pdb matching, so a fetched PDB
+  // round-trips as a portable `pdb:` rather than a deployment-bound URL.
+  const pdbMatch = mol.uniqueId?.match(
+    /\/pdbe\/entry-files\/download\/([0-9a-zA-Z_]+)\.(?:cif|pdb|ent)/i,
+  );
+  if (pdbMatch) {
+    const id = pdbMatch[1];
+    return { name, pdb: /^pdb_/i.test(id) ? id.toLowerCase() : id.toUpperCase() };
+  }
+
   // Plain URL fallback for non-ccp4i2 loaders (e.g. PDBe direct fetches).
   if (mol.uniqueId && /^https?:\/\//.test(mol.uniqueId)) {
     return { name, url: mol.uniqueId };
@@ -937,7 +950,28 @@ function liftElement(mol: moorhen.Molecule, fileName: string): SceneElement | nu
   if (visible.length === 0) return null;
 
   const out: SceneRepresentation[] = visible.map(liftRepresentation);
-  return { file: fileName, representations: out };
+  const element: SceneElement = { file: fileName, representations: out };
+  hoistCommonColour(element);
+  return element;
+}
+
+/**
+ * If every representation carries the SAME colour, hoist it to a molecule-scoped
+ * `element.colour` (matching Moorhen's molecule-level colour) and drop it from
+ * the reps — terser, and the natural "colour this whole structure" form. Reps
+ * with differing colours keep their own (the per-rep override). No hoist unless
+ * all reps have an identical, defined colour.
+ */
+function hoistCommonColour(element: SceneElement): void {
+  const reps = element.representations ?? [];
+  // Only factor out a colour genuinely SHARED by ≥2 reps. A single rep keeps
+  // its own colour (nothing to hoist; avoids surprising the common one-rep case).
+  if (reps.length < 2) return;
+  const first = JSON.stringify(reps[0].colour);
+  if (reps[0].colour === undefined) return;
+  if (!reps.every((r) => JSON.stringify(r.colour) === first)) return;
+  element.colour = reps[0].colour;
+  for (const r of reps) delete r.colour;
 }
 
 function liftRepresentation(rep: moorhen.MoleculeRepresentation): SceneRepresentation {
@@ -985,8 +1019,17 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
   // and residue-range CIDs are the same shape, so by-domain re-applies through
   // the same path.
   if (rules.every(isSingleHexRule)) {
-    if (rules.length === 1) return rules[0].color;
-    return rules.map((r) => ({ selection: r.cid, colour: r.color }));
+    // Dedup (cid, colour) pairs — Moorhen can accumulate duplicate rules on a
+    // molecule's shared list; the dedup keeps a captured colour clean.
+    const seen = new Set<string>();
+    const uniq = rules.filter((r) => {
+      const k = `${r.cid} ${r.color}`;
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+    if (uniq.length === 1) return uniq[0].color;
+    return uniq.map((r) => ({ selection: r.cid, colour: r.color }));
   }
 
   const r = rules[0];

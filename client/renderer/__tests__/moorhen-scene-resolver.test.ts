@@ -8,6 +8,7 @@
  */
 import { describe, it, expect } from "vitest";
 import {
+  buildPendingRules,
   clampRangeToPresent,
   directionToLightPosition,
   expandLsqMatches,
@@ -18,6 +19,38 @@ import {
 } from "../lib/moorhen-scene-resolver";
 
 const present = (...nums: number[]) => new Set(nums);
+
+describe("buildPendingRules cascade (element.colour ↔ representation.colour)", () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const base: any = {
+    molecule: {},
+    domains: [],
+    fileName: "f",
+    log: [],
+    policy: "clamp-and-log",
+    dispatch: () => {},
+  };
+
+  it("falls back to element.colour when the representation has none", () => {
+    const rules = buildPendingRules(
+      { ...base, rep: { style: "CRs" }, elementColour: "#abcdef" },
+      "//A",
+    );
+    expect(rules[0].color).toBe("#abcdef");
+  });
+
+  it("representation.colour overrides element.colour", () => {
+    const rules = buildPendingRules(
+      { ...base, rep: { style: "CRs", colour: "#123456" }, elementColour: "#abcdef" },
+      "//A",
+    );
+    expect(rules[0].color).toBe("#123456");
+  });
+
+  it("no colour at either level → no rules", () => {
+    expect(buildPendingRules({ ...base, rep: { style: "CRs" } }, "//A")).toEqual([]);
+  });
+});
 
 describe("geometryToM2tParams (honoured geometry → Moorhen m2tParameters)", () => {
   it("maps each field to its m2tParameters key, merged onto the base", () => {

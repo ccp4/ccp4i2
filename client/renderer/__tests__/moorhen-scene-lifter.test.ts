@@ -149,13 +149,13 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![0].selection).toBeUndefined();
   });
 
-  it("falls back to url: when the molecule wasn't loaded via ccp4i2", () => {
+  it("falls back to url: for a non-PDBe absolute loader URL", () => {
     const scene = liftScene({
       molecules: [
         fakeMol({
-          name: "pdb",
+          name: "ext",
           molNo: 0,
-          uniqueId: "https://www.ebi.ac.uk/pdbe/entry-files/download/3jbt.cif",
+          uniqueId: "https://refined.example.org/structures/foo.cif",
           representations: [
             { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
           ],
@@ -164,9 +164,71 @@ describe("liftScene", () => {
       glRef: fakeGlRef,
     });
     expect(scene.files![0]).toEqual({
-      name: "pdb",
-      url: "https://www.ebi.ac.uk/pdbe/entry-files/download/3jbt.cif",
+      name: "ext",
+      url: "https://refined.example.org/structures/foo.cif",
     });
+  });
+
+  it("recovers a portable pdb: ref from a PDBe download URL (absolute or relative)", () => {
+    for (const uniqueId of [
+      "https://www.ebi.ac.uk/pdbe/entry-files/download/3jbt.cif",
+      "/api/proxy/pdbe/entry-files/download/1ogu.cif",
+    ]) {
+      const scene = liftScene({
+        molecules: [
+          fakeMol({
+            name: "p",
+            molNo: 0,
+            uniqueId,
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+          }),
+        ],
+        glRef: fakeGlRef,
+      });
+      expect(scene.files![0].pdb).toBe(uniqueId.includes("3jbt") ? "3JBT" : "1OGU");
+      expect(scene.files![0].relativeUrl).toBeUndefined();
+    }
+  });
+
+  it("hoists a colour shared by all reps to molecule-scoped element.colour", () => {
+    const rule = { ruleType: "molecule", cid: "//A", color: "#abcdef", isMultiColourRule: false, args: ["//A", "#abcdef"] };
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m", molNo: 0, uniqueId: "x",
+          representations: [
+            { style: "CRs", visible: true, colourRules: [rule] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+            { style: "MolecularSurface", visible: true, colourRules: [rule] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    const el = scene.elements![0];
+    expect(el.colour).toBe("#abcdef");
+    expect(el.representations!.every((r) => r.colour === undefined)).toBe(true);
+  });
+
+  it("keeps per-rep colour (no hoist) when representations differ", () => {
+    const mk = (c: string) => ({ ruleType: "molecule", cid: "//A", color: c, isMultiColourRule: false, args: ["//A", c] });
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m", molNo: 0, uniqueId: "x",
+          representations: [
+            { style: "CRs", visible: true, colourRules: [mk("#111111")] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+            { style: "CBs", visible: true, colourRules: [mk("#222222")] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    const el = scene.elements![0];
+    expect(el.colour).toBeUndefined();
+    expect(el.representations![0].colour).toBe("#111111");
+    expect(el.representations![1].colour).toBe("#222222");
   });
 
   it("hides representations that are explicitly hidden", () => {

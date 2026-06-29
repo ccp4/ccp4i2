@@ -25,16 +25,19 @@ domains:
 
 elements:
   - file: gamma
+    # molecule-scoped colour: every representation inherits this unless it sets
+    # its own `colour` (the two-level cascade — element default, rep override).
+    colour: by-domain
     representations:
-      - { style: CRs, selection: "//A", colour: by-domain }
-      # honoured geometry: bond cylinder radius in Å
+      - { style: CRs, selection: "//A" } # inherits element.colour (by-domain)
+      # per-rep OVERRIDE of the molecule colour + honoured geometry (bond radius, Å)
       - {
           style: CBs,
           selection: "//A/750",
           colour: "#888888",
           geometry: { bondRadius: 0.18 },
         }
-      # translucent surface — ambient occlusion (hints.effects.ssao) reads best here
+      # per-rep override; translucent surface — SSAO (hints) reads best on surfaces
       - {
           style: MolecularSurface,
           selection: "//A",

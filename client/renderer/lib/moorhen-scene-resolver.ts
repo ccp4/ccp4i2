@@ -526,6 +526,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
         log: result.log,
         policy,
         dispatch,
+        elementColour: element.colour,
       });
       if (ok) added++;
     }
@@ -1023,6 +1024,9 @@ interface ApplyRepCtx {
   log: SceneResolveLogEntry[];
   policy: "clamp-and-log" | "strict";
   dispatch: Dispatch;
+  /** Molecule-scoped colour from element.colour — the per-rep colour falls
+   *  back to this when the representation has no `colour` of its own. */
+  elementColour?: SceneColour;
 }
 
 /**
@@ -1075,6 +1079,13 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
         );
       }
       if (pendingRules.length > 0) {
+        // Decouple this representation from the molecule's shared
+        // `defaultColourRules` array (assigned to a rep BY REFERENCE at draw
+        // time in Moorhen). Without this reset, addColourRule push()es onto the
+        // shared array, so colour rules accumulate molecule-wide and leak across
+        // every representation (the "colour soup" on capture). Nulling it makes
+        // the first addColourRule build a fresh, rep-private list.
+        created.colourRules = null;
         for (const r of pendingRules) {
           // Colour rule CID stays as authored — the rule's CID and the
           // representation's CID don't have to match (e.g. by-domain
@@ -1151,16 +1162,19 @@ function extractRepError(e: unknown): string {
   }
 }
 
-function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] {
+export function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] {
   const { molecule, rep, domains, fileName, log, policy } = ctx;
-  if (!rep.colour) return [];
+  // Effective colour: the representation's own, else the molecule-scoped
+  // element.colour (the cascade — a rep's own colour overrides element.colour).
+  const colour = rep.colour ?? ctx.elementColour;
+  if (!colour) return [];
 
-  if (Array.isArray(rep.colour)) {
+  if (Array.isArray(colour)) {
     // Per-selection colour list: one single-colour rule per entry. A whole-chain
     // CID ("//A") and a residue range ("//A/121-130") apply identically here —
     // it's the general form by-domain compiles to, and what coot's default
     // per-chain colouring round-trips through.
-    return rep.colour.map((c) => ({
+    return colour.map((c) => ({
       ruleType: "molecule",
       cid: c.selection,
       color: c.colour,
@@ -1169,7 +1183,7 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
     }));
   }
 
-  if (isSceneHexColour(rep.colour)) {
+  if (isSceneHexColour(colour)) {
     // libcoot's add_colour_rule reads cid+colour from args, not from
     // this.cid/this.color (which are only consulted by the bond-style
     // shim_set_bond_colours path). Without [cid, colour] in args,
@@ -1178,15 +1192,15 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
       {
         ruleType: "molecule",
         cid: defaultCid,
-        color: rep.colour,
-        args: [defaultCid, rep.colour],
+        color: colour,
+        args: [defaultCid, colour],
         isMultiColourRule: false,
       },
     ];
   }
 
-  if (isSceneNamedColour(rep.colour)) {
-    if (rep.colour === "by-domain") {
+  if (isSceneNamedColour(colour)) {
+    if (colour === "by-domain") {
       return buildByDomainPendingRule(molecule, domains, fileName, log, policy);
     }
     // Named schemes (b-factor, af2-plddt, etc.) are Moorhen multi-rules
@@ -1194,7 +1208,7 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
     // args array; Moorhen's internal getMultiColourRuleArgs supplies them.
     return [
       {
-        ruleType: rep.colour,
+        ruleType: colour,
         cid: defaultCid,
         color: "#ffffff",
         args: [],
@@ -1203,8 +1217,8 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
     ];
   }
 
-  if (isSceneRawColour(rep.colour)) {
-    const raw = rep.colour.raw;
+  if (isSceneRawColour(colour)) {
+    const raw = colour.raw;
     return [
       {
         ruleType: raw.ruleType,

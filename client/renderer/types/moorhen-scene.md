@@ -65,6 +65,14 @@ domains?: { name: string, selection: string, color: string }[]
 elements?: ({
   file: string  # name of a files[] entry
   dictionaries?: string[]
+  colour?: string | "by-domain"|"b-factor"|"b-factor-norm"|"af2-plddt"|"secondary-structure"|"jones-rainbow"|"mol-symm" | { selection: string, colour: string }[] | {
+    raw: {
+      ruleType: string
+      args: (string | number)[]
+      isMultiColourRule?: boolean
+      applyColourToNonCarbonAtoms?: boolean
+    }
+  }  # molecule-scoped colour: the default for every representation of this file; a representation's own `colour` overrides it
   representations?: ({
     style: "VdwSpheres"|"ligands"|"CAs"|"CBs"|"CDs"|"gaussian"|"allHBonds"|"rama"|"rotamer"|"CRs"|"MolecularSurface"|"DishyBases"|"VdWSurface"|"Calpha"|"unitCell"|"hover"|"environment"|"ligand_environment"|"contact_dots"|"chemical_features"|"ligand_validation"|"glycoBlocks"|"restraints"|"residueSelection"|"MetaBalls"|"adaptativeBonds"|"StickBases"|"residue_environment"|"transformation"  # Moorhen RepresentationStyle, e.g. "CRs", "CBs"
     selection?: string  # CID; default all-atoms
