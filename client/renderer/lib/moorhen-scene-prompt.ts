@@ -23,6 +23,8 @@ const SCENE_CONVENTIONS = [
   "  secondary-structure, jones-rainbow, mol-symm); OR a per-selection list",
   "  [{selection, colour}]. `by-domain` colours by the top-level `domains:` block:",
   "  define domains (name + selection + color) and set `colour: by-domain` on reps.",
+  "- `element.colour` sets a molecule-wide default (any colour form above) inherited by",
+  "  every representation of that file; a representation's own `colour` overrides it.",
   "- geometry dimensions are Ångström. `hints` (lighting/effects) are ADVISORY —",
   "  a viewer may ignore them; never rely on them for what must be visible.",
 ].join("\n");

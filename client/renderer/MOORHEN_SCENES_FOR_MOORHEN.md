@@ -91,6 +91,16 @@ While grounding the format we noticed a few things, shared in case they're news:
   programmatic outline.
 - **`lightPosition` is a position** (default `[25,25,50,1]`, |·|≈61), not a unit
   direction — the resolver maps a conceptual `direction` to a position along it.
+- **Colour rules are molecule-scoped, accumulating, and shared by reference.** A
+  representation's `colourRules` is the parent molecule's `defaultColourRules`
+  *by reference*; `addColourRule` push()es onto it, so per-representation colours
+  accumulate molecule-wide and leak across representations (plus the load-time
+  default chain palette). A genuine per-representation colour API (or not sharing
+  the array by reference) would help. We work around it by nulling `colourRules`
+  before adding, and model two explicit levels in the scene (molecule + per-rep).
+- **SSM/LSQ superpose moves coordinates inside coot** (`changesMolecules` +
+  `setAtomsDirty`), with no display transform — so superposition can't be
+  captured from a molecule's state, only re-applied from a remembered directive.
 
 ## What carving out a core would involve
 

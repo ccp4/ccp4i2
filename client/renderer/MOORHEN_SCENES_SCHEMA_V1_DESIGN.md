@@ -248,9 +248,37 @@ becomes a generated compact brief, not hand-maintained prose.
 ## 9. Deferred / open
 
 - **Per-representation material** — deferred until Moorhen gains a material concept (§4b).
-- Honoured-geometry field set — **confirmed** against Moorhen `m2tParameters` and shipped
-  (bond/ball/probe radii, ribbon widths, vdwScale). Resolver mapping lands in step 3.
-- `hints` field set — **confirmed** against Moorhen `glRefSlice` (lighting) and the SSAO/
-  edge-detect/outline/shadow/depth-blur/perspective setters (effects); shipped.
 - `$id` URL scheme and where the published `moorhen-scene.{core,ccp4i2}.v1.json` are hosted.
-- Resolver/lifter wiring for the new fields (step 3) — lifter should emit-only-non-default.
+
+**Shipped since v1 (PRs #223–#226 + superpose):** honoured geometry (→ `m2tParameters`);
+`hints` lighting/effects apply (→ `glRefSlice` + `setDo*`) **and** lifter capture
+(emit-only-non-default); the generated LLM brief + regenerated human grammar; request-time
+**PDB digest** from PDBe; the two-level **colour** model and **superpose round-trip** (§10).
+`outline` was removed (it's a hover highlight, not a scene effect — §4b/§10).
+
+## 10. Colour scoping & superpose round-trip (shipped)
+
+**Two-level colour (matches Moorhen).** A representation's `colourRules` is the parent
+molecule's `defaultColourRules` assigned BY REFERENCE; `addColourRule` push()es onto that
+shared array, so per-rep colours accumulate molecule-wide and leak across reps (the capture
+"colour soup", incl. the load-time default chain palette). The format now mirrors Moorhen's
+real two levels:
+
+- **`element.colour`** — molecule-scoped default, inherited by every representation.
+- **`representation.colour`** — overrides it for that rep (the cascade; effective colour =
+  `rep.colour ?? element.colour`).
+
+Resolver: reset `created.colourRules = null` before `addColourRule` so each rep builds a
+fresh, private list (no leak). Lifter: dedup rules and **hoist** a colour shared by ≥2 reps
+up to `element.colour`. (Clean `setColourRules`/`defaultColourRules` is blocked — Moorhen
+doesn't export `ColourRule` at runtime — so we use the null-reset + addColourRule path.)
+
+**`pdb:` recovery.** The lifter recognises PDBe download URLs (absolute or origin-relative)
+and emits a portable `pdb:` ref rather than a deployment-bound `relativeUrl`.
+
+**Superpose round-trip.** SSM/LSQ **move coordinates inside coot** (`cootCommand`
+`changesMolecules` + `setAtomsDirty`) — there is no display transform to capture, and the
+directive can't be reverse-engineered from a moved molecule. So the host **remembers the
+last-applied `superpose` block** and the lifter **re-emits it** on capture, filtered to
+entries whose `move`/`onto` files survived the lift (no dangling refs). Straight capture of
+a superposed scene now round-trips.
