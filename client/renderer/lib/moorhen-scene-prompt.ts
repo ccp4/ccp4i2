@@ -85,6 +85,98 @@ export function buildContentsBlock(digest: FileDigest, label: string): string {
   return `Loaded structure "${label}":\n${lines.join("\n")}`;
 }
 
+// ── PDB references in the request (digest from PDBe) ────────────────────────
+
+// The NL→`pdb:` decision happens inside the LLM, which has no access to our
+// endpoints — so a `pdb:` ref can't be digested lazily. Instead the APP scans
+// the request TEXT for PDB ids it can see ("…from pdb 1OGU…"), fetches their
+// chains + ligand CIDs from PDBe (via the COEP proxy), and embeds them, exactly
+// like a loaded-structure digest. Only fires when an id is literally present;
+// a purely NL reference ("CDK2") degrades gracefully to no digest.
+
+/** Extract candidate PDB ids from free text. Classic ids start with a digit
+ *  (1-9) + 3 alphanumerics; extended ids are `pdb_########`. Over-matching is
+ *  harmless — a non-existent id 404s at PDBe and is dropped. */
+export function extractPdbIds(text: string): string[] {
+  const ids = new Set<string>();
+  for (const m of text.matchAll(/\b[1-9][a-zA-Z0-9]{3}\b/g)) ids.add(m[0].toUpperCase());
+  for (const m of text.matchAll(/\bpdb_[0-9a-z]{8}\b/gi)) ids.add(m[0].toLowerCase());
+  return [...ids];
+}
+
+interface PdbeMolecule {
+  molecule_type?: string;
+  molecule_name?: string[] | string;
+  in_chains?: string[];
+}
+interface PdbeLigand {
+  chem_comp_id?: string;
+  chain_id?: string;
+  author_residue_number?: number;
+}
+
+const MAX_LIGAND_LINES = 30;
+
+/** Format PDBe `molecules` + `ligand_monomers` arrays into a contents block,
+ *  matching buildContentsBlock so the LLM reads PDB and project refs alike. */
+export function formatPdbContents(
+  id: string,
+  molecules: PdbeMolecule[],
+  ligands: PdbeLigand[],
+): string {
+  const isPolymer = (t?: string) =>
+    !!t && /polypeptide|polyribo|polydeoxyribo|polynucleotide|nucleotide|peptide|saccharide|carbohydrate/i.test(t);
+  const lines: string[] = [];
+
+  const chainLines: string[] = [];
+  for (const m of molecules) {
+    if (!isPolymer(m.molecule_type)) continue;
+    const name = Array.isArray(m.molecule_name) ? m.molecule_name[0] : m.molecule_name;
+    for (const c of m.in_chains ?? []) chainLines.push(`  - chain ${c}${name ? `: ${name}` : ""}`);
+  }
+  if (chainLines.length) {
+    lines.push("Polymer chains (reference as e.g. //A or selection ranges):");
+    lines.push(...chainLines);
+  }
+
+  const ligLines = ligands
+    .filter((l) => l.chem_comp_id)
+    .map((l) => `  - ${l.chem_comp_id} at //${l.chain_id}/${l.author_residue_number}`);
+  if (ligLines.length) {
+    lines.push("Ligands / ions (reference by the exact CID shown):");
+    lines.push(...ligLines.slice(0, MAX_LIGAND_LINES));
+    if (ligLines.length > MAX_LIGAND_LINES)
+      lines.push(`  - … and ${ligLines.length - MAX_LIGAND_LINES} more`);
+  }
+
+  if (!lines.length) return `PDB ${id} (from PDBe): no chains or ligands reported.`;
+  return `PDB ${id} (from PDBe):\n${lines.join("\n")}`;
+}
+
+/** Fetch + format a PDB id's contents from PDBe via the proxy. Returns null on
+ *  404/error (so over-matched ids self-filter). `fetchFn`/`base` injectable for tests. */
+export async function fetchPdbContents(
+  id: string,
+  fetchFn: typeof fetch = fetch,
+  base = "/api/proxy/pdbe/api/pdb/entry",
+): Promise<string | null> {
+  const lid = id.toLowerCase();
+  try {
+    const [mr, lr] = await Promise.all([
+      fetchFn(`${base}/molecules/${lid}`),
+      fetchFn(`${base}/ligand_monomers/${lid}`),
+    ]);
+    if (!mr.ok) return null;
+    const mj = (await mr.json()) as Record<string, PdbeMolecule[]>;
+    const lj = lr.ok ? ((await lr.json()) as Record<string, PdbeLigand[]>) : {};
+    const molecules = mj[lid] ?? [];
+    if (!molecules.length) return null;
+    return formatPdbContents(id, molecules, lj[lid] ?? []);
+  } catch {
+    return null;
+  }
+}
+
 // ── Project manifest (from jobs + files REST) ───────────────────────────────
 
 export interface ManifestJob {
