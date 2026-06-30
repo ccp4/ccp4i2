@@ -140,6 +140,29 @@ describe("published JSON Schema contracts", () => {
     };
     walk(buildStructuredJsonSchema());
   });
+
+  it("the strict profile stays under Azure's 100-property cap (with headroom)", () => {
+    // Azure OpenAI hard-caps a strict json_schema at 100 object properties total
+    // and 5 nesting levels. The authoring-core prune (STRUCTURED_PRUNE) keeps us
+    // under; this guard fails loudly if a schema addition pushes it back over,
+    // rather than the model 400ing in production.
+    let properties = 0;
+    let maxDepth = 0;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const walk = (node: any, depth: number): void => {
+      if (Array.isArray(node)) return node.forEach((n) => walk(n, depth));
+      if (!node || typeof node !== "object") return;
+      const here = node.properties ? depth + 1 : depth;
+      if (node.properties) {
+        properties += Object.keys(node.properties).length;
+        maxDepth = Math.max(maxDepth, here);
+      }
+      for (const v of Object.values(node)) walk(v, here);
+    };
+    walk(buildStructuredJsonSchema(), 0);
+    expect(properties).toBeLessThanOrEqual(90); // ≤100 cap, ≥10 headroom
+    expect(maxDepth).toBeLessThanOrEqual(5);
+  });
 });
 
 // --- a minimal portable scene used across validity tests ------------------

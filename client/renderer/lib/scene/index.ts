@@ -223,16 +223,90 @@ function strictify(input: unknown): JsonNode {
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 /**
+ * Authoring-core prune list: fields removed from the STRICT generation profile
+ * (not from the validator). Azure OpenAI caps a strict `json_schema` at **100
+ * object properties total**; the full ccp4i2 contract is ~142, so the strict
+ * profile is narrowed to the "authoring core" the design doc §7a anticipated —
+ * dropping advisory, escape-hatch, provenance and rarely-authored fields. The
+ * runtime `validateScene` still accepts every one of them; this only narrows
+ * what the constrained model can *emit*. Each entry is justified:
+ */
+const STRUCTURED_PRUNE = {
+  /** Whole top-level blocks the model should not author. */
+  topLevel: [
+    "authoredIn", // provenance — stamped by the app, never by the model
+    "hints", // advisory lighting/effects; the resolver doesn't even apply lighting yet
+  ],
+  /** Property names removed wherever they occur. Each is unique to one block in
+   *  this schema, so name-matching is unambiguous. */
+  props: new Set([
+    "relativeUrl", // deployment ref the system prompt already forbids
+    "bundle", // rare file source (.scene.zip asset)
+    "cifText", // rare file source (inline dictionary CIF)
+    "ribbonCoilThickness", "ribbonHelixWidth", "ribbonStrandWidth",
+    "ribbonArrowWidth", "ribbonDNARNAWidth", // keep bond/ball/vdw/probe radii; drop ribbon dims
+    "clipStart", "clipEnd", "fogStart", "fogEnd", // slab/clip cover the common case
+    "columns", // MTZ column spec — the resolver derives it from the file
+  ]),
+} as const;
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/** A colour-union branch that is the raw-rule escape hatch (`{ raw: {…} }`). */
+function isRawColourBranch(node: any): boolean {
+  return (
+    isPlainObject(node) &&
+    isPlainObject(node.properties) &&
+    Object.keys(node.properties).length === 1 &&
+    "raw" in node.properties
+  );
+}
+
+/** Deep-clone the schema while removing the authoring-core exclusions: top-level
+ *  blocks, named properties, and the raw-colour escape-hatch union branch. Run
+ *  BEFORE strictify so it recomputes required/additionalProperties cleanly. */
+function pruneForAuthoringCore(input: unknown, atRoot = false): any {
+  if (Array.isArray(input)) return input.map((n) => pruneForAuthoringCore(n));
+  if (!isPlainObject(input)) return input;
+
+  const out: JsonNode = {};
+  for (const [k, v] of Object.entries(input)) {
+    if (k === "properties" && isPlainObject(v)) {
+      const props: JsonNode = {};
+      for (const [pk, pv] of Object.entries(v)) {
+        if (STRUCTURED_PRUNE.props.has(pk)) continue;
+        if (atRoot && (STRUCTURED_PRUNE.topLevel as readonly string[]).includes(pk)) continue;
+        props[pk] = pruneForAuthoringCore(pv);
+      }
+      out[k] = props;
+    } else if (k === "required" && Array.isArray(v)) {
+      out[k] = v.filter(
+        (r: string) =>
+          !STRUCTURED_PRUNE.props.has(r) &&
+          !(atRoot && (STRUCTURED_PRUNE.topLevel as readonly string[]).includes(r)),
+      );
+    } else if (k === "anyOf" && Array.isArray(v)) {
+      out[k] = v.filter((b) => !isRawColourBranch(b)).map((n) => pruneForAuthoringCore(n));
+    } else {
+      out[k] = pruneForAuthoringCore(v);
+    }
+  }
+  return out;
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+/**
  * Build the strict OpenAI Structured Outputs profile from the ccp4i2 contract.
  *
  * Derived from the ccp4i2 dialect (not core): the production endpoint sends the
  * project manifest as grounding, so the model must be able to emit
- * job/param/fileId refs. The transform is mechanical and lossy by design —
- * constraints the model can't be trusted to honour structurally (CID patterns,
- * hex format, Å bounds, exactly-one-file-source) are dropped here and re-checked
- * by parseScene/validateScene, which remain the sole authority.
+ * job/param/fileId refs. Two transforms, both lossy by design — the dropped
+ * information is re-checked by parseScene/validateScene, the sole authority:
+ *   1. pruneForAuthoringCore — narrows to the authoring core to fit Azure's
+ *      100-property strict cap (see STRUCTURED_PRUNE).
+ *   2. strictify — OpenAI strict shape (oneOf→anyOf, all-required+nullable,
+ *      additionalProperties:false, unsupported vocabulary dropped).
  */
 export function buildStructuredJsonSchema(): unknown {
   const { ccp4i2 } = buildJsonSchemas();
-  return strictify(ccp4i2);
+  return strictify(pruneForAuthoringCore(ccp4i2, true));
 }
