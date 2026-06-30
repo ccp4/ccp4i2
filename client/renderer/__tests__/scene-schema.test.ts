@@ -8,7 +8,7 @@
  *
  *   UPDATE_SCHEMA=1 npx vitest run renderer/__tests__/scene-schema.test.ts
  */
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -34,6 +34,31 @@ const CONTRACTS = {
   core: path.join(SCENE_DIR, "moorhen-scene.core.v1.json"),
   ccp4i2: path.join(SCENE_DIR, "moorhen-scene.ccp4i2.v1.json"),
 } as const;
+
+// Server-side mirror of the artifacts a slim (frontend-free) Django deployment
+// consumes — Materia's nlp_scene endpoint reads them from the installed ccp4i2
+// package via importlib.resources. client/renderer is canonical (the Zod source
+// lives here); this keeps the server copies byte-identical so they can never
+// drift. See MOORHEN_SCENES_SCHEMA_V1_DESIGN.md §12.
+const SERVER_CONTRACTS_DIR = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../../../server/ccp4i2/scene_contracts",
+);
+
+/** Assert a server-tree mirror is byte-identical to the canonical content
+ *  (regenerating it under UPDATE_SCHEMA). */
+function assertServerMirror(filename: string, content: string): void {
+  const p = path.join(SERVER_CONTRACTS_DIR, filename);
+  if (process.env.UPDATE_SCHEMA) {
+    mkdirSync(SERVER_CONTRACTS_DIR, { recursive: true });
+    writeFileSync(p, content);
+  }
+  expect(
+    existsSync(p),
+    `server mirror ${filename} missing; run with UPDATE_SCHEMA=1`,
+  ).toBe(true);
+  expect(readFileSync(p, "utf8")).toBe(content);
+}
 
 describe("published JSON Schema contracts", () => {
   const built = buildJsonSchemas();
@@ -72,6 +97,7 @@ describe("published JSON Schema contracts", () => {
     if (process.env.UPDATE_SCHEMA) writeFileSync(sysPath, sys);
     expect(existsSync(sysPath), "committed system prompt missing; run with UPDATE_SCHEMA=1").toBe(true);
     expect(readFileSync(sysPath, "utf8")).toBe(sys);
+    assertServerMirror("moorhen-scene.system-prompt.v1.md", sys);
   });
 
   const STRUCTURED = path.join(SCENE_DIR, "moorhen-scene.structured.v1.json");
@@ -81,6 +107,7 @@ describe("published JSON Schema contracts", () => {
     if (process.env.UPDATE_SCHEMA) writeFileSync(STRUCTURED, serialised);
     expect(existsSync(STRUCTURED), "committed structured profile missing; run with UPDATE_SCHEMA=1").toBe(true);
     expect(serialised).toBe(readFileSync(STRUCTURED, "utf8"));
+    assertServerMirror("moorhen-scene.structured.v1.json", serialised);
   });
 
   it("the strict profile obeys OpenAI Structured Outputs shape rules", () => {
