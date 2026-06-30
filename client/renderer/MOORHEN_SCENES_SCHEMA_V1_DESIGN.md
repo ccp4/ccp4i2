@@ -353,6 +353,20 @@ Depth 5 and the property count sit near older documented OpenAI ceilings; curren
 limits clear them, but Materia owns the live API and should confirm against its pinned
 `AZURE_OPENAI_API_VERSION`.
 
+**Server reachability (slim deployments).** The five artifacts above live under
+`client/renderer/lib/scene/` because that is where the Zod generator lives. But a
+frontend-free Django deployment (Materia's slim `nlp_scene` server) installs only the
+`ccp4i2` Python package and never copies `client/renderer/*`, so it cannot read them there.
+The two artifacts a *server* consumes — `moorhen-scene.system-prompt.v1.md` (system message)
+and `moorhen-scene.structured.v1.json` (strict profile) — are therefore **mirrored** into
+`server/ccp4i2/scene_contracts/`, which ships as package data (`[tool.setuptools.package-data]
+ccp4i2 = ["**/*"]`, no pyproject change) and is read via
+`importlib.resources.files("ccp4i2") / "scene_contracts" / …`. The frontend copies stay
+canonical; the same drift test writes and byte-equality-checks the server mirror, so the two
+locations can never diverge from the one Zod source. (Chosen over having the consumer COPY
+from the submodule's frontend path at image build — that couples an external build to a
+frontend file location; the mirror keeps it single-source and pinned with the package.)
+
 **Endpoint contract** (Materia-owned, `notes-for-ccp4i2/nlp-scene-endpoint-contract.md`):
 `POST /api/proxy/compounds/nlp/scene` (no trailing slash); body `{ request, grounding?,
 brief? }`; response `{ status:"scene", scene:"<raw>" }`. **Spike** = no `response_format`
