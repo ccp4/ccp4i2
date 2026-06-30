@@ -282,3 +282,28 @@ directive can't be reverse-engineered from a moved molecule. So the host **remem
 last-applied `superpose` block** and the lifter **re-emits it** on capture, filtered to
 entries whose `move`/`onto` files survived the lift (no dangling refs). Straight capture of
 a superposed scene now round-trips.
+
+## 11. Precedence / cascade
+
+**Principle: apply broad directives first, then let finer ones override the specific
+values they name** — CSS-specificity-like. A directive that sets a *subset* overrides one
+that sets a *superset*. It is **not automatic**: there is no general "which is broader" the
+resolver can infer, so the precedence *order* is encoded per overlapping field-group. Two
+instances today:
+
+| Field group | Broad → fine | Mechanism |
+|---|---|---|
+| Colour | `element.colour` (whole molecule) → `representation.colour` (one rep) | effective = `rep.colour ?? element.colour` (§10) |
+| View clip/fog | `slab` / `clip:{front,back}` (sets all four planes) → explicit `clipStart`/`clipEnd`/`fogStart`/`fogEnd` (per-plane) | `resolveClipFogPlanes`: broad bracket, then explicit overlay |
+
+So `slab` + an explicit `fogEnd` keeps the slab's three other planes and overrides only the
+back fog plane (previously slab won outright and the explicit plane was ignored).
+
+**Two things the principle deliberately does NOT cover:**
+- **Same-target alternatives.** `view.centre` (centroid of a selection) and `view.origin`
+  (explicit coords) both set the *one* camera origin — neither is a subset of the other, so
+  the cascade doesn't apply. It's a "which spelling wins" choice; currently `centre`
+  (intent) wins. A separate decision, not the cascade.
+- **Unit mismatch on overlay.** `slab`/explicit planes are absolute world-Å; `clip:{front,back}`
+  is zoom-scaled. Overlaying an explicit (absolute) plane onto a `clip:{front,back}` bracket
+  is a deliberate hybrid — the explicit literal wins, by design.

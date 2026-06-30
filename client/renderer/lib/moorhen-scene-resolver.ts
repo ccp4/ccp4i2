@@ -81,6 +81,7 @@ import {
   SceneRepresentation,
   SceneLsqMatch,
   SceneSuperpose,
+  SceneView,
   isSceneHexColour,
   isSceneNamedColour,
   isSceneRawColour,
@@ -676,43 +677,19 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     // (Å in front of / behind the centre, default 8/21) and recomputes them on
     // zoom UNLESS resetClippingFogging is off. So a scene that sets clip/fog also
     // pins that flag, and `clip` gives intent-level control over the depths.
-    const clip = scene.view.clip;
+    // Clip/fog precedence (broad → fine, design doc §11): a `slab` (absolute
+    // world-Å bounding-sphere bracket) or `clip: {front,back}` (zoom-scaled field
+    // depths) sets the broad bracket; explicit clipStart/End/fogStart/End then
+    // override per-plane (finest wins). So `slab` + an explicit `fogEnd` keeps the
+    // slab's other three planes and overrides only the back fog plane.
     const zoom = scene.view.zoom ?? ctx.glRef?.zoom ?? 1;
     const fco = ctx.glRef?.fogClipOffset ?? 250;
-    if (slabDepth !== undefined) {
-      // Slab: clip/fog the selection's bounding sphere. clipStart/clipEnd are an
-      // ABSOLUTE half-thickness in world Å about the fogClipOffset plane — the
-      // eye-space z is never scaled by zoom (only x/y are, in the projection), so
-      // the depth is the bounding radius (+pad) directly, NOT zoom*radius. (The
-      // field-depth `clip` form below DOES multiply by zoom because there the
-      // author gives coot's pre-zoom field depths, not an absolute distance.)
-      dispatch(setClipStart(slabDepth));
-      dispatch(setClipEnd(slabDepth));
-      dispatch(setFogStart(fco - slabDepth));
-      dispatch(setFogEnd(fco + slabDepth));
-      dispatch(setResetClippingFogging(false));
-    } else if (clip === "auto") {
-      dispatch(setResetClippingFogging(true)); // let coot recompute from zoom
-    } else if (clip && typeof clip === "object") {
-      // Field depths in Å; clip = zoom*depth, fog offset by fogClipOffset —
-      // coot's own formula with author depths. Drives clip AND fog together.
-      dispatch(setClipStart(zoom * clip.front));
-      dispatch(setClipEnd(zoom * clip.back));
-      dispatch(setFogStart(fco - zoom * clip.front));
-      dispatch(setFogEnd(fco + zoom * clip.back));
-      dispatch(setResetClippingFogging(false));
-    } else {
-      // Explicit numbers (or `clip: "lock"`): set what's given and freeze, so
-      // coot doesn't recompute them away on the next zoom.
-      const setAny =
-        scene.view.clipStart !== undefined || scene.view.clipEnd !== undefined ||
-        scene.view.fogStart !== undefined || scene.view.fogEnd !== undefined;
-      if (scene.view.clipStart !== undefined) dispatch(setClipStart(scene.view.clipStart));
-      if (scene.view.clipEnd !== undefined) dispatch(setClipEnd(scene.view.clipEnd));
-      if (scene.view.fogStart !== undefined) dispatch(setFogStart(scene.view.fogStart));
-      if (scene.view.fogEnd !== undefined) dispatch(setFogEnd(scene.view.fogEnd));
-      if (clip === "lock" || setAny) dispatch(setResetClippingFogging(false));
-    }
+    const planes = resolveClipFogPlanes(scene.view, slabDepth, zoom, fco);
+    if (planes.clipStart !== undefined) dispatch(setClipStart(planes.clipStart));
+    if (planes.clipEnd !== undefined) dispatch(setClipEnd(planes.clipEnd));
+    if (planes.fogStart !== undefined) dispatch(setFogStart(planes.fogStart));
+    if (planes.fogEnd !== undefined) dispatch(setFogEnd(planes.fogEnd));
+    if (planes.reset !== undefined) dispatch(setResetClippingFogging(planes.reset));
 
     if (scene.view.background) {
       const rgba = hexToRgba01(scene.view.background);
@@ -1480,6 +1457,64 @@ function hexToRgba01(hex: string): [number, number, number, number] | null {
   const g = parseInt(hex.slice(3, 5), 16) / 255;
   const b = parseInt(hex.slice(5, 7), 16) / 255;
   return [r, g, b, 1];
+}
+
+export interface ResolvedClipFog {
+  clipStart?: number;
+  clipEnd?: number;
+  fogStart?: number;
+  fogEnd?: number;
+  /** setResetClippingFogging value: `true` = let coot recompute from zoom (auto);
+   *  `false` = freeze; `undefined` = leave Moorhen's current state untouched. */
+  reset?: boolean;
+}
+
+/**
+ * Resolve clip/fog planes with broad → fine precedence (the cascade principle,
+ * design doc §11):
+ *   1. the broadest source present sets all four planes — `slab` (absolute
+ *      world-Å half-thickness about the fog-clip offset) OR `clip: {front,back}`
+ *      (zoom-scaled coot field depths);
+ *   2. explicit `clipStart`/`clipEnd`/`fogStart`/`fogEnd` then override per-plane
+ *      (finest wins) — so e.g. `slab` + explicit `fogEnd` keeps the slab's other
+ *      three planes and overrides only the back fog plane.
+ * `clip: "auto"` with nothing finer = recompute (`reset:true`); no clip/fog/slab
+ * at all = leave untouched (`reset` undefined); anything else = freeze
+ * (`reset:false`). Pure (no dispatch) so the precedence is unit-testable.
+ */
+export function resolveClipFogPlanes(
+  view: SceneView,
+  slabDepth: number | undefined,
+  zoom: number,
+  fco: number,
+): ResolvedClipFog {
+  const clip = view.clip;
+  const hasBroad = slabDepth !== undefined || (!!clip && typeof clip === "object");
+  const hasExplicit =
+    view.clipStart !== undefined || view.clipEnd !== undefined ||
+    view.fogStart !== undefined || view.fogEnd !== undefined;
+
+  if (clip === "auto" && !hasBroad && !hasExplicit) return { reset: true };
+  if (clip === undefined && !hasBroad && !hasExplicit) return {}; // nothing → leave
+
+  const out: ResolvedClipFog = { reset: false };
+  if (slabDepth !== undefined) {
+    out.clipStart = slabDepth;
+    out.clipEnd = slabDepth;
+    out.fogStart = fco - slabDepth;
+    out.fogEnd = fco + slabDepth;
+  } else if (clip && typeof clip === "object") {
+    out.clipStart = zoom * clip.front;
+    out.clipEnd = zoom * clip.back;
+    out.fogStart = fco - zoom * clip.front;
+    out.fogEnd = fco + zoom * clip.back;
+  }
+  // Finer explicit planes override the broad bracket, per-plane.
+  if (view.clipStart !== undefined) out.clipStart = view.clipStart;
+  if (view.clipEnd !== undefined) out.clipEnd = view.clipEnd;
+  if (view.fogStart !== undefined) out.fogStart = view.fogStart;
+  if (view.fogEnd !== undefined) out.fogEnd = view.fogEnd;
+  return out;
 }
 
 /**
