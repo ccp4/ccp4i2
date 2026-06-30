@@ -332,26 +332,48 @@ differing byte, so anything general must sit *above* the first volatile element.
 the block verbatim lets a pinned submodule (Materia's `nlp_scene` endpoint) hold it as the
 server-side system message without importing TS.
 
-**Strict profile.** `buildStructuredJsonSchema()` mechanically rewrites the **ccp4i2**
-contract (not core — the endpoint grounds the model with the project manifest, so job/param
-refs must be expressible) into OpenAI strict form: `oneOf`→`anyOf`; every object gets
-`additionalProperties:false` and **all** keys required; optional fields become nullable
-(present-as-null); and all unsupported vocabulary is dropped (`pattern`, `format`, numeric/
-length/array bounds, `default`, `$schema`). The transform is **lossy by design** — the
-constraints it drops (CID/hex patterns, Å bounds, exactly-one-file-source, cross-references)
-are re-checked by `parseScene`/`validateScene`, which stay the sole authority. A structural
-test asserts no forbidden keyword survives and every object is closed+all-required.
+**Strict profile.** `buildStructuredJsonSchema()` derives the strict profile from the
+**ccp4i2** contract (not core — the endpoint grounds the model with the project manifest, so
+job/param refs must be expressible) in two passes:
+
+1. **`pruneForAuthoringCore`** — narrows to the *authoring core*. **Azure OpenAI hard-caps a
+   strict `json_schema` at 100 object properties total** (a documented subset limit, the same
+   for every model/api-version — *not* something a version bump raises; OpenAI's own platform
+   raised its limit but Azure's stayed at 100/5 as of 2026-06). The full contract is ~142
+   properties, so the strict profile drops the fields §7a always earmarked as the "hide from a
+   small authoring model" set: the whole `hints` block (advisory; the resolver doesn't apply
+   lighting yet — ~22 props), the raw-colour escape hatch (~10), `authoredIn` provenance (6),
+   plus rarely-authored detail (`relativeUrl`/`bundle`/`cifText`, ribbon geometry dims, the
+   four fine clip/fog planes, MTZ `columns`). Result: **83 properties, depth 4** — comfortably
+   under 100/5, with a test asserting ≤90 so a later schema addition fails loudly here instead
+   of 400ing in production. This narrows only what the model can *emit*; `validateScene` still
+   accepts every dropped field, so a human (or the non-strict path) can still author them.
+2. **`strictify`** — OpenAI strict *shape*: `oneOf`→`anyOf`; every object gets
+   `additionalProperties:false` and **all** keys required; optionals become nullable
+   (present-as-null); unsupported vocabulary dropped (`pattern`, `format`, numeric/length/array
+   bounds, `default`, `$schema`).
+
+Both passes are **lossy by design** — the dropped constraints (CID/hex patterns, Å bounds,
+exactly-one-file-source, cross-references) and the pruned fields are re-checked / re-admitted
+by `parseScene`/`validateScene`, the sole authority. A structural test asserts no forbidden
+keyword survives, every object is closed + all-required, and the property/depth budget holds.
+
+> **Why not `$defs` dedup instead of pruning?** Routing repeated subschemas through `$defs`
+> would only help if Azure counts a definition once rather than per-`$ref` (undocumented). It
+> is moot regardless: the contract has almost no duplication — only the raw-colour rule and the
+> `{selection,colour}` pair repeat (~7 properties), so perfect dedup still lands ~135, far over
+> 100. Pruning to the authoring core is the only approach that actually fits.
 
 **Null-strip on ingest.** Strict mode makes the model emit explicit `null`s for absent
 optionals; Zod treats *optional* ≠ *null*. So the frontend strips nulls before `parseScene`
 (JSON ⊂ YAML, so the JSON output parses directly otherwise). This is a ccp4i2-side concern;
 Materia returns the model output verbatim.
 
-**Profile size (verify against the live deployment's limits before the production switch):**
-29 object nodes, **142 total properties**, max object-nesting **depth 5**, 59 enum values.
-Depth 5 and the property count sit near older documented OpenAI ceilings; current gpt-4o
-limits clear them, but Materia owns the live API and should confirm against its pinned
-`AZURE_OPENAI_API_VERSION`.
+**Profile size (post-prune):** **83 properties, depth 4** — under Azure's documented 100/5
+strict caps with headroom (the *full* contract is ~142/depth-5, which Azure rejects). The
+remaining go/no-go is one live call on Materia's deployment: POST the profile as
+`response_format` and confirm acceptance — the empirical check now points at the *fitted*
+profile, not the over-cap original.
 
 **Server reachability (slim deployments).** The five artifacts above live under
 `client/renderer/lib/scene/` because that is where the Zod generator lives. But a
