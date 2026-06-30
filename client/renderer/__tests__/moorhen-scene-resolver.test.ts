@@ -15,10 +15,44 @@ import {
   geometryToM2tParams,
   isFetchable,
   resolveChainSelector,
+  resolveClipFogPlanes,
   splitMultiCid,
 } from "../lib/moorhen-scene-resolver";
 
 const present = (...nums: number[]) => new Set(nums);
+
+describe("resolveClipFogPlanes (broad → fine precedence)", () => {
+  const fco = 250;
+  it("slab alone sets all four planes (absolute Å about fco), freezes", () => {
+    const p = resolveClipFogPlanes({}, 20, 1, fco);
+    expect(p).toEqual({ clipStart: 20, clipEnd: 20, fogStart: 230, fogEnd: 270, reset: false });
+  });
+  it("explicit fogEnd OVERRIDES the slab-derived back fog plane (the fix)", () => {
+    const p = resolveClipFogPlanes({ fogEnd: 999 }, 20, 1, fco);
+    expect(p.clipStart).toBe(20); // slab kept
+    expect(p.fogStart).toBe(230); // slab kept
+    expect(p.fogEnd).toBe(999); // explicit wins
+    expect(p.reset).toBe(false);
+  });
+  it("clip:{front,back} sets zoom-scaled field-depth planes", () => {
+    const p = resolveClipFogPlanes({ clip: { front: 8, back: 21 } }, undefined, 2, fco);
+    expect(p).toEqual({ clipStart: 16, clipEnd: 42, fogStart: 234, fogEnd: 292, reset: false });
+  });
+  it("clip:\"auto\" alone = recompute (reset true), no planes", () => {
+    expect(resolveClipFogPlanes({ clip: "auto" }, undefined, 1, fco)).toEqual({ reset: true });
+  });
+  it("explicit overrides clip:\"auto\" (finer wins) and freezes", () => {
+    const p = resolveClipFogPlanes({ clip: "auto", fogEnd: 300 }, undefined, 1, fco);
+    expect(p.fogEnd).toBe(300);
+    expect(p.reset).toBe(false);
+  });
+  it("nothing specified → leave untouched (reset undefined)", () => {
+    expect(resolveClipFogPlanes({ origin: [0, 0, 0] }, undefined, 1, fco)).toEqual({ reset: undefined });
+  });
+  it("clip:\"lock\" alone freezes current with no planes", () => {
+    expect(resolveClipFogPlanes({ clip: "lock" }, undefined, 1, fco)).toEqual({ reset: false });
+  });
+});
 
 describe("buildPendingRules cascade (element.colour ↔ representation.colour)", () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
