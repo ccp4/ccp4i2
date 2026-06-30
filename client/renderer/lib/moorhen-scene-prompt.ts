@@ -303,30 +303,23 @@ const INTERPRETATION_GUIDANCE = [
   "tetramer) — ask once, then return the YAML code block once answered.",
 ].join("\n");
 
-// ── Whole prompt ────────────────────────────────────────────────────────────
+// ── System prompt (static, cacheable) ────────────────────────────────────────
 
-export function buildAuthoringPrompt(opts: {
-  project?: { name?: string; id?: string };
-  contents: string;
-  manifest: string;
-  request: string;
-}): string {
-  const projName = opts.project?.name;
-  const projId = opts.project?.id;
-  // Pin the project identity hard and up front: the single most important
-  // constraint, because a chat model carrying context from an earlier project
-  // will otherwise reference the wrong one. Every job/param ref must carry these.
-  const projectLines: string[] = ["=== CURRENT PROJECT (use ONLY this one) ==="];
-  if (projName) projectLines.push(`projectName: ${projName}`);
-  if (projId) projectLines.push(`projectId: ${projId}`);
-  if (!projName && !projId) {
-    projectLines.push("(project identity unavailable — ask the user before referencing job/param files)");
-  }
-  projectLines.push(
-    "Every { job, param } reference MUST include the projectId above (or projectName).",
-    "Ignore any project mentioned earlier in this conversation; use ONLY the project above.",
-  );
-
+/**
+ * The static, query-general half of the authoring prompt: instructions +
+ * grammar + conventions + worked example + interpretation guidance. It contains
+ * NOTHING that varies per project or request, so it is byte-identical across
+ * every call and every user.
+ *
+ * That invariance is the whole point. It is (a) the cacheable prefix for a chat
+ * model's / Azure OpenAI's prefix cache — it must sit ahead of the first
+ * variable byte or that variable's churn re-invalidates it; and (b) the system
+ * message Materia's `nlp_scene` endpoint holds server-side. It is committed
+ * verbatim as the drift-tested artifact `lib/scene/moorhen-scene.system-prompt.v1.md`
+ * so a pinned submodule has a stable system-prompt source. Keep this function
+ * free of per-call inputs.
+ */
+export function buildSceneSystemPrompt(): string {
   return [
     "You are drafting a Moorhen \"scene\": a YAML document describing a molecular",
     "view. Follow the grammar below EXACTLY. Return the scene as a SINGLE fenced YAML",
@@ -340,8 +333,6 @@ export function buildAuthoringPrompt(opts: {
     "pdb:/url: only for structures not in the project; never use relativeUrl:.",
     "Use the exact ligand CIDs from the contents summary for ligand selections.",
     "",
-    projectLines.join("\n"),
-    "",
     "=== SCENE GRAMMAR ===",
     buildSceneBrief(),
     "",
@@ -349,13 +340,46 @@ export function buildAuthoringPrompt(opts: {
     "",
     WORKED_EXAMPLE,
     "",
+    INTERPRETATION_GUIDANCE,
+  ].join("\n");
+}
+
+// ── Whole prompt ────────────────────────────────────────────────────────────
+
+export function buildAuthoringPrompt(opts: {
+  project?: { name?: string; id?: string };
+  contents: string;
+  manifest: string;
+  request: string;
+}): string {
+  const projName = opts.project?.name;
+  const projId = opts.project?.id;
+  // Pin the project identity hard: a chat model carrying context from an earlier
+  // project will otherwise reference the wrong one. Every job/param ref must
+  // carry these. This is the FIRST variable element — everything above it (the
+  // system prompt) is static and cacheable; everything from here down varies per
+  // call, ordered most-stable-to-least (project → manifest → contents → request).
+  const projectLines: string[] = ["=== CURRENT PROJECT (use ONLY this one) ==="];
+  if (projName) projectLines.push(`projectName: ${projName}`);
+  if (projId) projectLines.push(`projectId: ${projId}`);
+  if (!projName && !projId) {
+    projectLines.push("(project identity unavailable — ask the user before referencing job/param files)");
+  }
+  projectLines.push(
+    "Every { job, param } reference MUST include the projectId above (or projectName).",
+    "Ignore any project mentioned earlier in this conversation; use ONLY the project above.",
+  );
+
+  return [
+    buildSceneSystemPrompt(),
+    "",
+    projectLines.join("\n"),
+    "",
     "=== REFERENCEABLE PROJECT FILES ===",
     opts.manifest,
     "",
     "=== LOADED STRUCTURE CONTENTS ===",
     opts.contents,
-    "",
-    INTERPRETATION_GUIDANCE,
     "",
     "=== REQUEST ===",
     "Produce a scene YAML that satisfies the following request. Use the project,",

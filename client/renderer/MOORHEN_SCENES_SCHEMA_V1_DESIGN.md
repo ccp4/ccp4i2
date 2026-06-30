@@ -307,3 +307,55 @@ back fog plane (previously slab won outright and the explicit plane was ignored)
 - **Unit mismatch on overlay.** `slab`/explicit planes are absolute world-Å; `clip:{front,back}`
   is zoom-scaled. Overlaying an explicit (absolute) plane onto a `clip:{front,back}` bracket
   is a deliberate hybrid — the explicit literal wins, by design.
+
+## 12. Generated artifacts & the NL→scene endpoint (Materia integration)
+
+The "one Zod source → generated, drift-tested artifacts" rule (§1, §7a) now covers
+**five** committed files in `lib/scene/`, each guarded by a byte-equality test
+(`UPDATE_SCHEMA=1 npx vitest run renderer/__tests__/scene-schema.test.ts`):
+
+| Artifact | Generator | Audience | Purpose |
+|---|---|---|---|
+| `moorhen-scene.core.v1.json` | `buildJsonSchemas().core` | upstream / portable | published core contract |
+| `moorhen-scene.ccp4i2.v1.json` | `buildJsonSchemas().ccp4i2` | this deployment | dialect contract (job/param/fileId) |
+| `types/moorhen-scene.md` | `buildSceneMarkdown()` | humans | prose grammar |
+| `moorhen-scene.system-prompt.v1.md` | `buildSceneSystemPrompt()` | LLM **system** message | the static, query-general authoring brief |
+| `moorhen-scene.structured.v1.json` | `buildStructuredJsonSchema()` | OpenAI Structured Outputs | strict `json_schema` constraint |
+
+**System-prompt artifact.** `buildSceneSystemPrompt()` is the *whole* static half of
+`buildAuthoringPrompt` (instructions + `buildSceneBrief()` + conventions + worked example +
+interpretation guidance) — everything with no per-call inputs. `buildAuthoringPrompt` now
+emits it first, ahead of the first variable element (project identity), then
+project → manifest → contents → request (most-stable-to-least). That ordering is what lets a
+prefix cache reuse the static bulk: the cache holds the contiguous run up to the first
+differing byte, so anything general must sit *above* the first volatile element. Committing
+the block verbatim lets a pinned submodule (Materia's `nlp_scene` endpoint) hold it as the
+server-side system message without importing TS.
+
+**Strict profile.** `buildStructuredJsonSchema()` mechanically rewrites the **ccp4i2**
+contract (not core — the endpoint grounds the model with the project manifest, so job/param
+refs must be expressible) into OpenAI strict form: `oneOf`→`anyOf`; every object gets
+`additionalProperties:false` and **all** keys required; optional fields become nullable
+(present-as-null); and all unsupported vocabulary is dropped (`pattern`, `format`, numeric/
+length/array bounds, `default`, `$schema`). The transform is **lossy by design** — the
+constraints it drops (CID/hex patterns, Å bounds, exactly-one-file-source, cross-references)
+are re-checked by `parseScene`/`validateScene`, which stay the sole authority. A structural
+test asserts no forbidden keyword survives and every object is closed+all-required.
+
+**Null-strip on ingest.** Strict mode makes the model emit explicit `null`s for absent
+optionals; Zod treats *optional* ≠ *null*. So the frontend strips nulls before `parseScene`
+(JSON ⊂ YAML, so the JSON output parses directly otherwise). This is a ccp4i2-side concern;
+Materia returns the model output verbatim.
+
+**Profile size (verify against the live deployment's limits before the production switch):**
+29 object nodes, **142 total properties**, max object-nesting **depth 5**, 59 enum values.
+Depth 5 and the property count sit near older documented OpenAI ceilings; current gpt-4o
+limits clear them, but Materia owns the live API and should confirm against its pinned
+`AZURE_OPENAI_API_VERSION`.
+
+**Endpoint contract** (Materia-owned, `notes-for-ccp4i2/nlp-scene-endpoint-contract.md`):
+`POST /api/proxy/compounds/nlp/scene` (no trailing slash); body `{ request, grounding?,
+brief? }`; response `{ status:"scene", scene:"<raw>" }`. **Spike** = no `response_format`
+(model returns a fenced YAML block; byte-for-byte the copy-paste path). **Production** =
+`json_schema` strict + `moorhen-scene.structured.v1.json`. Materia never parses the scene;
+parse/validate/repair stay in the ccp4i2 frontend.

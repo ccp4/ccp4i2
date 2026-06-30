@@ -116,3 +116,123 @@ export function buildJsonSchemas(): { core: unknown; ccp4i2: unknown } {
 export function serialiseJsonSchema(schema: unknown): string {
   return JSON.stringify(schema, null, 2) + "\n";
 }
+
+// --- Strict OpenAI Structured Outputs profile -----------------------------
+
+/**
+ * OpenAI's `json_schema` strict mode rejects most JSON-Schema validation
+ * vocabulary and imposes its own shape rules. This is the closed set we keep on
+ * any node; everything else (pattern, format, numeric/length/array bounds,
+ * default, $schema, …) is dropped. The runtime Zod validator still enforces
+ * those — the model's job here is to emit the right *shape*; parseScene
+ * re-checks the constraints (and the cross-references JSON Schema can't express)
+ * on the way back in.
+ */
+const STRUCTURED_KEEP = new Set([
+  "type",
+  "enum",
+  "const",
+  "properties",
+  "required",
+  "items",
+  "prefixItems",
+  "anyOf",
+  "additionalProperties",
+  "description",
+]);
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type JsonNode = Record<string, any>;
+
+function isPlainObject(v: unknown): v is JsonNode {
+  return typeof v === "object" && v !== null && !Array.isArray(v);
+}
+
+/** Make an already-strictified node accept `null`, so an optional field can be
+ *  present-as-null (strict mode requires every property in `required`). */
+function makeNullable(node: JsonNode): void {
+  if (Array.isArray(node.anyOf)) {
+    if (!node.anyOf.some((b: JsonNode) => b && b.type === "null")) {
+      node.anyOf.push({ type: "null" });
+    }
+    return;
+  }
+  if (node.const !== undefined) {
+    const c = node.const;
+    delete node.const;
+    node.anyOf = [{ const: c }, { type: "null" }];
+    return;
+  }
+  if (Array.isArray(node.type)) {
+    if (!node.type.includes("null")) node.type.push("null");
+    if (node.enum && !node.enum.includes(null)) node.enum.push(null);
+    return;
+  }
+  if (typeof node.type === "string") {
+    node.type = [node.type, "null"];
+    if (node.enum && !node.enum.includes(null)) node.enum.push(null);
+    return;
+  }
+  // Enum-only / shapeless node: wrap so null is representable.
+  const inner = { ...node };
+  for (const k of Object.keys(node)) delete node[k];
+  node.anyOf = [inner, { type: "null" }];
+}
+
+/** Recursively rewrite a draft-2020-12 schema node into OpenAI strict form:
+ *  drop unsupported keywords, oneOf→anyOf, every object gets
+ *  additionalProperties:false + all keys required, optionals become nullable. */
+function strictify(input: unknown): JsonNode {
+  if (!isPlainObject(input)) return input as JsonNode;
+
+  const node: JsonNode = {};
+  for (const [k, v] of Object.entries(input)) {
+    if (k === "oneOf") {
+      node.anyOf = v;
+    } else if (STRUCTURED_KEEP.has(k)) {
+      node[k] = v;
+    }
+    // else: dropped (pattern, format, minimum, …)
+  }
+
+  if (Array.isArray(node.anyOf)) node.anyOf = node.anyOf.map(strictify);
+  if (Array.isArray(node.prefixItems)) node.prefixItems = node.prefixItems.map(strictify);
+  if (node.items !== undefined) {
+    node.items = Array.isArray(node.items) ? node.items.map(strictify) : strictify(node.items);
+  }
+
+  if (isPlainObject(node.properties)) {
+    const originalRequired = new Set<string>(
+      Array.isArray(node.required) ? node.required : [],
+    );
+    const keys = Object.keys(node.properties);
+    const props: JsonNode = {};
+    for (const key of keys) {
+      const child = strictify(node.properties[key]);
+      if (!originalRequired.has(key)) makeNullable(child);
+      props[key] = child;
+    }
+    node.properties = props;
+    // Strict mode: ALL properties must be required (optionals are nullable).
+    node.required = keys;
+    node.additionalProperties = false;
+  }
+
+  return node;
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+/**
+ * Build the strict OpenAI Structured Outputs profile from the ccp4i2 contract.
+ *
+ * Derived from the ccp4i2 dialect (not core): the production endpoint sends the
+ * project manifest as grounding, so the model must be able to emit
+ * job/param/fileId refs. The transform is mechanical and lossy by design —
+ * constraints the model can't be trusted to honour structurally (CID patterns,
+ * hex format, Å bounds, exactly-one-file-source) are dropped here and re-checked
+ * by parseScene/validateScene, which remain the sole authority.
+ */
+export function buildStructuredJsonSchema(): unknown {
+  const { ccp4i2 } = buildJsonSchemas();
+  return strictify(ccp4i2);
+}

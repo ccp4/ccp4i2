@@ -18,11 +18,13 @@ import {
   parseScene,
   validateScene,
   buildJsonSchemas,
+  buildStructuredJsonSchema,
   serialiseJsonSchema,
   SceneParseError,
 } from "../lib/scene";
 import { sceneMarkers, pathToSegments } from "../lib/scene/yaml-markers";
 import { buildSceneBrief, buildSceneMarkdown } from "../lib/scene/brief";
+import { buildSceneSystemPrompt } from "../lib/moorhen-scene-prompt";
 
 const SCENE_DIR = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -58,6 +60,58 @@ describe("published JSON Schema contracts", () => {
     );
     if (process.env.UPDATE_SCHEMA) writeFileSync(mdPath, md);
     expect(readFileSync(mdPath, "utf8")).toBe(md);
+  });
+
+  it("moorhen-scene.system-prompt.v1.md matches the generated system prompt", () => {
+    // The static system prompt is committed verbatim so a pinned submodule (e.g.
+    // Materia's nlp_scene endpoint) can read it as the server-held system message
+    // without importing the TS. This drift guard keeps that file byte-identical
+    // to buildSceneSystemPrompt(); regenerate with UPDATE_SCHEMA=1.
+    const sys = buildSceneSystemPrompt();
+    const sysPath = path.join(SCENE_DIR, "moorhen-scene.system-prompt.v1.md");
+    if (process.env.UPDATE_SCHEMA) writeFileSync(sysPath, sys);
+    expect(existsSync(sysPath), "committed system prompt missing; run with UPDATE_SCHEMA=1").toBe(true);
+    expect(readFileSync(sysPath, "utf8")).toBe(sys);
+  });
+
+  const STRUCTURED = path.join(SCENE_DIR, "moorhen-scene.structured.v1.json");
+
+  it("moorhen-scene.structured.v1.json matches the strict profile", () => {
+    const serialised = serialiseJsonSchema(buildStructuredJsonSchema());
+    if (process.env.UPDATE_SCHEMA) writeFileSync(STRUCTURED, serialised);
+    expect(existsSync(STRUCTURED), "committed structured profile missing; run with UPDATE_SCHEMA=1").toBe(true);
+    expect(serialised).toBe(readFileSync(STRUCTURED, "utf8"));
+  });
+
+  it("the strict profile obeys OpenAI Structured Outputs shape rules", () => {
+    // Walk every node and assert the invariants strict mode enforces: no dropped
+    // vocabulary survives, oneOf is gone, and every object is closed with all
+    // keys required. (The lossy constraints are re-checked by parseScene.)
+    const FORBIDDEN = [
+      "pattern", "format", "minimum", "maximum", "exclusiveMinimum",
+      "exclusiveMaximum", "multipleOf", "minLength", "maxLength", "minItems",
+      "maxItems", "uniqueItems", "default", "oneOf", "allOf", "not", "$schema",
+    ];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const walk = (node: any): void => {
+      if (Array.isArray(node)) return node.forEach(walk);
+      if (!node || typeof node !== "object") return;
+      for (const key of FORBIDDEN) {
+        expect(key in node, `forbidden keyword "${key}" leaked into the strict profile`).toBe(false);
+      }
+      const isObjectNode =
+        node.properties !== undefined ||
+        node.type === "object" ||
+        (Array.isArray(node.type) && node.type.includes("object"));
+      if (isObjectNode && node.properties) {
+        expect(node.additionalProperties).toBe(false);
+        expect([...(node.required ?? [])].sort()).toEqual(
+          Object.keys(node.properties).sort(),
+        );
+      }
+      for (const v of Object.values(node)) walk(v);
+    };
+    walk(buildStructuredJsonSchema());
   });
 });
 
