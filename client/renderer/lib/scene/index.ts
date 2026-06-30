@@ -135,7 +135,6 @@ const STRUCTURED_KEEP = new Set([
   "properties",
   "required",
   "items",
-  "prefixItems",
   "anyOf",
   "additionalProperties",
   "description",
@@ -196,8 +195,21 @@ function strictify(input: unknown): JsonNode {
   }
 
   if (Array.isArray(node.anyOf)) node.anyOf = node.anyOf.map(strictify);
-  if (Array.isArray(node.prefixItems)) node.prefixItems = node.prefixItems.map(strictify);
-  if (node.items !== undefined) {
+
+  // Azure strict mode rejects tuple arrays (`prefixItems` / array-without-`items`).
+  // Lower a fixed-length tuple to a homogeneous array: `items` = the common branch
+  // schema, or an `anyOf` of the distinct branch types when heterogeneous. The real
+  // tuple length (3-vector origin, 4-vector quat) is re-checked by validateScene —
+  // same trade as dropping pattern/format for strict.
+  const inputPrefix = (input as JsonNode).prefixItems;
+  if (Array.isArray(inputPrefix)) {
+    const branches = inputPrefix.map(strictify);
+    const uniq: JsonNode[] = [];
+    for (const b of branches) {
+      if (!uniq.some((u) => JSON.stringify(u) === JSON.stringify(b))) uniq.push(b);
+    }
+    node.items = uniq.length === 1 ? uniq[0] : { anyOf: uniq };
+  } else if (node.items !== undefined) {
     node.items = Array.isArray(node.items) ? node.items.map(strictify) : strictify(node.items);
   }
 

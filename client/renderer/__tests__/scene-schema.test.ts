@@ -118,6 +118,7 @@ describe("published JSON Schema contracts", () => {
       "pattern", "format", "minimum", "maximum", "exclusiveMinimum",
       "exclusiveMaximum", "multipleOf", "minLength", "maxLength", "minItems",
       "maxItems", "uniqueItems", "default", "oneOf", "allOf", "not", "$schema",
+      "prefixItems", // Azure strict rejects tuple arrays; must be lowered to items
     ];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const walk = (node: any): void => {
@@ -135,6 +136,13 @@ describe("published JSON Schema contracts", () => {
         expect([...(node.required ?? [])].sort()).toEqual(
           Object.keys(node.properties).sort(),
         );
+      }
+      const isArrayNode =
+        node.type === "array" ||
+        (Array.isArray(node.type) && node.type.includes("array"));
+      if (isArrayNode) {
+        // Every array must carry `items` (no bare/tuple arrays) — Azure strict.
+        expect(node.items, "array node missing items").toBeDefined();
       }
       for (const v of Object.values(node)) walk(v);
     };

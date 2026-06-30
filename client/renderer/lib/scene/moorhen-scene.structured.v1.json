@@ -611,17 +611,9 @@
             "array",
             "null"
           ],
-          "prefixItems": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "type": "number"
-            }
-          ]
+          "items": {
+            "type": "number"
+          }
         },
         "centre": {
           "description": "centroid of a selection; beats origin",
@@ -654,20 +646,9 @@
             "array",
             "null"
           ],
-          "prefixItems": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "type": "number"
-            }
-          ]
+          "items": {
+            "type": "number"
+          }
         },
         "zoom": {
           "type": [
