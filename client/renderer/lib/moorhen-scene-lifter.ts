@@ -152,7 +152,21 @@ export interface MapRenderState {
  * original source. Callers that go through serialiseSceneWithLiftHints
  * see those comments; everyone else sees a clean MoorhenScene.
  */
-export function liftScene(ctx: LiftCtx): MoorhenScene {
+/**
+ * Options controlling how a scene is lifted.
+ *
+ * `inlineDicts`: when a ligand dictionary has no project provenance (no
+ * `fileId` in `dictSources`), should its CIF be inlined as `cifText:`?
+ * Default **false** — the captured/editable YAML stays terse, carrying
+ * dicts only as re-fetchable `fileId` refs. Inlining `cifText` is reserved
+ * for the bundle lift (`liftSceneToBundle`), which immediately moves the
+ * text into a `bundle:` asset, so `cifText` never escapes into authored YAML.
+ */
+export interface LiftOpts {
+  inlineDicts?: boolean;
+}
+
+export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
   const scene: MoorhenScene = {
     scene: ctx.sceneName ?? `scene-${new Date().toISOString().slice(0, 19).replace(/[T:]/g, "-")}`,
     version: SCENE_SCHEMA_VERSION,
@@ -184,6 +198,7 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
       mol, molFileName, scene.files!,
       mol.molNo != null ? ctx.dictSources?.get(mol.molNo) : undefined,
       ctx.projectId,
+      opts.inlineDicts ?? false,
     );
     if (liftedRefs.length > 0) {
       liftedDicts.push({ mol, molFileName, refs: liftedRefs });
@@ -268,6 +283,7 @@ function liftDictionariesForMolecule(
   allFiles: SceneFileRef[],
   sources?: Map<string, { fileId: number; projectId?: string }>,
   fallbackProjectId?: string,
+  inlineUnsourced: boolean = false,
 ): { name: string; comp_id: string }[] {
   const ligands = mol.ligands ?? [];
   // Dedupe by comp_id — multiple instances of the same ligand share a dict.
@@ -296,8 +312,17 @@ function liftDictionariesForMolecule(
       continue;
     }
 
-    // No project source → inline cifText. dropLibraryDicts() may later remove
-    // it if the comp_id resolves in the receiver's monomer library.
+    // No project source. The terse capture path emits nothing here — the
+    // dict can't be expressed as a re-fetchable ref, and inlining cifText is
+    // reserved for the bundle lift (which materialises it into a bundle:
+    // asset). So unless inlining is explicitly requested, skip it: a custom
+    // ligand dict travels only inside a bundle, never as raw cifText in
+    // authored YAML.
+    if (!inlineUnsourced) continue;
+
+    // Bundle lift only → inline cifText. dropLibraryDicts() may later remove
+    // it if the comp_id resolves in the receiver's monomer library, and
+    // liftSceneToBundle moves whatever survives into a bundle: asset.
     let dictText = "";
     try {
       dictText = mol.getDict(comp_id) || "";
@@ -350,11 +375,11 @@ export interface SceneLiftHints {
  * Same as liftScene, but also returns hints for richer YAML output
  * (currently: a comment above each file entry naming its uniqueId).
  */
-export function liftSceneWithHints(ctx: LiftCtx): {
+export function liftSceneWithHints(ctx: LiftCtx, opts: LiftOpts = {}): {
   scene: MoorhenScene;
   hints: SceneLiftHints;
 } {
-  const scene = liftScene(ctx);
+  const scene = liftScene(ctx, opts);
   const fileComments: Record<string, string> = {};
   ctx.molecules.forEach((mol, i) => {
     const fr = scene.files?.[i];
@@ -434,7 +459,10 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
   hints: SceneLiftHints;
   assets: Map<string, ArrayBuffer>;
 }> {
-  const { scene, hints } = liftSceneWithHints(ctx);
+  // Bundle lift: inline unsourced dicts as cifText so step 2 below can move
+  // them into bundle assets. This is the ONLY path that materialises cifText —
+  // the straight/capture lift leaves them out entirely.
+  const { scene, hints } = liftSceneWithHints(ctx, { inlineDicts: true });
   const assets = new Map<string, ArrayBuffer>();
 
   // 0. Drop inline dict refs the receiver's monomer library already has (shared
@@ -607,12 +635,15 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
     }
   }
 
-  // 2. Library-dict re-collection. The lifter strips dicts whose
-  //    comp_id resolves to the monomer library; self-contained mode
-  //    wants them back. Walk live molecules; for each non-standard
-  //    comp_id that the library has AND isn't already in the scene's
-  //    dict refs, fetch it and append a fresh ref.
-  if (molecules && monomerLibraryPath) {
+  // 2. Dict re-collection for self-contained mode. The capture lift carries
+  //    dicts only as terse `fileId` refs (fetched in step 1 above) and emits
+  //    NOTHING for an unsourced dict — neither library monomers nor custom
+  //    ligand dicts loaded ad-hoc into Moorhen. Self-contained mode wants both
+  //    back, materialised as bundle assets (this is where dict CIF text enters
+  //    a bundle). Walk live molecules; for each non-standard comp_id not
+  //    already represented, take the monomer-library copy, falling back to the
+  //    molecule's own in-memory dict (`mol.getDict`) for custom ligands.
+  if (molecules) {
     const existingDictNames = new Set(
       (scene.files ?? []).filter((f) => f.kind === "dictionary").map((f) => f.name),
     );
@@ -625,28 +656,43 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
         if (STANDARD_MONOMERS.has(compId)) continue; // never travelled
         const dictName = `dict-${molFileName}-${compId}`;
         if (existingDictNames.has(dictName)) continue;
-        const url = `${monomerLibraryPath}/${compId[0].toLowerCase()}/${compId.toUpperCase()}.cif`;
-        try {
-          const res = await fetch(url);
-          if (!res.ok) continue;
-          const buf = await res.arrayBuffer();
-          const assetPath = claim(`assets/${dictName}.cif`);
-          assets.set(assetPath, buf);
-          const newRef: SceneFileRef = {
-            name: dictName,
-            kind: "dictionary",
-            bundle: assetPath,
-          };
-          (scene.files ??= []).push(newRef);
-          existingDictNames.add(dictName);
-          const el = (scene.elements ?? []).find((e) => e.file === molFileName);
-          if (el) {
-            el.dictionaries = el.dictionaries ?? [];
-            if (!el.dictionaries.includes(dictName)) el.dictionaries.push(dictName);
+
+        // Prefer the monomer-library copy; fall back to the molecule's stored
+        // dict so a custom ligand with no library entry still travels.
+        let buf: ArrayBuffer | null = null;
+        if (monomerLibraryPath) {
+          const url = `${monomerLibraryPath}/${compId[0].toLowerCase()}/${compId.toUpperCase()}.cif`;
+          try {
+            const res = await fetch(url);
+            if (res.ok) buf = await res.arrayBuffer();
+          } catch {
+            // network error → fall through to the in-memory dict below.
           }
-        } catch {
-          // network errors → leave the dict out; receiver's own Moorhen
-          // will fetch from its own library at apply time.
+        }
+        if (!buf) {
+          let dictText = "";
+          try {
+            dictText = mol.getDict(compId) || "";
+          } catch {
+            dictText = "";
+          }
+          if (dictText) buf = new TextEncoder().encode(dictText).buffer;
+        }
+        if (!buf) continue; // no library entry and no stored dict → leave out
+
+        const assetPath = claim(`assets/${dictName}.cif`);
+        assets.set(assetPath, buf);
+        const newRef: SceneFileRef = {
+          name: dictName,
+          kind: "dictionary",
+          bundle: assetPath,
+        };
+        (scene.files ??= []).push(newRef);
+        existingDictNames.add(dictName);
+        const el = (scene.elements ?? []).find((e) => e.file === molFileName);
+        if (el) {
+          el.dictionaries = el.dictionaries ?? [];
+          if (!el.dictionaries.includes(dictName)) el.dictionaries.push(dictName);
         }
       }
     }
