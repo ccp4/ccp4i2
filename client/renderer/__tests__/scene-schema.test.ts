@@ -23,6 +23,7 @@ import {
 } from "../lib/scene";
 import { sceneMarkers, pathToSegments } from "../lib/scene/yaml-markers";
 import { buildSceneBrief, buildSceneMarkdown } from "../lib/scene/brief";
+import { buildSceneSystemPrompt } from "../lib/moorhen-scene-prompt";
 
 const SCENE_DIR = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -58,6 +59,18 @@ describe("published JSON Schema contracts", () => {
     );
     if (process.env.UPDATE_SCHEMA) writeFileSync(mdPath, md);
     expect(readFileSync(mdPath, "utf8")).toBe(md);
+  });
+
+  it("moorhen-scene.system-prompt.v1.md matches the generated system prompt", () => {
+    // The static system prompt is committed verbatim so a pinned submodule (e.g.
+    // Materia's nlp_scene endpoint) can read it as the server-held system message
+    // without importing the TS. This drift guard keeps that file byte-identical
+    // to buildSceneSystemPrompt(); regenerate with UPDATE_SCHEMA=1.
+    const sys = buildSceneSystemPrompt();
+    const sysPath = path.join(SCENE_DIR, "moorhen-scene.system-prompt.v1.md");
+    if (process.env.UPDATE_SCHEMA) writeFileSync(sysPath, sys);
+    expect(existsSync(sysPath), "committed system prompt missing; run with UPDATE_SCHEMA=1").toBe(true);
+    expect(readFileSync(sysPath, "utf8")).toBe(sys);
   });
 });
 

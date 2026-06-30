@@ -18,6 +18,10 @@ The version numbers are illustrative; the structural changes are what matter.
    provider now *requires* a `menuSystem` prop** (`new MoorhenMenuSystem()`).
 3. **`MoorhenMenuSystem` must be exported from the `react-lib` entry.** Early
    1.0.0-alpha builds did not export it — see the upstream note at the bottom.
+4. **The `setMoorhenDimensions` callback prop is gone**, replaced by a static
+   `size: [number, number]` prop. Embeddings that still pass the callback get
+   silently ignored and fall back to *full `window.innerHeight`*, which overflows
+   the viewport when the viewer sits under a toolbar. See §6.
 
 Everything else (asset layout, the named action-creator / component exports, the
 `moorhen/types/*` type imports, React 19, MUI 7) is unchanged or backward
@@ -277,6 +281,67 @@ npm run build                   # bundler resolution (the exports map)
 #    then run the app and confirm the viewer actually mounts (the InstanceProvider
 #    throw is a *runtime* error a build won't catch)
 ```
+
+---
+
+## 6. Sizing: `setMoorhenDimensions` callback → static `size` prop
+
+In 0.23 the embedder passed a `setMoorhenDimensions` callback that Moorhen
+invoked to learn the available width/height. **1.0 removed that prop.** The
+container now takes a static `size?: [number, number]` prop, and its internal
+sizing falls back to the full window when `size` is absent:
+
+```js
+// inside MoorhenContainer (1.0 bundle)
+let [w, h] = [window.innerWidth, window.innerHeight];
+n.size && ([w, h] = n.size);   // only honoured when `size` is supplied
+```
+
+So an app that keeps passing `setMoorhenDimensions` compiles fine (it's just an
+unknown prop), but Moorhen ignores it and sizes the canvas to the **full
+`window.innerHeight`**. When the viewer renders below a toolbar/AppBar, total
+page height = toolbar + full viewport > `100vh`, and the whole page scrolls — a
+bad UX for an interactive 3D viewer.
+
+### Fix
+
+Measure the container's top offset and feed Moorhen an explicit `size`, keeping
+it in sync on resize (this reproduces the old `innerHeight - top` math through
+the new prop):
+
+```tsx
+const moorhenContainerRef = useRef<HTMLDivElement>(null);
+const [size, setSize] = useState<[number, number]>(() =>
+  typeof window === "undefined" ? [0, 0] : [window.innerWidth, window.innerHeight]
+);
+useEffect(() => {
+  const measure = () => {
+    const top = moorhenContainerRef.current?.getBoundingClientRect().top ?? 0;
+    setSize([window.innerWidth, window.innerHeight - top]);
+  };
+  measure();
+  window.addEventListener("resize", measure);
+  return () => window.removeEventListener("resize", measure);
+}, []);
+
+// ...
+<div ref={moorhenContainerRef}>
+  <MoorhenContainer {...otherProps} size={size} />
+</div>
+```
+
+Notes:
+- The `typeof window` guard keeps Next.js SSR happy (the wrappers are client
+  components but still server-render once).
+- Moorhen *also* subtracts ~75px internally for its own toolbar when shown
+  (`h - (showToolbar ? 75 : 0)`); that only trims the inner GL area, not the
+  outer canvas height you control, so there's no double-subtraction of *your*
+  app toolbar.
+- Confirm in the running app, not just `tsc` — an ignored/missing `size` prop is
+  a runtime/layout problem a build won't catch.
+
+In CCP4i2 this lives in `client/renderer/components/moorhen/moorhen-wrapper.tsx`
+and `campaign-moorhen-wrapper.tsx` (fixed in PR #204).
 
 ---
 
