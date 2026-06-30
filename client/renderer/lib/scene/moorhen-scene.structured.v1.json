@@ -1,0 +1,1309 @@
+{
+  "type": "object",
+  "properties": {
+    "scene": {
+      "type": "string",
+      "description": "human-readable scene name"
+    },
+    "version": {
+      "type": "number",
+      "description": "must equal 1"
+    },
+    "authoredIn": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "projectId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "projectName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createdAt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ccp4i2Version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "projectId",
+        "projectName",
+        "createdAt",
+        "createdBy",
+        "ccp4i2Version"
+      ]
+    },
+    "files": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "local name referenced by elements/maps"
+          },
+          "kind": {
+            "description": "default \"coordinates\"",
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "coordinates",
+              "dictionary",
+              "mtz",
+              "map",
+              null
+            ]
+          },
+          "pdb": {
+            "description": "PDB id; fetched via proxy on apply",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "description": "absolute URL (portable)",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "bundle": {
+            "description": "asset path inside a .scene.zip",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cifText": {
+            "description": "inline CIF (dictionary refs only)",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relativeUrl": {
+            "description": "origin-relative URL (/api/…); not portable across deployments",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "projectId": {
+            "description": "UUID; required with fileId or job+param",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "projectName": {
+            "description": "advisory",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fileId": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "job": {
+            "description": "pair with param",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "param": {
+            "description": "job parameter, e.g. \"XYZOUT\"",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "kind",
+          "pdb",
+          "url",
+          "bundle",
+          "cifText",
+          "relativeUrl",
+          "projectId",
+          "projectName",
+          "fileId",
+          "job",
+          "param"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "superpose": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "const": "ssm"
+              },
+              "move": {
+                "type": "string",
+                "description": "file being transformed"
+              },
+              "onto": {
+                "type": "string",
+                "description": "reference file (unchanged)"
+              },
+              "movChain": {
+                "type": "string"
+              },
+              "refChain": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "method",
+              "move",
+              "onto",
+              "movChain",
+              "refChain"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "const": "lsq"
+              },
+              "move": {
+                "type": "string"
+              },
+              "onto": {
+                "type": "string"
+              },
+              "matches": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "refChain": {
+                      "type": "string"
+                    },
+                    "refRange": {
+                      "type": "string"
+                    },
+                    "movChain": {
+                      "type": "string"
+                    },
+                    "movRange": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "refChain",
+                    "refRange",
+                    "movChain",
+                    "movRange"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "chain": {
+                "description": "shorthand chain, both sides",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "range": {
+                "description": "shorthand range, both sides",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "matchType": {
+                "description": "default \"main\"",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "all",
+                  "main",
+                  "ca",
+                  null
+                ]
+              }
+            },
+            "required": [
+              "method",
+              "move",
+              "onto",
+              "matches",
+              "chain",
+              "range",
+              "matchType"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "globalDictionaries": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "domains": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "used by colour: by-domain and the resolver log"
+          },
+          "selection": {
+            "type": "string",
+            "description": "CID selection, e.g. //F or //F/32-64"
+          },
+          "color": {
+            "type": "string",
+            "description": "hex colour #rrggbb or #rrggbbaa"
+          }
+        },
+        "required": [
+          "name",
+          "selection",
+          "color"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "elements": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "name of a files[] entry"
+          },
+          "dictionaries": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "colour": {
+            "description": "molecule-scoped colour: the default for every representation of this file; a representation's own `colour` overrides it",
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "hex colour #rrggbb or #rrggbbaa"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "by-domain",
+                  "b-factor",
+                  "b-factor-norm",
+                  "af2-plddt",
+                  "secondary-structure",
+                  "jones-rainbow",
+                  "mol-symm"
+                ]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "selection": {
+                      "type": "string",
+                      "description": "CID, e.g. \"//A\" or \"//A/121-130\""
+                    },
+                    "colour": {
+                      "type": "string",
+                      "description": "hex colour #rrggbb or #rrggbbaa"
+                    }
+                  },
+                  "required": [
+                    "selection",
+                    "colour"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "raw": {
+                    "type": "object",
+                    "properties": {
+                      "ruleType": {
+                        "type": "string"
+                      },
+                      "args": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      },
+                      "isMultiColourRule": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ]
+                      },
+                      "applyColourToNonCarbonAtoms": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "ruleType",
+                      "args",
+                      "isMultiColourRule",
+                      "applyColourToNonCarbonAtoms"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "raw"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "representations": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "style": {
+                  "type": "string",
+                  "enum": [
+                    "VdwSpheres",
+                    "ligands",
+                    "CAs",
+                    "CBs",
+                    "CDs",
+                    "gaussian",
+                    "allHBonds",
+                    "rama",
+                    "rotamer",
+                    "CRs",
+                    "MolecularSurface",
+                    "DishyBases",
+                    "VdWSurface",
+                    "Calpha",
+                    "unitCell",
+                    "hover",
+                    "environment",
+                    "ligand_environment",
+                    "contact_dots",
+                    "chemical_features",
+                    "ligand_validation",
+                    "glycoBlocks",
+                    "restraints",
+                    "residueSelection",
+                    "MetaBalls",
+                    "adaptativeBonds",
+                    "StickBases",
+                    "residue_environment",
+                    "transformation"
+                  ],
+                  "description": "Moorhen RepresentationStyle, e.g. \"CRs\", \"CBs\""
+                },
+                "selection": {
+                  "description": "CID; default all-atoms",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "colour": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "description": "hex colour #rrggbb or #rrggbbaa"
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "by-domain",
+                        "b-factor",
+                        "b-factor-norm",
+                        "af2-plddt",
+                        "secondary-structure",
+                        "jones-rainbow",
+                        "mol-symm"
+                      ]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "selection": {
+                            "type": "string",
+                            "description": "CID, e.g. \"//A\" or \"//A/121-130\""
+                          },
+                          "colour": {
+                            "type": "string",
+                            "description": "hex colour #rrggbb or #rrggbbaa"
+                          }
+                        },
+                        "required": [
+                          "selection",
+                          "colour"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "raw": {
+                          "type": "object",
+                          "properties": {
+                            "ruleType": {
+                              "type": "string"
+                            },
+                            "args": {
+                              "type": "array",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "number"
+                                  }
+                                ]
+                              }
+                            },
+                            "isMultiColourRule": {
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "applyColourToNonCarbonAtoms": {
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "ruleType",
+                            "args",
+                            "isMultiColourRule",
+                            "applyColourToNonCarbonAtoms"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "raw"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "alpha": {
+                  "description": "opacity 0..1 (honoured: governs visibility)",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "geometry": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "bondRadius": {
+                      "description": "bond cylinder radius (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "ballRadius": {
+                      "description": "ball-and-stick atom ball radius (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "vdwScale": {
+                      "description": "VdW sphere radius multiplier (×element radius)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "probeRadius": {
+                      "description": "molecular-surface solvent probe radius (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "ribbonCoilThickness": {
+                      "description": "ribbon coil thickness (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "ribbonHelixWidth": {
+                      "description": "ribbon helix width (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "ribbonStrandWidth": {
+                      "description": "ribbon strand width (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "ribbonArrowWidth": {
+                      "description": "ribbon arrow width (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "ribbonDNARNAWidth": {
+                      "description": "nucleotide ribbon width (Å)",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "bondRadius",
+                    "ballRadius",
+                    "vdwScale",
+                    "probeRadius",
+                    "ribbonCoilThickness",
+                    "ribbonHelixWidth",
+                    "ribbonStrandWidth",
+                    "ribbonArrowWidth",
+                    "ribbonDNARNAWidth"
+                  ]
+                }
+              },
+              "required": [
+                "style",
+                "selection",
+                "colour",
+                "alpha",
+                "geometry"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "file",
+          "dictionaries",
+          "colour",
+          "representations"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "maps": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string",
+            "description": "name of a files[] entry (kind mtz or map)"
+          },
+          "columns": {
+            "description": "required for mtz, omit for map",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "F": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "PHI": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Fobs": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "SigFobs": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "FreeR": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "useWeight": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "calcStructFact": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "F",
+              "PHI",
+              "Fobs",
+              "SigFobs",
+              "FreeR",
+              "useWeight",
+              "calcStructFact"
+            ]
+          },
+          "isMask": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "isDifference": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "contourLevel": {
+            "description": "rmsd-relative",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "radius": {
+            "description": "contour radius (Å)",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "alpha": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "style": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "lines",
+              "solid",
+              "lit-lines",
+              null
+            ]
+          },
+          "colour": {
+            "description": "non-difference maps only",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "positiveColour": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "hex colour #rrggbb or #rrggbbaa"
+          },
+          "negativeColour": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "hex colour #rrggbb or #rrggbbaa"
+          },
+          "visible": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "file",
+          "columns",
+          "isMask",
+          "isDifference",
+          "contourLevel",
+          "radius",
+          "alpha",
+          "style",
+          "colour",
+          "positiveColour",
+          "negativeColour",
+          "visible"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "activeMap": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "view": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "origin": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "centre": {
+          "description": "centroid of a selection; beats origin",
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "file": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "selection": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "file",
+            "selection"
+          ]
+        },
+        "quat": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "zoom": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "clipStart": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "clipEnd": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fogStart": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fogEnd": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "clip": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "auto"
+            },
+            {
+              "type": "string",
+              "const": "lock"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "front": {
+                  "type": "number"
+                },
+                "back": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "front",
+                "back"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "slab": {
+          "description": "z-depth window for a selection; beats clip",
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "file": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "selection": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "pad": {
+              "description": "extra Å each side",
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "file",
+            "selection",
+            "pad"
+          ]
+        },
+        "background": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "hex colour #rrggbb or #rrggbbaa"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "origin",
+        "centre",
+        "quat",
+        "zoom",
+        "clipStart",
+        "clipEnd",
+        "fogStart",
+        "fogEnd",
+        "clip",
+        "slab",
+        "background"
+      ]
+    },
+    "hints": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "lighting": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "direction": {
+              "description": "principal directional light vector → Moorhen lightPosition",
+              "type": [
+                "array",
+                "null"
+              ],
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "ambient": {
+              "description": "ambient light colour",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "diffuse": {
+              "description": "diffuse light colour",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "specular": {
+              "description": "specular light colour",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "shininess": {
+              "description": "specular power → Moorhen specularPower",
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "direction",
+            "ambient",
+            "diffuse",
+            "specular",
+            "shininess"
+          ]
+        },
+        "effects": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "ssao": {
+              "description": "screen-space ambient occlusion",
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "enabled": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "radius": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "bias": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "enabled",
+                "radius",
+                "bias"
+              ]
+            },
+            "edgeDetect": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "enabled": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "depthThreshold": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "normalThreshold": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "depthScale": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "normalScale": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "enabled",
+                "depthThreshold",
+                "normalThreshold",
+                "depthScale",
+                "normalScale"
+              ]
+            },
+            "shadows": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "depthBlur": {
+              "description": "depth-of-field blur",
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "radius": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "depth": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "radius",
+                "depth"
+              ]
+            },
+            "perspective": {
+              "description": "perspective vs orthographic",
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "ssao",
+            "edgeDetect",
+            "shadows",
+            "depthBlur",
+            "perspective"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "lighting",
+        "effects"
+      ]
+    },
+    "resolver": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "onMissingResidues": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "clamp-and-log",
+            "strict",
+            null
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "onMissingResidues"
+      ]
+    }
+  },
+  "required": [
+    "scene",
+    "version",
+    "authoredIn",
+    "files",
+    "superpose",
+    "globalDictionaries",
+    "domains",
+    "elements",
+    "maps",
+    "activeMap",
+    "view",
+    "hints",
+    "resolver"
+  ],
+  "additionalProperties": false
+}

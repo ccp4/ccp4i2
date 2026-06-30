@@ -18,6 +18,7 @@ import {
   parseScene,
   validateScene,
   buildJsonSchemas,
+  buildStructuredJsonSchema,
   serialiseJsonSchema,
   SceneParseError,
 } from "../lib/scene";
@@ -71,6 +72,46 @@ describe("published JSON Schema contracts", () => {
     if (process.env.UPDATE_SCHEMA) writeFileSync(sysPath, sys);
     expect(existsSync(sysPath), "committed system prompt missing; run with UPDATE_SCHEMA=1").toBe(true);
     expect(readFileSync(sysPath, "utf8")).toBe(sys);
+  });
+
+  const STRUCTURED = path.join(SCENE_DIR, "moorhen-scene.structured.v1.json");
+
+  it("moorhen-scene.structured.v1.json matches the strict profile", () => {
+    const serialised = serialiseJsonSchema(buildStructuredJsonSchema());
+    if (process.env.UPDATE_SCHEMA) writeFileSync(STRUCTURED, serialised);
+    expect(existsSync(STRUCTURED), "committed structured profile missing; run with UPDATE_SCHEMA=1").toBe(true);
+    expect(serialised).toBe(readFileSync(STRUCTURED, "utf8"));
+  });
+
+  it("the strict profile obeys OpenAI Structured Outputs shape rules", () => {
+    // Walk every node and assert the invariants strict mode enforces: no dropped
+    // vocabulary survives, oneOf is gone, and every object is closed with all
+    // keys required. (The lossy constraints are re-checked by parseScene.)
+    const FORBIDDEN = [
+      "pattern", "format", "minimum", "maximum", "exclusiveMinimum",
+      "exclusiveMaximum", "multipleOf", "minLength", "maxLength", "minItems",
+      "maxItems", "uniqueItems", "default", "oneOf", "allOf", "not", "$schema",
+    ];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const walk = (node: any): void => {
+      if (Array.isArray(node)) return node.forEach(walk);
+      if (!node || typeof node !== "object") return;
+      for (const key of FORBIDDEN) {
+        expect(key in node, `forbidden keyword "${key}" leaked into the strict profile`).toBe(false);
+      }
+      const isObjectNode =
+        node.properties !== undefined ||
+        node.type === "object" ||
+        (Array.isArray(node.type) && node.type.includes("object"));
+      if (isObjectNode && node.properties) {
+        expect(node.additionalProperties).toBe(false);
+        expect([...(node.required ?? [])].sort()).toEqual(
+          Object.keys(node.properties).sort(),
+        );
+      }
+      for (const v of Object.values(node)) walk(v);
+    };
+    walk(buildStructuredJsonSchema());
   });
 });
 
