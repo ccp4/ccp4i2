@@ -96,6 +96,39 @@ export function serialiseScene(scene: unknown): string {
   return YAML.stringify(scene);
 }
 
+/** Recursively drop null-valued object keys (keeps array elements). */
+function stripNulls(v: unknown): unknown {
+  if (Array.isArray(v)) return v.map(stripNulls);
+  if (v && typeof v === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, val] of Object.entries(v as Record<string, unknown>)) {
+      if (val === null) continue;
+      out[k] = stripNulls(val);
+    }
+    return out;
+  }
+  return v;
+}
+
+/**
+ * Prepare raw LLM output for the editor. Strips a ```yaml/```json fence, then —
+ * because strict OpenAI Structured Outputs emits explicit `null`s for absent
+ * optionals and Zod treats *optional* ≠ *null* — drops those nulls, and
+ * re-serialises to tidy YAML (JSON ⊂ YAML, so JSON output normalises too). Falls
+ * back to the raw text if it doesn't parse, so the editor still shows something
+ * the validity markers can flag. Parsing/validation stay with parseScene; this
+ * is only ingest tid-up.
+ */
+export function normaliseGeneratedScene(text: string): string {
+  try {
+    const raw = YAML.parse(stripCodeFence(text));
+    if (raw == null || typeof raw !== "object") return text;
+    return YAML.stringify(stripNulls(raw));
+  } catch {
+    return text;
+  }
+}
+
 // --- JSON Schema generation (the published contracts) ---------------------
 
 /**

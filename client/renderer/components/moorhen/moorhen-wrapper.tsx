@@ -49,9 +49,11 @@ import {
   buildContentsBlock,
   buildManifestBlock,
   buildAuthoringPrompt,
+  buildGroundingBlock,
   extractPdbIds,
   fetchPdbContents,
 } from "../../lib/moorhen-scene-prompt";
+import { useSceneNlCapability, generateScene } from "./use-scene-nl-capability";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
@@ -1082,7 +1084,15 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // manifest of the project's referenceable job outputs + a ground-truth
   // contents summary of the loaded structure (chains + ligand CIDs, from the
   // coordinate digest). The user appends a request and pastes it into a chatbot.
-  const handleBuildAuthoringPrompt = useCallback(async (request: string): Promise<string> => {
+  // Assemble the per-call grounding: project identity + referenceable-file
+  // manifest + loaded-structure (and named-PDB) contents. Shared by both the
+  // copy-paste prompt and the integrated Generate path so they ground the model
+  // identically. `request` is used only to spot PDB ids to digest.
+  const assembleGrounding = useCallback(async (request: string): Promise<{
+    project?: { name?: string; id?: string };
+    manifest: string;
+    contents: string;
+  }> => {
     const mol = molecules[0];
     const fid = mol ? extractFileIdFromUniqueId(mol.uniqueId || "") : null;
 
@@ -1142,8 +1152,25 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       ? contentsParts.join("\n\n")
       : "(no structure loaded)";
 
-    return buildAuthoringPrompt({ project, contents: contentsBlock, manifest: manifestBlock, request });
+    return { project, manifest: manifestBlock, contents: contentsBlock };
   }, [molecules, projectInfo]);
+
+  // Copy-paste path: the full self-contained prompt (system prompt + grounding +
+  // request) for pasting into any chatbot.
+  const handleBuildAuthoringPrompt = useCallback(async (request: string): Promise<string> => {
+    const { project, manifest, contents } = await assembleGrounding(request);
+    return buildAuthoringPrompt({ project, contents, manifest, request });
+  }, [assembleGrounding]);
+
+  // Integrated path: send request + grounding to the nlp_scene endpoint (which
+  // holds the static system prompt server-side) and return the raw scene text.
+  const handleGenerateScene = useCallback(async (request: string): Promise<string> => {
+    const { project, manifest, contents } = await assembleGrounding(request);
+    const grounding = buildGroundingBlock({ project, manifest, contents });
+    return generateScene(request, grounding);
+  }, [assembleGrounding]);
+
+  const sceneNl = useSceneNlCapability();
 
   // Promote an editor YAML to a fully self-contained scene + asset
   // bundle: every URL-resolvable ref is fetched into assets/ and
@@ -1269,11 +1296,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           onCaptureScene={handleCaptureScene}
           onPromoteSceneToPortable={handlePromoteSceneToPortable}
           onBuildAuthoringPrompt={handleBuildAuthoringPrompt}
+          onGenerateScene={sceneNl.available ? handleGenerateScene : undefined}
           cootInitialized={cootInitialized}
         />
       ),
     },
-  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, handleBuildAuthoringPrompt, cootInitialized]);
+  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, handleBuildAuthoringPrompt, sceneNl.available, handleGenerateScene, cootInitialized]);
 
   // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
   // (it builds the per-instance MoorhenInstance from it). One per wrapper.

@@ -20,6 +20,7 @@ import {
   buildJsonSchemas,
   buildStructuredJsonSchema,
   serialiseJsonSchema,
+  normaliseGeneratedScene,
   SceneParseError,
 } from "../lib/scene";
 import { sceneMarkers, pathToSegments } from "../lib/scene/yaml-markers";
@@ -411,5 +412,54 @@ describe("parseScene", () => {
 
   it("throws SceneParseError on invalid scene", () => {
     expect(() => parseScene("scene: x\nversion: 99")).toThrow(SceneParseError);
+  });
+});
+
+describe("normaliseGeneratedScene (LLM ingest tidy-up)", () => {
+  it("strips explicit nulls that strict Structured Outputs emits", () => {
+    // Strict mode makes every optional present-as-null; Zod optional ≠ null,
+    // so these must be dropped before parseScene sees them.
+    const json = JSON.stringify({
+      scene: "s",
+      version: 1,
+      files: [{ name: "prot", pdb: "1abc" }],
+      view: { centre: { file: "prot", selection: "//A" }, zoom: null, origin: null },
+      hints: null,
+    });
+    const out = normaliseGeneratedScene(json);
+    expect(out).not.toContain("null");
+    const parsed = parseScene(out);
+    expect(parsed).toMatchObject({ scene: "s", version: 1 });
+    expect(parsed.view?.zoom).toBeUndefined();
+  });
+
+  it("strips a ```json fence and re-serialises to YAML", () => {
+    const fenced = "```json\n{\"scene\":\"s\",\"version\":1}\n```";
+    const out = normaliseGeneratedScene(fenced);
+    expect(out).not.toContain("```");
+    expect(parseScene(out)).toMatchObject({ scene: "s", version: 1 });
+  });
+
+  it("leaves plain YAML without nulls essentially unchanged in meaning", () => {
+    const yaml = "scene: s\nversion: 1\n";
+    expect(parseScene(normaliseGeneratedScene(yaml))).toMatchObject({
+      scene: "s",
+      version: 1,
+    });
+  });
+
+  it("falls back to the raw text when it doesn't parse", () => {
+    const junk = "this is: not: valid: yaml: [";
+    expect(normaliseGeneratedScene(junk)).toBe(junk);
+  });
+
+  it("keeps array elements (only object nulls are dropped)", () => {
+    const json = JSON.stringify({
+      scene: "s",
+      version: 1,
+      domains: [{ name: "d", selection: "//A", color: "#112233" }],
+    });
+    const parsed = parseScene(normaliseGeneratedScene(json));
+    expect(parsed.domains).toHaveLength(1);
   });
 });

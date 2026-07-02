@@ -47,11 +47,13 @@ import {
   PlayArrow as ApplyIcon,
   ArrowDropDown as DropDownIcon,
   AutoAwesome as PromptIcon,
+  AutoFixHigh as GenerateIcon,
 } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
 import JSZip from "jszip";
 
-import { parseScene, SceneParseError } from "../../lib/scene";
+import { parseScene, SceneParseError, normaliseGeneratedScene } from "../../lib/scene";
+import { SceneGenerateError } from "./use-scene-nl-capability";
 import { sceneMarkers } from "../../lib/scene/yaml-markers";
 import { serialiseSceneWithComments } from "../../lib/moorhen-scene";
 import type { MoorhenScene } from "../../types/moorhen-scene";
@@ -127,6 +129,12 @@ interface MoorhenScenesPanelProps {
    *  request. Optional — when omitted the "Generate prompt" button is hidden
    *  (e.g. the campaign viewer). */
   onBuildAuthoringPrompt?: (request: string) => Promise<string>;
+  /** Generate a scene from a natural-language request via an integrated LLM
+   *  endpoint, returning the raw scene text. Optional — passed only when the
+   *  deployment reports the capability. When present, the authoring modal
+   *  offers an in-app "Generate" (result lands in the editor for review, not
+   *  auto-applied); copy-paste stays as a secondary action. */
+  onGenerateScene?: (request: string) => Promise<string>;
   /** True once Moorhen / Coot is ready. Disables apply until then. */
   enabled: boolean;
   /** Optional initial YAML to seed the editor with (e.g. the campaign
@@ -153,6 +161,7 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   onCaptureScene,
   onPromoteSceneToPortable,
   onBuildAuthoringPrompt,
+  onGenerateScene,
   enabled,
   initialYaml,
   autoApplyInitial,
@@ -256,6 +265,38 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
       setPromptBusy(false);
     }
   }, [onBuildAuthoringPrompt, promptRequest]);
+
+  // Integrated Generate: call the endpoint, normalise the raw output (strip
+  // fence + strict-mode nulls, tidy to YAML), drop it in the editor for REVIEW
+  // (never auto-applied — generation can be imperfect and the markers show
+  // validity). On failure, keep the modal open so the user can fall back to
+  // copy-paste, with a kind-specific message.
+  const handleGenerateScene = useCallback(async () => {
+    if (!onGenerateScene) return;
+    setPromptBusy(true);
+    try {
+      const raw = await onGenerateScene(promptRequest);
+      setYamlText(normaliseGeneratedScene(raw));
+      setPromptModalOpen(false);
+      setMessage({
+        severity: "success",
+        text: "Scene generated into the editor — review it (check the messages below), then Apply.",
+      });
+    } catch (err) {
+      const fallback = onBuildAuthoringPrompt
+        ? " You can still use Copy as prompt to try another model."
+        : "";
+      const text =
+        err instanceof SceneGenerateError && err.kind === "rate_limited"
+          ? `Daily generation limit reached.${fallback}`
+          : err instanceof SceneGenerateError && err.kind === "disabled"
+            ? `Scene generation is disabled on this deployment.${fallback}`
+            : `Could not generate scene: ${err instanceof Error ? err.message : "unknown error"}.${fallback}`;
+      setMessage({ severity: "error", text });
+    } finally {
+      setPromptBusy(false);
+    }
+  }, [onGenerateScene, onBuildAuthoringPrompt, promptRequest]);
 
   const handleOpenClick = useCallback(() => {
     fileInputRef.current?.click();
@@ -551,17 +592,23 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
           </Tooltip>
         )}
 
-        {onBuildAuthoringPrompt && (
-          <Tooltip title="Describe a view in words; we bundle it with the scene grammar, this project's files, and the loaded structure's chains & ligands into one prompt for any chatbot">
+        {(onGenerateScene || onBuildAuthoringPrompt) && (
+          <Tooltip
+            title={
+              onGenerateScene
+                ? "Describe a view in words and generate the scene in-app (into the editor for review before you Apply)"
+                : "Describe a view in words; we bundle it with the scene grammar, this project's files, and the loaded structure's chains & ligands into one prompt for any chatbot"
+            }
+          >
             <span>
               <Button
                 size="small"
                 variant="outlined"
-                startIcon={<PromptIcon />}
+                startIcon={onGenerateScene ? <GenerateIcon /> : <PromptIcon />}
                 onClick={() => setPromptModalOpen(true)}
                 sx={{ fontSize: "0.75rem", textTransform: "none" }}
               >
-                Generate prompt…
+                {onGenerateScene ? "Generate scene…" : "Generate prompt…"}
               </Button>
             </span>
           </Tooltip>
@@ -725,22 +772,39 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
         onChange={handleOpenFile}
       />
 
-      {/* Generate-prompt modal: the user describes a view in words; on "Copy as
-          prompt" we bundle it with the grammar + project files + structure
-          contents and copy the whole prompt for pasting into a chatbot. */}
+      {/* Authoring modal: the user describes a view in words. When an integrated
+          endpoint is available (onGenerateScene) the primary action generates the
+          scene in-app into the editor; otherwise (copy-paste path) we bundle the
+          request with the grammar + project files + contents to the clipboard.
+          Copy-paste stays as a secondary action even when Generate is available —
+          the better-model / offline / quota escape hatch. */}
       <Dialog
         open={promptModalOpen}
         onClose={() => setPromptModalOpen(false)}
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>Generate a scene-authoring prompt</DialogTitle>
+        <DialogTitle>
+          {onGenerateScene ? "Generate a scene" : "Generate a scene-authoring prompt"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: 1.5, fontSize: "0.85rem" }}>
-            Describe the view you want in plain language. We bundle your
-            description with the scene grammar, this project&apos;s files, and the
-            loaded structure&apos;s chains &amp; ligands into one prompt. Paste it
-            into any chatbot, then paste the returned YAML back here and Apply.
+            {onGenerateScene ? (
+              <>
+                Describe the view you want in plain language. We ground the request
+                with this project&apos;s files and the loaded structure&apos;s
+                chains &amp; ligands and generate the scene into the editor —
+                review it (see the messages below), then Apply.
+              </>
+            ) : (
+              <>
+                Describe the view you want in plain language. We bundle your
+                description with the scene grammar, this project&apos;s files, and
+                the loaded structure&apos;s chains &amp; ligands into one prompt.
+                Paste it into any chatbot, then paste the returned YAML back here
+                and Apply.
+              </>
+            )}
           </DialogContentText>
           <TextField
             autoFocus
@@ -759,15 +823,30 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
           <Button onClick={() => setPromptModalOpen(false)} sx={{ textTransform: "none" }}>
             Cancel
           </Button>
-          <Button
-            variant="contained"
-            startIcon={<PromptIcon />}
-            onClick={handleCopyAsPrompt}
-            disabled={promptBusy || !promptRequest.trim()}
-            sx={{ textTransform: "none" }}
-          >
-            Copy as prompt
-          </Button>
+          {/* Copy-as-prompt is primary when there's no endpoint, secondary when
+              there is (kept as the better-model / offline fallback). */}
+          {onBuildAuthoringPrompt && (
+            <Button
+              variant={onGenerateScene ? "outlined" : "contained"}
+              startIcon={<PromptIcon />}
+              onClick={handleCopyAsPrompt}
+              disabled={promptBusy || !promptRequest.trim()}
+              sx={{ textTransform: "none" }}
+            >
+              Copy as prompt
+            </Button>
+          )}
+          {onGenerateScene && (
+            <Button
+              variant="contained"
+              startIcon={<GenerateIcon />}
+              onClick={handleGenerateScene}
+              disabled={promptBusy || !promptRequest.trim()}
+              sx={{ textTransform: "none" }}
+            >
+              {promptBusy ? "Generating…" : "Generate"}
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </Stack>
