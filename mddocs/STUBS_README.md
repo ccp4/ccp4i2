@@ -1,5 +1,11 @@
 # Stub Modules for Plugin Discovery
 
+> ⚠️ **LEGACY / HISTORICAL.** This describes stubs used by the removed
+> `core/task_manager/plugin_lookup.py` discovery script. Task discovery no longer
+> scans/introspects plugin files — tasks are declared explicitly in the `TASKS`
+> dict in [`server/ccp4i2/core/tasks.py`](../server/ccp4i2/core/tasks.py).
+> **See instead:** [Authoring a Task](../docs/authoring-a-task.md).
+
 This directory contains minimal stub implementations of external dependencies
 to allow `plugin_lookup.py` to import and introspect CCP4i2 plugin files without
 requiring the full dependency stack.

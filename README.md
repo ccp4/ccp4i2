@@ -86,20 +86,29 @@ Test results are stored in `~/.cache/ccp4i2-tests/`. See cleanup instructions pr
 
 ## Documentation
 
+**[Documentation Map](docs/README.md)** — the single index to all developer docs.
+
 ### Setup & Testing
 
 - [Development Setup](mddocs/setup/DEVELOPMENT_SETUP.md) - **Start here** - Complete environment setup guide
 - [Testing Guide](mddocs/setup/TESTING.md) - Running and writing tests
 
+### Authoring a Task
+
+- [Authoring a Task](docs/authoring-a-task.md) - **Start here** - end-to-end guide to adding a wrapper
+- [def.xml Reference](docs/def-xml-reference.md) - declaring a task's data model
+- [PHIL Task Guide](server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md) - the PHIL alternative for Phenix/PhaserTNG/DIALS-style tools
+
 ### Frontend Development
 
 - [Frontend README](client/README.md) - Quick start for the Electron/React frontend
 - [Frontend Development Guide](client/FRONTEND_DEVELOPMENT.md) - Comprehensive developer documentation
+- [Task Interface Implementation Guide](client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md) - building a bespoke task UI
 
 ### Architecture & API
 
 - [Quick Reference](mddocs/QUICK_REFERENCE.md) - Common operations and examples
-- [Plugin Registry](mddocs/PLUGIN_REGISTRY_README.md) - Plugin discovery and registration
+- [Task Registry](server/ccp4i2/core/tasks.py) - tasks are registered in the `TASKS` dict (one entry per task)
 - [API Reference](mddocs/api/) - REST API endpoints and data models
 - [Architecture Overview](mddocs/architecture/) - System design documentation
 

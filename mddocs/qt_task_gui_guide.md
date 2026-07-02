@@ -1,5 +1,14 @@
 # CCP4i2 Qt-Based Task GUI — Comprehensive Guide
 
+> ⚠️ **LEGACY / HISTORICAL — the Qt task GUI system is not used on this branch.**
+> Task UIs are now React-based: a task auto-renders from its `def.xml` via
+> `GenericInterface`, and bespoke interfaces are written in TypeScript. This file
+> is retained only as a reference for *translating* legacy Qt interfaces.
+>
+> **For building a task UI today, see:**
+> [Authoring a Task](../docs/authoring-a-task.md) →
+> [Task Interface Implementation Guide](../client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md).
+
 > **Purpose:** This document describes the architecture, conventions, and patterns used in CCP4i2's
 > Python/Qt task GUIs. It is intended as a reference for automated translation of these interfaces
 > into React-based equivalents on the Django branch.
