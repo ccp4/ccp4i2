@@ -186,7 +186,8 @@ transient `5xx`/timeout → retry, still safe-fallback to copy-paste. Only
   desktop server endpoint required.
 
 **Deferred:**
-- `desktop-byo` (BYO-API-key from Electron) and `on-device` providers.
+- `desktop-byo` (BYO-API-key from Electron) and `on-device` providers — landscape
+  and recommendation in §9.
 - Showing remaining-quota / model name in the button (needs the optional
   `nlp/status` fields; nice-to-have).
 - Streaming the generation into the editor (v1 waits for the full document).
@@ -206,3 +207,53 @@ transient `5xx`/timeout → retry, still safe-fallback to copy-paste. Only
 §6 (`nlp/status`) is **live** (Materia commit `6095575`), so the hook can consume a
 real capability signal today rather than defaulting to unavailable — tier 3 lights
 up wherever the endpoint answers `enabled:true`.
+
+## 9. Desktop / on-device providers (deferred — landscape & recommendation)
+
+The `desktop-byo` / `on-device` providers of §2 are where desktop Electron gets
+in-app generation without a server. This is the §7a on-device aspiration made
+concrete. (Fast-moving area — treat specifics as "verify before building".)
+
+### Apple Intelligence's built-in model: Swift-only, not Python
+
+Apple's on-device ~3B model is exposed through the **Foundation Models framework**
+(macOS 26+, Apple silicon) — a **Swift** API (`LanguageModelSession`, `@Generable`
+/ `GenerationSchema` for guided/structured output). There is **no official Python
+binding**, and PyObjC won't cleanly reach a Swift-first framework. The only route
+to *that specific model* is a **small Swift sidecar** (a CLI or localhost helper
+that takes prompt + schema, returns JSON), called from Electron main or the Python
+backend. Its runtime `GenerationSchema` could in principle be built from
+`moorhen-scene.structured.v1.json`, so constrained output is plausible — but it's
+real Swift work. Deferred behind the easier routes below.
+
+### The Python/Node-native routes (preferred)
+
+| Option | Fit | Structured output |
+|---|---|---|
+| **Ollama** *(recommended first)* | local HTTP server; trivial client from Node or Python; cross-platform | JSON-schema-constrained |
+| **MLX / `mlx-lm`** | Apple silicon, first-class Python, no bridge | via outlines/grammars |
+| **`llama-cpp-python`** | embedded, cross-platform | GBNF grammar |
+| **Windows** Phi Silica / Windows AI APIs | Copilot+ PCs; `winrt` Python bindings | (WinRT) |
+
+**Recommendation: Ollama first.** A local server speaks the same request shape as a
+cloud endpoint, so it drops into `useSceneNlCapability()` as another provider with
+almost no new surface — and being a **local server, it's process-agnostic** (works
+whether the provider lives in Electron main or the Python backend), which is why
+it's preferred over an in-process binding. Apple Intelligence can be a later
+sidecar provider if the built-in model specifically earns the Swift cost.
+
+### Constraints that shape this (not incidental)
+
+- **Capability is a real runtime probe, not an assumption.** Apple Intelligence
+  needs macOS 26 + Apple silicon + enabled; Phi Silica needs Copilot+ hardware; a
+  local server needs to be installed and running. So the provider's `available`
+  check mirrors `nlp/status`: detect, don't presume.
+- **Small model is fine — by design.** These are ~3B-class. That is exactly why we
+  invested in the compact brief + authoring-core strict profile (§7a): small model
+  + tight grammar + guided generation is the intended combination, not a
+  compromise.
+- **One schema, per-backend adapters.** Structured output is expressed differently
+  per stack (Swift `@Generable`/`GenerationSchema`, GBNF, Ollama JSON-schema,
+  outlines). The single JSON-Schema source (`moorhen-scene.structured.v1.json`) is
+  the closest artifact to reuse, but each backend needs a thin adapter — a managed
+  drift risk, not a free lunch.
