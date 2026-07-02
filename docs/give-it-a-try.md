@@ -48,17 +48,19 @@ Build" → latest run → Artifacts** (`macOS-dmg`, `windows-installers`,
 installer.
 </details>
 
-### macOS: clear the quarantine flag
+### macOS: clear the quarantine flag (unsigned builds only)
 
-The build isn't notarised, so macOS Gatekeeper will quarantine it. After
-mounting the `.dmg` and copying **ccp4i2-django.app** to `/Applications` (or
-wherever you like), clear the quarantine attribute:
+If the build you downloaded is **unsigned/unnotarised**, macOS Gatekeeper will
+quarantine it. After mounting the `.dmg` and copying **ccp4i2-django.app** to
+`/Applications` (or wherever you like), clear the quarantine attribute:
 
 ```bash
 xattr -cr "/Applications/ccp4i2-django.app"
 ```
 
-Then launch it (first launch: right-click → **Open** if prompted).
+Then launch it (first launch: right-click → **Open** if prompted). If the app
+opens normally without any warning, it was signed and notarised and you can skip
+this step.
 
 ## 3. Launch and point it at CCP4
 

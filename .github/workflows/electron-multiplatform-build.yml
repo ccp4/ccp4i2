@@ -30,6 +30,12 @@ jobs:
         working-directory: client
 
       - name: Build and package macOS app (dmg)
+        # Per-push builds are intentionally UNSIGNED. Signing/notarisation only
+        # happens in the Release workflow when the Apple secrets are present.
+        # Disabling identity auto-discovery keeps this build from trying (and
+        # failing) to sign now that mac.identity is no longer pinned to null.
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
         run: npm run package-mac
         working-directory: client
 

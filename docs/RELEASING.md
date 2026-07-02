@@ -61,6 +61,41 @@ does **not** cover `ccp4i2`. Add one for the main package:
 No `PYPI_TOKEN` is required or used — publishing is OIDC trusted publishing, the
 same as `ccp4i2-api`.
 
+## macOS signing & notarisation (optional but recommended)
+
+The release **degrades gracefully**: with no Apple secrets configured, the macOS
+build ships **unsigned** (users clear quarantine with `xattr -cr`, exactly as
+today). Add the secrets below and the Release workflow **signs and notarises**
+the `.dmg` automatically — no `xattr` needed by users, no "app is damaged"
+scare.
+
+You need **two** Apple credentials — the API key notarises but does **not**
+sign:
+
+1. **Developer ID Application certificate** (`.p12`) — for code signing.
+2. **App Store Connect API key** (`.p8` + Key ID + Issuer ID) — for notarising.
+
+Add these as repository (or org) **secrets**:
+
+| Secret | What it is |
+|---|---|
+| `MAC_CSC_LINK` | base64 of the Developer ID Application `.p12` (`base64 -i cert.p12 \| pbcopy`) |
+| `MAC_CSC_KEY_PASSWORD` | the `.p12` export password |
+| `APPLE_API_KEY_P8` | the **contents** of the App Store Connect `AuthKey_XXXX.p8` |
+| `APPLE_API_KEY_ID` | the API Key ID |
+| `APPLE_API_ISSUER` | the API Issuer ID |
+
+The `build-desktop` job detects these: when `MAC_CSC_LINK` **and**
+`APPLE_API_KEY_P8` are present it signs (`hardenedRuntime` + entitlements from
+[`client/build/entitlements.mac.plist`](../client/build/entitlements.mac.plist))
+and runs `electron-builder … -c.mac.notarize=true`; otherwise it builds unsigned
+with `CSC_IDENTITY_AUTO_DISCOVERY=false`.
+
+> **Validate with a pre-release tag first**, e.g. `v3.0.2-rc1` — signing +
+> notarisation can only be truly confirmed by building on CI and opening the
+> resulting `.dmg` on a clean Mac (no `xattr`). Once it's green, drop the `xattr`
+> note from `docs/give-it-a-try.md`.
+
 ## Notes & gotchas
 
 - **A PyPI version can be published only once.** If a release fails after the
@@ -68,8 +103,5 @@ same as `ccp4i2-api`.
   same version.
 - **The version floor is a lower bound, not an exact pin.** The released app
   requires `ccp4i2 >= <release version>`; it will accept a newer backend.
-- **macOS is not notarised.** Users still run `xattr -cr` on first install (the
-  Release notes say so). Adding Apple notarisation (Developer ID cert + secrets
-  in the build) is a future improvement that would remove that step.
 - **Backend build needs no CCP4.** `server/ccp4i2/__init__.py` imports only the
   standard library, so the wheel builds on a bare runner.

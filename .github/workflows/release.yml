@@ -134,8 +134,42 @@ jobs:
         run: npm ci
         working-directory: client
 
+      # macOS signing + notarisation, ONLY when the Apple secrets are present.
+      # If they're absent, the build stays unsigned (as today) and still ships —
+      # so this workflow is safe to run before the secrets are configured.
+      # Signing needs a Developer ID Application cert (MAC_CSC_*); notarisation
+      # uses an App Store Connect API key (APPLE_API_*).
+      - name: Configure macOS signing
+        if: matrix.os == 'macos-latest'
+        shell: bash
+        env:
+          MAC_CSC_LINK: ${{ secrets.MAC_CSC_LINK }}
+          MAC_CSC_KEY_PASSWORD: ${{ secrets.MAC_CSC_KEY_PASSWORD }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+        run: |
+          if [ -n "$MAC_CSC_LINK" ] && [ -n "$APPLE_API_KEY_P8" ]; then
+            KEYDIR="$RUNNER_TEMP/appleapi"; mkdir -p "$KEYDIR"
+            printf '%s' "$APPLE_API_KEY_P8" > "$KEYDIR/AuthKey.p8"
+            {
+              echo "CSC_LINK=$MAC_CSC_LINK"
+              echo "CSC_KEY_PASSWORD=$MAC_CSC_KEY_PASSWORD"
+              echo "APPLE_API_KEY=$KEYDIR/AuthKey.p8"
+              echo "APPLE_API_KEY_ID=$APPLE_API_KEY_ID"
+              echo "APPLE_API_ISSUER=$APPLE_API_ISSUER"
+              echo "EB_MAC_ARGS=-c.mac.notarize=true"
+            } >> "$GITHUB_ENV"
+            echo "macOS: signing + notarisation ENABLED"
+          else
+            echo "CSC_IDENTITY_AUTO_DISCOVERY=false" >> "$GITHUB_ENV"
+            echo "macOS: Apple secrets absent -> building UNSIGNED (users run xattr -cr)"
+          fi
+
       - name: Build and package
-        run: npm run ${{ matrix.script }}
+        # EB_MAC_ARGS is only set for a signed macOS build; empty otherwise.
+        shell: bash
+        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS}
         working-directory: client
 
       - name: Upload installer
@@ -178,6 +212,7 @@ jobs:
             into your CCP4 `ccp4-python` on first launch — see
             [Give it a try](https://github.com/ccp4/ccp4i2/blob/django/docs/give-it-a-try.md).
 
-            **macOS:** after copying `ccp4i2-django.app` to `/Applications`, clear
-            quarantine: `xattr -cr "/Applications/ccp4i2-django.app"` (the build is
-            not notarised).
+            **macOS:** if the build is unsigned, clear quarantine after copying
+            `ccp4i2-django.app` to `/Applications`:
+            `xattr -cr "/Applications/ccp4i2-django.app"`. (Signed+notarised
+            builds open with no warning — skip this.)
