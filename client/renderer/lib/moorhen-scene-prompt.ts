@@ -344,21 +344,26 @@ export function buildSceneSystemPrompt(): string {
   ].join("\n");
 }
 
-// ── Whole prompt ────────────────────────────────────────────────────────────
+// ── Grounding (the per-call variable block) ──────────────────────────────────
 
-export function buildAuthoringPrompt(opts: {
+/**
+ * The variable, per-call context block: project identity + referenceable-file
+ * manifest + loaded-structure contents. This is the `grounding` the integrated
+ * `nlp_scene` endpoint takes as the leading part of its user message, and the
+ * same block `buildAuthoringPrompt` places after the static system prompt. Kept
+ * single-sourced here so the copy-paste path and the endpoint path ground the
+ * model identically.
+ */
+export function buildGroundingBlock(opts: {
   project?: { name?: string; id?: string };
   contents: string;
   manifest: string;
-  request: string;
 }): string {
   const projName = opts.project?.name;
   const projId = opts.project?.id;
   // Pin the project identity hard: a chat model carrying context from an earlier
   // project will otherwise reference the wrong one. Every job/param ref must
-  // carry these. This is the FIRST variable element — everything above it (the
-  // system prompt) is static and cacheable; everything from here down varies per
-  // call, ordered most-stable-to-least (project → manifest → contents → request).
+  // carry these.
   const projectLines: string[] = ["=== CURRENT PROJECT (use ONLY this one) ==="];
   if (projName) projectLines.push(`projectName: ${projName}`);
   if (projId) projectLines.push(`projectId: ${projId}`);
@@ -371,8 +376,6 @@ export function buildAuthoringPrompt(opts: {
   );
 
   return [
-    buildSceneSystemPrompt(),
-    "",
     projectLines.join("\n"),
     "",
     "=== REFERENCEABLE PROJECT FILES ===",
@@ -380,6 +383,23 @@ export function buildAuthoringPrompt(opts: {
     "",
     "=== LOADED STRUCTURE CONTENTS ===",
     opts.contents,
+  ].join("\n");
+}
+
+// ── Whole prompt (copy-paste path) ────────────────────────────────────────────
+
+export function buildAuthoringPrompt(opts: {
+  project?: { name?: string; id?: string };
+  contents: string;
+  manifest: string;
+  request: string;
+}): string {
+  // Static system prompt first (cacheable), then the variable grounding block
+  // (project → manifest → contents), then the request last — most-stable-to-least.
+  return [
+    buildSceneSystemPrompt(),
+    "",
+    buildGroundingBlock(opts),
     "",
     "=== REQUEST ===",
     "Produce a scene YAML that satisfies the following request. Use the project,",
