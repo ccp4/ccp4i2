@@ -510,7 +510,7 @@ describe("liftScene — dictionary provenance", () => {
     expect(scene.elements![0].dictionaries).toEqual(["dict-file-100"]);
   });
 
-  it("falls back to inline cifText when the dict has no project source", () => {
+  it("omits an unsourced dict from the terse capture lift (no cifText)", () => {
     const scene = liftScene({
       molecules: [
         fakeMol({
@@ -526,6 +526,30 @@ describe("liftScene — dictionary provenance", () => {
       ],
       glRef: fakeGlRef,
     });
+    // Default lift never inlines cifText — an unsourced dict simply isn't
+    // emitted. cifText is reserved for the bundle lift.
+    expect((scene.files ?? []).some((f) => f.kind === "dictionary")).toBe(false);
+  });
+
+  it("inlines cifText for an unsourced dict only when inlineDicts is set", () => {
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "m",
+            molNo: 7,
+            uniqueId: "x",
+            ligands: [{ resName: "XYZ" }],
+            dicts: { XYZ: "data_comp_XYZ\nstuff" },
+            representations: [
+              { style: "ligands", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
     const dictRef = scene.files!.find((f) => f.kind === "dictionary");
     expect(dictRef).toMatchObject({ kind: "dictionary", cifText: "data_comp_XYZ\nstuff" });
     expect(dictRef!.fileId).toBeUndefined();
@@ -569,28 +593,31 @@ describe("serialiseSceneWithComments", () => {
   });
 });
 
-describe("liftScene — dictionary lifting", () => {
+describe("liftScene — dictionary lifting (bundle inlining)", () => {
   it("emits a kind: dictionary file ref for each non-standard ligand", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/482/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [
-            { resName: "LIG", chainName: "A", resNum: "401" } as Partial<moorhen.LigandInfo>,
-          ],
-          dicts: {
-            LIG: "data_comp_LIG\n_chem_comp.id LIG\n",
-          },
-        }),
-      ],
-      glRef: fakeGlRef,
-      projectId: "p-uuid",
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/482/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [
+              { resName: "LIG", chainName: "A", resNum: "401" } as Partial<moorhen.LigandInfo>,
+            ],
+            dicts: {
+              LIG: "data_comp_LIG\n_chem_comp.id LIG\n",
+            },
+          }),
+        ],
+        glRef: fakeGlRef,
+        projectId: "p-uuid",
+      },
+      { inlineDicts: true },
+    );
 
     expect(scene.files).toHaveLength(2); // complex + dict
     const dictRef = scene.files!.find((f) => f.kind === "dictionary");
@@ -630,55 +657,61 @@ describe("liftScene — dictionary lifting", () => {
   });
 
   it("dedupes by comp_id across multiple ligand instances", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [
-            { resName: "LIG", resNum: "401" } as Partial<moorhen.LigandInfo>,
-            { resName: "LIG", resNum: "402" } as Partial<moorhen.LigandInfo>,
-            { resName: "LIG", resNum: "403" } as Partial<moorhen.LigandInfo>,
-          ],
-          dicts: { LIG: "data_comp_LIG\n" },
-        }),
-      ],
-      glRef: fakeGlRef,
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [
+              { resName: "LIG", resNum: "401" } as Partial<moorhen.LigandInfo>,
+              { resName: "LIG", resNum: "402" } as Partial<moorhen.LigandInfo>,
+              { resName: "LIG", resNum: "403" } as Partial<moorhen.LigandInfo>,
+            ],
+            dicts: { LIG: "data_comp_LIG\n" },
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
     const dictRefs = scene.files!.filter((f) => f.kind === "dictionary");
     expect(dictRefs).toHaveLength(1);
   });
 
   it("emits separate dict refs for two molecules with same-named ligands", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex-A",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
-          dicts: { LIG: "data_comp_LIG\nA chemistry\n" },
-        }),
-        fakeMol({
-          name: "complex-B",
-          molNo: 1,
-          uniqueId: "/api/proxy/ccp4i2/files/200/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
-          dicts: { LIG: "data_comp_LIG\nB chemistry\n" },
-        }),
-      ],
-      glRef: fakeGlRef,
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex-A",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
+            dicts: { LIG: "data_comp_LIG\nA chemistry\n" },
+          }),
+          fakeMol({
+            name: "complex-B",
+            molNo: 1,
+            uniqueId: "/api/proxy/ccp4i2/files/200/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
+            dicts: { LIG: "data_comp_LIG\nB chemistry\n" },
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
     const dictRefs = scene.files!.filter((f) => f.kind === "dictionary");
     expect(dictRefs).toHaveLength(2);
     // Different dict bodies — that's the whole point of per-molecule scoping.
@@ -690,22 +723,26 @@ describe("liftScene — dictionary lifting", () => {
   });
 
   it("skips non-standard ligands when no dict is stored on the molecule", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [{ resName: "MYS" } as Partial<moorhen.LigandInfo>],
-          // No dicts entry for MYS — getDict returns "" so we skip emission.
-          dicts: {},
-        }),
-      ],
-      glRef: fakeGlRef,
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [{ resName: "MYS" } as Partial<moorhen.LigandInfo>],
+            // No dicts entry for MYS — getDict returns "" so we skip emission
+            // even with inlining requested.
+            dicts: {},
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
     const dictRefs = scene.files!.filter((f) => f.kind === "dictionary");
     expect(dictRefs).toHaveLength(0);
   });

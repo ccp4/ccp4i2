@@ -855,8 +855,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // the whole text to Coot in one call so all blocks get parsed in one shot.
   const handleFetchSceneDictionary = useCallback(
     async (ref: SceneFileRef): Promise<string | null> => {
-      // Inline text: no network needed. The lifter produces these for
-      // dicts loaded from job outputs where there's no stable URL.
+      // Inline text: no network needed. The capture lifter no longer emits
+      // these (dicts travel as fileId/bundle refs), but hand-authored scenes
+      // may still inline a dictionary, so honour cifText when present.
       if (ref.cifText) return ref.cifText;
       // Bundle: decode the asset bytes as UTF-8 text.
       if (ref.bundle) {
@@ -1174,9 +1175,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 
   // Promote an editor YAML to a fully self-contained scene + asset
   // bundle: every URL-resolvable ref is fetched into assets/ and
-  // rewritten to bundle: form; ligand dicts that live in Moorhen's
-  // monomer library are re-collected (the lifter omits them so the
-  // captured YAML stays small, but self-contained mode wants them).
+  // rewritten to bundle: form; ligand dicts the captured YAML omits
+  // (library monomers and custom in-memory dicts — the lifter keeps the
+  // YAML terse) are re-collected here from the monomer library or, for
+  // custom ligands, the molecule's own stored dict, so self-contained
+  // mode carries them as bundle assets.
   const handlePromoteSceneToPortable = useCallback(
     async (
       yamlText: string,
@@ -1248,9 +1251,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     // explicit "Save self-contained" action (handlePromoteSceneToPortable),
     // which fetches the bytes into a .scene.zip. Eager-bundling on capture would
     // hide provenance and, if the edited YAML is re-applied, load duplicate
-    // copies of each molecule. liftSceneStraight also drops dict refs the
-    // receiver's monomer library already has (library monomers travel as
-    // nothing; project ligand dicts travel as terse fileId refs).
+    // copies of each molecule. The capture lift never inlines dict cifText:
+    // project ligand dicts travel as terse fileId refs, and any dict without
+    // project provenance (library monomers, ad-hoc custom dicts) is left out
+    // of the YAML — cifText is materialised only by the bundle/self-contained
+    // path (handlePromoteSceneToPortable), which writes it into a bundle asset.
     const { scene, hints } = await liftSceneStraight({
       molecules,
       glRef: glRefState,
