@@ -28,16 +28,13 @@ CCP4i2 uses a modern web-based architecture:
 
 ### For Testers (Packaged Electron App)
 
-1. **Install CCP4** with a development build from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/packages/)
-2. **Install ccp4i2 into ccp4-python**:
-   ```bash
-   source /path/to/ccp4-20251105/bin/ccp4.setup-sh
-   cd server
-   ccp4-python -m pip install -e .
-   ```
-3. **Download and run** the packaged Electron app (macOS `.dmg`, Windows `.exe`, or Linux `.AppImage` from [GitHub Actions](../../actions))
+**See [Give it a try](docs/give-it-a-try.md)** for the full walkthrough. In short:
 
-The Electron app automatically detects your CCP4 installation and uses `ccp4-python` (with ccp4i2 pip-installed) to run the Django backend. No Python code is bundled in the Electron app itself.
+1. **Install CCP4 10** from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/) (provides `ccp4-python`).
+2. **Download the desktop app** for your OS from [GitHub Actions](../../actions) → *Electron Multiplatform Build* (macOS `.dmg`, Windows `.exe`, Linux `.AppImage`). On macOS, clear quarantine: `xattr -cr "/Applications/ccp4i2-django.app"`.
+3. **Launch it**, point it at your CCP4 installation, and click **Install** when prompted — the app installs the `ccp4i2` backend into `ccp4-python` for you.
+
+> Do **not** `pip install ccp4i2` against system Python — the backend must live in CCP4's `ccp4-python`, which the app handles automatically. The app also enforces a minimum backend version, so you don't match versions by hand.
 
 ### For Developers
 

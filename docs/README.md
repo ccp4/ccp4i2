@@ -15,6 +15,10 @@ places by convention:
 
 ## I want to…
 
+### …just try it on my machine
+**[Give it a try](give-it-a-try.md)** — download the desktop app, point it at
+CCP4, let it install the backend. No cloning or building.
+
 ### …add a new task (wrapper)
 **Start here → [Authoring a Task](authoring-a-task.md)** — the end-to-end path.
 Supporting references:
