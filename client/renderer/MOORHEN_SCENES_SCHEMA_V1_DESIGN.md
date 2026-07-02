@@ -395,3 +395,7 @@ brief? }`; response `{ status:"scene", scene:"<raw>" }`. **Spike** = no `respons
 (model returns a fenced YAML block; byte-for-byte the copy-paste path). **Production** =
 `json_schema` strict + `moorhen-scene.structured.v1.json`. Materia never parses the scene;
 parse/validate/repair stay in the ccp4i2 frontend.
+
+**Authoring UI** — how the frontend surfaces NL authoring and adapts to whether this endpoint
+(or any LLM) is reachable, plus the `nlp/status` capability-detection contract, is designed in
+`MOORHEN_SCENES_NL_UI.md`.
