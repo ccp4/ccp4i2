@@ -16,8 +16,11 @@ places by convention:
 ## I want to…
 
 ### …just try it on my machine
-**[Give it a try](give-it-a-try.md)** — download the desktop app, point it at
-CCP4, let it install the backend. No cloning or building.
+- **As a user (no build):** **[Give it a try](give-it-a-try.md)** — download the
+  desktop app, point it at CCP4, let it install the backend.
+- **As a developer (from source):**
+  [Development Setup](../mddocs/setup/DEVELOPMENT_SETUP.md) — clone, install
+  editable into `ccp4-python`, run the dev server + client.
 
 ### …add a new task (wrapper)
 **Start here → [Authoring a Task](authoring-a-task.md)** — the end-to-end path.

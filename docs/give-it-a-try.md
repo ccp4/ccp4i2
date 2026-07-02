@@ -1,8 +1,15 @@
-# Give it a try (CCP4i2 desktop)
+# Give it a try (desktop app — no build)
 
 The fastest way to try the new CCP4i2 on your own machine. No cloning, no
 building — download the desktop app, point it at your CCP4 installation, and let
 it set up the backend for you.
+
+> **Two ways to "give it a go" — pick your path:**
+> - **As a user (this page):** download the packaged desktop app. Nothing to
+>   build; the app installs the backend for you.
+> - **As a developer (run from source):** clone the repo and install editable
+>   into `ccp4-python`, then run the dev server + client — see
+>   [Development Setup](../mddocs/setup/DEVELOPMENT_SETUP.md).
 
 > **You do not run `pip` yourself.** The CCP4i2 backend must live inside CCP4's
 > own Python (`ccp4-python`), not your system Python. The app installs it into
@@ -98,8 +105,9 @@ Two things worth knowing:
 - **Install step fails** — confirm the CCP4 install is complete and its
   `ccp4-python` runs (`<ccp4>/bin/ccp4-python --version`).
 
-## Want the developer setup instead?
+## Prefer to run from source? (developer path)
 
-To run from source (editable, dev mode), see
-[Development Setup](../mddocs/setup/DEVELOPMENT_SETUP.md) and
-[Authoring a Task](authoring-a-task.md).
+This page is the **user** path. To try CCP4i2 **as a developer** — clone the
+repo, install editable into `ccp4-python`, run the dev server and Electron client
+— follow [Development Setup](../mddocs/setup/DEVELOPMENT_SETUP.md), then
+[Authoring a Task](authoring-a-task.md) when you're ready to add one.
