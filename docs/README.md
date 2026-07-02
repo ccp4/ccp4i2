@@ -60,6 +60,10 @@ Supporting references:
 - [CCP4i Classic Mode Thinking](../CCP4I_CLASSIC_MODE_THINKING.md) — strategy for
   absorbing the legacy CCP4i interface
 
+### …cut a release
+- [Releasing CCP4i2](RELEASING.md) — one `v*` tag → `ccp4i2` on PyPI + desktop
+  installers on a GitHub Release (OIDC, no tokens).
+
 ### …deploy
 - Docker / Azure sections in [`CLAUDE.md`](../CLAUDE.md)
 - [Service Contract](CCP4I2_SERVICE_CONTRACT.md)

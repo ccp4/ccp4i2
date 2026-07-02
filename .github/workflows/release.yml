@@ -1,0 +1,183 @@
+# Release CCP4i2: publish the backend wheel to PyPI + attach desktop installers
+# to a GitHub Release — all from one version tag.
+# ============================================================================
+# Trigger: push a tag `vMAJOR.MINOR.PATCH` (e.g. v3.0.2). One tag drives:
+#   1. verify-version — assert the tag matches ccp4i2.__version__ (single
+#      source of truth in server/ccp4i2/__init__.py). Fails fast on mismatch.
+#   2. publish-pypi   — build sdist+wheel from server/ and publish `ccp4i2` to
+#      PyPI via OIDC (no stored token — same mechanism as publish-ccp4i2-api).
+#   3. build-desktop  — build the macOS/Windows/Linux installers, stamping the
+#      Electron backend-version FLOOR from the tag so the app requires the
+#      matching (or newer) backend.
+#   4. release        — create the GitHub Release and attach the installers as
+#      public, permanent, no-login assets (github.com/ccp4/ccp4i2/releases).
+#
+# Why OIDC instead of a stored token: the `ccp4i2-api` package already does this
+# (see .github/workflows/publish-ccp4i2-api.yml and packages/ccp4i2-api/
+# RELEASING.md). Trust lives in a PyPI "Trusted Publisher" config, not a secret.
+#
+# ONE-TIME setup BEFORE the first `v*` tag (Trusted Publishers are per-project;
+# the ccp4i2-api one does NOT cover ccp4i2):
+#   PyPI: https://pypi.org/manage/project/ccp4i2/settings/publishing/
+#     Owner: ccp4  ·  Repository: ccp4i2  ·  Workflow: release.yml
+#     Environment: pypi   (reuses the existing GitHub `pypi` environment)
+#
+# Cutting a release:
+#   1. Bump MAJOR/MINOR/PATCH in server/ccp4i2/__init__.py, commit.
+#   2. git tag v3.0.2 && git push origin v3.0.2
+#   (A version can be published to PyPI only once — re-cutting needs a new patch.)
+# See docs/RELEASING.md for the full runbook.
+# ============================================================================
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-version:
+    name: Verify tag matches package version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - id: check
+        name: Assert tag == ccp4i2.__version__
+        working-directory: server
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG="$(python -c 'import ccp4i2; print(ccp4i2.__version__)')"
+          echo "tag=$TAG  package=$PKG"
+          if [ "$TAG" != "$PKG" ]; then
+            echo "::error::Tag '$GITHUB_REF_NAME' does not match ccp4i2.__version__ ($PKG). Bump server/ccp4i2/__init__.py or retag."
+            exit 1
+          fi
+          echo "version=$PKG" >> "$GITHUB_OUTPUT"
+
+  publish-pypi:
+    name: Publish ccp4i2 to PyPI
+    needs: verify-version
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/ccp4i2/${{ needs.verify-version.outputs.version }}/
+    permissions:
+      # OIDC: exchanged for a short-lived PyPI token via trusted publishing.
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build sdist + wheel
+        working-directory: server
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+          ls -la dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: server/dist/
+
+  build-desktop:
+    name: Package desktop app (${{ matrix.os }})
+    needs: verify-version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            script: package-mac
+            glob: client/release/*.dmg
+          - os: windows-latest
+            script: package-win
+            glob: client/release/*.exe
+          - os: ubuntu-latest
+            script: package-linux-x64
+            glob: client/release/*.AppImage
+    runs-on: ${{ matrix.os }}
+    env:
+      # Stamp the backend-version floor from the tag so the released app
+      # requires the matching (or newer) ccp4i2 in ccp4-python.
+      CCP4I2_SERVER_VERSION_FLOOR: ${{ needs.verify-version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: "npm"
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install ccp4i2-api devDeps (so prepare can run tsc)
+        run: npm ci
+        working-directory: packages/ccp4i2-api
+
+      - name: Install client dependencies
+        run: npm ci
+        working-directory: client
+
+      - name: Build and package
+        run: npm run ${{ matrix.script }}
+        working-directory: client
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-${{ matrix.os }}
+          path: ${{ matrix.glob }}
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    needs: [verify-version, publish-pypi, build-desktop]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all installers
+        uses: actions/download-artifact@v4
+        with:
+          path: installers
+          pattern: installer-*
+          merge-multiple: true
+
+      - name: List assets
+        run: ls -lhR installers
+
+      - name: Create / update the Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: CCP4i2 ${{ needs.verify-version.outputs.version }}
+          generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          files: installers/**/*
+          body: |
+            Desktop installers for **CCP4i2 ${{ needs.verify-version.outputs.version }}**.
+
+            The app installs the matching backend
+            (`ccp4i2==${{ needs.verify-version.outputs.version }}`, published to PyPI)
+            into your CCP4 `ccp4-python` on first launch — see
+            [Give it a try](https://github.com/ccp4/ccp4i2/blob/django/docs/give-it-a-try.md).
+
+            **macOS:** after copying `ccp4i2-django.app` to `/Applications`, clear
+            quarantine: `xattr -cr "/Applications/ccp4i2-django.app"` (the build is
+            not notarised).

@@ -27,21 +27,26 @@ suite and, with it, `ccp4-python` — the interpreter the backend runs in.
 You do **not** need to source any setup script for the desktop app; it locates
 your CCP4 installation itself (step 3).
 
-## 2. Download the desktop app (from CI)
+## 2. Download the desktop app
 
-Builds are produced by the **Electron Multiplatform Build** workflow on the
-`django` branch. On GitHub (you'll need to be signed in):
+Go to **[Releases](https://github.com/ccp4/ccp4i2/releases/latest)** and download
+the installer for your OS — no GitHub login needed:
 
-**ccp4/ccp4i2 → Actions → "Electron Multiplatform Build" → latest run on
-`django` → Artifacts**, then download the one for your OS:
+| OS | Asset |
+|---|---|
+| macOS | `.dmg` |
+| Windows | `.exe` installer |
+| Linux | `.AppImage` |
 
-| OS | Artifact | Contains |
-|---|---|---|
-| macOS | `macOS-dmg` | a `.dmg` |
-| Windows | `windows-installers` | a `.exe` installer |
-| Linux | `linux-appimages` | an `.AppImage` |
+<details>
+<summary>Want the bleeding-edge build instead of a release?</summary>
 
-GitHub delivers artifacts as a `.zip` — unzip it to get the installer/app.
+Every push to `django` also produces installers as CI artifacts (these require a
+GitHub login and expire): **ccp4/ccp4i2 → Actions → "Electron Multiplatform
+Build" → latest run → Artifacts** (`macOS-dmg`, `windows-installers`,
+`linux-appimages`). GitHub delivers artifacts as a `.zip` — unzip to get the
+installer.
+</details>
 
 ### macOS: clear the quarantine flag
 
