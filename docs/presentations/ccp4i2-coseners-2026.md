@@ -218,36 +218,82 @@ This is the slide that separates you from "just a UI refresh."
 
 # And it's actually richer to use
 
-All in-browser, no Qt:
+![bg right:50%](images/mtz-reciprocal-previewer.png)
 
-- **MTZ reciprocal-space previewer** — reflections on hk/hl/kl planes, coloured
-  by intensity, resolution rings, Miller-index tooltips (Canvas)
+Reflection data, **in the browser** — not a table of numbers, *reciprocal space*:
+
+- hk/hl/kl planes, reflections coloured by intensity, resolution rings,
+  Miller-index tooltips (Canvas)
 - **Moorhen** 3D — models + electron density (WebGL/WASM)
-- **MolRep self-rotation** — native **PostScript → SVG**, live in the browser
-- Report graphs (Chart.js), Clustal alignment viewer, pipeline **DAG**, validation viewer
+- Report graphs (Chart.js), Clustal alignment, pipeline **DAG**, validation viewer
 
 <!--
-2 min (mostly the demo on the next slide). The MolRep point lands with this crowd:
-we parse MolRep's PostScript self-rotation plot and re-emit it as SVG — NCS peaks
-viewable in the browser with no PostScript viewer. Custom regex parser, contour
-levels coloured blue→red. (server/.../wrappers/molrep_selfrot/script/ps2svg.py)
-The MTZ previewer is the "ooh" — it's not a table of numbers, it's reciprocal space.
+1.5 min. The MTZ previewer (image = real Windows grab: gamma_xe_mosflm.mtz, P222,
+111k reflections, HK plane) is the "ooh". Say: this is the data object preview you
+get on any reflection file, live in the app.
 -->
 
 ---
 
-# Demo
+# We even modernised the legacy outputs
 
-1. Run a task
-2. Preview its MTZ output — **reciprocal space in the browser**
-3. Open the result in **Moorhen** — model + map
+![bg right:52%](images/molrep-self-rotation-svg.png)
+
+MolRep's self-rotation function ships as an old **PostScript** dialect.
+
+- We parse it and re-emit **SVG** — NCS peaks in the browser, no PostScript viewer
+- Custom parser (`ps2svg.py`); it's just another report fold
+
+> The awkward corners got the same care as the headline features.
+
+<!--
+1 min. This lands with the crowd who remember wrestling MolRep PostScript. The
+image is a real report render of the self-rotation function (Chi=180/90/120/60).
+CUT NOTE: droppable if short on time — it's a delighter, not load-bearing.
+-->
+
+---
+
+# Demo — and real reports
+
+![bg right:46%](images/report-servalcat-chartjs.png)
+
+1. Run a task → preview its MTZ output (reciprocal space)
+2. Open the result in **Moorhen** — model + map
+3. **Reports**: refinement tables + interactive Chart.js plots (right = live Servalcat report)
 4. Same thing, **browser tab and desktop** — one codebase
 
 <!--
-4 min. This is worth more than any slide to this audience.
-HAVE A RECORDED FALLBACK ready in case of network/venue issues.
-The money shot is step 4: identical result desktop and browser, same server.
-Keep narration minimal — let it run.
+4 min. Live if the network holds; the image is a real Servalcat report (Chart.js
+Correlations / RMS-deviation plots) as the recorded fallback.
+HAVE A RECORDED FALLBACK ready. Money shot: identical result desktop and browser.
+-->
+
+---
+
+# Same codebase — every platform, including Windows
+
+![bg right:46%](images/moorhen-windows.png)
+
+Not ported. The **same build**, on a fresh Windows VM after months untested.
+
+- The **whole 2D app** ran — full pipeline (data reduction → PHASER →
+  Servalcat), interfaces, reports, MTZ previewer
+- And the **hardest case worked too**: **Moorhen** — WebGL2 + threaded WASM —
+  rendered model **and** density (right), no fuss
+- Why it holds: **Qt-free**, **gemmi** not platform binaries, ASCII `print()` /
+  `pathlib` / `ccp4-python -m pytest`
+
+> Every screenshot in this talk was taken on Windows. Cross-platform by
+> construction, not by heroics.
+
+<!--
+1 min. TRUE story — tell it: cut a first alpha, ran it on a fresh Windows VM
+untouched for months, it just worked. Moorhen (WebGL2 + threaded WASM) is the
+punchline — that's the thing you'd BET breaks on a GPU-less VM, and it renders
+model + maps cleanly. The only things that bit were packaging edges (unsigned
+SmartScreen), NOT app logic. Then reveal: the MTZ/report/MolRep/interface shots
+they've already seen were ALL captured on this same Windows box.
 -->
 
 ---
