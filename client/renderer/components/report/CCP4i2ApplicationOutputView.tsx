@@ -467,7 +467,7 @@ export const CCP4i2ApplicationOutputView: React.FC<
                 <Button
                   onClick={() => {
                     window.open(
-                      `/graph-viewer/${jobId}/${graphId}`,
+                      `/ccp4i2/graph-viewer/${jobId}/${graphId}`,
                       "_blank",
                       "width=1000,height=700"
                     );
