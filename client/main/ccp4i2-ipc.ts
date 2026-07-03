@@ -525,12 +525,35 @@ export const installIpcHandlers = (
     const runPipStep = (args: string[]): Promise<number> =>
       new Promise((resolve) => {
         const proc = spawn(pythonPath, args);
+        let settled = false;
+        const done = (code: number) => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          resolve(code);
+        };
+        // Watchdog: a pip step must never leave the progress modal spinning
+        // forever. A `--upgrade` over an *editable* prior install can stall on a
+        // Windows file lock (never emitting `close`); kill it and fail visibly
+        // rather than hang. 10 min is generous for a wheel download. (#237)
+        const timer = setTimeout(() => {
+          sendProgress(
+            "installing",
+            `\nStep timed out after 10 minutes — aborting (the backend probe will report the state).\n`
+          );
+          try {
+            proc.kill();
+          } catch {
+            /* already gone */
+          }
+          done(-2);
+        }, 10 * 60 * 1000);
         proc.stdout.on("data", (d) => sendProgress("installing", d.toString()));
         proc.stderr.on("data", (d) => sendProgress("installing", d.toString()));
-        proc.on("close", (code) => resolve(code ?? 0));
+        proc.on("close", (code) => done(code ?? 0));
         proc.on("error", (err) => {
           sendProgress("installing", `Error: ${err.message}\n`);
-          resolve(-1);
+          done(-1);
         });
       });
 
@@ -562,6 +585,14 @@ export const installIpcHandlers = (
         finish(code);
         return;
       }
+
+      // Clear any pre-existing ccp4i2 first. An exact-pin `--upgrade` over a
+      // mismatched or *editable* prior install (e.g. a leftover dev
+      // `pip install -e ./server`) can stall or fail to replace it, hanging the
+      // installer. An explicit uninstall is clean and a no-op when nothing is
+      // installed. (#237)
+      sendProgress("installing", `\nRemoving any previous ccp4i2…\n`);
+      await runPipStep(["-m", "pip", "uninstall", "-y", "ccp4i2"]);
 
       // Step 1: the wheel itself (and, with it, the runtime lock on disk).
       sendProgress("installing", `\n[1/2] Installing ccp4i2 (no-deps)…\n`);
