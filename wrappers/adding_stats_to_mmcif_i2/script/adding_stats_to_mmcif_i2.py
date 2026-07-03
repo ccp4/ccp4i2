@@ -93,8 +93,9 @@ class adding_stats_to_mmcif_i2(CPluginScript):
     def startProcess(self, *args, **kwargs):
         self.createReflectionsCif()
 
-        from adding_stats_to_mmcif.__main__ import run_process
-        #print("Imported adding_stats_to_mmcif")
+        input_mmcif = str(self.container.inputData.XYZIN.fullPath)
+        output_mmcif = str(self.container.outputData.MMCIFOUT.fullPath)
+        pdbdepo_args = [input_mmcif, output_mmcif, "--seqin", self.fastaFilePath]
         if self.container.controlParameters.USEAIMLESSXML:
             aimless_xml_file = str(
                 self.container.inputData.AIMLESSXML.fullPath)
@@ -120,19 +121,14 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                     self.workDirectory, 'TempAimlessXML.xml')
                 with open(aimless_xml_file, 'wb') as tempAimlessXML:
                     tempAimlessXML.write(etree.tostring(lastAimlessNode))
+            pdbdepo_args += ["--aimless-xml", aimless_xml_file]
 
-        output_mmcif = str(self.container.outputData.MMCIFOUT.fullPath)
-
-        processArgs = {"input_mmcif": str(self.container.inputData.XYZIN.fullPath),
-                       "output_mmcif": output_mmcif,
-                       "fasta_file": self.fastaFilePath,
-                       "xml_file": aimless_xml_file}
-        worked = run_process(**processArgs)
-        #print(f'Worked is [{worked}]')
-
-        if not worked:
+        try:
+            from .pdbdepo import main as pdbdepo_main
+            pdbdepo_main(pdbdepo_args)
+        except Exception as e:
             self.appendErrorReport(self.__class__, 204,
-                                   "Failed to adding_stats_to_mmcif")
+                                   f"Failed to adding_stats_to_mmcif: {e}")
             return self.reportStatus(CPluginScript.FAILED)
 
         with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
