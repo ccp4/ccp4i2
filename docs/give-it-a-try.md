@@ -4,6 +4,13 @@ The fastest way to try the new CCP4i2 on your own machine. No cloning, no
 building — download the desktop app, point it at your CCP4 installation, and let
 it set up the backend for you.
 
+> 🐣 **Early-bird alpha.** The current build is **`3.1.0a1`** — a pre-release for
+> early testers. Expect rough edges, and please report what breaks. The desktop
+> app and its backend are **version-locked**: an alpha app installs and runs
+> **only** its exact matching `ccp4i2` from PyPI, so it can't get crossed with
+> any other version. (Any earlier `3.0.x` you may have installed is a separate,
+> superseded line — this alpha won't use it.)
+
 > **Two ways to "give it a go" — pick your path:**
 > - **As a user (this page):** download the packaged desktop app. Nothing to
 >   build; the app installs the backend for you.
@@ -29,14 +36,19 @@ your CCP4 installation itself (step 3).
 
 ## 2. Download the desktop app
 
-Go to **[Releases](https://github.com/ccp4/ccp4i2/releases/latest)** and download
-the installer for your OS — no GitHub login needed:
+Go to **[Releases](https://github.com/ccp4/ccp4i2/releases)** and pick the latest
+build marked **Pre-release** (the alpha, e.g. `v3.1.0a1`), then download the
+installer for your OS — no GitHub login needed:
 
 | OS | Asset |
 |---|---|
 | macOS | `.dmg` |
 | Windows | `.exe` installer |
 | Linux | `.AppImage` |
+
+> During the alpha, releases are **pre-releases**, so they won't appear under
+> "Latest release" — pick the top entry tagged *Pre-release* on the Releases
+> page.
 
 <details>
 <summary>Want the bleeding-edge build instead of a release?</summary>
@@ -71,10 +83,10 @@ the app.
 
 ## 4. Let the app install the backend
 
-On startup the app checks whether a new-enough `ccp4i2` is present in
-`ccp4-python`. If it's **missing or too old**, you'll see an **Install** button.
-Click it — the app installs/upgrades `ccp4i2` (and a curated dependency lock)
-**into `ccp4-python`** for you. Wait for it to finish.
+On startup the app checks whether the **exact** `ccp4i2` it needs is present in
+`ccp4-python`. If it's **missing or a different version**, you'll see an
+**Install** button. Click it — the app installs the matching `ccp4i2` (and a
+curated dependency lock) **into `ccp4-python`** for you. Wait for it to finish.
 
 > This is why you don't run pip yourself: the app targets the right interpreter
 > and pins a compatible version automatically.
@@ -89,23 +101,24 @@ outputs.
 
 ## Versions — do I need to match them?
 
-**No, not by hand.** The desktop app carries a **minimum backend version floor**
-and installs/upgrades `ccp4i2` in `ccp4-python` to satisfy it (step 4). You don't
-pick versions.
-
-Two things worth knowing:
+**No, not by hand — and during the alpha they're locked together.** Each alpha
+desktop build is pinned to one **exact** `ccp4i2` version (e.g. `3.1.0a1`), built
+from the same release tag, and its Install button installs *precisely* that
+version into `ccp4-python` (step 4). So the app and backend can't drift apart,
+and the app won't run against a different `ccp4i2`.
 
 - **Always let the app do the install.** Installing `ccp4i2` yourself risks
-  putting it in the wrong Python or at an incompatible version.
-- **The published PyPI package can lag the `django` branch.** The app installs
-  `ccp4i2` from PyPI, while the desktop build comes from `django` CI. They're
-  normally aligned, but if you hit an unexpected mismatch, that's the likely
-  cause — grab the latest desktop build and re-run the in-app Install.
+  putting it in the wrong Python or at the wrong version. (And a plain
+  `pip install ccp4i2` won't even fetch an alpha — pre-releases are hidden from
+  normal installs by design.)
+- **To move to a newer alpha, grab the newer desktop build** from Releases and
+  click Install again — it switches `ccp4-python` to the new matching backend.
 
 ## Troubleshooting
 
-- **"Installed ccp4i2 … is older than the required …"** — click **Install** to
-  upgrade; that's the version floor doing its job.
+- **"Installed ccp4i2 … does not match the version this app requires …"** —
+  click **Install**; the app is version-locked to one exact backend and is
+  setting it up.
 - **App won't find CCP4** — point it explicitly at your CCP4 install directory.
 - **macOS "app is damaged / can't be opened"** — you missed the `xattr -cr`
   step above (or ran it on the wrong path).

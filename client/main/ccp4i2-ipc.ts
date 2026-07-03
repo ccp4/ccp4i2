@@ -11,8 +11,8 @@ import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
 import { loadPreferences, updatePreferences, sqliteUrl } from "./ccp4i2-preferences";
 import {
-  CCP4I2_SERVER_VERSION_FLOOR,
-  meetsServerVersionFloor,
+  CCP4I2_REQUIRED_SERVER_VERSION,
+  meetsServerVersionRequirement,
 } from "./ccp4i2-server-version";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -445,16 +445,18 @@ export const installIpcHandlers = (
           } catch {
             // ASGI app built but version line unparseable — still "ready".
           }
-          // Packaged app: an importable-but-stale backend is "not ready" so the
-          // UI can offer an upgrade. Dev mode (unpacked) uses the local tree and
-          // is never floor-gated — whatever the checkout provides is what runs.
-          if (!isDev && !meetsServerVersionFloor(version)) {
+          // Packaged app: the backend must EXACTLY match the version this app is
+          // pinned to (alpha discipline — no mixing with other/escaped versions).
+          // A mismatch is "not ready" so the UI can offer to install the exact
+          // partner. Dev mode (unpacked) uses the local tree and is never gated.
+          if (!isDev && !meetsServerVersionRequirement(version)) {
             send({
               message: "requirements-missing",
               version,
               error:
-                `Installed ccp4i2 ${version || "(unknown)"} is older than the ` +
-                `required ${CCP4I2_SERVER_VERSION_FLOOR}. Click Install to upgrade.`,
+                `Installed ccp4i2 ${version || "(unknown)"} does not match the ` +
+                `version this app requires (${CCP4I2_REQUIRED_SERVER_VERSION}). ` +
+                `Click Install to set up the matching backend.`,
             });
             return;
           }
@@ -544,7 +546,7 @@ export const installIpcHandlers = (
     // *.dist-info that crashes pip's RESOLVER, so a normal `pip install ccp4i2`
     // aborts before installing anything. We therefore do a TWO-STEP --no-deps
     // install (the resolver is never invoked):
-    //   1. --no-deps ccp4i2>=floor      → the wheel + its bundled runtime lock
+    //   1. --no-deps ccp4i2==<version>  → the wheel + its bundled runtime lock
     //   2. --no-deps -r <that lock>      → the curated dep closure (modern
     //      django/asgiref to clear CCP4's stale-stack skew; CCP4's ABI-native
     //      numpy/gemmi/lxml are deliberately excluded from the lock, untouched).
@@ -563,9 +565,11 @@ export const installIpcHandlers = (
 
       // Step 1: the wheel itself (and, with it, the runtime lock on disk).
       sendProgress("installing", `\n[1/2] Installing ccp4i2 (no-deps)…\n`);
+      // Exact pin (==) both binds the alpha app to its partner backend AND lets
+      // pip install a pre-release version without needing --pre.
       const code1 = await runPipStep([
         "-m", "pip", "install", "--no-deps", "--upgrade",
-        `ccp4i2>=${CCP4I2_SERVER_VERSION_FLOOR}`, "--verbose",
+        `ccp4i2==${CCP4I2_REQUIRED_SERVER_VERSION}`, "--verbose",
       ]);
 
       // Locate the bundled lock via the just-installed package. Resolve the

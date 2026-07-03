@@ -47,6 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.check.outputs.version }}
+      prerelease: ${{ steps.check.outputs.prerelease }}
     steps:
       - uses: actions/checkout@v4
 
@@ -66,6 +67,14 @@ jobs:
             exit 1
           fi
           echo "version=$PKG" >> "$GITHUB_OUTPUT"
+          # PEP 440 final = X.Y.Z (all numeric); anything else (a/b/rc/dev) is a
+          # pre-release — mark the GitHub Release accordingly. `contains('-')`
+          # would miss the canonical alpha form (v3.1.0a1 has no hyphen).
+          if [[ "$PKG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          fi
 
   publish-pypi:
     name: Publish ccp4i2 to PyPI
@@ -114,8 +123,9 @@ jobs:
             glob: client/release/*.AppImage
     runs-on: ${{ matrix.os }}
     env:
-      # Stamp the backend-version floor from the tag so the released app
-      # requires the matching (or newer) ccp4i2 in ccp4-python.
+      # Stamp the exact backend version from the tag so the released app pins
+      # ccp4i2==<version> in ccp4-python (alpha discipline — no version mixing).
+      # Env var name kept for build compatibility; it now carries an exact version.
       CCP4I2_SERVER_VERSION_FLOOR: ${{ needs.verify-version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
@@ -202,7 +212,7 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: CCP4i2 ${{ needs.verify-version.outputs.version }}
           generate_release_notes: true
-          prerelease: ${{ contains(github.ref_name, '-') }}
+          prerelease: ${{ needs.verify-version.outputs.prerelease }}
           files: installers/**/*
           body: |
             Desktop installers for **CCP4i2 ${{ needs.verify-version.outputs.version }}**.

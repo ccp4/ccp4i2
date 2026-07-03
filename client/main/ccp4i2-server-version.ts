@@ -1,39 +1,41 @@
 /**
  * Single source of truth for which ccp4i2 backend the *packaged* app expects.
  *
- * The packaged Electron app installs the django backend from PyPI and treats
- * anything older than this floor as "not ready" (offering an upgrade). The
- * value is a floor, not an exact pin: install does
- *   pip install --upgrade "ccp4i2>=<floor>"
- * so users automatically pick up newer compatible releases without a rebuild,
- * while still guaranteeing a minimum tested backend.
+ * During the pre-release (alpha) phase the packaged app pins the backend
+ * EXACTLY: it installs and requires one specific ccp4i2 version, e.g.
+ *   pip install --no-deps --upgrade "ccp4i2==<version>"
+ * so an alpha desktop build and its backend are strictly bound. An alpha app
+ * refuses to run against any other version — including the un-suffixed 3.0.x
+ * releases that escaped before this discipline. Exact pinning trades
+ * "auto-pick-up-newer" for "cannot silently mix versions", which is what we want
+ * while the software is not yet world-ready. Relax to a floor / compatible-range
+ * (a >= check via compareVersions) once a stable line is declared.
  *
- * This is deliberately decoupled from the Electron app's own package.json
- * version (currently 0.0.1) — the app and the python package version on
- * independent cadences.
+ * Deliberately decoupled from the Electron app's own package.json version
+ * (currently 0.0.1) — the app and the python package version on independent
+ * cadences.
  *
  * Dev mode ignores this entirely: an unpacked dev electron uses the local
- * `-e ./server` checkout regardless of version (mode is keyed strictly on
+ * `-e ./server` checkout regardless of version (keyed strictly on
  * app.isPackaged).
  *
- * To bump the floor for a release, either edit CCP4I2_SERVER_VERSION_FLOOR
- * below, or set CCP4I2_SERVER_VERSION_FLOOR in the build environment so the
- * build can stamp it without a code edit.
+ * The value is stamped at build time from the release tag via the
+ * CCP4I2_SERVER_VERSION_FLOOR build-env var. The env var name is kept for
+ * build-workflow compatibility, but it now carries the EXACT required version,
+ * not a floor.
  */
-// 3.0.1 is the floor, not 3.0.0: the published 3.0.0 wheel predates the bundled
-// requirements-runtime.txt, so its two-step install can't find the lock and the
-// dep closure (modern django/asgiref) is never applied. 3.0.1 is the first wheel
-// that ships the lock. Requiring >=3.0.1 ensures a packaged app installs/upgrades
-// to a version that can actually complete the install.
-export const CCP4I2_SERVER_VERSION_FLOOR =
-  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.0.1";
+export const CCP4I2_REQUIRED_SERVER_VERSION =
+  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a1";
 
 /**
  * Compare two dotted numeric version strings (e.g. "3.0.10" vs "3.0.2").
  * Returns a negative number if a < b, 0 if equal, positive if a > b.
- * Non-numeric / missing components are treated as 0. Pre-release suffixes
- * (e.g. "3.0.0rc1") are ignored beyond the numeric prefix of each component,
- * which is sufficient for the floor check.
+ * Non-numeric / missing components are treated as 0.
+ *
+ * NOTE: this ignores PEP 440 pre-release suffixes (it parses only the numeric
+ * dotted prefix), so it CANNOT distinguish 3.1.0a1 from 3.1.0a2. It is kept for
+ * a future floor/range check; the exact-pin gate below uses string equality
+ * instead. Do not use this to compare pre-release versions.
  */
 export function compareVersions(a: string, b: string): number {
   const parse = (v: string) =>
@@ -53,12 +55,29 @@ export function compareVersions(a: string, b: string): number {
 }
 
 /**
- * Is the installed ccp4i2 version acceptable for a packaged app?
- * True when it meets or exceeds the floor. An unparseable / missing version
- * is treated as acceptable (the ASGI app imported, so the server will boot —
- * we don't want a parse hiccup to block a working install).
+ * Normalise a version for exact comparison: lower-case and drop the separators
+ * pip treats as equivalent, so "3.1.0-a1" and "3.1.0a1" compare equal. (Our own
+ * __version__ always emits the canonical "3.1.0a1" form; this just makes the
+ * check tolerant of hand-typed / stamped variants.)
  */
-export function meetsServerVersionFloor(installed: string | undefined): boolean {
+function normalizeVersion(v: string): string {
+  return v.trim().toLowerCase().replace(/[-_]/g, "");
+}
+
+/**
+ * Does the installed ccp4i2 EXACTLY match the version this app is pinned to?
+ *
+ * An unparseable / missing version is treated as acceptable (the ASGI app
+ * imported, so the server will boot — we don't block on a parse hiccup). We only
+ * gate on a *known* mismatch, which is what keeps an alpha app off any backend
+ * other than its exact partner.
+ */
+export function meetsServerVersionRequirement(
+  installed: string | undefined,
+): boolean {
   if (!installed) return true;
-  return compareVersions(installed, CCP4I2_SERVER_VERSION_FLOOR) >= 0;
+  return (
+    normalizeVersion(installed) ===
+    normalizeVersion(CCP4I2_REQUIRED_SERVER_VERSION)
+  );
 }
