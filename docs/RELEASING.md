@@ -87,7 +87,7 @@ Add these as repository (or org) **secrets**:
 
 The `build-desktop` job detects these: when `MAC_CSC_LINK` **and**
 `APPLE_API_KEY_P8` are present it signs (`hardenedRuntime` + entitlements from
-[`client/build/entitlements.mac.plist`](../client/build/entitlements.mac.plist))
+[`client/assets/entitlements.mac.plist`](../client/assets/entitlements.mac.plist))
 and runs `electron-builder … -c.mac.notarize=true`; otherwise it builds unsigned
 with `CSC_IDENTITY_AUTO_DISCOVERY=false`.
 
