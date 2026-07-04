@@ -200,18 +200,27 @@ export const Geometry = z
   .strict();
 
 /**
- * Moorhen representation styles. Mirrors Moorhen's `RepresentationStyles`
- * union (MoorhenMoleculeRepresentation.d.ts). An enum (not a bare string) so
- * the JSON Schema drives editor autocompletion + conformance for the style
- * field. Keep in sync with Moorhen on version bumps (a CI check could assert
- * equality against the installed type).
+ * Moorhen representation styles, as the scene format spells them. This is a
+ * USER-FACING contract, so its vocabulary follows author expectation, not
+ * Moorhen's internal identifiers. All but one entry are identical to Moorhen's
+ * `RepresentationStyles` union (MoorhenMoleculeRepresentation.d.ts); keep them
+ * in sync on version bumps (a CI check could assert equality against the
+ * installed type).
+ *
+ * The one deliberate divergence: Moorhen spells adaptive bonds
+ * `adaptativeBonds` — "adaptative" is not an English word (it's a French-
+ * derived form frozen into the API string). The scene format uses the correct
+ * `adaptiveBonds`; the resolver translates it back to Moorhen's spelling at the
+ * `addRepresentation` boundary (see moorhen-scene-resolver.ts). Any such
+ * divergence MUST be paired with a resolver-side translation, and the intent is
+ * to upstream a rename into Moorhen so the two converge.
  */
 export const RepresentationStyle = z.enum([
   "VdwSpheres", "ligands", "CAs", "CBs", "CDs", "gaussian", "allHBonds",
   "rama", "rotamer", "CRs", "MolecularSurface", "DishyBases", "VdWSurface",
   "Calpha", "unitCell", "hover", "environment", "ligand_environment",
   "contact_dots", "chemical_features", "ligand_validation", "glycoBlocks",
-  "restraints", "residueSelection", "MetaBalls", "adaptativeBonds",
+  "restraints", "residueSelection", "MetaBalls", "adaptiveBonds",
   "StickBases", "residue_environment", "transformation",
 ]);
 

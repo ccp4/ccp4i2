@@ -1019,6 +1019,25 @@ interface PendingRule {
   applyColourToNonCarbonAtoms?: boolean;
 }
 
+/**
+ * Scene-format style name → Moorhen's internal `RepresentationStyles` name,
+ * for the (currently single) case where the scene format deliberately diverges
+ * from Moorhen's spelling. The scene format is user-facing and uses the correct
+ * English `adaptiveBonds`; Moorhen's API string is the non-word `adaptativeBonds`
+ * (see lib/scene/core.ts). We translate here, at the one boundary that hands a
+ * style to Moorhen, so the ugly spelling never leaks into the scene contract.
+ *
+ * TODO: upstream a rename into Moorhen so this map can be emptied.
+ */
+const STYLE_TO_MOORHEN: Record<string, string> = {
+  adaptiveBonds: "adaptativeBonds",
+};
+
+/** Canonical scene style → the string Moorhen's addRepresentation expects. */
+function toMoorhenStyle(style: string): string {
+  return STYLE_TO_MOORHEN[style] ?? style;
+}
+
 async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
   const { molecule, rep, dispatch, fileName, log } = ctx;
 
@@ -1037,7 +1056,7 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
   for (const subCid of cids) {
     try {
       const created = await molecule.addRepresentation(
-        rep.style as moorhen.RepresentationStyles,
+        toMoorhenStyle(rep.style) as moorhen.RepresentationStyles,
         subCid,
         true, // isCustom — keeps it under our control to clear later
       );
