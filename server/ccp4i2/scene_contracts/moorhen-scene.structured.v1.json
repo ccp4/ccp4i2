@@ -50,14 +50,14 @@
             ]
           },
           "projectId": {
-            "description": "UUID; required with fileId or job+param",
+            "description": "project UUID; with fileId or job+param, give this OR projectName",
             "type": [
               "string",
               "null"
             ]
           },
           "projectName": {
-            "description": "advisory",
+            "description": "project name (unique within this deployment); resolves fileId/job+param when projectId is absent. Not portable across deployments — prefer projectId when known",
             "type": [
               "string",
               "null"
@@ -361,7 +361,7 @@
                     "restraints",
                     "residueSelection",
                     "MetaBalls",
-                    "adaptativeBonds",
+                    "adaptiveBonds",
                     "StickBases",
                     "residue_environment",
                     "transformation"
@@ -502,8 +502,11 @@
             "type": "string"
           },
           "file": {
-            "type": "string",
-            "description": "name of a files[] entry (kind mtz or map)"
+            "description": "name of a files[] entry (kind mtz or map); set this OR from",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "isMask": {
             "type": [

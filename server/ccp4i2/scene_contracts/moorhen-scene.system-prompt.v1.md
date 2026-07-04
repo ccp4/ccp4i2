@@ -30,8 +30,8 @@ files?: ({
   bundle?: string  # asset path inside a .scene.zip
   cifText?: string  # inline CIF (dictionary refs only)
   relativeUrl?: string  # origin-relative URL (/api/…); not portable across deployments
-  projectId?: string  # UUID; required with fileId or job+param
-  projectName?: string  # advisory
+  projectId?: string  # project UUID; with fileId or job+param, give this OR projectName
+  projectName?: string  # project name (unique within this deployment); resolves fileId/job+param when projectId is absent. Not portable across deployments — prefer projectId when known
   fileId?: number
   job?: number  # pair with param
   param?: string  # job parameter, e.g. "XYZOUT"
@@ -70,7 +70,7 @@ elements?: ({
     }
   }  # molecule-scoped colour: the default for every representation of this file; a representation's own `colour` overrides it
   representations?: ({
-    style: "VdwSpheres"|"ligands"|"CAs"|"CBs"|"CDs"|"gaussian"|"allHBonds"|"rama"|"rotamer"|"CRs"|"MolecularSurface"|"DishyBases"|"VdWSurface"|"Calpha"|"unitCell"|"hover"|"environment"|"ligand_environment"|"contact_dots"|"chemical_features"|"ligand_validation"|"glycoBlocks"|"restraints"|"residueSelection"|"MetaBalls"|"adaptativeBonds"|"StickBases"|"residue_environment"|"transformation"  # Moorhen RepresentationStyle, e.g. "CRs", "CBs"
+    style: "VdwSpheres"|"ligands"|"CAs"|"CBs"|"CDs"|"gaussian"|"allHBonds"|"rama"|"rotamer"|"CRs"|"MolecularSurface"|"DishyBases"|"VdWSurface"|"Calpha"|"unitCell"|"hover"|"environment"|"ligand_environment"|"contact_dots"|"chemical_features"|"ligand_validation"|"glycoBlocks"|"restraints"|"residueSelection"|"MetaBalls"|"adaptiveBonds"|"StickBases"|"residue_environment"|"transformation"  # Moorhen RepresentationStyle, e.g. "CRs", "CBs"
     selection?: string  # CID; default all-atoms
     colour?: string | "by-domain"|"b-factor"|"b-factor-norm"|"af2-plddt"|"secondary-structure"|"jones-rainbow"|"mol-symm" | { selection: string, colour: string }[] | {
       raw: {
@@ -94,9 +94,18 @@ elements?: ({
     }
   })[]
 })[]
+maskMaps?: ({
+  name: string  # handle for the NEW masked map (referenced by maps[].from)
+  map: string  # source map: a maps[] entry name (preferred — carries mtz columns), a files[] map/mtz entry, or an earlier maskMaps[] name (chaining)
+  model: string  # model whose atoms define the mask region: a files[] coordinates entry
+  selection?: string  # CID limiting the mask atoms; default whole model
+  radius?: number  # mask radius (Å) around atoms; omit for Moorhen's default
+  keep?: "inside"|"outside"  # which density to retain, relative to the selection. "inside" (default) keeps density NEAR the atoms (the usual "density for my ligand/chain" figure); "outside" keeps everything except near the atoms (carves a hole)
+})[]
 maps?: ({
   name: string
-  file: string  # name of a files[] entry (kind mtz or map)
+  file?: string  # name of a files[] entry (kind mtz or map); set this OR from
+  from?: string  # name of a maskMaps[] output to render instead of a file; set this OR file
   columns?: {
     F?: string
     PHI?: string
@@ -213,6 +222,22 @@ above. Never invent chains, ligands, or residues that are not listed.
   ligand's chain/residue).
 - Colour cues: "by domain" => the domains block; "by chain" / "rainbow" /
   "spectrum" => the matching colour scheme in the grammar.
+- Style cues — map everyday wording to the `style` enum. Obvious ones you
+  already know (bonds/sticks => CBs; ribbon/cartoon => CRs; surface =>
+  MolecularSurface; spheres/CPK => VdwSpheres; C-alpha trace => CAs). Less
+  obvious names the request may hint at:
+  - "blobby" / "metaballs" / "soft blobs" => MetaBalls
+  - "gaussian surface" / "smooth blurry surface" => gaussian
+  - "ligand and its surroundings/contacts/neighbours" drawn as bonds,
+    "active/binding site as sticks", "focus on a residue with its environment"
+    => adaptiveBonds (the ligand/focus CID plus nearby residues, no dashes)
+  - the SAME but WITH contact-dot/H-bond dashes => residue_environment;
+    ONLY the interaction dashes (no atoms) => environment / ligand_environment
+  - "H-bonds" => allHBonds; "contact dots"/clashes => contact_dots or CDs
+  - nucleic-acid "bases as blocks/slabs" => DishyBases; "bases as sticks" =>
+    StickBases; "glycans as blocks" => glycoBlocks
+  - validation views: "Ramachandran balls" => rama; "rotamer dodecahedra" =>
+    rotamer. When unsure, prefer the plain CBs/CRs/MolecularSurface.
 - To cover several chains or residue ranges in ONE selection, join them with
   "||" (e.g. //A||//B). This works in representation selections AND in view
   directives (centre, slab) — use the same form throughout.
@@ -221,6 +246,29 @@ above. Never invent chains, ligands, or residues that are not listed.
   So "centre on chains A and B AND slab to contain them" needs BOTH:
   view.centre.selection = //A||//B  and  view.slab.selection = //A||//B. Emitting
   slab alone will not centre the view.
+- Map masking ("density AROUND/NEAR the ligand", "map for chain A only", "carve
+  the density to the active site", "just the density round residues 40-60") =>
+  a maskMaps[] recipe that masks a source map by a model's atoms, plus a maps[]
+  entry that renders the result via `from:`. IMPORTANT: the source map must be
+  loaded WITH ITS COLUMN LABELS, so give it its OWN maps[] entry (with columns:)
+  and point maskMaps.map at THAT entry's name — not at the raw files[] mtz name
+  (a bare files[] mtz has no columns and won't load). Full recipe:
+    maps:
+      - { name: full-map, file: <mtz file>, columns: { F: FWT, PHI: PHWT },
+          visible: false }              # load source WITH columns; hide if unwanted
+      - { name: masked, from: lig-density, contourLevel: 1.2, style: solid }
+    maskMaps:
+      - { name: lig-density, map: full-map, model: <coords file>,
+          selection: //A/1099, radius: 4 }   # map: the maps[] NAME; radius Å opt.
+  `map` is the source (a maps[] entry name — carries columns; or an earlier
+  maskMaps name to chain); `model` is the coordinates file whose atoms define
+  the region; `selection` is the CID (default whole model). `keep: inside`
+  (the DEFAULT) retains density NEAR the selection — this is what "density
+  around/for X" almost always means. `keep: outside` retains everything EXCEPT
+  near the selection (carves a hole) — rare; only for explicit "remove the
+  density around X" requests. A maps[] entry uses EITHER file: OR from:, never
+  both. Only reach for masking when the request is about CARVING density to a
+  region — an ordinary map that is merely centred/contoured needs no mask.
 For minor ambiguity, choose the most likely reading and proceed. Ask a concise
 clarifying question ONLY when the ambiguity would materially change the scene and
 no reasonable default exists (e.g. which two chains form "the dimer" in a

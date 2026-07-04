@@ -346,7 +346,7 @@
                     "restraints",
                     "residueSelection",
                     "MetaBalls",
-                    "adaptativeBonds",
+                    "adaptiveBonds",
                     "StickBases",
                     "residue_environment",
                     "transformation"
@@ -512,6 +512,49 @@
         "additionalProperties": false
       }
     },
+    "maskMaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "handle for the NEW masked map (referenced by maps[].from)"
+          },
+          "map": {
+            "type": "string",
+            "description": "source map: a maps[] entry name (preferred — carries mtz columns), a files[] map/mtz entry, or an earlier maskMaps[] name (chaining)"
+          },
+          "model": {
+            "type": "string",
+            "description": "model whose atoms define the mask region: a files[] coordinates entry"
+          },
+          "selection": {
+            "description": "CID limiting the mask atoms; default whole model",
+            "type": "string"
+          },
+          "radius": {
+            "description": "mask radius (Å) around atoms; omit for Moorhen's default",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "keep": {
+            "description": "which density to retain, relative to the selection. \"inside\" (default) keeps density NEAR the atoms (the usual \"density for my ligand/chain\" figure); \"outside\" keeps everything except near the atoms (carves a hole)",
+            "type": "string",
+            "enum": [
+              "inside",
+              "outside"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "map",
+          "model"
+        ],
+        "additionalProperties": false
+      }
+    },
     "maps": {
       "type": "array",
       "items": {
@@ -521,8 +564,12 @@
             "type": "string"
           },
           "file": {
-            "type": "string",
-            "description": "name of a files[] entry (kind mtz or map)"
+            "description": "name of a files[] entry (kind mtz or map); set this OR from",
+            "type": "string"
+          },
+          "from": {
+            "description": "name of a maskMaps[] output to render instead of a file; set this OR file",
+            "type": "string"
           },
           "columns": {
             "description": "required for mtz, omit for map",
@@ -599,8 +646,7 @@
           }
         },
         "required": [
-          "name",
-          "file"
+          "name"
         ],
         "additionalProperties": false
       }

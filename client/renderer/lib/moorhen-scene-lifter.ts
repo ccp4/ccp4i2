@@ -32,6 +32,7 @@ import {
   SceneElement,
   SceneFileRef,
   SceneHints,
+  MaskMap,
   SceneMap,
   SceneMapColumns,
   SceneRepresentation,
@@ -42,6 +43,11 @@ import {
 // --------------------------------------------------------------------------
 // Public API
 // --------------------------------------------------------------------------
+
+/** uniqueId prefix the resolver stamps onto maps it masks, so the lifter can
+ *  round-trip them as maskMaps recipes. The suffix is the recipe's output name.
+ *  Keep in sync with the wrapper's handleMaskSceneMap stamp. */
+export const MASK_PROVENANCE_PREFIX = "maskMaps:";
 
 export interface LiftCtx {
   /** The molecules currently in Moorhen. */
@@ -87,6 +93,16 @@ export interface LiftCtx {
    *  move/onto files are still present in the lift — keeps superposed scenes
    *  round-tripping. */
   superpose?: SceneSuperpose[];
+  /** Mask recipes from the LAST-applied scene, remembered by the host — the
+   *  same deal as `superpose`. A masked map is stored by Moorhen as grid bytes
+   *  with NO record of its operands, so the recipe (source map / model /
+   *  selection / radius) cannot be reverse-engineered from the live map. The
+   *  resolver stamps maps it masks with uniqueId `maskMaps:<name>`; the lifter
+   *  re-emits a remembered recipe when its output map is still live AND its
+   *  source/model files survive the lift. Masked maps with no such recipe (e.g.
+   *  masked via Moorhen's own menu, outside the scene context) are dropped and
+   *  logged — they can't round-trip as a recipe and we don't materialise. */
+  maskMaps?: MaskMap[];
   /** Optional: the ccp4i2 project UUID. If set, file refs get both
    *  projectId and (derivable) fileId. */
   projectId?: string;
@@ -241,21 +257,103 @@ export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
   // promote to scene.activeMap.
   if (ctx.maps && ctx.maps.length > 0) {
     const maps: SceneMap[] = [];
+    // Remembered mask recipes, indexed by output name (the stamp payload).
+    const rememberedMasks = new Map<string, MaskMap>(
+      (ctx.maskMaps ?? []).map((mm) => [mm.name, mm]),
+    );
+
+    // The file-ref name every file-backed map WOULD get, computed up front so a
+    // mask recipe's source-file check doesn't depend on loop order (the masked
+    // output can appear before its source map in ctx.maps). Molecule files are
+    // already in scene.files (added above).
+    const survivingFileNames = new Set((scene.files ?? []).map((f) => f.name));
     ctx.maps.forEach((map, i) => {
+      if (map.uniqueId && !map.uniqueId.startsWith(MASK_PROVENANCE_PREFIX)) {
+        survivingFileNames.add(liftMapFileRef(map, ctx, i).name);
+      }
+    });
+
+    // A recipe is emittable iff its model file survives AND its source is either
+    // a surviving file or another emittable recipe. Resolve the closure over the
+    // remembered recipes (chaining is acyclic — the resolver guarantees it).
+    const emittableMaskNames = new Set<string>();
+    for (let changed = true; changed; ) {
+      changed = false;
+      for (const mm of rememberedMasks.values()) {
+        if (emittableMaskNames.has(mm.name)) continue;
+        const sourceOk = survivingFileNames.has(mm.map) || emittableMaskNames.has(mm.map);
+        if (sourceOk && survivingFileNames.has(mm.model)) {
+          emittableMaskNames.add(mm.name);
+          changed = true;
+        }
+      }
+    }
+
+    const emittedMasks: MaskMap[] = [];
+    const emittedMaskNames = new Set<string>();
+
+    ctx.maps.forEach((map, i) => {
+      const mapName = sanitiseName(map.name) || `map${i}`;
+
+      // Case 1: a map WE masked (resolver stamped its uniqueId). Round-trip it
+      // as a maskMaps recipe + a `from:` render entry — but only if we still
+      // remember the recipe AND its source/model survived this lift.
+      const maskName = map.uniqueId?.startsWith(MASK_PROVENANCE_PREFIX)
+        ? map.uniqueId.slice(MASK_PROVENANCE_PREFIX.length)
+        : null;
+      if (maskName != null) {
+        const recipe = rememberedMasks.get(maskName);
+        if (recipe && emittableMaskNames.has(maskName)) {
+          // Emit each recipe once, even if two live maps share a name.
+          if (!emittedMaskNames.has(maskName)) {
+            emittedMasks.push(recipe);
+            emittedMaskNames.add(maskName);
+          }
+          const sceneMap = liftSceneMap(map, undefined, mapName, ctx.mapState, maskName);
+          maps.push(sceneMap);
+          if (ctx.activeMapMolNo !== undefined && map.molNo === ctx.activeMapMolNo) {
+            scene.activeMap = mapName;
+          }
+        } else {
+          // Output is live but its recipe is unknown or its operands are gone —
+          // can't reconstruct it, and we don't materialise bytes.
+          console.warn(
+            `[lift] dropping masked map "${map.name}" (molNo ${map.molNo}): ` +
+              (recipe
+                ? "its source map or mask model is no longer in the scene"
+                : "no remembered mask recipe (masked outside the scene context?)"),
+          );
+        }
+        return;
+      }
+
+      // Case 2/3: a file-backed map. Drop-and-log if it has no provenance we can
+      // turn into a resolvable ref (rather than emit a "TODO" placeholder that
+      // silently fails on apply).
+      if (!map.uniqueId) {
+        console.warn(
+          `[lift] dropping map "${map.name}" (molNo ${map.molNo}): ` +
+            "no source provenance (no loader URL / fileId, not a scene-masked map)",
+        );
+        return;
+      }
       const fileRef = liftMapFileRef(map, ctx, i);
-      // De-dupe file refs by name. (Possible if a map and a molecule
-      // share a sanitised loader URL — rare but defensive.)
+      // De-dupe file refs by name against what's ALREADY in scene.files (a map
+      // and a molecule can share a sanitised loader URL — rare but defensive).
+      // Note: survivingFileNames was pre-seeded with prospective names, so it
+      // can't be the dedupe key here — check the actual files list.
       if (!(scene.files ?? []).some((f) => f.name === fileRef.name)) {
         scene.files = scene.files ?? [];
         scene.files.push(fileRef);
       }
-      const mapName = sanitiseName(map.name) || `map${i}`;
       const sceneMap = liftSceneMap(map, fileRef.name, mapName, ctx.mapState);
       maps.push(sceneMap);
       if (ctx.activeMapMolNo !== undefined && map.molNo === ctx.activeMapMolNo) {
         scene.activeMap = mapName;
       }
     });
+
+    if (emittedMasks.length > 0) scene.maskMaps = emittedMasks;
     if (maps.length > 0) scene.maps = maps;
   }
 
@@ -837,16 +935,24 @@ function liftMapFileRef(map: moorhen.Map, ctx: LiftCtx, index: number): SceneFil
  */
 function liftSceneMap(
   map: moorhen.Map,
-  fileName: string,
+  fileName: string | undefined,
   mapName: string,
   mapState?: Record<number, MapRenderState>,
+  from?: string,
 ): SceneMap {
-  // Real-space CCP4 map files (incl. masks) carry no columns; MTZ maps do.
+  // A derived (masked) map is backed by `from:` (a maskMaps output), never a
+  // file, and carries no columns. Real-space CCP4 map files (incl. masks) carry
+  // no columns; MTZ maps do.
   const mapFile = isCcp4MapFile(map);
-  const out: SceneMap = mapFile
-    ? { name: mapName, file: fileName }
-    : { name: mapName, file: fileName, columns: stripUndefinedColumns(map.selectedColumns) };
-  if (mapFile && (map as unknown as { isCcp4Mask?: boolean }).isCcp4Mask) {
+  let out: SceneMap;
+  if (from != null) {
+    out = { name: mapName, from };
+  } else if (mapFile) {
+    out = { name: mapName, file: fileName as string };
+  } else {
+    out = { name: mapName, file: fileName as string, columns: stripUndefinedColumns(map.selectedColumns) };
+  }
+  if (from == null && mapFile && (map as unknown as { isCcp4Mask?: boolean }).isCcp4Mask) {
     out.isMask = true;
   }
   if (map.isDifference) out.isDifference = true;

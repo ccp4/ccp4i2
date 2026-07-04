@@ -61,11 +61,16 @@ export interface MoorhenScene {
   /** Per-file rendering instructions: representations and colour rules. */
   elements?: SceneElement[];
 
+  /** Map-masking recipes: derive a new map by masking a source map around a
+   *  model's atoms. Each output is named and rendered by a `maps:` entry via
+   *  `from:`. Applied before `maps:`. */
+  maskMaps?: MaskMap[];
+
   /** Map instances to render. Each references either an MTZ file from the
    *  `files:` block (kind: "mtz") with a column-label spec, or a real-space
-   *  CCP4 map file (kind: "map", incl. masks) which needs no columns. Carries
-   *  optional contour/colour/style; masks default to a translucent solid
-   *  surface. */
+   *  CCP4 map file (kind: "map", incl. masks) which needs no columns, or a
+   *  `maskMaps:` output via `from:`. Carries optional contour/colour/style;
+   *  masks default to a translucent solid surface. */
   maps?: SceneMap[];
 
   /** Name of the map (from `maps:`) that should be Moorhen's active
@@ -461,17 +466,56 @@ export interface SceneMapColumns {
  * defaults apply at load time. The lifter only emits a field when its
  * captured value differs from those defaults, so the YAML stays small.
  */
+/**
+ * A map-masking recipe. Masks `map` (a source map) around the atoms of
+ * `model` within `selection`, producing a NEW map named `name` that a
+ * `maps:` entry renders via `from:`. Drives Moorhen's
+ * `mask_map_by_atom_selection`.
+ */
+export interface MaskMap {
+  /** Handle for the NEW masked map. Referenced by `maps[].from` and, for
+   *  chaining, by a later `maskMaps[].map`. Unique across maskMaps. */
+  name: string;
+
+  /** Source map to mask: a `maps:` entry name (preferred — carries the mtz
+   *  column spec), a `files:` map/mtz entry, or an EARLIER `maskMaps:` name
+   *  (to chain masks). Earlier-only — acyclic. */
+  map: string;
+
+  /** Model whose atoms define the mask region: a `files:` coordinates
+   *  entry. */
+  model: string;
+
+  /** CID limiting which of the model's atoms mask the map. Default: the
+   *  whole model. */
+  selection?: string;
+
+  /** Mask radius (Å) around the atoms. Omit for Moorhen's default. */
+  radius?: number;
+
+  /** Which density to retain, relative to the selection. "inside" (default)
+   *  keeps density NEAR the atoms — the usual "density for my ligand/chain"
+   *  figure; "outside" keeps everything except near the atoms (carves a hole).
+   *  Maps to Coot's `invert` flag at the resolver boundary. */
+  keep?: "inside" | "outside";
+}
+
 export interface SceneMap {
   /** Local name, unique within the maps block. Used by `activeMap:` at
    *  the scene root and as a join key for the lifter/promoter. */
   name: string;
 
-  /** Name of an entry in `files:` (kind: "mtz" or "map"). */
-  file: string;
+  /** Name of an entry in `files:` (kind: "mtz" or "map"). Set this OR
+   *  `from` — exactly one (a map is backed by a file or a mask output). */
+  file?: string;
+
+  /** Name of a `maskMaps:` output to render instead of a file. Set this
+   *  OR `file` — exactly one. */
+  from?: string;
 
   /** Column-label spec for reading the referenced MTZ. Required for
    *  `kind: "mtz"` files; omitted for `kind: "map"` (real-space CCP4 maps
-   *  / masks are read directly, no columns). */
+   *  / masks are read directly, no columns). Never set on a `from:` map. */
   columns?: SceneMapColumns;
 
   /** Mark this entry as a mask (a real-space region map). Advisory: when

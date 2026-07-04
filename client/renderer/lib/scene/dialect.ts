@@ -26,8 +26,13 @@ export const Ccp4i2FileRef = CoreFileRefShape.extend({
     .string()
     .optional()
     .describe("origin-relative URL (/api/…); not portable across deployments"),
-  projectId: z.string().optional().describe("UUID; required with fileId or job+param"),
-  projectName: z.string().optional().describe("advisory"),
+  projectId: z.string().optional().describe("project UUID; with fileId or job+param, give this OR projectName"),
+  projectName: z
+    .string()
+    .optional()
+    .describe(
+      "project name (unique within this deployment); resolves fileId/job+param when projectId is absent. Not portable across deployments — prefer projectId when known",
+    ),
   fileId: z.number().optional(),
   job: z.number().optional().describe("pair with param"),
   param: z.string().optional().describe('job parameter, e.g. "XYZOUT"'),
@@ -49,14 +54,20 @@ export const Ccp4i2FileRef = CoreFileRefShape.extend({
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:
-          "set exactly one of: pdb, url, bundle, cifText, relativeUrl, fileId(+projectId), job+param(+projectId)",
+          "set exactly one of: pdb, url, bundle, cifText, relativeUrl, fileId(+projectId|projectName), job+param(+projectId|projectName)",
       });
     }
-    if ((hasFileId || hasJobParam) && ref.projectId == null) {
+    // fileId/job+param name a file WITHIN a project, so they need a project
+    // qualifier. Either the UUID (projectId, authoritative + portable) or the
+    // name (projectName, unique within this deployment — the handle a human
+    // authoring a cross-project superposition ref actually has). The fetcher
+    // resolves projectName→pk against the current deployment; projectId wins
+    // when both are set. See moorhen-wrapper.tsx resolveProjectPk.
+    if ((hasFileId || hasJobParam) && ref.projectId == null && ref.projectName == null) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["projectId"],
-        message: "projectId required with fileId or job+param",
+        message: "fileId or job+param needs a project qualifier: set projectId (UUID) or projectName",
       });
     }
     if (ref.job != null && ref.param == null) {

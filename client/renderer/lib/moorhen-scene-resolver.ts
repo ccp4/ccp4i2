@@ -161,6 +161,24 @@ export type SceneMapFetcher = (
   sceneMap: SceneMap,
 ) => Promise<moorhen.Map | null>;
 
+/**
+ * Mask a source map by a model's atom selection, producing a NEW Moorhen map.
+ * Owned by the wrapper (it holds commandCentre + store): it issues
+ * `mask_map_by_atom_selection` (source map molNo, model molNo, CID, radius,
+ * invert), instantiates the resulting MoorhenMap and dispatches addMap.
+ *
+ * `radius` omitted → Moorhen's default (the wrapper passes -1). Returns the
+ * new map (so the resolver can bind + style it) or null on failure.
+ */
+export type SceneMapMasker = (args: {
+  sourceMap: moorhen.Map;
+  model: moorhen.Molecule;
+  selection: string;
+  radius?: number;
+  invert: boolean;
+  name: string;
+}) => Promise<moorhen.Map | null>;
+
 interface ResolveCtx {
   scene: MoorhenScene;
   molecules: moorhen.Molecule[];
@@ -182,6 +200,10 @@ interface ResolveCtx {
   /** Optional. Required for scene.maps[] to be applied. Without it,
    *  map entries are dropped with a log entry. */
   mapFetcher?: SceneMapFetcher;
+  /** Optional. Required for scene.maskMaps[] to be applied. Without it,
+   *  mask recipes are dropped (and any maps[] entry that renders one via
+   *  `from:` is dropped too) with a log entry. */
+  mapMasker?: SceneMapMasker;
   /** Live glRef snapshot (zoom, fogClipOffset). Used by `view.clip:
    *  { front, back }` to derive clip/fog the way coot does (clip = zoom*depth,
    *  fog offset by fogClipOffset). Falls back to sane defaults if absent. */
@@ -312,7 +334,7 @@ function resolveViewMolecule(
  * structures and domain clamping are reported in the result, not raised.
  */
 export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
-  const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader, mapFetcher } = ctx;
+  const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader, mapFetcher, mapMasker } = ctx;
   const maps = ctx.maps ?? [];
   const result: SceneResolveResult = {
     unresolvedFiles: [],
@@ -328,7 +350,13 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   // (the scoping step) happens later, once coord molNos are known.
   const allFiles = scene.files ?? [];
   const dictRefs = allFiles.filter((f) => f.kind === "dictionary");
-  const coordRefs = allFiles.filter((f) => f.kind !== "dictionary");
+  // Coordinate files only. mtz/map files are reflection/density data with no
+  // atoms — they're loaded by the map path (2.4a/b), NOT as molecules, so they
+  // must be excluded here or they'd get a spurious molecule card. `kind`
+  // defaults to "coordinates" when omitted.
+  const coordRefs = allFiles.filter(
+    (f) => f.kind !== "dictionary" && f.kind !== "mtz" && f.kind !== "map",
+  );
 
   // 1a. Fetch and globally-load dictionary text. Keep the raw text
   //     keyed by name so we can re-load per-molecule later.
@@ -544,38 +572,135 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //     promote the named activeMap (if any).
   const liveMapPool: moorhen.Map[] = [...maps];
   const mapBindings = new Map<string, moorhen.Map>();
-  for (const sceneMap of scene.maps ?? []) {
-    const fileRef = (scene.files ?? []).find((f) => f.name === sceneMap.file);
+  // Outputs of maskMaps[] recipes, keyed by their `name`. Referenced by
+  // maps[].from (to render) and by later maskMaps[].map (to chain).
+  const maskOutputs = new Map<string, moorhen.Map>();
+
+  // Load (or match) the map backing a files[] map/mtz entry. `sceneMap` is
+  // passed to the fetcher for column hints when the render entry is known;
+  // mask sources have none, so it's optional. Logs + returns null on failure.
+  const loadMapForFile = async (
+    fileName: string,
+    domain: string,
+    sceneMap?: SceneMap,
+  ): Promise<moorhen.Map | null> => {
+    const fileRef = (scene.files ?? []).find((f) => f.name === fileName);
     if (!fileRef) {
-      result.log.push({
-        file: sceneMap.file,
-        domain: `map ${sceneMap.name}`,
-        message: `map references unknown file "${sceneMap.file}"`,
-      });
-      continue;
+      result.log.push({ file: fileName, domain, message: `references unknown file "${fileName}"` });
+      return null;
     }
     const existing = matchOneMap(fileRef, liveMapPool);
-    let map: moorhen.Map | null = existing;
-    if (!map && mapFetcher && isFetchable(fileRef)) {
+    if (existing) return existing;
+    if (mapFetcher && isFetchable(fileRef)) {
       try {
-        map = await mapFetcher(fileRef, sceneMap);
-        if (map) liveMapPool.push(map);
+        const fetched = await mapFetcher(fileRef, sceneMap ?? { name: fileName, file: fileName });
+        if (fetched) {
+          liveMapPool.push(fetched);
+          return fetched;
+        }
       } catch (e) {
         result.log.push({
-          file: sceneMap.file,
-          domain: `map ${sceneMap.name}`,
+          file: fileName, domain,
           message: `MTZ fetch failed: ${e instanceof Error ? e.message : "unknown"}`,
         });
-        continue;
+        return null;
       }
     }
+    result.log.push({
+      file: fileName, domain,
+      message: mapFetcher
+        ? "no matching loaded map and ref is not fetchable"
+        : "no matching loaded map (no mapFetcher provided)",
+    });
+    return null;
+  };
+
+  // The map steps run in dependency order:
+  //   (a) bind + style file-backed maps[]  — a mask source may be one of these
+  //   (b) apply maskMaps[]                  — source resolves against (a), prior
+  //                                           masks, or a files[] fallback
+  //   (c) bind + style from: maps[]         — these render a mask output
+  // Splitting maps[] into (a) and (c) lets `maskMaps.map` name a maps[] entry
+  // (which carries the mtz column spec) rather than only a bare files[] name.
+
+  // 2.4a File-backed maps.
+  for (const sceneMap of scene.maps ?? []) {
+    if (sceneMap.file == null) continue; // from: maps handled in 2.4c
+    const domain = `map ${sceneMap.name}`;
+    const map = await loadMapForFile(sceneMap.file, domain, sceneMap);
+    if (!map) continue; // loadMapForFile logged the reason
+    mapBindings.set(sceneMap.name, map);
+    applyMapState(map, sceneMap, dispatch);
+  }
+
+  // 2.4b maskMaps. Source resolves against, in order: a bound maps[] entry (by
+  //     name — carries columns), an earlier mask output (chaining), or a bare
+  //     files[] map/mtz (loaded columnless as a fallback). The schema keeps mask
+  //     chains earlier-only, so this forward pass resolves every chain.
+  for (const mm of scene.maskMaps ?? []) {
+    const domain = `maskMaps ${mm.name}`;
+    if (!mapMasker) {
+      result.log.push({ file: "", domain, message: "mask dropped: no mapMasker provided" });
+      continue;
+    }
+    const sourceMap =
+      mapBindings.get(mm.map) ??
+      maskOutputs.get(mm.map) ??
+      (await loadMapForFile(mm.map, domain));
+    if (!sourceMap) {
+      // loadMapForFile logs the files[] case; add context for the common
+      // mistake of naming something that isn't a resolvable source at all.
+      if (!(scene.files ?? []).some((f) => f.name === mm.map)) {
+        result.log.push({
+          file: "", domain,
+          message: `mask source "${mm.map}" is not a bound map, an earlier mask, or a files[] entry`,
+        });
+      }
+      continue;
+    }
+    const model = fileBindings.get(mm.model);
+    if (!model) {
+      result.log.push({ file: mm.model, domain, message: `mask model "${mm.model}" not bound to a molecule` });
+      continue;
+    }
+    try {
+      // Translate scene intent → Coot's `invert` (mask_map_by_atom_selection):
+      // Coot invert=true zeros density WHERE ATOMS ARE NOT → keeps density near
+      // the selection. invert=false zeros density AT the atoms → carves a hole.
+      // Our `keep` names the intent; default "inside" = the usual "density for
+      // my selection" figure. See MaskMap.keep in lib/scene/core.ts.
+      const keep = mm.keep ?? "inside";
+      const masked = await mapMasker({
+        sourceMap,
+        model,
+        selection: mm.selection ?? "/*/*/*/*",
+        radius: mm.radius,
+        invert: keep === "inside",
+        name: mm.name,
+      });
+      if (!masked) {
+        result.log.push({ file: "", domain, message: "masking returned no map (Coot failure)" });
+        continue;
+      }
+      liveMapPool.push(masked);
+      maskOutputs.set(mm.name, masked);
+    } catch (e) {
+      result.log.push({
+        file: "", domain,
+        message: `masking failed: ${e instanceof Error ? e.message : "unknown error"}`,
+      });
+    }
+  }
+
+  // 2.4c from: maps — render a mask output.
+  for (const sceneMap of scene.maps ?? []) {
+    if (sceneMap.from == null) continue; // file: maps handled in 2.4a
+    const domain = `map ${sceneMap.name}`;
+    const map = maskOutputs.get(sceneMap.from) ?? null;
     if (!map) {
       result.log.push({
-        file: sceneMap.file,
-        domain: `map ${sceneMap.name}`,
-        message: mapFetcher
-          ? "no matching loaded map and ref is not fetchable"
-          : "no matching loaded map (no mapFetcher provided)",
+        file: "", domain,
+        message: `from: mask output "${sceneMap.from}" was not produced (its recipe failed or was dropped)`,
       });
       continue;
     }
@@ -721,7 +846,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 export function isFetchable(fr: SceneFileRef): boolean {
   if (fr.pdb) return true;
   if (fr.url) return true;
-  if (fr.fileId !== undefined && fr.projectId) return true;
+  if (fr.fileId !== undefined && (fr.projectId || fr.projectName)) return true;
   if (fr.job !== undefined && fr.param) return true;
   // Inline dict text: trivially "fetchable" — the fetcher just returns
   // the text. Only valid on dictionary refs (validator enforces this).

@@ -15,7 +15,7 @@ import {
   serialiseScene,
   serialiseSceneWithComments,
 } from "../lib/moorhen-scene";
-import { parseScene as parseSceneZod } from "../lib/scene";
+import { parseScene as parseSceneZod, validateScene } from "../lib/scene";
 
 // Build a fake-but-valid molecule by hand. Cast to moorhen.Molecule via
 // unknown — the lifter only reads `name`, `molNo`, `uniqueId`, and
@@ -874,5 +874,69 @@ describe("liftScene — maps", () => {
     expect(m.positiveColour).toBe("#00ff00");
     expect(m.negativeColour).toBe("#ff0000");
     expect(m.colour).toBeUndefined();
+  });
+});
+
+describe("liftScene — map masking round-trip", () => {
+  // A source map file + a model, plus the mask recipe the host remembers.
+  const withMask = (opts?: { includeSourceMap?: boolean; remember?: boolean }) =>
+    liftScene({
+      molecules: [
+        fakeMol({
+          name: "model",
+          molNo: 0,
+          uniqueId: "https://e/model.pdb",
+          representations: [
+            { style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+      maskMaps:
+        opts?.remember === false
+          ? undefined
+          : [{ name: "lig-density", map: "src__mtz", model: "model", selection: "//A/1099", radius: 4 }],
+      maps: [
+        // The masked output map, stamped by the resolver.
+        fakeMap({ name: "masked", molNo: 6, uniqueId: "maskMaps:lig-density" }),
+        // The source map only survives the lift if included here.
+        ...(opts?.includeSourceMap
+          ? [fakeMap({ name: "src", molNo: 5, uniqueId: "https://e/src.mtz" })]
+          : []),
+      ],
+    });
+
+  it("re-emits a maskMaps recipe + a from: map when the recipe and source survive", () => {
+    const scene = withMask({ includeSourceMap: true });
+    expect(scene.maskMaps).toHaveLength(1);
+    expect(scene.maskMaps![0]).toMatchObject({
+      name: "lig-density",
+      map: "src__mtz",
+      model: "model",
+      selection: "//A/1099",
+      radius: 4,
+    });
+    const fromMap = scene.maps!.find((m) => m.from === "lig-density");
+    expect(fromMap).toBeDefined();
+    expect(fromMap!.file).toBeUndefined();
+  });
+
+  it("drops a masked map (no from:, no recipe) when its source map is absent", () => {
+    const scene = withMask({ includeSourceMap: false });
+    expect(scene.maskMaps).toBeUndefined();
+    expect((scene.maps ?? []).some((m) => m.from === "lig-density")).toBe(false);
+    // and it did not silently fall back to a file-backed entry
+    expect((scene.maps ?? []).some((m) => m.name === "masked")).toBe(false);
+  });
+
+  it("drops a masked map with no remembered recipe (masked outside the scene)", () => {
+    const scene = withMask({ includeSourceMap: true, remember: false });
+    expect(scene.maskMaps).toBeUndefined();
+    expect((scene.maps ?? []).some((m) => m.from)).toBe(false);
+  });
+
+  it("the round-trip validates through the Zod contract", () => {
+    const scene = withMask({ includeSourceMap: true });
+    expect(validateScene(scene).errors).toEqual([]);
   });
 });

@@ -40,6 +40,7 @@ import {
   applyScene,
   SceneFileFetcher,
   SceneMapFetcher,
+  SceneMapMasker,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import type { SceneFileRef, SceneSuperpose } from "../../types/moorhen-scene";
@@ -58,11 +59,12 @@ import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4Do
 import {
   liftSceneStraight,
   MapRenderState,
+  MASK_PROVENANCE_PREFIX,
   promoteSceneToPortable,
   SceneLiftHints,
   SceneRefUrlResolver,
 } from "../../lib/moorhen-scene-lifter";
-import type { MoorhenScene } from "../../types/moorhen-scene";
+import type { MaskMap, MoorhenScene } from "../../types/moorhen-scene";
 import {
   MoorhenFallback,
   MoorhenErrorBoundary,
@@ -790,6 +792,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // Remember the last-applied scene's superpose so capture can re-emit it
   // (SSM/LSQ move coords inside coot — nothing to lift from the molecule).
   const lastAppliedSuperposeRef = useRef<SceneSuperpose[] | undefined>(undefined);
+  // Same deal for mask recipes — a masked map is bytes with no operands, so the
+  // lifter needs the remembered recipe to round-trip it (see LiftCtx.maskMaps).
+  const lastAppliedMaskMapsRef = useRef<MaskMap[] | undefined>(undefined);
 
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
     async (ref: SceneFileRef) => {
@@ -825,7 +830,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         const url = `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`;
         return loadStructure(url, ref.name || pdbId);
       }
-      if (ref.fileId !== undefined && ref.projectId) {
+      // A ccp4i2 fileId is globally unique, so the download URL keys on it
+      // directly — the project qualifier (projectId UUID or projectName) only
+      // gates the ref as a project-file ref; it isn't needed to build the URL.
+      // Accept either qualifier so cross-project superposition refs can be
+      // hand-authored by name (the handle a human has), matching job+param.
+      if (ref.fileId !== undefined && (ref.projectId || ref.projectName)) {
         const url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
         return loadStructure(url, ref.name || `file_${ref.fileId}`);
       }
@@ -871,7 +881,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
       }
       let url: string | null = null;
-      if (ref.fileId !== undefined && ref.projectId) {
+      if (ref.fileId !== undefined && (ref.projectId || ref.projectName)) {
         url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
       } else if (ref.url) {
         url = ref.url;
@@ -912,7 +922,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // here (above the consumers) so the closures pick it up cleanly.
   const resolveSceneRefUrl: SceneRefUrlResolver = useCallback((ref) => {
     if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
-    if (ref.fileId !== undefined && ref.projectId) {
+    if (ref.fileId !== undefined && (ref.projectId || ref.projectName)) {
       return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
     }
     if (ref.url) return ref.url;
@@ -996,6 +1006,57 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     [commandCentre, store, dispatch, resolveSceneRefUrl],
   );
 
+  // Map masker: mask a source map by a model's atom selection, producing a
+  // NEW MoorhenMap. Mirrors Moorhen's MapMasking menu item
+  // (mask_map_by_atom_selection → new molNo), plus the addMap/settings
+  // wiring the resolver can't do itself. radius omitted → -1 (Coot default).
+  const handleMaskSceneMap: SceneMapMasker = useCallback(
+    async ({ sourceMap, model, selection, radius, invert, name }) => {
+      if (!commandCentre.current) return null;
+      try {
+        const result = (await commandCentre.current.cootCommand(
+          {
+            returnType: "status",
+            command: "mask_map_by_atom_selection",
+            commandArgs: [
+              model.molNo,
+              sourceMap.molNo,
+              selection,
+              radius ?? -1,
+              invert,
+            ],
+          },
+          false,
+        )) as moorhen.WorkerResponse<number>;
+        const newMolNo = result?.data?.result?.result;
+        if (newMolNo == null || newMolNo === -1) return null;
+        const newMap = new MoorhenMap(
+          commandCentre as RefObject<moorhen.CommandCentre>,
+          store as any,
+        );
+        newMap.molNo = newMolNo;
+        newMap.name = name;
+        // Inherit the difference-map flag from the source; a mask of a
+        // difference map is still a difference map.
+        newMap.isDifference = !!(sourceMap as any).isDifference;
+        await newMap.getSuggestedSettings();
+        // Provenance stamp: a masked map's recipe is unrecoverable from its
+        // grid bytes (Moorhen persists only the bytes). Stamp the uniqueId so
+        // the capturer can round-trip maps WE masked as maskMaps recipes.
+        // Maps masked outside the scene context carry no such marker and are
+        // dropped-and-logged on capture. Keep in sync with the capturer's
+        // MASK_PROVENANCE_PREFIX reader.
+        newMap.uniqueId = `${MASK_PROVENANCE_PREFIX}${name}`;
+        dispatch(addMap(newMap));
+        return newMap;
+      } catch (err) {
+        console.warn(`[scene] map masking failed for "${name}":`, err);
+        return null;
+      }
+    },
+    [commandCentre, store, dispatch],
+  );
+
   // Apply a scene YAML: validate, then hand to the resolver with the
   // refs/state it needs. Defined here because the wrapper owns dispatch
   // and the command-centre ref. The optional assets map carries bytes
@@ -1011,8 +1072,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // non-bundled apply.
       bundleAssetsRef.current = assets;
       const scene = parseScene(yamlText);
-      // Remember this scene's superpose so a later capture can re-emit it.
+      // Remember this scene's superpose + mask recipes so a later capture can
+      // re-emit them (neither is reconstructable from the resulting molecule/map).
       lastAppliedSuperposeRef.current = scene.superpose;
+      lastAppliedMaskMapsRef.current = scene.maskMaps;
       // Live glRef snapshot for view.clip: { front, back } (clip = zoom*depth,
       // fog offset by fogClipOffset).
       const gl = (store.getState() as moorhen.State).glRef as unknown as {
@@ -1028,6 +1091,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         dictionaryFetcher: handleFetchSceneDictionary,
         dictionaryLoader: handleLoadSceneDictionary,
         mapFetcher: handleFetchSceneMap,
+        mapMasker: handleMaskSceneMap,
       });
     },
     [
@@ -1039,6 +1103,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       handleFetchSceneDictionary,
       handleLoadSceneDictionary,
       handleFetchSceneMap,
+      handleMaskSceneMap,
     ],
   );
 
@@ -1261,6 +1326,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       glRef: glRefState,
       sceneSettings: sceneSettingsState,
       superpose: lastAppliedSuperposeRef.current,
+      maskMaps: lastAppliedMaskMapsRef.current,
       projectId: projectInfo?.id,
       projectName: projectInfo?.name,
       // First molecule's monomerLibraryPath is the canonical Moorhen

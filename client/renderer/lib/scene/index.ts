@@ -281,6 +281,8 @@ const STRUCTURED_PRUNE = {
   topLevel: [
     "authoredIn", // provenance — stamped by the app, never by the model
     "hints", // advisory lighting/effects; the resolver doesn't even apply lighting yet
+    "maskMaps", // advanced map-derivation recipe; rarely hand-authored, and the
+    //             `from:` it feeds is pruned too — the validator still accepts both
   ],
   /** Property names removed wherever they occur. Each is unique to one block in
    *  this schema, so name-matching is unambiguous. */
@@ -288,6 +290,7 @@ const STRUCTURED_PRUNE = {
     "relativeUrl", // deployment ref the system prompt already forbids
     "bundle", // rare file source (.scene.zip asset)
     "cifText", // rare file source (inline dictionary CIF)
+    "from", // maps[] derived-map source; pairs with the pruned maskMaps block
     "ribbonCoilThickness", "ribbonHelixWidth", "ribbonStrandWidth",
     "ribbonArrowWidth", "ribbonDNARNAWidth", // keep bond/ball/vdw/probe radii; drop ribbon dims
     "clipStart", "clipEnd", "fogStart", "fogEnd", // slab/clip cover the common case

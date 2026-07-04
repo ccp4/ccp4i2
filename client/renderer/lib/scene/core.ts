@@ -262,7 +262,16 @@ export const MapColumns = z
 export const SceneMapSchema = z
   .object({
     name: z.string(),
-    file: z.string().describe("name of a files[] entry (kind mtz or map)"),
+    file: z
+      .string()
+      .optional()
+      .describe("name of a files[] entry (kind mtz or map); set this OR from"),
+    from: z
+      .string()
+      .optional()
+      .describe(
+        "name of a maskMaps[] output to render instead of a file; set this OR file",
+      ),
     columns: MapColumns.optional().describe("required for mtz, omit for map"),
     isMask: z.boolean().optional(),
     isDifference: z.boolean().optional(),
@@ -274,6 +283,59 @@ export const SceneMapSchema = z
     positiveColour: HexColour.optional(),
     negativeColour: HexColour.optional(),
     visible: z.boolean().optional(),
+  })
+  .strict()
+  .superRefine((m, ctx) => {
+    // A map is backed by exactly one source: a loaded file (file:) or a
+    // derived map from a maskMaps[] recipe (from:).
+    const sources = [m.file, m.from].filter((v) => v != null && v !== "");
+    if (sources.length !== 1) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "a map needs exactly one source: set file (a files[] entry) OR from (a maskMaps[] output)",
+      });
+    }
+    if (m.columns && m.from) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["columns"],
+        message: "columns applies to mtz files only; a derived (from:) map has none",
+      });
+    }
+  });
+
+// --- map masking (derived maps) -------------------------------------------
+
+/**
+ * A map-masking recipe: mask a source map around a model's atom selection,
+ * producing a NEW named map that maps[] can render via `from:`. Drives
+ * Moorhen's `mask_map_by_atom_selection` (source map molNo, model molNo,
+ * CID, radius, invert) → a new map molNo.
+ *
+ * Like `superpose`, this is an operation over already-bound scene objects; but
+ * where superpose mutates a molecule in place and produces nothing new to name,
+ * masking creates a first-class map. Hence the explicit `name`, which maps[]
+ * (and other maskMaps entries, for chaining) reference. Moorhen itself persists
+ * a masked map as materialized grid bytes with no memory of how it was made; a
+ * scene keeps it as this recipe so it stays portable and re-appliable.
+ */
+export const MaskMap = z
+  .object({
+    name: z.string().describe("handle for the NEW masked map (referenced by maps[].from)"),
+    map: z
+      .string()
+      .describe(
+        "source map: a maps[] entry name (preferred — carries mtz columns), a files[] map/mtz entry, or an earlier maskMaps[] name (chaining)",
+      ),
+    model: z.string().describe("model whose atoms define the mask region: a files[] coordinates entry"),
+    selection: z.string().optional().describe("CID limiting the mask atoms; default whole model"),
+    radius: z.number().positive().optional().describe("mask radius (Å) around atoms; omit for Moorhen's default"),
+    keep: z
+      .enum(["inside", "outside"])
+      .optional()
+      .describe(
+        'which density to retain, relative to the selection. "inside" (default) keeps density NEAR the atoms (the usual "density for my ligand/chain" figure); "outside" keeps everything except near the atoms (carves a hole)',
+      ),
   })
   .strict();
 
@@ -417,6 +479,7 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
       globalDictionaries: z.array(z.string()).optional(),
       domains: z.array(Domain).optional(),
       elements: z.array(Element).optional(),
+      maskMaps: z.array(MaskMap).optional(),
       maps: z.array(SceneMapSchema).optional(),
       activeMap: z.string().optional(),
       view: View.optional(),
@@ -437,7 +500,22 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
       const dictNames = new Set(
         files.filter((f) => f.kind === "dictionary").map((f) => f.name),
       );
+      // Files usable as a masking source (a map/mtz) vs. as a mask model
+      // (coordinates — the default kind). Used to validate maskMaps operands.
+      const mapFileNames = new Set(
+        files.filter((f) => f.kind === "map" || f.kind === "mtz").map((f) => f.name),
+      );
+      const coordFileNames = new Set(
+        files.filter((f) => f.kind == null || f.kind === "coordinates").map((f) => f.name),
+      );
+      const maskNames = new Set((s.maskMaps ?? []).map((mm) => mm.name));
       const mapNames = new Set((s.maps ?? []).map((m) => m.name));
+      // maps[] entries usable as a mask SOURCE: the file-backed ones (they load
+      // real density, carrying the mtz column spec). from: maps are themselves
+      // mask outputs and are covered by the mask-output set instead.
+      const fileBackedMapNames = new Set(
+        (s.maps ?? []).filter((m) => m.file != null).map((m) => m.name),
+      );
 
       const ref = (
         name: string | undefined,
@@ -460,9 +538,46 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
           ref(d, dictNames, ["elements", i, "dictionaries", j], "dictionary"),
         );
       });
-      (s.maps ?? []).forEach((m, i) =>
-        ref(m.file, fileNames, ["maps", i, "file"], "file"),
-      );
+      // maskMaps: each names a NEW map (checked unique below). Its source `map`
+      // resolves against a file-backed maps[] entry (preferred — carries the mtz
+      // column spec), a files[] map/mtz, OR an EARLIER maskMaps output. Mask
+      // chains are earlier-only, so they're acyclic by construction (a forward
+      // or self reference to another mask is reported as unknown). `model` must
+      // be a coordinates file.
+      const seenMaskNames = new Set<string>();
+      const priorMaskOutputs = new Set<string>();
+      (s.maskMaps ?? []).forEach((mm, i) => {
+        if (seenMaskNames.has(mm.name)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["maskMaps", i, "name"],
+            message: `duplicate maskMaps name "${mm.name}"`,
+          });
+        }
+        seenMaskNames.add(mm.name);
+        if (
+          mm.map != null &&
+          !fileBackedMapNames.has(mm.map) &&
+          !mapFileNames.has(mm.map) &&
+          !priorMaskOutputs.has(mm.map)
+        ) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["maskMaps", i, "map"],
+            message: `unknown source map "${mm.map}" (must be a file-backed maps[] entry, a files[] map/mtz, or an earlier maskMaps output)`,
+          });
+        }
+        ref(mm.model, coordFileNames, ["maskMaps", i, "model"], "coordinates file");
+        // Available as a source only to LATER entries.
+        priorMaskOutputs.add(mm.name);
+      });
+
+      (s.maps ?? []).forEach((m, i) => {
+        // file XOR from is enforced on SceneMapSchema itself; here we only
+        // resolve whichever is set.
+        if (m.file != null) ref(m.file, fileNames, ["maps", i, "file"], "file");
+        if (m.from != null) ref(m.from, maskNames, ["maps", i, "from"], "maskMaps output");
+      });
       (s.superpose ?? []).forEach((sp, i) => {
         ref(sp.move, fileNames, ["superpose", i, "move"], "file");
         ref(sp.onto, fileNames, ["superpose", i, "onto"], "file");

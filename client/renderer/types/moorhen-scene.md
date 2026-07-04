@@ -34,8 +34,8 @@ files?: ({
   bundle?: string  # asset path inside a .scene.zip
   cifText?: string  # inline CIF (dictionary refs only)
   relativeUrl?: string  # origin-relative URL (/api/…); not portable across deployments
-  projectId?: string  # UUID; required with fileId or job+param
-  projectName?: string  # advisory
+  projectId?: string  # project UUID; with fileId or job+param, give this OR projectName
+  projectName?: string  # project name (unique within this deployment); resolves fileId/job+param when projectId is absent. Not portable across deployments — prefer projectId when known
   fileId?: number
   job?: number  # pair with param
   param?: string  # job parameter, e.g. "XYZOUT"
@@ -74,7 +74,7 @@ elements?: ({
     }
   }  # molecule-scoped colour: the default for every representation of this file; a representation's own `colour` overrides it
   representations?: ({
-    style: "VdwSpheres"|"ligands"|"CAs"|"CBs"|"CDs"|"gaussian"|"allHBonds"|"rama"|"rotamer"|"CRs"|"MolecularSurface"|"DishyBases"|"VdWSurface"|"Calpha"|"unitCell"|"hover"|"environment"|"ligand_environment"|"contact_dots"|"chemical_features"|"ligand_validation"|"glycoBlocks"|"restraints"|"residueSelection"|"MetaBalls"|"adaptativeBonds"|"StickBases"|"residue_environment"|"transformation"  # Moorhen RepresentationStyle, e.g. "CRs", "CBs"
+    style: "VdwSpheres"|"ligands"|"CAs"|"CBs"|"CDs"|"gaussian"|"allHBonds"|"rama"|"rotamer"|"CRs"|"MolecularSurface"|"DishyBases"|"VdWSurface"|"Calpha"|"unitCell"|"hover"|"environment"|"ligand_environment"|"contact_dots"|"chemical_features"|"ligand_validation"|"glycoBlocks"|"restraints"|"residueSelection"|"MetaBalls"|"adaptiveBonds"|"StickBases"|"residue_environment"|"transformation"  # Moorhen RepresentationStyle, e.g. "CRs", "CBs"
     selection?: string  # CID; default all-atoms
     colour?: string | "by-domain"|"b-factor"|"b-factor-norm"|"af2-plddt"|"secondary-structure"|"jones-rainbow"|"mol-symm" | { selection: string, colour: string }[] | {
       raw: {
@@ -98,9 +98,18 @@ elements?: ({
     }
   })[]
 })[]
+maskMaps?: ({
+  name: string  # handle for the NEW masked map (referenced by maps[].from)
+  map: string  # source map: a maps[] entry name (preferred — carries mtz columns), a files[] map/mtz entry, or an earlier maskMaps[] name (chaining)
+  model: string  # model whose atoms define the mask region: a files[] coordinates entry
+  selection?: string  # CID limiting the mask atoms; default whole model
+  radius?: number  # mask radius (Å) around atoms; omit for Moorhen's default
+  keep?: "inside"|"outside"  # which density to retain, relative to the selection. "inside" (default) keeps density NEAR the atoms (the usual "density for my ligand/chain" figure); "outside" keeps everything except near the atoms (carves a hole)
+})[]
 maps?: ({
   name: string
-  file: string  # name of a files[] entry (kind mtz or map)
+  file?: string  # name of a files[] entry (kind mtz or map); set this OR from
+  from?: string  # name of a maskMaps[] output to render instead of a file; set this OR file
   columns?: {
     F?: string
     PHI?: string

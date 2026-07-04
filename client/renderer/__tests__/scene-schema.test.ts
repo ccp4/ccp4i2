@@ -244,6 +244,101 @@ describe("validity", () => {
   });
 });
 
+describe("map masking (derived maps)", () => {
+  const base = {
+    scene: "m",
+    version: 1,
+    files: [
+      { name: "prot", pdb: "1abc" },
+      { name: "refl", url: "http://x/y.mtz", kind: "mtz" },
+    ],
+  };
+
+  it("accepts a mask recipe rendered via maps[].from", () => {
+    const s = {
+      ...base,
+      maskMaps: [
+        { name: "masked", map: "refl", model: "prot", selection: "//A/50", radius: 5 },
+      ],
+      maps: [{ name: "view", from: "masked", contourLevel: 1.2 }],
+    };
+    expect(validateScene(s).errors).toEqual([]);
+  });
+
+  it("accepts a mask sourced from a file-backed maps[] entry (columns route)", () => {
+    const s = {
+      ...base,
+      maps: [
+        { name: "full", file: "refl", columns: { F: "FWT", PHI: "PHWT" }, visible: false },
+        { name: "view", from: "masked" },
+      ],
+      maskMaps: [{ name: "masked", map: "full", model: "prot", selection: "//A" }],
+    };
+    expect(validateScene(s).errors).toEqual([]);
+  });
+
+  it("allows chaining: a mask whose source is an earlier mask output", () => {
+    const s = {
+      ...base,
+      maskMaps: [
+        { name: "m1", map: "refl", model: "prot" },
+        { name: "m2", map: "m1", model: "prot", keep: "outside" },
+      ],
+      maps: [{ name: "view", from: "m2" }],
+    };
+    expect(validateScene(s).errors).toEqual([]);
+  });
+
+  it("rejects a forward/self reference in the mask source (keeps chaining acyclic)", () => {
+    const s = {
+      ...base,
+      maskMaps: [
+        { name: "m1", map: "m2", model: "prot" }, // m2 defined later
+        { name: "m2", map: "refl", model: "prot" },
+      ],
+    };
+    const { errors } = validateScene(s);
+    expect(errors.some((e) => e.path === "maskMaps[0].map")).toBe(true);
+  });
+
+  it("accepts keep: inside/outside and rejects the removed invert field", () => {
+    const ok = {
+      ...base,
+      maskMaps: [{ name: "m", map: "refl", model: "prot", keep: "inside" }],
+      maps: [{ name: "view", from: "m" }],
+    };
+    expect(validateScene(ok).errors).toEqual([]);
+    const bad = {
+      ...base,
+      maskMaps: [{ name: "m", map: "refl", model: "prot", invert: true }],
+    };
+    expect(validateScene(bad).errors.length).toBeGreaterThan(0);
+  });
+
+  it("rejects a maps[] entry with both file and from", () => {
+    const s = {
+      ...base,
+      maskMaps: [{ name: "masked", map: "refl", model: "prot" }],
+      maps: [{ name: "view", file: "refl", from: "masked" }],
+    };
+    expect(validateScene(s).errors.length).toBeGreaterThan(0);
+  });
+
+  it("rejects a maps[] entry with neither file nor from", () => {
+    const s = { ...base, maps: [{ name: "view", contourLevel: 1 }] };
+    expect(validateScene(s).errors.length).toBeGreaterThan(0);
+  });
+
+  it("rejects a mask model that is not a coordinates file", () => {
+    const s = {
+      ...base,
+      maskMaps: [{ name: "masked", map: "refl", model: "refl" }], // refl is mtz
+    };
+    const { errors } = validateScene(s);
+    expect(errors.some((e) => e.path === "maskMaps[0].model")).toBe(true);
+  });
+});
+
 describe("hints + honoured geometry", () => {
   it("accepts scene-level lighting/effects hints", () => {
     const s = {
@@ -313,6 +408,28 @@ describe("profiles (portable vs permissive)", () => {
   it("strict-portable rejects ccp4i2 deployment refs", () => {
     const { errors } = validateScene(sceneWithFileId, { portable: true });
     expect(errors.length).toBeGreaterThan(0);
+  });
+
+  it("accepts fileId qualified by projectName instead of projectId", () => {
+    const s = {
+      ...sceneWithFileId,
+      files: [{ name: "x", fileId: 7, projectName: "apo-lysozyme" }],
+    };
+    expect(validateScene(s).errors).toEqual([]);
+  });
+
+  it("accepts job+param qualified by projectName", () => {
+    const s = {
+      ...sceneWithFileId,
+      files: [{ name: "x", job: 3, param: "XYZOUT", projectName: "apo-lysozyme" }],
+    };
+    expect(validateScene(s).errors).toEqual([]);
+  });
+
+  it("rejects fileId with no project qualifier (neither projectId nor projectName)", () => {
+    const s = { ...sceneWithFileId, files: [{ name: "x", fileId: 7 }] };
+    const { errors } = validateScene(s);
+    expect(errors.some((e) => e.path.includes("projectId"))).toBe(true);
   });
 });
 
