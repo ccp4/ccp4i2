@@ -1,4 +1,5 @@
 from pathlib import Path
+from shutil import which
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ModelData import CPdbDataFile
 
@@ -7,7 +8,7 @@ class coot1(CPluginScript):
     TASKNAME = "coot1"
     TASKMODULE = "model_building"
     TASKTITLE = "Coot 1"
-    TASKCOMMAND = "coot-1"
+    TASKCOMMAND = which("coot-1")
     TASKVERSION = 0.1
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
