@@ -55,7 +55,9 @@ class Cccp4mg_edit_model(CTaskWidget):
  
   def isValid(self):
     import os
+    #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return
     followJobId = self.getWidget('followFrom').currentJobId()
+    #print 'Ccoot_rebuild.isValid followFrom',followJobId
     return CTaskWidget.isValid(self)
   
