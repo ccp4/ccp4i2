@@ -7,7 +7,7 @@ from core.CCP4PluginScript import CPluginScript
 class nucleofind(CPluginScript):
     TASKMODULE = 'model_building'
     TASKCOMMAND = 'nucleofind'
-    WHATNEXT = ['coot1']
+    WHATNEXT = ['coot_rebuild','coot1']
     MAINTAINER = 'jordan.dialpuri@york.ac.uk'
 
     def makeCommandAndScript(self):
