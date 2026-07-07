@@ -81,6 +81,30 @@ each kill one of them.
 
 ---
 
+# An honest word — on maturity
+
+**Well-tested:** automated coverage **strengthened & extended** — unit capability
+tests + `i2run` end-to-end task tests. The **plumbing and data model are solid**.
+
+**Under-exercised:** individual **wrappers and interfaces** have had little
+real-world use — everyday work *will* surface issues.
+
+**So a further ask:** **patient early users** who run it in anger and **file
+reports**. Issues should be **fixed fast** — the project's logical structure makes
+them easy to locate (and well-suited to AI-assisted fixing).
+
+<!--
+1 min. Say this plainly and early — candour buys credibility for the wins that
+follow. The distinction that matters: we hardened the FOUNDATIONS (unit + i2run),
+but breadth across every wrapper/interface is thin, so real use will find bugs.
+Turn it into the ask: patient testers who report. The confidence is genuine — the
+clean layout (one tasks.py entry per task, def.xml-driven UI, gemmi-based core)
+makes issues quick to locate and fix; well-suited to AI-assisted development
+(name Claude explicitly if you like).
+-->
+
+---
+
 # The architecture, in one picture
 
 ```
