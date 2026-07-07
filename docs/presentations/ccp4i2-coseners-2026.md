@@ -5,6 +5,11 @@ paginate: true
 size: 16:9
 header: 'The new CCP4i2 · CCP4 Developers Meeting, Cosener\'s House'
 footer: 'Martin Noble · Newcastle University'
+style: |
+  section { font-size: 25px; line-height: 1.3; }
+  section h1 { font-size: 1.7em; line-height: 1.15; }
+  section li { margin: 0.12em 0; }
+  section blockquote { font-size: 0.95em; }
 ---
 
 <!--
@@ -268,8 +273,8 @@ CUT NOTE: droppable if short on time — it's a delighter, not load-bearing.
 
 1. Run a task → preview its MTZ output (reciprocal space)
 2. Open the result in **Moorhen** — model + map
-3. **Reports**: refinement tables + interactive Chart.js plots (right = live Servalcat report)
-4. Same thing, **browser tab and desktop** — one codebase
+3. **Reports**: tables + interactive Chart.js plots (right = live Servalcat)
+4. Same result, **browser tab and desktop** — one codebase
 
 <!--
 4 min. Live if the network holds; the image is a real Servalcat report (Chart.js
@@ -283,17 +288,13 @@ HAVE A RECORDED FALLBACK ready. Money shot: identical result desktop and browser
 
 ![bg right:46%](images/moorhen-windows.png)
 
-Not ported. The **same build**, on a fresh Windows VM after months untested.
+The **same build** on a fresh Windows VM, untested for months:
 
-- The **whole 2D app** ran — full pipeline (data reduction → PHASER →
-  Servalcat), interfaces, reports, MTZ previewer
-- And the **hardest case worked too**: **Moorhen** — WebGL2 + threaded WASM —
-  rendered model **and** density (right), no fuss
-- Why it holds: **Qt-free**, **gemmi** not platform binaries, ASCII `print()` /
-  `pathlib` / `ccp4-python -m pytest`
+- The **whole 2D app** ran — full pipeline, interfaces, reports, MTZ previewer
+- Even the hard case: **Moorhen** (WebGL2 + threaded WASM) — model + density (right)
+- **Qt-free**, gemmi not platform binaries, ASCII `print()` / `pathlib`
 
-> Every screenshot in this talk was taken on Windows. Cross-platform by
-> construction, not by heroics.
+> Every screenshot in this talk was taken on Windows.
 
 <!--
 1 min. TRUE story — tell it: cut a first alpha, ran it on a fresh Windows VM
