@@ -233,12 +233,11 @@ This is the slide that separates you from "just a UI refresh."
 
 ![bg right:50%](images/mtz-reciprocal-previewer.png)
 
-Reflection data, **in the browser** — not a table of numbers, *reciprocal space*:
+Reflection data **in the browser** — reciprocal space, not a table of numbers:
 
-- hk/hl/kl planes, reflections coloured by intensity, resolution rings,
-  Miller-index tooltips (Canvas)
+- hk/hl/kl planes, coloured by intensity; resolution rings; hover tooltips
 - **Moorhen** 3D — models + electron density (WebGL/WASM)
-- Report graphs (Chart.js), Clustal alignment, pipeline **DAG**, validation viewer
+- Chart.js report graphs, Clustal alignment, pipeline **DAG**, validation viewer
 
 <!--
 1.5 min. The MTZ previewer (image = real Windows grab: gamma_xe_mosflm.mtz, P222,
@@ -290,9 +289,9 @@ HAVE A RECORDED FALLBACK ready. Money shot: identical result desktop and browser
 
 The **same build** on a fresh Windows VM, untested for months:
 
-- The **whole 2D app** ran — full pipeline, interfaces, reports, MTZ previewer
-- Even the hard case: **Moorhen** (WebGL2 + threaded WASM) — model + density (right)
-- **Qt-free**, gemmi not platform binaries, ASCII `print()` / `pathlib`
+- The **whole 2D app** — pipeline, interfaces, reports, previewer
+- Even **Moorhen** (WebGL2 + threaded WASM) — model + density (right)
+- **Qt-free**; gemmi over platform binaries; disciplined `print()`/`pathlib`
 
 > Every screenshot in this talk was taken on Windows.
 
@@ -330,14 +329,36 @@ The niche is: self-hosted, lab-scale, CCP4i2-native. Humble and useful.
 - Interactive layer with **no native CCP4 dependency**
 - Your wrappers & def.xml: **unchanged, now web-native and scriptable**
 
-## Get involved
-- Add a program = **one `def.xml` + one dict entry**
-- The **CCP4i-retirement path** is open for discussion — talk to me
+<!--
+1 min. Close on the project-level win (fewer things to maintain), then lead
+straight into the "two ways in + the ask" slide. Repo/doc pointers to have ready:
+CCP4I_CLASSIC_MODE_THINKING.md, core/tasks.py.
+-->
+
+---
+
+# Two ways in — and the ask
+
+**Early-bird user** (no build, ~10 min):
+- Install CCP4 → download the desktop app → click **Install** (it sets up the backend)
+- macOS · Windows · Linux — proven on all three
+
+**Developer** (from source):
+- Clone → `ccp4-python -m pip install -e server` → run the server + client
+- Add your program = **one `def.xml` + one line in `tasks.py`**
+
+## The ask
+- There's a **working, version-pinned alpha** — tested to Windows.
+- **Open early-bird testing to the community?** Bring your programs and feedback —
+  help remove the reasons to reach for CCP4i.
 
 <!--
-1 min. Close on the project-level win (fewer things to maintain) and a concrete,
-low-friction invitation. Then hand to Q&A.
-Repo / doc pointers to have ready: CCP4I_CLASSIC_MODE_THINKING.md, core/tasks.py.
+1.5 min. THE buy-in moment. Context: the alpha is built and Windows-proven but
+deliberately held back pending this conversation, so the ask is literally "do we
+open early-bird testing?". Emphasise low friction (~10 min; the app installs its
+own backend) and that adding YOUR program is trivial (def.xml + one line). Invite
+them to bring their wrappers — this is where "should this go public?" gets its
+answer from the room.
 -->
 
 ---
