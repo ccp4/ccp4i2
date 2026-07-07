@@ -26,14 +26,19 @@ export const Ccp4i2FileRef = CoreFileRefShape.extend({
     .string()
     .optional()
     .describe("origin-relative URL (/api/…); not portable across deployments"),
-  projectId: z.string().optional().describe("project UUID; with fileId or job+param, give this OR projectName"),
+  projectId: z
+    .string()
+    .optional()
+    .describe(
+      "project UUID. Required for job+param (give this OR projectName); advisory on a fileId ref (fileId alone fetches)",
+    ),
   projectName: z
     .string()
     .optional()
     .describe(
-      "project name (unique within this deployment); resolves fileId/job+param when projectId is absent. Not portable across deployments — prefer projectId when known",
+      "project name (unique within this deployment). Resolves job+param when projectId is absent; advisory on a fileId ref. Not portable across deployments — prefer projectId when known",
     ),
-  fileId: z.number().optional(),
+  fileId: z.number().optional().describe("ccp4i2 file id (globally unique in the DB); fetches without a project qualifier"),
   job: z.number().optional().describe("pair with param"),
   param: z.string().optional().describe('job parameter, e.g. "XYZOUT"'),
 })
@@ -54,20 +59,21 @@ export const Ccp4i2FileRef = CoreFileRefShape.extend({
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:
-          "set exactly one of: pdb, url, bundle, cifText, relativeUrl, fileId(+projectId|projectName), job+param(+projectId|projectName)",
+          "set exactly one of: pdb, url, bundle, cifText, relativeUrl, fileId, job+param(+projectId|projectName)",
       });
     }
-    // fileId/job+param name a file WITHIN a project, so they need a project
-    // qualifier. Either the UUID (projectId, authoritative + portable) or the
-    // name (projectName, unique within this deployment — the handle a human
-    // authoring a cross-project superposition ref actually has). The fetcher
-    // resolves projectName→pk against the current deployment; projectId wins
-    // when both are set. See moorhen-wrapper.tsx resolveProjectPk.
-    if ((hasFileId || hasJobParam) && ref.projectId == null && ref.projectName == null) {
+    // A fileId is globally unique in the ccp4i2 DB and the download URL keys on
+    // it alone (/files/<fileId>/download/), so it needs NO project qualifier —
+    // projectId/projectName on a fileId ref are advisory context only.
+    // job+param DOES need one: it resolves project → jobs → output file, so
+    // without a project there's nothing to scope the job number against. Either
+    // the UUID (projectId, authoritative + portable) or the name (projectName,
+    // unique within this deployment). See moorhen-wrapper.tsx resolveProjectPk.
+    if (hasJobParam && ref.projectId == null && ref.projectName == null) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["projectId"],
-        message: "fileId or job+param needs a project qualifier: set projectId (UUID) or projectName",
+        message: "job+param needs a project qualifier: set projectId (UUID) or projectName",
       });
     }
     if (ref.job != null && ref.param == null) {

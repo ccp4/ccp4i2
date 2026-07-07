@@ -72,14 +72,15 @@
             "type": "string"
           },
           "projectId": {
-            "description": "project UUID; with fileId or job+param, give this OR projectName",
+            "description": "project UUID. Required for job+param (give this OR projectName); advisory on a fileId ref (fileId alone fetches)",
             "type": "string"
           },
           "projectName": {
-            "description": "project name (unique within this deployment); resolves fileId/job+param when projectId is absent. Not portable across deployments — prefer projectId when known",
+            "description": "project name (unique within this deployment). Resolves job+param when projectId is absent; advisory on a fileId ref. Not portable across deployments — prefer projectId when known",
             "type": "string"
           },
           "fileId": {
+            "description": "ccp4i2 file id (globally unique in the DB); fetches without a project qualifier",
             "type": "number"
           },
           "job": {
