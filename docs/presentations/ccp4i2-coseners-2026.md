@@ -36,16 +36,24 @@ and that in doing so we've opened a path to retire not one but two legacy layers
 
 > We replaced the **plumbing** — Qt, the dependency thicket, the plugin
 > registry — **without touching the crystallography**.
->
-> And in doing so, we can also retire the *other* legacy: **classic CCP4i**.
 
-**Two maintenance burdens → one.**
+**Where this sits in CCP4's interface strategy:**
+
+- CCP4i2 is now a **modern, maintainable, desktop-first vehicle** for exposing
+  crystallographic capability
+- The ambition: **remove the remaining reasons to reach for classic CCP4i** —
+  deep interaction with the software across the whole span, from **a single
+  program** to **a sophisticated pipeline**
 
 <!--
-1 min. This is the whole talk in one slide. Say the number out loud:
-the win for CCP4 as a project is FEWER things to maintain, not more.
-Everything that follows is evidence for this claim.
-Don't frame it as "a shiny new rewrite" — this room is wary of rewrites.
+1 min. The whole talk in one slide, two moves: (1) we modernised the plumbing
+without disturbing the science; (2) that makes CCP4i2 the vehicle for CCP4's
+interface strategy going forward — good enough to remove the reasons people
+still reach for classic CCP4i, and spanning the full range from a single program
+to a full pipeline. Frame classic-CCP4i "retirement" as *reproduce the idiom so
+there's no reason to stay* (the later slide) — NOT "we're deleting your thing";
+the room may include its maintainers. Don't call it a "shiny rewrite" — this
+crowd is wary of rewrites.
 -->
 
 ---
