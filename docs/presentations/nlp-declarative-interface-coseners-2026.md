@@ -4,7 +4,6 @@ theme: default
 paginate: true
 size: 16:9
 header: 'Natural language as an interface to complex capability · Cosener''s House break-out'
-footer: 'Martin Noble · Newcastle University'
 style: |
   section { font-size: 25px; line-height: 1.3; }
   section h1 { font-size: 1.5em; line-height: 1.15; }
@@ -38,6 +37,81 @@ Break-out: *Natural language as an interface to complex capability*
 30 sec. Framing line while the title is up: "The interesting bit isn't the model.
 It's the SHAPE we gave the problem so a model could touch it safely — a narrow
 declarative interface with all the meaning kept deterministic behind it."
+-->
+
+---
+
+<style scoped>
+section { padding-top: 40px; }
+.worked { display: flex; gap: 0.6em; align-items: stretch; margin-top: 0.1em; }
+.worked .col { flex: 1 1 0; display: flex; flex-direction: column; min-width: 0; }
+.worked .yamlcol { flex: 1.15 1 0; }
+.worked .col h3 { font-size: 0.58em; margin: 0 0 0.3em 0; letter-spacing: 0.03em;
+  text-transform: uppercase; color: #666; font-weight: 700; }
+.worked .prompt { font-size: 0.74em; line-height: 1.4; background: #f4f6f8;
+  border-left: 4px solid #4a7cbf; border-radius: 4px; padding: 0.75em 0.85em; }
+.worked .prompt b { color: #1f4e79; }
+.worked pre { font-size: 8.5px; line-height: 1.32; background: #1e1e28; color: #cfcfe0;
+  border-radius: 4px; padding: 0.6em 0.8em; margin: 0; flex: 1; white-space: pre;
+  overflow: hidden; font-family: "SFMono-Regular", Menlo, Consolas, monospace; }
+.worked pre b { color: #7fb0e6; font-weight: 600; }   /* keys */
+.worked pre i { color: #c8e6a0; font-style: normal; } /* values */
+.worked pre u { color: #ff8f6b; text-decoration: none; } /* colour hexes */
+.worked .shot img { width: 100%; border-radius: 4px; box-shadow: 0 1px 6px rgba(0,0,0,0.25); }
+.worked .arrow { align-self: center; font-size: 1.3em; color: #4a7cbf; }
+.worked-cap { text-align: center; font-size: 0.7em; color: #555; margin-top: 0.55em; }
+</style>
+
+# One sentence in, a rendered scene out
+
+<div class="worked">
+<div class="col">
+<h3>1 · Plain-English prompt</h3>
+<div class="prompt">
+"Using PDB file <b>1HCK</b>, draw <b>chain A as ribbons</b> and the <b>ATP as metaballs</b>. Residues <b>1–84</b> should be white except for the <b>C-helix (45–58)</b> which should be <b>red</b>. Residues <b>85–300</b> should be <b>golden</b>."
+</div>
+</div>
+<div class="arrow">→</div>
+<div class="col yamlcol">
+<h3>2 · Generated scene (validated YAML)</h3>
+<pre><b>scene:</b> <i>1HCK coloured kinase domains</i>
+<b>version:</b> 1
+<b>files:</b>
+  - {<b>name:</b> <i>1hck</i>, <b>pdb:</b> <i>1HCK</i>}
+<b>elements:</b>
+  - <b>file:</b> <i>1hck</i>
+    <b>representations:</b>
+      - <b>style:</b> <i>CRs</i>
+        <b>selection:</b> <i>//A</i>
+        <b>colour:</b>
+          - {<b>selection:</b> <i>//A/1-44</i>,   <b>colour:</b> <u>"#ffffff"</u>}
+          - {<b>selection:</b> <i>//A/45-58</i>,  <b>colour:</b> <u>"#ff0000"</u>}
+          - {<b>selection:</b> <i>//A/59-84</i>,  <b>colour:</b> <u>"#ffffff"</u>}
+          - {<b>selection:</b> <i>//A/85-300</i>, <b>colour:</b> <u>"#d4af37"</u>}
+      - <b>style:</b> <i>MetaBalls</i>
+        <b>selection:</b> <i>//A/400</i>
+<b>view:</b>
+  <b>centre:</b> {<b>file:</b> <i>1hck</i>, <b>selection:</b> <i>//A/400</i>}
+  <b>slab:</b>   {<b>file:</b> <i>1hck</i>, <b>selection:</b> <i>//A</i>}
+  <b>background:</b> <u>"#ffffff"</u></pre>
+</div>
+<div class="arrow">→</div>
+<div class="col shot">
+<h3>3 · Rendered in Moorhen</h3>
+<img src="images/nlp-declarative-moorhen-scenes.png" alt="1HCK rendered from the generated scene: chain A as ribbons with white/red/golden domain colouring and ATP as metaballs" />
+</div>
+</div>
+
+<div class="worked-cap">The model emits <b>data</b> against the schema — the deterministic resolver turns that data into the picture. No render commands cross the boundary.</div>
+
+<!--
+1 min. Open the deck on the CONCRETE thing before any theory. Read the prompt aloud,
+then: "That English becomes this YAML — and note what the YAML is: it names a PDB,
+some selections, some colours. It is DATA, not instructions. The AI never told Moorhen
+to draw anything; it described a state, and our resolver rendered it." Point at the
+C-helix red stripe in the image as the 'it understood 45-58 is a sub-range of 1-84'
+tell. This slide earns the right to the abstract 'declarative waist' framing on the
+next slide — show it works, then explain why the shape matters.
 -->
 
 ---

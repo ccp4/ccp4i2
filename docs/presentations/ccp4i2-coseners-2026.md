@@ -4,7 +4,6 @@ theme: default
 paginate: true
 size: 16:9
 header: 'The new CCP4i2 · CCP4 Developers Meeting, Cosener\'s House'
-footer: 'Martin Noble · Newcastle University'
 style: |
   section { font-size: 25px; line-height: 1.3; }
   section h1 { font-size: 1.7em; line-height: 1.15; }
