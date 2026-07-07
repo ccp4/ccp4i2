@@ -324,7 +324,8 @@ The niche is: self-hosted, lab-scale, CCP4i2-native. Humble and useful.
 
 # Where this leaves CCP4
 
-- One engine, **two front doors**: modern typed + file-oriented
+- One modern engine able to carry **CCP4i's full capability** — via the typed
+  idiom (a file-oriented mode is a discussion point, not a decision)
 - Retire **Qt**, retire (eventually) **classic CCP4i / X11**
 - Interactive layer with **no native CCP4 dependency**
 - Your wrappers & def.xml: **unchanged, now web-native and scriptable**
