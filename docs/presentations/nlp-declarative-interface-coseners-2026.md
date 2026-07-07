@@ -27,10 +27,11 @@ SPEAKER NOTES — break-out contribution
   docs/NLP_JOB_CONSTRUCTION_DISCUSSION.md.
 -->
 
-# Natural language over a declarative waist
-## A worked example: teaching AIs to compose molecular graphics — and where it goes next
+# Natural language over a declarative interface
 
-**Martin Noble**, Newcastle University
+## Teaching a model to compose molecular graphics, and where the idea goes next
+
+Martin Noble, Newcastle University
 Break-out: *Natural language as an interface to complex capability*
 
 <!--
@@ -102,7 +103,7 @@ section { padding-top: 40px; }
 </div>
 </div>
 
-<div class="worked-cap">The model emits <b>data</b> against the schema — the deterministic resolver turns that data into the picture. No render commands cross the boundary.</div>
+<div class="worked-cap">The model writes data that fits the schema. A resolver we control turns that data into the picture. The model never issues a drawing command.</div>
 
 <!--
 1 min. Open the deck on the CONCRETE thing before any theory. Read the prompt aloud,
@@ -116,19 +117,17 @@ next slide — show it works, then explain why the shape matters.
 
 ---
 
-# (a) The approach: a declarative model, then two ways to teach an AI to write it
+# (a) The approach: a declarative model, and two ways to write it
 
-We did **not** teach an AI to *drive* Moorhen (imperative API, huge fragile surface).
-We built a **tight declarative model of a scene** — *what is shown*, not *how to draw it* — and taught AIs to **emit that data**.
+Rather than drive Moorhen through its imperative API (a large, fragile surface), we defined a small declarative model of a scene — a description of what is shown — and taught the model to produce that description.
 
-- **One source of truth** (a Zod schema) → *generates* every artifact, drift-tested to byte-equality:
-  machine **JSON Schema** · human **grammar** · compact **LLM brief** · strict **structured-output schema**
-- **Two delivery paths, one source:**
-  - **Capable model** → feed the schema to the **decoder** (constrained decoding): structure *guaranteed*, ~zero prompt tokens on shape, tokens spent on *intent*
-  - **Small / on-device model** → a compact in-prompt **mini-grammar** (~1k tokens)
-- A **deterministic resolver** applies the scene — validate / repair / render. **The AI emits data describing a state; it never issues render commands.**
+- The Zod schema is the single source. It generates every other artifact, and a drift test holds them byte-identical: the JSON Schema, the human grammar, the LLM brief, and the strict structured-output schema.
+- Two ways to deliver it:
+  - A capable model gets the schema at the decoder (constrained decoding). The structure is then guaranteed, so almost no prompt tokens go on shape and the budget goes on intent.
+  - A small or on-device model gets a compact grammar in the prompt (~1k tokens).
+- A resolver we control applies the scene: validate, repair, render. The model produces a description of a state; it never issues a render command.
 
-> The trust boundary is the schema + resolver, not the model.
+> What we trust is the schema and the resolver. We don't have to trust the model.
 
 <!--
 2 min. This is the corrected version of the one-liner ("declarative model + tight
@@ -145,18 +144,18 @@ with "AI drives the viewer", which has no ground truth and no safe undo.
 
 ---
 
-# (b) Why this shape — its strengths, and its edges
+# (b) Why this shape — what it buys, and where it strains
 
-**Why we arrived here.** An imperative "AI drives the viewer" interface has no ground truth, no undo, and a boundless surface. A **declarative waist** inverts that: the model emits *verifiable data*, and every hard guarantee lives in code we own.
+An "AI drives the viewer" interface has no ground truth, no undo, and an open-ended surface. A declarative interface avoids all three: the model produces data we can check, and the guarantees live in code we own.
 
-| Strengths | Edges / weaknesses |
+| Strengths | Costs |
 |---|---|
-| **Verifiable** — schema validates; bad output fails loudly, not silently | **Expressiveness ceiling** — only what the schema models; novel viz needs a schema change |
-| **Model-agnostic & drift-free** — one source feeds every model | **Schema must evolve carefully** once published/upstreamed |
-| **Token-economical** — shape via decoder, context spent on intent | **Constrained-decoding caps are real** — Azure's 100-property strict limit forced a pruned 83-property authoring subset |
-| **Graceful degradation** — *core* must-honour vs *hints* advisory (the "wrong vs merely plainer" test) | **"Fiction" risk** — a hint that maps to nothing; we defer such fields rather than fake them |
+| Checkable — the schema validates; bad output fails loudly | Only expresses what the schema models; a new kind of view needs a schema change |
+| One source feeds every model, and can't drift | The schema has to change carefully once it is published |
+| Cheap on tokens — shape at the decoder, context spent on intent | Decoder limits are real: Azure caps a strict schema at 100 properties, so we author against a pruned 83-property subset |
+| Degrades gracefully — *core* fields must be honoured, *hints* are advisory | A hint can map to nothing; where it would, we leave the field out rather than fake it |
 
-**Desktop / laptop fit.** Compactness is a *design constraint*, not an afterthought: the core grammar is small enough to *aspire* to an **on-device model** (Apple Intelligence, Windows Copilot) — **tiered prompting** escalates only complex scenes to the cloud. Honest status: **capable-model-via-constrained-decoding is the proven path today; on-device is measured-and-plausible, not yet shipped.**
+The core grammar is small on purpose — small enough that an on-device model (Apple Intelligence, Windows Copilot) is plausible, with only the harder scenes escalated to the cloud. To be clear about status: the constrained-decoding path works today on cloud models; the on-device path is designed for but not yet demonstrated.
 
 <!--
 2.5 min. The conformance split (slide's "core vs hints") is the elegant bit worth
@@ -173,23 +172,32 @@ demonstrated end to end. Don't oversell.
 
 ---
 
-# (c) Mapping it onto CCP4i2's crystallographic capability
+<style scoped>
+section { font-size: 22px; }
+h1 { margin-bottom: 0.25em; }
+table { font-size: 0.8em; margin: 0.35em 0; }
+table th, table td { padding: 0.25em 0.55em; line-height: 1.2; }
+ul { margin-top: 0.3em; }
+blockquote { margin-top: 0.4em; }
+</style>
 
-The same recipe, moved to a harder point on the risk axis. A **scene is declarative state**; a **job is a plan with side effects** — so the pattern carries, but the guarantees must be stronger.
+# (c) Applying the same idea to CCP4i2 jobs
 
-**What transfers unchanged** — LLM-as-parser (emits a structured `JobPlan`, never code, never a task name it invents) · backend owns the canonical catalogue · single-source strict schema · **confirm-before-act**.
+The same approach, at higher stakes. A scene is inert state; a job runs and has side effects. The pattern carries over, but the guarantees have to be stronger.
+
+What stays the same: the model parses the request into a structured `JobPlan` (never code, never a task name it invents), the backend owns the catalogue of real tasks, one strict schema, and a confirmation step before anything runs.
 
 | | Molecular graphics scene | Crystallographic job |
 |---|---|---|
-| AI emits | declarative **state** | a **plan / DAG** of jobs + bindings |
-| Cost of being wrong | cheap, instantly visible | wasted compute, *quietly* wrong science |
-| Side effects | none (idempotent) | queue, filesystem, external fetches |
-| Confirmation | optional | **non-negotiable** — preview every binding, then Submit |
+| Model produces | a description of state | a plan (DAG) of jobs and their inputs |
+| Cost of being wrong | small, and visible at once | wasted compute, or quietly wrong science |
+| Side effects | none | queue, filesystem, external fetches |
+| Confirmation | optional | required — every input shown, then Submit |
 
-- **The bridge:** the LLM types the user's words (*"the last MR job's coordinates"*, *"a dictionary from SMILES c1ccccc1"*); a **deterministic resolver** maps intent → real task names, job outputs, sub-jobs — exactly as the scene resolver maps a scene to renderer calls.
-- **v1 is deliberately safe:** resolver-first (slices 1–6 have *no* LLM), strict clarify over silent inference, an audit row per submission. *(docs/NLP_JOB_CONSTRUCTION_DISCUSSION.md)*
+- The bridge is the resolver. The model turns the user's words (*"the last MR job's coordinates"*, *"a dictionary from SMILES c1ccccc1"*) into real task names, job outputs and sub-jobs — the same job the scene resolver does for rendering.
+- v1 stays cautious: the first six slices use no model at all, it asks rather than guesses, and every submission leaves an audit record. *(docs/NLP_JOB_CONSTRUCTION_DISCUSSION.md)*
 
-> One recipe: narrow declarative interface · backend owns the semantics · AI only parses intent · human confirms. Scenes proved it cheap; jobs apply it where it pays.
+> The same idea throughout: a narrow declarative interface, the backend owning the meaning, the model only reading intent, a person confirming. Scenes showed it was cheap; jobs are where it pays off.
 
 <!--
 2.5 min. This is the "so what for CCP4" payoff. The key insight to voice: the scene

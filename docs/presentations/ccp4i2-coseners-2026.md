@@ -145,6 +145,13 @@ has no bespoke React and still renders.
 
 ---
 
+<style scoped>
+section { font-size: 22px; }
+h1 { margin-bottom: 0.3em; }
+table { font-size: 0.72em; margin: 0.4em 0; }
+table th, table td { padding: 0.25em 0.55em; line-height: 1.2; }
+</style>
+
 # We swept away the dependency thicket
 
 Rebased crystallographic utilities on **gemmi** — and where gemmi lacked it,
