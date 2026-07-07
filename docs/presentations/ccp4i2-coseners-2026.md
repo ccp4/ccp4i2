@@ -231,7 +231,7 @@ This is the slide that separates you from "just a UI refresh."
 
 # And it's actually richer to use
 
-![bg right:50%](images/mtz-reciprocal-previewer.png)
+![bg right:42%](images/mtz-reciprocal-previewer.png)
 
 Reflection data **in the browser** — reciprocal space, not a table of numbers:
 
@@ -285,7 +285,7 @@ HAVE A RECORDED FALLBACK ready. Money shot: identical result desktop and browser
 
 # Same codebase — every platform, including Windows
 
-![bg right:46%](images/moorhen-windows.png)
+![bg right:40%](images/moorhen-windows.png)
 
 The **same build** on a fresh Windows VM, untested for months:
 
