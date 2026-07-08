@@ -9,7 +9,7 @@ def addXMLelement(containerXML, elementname, elementtext):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 class ReflectionDataTypes():
-    # Information about data types for I2 converion from mmcif or MTZ to MTZ
+    # Information about data types for I2 conversion from mmcif or MTZ to MTZ
 
     # Dictionary of data types: for each type
     #   List of [mmcif_code, MTZ column name, column type, datasetID]

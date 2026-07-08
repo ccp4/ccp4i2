@@ -170,7 +170,7 @@ class import_merged_report(Report):
       #importDiv.append(message)
 
     if fformat == 'sca':
-      s = self.reportResolution(self.importxml)
+      s, resmax = self.reportResolution(self.importxml)
       if s != '':
         importDiv.append('Selected r'+s[1:])
 
@@ -178,7 +178,10 @@ class import_merged_report(Report):
       message = self.mtzreport()  # for X2MTZ block from Gemmi import
       #importDiv.append("<br/>")
       for line in message:
-        importDiv.addText(text=line)
+        if 'NOTE' in line:
+          importDiv.addText(text=line, style='color:darkorange')
+        else:
+          importDiv.addText(text=line)
         #importDiv.append("<br/>")
     elif fformat == 'mmcif':
       mmcifDiv = importDiv.addDiv(style="padding:5px;background-color:#CCEEFF;")
@@ -188,9 +191,10 @@ class import_merged_report(Report):
       message = self.mmcifreport()   #  information about the mmCIF file
       #mmcifDiv.append("<br/>")
       for line in message:
-        mmcifDiv.addText(text=line)
-        #mmcifDiv.append("<br/>")
-      #mmcifDiv.append(message)
+        if 'NOTE' in line:
+          mmcifDiv.addText(text=line, style='color:darkorange')
+        else:
+          mmcifDiv.addText(text=line)
 
     parent.addText(text="NB data from the original file are kept for use in downstream processing",
                    style='font-weight:bold; font-size:120%; color:blue;')
@@ -276,7 +280,7 @@ class import_merged_report(Report):
         # Case 3, should be "False", during rerun
         if nfrs[0] == "False":
           #print "Case 3"
-          freeRmessage = self.makeFreeRwarningMessage(obsfreecellcomparison)
+          freeRmessage = self.makeFreeRwarningMessage(newfreermade, obsfreecellcomparison)
           ##          headlines.append("WARNING: the imported FreeR set could not be extended, because all input values are the same")
           headlines.append("Generating a new FreeR set instead")
         else:
@@ -284,8 +288,9 @@ class import_merged_report(Report):
       else:
         # Case 4, newFreeR should be "False", "True"
         if (nfrs[0] == "False") and (nfrs[1] == "True"):
-          #print "Case 4"
-          freeRmessage = self.makeFreeRwarningMessage(obsfreecellcomparison)
+          # print( "Case 4")
+          freeRmessage = self.makeFreeRwarningMessage(newfreermade,
+                                                      obsfreecellcomparison)
           for message in freeRmessage:
             headlines.append(message)
           headlines.append("A new FreeR set has been generated instead")
@@ -297,7 +302,7 @@ class import_merged_report(Report):
       OK = True
       if len(nfrs) > 0:
         if nfrs[0] == 'False':
-          print("Case 1", len(nfrs))
+          #print("Case 1", len(nfrs))
           message = ''
           if freeRcolumnLabel is None:
             message = "The imported FreeR set has been copied and completed"
@@ -367,9 +372,9 @@ class import_merged_report(Report):
         #parent.append("<br/>")
         parent.addText(text=line)
       #parent.append("<br/>")
-      if self.omitmessage is not None:
-        msg = html_linebreak(self.omitmessage)
-        parent.append(msg)
+      #if self.omitmessage is not None:
+      #  msg = html_linebreak(self.omitmessage)
+      #  parent.append(msg)
       #parent.append("<br/>")
 
   # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
@@ -645,8 +650,11 @@ class import_merged_report(Report):
 
     # ctruncate
     if self.ctruncatereports != None:
-      self.ctruncatereports[0].keyText(summaryfold, phasertncs=self.phasertNCS)
-
+      if len(self.ctruncatereports) > 0:
+        self.ctruncatereports[0].keyText(summaryfold, phasertncs=self.phasertNCS)
+      else:
+        self.ctruncatereports = None
+        
     # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
     # Main summary
     overallsummaryDiv = parent.addDiv(\
@@ -770,8 +778,15 @@ class import_merged_report(Report):
     if len(self.importxml.findall("X2MTZ"))>0:
       outputcolumnnames = self.importxml.findall("X2MTZ/outputcolumnnames")[0].text
 
-    if len(self.importxml.findall('MMCIF_CONVERT'))>0:
-      outputcolumnnames = self.importxml.findall("MMCIF_CONVERT/outputcolumnnames")[0].text
+    cifconvert = self.importxml.findall('MMCIF_CONVERT')
+    if len(cifconvert)>0:
+      cifconvert = cifconvert[0]
+      outputcolumnnames = cifconvert.findall("outputcolumnnames")
+      if len(outputcolumnnames) > 0:
+        outputcolumnnames = outputcolumnnames[0].text
+      else:
+        outputcolumnnames = None
+
     if outputcolumnnames is not None:
       text.append( "Columns written to output file: "+outputcolumnnames)
 
@@ -779,36 +794,54 @@ class import_merged_report(Report):
       cifcolumns = self.importxml.findall("mmcifblockcolumns")[0].text
       text.append( "mmCIF columns used: "+cifcolumns)
       
-    if len(self.importxml.findall('MMCIF_CONVERT'))>0:
-      outputdatatype = self.importxml.findall("MMCIF_CONVERT/datatype")[0].text
-      nreflections = self.importxml.findall("MMCIF_CONVERT/nrefoutput")[0].text
+    if len(cifconvert)>0:
+      outputdatatype = cifconvert.findall("datatype")[0].text
+      nreflections = cifconvert.findall("nrefoutput")[0].text
       text.append("Number of reflections output: " + nreflections)
+
       # Resolution things
-      if len(self.importxml.findall("MMCIF_CONVERT/ResolutionRange"))>0:
-        rfindall = self.importxml.findall('MMCIF_CONVERT')[0]
-        s = self.reportResolution(rfindall)
+      resmax = 0.0
+      if len(cifconvert.findall("ResolutionRange"))>0:
+        s, resmax = self.reportResolution(cifconvert)
         text.append(s)
-      cifmessage = self.importxml.findall("MMCIF_CONVERT/message")[0].text
+      if len(cifconvert.findall("maxResolutionAccepted"))>0:
+        resaccepted = cifconvert.findall("maxResolutionAccepted")[0].text
+        # monitor if significantly lower than file resolution
+        if (float(resaccepted) - float(resmax)) > 0.002:
+          if len(cifconvert.findall('OmittedMissing'))>0:
+            # Missing reflections omitted
+            mess = 'NOTE: highest resolution for accepted (not omitted) reflections: ' + resaccepted
+          else:
+          # Missing reflections kept
+            mess = 'NOTE: highest resolution for accepted (not flagged) reflections: ' + resaccepted
+          text.append(mess)
+
+      cifmessage = cifconvert.findall("message")[0].text
       if cifmessage == "combine anomalous lines":
         text.append(outputdatatype+" generated from Bijvoet equivalents on different lines")
-      if len(self.importxml.findall('MMCIF_CONVERT/reducemessage'))>0:
-        text.append(self.importxml.findall("MMCIF_CONVERT/reducemessage")[0].text)
+      if len(cifconvert.findall('reducemessage'))>0:
+        text.append(cifconvert.findall("reducemessage")[0].text)
 
       self.omitmessage = None
-      if len(self.importxml.findall('MMCIF_CONVERT/OmittedMissing'))>0:
-        nomitted = self.importxml.findall('MMCIF_CONVERT/OmittedMissing')[0].text
+      if len(cifconvert.findall('OmittedMissing'))>0:
+        nomitted = cifconvert.findall('OmittedMissing')[0].text
         self.omitmessage = str(nomitted) + \
             ' reflections were omitted since they contained no data (all missing)'
-        if len(self.importxml.findall('MMCIF_CONVERT/OmittedMissingValidFreeR'))>0:
-          omitedValidFreeR = \
-              self.importxml.findall('MMCIF_CONVERT/OmittedMissingValidFreeR')[0].text
-          self.omitmessage += '\n  of these, '+str(omitedValidFreeR)+' had a valid FreeR flag'
+        if len(cifconvert.findall('OmittedMissingValidFreeR'))>0:
+          omittedValidFreeR = \
+              cifconvert.findall('OmittedMissingValidFreeR')[0].text
+          self.omitmessage += '\n  of these, '+str(omittedValidFreeR)+' had a valid FreeR flag'
+      elif len(cifconvert.findall('KeptMissing'))>0:
+        nokept = cifconvert.findall('KeptMissing')[0].text
+        self.omitmessage = str(nokept) + \
+            ' reflections contained no data but were kept'
+      if self.omitmessage is not None:
+        text.append(self.omitmessage)
         
-      #text.append("Number of reflections output: "+str(nreflections))
       # FreeR things
-      if len(self.importxml.findall('MMCIF_CONVERT/FreeRinFile'))>0:
-        filefreer = self.importxml.findall("MMCIF_CONVERT/FreeRinFile")[0].text
-        freerused = self.importxml.findall("MMCIF_CONVERT/FreeRused")[0].text
+      if len(cifconvert.findall('FreeRinFile'))>0:
+        filefreer = cifconvert.findall("FreeRinFile")[0].text
+        freerused = cifconvert.findall("FreeRused")[0].text
         text.append("Output FreeR generated from mmCIF column: "+freerused)
         frlist = filefreer.split()
         if len(frlist) > 1:
@@ -816,17 +849,23 @@ class import_merged_report(Report):
           for frc in frlist:
             s += frc + " and "
           text.append(s[:-5])
+        nreffreer = cifconvert.findall("freeRwritten")[0].text
+        if int(nreffreer) != int(nreflections):
+          text.append("NOTE: number of FreeR reflections written "+nreffreer+\
+                      " is not the same as number of data reflections "+nreflections)
+        
 
     return text
   # . . . . . . . . . . . . . . . . . . . . . . . . . . . .
   def reportResolution(self, rfindall):
     # Return text describing resolution range and maybe cutoff
+    resmax = 0.0
     rrpaths = rfindall.findall('ResolutionRange')
     if len(rrpaths) == 0:
       return ''
     if len(rrpaths) > 1:
       # file resolution and cutoff resolution
-      resorange = self.formatresorange(rrpaths[0])
+      resorange, resmax = self.formatresorange(rrpaths[0])
       s = "Resolution range in file (A): " + resorange
       # Second one should be labelled "cutresolution"
       rrp = rrpaths[1].attrib
@@ -834,14 +873,18 @@ class import_merged_report(Report):
       if 'id' in rrp:
         attr = rrp['id']
         if attr == "cutresolution":  # just checking
-          resorange = self.formatresorange(rrpaths[1])
-          s += ", trimmed to " + resorange
+          # is maximum cut resolution higher than main one?
+          maxr = rrpaths[0].findall('max')[0].text
+          maxt = rrpaths[1].findall('max')[0].text
+          if (float(maxt) - float(maxr)) > 0.001:
+            resorange, dummy = self.formatresorange(rrpaths[1])
+            s += ", trimmed to " + resorange
     else:
       # Just file resolution
-      resorange = self.formatresorange(rrpaths[0])
+      resorange, resmax = self.formatresorange(rrpaths[0])
       s = "Resolution range (A): " + resorange
       
-    return s
+    return s, resmax
   # . . . . . . . . . . . . . . . . . . . . . . . . . . . .
   def formatresorange(self, rrpath):
     dmax = None
@@ -858,10 +901,10 @@ class import_merged_report(Report):
       # both rsent
       s = dmax + " to " + dmin
     elif dmax is None:
-      s = 'high resolution '+dmin
+      s = 'high resolution ' + dmin
     elif dmin is None:
-      s = 'low resolution '+dmax
-    return s
+      s = 'low resolution ' + dmax
+    return s, dmin
 
   # . . . . . . . . . . . . . . . . . . . . . . . . . . . .
   def mtzreport(self):
@@ -873,10 +916,38 @@ class import_merged_report(Report):
     if len(self.importxml.findall("X2MTZ/ResolutionRange"))>0:
       # X2MTZ block from Gemmi python mtzimport
       rfindall = self.importxml.findall('X2MTZ')[0]
-      s = self.reportResolution(rfindall)
+      s,resmax = self.reportResolution(rfindall)
       text.append(s)
       nreflections = self.importxml.findall("X2MTZ/nrefoutput")[0].text
       text.append("Number of reflections output: " + nreflections)
+
+      nrefin = 0
+      nrefexcluded = 0
+      nr = self.importxml.findall("X2MTZ/nrefinput")
+      if len(nr) > 0:
+        nrefin = nr[0].text
+      nr = self.importxml.findall("X2MTZ/OmittedMissing")
+      if len(nr) > 0:
+        nrefexcluded = nr[0].text
+      if int(nrefin) > 0:
+        text.append("Number of reflections input: " + nrefin)
+        if int(nrefexcluded) > 0:
+          text.append("Number of reflections excluded as missing: " + nrefexcluded)
+      nr = self.importxml.findall("X2MTZ/KeptMissing")
+      if len(nr) > 0:
+        mess = 'NOTE: number of reflections flagged as all missing (not removed): ' + nr[0].text
+        text.append(mess)
+      nr = self.importxml.findall("X2MTZ/maxResolutionAccepted")
+      if len(nr) > 0:
+        resaccepted = nr[0].text
+        rr = self.importxml.findall('X2MTZ/ResolutionRange/max')
+        if len(rr)>0:
+          resmax = rr[0].text
+        # Report if larger than maximum resolution
+        if (float(resaccepted) - float(resmax)) > 0.002:
+          mess = 'NOTE: highest resolution for accepted (not flagged) reflections: ' + resaccepted
+          text.append(mess)
+        
       if len(self.importxml.findall("X2MTZ/freercolumnname"))>0:
         freercolumnname = self.importxml.findall("X2MTZ/freercolumnname")[0].text
         text.append("FreeR imported from column " + freercolumnname)
