@@ -144,6 +144,21 @@ jobs:
         run: npm ci
         working-directory: client
 
+      # Stamp the Electron app version from the release tag so installers are
+      # named by their version (e.g. ccp4i2-django-3.1.0-a2.dmg) instead of the
+      # hardcoded 0.0.1 — which made every alpha's installers indistinguishable
+      # and let a stale a1 build masquerade as the current release. electron-
+      # builder needs a semver-valid version, so convert PEP 440 pre-release
+      # (3.1.0a2) to semver (3.1.0-a2). --no-git-tag-version: don't commit/tag.
+      - name: Stamp installer version from tag
+        shell: bash
+        run: |
+          PEP="${{ needs.verify-version.outputs.version }}"
+          SEMVER="$(printf '%s' "$PEP" | sed -E 's/([0-9])(a|b|rc)([0-9]+)/\1-\2\3/')"
+          echo "Electron app version: $PEP -> $SEMVER"
+          npm version "$SEMVER" --no-git-tag-version --allow-same-version
+        working-directory: client
+
       # macOS signing + notarisation, ONLY when the Apple secrets are present.
       # If they're absent, the build stays unsigned (as today) and still ships —
       # so this workflow is safe to run before the secrets are configured.
