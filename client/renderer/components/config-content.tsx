@@ -198,6 +198,19 @@ export const ConfigContent: React.FC = () => {
   const hasElectron =
     typeof window !== "undefined" && !!window.electronAPI;
 
+  // The exact backend version this app build is pinned to (from the main
+  // process). Shown so the user can see what's EXPECTED, not just what's
+  // installed — a mismatch (e.g. installed 3.1.0a1 under a 3.1.0a3 app) is then
+  // obvious rather than silent.
+  const requiredVersion: string | undefined = config?.requiredServerVersion;
+  const norm = (v?: string | null) =>
+    (v || "").trim().toLowerCase().replace(/[-_]/g, "");
+  const versionMismatch =
+    !!requirementsExist &&
+    !!requiredVersion &&
+    !!serverVersion &&
+    norm(serverVersion) !== norm(requiredVersion);
+
   // Ready to enter when the venv exists and requirements are present (or dev).
   const isReady =
     config && hasElectron && existingFiles?.venv_python && (devMode || requirementsExist);
@@ -228,6 +241,11 @@ export const ConfigContent: React.FC = () => {
             <Typography variant="body2" color="text.secondary">
               {serverVersion ? `Ready · ccp4i2 ${serverVersion}` : "Ready to go"}
             </Typography>
+            {requiredVersion && (
+              <Typography variant="caption" color="text.secondary">
+                This app expects ccp4i2 {requiredVersion}
+              </Typography>
+            )}
             <Button
               variant="contained"
               size="large"
@@ -299,21 +317,36 @@ export const ConfigContent: React.FC = () => {
                 }
               />
               <SetupRow
-                ok={requirementsExist}
-                label="Requirements"
+                // A version mismatch is not "OK" — this app runs only its exact
+                // partner backend, so surface it as needing action.
+                ok={requirementsExist && !versionMismatch}
+                label="ccp4i2 backend"
                 value={
-                  requirementsExist
-                    ? serverVersion
-                      ? `ccp4i2 ${serverVersion}`
-                      : "Installed"
-                    : "Not installed"
+                  !requirementsExist
+                    ? requiredVersion
+                      ? `Not installed — needs ${requiredVersion}`
+                      : "Not installed"
+                    : versionMismatch
+                      ? `Installed ${serverVersion}, but this app needs ${requiredVersion}`
+                      : serverVersion
+                        ? `ccp4i2 ${serverVersion}`
+                        : "Installed"
                 }
                 action={
                   hasElectron
                     ? {
-                        label: requirementsExist ? "Reinstall" : "Install",
+                        // Name the exact version the button will install, so the
+                        // action is unambiguous (e.g. "Install 3.1.0a3").
+                        label: !requirementsExist || versionMismatch
+                          ? requiredVersion
+                            ? `Install ${requiredVersion}`
+                            : "Install"
+                          : "Reinstall",
                         onClick: onInstallRequirements,
-                        variant: requirementsExist ? "text" : "contained",
+                        variant:
+                          !requirementsExist || versionMismatch
+                            ? "contained"
+                            : "text",
                         disabled: !existingFiles?.venv_python,
                       }
                     : undefined
