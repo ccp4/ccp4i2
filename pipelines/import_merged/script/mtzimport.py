@@ -1,3 +1,5 @@
+# mtzimport.py
+
 import sys
 import math
 import numpy
@@ -5,42 +7,69 @@ import gemmi
 
 from lxml import etree
 
-from pipelines.import_merged.script.importutils import *
-#from importutils import *
+try:
+    from importutils import *
+except:
+    from pipelines.import_merged.script.importutils import *
 
 class ImportMTZ():
     # Import MTZ into I2 objects
     # This is an alternative to using cmtzsplit if we want to
     # select a resolution range, which cmtzsplit cannot do
     # cf ConvertCIF
+    #
+    # Optionally exclude reflections for which all selected columns
+    #   are missing == NaN
+    # That may involve changing the resolution limits
+
+    # inputfilename    input MTZ file name
+    # outfile          output filename for selected data
+    # freerfile        output filename for FreeR data if present
+    # obsColLabels     column labels selected from input file
+    # contentFlag      used to select I+-, F+-, Imean, Fmean = 1,2,3,4
+    # freeRcolumnLabel column label for FreeR, if present
+    # resorange=None   optional resolution cutoff
+    # excludemissing=False
+    #           if True, omit reflections with all selected columns missing
+
     def __init__(self, inputfilename,
                  outfile, freerfile,
                  obsColLabels, contentFlag, freeRcolumnLabel,
-                 resorange=None):
+                 resorange=None, excludemissing=False):
 
-        print("\n>** ",inputfilename, "\n",
-                 outfile, "\n", freerfile,"\n",
-                 obsColLabels, contentFlag, freeRcolumnLabel,
-                 resorange)
-
+        print("\n>** Input file: ",inputfilename, "\nOutput files: ",
+              outfile, "\n", freerfile,"\n",
+              "Column labels: ",obsColLabels,
+              " Content flag: ", contentFlag,
+              "\nResolution range: ",resorange)
+        if excludemissing:
+            print("Exclude reflections with all selected columns missing")
+        
         self.status = False  # True if OK
 
         # Column names as a list
         self.inputcolumns = obsColLabels
         self.outputcolumns = []
-        self.freercolumn = None
-        if freerfile is not None:
-            self.freercolumn = freeRcolumnLabel
-
         mtz = gemmi.read_mtz_file(inputfilename)
 
+        self.freercolumn = None
+        if freerfile is not None:
+            if mtz.rfree_column() is not None:
+                self.freercolumn = freeRcolumnLabel
+                
+        if self.freercolumn is None:
+            print("No FreeR in file")
+        else:
+            print("\nFreerLabel: ", self.freercolumn)
+
         # Input resolution range
-        da = mtz.make_d_array()
-        resorangein = (max(da), min(da))
+        self.d_array = mtz.make_d_array()
+        resorangein = (max(self.d_array), min(self.d_array))
         if resorange is not None:
             # apply resolution cutoffs first
             mtz = self.setMtzResolutionLimits(mtz, resorange)
-
+        self.maxResIncluded = resorangein[1]
+            
         # Use 1st column label to get dataset
         col1 = mtz.column_with_label(obsColLabels[0])
         print ('col1', col1, type(obsColLabels[0]), obsColLabels[0])
@@ -54,13 +83,14 @@ class ImportMTZ():
                 chosenDataset = mtz.datasets[i]
                 break
             
+        # from importutils.py
         contentType = ReflectionDataTypes.CONTENT_TYPES[contentFlag]
-        print(contentFlag, contentType)
+        print("ContentFlag", contentFlag, ", contentType:", contentType)
 
         # Start to construct the MTZ file for main data
         mtzout = gemmi.Mtz(with_base=True)  # with h,k,l
         mtzspecs = ReflectionDataTypes.REFLECTION_DATA[contentType]
-        print(mtzspecs)
+        #print(mtzspecs)
         self.start_mtzout(mtz, mtzout, mtz.title, chosenDataset, mtzspecs)
 
         # Get column data
@@ -71,25 +101,39 @@ class ImportMTZ():
         coldata.append(mtz.column_with_label('L'))
         nrefs = []
         for colobs in obsColLabels:
-            print(colobs)
+            #print(colobs)
             coldata.append(mtz.column_with_label(colobs))
             nrefs.append(len(coldata[-1]))
 
-        print("nrefs", nrefs)
         nrefunique = nrefs[0]
+        self.nrefinput = nrefunique
         data = numpy.zeros((nrefunique, ncolumns), dtype=float)
 
         for i in range(ncolumns):
             data[:,i] = coldata[i]
 
-        mtzout.set_data(data)
+        mtzout.set_data(data)  # Columns selected
+        
+        self.wanted = None
+        self.nrefremoved = 0  # set in stripMissing
+        # Always call if only to count missing reflections
+        mtzout = self.stripMissing(data, mtzout, excludemissing)
+        if excludemissing:
+            print("Number of reflections removed because all missing:",
+                  self.nrefremoved)
+            
+        nrefout = len(mtzout.array)
         mtzout.write_to_file(outfile)
 
-        print("File ", outfile, " written, number of reflections",
-              len(data))
+        print("\nFile ", outfile, " written, number of reflections",
+              nrefout)
+
+        da = mtzout.make_d_array()
+        resorangeout = (max(da), min(da))
 
         #  FreeR data
-        if freerfile is not None and freeRcolumnLabel is not None:
+        if freerfile is not None and freeRcolumnLabel is not None \
+           and self.freercolumn is not None:
             coldata = []
             ncolumns = 4  # including H K L
             coldata.append(mtz.column_with_label('H'))
@@ -100,7 +144,8 @@ class ImportMTZ():
             # Start to construct the MTZ file for FreeR
             mtzout = gemmi.Mtz(with_base=True)  # with h,k,l
             mtzspecs = ReflectionDataTypes.REFLECTION_DATA['FreeR flag']
-            print(mtzspecs)
+            #print(mtzspecs)
+            
             self.start_mtzout(mtz, mtzout, mtz.title, None, mtzspecs)
 
             data = numpy.zeros((nrefunique, ncolumns), dtype=float)
@@ -109,14 +154,18 @@ class ImportMTZ():
                 data[:,i] = coldata[i]
 
             mtzout.set_data(data)
+
+            if excludemissing:
+                mtzout = self.stripMissing(data, mtzout, excludemissing)
+
             mtzout.write_to_file(freerfile)
 
-            print("File ", freerfile, " written, number of reflections",
-              len(data))
+            print("\nFile ", freerfile, " written, number of reflections",
+                  nrefout)
 
         
-        self.makeXMLreport(nrefunique, nrefunique, contentType,
-                           resorangein, resorange)
+        self.makeXMLreport(nrefout, nrefout, contentType, resorange,
+                           resorangein, resorangeout, excludemissing)
                            
         self.status = True  # True if OK
 
@@ -165,8 +214,41 @@ class ImportMTZ():
         self.outputcolumns.append(clabel)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def makeXMLreport(self, nrefunique, nreffreer, contentType,
-                      resorangein, resorangeout):
+    def stripMissing(self, data, mtzout, excludemissing):
+        # Count reflections where all selected columns are NaN
+        # If excludemissing True, then exclude them
+        # Sets self.nrefremoved  = number removed
+
+        nrefremoved = 0
+        if self.wanted is None:
+            self.maxResIncluded = 10000.0
+            # for each reflection, are the elements NaN (missing)?
+            # Compile self.wanted list of included reflections
+            testnan = numpy.isnan(data[:,3:])
+            # compile flags for each reflection, = False if all selected
+            #  columns are NaN
+            nref = len(data)
+            self.wanted = numpy.zeros(nref, dtype=bool)
+
+            for j in range(nref):
+                if testnan[j,:].all():
+                    # all columns = NaN, reject
+                    self.wanted[j] = False
+                    nrefremoved += 1
+                else:
+                    self.wanted[j] = True
+                    self.maxResIncluded = min(self.maxResIncluded, self.d_array[j])
+                    
+            self.nrefremoved = nrefremoved
+
+        if excludemissing:
+            mtzout = mtzout.filtered(self.wanted)  #  remove null reflections
+
+        return mtzout
+        
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def makeXMLreport(self, nrefout, nreffreer, contentType, resorange,
+                      resorangein, resorangeout, excludemissing):
         
         self.importXML = etree.Element('X2MTZ')
         addXMLelement(self.importXML, 'inputcolumnames',
@@ -174,7 +256,21 @@ class ImportMTZ():
         addXMLelement(self.importXML, 'outputcolumnames',
                       ','.join(self.outputcolumns))
         
-        addXMLelement(self.importXML, 'nrefoutput', str(nrefunique))
+        addXMLelement(self.importXML, 'nrefinput', str(self.nrefinput))
+        addXMLelement(self.importXML, 'nrefoutput', str(nrefout))
+
+        if self.nrefremoved > 0:   # flagged or removed
+            if excludemissing:
+                addXMLelement(self.importXML, 'nrefexcluded',
+                              str(self.nrefremoved))
+            else:
+                addXMLelement(self.importXML, 'nrefflagged',
+                              str(self.nrefremoved))                
+
+        # Maximum resolution for reflections not flagged or excluded
+        addXMLelement(self.importXML, 'maxResolutionAccepted',
+                      "{:.3f}".format(self.maxResIncluded))
+                
         if self.freercolumn is not None:
             addXMLelement(self.importXML, 'freercolumnname',
                           self.freercolumn)
@@ -187,8 +283,9 @@ class ImportMTZ():
         self.importXML.append(rrngxml)
         # Output resolution range
         if resorangeout is not None:
-            rrngxml = self.resorangeXML(resorangeout, 'cutresolution')
-            self.importXML.append(rrngxml)
+            if resorangeout != resorangein:
+                rrngxml = self.resorangeXML(resorangeout, 'cutresolution')
+                self.importXML.append(rrngxml)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getstatus(self):
