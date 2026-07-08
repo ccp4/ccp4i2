@@ -47,18 +47,21 @@ _api_patterns = [
     path("monomer-info/<str:code>/", views.monomer_info, name="monomer_info"),
 ]
 
-# Admin endpoints require users app (cloud deployment only)
-if "users" in settings.INSTALLED_APPS:
-    try:
-        from .admin_views import import_legacy_ccp4i2, import_sqlite, validate_sqlite, ccp4i2_import_status
-        _api_patterns += [
-            path("admin/import-legacy/", import_legacy_ccp4i2, name="import-legacy-ccp4i2"),
-            path("admin/import-sqlite/", import_sqlite, name="import-sqlite"),
-            path("admin/validate-sqlite/", validate_sqlite, name="validate-sqlite"),
-            path("admin/import-status/", ccp4i2_import_status, name="ccp4i2-import-status"),
-        ]
-    except ImportError as e:
-        print(f"Warning: admin_views import failed: {e}")
+# Legacy-migration admin endpoints. These are core desktop functionality (a
+# user migrating their own ~/.CCP4I2), so they are registered unconditionally
+# and self-protect via IsAdminUser (which the local user satisfies in desktop
+# mode). Previously these were gated on the cloud-only "users" app, which made
+# the migration wizard 404 on the desktop app it was built for.
+try:
+    from .admin_views import import_legacy_ccp4i2, import_sqlite, validate_sqlite, ccp4i2_import_status
+    _api_patterns += [
+        path("admin/import-legacy/", import_legacy_ccp4i2, name="import-legacy-ccp4i2"),
+        path("admin/import-sqlite/", import_sqlite, name="import-sqlite"),
+        path("admin/validate-sqlite/", validate_sqlite, name="validate-sqlite"),
+        path("admin/import-status/", ccp4i2_import_status, name="ccp4i2-import-status"),
+    ]
+except ImportError as e:
+    print(f"Warning: admin_views import failed: {e}")
 
 # Wrap all patterns under /api/ccp4i2/ for multi-app integration
 # Frontend routes are under /ccp4i2/, API routes under /api/ccp4i2/

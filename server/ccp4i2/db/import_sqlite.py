@@ -12,6 +12,7 @@ Both are usable from management commands and API endpoints.
 """
 
 import logging
+import shutil
 import sqlite3
 from collections import defaultdict
 from datetime import datetime
@@ -21,6 +22,12 @@ from uuid import UUID
 from django.db import transaction
 from django.utils import timezone
 
+from .legacy_structure import (
+    analyse_structure,
+    blocking_unresolved,
+    nested_excludes_for,
+)
+from .legacy_structure import _resolve as _ls_resolve
 from .models import (
     File,
     FileExport,
@@ -70,6 +77,34 @@ def dict_factory(cursor, row):
     return {col[0].lower(): row[i] for i, col in enumerate(cursor.description)}
 
 
+
+
+def default_dest_root():
+    """Default destination root for copied projects (CCP4I2_PROJECTS_DIR)."""
+    try:
+        from django.conf import settings
+        return Path(settings.CCP4I2_PROJECTS_DIR)
+    except Exception:
+        return None
+
+
+class StructuralIssuesError(Exception):
+    """Raised when import is blocked by unacknowledged structural issues.
+
+    Carries the ``structure`` report and ``plan`` so the API layer can return
+    them to the UI (which maps this to Step 2 of the wizard).
+    """
+
+    def __init__(self, structure, plan):
+        self.structure = structure
+        self.plan = plan
+        super().__init__("structural_issues_unacknowledged")
+
+
+class _DryRunRollback(Exception):
+    """Internal sentinel used to unwind a dry-run's atomic block."""
+
+
 class SQLiteValidator:
     """Validate a legacy CCP4i2 SQLite database against the filesystem.
 
@@ -81,11 +116,16 @@ class SQLiteValidator:
     This is a read-only operation — it never writes to Django or the SQLite.
     """
 
-    def __init__(self, db_path, remap_dirs=None, verbose=False, log_fn=None):
+    def __init__(self, db_path, remap_dirs=None, verbose=False, log_fn=None,
+                 copy_files=False, dest_root=None):
         self.db_path = Path(db_path)
         self.remap_dirs = remap_dirs
         self.verbose = verbose
         self.log_fn = log_fn or (lambda msg: logger.info(msg))
+        # Structural analysis needs to know the intended migration mode so it can
+        # compute the per-project plan (see legacy_structure.analyse_structure).
+        self.copy_files = copy_files
+        self.dest_root = dest_root or default_dest_root()
 
     def remap_directory(self, directory):
         if not directory or not self.remap_dirs:
@@ -114,6 +154,10 @@ class SQLiteValidator:
             "integrity": self._validate_integrity(cur),
             "data_quality": self._validate_data_quality(cur),
         }
+
+        structure, plan = self._validate_structure(cur)
+        report["structure"] = structure
+        report["plan"] = plan
 
         conn.close()
 
@@ -242,9 +286,16 @@ class SQLiteValidator:
         cur.execute(
             "SELECT FileID, Filename, JobID, PathFlag FROM Files"
         )
+        # Missing files are partitioned by the preservation contract: files of
+        # TOP-LEVEL jobs (job number with no '.') are guaranteed to be preserved,
+        # so a missing one is a genuine violation. SUB-job files (nested pipeline
+        # steps, job number like '3.2') are NOT covered by the guarantee, so a
+        # missing one is out of contract, not a fault.
         results = {
             "total": 0, "exists": 0,
-            "missing": [], "missing_count": 0,
+            "missing": [], "missing_count": 0,           # kept: all misses
+            "top_missing": [], "top_missing_count": 0,   # in-contract violations
+            "sub_missing_count": 0,                      # out-of-contract
             "orphan_job": 0,
         }
         for row in cur.fetchall():
@@ -273,15 +324,32 @@ class SQLiteValidator:
                 results["exists"] += 1
             else:
                 results["missing_count"] += 1
+                is_top_level = "." not in ji["number"]
                 if self.verbose or len(results["missing"]) < 50:
                     results["missing"].append({
                         "filename": filename,
                         "expected_path": str(file_path),
+                        "job_number": ji["number"],
+                        "top_level": is_top_level,
                     })
+                if is_top_level:
+                    results["top_missing_count"] += 1
+                    if self.verbose or len(results["top_missing"]) < 50:
+                        results["top_missing"].append({
+                            "filename": filename,
+                            "expected_path": str(file_path),
+                            "job_number": ji["number"],
+                        })
+                else:
+                    results["sub_missing_count"] += 1
 
         self._log_section("Files", results["total"],
                           results["exists"], results["missing"],
                           missing_count=results["missing_count"])
+        self.log_fn(
+            f"    of which top-level (in-contract): {results['top_missing_count']}, "
+            f"sub-job (out-of-contract): {results['sub_missing_count']}"
+        )
         return results
 
     # ------------------------------------------------------------------
@@ -289,29 +357,44 @@ class SQLiteValidator:
     # ------------------------------------------------------------------
 
     def _validate_imported_files(self, cur):
-        cur.execute(
-            "SELECT ImportId, FileID, SourceFilename FROM ImportFiles"
-        )
+        """Report import provenance — informational only.
+
+        Two things to be clear about, both learned the hard way:
+
+        * The imported files that live on disk under ``CCP4_IMPORTED_FILES`` are
+          the ``Files`` rows with ``PathFlag == 2``. Those are already checked by
+          :meth:`_validate_files` (which builds the same path the new-model
+          ``File.path`` does — ``project/CCP4_IMPORTED_FILES/<name>``). We do NOT
+          re-check them here; the ``ImportFiles`` table is a separate provenance
+          record, and joining it to ``Files`` lands on the job's *logical* output
+          row (a different, PathFlag==1 name), producing bogus "missing" hits.
+        * ``ImportFiles.SourceFilename`` is the *original external path* the user
+          imported from — usually long gone (a download, another machine) and
+          irrelevant to migration.
+
+        So this method only reports how many import *sources* still resolve, as
+        context. It never contributes to the health summary.
+        """
+        cur.execute("SELECT ImportId, SourceFilename FROM ImportFiles")
         results = {
-            "total": 0, "source_exists": 0,
-            "source_missing": [], "source_missing_count": 0,
+            "total": 0,
+            "source_exists": 0,
+            "source_missing_count": 0,
         }
         for row in cur.fetchall():
             results["total"] += 1
-            src = row["sourcefilename"] or ""
+            src = self.remap_directory(row["sourcefilename"] or "")
             if not src:
                 continue
-            src = self.remap_directory(src)
             if Path(src).is_file():
                 results["source_exists"] += 1
             else:
                 results["source_missing_count"] += 1
-                if self.verbose or len(results["source_missing"]) < 50:
-                    results["source_missing"].append(src)
 
-        self._log_section("ImportFiles (source)", results["total"],
-                          results["source_exists"], results["source_missing"],
-                          missing_count=results["source_missing_count"])
+        self.log_fn(
+            f"  ImportFiles (source provenance, informational): "
+            f"{results['source_exists']}/{results['total']} sources still present"
+        )
         return results
 
     # ------------------------------------------------------------------
@@ -474,6 +557,47 @@ class SQLiteValidator:
         return {"ok": len(issues) == 0, "issues": issues}
 
     # ------------------------------------------------------------------
+    # Structural analysis + per-project plan
+    # ------------------------------------------------------------------
+
+    def _validate_structure(self, cur):
+        """Analyse project directory structure and build the migration plan.
+
+        Returns ``(structure, plan)`` matching the wire contract:
+        ``structure = {"ok": bool, "issues": [...]}`` and ``plan = [PlanEntry]``.
+        """
+        cur.execute(
+            "SELECT ProjectID, ProjectName, ProjectDirectory, I1ProjectDirectory "
+            "FROM Projects"
+        )
+        projects = []
+        for row in cur.fetchall():
+            projects.append({
+                "id": row["projectid"],
+                "name": row["projectname"] or f"project_{row['projectid']}",
+                "directory": self.remap_directory(row["projectdirectory"] or ""),
+                "i1_directory": self.remap_directory(row["i1projectdirectory"] or ""),
+            })
+
+        issues, plan = analyse_structure(
+            projects,
+            copy_files=self.copy_files,
+            dest_root=self.dest_root,
+        )
+        blocking = blocking_unresolved(issues)
+        structure = {"ok": blocking == 0, "issues": issues}
+
+        self.log_fn(
+            f"  Structure: {'OK' if not issues else f'{len(issues)} issues'}"
+            f"{f' ({blocking} blocking)' if blocking else ''}"
+        )
+        if self.verbose:
+            for issue in issues:
+                self.log_fn(f"    - [{issue['severity']}] {issue['detail']}")
+
+        return structure, plan
+
+    # ------------------------------------------------------------------
     # Helpers
     # ------------------------------------------------------------------
 
@@ -499,24 +623,51 @@ class SQLiteValidator:
         imports = report["imported_files"]
         integrity = report["integrity"]
         quality = report["data_quality"]
+        structure = report.get("structure", {"ok": True, "issues": []})
+        plan = report.get("plan", [])
 
+        blocking = blocking_unresolved(structure["issues"])
+        # summary.ok reflects whether migration can proceed cleanly.
+        # - Project/job DIRECTORIES gate ok (they hold the data migration carries).
+        # - TOP-LEVEL job files are covered by the preservation contract, so a
+        #   missing one is a genuine violation and gates ok.
+        # - SUB-job files are NOT covered by the contract, so their absence does
+        #   NOT gate ok (reported informationally, never dressed up as "normal").
         all_ok = (
             not projects["dir_missing"]
             and not projects["dir_empty"]
             and jobs["dir_missing_count"] == 0
-            and files["missing_count"] == 0
+            and files["top_missing_count"] == 0
             and integrity["ok"]
             and quality["ok"]
+            and blocking == 0
         )
+
+        in_place = sum(1 for e in plan if e["mode"] == "in_place")
+        copied = sum(1 for e in plan if e["mode"] == "copy")
+        nested = sum(1 for e in plan if e["reason"] == "nested")
 
         return {
             "ok": all_ok,
             "projects_on_disk": f"{projects['dir_exists']}/{projects['total']}",
             "jobs_on_disk": f"{jobs['dir_exists']}/{jobs['total']}",
+            # files_on_disk already covers imported files (the PathFlag==2 rows
+            # under CCP4_IMPORTED_FILES). Import *source* provenance is reported
+            # separately as an informational count only.
             "files_on_disk": f"{files['exists']}/{files['total']}",
-            "import_sources_on_disk": f"{imports['source_exists']}/{imports['total']}",
+            # Missing files split by the preservation contract.
+            "top_level_files_missing": files["top_missing_count"],
+            "sub_job_files_missing": files["sub_missing_count"],
+            "import_sources_present": f"{imports['source_exists']}/{imports['total']}",
             "integrity_issues": len(integrity["issues"]),
             "data_quality_issues": len(quality["issues"]),
+            "structure_issues": len(structure["issues"]),
+            "blocking_issues": blocking,
+            "plan_summary": {
+                "in_place": in_place,
+                "copy": copied,
+                "copied_due_to_nesting": nested,
+            },
         }
 
 
@@ -524,13 +675,20 @@ class SQLiteImporter:
     """Import legacy CCP4i2 SQLite database into Django models."""
 
     def __init__(self, db_path, remap_dirs=None, dry_run=False,
-                 continue_on_error=False, verbose=False, log_fn=None):
+                 continue_on_error=False, verbose=False, log_fn=None,
+                 copy_files=False, dest_root=None,
+                 allow_structural_issues=False):
         self.db_path = Path(db_path)
         self.remap_dirs = remap_dirs  # (from_path, to_path) or None
         self.dry_run = dry_run
         self.continue_on_error = continue_on_error
         self.verbose = verbose
         self.log_fn = log_fn or (lambda msg: logger.info(msg))
+        # Migration mode: copy legacy project trees into dest_root (default
+        # settings.CCP4I2_PROJECTS_DIR) or adopt them in place.
+        self.copy_files = copy_files
+        self.dest_root = dest_root or default_dest_root()
+        self.allow_structural_issues = allow_structural_issues
 
         # Mapping caches: legacy ID -> Django object
         self.project_map = {}
@@ -543,6 +701,12 @@ class SQLiteImporter:
 
         # Parent relationships deferred for group creation
         self.parent_relationships = []  # [(child_legacy_id, parent_legacy_id)]
+
+        # Structural plan + issues, computed once in run() and consumed by
+        # _import_projects. Keyed by legacy project id for the plan.
+        self.structure = {"ok": True, "issues": []}
+        self.plan = []
+        self.plan_by_id = {}
 
         self.stats = defaultdict(int)
         self.errors = []
@@ -581,7 +745,11 @@ class SQLiteImporter:
             raise
 
     def run(self):
-        """Execute the full import. Returns a summary dict."""
+        """Execute the full import. Returns a summary dict.
+
+        Raises StructuralIssuesError if the structural analysis found blocking,
+        unresolved issues and allow_structural_issues was not set.
+        """
         if not self.db_path.exists():
             raise FileNotFoundError(f"Database not found: {self.db_path}")
 
@@ -589,17 +757,60 @@ class SQLiteImporter:
         conn.row_factory = dict_factory
 
         try:
+            # Structural pre-flight: compute the plan and gate on blocking issues
+            # BEFORE touching Django or the filesystem.
+            self._analyse_structure(conn.cursor())
+            blocking = blocking_unresolved(self.structure["issues"])
+            if blocking and not self.allow_structural_issues:
+                raise StructuralIssuesError(self.structure, self.plan)
+
             if self.dry_run:
                 self.log_fn("[DRY RUN - no changes will be committed]")
-
-            with transaction.atomic():
-                self._import_all(conn)
-                if self.dry_run:
-                    transaction.set_rollback(True)
+                # Run inside a savepoint we always unwind, so nothing persists
+                # and the surrounding transaction (e.g. a test's) stays clean.
+                # Raising through atomic() rolls back only this savepoint.
+                try:
+                    with transaction.atomic():
+                        self._import_all(conn)
+                        raise _DryRunRollback()
+                except _DryRunRollback:
+                    pass
+            else:
+                with transaction.atomic():
+                    self._import_all(conn)
         finally:
             conn.close()
 
         return self.summary()
+
+    def _analyse_structure(self, cur):
+        """Run structural analysis and cache the plan for _import_projects."""
+        cur.execute(
+            "SELECT ProjectID, ProjectName, ProjectDirectory, I1ProjectDirectory "
+            "FROM Projects"
+        )
+        projects = []
+        for row in cur.fetchall():
+            projects.append({
+                "id": row["projectid"],
+                "name": row["projectname"] or f"project_{row['projectid']}",
+                "directory": self.remap_directory(row["projectdirectory"] or ""),
+                "i1_directory": self.remap_directory(row["i1projectdirectory"] or ""),
+            })
+        issues, plan = analyse_structure(
+            projects,
+            copy_files=self.copy_files,
+            dest_root=self.dest_root,
+        )
+        self.structure = {
+            "ok": blocking_unresolved(issues) == 0,
+            "issues": issues,
+        }
+        self.plan = plan
+        self.plan_by_id = {e["legacy_project_id"]: e for e in plan}
+        # Resolved source dirs, needed to exclude nested inner trees when copying.
+        self._resolved_by_id = {p["id"]: _ls_resolve(p["directory"]) for p in projects}
+        self._nested_excludes = nested_excludes_for(plan, self._resolved_by_id)
 
     def _import_all(self, conn):
         """Run all import phases in order."""
@@ -715,9 +926,13 @@ class SQLiteImporter:
         for row in cur.fetchall():
             try:
                 pk = row["projectid"]
-                directory = self.remap_directory(row["projectdirectory"] or "")
+                # The plan (from _analyse_structure) decides the final directory:
+                # source dir for in_place, dest dir for copy.
+                entry = self.plan_by_id.get(pk)
+                legacy_dir = self.remap_directory(row["projectdirectory"] or "")
+                directory = entry["dest"] if entry else legacy_dir
 
-                # Skip if project already exists by directory
+                # Skip if project already exists by (final) directory
                 if directory:
                     existing = Project.objects.filter(directory=directory).first()
                     if existing:
@@ -727,6 +942,12 @@ class SQLiteImporter:
                         if row["parentprojectid"]:
                             self.parent_relationships.append((pk, row["parentprojectid"]))
                         continue
+
+                # Copy the legacy tree into place if the plan calls for it.
+                if entry and entry["mode"] == "copy":
+                    self._copy_project_tree(pk, entry, legacy_dir)
+                else:
+                    self.stats["projects_in_place"] += 1
 
                 name = self.get_unique_project_name(row["projectname"])
                 project = Project.objects.create(
@@ -744,7 +965,7 @@ class SQLiteImporter:
                 )
                 self.project_map[pk] = project
                 self.stats["projects"] += 1
-                self.log(f"  Project: {name}")
+                self.log(f"  Project: {name} -> {directory}")
 
                 if row["parentprojectid"]:
                     self.parent_relationships.append((pk, row["parentprojectid"]))
@@ -760,7 +981,59 @@ class SQLiteImporter:
             parts.append(f"{self.stats['projects_renamed']} renamed")
         if self.stats["projects_skipped"]:
             parts.append(f"{self.stats['projects_skipped']} skipped")
+        if self.stats["projects_copied"]:
+            parts.append(f"{self.stats['projects_copied']} copied")
         self.log_count("Projects", self.stats["projects"], ", ".join(parts))
+
+    def _copy_project_tree(self, pk, entry, legacy_dir):
+        """Copy a legacy project tree to its planned destination.
+
+        Excludes any nested inner project directories (they are copied to their
+        own dests separately) so content is never duplicated. On dry-run, does
+        nothing but still records what would happen. Preserves symlinks.
+        """
+        src = Path(legacy_dir) if legacy_dir else None
+        dest = Path(entry["dest"])
+
+        if not entry["source_exists"] or src is None or not src.is_dir():
+            self.stats["projects_copy_skipped"] += 1
+            self.log(f"  Copy skipped (source missing): {entry['name']}")
+            return
+
+        if entry["reason"] == "nested":
+            self.stats["projects_nested"] += 1
+
+        if self.dry_run:
+            self.stats["projects_copied"] += 1
+            self.log(f"  [dry-run] would copy {src} -> {dest}")
+            return
+
+        if dest.exists():
+            self.stats["projects_copy_skipped"] += 1
+            self.log(f"  Copy skipped (dest exists): {dest}")
+            return
+
+        excludes = self._nested_excludes.get(pk, set())
+
+        def _ignore(dir_path, names):
+            if not excludes:
+                return []
+            here = _ls_resolve(dir_path)
+            ignored = []
+            for n in names:
+                child = _ls_resolve(str(Path(dir_path) / n))
+                if child is not None and child in excludes:
+                    ignored.append(n)
+                    self.stats["copy_excluded_subtrees"] += 1
+            return ignored
+
+        try:
+            shutil.copytree(src, dest, symlinks=True, ignore=_ignore)
+            self.stats["projects_copied"] += 1
+            self.log(f"  Copied {src} -> {dest}")
+        except (OSError, shutil.Error) as e:
+            self.stats["copy_errors"] += 1
+            self._record_error("ProjectCopy", pk, e)
 
     def _import_projecttags(self, cur):
         cur.execute("SELECT TagID, ProjectID FROM ProjectTags")
@@ -1198,4 +1471,8 @@ class SQLiteImporter:
             "stats": dict(self.stats),
             "errors": self.errors,
             "source": str(self.db_path),
+            # Echo the plan the run followed and the (clean) structure so the UI
+            # can confirm what happened. Matches the wire contract.
+            "plan": self.plan,
+            "structure": self.structure,
         }

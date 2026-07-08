@@ -13,4 +13,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.stdout.write(f"{options}")
-        import_i2xml_from_file(options["program_xml"])
+        import_i2xml_from_file(options["project_xml"])
