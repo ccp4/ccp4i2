@@ -83,9 +83,11 @@ jobs:
             echo "::error::runtime lock has no ccp4i2-api== pin (server/ccp4i2/requirements-runtime.txt)."
             exit 1
           fi
-          if [ -n "$FLOOR" ] && python -c "import sys; from packaging.version import Version; sys.exit(0 if Version('$LOCK') >= Version('$FLOOR') else 1)"; then
-            :
-          else
+          # Pure-stdlib version compare (no `packaging` — it isn't installed in
+          # this bare setup-python step). Both are simple dotted pins
+          # (e.g. 0.3.5), so a leading-numeric tuple compare is sufficient.
+          # Single-line -c so the YAML block scalar stays valid.
+          if [ -n "$FLOOR" ] && ! python -c "import re,sys; f=lambda v:[int((re.match(r'\d*',p).group() or 0)) for p in v.split('.')]; sys.exit(0 if f('$LOCK')>=f('$FLOOR') else 1)"; then
             echo "::error::runtime lock pins ccp4i2-api==$LOCK but the wheel requires >=$FLOOR. Regenerate/update server/ccp4i2/requirements-runtime.txt — the app installs the LOCK version, so this mismatch would ship the wrong ccp4i2-api to users."
             exit 1
           fi
