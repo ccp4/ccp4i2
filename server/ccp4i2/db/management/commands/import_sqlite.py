@@ -9,9 +9,13 @@ Usage:
     ccp4-python manage.py import_sqlite ~/.CCP4I2/db/database.sqlite --remap-dirs /old/path /new/path
 """
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
-from ccp4i2.db.import_sqlite import SQLiteImporter, SQLiteValidator
+from ccp4i2.db.import_sqlite import (
+    SQLiteImporter,
+    SQLiteValidator,
+    StructuralIssuesError,
+)
 
 
 class Command(BaseCommand):
@@ -44,9 +48,29 @@ class Command(BaseCommand):
             action="store_true",
             help="Continue importing remaining records if one fails",
         )
+        parser.add_argument(
+            "--copy-files",
+            action="store_true",
+            help="Copy each legacy project tree into the projects root and "
+                 "repoint it (self-contained), instead of adopting it in place",
+        )
+        parser.add_argument(
+            "--dest-root",
+            default=None,
+            help="Destination root for copied projects "
+                 "(default: settings.CCP4I2_PROJECTS_DIR)",
+        )
+        parser.add_argument(
+            "--allow-structural-issues",
+            action="store_true",
+            help="Proceed even if blocking structural issues (e.g. destination "
+                 "collisions) are present",
+        )
 
     def handle(self, *args, **options):
         remap_dirs = tuple(options["remap_dirs"]) if options["remap_dirs"] else None
+        copy_files = options["copy_files"]
+        dest_root = options["dest_root"]
 
         def log_fn(msg):
             self.stdout.write(msg)
@@ -61,6 +85,8 @@ class Command(BaseCommand):
                 remap_dirs=remap_dirs,
                 verbose=options["verbose"],
                 log_fn=log_fn,
+                copy_files=copy_files,
+                dest_root=dest_root,
             )
             report = validator.run()
 
@@ -71,6 +97,11 @@ class Command(BaseCommand):
             self.stdout.write(f"  Import sources on disk: {summary['import_sources_on_disk']}")
             self.stdout.write(f"  Integrity issues:       {summary['integrity_issues']}")
             self.stdout.write(f"  Data quality issues:    {summary['data_quality_issues']}")
+            self.stdout.write(f"  Structure issues:       {summary['structure_issues']} "
+                              f"({summary['blocking_issues']} blocking)")
+            ps = summary["plan_summary"]
+            self.stdout.write(f"  Plan: {ps['in_place']} in place, {ps['copy']} copied "
+                              f"({ps['copied_due_to_nesting']} due to nesting)")
 
             self.stdout.write("\n" + "=" * 60)
             if summary["ok"]:
@@ -87,9 +118,24 @@ class Command(BaseCommand):
                 continue_on_error=options["continue_on_error"],
                 verbose=options["verbose"],
                 log_fn=log_fn,
+                copy_files=copy_files,
+                dest_root=dest_root,
+                allow_structural_issues=options["allow_structural_issues"],
             )
 
-            result = importer.run()
+            try:
+                result = importer.run()
+            except StructuralIssuesError as e:
+                self.stderr.write(self.style.ERROR(
+                    "Refusing to import: blocking structural issues found."
+                ))
+                for issue in e.structure["issues"]:
+                    if issue["severity"] == "blocking" and not issue.get("resolution"):
+                        self.stderr.write(f"  - {issue['detail']}")
+                raise CommandError(
+                    "Re-run with --allow-structural-issues to proceed anyway, "
+                    "or fix the issues above."
+                )
 
             self.stdout.write("\n" + "-" * 60)
             self.stdout.write(self.style.SUCCESS("Import completed successfully!"))

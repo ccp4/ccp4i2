@@ -21,6 +21,32 @@ from rest_framework.response import Response
 logger = logging.getLogger(__name__)
 
 
+def _remap_dirs(request):
+    """Extract (from, to) remap tuple from the request, or None."""
+    remap_from = request.data.get('remap_from', '').strip()
+    remap_to = request.data.get('remap_to', '').strip()
+    return (remap_from, remap_to) if remap_from and remap_to else None
+
+
+def _resolve_sqlite_source(request):
+    """Resolve the legacy sqlite source from an upload or a server-side path.
+
+    Returns ``(path, temp_path)`` where ``temp_path`` is the caller-owned temp
+    file to unlink afterwards (None for a server-side path), or ``None`` if
+    neither a file nor a path was supplied.
+    """
+    db_file = request.FILES.get('sqlite_db')
+    db_path = request.data.get('db_path', '').strip()
+    if not db_file and not db_path:
+        return None
+    if db_file:
+        with tempfile.NamedTemporaryFile(suffix='.sqlite', delete=False) as tmp:
+            for chunk in db_file.chunks():
+                tmp.write(chunk)
+            return tmp.name, tmp.name
+    return Path(db_path).expanduser(), None
+
+
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def import_legacy_ccp4i2(request):
@@ -139,38 +165,33 @@ def import_sqlite(request):
     - db_path: Server-side path to SQLite database (e.g. ~/.CCP4I2/db/database.sqlite)
     - dry_run, remap_from, remap_to as above
     """
-    from ccp4i2.db.import_sqlite import SQLiteImporter
+    from ccp4i2.db.import_sqlite import SQLiteImporter, StructuralIssuesError
 
-    db_file = request.FILES.get('sqlite_db')
-    db_path = request.data.get('db_path', '').strip()
-    dry_run = str(request.data.get('dry_run', 'false')).lower() == 'true'
-    remap_from = request.data.get('remap_from', '').strip()
-    remap_to = request.data.get('remap_to', '').strip()
-
-    if not db_file and not db_path:
+    src = _resolve_sqlite_source(request)
+    if src is None:
         return Response(
-            {'error': 'Must provide sqlite_db file upload or db_path'},
+            {'error': 'bad_input',
+             'reason': 'Must provide sqlite_db file upload or db_path'},
             status=status.HTTP_400_BAD_REQUEST,
         )
+    actual_path, temp_path = src
 
-    remap_dirs = (remap_from, remap_to) if remap_from and remap_to else None
-    temp_path = None
+    dry_run = str(request.data.get('dry_run', 'false')).lower() == 'true'
+    copy_files = str(request.data.get('copy_files', 'false')).lower() == 'true'
+    allow_structural = str(
+        request.data.get('allow_structural_issues', 'false')
+    ).lower() == 'true'
+    dest_root = request.data.get('dest_root', '').strip() or None
 
     try:
-        if db_file:
-            with tempfile.NamedTemporaryFile(suffix='.sqlite', delete=False) as tmp:
-                for chunk in db_file.chunks():
-                    tmp.write(chunk)
-                temp_path = tmp.name
-            actual_path = temp_path
-        else:
-            actual_path = Path(db_path).expanduser()
-
         importer = SQLiteImporter(
             db_path=actual_path,
-            remap_dirs=remap_dirs,
+            remap_dirs=_remap_dirs(request),
             dry_run=dry_run,
             continue_on_error=True,
+            copy_files=copy_files,
+            dest_root=Path(dest_root).expanduser() if dest_root else None,
+            allow_structural_issues=allow_structural,
         )
         result = importer.run()
 
@@ -180,15 +201,30 @@ def import_sqlite(request):
                 f"{result['stats']}"
             )
 
-        resp_status = status.HTTP_400_BAD_REQUEST if result['errors'] else status.HTTP_200_OK
-        return Response(result, status=resp_status)
+        if result['errors']:
+            return Response(
+                {'error': 'import_failed', 'reason': 'Import completed with errors',
+                 **result},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        return Response(result, status=status.HTTP_200_OK)
 
+    except StructuralIssuesError as e:
+        # Blocking structural issues not acknowledged — the UI maps this back to
+        # the validation step. 400 + machine-readable discriminator (house style).
+        return Response(
+            {'error': 'structural_issues_unacknowledged',
+             'reason': 'Blocking structural issues must be acknowledged before import',
+             'structure': e.structure, 'plan': e.plan},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
     except FileNotFoundError as e:
-        return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'db_not_found', 'reason': str(e)},
+                        status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         logger.exception("Error in import_sqlite")
         return Response(
-            {'error': f'Unexpected error: {e}'},
+            {'error': 'internal_error', 'reason': str(e)},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     finally:
@@ -214,46 +250,41 @@ def validate_sqlite(request):
 
     Optional:
     - remap_from / remap_to: Remap directory prefixes before checking
+    - copy_files: intended migration mode — needed to compute the per-project
+      plan and decide which structural issues are in scope (default false)
+    - dest_root: override for the copy destination root
     """
     from ccp4i2.db.import_sqlite import SQLiteValidator
 
-    db_file = request.FILES.get('sqlite_db')
-    db_path = request.data.get('db_path', '').strip()
-    remap_from = request.data.get('remap_from', '').strip()
-    remap_to = request.data.get('remap_to', '').strip()
-
-    if not db_file and not db_path:
+    src = _resolve_sqlite_source(request)
+    if src is None:
         return Response(
-            {'error': 'Must provide sqlite_db file upload or db_path'},
+            {'error': 'bad_input',
+             'reason': 'Must provide sqlite_db file upload or db_path'},
             status=status.HTTP_400_BAD_REQUEST,
         )
+    actual_path, temp_path = src
 
-    remap_dirs = (remap_from, remap_to) if remap_from and remap_to else None
-    temp_path = None
+    copy_files = str(request.data.get('copy_files', 'false')).lower() == 'true'
+    dest_root = request.data.get('dest_root', '').strip() or None
 
     try:
-        if db_file:
-            with tempfile.NamedTemporaryFile(suffix='.sqlite', delete=False) as tmp:
-                for chunk in db_file.chunks():
-                    tmp.write(chunk)
-                temp_path = tmp.name
-            actual_path = temp_path
-        else:
-            actual_path = Path(db_path).expanduser()
-
         validator = SQLiteValidator(
             db_path=actual_path,
-            remap_dirs=remap_dirs,
+            remap_dirs=_remap_dirs(request),
+            copy_files=copy_files,
+            dest_root=Path(dest_root).expanduser() if dest_root else None,
         )
         report = validator.run()
         return Response(report)
 
     except FileNotFoundError as e:
-        return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'db_not_found', 'reason': str(e)},
+                        status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         logger.exception("Error in validate_sqlite")
         return Response(
-            {'error': f'Unexpected error: {e}'},
+            {'error': 'internal_error', 'reason': str(e)},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
     finally:
