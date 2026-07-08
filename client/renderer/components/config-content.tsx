@@ -1,19 +1,26 @@
 "use client";
 import React, { useCallback } from "react";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Alert,
   Button,
+  CircularProgress,
   Dialog,
   DialogContent,
   DialogTitle,
+  Paper,
   Stack,
   Switch,
   Typography,
-  Paper,
-  CircularProgress,
 } from "@mui/material";
-import { green } from "@mui/material/colors";
-import { useApi } from "../api";
-import { Cancel, Check, Folder } from "@mui/icons-material";
+import {
+  Cancel,
+  Check,
+  ExpandMore,
+  RocketLaunch,
+} from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCCP4i2Window } from "../app-context";
@@ -21,8 +28,18 @@ import { usePopcorn } from "../providers/popcorn-provider";
 import { ThemeToggle } from "./theme-toggle";
 import { useTheme } from "../theme/theme-provider";
 
+/**
+ * The "get ready" body of the launch screen. Owns the Electron setup/launch
+ * lifecycle (IPC to the main process) but presents it as one job: get the user
+ * into their work.
+ *
+ * - When everything is ready, the setup detail collapses and a single "Enter
+ *   CCP4i2" action launches the backend; there is no installer jargon.
+ * - When something needs attention (missing CCP4, requirements not installed),
+ *   the setup section opens itself and shows exactly what to fix.
+ * - No teams / auth / accounts UI: this is a single-user desktop tool.
+ */
 export const ConfigContent: React.FC = () => {
-  const api = useApi();
   const { setTheme } = useTheme();
   const [config, setConfig] = useState<any | null>(null);
   const router = useRouter();
@@ -31,6 +48,8 @@ export const ConfigContent: React.FC = () => {
   const [requirementsExist, setRequirementsExist] = useState<boolean>(false);
   const [serverVersion, setServerVersion] = useState<string | null>(null);
   const { setMessage } = usePopcorn();
+  const [launching, setLaunching] = useState(false);
+  const [setupOpen, setSetupOpen] = useState(false);
   const [installProgress, setInstallProgress] = useState<{
     isInstalling: boolean;
     output: string[];
@@ -42,20 +61,15 @@ export const ConfigContent: React.FC = () => {
   });
 
   useEffect(() => {
-    // Send a message to the main process to get the config
     if (typeof window !== "undefined" && window.electronAPI) {
       window.electronAPI.sendMessage("get-config");
-      // Listen for messages from the main process
-
       window.electronAPI.onMessage("message-from-main", messageHandler);
-
       return () => {
         window.electronAPI.removeMessageListener(
           "message-from-main",
           messageHandler
         );
       };
-    } else {
     }
   }, []);
 
@@ -70,20 +84,17 @@ export const ConfigContent: React.FC = () => {
       } else if (data.message === "check-file-exists") {
         if (config) {
           if (data.path === config.CCP4I2_PROJECTS_DIR) {
-            setExistingFiles((prevState: any) => ({
-              ...prevState,
+            setExistingFiles((prev: any) => ({
+              ...prev,
               CCP4I2_PROJECTS_DIR: data.exists,
             }));
           }
           if (data.path === config.CCP4Dir) {
-            setExistingFiles((prevState: any) => ({
-              ...prevState,
-              CCP4Dir: data.exists,
-            }));
+            setExistingFiles((prev: any) => ({ ...prev, CCP4Dir: data.exists }));
           }
           if (data.path === config.venv_python) {
-            setExistingFiles((prevState: any) => ({
-              ...prevState,
+            setExistingFiles((prev: any) => ({
+              ...prev,
               venv_python: data.exists,
             }));
           }
@@ -95,14 +106,11 @@ export const ConfigContent: React.FC = () => {
         setRequirementsExist(false);
         setServerVersion(null);
         setMessage(data.error || "Requirements are missing");
-      }
-      // Add new handler for installation progress
-      else if (data.message === "install-requirements-progress") {
+      } else if (data.message === "install-requirements-progress") {
         setInstallProgress((prev) => {
           const newOutput = data.output
             ? [...prev.output, data.output]
             : prev.output;
-
           return {
             isInstalling:
               data.status === "started" || data.status === "installing",
@@ -110,8 +118,6 @@ export const ConfigContent: React.FC = () => {
             status: data.status,
           };
         });
-
-        // Show success message when completed
         if (data.status === "completed") {
           setMessage("Requirements installed successfully");
           setRequirementsExist(true);
@@ -124,26 +130,24 @@ export const ConfigContent: React.FC = () => {
   );
 
   useEffect(() => {
-    if (config) {
-      if (typeof window !== "undefined" && window.electronAPI) {
-        window.electronAPI.removeMessageListener(
-          "message-from-main",
-          messageHandler
-        );
-        window.electronAPI.onMessage("message-from-main", messageHandler);
-        window.electronAPI.sendMessage("check-file-exists", {
-          path: config.CCP4I2_PROJECTS_DIR,
-        });
-        window.electronAPI.sendMessage("check-file-exists", {
-          path: config.CCP4Dir,
-        });
-        window.electronAPI.sendMessage("check-file-exists", {
-          path: config.venv_python,
-        });
-        window.electronAPI.sendMessage("check-requirements", {
-          path: config.venv_python,
-        });
-      }
+    if (config && typeof window !== "undefined" && window.electronAPI) {
+      window.electronAPI.removeMessageListener(
+        "message-from-main",
+        messageHandler
+      );
+      window.electronAPI.onMessage("message-from-main", messageHandler);
+      window.electronAPI.sendMessage("check-file-exists", {
+        path: config.CCP4I2_PROJECTS_DIR,
+      });
+      window.electronAPI.sendMessage("check-file-exists", {
+        path: config.CCP4Dir,
+      });
+      window.electronAPI.sendMessage("check-file-exists", {
+        path: config.venv_python,
+      });
+      window.electronAPI.sendMessage("check-requirements", {
+        path: config.venv_python,
+      });
       return () => {
         if (typeof window !== "undefined" && window.electronAPI) {
           window.electronAPI.removeMessageListener(
@@ -155,301 +159,205 @@ export const ConfigContent: React.FC = () => {
     }
   }, [config]);
 
-  const onLaunchBrowser = async () => {
-    if (typeof window !== "undefined" && window?.electronAPI) {
-      window.electronAPI.sendMessage("locate-ccp4");
-    } else {
-      console.error("Electron API is not available");
-    }
-  };
+  const onLocateCcp4 = () => window.electronAPI?.sendMessage("locate-ccp4");
+  const onSelectProjectsDir = () =>
+    window.electronAPI?.sendMessage("locate-ccp4i2-project-directory");
 
-  const onSelectProjectsDir = async () => {
-    if (typeof window !== "undefined" && window.electronAPI) {
-      window.electronAPI.sendMessage("locate-ccp4i2-project-directory");
-    } else {
-      console.error("Electron API is not available");
-    }
-  };
-
-  const onStartUvicorn = async () => {
-    if (typeof window !== "undefined" && window.electronAPI) {
+  const onEnter = () => {
+    if (config && window.electronAPI) {
+      setLaunching(true);
       window.electronAPI.sendMessage("start-uvicorn", {
         ...config,
         CCP4Dir: config.CCP4Dir.path,
       });
     } else {
-      console.error("Electron API is not available");
+      // Web mode: the server is already running server-side.
+      router.push("/ccp4i2");
     }
   };
 
-  const onInstallRequirements = async () => {
-    if (typeof window !== "undefined" && window.electronAPI) {
-      // Reset progress state
-      setInstallProgress({
-        isInstalling: true,
-        output: [],
-        status: "started",
-      });
-
+  const onInstallRequirements = () => {
+    if (window.electronAPI) {
+      setInstallProgress({ isInstalling: true, output: [], status: "started" });
       window.electronAPI.sendMessage("install-requirements", {
         ...config,
         CCP4Dir: config.CCP4Dir.path,
       });
-    } else {
-      console.error("Electron API is not available");
     }
   };
 
-  const onToggleDevMode = async (
-    ev: React.ChangeEvent<HTMLInputElement>
-  ): Promise<void> => {
-    if (typeof window !== "undefined" && window?.electronAPI) {
-      window.electronAPI.sendMessage("toggle-dev-mode", {});
-    }
+  const onToggleDevMode = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    window.electronAPI?.sendMessage("toggle-dev-mode", {});
     ev.preventDefault();
     ev.stopPropagation();
   };
 
-  const onCloseProgressDialog = () => {
-    setInstallProgress({
-      isInstalling: false,
-      status: "idle",
-      output: [],
-    });
-  };
+  const onCloseProgressDialog = () =>
+    setInstallProgress({ isInstalling: false, status: "idle", output: [] });
 
-  // Check if ready to launch
-  const isReadyToLaunch =
-    config &&
-    typeof window !== "undefined" &&
-    window.electronAPI &&
-    existingFiles?.venv_python &&
-    (devMode || requirementsExist);
+  const hasElectron =
+    typeof window !== "undefined" && !!window.electronAPI;
+
+  // Ready to enter when the venv exists and requirements are present (or dev).
+  const isReady =
+    config && hasElectron && existingFiles?.venv_python && (devMode || requirementsExist);
+
+  // What still needs doing, in the user's words.
+  const blockers: string[] = [];
+  if (config && hasElectron) {
+    if (!existingFiles?.CCP4Dir) blockers.push("Locate your CCP4 installation");
+    if (!existingFiles?.venv_python) blockers.push("A Python environment is missing");
+    if (!devMode && !requirementsExist)
+      blockers.push("Install the CCP4i2 requirements");
+  }
+
+  // Open the setup section automatically when something needs attention.
+  useEffect(() => {
+    if (config && hasElectron && !isReady) setSetupOpen(true);
+  }, [config, hasElectron, isReady]);
 
   return (
-    <Stack spacing={1.5}>
-      {/* Launch Button - Prominent at top */}
-      <Paper
-        variant="outlined"
-        sx={{
-          p: 2,
-          textAlign: "center",
-          bgcolor: isReadyToLaunch ? "success.dark" : undefined,
-          borderColor: isReadyToLaunch ? "success.main" : undefined,
-        }}
-      >
-        <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
-          <Button
-            variant="contained"
-            size="large"
-            startIcon={<Folder />}
-            onClick={config ? onStartUvicorn : () => router.push("/ccp4i2")}
-            disabled={config ? !isReadyToLaunch : false}
-            sx={{
-              minWidth: 200,
-              bgcolor: isReadyToLaunch || !config ? green[500] : undefined,
-              "&:hover": {
-                bgcolor: isReadyToLaunch || !config ? green[600] : undefined,
-              },
-            }}
-          >
-            Launch CCP4i2
-          </Button>
-          {config && !isReadyToLaunch && (
-            <Typography variant="caption" color="error">
-              Configure paths and install requirements first
+    <Stack spacing={2}>
+      {/* Primary action — enter, or tell the user what's blocking it. */}
+      {isReady || !config ? (
+        <Paper
+          variant="outlined"
+          sx={{ p: 3, textAlign: "center", borderColor: "primary.main" }}
+        >
+          <Stack spacing={1.5} alignItems="center">
+            <Typography variant="body2" color="text.secondary">
+              {serverVersion ? `Ready · ccp4i2 ${serverVersion}` : "Ready to go"}
             </Typography>
-          )}
-        </Stack>
-      </Paper>
+            <Button
+              variant="contained"
+              size="large"
+              startIcon={
+                launching ? (
+                  <CircularProgress size={18} color="inherit" />
+                ) : (
+                  <RocketLaunch />
+                )
+              }
+              onClick={onEnter}
+              disabled={launching}
+              sx={{ minWidth: 220 }}
+            >
+              {launching ? "Starting…" : "Enter CCP4i2"}
+            </Button>
+          </Stack>
+        </Paper>
+      ) : (
+        <Alert severity="info" icon={false}>
+          <Typography fontWeight={600} sx={{ mb: 0.5 }}>
+            A little setup first
+          </Typography>
+          <Stack component="ul" sx={{ m: 0, pl: 2.5 }} spacing={0.25}>
+            {blockers.map((b) => (
+              <li key={b}>
+                <Typography variant="body2">{b}</Typography>
+              </li>
+            ))}
+          </Stack>
+        </Alert>
+      )}
 
+      {/* Setup detail — collapsed when all is well, open when it isn't. */}
       {config && (
-        <>
-          {/* File Paths - Compact table format */}
-          <Paper variant="outlined" sx={{ p: 1.5 }}>
-            <Typography variant="subtitle2" color="primary" fontWeight={600} sx={{ mb: 1 }}>
-              Configuration
+        <Accordion
+          expanded={setupOpen}
+          onChange={(_, v) => setSetupOpen(v)}
+          variant="outlined"
+          disableGutters
+          sx={{ "&:before": { display: "none" }, borderRadius: 1 }}
+        >
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Typography variant="subtitle2" fontWeight={600}>
+              Setup
             </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
             <Stack spacing={1}>
-              {/* CCP4 Directory */}
-              <Stack direction="row" alignItems="center" spacing={1}>
-                {existingFiles?.CCP4Dir ? (
-                  <Check color="success" fontSize="small" />
-                ) : (
-                  <Cancel color="error" fontSize="small" />
-                )}
-                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
-                  CCP4 Dir
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    flex: 1,
-                    fontFamily: "monospace",
-                    fontSize: "0.75rem",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {config.CCP4Dir}
-                </Typography>
-                <Button
-                  size="small"
-                  onClick={onLaunchBrowser}
-                  disabled={!(typeof window !== "undefined" && window.electronAPI)}
-                >
-                  Change
-                </Button>
-              </Stack>
-
-              {/* Python */}
-              <Stack direction="row" alignItems="center" spacing={1}>
-                {existingFiles?.venv_python ? (
-                  <Check color="success" fontSize="small" />
-                ) : (
-                  <Cancel color="error" fontSize="small" />
-                )}
-                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
-                  Python
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    flex: 1,
-                    fontFamily: "monospace",
-                    fontSize: "0.75rem",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {config.venv_python || "Not found"}
-                </Typography>
-              </Stack>
-
-              {/* Projects Directory */}
-              <Stack direction="row" alignItems="center" spacing={1}>
-                {existingFiles?.CCP4I2_PROJECTS_DIR ? (
-                  <Check color="success" fontSize="small" />
-                ) : (
-                  <Cancel color="error" fontSize="small" />
-                )}
-                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
-                  Projects
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{
-                    flex: 1,
-                    fontFamily: "monospace",
-                    fontSize: "0.75rem",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {config.CCP4I2_PROJECTS_DIR}
-                </Typography>
-                <Button
-                  size="small"
-                  onClick={onSelectProjectsDir}
-                  disabled={!(typeof window !== "undefined" && window.electronAPI)}
-                >
-                  Change
-                </Button>
-              </Stack>
-
-              {/* Requirements */}
-              <Stack direction="row" alignItems="center" spacing={1}>
-                {requirementsExist ? (
-                  <Check color="success" fontSize="small" />
-                ) : (
-                  <Cancel color="error" fontSize="small" />
-                )}
-                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
-                  Requirements
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ flex: 1 }}>
-                  {requirementsExist
+              <SetupRow
+                ok={existingFiles?.CCP4Dir}
+                label="CCP4"
+                value={config.CCP4Dir}
+                action={hasElectron ? { label: "Change", onClick: onLocateCcp4 } : undefined}
+              />
+              <SetupRow
+                ok={existingFiles?.venv_python}
+                label="Python"
+                value={config.venv_python || "Not found"}
+              />
+              <SetupRow
+                ok={existingFiles?.CCP4I2_PROJECTS_DIR}
+                label="Projects"
+                value={config.CCP4I2_PROJECTS_DIR}
+                action={
+                  hasElectron
+                    ? { label: "Change", onClick: onSelectProjectsDir }
+                    : undefined
+                }
+              />
+              <SetupRow
+                ok={requirementsExist}
+                label="Requirements"
+                value={
+                  requirementsExist
                     ? serverVersion
                       ? `ccp4i2 ${serverVersion}`
                       : "Installed"
-                    : "Not installed"}
+                    : "Not installed"
+                }
+                action={
+                  hasElectron
+                    ? {
+                        label: requirementsExist ? "Reinstall" : "Install",
+                        onClick: onInstallRequirements,
+                        variant: requirementsExist ? "text" : "contained",
+                        disabled: !existingFiles?.venv_python,
+                      }
+                    : undefined
+                }
+              />
+
+              <Stack
+                direction="row"
+                spacing={2}
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ pt: 1 }}
+              >
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Typography variant="body2">Theme</Typography>
+                  <ThemeToggle />
+                </Stack>
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Typography variant="body2">Developer mode</Typography>
+                  <Switch
+                    size="small"
+                    checked={devMode}
+                    onChange={onToggleDevMode}
+                    disabled={!hasElectron}
+                  />
+                </Stack>
+                <Typography variant="caption" color="text.secondary">
+                  Ports {config.NEXT_PORT} / {config.UVICORN_PORT}
                 </Typography>
-                <Button
-                  size="small"
-                  variant={requirementsExist ? "text" : "contained"}
-                  onClick={onInstallRequirements}
-                  disabled={
-                    !(typeof window !== "undefined" && window.electronAPI) ||
-                    !existingFiles?.venv_python
-                  }
-                >
-                  {requirementsExist ? "Reinstall" : "Install"}
-                </Button>
               </Stack>
             </Stack>
-          </Paper>
-
-          {/* Settings Row - Theme, Dev Mode, Ports */}
-          <Stack direction="row" spacing={1.5}>
-            {/* Theme */}
-            <Paper variant="outlined" sx={{ p: 1.5, flex: 1 }}>
-              <Stack direction="row" alignItems="center" justifyContent="space-between">
-                <Typography variant="body2" fontWeight={500}>
-                  Theme
-                </Typography>
-                <ThemeToggle />
-              </Stack>
-            </Paper>
-
-            {/* Dev Mode */}
-            <Paper variant="outlined" sx={{ p: 1.5, flex: 1 }}>
-              <Stack direction="row" alignItems="center" justifyContent="space-between">
-                <Typography variant="body2" fontWeight={500}>
-                  Dev Mode
-                </Typography>
-                <Switch
-                  size="small"
-                  checked={devMode}
-                  onChange={onToggleDevMode}
-                  disabled={!(typeof window !== "undefined" && window.electronAPI)}
-                />
-              </Stack>
-            </Paper>
-
-            {/* Ports */}
-            <Paper variant="outlined" sx={{ p: 1.5, flex: 1 }}>
-              <Stack direction="row" alignItems="center" justifyContent="space-between">
-                <Typography variant="body2" fontWeight={500}>
-                  Ports
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {config.NEXT_PORT} / {config.UVICORN_PORT}
-                </Typography>
-              </Stack>
-            </Paper>
-          </Stack>
-        </>
+          </AccordionDetails>
+        </Accordion>
       )}
 
-      {/* Minimal config when no electron config */}
+      {/* Web mode (no electron config): just a theme control. */}
       {!config && (
-        <Paper variant="outlined" sx={{ p: 1.5 }}>
-          <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <Typography variant="body2" fontWeight={500}>
-              Theme
-            </Typography>
-            <ThemeToggle />
-          </Stack>
-        </Paper>
+        <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
+          <Typography variant="body2">Theme</Typography>
+          <ThemeToggle />
+        </Stack>
       )}
 
-      {/* Installation Progress Dialog */}
+      {/* Install progress. */}
       <Dialog
         open={
           installProgress.isInstalling ||
@@ -462,10 +370,10 @@ export const ConfigContent: React.FC = () => {
       >
         <DialogTitle>
           {installProgress.status === "completed"
-            ? "Installation Complete"
+            ? "Requirements installed"
             : installProgress.status === "failed"
-              ? "Installation Failed"
-              : "Installing Requirements"}
+              ? "Installation failed"
+              : "Installing requirements"}
           {installProgress.status === "installing" && (
             <CircularProgress size={20} sx={{ ml: 2 }} />
           )}
@@ -484,17 +392,13 @@ export const ConfigContent: React.FC = () => {
             }}
           >
             {installProgress.output.length === 0 ? (
-              <Typography>Initializing installation...</Typography>
+              <Typography>Initializing…</Typography>
             ) : (
-              installProgress.output.map((line, index) => (
+              installProgress.output.map((line, i) => (
                 <Typography
-                  key={index}
+                  key={i}
                   component="pre"
-                  sx={{
-                    m: 0,
-                    whiteSpace: "pre-wrap",
-                    wordBreak: "break-word",
-                  }}
+                  sx={{ m: 0, whiteSpace: "pre-wrap", wordBreak: "break-word" }}
                 >
                   {line}
                 </Typography>
@@ -517,3 +421,50 @@ export const ConfigContent: React.FC = () => {
     </Stack>
   );
 };
+
+const SetupRow: React.FC<{
+  ok: boolean | undefined;
+  label: string;
+  value: string;
+  action?: {
+    label: string;
+    onClick: () => void;
+    variant?: "text" | "contained" | "outlined";
+    disabled?: boolean;
+  };
+}> = ({ ok, label, value, action }) => (
+  <Stack direction="row" alignItems="center" spacing={1}>
+    {ok ? (
+      <Check color="success" fontSize="small" />
+    ) : (
+      <Cancel color="error" fontSize="small" />
+    )}
+    <Typography variant="body2" sx={{ minWidth: 96, fontWeight: 500 }}>
+      {label}
+    </Typography>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      sx={{
+        flex: 1,
+        fontFamily: "monospace",
+        fontSize: "0.75rem",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {value}
+    </Typography>
+    {action && (
+      <Button
+        size="small"
+        variant={action.variant}
+        onClick={action.onClick}
+        disabled={action.disabled}
+      >
+        {action.label}
+      </Button>
+    )}
+  </Stack>
+);
