@@ -20,7 +20,13 @@ import type { NextRequest } from "next/server";
 
 // Paths that don't require authentication
 const AUTH_EXEMPT_PATHS = [
-  "/api/health", // Health check for Azure Container Apps probes
+  "/api/health", // Next-side liveness check for Azure Container Apps probes
+  "/api/proxy/ccp4i2/health", // Django backend READINESS probe (LaunchGate /
+                              // useServerReady). Polled before login and before
+                              // the backend is up, so it must reach the proxy
+                              // without an auth-session cookie. The Django
+                              // health_check view is itself unauthenticated.
+                              // (Same rationale as /reinspect/healthz below.)
   "/api/auth/", // Auth session API (cookie management)
   "/api/proxy/uniprot/", // UniProt REST API proxy (public data)
   "/auth/login", // Login page that triggers MSAL
