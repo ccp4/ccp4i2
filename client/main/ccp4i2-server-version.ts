@@ -25,7 +25,7 @@
  * not a floor.
  */
 export const CCP4I2_REQUIRED_SERVER_VERSION =
-  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a1";
+  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a3";
 
 /**
  * Compare two dotted numeric version strings (e.g. "3.0.10" vs "3.0.2").
@@ -67,15 +67,18 @@ function normalizeVersion(v: string): string {
 /**
  * Does the installed ccp4i2 EXACTLY match the version this app is pinned to?
  *
- * An unparseable / missing version is treated as acceptable (the ASGI app
- * imported, so the server will boot — we don't block on a parse hiccup). We only
- * gate on a *known* mismatch, which is what keeps an alpha app off any backend
- * other than its exact partner.
+ * Strict during the alpha: the app accepts ONLY its exact partner version.
+ * A missing / unreadable installed version counts as a MISMATCH, not a pass —
+ * the ASGI app importing proves the backend *boots*, but the pin is about
+ * version *identity*, and "I can't tell what's installed" is not "the right
+ * thing is installed". Treating unknown as acceptable was the hole that let a
+ * wrong/undetectable backend through; here it fails closed so the UI offers to
+ * install the exact partner. (Dev/unpacked mode never calls this — see caller.)
  */
 export function meetsServerVersionRequirement(
   installed: string | undefined,
 ): boolean {
-  if (!installed) return true;
+  if (!installed) return false;
   return (
     normalizeVersion(installed) ===
     normalizeVersion(CCP4I2_REQUIRED_SERVER_VERSION)
