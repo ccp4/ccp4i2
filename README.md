@@ -31,10 +31,10 @@ CCP4i2 uses a modern web-based architecture:
 **See [Give it a try](docs/give-it-a-try.md)** for the full walkthrough. In short:
 
 1. **Install CCP4 10** from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/) (provides `ccp4-python`).
-2. **Download the desktop app** for your OS from [GitHub Actions](../../actions) → *Electron Multiplatform Build* (macOS `.dmg`, Windows `.exe`, Linux `.AppImage`). On macOS, clear quarantine: `xattr -cr "/Applications/ccp4i2-django.app"`.
-3. **Launch it**, point it at your CCP4 installation, and click **Install** when prompted — the app installs the `ccp4i2` backend into `ccp4-python` for you.
+2. **Download the desktop app** for your OS from [Releases](https://github.com/ccp4/ccp4i2/releases) — during the alpha, pick the top entry marked **Pre-release** and grab the installer for your OS (macOS `.dmg`, Windows `.exe`, Linux `.AppImage`). On macOS, clear quarantine: `xattr -cr "/Applications/ccp4i2-django.app"`.
+3. **Launch it**, point it at your CCP4 installation, and click **Install** when prompted — the app installs the matching `ccp4i2` backend into `ccp4-python` for you.
 
-> Do **not** `pip install ccp4i2` against system Python — the backend must live in CCP4's `ccp4-python`, which the app handles automatically. The app also enforces a minimum backend version, so you don't match versions by hand.
+> Do **not** `pip install ccp4i2` against system Python — the backend must live in CCP4's `ccp4-python`, which the app handles automatically. Each app build is pinned to one exact backend version (shown on the launch screen), so you never match versions by hand.
 
 ### For Developers
 
