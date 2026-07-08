@@ -77,6 +77,8 @@ def dict_factory(cursor, row):
     return {col[0].lower(): row[i] for i, col in enumerate(cursor.description)}
 
 
+
+
 def default_dest_root():
     """Default destination root for copied projects (CCP4I2_PROJECTS_DIR)."""
     try:
@@ -284,9 +286,16 @@ class SQLiteValidator:
         cur.execute(
             "SELECT FileID, Filename, JobID, PathFlag FROM Files"
         )
+        # Missing files are partitioned by the preservation contract: files of
+        # TOP-LEVEL jobs (job number with no '.') are guaranteed to be preserved,
+        # so a missing one is a genuine violation. SUB-job files (nested pipeline
+        # steps, job number like '3.2') are NOT covered by the guarantee, so a
+        # missing one is out of contract, not a fault.
         results = {
             "total": 0, "exists": 0,
-            "missing": [], "missing_count": 0,
+            "missing": [], "missing_count": 0,           # kept: all misses
+            "top_missing": [], "top_missing_count": 0,   # in-contract violations
+            "sub_missing_count": 0,                      # out-of-contract
             "orphan_job": 0,
         }
         for row in cur.fetchall():
@@ -315,15 +324,32 @@ class SQLiteValidator:
                 results["exists"] += 1
             else:
                 results["missing_count"] += 1
+                is_top_level = "." not in ji["number"]
                 if self.verbose or len(results["missing"]) < 50:
                     results["missing"].append({
                         "filename": filename,
                         "expected_path": str(file_path),
+                        "job_number": ji["number"],
+                        "top_level": is_top_level,
                     })
+                if is_top_level:
+                    results["top_missing_count"] += 1
+                    if self.verbose or len(results["top_missing"]) < 50:
+                        results["top_missing"].append({
+                            "filename": filename,
+                            "expected_path": str(file_path),
+                            "job_number": ji["number"],
+                        })
+                else:
+                    results["sub_missing_count"] += 1
 
         self._log_section("Files", results["total"],
                           results["exists"], results["missing"],
                           missing_count=results["missing_count"])
+        self.log_fn(
+            f"    of which top-level (in-contract): {results['top_missing_count']}, "
+            f"sub-job (out-of-contract): {results['sub_missing_count']}"
+        )
         return results
 
     # ------------------------------------------------------------------
@@ -331,29 +357,44 @@ class SQLiteValidator:
     # ------------------------------------------------------------------
 
     def _validate_imported_files(self, cur):
-        cur.execute(
-            "SELECT ImportId, FileID, SourceFilename FROM ImportFiles"
-        )
+        """Report import provenance — informational only.
+
+        Two things to be clear about, both learned the hard way:
+
+        * The imported files that live on disk under ``CCP4_IMPORTED_FILES`` are
+          the ``Files`` rows with ``PathFlag == 2``. Those are already checked by
+          :meth:`_validate_files` (which builds the same path the new-model
+          ``File.path`` does — ``project/CCP4_IMPORTED_FILES/<name>``). We do NOT
+          re-check them here; the ``ImportFiles`` table is a separate provenance
+          record, and joining it to ``Files`` lands on the job's *logical* output
+          row (a different, PathFlag==1 name), producing bogus "missing" hits.
+        * ``ImportFiles.SourceFilename`` is the *original external path* the user
+          imported from — usually long gone (a download, another machine) and
+          irrelevant to migration.
+
+        So this method only reports how many import *sources* still resolve, as
+        context. It never contributes to the health summary.
+        """
+        cur.execute("SELECT ImportId, SourceFilename FROM ImportFiles")
         results = {
-            "total": 0, "source_exists": 0,
-            "source_missing": [], "source_missing_count": 0,
+            "total": 0,
+            "source_exists": 0,
+            "source_missing_count": 0,
         }
         for row in cur.fetchall():
             results["total"] += 1
-            src = row["sourcefilename"] or ""
+            src = self.remap_directory(row["sourcefilename"] or "")
             if not src:
                 continue
-            src = self.remap_directory(src)
             if Path(src).is_file():
                 results["source_exists"] += 1
             else:
                 results["source_missing_count"] += 1
-                if self.verbose or len(results["source_missing"]) < 50:
-                    results["source_missing"].append(src)
 
-        self._log_section("ImportFiles (source)", results["total"],
-                          results["source_exists"], results["source_missing"],
-                          missing_count=results["source_missing_count"])
+        self.log_fn(
+            f"  ImportFiles (source provenance, informational): "
+            f"{results['source_exists']}/{results['total']} sources still present"
+        )
         return results
 
     # ------------------------------------------------------------------
@@ -586,11 +627,17 @@ class SQLiteValidator:
         plan = report.get("plan", [])
 
         blocking = blocking_unresolved(structure["issues"])
+        # summary.ok reflects whether migration can proceed cleanly.
+        # - Project/job DIRECTORIES gate ok (they hold the data migration carries).
+        # - TOP-LEVEL job files are covered by the preservation contract, so a
+        #   missing one is a genuine violation and gates ok.
+        # - SUB-job files are NOT covered by the contract, so their absence does
+        #   NOT gate ok (reported informationally, never dressed up as "normal").
         all_ok = (
             not projects["dir_missing"]
             and not projects["dir_empty"]
             and jobs["dir_missing_count"] == 0
-            and files["missing_count"] == 0
+            and files["top_missing_count"] == 0
             and integrity["ok"]
             and quality["ok"]
             and blocking == 0
@@ -604,8 +651,14 @@ class SQLiteValidator:
             "ok": all_ok,
             "projects_on_disk": f"{projects['dir_exists']}/{projects['total']}",
             "jobs_on_disk": f"{jobs['dir_exists']}/{jobs['total']}",
+            # files_on_disk already covers imported files (the PathFlag==2 rows
+            # under CCP4_IMPORTED_FILES). Import *source* provenance is reported
+            # separately as an informational count only.
             "files_on_disk": f"{files['exists']}/{files['total']}",
-            "import_sources_on_disk": f"{imports['source_exists']}/{imports['total']}",
+            # Missing files split by the preservation contract.
+            "top_level_files_missing": files["top_missing_count"],
+            "sub_job_files_missing": files["sub_missing_count"],
+            "import_sources_present": f"{imports['source_exists']}/{imports['total']}",
             "integrity_issues": len(integrity["issues"]),
             "data_quality_issues": len(quality["issues"]),
             "structure_issues": len(structure["issues"]),

@@ -34,7 +34,13 @@ export interface ValidateSummary {
   projects_on_disk: string;
   jobs_on_disk: string;
   files_on_disk: string;
-  import_sources_on_disk: string;
+  // Informational: original external import sources still resolvable. Not a
+  // health signal (files_on_disk already covers the imported copies).
+  import_sources_present: string;
+  // Missing files split by the preservation contract: top-level job files are
+  // guaranteed (a miss is a real violation), sub-job files are not.
+  top_level_files_missing: number;
+  sub_job_files_missing: number;
   integrity_issues: number;
   data_quality_issues: number;
   structure_issues: number;
@@ -65,13 +71,21 @@ export interface ValidateReport {
     total: number;
     exists: number;
     missing_count: number;
-    missing: { filename: string; expected_path: string }[];
+    missing: {
+      filename: string;
+      expected_path: string;
+      job_number: string;
+      top_level: boolean;
+    }[];
+    top_missing_count: number;
+    top_missing: { filename: string; expected_path: string; job_number: string }[];
+    sub_missing_count: number;
   };
   imported_files: {
     total: number;
+    // Original external import sources still present (informational only).
     source_exists: number;
     source_missing_count: number;
-    source_missing: string[];
   };
   integrity: { ok: boolean; issues: string[] };
   data_quality: { ok: boolean; issues: string[] };

@@ -366,14 +366,73 @@ const ValidateStep: React.FC<{
 }> = ({ report, acknowledged, setAcknowledged, canAdvance, busy, onBack, onNext }) => {
   const s = report.summary;
   const blocking = s.blocking_issues;
+  const topMissing = s.top_level_files_missing;
+  const subMissing = s.sub_job_files_missing;
   return (
     <Stack spacing={3}>
-      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        <RatioChip label="Projects on disk" value={s.projects_on_disk} />
-        <RatioChip label="Jobs on disk" value={s.jobs_on_disk} />
-        <RatioChip label="Files on disk" value={s.files_on_disk} />
-        <RatioChip label="Import sources" value={s.import_sources_on_disk} />
-      </Stack>
+      {/* Structural health — these hold the data migration carries. */}
+      <Box>
+        <Typography variant="overline" color="text.secondary">
+          Project data
+        </Typography>
+        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+          <RatioChip label="Projects on disk" value={s.projects_on_disk} />
+          <RatioChip label="Job directories on disk" value={s.jobs_on_disk} />
+          <RatioChip label="Files on disk" value={s.files_on_disk} />
+        </Stack>
+      </Box>
+
+      {/* In-contract violation: top-level job files that SHOULD be present. */}
+      {topMissing > 0 && (
+        <Alert severity="warning">
+          <AlertTitle>
+            {topMissing} file{topMissing === 1 ? "" : "s"} from top-level jobs
+            {topMissing === 1 ? " is" : " are"} missing
+          </AlertTitle>
+          <Typography variant="body2" sx={{ mb: 1 }}>
+            These files have database entries but were not found on disk. Files
+            recorded for top-level jobs are expected to be present; their absence
+            means those results will not be available after migration. This does
+            not block migration — the rest of the project migrates normally — but
+            you should be aware of what is missing.
+          </Typography>
+          <TableContainer sx={{ maxHeight: 220, overflow: "auto" }}>
+            <Table size="small" stickyHeader>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Job</TableCell>
+                  <TableCell>File</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {report.files.top_missing.map((m, i) => (
+                  <TableRow key={i}>
+                    <TableCell>{m.job_number}</TableCell>
+                    <TableCell sx={{ wordBreak: "break-all" }}>
+                      {m.filename}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Alert>
+      )}
+
+      {/* Out-of-contract: sub-job files are not covered by the guarantee. */}
+      {subMissing > 0 && (
+        <Alert severity="info">
+          <AlertTitle>
+            {subMissing} sub-job file{subMissing === 1 ? "" : "s"} not found
+          </AlertTitle>
+          <Typography variant="body2">
+            These files belong to nested pipeline steps (sub-jobs). The migration
+            guarantee covers files of top-level jobs; files inside sub-jobs are
+            not guaranteed to be preserved, so their absence is outside that
+            contract rather than a fault. Listed here for transparency.
+          </Typography>
+        </Alert>
+      )}
 
       {(s.integrity_issues > 0 || s.data_quality_issues > 0) && (
         <Alert severity="warning">
@@ -389,7 +448,7 @@ const ValidateStep: React.FC<{
       {(report.projects.dir_missing.length > 0 ||
         report.jobs.dir_missing_count > 0) && (
         <Alert severity="warning">
-          <AlertTitle>Some directories are missing on disk</AlertTitle>
+          <AlertTitle>Some project or job directories are missing on disk</AlertTitle>
           {report.projects.dir_missing.slice(0, 10).map((d, i) => (
             <Typography key={i} variant="body2">
               • {d.project}: {d.directory}
@@ -399,6 +458,8 @@ const ValidateStep: React.FC<{
             <Typography variant="body2">
               • {report.jobs.dir_missing_count} job director
               {report.jobs.dir_missing_count === 1 ? "y" : "ies"} not found
+              (these jobs will migrate as records, but their working files
+              won&apos;t be available)
             </Typography>
           )}
         </Alert>
@@ -445,13 +506,21 @@ const ValidateStep: React.FC<{
   );
 };
 
-const RatioChip: React.FC<{ label: string; value: string }> = ({ label, value }) => {
+const RatioChip: React.FC<{ label: string; value: string; muted?: boolean }> = ({
+  label,
+  value,
+  muted = false,
+}) => {
   const [have, total] = value.split("/").map((x) => parseInt(x, 10));
   const complete = Number.isFinite(have) && have === total;
+  // Structural chips warn (amber) when incomplete. Informational ("muted")
+  // chips stay neutral when incomplete — a shortfall there is expected, not a
+  // problem, so we don't raise alarm colours.
+  const color = complete ? "success" : muted ? "default" : "warning";
   return (
     <Chip
-      icon={complete ? <CheckCircle /> : <Warning />}
-      color={complete ? "success" : "warning"}
+      icon={complete ? <CheckCircle /> : muted ? undefined : <Warning />}
+      color={color}
       variant="outlined"
       label={`${label}: ${value}`}
     />

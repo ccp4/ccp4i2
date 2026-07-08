@@ -80,11 +80,13 @@ def _hex():
     return uuid.uuid4().hex
 
 
-def make_legacy_db(db_path, projects, jobs=None):
+def make_legacy_db(db_path, projects, jobs=None, files=None):
     """Create a minimal legacy sqlite DB.
 
     projects: list of dicts {id, name, directory, i1_directory?, parent?}
     jobs: optional list of {id, number, project_id, task}
+    files: optional list of {filename, job_id, pathflag?} — DB rows only; the
+        test decides whether the file exists on disk.
     """
     conn = sqlite3.connect(str(db_path))
     conn.executescript(LEGACY_SCHEMA)
@@ -102,6 +104,11 @@ def make_legacy_db(db_path, projects, jobs=None):
             "CreationTime) VALUES (?,?,?,?,?,?)",
             (j["id"], j["number"], j["project_id"], 6, j.get("task", "refmac"),
              1700000000.0),
+        )
+    for f in (files or []):
+        conn.execute(
+            "INSERT INTO Files (FileID, Filename, JobID, PathFlag) VALUES (?,?,?,?)",
+            (_hex(), f["filename"], f["job_id"], f.get("pathflag", 1)),
         )
     conn.commit()
     conn.close()
@@ -220,6 +227,33 @@ class ImporterCopyTests(TestCase):
         self.assertEqual(len(report["plan"]), 1)
         self.assertEqual(report["plan"][0]["mode"], "copy")
         self.assertEqual(report["summary"]["plan_summary"]["copy"], 1)
+
+    def test_missing_files_split_by_preservation_contract(self):
+        # A project with a top-level job (1) and a sub-job (1.1). Give each a
+        # Files row whose file is NOT on disk. The top-level miss is an
+        # in-contract violation (gates ok); the sub-job miss is out of contract.
+        d = make_project_tree(self.legacy_root, "kappa")
+        # sub-job dir must exist so only the FILE is missing, not the dir
+        (Path(d) / "CCP4_JOBS" / "job_1" / "job_1").mkdir(parents=True, exist_ok=True)
+        pid = _hex()
+        top_job, sub_job = _hex(), _hex()
+        make_legacy_db(
+            self.db_path,
+            [{"id": pid, "name": "kappa", "directory": d}],
+            [{"id": top_job, "number": "1", "project_id": pid},
+             {"id": sub_job, "number": "1.1", "project_id": pid}],
+            files=[
+                {"filename": "TOPLEVEL_RESULT.pdb", "job_id": top_job},
+                {"filename": "sub_intermediate.mtz", "job_id": sub_job},
+            ],
+        )
+        s = self._validator().run()["summary"]
+        self.assertEqual(s["top_level_files_missing"], 1)
+        self.assertEqual(s["sub_job_files_missing"], 1)
+        # In-contract violation makes the run not-ok; sub-job miss alone would not.
+        self.assertFalse(s["ok"])
+        # But it is not a *blocking* structural issue — migration can proceed.
+        self.assertEqual(s["blocking_issues"], 0)
 
     def test_copy_mode_copies_tree_and_repoints(self):
         d = make_project_tree(self.legacy_root, "delta")
