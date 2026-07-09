@@ -39,14 +39,30 @@ generate on your Mac. The CSR step creates the **private key locally** (it never
 leaves your Mac) — which is why you can later export a `.p12` that contains both
 the cert *and* the key. Skipping the CSR is the usual point of confusion.
 
-1. **Generate the CSR on your Mac.** Keychain Access → menu **Keychain Access →
-   Certificate Assistant → Request a Certificate From a Certificate Authority…**
+1. **Generate the CSR on your Mac.** Two ways — either works.
+
+   **a. Keychain Access.** Certificate Assistant lives in the **top menu bar**
+   (not a right-click / toolbar), and only when Keychain Access is the frontmost
+   app: click the **"Keychain Access"** application menu (next to the  menu) →
+   **Certificate Assistant → Request a Certificate From a Certificate
+   Authority…**. If it's greyed out, click the **login** keychain in the sidebar
+   first. Then:
    - *User Email Address:* your Apple ID email.
    - *Common Name:* anything descriptive (e.g. `CCP4i2 Developer ID`).
    - *CA Email Address:* leave blank.
    - Choose **"Saved to disk"** (not "Emailed to the CA").
-   - This writes `CertificateSigningRequest.certSigningRequest` **and** puts a new
+   - Writes `CertificateSigningRequest.certSigningRequest` **and** puts a new
      private key in your login keychain.
+
+   **b. openssl (if you can't find the menu).** Generates the key + CSR directly:
+   ```bash
+   openssl req -new -newkey rsa:2048 -nodes \
+     -keyout DeveloperID.key \
+     -out DeveloperID.certSigningRequest \
+     -subj "/emailAddress=YOUR_APPLE_ID_EMAIL/CN=CCP4i2 Developer ID/C=GB"
+   ```
+   Keep `DeveloperID.key` safe — it's the private key. (With this route you skip
+   the Keychain export in step 4; see the openssl note there.)
 
 2. **Create the certificate in the Apple Developer portal.**
    Certificates → **+** → under **Software**, choose **Developer ID Application**
@@ -63,10 +79,21 @@ the cert *and* the key. Skipping the CSR is the usual point of confusion.
    *"Developer ID Application: <your name/team>"* with a disclosure triangle
    revealing the private key beneath it).
 
-4. **Export the `.p12`.** In Keychain Access (login keychain, "My Certificates"),
-   expand the *Developer ID Application* certificate, select **both** the
-   certificate **and** its private key, right-click → **Export 2 items…** → save
-   as a `.p12`. Set an **export password** — this becomes `MAC_CSC_KEY_PASSWORD`.
+4. **Export the `.p12`.**
+
+   **If you used route 1a (Keychain):** in Keychain Access (login keychain,
+   "My Certificates"), expand the *Developer ID Application* certificate, select
+   **both** the certificate **and** its private key, right-click → **Export 2
+   items…** → save as a `.p12`. Set an **export password** → `MAC_CSC_KEY_PASSWORD`.
+
+   **If you used route 1b (openssl):** you already hold the key (`DeveloperID.key`)
+   and Apple's cert (`developerID_application.cer`). Bundle them:
+   ```bash
+   openssl x509 -inform DER -in developerID_application.cer -out DeveloperID.pem
+   openssl pkcs12 -export -inkey DeveloperID.key -in DeveloperID.pem \
+     -out DeveloperIDApplication.p12          # prompts for the export password
+   ```
+   The export password you set → `MAC_CSC_KEY_PASSWORD`.
 
 5. **Base64-encode the `.p12`** (electron-builder decodes `CSC_LINK` from base64):
    ```bash
