@@ -199,6 +199,17 @@ jobs:
           APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
           APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
         run: |
+          # Presence readout (never prints values) so a misconfiguration is
+          # diagnosable from the log instead of a silent "absent". Note: this
+          # job has NO `environment:`, so it sees only REPOSITORY/ORG secrets —
+          # Apple secrets placed in an Environment (e.g. pypi/npm) are invisible
+          # here. Set them as Repository secrets, or add `environment:` to this
+          # job. Names are exact/case-sensitive.
+          echo "Apple signing secrets seen by this job (set = non-empty):"
+          for s in MAC_CSC_LINK MAC_CSC_KEY_PASSWORD APPLE_API_KEY_P8 APPLE_API_KEY_ID APPLE_API_ISSUER; do
+            v="$(eval echo \"\$$s\")"
+            if [ -n "$v" ]; then echo "  $s = set (${#v} chars)"; else echo "  $s = EMPTY"; fi
+          done
           if [ -n "$MAC_CSC_LINK" ] && [ -n "$APPLE_API_KEY_P8" ]; then
             KEYDIR="$RUNNER_TEMP/appleapi"; mkdir -p "$KEYDIR"
             printf '%s' "$APPLE_API_KEY_P8" > "$KEYDIR/AuthKey.p8"
