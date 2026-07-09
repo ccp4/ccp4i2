@@ -1,10 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Button, Toolbar, Tooltip } from "@mui/material";
-import { Add, Upload } from "@mui/icons-material";
+import { Add, Upload, SettingsBackupRestore } from "@mui/icons-material";
+import { useAuth } from "@/lib/compounds/auth-context";
 
 export default function ProjectsToolbar() {
   const router = useRouter();
+  const { canAdminister } = useAuth();
 
   function importProjects() {
     router.push("/ccp4i2/import-project");
@@ -30,6 +32,17 @@ export default function ProjectsToolbar() {
           Import
         </Button>
       </Tooltip>
+      {canAdminister && (
+        <Tooltip title="Migrate a legacy CCP4i2 database into this installation">
+          <Button
+            variant="outlined"
+            startIcon={<SettingsBackupRestore />}
+            onClick={() => router.push("/ccp4i2/admin/migrate-legacy")}
+          >
+            Migrate legacy
+          </Button>
+        </Tooltip>
+      )}
     </Toolbar>
   );
 }

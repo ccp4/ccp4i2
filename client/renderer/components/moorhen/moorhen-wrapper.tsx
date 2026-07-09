@@ -830,12 +830,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         const url = `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`;
         return loadStructure(url, ref.name || pdbId);
       }
-      // A ccp4i2 fileId is globally unique, so the download URL keys on it
-      // directly — the project qualifier (projectId UUID or projectName) only
-      // gates the ref as a project-file ref; it isn't needed to build the URL.
-      // Accept either qualifier so cross-project superposition refs can be
-      // hand-authored by name (the handle a human has), matching job+param.
-      if (ref.fileId !== undefined && (ref.projectId || ref.projectName)) {
+      // A ccp4i2 fileId is globally unique and the download URL keys on it
+      // alone — no project qualifier needed to build the URL. projectId/
+      // projectName are advisory context (they don't gate the fetch).
+      if (ref.fileId !== undefined) {
         const url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
         return loadStructure(url, ref.name || `file_${ref.fileId}`);
       }
@@ -881,7 +879,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
       }
       let url: string | null = null;
-      if (ref.fileId !== undefined && (ref.projectId || ref.projectName)) {
+      if (ref.fileId !== undefined) {
         url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
       } else if (ref.url) {
         url = ref.url;
@@ -922,7 +920,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // here (above the consumers) so the closures pick it up cleanly.
   const resolveSceneRefUrl: SceneRefUrlResolver = useCallback((ref) => {
     if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
-    if (ref.fileId !== undefined && (ref.projectId || ref.projectName)) {
+    if (ref.fileId !== undefined) {
       return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
     }
     if (ref.url) return ref.url;

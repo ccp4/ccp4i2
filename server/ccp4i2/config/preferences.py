@@ -5,12 +5,13 @@ plane.
 
 Location
 --------
-``~/.ccp4i2/preferences.json`` (the existing CCP4i2 user home; override the home
-with the ``CCP4I2_HOME`` environment variable). This sits next to the default
-SQLite database and project store, so one home directory holds all per-user state.
-It is the modern, lowercase, JSON echo of classic (Qt) CCP4i2's ``~/.CCP4i2``
-XML preferences — JSON so the Electron/JS side can read and write it as easily as
-Python.
+``~/.ccp4i2-django/preferences.json`` (override the home with the ``CCP4I2_HOME``
+environment variable). This sits next to the default SQLite database and project
+store, so one home directory holds all per-user state. The home is
+``~/.ccp4i2-django`` — deliberately distinct from classic (Qt) CCP4i2's
+``~/.CCP4I2``, which ``~/.ccp4i2`` would collide with on case-insensitive
+filesystems (see ``ccp4i2_home``). JSON (vs the classic XML prefs) so the
+Electron/JS side can read and write it as easily as Python.
 
 Resolution precedence (for every setting)
 -----------------------------------------
@@ -53,9 +54,18 @@ PATH_KEYS = ("ccp4Dir", "projectsDir", "ccp4i2Root")
 
 
 def ccp4i2_home() -> Path:
-    """The CCP4i2 user home (``CCP4I2_HOME`` env var, else ``~/.ccp4i2``)."""
+    """The CCP4i2 user home (``CCP4I2_HOME`` env var, else ``~/.ccp4i2-django``).
+
+    Deliberately ``~/.ccp4i2-django``, NOT ``~/.ccp4i2``: the latter differs from
+    the legacy Qt-era CCP4i2 home ``~/.CCP4I2`` only by case, and on a
+    case-insensitive filesystem (the macOS default) they are the SAME directory.
+    Sharing a home with the app being migrated FROM would let the new app write
+    its db/prefs into the legacy tree and read a database it is simultaneously
+    writing — so the new app keeps a home that cannot collide with legacy.
+    Kept in sync with the Electron side (client/main/ccp4i2-preferences.ts).
+    """
     override = os.environ.get("CCP4I2_HOME")
-    base = Path(override) if override else (Path.home() / ".ccp4i2")
+    base = Path(override) if override else (Path.home() / ".ccp4i2-django")
     return base.expanduser().resolve()
 
 

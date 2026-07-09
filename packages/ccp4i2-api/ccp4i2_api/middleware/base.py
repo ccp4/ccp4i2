@@ -20,6 +20,20 @@ from ..exceptions import AuthenticationFailed, AuthorizationFailed
 REQUEST_FLAG_ATTR = "_ccp4i2_api_middleware_ran"
 
 
+# Public endpoints that must be reachable WITHOUT authentication. These are
+# unauthenticated by design (plain Django views, no DRF permissions):
+#   * health  — liveness/readiness probe. Polled by container orchestrators and
+#               by the desktop launch gate before any token exists.
+#   * version — server version, fetched before login.
+# Matched against the request path suffix so it works under any URL prefix
+# (``/api/ccp4i2/health/`` in-app, ``/health/`` if mounted bare).
+PUBLIC_PATH_SUFFIXES = ("/health/", "/health", "/version/", "/version")
+
+
+def _is_public_path(path: str) -> bool:
+    return path.endswith(PUBLIC_PATH_SUFFIXES)
+
+
 class BaseAuthMiddleware:
     """Abstract base for CCP4i2 auth middleware.
 
@@ -42,6 +56,11 @@ class BaseAuthMiddleware:
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         if not self.is_active():
+            return self.get_response(request)
+        # Public probes (health/version) are unauthenticated by design and must
+        # be reachable without a token — container liveness/readiness checks and
+        # the desktop launch gate poll them before any credential exists.
+        if _is_public_path(request.path):
             return self.get_response(request)
         try:
             user = self.authenticate(request)

@@ -4,7 +4,11 @@ theme: default
 paginate: true
 size: 16:9
 header: 'The new CCP4i2 · CCP4 Developers Meeting, Cosener\'s House'
-footer: 'Martin Noble · Newcastle University'
+style: |
+  section { font-size: 25px; line-height: 1.3; }
+  section h1 { font-size: 1.7em; line-height: 1.15; }
+  section li { margin: 0.12em 0; }
+  section blockquote { font-size: 0.95em; }
 ---
 
 <!--
@@ -36,16 +40,24 @@ and that in doing so we've opened a path to retire not one but two legacy layers
 
 > We replaced the **plumbing** — Qt, the dependency thicket, the plugin
 > registry — **without touching the crystallography**.
->
-> And in doing so, we can also retire the *other* legacy: **classic CCP4i**.
 
-**Two maintenance burdens → one.**
+**Where this sits in CCP4's interface strategy:**
+
+- CCP4i2 is now a **modern, maintainable, desktop-first vehicle** for exposing
+  crystallographic capability
+- The ambition: **remove the remaining reasons to reach for classic CCP4i** —
+  deep interaction with the software across the whole span, from **a single
+  program** to **a sophisticated pipeline**
 
 <!--
-1 min. This is the whole talk in one slide. Say the number out loud:
-the win for CCP4 as a project is FEWER things to maintain, not more.
-Everything that follows is evidence for this claim.
-Don't frame it as "a shiny new rewrite" — this room is wary of rewrites.
+1 min. The whole talk in one slide, two moves: (1) we modernised the plumbing
+without disturbing the science; (2) that makes CCP4i2 the vehicle for CCP4's
+interface strategy going forward — good enough to remove the reasons people
+still reach for classic CCP4i, and spanning the full range from a single program
+to a full pipeline. Frame classic-CCP4i "retirement" as *reproduce the idiom so
+there's no reason to stay* (the later slide) — NOT "we're deleting your thing";
+the room may include its maintainers. Don't call it a "shiny rewrite" — this
+crowd is wary of rewrites.
 -->
 
 ---
@@ -64,6 +76,30 @@ Don't frame it as "a shiny new rewrite" — this room is wary of rewrites.
 The point of this slide is to earn the right to the rest. Land the three
 categories (UI toolkit / dependencies / registry) because slides 4, 5, 6
 each kill one of them.
+-->
+
+---
+
+# An honest word — on maturity
+
+**Well-tested:** automated coverage **strengthened & extended** — unit capability
+tests + `i2run` end-to-end task tests. The **plumbing and data model are solid**.
+
+**Under-exercised:** individual **wrappers and interfaces** have had little
+real-world use — everyday work *will* surface issues.
+
+**So a further ask:** **patient early users** who run it in anger and **file
+reports**. Issues should be **fixed fast** — the project's logical structure makes
+them easy to locate (and well-suited to AI-assisted fixing).
+
+<!--
+1 min. Say this plainly and early — candour buys credibility for the wins that
+follow. The distinction that matters: we hardened the FOUNDATIONS (unit + i2run),
+but breadth across every wrapper/interface is thin, so real use will find bugs.
+Turn it into the ask: patient testers who report. The confidence is genuine — the
+clean layout (one tasks.py entry per task, def.xml-driven UI, gemmi-based core)
+makes issues quick to locate and fix; well-suited to AI-assisted development
+(name Claude explicitly if you like).
 -->
 
 ---
@@ -108,6 +144,13 @@ has no bespoke React and still renders.
 -->
 
 ---
+
+<style scoped>
+section { font-size: 22px; }
+h1 { margin-bottom: 0.3em; }
+table { font-size: 0.72em; margin: 0.4em 0; }
+table th, table td { padding: 0.25em 0.55em; line-height: 1.2; }
+</style>
 
 # We swept away the dependency thicket
 
@@ -218,14 +261,13 @@ This is the slide that separates you from "just a UI refresh."
 
 # And it's actually richer to use
 
-![bg right:50%](images/mtz-reciprocal-previewer.png)
+![bg right:42%](images/mtz-reciprocal-previewer.png)
 
-Reflection data, **in the browser** — not a table of numbers, *reciprocal space*:
+Reflection data **in the browser** — reciprocal space, not a table of numbers:
 
-- hk/hl/kl planes, reflections coloured by intensity, resolution rings,
-  Miller-index tooltips (Canvas)
+- hk/hl/kl planes, coloured by intensity; resolution rings; hover tooltips
 - **Moorhen** 3D — models + electron density (WebGL/WASM)
-- Report graphs (Chart.js), Clustal alignment, pipeline **DAG**, validation viewer
+- Chart.js report graphs, Clustal alignment, pipeline **DAG**, validation viewer
 
 <!--
 1.5 min. The MTZ previewer (image = real Windows grab: gamma_xe_mosflm.mtz, P222,
@@ -260,8 +302,8 @@ CUT NOTE: droppable if short on time — it's a delighter, not load-bearing.
 
 1. Run a task → preview its MTZ output (reciprocal space)
 2. Open the result in **Moorhen** — model + map
-3. **Reports**: refinement tables + interactive Chart.js plots (right = live Servalcat report)
-4. Same thing, **browser tab and desktop** — one codebase
+3. **Reports**: tables + interactive Chart.js plots (right = live Servalcat)
+4. Same result, **browser tab and desktop** — one codebase
 
 <!--
 4 min. Live if the network holds; the image is a real Servalcat report (Chart.js
@@ -273,19 +315,15 @@ HAVE A RECORDED FALLBACK ready. Money shot: identical result desktop and browser
 
 # Same codebase — every platform, including Windows
 
-![bg right:46%](images/moorhen-windows.png)
+![bg right:40%](images/moorhen-windows.png)
 
-Not ported. The **same build**, on a fresh Windows VM after months untested.
+The **same build** on a fresh Windows VM, untested for months:
 
-- The **whole 2D app** ran — full pipeline (data reduction → PHASER →
-  Servalcat), interfaces, reports, MTZ previewer
-- And the **hardest case worked too**: **Moorhen** — WebGL2 + threaded WASM —
-  rendered model **and** density (right), no fuss
-- Why it holds: **Qt-free**, **gemmi** not platform binaries, ASCII `print()` /
-  `pathlib` / `ccp4-python -m pytest`
+- The **whole 2D app** — pipeline, interfaces, reports, previewer
+- Even **Moorhen** (WebGL2 + threaded WASM) — model + density (right)
+- **Qt-free**; gemmi over platform binaries; disciplined `print()`/`pathlib`
 
-> Every screenshot in this talk was taken on Windows. Cross-platform by
-> construction, not by heroics.
+> Every screenshot in this talk was taken on Windows.
 
 <!--
 1 min. TRUE story — tell it: cut a first alpha, ran it on a fresh Windows VM
@@ -316,19 +354,42 @@ The niche is: self-hosted, lab-scale, CCP4i2-native. Humble and useful.
 
 # Where this leaves CCP4
 
-- One engine, **two front doors**: modern typed + file-oriented
+- One modern engine able to carry **CCP4i's full capability** — via the typed
+  idiom (a file-oriented mode is a discussion point, not a decision)
 - Retire **Qt**, retire (eventually) **classic CCP4i / X11**
 - Interactive layer with **no native CCP4 dependency**
 - Your wrappers & def.xml: **unchanged, now web-native and scriptable**
 
-## Get involved
-- Add a program = **one `def.xml` + one dict entry**
-- The **CCP4i-retirement path** is open for discussion — talk to me
+<!--
+1 min. Close on the project-level win (fewer things to maintain), then lead
+straight into the "two ways in + the ask" slide. Repo/doc pointers to have ready:
+CCP4I_CLASSIC_MODE_THINKING.md, core/tasks.py.
+-->
+
+---
+
+# Two ways in — and the ask
+
+**Early-bird user** (no build, ~10 min):
+- Install CCP4 → download the desktop app → click **Install** (it sets up the backend)
+- macOS · Windows · Linux — proven on all three
+
+**Developer** (from source):
+- Clone → `ccp4-python -m pip install -e server` → run the server + client
+- Add your program = **one `def.xml` + one line in `tasks.py`**
+
+## The ask
+- There's a **working, version-pinned alpha** — tested to Windows.
+- **Open early-bird testing to the community?** Bring your programs and feedback —
+  help remove the reasons to reach for CCP4i.
 
 <!--
-1 min. Close on the project-level win (fewer things to maintain) and a concrete,
-low-friction invitation. Then hand to Q&A.
-Repo / doc pointers to have ready: CCP4I_CLASSIC_MODE_THINKING.md, core/tasks.py.
+1.5 min. THE buy-in moment. Context: the alpha is built and Windows-proven but
+deliberately held back pending this conversation, so the ask is literally "do we
+open early-bird testing?". Emphasise low friction (~10 min; the app installs its
+own backend) and that adding YOUR program is trivial (def.xml + one line). Invite
+them to bring their wrappers — this is where "should this go public?" gets its
+answer from the room.
 -->
 
 ---

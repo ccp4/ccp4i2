@@ -426,8 +426,13 @@ describe("profiles (portable vs permissive)", () => {
     expect(validateScene(s).errors).toEqual([]);
   });
 
-  it("rejects fileId with no project qualifier (neither projectId nor projectName)", () => {
+  it("accepts fileId with NO project qualifier (fileId is globally unique)", () => {
     const s = { ...sceneWithFileId, files: [{ name: "x", fileId: 7 }] };
+    expect(validateScene(s).errors).toEqual([]);
+  });
+
+  it("still requires a project qualifier for job+param (needs project→jobs scope)", () => {
+    const s = { ...sceneWithFileId, files: [{ name: "x", job: 3, param: "XYZOUT" }] };
     const { errors } = validateScene(s);
     expect(errors.some((e) => e.path.includes("projectId"))).toBe(true);
   });

@@ -45,7 +45,9 @@ dependencies = [
     "future",              # used by crank2
     "requests",            # pdb_redo_api and other HTTP clients
     "biopython>=1.80",     # used by adding_stats_to_mmcif (sequence alignment)
-    "ccp4i2-api>=0.3.4",   # auth middleware + DRF auth classes (config/settings.py)
+    "ccp4i2-api>=0.3.5",   # auth middleware + DRF auth classes (config/settings.py)
+                           # >=0.3.5: health/version probes exempt from desktop auth
+                           # (LocalSession/DevAdmin) so the launch readiness gate works
     "djangorestframework",
     "django-cors-headers",
     "django-filter",

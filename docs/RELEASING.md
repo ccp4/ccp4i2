@@ -22,18 +22,36 @@ mismatch, so the desktop app and PyPI can never drift apart at release time.
 
 ## Cutting a release
 
+**Preferred — one command.** `scripts/cut-alpha.sh` does the whole pre-flight:
+syncs `django` to upstream, bumps `PRERELEASE` + the desktop exact-pin default
+(`client/main/ccp4i2-server-version.ts`) in lockstep, updates the date, runs the
+ccp4i2-api lock≥floor guard, refuses a version already on PyPI or an existing
+tag, then commits, tags, and pushes (which fires the Release workflow).
+
+```bash
+git checkout django
+scripts/cut-alpha.sh              # aN -> a(N+1): bump, tag, push, release
+scripts/cut-alpha.sh --dry-run    # show the plan, change nothing
+scripts/cut-alpha.sh --no-push    # commit + tag locally only
+scripts/cut-alpha.sh --version 3.1.0b1   # explicit version (e.g. move to beta)
+```
+
+<details>
+<summary>Manual equivalent (if not using the script)</summary>
+
 ```bash
 # 1. Bump the version
-#    edit server/ccp4i2/__init__.py -> MAJOR/MINOR/PATCH + PRERELEASE (+ date).
-#    During the alpha, bump PRERELEASE: "a1" -> "a2" -> ... (or "" for a final).
-git add server/ccp4i2/__init__.py
+#    edit server/ccp4i2/__init__.py -> MAJOR/MINOR/PATCH + PRERELEASE (+ date),
+#    and the exact-pin default in client/main/ccp4i2-server-version.ts to match.
+git add server/ccp4i2/__init__.py client/main/ccp4i2-server-version.ts
 git commit -m "release: v3.1.0a1"
 
 # 2. Tag and push (tag must be v<the same version>, e.g. v3.1.0a1)
 git tag v3.1.0a1
-git push origin django          # or your release branch
-git push origin v3.1.0a1        # <-- this fires the Release workflow
+git push ccp4 django            # PRs/tags go to the ccp4/ccp4i2 upstream
+git push ccp4 v3.1.0a1          # <-- this fires the Release workflow
 ```
+</details>
 
 The workflow then:
 
@@ -120,3 +138,37 @@ with `CSC_IDENTITY_AUTO_DISCOVERY=false`.
   (exact pins still work). Alpha apps are unaffected (they pin exact anyway).
 - **Backend build needs no CCP4.** `server/ccp4i2/__init__.py` imports only the
   standard library, so the wheel builds on a bare runner.
+
+## Troubleshooting a failed release run
+
+- **Run fails, all jobs "cancelled", none ran a step (~15 min, no logs).**
+  GitHub couldn't assign hosted runners — the run message says *"The job was not
+  acquired by Runner of type hosted even after multiple attempts."* This is a
+  transient GitHub Actions capacity/quota blip, **not your code**. Nothing
+  publishes (jobs never run), so just **re-run the same run** — no new version:
+  ```bash
+  gh run rerun <run-id> --repo ccp4/ccp4i2 --failed
+  ```
+  Find the id with `gh run list --repo ccp4/ccp4i2 --workflow release.yml --branch vX.Y.ZaN --limit 1`.
+  Only if the wheel already published (verify with
+  `curl -s -o /dev/null -w '%{http_code}' https://pypi.org/pypi/ccp4i2/<version>/json`
+  → 200) must you bump the version instead, because PyPI is immutable.
+
+- **verify-version fails: "runtime lock ccp4i2-api==X < wheel floor >=Y".** The
+  bundled lock (`server/ccp4i2/requirements-runtime.txt`) pins an older
+  `ccp4i2-api` than the wheel requires. The desktop app installs the **lock**
+  version (via `--no-deps`), so this would ship the wrong `ccp4i2-api`. Update the
+  lock's `ccp4i2-api==` pin (regenerate with `server/scripts/gen_runtime_lock.py`
+  if other deps changed too) and re-cut. `cut-alpha.sh` runs this same guard
+  before tagging, so it catches the drift locally first.
+
+- **macOS build fails: "MAC verification failed during PKCS12 import (wrong
+  password?)".** `MAC_CSC_KEY_PASSWORD` doesn't match the `.p12` in
+  `MAC_CSC_LINK`. Verify the pair **locally** before re-setting the secrets — see
+  [macos-signing-setup.md](macos-signing-setup.md). Signing is opt-in
+  (repo variable `ENABLE_MAC_SIGNING`); leave it off to ship unsigned and skip
+  this class of failure entirely.
+
+- **`gh workflow run` can't find a workflow.** `workflow_dispatch` only registers
+  for workflows present on the **default branch** (`main`). All alpha work is on
+  `django`, so branch-dispatch of a django-only workflow won't appear.

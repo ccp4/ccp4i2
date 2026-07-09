@@ -30,9 +30,9 @@ files?: ({
   bundle?: string  # asset path inside a .scene.zip
   cifText?: string  # inline CIF (dictionary refs only)
   relativeUrl?: string  # origin-relative URL (/api/…); not portable across deployments
-  projectId?: string  # project UUID; with fileId or job+param, give this OR projectName
-  projectName?: string  # project name (unique within this deployment); resolves fileId/job+param when projectId is absent. Not portable across deployments — prefer projectId when known
-  fileId?: number
+  projectId?: string  # project UUID. Required for job+param (give this OR projectName); advisory on a fileId ref (fileId alone fetches)
+  projectName?: string  # project name (unique within this deployment). Resolves job+param when projectId is absent; advisory on a fileId ref. Not portable across deployments — prefer projectId when known
+  fileId?: number  # ccp4i2 file id (globally unique in the DB); fetches without a project qualifier
   job?: number  # pair with param
   param?: string  # job parameter, e.g. "XYZOUT"
 })[]

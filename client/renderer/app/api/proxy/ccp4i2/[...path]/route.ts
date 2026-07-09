@@ -10,10 +10,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 /**
  * Public endpoints that don't require authentication.
- * Version info is fetched from the app-selector page before login.
- * Health checks use /api/health directly, not through this proxy.
+ * - version: fetched from the app-selector page before login.
+ * - health:  the launch-time readiness probe (LaunchGate / useServerReady) polls
+ *   this before the app is up and before any token exists, so it must not require
+ *   auth. The Django health_check view is itself unauthenticated (a plain view,
+ *   no DRF permissions), so exposing it here matches its intent.
  */
-const PUBLIC_ENDPOINTS = ["version"];
+const PUBLIC_ENDPOINTS = ["version", "health"];
 
 /**
  * Check if the path is a public endpoint that doesn't require auth.

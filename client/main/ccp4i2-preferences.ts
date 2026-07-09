@@ -30,10 +30,19 @@ export interface CCP4i2Preferences {
   userPreferences?: Record<string, unknown>;
 }
 
-/** The CCP4i2 user home (`CCP4I2_HOME` env var, else `~/.ccp4i2`). */
+/**
+ * The CCP4i2 user home (`CCP4I2_HOME` env var, else `~/.ccp4i2-django`).
+ *
+ * Deliberately `~/.ccp4i2-django`, NOT `~/.ccp4i2`: the latter differs from the
+ * legacy Qt-era home `~/.CCP4I2` only by case, so on a case-insensitive
+ * filesystem (macOS default) they collide — the new app would plant its db/prefs
+ * in the legacy tree. Must match the Python side (server/ccp4i2/config/preferences.py).
+ */
 export function ccp4i2Home(): string {
   const override = process.env.CCP4I2_HOME;
-  return override ? path.resolve(override) : path.join(os.homedir(), ".ccp4i2");
+  return override
+    ? path.resolve(override)
+    : path.join(os.homedir(), ".ccp4i2-django");
 }
 
 /** Full path to `preferences.json` inside the CCP4i2 user home. */

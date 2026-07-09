@@ -598,6 +598,14 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
           liveMapPool.push(fetched);
           return fetched;
         }
+        // Fetch was attempted (ref IS fetchable) but the fetcher returned null —
+        // the download itself failed (e.g. the file endpoint 404'd). Distinct
+        // from "not fetchable"; say so, or this reads as a ref-shape problem.
+        result.log.push({
+          file: fileName, domain,
+          message: "map fetch returned null — the file download failed (missing file, proxy, or auth?)",
+        });
+        return null;
       } catch (e) {
         result.log.push({
           file: fileName, domain,
@@ -609,7 +617,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     result.log.push({
       file: fileName, domain,
       message: mapFetcher
-        ? "no matching loaded map and ref is not fetchable"
+        ? "no matching loaded map and ref carries no fetchable source (need fileId, url, pdb, job+param, or bundle)"
         : "no matching loaded map (no mapFetcher provided)",
     });
     return null;
@@ -846,7 +854,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 export function isFetchable(fr: SceneFileRef): boolean {
   if (fr.pdb) return true;
   if (fr.url) return true;
-  if (fr.fileId !== undefined && (fr.projectId || fr.projectName)) return true;
+  // A fileId is globally unique in the ccp4i2 DB and the download URL keys on
+  // it alone (/files/<fileId>/download/), so a project qualifier is NOT needed
+  // to fetch. projectId/projectName are advisory context here.
+  if (fr.fileId !== undefined) return true;
   if (fr.job !== undefined && fr.param) return true;
   // Inline dict text: trivially "fetchable" — the fetcher just returns
   // the text. Only valid on dictionary refs (validator enforces this).
