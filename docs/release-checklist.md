@@ -183,6 +183,13 @@ Plan for incorporating ccp4i2-django into official CCP4 distribution builds.
       only the web mode in CCP4-10
 - [ ] **Electron packaging** — produce platform-specific Electron app bundles
       (macOS .app, Linux AppImage/deb, Windows .exe) as part of the build
+- [ ] **macOS code signing + notarisation** — add the five Apple secrets as
+      **Repository** secrets on `ccp4/ccp4i2` so releases build signed, not
+      unsigned (testers currently need `xattr -cr`). One-time setup:
+      [macos-signing-setup.md](macos-signing-setup.md). *(a1–a4 shipped unsigned
+      because the secrets weren't set at repo scope.)*
+- [ ] **Windows code signing** — Authenticate builds with an Authenticode cert
+      to avoid SmartScreen warnings (currently unsigned).
 - [ ] **Entry point** — `ccp4i2` command launches the new interface; classic
       interface available as `ccp4i2-classic` (or vice versa during transition)
 
