@@ -434,9 +434,33 @@ export const CCP4i2ApplicationOutputView: React.FC<
     return null;
   }, [selectedPlot, table]);
 
+  // Ramachandran (and any fixed-aspect Phi/Psi) plots are forced square by
+  // Chart.js (maintainAspectRatio + aspectRatio:1). A short fixed-height Card
+  // width-constrains them to ~half the useful size, so let the Card grow to a
+  // large square driven by the available width instead.
+  const isSquarePlot = useMemo<boolean>(() => {
+    return Boolean(
+      selectedPlot &&
+        ((selectedPlot.xlabel === "Phi" && selectedPlot.ylabel === "Psi") ||
+          selectedPlot.fixaspectratio === "true")
+    );
+  }, [selectedPlot]);
+
+  // A square plot needs vertical room for the header/padding on top of the
+  // square drawing area, so overshoot the width cap a little.
+  const cardSx = isSquarePlot
+    ? {
+        width: "100%",
+        maxWidth: 640,
+        aspectRatio: "1 / 1.15",
+        display: "flex",
+        flexDirection: "column" as const,
+      }
+    : { height, display: "flex", flexDirection: "column" as const };
+
   return (
     <>
-      <Card variant="outlined" sx={{ height, display: 'flex', flexDirection: 'column' }}>
+      <Card variant="outlined" sx={cardSx}>
         <CardHeader
           title={
             allPlots &&
