@@ -753,11 +753,13 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       [handleMenuClick]
     );
 
-    // Double click handler for jobs
+    // Double click handler for jobs: open the standalone job viewer in a new
+    // window. The route is /ccp4i2/job/[jobid] (self-fetches by id, no project
+    // context needed); a bare /job/<id> has no matching route and 404s.
     const handleDoubleClick = useCallback(
       (event: React.MouseEvent<HTMLElement>) => {
         if (job) {
-          const path = `/job/${job.id}`;
+          const path = `/ccp4i2/job/${job.id}`;
           window.open(path, "_blank", "noopener,noreferrer");
         }
       },
