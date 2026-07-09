@@ -95,12 +95,28 @@ the cert *and* the key. Skipping the CSR is the usual point of confusion.
    ```
    The export password you set → `MAC_CSC_KEY_PASSWORD`.
 
-5. **Base64-encode the `.p12`** (electron-builder decodes `CSC_LINK` from base64):
+5. **Base64-encode the `.p12`** (electron-builder decodes `CSC_LINK` from base64).
+   Strip newlines to be safe — a wrapped blob decodes to a corrupt `.p12`:
    ```bash
-   base64 -i DeveloperIDApplication.p12 | pbcopy   # now paste as MAC_CSC_LINK
+   base64 -i DeveloperIDApplication.p12 | tr -d '\n' | pbcopy   # -> MAC_CSC_LINK
    ```
    Paste the base64 blob as `MAC_CSC_LINK`, and the export password as
-   `MAC_CSC_KEY_PASSWORD`.
+   `MAC_CSC_KEY_PASSWORD` — **exactly**, no leading/trailing space.
+
+   > **`MAC verification failed during PKCS12 import (wrong password?)`** in the
+   > build means `MAC_CSC_KEY_PASSWORD` does not match the `.p12`'s export
+   > password (or the `.p12`/base64 is corrupt). Fix by re-exporting the `.p12`
+   > with a known password and updating **both** secrets. Set the password
+   > non-interactively to remove all doubt (openssl route):
+   > ```bash
+   > openssl pkcs12 -export -inkey DeveloperID.key -in DeveloperID.pem \
+   >   -out DeveloperIDApplication.p12 -passout pass:YOURPASSWORD
+   > ```
+   > Verify locally before updating secrets — this must succeed with the same
+   > password CI will use:
+   > ```bash
+   > openssl pkcs12 -in DeveloperIDApplication.p12 -passin pass:YOURPASSWORD -noout -info
+   > ```
 
 ## 2. Notarisation API key → `APPLE_API_KEY_P8` + `_ID` + `_ISSUER`
 
