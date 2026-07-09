@@ -34,14 +34,41 @@ The gate that flips signed-vs-unsigned checks `MAC_CSC_LINK` **and**
 
 ## 1. Signing certificate → `MAC_CSC_LINK` + `MAC_CSC_KEY_PASSWORD`
 
-1. In the Apple Developer portal (or Xcode → Settings → Accounts → Manage
-   Certificates), create a **Developer ID Application** certificate. (This is the
-   distribution-outside-the-App-Store type — *not* "Apple Development" or "Mac
-   App Distribution".)
-2. In **Keychain Access** on a Mac that has the cert + its private key: select
-   the certificate **and** its private key, right-click → **Export 2 items…** →
-   save as a `.p12`. Set an export password — this becomes `MAC_CSC_KEY_PASSWORD`.
-3. Base64-encode the `.p12` (electron-builder decodes `CSC_LINK` from base64):
+Apple issues the certificate against a **Certificate Signing Request (CSR)** you
+generate on your Mac. The CSR step creates the **private key locally** (it never
+leaves your Mac) — which is why you can later export a `.p12` that contains both
+the cert *and* the key. Skipping the CSR is the usual point of confusion.
+
+1. **Generate the CSR on your Mac.** Keychain Access → menu **Keychain Access →
+   Certificate Assistant → Request a Certificate From a Certificate Authority…**
+   - *User Email Address:* your Apple ID email.
+   - *Common Name:* anything descriptive (e.g. `CCP4i2 Developer ID`).
+   - *CA Email Address:* leave blank.
+   - Choose **"Saved to disk"** (not "Emailed to the CA").
+   - This writes `CertificateSigningRequest.certSigningRequest` **and** puts a new
+     private key in your login keychain.
+
+2. **Create the certificate in the Apple Developer portal.**
+   Certificates → **+** → under **Software**, choose **Developer ID Application**
+   (distribution *outside* the App Store — *not* "Apple Development" or "Mac App
+   Distribution"). Continue.
+   - On the **"Select a Developer ID Certificate Intermediary"** screen: pick
+     **G2 Sub-CA (Xcode 11.4.1 or later)** — the modern intermediary; the CI
+     runner is new enough. ("Previous Sub-CA" is only for ancient toolchains and
+     carries the Feb-2027 expiry note.)
+   - **Choose File** → upload the `.certSigningRequest` from step 1 → Continue.
+
+3. **Download the issued `.cer`** and double-click it. It imports into Keychain
+   Access and pairs with the private key from step 1 (you'll see it as
+   *"Developer ID Application: <your name/team>"* with a disclosure triangle
+   revealing the private key beneath it).
+
+4. **Export the `.p12`.** In Keychain Access (login keychain, "My Certificates"),
+   expand the *Developer ID Application* certificate, select **both** the
+   certificate **and** its private key, right-click → **Export 2 items…** → save
+   as a `.p12`. Set an **export password** — this becomes `MAC_CSC_KEY_PASSWORD`.
+
+5. **Base64-encode the `.p12`** (electron-builder decodes `CSC_LINK` from base64):
    ```bash
    base64 -i DeveloperIDApplication.p12 | pbcopy   # now paste as MAC_CSC_LINK
    ```
