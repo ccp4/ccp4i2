@@ -15,6 +15,7 @@ import logging
 import shutil
 import sqlite3
 from collections import defaultdict
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 from uuid import UUID
@@ -744,6 +745,26 @@ class SQLiteImporter:
         if not self.continue_on_error:
             raise
 
+    @contextmanager
+    def _row_savepoint(self):
+        """Per-row savepoint so a caught error doesn't poison the transaction.
+
+        The whole import runs inside one transaction.atomic(). Without a
+        savepoint, a single failing INSERT (e.g. a stray IntegrityError, or a
+        schema-drift OperationalError) leaves the connection in a broken-
+        transaction state, and EVERY subsequent query then raises
+        TransactionManagementError("can't execute queries until the end of the
+        'atomic' block") — so continue_on_error silently turns into
+        continue-and-fail-everything. Wrapping each row in its own savepoint
+        (nested atomic) means a failure rolls back just that row and the rest of
+        the import proceeds. Re-raises so the caller's except still records it.
+        """
+        try:
+            with transaction.atomic():
+                yield
+        except Exception:
+            raise
+
     def run(self):
         """Execute the full import. Returns a summary dict.
 
@@ -925,50 +946,51 @@ class SQLiteImporter:
         )
         for row in cur.fetchall():
             try:
-                pk = row["projectid"]
-                # The plan (from _analyse_structure) decides the final directory:
-                # source dir for in_place, dest dir for copy.
-                entry = self.plan_by_id.get(pk)
-                legacy_dir = self.remap_directory(row["projectdirectory"] or "")
-                directory = entry["dest"] if entry else legacy_dir
+                with self._row_savepoint():
+                    pk = row["projectid"]
+                    # The plan (from _analyse_structure) decides the final directory:
+                    # source dir for in_place, dest dir for copy.
+                    entry = self.plan_by_id.get(pk)
+                    legacy_dir = self.remap_directory(row["projectdirectory"] or "")
+                    directory = entry["dest"] if entry else legacy_dir
 
-                # Skip if project already exists by (final) directory
-                if directory:
-                    existing = Project.objects.filter(directory=directory).first()
-                    if existing:
-                        self.project_map[pk] = existing
-                        self.stats["projects_skipped"] += 1
-                        self.log(f"  Project exists (skipped): {existing.name}")
-                        if row["parentprojectid"]:
-                            self.parent_relationships.append((pk, row["parentprojectid"]))
-                        continue
+                    # Skip if project already exists by (final) directory
+                    if directory:
+                        existing = Project.objects.filter(directory=directory).first()
+                        if existing:
+                            self.project_map[pk] = existing
+                            self.stats["projects_skipped"] += 1
+                            self.log(f"  Project exists (skipped): {existing.name}")
+                            if row["parentprojectid"]:
+                                self.parent_relationships.append((pk, row["parentprojectid"]))
+                            continue
 
-                # Copy the legacy tree into place if the plan calls for it.
-                if entry and entry["mode"] == "copy":
-                    self._copy_project_tree(pk, entry, legacy_dir)
-                else:
-                    self.stats["projects_in_place"] += 1
+                    # Copy the legacy tree into place if the plan calls for it.
+                    if entry and entry["mode"] == "copy":
+                        self._copy_project_tree(pk, entry, legacy_dir)
+                    else:
+                        self.stats["projects_in_place"] += 1
 
-                name = self.get_unique_project_name(row["projectname"])
-                project = Project.objects.create(
-                    uuid=convert_uuid(pk) or None,
-                    name=name,
-                    description="",
-                    directory=directory,
-                    creation_time=convert_timestamp(row["projectcreated"]) or timezone.now(),
-                    creation_user=row["userid"] or "legacy_import",
-                    creation_host="legacy_import",
-                    last_access=convert_timestamp(row["lastaccess"]) or timezone.now(),
-                    last_job_number=int(row["lastjobnumber"] or 0),
-                    i1_project_name=row["i1projectname"] or "",
-                    i1_project_directory=row["i1projectdirectory"] or "",
-                )
-                self.project_map[pk] = project
-                self.stats["projects"] += 1
-                self.log(f"  Project: {name} -> {directory}")
+                    name = self.get_unique_project_name(row["projectname"])
+                    project = Project.objects.create(
+                        uuid=convert_uuid(pk) or None,
+                        name=name,
+                        description="",
+                        directory=directory,
+                        creation_time=convert_timestamp(row["projectcreated"]) or timezone.now(),
+                        creation_user=row["userid"] or "legacy_import",
+                        creation_host="legacy_import",
+                        last_access=convert_timestamp(row["lastaccess"]) or timezone.now(),
+                        last_job_number=int(row["lastjobnumber"] or 0),
+                        i1_project_name=row["i1projectname"] or "",
+                        i1_project_directory=row["i1projectdirectory"] or "",
+                    )
+                    self.project_map[pk] = project
+                    self.stats["projects"] += 1
+                    self.log(f"  Project: {name} -> {directory}")
 
-                if row["parentprojectid"]:
-                    self.parent_relationships.append((pk, row["parentprojectid"]))
+                    if row["parentprojectid"]:
+                        self.parent_relationships.append((pk, row["parentprojectid"]))
 
             except Exception as e:
                 if self.continue_on_error:
@@ -1098,40 +1120,41 @@ class SQLiteImporter:
 
         for row in cur.fetchall():
             try:
-                pk = row["jobid"]
-                project_id = row["projectid"]
+                with self._row_savepoint():
+                    pk = row["jobid"]
+                    project_id = row["projectid"]
 
-                if project_id not in self.project_map:
-                    self.log(f"  Skipping job {pk}: project {project_id} not found")
-                    continue
+                    if project_id not in self.project_map:
+                        self.log(f"  Skipping job {pk}: project {project_id} not found")
+                        continue
 
-                project = self.project_map[project_id]
-                job_number = row["jobnumber"]
+                    project = self.project_map[project_id]
+                    job_number = row["jobnumber"]
 
-                existing = Job.objects.filter(project=project, number=job_number).first()
-                if existing:
-                    self.job_map[pk] = existing
-                    self.stats["jobs_skipped"] += 1
-                    continue
+                    existing = Job.objects.filter(project=project, number=job_number).first()
+                    if existing:
+                        self.job_map[pk] = existing
+                        self.stats["jobs_skipped"] += 1
+                        continue
 
-                job = Job.objects.create(
-                    uuid=convert_uuid(pk) or None,
-                    project=project,
-                    number=job_number,
-                    title=row["jobtitle"] or "",
-                    status=row["status"] or 0,
-                    evaluation=row["evaluation"] or 0,
-                    comments="",
-                    creation_time=convert_timestamp(row["creationtime"]) or timezone.now(),
-                    finish_time=convert_timestamp(row["finishtime"]),
-                    task_name=row["taskname"] or "unknown",
-                    process_id=row["processid"],
-                )
-                self.job_map[pk] = job
-                self.stats["jobs"] += 1
+                    job = Job.objects.create(
+                        uuid=convert_uuid(pk) or None,
+                        project=project,
+                        number=job_number,
+                        title=row["jobtitle"] or "",
+                        status=row["status"] or 0,
+                        evaluation=row["evaluation"] or 0,
+                        comments="",
+                        creation_time=convert_timestamp(row["creationtime"]) or timezone.now(),
+                        finish_time=convert_timestamp(row["finishtime"]),
+                        task_name=row["taskname"] or "unknown",
+                        process_id=row["processid"],
+                    )
+                    self.job_map[pk] = job
+                    self.stats["jobs"] += 1
 
-                if row["parentjobid"]:
-                    job_parent_map[job.id] = row["parentjobid"]
+                    if row["parentjobid"]:
+                        job_parent_map[job.id] = row["parentjobid"]
 
             except Exception as e:
                 if self.continue_on_error:
@@ -1155,22 +1178,23 @@ class SQLiteImporter:
         )
         for row in cur.fetchall():
             try:
-                job_id = row["jobid"]
-                if job_id not in self.job_map:
-                    continue
-                ServerJob.objects.create(
-                    job=self.job_map[job_id],
-                    server_process_id=row["serverprocessid"],
-                    machine=row["machine"] or "",
-                    username=row["username"] or "",
-                    mechanism=row["mechanism"] or "",
-                    remote_path=row["remotepath"] or "",
-                    custom_code_file=row["customcodefile"] or "",
-                    validate=row["validate"] or "",
-                    key_file_name=row["keyfilename"] or "",
-                    server_group=row["servergroup"] or "",
-                )
-                self.stats["serverjobs"] += 1
+                with self._row_savepoint():
+                    job_id = row["jobid"]
+                    if job_id not in self.job_map:
+                        continue
+                    ServerJob.objects.create(
+                        job=self.job_map[job_id],
+                        server_process_id=row["serverprocessid"],
+                        machine=row["machine"] or "",
+                        username=row["username"] or "",
+                        mechanism=row["mechanism"] or "",
+                        remote_path=row["remotepath"] or "",
+                        custom_code_file=row["customcodefile"] or "",
+                        validate=row["validate"] or "",
+                        key_file_name=row["keyfilename"] or "",
+                        server_group=row["servergroup"] or "",
+                    )
+                    self.stats["serverjobs"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     self._record_error("ServerJob", job_id, e)
@@ -1182,20 +1206,21 @@ class SQLiteImporter:
         cur.execute("SELECT JobID, KeyTypeID, Value FROM JobKeyValues")
         for row in cur.fetchall():
             try:
-                job_id = row["jobid"]
-                keytype_id = row["keytypeid"]
-                if job_id not in self.job_map or keytype_id not in self.keytype_map:
-                    continue
-                job = self.job_map[job_id]
-                key = self.keytype_map[keytype_id]
-                if JobFloatValue.objects.filter(job=job, key=key).exists():
-                    self.stats["jobfloatvalues_skipped"] += 1
-                    continue
-                JobFloatValue.objects.create(
-                    job=job, key=key,
-                    value=float(row["value"]) if row["value"] is not None else 0.0,
-                )
-                self.stats["jobfloatvalues"] += 1
+                with self._row_savepoint():
+                    job_id = row["jobid"]
+                    keytype_id = row["keytypeid"]
+                    if job_id not in self.job_map or keytype_id not in self.keytype_map:
+                        continue
+                    job = self.job_map[job_id]
+                    key = self.keytype_map[keytype_id]
+                    if JobFloatValue.objects.filter(job=job, key=key).exists():
+                        self.stats["jobfloatvalues_skipped"] += 1
+                        continue
+                    JobFloatValue.objects.create(
+                        job=job, key=key,
+                        value=float(row["value"]) if row["value"] is not None else 0.0,
+                    )
+                    self.stats["jobfloatvalues"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
@@ -1208,19 +1233,20 @@ class SQLiteImporter:
         cur.execute("SELECT JobID, KeyTypeID, Value FROM JobKeyCharValues")
         for row in cur.fetchall():
             try:
-                job_id = row["jobid"]
-                keytype_id = row["keytypeid"]
-                if job_id not in self.job_map or keytype_id not in self.keytype_map:
-                    continue
-                job = self.job_map[job_id]
-                key = self.keytype_map[keytype_id]
-                if JobCharValue.objects.filter(job=job, key=key).exists():
-                    self.stats["jobcharvalues_skipped"] += 1
-                    continue
-                JobCharValue.objects.create(
-                    job=job, key=key, value=row["value"] or "",
-                )
-                self.stats["jobcharvalues"] += 1
+                with self._row_savepoint():
+                    job_id = row["jobid"]
+                    keytype_id = row["keytypeid"]
+                    if job_id not in self.job_map or keytype_id not in self.keytype_map:
+                        continue
+                    job = self.job_map[job_id]
+                    key = self.keytype_map[keytype_id]
+                    if JobCharValue.objects.filter(job=job, key=key).exists():
+                        self.stats["jobcharvalues_skipped"] += 1
+                        continue
+                    JobCharValue.objects.create(
+                        job=job, key=key, value=row["value"] or "",
+                    )
+                    self.stats["jobcharvalues"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
@@ -1233,13 +1259,14 @@ class SQLiteImporter:
         cur.execute("SELECT XDataID, XDataClass, XDataXml, JobID FROM XData")
         for row in cur.fetchall():
             try:
-                job = self.job_map.get(row["jobid"]) if row["jobid"] else None
-                XData.objects.create(
-                    data_class=row["xdataclass"] or "",
-                    xml=row["xdataxml"] or "",
-                    job=job,
-                )
-                self.stats["xdata"] += 1
+                with self._row_savepoint():
+                    job = self.job_map.get(row["jobid"]) if row["jobid"] else None
+                    XData.objects.create(
+                        data_class=row["xdataclass"] or "",
+                        xml=row["xdataxml"] or "",
+                        job=job,
+                    )
+                    self.stats["xdata"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
@@ -1259,42 +1286,43 @@ class SQLiteImporter:
         )
         for row in cur.fetchall():
             try:
-                pk = row["fileid"]
-                job_id = row["jobid"]
-                if job_id not in self.job_map:
-                    self.log(f"  Skipping file {pk}: job {job_id} not found")
-                    continue
+                with self._row_savepoint():
+                    pk = row["fileid"]
+                    job_id = row["jobid"]
+                    if job_id not in self.job_map:
+                        self.log(f"  Skipping file {pk}: job {job_id} not found")
+                        continue
 
-                file_uuid = convert_uuid(pk)
-                if file_uuid and File.objects.filter(uuid=file_uuid).exists():
-                    self.file_map[pk] = File.objects.get(uuid=file_uuid)
-                    self.stats["files_skipped"] += 1
-                    continue
+                    file_uuid = convert_uuid(pk)
+                    if file_uuid and File.objects.filter(uuid=file_uuid).exists():
+                        self.file_map[pk] = File.objects.get(uuid=file_uuid)
+                        self.stats["files_skipped"] += 1
+                        continue
 
-                filetype_id = row["filetypeid"]
-                if filetype_id not in self.filetype_map:
-                    ft, _ = FileType.objects.get_or_create(
-                        name=f"unknown_{filetype_id}",
-                        defaults={"description": "Unknown file type from legacy import"},
+                    filetype_id = row["filetypeid"]
+                    if filetype_id not in self.filetype_map:
+                        ft, _ = FileType.objects.get_or_create(
+                            name=f"unknown_{filetype_id}",
+                            defaults={"description": "Unknown file type from legacy import"},
+                        )
+                        self.filetype_map[filetype_id] = ft
+
+                    pathflag = row["pathflag"]
+                    directory = File.Directory.IMPORT_DIR if pathflag == 2 else File.Directory.JOB_DIR
+
+                    file_obj = File.objects.create(
+                        uuid=file_uuid,
+                        name=row["filename"] or "",
+                        directory=directory,
+                        type=self.filetype_map[filetype_id],
+                        sub_type=row["filesubtype"],
+                        content=row["filecontent"],
+                        annotation=row["annotation"] or "",
+                        job=self.job_map[job_id],
+                        job_param_name=row["jobparamname"] or "",
                     )
-                    self.filetype_map[filetype_id] = ft
-
-                pathflag = row["pathflag"]
-                directory = File.Directory.IMPORT_DIR if pathflag == 2 else File.Directory.JOB_DIR
-
-                file_obj = File.objects.create(
-                    uuid=file_uuid,
-                    name=row["filename"] or "",
-                    directory=directory,
-                    type=self.filetype_map[filetype_id],
-                    sub_type=row["filesubtype"],
-                    content=row["filecontent"],
-                    annotation=row["annotation"] or "",
-                    job=self.job_map[job_id],
-                    job_param_name=row["jobparamname"] or "",
-                )
-                self.file_map[pk] = file_obj
-                self.stats["files"] += 1
+                    self.file_map[pk] = file_obj
+                    self.stats["files"] += 1
 
             except Exception as e:
                 if self.continue_on_error:
@@ -1314,21 +1342,22 @@ class SQLiteImporter:
         )
         for row in cur.fetchall():
             try:
-                file_id = row["fileid"]
-                if file_id not in self.file_map:
-                    continue
-                file_obj = self.file_map[file_id]
-                if FileImport.objects.filter(file=file_obj).exists():
-                    self.stats["fileimports_skipped"] += 1
-                    continue
-                FileImport.objects.create(
-                    file=file_obj,
-                    time=convert_timestamp(row["creationtime"]) or timezone.now(),
-                    name=row["sourcefilename"] or "",
-                    checksum=row["checksum"] or "",
-                    last_modified=convert_timestamp(row["lastmodifiedtime"]),
-                )
-                self.stats["fileimports"] += 1
+                with self._row_savepoint():
+                    file_id = row["fileid"]
+                    if file_id not in self.file_map:
+                        continue
+                    file_obj = self.file_map[file_id]
+                    if FileImport.objects.filter(file=file_obj).exists():
+                        self.stats["fileimports_skipped"] += 1
+                        continue
+                    FileImport.objects.create(
+                        file=file_obj,
+                        time=convert_timestamp(row["creationtime"]) or timezone.now(),
+                        name=row["sourcefilename"] or "",
+                        checksum=row["checksum"] or "",
+                        last_modified=convert_timestamp(row["lastmodifiedtime"]),
+                    )
+                    self.stats["fileimports"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
@@ -1344,15 +1373,16 @@ class SQLiteImporter:
         )
         for row in cur.fetchall():
             try:
-                file_id = row["fileid"]
-                if file_id not in self.file_map:
-                    continue
-                FileExport.objects.create(
-                    file=self.file_map[file_id],
-                    time=convert_timestamp(row["creationtime"]) or timezone.now(),
-                    name=row["exportfilename"] or "",
-                )
-                self.stats["fileexports"] += 1
+                with self._row_savepoint():
+                    file_id = row["fileid"]
+                    if file_id not in self.file_map:
+                        continue
+                    FileExport.objects.create(
+                        file=self.file_map[file_id],
+                        time=convert_timestamp(row["creationtime"]) or timezone.now(),
+                        name=row["exportfilename"] or "",
+                    )
+                    self.stats["fileexports"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
@@ -1364,21 +1394,22 @@ class SQLiteImporter:
         cur.execute("SELECT FileID, JobID, RoleID, JobParamName FROM FileUses")
         for row in cur.fetchall():
             try:
-                file_id = row["fileid"]
-                job_id = row["jobid"]
-                if file_id not in self.file_map or job_id not in self.job_map:
-                    continue
-                file_obj = self.file_map[file_id]
-                job = self.job_map[job_id]
-                role = self.filerole_map.get(row["roleid"], FileUse.Role.OUT)
-                jpn = row["jobparamname"] or ""
-                if FileUse.objects.filter(file=file_obj, job=job, role=role, job_param_name=jpn).exists():
-                    self.stats["fileuses_skipped"] += 1
-                    continue
-                FileUse.objects.create(
-                    file=file_obj, job=job, role=role, job_param_name=jpn,
-                )
-                self.stats["fileuses"] += 1
+                with self._row_savepoint():
+                    file_id = row["fileid"]
+                    job_id = row["jobid"]
+                    if file_id not in self.file_map or job_id not in self.job_map:
+                        continue
+                    file_obj = self.file_map[file_id]
+                    job = self.job_map[job_id]
+                    role = self.filerole_map.get(row["roleid"], FileUse.Role.OUT)
+                    jpn = row["jobparamname"] or ""
+                    if FileUse.objects.filter(file=file_obj, job=job, role=role, job_param_name=jpn).exists():
+                        self.stats["fileuses_skipped"] += 1
+                        continue
+                    FileUse.objects.create(
+                        file=file_obj, job=job, role=role, job_param_name=jpn,
+                    )
+                    self.stats["fileuses"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
@@ -1398,14 +1429,15 @@ class SQLiteImporter:
         )
         for row in cur.fetchall():
             try:
-                pid = row["projectid"]
-                if pid not in self.project_map:
-                    continue
-                ProjectExport.objects.create(
-                    project=self.project_map[pid],
-                    time=convert_timestamp(row["projectexporttime"]) or timezone.now(),
-                )
-                self.stats["projectexports"] += 1
+                with self._row_savepoint():
+                    pid = row["projectid"]
+                    if pid not in self.project_map:
+                        continue
+                    ProjectExport.objects.create(
+                        project=self.project_map[pid],
+                        time=convert_timestamp(row["projectexporttime"]) or timezone.now(),
+                    )
+                    self.stats["projectexports"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
@@ -1420,14 +1452,15 @@ class SQLiteImporter:
         )
         for row in cur.fetchall():
             try:
-                pid = row["projectid"]
-                if pid not in self.project_map:
-                    continue
-                ProjectImport.objects.create(
-                    project=self.project_map[pid],
-                    time=convert_timestamp(row["projectimporttime"]) or timezone.now(),
-                )
-                self.stats["projectimports"] += 1
+                with self._row_savepoint():
+                    pid = row["projectid"]
+                    if pid not in self.project_map:
+                        continue
+                    ProjectImport.objects.create(
+                        project=self.project_map[pid],
+                        time=convert_timestamp(row["projectimporttime"]) or timezone.now(),
+                    )
+                    self.stats["projectimports"] += 1
             except Exception as e:
                 if self.continue_on_error:
                     pass
