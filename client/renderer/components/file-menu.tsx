@@ -160,18 +160,9 @@ export default function FileMenu() {
                 {project.name} - {`${new Date(project.last_access)}`}
               </MenuItem>
             ))}
-        <MenuItem key="MoreProjects" onClick={handleClose}>
-          More Projects
-        </MenuItem>
         <Divider />
-        <MenuItem key="CCP4i" onClick={handleClose}>
-          View old CCP4i projects
-        </MenuItem>
         <MenuItem key="Browser" onClick={handleBrowser}>
           Browser
-        </MenuItem>
-        <MenuItem key="Quit" onClick={handleClose}>
-          Quit CCP4i2
         </MenuItem>
       </Menu>
 
