@@ -177,18 +177,40 @@ refmac `hklout.mtz` was still deleted. Why:
 - Purge context `extended_intermediate = [1,2,5,7]` includes the categories the
   file falls under.
 
-So the child file is fundamentally fragile. The fix is to **not depend on it**:
+So the child file is fundamentally fragile. The fix is to **model it as a real
+output — at BOTH the wrapper and the pipeline** (each serves a different role):
 
-**Layer a — pipeline copies COMPLETE_MTZ to its OWN top-level job dir, tracked as
-a PARENT output** (prosmart_refmac, servalcat_pipe, aimless_pipe, dimple):
-  1. **pipeline def.xml** — add `outputData` `CMtzDataFile COMPLETE_MTZ`.
-  2. **pipeline finish handler** — `shutil.copyfile` the terminal unsplit MTZ
-     (refmac `hklout.mtz` / servalcat `refined[_diffmap].mtz` / aimless+dimple
-     built file) into the pipeline job dir, set + annotate `COMPLETE_MTZ`,
-     **before** the child `purgeJob` runs. Gleaner then tracks it as a parent
-     `File`.
-  Files a job exports must live in its own top-level dir anyway; a copy (not a
-  move) is safe and cleanup-independent.
+**Layer a1 — model COMPLETE_MTZ on the WRAPPER (refmac, servalcat).** This is the
+primary, correct fix: declare the unsplit file as an output where it is
+*produced*.
+  1. **wrapper def.xml** (`refmac.def.xml`, `servalcat.def.xml`) — add
+     `outputData CMtzDataFile COMPLETE_MTZ`.
+  2. **wrapper `processOutputFiles`** — right where it already loads
+     `hklout.mtz` (refmac.py:238) / `refined[_diffmap].mtz` (servalcat),
+     `setFullPath` + annotate `COMPLETE_MTZ` to that path (no copy; the file is
+     already in the wrapper's own work dir). The gleaner then tracks it as a
+     `File` of the wrapper (child) job.
+  Why the wrapper: (i) honest data model — declared at point of production;
+  (ii) **#247 then protects it during the CHILD purge automatically** (it is now
+  one of the child job's modelled outputs), closing the child-purge gap at its
+  root with no keep pattern; (iii) every pipeline that uses refmac/servalcat
+  (prosmart_refmac, servalcat_pipe, dr_mr_modelbuild, SubstituteLigand, lorestr,
+  …) inherits it.
+
+**Layer a2 — expose COMPLETE_MTZ on the PIPELINE (prosmart_refmac,
+servalcat_pipe).** The Export MTZ button acts on the *top-level pipeline* job and
+the generic fallback queries *that* job's output Files, so the pipeline must also
+carry it:
+  1. **pipeline def.xml** — add `outputData CMtzDataFile COMPLETE_MTZ`.
+  2. **pipeline finish handler** — `shutil.copyfile` the terminal refmac/servalcat
+     child's COMPLETE_MTZ up to the pipeline job dir (the existing idiom, cf.
+     LIBOUT/PSOUT copies at prosmart_refmac.py:300-303), set + annotate,
+     **before** the child `purgeJob`. #247 then protects it in the pipeline dir
+     too. Copy (not move) — cleanup-independent.
+
+For **aimless_pipe / dimple** there is no single wrapper producing an unsplit
+file (it is reconstructed), so those are pipeline-only (a2), building the file
+via `combine_mtz_files` (2a). Layer a1 applies specifically to refmac & servalcat.
 
 **Layer b — tracked outputs are unpurgeable. DONE (PR #247).** `purgeJob` now
 blacklists the real paths of a job's modelled OUT `File`s; `_deleteFile` skips
@@ -198,7 +220,7 @@ output, the parent purge cannot touch it — no per-task keep rule needed.
 **Layer c — category-0 keep now suppresses same-task rules. DONE (PR #248).**
 `_buildSearchList` let a task's `['pat',0]` keep coexist with its own
 `['pat',7]` delete (the prosmart bug). Fixed so cat-0 means keep unconditionally.
-Belt-and-braces; layer a already makes export safe.
+Belt-and-braces; layers a1/a2 already make export safe.
 
 Result: COMPLETE_MTZ is a tracked parent output → generic fallback finds it →
 survives cleanup and project export. The plugin **locator becomes a fallback for
