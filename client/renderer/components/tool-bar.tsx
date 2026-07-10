@@ -38,6 +38,10 @@ interface ToolbarButton {
   onClick: (e: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
   show: boolean;
+  // When false, the button is omitted entirely (not shown inline OR in the
+  // overflow menu). Defaults to true. Use for buttons that are conditionally
+  // meaningful (e.g. Export MTZ only when the job has an exportable file).
+  available?: boolean;
 }
 
 export default function ToolBar() {
@@ -221,9 +225,10 @@ export default function ToolBar() {
         label: "Export MTZ",
         icon: <SystemUpdateAlt />,
         onClick: handleExportMtz,
-        // Shown only when the server reports an exportable MTZ for this job
+        show: panelWidth > 950,
+        // Present only when the server reports an exportable MTZ for this job
         // (which already implies a finished job with a real output file).
-        show: panelWidth > 950 && exportItems.length > 0,
+        available: exportItems.length > 0,
       },
       {
         label: "Show log file",
@@ -242,8 +247,17 @@ export default function ToolBar() {
     [panelWidth, job, projectId, router, exportItems]
   );
 
-  const visibleButtons = toolbarButtons.filter((btn) => btn.show);
-  const hiddenButtons = toolbarButtons.filter((btn) => !btn.show);
+  // A button whose `show` is false is moved to the overflow menu, so the
+  // width breakpoint alone must NOT govern availability — otherwise a
+  // narrow panel surfaces buttons that have nothing behind them (e.g. an
+  // Export MTZ with no exportable file, which then silently no-ops).
+  // `available` (default true) gates presence entirely; `show` only decides
+  // inline-vs-overflow.
+  const availableButtons = toolbarButtons.filter(
+    (btn) => btn.available !== false
+  );
+  const visibleButtons = availableButtons.filter((btn) => btn.show);
+  const hiddenButtons = availableButtons.filter((btn) => !btn.show);
 
   return (
     <>
