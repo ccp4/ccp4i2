@@ -159,39 +159,61 @@ each source (first wins on clash). Repointed `aimless_pipe` /`import_merged`
 guard. No `cad` binary — satisfies the slim-server guard. Verified: a real
 gemmi merge of F/SIGF + FreeR mini-MTZs produces the combined file.
 
-**2b. Track the unsplit MTZ as a `CMtzDataFile` output.** *(recommended — makes
-export robust and purge-safe)*
+**2b. Track a `COMPLETE_MTZ` output on the pipelines — the finalized 3-layer
+design.** *(makes Export MTZ predictable regardless of the cleanup flag)*
 
-Today the natural unsplit files our locators serve are **untracked** and, worse,
-**on the default purge kill-list**:
+The naive "keep the child subjob's `hklout.mtz`" approach is a **dead end** —
+proven by a real prosmart_refmac run (`REFMAC_CLEANUP=True`, gamma data): the
+refmac `hklout.mtz` was still deleted. Why:
 
-- `refmac.py:238` reads `hklout.mtz` only as the *source* to split; the def.xml
-  `outputData` declares only the split mini-MTZs (FPHIOUT/DIFFPHIOUT/…). So
-  `hklout.mtz` is never gleaned.
-- `servalcat.py` likewise splits `refined.mtz` / `refined_diffmap.mtz` and
-  declares only the mini-MTZs.
-- `core/CPurgeProject.py SEARCHLIST` puts **`hklin.mtz` and `hklout.mtz` in
-  category 1** ("scratch, always safe to delete") — purged in **every** context
-  including the gentlest `script_finish` `[1,2]`. So the instant a job/project is
-  purged, the locator's target vanishes and Export MTZ silently breaks.
+- **Untracked.** `refmac.def.xml` declares **no** HKLOUT output; `refmac.py:238`
+  uses `hklout.mtz` only as the split *source*. `servalcat.py` likewise. So the
+  file is never gleaned → cannot be protected as a modelled output.
+- **Child-dir layout defeats the keep pattern.** The pipeline calls
+  `purgeJob(firstRefmac.jobId, context="extended_intermediate")` on the **child**
+  refmac job, whose dir holds `hklout.mtz` at top level. prosmart's keep pattern
+  is `refmac%*/hklout.mtz` — written as if purging the *parent* — so it never
+  matches; the default `['hklout.mtz', 1]` rule deletes it.
+- Purge context `extended_intermediate = [1,2,5,7]` includes the categories the
+  file falls under.
 
-Fix per task (**refmac, servalcat, aimless, dimple**):
+So the child file is fundamentally fragile. The fix is to **not depend on it**:
 
-1. **def.xml** — add an `outputData` `CMtzDataFile` (e.g. `COMPLETE_MTZ` /
-   `HKLOUT_UNSPLIT`).
-2. **wrapper** — in `processOutputFiles`, set + annotate it to the unsplit path
-   *before* splitting, so the gleaner tracks it as a `File` row.
-3. **purge** — ensure its filename is **not** matched by the category-1
-   SEARCHLIST globs. `hklout.mtz` currently IS — so either write the tracked copy
-   under a non-scratch name (e.g. `complete.mtz`) or add an explicit keep rule.
-   Reconcile the `hklout.mtz`/`hklin.mtz` category-1 entries so we never declare
-   an output and then purge it.
+**Layer a — pipeline copies COMPLETE_MTZ to its OWN top-level job dir, tracked as
+a PARENT output** (prosmart_refmac, servalcat_pipe, aimless_pipe, dimple):
+  1. **pipeline def.xml** — add `outputData` `CMtzDataFile COMPLETE_MTZ`.
+  2. **pipeline finish handler** — `shutil.copyfile` the terminal unsplit MTZ
+     (refmac `hklout.mtz` / servalcat `refined[_diffmap].mtz` / aimless+dimple
+     built file) into the pipeline job dir, set + annotate `COMPLETE_MTZ`,
+     **before** the child `purgeJob` runs. Gleaner then tracks it as a parent
+     `File`.
+  Files a job exports must live in its own top-level dir anyway; a copy (not a
+  move) is safe and cleanup-independent.
 
-Once tracked, the **generic fallback finds it** and the plugin **locator becomes
-a fallback for legacy (pre-tracking) jobs**. For aimless/dimple this depends on
-2a (there is no single unsplit file until the gemmi join produces one).
+**Layer b — tracked outputs are unpurgeable. DONE (PR #247).** `purgeJob` now
+blacklists the real paths of a job's modelled OUT `File`s; `_deleteFile` skips
+them whatever their category/name. So once COMPLETE_MTZ is a modelled parent
+output, the parent purge cannot touch it — no per-task keep rule needed.
+
+**Layer c — category-0 keep now suppresses same-task rules. DONE (PR #248).**
+`_buildSearchList` let a task's `['pat',0]` keep coexist with its own
+`['pat',7]` delete (the prosmart bug). Fixed so cat-0 means keep unconditionally.
+Belt-and-braces; layer a already makes export safe.
+
+Result: COMPLETE_MTZ is a tracked parent output → generic fallback finds it →
+survives cleanup and project export. The plugin **locator becomes a fallback for
+legacy (pre-tracking) jobs**. For aimless/dimple the copied file is produced via
+`combine_mtz_files` (2a).
+
+**Verification harness:** the i2run tests (`test_refmac`, `test_servalcat`,
+`test_aimless`, `test_dimple`) run the real pipelines and the required binaries
+are present. TDD loop per pipeline: add COMPLETE_MTZ → run its i2run test with
+`REFMAC_CLEANUP`/cleanup on → assert `(job / "COMPLETE_MTZ.mtz").is_file()`
+(proves both production AND survival past cleanup). Add the assertion as a
+regression guard.
 
 ## Open questions
 
 - Multiple output MTZs in the generic fallback: pick-list (current) vs. zip-all.
-- Naming of the tracked unsplit output + whether to backfill legacy jobs.
+- Naming of the tracked output (`COMPLETE_MTZ.mtz`) + whether to backfill legacy
+  jobs (probably not — locator fallback covers them).
