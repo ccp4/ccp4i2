@@ -1933,10 +1933,16 @@ class JobViewSet(ModelViewSet):
             - Handles CCP4 Task Manager initialization errors
             - Provides detailed error messages for debugging
         """
-        logger.warning(
-            "exportJobFiles not available in TaskManager - returning empty menu"
-        )
-        return api_success({"result": []})
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist as err:
+            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
+            return api_error(str(err), status=404)
+
+        from ..lib.utils.jobs.export import export_job_file_menu
+
+        menu = export_job_file_menu(job)
+        return api_success({"result": menu})
 
     @action(
         detail=True,
@@ -1969,30 +1975,14 @@ class JobViewSet(ModelViewSet):
         Example:
             GET /api/jobs/123/export_job_file/?mode=pdb
         """
-        print("In export job file")
-        print(f"Request: pk={pk}, mode={request.GET.get('mode')}")
-        # Get the export mode from query parameters
         export_mode = request.GET.get("mode")
         if not export_mode:
-            print("Missing export mode parameter")
             return api_error("Missing required 'mode' parameter", status=400)
 
-        print(f"About to call utility function with pk={pk}, export_mode={export_mode}")
-        # Import the utility function locally to avoid unused import lint error
         from ..lib.utils.jobs.export import export_job_file
 
-        # Use the refactored utility function
         file_response, error_response = export_job_file(pk, export_mode)
-        print(
-            f"Utility function returned: file_response={file_response is not None}, error_response={error_response is not None}"
-        )
-
-        # Return either the file response or error response
-        if error_response:
-            print(f"Returning error response: {error_response}")
-            return error_response
-        print(f"Returning file response: {file_response}")
-        return file_response
+        return error_response if error_response else file_response
 
     @action(
         detail=True,

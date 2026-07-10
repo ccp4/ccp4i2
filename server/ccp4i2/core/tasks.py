@@ -1490,6 +1490,28 @@ def get_import_error(task_name: str) -> str | None:
 
 
 @cache
+def get_plugin_module(task_name: str):
+    """Return the imported module that holds a task's plugin class.
+
+    Useful for reaching module-level functions a plugin script may define
+    outside its class (e.g. the legacy ``exportJobFileMenu`` /
+    ``exportJobFile`` export contract). Returns None if the task is unknown
+    or the module fails to import.
+    """
+    task = TASKS.get(task_name)
+    if task is None or not task.pluginPath:
+        return None
+    module_name = task.pluginPath.split(":")[0]
+    try:
+        return importlib.import_module(module_name)
+    except Exception as e:
+        logger = logging.getLogger(f"ccp4i2:{__name__}")
+        logger.error(f"Failed to import plugin module for {task_name}: {e}")
+        _import_errors[task_name] = str(e)
+        return None
+
+
+@cache
 def get_plugin_class(task_name: str):
     return _get_task_class(task_name, "plugin")
 
