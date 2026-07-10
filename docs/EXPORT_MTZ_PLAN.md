@@ -121,16 +121,71 @@ Net after Phase 1: Export MTZ correct for `servalcat_pipe` / `prosmart_refmac`
 (the screenshot cases) + any task with a tracked output MTZ; truthfully
 **absent** where there is nothing to export.
 
-### Phase 2 — reconstructors
+### Phase 1 — IMPLEMENTED (2026-07-10)
 
-4. Write **`merge_mtz_files_gemmi`** (gemmi column-preserving join) and repoint
-   `aimless_pipe` / `import_merged` `exportJobFile` at it (or run those in the
-   job env). Keep the intensity-vs-amplitude + FreeR-base logic they already
-   encode.
+Shipped:
+
+- `core/tasks.py`: new `get_plugin_module(task_name)` accessor (imports the
+  module holding the plugin class, to reach module-level export functions).
+- `lib/utils/jobs/export.py`: `export_job_file_menu(job)` and
+  `export_job_file(pk, mode)` + helpers. Menu prefers the plugin contract,
+  **validates each declared mode by resolving it to an on-disk file** (the
+  plugin `exportJobFileMenu` is optimistic and advertises a mode even when the
+  file is absent), and falls back to the job's tracked output MTZ `File`s
+  (`_FALLBACK_PREFIX = "file:"`). Reconstructor tasks return HTTP 501.
+- `api/JobViewSet.py`: un-stubbed `export_job_file_menu`; cleaned debug prints
+  from `export_job_file`.
+- `servalcat_pipe.exportJobFile`: made robust — searches **all** `servalcat`
+  subjobs (not the fragile `childJobs[-1]`/`[-2]` positional assumption) and
+  covers **SPA mode** (`refined_diffmap.mtz`) as well as xtal (`refined.mtz`).
+- `tool-bar.tsx`: fetches the menu; **hides the button when empty** (replaces
+  the misleading blanket `status===6` gate); single mode → download, multiple →
+  pick menu.
+
+Verified end-to-end against a real Django DB (in-memory test runner): servalcat
+xtal + SPA locators, refmac generic fallback (FileResponse 200), parrot
+(menu-but-no-`exportJobFile`) → empty, aimless reconstructor → 501.
+
+### Phase 2 — reconstructors + tracked unsplit MTZ
+
+**2a. Reconstructors.** Write **`merge_mtz_files_gemmi`** (gemmi
+column-preserving join, no `cad` binary — the slim-server guard forbids it) and
+repoint `aimless_pipe` / `import_merged` `exportJobFile` at it (or run those in
+the job env). Keep the intensity-vs-amplitude + FreeR-base logic they encode.
+
+**2b. Track the unsplit MTZ as a `CMtzDataFile` output.** *(recommended — makes
+export robust and purge-safe)*
+
+Today the natural unsplit files our locators serve are **untracked** and, worse,
+**on the default purge kill-list**:
+
+- `refmac.py:238` reads `hklout.mtz` only as the *source* to split; the def.xml
+  `outputData` declares only the split mini-MTZs (FPHIOUT/DIFFPHIOUT/…). So
+  `hklout.mtz` is never gleaned.
+- `servalcat.py` likewise splits `refined.mtz` / `refined_diffmap.mtz` and
+  declares only the mini-MTZs.
+- `core/CPurgeProject.py SEARCHLIST` puts **`hklin.mtz` and `hklout.mtz` in
+  category 1** ("scratch, always safe to delete") — purged in **every** context
+  including the gentlest `script_finish` `[1,2]`. So the instant a job/project is
+  purged, the locator's target vanishes and Export MTZ silently breaks.
+
+Fix per task (**refmac, servalcat, aimless, dimple**):
+
+1. **def.xml** — add an `outputData` `CMtzDataFile` (e.g. `COMPLETE_MTZ` /
+   `HKLOUT_UNSPLIT`).
+2. **wrapper** — in `processOutputFiles`, set + annotate it to the unsplit path
+   *before* splitting, so the gleaner tracks it as a `File` row.
+3. **purge** — ensure its filename is **not** matched by the category-1
+   SEARCHLIST globs. `hklout.mtz` currently IS — so either write the tracked copy
+   under a non-scratch name (e.g. `complete.mtz`) or add an explicit keep rule.
+   Reconcile the `hklout.mtz`/`hklin.mtz` category-1 entries so we never declare
+   an output and then purge it.
+
+Once tracked, the **generic fallback finds it** and the plugin **locator becomes
+a fallback for legacy (pre-tracking) jobs**. For aimless/dimple this depends on
+2a (there is no single unsplit file until the gemmi join produces one).
 
 ## Open questions
 
-- Should the reconstructed / natural export MTZ be **database-tracked** as a job
-  output `File`, or remain an ephemeral download artifact? (Currently
-  `exportMtz.mtz` is written into the job dir but not gleaned.)
-- Multiple output MTZs in the generic fallback: pick-list vs. zip-all.
+- Multiple output MTZs in the generic fallback: pick-list (current) vs. zip-all.
+- Naming of the tracked unsplit output + whether to backfill legacy jobs.

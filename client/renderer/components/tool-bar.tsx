@@ -34,7 +34,7 @@ import { mutate } from "swr";
 interface ToolbarButton {
   label: string;
   icon: React.ReactNode;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
   show: boolean;
 }
@@ -49,6 +49,16 @@ export default function ToolBar() {
     id: jobId,
     endpoint: "",
   });
+
+  // Exportable data-file (MTZ) menu for this job. `result` is a list of
+  // [mode, label, mimeType] items; empty => nothing to export (hide button).
+  const { data: exportMenuData } = api.get_endpoint<{
+    result: [string, string, string][];
+  }>(jobId ? { type: "jobs", id: jobId, endpoint: "export_job_file_menu" } : null);
+  const exportItems = useMemo(
+    () => exportMenuData?.result ?? [],
+    [exportMenuData]
+  );
   const { mutateJobs } = useProjectJobs(projectId);
   const router = useRouter();
   const [showHelpPanel, setShowHelpPanel] = useState(false);
@@ -142,6 +152,27 @@ export default function ToolBar() {
 
   const handleLog = () => setJobTabValue(10);
 
+  const [exportMenuAnchor, setExportMenuAnchor] =
+    useState<null | HTMLElement>(null);
+
+  // Trigger a browser download of a given export mode via the proxy endpoint.
+  const downloadExportMode = (mode: string) => {
+    if (!job) return;
+    const url = `/api/proxy/ccp4i2/jobs/${job.id}/export_job_file/?mode=${encodeURIComponent(
+      mode
+    )}`;
+    window.open(url, "_blank");
+  };
+
+  const handleExportMtz = (e: React.MouseEvent<HTMLElement>) => {
+    if (exportItems.length === 1) {
+      downloadExportMode(exportItems[0][0]);
+    } else if (exportItems.length > 1) {
+      // Multiple exportable files: let the user pick.
+      setExportMenuAnchor(e.currentTarget);
+    }
+  };
+
   // Button definitions with breakpoints
   const toolbarButtons: ToolbarButton[] = useMemo(
     () => [
@@ -185,9 +216,10 @@ export default function ToolBar() {
       {
         label: "Export MTZ",
         icon: <SystemUpdateAlt />,
-        onClick: () => {},
-        disabled: job?.status !== 6,
-        show: panelWidth > 950,
+        onClick: handleExportMtz,
+        // Shown only when the server reports an exportable MTZ for this job
+        // (which already implies a finished job with a real output file).
+        show: panelWidth > 950 && exportItems.length > 0,
       },
       {
         label: "Show log file",
@@ -203,7 +235,7 @@ export default function ToolBar() {
         show: panelWidth > 1200,
       },
     ],
-    [panelWidth, job, projectId, router]
+    [panelWidth, job, projectId, router, exportItems]
   );
 
   const visibleButtons = toolbarButtons.filter((btn) => btn.show);
@@ -246,8 +278,8 @@ export default function ToolBar() {
                 {hiddenButtons.map((btn) => (
                   <MenuItem
                     key={btn.label}
-                    onClick={() => {
-                      btn.onClick();
+                    onClick={(e) => {
+                      btn.onClick(e);
                       setMenuAnchor(null);
                     }}
                     disabled={btn.disabled}
@@ -259,6 +291,24 @@ export default function ToolBar() {
               </MuiMenu>
             </>
           )}
+          {/* Export MTZ: picker shown only when >1 exportable file */}
+          <MuiMenu
+            anchorEl={exportMenuAnchor}
+            open={Boolean(exportMenuAnchor)}
+            onClose={() => setExportMenuAnchor(null)}
+          >
+            {exportItems.map(([mode, label]) => (
+              <MenuItem
+                key={mode}
+                onClick={() => {
+                  downloadExportMode(mode);
+                  setExportMenuAnchor(null);
+                }}
+              >
+                {label}
+              </MenuItem>
+            ))}
+          </MuiMenu>
           <HelpIframe
             url={`/help/html/tasks/${job?.task_name}/index.html`}
             open={showHelpPanel}
