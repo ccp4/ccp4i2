@@ -643,9 +643,8 @@ def exportJobFile(jobId=None,mode=None):
     #     which would mean truncate applied twice
     import os
 
-    from ccp4i2.core import CCP4Modules, CCP4XtalData
+    from ccp4i2.core import CCP4Modules
 
-    print("\nexportJobFile")
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
@@ -679,26 +678,26 @@ def exportJobFile(jobId=None,mode=None):
         obsOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False), obsfilename)
 
 
-    #print("now FreeR")
+    # No observed-data MTZ located (e.g. intensity input but ctruncate output
+    # missing) -> nothing to reconstruct.
+    if not obsOut or not os.path.exists(str(obsOut)):
+        return None
+
     info = db.getJobFilesInfo(jobId=jobId,jobParamName='FREEOUT')
     freerfilename = info[0]['fileName']
-    freerflagOut = None
     freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),freerfilename)
-    if not os.path.exists(freerflagOut): freerflagOut = None
-    #if truncateOut is None: return None
-    #if freerflagOut is None: return truncateOut
-    if freerflagOut is None: return None
+    if not os.path.exists(freerflagOut):
+        # No FreeR to add: the observed-data file is the best we can offer.
+        return str(obsOut)
 
-    #print('import_merge.exportJobFile  runCad:',exportFile,[ freerflagOut ])
-    
-    m = CCP4XtalData.CMtzDataFile(obsOut)   # observed data
-    #print(m.runCad.__doc__)   #Print out docs for the function
-    #  Make sure that FreeR is flagged as base dataset
-    comLines = ["XNAME FILE_NUMBER 2 ALL=HKL_base",
-                "DNAME FILE_NUMBER 2 ALL=HKL_base"]
-    outfile,err = m.runCad(exportFile,[ freerflagOut ], comLines)
-    print('aimless_pipe.exportJobFile',outfile,err.report())
-    return   outfile                                                   
+    # Combine observed data with the FreeR column into one MTZ. gemmi-based
+    # (no cad binary); observed data first so it wins on any column clash.
+    from ccp4i2.lib.utils.jobs.export import combine_mtz_files
+    try:
+        return str(combine_mtz_files([obsOut, freerflagOut], exportFile))
+    except Exception as e:
+        print('ERROR: import_merged.exportJobFile combine failed:', e)
+        return None
  
 def exportJobFileMenu(jobId=None):
     print("exportJobFileMenu")
