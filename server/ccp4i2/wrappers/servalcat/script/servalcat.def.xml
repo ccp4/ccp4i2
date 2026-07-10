@@ -138,6 +138,13 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
             </content>
         </container>
         <container id="outputData">
+            <content id="COMPLETE_MTZ">
+                <className>CMtzDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <label>Complete reflection file</label>
+                </qualifiers>
+            </content>
             <content id="CIFFILE">
                 <className>CPdbDataFile</className>
                 <qualifiers>

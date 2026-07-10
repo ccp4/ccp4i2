@@ -1077,6 +1077,13 @@ class servalcat_pipe(CPluginScript):
                     servalcatJob.container.outputData.MAP_FOFC.annotation)
                 self.container.outputData.MAP_FOFC.subType = \
                     servalcatJob.container.outputData.MAP_FOFC.subType
+
+            # COMPLETE_MTZ (the unsplit reflection file) was copied up from the
+            # final servalcat child by the generic dataOrder() loop; annotate it
+            # so the Export MTZ button can serve this tracked pipeline output.
+            if self.container.outputData.COMPLETE_MTZ.exists():
+                self.container.outputData.COMPLETE_MTZ.annotation.set(
+                    'Complete unsplit reflection file from refinement')
         except Exception as e:
             self.appendErrorReport(101,
                 f'Failed to apply annotations: {e}')

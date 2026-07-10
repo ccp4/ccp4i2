@@ -203,6 +203,13 @@ class servalcat(CPluginScript):
                 f'Failed to read output MTZ: {e}\n{traceback.format_exc()}')
             return CPluginScript.FAILED
 
+        # Track the complete, unsplit reflection file as a first-class output so
+        # the Export MTZ button can serve it and #247 protects it from purge.
+        # No copy needed - it already lives in this wrapper's work directory.
+        self.container.outputData.COMPLETE_MTZ.setFullPath(hkloutFilePath)
+        self.container.outputData.COMPLETE_MTZ.annotation.set(
+            "Complete unsplit reflection file from refinement")
+
         if str(self.container.controlParameters.DATA_METHOD) == "xtal":
             if 'FAN' in columnLabelsInFile and 'PHAN' in columnLabelsInFile:
                 self.container.outputData.ANOMFPHIOUT.annotation.set(
