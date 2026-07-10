@@ -9,12 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import { Search, Settings } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 import { useFindInPage } from "../providers/find-in-page-provider";
 
 export default function EditMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const findInPage = useFindInPage();
+  const router = useRouter();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -25,6 +27,11 @@ export default function EditMenu() {
   const handleFind = () => {
     handleClose();
     findInPage?.open();
+  };
+
+  const handlePreferences = () => {
+    handleClose();
+    router.push("/ccp4i2/config");
   };
 
   return (
@@ -42,7 +49,7 @@ export default function EditMenu() {
             ({typeof navigator !== "undefined" && navigator?.platform?.includes("Mac") ? "\u2318" : "Ctrl+"}F)
           </Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handlePreferences}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
