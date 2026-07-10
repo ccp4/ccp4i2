@@ -277,3 +277,22 @@ def test_gamma_basic():
     args += ["--VALIDATE_MOLPROBITY", "False"]  # Explicitly disable MolProbity (requires rotarama_data)
     with i2run(args) as job:
         _check_output(job, anom=True, expected_cycles=5, expected_rwork=0.27, require_molprobity=False)
+
+
+def test_complete_mtz_survives_cleanup():
+    """The tracked COMPLETE_MTZ (unsplit reflection file) must be produced by the
+    pipeline AND survive REFMAC_CLEANUP=True, proving both a1 (wrapper output) and
+    a2 (copy-up into the pipeline dir) plus purge protection (#247)."""
+    args = ["prosmart_refmac"]
+    args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--XYZIN", demoData("gamma", "gamma_model.pdb")]
+    args += ["--NCYCLES", "2"]
+    args += ["--VALIDATE_MOLPROBITY", "False"]
+    args += ["--REFMAC_CLEANUP", "True"]  # Purge intermediate files after refinement
+    with i2run(args) as job:
+        complete = job / "COMPLETE_MTZ.mtz"
+        assert complete.is_file(), (
+            f"COMPLETE_MTZ.mtz missing from pipeline dir {job} after REFMAC_CLEANUP"
+        )
+        # Sanity: it is a readable MTZ with reflection data
+        read_mtz_file(str(complete))
