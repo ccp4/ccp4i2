@@ -235,8 +235,17 @@ class refmac(CPluginScript):
         import os
 
         from ccp4i2.core import CCP4XtalData
-        hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
+        hkloutPath = os.path.join(self.getWorkDirectory(), "hklout.mtz")
+        hkloutFile=CCP4XtalData.CMtzDataFile(hkloutPath)
         hkloutFile.loadFile()
+
+        # Track the complete, unsplit reflection file as a first-class output so
+        # the Export MTZ button can serve it and #247 protects it from purge.
+        # No copy needed - it already lives in this wrapper's work directory.
+        self.container.outputData.COMPLETE_MTZ.setFullPath(hkloutPath)
+        self.container.outputData.COMPLETE_MTZ.annotation.set(
+            "Complete unsplit reflection file from refinement")
+
         columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
         print('columnLabelsInFile',columnLabelsInFile)
         
