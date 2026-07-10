@@ -192,8 +192,18 @@ export async function startDjangoServer(
 
   // Start Python process — ccp4i2 is pip-installed so uvicorn uses module path
   // Use 2 workers for concurrent requests (no --reload, requires manual restart)
+  //
+  // --ws none: the ccp4i2 backend is a plain HTTP Django ASGI app
+  // (get_asgi_application; no channels / websocket routing). uvicorn's default
+  // "--ws auto" eagerly imports its websockets protocol impl at startup, which
+  // on newer uvicorn (>=0.30) is the sansio impl that needs websockets>=13.
+  // If the environment ships an older websockets (e.g. the CCP4 bundle's 10.4),
+  // that import raises "cannot import name 'ServerProtocol'" and every worker
+  // crashes on boot. Since we never serve websockets, disable the protocol
+  // entirely rather than depend on a specific websockets version.
   const uvicornArgs = [
     "-m", "uvicorn", "ccp4i2.config.asgi:application", "--workers", "2",
+    "--ws", "none",
     "--log-level", "warning",  // Suppress per-request INFO access logs
   ];
 
