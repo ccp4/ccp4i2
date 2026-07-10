@@ -246,4 +246,8 @@ def export_job_file(pk, mode):
         filename=download_name,
         content_type="application/octet-stream",
     )
+    # The frontend download helper prefers a filename from this header.
+    import json as _json
+
+    response["X-Export-Info"] = _json.dumps({"original_filename": download_name})
     return response, None
