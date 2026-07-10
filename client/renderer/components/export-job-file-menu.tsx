@@ -80,7 +80,7 @@ interface ExportJobFileMenuResponse {
  * @param url - The URL to download from
  * @param filename - Suggested filename for the download
  */
-const doDownload = async (url: string, filename: string): Promise<void> => {
+export const doDownload = async (url: string, filename: string): Promise<void> => {
   try {
     // Fetch the response to get headers
     const response = await apiFetch(url);
