@@ -624,6 +624,20 @@ class aimless_pipe(CPluginScript):
                 e.append(freerxml)
         xmlroot.append(e)
 
+      # Build a tracked, unsplit COMPLETE_MTZ so the Export MTZ button can serve
+      # the reconstructed reflection file directly (found by the generic
+      # fallback) and it survives cleanup/project export. There is no single
+      # unsplit file here - aimless splits observed data across datasets and
+      # FreeR is generated separately - so recombine the primary observed
+      # dataset with the FreeR column (gemmi, no cad binary). Observed data
+      # first so it wins on any column-label clash.
+      if self.container.outputData.XMLOUT.isSet():  # i.e. not import_merged
+        try:
+            self.buildCompleteMtz()
+        except Exception as ex:
+            # Non-fatal: export just falls back to the legacy reconstruct path.
+            print('WARNING: aimless_pipe failed to build COMPLETE_MTZ:', ex)
+
       newXml = lxml_etree.tostring(xmlroot,pretty_print=True,encoding='unicode')
       xmlfile = open( xmlout, "w" )
       xmlfile.write(newXml)
@@ -677,6 +691,36 @@ class aimless_pipe(CPluginScript):
           self.reportStatus(CPluginScript.UNSATISFACTORY)
       else:
           self.reportStatus(status)
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    def buildCompleteMtz(self):
+        """Recombine the primary observed dataset + FreeR into a tracked
+        COMPLETE_MTZ in the pipeline job directory.
+
+        Mirrors the reconstruction the legacy exportJobFile does, but produces
+        a real tracked output (gleaned + purge-protected) rather than an
+        on-demand file. Observed data first so it wins on any label clash.
+        """
+        obsPath = None
+        if len(self.container.outputData.HKLOUT) > 0:
+            candidate = str(self.container.outputData.HKLOUT[0].fullPath)
+            if candidate and os.path.exists(candidate):
+                obsPath = candidate
+        if obsPath is None:
+            return  # nothing observed to export
+
+        sources = [obsPath]
+        if self.container.outputData.FREEROUT.isSet():
+            freerPath = str(self.container.outputData.FREEROUT.fullPath)
+            if freerPath and os.path.exists(freerPath):
+                sources.append(freerPath)
+
+        completePath = os.path.join(self.workDirectory, 'COMPLETE_MTZ.mtz')
+        from ccp4i2.lib.utils.jobs.export import combine_mtz_files
+        combine_mtz_files(sources, completePath)
+        self.container.outputData.COMPLETE_MTZ.setFullPath(completePath)
+        self.container.outputData.COMPLETE_MTZ.annotation.set(
+            'Complete reflection file (observed data + FreeR)')
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def makeMmcifXML(self, containerXML):
