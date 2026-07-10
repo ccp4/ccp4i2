@@ -57,11 +57,17 @@ export default function ToolBar() {
 
   // Exportable data-file (MTZ) menu for this job. `result` is a list of
   // [mode, label, mimeType] items; empty => nothing to export (hide button).
+  // NOTE: get_endpoint's fetcher does NOT unwrap the {success, data} envelope
+  // that api_success() adds, so the menu arrives as either
+  // {success, data: {result}} (wrapped) or {result} (already unwrapped) —
+  // accept both so the button surfaces whenever the server reports a file.
   const { data: exportMenuData } = api.get_endpoint<{
-    result: [string, string, string][];
+    success?: boolean;
+    data?: { result?: [string, string, string][] };
+    result?: [string, string, string][];
   }>(jobId ? { type: "jobs", id: jobId, endpoint: "export_job_file_menu" } : null);
   const exportItems = useMemo(
-    () => exportMenuData?.result ?? [],
+    () => exportMenuData?.data?.result ?? exportMenuData?.result ?? [],
     [exportMenuData]
   );
   const { mutateJobs } = useProjectJobs(projectId);
