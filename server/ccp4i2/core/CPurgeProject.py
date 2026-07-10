@@ -118,6 +118,9 @@ class CPurgeProject:
         """
         self.projectId = projectId
         self._db = None
+        # Real paths of the current purge target's modelled outputs; populated
+        # per-call by purgeJob so _deleteFile never removes a tracked deliverable.
+        self._protectedPaths: set = set()
 
     def db(self):
         """
@@ -177,6 +180,15 @@ class CPurgeProject:
             logger.error(f"Error getting job directory for {jobId}: {e}")
             return {'files_deleted': 0, 'bytes_freed': 0, 'errors': 1}
 
+        # Modelled outputs are never scratch. Whatever the search list / category
+        # says, a file that the job records as a tracked output File must survive
+        # purge — otherwise cleanup can silently destroy a declared deliverable
+        # (e.g. a pipeline's COMPLETE_MTZ, or any hklout the task chose to model).
+        # Blacklist their real paths for the duration of this purge; _deleteFile
+        # consults the set. Failure to resolve outputs must NOT make purge more
+        # destructive, so on error we fail safe to "protect nothing extra".
+        self._protectedPaths = self._modelledOutputPaths(jobId)
+
         # Get task-specific purge list if available
         task_purge_list = self._getTaskPurgeList(jobId)
 
@@ -213,6 +225,32 @@ class CPurgeProject:
                        f"{stats['errors']} errors")
 
         return stats
+
+    def _modelledOutputPaths(self, jobId: str) -> set:
+        """
+        Real paths of the job's tracked output files (role=OUT).
+
+        These are the job's declared, database-tracked deliverables; purge must
+        never delete them regardless of category. Returns an empty set on any
+        error so a lookup failure cannot make purge *more* aggressive.
+        """
+        try:
+            paths = self.db().getJobFiles(jobId=jobId, role=0, mode="fullPath")
+            protected = set()
+            for p in paths or []:
+                if not p:
+                    continue
+                try:
+                    protected.add(os.path.realpath(str(p)))
+                except Exception:
+                    protected.add(str(p))
+            return protected
+        except Exception as e:
+            logger.warning(
+                f"Could not resolve modelled outputs for job {jobId}; "
+                f"purge will not blacklist any outputs: {e}"
+            )
+            return set()
 
     def _getTaskPurgeList(self, jobId: str) -> List[List]:
         """
@@ -340,6 +378,18 @@ class CPurgeProject:
         try:
             if not os.path.exists(file_path):
                 return
+
+            # Never delete a modelled (DB-tracked) output, whatever its category.
+            protected = getattr(self, "_protectedPaths", None)
+            if protected:
+                try:
+                    resolved = os.path.realpath(file_path)
+                except Exception:
+                    resolved = file_path
+                if resolved in protected or file_path in protected:
+                    if reportMode == "verbose":
+                        logger.info(f"Retained (modelled output): {file_path}")
+                    return
 
             # Get size before deletion
             if os.path.isfile(file_path):
