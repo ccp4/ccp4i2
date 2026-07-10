@@ -1,6 +1,9 @@
 # Export MTZ — design & wiring plan
 
-Status: **design, not yet implemented** (2026-07-10, `django` branch).
+Status: **Phase 1, 2a, and 2b (a1/a2) IMPLEMENTED** (2026-07-10, `django` branch).
+COMPLETE_MTZ is a tracked output on refmac, servalcat, prosmart_refmac,
+servalcat_pipe, aimless_pipe and i2Dimple; the toolbar Export MTZ button
+surfaces and downloads it. See the Phase 2b section for the per-pipeline table.
 
 The job-panel toolbar (`client/renderer/components/tool-bar.tsx`) has an **Export
 MTZ** button that is currently a no-op (`onClick: () => {}`), gated by a
@@ -179,6 +182,26 @@ refmac `hklout.mtz` was still deleted. Why:
 
 So the child file is fundamentally fragile. The fix is to **model it as a real
 output — at BOTH the wrapper and the pipeline** (each serves a different role):
+
+**Layer a1/a2 — IMPLEMENTED (2026-07-10).**
+
+| Pipeline | PR | How COMPLETE_MTZ is produced |
+|----------|-----|------------------------------|
+| refmac + prosmart_refmac | #251 (merged) | a1 wrapper: setFullPath to `hklout.mtz`. a2 pipeline: inherits def.xml via `<file>` include; existing `dataOrder()` copy-up in `finishUp` copies it up + annotate. |
+| servalcat + servalcat_pipe | #252 (merged) | a1 wrapper: setFullPath to `refined.mtz`/`refined_diffmap.mtz`. a2 pipeline: inherits def.xml; `dataOrder()` copy-up + annotate in `_applyAnnotations`. |
+| aimless_pipe | #254 | Reconstructor (pipeline-only): `process_finish` recombines `HKLOUT[0]` + FreeR via `combine_mtz_files`; tracked outputData `CMtzDataFile`. |
+| i2Dimple | #254 | **Locator, single wrapper** (plan correction — dimple is NOT a reconstructor): it splits mini-MTZs from `final.mtz` in its own work dir, so `final.mtz` IS the unsplit file. `processOutputFiles` setFullPath to `final.mtz` (no copy). Tracked under its native name in the job's own dir. |
+
+Also fixed the frontend bug that hid the button (#253): `tool-bar.tsx` fetched
+`export_job_file_menu` via `get_endpoint`, whose fetcher does not unwrap the
+`{success, data}` envelope `api_success()` adds — so `exportMenuData.result` was
+`undefined` and the button was filtered out. Now reads `.data?.result ?? .result`.
+
+Verification: TDD i2run tests for all four pipelines pass end-to-end; refmac &
+servalcat assert survival past `REFMAC_CLEANUP=True`. The full refmac+servalcat
+i2run files are green (8 passed, 2 pre-existing clipper skips).
+
+Design notes below retained for context.
 
 **Layer a1 — model COMPLETE_MTZ on the WRAPPER (refmac, servalcat).** This is the
 primary, correct fix: declare the unsplit file as an output where it is
