@@ -148,10 +148,16 @@ xtal + SPA locators, refmac generic fallback (FileResponse 200), parrot
 
 ### Phase 2 — reconstructors + tracked unsplit MTZ
 
-**2a. Reconstructors.** Write **`merge_mtz_files_gemmi`** (gemmi
-column-preserving join, no `cad` binary — the slim-server guard forbids it) and
-repoint `aimless_pipe` / `import_merged` `exportJobFile` at it (or run those in
-the job env). Keep the intensity-vs-amplitude + FreeR-base logic they encode.
+**2a. Reconstructors — IMPLEMENTED (2026-07-10).** Rather than a new util, the
+branch already had a gemmi join: `CCP4Utils.merge_mtz_files` (pure gemmi despite
+its "using CAD" docstring; distinct from the binary-shelling
+`merge_mtz_files_cad`). Added a thin wrapper `combine_mtz_files(sources,
+output_path)` in `lib/utils/jobs/export.py` that copies all data columns from
+each source (first wins on clash). Repointed `aimless_pipe` /`import_merged`
+`exportJobFile` from the dead `m.runCad(...)` to `combine_mtz_files(...)`
+(observed data first, FreeR second) and removed the `_RECONSTRUCTOR_TASKS` 501
+guard. No `cad` binary — satisfies the slim-server guard. Verified: a real
+gemmi merge of F/SIGF + FreeR mini-MTZs produces the combined file.
 
 **2b. Track the unsplit MTZ as a `CMtzDataFile` output.** *(recommended — makes
 export robust and purge-safe)*

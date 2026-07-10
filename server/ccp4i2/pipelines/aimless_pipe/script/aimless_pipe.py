@@ -1074,7 +1074,7 @@ class aimless_pipe(CPluginScript):
 # ----------------------------------------------------------------------
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
-    from ccp4i2.core import CCP4Modules, CCP4XtalData
+    from ccp4i2.core import CCP4Modules
 
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
@@ -1094,13 +1094,14 @@ def exportJobFile(jobId=None,mode=None):
     if truncateOut is None: return None
     if freerflagOut is None: return truncateOut
 
-    # print('aimless_pipe.exportJobFile  runCad:',exportFile,[ freerflagOut ])
-    
-    m = CCP4XtalData.CMtzDataFile(truncateOut)
-    #print m.runCad.__doc__   #Print out docs for the function
-    outfile,err = m.runCad(exportFile,[ freerflagOut ] )
-    print('aimless_pipe.exportJobFile',outfile,err.report())
-    return   outfile                                                   
+    # Combine the ctruncate observed data with the FreeR column into one MTZ.
+    # gemmi-based (no cad binary); observed data first so it wins on conflict.
+    from ccp4i2.lib.utils.jobs.export import combine_mtz_files
+    try:
+        return str(combine_mtz_files([truncateOut, freerflagOut], exportFile))
+    except Exception as e:
+        print('ERROR: aimless_pipe.exportJobFile combine failed:', e)
+        return None
  
 def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:

@@ -9,6 +9,7 @@ generic fallback. See docs/EXPORT_MTZ_PLAN.md for the design.
 import logging
 import os
 from pathlib import Path
+from typing import List, Union
 from django.http import FileResponse
 from ccp4i2.db import models
 from ccp4i2.lib.response import Result, api_error
@@ -20,10 +21,40 @@ logger = logging.getLogger(f"ccp4i2:{__name__}")
 # freerflag, phases, map). Used by the generic export fallback.
 MTZ_TYPE_PREFIX = "application/CCP4-mtz"
 
-# Tasks whose exportJobFile reconstructs via the (now-absent) runCad. Until a
-# gemmi join utility lands (EXPORT_MTZ_PLAN Phase 2) these would crash, so we
-# skip their plugin export and let the generic fallback handle them instead.
-_RECONSTRUCTOR_TASKS = {"aimless_pipe", "import_merged"}
+
+def combine_mtz_files(
+    sources: List[Union[str, Path]],
+    output_path: Union[str, Path],
+) -> Path:
+    """Combine reflection columns from several MTZ files into one (gemmi).
+
+    A CAD-free replacement for the old ``CMtzDataFile.runCad`` catenation used
+    by the reconstructor export tasks (aimless_pipe, import_merged): all data
+    columns from each source are copied into a single output, HKL-matched by
+    gemmi. On a column-label clash the earlier source wins (so pass the
+    observed-data MTZ first, the FreeR MTZ after).
+
+    Args:
+        sources: input MTZ paths, in priority order (first wins on conflict).
+        output_path: where to write the combined MTZ.
+
+    Returns:
+        Path to the written combined MTZ.
+    """
+    import gemmi
+    from ccp4i2.core.CCP4Utils import merge_mtz_files
+
+    input_specs = []
+    for src in sources:
+        src = Path(src)
+        mtz = gemmi.read_mtz_file(str(src))
+        # Copy every data column (everything except the H, K, L index columns).
+        mapping = {
+            c.label: c.label for c in mtz.columns if c.type not in ("H",)
+        }
+        input_specs.append({"path": str(src), "column_mapping": mapping})
+
+    return merge_mtz_files(input_specs, output_path, merge_strategy="first")
 
 
 def export_job(job: models.Job, output_path: Path) -> Result[Path]:
@@ -126,7 +157,6 @@ def export_job_file_menu(job: models.Job):
     module = get_plugin_module(task_name)
     if (
         module is not None
-        and task_name not in _RECONSTRUCTOR_TASKS
         and hasattr(module, "exportJobFileMenu")
         and hasattr(module, "exportJobFile")
     ):
@@ -139,9 +169,10 @@ def export_job_file_menu(job: models.Job):
             )
             declared = []
         # The plugin menu is optimistic — it advertises a mode regardless of
-        # whether the file exists. For these (non-reconstructor) tasks
-        # exportJobFile is a cheap path resolve, so validate each mode by
-        # confirming it yields a file on disk before offering it.
+        # whether the file can be produced. Validate each mode by resolving it
+        # to a file on disk before offering it. For locator tasks this is a
+        # cheap lookup; for reconstructor tasks it builds (and caches) the
+        # combined MTZ, which is fast and idempotent.
         menu = []
         for item in declared:
             mode = item[0] if item else None
@@ -195,12 +226,6 @@ def export_job_file(pk, mode):
         export_path = f.path
     else:
         # Plugin mode: call the module-level exportJobFile contract.
-        if job.task_name in _RECONSTRUCTOR_TASKS:
-            return None, api_error(
-                "MTZ reconstruction for this task is not yet available "
-                "(pending a gemmi CAD replacement).",
-                status=501,
-            )
         from ccp4i2.core.tasks import get_plugin_module
 
         module = get_plugin_module(job.task_name)
