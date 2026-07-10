@@ -18,6 +18,17 @@ def check_result(job: Path, spacegroup, resolution, rmeas):
     assert float(tree.find(".//ResolutionHigh/Overall").text) == approx(resolution)
     assert float(tree.find(".//Rmeas/Overall").text) == approx(rmeas)
 
+    # COMPLETE_MTZ: reconstructed observed data + FreeR, tracked as a top-level
+    # output so the Export MTZ button can serve it (found by the generic
+    # fallback) and it survives cleanup / project export (#247).
+    complete = job / "COMPLETE_MTZ.mtz"
+    assert complete.is_file(), f"COMPLETE_MTZ.mtz missing from {job}"
+    mtz = read_mtz_file(str(complete))
+    labels = {c.label for c in mtz.columns}
+    assert "FREER" in labels, (
+        f"COMPLETE_MTZ should carry the FreeR column; got {sorted(labels)}"
+    )
+
 
 def test_gamma():
     mtz = demoData("gamma", "gamma_native.mtz")

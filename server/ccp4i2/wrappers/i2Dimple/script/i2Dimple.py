@@ -66,6 +66,15 @@ class i2Dimple(CPluginScript):
         outputFiles = ['FPHIOUT','DIFFPHIOUT']
         outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
         infile = os.path.join(self.workDirectory,'final.mtz')
+
+        # Track dimple's complete, unsplit reflection file (final.mtz) as a
+        # first-class output so the Export MTZ button can serve it and #247
+        # protects it from purge. No copy - it is already in the work dir.
+        if os.path.exists(infile):
+            self.container.outputData.COMPLETE_MTZ.setFullPath(infile)
+            self.container.outputData.COMPLETE_MTZ.annotation.set(
+                'Complete unsplit reflection file from dimple')
+
         error = self.splitHklout(outputFiles,outputColumns,infile=infile)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
