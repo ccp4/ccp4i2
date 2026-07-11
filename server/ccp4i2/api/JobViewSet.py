@@ -1986,6 +1986,43 @@ class JobViewSet(ModelViewSet):
 
     @action(
         detail=True,
+        methods=["get"],
+        serializer_class=serializers.JobSerializer,
+    )
+    def bibliography(self, request, pk=None):
+        """
+        Compiled bibliography for a job: references for its task + all subjobs
+        (recursively), optionally including input-file progenitors.
+
+        Query params:
+            progenitors=0|1  include tasks of input-file provenance (default 0)
+
+        Response:
+            {"success": true, "data": {"result": [
+                {"pmid", "title", "authors": [...], "source", "link", "cited_by"}
+            ]}}
+
+        Example:
+            GET /api/jobs/123/bibliography/?progenitors=1
+        """
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist as err:
+            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
+            return api_error(str(err), status=404)
+
+        from ..lib.utils.jobs.bibliography import bibliography_for_job
+
+        progenitors = str(request.query_params.get("progenitors", "0")) in (
+            "1", "true", "True",
+        )
+        refs = bibliography_for_job(
+            job, include_subjobs=True, include_progenitors=progenitors
+        )
+        return api_success({"result": refs})
+
+    @action(
+        detail=True,
         methods=["post"],
         serializer_class=serializers.JobSerializer,
     )
