@@ -1547,3 +1547,29 @@ def locate_def_xml(task_name: str):
 def supports_running_report(task_name: str):
     task = TASKS.get(task_name)
     return task.runningReport if task else False
+
+
+@cache
+def task_commands() -> dict[str, list[str]]:
+    """Map each distinct plugin ``TASKCOMMAND`` to the tasks that invoke it.
+
+    This is the honest, registry-derived list of the external executables the
+    task suite actually runs — the correct basis for program discovery (the
+    executable name is whatever the plugin declares, e.g. ``cbuccaneer``, not
+    the task name ``buccaneer``). Tasks whose plugin fails to import, or that
+    declare no ``TASKCOMMAND`` (pure-Python pipelines, importers), are skipped.
+
+    Returns ``{taskcommand: [task_name, ...]}`` sorted for stable output.
+    Cached — the registry is static for a process.
+    """
+    commands: dict[str, list[str]] = {}
+    for task_name in TASKS:
+        try:
+            cls = get_plugin_class(task_name)
+        except Exception:
+            continue
+        taskcommand = getattr(cls, "TASKCOMMAND", None)
+        if not taskcommand:
+            continue
+        commands.setdefault(str(taskcommand), []).append(task_name)
+    return {cmd: sorted(tasks) for cmd, tasks in sorted(commands.items())}

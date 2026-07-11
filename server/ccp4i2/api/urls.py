@@ -45,6 +45,23 @@ _api_patterns = [
     path("task_lookup/", views.task_lookup, name="task_lookup"),
     path("active_jobs/", views.active_jobs, name="active_jobs"),
     path("monomer-info/<str:code>/", views.monomer_info, name="monomer_info"),
+    path(
+        "config/discover-programs/",
+        views.discover_programs_view,
+        name="discover_programs",
+    ),
+    path(
+        "config/program-preferences/",
+        views.get_program_preferences,
+        name="get_program_preferences",
+    ),
+    path(
+        "config/program-preferences/set/",
+        views.set_program_preferences,
+        name="set_program_preferences",
+    ),
+    path("tips/", views.tip_of_the_day, name="tip_of_the_day"),
+    path("tips/image/<str:name>", views.tip_image, name="tip_image"),
 ]
 
 # Legacy-migration admin endpoints. These are core desktop functionality (a

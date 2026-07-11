@@ -31,7 +31,7 @@ export default function EditMenu() {
 
   const handlePreferences = () => {
     handleClose();
-    router.push("/ccp4i2/config");
+    router.push("/ccp4i2/preferences");
   };
 
   return (
