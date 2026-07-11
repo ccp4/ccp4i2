@@ -244,6 +244,33 @@ class ProjectViewSet(ModelViewSet):
         project.save()
         return Response(serializer.data)
 
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def bibliography(self, request, pk=None):
+        """
+        Compiled bibliography for a project: the deduped union of references for
+        every task run in the project (all jobs, subjobs included).
+
+        Response:
+            {"success": true, "data": {"result": [
+                {"pmid", "title", "authors": [...], "source", "link", "cited_by"}
+            ]}}
+
+        Example:
+            GET /api/projects/{id}/bibliography/
+        """
+        try:
+            project = models.Project.objects.get(pk=pk)
+        except models.Project.DoesNotExist:
+            return api_error(f"Project {pk} not found", status=404)
+
+        from ..lib.utils.jobs.bibliography import bibliography_for_project
+
+        return api_success({"result": bibliography_for_project(project)})
+
     # jobs() @action removed — consumers should hit /jobs/?project={id} instead.
     # JobViewSet's existing filterset_fields=["project"] supports this natively;
     # last_access-on-read removed for the same reason as files() above.

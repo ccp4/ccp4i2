@@ -1,6 +1,49 @@
 # Bibliography — design & wiring plan
 
-Status: **design, not yet implemented** (2026-07-10, `django` branch).
+Status: **IMPLEMENTED** (2026-07-11, `django` branch). Util + endpoints + modal
+wired; reference coverage raised from 33 to 128 of 173 tasks.
+
+## What shipped
+
+- **`lib/utils/jobs/bibliography.py`** — parses the MedLine `references/` files
+  directly (no report-layer dependency); `references_for_tasks`,
+  `task_names_for_job` (subjob burrowing + optional progenitors),
+  `task_names_for_project`, `bibliography_for_job/project`.
+- **`TASK_CITES` map** — the key design refinement. Two classes of task:
+  - **Subjob-composing pipelines** (prosmart_refmac, servalcat_pipe,
+    aimless_pipe, SubstituteLigand, import_merged…) whose steps are real i2
+    plugins: **not** listed — `task_names_for_job` burrows `Job.children` and
+    unions their tasks, so constituents surface from what actually ran.
+  - **Monolithic pipelines** that drive programs *internally* (crank2,
+    modelcraft, mrbump_basic, mrparse, slicendice, arcimboldo): these DON'T
+    create i2 subjobs, so they enumerate their toolchain here (grounded in each
+    pipeline's own source). Thin variants (phaser_MR_*, crank2_*, xia2_*…) alias
+    to their canonical program key, so one physical `.medline.txt` per program.
+- **Reference files** — imported the 11 bundled `crank2/.../references/*.nbib`
+  (buccaneer, shelxc/d/e, bp3, afro, crunch2, prasa, solomon, multicomb, crank2)
+  into `references/` under canonical keys, and authored ~40 new
+  `{program}.medline.txt` for citable CCP4/crystallography programs that lacked
+  them (ctruncate, pointless, aimless, freerflag, fft, phaser, molrep, mosflm,
+  dials, xia2, coot, shelx, prosmart, sheetbend, nautilus, acedrg, chainsaw,
+  sculptor, mrbump, mrparse, servalcat, metalCoord, nucleofind, matthews,
+  pisa, pairef, dimple, zanuda, acorn, clustalw, AUSPEX, …).
+- **API** — `GET /api/ccp4i2/jobs/{id}/bibliography/?progenitors=0|1` and
+  `GET /api/ccp4i2/projects/{id}/bibliography/`, returning
+  `{success, data:{result:[{pmid,title,authors[],source,link,cited_by}]}}`.
+- **Frontend** — `components/bibliography-dialog.tsx` modal; `tool-bar.tsx`
+  Bibliography button wired to open it for the current job. NB reads
+  `data.data?.result ?? data.result` — `get_endpoint` does NOT unwrap the
+  `api_success` envelope (same gotcha the Export MTZ button hit). The modal
+  offers **Copy to clipboard**, **Download as text**, and **Download as BibTeX**
+  (BibTeX entries generated client-side from author/title/source/year/DOI).
+- **Tests** — `tests/unit/lib/test_bibliography.py` (parsing, cites-map, dedup,
+  every-key-resolves, every-file-parses) and
+  `tests/api/unit/test_bibliography_api.py` (job subjob-burrow, monolithic
+  cites-map, project union, 404).
+
+Original design notes retained below.
+
+---
 
 The job-panel toolbar (`client/renderer/components/tool-bar.tsx`) has a
 **Bibliography** button that is currently a no-op (`onClick: () => {}`). This doc

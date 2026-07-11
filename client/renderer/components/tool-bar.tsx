@@ -28,6 +28,7 @@ import { useRunCheck } from "../providers/run-check-provider";
 import { useJobTab } from "../providers/job-tab-provider";
 import { I2RunDialog } from "./i2run-dialog";
 import { ExportJobMenu, doDownload } from "./export-job-file-menu";
+import { BibliographyDialog } from "./bibliography-dialog";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 import { useProjectJobs } from "../utils";
 import { mutate } from "swr";
@@ -163,6 +164,14 @@ export default function ToolBar() {
 
   const handleLog = () => setJobTabValue(10);
 
+  // Bibliography: job id fed to the BibliographyDialog (null = closed).
+  const [bibliographyJobId, setBibliographyJobId] = useState<number | null>(
+    null
+  );
+  const handleBibliography = () => {
+    if (job?.id != null) setBibliographyJobId(job.id);
+  };
+
   // Export MTZ: job id fed to the ExportJobMenu dialog (null = closed).
   const [exportDialogJobId, setExportDialogJobId] = useState<number | null>(
     null
@@ -224,8 +233,10 @@ export default function ToolBar() {
       {
         label: "Bibliography",
         icon: <MenuBook />,
-        onClick: () => {},
+        onClick: handleBibliography,
         show: panelWidth > 750,
+        // Only meaningful once a job is loaded.
+        available: job?.id != null,
       },
       {
         label: "Export MTZ",
@@ -319,6 +330,10 @@ export default function ToolBar() {
           <ExportJobMenu
             jobId={exportDialogJobId}
             setJobId={setExportDialogJobId}
+          />
+          <BibliographyDialog
+            jobId={bibliographyJobId}
+            onClose={() => setBibliographyJobId(null)}
           />
           <HelpIframe
             url={`/help/html/tasks/${job?.task_name}/index.html`}
