@@ -74,6 +74,19 @@ def preferences_path() -> Path:
     return ccp4i2_home() / "preferences.json"
 
 
+def is_desktop() -> bool:
+    """True on a desktop (Electron) launch, False in a cloud/server deployment.
+
+    ``preferences.json`` and legacy-preference migration are a *desktop* concept:
+    in cloud, settings arrive as env vars (see the module docstring) and the
+    per-user file/home is meaningless (ephemeral, per-replica). The desktop
+    launcher sets ``CCP4I2_LOCAL_SESSION_TOKEN`` (the same signal
+    ``settings.py`` uses to pick the local-session auth middleware), so use it
+    here to gate file writes and legacy migration.
+    """
+    return bool(os.environ.get("CCP4I2_LOCAL_SESSION_TOKEN"))
+
+
 def load_preferences() -> dict:
     """Load ``preferences.json``; return ``{}`` if absent or unreadable.
 

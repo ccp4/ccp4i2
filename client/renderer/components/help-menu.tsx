@@ -14,7 +14,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Help, Info, MenuBook } from "@mui/icons-material";
+import { Help, Info, MenuBook, EmojiObjects } from "@mui/icons-material";
+import { TipOfTheDayDialog } from "./tip-of-the-day-dialog";
 
 const CCP4I2_HELP_URL = "https://www.ccp4.ac.uk/html/ccp4i2.html";
 
@@ -26,6 +27,7 @@ export default function HelpMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [tipOpen, setTipOpen] = useState(false);
   const [version, setVersion] = useState<VersionInfo | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,6 +59,11 @@ export default function HelpMenu() {
     window.open(CCP4I2_HELP_URL, "_blank", "noopener,noreferrer");
   };
 
+  const handleTip = () => {
+    handleClose();
+    setTipOpen(true);
+  };
+
   return (
     <>
       <Button color="inherit" onClick={handleClick}>
@@ -72,6 +79,12 @@ export default function HelpMenu() {
             (F1)
           </Typography>
         </MenuItem>
+        <MenuItem onClick={handleTip}>
+          <ListItemIcon>
+            <EmojiObjects fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Tip of the day</ListItemText>
+        </MenuItem>
         <MenuItem onClick={handleAbout}>
           <ListItemIcon>
             <Info fontSize="small" />
@@ -79,6 +92,8 @@ export default function HelpMenu() {
           <ListItemText>About CCP4i2</ListItemText>
         </MenuItem>
       </Menu>
+
+      <TipOfTheDayDialog open={tipOpen} onClose={() => setTipOpen(false)} />
 
       <Dialog
         open={aboutOpen}

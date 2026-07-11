@@ -1072,7 +1072,44 @@ class CPluginScript(CData):
         """
         error = self.validity()
         self._checkSameCrystalAs(error)
+        self._checkProgramAvailable(error)
         return error
+
+    def _checkProgramAvailable(self, error: CErrorReport) -> None:
+        """Advisory pre-flight check that the task's program can be found.
+
+        Resolves TASKCOMMAND against program-location preferences + PATH (the
+        same resolution used at execution). If it cannot be found, append a
+        WARNING (not a blocking error): the run environment (worker) may differ
+        from where validation runs, so a false negative must not block Confirm —
+        but a heads-up at job-config time, pointing at Preferences, is far
+        friendlier than a cryptic runtime failure.
+
+        Only checks the leaf program a plain wrapper declares. Pipelines that
+        drive several programs internally (e.g. crank2) don't set a single
+        TASKCOMMAND and are skipped here.
+        """
+        taskcommand = getattr(self, 'TASKCOMMAND', None)
+        if not taskcommand:
+            return
+        try:
+            from ccp4i2.config.program_discovery import resolve_program
+            if resolve_program(taskcommand) is not None:
+                return
+        except Exception:
+            return  # never let the check itself break validation
+        error.append(
+            self.__class__,
+            299,
+            details=(
+                f"Program '{taskcommand}' was not found on PATH or in your "
+                f"program-location preferences. If it is installed in a "
+                f"non-standard location, set it in Preferences -> Program "
+                f"locations before running."
+            ),
+            name=f'{getattr(self, "TASKNAME", self.__class__.__name__)}',
+            severity=SEVERITY_WARNING,
+        )
 
     def _checkSameCrystalAs(self, error: CErrorReport) -> None:
         """Enforce sameCrystalAs constraints declared in def.xml.
@@ -1693,13 +1730,32 @@ class CPluginScript(CData):
         stdout_path = self.makeFileName('LOG')
         stderr_path = self.makeFileName('STDERR')
 
-        # Find full path to executable to ensure subprocess can find it
-        exe_path = shutil.which(self.TASKCOMMAND)
+        # Find full path to executable to ensure subprocess can find it.
+        # Resolve against user program-location preferences (explicit
+        # {PROG}_EXECUTABLE, {SUITE}DIR, exePaths) before PATH, so users can
+        # point CCP4i2 at programs not on PATH via Preferences -> Program
+        # locations. Falls back to bare PATH (shutil.which) unchanged.
+        try:
+            from ccp4i2.config.program_discovery import resolve_program
+            exe_path = resolve_program(self.TASKCOMMAND)
+        except Exception:
+            # Never let discovery break execution; fall back to PATH.
+            exe_path = shutil.which(self.TASKCOMMAND)
         if exe_path:
             # Use full path if found
             command = [exe_path] + self.commandLine
         else:
-            # Fall back to command name
+            # Not found via preferences or PATH. Emit an actionable message
+            # (the program name is the plugin's declared TASKCOMMAND) so the
+            # job log tells the user how to fix it, then fall back to the bare
+            # command name and let the subprocess launch surface the failure.
+            print(
+                f"WARNING: program '{self.TASKCOMMAND}' not found on PATH or in "
+                f"your program-location preferences. If it is installed in a "
+                f"non-standard location, set it in Preferences -> Program "
+                f"locations (or the {self.TASKCOMMAND.upper()} / exePaths "
+                f"preference)."
+            )
             command = [self.TASKCOMMAND] + self.commandLine
 
         # Copy environment to ensure subprocess inherits all variables

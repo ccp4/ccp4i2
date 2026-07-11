@@ -182,3 +182,195 @@ def monomer_info(request, code):
             {"success": False, "error": f"Error parsing monomer: {str(e)}"},
             status=500,
         )
+
+
+# ---------------------------------------------------------------------------
+# Program locations (binary discovery) preferences
+# ---------------------------------------------------------------------------
+
+# The userPreferences keys the Program-locations UI reads/writes. Kept explicit
+# so the write endpoint can reject anything else (it must not become a general
+# preferences-write backdoor).
+_PROGRAM_PREF_KEYS = (
+    "exePaths",
+    "COOT_EXECUTABLE",
+    "CCP4MG_EXECUTABLE",
+    "SHELXDIR",
+    "DIALSDIR",
+    "BUSTERDIR",
+)
+
+
+@api_view(["GET"])
+def discover_programs_view(request):
+    """Report where each known program resolves (read-only probe).
+
+    GET /api/ccp4i2/config/discover-programs/[?names=coot,shelxd]
+
+    Response: {"success": true, "data": {"programs": [
+        {"name", "path"|null, "source": executable_pref|suite_dir|exe_paths|path|missing}
+    ]}}
+    Never runs a program; just resolves paths against preferences + PATH.
+    """
+    from ..config.program_discovery import discover_programs
+
+    names_param = request.query_params.get("names")
+    names = (
+        [n.strip() for n in names_param.split(",") if n.strip()]
+        if names_param
+        else None
+    )
+    return JsonResponse(
+        {"success": True, "data": {"programs": discover_programs(names)}}
+    )
+
+
+@api_view(["GET"])
+def get_program_preferences(request):
+    """Return the current program-location preferences + desktop-writability.
+
+    GET /api/ccp4i2/config/program-preferences/
+
+    Response: {"success": true, "data": {"editable": <bool>, "preferences": {...}}}
+    In cloud (`editable=false`) these come from env vars and are not file-editable.
+    """
+    from ..config.preferences import is_desktop, load_preferences
+
+    # First-load lazy migration: import program locations from the legacy Qt GUI
+    # (~/.CCP4I2). Desktop-only and idempotent (self-guarded), so calling it here
+    # is safe and cheap — it no-ops in cloud and after the first successful run.
+    try:
+        from ..config.preferences_migration import migrate_legacy_program_prefs
+
+        migrate_legacy_program_prefs()
+    except Exception:
+        logger.debug("legacy program-preference migration skipped", exc_info=True)
+
+    bag = load_preferences().get("userPreferences", {})
+    bag = bag if isinstance(bag, dict) else {}
+    prefs = {k: bag[k] for k in _PROGRAM_PREF_KEYS if k in bag}
+    return JsonResponse(
+        {"success": True, "data": {"editable": is_desktop(), "preferences": prefs}}
+    )
+
+
+@api_view(["PATCH", "POST"])
+def set_program_preferences(request):
+    """Update program-location preferences (desktop only).
+
+    PATCH /api/ccp4i2/config/program-preferences/  {"SHELXDIR": "...", "exePaths": [...]}
+
+    Only the _PROGRAM_PREF_KEYS are accepted; any other key is ignored. In a
+    cloud deployment this is rejected (409) — preferences arrive as env vars and
+    preferences.json is per-replica/ephemeral.
+    """
+    from ..config.preferences import is_desktop, load_preferences, save_preferences
+
+    if not is_desktop():
+        return JsonResponse(
+            {
+                "success": False,
+                "error": "Program-location preferences are editable only on the "
+                "desktop app; in a server deployment set them via environment "
+                "variables.",
+            },
+            status=409,
+        )
+
+    payload = request.data if isinstance(request.data, dict) else {}
+    updates = {k: v for k, v in payload.items() if k in _PROGRAM_PREF_KEYS}
+
+    prefs = load_preferences()
+    bag = prefs.get("userPreferences")
+    bag = bag if isinstance(bag, dict) else {}
+    for key, value in updates.items():
+        if value in (None, "", []):
+            bag.pop(key, None)  # clearing a field removes it
+        else:
+            bag[key] = value
+    prefs["userPreferences"] = bag
+    save_preferences(prefs)
+
+    saved = {k: bag[k] for k in _PROGRAM_PREF_KEYS if k in bag}
+    return JsonResponse({"success": True, "data": {"preferences": saved}})
+
+
+# ---------------------------------------------------------------------------
+# Tips of the Day
+# ---------------------------------------------------------------------------
+
+# Deterministic-free randomness for tip selection; tips live beside the package.
+_TIPS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "tipsOfTheDay")
+
+
+def _tip_ids():
+    try:
+        return sorted(
+            int(f[:-5])
+            for f in os.listdir(_TIPS_DIR)
+            if f.endswith(".html") and f[:-5].isdigit()
+        )
+    except OSError:
+        return []
+
+
+@api_view(["GET"])
+def tip_of_the_day(request):
+    """Return a random (or specific) tip's body HTML.
+
+    GET /api/ccp4i2/tips/?id=<n>   (id optional; omitted -> random)
+
+    Response: {"success": true, "data": {"id": <n>, "html": "<...>", "count": <N>}}
+    Image ``src="./foo.png"`` references are rewritten to the tip-image route so
+    they render in the app.
+    """
+    import random
+    import re
+
+    ids = _tip_ids()
+    if not ids:
+        return JsonResponse(
+            {"success": False, "error": "No tips available"}, status=404
+        )
+
+    requested = request.query_params.get("id")
+    if requested is not None and requested.isdigit() and int(requested) in ids:
+        tip_id = int(requested)
+    else:
+        tip_id = random.choice(ids)
+
+    path = os.path.join(_TIPS_DIR, f"{tip_id}.html")
+    try:
+        with open(path, encoding="windows-1252") as handle:
+            raw = handle.read()
+    except OSError:
+        return JsonResponse(
+            {"success": False, "error": f"Tip {tip_id} not found"}, status=404
+        )
+
+    # Extract the <body> inner HTML (the tips are full HTML documents).
+    body_match = re.search(r"<body[^>]*>(.*)</body>", raw, re.DOTALL | re.IGNORECASE)
+    html = body_match.group(1).strip() if body_match else raw
+    # Rewrite relative image srcs to the tip-image API route.
+    html = re.sub(
+        r'src\s*=\s*["\']\.?/?([^"\']+\.(?:png|jpg|jpeg|gif))["\']',
+        lambda m: f'src="/api/proxy/ccp4i2/tips/image/{m.group(1)}"',
+        html,
+        flags=re.IGNORECASE,
+    )
+    return JsonResponse(
+        {"success": True, "data": {"id": tip_id, "html": html, "count": len(ids)}}
+    )
+
+
+@api_view(["GET"])
+def tip_image(request, name):
+    """Serve a tip image by filename (from the tipsOfTheDay dir only)."""
+    from django.http import FileResponse, Http404
+
+    # Guard against path traversal: basename only, must live in the tips dir.
+    safe = os.path.basename(name)
+    path = os.path.join(_TIPS_DIR, safe)
+    if not os.path.isfile(path):
+        raise Http404("Tip image not found")
+    return FileResponse(open(path, "rb"))
