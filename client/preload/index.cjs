@@ -7,6 +7,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
   removeMessageListener: (channel, callback) => {
     ipcRenderer.removeListener(channel, callback);
   },
+  // Promise-returning IPC (ipcMain.handle). Used e.g. by the Program locations
+  // preferences panel to open a native file/folder picker and get the path back.
+  invoke: (channel, data) => ipcRenderer.invoke(channel, data),
 });
 
 // LocalSession surface — exposes the per-launch token and the

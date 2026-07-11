@@ -13,6 +13,7 @@ declare global {
       ) => typeof ipcRenderer.off;
       sendMessage: (channel: string, ...args: any[]) => typeof ipcRenderer.send;
       sendSync: (channel: string, ...args: any[]) => any;
+      invoke?: (channel: string, data?: any) => Promise<any>;
     };
   }
 }

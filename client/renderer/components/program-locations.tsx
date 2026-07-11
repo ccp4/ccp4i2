@@ -17,6 +17,7 @@ import {
   Add,
   Delete,
   Refresh,
+  FolderOpen,
 } from "@mui/icons-material";
 import React, { useCallback, useEffect, useState } from "react";
 import { apiGet, apiPatch } from "../api-fetch";
@@ -28,13 +29,41 @@ interface ProgramStatus {
 }
 
 // Explicit path fields shown as their own inputs (the rest go via exePaths).
-const EXPLICIT_FIELDS: { key: string; label: string; help: string }[] = [
-  { key: "COOT_EXECUTABLE", label: "Coot executable", help: "Full path to the coot binary" },
-  { key: "CCP4MG_EXECUTABLE", label: "CCP4mg executable", help: "Full path to the ccp4mg binary" },
-  { key: "SHELXDIR", label: "SHELX directory", help: "Directory containing shelxc/d/e/l" },
-  { key: "DIALSDIR", label: "DIALS directory", help: "Directory containing dials binaries" },
-  { key: "BUSTERDIR", label: "BUSTER directory", help: "Directory containing the BUSTER refine binary" },
+// `browse` picks the native-picker mode: "file" for a single executable,
+// "directory" for a suite install dir.
+const EXPLICIT_FIELDS: {
+  key: string;
+  label: string;
+  help: string;
+  browse: "file" | "directory";
+}[] = [
+  { key: "COOT_EXECUTABLE", label: "Coot executable", help: "Full path to the coot binary", browse: "file" },
+  { key: "CCP4MG_EXECUTABLE", label: "CCP4mg executable", help: "Full path to the ccp4mg binary", browse: "file" },
+  { key: "SHELXDIR", label: "SHELX directory", help: "Directory containing shelxc/d/e/l", browse: "directory" },
+  { key: "DIALSDIR", label: "DIALS directory", help: "Directory containing dials binaries", browse: "directory" },
+  { key: "BUSTERDIR", label: "BUSTER directory", help: "Directory containing the BUSTER refine binary", browse: "directory" },
 ];
+
+/** Open the native picker via Electron IPC; returns null in the web build. */
+async function browsePath(
+  mode: "file" | "directory",
+  title?: string
+): Promise<string | null> {
+  const api = typeof window !== "undefined" ? window.electronAPI : undefined;
+  if (!api?.invoke) return null;
+  try {
+    return (await api.invoke("browse-path", { mode, title })) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** True in the Electron desktop build (native picker available). */
+function canBrowse(): boolean {
+  return (
+    typeof window !== "undefined" && Boolean(window.electronAPI?.invoke)
+  );
+}
 
 const SOURCE_LABEL: Record<string, string> = {
   executable_pref: "explicit path",
@@ -102,13 +131,29 @@ export function ProgramLocations() {
   const handleExplicitBlur = (key: string, value: string) => {
     if ((prefs[key] ?? "") !== value) persist({ [key]: value });
   };
-  const handleAddPath = () => {
-    const p = newPath.trim();
-    if (!p || exePaths.includes(p)) return;
-    const next = [...exePaths, p];
+  const handleBrowseExplicit = async (
+    key: string,
+    mode: "file" | "directory",
+    label: string
+  ) => {
+    const picked = await browsePath(mode, `Select ${label}`);
+    if (picked && picked !== (prefs[key] ?? "")) {
+      setPrefs((p) => ({ ...p, [key]: picked }));
+      persist({ [key]: picked });
+    }
+  };
+  const addPath = (p: string) => {
+    const trimmed = p.trim();
+    if (!trimmed || exePaths.includes(trimmed)) return;
+    const next = [...exePaths, trimmed];
     setExePaths(next);
     setNewPath("");
     persist({ exePaths: next });
+  };
+  const handleAddPath = () => addPath(newPath);
+  const handleBrowseAddPath = async () => {
+    const picked = await browsePath("directory", "Add executable search directory");
+    if (picked) addPath(picked);
   };
   const handleRemovePath = (p: string) => {
     const next = exePaths.filter((x) => x !== p);
@@ -143,16 +188,30 @@ export function ProgramLocations() {
       {/* Explicit per-program fields */}
       <Stack spacing={2}>
         {EXPLICIT_FIELDS.map((f) => (
-          <TextField
-            key={f.key}
-            label={f.label}
-            helperText={f.help}
-            defaultValue={prefs[f.key] ?? ""}
-            disabled={!editable || saving}
-            size="small"
-            fullWidth
-            onBlur={(e) => handleExplicitBlur(f.key, e.target.value.trim())}
-          />
+          <Stack key={f.key} direction="row" spacing={1} alignItems="flex-start">
+            <TextField
+              label={f.label}
+              helperText={f.help}
+              value={prefs[f.key] ?? ""}
+              disabled={!editable || saving}
+              size="small"
+              fullWidth
+              onChange={(e) =>
+                setPrefs((p) => ({ ...p, [f.key]: e.target.value }))
+              }
+              onBlur={(e) => handleExplicitBlur(f.key, e.target.value.trim())}
+            />
+            {editable && canBrowse() && (
+              <Button
+                startIcon={<FolderOpen />}
+                onClick={() => handleBrowseExplicit(f.key, f.browse, f.label)}
+                disabled={saving}
+                sx={{ mt: 0.25, whiteSpace: "nowrap" }}
+              >
+                Browse
+              </Button>
+            )}
+          </Stack>
         ))}
       </Stack>
 
@@ -190,6 +249,16 @@ export function ProgramLocations() {
               onKeyDown={(e) => e.key === "Enter" && handleAddPath()}
               fullWidth
             />
+            {canBrowse() && (
+              <Button
+                startIcon={<FolderOpen />}
+                onClick={handleBrowseAddPath}
+                disabled={saving}
+                sx={{ whiteSpace: "nowrap" }}
+              >
+                Browse
+              </Button>
+            )}
             <Button
               startIcon={<Add />}
               onClick={handleAddPath}

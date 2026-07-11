@@ -163,6 +163,28 @@ export const installIpcHandlers = (
       });
   });
 
+  // Generic native path picker for the preferences UI (Program locations).
+  // Promise-returning (ipcMain.handle): opens a directory or file chooser and
+  // returns the selected absolute path, or null if cancelled. No side effects.
+  ipcMain.handle(
+    "browse-path",
+    async (
+      _event,
+      opts: { mode?: "directory" | "file"; title?: string } = {}
+    ): Promise<string | null> => {
+      const mainWindow: BrowserWindow | null = getMainWindow();
+      if (!mainWindow) return null;
+      const properties: Array<"openDirectory" | "openFile"> =
+        opts.mode === "file" ? ["openFile"] : ["openDirectory"];
+      const result = await dialog.showOpenDialog(mainWindow, {
+        properties,
+        title: opts.title,
+      });
+      if (result.canceled || result.filePaths.length === 0) return null;
+      return result.filePaths[0];
+    }
+  );
+
   // IPC communication to trigger file dialog to locate the ccp4i2 project root
   ipcMain.on("locate-project-root", (event, _data) => {
     const mainWindow: BrowserWindow | null = getMainWindow();
