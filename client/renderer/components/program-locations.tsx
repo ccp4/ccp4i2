@@ -26,6 +26,7 @@ interface ProgramStatus {
   name: string;
   path: string | null;
   source: string;
+  tasks?: string[];
 }
 
 // Explicit path fields shown as their own inputs (the rest go via exePaths).
@@ -273,7 +274,12 @@ export function ProgramLocations() {
       {/* Live discovery status */}
       <Box>
         <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
-          <Typography variant="subtitle2">Discovered programs</Typography>
+          <Typography variant="subtitle2">Task programs</Typography>
+          {statuses.length > 0 && (
+            <Typography variant="caption" color="text.secondary">
+              {statuses.filter((s) => s.path != null).length}/{statuses.length} found
+            </Typography>
+          )}
           <Tooltip title="Re-probe">
             <IconButton size="small" onClick={loadStatuses} disabled={saving}>
               <Refresh fontSize="small" />
@@ -281,31 +287,49 @@ export function ProgramLocations() {
           </Tooltip>
           {saving && <CircularProgress size={16} />}
         </Stack>
+        <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
+          The external programs each task runs (from the task registry). Hover for
+          the resolved path and which tasks use it.
+        </Typography>
         <Paper variant="outlined" sx={{ p: 1.5 }}>
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
               gap: 1,
             }}
           >
-            {statuses.map((s) => {
-              const found = s.path != null;
-              return (
-                <Tooltip
-                  key={s.name}
-                  title={found ? `${s.path} (${SOURCE_LABEL[s.source] ?? s.source})` : "not found"}
-                >
-                  <Chip
-                    icon={found ? <CheckCircle /> : <ErrorOutline />}
-                    color={found ? "success" : "default"}
-                    variant={found ? "filled" : "outlined"}
-                    label={s.name}
-                    size="small"
-                  />
-                </Tooltip>
-              );
-            })}
+            {[...statuses]
+              .sort((a, b) => {
+                // Missing first (they're what the user needs to act on), then name.
+                const am = a.path == null ? 0 : 1;
+                const bm = b.path == null ? 0 : 1;
+                return am - bm || a.name.localeCompare(b.name);
+              })
+              .map((s) => {
+                const found = s.path != null;
+                const usedBy = s.tasks && s.tasks.length
+                  ? `\nused by: ${s.tasks.join(", ")}`
+                  : "";
+                return (
+                  <Tooltip
+                    key={s.name}
+                    title={
+                      (found
+                        ? `${s.path} (${SOURCE_LABEL[s.source] ?? s.source})`
+                        : "not found on PATH or in your program locations") + usedBy
+                    }
+                  >
+                    <Chip
+                      icon={found ? <CheckCircle /> : <ErrorOutline />}
+                      color={found ? "success" : "warning"}
+                      variant={found ? "filled" : "outlined"}
+                      label={s.name}
+                      size="small"
+                    />
+                  </Tooltip>
+                );
+              })}
           </Box>
         </Paper>
       </Box>

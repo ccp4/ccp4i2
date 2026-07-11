@@ -201,28 +201,56 @@ _PROGRAM_PREF_KEYS = (
 )
 
 
+# Executables that are core CCP4/Python interpreters or ubiquitous utilities:
+# always present, not user-relocatable, and noise in a "point me at your
+# programs" panel. Excluded from the default discovery list (still probeable
+# explicitly via ?names=).
+_DISCOVERY_EXCLUDE = frozenset({
+    "ccp4-python", "python", "python3", "cad", "gemmi", "pdbset", "mtzutils",
+    "cif2mtz", "convert2mtz", "chltofom", "cmapcoeff",
+})
+
+
 @api_view(["GET"])
 def discover_programs_view(request):
-    """Report where each known program resolves (read-only probe).
+    """Report where each task program resolves (read-only probe).
 
-    GET /api/ccp4i2/config/discover-programs/[?names=coot,shelxd]
+    GET /api/ccp4i2/config/discover-programs/[?names=cbuccaneer,shelxd]
+
+    The default program set is the registry-derived list of distinct plugin
+    TASKCOMMANDs — the real executables the task suite runs (correct names, e.g.
+    ``cbuccaneer`` not ``buccaneer``), each annotated with the tasks that need
+    it. Pass ``names`` to probe a specific set instead. Core interpreters /
+    ubiquitous utilities are omitted from the default list.
 
     Response: {"success": true, "data": {"programs": [
-        {"name", "path"|null, "source": executable_pref|suite_dir|exe_paths|path|missing}
+        {"name", "path"|null, "source": ..., "tasks": [task_name, ...]}
     ]}}
     Never runs a program; just resolves paths against preferences + PATH.
     """
-    from ..config.program_discovery import discover_programs
+    from ..config.program_discovery import discover_program
+    from ..core.tasks import task_commands
 
     names_param = request.query_params.get("names")
-    names = (
-        [n.strip() for n in names_param.split(",") if n.strip()]
-        if names_param
-        else None
-    )
-    return JsonResponse(
-        {"success": True, "data": {"programs": discover_programs(names)}}
-    )
+    cmd_map = task_commands()
+    if names_param:
+        names = [n.strip() for n in names_param.split(",") if n.strip()]
+    else:
+        # Registry-derived defaults: real executable names, minus core/noise and
+        # anything that is an absolute path or a dotted sub-tool wrapper we can't
+        # meaningfully "relocate" (kept if a plain command name).
+        names = [
+            cmd
+            for cmd in cmd_map
+            if cmd not in _DISCOVERY_EXCLUDE and "/" not in cmd
+        ]
+
+    programs = []
+    for name in names:
+        entry = discover_program(name)
+        entry["tasks"] = cmd_map.get(name, [])
+        programs.append(entry)
+    return JsonResponse({"success": True, "data": {"programs": programs}})
 
 
 @api_view(["GET"])

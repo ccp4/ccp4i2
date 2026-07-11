@@ -64,12 +64,10 @@ SOURCE_EXE_PATHS = "exe_paths"
 SOURCE_PATH = "path"
 SOURCE_MISSING = "missing"
 
-# Programs the discovery UI probes by default. Extendable via preferences later.
-KNOWN_PROGRAMS: List[str] = [
-    "coot", "ccp4mg", "shelxc", "shelxd", "shelxe", "dials", "buster",
-    "refmac5", "refmacat", "servalcat", "aimless", "pointless", "ctruncate",
-    "freerflag", "phaser", "molrep", "modelcraft", "nautilus", "buccaneer",
-]
+# NB: the set of programs the UI probes is NOT hardcoded here — it is derived
+# from the plugin registry's real TASKCOMMANDs (see api.views.discover_programs_view
+# / core.tasks.task_commands), so the names are always correct (e.g. cbuccaneer,
+# not buccaneer). This module only *resolves* a name; it does not decide the list.
 
 
 def _exe_paths() -> List[str]:
@@ -149,6 +147,6 @@ def discover_program(name: str) -> Dict[str, Optional[str]]:
     return {"name": name, "path": None, "source": SOURCE_MISSING}
 
 
-def discover_programs(names: Optional[List[str]] = None) -> List[Dict[str, Optional[str]]]:
-    """Discover a list of programs (default :data:`KNOWN_PROGRAMS`)."""
-    return [discover_program(n) for n in (names if names is not None else KNOWN_PROGRAMS)]
+def discover_programs(names: List[str]) -> List[Dict[str, Optional[str]]]:
+    """Discover an explicit list of programs (the caller supplies the names)."""
+    return [discover_program(n) for n in names]

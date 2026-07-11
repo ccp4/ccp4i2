@@ -11,7 +11,7 @@ def client(bypass_api_permissions):
     return APIClient()
 
 
-def test_discover_programs(client):
+def test_discover_programs_explicit_names(client):
     resp = client.get("/api/ccp4i2/config/discover-programs/?names=ls,zzz_nope")
     assert resp.status_code == 200
     programs = {p["name"]: p for p in resp.json()["data"]["programs"]}
@@ -19,6 +19,22 @@ def test_discover_programs(client):
     assert programs["ls"]["source"] == "path"
     assert programs["zzz_nope"]["path"] is None
     assert programs["zzz_nope"]["source"] == "missing"
+
+
+def test_discover_programs_default_is_registry_derived(client):
+    """With no ?names, the list comes from real plugin TASKCOMMANDs, each
+    annotated with the tasks that use it — not a hardcoded guess."""
+    resp = client.get("/api/ccp4i2/config/discover-programs/")
+    assert resp.status_code == 200
+    programs = resp.json()["data"]["programs"]
+    assert len(programs) > 20
+    by_name = {p["name"]: p for p in programs}
+    # A real executable name (ctruncate) is present and task-annotated...
+    assert "ctruncate" in by_name
+    assert "ctruncate" in by_name["ctruncate"]["tasks"]
+    # ...and core interpreters / abs-path commands are excluded from the default.
+    assert "ccp4-python" not in by_name
+    assert all("/" not in name for name in by_name)
 
 
 def test_program_preferences_desktop_roundtrip(client, monkeypatch, tmp_path):
