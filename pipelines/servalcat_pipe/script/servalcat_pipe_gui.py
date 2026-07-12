@@ -33,7 +33,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrgNew', 'servalcat_pipe']
     else:
-        returnList = ['servalcat_pipe', 'coot_rebuild', 'modelcraft']
+        returnList = ['servalcat_pipe', 'coot_rebuild', 'coot1', 'modelcraft']
     return returnList
 
 class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
@@ -51,10 +51,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)
-
-  def ToggleWeightAdjustRmszAvailable(self):
-    return str(self.container.controlParameters.WEIGHT_OPT) == 'AUTO' and \
-      not self.container.controlParameters.WEIGHT_NO_ADJUST
 
   def ToggleRigidModeOn(self):
     return str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID'
@@ -247,14 +243,16 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def drawRestraints( self ):
     self.createLine( [ 'subtitle', 'Weights'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    auto_weight = self.createLine( [ 'label', 'Weigh the experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
-    self.createLine( [ 'label', 'of', 'widget', 'WEIGHT' ], toggle = ['WEIGHT_OPT', 'open', [ 'MANUAL' ] ], appendLine=auto_weight )
-    self.createLine( [ 'label', 'versus the restraints' ], appendLine=auto_weight )
-    self.createLine( [ 'widget', 'WEIGHT_NO_ADJUST', 'label', 'Do not adjust weight during refinement'], toggle = ['WEIGHT_OPT', 'open', [ 'AUTO' ] ] )
+    self.createLine([
+       'label', 'Starting weight for experimental data versus the restraints:',
+       'widget', 'WEIGHT',
+       'label', '(automatic if blank)'
+       ])
+    self.createLine( [ 'widget', 'WEIGHT_NO_ADJUST', 'label', 'Do not adjust weight during refinement'] )
     self.createLine( ['label', 'Bond RMSZ range for weight adjustment:', 'stretch',
                       'widget', 'WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN',
                       'widget', 'WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX'],
-                      toggleFunction = [self.ToggleWeightAdjustRmszAvailable, ['WEIGHT_OPT', 'WEIGHT_NO_ADJUST', 'DATA_METHOD']])
+                      toggle = ['WEIGHT_NO_ADJUST', 'open', [ False ] ])
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
     self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
@@ -800,4 +798,3 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                invalidElements.append(self.container.controlParameters.RES_MIN)
 
       return invalidElements
-

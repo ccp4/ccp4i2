@@ -34,7 +34,7 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='Automated structure solution - CRANK2 phasing and building'
   SHORTTASKTITLE='CRANK2'
   DESCRIPTION='CRANK2 experimental phasing pipeline'
-  WHATNEXT = ['coot_rebuild','prosmart_refmac',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
+  WHATNEXT = ['coot_rebuild','coot1','prosmart_refmac',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
   MGDISPLAYFILES = ['XYZOUT']
   RANK=1
 

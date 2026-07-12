@@ -43,7 +43,7 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
     TASKTITLE = 'Prepare and validate files for deposition'
     DESCRIPTION = '''Add data reduction statistics and sequence information into coordinates for deposition'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self, parent):
         CTaskWidget.__init__(self, parent)

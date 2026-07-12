@@ -34,7 +34,7 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
     TASKTITLE='Make projects and do ligand pipeline'
     DESCRIPTION = '''A task to generate projects and apply ligand pipeline for multiple datasets'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

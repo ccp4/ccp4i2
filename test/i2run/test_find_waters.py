@@ -21,6 +21,9 @@ def test_8xfm(cif8xfm, mtz8xfm):
     args += ["--FPHIIN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FWT,PHWT]"]
     try:
         with i2run(args) as job:
+            tree = ET.parse(job / "program.xml")
+            waters = int(tree.findall(".//WatersFound")[-1].text)
+            assert waters > 0
             assert hasLongLigandName(job / "XYZOUT.cif")
             assert has_water(job / "XYZOUT.cif")
     finally:

@@ -4,7 +4,9 @@ Martin Maly, MRC-LMB
 
 import os
 import json
+import gemmi
 import xml.etree.ElementTree as ET
+from math import degrees
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import SEVERITY_WARNING
 from core import CCP4Utils
@@ -16,7 +18,7 @@ class metalCoord(CPluginScript):
 
     TASKMODULE = 'wrappers'        # Where this plugin will appear on gui
     TASKNAME = 'metalCoord'        # Task name - should be same as class name
-    TASKVERSION = 0.2              # Version of this plugin
+    TASKVERSION = 0.3              # Version of this plugin
     TASKCOMMAND = 'metalCoord'     # The command to run the executable
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
 
@@ -24,6 +26,105 @@ class metalCoord(CPluginScript):
         201: {'description': 'No output JSON file from metalCoord'},
         202: {'description': 'Log file does not report successful job completion', 'severity': SEVERITY_WARNING},
     }
+
+    @staticmethod
+    def _atom_site_to_seqid(site):
+        icode = site.get('icode', '').strip()
+        if not icode or icode == '.':
+            return str(site['sequence'])
+        return f"{site['sequence']}{icode}"
+
+    def _get_atom(self, model, site, atom_key='name'):
+        try:
+            residue = model[site['chain']][self._atom_site_to_seqid(site)][site['residue']]
+        except Exception:
+            return None
+        atom_name = site.get(atom_key, '')
+        if not atom_name:
+            return None
+
+        altloc = site.get('altloc', '').strip()
+        if altloc:
+            atom = residue.find_atom(atom_name, altloc)
+            if atom:
+                return atom
+        return residue.find_atom(atom_name, '*')
+
+    @staticmethod
+    def _image_position(cell, ref_pos, atom_pos, symmetry):
+        try:
+            symm_idx = int(symmetry)
+        except Exception:
+            symm_idx = 0
+        if symm_idx <= 0:
+            return atom_pos
+        try:
+            return cell.find_nearest_pbc_position(ref_pos, atom_pos, symm_idx)
+        except Exception:
+            return atom_pos
+
+    @staticmethod
+    def _repeat_for_multiple_ideal_values(model_value, ideal_values):
+        if isinstance(ideal_values, (list, tuple)) and len(ideal_values) > 1:
+            return [model_value for _ in ideal_values]
+        return model_value
+
+
+    def _add_model_geometry_to_json(self, output_json_stats):
+
+        structure = gemmi.read_structure( str(self.container.inputData.XYZIN.fullPath))
+        model = structure[0]
+
+        for site in output_json_stats:
+            if not isinstance(site, dict):
+                continue
+            metal_atom = self._get_atom(model, site, atom_key='metal')
+            if not metal_atom:
+                continue
+
+            for ligand_class in site.get('ligands', []):
+                # Distances reported in "base" and "pdb"
+                for entry in ligand_class.get('base', []) + ligand_class.get('pdb', []):
+                    ligand_site = entry.get('ligand', {})
+                    ligand_atom = self._get_atom(model, ligand_site, atom_key='name')
+                    if not ligand_atom:
+                        entry['distance_model'] = None
+                    else:
+                        ligand_pos = self._image_position(
+                            cell=structure.cell,
+                            ref_pos=metal_atom.pos,
+                            atom_pos=ligand_atom.pos,
+                            symmetry=ligand_site.get('symmetry', 0))
+                        entry['distance_model'] = round(metal_atom.pos.dist(ligand_pos), 2)
+                    entry['distance_model'] = self._repeat_for_multiple_ideal_values(
+                        model_value=entry.get('distance_model'),
+                        ideal_values=entry.get('distance'))
+
+                # Angles listed for ligand pairs
+                for angle_entry in ligand_class.get('angles', []):
+                    ligand1_site = angle_entry.get('ligand1', {})
+                    ligand2_site = angle_entry.get('ligand2', {})
+                    ligand1_atom = self._get_atom(model, ligand1_site, atom_key='name')
+                    ligand2_atom = self._get_atom(model, ligand2_site, atom_key='name')
+                    if not ligand1_atom or not ligand2_atom:
+                        angle_entry['angle_model'] = None
+                    else:
+                        ligand1_pos = self._image_position(
+                            cell=structure.cell,
+                            ref_pos=metal_atom.pos,
+                            atom_pos=ligand1_atom.pos,
+                            symmetry=ligand1_site.get('symmetry', 0))
+                        ligand2_pos = self._image_position(
+                            cell=structure.cell,
+                            ref_pos=metal_atom.pos,
+                            atom_pos=ligand2_atom.pos,
+                            symmetry=ligand2_site.get('symmetry', 0))
+                        angle_model = degrees(gemmi.calculate_angle(ligand1_pos, metal_atom.pos, ligand2_pos))
+                        angle_entry['angle_model'] = None if angle_model is None else round(angle_model, 2)
+                    angle_entry['angle_model'] = self._repeat_for_multiple_ideal_values(
+                        model_value=angle_entry.get('angle_model'),
+                        ideal_values=angle_entry.get('angle'))
+
 
     def makeCommandAndScript(self):
         self.appendCommandLine('--no-progress')
@@ -78,8 +179,18 @@ class metalCoord(CPluginScript):
         else:
             self.appendErrorReport(201, str(self.container.outputData.JSON))
             return CPluginScript.FAILED
+        outputJsonStats = json.loads(outputJsonText)
 
-        # Convert JSON to external restraint keywords
+        # Add distances and angles from input model
+        try:
+            if isinstance(outputJsonStats, list) and len(outputJsonStats) > 0:
+                self._add_model_geometry_to_json(outputJsonStats)
+                with open(self.outputJsonPath, "w", encoding="utf-8") as outputJsonFile:
+                    json.dump(outputJsonStats, outputJsonFile, indent=4)
+        except Exception as e:
+            print(f"Warning: Failed to add model geometry to JSON stats: {e}")
+
+        outputJsonText = json.dumps(outputJsonStats)
         outputRestraintsPrefix = f"{self.container.inputData.LIGAND_CODE}_restraints"
         outputRestraintsFilename = f"{outputRestraintsPrefix}.txt"
         outputRestraintsMmcifFilename = f"{outputRestraintsPrefix}.mmcif"
@@ -90,6 +201,8 @@ class metalCoord(CPluginScript):
             stPath = str(self.container.inputData.XYZIN.fullPath)
         else:
             stPath = None
+
+        # Convert JSON to external restraint keywords
         json2restraints.main(
             jsonPaths=[self.outputJsonPath],
             stPath=stPath,
@@ -105,7 +218,6 @@ class metalCoord(CPluginScript):
                 self.container.outputData.XYZOUT.annotation = 'Structure model with links from MetalCoord (mmCIF format)'
 
         # Convert JSON to program.xml for i2 report
-        outputJsonStats = json.loads(outputJsonText)
         xmlText = json2xml(list(outputJsonStats), tag_name_subroot="site")
         xmlroot = ET.fromstringlist(["<METALCOORD>", xmlText, "</METALCOORD>"])
         ET.indent(xmlroot, space="\t", level=0)

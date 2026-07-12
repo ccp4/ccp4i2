@@ -30,7 +30,9 @@ DATA_TYPES = [
 
 class CTaskSplitMtz(CCP4TaskWidget.CTaskWidget):
     TASKNAME = "splitMtz"
+    TASKVERSION = 0.0
     TASKTITLE = "Import and Split MTZ into experimental data objects"
+    TASKMODULE = "data_entry"
     SHORTTASKTITLE = "Import and Split MTZ"
     DESCRIPTION = "Select groups of columns from the MTZ file (csplitmtz)"
     ERROR_CODES = {200: {"description": "There are no selected column groups"}}

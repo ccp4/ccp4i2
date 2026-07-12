@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>nucleofind</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="nucleofind">
+
+        <container id="inputData">
+            <content id="FPHIIN">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>1</requiredSubType>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="outputData">
+            <content id="PHOSPHATE">
+                <className>CMapDataFile</className>
+            </content>
+            <content id="SUGAR">
+                <className>CMapDataFile</className>
+            </content>
+            <content id="BASE">
+                <className>CMapDataFile</className>
+            </content>
+        </container>
+
+        <container id="controlParameters">
+
+            <content id="FULL_CELL">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+
+            <content id="OVERLAP">
+                <className>CString</className>
+                <qualifiers>
+                    <default>64</default>
+                    <enumerators>128,64,32,16,8</enumerators>
+                    <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+            </content>
+
+            <content id="GPU">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="THREADS">
+                <className>CInt</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <default>1</default>
+                    <min>1</min>
+                </qualifiers>
+            </content>
+
+            <content id="RESOLUTION">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0.0</min>
+                </qualifiers>
+            </content>
+
+            <content id="OUTPUT_TYPE">
+                <className>CString</className>
+                <qualifiers>
+                    <default>DEFAULT</default>
+                    <enumerators>DEFAULT,RAW,VARIANCE</enumerators>
+                    <menuText>Default,Raw values (no argmax),Variance of repeat predictions</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
+            </content>
+
+        </container>
+
+    </ccp4i2_body>
+</ccp4:ccp4i2>

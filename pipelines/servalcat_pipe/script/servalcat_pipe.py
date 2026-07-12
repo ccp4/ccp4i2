@@ -38,7 +38,7 @@ class servalcat_pipe(CPluginScript):
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.1
-    WHATNEXT = ['servalcat_pipe','coot_rebuild','modelcraft']
+    WHATNEXT = ['servalcat_pipe','coot_rebuild','coot1','modelcraft']
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
@@ -246,9 +246,9 @@ class servalcat_pipe(CPluginScript):
         if status == CPluginScript.FAILED:
             self.reportStatus(status)
 
-    def executeFirstServalcat(self, withWeight=-1):
+    def executeFirstServalcat(self):
         #create wrapper
-        self.firstServalcat = self.createServalcatJob(withWeight)
+        self.firstServalcat = self.createServalcatJob()
         # Run asynchronously ...this is needed so that commands downstream of process launch
         # (i.e. logwatcher) will be calledbefore process completion
         self.firstServalcat.doAsync = self.doAsync
@@ -311,7 +311,7 @@ class servalcat_pipe(CPluginScript):
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength = len(newXml)
 
-    def createServalcatJob(self, withWeight=-1, inputCoordinates=None, ncyc=-1):
+    def createServalcatJob(self, inputCoordinates=None, ncyc=-1):
         result = self.makePluginObject('servalcat')
         #input data for this servalcat instance is the same as the input data for the program
         result.container.inputData.copyData(self.container.inputData)
@@ -352,11 +352,6 @@ class servalcat_pipe(CPluginScript):
             result.container.controlParameters.PROSMART_NUCLEICACID_ALPHA=self.container.prosmartNucleicAcid.ALPHA
             result.container.controlParameters.PROSMART_NUCLEICACID_DMAX=self.container.prosmartNucleicAcid.DMAX
             result.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS=self.prosmart_nucleicacid.container.outputData.RESTRAINTS
-
-        #Specify weight if a meaningful one has been offered
-        if withWeight>=0.:
-            result.container.controlParameters.WEIGHT_OPT='MANUAL'
-            result.container.controlParameters.WEIGHT = withWeight
 
         if inputCoordinates is not None:
             result.container.inputData.XYZIN.set(inputCoordinates)
@@ -739,15 +734,12 @@ class servalcat_pipe(CPluginScript):
             oldXml = etree.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
-            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()), "log.txt")
-            with open(cootLogTxt, 'r') as f:
-               for l in f:
-                   if l.startswith("INFO::") and "found" in l and "water fitting" in l:
-                      nwaters = l.strip()
-                      numsearch = [ x for x in nwaters.split() if x.isdigit() ]
-                      if len(numsearch)>0:
-                         nwaters = numsearch[0]
-                      break
+            cootLogXml = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"program.xml")
+            with open(cootLogXml, encoding='utf-8') as f:
+                watersXml = etree.fromstring(f.read())
+                nodes = watersXml.findall(".//WatersFound")
+                if len(nodes) > 0:
+                    nwaters = nodes[0].text
             postRefmacCoot = etree.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added " + nwaters + " water molecules."
             oldXml.append(postRefmacCoot)

@@ -29,7 +29,7 @@ class comit_gui(CTaskWidget):
     SHORTTASKTITLE='Calculate omit map'
     TASKTITLE='Calculate omit map to reduce model bias after molecular replacement or for validation'
     DESCRIPTION = '''Calculate omit map to reduce model bias'''
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

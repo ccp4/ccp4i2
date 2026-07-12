@@ -30,7 +30,7 @@ class SubtractNative_gui(CTaskWidget):
     TASKTITLE='Subtract a defied fraction of an atom map from an input map'
     DESCRIPTION = '''Reads a set of map coefficients, generates a corresponding map, and modifies it by subtracting some fraction of the FC map corresponding to a set of coordinates that have been provided. The output is a set of modified map coefficients'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

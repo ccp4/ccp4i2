@@ -30,7 +30,7 @@ class ZZPipelineNameZZ_gui(CTaskWidget):
     TASKTITLE='ZZLongTitleZZ'
     DESCRIPTION = '''ZZDescriptionZZ'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

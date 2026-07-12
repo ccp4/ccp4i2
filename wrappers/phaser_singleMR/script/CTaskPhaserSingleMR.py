@@ -20,7 +20,7 @@ class CTaskPhaserSingleMR(CCP4TaskWidget.CTaskWidget):
     TASKTITLE = 'Single Atom Molecular Replacement'
     SHORTTASKTITLE = 'Single Atom MR'
     DESCRIPTION = 'Perform Single Atom MR using Phaser'
-    WHATNEXT = ['coot_rebuild', 'prosmart_refmac', 'modelcraft', 'arp_warp_classic']
+    WHATNEXT = ['coot_rebuild','coot1', 'prosmart_refmac', 'modelcraft', 'arp_warp_classic']
     MGDISPLAYFILES = ['FPHIOUT']
 
     def __init__(self, parent):

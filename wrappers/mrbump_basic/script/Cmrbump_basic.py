@@ -16,7 +16,7 @@ class Cmrbump_basic(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='Automated structure solution - MrBUMP'
   DESCRIPTION='Run a quick MrBUMP job with streamlined settings'
   RANK=1
-  WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
+  WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
 
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)

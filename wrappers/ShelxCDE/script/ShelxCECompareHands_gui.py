@@ -19,7 +19,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     from core import CCP4Container
     from core import CCP4Data
     from core import CCP4ModelData
-    returnList = ['coot_rebuild','parrot',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
+    returnList = ['coot_rebuild','coot1','parrot',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
     try:
         jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=jobId)
         

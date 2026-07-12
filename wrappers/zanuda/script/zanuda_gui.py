@@ -26,7 +26,7 @@ class zanuda_gui(CTaskWidget):
     TASKVERSION = 0.1
     DESCRIPTION = 'Space group validation'
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['aimless_pipe', 'coot_rebuild']
+    WHATNEXT = ['aimless_pipe', 'coot_rebuild','coot1']
 
     def __init__(self, parent):
         CTaskWidget.__init__(self, parent)

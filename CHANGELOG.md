@@ -1,6 +1,41 @@
 # CCP4i2 Changelog
 
-## [2.5.0] - 2025-12-02
+## [2.6.2] - 2026-05-27
+
+- Fix to Density Calculator task
+- Added Lorestr and Density Calculator i2run tests
+- Updated Servalcat 7beq electron test R-work threshold
+- Updated ModelCraft task title
+- Allow DUI2 to continue from previous jobs regardless of status
+- Updated interface for the Servalcat refinement weight setting
+- Fix for opening MTZ files in Coot 1 on Windows
+
+## [2.6.1] - 2026-04-09
+
+- Fixed Coot 1 path on Mac/Linux for 9.0.015
+
+## [2.6.0] - 2026-03-26
+
+- New NucleoFind task for predicting locations of nucleic acid features in maps
+- New AREAIMOL task for calculating solvent accessible surface area
+- Remove PDB/mmCIF input for AceDRG
+- AceDRG metal option only visible for CIF input format
+- Reporting input distances and angles in MetalCoord task
+- Symmetry operators shown in MetalCoord report
+- Added Coot 1 as a follow-on task
+- Using shutil.which for xia2 multiplex command on Windows
+- Fixes for DUI2 and support for continuing previous sessions
+
+## [2.5.2] - 2026-02-06
+
+- Xia2 DIALS only supports image directory on Windows
+- Testing AceDRG atom IDs do not contain spaces
+
+## [2.5.1] - 2026-02-05
+
+- Fix to spaces/quoting in AceDRG atom name matching
+
+## [2.5.0] - 2026-01-06
 
 - New task to check a model against AU contents
 - Standardised ModelCraft output file name
@@ -9,6 +44,7 @@
 - Stop the Refmac pipeline producing map files by default
 - Fix to Servalcat USE_WORK_IN_EST
 - Fix to user selected columns in split MTZ task
+- Changed coot_rsr_morph and coot_add_waters to use CHAPI
 
 ## [2.4.3] - 2025-10-24
 

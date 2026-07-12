@@ -16,7 +16,7 @@ class Cslicendice(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='SliceNDice - Auto model processing and MR'
   DESCRIPTION='Automated processing of predicted or deposited search models and Molecular Replacement'
   RANK=1
-  WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
+  WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
 
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)

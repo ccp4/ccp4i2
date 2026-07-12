@@ -31,7 +31,7 @@ class nautilus_build_refine_gui(CTaskWidget):
     TASKTITLE='Autobuild RNA/DNA (Nautilus pipeline)'
     DESCRIPTION = 'Iterations of model building (Nautilus) and refinement (Refmac5)'
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

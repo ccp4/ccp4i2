@@ -4,13 +4,13 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 
 class modelcraft_gui(CTaskWidget):
     TASKMODULE = "model_building"
-    TASKTITLE = "Autobuild with ModelCraft, Buccaneer and Nautilus"
+    TASKTITLE = "Autobuild with ModelCraft, Buccaneer and NucleoFind"
     SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"
     TASKVERSION = 0.1
     DESCRIPTION = "Automated model building of protein, nucleic acid and water"
     MGDISPLAYFILES = ["XYZIN"]
-    WHATNEXT = ["coot_rebuild"]
+    WHATNEXT = ["coot_rebuild",'coot1']
 
     def __init__(self, parent):
         CTaskWidget.__init__(self, parent)

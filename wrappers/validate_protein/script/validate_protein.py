@@ -56,7 +56,7 @@ except ImportError:
 
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'
-    WHATNEXT = [ 'coot_rebuild' ]
+    WHATNEXT = [ 'coot_rebuild','coot1' ]
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def process(self):

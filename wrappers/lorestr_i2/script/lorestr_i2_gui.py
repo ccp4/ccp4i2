@@ -30,7 +30,7 @@ class lorestr_i2_gui(CTaskWidget):
     TASKTITLE='Low Resolution Refinement Pipeline (LORESTR)'
     DESCRIPTION = '''Automated Low Resolution Structure Refinement Pipeline (LORESTR)'''
     MGDISPLAYFILES = ['XYZIN', 'XYZOUT','FPHIOUT','DIFFPHIOUT']
-    WHATNEXT = ['coot_rebuild', 'prosmart_refmac', 'edstats']
+    WHATNEXT = ['coot_rebuild','coot1', 'prosmart_refmac', 'edstats']
     AUTOPOPULATEINPUT = True
 
 

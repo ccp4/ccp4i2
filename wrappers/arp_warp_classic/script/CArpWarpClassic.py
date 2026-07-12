@@ -12,7 +12,7 @@ class CTaskArpWarpClassic(CCP4TaskWidget.CTaskWidget):
     TASKMODULE = 'test' if sys.platform.startswith('win') else 'model_building'
     TASKTITLE='ARP/wARP'
     DESCRIPTION='Build model (ARP/wARP classic)'
-    WHATNEXT = ['coot_rebuild', 'prosmart_refmac', 'edstats']
+    WHATNEXT = ['coot_rebuild','coot1', 'prosmart_refmac', 'edstats']
     MGDISPLAYFILES = ['FPHIOUT']
 
     def drawContents(self):

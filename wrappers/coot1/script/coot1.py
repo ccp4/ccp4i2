@@ -9,7 +9,9 @@ def coot1Command():
     ccp4 = Path(environ["CCP4"])
     if platform == "win32":
         return str(ccp4 / ".." / "WinCoot1" / "wincoot.bat")
-    return str(ccp4 / "coot_py3" / "bin" / "coot")
+    if platform == "darwin":
+        return str(ccp4 / "libexec" / "coot-1")
+    return str(ccp4 / "coot_py3" / "bin" / "coot-1")
 
 
 class coot1(CPluginScript):
@@ -21,7 +23,7 @@ class coot1(CPluginScript):
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "paul.bond@york.ac.uk"
-    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft"]
+    WHATNEXT = ["prosmart_refmac", "coot_rebuild",'coot1', "modelcraft"]
 
     ERROR_CODES = {}
 
@@ -38,14 +40,14 @@ class coot1(CPluginScript):
         script = ["import coot"]
         if inputData.FPHIIN_LIST.isSet():
             for path in inputData.FPHIIN_LIST:
-                script.append(f"coot.read_mtz('{path}', 'F', 'PHI', '', False, False)")
+                script.append(f"coot.read_mtz(r'{path}', 'F', 'PHI', '', False, False)")
         if inputData.DELFPHIIN_LIST.isSet():
             for path in inputData.DELFPHIIN_LIST:
-                script.append(f"coot.read_mtz('{path}', 'F', 'PHI', '', False, True)")
+                script.append(f"coot.read_mtz(r'{path}', 'F', 'PHI', '', False, True)")
         if inputData.DELFPHIINANOM_LIST.isSet():
             for path in inputData.DELFPHIINANOM_LIST:
                 script.append(
-                    f"imap = coot.read_mtz('{path}', 'F', 'PHI', '', False, True)"
+                    f"imap = coot.read_mtz(r'{path}', 'F', 'PHI', '', False, True)"
                 )
                 script.append("coot.set_map_colour(imap, 0.75, 0.9, 0.75)")
         scriptPath = Path(self.getWorkDirectory(), "coot_script.py")

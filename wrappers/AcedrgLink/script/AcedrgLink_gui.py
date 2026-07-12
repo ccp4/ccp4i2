@@ -28,7 +28,7 @@ class AcedrgLink_gui(CTaskWidget):
     SHORTTASKTITLE='AceDRG in link generation mode'
     TASKTITLE='AceDRG in link generation mode'
     DESCRIPTION = '''AceDRG in link generation mode'''
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)
