@@ -136,7 +136,7 @@ class dnatco_report(Report):
                 table.addData(title="Closest NtC (model 2)", data=cif_data2['assigned_NtC_outliers'])
             table.addData(title=f"RMSD to closest NtC representative (&#197;){model_label}", data=cif_data1['rmsd_NtC_outliers'])
             if compare_two:
-                table.addData(title="RMSD to closest NtC representative (&#197;) (model 1)", data=cif_data2['rmsd_NtC_outliers'])
+                table.addData(title="RMSD to closest NtC representative (&#197;) (model 2)", data=cif_data2['rmsd_NtC_outliers'])
             noteDiv = outliersFold.addDiv(style='font-size:110%;')
             noteDiv.append(
             "A more detailed analysis could be performed at the"
@@ -173,7 +173,7 @@ class dnatco_report(Report):
                 table.addData(title="Closest NtC (model 2)", data=cif_data2['assigned_NtC_improvables'])
             table.addData(title=f"RMSD to closest NtC representative (&#197;){model_label}", data=cif_data1['rmsd_NtC_improvables'])
             if compare_two:
-                table.addData(title="RMSD to closest NtC representative (&#197;) (model 1)", data=cif_data2['rmsd_NtC_improvables'])
+                table.addData(title="RMSD to closest NtC representative (&#197;) (model 2)", data=cif_data2['rmsd_NtC_improvables'])
             noteDiv = improvablesFold.addDiv(style='font-size:110%;')
             noteDiv.append(
             "A more detailed analysis could be performed at the"
