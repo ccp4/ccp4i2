@@ -239,10 +239,65 @@ jobs:
             echo "macOS: Apple secrets absent -> building UNSIGNED (users run xattr -cr)"
           fi
 
-      - name: Build and package
-        # EB_MAC_ARGS is only set for a signed macOS build; empty otherwise.
+      # Windows code signing via Azure Trusted Signing, ONLY when enabled AND the
+      # Azure inputs are present. Absent/disabled -> unsigned .exe (as today), so
+      # this is safe to run before Trusted Signing exists. Mirrors the macOS gate.
+      #
+      # Prerequisites (one-time, procured separately): an Azure Trusted Signing
+      # account + certificate profile, and a CI service principal granted the
+      # "Trusted Signing Certificate Profile Signer" role on it. The SP creds feed
+      # DefaultAzureCredential (which electron-builder's Azure signer uses) via the
+      # exact env names AZURE_TENANT_ID / AZURE_CLIENT_ID / AZURE_CLIENT_SECRET.
+      # The non-secret account coordinates (endpoint/account/profile/publisher)
+      # come from repo Variables and are injected as -c.win.azureSignOptions.*
+      # CLI overrides, so package.json stays unsigned-by-default.
+      - name: Configure Windows signing
+        if: matrix.os == 'windows-latest'
         shell: bash
-        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS}
+        env:
+          # Opt-in switch, same pattern as ENABLE_MAC_SIGNING. Leave unset to ship
+          # UNSIGNED (SmartScreen warning until reputation builds). Set to "true"
+          # once the Trusted Signing inputs below are confirmed working.
+          ENABLE_WIN_SIGNING: ${{ vars.ENABLE_WIN_SIGNING }}
+          AZURE_SIGNING_TENANT_ID: ${{ secrets.AZURE_SIGNING_TENANT_ID }}
+          AZURE_SIGNING_CLIENT_ID: ${{ secrets.AZURE_SIGNING_CLIENT_ID }}
+          AZURE_SIGNING_CLIENT_SECRET: ${{ secrets.AZURE_SIGNING_CLIENT_SECRET }}
+          AZURE_SIGNING_ENDPOINT: ${{ vars.AZURE_SIGNING_ENDPOINT }}
+          AZURE_SIGNING_ACCOUNT: ${{ vars.AZURE_SIGNING_ACCOUNT }}
+          AZURE_SIGNING_PROFILE: ${{ vars.AZURE_SIGNING_PROFILE }}
+          AZURE_SIGNING_PUBLISHER: ${{ vars.AZURE_SIGNING_PUBLISHER }}
+        run: |
+          if [ "$ENABLE_WIN_SIGNING" != "true" ]; then
+            echo "Windows: signing disabled (ENABLE_WIN_SIGNING != 'true') -> building UNSIGNED (SmartScreen warning until reputation builds)"
+            exit 0
+          fi
+          echo "Azure Trusted Signing inputs seen by this job (set = non-empty):"
+          for s in AZURE_SIGNING_TENANT_ID AZURE_SIGNING_CLIENT_ID AZURE_SIGNING_CLIENT_SECRET AZURE_SIGNING_ENDPOINT AZURE_SIGNING_ACCOUNT AZURE_SIGNING_PROFILE AZURE_SIGNING_PUBLISHER; do
+            v="$(eval echo \"\$$s\")"
+            if [ -n "$v" ]; then echo "  $s = set (${#v} chars)"; else echo "  $s = EMPTY"; fi
+          done
+          if [ -n "$AZURE_SIGNING_CLIENT_ID" ] && [ -n "$AZURE_SIGNING_ENDPOINT" ] && [ -n "$AZURE_SIGNING_ACCOUNT" ] && [ -n "$AZURE_SIGNING_PROFILE" ]; then
+            ARGS="-c.win.azureSignOptions.endpoint=$AZURE_SIGNING_ENDPOINT"
+            ARGS="$ARGS -c.win.azureSignOptions.codeSigningAccountName=$AZURE_SIGNING_ACCOUNT"
+            ARGS="$ARGS -c.win.azureSignOptions.certificateProfileName=$AZURE_SIGNING_PROFILE"
+            [ -n "$AZURE_SIGNING_PUBLISHER" ] && ARGS="$ARGS -c.win.azureSignOptions.publisherName=$AZURE_SIGNING_PUBLISHER"
+            {
+              # DefaultAzureCredential reads these EXACT names:
+              echo "AZURE_TENANT_ID=$AZURE_SIGNING_TENANT_ID"
+              echo "AZURE_CLIENT_ID=$AZURE_SIGNING_CLIENT_ID"
+              echo "AZURE_CLIENT_SECRET=$AZURE_SIGNING_CLIENT_SECRET"
+              echo "EB_WIN_ARGS=$ARGS"
+            } >> "$GITHUB_ENV"
+            echo "Windows: Azure Trusted Signing ENABLED"
+          else
+            echo "Windows: Trusted Signing inputs incomplete -> building UNSIGNED"
+          fi
+
+      - name: Build and package
+        # Exactly one of EB_MAC_ARGS / EB_WIN_ARGS is ever set (per-OS gate); the
+        # other is empty. Both empty -> unsigned build (Linux, or secrets absent).
+        shell: bash
+        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS}
         working-directory: client
 
       - name: Upload installer
