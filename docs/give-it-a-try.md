@@ -74,6 +74,21 @@ Then launch it (first launch: right-click → **Open** if prompted). If the app
 opens normally without any warning, it was signed and notarised and you can skip
 this step.
 
+### Linux: make the AppImage executable
+
+Downloaded AppImages are **not executable** by default (your browser doesn't set
+the flag), so double-clicking will just offer to open the file rather than run
+it. Mark it executable once:
+
+```bash
+chmod +x ccp4i2-django-*.AppImage
+```
+
+(or right-click → **Properties** → **Permissions** → tick **Allow executing file
+as program**). Then double-click, or run `./ccp4i2-django-*.AppImage`. The build
+already passes `--no-sandbox` for you, so it launches on server-class and
+hardened kernels without any extra flags.
+
 ## 3. Launch and point it at CCP4
 
 Start the app. It auto-detects CCP4 in the usual locations; if it can't find
@@ -122,6 +137,10 @@ and the app won't run against a different `ccp4i2`.
 - **App won't find CCP4** — point it explicitly at your CCP4 install directory.
 - **macOS "app is damaged / can't be opened"** — you missed the `xattr -cr`
   step above (or ran it on the wrong path).
+- **Linux: double-click does nothing / only offers "Open With"** — the AppImage
+  isn't executable yet; `chmod +x` it (see the Linux step above). If a
+  terminal-launched build still exits silently on a hardened kernel, run it with
+  `--no-sandbox` (current builds pass this automatically).
 - **Install step fails** — confirm the CCP4 install is complete and its
   `ccp4-python` runs (`<ccp4>/bin/ccp4-python --version`).
 
