@@ -239,6 +239,53 @@ class CLauncher(QtCore.QObject):
             p.start(exe,qArgList)
         return p
 
+    '''
+    # This version attempts to open viewer and then send commands through sockets
+    # mg does not allow socket input
+    def openInViewer(self,viewer=None,fileName=None,jobId=None):
+      print 'CLauncher.openInViewer',viewer,fileName,jobId
+      if fileName is not None:
+        comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileName)
+      elif jobId is not None:
+        # This will open just one file - need to talk to Stuart
+        from core import CCP4Modules
+        
+        fileList = CCP4Modules.PROJECTSMANAGER().db().getJobFiles(jobId=jobId,mode='fullPath')
+        if len(fileList)>0:
+          comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileList[0])
+      #print 'CLauncher.openInViewer command',str(comLine)
+      if comLine is None:
+        print 'Can not create launcher command for:',viewer,fileName,jobId
+        return
+
+      if self.sockets.has_key(viewer):
+        try:
+          self.sockets[viewer].sendall(comLine)
+        except:
+          # Send failed - assume the socket broken and try resetting
+          self.sockets[viewer].close()
+          del self.sockets[viewer]
+
+      if not self.sockets.has_key(viewer):
+        if not self.hostPorts.has_key(viewer):
+          print 'Do not know hostname,port for viewer:',viewer
+          return
+        hostname= self.hostPorts[viewer]['hostname']
+        port = self.hostPorts[viewer]['port']
+        self.openSocket(hostname,port,viewer,comLine)
+    '''
+    def modifyCootBat(self):
+        from core import CCP4Modules
+        from core import CCP4Utils
+        cootBat = CCP4Modules.PREFERENCES().COOT_EXECUTABLE.__str__()
+        if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
+            return None
+        text = CCP4Utils.readFile(cootBat)
+        text0 = re.sub('start .* coot-bin.exe', 'coot-bin.exe', text)
+        modFile = os.path.join(CCP4Utils.getDotDirectory(), 'runwincoot.bat')
+        CCP4Utils.saveFile(modFile, text0, overwrite=True)
+        return modFile
+
     def modifyLidiaBat(self):
         from core import CCP4Modules
         from core import CCP4Utils
