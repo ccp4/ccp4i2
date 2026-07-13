@@ -22,6 +22,17 @@ import os from "os";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
+// On modern Linux (kernel 6.x + AppArmor), unprivileged user namespaces are
+// restricted by default, which the Chromium SUID sandbox needs. Inside an
+// AppImage this makes the very first launch hard-crash with
+// "The SUID sandbox helper binary was found, but is not configured correctly".
+// Disabling the sandbox here avoids forcing users to weaken kernel security
+// (sysctl kernel.apparmor_restrict_unprivileged_userns=0) just to start the app.
+// Only applied on Linux — macOS/Windows keep their working sandbox.
+if (process.platform === "linux") {
+  app.commandLine.appendSwitch("no-sandbox");
+}
+
 // Change the current working directory to the Resources folder
 if (!isDev) {
   const asarDir = app.getAppPath();
@@ -61,6 +72,22 @@ const getDefaultCCP4Dir = () => {
 
   // Check common CCP4 installation locations in order of preference
   const possiblePaths: string[] = [];
+
+  // Highest priority: an already-sourced CCP4 environment. When the app is
+  // launched from a shell that has sourced ccp4.setup-sh, $CCP4 points at the
+  // install root (which holds bin/ccp4-python) and ccp4-python is on PATH.
+  // Honour that so a user who already configured CCP4 isn't asked to re-select
+  // a directory by hand (the common Linux tarball-in-a-custom-location case).
+  const pythonBinName = isWindows ? "ccp4-python.bat" : "ccp4-python";
+  if (process.env.CCP4) {
+    possiblePaths.push(process.env.CCP4);
+  }
+  for (const dir of (process.env.PATH || "").split(path.delimiter)) {
+    // A ccp4-python on PATH lives in <root>/bin, so the root is its parent.
+    if (dir && fs.existsSync(path.join(dir, pythonBinName))) {
+      possiblePaths.push(path.dirname(dir));
+    }
+  }
 
   if (isDev) {
     // In dev mode, check sibling directory (../ccp4-* patterns)
