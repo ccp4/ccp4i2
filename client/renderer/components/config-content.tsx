@@ -221,7 +221,7 @@ export const ConfigContent: React.FC = () => {
     if (!existingFiles?.CCP4Dir) blockers.push("Locate your CCP4 installation");
     if (!existingFiles?.venv_python) blockers.push("A Python environment is missing");
     if (!devMode && !requirementsExist)
-      blockers.push("Install the CCP4i2 requirements");
+      blockers.push("Install the CCP4i2 backend into your CCP4 environment");
   }
 
   // Open the setup section automatically when something needs attention.
