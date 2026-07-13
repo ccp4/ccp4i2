@@ -35,7 +35,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.createLine ( [ 'label','Start with molecular structure from ','stretch','widget','MOLSMILESORSKETCH' ] )
         self.connectDataChanged('MOLSMILESORSKETCH', self.ToggleShowContainsMetal)
         
-        self.createLine ( [ 'advice', 'Will launch Layla to sketch molecule. Click Apply <b>and</b> Close in Layla when sketch is ready.' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
+        self.createLine ( [ 'advice', 'Will launch Layla to sketch molecule. Click Send to CCP4i2 <b>and</b> Close in Layla when sketch is ready.' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
         self.createLine ( [ 'advice', 'Optionally can provide a starting monomer for the sketch:' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
         
         self.createLine ( [ 'widget','MOLIN' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH','MOL']] )
