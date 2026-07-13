@@ -17,6 +17,66 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Preflight repair for the CCP4 packaged-Python site-packages. Hand-rolled CCP4
+// builds ship a few distributions whose *.dist-info/*.egg-info metadata has no
+// parseable `Version:` field (observed: gyp_next, meson, SCons, typing_extensions
+// — the exact set varies build-to-build). pip enumerates the WHOLE installed set
+// and calls packaging.version.parse(dist.version); a bare None raises
+// `TypeError: expected string or bytes-like object, got 'NoneType'` and crashes
+// pip — including our own --no-deps/--ignore-installed steps, whose guards only
+// cover comparable-but-mismatched versions, not a missing one. This script stamps
+// a synthetic header (name+version derived from the dist directory name) into any
+// such metadata file, preserving existing content. Idempotent and build-agnostic.
+// String.raw so the regex backslashes reach Python intact.
+const REPAIR_METADATA_PY = String.raw`
+import importlib.metadata as im
+import re
+from pathlib import Path
+
+patched = 0
+for dist in im.distributions():
+    try:
+        version = dist.metadata.get("Version")
+    except Exception:
+        version = None
+    if version is not None:
+        continue
+    raw = getattr(dist, "_path", None)
+    if raw is None:
+        continue
+    p = Path(raw)
+    if not p.name.endswith((".dist-info", ".egg-info")):
+        continue
+    mfile = p / ("METADATA" if p.name.endswith(".dist-info") else "PKG-INFO")
+    base = re.sub(r"\.(dist-info|egg-info)$", "", p.name)
+    base = re.sub(r"-py\d+\.\d+$", "", base)
+    m = re.match(r"^(.+?)-(\d.*)$", base)
+    derived_name = m.group(1) if m else base
+    derived_version = m.group(2) if m else "0"
+    try:
+        existing = mfile.read_text(encoding="utf-8", errors="replace") if mfile.exists() else ""
+    except Exception:
+        existing = ""
+    headers = []
+    if not re.search(r"(?im)^Metadata-Version:", existing):
+        headers.append("Metadata-Version: 2.1")
+    if not re.search(r"(?im)^Name:", existing):
+        headers.append("Name: " + derived_name)
+    if not re.search(r"(?im)^Version:", existing):
+        headers.append("Version: " + derived_version)
+    if not headers:
+        continue
+    try:
+        p.mkdir(parents=True, exist_ok=True)
+        mfile.write_text("\n".join(headers) + "\n" + existing, encoding="utf-8")
+        print("[metadata-repair] " + p.name + " -> Name=" + derived_name + " Version=" + derived_version)
+        patched += 1
+    except Exception as exc:
+        print("[metadata-repair] FAILED " + p.name + ": " + str(exc))
+
+print("[metadata-repair] patched " + str(patched) + " distribution(s)")
+`;
+
 /**
  * Finds the Python executable in the project's virtual environment.
  * Checks multiple possible venv locations in order of preference.
@@ -610,6 +670,24 @@ export const installIpcHandlers = (
         ]);
         finish(code);
         return;
+      }
+
+      // Preflight: repair corrupt *.dist-info/*.egg-info metadata (no parseable
+      // Version) BEFORE any pip step. Without this, pip's installed-set
+      // enumeration crashes on `parse_version(None)` and no --no-deps/
+      // --ignore-installed trick downstream can save it. Build-agnostic and
+      // idempotent — see REPAIR_METADATA_PY. A failure here is non-fatal: fall
+      // through to pip, which will surface the original error if it recurs.
+      try {
+        const repairPath = path.join(os.tmpdir(), "ccp4i2-metadata-repair.py");
+        fs.writeFileSync(repairPath, REPAIR_METADATA_PY);
+        sendProgress("installing", `\nRepairing corrupt CCP4 Python package metadata (if any)…\n`);
+        await runPipStep([repairPath]);
+      } catch (e) {
+        sendProgress(
+          "installing",
+          `\n(metadata preflight skipped: ${(e as Error).message})\n`
+        );
       }
 
       // Clear any pre-existing ccp4i2 first. An exact-pin `--upgrade` over a
