@@ -783,8 +783,10 @@ export const installIpcHandlers = (
     // Build the install step(s), keyed strictly on app.isPackaged (isDev).
     //
     // Dev (unpacked): editable install of the local checkout so the developer's
-    // tree is what runs. `-e ./server` reads pyproject.toml and pulls deps
-    // normally — a dev .venv is clean, so the resolver works fine here.
+    // tree is what runs — but into the developer's ccp4-python, which carries the
+    // same stale pins / corrupt *.dist-info as any CCP4 build. So dev uses the
+    // same resolver-free two-step as packaged, with `-e server` in place of the
+    // wheel and the runtime lock read straight from the source tree (see below).
     //
     // Packaged: install into the user's ccp4-python. Those distros carry corrupt
     // *.dist-info that crashes pip's RESOLVER, so a normal `pip install ccp4i2`
@@ -798,12 +800,51 @@ export const installIpcHandlers = (
     // resolve its path via ccp4i2.__file__ after step 1. See that file's header.
     const runInstall = async (): Promise<void> => {
       if (isDev) {
-        const code = await runPipStep([
-          "-m", "pip", "install", "-e",
-          path.join(process.cwd(), "..", "server"),
-          "--verbose",
+        // Dev installs into the developer's ccp4-python (NOT a clean venv), so it
+        // hits the SAME hazards as packaged: stale CCP4 pins (Django 3.2 vs
+        // django-cors-headers>=4.2) and *.dist-info with no parseable Version. A
+        // naive `pip install -e server` runs the full resolver against those and
+        // fails. So mirror the packaged strategy — never invoke the resolver:
+        // repair metadata, install the package EDITABLE with --no-deps, then
+        // install the curated runtime lock with --ignore-installed. The lock
+        // sits in the source tree next to the package.
+        const serverDir = path.join(process.cwd(), "..", "server");
+        try {
+          const repairPath = path.join(os.tmpdir(), "ccp4i2-metadata-repair.py");
+          fs.writeFileSync(repairPath, REPAIR_METADATA_PY);
+          sendProgress("installing", `\nRepairing corrupt CCP4 Python package metadata (if any)…\n`);
+          await runPipStep([repairPath]);
+        } catch (e) {
+          sendProgress(
+            "installing",
+            `\n(metadata preflight skipped: ${(e as Error).message})\n`
+          );
+        }
+
+        sendProgress("installing", `\n[1/2] Installing ccp4i2 editable (no-deps)…\n`);
+        const codeEditable = await runPipStep([
+          "-m", "pip", "install", "--no-deps", "-e", serverDir, "--verbose",
         ]);
-        finish(code);
+        if (codeEditable !== 0) {
+          finish(codeEditable);
+          return;
+        }
+
+        const devLock = path.join(serverDir, "ccp4i2", "requirements-runtime.txt");
+        if (fs.existsSync(devLock)) {
+          sendProgress("installing", `\n[2/2] Installing dependencies from runtime lock…\n`);
+          const codeDeps = await runPipStep([
+            "-m", "pip", "install", "--no-deps", "--ignore-installed",
+            "-r", devLock, "--verbose",
+          ]);
+          finish(codeDeps);
+        } else {
+          sendProgress(
+            "installing",
+            `\n(no runtime lock at ${devLock}; skipping dependency step)\n`
+          );
+          finish(codeEditable);
+        }
         return;
       }
 
