@@ -128,6 +128,42 @@ function findPython(CCP4Dir: string, projectRoot: string): string | null {
 }
 
 /**
+ * Spawn ccp4-python cross-platform.
+ *
+ * On Windows the interpreter is `ccp4-python.bat`. Since the CVE-2024-27980 fix
+ * (Node >= 18.20.2 / 20.12.2, i.e. every Electron >= v30 — this app ships 33),
+ * `child_process.spawn` REFUSES to launch a .bat/.cmd file unless `shell: true`,
+ * throwing EINVAL *synchronously*. That throw is what silently broke the two
+ * remaining direct-spawn call sites on modern Windows:
+ *   - the requirements probe: the throw was caught and reported as
+ *     "requirements-missing", so a perfectly-good pip-installed backend showed as
+ *     NOT installed (Launch still worked because it uses shell:true — see
+ *     startDjangoServer);
+ *   - the pip install: the throw rejected the un-awaited install promise, so
+ *     `finish()` never ran and the progress modal spun forever.
+ *
+ * With a shell, cmd.exe does NOT auto-escape arguments, so quote the executable
+ * and any arg containing whitespace (Windows filenames cannot contain `"`, so
+ * wrapping in double quotes is sufficient — e.g. a temp path under
+ * `C:\Users\Given Name\...`). On mac/linux we spawn directly with no shell,
+ * exactly as before.
+ */
+function spawnPython(
+  pythonPath: string,
+  args: string[],
+  options: Parameters<typeof spawn>[2] = {}
+): ChildProcessWithoutNullStreams {
+  if (platform() === "win32") {
+    const q = (s: string) => (/\s/.test(s) ? `"${s}"` : s);
+    return spawn(q(pythonPath), args.map(q), {
+      ...options,
+      shell: true,
+    }) as ChildProcessWithoutNullStreams;
+  }
+  return spawn(pythonPath, args, options) as ChildProcessWithoutNullStreams;
+}
+
+/**
  * Installs IPC handlers for communication between the Electron main process and renderer processes.
  *
  * @param ipcMain - The Electron IpcMain instance used to listen for IPC events.
@@ -504,7 +540,7 @@ export const installIpcHandlers = (
 
     // Add error handling for spawn
     try {
-      const child = spawn(pythonPath, [probePath], {
+      const child = spawnPython(pythonPath, [probePath], {
         stdio: ["ignore", "pipe", "pipe"],
         env: {
           ...process.env,
@@ -610,8 +646,22 @@ export const installIpcHandlers = (
     // genuinely successful install. The probe is the authority.
     const runPipStep = (args: string[]): Promise<number> =>
       new Promise((resolve) => {
-        const proc = spawn(pythonPath, args);
         let settled = false;
+        // `spawn` can throw *synchronously* (e.g. a .bat launched without a shell
+        // on modern Node — see spawnPython). Guard it so a throw resolves the step
+        // (which the probe then adjudicates) instead of rejecting an un-awaited
+        // promise and leaving the progress modal spinning forever. (#237)
+        let proc: ChildProcessWithoutNullStreams;
+        try {
+          proc = spawnPython(pythonPath, args);
+        } catch (err) {
+          sendProgress(
+            "installing",
+            `Error launching pip: ${(err as Error).message}\n`
+          );
+          resolve(-1);
+          return;
+        }
         const done = (code: number) => {
           if (settled) return;
           settled = true;
@@ -787,6 +837,13 @@ export const installIpcHandlers = (
       });
     };
 
-    void runInstall();
+    // A rejection here must never leave the modal spinning: report it and let the
+    // probe (via finish) render the real backend state.
+    runInstall().catch((err) => {
+      sendProgress(
+        "failed",
+        `Installation aborted: ${err instanceof Error ? err.message : String(err)}`
+      );
+    });
   });
 };

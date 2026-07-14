@@ -207,7 +207,14 @@ export async function startDjangoServer(
     "--log-level", "warning",  // Suppress per-request INFO access logs
   ];
 
-  const pythonProcess = spawn(PYTHON_PATH, uvicornArgs, {
+  // shell:true is REQUIRED on Windows to launch ccp4-python.bat (a .bat cannot be
+  // spawned without a shell on modern Node — see spawnPython in ccp4i2-ipc.ts).
+  // With a shell the executable is NOT auto-escaped, so quote it when the CCP4
+  // install path contains whitespace — matching the quoted `migrate` execSync
+  // above, which would otherwise succeed while this launch broke. uvicornArgs are
+  // all space-free literals and need no quoting.
+  const launcher = /\s/.test(PYTHON_PATH) ? `"${PYTHON_PATH}"` : PYTHON_PATH;
+  const pythonProcess = spawn(launcher, uvicornArgs, {
     env: pythonEnv,
     shell: true,
     ...(serverCwd && { cwd: serverCwd }),
