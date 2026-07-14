@@ -534,7 +534,7 @@ export const installIpcHandlers = (
       '        editable = bool((_d.get("dir_info") or {}).get("editable"))',
       "except Exception:",
       "    pass",
-      'print(json.dumps({"version": ccp4i2.__version__, "editable": editable, "origin": origin}))',
+      'print(json.dumps({"version": getattr(ccp4i2, "__version__", None), "editable": editable, "origin": origin}))',
       "",
     ].join("\n");
 
@@ -820,6 +820,13 @@ export const installIpcHandlers = (
             `\n(metadata preflight skipped: ${(e as Error).message})\n`
           );
         }
+
+        // Uninstall any prior ccp4i2 first (as packaged does). Repeated installs
+        // into the same ccp4-python can leave a stale/partial ccp4i2 that shadows
+        // the editable one as a namespace package — importable, but with the real
+        // __init__.py (and __version__) never executed. A clean slate avoids that.
+        sendProgress("installing", `\nRemoving any previous ccp4i2…\n`);
+        await runPipStep(["-m", "pip", "uninstall", "-y", "ccp4i2"]);
 
         sendProgress("installing", `\n[1/2] Installing ccp4i2 editable (no-deps)…\n`);
         const codeEditable = await runPipStep([
