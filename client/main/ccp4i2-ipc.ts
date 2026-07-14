@@ -510,10 +510,26 @@ export const installIpcHandlers = (
     // spawned with shell:true, and ccp4-python is a .bat that historically
     // wanted a shell. A plain file path is a single clean argv that needs no
     // shell on any platform — matching the (working, shell-less) install spawn.
+    // Also report HOW ccp4i2 is installed, via PEP 610 direct_url.json in the
+    // dist-info: editable installs carry dir_info.editable == true and a
+    // url == file://…/server; a wheel install has neither. The gate below uses
+    // this to require an editable install of *this* server/ in dev, and a
+    // regular version-matched wheel in production.
     const probeSource = [
       "import json, ccp4i2",
       "from ccp4i2.config.asgi import application",
-      'print(json.dumps({"version": ccp4i2.__version__}))',
+      "import importlib.metadata as _md",
+      "editable = False",
+      "origin = None",
+      "try:",
+      '    _du = _md.distribution("ccp4i2").read_text("direct_url.json")',
+      "    if _du:",
+      "        _d = json.loads(_du)",
+      '        origin = _d.get("url")',
+      '        editable = bool((_d.get("dir_info") or {}).get("editable"))',
+      "except Exception:",
+      "    pass",
+      'print(json.dumps({"version": ccp4i2.__version__, "editable": editable, "origin": origin}))',
       "",
     ].join("\n");
 
@@ -568,38 +584,94 @@ export const installIpcHandlers = (
 
       child.on("exit", (code: number) => {
         cleanupProbe();
-        if (code === 0) {
-          let version: string | undefined;
-          try {
-            version = JSON.parse(stdoutBuf.trim()).version;
-          } catch {
-            // ASGI app built but version line unparseable — still "ready".
-          }
-          // Packaged app: the backend must EXACTLY match the version this app is
-          // pinned to (alpha discipline — no mixing with other/escaped versions).
-          // A mismatch is "not ready" so the UI can offer to install the exact
-          // partner. Dev mode (unpacked) uses the local tree and is never gated.
-          if (!isDev && !meetsServerVersionRequirement(version)) {
-            send({
-              message: "requirements-missing",
-              version,
-              error:
-                `Installed ccp4i2 ${version || "(unknown)"} does not match the ` +
-                `version this app requires (${CCP4I2_REQUIRED_SERVER_VERSION}). ` +
-                `Click Install to set up the matching backend.`,
-            });
-            return;
-          }
-          send({
-            message: "requirements-exist",
-            version,
-          });
-        } else {
+        if (code !== 0) {
           send({
             message: "requirements-missing",
             error: errorOutput.trim() || `Process exited with code ${code}`,
           });
+          return;
         }
+        let info: any = {};
+        try {
+          info = JSON.parse(stdoutBuf.trim()) || {};
+        } catch {
+          // ASGI app built but info line unparseable — treat fields as unknown.
+        }
+        const version: string | undefined = info.version;
+        const editable = !!info.editable;
+        const origin: string | undefined = info.origin;
+
+        // Resolve a file:// origin (or plain path) to a canonical absolute path.
+        const toRealPath = (p?: string): string | null => {
+          if (!p) return null;
+          let abs = p;
+          if (p.startsWith("file:")) {
+            try {
+              abs = fileURLToPath(p);
+            } catch {
+              return null;
+            }
+          }
+          try {
+            return fs.realpathSync(path.resolve(abs));
+          } catch {
+            return path.resolve(abs);
+          }
+        };
+
+        if (isDev) {
+          // Dev (npm run start): require an EDITABLE install of THIS repo's
+          // server/. That guarantees ccp4-python runs the source the developer
+          // is editing, with its dependencies present. A regular wheel, an
+          // editable install of a different checkout, or nothing all block — and
+          // the Install button runs `pip install -e <server>` to satisfy it.
+          const expected = toRealPath(serverCwd);
+          const got = toRealPath(origin);
+          if (!editable || !expected || !got || got !== expected) {
+            send({
+              message: "requirements-missing",
+              version,
+              error: !editable
+                ? `ccp4i2 is not an editable install of the server directory. ` +
+                  `Dev mode runs your local source — install it editable ` +
+                  `(pip install -e ${serverCwd}) or click Install.`
+                : `ccp4i2 is an editable install of ${got || origin}, but this ` +
+                  `dev build expects the server directory at ${expected}. ` +
+                  `Re-install it editable from there (or click Install).`,
+            });
+            return;
+          }
+          send({ message: "requirements-exist", version });
+          return;
+        }
+
+        // Packaged: require a REGULAR (non-editable) install of the version this
+        // app is pinned to — no mixing with dev/editable trees or escaped/other
+        // versions (alpha discipline). The UI then offers to install the exact
+        // partner wheel.
+        if (editable) {
+          send({
+            message: "requirements-missing",
+            version,
+            error:
+              `ccp4i2 is a development (editable) install; this build needs the ` +
+              `packaged ccp4i2 ${CCP4I2_REQUIRED_SERVER_VERSION}. Click Install ` +
+              `to set up the matching backend.`,
+          });
+          return;
+        }
+        if (!meetsServerVersionRequirement(version)) {
+          send({
+            message: "requirements-missing",
+            version,
+            error:
+              `Installed ccp4i2 ${version || "(unknown)"} does not match the ` +
+              `version this app requires (${CCP4I2_REQUIRED_SERVER_VERSION}). ` +
+              `Click Install to set up the matching backend.`,
+          });
+          return;
+        }
+        send({ message: "requirements-exist", version });
       });
 
       child.on("error", (error: Error) => {
