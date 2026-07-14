@@ -22,15 +22,41 @@ import os from "os";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
-// On modern Linux (kernel 6.x + AppArmor), unprivileged user namespaces are
-// restricted by default, which the Chromium SUID sandbox needs. Inside an
-// AppImage this makes the very first launch hard-crash with
-// "The SUID sandbox helper binary was found, but is not configured correctly".
-// Disabling the sandbox here avoids forcing users to weaken kernel security
-// (sysctl kernel.apparmor_restrict_unprivileged_userns=0) just to start the app.
-// Only applied on Linux — macOS/Windows keep their working sandbox.
+// On SOME modern Linux (kernel 6.x + AppArmor), unprivileged user namespaces are
+// restricted, which the Chromium SUID sandbox needs. Inside an AppImage (whose
+// chrome-sandbox helper isn't setuid-root) that makes the very first launch
+// hard-crash with "The SUID sandbox helper binary was found, but is not
+// configured correctly" — the exact case the sysctl
+// kernel.apparmor_restrict_unprivileged_userns=0 works around.
+//
+// But disabling the sandbox is NOT free: with --no-sandbox Chromium falls back
+// to a /dev/shm-based shared-memory path that itself fails on some setups (FATAL
+// in platform_shared_memory_region_posix → blank white window). So applying
+// --no-sandbox UNCONDITIONALLY on Linux (as a12–a14 did) broke machines whose
+// sandbox worked perfectly well.
+//
+// Fix: only disable the sandbox when the machine actually has the restriction
+// that would otherwise crash it — i.e. apparmor_restrict_unprivileged_userns == 1.
+// Machines without it keep their working sandbox untouched (restoring a11
+// behaviour for them). When we DO disable it, also route shared memory off
+// /dev/shm so the no-sandbox path can't blank-window.
 if (process.platform === "linux") {
-  app.commandLine.appendSwitch("no-sandbox");
+  let userNsRestricted = false;
+  try {
+    userNsRestricted =
+      fs
+        .readFileSync(
+          "/proc/sys/kernel/apparmor_restrict_unprivileged_userns",
+          "utf8"
+        )
+        .trim() === "1";
+  } catch {
+    // File absent (older kernel / no AppArmor) → the sandbox works; leave it on.
+  }
+  if (userNsRestricted) {
+    app.commandLine.appendSwitch("no-sandbox");
+    app.commandLine.appendSwitch("disable-dev-shm-usage");
+  }
 }
 
 // Change the current working directory to the Resources folder
