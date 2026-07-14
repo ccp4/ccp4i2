@@ -487,8 +487,14 @@ export const installIpcHandlers = (
   // verdict — including the packaged version-floor gate — is computed in exactly
   // one place. `send` is event.reply / event.sender.send (same target).
   const runRequirementsProbe = (send: (payload: any) => void) => {
-    const projectRoot = store.get("projectRoot") || "";
-    const CCP4Dir = store.get("CCP4Dir") || "";
+    // Resolve CCP4Dir/projectRoot the SAME way getConfigResponse and
+    // start-uvicorn do: shared preferences file first (a fresh packaged app may
+    // know the CCP4 dir only from ~/.ccp4i2/preferences.json — written by a
+    // prior session or the CLI — with an empty electron-store), else the store.
+    // Using the store alone made the config page show a valid Python while the
+    // probe reported "Python not found".
+    const projectRoot = getProjectRoot();
+    const CCP4Dir = loadPreferences().ccp4Dir || store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
 
     // Validate that the executable exists before spawning
@@ -702,8 +708,12 @@ export const installIpcHandlers = (
   });
 
   ipcMain.on("install-requirements", (event, _config) => {
-    const projectRoot = store.get("projectRoot") || "";
-    const CCP4Dir = store.get("CCP4Dir") || "";
+    // Same canonical CCP4Dir/projectRoot resolution as the probe and
+    // getConfigResponse (preferences file first, store fallback) — otherwise a
+    // fresh packaged app whose CCP4 dir lives only in ~/.ccp4i2/preferences.json
+    // fails the install with "Python not found" despite a valid config page.
+    const projectRoot = getProjectRoot();
+    const CCP4Dir = loadPreferences().ccp4Dir || store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
 
     if (!pythonPath) {
