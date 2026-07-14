@@ -57,10 +57,25 @@ export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (
     mutateDigest,
   ]);
 
-  // Auto-process files when selected
+  // Auto-process files when selected.
+  //
+  // processFirstFile is async; previously it was fired here un-awaited and with
+  // no error handler, so ANY failure (file read, upload POST, digest fetch) was
+  // silently swallowed — the file picker appeared to do nothing at all, with no
+  // console message. Attach a catch so the failure is at least visible/diagnosable
+  // and the component is left in a clean state to retry.
   useEffect(() => {
-    if (selectedFiles && processFirstFile) processFirstFile();
-  }, [selectedFiles, processFirstFile]);
+    if (selectedFiles && processFirstFile) {
+      processFirstFile().catch((err) => {
+        console.error(
+          `File upload failed for ${itemName} ` +
+            `(${selectedFiles?.[0]?.name ?? "unknown file"}):`,
+          err
+        );
+        setSelectedFiles(null);
+      });
+    }
+  }, [selectedFiles, processFirstFile, itemName]);
 
   const isVisible = useMemo(
     () =>
