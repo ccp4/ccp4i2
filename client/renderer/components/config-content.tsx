@@ -202,6 +202,10 @@ export const ConfigContent: React.FC = () => {
 
   const onInstallRequirements = () => {
     if (window.electronAPI) {
+      // Starting an install intercepts any running countdown for this session
+      // (without persisting auto-launch off) so we never enter mid-pip-install.
+      setAutoLaunchCancelled(true);
+      setCountdown(null);
       setInstallProgress({ isInstalling: true, output: [], status: "started" });
       window.electronAPI.sendMessage("install-requirements", {
         ...config,
@@ -235,16 +239,22 @@ export const ConfigContent: React.FC = () => {
     !!serverVersion &&
     norm(serverVersion) !== norm(requiredVersion);
 
-  // Ready to enter when the venv exists and requirements are present (or dev).
+  // Ready to enter when the venv exists AND the backend actually imports. Dev
+  // mode relaxes only the *version match* (handled in the requirements probe —
+  // it never version-gates in dev), NOT the existence of the backend: with
+  // nothing installed the probe fails and Django can't even start (e.g.
+  // ModuleNotFoundError: corsheaders), so "nothing installed" is never ready,
+  // dev or not. requirementsExist already encodes "importable, version-relaxed
+  // in dev", so gate on it directly.
   const isReady =
-    config && hasElectron && existingFiles?.venv_python && (devMode || requirementsExist);
+    config && hasElectron && existingFiles?.venv_python && requirementsExist;
 
   // What still needs doing, in the user's words.
   const blockers: string[] = [];
   if (config && hasElectron) {
     if (!existingFiles?.CCP4Dir) blockers.push("Locate your CCP4 installation");
     if (!existingFiles?.venv_python) blockers.push("A Python environment is missing");
-    if (!devMode && !requirementsExist)
+    if (!requirementsExist)
       blockers.push("Install the CCP4i2 backend into your CCP4 environment");
   }
 
@@ -256,9 +266,15 @@ export const ConfigContent: React.FC = () => {
   // Auto-launch preference (persisted in the electron store; on by default).
   const autoLaunchPref = config?.autoLaunch !== false;
   // The countdown is "armed" only when setup is complete, we're not already
-  // launching, the preference is on, and the user hasn't cancelled this round.
+  // launching or installing, the preference is on, and the user hasn't
+  // cancelled this round.
   const autoLaunchArmed =
-    !!isReady && hasElectron && !launching && autoLaunchPref && !autoLaunchCancelled;
+    !!isReady &&
+    hasElectron &&
+    !launching &&
+    !installProgress.isInstalling &&
+    autoLaunchPref &&
+    !autoLaunchCancelled;
 
   // Run the countdown while armed; disarming (cancel, launch, config change)
   // clears it. Uses functional updates so the interval closure stays valid.
