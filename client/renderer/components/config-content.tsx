@@ -39,6 +39,9 @@ import { useTheme } from "../theme/theme-provider";
  *   the setup section opens itself and shows exactly what to fix.
  * - No teams / auth / accounts UI: this is a single-user desktop tool.
  */
+// Grace period (seconds) before auto-entering CCP4i2 once setup is complete.
+const AUTO_LAUNCH_SECONDS = 5;
+
 export const ConfigContent: React.FC = () => {
   const { setTheme } = useTheme();
   const [config, setConfig] = useState<any | null>(null);
@@ -50,6 +53,11 @@ export const ConfigContent: React.FC = () => {
   const { setMessage } = usePopcorn();
   const [launching, setLaunching] = useState(false);
   const [setupOpen, setSetupOpen] = useState(false);
+  // Auto-launch countdown: when setup is complete, count down then enter CCP4i2
+  // automatically, unless the user intercepts. `countdown` is null when idle.
+  const [countdown, setCountdown] = useState<number | null>(null);
+  // Set when the user cancels this launch's countdown, so it doesn't re-arm.
+  const [autoLaunchCancelled, setAutoLaunchCancelled] = useState(false);
   const [installProgress, setInstallProgress] = useState<{
     isInstalling: boolean;
     output: string[];
@@ -176,6 +184,22 @@ export const ConfigContent: React.FC = () => {
     }
   };
 
+  // Intercept the countdown: stay on this screen and turn auto-launch off for
+  // good (the Setup switch can turn it back on). Enter now stays available.
+  const onCancelAutoLaunch = () => {
+    setAutoLaunchCancelled(true);
+    setCountdown(null);
+    window.electronAPI?.sendMessage("set-auto-launch", { enabled: false });
+  };
+
+  // Setup switch: persist the preference and, when re-enabling, allow the
+  // countdown to re-arm this session.
+  const onToggleAutoLaunch = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const enabled = ev.target.checked;
+    if (enabled) setAutoLaunchCancelled(false);
+    window.electronAPI?.sendMessage("set-auto-launch", { enabled });
+  };
+
   const onInstallRequirements = () => {
     if (window.electronAPI) {
       setInstallProgress({ isInstalling: true, output: [], status: "started" });
@@ -229,6 +253,33 @@ export const ConfigContent: React.FC = () => {
     if (config && hasElectron && !isReady) setSetupOpen(true);
   }, [config, hasElectron, isReady]);
 
+  // Auto-launch preference (persisted in the electron store; on by default).
+  const autoLaunchPref = config?.autoLaunch !== false;
+  // The countdown is "armed" only when setup is complete, we're not already
+  // launching, the preference is on, and the user hasn't cancelled this round.
+  const autoLaunchArmed =
+    !!isReady && hasElectron && !launching && autoLaunchPref && !autoLaunchCancelled;
+
+  // Run the countdown while armed; disarming (cancel, launch, config change)
+  // clears it. Uses functional updates so the interval closure stays valid.
+  useEffect(() => {
+    if (!autoLaunchArmed) {
+      setCountdown(null);
+      return;
+    }
+    setCountdown(AUTO_LAUNCH_SECONDS);
+    const id = setInterval(() => {
+      setCountdown((c) => (c === null ? null : c <= 1 ? 0 : c - 1));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [autoLaunchArmed]);
+
+  // Enter automatically the instant the countdown reaches zero.
+  useEffect(() => {
+    if (countdown === 0 && autoLaunchArmed) onEnter();
+    // onEnter flips `launching`, which disarms and stops any re-fire.
+  }, [countdown, autoLaunchArmed]);
+
   return (
     <Stack spacing={2}>
       {/* Primary action — enter, or tell the user what's blocking it. */}
@@ -246,22 +297,57 @@ export const ConfigContent: React.FC = () => {
                 This app expects ccp4i2 {requiredVersion}
               </Typography>
             )}
-            <Button
-              variant="contained"
-              size="large"
-              startIcon={
-                launching ? (
-                  <CircularProgress size={18} color="inherit" />
-                ) : (
-                  <RocketLaunch />
-                )
-              }
-              onClick={onEnter}
-              disabled={launching}
-              sx={{ minWidth: 220 }}
-            >
-              {launching ? "Starting…" : "Enter CCP4i2"}
-            </Button>
+            {countdown !== null && (
+              <Typography variant="body2" fontWeight={600}>
+                Entering CCP4i2 automatically in {countdown}s…
+              </Typography>
+            )}
+            {countdown !== null ? (
+              <Stack direction="row" spacing={1.5}>
+                <Button
+                  variant="contained"
+                  size="large"
+                  startIcon={
+                    launching ? (
+                      <CircularProgress size={18} color="inherit" />
+                    ) : (
+                      <RocketLaunch />
+                    )
+                  }
+                  onClick={onEnter}
+                  disabled={launching}
+                  sx={{ minWidth: 160 }}
+                >
+                  {launching ? "Starting…" : "Enter now"}
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  startIcon={<Cancel />}
+                  onClick={onCancelAutoLaunch}
+                  disabled={launching}
+                >
+                  Cancel
+                </Button>
+              </Stack>
+            ) : (
+              <Button
+                variant="contained"
+                size="large"
+                startIcon={
+                  launching ? (
+                    <CircularProgress size={18} color="inherit" />
+                  ) : (
+                    <RocketLaunch />
+                  )
+                }
+                onClick={onEnter}
+                disabled={launching}
+                sx={{ minWidth: 220 }}
+              >
+                {launching ? "Starting…" : "Enter CCP4i2"}
+              </Button>
+            )}
           </Stack>
         </Paper>
       ) : (
@@ -355,10 +441,27 @@ export const ConfigContent: React.FC = () => {
 
               <Stack
                 direction="row"
-                spacing={2}
+                spacing={1}
                 alignItems="center"
                 justifyContent="space-between"
                 sx={{ pt: 1 }}
+              >
+                <Typography variant="body2">
+                  Launch automatically when ready
+                </Typography>
+                <Switch
+                  size="small"
+                  checked={autoLaunchPref}
+                  onChange={onToggleAutoLaunch}
+                  disabled={!hasElectron}
+                />
+              </Stack>
+
+              <Stack
+                direction="row"
+                spacing={2}
+                alignItems="center"
+                justifyContent="space-between"
               >
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="body2">Theme</Typography>

@@ -392,6 +392,14 @@ export const installIpcHandlers = (
     event.reply("message-from-main", getConfigResponse());
   });
 
+  // Persist whether the launch page auto-enters CCP4i2 (after a countdown) once
+  // setup is complete. Explicit boolean (not a toggle) so the countdown's
+  // Cancel and the Setup switch can both set it idempotently.
+  ipcMain.on("set-auto-launch", (event, data) => {
+    store.set("autoLaunch", !!data?.enabled);
+    event.reply("message-from-main", getConfigResponse());
+  });
+
   // IPC communication to set theme mode
   ipcMain.on("set-theme-mode", (event, data) => {
     if (data.theme !== "light" && data.theme !== "dark") {
