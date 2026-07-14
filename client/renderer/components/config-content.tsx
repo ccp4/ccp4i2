@@ -231,9 +231,14 @@ export const ConfigContent: React.FC = () => {
   // installed — a mismatch (e.g. installed 3.1.0a1 under a 3.1.0a3 app) is then
   // obvious rather than silent.
   const requiredVersion: string | undefined = config?.requiredServerVersion;
+  // Unpacked/dev build (npm run start): the backend must be an EDITABLE install
+  // of server/, not the pinned wheel — so the version reference doesn't apply.
+  // This mirrors the main-process probe's isDev gate (not the devMode toggle).
+  const serverIsDev = !!config?.isDev;
   const norm = (v?: string | null) =>
     (v || "").trim().toLowerCase().replace(/[-_]/g, "");
   const versionMismatch =
+    !serverIsDev &&
     !!requirementsExist &&
     !!requiredVersion &&
     !!serverVersion &&
@@ -255,7 +260,11 @@ export const ConfigContent: React.FC = () => {
     if (!existingFiles?.CCP4Dir) blockers.push("Locate your CCP4 installation");
     if (!existingFiles?.venv_python) blockers.push("A Python environment is missing");
     if (!requirementsExist)
-      blockers.push("Install the CCP4i2 backend into your CCP4 environment");
+      blockers.push(
+        serverIsDev
+          ? "Install the CCP4i2 backend as an editable install of your server directory"
+          : "Install the CCP4i2 backend into your CCP4 environment"
+      );
   }
 
   // Open the setup section automatically when something needs attention.
@@ -425,24 +434,31 @@ export const ConfigContent: React.FC = () => {
                 label="ccp4i2 backend"
                 value={
                   !requirementsExist
-                    ? requiredVersion
-                      ? `Not installed — needs ${requiredVersion}`
-                      : "Not installed"
+                    ? serverIsDev
+                      ? "Not installed — needs an editable install of server/"
+                      : requiredVersion
+                        ? `Not installed — needs ${requiredVersion}`
+                        : "Not installed"
                     : versionMismatch
                       ? `Installed ${serverVersion}, but this app needs ${requiredVersion}`
                       : serverVersion
-                        ? `ccp4i2 ${serverVersion}`
+                        ? serverIsDev
+                          ? `ccp4i2 ${serverVersion} (editable)`
+                          : `ccp4i2 ${serverVersion}`
                         : "Installed"
                 }
                 action={
                   hasElectron
                     ? {
-                        // Name the exact version the button will install, so the
-                        // action is unambiguous (e.g. "Install 3.1.0a3").
+                        // Name what the button will install so the action is
+                        // unambiguous: the exact version in production
+                        // (e.g. "Install 3.1.0a3"), an editable install in dev.
                         label: !requirementsExist || versionMismatch
-                          ? requiredVersion
-                            ? `Install ${requiredVersion}`
-                            : "Install"
+                          ? serverIsDev
+                            ? "Install (editable)"
+                            : requiredVersion
+                              ? `Install ${requiredVersion}`
+                              : "Install"
                           : "Reinstall",
                         onClick: onInstallRequirements,
                         variant:

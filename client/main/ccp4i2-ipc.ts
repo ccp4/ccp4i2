@@ -218,6 +218,11 @@ export const installIpcHandlers = (
     // show what it EXPECTS alongside what's installed — making a mismatch (e.g.
     // an installed 3.1.0a1 under a 3.1.0a3 app) obvious rather than silent.
     config.requiredServerVersion = CCP4I2_REQUIRED_SERVER_VERSION;
+    // Whether this is an unpacked/dev build (!app.isPackaged) — the same flag
+    // the requirements probe gates on. The launch page uses it to speak the
+    // right language: dev needs an EDITABLE install of server/, not the pinned
+    // wheel. Distinct from the user-toggleable devMode store flag.
+    config.isDev = isDev;
     return {
       message: "get-config",
       status: "Success",
