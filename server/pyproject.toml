@@ -97,6 +97,15 @@ i2run = "ccp4i2.cli.i2run.main:main"
 [tool.setuptools.dynamic]
 version = { attr = "ccp4i2.__version__" }
 
+# Pin package discovery to the ccp4i2 tree. Without this, setuptools falls back
+# to flat-layout auto-discovery, which sweeps up any stray top-level dir in a
+# working checkout (e.g. job_N job outputs) and fails an editable install with
+# "Multiple top-level packages discovered in a flat-layout". Clean CI only ever
+# contains ccp4i2*, so this is a no-op for the packaged wheel — it just hardens
+# the dev/editable path against a polluted tree.
+[tool.setuptools.packages.find]
+include = ["ccp4i2*"]
+
 [tool.setuptools.package-data]
 ccp4i2 = ["**/*"]
 

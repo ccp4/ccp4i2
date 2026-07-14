@@ -141,6 +141,7 @@ export const store = new Store<StoreSchema>({
     zoomLevel: 0,
     CCP4I2_PROJECTS_DIR: getProjectsDir(),
     theme: "dark",
+    autoLaunch: true,
   },
 });
 

@@ -218,6 +218,11 @@ export const installIpcHandlers = (
     // show what it EXPECTS alongside what's installed — making a mismatch (e.g.
     // an installed 3.1.0a1 under a 3.1.0a3 app) obvious rather than silent.
     config.requiredServerVersion = CCP4I2_REQUIRED_SERVER_VERSION;
+    // Whether this is an unpacked/dev build (!app.isPackaged) — the same flag
+    // the requirements probe gates on. The launch page uses it to speak the
+    // right language: dev needs an EDITABLE install of server/, not the pinned
+    // wheel. Distinct from the user-toggleable devMode store flag.
+    config.isDev = isDev;
     return {
       message: "get-config",
       status: "Success",
@@ -392,6 +397,14 @@ export const installIpcHandlers = (
     event.reply("message-from-main", getConfigResponse());
   });
 
+  // Persist whether the launch page auto-enters CCP4i2 (after a countdown) once
+  // setup is complete. Explicit boolean (not a toggle) so the countdown's
+  // Cancel and the Setup switch can both set it idempotently.
+  ipcMain.on("set-auto-launch", (event, data) => {
+    store.set("autoLaunch", !!data?.enabled);
+    event.reply("message-from-main", getConfigResponse());
+  });
+
   // IPC communication to set theme mode
   ipcMain.on("set-theme-mode", (event, data) => {
     if (data.theme !== "light" && data.theme !== "dark") {
@@ -474,8 +487,14 @@ export const installIpcHandlers = (
   // verdict — including the packaged version-floor gate — is computed in exactly
   // one place. `send` is event.reply / event.sender.send (same target).
   const runRequirementsProbe = (send: (payload: any) => void) => {
-    const projectRoot = store.get("projectRoot") || "";
-    const CCP4Dir = store.get("CCP4Dir") || "";
+    // Resolve CCP4Dir/projectRoot the SAME way getConfigResponse and
+    // start-uvicorn do: shared preferences file first (a fresh packaged app may
+    // know the CCP4 dir only from ~/.ccp4i2/preferences.json — written by a
+    // prior session or the CLI — with an empty electron-store), else the store.
+    // Using the store alone made the config page show a valid Python while the
+    // probe reported "Python not found".
+    const projectRoot = getProjectRoot();
+    const CCP4Dir = loadPreferences().ccp4Dir || store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
 
     // Validate that the executable exists before spawning
@@ -502,10 +521,26 @@ export const installIpcHandlers = (
     // spawned with shell:true, and ccp4-python is a .bat that historically
     // wanted a shell. A plain file path is a single clean argv that needs no
     // shell on any platform — matching the (working, shell-less) install spawn.
+    // Also report HOW ccp4i2 is installed, via PEP 610 direct_url.json in the
+    // dist-info: editable installs carry dir_info.editable == true and a
+    // url == file://…/server; a wheel install has neither. The gate below uses
+    // this to require an editable install of *this* server/ in dev, and a
+    // regular version-matched wheel in production.
     const probeSource = [
       "import json, ccp4i2",
       "from ccp4i2.config.asgi import application",
-      'print(json.dumps({"version": ccp4i2.__version__}))',
+      "import importlib.metadata as _md",
+      "editable = False",
+      "origin = None",
+      "try:",
+      '    _du = _md.distribution("ccp4i2").read_text("direct_url.json")',
+      "    if _du:",
+      "        _d = json.loads(_du)",
+      '        origin = _d.get("url")',
+      '        editable = bool((_d.get("dir_info") or {}).get("editable"))',
+      "except Exception:",
+      "    pass",
+      'print(json.dumps({"version": getattr(ccp4i2, "__version__", None), "editable": editable, "origin": origin}))',
       "",
     ].join("\n");
 
@@ -560,38 +595,94 @@ export const installIpcHandlers = (
 
       child.on("exit", (code: number) => {
         cleanupProbe();
-        if (code === 0) {
-          let version: string | undefined;
-          try {
-            version = JSON.parse(stdoutBuf.trim()).version;
-          } catch {
-            // ASGI app built but version line unparseable — still "ready".
-          }
-          // Packaged app: the backend must EXACTLY match the version this app is
-          // pinned to (alpha discipline — no mixing with other/escaped versions).
-          // A mismatch is "not ready" so the UI can offer to install the exact
-          // partner. Dev mode (unpacked) uses the local tree and is never gated.
-          if (!isDev && !meetsServerVersionRequirement(version)) {
-            send({
-              message: "requirements-missing",
-              version,
-              error:
-                `Installed ccp4i2 ${version || "(unknown)"} does not match the ` +
-                `version this app requires (${CCP4I2_REQUIRED_SERVER_VERSION}). ` +
-                `Click Install to set up the matching backend.`,
-            });
-            return;
-          }
-          send({
-            message: "requirements-exist",
-            version,
-          });
-        } else {
+        if (code !== 0) {
           send({
             message: "requirements-missing",
             error: errorOutput.trim() || `Process exited with code ${code}`,
           });
+          return;
         }
+        let info: any = {};
+        try {
+          info = JSON.parse(stdoutBuf.trim()) || {};
+        } catch {
+          // ASGI app built but info line unparseable — treat fields as unknown.
+        }
+        const version: string | undefined = info.version;
+        const editable = !!info.editable;
+        const origin: string | undefined = info.origin;
+
+        // Resolve a file:// origin (or plain path) to a canonical absolute path.
+        const toRealPath = (p?: string): string | null => {
+          if (!p) return null;
+          let abs = p;
+          if (p.startsWith("file:")) {
+            try {
+              abs = fileURLToPath(p);
+            } catch {
+              return null;
+            }
+          }
+          try {
+            return fs.realpathSync(path.resolve(abs));
+          } catch {
+            return path.resolve(abs);
+          }
+        };
+
+        if (isDev) {
+          // Dev (npm run start): require an EDITABLE install of THIS repo's
+          // server/. That guarantees ccp4-python runs the source the developer
+          // is editing, with its dependencies present. A regular wheel, an
+          // editable install of a different checkout, or nothing all block — and
+          // the Install button runs `pip install -e <server>` to satisfy it.
+          const expected = toRealPath(serverCwd);
+          const got = toRealPath(origin);
+          if (!editable || !expected || !got || got !== expected) {
+            send({
+              message: "requirements-missing",
+              version,
+              error: !editable
+                ? `ccp4i2 is not an editable install of the server directory. ` +
+                  `Dev mode runs your local source — install it editable ` +
+                  `(pip install -e ${serverCwd}) or click Install.`
+                : `ccp4i2 is an editable install of ${got || origin}, but this ` +
+                  `dev build expects the server directory at ${expected}. ` +
+                  `Re-install it editable from there (or click Install).`,
+            });
+            return;
+          }
+          send({ message: "requirements-exist", version });
+          return;
+        }
+
+        // Packaged: require a REGULAR (non-editable) install of the version this
+        // app is pinned to — no mixing with dev/editable trees or escaped/other
+        // versions (alpha discipline). The UI then offers to install the exact
+        // partner wheel.
+        if (editable) {
+          send({
+            message: "requirements-missing",
+            version,
+            error:
+              `ccp4i2 is a development (editable) install; this build needs the ` +
+              `packaged ccp4i2 ${CCP4I2_REQUIRED_SERVER_VERSION}. Click Install ` +
+              `to set up the matching backend.`,
+          });
+          return;
+        }
+        if (!meetsServerVersionRequirement(version)) {
+          send({
+            message: "requirements-missing",
+            version,
+            error:
+              `Installed ccp4i2 ${version || "(unknown)"} does not match the ` +
+              `version this app requires (${CCP4I2_REQUIRED_SERVER_VERSION}). ` +
+              `Click Install to set up the matching backend.`,
+          });
+          return;
+        }
+        send({ message: "requirements-exist", version });
       });
 
       child.on("error", (error: Error) => {
@@ -617,8 +708,12 @@ export const installIpcHandlers = (
   });
 
   ipcMain.on("install-requirements", (event, _config) => {
-    const projectRoot = store.get("projectRoot") || "";
-    const CCP4Dir = store.get("CCP4Dir") || "";
+    // Same canonical CCP4Dir/projectRoot resolution as the probe and
+    // getConfigResponse (preferences file first, store fallback) — otherwise a
+    // fresh packaged app whose CCP4 dir lives only in ~/.ccp4i2/preferences.json
+    // fails the install with "Python not found" despite a valid config page.
+    const projectRoot = getProjectRoot();
+    const CCP4Dir = loadPreferences().ccp4Dir || store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
 
     if (!pythonPath) {
@@ -698,8 +793,10 @@ export const installIpcHandlers = (
     // Build the install step(s), keyed strictly on app.isPackaged (isDev).
     //
     // Dev (unpacked): editable install of the local checkout so the developer's
-    // tree is what runs. `-e ./server` reads pyproject.toml and pulls deps
-    // normally — a dev .venv is clean, so the resolver works fine here.
+    // tree is what runs — but into the developer's ccp4-python, which carries the
+    // same stale pins / corrupt *.dist-info as any CCP4 build. So dev uses the
+    // same resolver-free two-step as packaged, with `-e server` in place of the
+    // wheel and the runtime lock read straight from the source tree (see below).
     //
     // Packaged: install into the user's ccp4-python. Those distros carry corrupt
     // *.dist-info that crashes pip's RESOLVER, so a normal `pip install ccp4i2`
@@ -713,12 +810,58 @@ export const installIpcHandlers = (
     // resolve its path via ccp4i2.__file__ after step 1. See that file's header.
     const runInstall = async (): Promise<void> => {
       if (isDev) {
-        const code = await runPipStep([
-          "-m", "pip", "install", "-e",
-          path.join(process.cwd(), "..", "server"),
-          "--verbose",
+        // Dev installs into the developer's ccp4-python (NOT a clean venv), so it
+        // hits the SAME hazards as packaged: stale CCP4 pins (Django 3.2 vs
+        // django-cors-headers>=4.2) and *.dist-info with no parseable Version. A
+        // naive `pip install -e server` runs the full resolver against those and
+        // fails. So mirror the packaged strategy — never invoke the resolver:
+        // repair metadata, install the package EDITABLE with --no-deps, then
+        // install the curated runtime lock with --ignore-installed. The lock
+        // sits in the source tree next to the package.
+        const serverDir = path.join(process.cwd(), "..", "server");
+        try {
+          const repairPath = path.join(os.tmpdir(), "ccp4i2-metadata-repair.py");
+          fs.writeFileSync(repairPath, REPAIR_METADATA_PY);
+          sendProgress("installing", `\nRepairing corrupt CCP4 Python package metadata (if any)…\n`);
+          await runPipStep([repairPath]);
+        } catch (e) {
+          sendProgress(
+            "installing",
+            `\n(metadata preflight skipped: ${(e as Error).message})\n`
+          );
+        }
+
+        // Uninstall any prior ccp4i2 first (as packaged does). Repeated installs
+        // into the same ccp4-python can leave a stale/partial ccp4i2 that shadows
+        // the editable one as a namespace package — importable, but with the real
+        // __init__.py (and __version__) never executed. A clean slate avoids that.
+        sendProgress("installing", `\nRemoving any previous ccp4i2…\n`);
+        await runPipStep(["-m", "pip", "uninstall", "-y", "ccp4i2"]);
+
+        sendProgress("installing", `\n[1/2] Installing ccp4i2 editable (no-deps)…\n`);
+        const codeEditable = await runPipStep([
+          "-m", "pip", "install", "--no-deps", "-e", serverDir, "--verbose",
         ]);
-        finish(code);
+        if (codeEditable !== 0) {
+          finish(codeEditable);
+          return;
+        }
+
+        const devLock = path.join(serverDir, "ccp4i2", "requirements-runtime.txt");
+        if (fs.existsSync(devLock)) {
+          sendProgress("installing", `\n[2/2] Installing dependencies from runtime lock…\n`);
+          const codeDeps = await runPipStep([
+            "-m", "pip", "install", "--no-deps", "--ignore-installed",
+            "-r", devLock, "--verbose",
+          ]);
+          finish(codeDeps);
+        } else {
+          sendProgress(
+            "installing",
+            `\n(no runtime lock at ${devLock}; skipping dependency step)\n`
+          );
+          finish(codeEditable);
+        }
         return;
       }
 
