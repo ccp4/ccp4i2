@@ -22,23 +22,21 @@ import os from "os";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
-// The AppImage's chrome-sandbox helper isn't setuid-root, so on kernels that
-// restrict unprivileged user namespaces (the modern-Ubuntu / AppArmor default)
-// the Chromium sandbox can't start and the app aborts on launch with
-// "The SUID sandbox helper binary was found, but is not configured correctly".
+// AppImage-only sandbox handling. An AppImage extracts to a FUSE mount in /tmp
+// and can't ship a setuid-root chrome-sandbox, so on kernels that restrict
+// unprivileged user namespaces (Ubuntu 24.04+ default) the Chromium sandbox
+// can't start and the app aborts with "The SUID sandbox helper binary ... not
+// configured correctly". We best-effort disable the sandbox and route shared
+// memory off /dev/shm here — but ONLY for the AppImage (detected via the
+// APPIMAGE env var the runtime sets), so the .deb keeps a FULL, working sandbox
+// with no flags. The .deb's postinst setuids chrome-sandbox + installs an
+// AppArmor userns profile, which is the proper fix for locked-down kernels.
 //
-// a12–a14 disabled the sandbox unconditionally (→ blank window from the
-// /dev/shm shared-memory fallback); a15 tried to gate it on
-// /proc/sys/kernel/apparmor_restrict_unprivileged_userns, but that detection
-// proved unreliable in the packaged AppImage (restricted machines still hit the
-// SUID crash — the switch never got applied). So: disable UNCONDITIONALLY on
-// Linux — for the AppImage format it's the only zero-privilege path — and pair
-// it with --disable-dev-shm-usage, which routes shared memory off /dev/shm (the
-// no-sandbox path otherwise depends on /dev/shm, which FATALs on some setups →
-// blank white window). It's app-scoped: other apps and the rest of the system
-// keep their sandbox. The sandbox-preserving fix is the .deb target (setuid
-// chrome-sandbox via its root install step); this flag pair is the AppImage tax.
-if (process.platform === "linux") {
+// Caveat: --no-sandbox is read by Chromium's zygote very early and appendSwitch
+// is not always honoured for it in a packaged AppImage; the reliable path for
+// restricted kernels is therefore the .deb, not the AppImage. --disable-dev-shm-
+// usage IS honoured and helps where the no-sandbox path trips over /dev/shm.
+if (process.platform === "linux" && process.env.APPIMAGE) {
   app.commandLine.appendSwitch("no-sandbox");
   app.commandLine.appendSwitch("disable-dev-shm-usage");
 }

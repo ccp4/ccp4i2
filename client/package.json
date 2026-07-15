@@ -191,15 +191,25 @@
       "createStartMenuShortcut": true
     },
     "linux": {
-      "target": {
-        "target": "AppImage",
-        "arch": [
-          "x64"
-        ]
-      },
-      "executableArgs": [
-        "--no-sandbox"
-      ]
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Science"
+    },
+    "deb": {
+      "afterInstall": "packaging/deb/postinst.sh",
+      "afterRemove": "packaging/deb/postrm.sh"
     }
   },
   "overrides": {
