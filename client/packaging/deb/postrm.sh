@@ -2,14 +2,17 @@
 # Runs as root on remove/purge. Unload and remove the AppArmor profile the
 # postinst installed. (chrome-sandbox lives under /opt and is removed with the
 # package, so nothing to undo there.)
+#
+# NOTE: no ${...} shell syntax — electron-builder macro-substitutes this file
+# and a bare ${VAR} fails the build ("Macro VAR is not defined"). Use $VAR.
 set -e
 
-PROFILE="/etc/apparmor.d/ccp4i2-django"
-if [ -f "${PROFILE}" ]; then
+PROFILE=/etc/apparmor.d/ccp4i2-django
+if [ -f "$PROFILE" ]; then
   if command -v apparmor_parser >/dev/null 2>&1; then
-    apparmor_parser -R "${PROFILE}" 2>/dev/null || true
+    apparmor_parser -R "$PROFILE" 2>/dev/null || true
   fi
-  rm -f "${PROFILE}"
+  rm -f "$PROFILE"
 fi
 
 exit 0
