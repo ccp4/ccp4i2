@@ -166,7 +166,9 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-07-01' = {
       imageReference: {
         publisher: 'Canonical'
         offer: 'ubuntu-24_04-lts'
-        sku: 'server-gen2'
+        // For the 24.04 offer, 'server' is the Gen2 image ('server-gen1' is Gen1);
+        // the old '<ver>-lts-gen2' convention doesn't apply here.
+        sku: 'server'
         version: 'latest'
       }
       osDisk: {
