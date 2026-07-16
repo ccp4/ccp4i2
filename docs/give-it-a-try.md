@@ -102,6 +102,45 @@ that restrict the sandbox the AppImage disables it automatically — you do **no
 need `sudo sysctl …` or any other system-wide change. (If you're on such a kernel
 and want the sandbox kept, use the `.deb`.)
 
+<details>
+<summary><strong>Why the <code>.deb</code>? (and why the AppImage struggles on hardened kernels)</strong></summary>
+
+Chromium — which Electron, and therefore this app, is built on — refuses to run
+its rendering processes unless it can put them in a **sandbox**. It can build
+that sandbox one of two ways, and it needs *one* of them:
+
+1. a small helper (`chrome-sandbox`) that is **allowed to run as root** (the
+   "SUID sandbox"), or
+2. **unprivileged user namespaces** — a kernel feature letting ordinary programs
+   create isolated environments without being root.
+
+Modern "locked-down" distros (Ubuntu 24.04+) **switch off option 2** by default
+for security (`kernel.apparmor_restrict_unprivileged_userns=1`). That leaves the
+app needing option 1 — a root-privileged helper — and here the packaging format
+is decisive:
+
+| | AppImage | `.deb` |
+|---|---|---|
+| Runs an install step **as root**? | No — it's a self-mounting single file | Yes — `dpkg`/`apt` runs its `postinst` as root |
+| Can make `chrome-sandbox` setuid-root? | No — it unpacks to a `nosuid` FUSE mount in `/tmp`, and nothing runs as root to `chown`/`chmod` it | **Yes** — `postinst` does `chown root:root` + `chmod 4755` |
+| SUID sandbox available? | No | **Yes** (the helper is privileged, so it needs no unprivileged userns) |
+| Namespace sandbox available on 24.04+? | No (kernel restriction) | Not needed |
+| Result on a locked-down kernel | Sandbox can't start → crash; we fall back to `--no-sandbox` | **Full sandbox, no flags, no user action** |
+
+The load-bearing sentence: **the sandbox needs a privilege it can obtain only two
+ways; the locked-down kernel removes one of them, and only a package with a root
+install step can supply the other.** An AppImage has no root install step; a
+`.deb` does.
+
+The proof it works: **Google Chrome and VS Code run fine on these same kernels**
+— because they ship as `.deb`s whose installer does this exact setuid step. Our
+`.deb` simply does the same (see `client/packaging/deb/postinst.sh`). So the
+AppImage isn't broken so much as structurally unable to sandbox on a hardened
+desktop; the `.deb` is the right tool, and the AppImage remains a portable
+fallback for other distros or where you can't `sudo`.
+
+</details>
+
 ## 3. Launch and point it at CCP4
 
 Start the app. It auto-detects CCP4 in the usual locations; if it can't find
