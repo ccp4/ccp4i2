@@ -4,9 +4,9 @@
 # (Ubuntu 24.04+ restricts unprivileged user namespaces by default) — so the
 # .deb needs NO --no-sandbox and keeps full sandboxing.
 #
-# NOTE: electron-builder runs its own ${macro} substitution over this file, so it
-# must contain NO ${...} shell syntax — use brace-less $VAR only. A bare ${VAR}
-# here fails the build with "Macro VAR is not defined".
+# NOTE: electron-builder macro-substitutes dollar-brace tokens over this WHOLE
+# file (comments included), so it must contain no braced shell variables — use
+# brace-less $VAR only. A braced variable fails the build ("Macro X not defined").
 set -e
 
 APP_DIR=/opt/ccp4i2-django

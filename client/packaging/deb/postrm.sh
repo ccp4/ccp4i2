@@ -3,8 +3,8 @@
 # postinst installed. (chrome-sandbox lives under /opt and is removed with the
 # package, so nothing to undo there.)
 #
-# NOTE: no ${...} shell syntax — electron-builder macro-substitutes this file
-# and a bare ${VAR} fails the build ("Macro VAR is not defined"). Use $VAR.
+# NOTE: no braced shell variables — electron-builder macro-substitutes this file
+# (comments included) and a braced variable fails the build. Use brace-less $VAR.
 set -e
 
 PROFILE=/etc/apparmor.d/ccp4i2-django
