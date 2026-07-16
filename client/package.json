@@ -9,6 +9,7 @@
   },
   "license": "LGPL-3.0-or-later",
   "description": "CCP4i2 Electron application",
+  "homepage": "https://www.ccp4.ac.uk/",
   "scripts": {
     "copy-rdkit-minimal": "copyfiles -u 4 node_modules/@rdkit/rdkit/dist/* renderer/public/",
     "copy-moorhen-root": "copyfiles -u 2 -e '**/*.wasm' -e '**/*.wasm.map' node_modules/moorhen/public/* renderer/",
