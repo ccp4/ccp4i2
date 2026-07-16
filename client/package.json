@@ -9,6 +9,7 @@
   },
   "license": "LGPL-3.0-or-later",
   "description": "CCP4i2 Electron application",
+  "homepage": "https://github.com/ccp4/ccp4i2",
   "scripts": {
     "copy-rdkit-minimal": "copyfiles -u 4 node_modules/@rdkit/rdkit/dist/* renderer/public/",
     "copy-moorhen-root": "copyfiles -u 2 -e '**/*.wasm' -e '**/*.wasm.map' node_modules/moorhen/public/* renderer/",
@@ -31,7 +32,7 @@
     "export:web": "cross-env BUILD_TARGET=web npm run build:web && cd renderer && next export",
     "package-mac": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder",
     "package-win": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --win",
-    "package-linux-x64": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage --x64",
+    "package-linux-x64": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage deb --x64",
     "package-linux-arm64": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage --arm64",
     "package-linux-all": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage --x64 --arm64",
     "test": "vitest run",
@@ -191,15 +192,25 @@
       "createStartMenuShortcut": true
     },
     "linux": {
-      "target": {
-        "target": "AppImage",
-        "arch": [
-          "x64"
-        ]
-      },
-      "executableArgs": [
-        "--no-sandbox"
-      ]
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Science"
+    },
+    "deb": {
+      "afterInstall": "packaging/deb/postinst.sh",
+      "afterRemove": "packaging/deb/postrm.sh"
     }
   },
   "overrides": {

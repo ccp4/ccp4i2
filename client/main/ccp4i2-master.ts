@@ -22,41 +22,23 @@ import os from "os";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
-// On SOME modern Linux (kernel 6.x + AppArmor), unprivileged user namespaces are
-// restricted, which the Chromium SUID sandbox needs. Inside an AppImage (whose
-// chrome-sandbox helper isn't setuid-root) that makes the very first launch
-// hard-crash with "The SUID sandbox helper binary was found, but is not
-// configured correctly" — the exact case the sysctl
-// kernel.apparmor_restrict_unprivileged_userns=0 works around.
+// AppImage-only sandbox handling. An AppImage extracts to a FUSE mount in /tmp
+// and can't ship a setuid-root chrome-sandbox, so on kernels that restrict
+// unprivileged user namespaces (Ubuntu 24.04+ default) the Chromium sandbox
+// can't start and the app aborts with "The SUID sandbox helper binary ... not
+// configured correctly". We best-effort disable the sandbox and route shared
+// memory off /dev/shm here — but ONLY for the AppImage (detected via the
+// APPIMAGE env var the runtime sets), so the .deb keeps a FULL, working sandbox
+// with no flags. The .deb's postinst setuids chrome-sandbox + installs an
+// AppArmor userns profile, which is the proper fix for locked-down kernels.
 //
-// But disabling the sandbox is NOT free: with --no-sandbox Chromium falls back
-// to a /dev/shm-based shared-memory path that itself fails on some setups (FATAL
-// in platform_shared_memory_region_posix → blank white window). So applying
-// --no-sandbox UNCONDITIONALLY on Linux (as a12–a14 did) broke machines whose
-// sandbox worked perfectly well.
-//
-// Fix: only disable the sandbox when the machine actually has the restriction
-// that would otherwise crash it — i.e. apparmor_restrict_unprivileged_userns == 1.
-// Machines without it keep their working sandbox untouched (restoring a11
-// behaviour for them). When we DO disable it, also route shared memory off
-// /dev/shm so the no-sandbox path can't blank-window.
-if (process.platform === "linux") {
-  let userNsRestricted = false;
-  try {
-    userNsRestricted =
-      fs
-        .readFileSync(
-          "/proc/sys/kernel/apparmor_restrict_unprivileged_userns",
-          "utf8"
-        )
-        .trim() === "1";
-  } catch {
-    // File absent (older kernel / no AppArmor) → the sandbox works; leave it on.
-  }
-  if (userNsRestricted) {
-    app.commandLine.appendSwitch("no-sandbox");
-    app.commandLine.appendSwitch("disable-dev-shm-usage");
-  }
+// Caveat: --no-sandbox is read by Chromium's zygote very early and appendSwitch
+// is not always honoured for it in a packaged AppImage; the reliable path for
+// restricted kernels is therefore the .deb, not the AppImage. --disable-dev-shm-
+// usage IS honoured and helps where the no-sandbox path trips over /dev/shm.
+if (process.platform === "linux" && process.env.APPIMAGE) {
+  app.commandLine.appendSwitch("no-sandbox");
+  app.commandLine.appendSwitch("disable-dev-shm-usage");
 }
 
 // Change the current working directory to the Resources folder

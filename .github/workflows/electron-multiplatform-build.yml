@@ -113,8 +113,10 @@ jobs:
       - name: List release contents
         run: ls -lh client/release
 
-      - name: Upload Linux AppImage artifacts
+      - name: Upload Linux artifacts (AppImage + deb)
         uses: actions/upload-artifact@v4
         with:
           name: linux-appimages
-          path: client/release/*.AppImage
+          path: |
+            client/release/*.AppImage
+            client/release/*.deb

@@ -44,7 +44,7 @@ installer for your OS — no GitHub login needed:
 |---|---|
 | macOS | `.dmg` |
 | Windows | `.exe` installer |
-| Linux | `.AppImage` |
+| Linux | `.deb` (Ubuntu/Debian — **recommended**) or `.AppImage` (portable) |
 
 > During the alpha, releases are **pre-releases**, so they won't appear under
 > "Latest release" — pick the top entry tagged *Pre-release* on the Releases
@@ -74,20 +74,72 @@ Then launch it (first launch: right-click → **Open** if prompted). If the app
 opens normally without any warning, it was signed and notarised and you can skip
 this step.
 
-### Linux: make the AppImage executable
+### Linux: install the `.deb` (recommended) or run the AppImage
 
-Downloaded AppImages are **not executable** by default (your browser doesn't set
-the flag), so double-clicking will just offer to open the file rather than run
-it. Mark it executable once:
+**Ubuntu / Debian — install the `.deb` (recommended):**
+
+```bash
+sudo apt install ./ccp4i2-django_*.deb
+```
+
+This installs to `/opt/ccp4i2-django`, adds an application-menu entry and a
+`ccp4i2-django` command, and sets up the Chromium sandbox the same way Chrome
+and VS Code do — so it runs on **modern locked-down kernels (Ubuntu 24.04+)**
+with a full sandbox and **no workarounds**. This is the best option on a
+desktop; prefer it if you can `sudo`.
+
+**Other distros, or no root — the portable `.AppImage`:** downloaded AppImages
+aren't executable by default (your browser doesn't set the flag), so mark it
+once:
 
 ```bash
 chmod +x ccp4i2-django-*.AppImage
 ```
 
-(or right-click → **Properties** → **Permissions** → tick **Allow executing file
-as program**). Then double-click, or run `./ccp4i2-django-*.AppImage`. The build
-already passes `--no-sandbox` for you, so it launches on server-class and
-hardened kernels without any extra flags.
+(or right-click → **Properties** → **Permissions** → **Allow executing file as
+program**), then double-click or run `./ccp4i2-django-*.AppImage`. On kernels
+that restrict the sandbox the AppImage disables it automatically — you do **not**
+need `sudo sysctl …` or any other system-wide change. (If you're on such a kernel
+and want the sandbox kept, use the `.deb`.)
+
+<details>
+<summary><strong>Why the <code>.deb</code>? (and why the AppImage struggles on hardened kernels)</strong></summary>
+
+Chromium — which Electron, and therefore this app, is built on — refuses to run
+its rendering processes unless it can put them in a **sandbox**. It can build
+that sandbox one of two ways, and it needs *one* of them:
+
+1. a small helper (`chrome-sandbox`) that is **allowed to run as root** (the
+   "SUID sandbox"), or
+2. **unprivileged user namespaces** — a kernel feature letting ordinary programs
+   create isolated environments without being root.
+
+Modern "locked-down" distros (Ubuntu 24.04+) **switch off option 2** by default
+for security (`kernel.apparmor_restrict_unprivileged_userns=1`). That leaves the
+app needing option 1 — a root-privileged helper — and here the packaging format
+is decisive:
+
+| | AppImage | `.deb` |
+|---|---|---|
+| Runs an install step **as root**? | No — it's a self-mounting single file | Yes — `dpkg`/`apt` runs its `postinst` as root |
+| Can make `chrome-sandbox` setuid-root? | No — it unpacks to a `nosuid` FUSE mount in `/tmp`, and nothing runs as root to `chown`/`chmod` it | **Yes** — `postinst` does `chown root:root` + `chmod 4755` |
+| SUID sandbox available? | No | **Yes** (the helper is privileged, so it needs no unprivileged userns) |
+| Namespace sandbox available on 24.04+? | No (kernel restriction) | Not needed |
+| Result on a locked-down kernel | Sandbox can't start → crash; we fall back to `--no-sandbox` | **Full sandbox, no flags, no user action** |
+
+The load-bearing sentence: **the sandbox needs a privilege it can obtain only two
+ways; the locked-down kernel removes one of them, and only a package with a root
+install step can supply the other.** An AppImage has no root install step; a
+`.deb` does.
+
+The proof it works: **Google Chrome and VS Code run fine on these same kernels**
+— because they ship as `.deb`s whose installer does this exact setuid step. Our
+`.deb` simply does the same (see `client/packaging/deb/postinst.sh`). So the
+AppImage isn't broken so much as structurally unable to sandbox on a hardened
+desktop; the `.deb` is the right tool, and the AppImage remains a portable
+fallback for other distros or where you can't `sudo`.
+
+</details>
 
 ## 3. Launch and point it at CCP4
 
@@ -138,9 +190,13 @@ and the app won't run against a different `ccp4i2`.
 - **macOS "app is damaged / can't be opened"** — you missed the `xattr -cr`
   step above (or ran it on the wrong path).
 - **Linux: double-click does nothing / only offers "Open With"** — the AppImage
-  isn't executable yet; `chmod +x` it (see the Linux step above). If a
-  terminal-launched build still exits silently on a hardened kernel, run it with
-  `--no-sandbox` (current builds pass this automatically).
+  isn't executable yet; `chmod +x` it (see the Linux step above).
+- **Linux: the AppImage crashes or shows a blank white window on a locked-down
+  kernel** (e.g. Ubuntu 24.04+, "The SUID sandbox helper binary … is not
+  configured correctly") — **install the `.deb` instead** (`sudo apt install
+  ./ccp4i2-django_*.deb`). The `.deb` gives Chromium a proper sandbox the way
+  Chrome/VS Code do; the AppImage can't, and is only a portable fallback. Do
+  **not** weaken the kernel with `sudo sysctl … unprivileged_userns=0`.
 - **Install step fails** — confirm the CCP4 install is complete and its
   `ccp4-python` runs (`<ccp4>/bin/ccp4-python --version`).
 
