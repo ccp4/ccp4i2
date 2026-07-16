@@ -44,7 +44,7 @@ installer for your OS — no GitHub login needed:
 |---|---|
 | macOS | `.dmg` |
 | Windows | `.exe` installer |
-| Linux | `.AppImage` |
+| Linux | `.deb` (Ubuntu/Debian — **recommended**) or `.AppImage` (portable) |
 
 > During the alpha, releases are **pre-releases**, so they won't appear under
 > "Latest release" — pick the top entry tagged *Pre-release* on the Releases
@@ -74,20 +74,33 @@ Then launch it (first launch: right-click → **Open** if prompted). If the app
 opens normally without any warning, it was signed and notarised and you can skip
 this step.
 
-### Linux: make the AppImage executable
+### Linux: install the `.deb` (recommended) or run the AppImage
 
-Downloaded AppImages are **not executable** by default (your browser doesn't set
-the flag), so double-clicking will just offer to open the file rather than run
-it. Mark it executable once:
+**Ubuntu / Debian — install the `.deb` (recommended):**
+
+```bash
+sudo apt install ./ccp4i2-django_*.deb
+```
+
+This installs to `/opt/ccp4i2-django`, adds an application-menu entry and a
+`ccp4i2-django` command, and sets up the Chromium sandbox the same way Chrome
+and VS Code do — so it runs on **modern locked-down kernels (Ubuntu 24.04+)**
+with a full sandbox and **no workarounds**. This is the best option on a
+desktop; prefer it if you can `sudo`.
+
+**Other distros, or no root — the portable `.AppImage`:** downloaded AppImages
+aren't executable by default (your browser doesn't set the flag), so mark it
+once:
 
 ```bash
 chmod +x ccp4i2-django-*.AppImage
 ```
 
-(or right-click → **Properties** → **Permissions** → tick **Allow executing file
-as program**). Then double-click, or run `./ccp4i2-django-*.AppImage`. The build
-already passes `--no-sandbox` for you, so it launches on server-class and
-hardened kernels without any extra flags.
+(or right-click → **Properties** → **Permissions** → **Allow executing file as
+program**), then double-click or run `./ccp4i2-django-*.AppImage`. On kernels
+that restrict the sandbox the AppImage disables it automatically — you do **not**
+need `sudo sysctl …` or any other system-wide change. (If you're on such a kernel
+and want the sandbox kept, use the `.deb`.)
 
 ## 3. Launch and point it at CCP4
 
@@ -138,9 +151,13 @@ and the app won't run against a different `ccp4i2`.
 - **macOS "app is damaged / can't be opened"** — you missed the `xattr -cr`
   step above (or ran it on the wrong path).
 - **Linux: double-click does nothing / only offers "Open With"** — the AppImage
-  isn't executable yet; `chmod +x` it (see the Linux step above). If a
-  terminal-launched build still exits silently on a hardened kernel, run it with
-  `--no-sandbox` (current builds pass this automatically).
+  isn't executable yet; `chmod +x` it (see the Linux step above).
+- **Linux: the AppImage crashes or shows a blank white window on a locked-down
+  kernel** (e.g. Ubuntu 24.04+, "The SUID sandbox helper binary … is not
+  configured correctly") — **install the `.deb` instead** (`sudo apt install
+  ./ccp4i2-django_*.deb`). The `.deb` gives Chromium a proper sandbox the way
+  Chrome/VS Code do; the AppImage can't, and is only a portable fallback. Do
+  **not** weaken the kernel with `sudo sysctl … unprivileged_userns=0`.
 - **Install step fails** — confirm the CCP4 install is complete and its
   `ccp4-python` runs (`<ccp4>/bin/ccp4-python --version`).
 
