@@ -21,6 +21,46 @@ import {
 /** File.sub_type marking a CCP4-map file as a mask (CMapDataFile.SUBTYPE_MASK). */
 export const MASK_SUBTYPE = 4;
 
+/**
+ * Moorhen beta.1 reworked MoorhenMap: the constructor and the (now static)
+ * loadToCootFrom* factory methods take a single MoorhenInstance instead of the
+ * old `(commandCentreRef, store)` pair, and `this.commandCentre` is now the
+ * CommandCentre object itself (not a ref). On the load / contour / suggested-
+ * settings paths the class only reads `.commandCentre` and `.store` off the
+ * instance, so a minimal shim over the wrapper's existing ref + store is enough
+ * — no full InstanceManager wiring required. Use this at every MoorhenMap load
+ * site so maps actually reach coot again.
+ */
+export function makeMoorhenMapInstance(
+  commandCentreRef: { current: unknown } | null | undefined,
+  store: unknown,
+): any {
+  return { commandCentre: commandCentreRef?.current ?? null, store };
+}
+
+/**
+ * Populate the contour-relevant stats (mapRmsd, suggestedContourLevel) on a
+ * freshly MTZ-loaded MoorhenMap.
+ *
+ * Moorhen beta.1's static MoorhenMap.loadToCootFromMtzData — unlike
+ * loadToCootFromMapData — does NOT run map.initialise(), so mapRmsd stays null.
+ * MoorhenMapManager then contours xtal maps at `1 * mapRmsd === 0` (difference
+ * maps at `3 * mapRmsd === 0`), i.e. the whole cell fills with noise-level
+ * density. We can't just call initialise() here because it needs an MTZ
+ * fileHeader the static loader never attaches; but these two coot calls need
+ * only the map's molNo, so they safely reproduce the stats the manager reads.
+ * Best-effort: swallow errors so a stats hiccup never blocks the map drawing.
+ */
+export async function primeXtalMapContourStats(map: any): Promise<void> {
+  if (!map) return;
+  try {
+    await map.fetchMapRmsd?.();
+    await map.fetchSuggestedLevelXtal?.();
+  } catch (err) {
+    console.warn("Failed to prime map contour stats:", err);
+  }
+}
+
 // --------------------------------------------------------------------------
 // CCP4 map mode-0 -> float conversion
 //
