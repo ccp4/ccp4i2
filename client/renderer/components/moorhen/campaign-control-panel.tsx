@@ -235,7 +235,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         // Add new representations
         for (const rep of added) {
           try {
-            await mol.addRepresentation(rep, "/*/*/*/*");
+            // `added` are ToggleButton representation keys typed loosely as
+            // string[] through MUI onChange; narrow to the Moorhen union.
+            await mol.addRepresentation(rep as moorhen.RepresentationStyles, "/*/*/*/*");
           } catch (err) {
             console.error(`Failed to add ${rep} for molecule ${mol.name}:`, err);
           }

@@ -118,7 +118,7 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
   }, [molecules]);
 
   const toggleRep = useCallback(
-    async (mol: moorhen.Molecule, repKey: string) => {
+    async (mol: moorhen.Molecule, repKey: moorhen.RepresentationStyles) => {
       if (mol.molNo == null) return;
       const current = molReps.get(mol.molNo) || new Set<string>();
       const isActive = current.has(repKey);

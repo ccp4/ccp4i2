@@ -55,7 +55,7 @@ import {
   fetchPdbContents,
 } from "../../lib/moorhen-scene-prompt";
 import { useSceneNlCapability, generateScene } from "./use-scene-nl-capability";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeXtalMapContourStats } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
   MapRenderState,
@@ -367,19 +367,22 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     mapSubType: number = 1
   ) => {
     if (!commandCentre.current) return;
-    const newMap = new MoorhenMap(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any
-    );
+    let loadedMap: moorhen.Map | undefined;
     const isDiffMap = mapSubType === 2 || mapSubType === 3;
     try {
       const mtzData = await apiArrayBuffer(url);
-      await newMap.loadToCootFromMtzData(new Uint8Array(mtzData), mapName, {
-        F: "F",
-        PHI: "PHI",
-        useWeight: false,
-        isDifference: isDiffMap,
-      });
+      const newMap = await MoorhenMap.loadToCootFromMtzData(
+        new Uint8Array(mtzData),
+        mapName,
+        {
+          F: "F",
+          PHI: "PHI",
+          useWeight: false,
+          isDifference: isDiffMap,
+        } as moorhen.selectedMtzColumns,
+        makeMoorhenMapInstance(commandCentre, store),
+      );
+      loadedMap = newMap;
       newMap.uniqueId = url;
       (newMap as any).mapSubType = mapSubType;
       if (mapSubType === 3) {
@@ -411,7 +414,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       console.warn(err);
       console.warn(`Cannot fetch map from ${url}`);
     }
-    return newMap;
+    return loadedMap;
   }, [commandCentre, store, dispatch]);
 
   // Load a real-space CCP4 map file (application/CCP4-map), e.g. a mask. Unlike
@@ -423,17 +426,19 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     opts: { isMask?: boolean } = {},
   ) => {
     if (!commandCentre.current) return;
-    const newMap = new MoorhenMap(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any
-    );
+    let newMap: moorhen.Map | undefined;
     try {
       // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
       // (no-op if already float). For masks, also nudge the P1/orthogonal cell
       // off 90° so coot contours periodically instead of clamping to the cell box.
       let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
       if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
-      await newMap.loadToCootFromMapData(new Uint8Array(mapData), mapName, false);
+      newMap = await MoorhenMap.loadToCootFromMapData(
+        new Uint8Array(mapData),
+        mapName,
+        false,
+        makeMoorhenMapInstance(commandCentre, store),
+      );
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
@@ -957,24 +962,23 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
       }
       try {
-        const newMap = new MoorhenMap(
-          commandCentre as RefObject<moorhen.CommandCentre>,
-          store as any,
-        );
+        const mapInstance = makeMoorhenMapInstance(commandCentre, store);
+        let newMap: moorhen.Map;
         if (ref.kind === "map") {
           // Real-space CCP4 map file (incl. masks): load directly, no columns.
           // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
           const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
-          await newMap.loadToCootFromMapData(
+          newMap = await MoorhenMap.loadToCootFromMapData(
             new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
             sceneMap.name,
             !!sceneMap.isDifference,
+            mapInstance,
           );
           (newMap as any).isCcp4MapFile = true;
           if (sceneMap.isMask) markMaskMap(newMap);
         } else {
           const cols = sceneMap.columns ?? {};
-          await newMap.loadToCootFromMtzData(
+          newMap = await MoorhenMap.loadToCootFromMtzData(
             new Uint8Array(bytes as ArrayBuffer),
             sceneMap.name,
             {
@@ -987,6 +991,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
               calcStructFact: !!cols.calcStructFact,
               isDifference: !!sceneMap.isDifference,
             } as moorhen.selectedMtzColumns,
+            mapInstance,
           );
         }
         if (newMap.molNo === -1) return null;
@@ -1028,16 +1033,15 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         )) as moorhen.WorkerResponse<number>;
         const newMolNo = result?.data?.result?.result;
         if (newMolNo == null || newMolNo === -1) return null;
-        const newMap = new MoorhenMap(
-          commandCentre as RefObject<moorhen.CommandCentre>,
-          store as any,
-        );
+        const newMap = new MoorhenMap(makeMoorhenMapInstance(commandCentre, store));
         newMap.molNo = newMolNo;
         newMap.name = name;
         // Inherit the difference-map flag from the source; a mask of a
         // difference map is still a difference map.
         newMap.isDifference = !!(sourceMap as any).isDifference;
-        await newMap.getSuggestedSettings();
+        // beta.1 replaced getSuggestedSettings(); populate rmsd/suggested level
+        // directly (masked map has no fileHeader, so full initialise() can't run).
+        await primeXtalMapContourStats(newMap);
         // Provenance stamp: a masked map's recipe is unrecoverable from its
         // grid bytes (Moorhen persists only the bytes). Stamp the uniqueId so
         // the capturer can round-trip maps WE masked as maskMaps recipes.
