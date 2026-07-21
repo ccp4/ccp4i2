@@ -207,10 +207,6 @@
         }
       ],
       "category": "Science"
-    },
-    "deb": {
-      "afterInstall": "packaging/deb/postinst.sh",
-      "afterRemove": "packaging/deb/postrm.sh"
     }
   },
   "overrides": {
