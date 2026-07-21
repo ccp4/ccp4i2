@@ -134,10 +134,12 @@ install step can supply the other.** An AppImage has no root install step; a
 
 The proof it works: **Google Chrome and VS Code run fine on these same kernels**
 — because they ship as `.deb`s whose installer does this exact setuid step. Our
-`.deb` simply does the same (see `client/packaging/deb/postinst.sh`). So the
-AppImage isn't broken so much as structurally unable to sandbox on a hardened
-desktop; the `.deb` is the right tool, and the AppImage remains a portable
-fallback for other distros or where you can't `sudo`.
+`.deb` does the same via electron-builder's standard Linux `postinst` (it
+setuids `chrome-sandbox` only on kernels that need it, installs an AppArmor
+profile, and links `ccp4i2-django` onto `PATH`). So the AppImage isn't broken so
+much as structurally unable to sandbox on a hardened desktop; the `.deb` is the
+right tool, and the AppImage remains a portable fallback for other distros or
+where you can't `sudo`.
 
 </details>
 
