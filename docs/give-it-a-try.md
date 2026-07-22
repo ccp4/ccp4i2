@@ -103,12 +103,18 @@ runs **fully sandboxed with no flags and no system-wide change**.
 
 > **On Ubuntu 24.04+ / Debian 13, use the `.deb`, not the AppImage.** These
 > kernels restrict the namespace sandbox (see below), and the AppImage cannot
-> supply the privileged fallback. Launched from a shell it aborts with
-> `The SUID sandbox helper binary … is not configured correctly`; the
-> `--no-sandbox` fallback is applied only when it is started from the
-> desktop-menu entry, not from the command line. The `.deb` sandboxes correctly
-> on these kernels with no workaround, which is why it is the recommended
-> artifact there.
+> supply the privileged fallback, so launching it aborts with
+> `The SUID sandbox helper binary … is not configured correctly`. The AppImage
+> deliberately does **not** force `--no-sandbox` (that would silently strip the
+> Chromium sandbox). To run the AppImage here you must re-enable unprivileged
+> user namespaces yourself:
+>
+> ```bash
+> sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+> ```
+>
+> after which it runs **fully sandboxed**. The `.deb` sandboxes correctly with no
+> workaround at all, which is why it is the recommended artifact here.
 
 <details>
 <summary><strong>Why the <code>.deb</code>? (and why the AppImage struggles on hardened kernels)</strong></summary>
@@ -133,7 +139,7 @@ is decisive:
 | Can make `chrome-sandbox` setuid-root? | No — it unpacks to a `nosuid` FUSE mount in `/tmp`, and nothing runs as root to `chown`/`chmod` it | **Yes** — `postinst` does `chown root:root` + `chmod 4755` |
 | SUID sandbox available? | No | **Yes** (the helper is privileged, so it needs no unprivileged userns) |
 | Namespace sandbox available on 24.04+? | No (kernel restriction) | Not needed |
-| Result on a locked-down kernel | Sandbox can't start; the `--no-sandbox` fallback only applies when launched from the desktop-menu entry, so a shell launch **aborts** | **Full sandbox, no flags, no user action** |
+| Result on a locked-down kernel | Sandbox can't start, so it **aborts** — unless you re-enable unprivileged user namespaces (`sysctl … apparmor_restrict_unprivileged_userns=0`), after which it runs fully sandboxed | **Full sandbox, no flags, no user action** |
 
 The load-bearing sentence: **the sandbox needs a privilege it can obtain only two
 ways; the locked-down kernel removes one of them, and only a package with a root
