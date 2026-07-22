@@ -22,24 +22,15 @@ import os from "os";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
-// AppImage-only sandbox handling. An AppImage extracts to a FUSE mount in /tmp
-// and can't ship a setuid-root chrome-sandbox, so on kernels that restrict
-// unprivileged user namespaces (Ubuntu 24.04+ default) the Chromium sandbox
-// can't start and the app aborts with "The SUID sandbox helper binary ... not
-// configured correctly". We best-effort disable the sandbox and route shared
-// memory off /dev/shm here — but ONLY for the AppImage (detected via the
-// APPIMAGE env var the runtime sets), so the .deb keeps a FULL, working sandbox
-// with no flags. The .deb's postinst setuids chrome-sandbox + installs an
-// AppArmor userns profile, which is the proper fix for locked-down kernels.
-//
-// Caveat: --no-sandbox is read by Chromium's zygote very early and appendSwitch
-// is not always honoured for it in a packaged AppImage; the reliable path for
-// restricted kernels is therefore the .deb, not the AppImage. --disable-dev-shm-
-// usage IS honoured and helps where the no-sandbox path trips over /dev/shm.
-if (process.platform === "linux" && process.env.APPIMAGE) {
-  app.commandLine.appendSwitch("no-sandbox");
-  app.commandLine.appendSwitch("disable-dev-shm-usage");
-}
+// The AppImage intentionally does NOT force --no-sandbox. appendSwitch("no-sandbox")
+// runs too late to be reliable — Chromium's zygote reads the sandbox flag before
+// this JS executes — so it never dependably took effect in a packaged AppImage,
+// yet it robbed capable users of a real Chromium sandbox. So the AppImage now
+// behaves as it did in a11: on permissive kernels it sandboxes normally; on
+// locked-down kernels (Ubuntu 24.04+) either enable unprivileged user namespaces
+//   sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+// or install the .deb, whose postinst setuids chrome-sandbox + ships an AppArmor
+// profile — the proper, sandbox-preserving fix. (Restored at Paul Bond's request.)
 
 // Change the current working directory to the Resources folder
 if (!isDev) {
