@@ -88,19 +88,27 @@ and VS Code do — so it runs on **modern locked-down kernels (Ubuntu 24.04+)**
 with a full sandbox and **no workarounds**. This is the best option on a
 desktop; prefer it if you can `sudo`.
 
-**Other distros, or no root — the portable `.AppImage`:** downloaded AppImages
-aren't executable by default (your browser doesn't set the flag), so mark it
-once:
+**Other distros (Fedora, RHEL/Rocky, openSUSE, Arch, …), or no root — the
+portable `.AppImage`:** downloaded AppImages aren't executable by default (your
+browser doesn't set the flag), so mark it once:
 
 ```bash
 chmod +x ccp4i2-django-*.AppImage
 ```
 
 (or right-click → **Properties** → **Permissions** → **Allow executing file as
-program**), then double-click or run `./ccp4i2-django-*.AppImage`. On kernels
-that restrict the sandbox the AppImage disables it automatically — you do **not**
-need `sudo sysctl …` or any other system-wide change. (If you're on such a kernel
-and want the sandbox kept, use the `.deb`.)
+program**), then double-click or run `./ccp4i2-django-*.AppImage`. On these
+distros the kernel permits the unprivileged-user-namespace sandbox, so the app
+runs **fully sandboxed with no flags and no system-wide change**.
+
+> **On Ubuntu 24.04+ / Debian 13, use the `.deb`, not the AppImage.** These
+> kernels restrict the namespace sandbox (see below), and the AppImage cannot
+> supply the privileged fallback. Launched from a shell it aborts with
+> `The SUID sandbox helper binary … is not configured correctly`; the
+> `--no-sandbox` fallback is applied only when it is started from the
+> desktop-menu entry, not from the command line. The `.deb` sandboxes correctly
+> on these kernels with no workaround, which is why it is the recommended
+> artifact there.
 
 <details>
 <summary><strong>Why the <code>.deb</code>? (and why the AppImage struggles on hardened kernels)</strong></summary>
@@ -125,7 +133,7 @@ is decisive:
 | Can make `chrome-sandbox` setuid-root? | No — it unpacks to a `nosuid` FUSE mount in `/tmp`, and nothing runs as root to `chown`/`chmod` it | **Yes** — `postinst` does `chown root:root` + `chmod 4755` |
 | SUID sandbox available? | No | **Yes** (the helper is privileged, so it needs no unprivileged userns) |
 | Namespace sandbox available on 24.04+? | No (kernel restriction) | Not needed |
-| Result on a locked-down kernel | Sandbox can't start → crash; we fall back to `--no-sandbox` | **Full sandbox, no flags, no user action** |
+| Result on a locked-down kernel | Sandbox can't start; the `--no-sandbox` fallback only applies when launched from the desktop-menu entry, so a shell launch **aborts** | **Full sandbox, no flags, no user action** |
 
 The load-bearing sentence: **the sandbox needs a privilege it can obtain only two
 ways; the locked-down kernel removes one of them, and only a package with a root
