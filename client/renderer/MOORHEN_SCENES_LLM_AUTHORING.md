@@ -29,7 +29,7 @@ differ in where they can load from. Measured against the apply-time fetcher
 | `pdb: 1jst` | yes — PDBe proxy | yes | yes |
 | `url: https://…` | yes — direct fetch | yes | yes (any URL the browser can reach) |
 | `fileId` + `projectId` | yes — ccp4i2 proxy | yes | yes |
-| `job` + `param` | **not wired** (type stub only) | no | no |
+| `job` + `param` | yes — ccp4i2 REST (jobs → files) | yes | yes |
 | `bundle:` (`.scene.zip`) | yes — in-memory asset | yes | yes |
 | `cifText` (dictionaries) | yes — inline | yes | yes |
 | `path:` (local filesystem) | **not implemented** | no | no |
@@ -43,9 +43,11 @@ Two of these are traps worth calling out:
   opened silently fails to load it — including in Electron. Do not advertise
   `path:` to an authoring model.
 
-- **`job` + `param` is a stub.** The fields exist on `SceneFileRef` ("job
-  number" + "job parameter name, e.g. XYZOUT") but neither fetcher resolves them.
-  This is the one ccp4i2-specific gap worth closing — see section 4.
+- **`job` + `param` is wired for all kinds.** The coordinate, dictionary, and
+  map fetchers all resolve the ref via the ccp4i2 REST API (project → job number
+  → output param → file → proxy download URL), so `job: N, param: XYZOUT` loads
+  from scratch for `coordinates`, `dictionary`, `mtz`, and `map` refs alike. This
+  is the ccp4i2-specific dialect's headline form — see section 4.
 
 ### Local files are a separate feature, not a ref form
 
@@ -239,9 +241,10 @@ The work that pays off in every tier is the summary plumbing, so do it first.
 
 1. **Contents summary (client, gemmi WASM)** + a **"Copy prompt" button** in the
    Scenes tab. This is the whole manual floor and it is provider-free.
-2. **Wire `job` + `param`** in the coordinate and dictionary fetchers (lookup →
-   download URL), plus a **project/job manifest** the Scenes tab can fold into the
-   prompt. This unlocks the ccp4i2 dialect.
+2. **`job` + `param`** is now wired in the coordinate, dictionary, and map
+   fetchers (lookup → download URL). What remains here is a **project/job
+   manifest** the Scenes tab can fold into the prompt, so a model knows which
+   job numbers and output params exist. This completes the ccp4i2 dialect.
 3. **The draft endpoint and in-app box** (managed + BYOK), reusing the same
    prompt scaffold and the same client-side validate→repair.
 4. **Project-scoped Moorhen page**, if cross-job authoring proves worth a
@@ -249,12 +252,13 @@ The work that pays off in every tier is the summary plumbing, so do it first.
 
 ## 7. Concrete touch points and known gaps
 
-- `components/moorhen/moorhen-wrapper.tsx` — `handleFetchSceneFile` /
-  `handleFetchSceneDictionary`: add the `job`+`param` branch (gap today).
+- `components/moorhen/moorhen-wrapper.tsx` — `handleFetchSceneFile`,
+  `handleFetchSceneDictionary`, and `resolveSceneRefUrl` (map fetcher + export
+  promoter) all now carry the `job`+`param` branch, resolved client-side via
+  `resolveJobParamUrl` against the existing jobs/files REST endpoints. No
+  dedicated server endpoint was needed.
 - `lib/moorhen-scene.ts` — validator: the context-aware dialect constraints
   (which ref forms are permitted) if we choose to enforce them at parse time.
-- A server endpoint to resolve `job`+`param` → a `File` (or a manifest the client
-  resolves against), backed by `File.job` / `File.job_param_name`.
 - A server **manifest** endpoint: jobs + their output params + file types for a
   project (and the single-job slice for the job view).
 - A `/api/scenes/draft/` endpoint for v2, holding the model credential

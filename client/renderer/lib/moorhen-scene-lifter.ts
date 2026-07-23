@@ -625,8 +625,12 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
  * if the ref doesn't carry enough information (e.g. a bare `path:` or
  * an already-bundled ref). Supplied by the wrapper, which knows the
  * site-specific proxy routes.
+ *
+ * Async because some ref forms (notably `job` + `param`) need REST
+ * round-trips (project → job number → output param → file) to derive
+ * the download URL.
  */
-export type SceneRefUrlResolver = (ref: SceneFileRef) => string | null;
+export type SceneRefUrlResolver = (ref: SceneFileRef) => Promise<string | null>;
 
 export interface PromoteCtx {
   /** Parsed scene to promote. Mutated in place; pass a clone if you
@@ -637,7 +641,8 @@ export interface PromoteCtx {
    *  keep, discard, or diff. */
   existingAssets: Map<string, ArrayBuffer>;
   /** Function that yields a fetchable URL for any URL-shaped ref kind
-   *  (pdb / url / fileId+projectId / path-as-URL). */
+   *  (pdb / url / fileId / job+param). Async — job+param needs a REST
+   *  round-trip to resolve. */
   resolveUrl: SceneRefUrlResolver;
   /** Live molecules — used to re-collect library-resolvable dicts that
    *  the lifter omitted from the YAML. Optional: if not provided, no
@@ -702,7 +707,7 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
       delete ref.cifText;
       continue;
     }
-    const url = resolveUrl(ref);
+    const url = await resolveUrl(ref);
     if (!url) {
       warnings.push(`No URL for ref "${ref.name}"; left as-is`);
       continue;

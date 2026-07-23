@@ -214,8 +214,12 @@ describe("isFetchable", () => {
     ).toBe(true);
   });
 
-  it("returns false for a fileId without projectId", () => {
-    expect(isFetchable({ name: "x", fileId: 42 })).toBe(false);
+  it("returns true for a fileId without projectId (fileId is globally unique; the download URL keys on it alone)", () => {
+    expect(isFetchable({ name: "x", fileId: 42 })).toBe(true);
+  });
+
+  it("returns true for a job + param ref", () => {
+    expect(isFetchable({ name: "x", job: 15, param: "FPHIOUT" })).toBe(true);
   });
 
   it("returns false for a relativeUrl-only ref (resolver can't fetch it standalone)", () => {

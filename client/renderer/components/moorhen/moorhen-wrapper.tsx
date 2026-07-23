@@ -863,7 +863,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 
   // Dictionary fetcher: returns raw CIF text for a `kind: dictionary`
   // ref. PDB id form is not allowed (validator should reject) — only
-  // url, path, fileId+projectId, cifText, and bundle are valid for dicts.
+  // url, fileId, job+param, cifText, and bundle are valid for dicts.
   // Dicts may contain multiple `data_comp_*` blocks; the resolver hands
   // the whole text to Coot in one call so all blocks get parsed in one shot.
   const handleFetchSceneDictionary = useCallback(
@@ -886,6 +886,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       let url: string | null = null;
       if (ref.fileId !== undefined) {
         url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+      } else if (ref.job !== undefined && ref.param) {
+        url = await resolveJobParamUrl(
+          { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
+          { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
+        );
       } else if (ref.url) {
         url = ref.url;
       }
@@ -920,13 +925,21 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   );
 
   // Centralised URL-derivation for any URL-shaped ref kind. Shared by
-  // the fetcher (apply path), the map fetcher, and the promoter (export
-  // path) so they agree on what counts as "a resolvable ref". Declared
-  // here (above the consumers) so the closures pick it up cleanly.
-  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback((ref) => {
+  // the map fetcher (apply path) and the promoter (export path) so they
+  // agree on what counts as "a resolvable ref". Declared here (above the
+  // consumers) so the closures pick it up cleanly. Async because the
+  // job+param form needs a REST round-trip to resolve; ref order mirrors
+  // the coordinate fetcher (fileId, then job+param, then url).
+  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback(async (ref) => {
     if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
     if (ref.fileId !== undefined) {
       return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+    }
+    if (ref.job !== undefined && ref.param) {
+      return await resolveJobParamUrl(
+        { job: ref.job, param: ref.param, projectId: ref.projectId, projectName: ref.projectName },
+        { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
+      );
     }
     if (ref.url) return ref.url;
     return null;
@@ -951,7 +964,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         bytes = buf;
         uniqueId = `bundle:${ref.bundle}`;
       } else {
-        const url = resolveSceneRefUrl(ref);
+        const url = await resolveSceneRefUrl(ref);
         if (!url) return null;
         try {
           bytes = await apiArrayBuffer(url);
