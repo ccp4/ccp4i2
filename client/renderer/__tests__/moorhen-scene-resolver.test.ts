@@ -8,14 +8,116 @@
  */
 import { describe, it, expect } from "vitest";
 import {
+  buildPendingRules,
   clampRangeToPresent,
+  directionToLightPosition,
   expandLsqMatches,
+  geometryToM2tParams,
   isFetchable,
   resolveChainSelector,
+  resolveClipFogPlanes,
   splitMultiCid,
 } from "../lib/moorhen-scene-resolver";
 
 const present = (...nums: number[]) => new Set(nums);
+
+describe("resolveClipFogPlanes (broad → fine precedence)", () => {
+  const fco = 250;
+  it("slab alone sets all four planes (absolute Å about fco), freezes", () => {
+    const p = resolveClipFogPlanes({}, 20, 1, fco);
+    expect(p).toEqual({ clipStart: 20, clipEnd: 20, fogStart: 230, fogEnd: 270, reset: false });
+  });
+  it("explicit fogEnd OVERRIDES the slab-derived back fog plane (the fix)", () => {
+    const p = resolveClipFogPlanes({ fogEnd: 999 }, 20, 1, fco);
+    expect(p.clipStart).toBe(20); // slab kept
+    expect(p.fogStart).toBe(230); // slab kept
+    expect(p.fogEnd).toBe(999); // explicit wins
+    expect(p.reset).toBe(false);
+  });
+  it("clip:{front,back} sets zoom-scaled field-depth planes", () => {
+    const p = resolveClipFogPlanes({ clip: { front: 8, back: 21 } }, undefined, 2, fco);
+    expect(p).toEqual({ clipStart: 16, clipEnd: 42, fogStart: 234, fogEnd: 292, reset: false });
+  });
+  it("clip:\"auto\" alone = recompute (reset true), no planes", () => {
+    expect(resolveClipFogPlanes({ clip: "auto" }, undefined, 1, fco)).toEqual({ reset: true });
+  });
+  it("explicit overrides clip:\"auto\" (finer wins) and freezes", () => {
+    const p = resolveClipFogPlanes({ clip: "auto", fogEnd: 300 }, undefined, 1, fco);
+    expect(p.fogEnd).toBe(300);
+    expect(p.reset).toBe(false);
+  });
+  it("nothing specified → leave untouched (reset undefined)", () => {
+    expect(resolveClipFogPlanes({ origin: [0, 0, 0] }, undefined, 1, fco)).toEqual({ reset: undefined });
+  });
+  it("clip:\"lock\" alone freezes current with no planes", () => {
+    expect(resolveClipFogPlanes({ clip: "lock" }, undefined, 1, fco)).toEqual({ reset: false });
+  });
+});
+
+describe("buildPendingRules cascade (element.colour ↔ representation.colour)", () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const base: any = {
+    molecule: {},
+    domains: [],
+    fileName: "f",
+    log: [],
+    policy: "clamp-and-log",
+    dispatch: () => {},
+  };
+
+  it("falls back to element.colour when the representation has none", () => {
+    const rules = buildPendingRules(
+      { ...base, rep: { style: "CRs" }, elementColour: "#abcdef" },
+      "//A",
+    );
+    expect(rules[0].color).toBe("#abcdef");
+  });
+
+  it("representation.colour overrides element.colour", () => {
+    const rules = buildPendingRules(
+      { ...base, rep: { style: "CRs", colour: "#123456" }, elementColour: "#abcdef" },
+      "//A",
+    );
+    expect(rules[0].color).toBe("#123456");
+  });
+
+  it("no colour at either level → no rules", () => {
+    expect(buildPendingRules({ ...base, rep: { style: "CRs" } }, "//A")).toEqual([]);
+  });
+});
+
+describe("geometryToM2tParams (honoured geometry → Moorhen m2tParameters)", () => {
+  it("maps each field to its m2tParameters key, merged onto the base", () => {
+    const base = { ribbonStyleHelixWidth: 1.0, cylindersStyleCylinderRadius: 0.1 };
+    const out = geometryToM2tParams(
+      { bondRadius: 0.18, probeRadius: 1.4, ribbonHelixWidth: 1.4 },
+      base,
+    );
+    expect(out.cylindersStyleCylinderRadius).toBe(0.18); // overrides base
+    expect(out.surfaceStyleProbeRadius).toBe(1.4);
+    expect(out.ribbonStyleHelixWidth).toBe(1.4);
+  });
+
+  it("leaves unspecified params untouched", () => {
+    const out = geometryToM2tParams({ bondRadius: 0.2 }, { foo: 1 });
+    expect(out.foo).toBe(1);
+    expect(out.cylindersStyleCylinderRadius).toBe(0.2);
+    expect("surfaceStyleProbeRadius" in out).toBe(false);
+  });
+});
+
+describe("directionToLightPosition (scene direction → Moorhen lightPosition)", () => {
+  it("normalises to Moorhen's default magnitude with w=1", () => {
+    expect(directionToLightPosition([0, 0, 1])).toEqual([0, 0, 60, 1]);
+  });
+  it("preserves direction but fixes the magnitude (not passed raw)", () => {
+    const p = directionToLightPosition([0.2, 0.2, 1.0]);
+    expect(Math.hypot(p[0], p[1], p[2])).toBeCloseTo(60, 5);
+    expect(p[3]).toBe(1);
+    // direction preserved: ratios match the input
+    expect(p[0] / p[2]).toBeCloseTo(0.2, 5);
+  });
+});
 
 describe("clampRangeToPresent", () => {
   it("returns the request unchanged when all residues are present", () => {
@@ -112,12 +214,16 @@ describe("isFetchable", () => {
     ).toBe(true);
   });
 
-  it("returns false for a fileId without projectId", () => {
-    expect(isFetchable({ name: "x", fileId: 42 })).toBe(false);
+  it("returns true for a fileId without projectId (fileId is globally unique; the download URL keys on it alone)", () => {
+    expect(isFetchable({ name: "x", fileId: 42 })).toBe(true);
   });
 
-  it("returns false for a path-only ref (we don't read local paths from the browser)", () => {
-    expect(isFetchable({ name: "x", path: "/abs/foo.pdb" })).toBe(false);
+  it("returns true for a job + param ref", () => {
+    expect(isFetchable({ name: "x", job: 15, param: "FPHIOUT" })).toBe(true);
+  });
+
+  it("returns false for a relativeUrl-only ref (resolver can't fetch it standalone)", () => {
+    expect(isFetchable({ name: "x", relativeUrl: "/api/proxy/pdbe/x.cif" })).toBe(false);
   });
 
   it("returns false for an empty ref", () => {

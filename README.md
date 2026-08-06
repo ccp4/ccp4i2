@@ -28,16 +28,13 @@ CCP4i2 uses a modern web-based architecture:
 
 ### For Testers (Packaged Electron App)
 
-1. **Install CCP4** with a development build from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/packages/)
-2. **Install ccp4i2 into ccp4-python**:
-   ```bash
-   source /path/to/ccp4-20251105/bin/ccp4.setup-sh
-   cd server
-   ccp4-python -m pip install -e .
-   ```
-3. **Download and run** the packaged Electron app (macOS `.dmg`, Windows `.exe`, or Linux `.AppImage` from [GitHub Actions](../../actions))
+**See [Give it a try](docs/give-it-a-try.md)** for the full walkthrough. In short:
 
-The Electron app automatically detects your CCP4 installation and uses `ccp4-python` (with ccp4i2 pip-installed) to run the Django backend. No Python code is bundled in the Electron app itself.
+1. **Install CCP4 10** from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/) (provides `ccp4-python`).
+2. **Download the desktop app** for your OS from [Releases](https://github.com/ccp4/ccp4i2/releases) — during the alpha, pick the top entry marked **Pre-release** and grab the installer for your OS (macOS `.dmg`, Windows `.exe`, Linux `.deb` **recommended** or `.AppImage`). On macOS, clear quarantine: `xattr -cr "/Applications/ccp4i2-django.app"`. On Ubuntu/Debian, `sudo apt install ./ccp4i2-django_*.deb`.
+3. **Launch it**, point it at your CCP4 installation, and click **Install** when prompted — the app installs the matching `ccp4i2` backend into `ccp4-python` for you.
+
+> Do **not** `pip install ccp4i2` against system Python — the backend must live in CCP4's `ccp4-python`, which the app handles automatically. Each app build is pinned to one exact backend version (shown on the launch screen), so you never match versions by hand.
 
 ### For Developers
 
@@ -86,20 +83,29 @@ Test results are stored in `~/.cache/ccp4i2-tests/`. See cleanup instructions pr
 
 ## Documentation
 
+**[Documentation Map](docs/README.md)** — the single index to all developer docs.
+
 ### Setup & Testing
 
 - [Development Setup](mddocs/setup/DEVELOPMENT_SETUP.md) - **Start here** - Complete environment setup guide
 - [Testing Guide](mddocs/setup/TESTING.md) - Running and writing tests
 
+### Authoring a Task
+
+- [Authoring a Task](docs/authoring-a-task.md) - **Start here** - end-to-end guide to adding a wrapper
+- [def.xml Reference](docs/def-xml-reference.md) - declaring a task's data model
+- [PHIL Task Guide](server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md) - the PHIL alternative for Phenix/PhaserTNG/DIALS-style tools
+
 ### Frontend Development
 
 - [Frontend README](client/README.md) - Quick start for the Electron/React frontend
 - [Frontend Development Guide](client/FRONTEND_DEVELOPMENT.md) - Comprehensive developer documentation
+- [Task Interface Implementation Guide](client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md) - building a bespoke task UI
 
 ### Architecture & API
 
 - [Quick Reference](mddocs/QUICK_REFERENCE.md) - Common operations and examples
-- [Plugin Registry](mddocs/PLUGIN_REGISTRY_README.md) - Plugin discovery and registration
+- [Task Registry](server/ccp4i2/core/tasks.py) - tasks are registered in the `TASKS` dict (one entry per task)
 - [API Reference](mddocs/api/) - REST API endpoints and data models
 - [Architecture Overview](mddocs/architecture/) - System design documentation
 

@@ -5,4 +5,5 @@ export interface StoreSchema {
   zoomLevel: number;
   devMode: boolean;
   theme: "light" | "dark";
+  autoLaunch: boolean;          // Auto-enter CCP4i2 (after a countdown) once setup is complete
 }

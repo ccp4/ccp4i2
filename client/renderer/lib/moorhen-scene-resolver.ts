@@ -25,7 +25,26 @@ import {
   setClipEnd,
   setFogStart,
   setFogEnd,
+  setResetClippingFogging,
   setBackgroundColor,
+  setLightPosition,
+  setAmbient,
+  setDiffuse,
+  setSpecular,
+  setSpecularPower,
+  setDoSSAO,
+  setSsaoRadius,
+  setSsaoBias,
+  setDoEdgeDetect,
+  setEdgeDetectDepthThreshold,
+  setEdgeDetectNormalThreshold,
+  setEdgeDetectDepthScale,
+  setEdgeDetectNormalScale,
+  setUseOffScreenBuffers,
+  setDoShadow,
+  setDepthBlurRadius,
+  setDepthBlurDepth,
+  setDoPerspectiveProjection,
   setRequestDrawScene,
   addCustomRepresentation,
   removeCustomRepresentation,
@@ -53,12 +72,16 @@ import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import {
   MoorhenScene,
   SceneColour,
+  SceneColourSelection,
   SceneDomain,
   SceneFileRef,
+  SceneGeometry,
+  SceneHints,
   SceneMap,
   SceneRepresentation,
   SceneLsqMatch,
   SceneSuperpose,
+  SceneView,
   isSceneHexColour,
   isSceneNamedColour,
   isSceneRawColour,
@@ -138,6 +161,24 @@ export type SceneMapFetcher = (
   sceneMap: SceneMap,
 ) => Promise<moorhen.Map | null>;
 
+/**
+ * Mask a source map by a model's atom selection, producing a NEW Moorhen map.
+ * Owned by the wrapper (it holds commandCentre + store): it issues
+ * `mask_map_by_atom_selection` (source map molNo, model molNo, CID, radius,
+ * invert), instantiates the resulting MoorhenMap and dispatches addMap.
+ *
+ * `radius` omitted → Moorhen's default (the wrapper passes -1). Returns the
+ * new map (so the resolver can bind + style it) or null on failure.
+ */
+export type SceneMapMasker = (args: {
+  sourceMap: moorhen.Map;
+  model: moorhen.Molecule;
+  selection: string;
+  radius?: number;
+  invert: boolean;
+  name: string;
+}) => Promise<moorhen.Map | null>;
+
 interface ResolveCtx {
   scene: MoorhenScene;
   molecules: moorhen.Molecule[];
@@ -159,6 +200,130 @@ interface ResolveCtx {
   /** Optional. Required for scene.maps[] to be applied. Without it,
    *  map entries are dropped with a log entry. */
   mapFetcher?: SceneMapFetcher;
+  /** Optional. Required for scene.maskMaps[] to be applied. Without it,
+   *  mask recipes are dropped (and any maps[] entry that renders one via
+   *  `from:` is dropped too) with a log entry. */
+  mapMasker?: SceneMapMasker;
+  /** Live glRef snapshot (zoom, fogClipOffset). Used by `view.clip:
+   *  { front, back }` to derive clip/fog the way coot does (clip = zoom*depth,
+   *  fog offset by fogClipOffset). Falls back to sane defaults if absent. */
+  glRef?: { zoom: number; fogClipOffset: number };
+}
+
+// --------------------------------------------------------------------------
+// Geometry: bounding sphere of a selection (for view.slab)
+// --------------------------------------------------------------------------
+
+interface GemmiVec<T> { size(): number; get(i: number): T; delete(): void; }
+interface GemmiAtom { pos: { x: number; y: number; z: number }; }
+interface CCP4GemmiModule {
+  Selection: new (cid: string) => { delete: () => void };
+  selection_get_models(sel: unknown, struct: unknown): GemmiVec<unknown>;
+  selection_get_chains(sel: unknown, model: unknown): GemmiVec<unknown>;
+  selection_get_residues(sel: unknown, chain: unknown): GemmiVec<unknown>;
+  selection_get_atoms(sel: unknown, residue: unknown): GemmiVec<GemmiAtom>;
+}
+
+/**
+ * Centroid + bounding radius (Å) of a CID selection, walked over the molecule's
+ * cached gemmi structure via the gemmi WASM module Moorhen exposes as
+ * `window.CCP4Module`. Orientation-independent. Returns null if gemmi / the
+ * structure is unavailable or the selection matched no atoms. emscripten objects
+ * are .delete()d so the WASM heap doesn't grow on repeated applies.
+ */
+function selectionBoundingSphere(
+  mol: moorhen.Molecule,
+  cid: string,
+): { centre: [number, number, number]; radius: number } | null {
+  const M =
+    typeof window !== "undefined"
+      ? (window as unknown as { CCP4Module?: CCP4GemmiModule }).CCP4Module
+      : undefined;
+  const struct = (mol as unknown as { gemmiStructure?: unknown }).gemmiStructure;
+  if (!M || !struct || typeof M.Selection !== "function") return null;
+
+  const del = (x: unknown) => {
+    try { (x as { delete?: () => void } | null)?.delete?.(); } catch { /* ignore */ }
+  };
+  const xs: number[] = [], ys: number[] = [], zs: number[] = [];
+  // Accept "||"-separated CIDs (the representation-path union operator) as well
+  // as primitive gemmi CIDs, so one selection syntax works everywhere — a scene
+  // author shouldn't have to know that view directives feed gemmi directly while
+  // representations split on "||". Walk each sub-selection and union its atoms; a
+  // malformed part is skipped, not fatal.
+  const parts = cid.split("||").map((s) => s.trim()).filter(Boolean);
+  for (const part of parts.length ? parts : [cid]) {
+    let sel: { delete: () => void } | null = null;
+    try {
+      sel = new M.Selection(part);
+      const models = M.selection_get_models(sel, struct);
+      for (let i = 0; i < models.size(); i++) {
+        const model = models.get(i);
+        const chains = M.selection_get_chains(sel, model);
+        for (let j = 0; j < chains.size(); j++) {
+          const chain = chains.get(j);
+          const residues = M.selection_get_residues(sel, chain);
+          for (let k = 0; k < residues.size(); k++) {
+            const res = residues.get(k);
+            const atoms = M.selection_get_atoms(sel, res);
+            for (let l = 0; l < atoms.size(); l++) {
+              const a = atoms.get(l);
+              xs.push(a.pos.x); ys.push(a.pos.y); zs.push(a.pos.z);
+              del(a);
+            }
+            atoms.delete(); del(res);
+          }
+          residues.delete(); del(chain);
+        }
+        chains.delete(); del(model);
+      }
+      models.delete();
+    } catch {
+      // skip this sub-selection; other parts may still contribute atoms
+    } finally {
+      del(sel);
+    }
+  }
+
+  const n = xs.length;
+  if (n === 0) return null;
+  const cx = xs.reduce((s, v) => s + v, 0) / n;
+  const cy = ys.reduce((s, v) => s + v, 0) / n;
+  const cz = zs.reduce((s, v) => s + v, 0) / n;
+  let r = 0;
+  for (let i = 0; i < n; i++) {
+    const d = Math.hypot(xs[i] - cx, ys[i] - cy, zs[i] - cz);
+    if (d > r) r = d;
+  }
+  return { centre: [cx, cy, cz], radius: r };
+}
+
+/**
+ * Resolve the molecule a view directive (centre/slab) acts on. With an explicit
+ * `file`, look it up. Without one, default to the sole loaded molecule — the
+ * common "only one structure open" case — and report an error otherwise (none
+ * loaded, or ambiguous with several). `ref` is a display string for logging.
+ */
+function resolveViewMolecule(
+  file: string | undefined,
+  fileBindings: Map<string, moorhen.Molecule>,
+): { mol?: moorhen.Molecule; ref: string; error?: string } {
+  if (file !== undefined) {
+    const mol = fileBindings.get(file);
+    return mol
+      ? { mol, ref: file }
+      : { ref: file, error: `file "${file}" not bound to a loaded molecule` };
+  }
+  if (fileBindings.size === 1) {
+    return { mol: [...fileBindings.values()][0], ref: "(sole molecule)" };
+  }
+  return {
+    ref: "(unspecified)",
+    error:
+      fileBindings.size === 0
+        ? "no file specified and no molecule loaded"
+        : `no file specified but ${fileBindings.size} molecules loaded — add a file:`,
+  };
 }
 
 /**
@@ -169,7 +334,7 @@ interface ResolveCtx {
  * structures and domain clamping are reported in the result, not raised.
  */
 export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
-  const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader, mapFetcher } = ctx;
+  const { scene, molecules, dispatch, fetcher, dictionaryFetcher, dictionaryLoader, mapFetcher, mapMasker } = ctx;
   const maps = ctx.maps ?? [];
   const result: SceneResolveResult = {
     unresolvedFiles: [],
@@ -185,7 +350,13 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   // (the scoping step) happens later, once coord molNos are known.
   const allFiles = scene.files ?? [];
   const dictRefs = allFiles.filter((f) => f.kind === "dictionary");
-  const coordRefs = allFiles.filter((f) => f.kind !== "dictionary");
+  // Coordinate files only. mtz/map files are reflection/density data with no
+  // atoms — they're loaded by the map path (2.4a/b), NOT as molecules, so they
+  // must be excluded here or they'd get a spurious molecule card. `kind`
+  // defaults to "coordinates" when omitted.
+  const coordRefs = allFiles.filter(
+    (f) => f.kind !== "dictionary" && f.kind !== "mtz" && f.kind !== "map",
+  );
 
   // 1a. Fetch and globally-load dictionary text. Keep the raw text
   //     keyed by name so we can re-load per-molecule later.
@@ -384,6 +555,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
         log: result.log,
         policy,
         dispatch,
+        elementColour: element.colour,
       });
       if (ok) added++;
     }
@@ -400,38 +572,143 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //     promote the named activeMap (if any).
   const liveMapPool: moorhen.Map[] = [...maps];
   const mapBindings = new Map<string, moorhen.Map>();
-  for (const sceneMap of scene.maps ?? []) {
-    const fileRef = (scene.files ?? []).find((f) => f.name === sceneMap.file);
+  // Outputs of maskMaps[] recipes, keyed by their `name`. Referenced by
+  // maps[].from (to render) and by later maskMaps[].map (to chain).
+  const maskOutputs = new Map<string, moorhen.Map>();
+
+  // Load (or match) the map backing a files[] map/mtz entry. `sceneMap` is
+  // passed to the fetcher for column hints when the render entry is known;
+  // mask sources have none, so it's optional. Logs + returns null on failure.
+  const loadMapForFile = async (
+    fileName: string,
+    domain: string,
+    sceneMap?: SceneMap,
+  ): Promise<moorhen.Map | null> => {
+    const fileRef = (scene.files ?? []).find((f) => f.name === fileName);
     if (!fileRef) {
-      result.log.push({
-        file: sceneMap.file,
-        domain: `map ${sceneMap.name}`,
-        message: `map references unknown file "${sceneMap.file}"`,
-      });
-      continue;
+      result.log.push({ file: fileName, domain, message: `references unknown file "${fileName}"` });
+      return null;
     }
     const existing = matchOneMap(fileRef, liveMapPool);
-    let map: moorhen.Map | null = existing;
-    if (!map && mapFetcher && isFetchable(fileRef)) {
+    if (existing) return existing;
+    if (mapFetcher && isFetchable(fileRef)) {
       try {
-        map = await mapFetcher(fileRef, sceneMap);
-        if (map) liveMapPool.push(map);
+        const fetched = await mapFetcher(fileRef, sceneMap ?? { name: fileName, file: fileName });
+        if (fetched) {
+          liveMapPool.push(fetched);
+          return fetched;
+        }
+        // Fetch was attempted (ref IS fetchable) but the fetcher returned null —
+        // the download itself failed (e.g. the file endpoint 404'd). Distinct
+        // from "not fetchable"; say so, or this reads as a ref-shape problem.
+        result.log.push({
+          file: fileName, domain,
+          message: "map fetch returned null — the file download failed (missing file, proxy, or auth?)",
+        });
+        return null;
       } catch (e) {
         result.log.push({
-          file: sceneMap.file,
-          domain: `map ${sceneMap.name}`,
+          file: fileName, domain,
           message: `MTZ fetch failed: ${e instanceof Error ? e.message : "unknown"}`,
         });
-        continue;
+        return null;
       }
     }
+    result.log.push({
+      file: fileName, domain,
+      message: mapFetcher
+        ? "no matching loaded map and ref carries no fetchable source (need fileId, url, pdb, job+param, or bundle)"
+        : "no matching loaded map (no mapFetcher provided)",
+    });
+    return null;
+  };
+
+  // The map steps run in dependency order:
+  //   (a) bind + style file-backed maps[]  — a mask source may be one of these
+  //   (b) apply maskMaps[]                  — source resolves against (a), prior
+  //                                           masks, or a files[] fallback
+  //   (c) bind + style from: maps[]         — these render a mask output
+  // Splitting maps[] into (a) and (c) lets `maskMaps.map` name a maps[] entry
+  // (which carries the mtz column spec) rather than only a bare files[] name.
+
+  // 2.4a File-backed maps.
+  for (const sceneMap of scene.maps ?? []) {
+    if (sceneMap.file == null) continue; // from: maps handled in 2.4c
+    const domain = `map ${sceneMap.name}`;
+    const map = await loadMapForFile(sceneMap.file, domain, sceneMap);
+    if (!map) continue; // loadMapForFile logged the reason
+    mapBindings.set(sceneMap.name, map);
+    applyMapState(map, sceneMap, dispatch);
+  }
+
+  // 2.4b maskMaps. Source resolves against, in order: a bound maps[] entry (by
+  //     name — carries columns), an earlier mask output (chaining), or a bare
+  //     files[] map/mtz (loaded columnless as a fallback). The schema keeps mask
+  //     chains earlier-only, so this forward pass resolves every chain.
+  for (const mm of scene.maskMaps ?? []) {
+    const domain = `maskMaps ${mm.name}`;
+    if (!mapMasker) {
+      result.log.push({ file: "", domain, message: "mask dropped: no mapMasker provided" });
+      continue;
+    }
+    const sourceMap =
+      mapBindings.get(mm.map) ??
+      maskOutputs.get(mm.map) ??
+      (await loadMapForFile(mm.map, domain));
+    if (!sourceMap) {
+      // loadMapForFile logs the files[] case; add context for the common
+      // mistake of naming something that isn't a resolvable source at all.
+      if (!(scene.files ?? []).some((f) => f.name === mm.map)) {
+        result.log.push({
+          file: "", domain,
+          message: `mask source "${mm.map}" is not a bound map, an earlier mask, or a files[] entry`,
+        });
+      }
+      continue;
+    }
+    const model = fileBindings.get(mm.model);
+    if (!model) {
+      result.log.push({ file: mm.model, domain, message: `mask model "${mm.model}" not bound to a molecule` });
+      continue;
+    }
+    try {
+      // Translate scene intent → Coot's `invert` (mask_map_by_atom_selection):
+      // Coot invert=true zeros density WHERE ATOMS ARE NOT → keeps density near
+      // the selection. invert=false zeros density AT the atoms → carves a hole.
+      // Our `keep` names the intent; default "inside" = the usual "density for
+      // my selection" figure. See MaskMap.keep in lib/scene/core.ts.
+      const keep = mm.keep ?? "inside";
+      const masked = await mapMasker({
+        sourceMap,
+        model,
+        selection: mm.selection ?? "/*/*/*/*",
+        radius: mm.radius,
+        invert: keep === "inside",
+        name: mm.name,
+      });
+      if (!masked) {
+        result.log.push({ file: "", domain, message: "masking returned no map (Coot failure)" });
+        continue;
+      }
+      liveMapPool.push(masked);
+      maskOutputs.set(mm.name, masked);
+    } catch (e) {
+      result.log.push({
+        file: "", domain,
+        message: `masking failed: ${e instanceof Error ? e.message : "unknown error"}`,
+      });
+    }
+  }
+
+  // 2.4c from: maps — render a mask output.
+  for (const sceneMap of scene.maps ?? []) {
+    if (sceneMap.from == null) continue; // file: maps handled in 2.4a
+    const domain = `map ${sceneMap.name}`;
+    const map = maskOutputs.get(sceneMap.from) ?? null;
     if (!map) {
       result.log.push({
-        file: sceneMap.file,
-        domain: `map ${sceneMap.name}`,
-        message: mapFetcher
-          ? "no matching loaded map and ref is not fetchable"
-          : "no matching loaded map (no mapFetcher provided)",
+        file: "", domain,
+        message: `from: mask output "${sceneMap.from}" was not produced (its recipe failed or was dropped)`,
       });
       continue;
     }
@@ -453,18 +730,109 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 
   // 3. Camera. Mirror PasteViewLinkField exactly so behaviour matches.
   if (scene.view) {
-    if (scene.view.origin) dispatch(setOrigin(scene.view.origin));
+    // Camera target — where the view points. `centre` centres on a selection's
+    // centroid; `origin` is an explicit point. This is the ONLY thing that moves
+    // the camera; the slab below is independent (z-depth only).
+    if (scene.view.centre) {
+      const { selection } = scene.view.centre;
+      const cid = selection ?? "/*/*/*/*";
+      const { mol, ref, error } = resolveViewMolecule(scene.view.centre.file, fileBindings);
+      if (error || !mol) {
+        result.log.push({
+          file: ref,
+          domain: "view.centre",
+          message: `cannot centre: ${error}`,
+        });
+      } else if (cid.includes("||")) {
+        // mol.centreOn feeds gemmi a single CID; for a "||"-union compute the
+        // centroid ourselves and set the origin to it. Moorhen's origin is the
+        // translation that brings a point to screen centre — i.e. the NEGATIVE of
+        // the coordinates (see centreOnGemmiAtoms, which returns -centroid). Our
+        // sphere.centre is the raw centroid, so negate it; otherwise the camera
+        // jumps to the point reflected through the molecule origin.
+        const sphere = selectionBoundingSphere(mol, cid);
+        if (sphere) {
+          const [cx, cy, cz] = sphere.centre;
+          dispatch(setOrigin([-cx, -cy, -cz]));
+        } else {
+          result.log.push({
+            file: ref,
+            domain: "view.centre",
+            message: `centre: selection "${cid}" matched no atoms (or gemmi unavailable)`,
+          });
+        }
+      } else {
+        try {
+          await mol.centreOn(cid, false, false); // no animate, don't touch zoom
+        } catch (e) {
+          result.log.push({
+            file: ref,
+            domain: "view.centre",
+            message: `centre on "${cid}" failed: ${e instanceof Error ? e.message : "unknown error"}`,
+          });
+        }
+      }
+    } else if (scene.view.origin) {
+      dispatch(setOrigin(scene.view.origin));
+    }
+
+    // Slab: a z-depth clip/fog window ONLY (see the clip block below). It sizes
+    // the depth to the selection's bounding radius but does NOT move the camera —
+    // the clip brackets the current origin in depth, so a slab only "contains"
+    // its selection when `centre` has put the origin on that selection. centre
+    // and slab are independent and both settable; pair them to frame a selection.
+    let slabDepth: number | undefined;
+    if (scene.view.slab) {
+      const { selection, pad } = scene.view.slab;
+      const cid = selection ?? "/*/*/*/*";
+      const { mol, ref, error } = resolveViewMolecule(scene.view.slab.file, fileBindings);
+      if (error || !mol) {
+        result.log.push({
+          file: ref, domain: "view.slab",
+          message: `cannot slab: ${error}`,
+        });
+      } else {
+        const sphere = selectionBoundingSphere(mol, cid);
+        if (!sphere) {
+          result.log.push({
+            file: ref, domain: "view.slab",
+            message: `slab: selection "${cid}" matched no atoms (or gemmi unavailable)`,
+          });
+        } else {
+          slabDepth = sphere.radius + (pad ?? 0);
+        }
+      }
+    }
     if (scene.view.quat) dispatch(setQuat(scene.view.quat));
     if (scene.view.zoom !== undefined) dispatch(setZoom(scene.view.zoom));
-    if (scene.view.clipStart !== undefined) dispatch(setClipStart(scene.view.clipStart));
-    if (scene.view.clipEnd !== undefined) dispatch(setClipEnd(scene.view.clipEnd));
-    if (scene.view.fogStart !== undefined) dispatch(setFogStart(scene.view.fogStart));
-    if (scene.view.fogEnd !== undefined) dispatch(setFogEnd(scene.view.fogEnd));
+
+    // Clip & fog. Coot derives both from zoom and a shared pair of field depths
+    // (Å in front of / behind the centre, default 8/21) and recomputes them on
+    // zoom UNLESS resetClippingFogging is off. So a scene that sets clip/fog also
+    // pins that flag, and `clip` gives intent-level control over the depths.
+    // Clip/fog precedence (broad → fine, design doc §11): a `slab` (absolute
+    // world-Å bounding-sphere bracket) or `clip: {front,back}` (zoom-scaled field
+    // depths) sets the broad bracket; explicit clipStart/End/fogStart/End then
+    // override per-plane (finest wins). So `slab` + an explicit `fogEnd` keeps the
+    // slab's other three planes and overrides only the back fog plane.
+    const zoom = scene.view.zoom ?? ctx.glRef?.zoom ?? 1;
+    const fco = ctx.glRef?.fogClipOffset ?? 250;
+    const planes = resolveClipFogPlanes(scene.view, slabDepth, zoom, fco);
+    if (planes.clipStart !== undefined) dispatch(setClipStart(planes.clipStart));
+    if (planes.clipEnd !== undefined) dispatch(setClipEnd(planes.clipEnd));
+    if (planes.fogStart !== undefined) dispatch(setFogStart(planes.fogStart));
+    if (planes.fogEnd !== undefined) dispatch(setFogEnd(planes.fogEnd));
+    if (planes.reset !== undefined) dispatch(setResetClippingFogging(planes.reset));
+
     if (scene.view.background) {
       const rgba = hexToRgba01(scene.view.background);
       if (rgba) dispatch(setBackgroundColor(rgba));
     }
   }
+
+  // Scene-level render hints (lighting + effects). Advisory; applied once.
+  if (scene.hints) applyHints(scene.hints, dispatch);
+
   dispatch(setRequestDrawScene(true));
 
   return result;
@@ -477,14 +845,20 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
 /**
  * True iff the resolver could ask the fetcher to load this ref on its
  * own — i.e. the ref carries enough info to know where to fetch from.
- * `path:` alone is not fetchable (we don't read arbitrary local paths
- * from the browser); `job+param` would need an extra ccp4i2 API lookup
- * we haven't built yet, so for now it's also not fetchable.
+ * `relativeUrl:` alone is not fetchable here (it's an origin-relative loader
+ * URL used for matching already-loaded molecules, not for standalone fetch).
+ * `job+param` IS fetchable: the host fetcher resolves
+ * the job number + output param to a project file via the ccp4i2 REST API
+ * (jobs → files) and loads it through the same proxy URL as fileId refs.
  */
 export function isFetchable(fr: SceneFileRef): boolean {
   if (fr.pdb) return true;
   if (fr.url) return true;
-  if (fr.fileId !== undefined && fr.projectId) return true;
+  // A fileId is globally unique in the ccp4i2 DB and the download URL keys on
+  // it alone (/files/<fileId>/download/), so a project qualifier is NOT needed
+  // to fetch. projectId/projectName are advisory context here.
+  if (fr.fileId !== undefined) return true;
+  if (fr.job !== undefined && fr.param) return true;
   // Inline dict text: trivially "fetchable" — the fetcher just returns
   // the text. Only valid on dictionary refs (validator enforces this).
   if (fr.cifText && fr.kind === "dictionary") return true;
@@ -529,8 +903,8 @@ function matchOneFile(
     }
   }
 
-  // 4. Match by URL or path (uniqueId is set to the loader's URL/path).
-  const candidates = [fr.url, fr.path].filter(Boolean) as string[];
+  // 4. Match by URL (uniqueId is set to the loader's absolute or origin-relative URL).
+  const candidates = [fr.url, fr.relativeUrl].filter(Boolean) as string[];
   for (const c of candidates) {
     for (const mol of molecules) {
       if (mol.uniqueId === c) return mol;
@@ -558,7 +932,7 @@ function matchOneMap(fr: SceneFileRef, maps: moorhen.Map[]): moorhen.Map | null 
       if (m.uniqueId === sentinel) return m;
     }
   }
-  const candidates = [fr.url, fr.path].filter(Boolean) as string[];
+  const candidates = [fr.url, fr.relativeUrl].filter(Boolean) as string[];
   for (const c of candidates) {
     for (const m of maps) {
       if (m.uniqueId === c) return m;
@@ -712,6 +1086,45 @@ export function splitMultiCid(cid: string): string[] {
     .filter((s) => s.length > 0);
 }
 
+/**
+ * Honoured-geometry → Moorhen m2tParameters key map. Every SceneGeometry field
+ * has a direct m2tParameters counterpart (all are world-space Å except vdwScale,
+ * a multiplier). See MoorhenMoleculeRepresentation.m2tParameters.
+ */
+const GEOMETRY_TO_M2T: Record<keyof SceneGeometry, string> = {
+  bondRadius: "cylindersStyleCylinderRadius",
+  ballRadius: "cylindersStyleBallRadius",
+  vdwScale: "ballsStyleRadiusMultiplier",
+  probeRadius: "surfaceStyleProbeRadius",
+  ribbonCoilThickness: "ribbonStyleCoilThickness",
+  ribbonHelixWidth: "ribbonStyleHelixWidth",
+  ribbonStrandWidth: "ribbonStyleStrandWidth",
+  ribbonArrowWidth: "ribbonStyleArrowWidth",
+  ribbonDNARNAWidth: "ribbonStyleDNARNAWidth",
+};
+
+/**
+ * Merge a scene's honoured geometry onto a representation's existing
+ * m2tParameters. Pure (no Moorhen instance) so it is unit-testable; the caller
+ * applies the result via representation.setM2tParams + useDefaultM2tParams=false.
+ */
+export function geometryToM2tParams(
+  geom: SceneGeometry,
+  base: Record<string, unknown> = {},
+): Record<string, unknown> {
+  const out: Record<string, unknown> = { ...base };
+  for (const key of Object.keys(GEOMETRY_TO_M2T) as (keyof SceneGeometry)[]) {
+    const v = geom[key];
+    if (typeof v === "number") out[GEOMETRY_TO_M2T[key]] = v;
+  }
+  return out;
+}
+
+/** True iff a SceneGeometry carries at least one numeric override. */
+function hasGeometry(geom?: SceneGeometry): geom is SceneGeometry {
+  return !!geom && Object.values(geom).some((v) => typeof v === "number");
+}
+
 // --------------------------------------------------------------------------
 // Representations
 // --------------------------------------------------------------------------
@@ -724,6 +1137,9 @@ interface ApplyRepCtx {
   log: SceneResolveLogEntry[];
   policy: "clamp-and-log" | "strict";
   dispatch: Dispatch;
+  /** Molecule-scoped colour from element.colour — the per-rep colour falls
+   *  back to this when the representation has no `colour` of its own. */
+  elementColour?: SceneColour;
 }
 
 /**
@@ -737,6 +1153,25 @@ interface PendingRule {
   args: (string | number)[];
   isMultiColourRule: boolean;
   applyColourToNonCarbonAtoms?: boolean;
+}
+
+/**
+ * Scene-format style name → Moorhen's internal `RepresentationStyles` name,
+ * for the (currently single) case where the scene format deliberately diverges
+ * from Moorhen's spelling. The scene format is user-facing and uses the correct
+ * English `adaptiveBonds`; Moorhen's API string is the non-word `adaptativeBonds`
+ * (see lib/scene/core.ts). We translate here, at the one boundary that hands a
+ * style to Moorhen, so the ugly spelling never leaks into the scene contract.
+ *
+ * TODO: upstream a rename into Moorhen so this map can be emptied.
+ */
+const STYLE_TO_MOORHEN: Record<string, string> = {
+  adaptiveBonds: "adaptativeBonds",
+};
+
+/** Canonical scene style → the string Moorhen's addRepresentation expects. */
+function toMoorhenStyle(style: string): string {
+  return STYLE_TO_MOORHEN[style] ?? style;
 }
 
 async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
@@ -757,12 +1192,32 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
   for (const subCid of cids) {
     try {
       const created = await molecule.addRepresentation(
-        rep.style as moorhen.RepresentationStyles,
+        toMoorhenStyle(rep.style) as moorhen.RepresentationStyles,
         subCid,
         true, // isCustom — keeps it under our control to clear later
       );
       if (!created) continue;
+      const hasAlpha = typeof rep.alpha === "number" && rep.alpha < 1;
+      const geomSet = hasGeometry(rep.geometry);
+      // Honoured geometry → m2tParameters. Applied before the redraw so the
+      // rebuilt buffers use the new dimensions.
+      if (geomSet) {
+        created.useDefaultM2tParams = false;
+        created.setM2tParams(
+          geometryToM2tParams(
+            rep.geometry as SceneGeometry,
+            created.m2tParams as unknown as Record<string, unknown>,
+          ) as unknown as typeof created.m2tParams,
+        );
+      }
       if (pendingRules.length > 0) {
+        // Decouple this representation from the molecule's shared
+        // `defaultColourRules` array (assigned to a rep BY REFERENCE at draw
+        // time in Moorhen). Without this reset, addColourRule push()es onto the
+        // shared array, so colour rules accumulate molecule-wide and leak across
+        // every representation (the "colour soup" on capture). Nulling it makes
+        // the first addColourRule build a fresh, rep-private list.
+        created.colourRules = null;
         for (const r of pendingRules) {
           // Colour rule CID stays as authored — the rule's CID and the
           // representation's CID don't have to match (e.g. by-domain
@@ -777,8 +1232,19 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
             r.applyColourToNonCarbonAtoms ?? false,
           );
         }
+      }
+      // Rebuild the buffers once if colour rules and/or geometry changed.
+      if (pendingRules.length > 0 || geomSet) {
         await molecule.redrawRepresentation(created.uniqueId);
       }
+      // Opacity (Moorhen `nonCustomOpacity`, 0..1, 1=opaque; surfaces included)
+      // MUST be applied LAST, after any redraw. setNonCustomOpacity rewrites the
+      // alpha of the *current* buffers, but Moorhen's draw()/redraw() rebuild
+      // buffers opaque and do NOT re-apply nonCustomOpacity — so setting it
+      // before the redraw above is silently clobbered when the rebuild lands
+      // (the "transparent while loading, opaque once drawn" flip). Setting it
+      // here, on the final buffers, makes it stick; it requests its own redraw.
+      if (hasAlpha) created.setNonCustomOpacity(rep.alpha as number);
       dispatch(addCustomRepresentation(created));
       anySucceeded = true;
     } catch (e) {
@@ -828,11 +1294,28 @@ function extractRepError(e: unknown): string {
   }
 }
 
-function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] {
+export function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] {
   const { molecule, rep, domains, fileName, log, policy } = ctx;
-  if (!rep.colour) return [];
+  // Effective colour: the representation's own, else the molecule-scoped
+  // element.colour (the cascade — a rep's own colour overrides element.colour).
+  const colour = rep.colour ?? ctx.elementColour;
+  if (!colour) return [];
 
-  if (isSceneHexColour(rep.colour)) {
+  if (Array.isArray(colour)) {
+    // Per-selection colour list: one single-colour rule per entry. A whole-chain
+    // CID ("//A") and a residue range ("//A/121-130") apply identically here —
+    // it's the general form by-domain compiles to, and what coot's default
+    // per-chain colouring round-trips through.
+    return colour.map((c) => ({
+      ruleType: "molecule",
+      cid: c.selection,
+      color: c.colour,
+      args: [c.selection, c.colour],
+      isMultiColourRule: false,
+    }));
+  }
+
+  if (isSceneHexColour(colour)) {
     // libcoot's add_colour_rule reads cid+colour from args, not from
     // this.cid/this.color (which are only consulted by the bond-style
     // shim_set_bond_colours path). Without [cid, colour] in args,
@@ -841,15 +1324,15 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
       {
         ruleType: "molecule",
         cid: defaultCid,
-        color: rep.colour,
-        args: [defaultCid, rep.colour],
+        color: colour,
+        args: [defaultCid, colour],
         isMultiColourRule: false,
       },
     ];
   }
 
-  if (isSceneNamedColour(rep.colour)) {
-    if (rep.colour === "by-domain") {
+  if (isSceneNamedColour(colour)) {
+    if (colour === "by-domain") {
       return buildByDomainPendingRule(molecule, domains, fileName, log, policy);
     }
     // Named schemes (b-factor, af2-plddt, etc.) are Moorhen multi-rules
@@ -857,7 +1340,7 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
     // args array; Moorhen's internal getMultiColourRuleArgs supplies them.
     return [
       {
-        ruleType: rep.colour,
+        ruleType: colour,
         cid: defaultCid,
         color: "#ffffff",
         args: [],
@@ -866,8 +1349,8 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
     ];
   }
 
-  if (isSceneRawColour(rep.colour)) {
-    const raw = rep.colour.raw;
+  if (isSceneRawColour(colour)) {
+    const raw = colour.raw;
     return [
       {
         ruleType: raw.ruleType,
@@ -886,6 +1369,55 @@ function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): PendingRule[] 
 // --------------------------------------------------------------------------
 // by-domain compilation: clamp ranges, build pipe-delimited args
 // --------------------------------------------------------------------------
+
+/**
+ * Turn a domain CID `selection` into colour-rule segments. When the CID is the
+ * `//chain/start-end` shape (a concrete chain + numeric range) it is clamped to
+ * the residues present and warned about — diagnostic parity with the legacy
+ * chain+range form. Any other CID (whole chain `//F`, residue names, atoms,
+ * wildcard chains) passes straight through to Coot.
+ */
+function selectionToSegments(
+  selection: string,
+  color: string,
+  domainName: string,
+  presentByChain: Map<string, Set<number>>,
+  log: SceneResolveLogEntry[],
+  fileName: string,
+  policy: "clamp-and-log" | "strict",
+): string[] {
+  const m = /^(\/[^/]*\/([^/*]+))\/(-?\d+)-(-?\d+)$/.exec(selection);
+  if (!m) return [`${selection}^${color}`];
+  const prefix = m[1];
+  const chainId = m[2];
+  const start = parseInt(m[3], 10);
+  const end = parseInt(m[4], 10);
+  const present = presentByChain.get(chainId);
+  if (!present) {
+    log.push({ file: fileName, domain: domainName, message: `chain ${chainId} not present in molecule; skipped` });
+    return [];
+  }
+  const subRanges = clampRangeToPresent(start, end, present);
+  if (subRanges.length === 0) {
+    log.push({ file: fileName, domain: domainName, message: `range ${start}-${end} has no present residues in chain ${chainId}; skipped` });
+    return [];
+  }
+  if (subRanges.length > 1 || subRanges[0][0] !== start || subRanges[0][1] !== end) {
+    log.push({
+      file: fileName,
+      domain: domainName,
+      message: `chain ${chainId}: range ${start}-${end} resolved to ${subRanges
+        .map(([s, e]) => `${s}-${e}`)
+        .join(", ")} after clamping to present residues`,
+    });
+    if (policy === "strict") {
+      throw new Error(
+        `Scene resolver in strict mode: domain "${domainName}" range ${start}-${end} not fully present in chain ${chainId}`,
+      );
+    }
+  }
+  return subRanges.map(([s, e]) => `${prefix}/${s}-${e}^${color}`);
+}
 
 function buildByDomainPendingRule(
   molecule: moorhen.Molecule,
@@ -906,12 +1438,19 @@ function buildByDomainPendingRule(
 
   const segments: string[] = [];
   for (const d of domains) {
-    const m = /^(-?\d+)-(-?\d+)$/.exec(d.range);
-    if (!m) continue;
-    const start = parseInt(m[1], 10);
-    const end = parseInt(m[2], 10);
+    // Preferred CID form: clamp the //chain/start-end shape (diagnostic parity
+    // with chain+range), pass any other CID straight through.
+    if (d.selection) {
+      segments.push(
+        ...selectionToSegments(
+          d.selection, d.color, d.name, presentByChain, log, fileName, policy,
+        ),
+      );
+      continue;
+    }
+    if (!d.chain) continue; // neither selection nor chain (invalid; validated upstream)
 
-    // Resolve the domain's chain selector into concrete chain ids.
+    // Legacy: resolve the chain selector into concrete chain ids.
     // - "*"      → every chain present in the structure
     // - "A"      → exactly chain A (legacy single-chain form)
     // - ["A","B"] → exactly those chains
@@ -927,6 +1466,19 @@ function buildByDomainPendingRule(
       });
       continue;
     }
+
+    // Range-less domain ⇒ the WHOLE chain: one `//chain` segment per chain, no
+    // residue range (so a molecule's per-chain colouring is a set of whole-chain
+    // "domains" adopted via colour: by-domain, the same path as range domains).
+    if (!d.range) {
+      for (const chainId of targetChains) segments.push(`//${chainId}^${d.color}`);
+      continue;
+    }
+
+    const m = /^(-?\d+)-(-?\d+)$/.exec(d.range);
+    if (!m) continue;
+    const start = parseInt(m[1], 10);
+    const end = parseInt(m[2], 10);
 
     for (const chainId of targetChains) {
       const present = presentByChain.get(chainId);
@@ -1060,4 +1612,135 @@ function hexToRgba01(hex: string): [number, number, number, number] | null {
   const g = parseInt(hex.slice(3, 5), 16) / 255;
   const b = parseInt(hex.slice(5, 7), 16) / 255;
   return [r, g, b, 1];
+}
+
+export interface ResolvedClipFog {
+  clipStart?: number;
+  clipEnd?: number;
+  fogStart?: number;
+  fogEnd?: number;
+  /** setResetClippingFogging value: `true` = let coot recompute from zoom (auto);
+   *  `false` = freeze; `undefined` = leave Moorhen's current state untouched. */
+  reset?: boolean;
+}
+
+/**
+ * Resolve clip/fog planes with broad → fine precedence (the cascade principle,
+ * design doc §11):
+ *   1. the broadest source present sets all four planes — `slab` (absolute
+ *      world-Å half-thickness about the fog-clip offset) OR `clip: {front,back}`
+ *      (zoom-scaled coot field depths);
+ *   2. explicit `clipStart`/`clipEnd`/`fogStart`/`fogEnd` then override per-plane
+ *      (finest wins) — so e.g. `slab` + explicit `fogEnd` keeps the slab's other
+ *      three planes and overrides only the back fog plane.
+ * `clip: "auto"` with nothing finer = recompute (`reset:true`); no clip/fog/slab
+ * at all = leave untouched (`reset` undefined); anything else = freeze
+ * (`reset:false`). Pure (no dispatch) so the precedence is unit-testable.
+ */
+export function resolveClipFogPlanes(
+  view: SceneView,
+  slabDepth: number | undefined,
+  zoom: number,
+  fco: number,
+): ResolvedClipFog {
+  const clip = view.clip;
+  const hasBroad = slabDepth !== undefined || (!!clip && typeof clip === "object");
+  const hasExplicit =
+    view.clipStart !== undefined || view.clipEnd !== undefined ||
+    view.fogStart !== undefined || view.fogEnd !== undefined;
+
+  if (clip === "auto" && !hasBroad && !hasExplicit) return { reset: true };
+  if (clip === undefined && !hasBroad && !hasExplicit) return {}; // nothing → leave
+
+  const out: ResolvedClipFog = { reset: false };
+  if (slabDepth !== undefined) {
+    out.clipStart = slabDepth;
+    out.clipEnd = slabDepth;
+    out.fogStart = fco - slabDepth;
+    out.fogEnd = fco + slabDepth;
+  } else if (clip && typeof clip === "object") {
+    out.clipStart = zoom * clip.front;
+    out.clipEnd = zoom * clip.back;
+    out.fogStart = fco - zoom * clip.front;
+    out.fogEnd = fco + zoom * clip.back;
+  }
+  // Finer explicit planes override the broad bracket, per-plane.
+  if (view.clipStart !== undefined) out.clipStart = view.clipStart;
+  if (view.clipEnd !== undefined) out.clipEnd = view.clipEnd;
+  if (view.fogStart !== undefined) out.fogStart = view.fogStart;
+  if (view.fogEnd !== undefined) out.fogEnd = view.fogEnd;
+  return out;
+}
+
+/**
+ * Convert a scene's conceptual light DIRECTION into Moorhen's lightPosition,
+ * which is a POSITION (default [25,25,50,1], |·|≈61, w=1) — not a unit vector.
+ * Normalise the direction and place the light at `distance` along it, w=1, so
+ * "lit from this direction" maps to a sensible far light rather than one sitting
+ * at the model centre. See MOORHEN_SCENES_SCHEMA_V1_DESIGN.md §4b.
+ */
+export function directionToLightPosition(
+  dir: [number, number, number],
+  distance = 60,
+): [number, number, number, number] {
+  const [x, y, z] = dir;
+  const len = Math.hypot(x, y, z) || 1;
+  const s = distance / len;
+  return [x * s, y * s, z * s, 1];
+}
+
+/**
+ * Apply scene-level render hints (lighting + perceptual effects) to the Moorhen
+ * store. Advisory: every field is optional and only dispatched when present, so
+ * a scene with no hints leaves Moorhen's current state untouched. Lighting is
+ * the "substituted" class (a renderer falls back to its default if absent);
+ * effects are additive toggles.
+ */
+function applyHints(hints: SceneHints, dispatch: Dispatch): void {
+  const l = hints.lighting;
+  if (l) {
+    if (l.direction) dispatch(setLightPosition(directionToLightPosition(l.direction)));
+    if (l.ambient) {
+      const c = hexToRgba01(l.ambient);
+      if (c) dispatch(setAmbient(c));
+    }
+    if (l.diffuse) {
+      const c = hexToRgba01(l.diffuse);
+      if (c) dispatch(setDiffuse(c));
+    }
+    if (l.specular) {
+      const c = hexToRgba01(l.specular);
+      if (c) dispatch(setSpecular(c));
+    }
+    if (typeof l.shininess === "number") dispatch(setSpecularPower(l.shininess));
+  }
+  // Effects are scene-AUTHORITATIVE: when an `effects` block is present it fully
+  // determines effect state, so an effect the scene doesn't mention is reset to
+  // its Moorhen default (off). This makes a scene reproduce its look regardless
+  // of prior UI fiddling (design doc §4b). Lighting (above) stays additive.
+  const e = hints.effects;
+  if (e) {
+    dispatch(setDoSSAO(e.ssao?.enabled ?? false));
+    if (typeof e.ssao?.radius === "number") dispatch(setSsaoRadius(e.ssao.radius));
+    if (typeof e.ssao?.bias === "number") dispatch(setSsaoBias(e.ssao.bias));
+
+    dispatch(setDoEdgeDetect(e.edgeDetect?.enabled ?? false));
+    const ed = e.edgeDetect;
+    if (ed) {
+      if (typeof ed.depthThreshold === "number") dispatch(setEdgeDetectDepthThreshold(ed.depthThreshold));
+      if (typeof ed.normalThreshold === "number") dispatch(setEdgeDetectNormalThreshold(ed.normalThreshold));
+      if (typeof ed.depthScale === "number") dispatch(setEdgeDetectDepthScale(ed.depthScale));
+      if (typeof ed.normalScale === "number") dispatch(setEdgeDetectNormalScale(ed.normalScale));
+    }
+
+    dispatch(setDoShadow(e.shadows ?? false));
+    dispatch(setDoPerspectiveProjection(e.perspective ?? false));
+
+    // depthBlur maps to Moorhen's `useOffScreenBuffers` (historically named).
+    dispatch(setUseOffScreenBuffers(!!e.depthBlur));
+    if (e.depthBlur) {
+      if (typeof e.depthBlur.radius === "number") dispatch(setDepthBlurRadius(e.depthBlur.radius));
+      if (typeof e.depthBlur.depth === "number") dispatch(setDepthBlurDepth(e.depthBlur.depth));
+    }
+  }
 }

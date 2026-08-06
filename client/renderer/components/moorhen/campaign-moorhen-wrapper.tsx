@@ -68,8 +68,8 @@ import {
   SceneMapFetcher,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
-import { parseScene, serialiseScene } from "../../lib/moorhen-scene";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp } from "../../lib/moorhen-map-file";
+import { parseScene, serialiseScene } from "../../lib/scene";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance } from "../../lib/moorhen-map-file";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
@@ -130,7 +130,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       for (const mol of currentMolecules) {
         for (const rep of toAdd) {
           try {
-            await mol.addRepresentation(rep, "/*/*/*/*");
+            // reps arrive as string[] from URL-restore state; they are the
+            // ToggleButton representation vocabulary, so narrow to the union.
+            await mol.addRepresentation(rep as moorhen.RepresentationStyles, "/*/*/*/*");
           } catch (err) {
             console.error(`Failed to add ${rep} to ${mol.name}:`, err);
           }
@@ -457,23 +459,22 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         }
       }
       try {
-        const newMap = new MoorhenMap(
-          commandCentre as RefObject<moorhen.CommandCentre>,
-          store as any,
-        );
+        const mapInstance = makeMoorhenMapInstance(commandCentre, store);
+        let newMap: moorhen.Map;
         if (ref.kind === "map") {
           // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
           const mapBytes = ccp4Mode0ToFloat(bytes as ArrayBuffer);
-          await newMap.loadToCootFromMapData(
+          newMap = await MoorhenMap.loadToCootFromMapData(
             new Uint8Array(sceneMap.isMask ? ccp4DodgeEmClamp(mapBytes) : mapBytes),
             sceneMap.name,
             !!sceneMap.isDifference,
+            mapInstance,
           );
           (newMap as any).isCcp4MapFile = true;
           if (sceneMap.isMask) markMaskMap(newMap);
         } else {
           const cols = sceneMap.columns ?? {};
-          await newMap.loadToCootFromMtzData(
+          newMap = await MoorhenMap.loadToCootFromMtzData(
             new Uint8Array(bytes as ArrayBuffer),
             sceneMap.name,
             {
@@ -486,6 +487,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
               calcStructFact: !!cols.calcStructFact,
               isDifference: !!sceneMap.isDifference,
             } as moorhen.selectedMtzColumns,
+            mapInstance,
           );
         }
         if (newMap.molNo === -1) return null;
@@ -749,21 +751,22 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     mapSubType: number = 1
   ) => {
     if (!commandCentre.current) return;
-    const newMap = new MoorhenMap(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any
-    );
     // subType: 1=normal, 2=difference, 3=anomalous difference
     // Both difference and anomalous maps use isDifference=true for contouring
     const isDiffMap = mapSubType === 2 || mapSubType === 3;
     try {
       const mtzData = await apiArrayBuffer(url);
-      await newMap.loadToCootFromMtzData(new Uint8Array(mtzData), mapName, {
-        F: "F",
-        PHI: "PHI",
-        useWeight: false,
-        isDifference: isDiffMap,
-      });
+      const newMap = await MoorhenMap.loadToCootFromMtzData(
+        new Uint8Array(mtzData),
+        mapName,
+        {
+          F: "F",
+          PHI: "PHI",
+          useWeight: false,
+          isDifference: isDiffMap,
+        } as moorhen.selectedMtzColumns,
+        makeMoorhenMapInstance(commandCentre, store),
+      );
       newMap.uniqueId = url;
       // Store the original sub_type for proper labeling and coloring
       (newMap as any).mapSubType = mapSubType;
@@ -807,17 +810,19 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     opts: { isMask?: boolean } = {}
   ) => {
     if (!commandCentre.current) return;
-    const newMap = new MoorhenMap(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any
-    );
+    let newMap: moorhen.Map | undefined;
     try {
       // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
       // (no-op if already float). For masks, also nudge the P1/orthogonal cell
       // off 90° so coot contours periodically instead of clamping to the cell box.
       let mapData = ccp4Mode0ToFloat(await apiArrayBuffer(url));
       if (opts.isMask) mapData = ccp4DodgeEmClamp(mapData);
-      await newMap.loadToCootFromMapData(new Uint8Array(mapData), mapName, false);
+      newMap = await MoorhenMap.loadToCootFromMapData(
+        new Uint8Array(mapData),
+        mapName,
+        false,
+        makeMoorhenMapInstance(commandCentre, store),
+      );
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).

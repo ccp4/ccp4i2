@@ -13,7 +13,7 @@ import { CCP4i2ApplicationOutputView } from "@/components/report/CCP4i2Applicati
  * Opens a graph in its own window, allowing users to view and interact
  * with graphs independently of the main report view.
  *
- * URL: /graph-viewer/[jobId]/[graphId]
+ * URL: /ccp4i2/graph-viewer/[jobId]/[graphId]
  */
 export default function GraphViewerPage() {
   const params = useParams();

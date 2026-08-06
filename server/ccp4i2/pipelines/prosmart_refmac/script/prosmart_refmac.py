@@ -522,6 +522,12 @@ class prosmart_refmac(CPluginScript):
         self.container.outputData.COOTSCRIPTOUT.annotation = 'Coot script written from refinement'
         self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
         self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
+        # COMPLETE_MTZ (the unsplit reflection file) was copied up from the terminal
+        # refmac child by the generic dataOrder() loop above; annotate it so the
+        # Export MTZ button can serve this tracked, purge-protected pipeline output.
+        if self.container.outputData.COMPLETE_MTZ.exists():
+            self.container.outputData.COMPLETE_MTZ.annotation.set(
+                'Complete unsplit reflection file from refinement')
 
         # Set ligand dictionary annotations
         if self.container.outputData.DICT.exists():

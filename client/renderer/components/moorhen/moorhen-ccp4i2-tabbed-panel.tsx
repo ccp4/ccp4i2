@@ -49,6 +49,11 @@ export interface MoorhenCcp4i2TabbedPanelProps {
     assets: SceneBundleAssets;
     warnings: string[];
   }>;
+  onBuildAuthoringPrompt?: (request: string) => Promise<string>;
+  /** Generate a scene from a natural-language request via an integrated LLM
+   *  endpoint. Optional — passed only when the deployment reports the
+   *  capability; when omitted the panel offers copy-paste authoring only. */
+  onGenerateScene?: (request: string) => Promise<string>;
   cootInitialized: boolean;
 }
 
@@ -56,6 +61,8 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
   onApplyScene,
   onCaptureScene,
   onPromoteSceneToPortable,
+  onBuildAuthoringPrompt,
+  onGenerateScene,
   cootInitialized,
   ...controlsProps
 }) => {
@@ -87,10 +94,12 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
         onApplyScene={onApplyScene}
         onCaptureScene={onCaptureScene}
         onPromoteSceneToPortable={onPromoteSceneToPortable}
+        onBuildAuthoringPrompt={onBuildAuthoringPrompt}
+        onGenerateScene={onGenerateScene}
         enabled={cootInitialized}
       />
     ),
-    [onApplyScene, onCaptureScene, onPromoteSceneToPortable, cootInitialized],
+    [onApplyScene, onCaptureScene, onPromoteSceneToPortable, onBuildAuthoringPrompt, onGenerateScene, cootInitialized],
   );
 
   return (

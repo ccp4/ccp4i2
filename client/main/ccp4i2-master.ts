@@ -22,6 +22,16 @@ import os from "os";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
+// The AppImage intentionally does NOT force --no-sandbox. appendSwitch("no-sandbox")
+// runs too late to be reliable — Chromium's zygote reads the sandbox flag before
+// this JS executes — so it never dependably took effect in a packaged AppImage,
+// yet it robbed capable users of a real Chromium sandbox. So the AppImage now
+// behaves as it did in a11: on permissive kernels it sandboxes normally; on
+// locked-down kernels (Ubuntu 24.04+) either enable unprivileged user namespaces
+//   sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+// or install the .deb, whose postinst setuids chrome-sandbox + ships an AppArmor
+// profile — the proper, sandbox-preserving fix. (Restored at Paul Bond's request.)
+
 // Change the current working directory to the Resources folder
 if (!isDev) {
   const asarDir = app.getAppPath();
@@ -61,6 +71,22 @@ const getDefaultCCP4Dir = () => {
 
   // Check common CCP4 installation locations in order of preference
   const possiblePaths: string[] = [];
+
+  // Highest priority: an already-sourced CCP4 environment. When the app is
+  // launched from a shell that has sourced ccp4.setup-sh, $CCP4 points at the
+  // install root (which holds bin/ccp4-python) and ccp4-python is on PATH.
+  // Honour that so a user who already configured CCP4 isn't asked to re-select
+  // a directory by hand (the common Linux tarball-in-a-custom-location case).
+  const pythonBinName = isWindows ? "ccp4-python.bat" : "ccp4-python";
+  if (process.env.CCP4) {
+    possiblePaths.push(process.env.CCP4);
+  }
+  for (const dir of (process.env.PATH || "").split(path.delimiter)) {
+    // A ccp4-python on PATH lives in <root>/bin, so the root is its parent.
+    if (dir && fs.existsSync(path.join(dir, pythonBinName))) {
+      possiblePaths.push(path.dirname(dir));
+    }
+  }
 
   if (isDev) {
     // In dev mode, check sibling directory (../ccp4-* patterns)
@@ -113,6 +139,7 @@ export const store = new Store<StoreSchema>({
     devMode: false,
     zoomLevel: 0,
     theme: "dark",
+    autoLaunch: true,
   },
 });
 

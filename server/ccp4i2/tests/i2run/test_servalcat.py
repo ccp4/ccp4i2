@@ -224,3 +224,32 @@ def check_r_and_cc(
     assert maxRfree is None or rfrees[-1] <= maxRfree
     assert minCCwork is None or ccworks[-1] >= minCCwork
     assert minCCfree is None or ccfrees[-1] >= minCCfree
+
+
+def test_complete_mtz_survives_cleanup(cif8xfm, mtz8xfm):
+    """The tracked COMPLETE_MTZ (unsplit reflection file) must be produced by the
+    pipeline AND survive REFMAC_CLEANUP=True, proving both a1 (wrapper output) and
+    a2 (copy-up into the pipeline dir) plus purge protection (#247)."""
+    from gemmi import read_mtz_file
+
+    args = ["servalcat_pipe"]
+    args += ["--XYZIN", cif8xfm]
+    args += ["--DATA_METHOD", "xtal"]
+    args += ["--HKLIN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
+    args += ["--FREERFLAG", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
+    args += ["--NCYCLES", "2"]
+    args += ["--ADD_WATERS", "False"]
+    args += ["--F_SIGF_OR_I_SIGI", "F_SIGF"]
+    args += ["--VALIDATE_IRIS", "False"]
+    args += ["--VALIDATE_BAVERAGE", "False"]
+    args += ["--VALIDATE_RAMACHANDRAN", "False"]
+    args += ["--VALIDATE_MOLPROBITY", "False"]
+    args += ["--RUN_ADP_ANALYSIS", "False"]
+    args += ["--RUN_COORDADPDEV_ANALYSIS", "False"]
+    args += ["--REFMAC_CLEANUP", "True"]  # Purge intermediate files after refinement
+    with i2run(args) as job:
+        complete = job / "COMPLETE_MTZ.mtz"
+        assert complete.is_file(), (
+            f"COMPLETE_MTZ.mtz missing from pipeline dir {job} after REFMAC_CLEANUP"
+        )
+        read_mtz_file(str(complete))

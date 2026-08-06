@@ -75,6 +75,14 @@ class ProjectViewSet(ModelViewSet):
     def get_queryset(self):
         """Optimize queryset based on action."""
         queryset = super().get_queryset()
+        # Exact lookups by uuid / name so a client can resolve a project
+        # authoritatively (e.g. a scene's projectId) without paging the full list.
+        uuid = self.request.query_params.get("uuid")
+        if uuid is not None:
+            queryset = queryset.filter(uuid=uuid)
+        name = self.request.query_params.get("name")
+        if name is not None:
+            queryset = queryset.filter(name=name)
         if self.action == 'list':
             # List view: order by most recent first, prefetch tags
             return queryset.prefetch_related('tags').order_by('-last_access')
@@ -236,6 +244,33 @@ class ProjectViewSet(ModelViewSet):
         project.last_access = datetime.datetime.now(tz=timezone("UTC"))
         project.save()
         return Response(serializer.data)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def bibliography(self, request, pk=None):
+        """
+        Compiled bibliography for a project: the deduped union of references for
+        every task run in the project (all jobs, subjobs included).
+
+        Response:
+            {"success": true, "data": {"result": [
+                {"pmid", "title", "authors": [...], "source", "link", "cited_by"}
+            ]}}
+
+        Example:
+            GET /api/projects/{id}/bibliography/
+        """
+        try:
+            project = models.Project.objects.get(pk=pk)
+        except models.Project.DoesNotExist:
+            return api_error(f"Project {pk} not found", status=404)
+
+        from ..lib.utils.jobs.bibliography import bibliography_for_project
+
+        return api_success({"result": bibliography_for_project(project)})
 
     # jobs() @action removed — consumers should hit /jobs/?project={id} instead.
     # JobViewSet's existing filterset_fields=["project"] supports this natively;

@@ -60,6 +60,24 @@ Environments that must work at launch, beyond the happy-path desktop case.
 > **Action:** decide which of the above are day-0 vs. post-release and mark
 > accordingly.
 
+**Known limitation — AppImage shell launch on locked-down kernels (accepted, not fixed).**
+On Ubuntu 24.04+ / Debian 13 the kernel restricts unprivileged user namespaces,
+and the AppImage cannot supply the privileged sandbox fallback a `.deb` can.
+Launched from a shell (`./ccp4i2-django-*.AppImage`) it aborts with `The SUID
+sandbox helper binary … is not configured correctly`; electron-builder only
+injects `--no-sandbox` into the desktop-menu `Exec` entry, not `AppRun`, so a
+command-line launch never gets it (and `app.commandLine.appendSwitch` in
+[`main/ccp4i2-master.ts`](../client/main/ccp4i2-master.ts) is too late for
+Chromium's zygote). **Mitigation shipped:** [`docs/give-it-a-try.md`](give-it-a-try.md)
+directs Ubuntu/Debian users to the `.deb` (full sandbox, no workaround); the
+AppImage is documented as the artifact for other distros (Fedora, RHEL/Rocky,
+openSUSE, Arch), where userns is permitted and it sandboxes normally. **If ever
+fixed properly:** a relaunch guard at the top of `ccp4i2-master.ts` that re-execs
+with `--no-sandbox` in `argv` from t=0 — but *only* when userns is actually
+restricted (else it would downgrade the sandbox on distros that don't need it),
+which needs a Fedora/Rocky test target we don't currently have to verify the
+no-downgrade side. Deemed not worth the cost while the `.deb` steer stands.
+
 ---
 
 ## 3. Data Migration from CCP4i2-Classic
@@ -183,6 +201,13 @@ Plan for incorporating ccp4i2-django into official CCP4 distribution builds.
       only the web mode in CCP4-10
 - [ ] **Electron packaging** — produce platform-specific Electron app bundles
       (macOS .app, Linux AppImage/deb, Windows .exe) as part of the build
+- [ ] **macOS code signing + notarisation** — add the five Apple secrets as
+      **Repository** secrets on `ccp4/ccp4i2` so releases build signed, not
+      unsigned (testers currently need `xattr -cr`). One-time setup:
+      [macos-signing-setup.md](macos-signing-setup.md). *(a1–a4 shipped unsigned
+      because the secrets weren't set at repo scope.)*
+- [ ] **Windows code signing** — Authenticate builds with an Authenticode cert
+      to avoid SmartScreen warnings (currently unsigned).
 - [ ] **Entry point** — `ccp4i2` command launches the new interface; classic
       interface available as `ccp4i2-classic` (or vice versa during transition)
 

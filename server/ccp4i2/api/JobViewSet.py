@@ -158,6 +158,22 @@ class JobViewSet(ModelViewSet):
     filterset_fields = ["project"]
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        # Manual ?project= / ?project__uuid= filtering. The DjangoFilterBackend is
+        # NOT active (a second REST_FRAMEWORK block in settings.py drops
+        # DEFAULT_FILTER_BACKENDS), so filterset_fields=["project"] is inert and
+        # `jobs/?project=<pk>` would otherwise return jobs across ALL projects —
+        # which made scene job+param resolution pick a job-number-1 from the wrong
+        # project. Mirror FileViewSet's own manual get_queryset filtering.
+        queryset = super().get_queryset()
+        project = self.request.query_params.get("project")
+        if project is not None:
+            queryset = queryset.filter(project_id=project)
+        project_uuid = self.request.query_params.get("project__uuid")
+        if project_uuid is not None:
+            queryset = queryset.filter(project__uuid=project_uuid)
+        return queryset
+
     def destroy(self, request, *args, **kwargs):
         """
         Delete a job and all its dependent jobs.
@@ -1917,10 +1933,16 @@ class JobViewSet(ModelViewSet):
             - Handles CCP4 Task Manager initialization errors
             - Provides detailed error messages for debugging
         """
-        logger.warning(
-            "exportJobFiles not available in TaskManager - returning empty menu"
-        )
-        return api_success({"result": []})
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist as err:
+            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
+            return api_error(str(err), status=404)
+
+        from ..lib.utils.jobs.export import export_job_file_menu
+
+        menu = export_job_file_menu(job)
+        return api_success({"result": menu})
 
     @action(
         detail=True,
@@ -1953,30 +1975,51 @@ class JobViewSet(ModelViewSet):
         Example:
             GET /api/jobs/123/export_job_file/?mode=pdb
         """
-        print("In export job file")
-        print(f"Request: pk={pk}, mode={request.GET.get('mode')}")
-        # Get the export mode from query parameters
         export_mode = request.GET.get("mode")
         if not export_mode:
-            print("Missing export mode parameter")
             return api_error("Missing required 'mode' parameter", status=400)
 
-        print(f"About to call utility function with pk={pk}, export_mode={export_mode}")
-        # Import the utility function locally to avoid unused import lint error
         from ..lib.utils.jobs.export import export_job_file
 
-        # Use the refactored utility function
         file_response, error_response = export_job_file(pk, export_mode)
-        print(
-            f"Utility function returned: file_response={file_response is not None}, error_response={error_response is not None}"
-        )
+        return error_response if error_response else file_response
 
-        # Return either the file response or error response
-        if error_response:
-            print(f"Returning error response: {error_response}")
-            return error_response
-        print(f"Returning file response: {file_response}")
-        return file_response
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.JobSerializer,
+    )
+    def bibliography(self, request, pk=None):
+        """
+        Compiled bibliography for a job: references for its task + all subjobs
+        (recursively), optionally including input-file progenitors.
+
+        Query params:
+            progenitors=0|1  include tasks of input-file provenance (default 0)
+
+        Response:
+            {"success": true, "data": {"result": [
+                {"pmid", "title", "authors": [...], "source", "link", "cited_by"}
+            ]}}
+
+        Example:
+            GET /api/jobs/123/bibliography/?progenitors=1
+        """
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist as err:
+            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
+            return api_error(str(err), status=404)
+
+        from ..lib.utils.jobs.bibliography import bibliography_for_job
+
+        progenitors = str(request.query_params.get("progenitors", "0")) in (
+            "1", "true", "True",
+        )
+        refs = bibliography_for_job(
+            job, include_subjobs=True, include_progenitors=progenitors
+        )
+        return api_success({"result": refs})
 
     @action(
         detail=True,

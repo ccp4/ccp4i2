@@ -1,13 +1,25 @@
 name: Electron Multiplatform Build
 
+# Docs/presentation-only changes never affect the desktop build, so skip the
+# (expensive, 3-platform) package run when a push/PR touches ONLY these paths.
+# A commit that mixes docs with any source file still builds — paths-ignore is
+# evaluated over the whole changeset, not per-file.
 on:
   push:
     branches:
       - django
       - electron-no-bundle-python
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'LICENSE'
   pull_request:
     branches:
       - django
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'LICENSE'
 
 jobs:
   build-mac:
@@ -30,6 +42,12 @@ jobs:
         working-directory: client
 
       - name: Build and package macOS app (dmg)
+        # Per-push builds are intentionally UNSIGNED. Signing/notarisation only
+        # happens in the Release workflow when the Apple secrets are present.
+        # Disabling identity auto-discovery keeps this build from trying (and
+        # failing) to sign now that mac.identity is no longer pinned to null.
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
         run: npm run package-mac
         working-directory: client
 
@@ -95,8 +113,10 @@ jobs:
       - name: List release contents
         run: ls -lh client/release
 
-      - name: Upload Linux AppImage artifacts
+      - name: Upload Linux artifacts (AppImage + deb)
         uses: actions/upload-artifact@v4
         with:
           name: linux-appimages
-          path: client/release/*.AppImage
+          path: |
+            client/release/*.AppImage
+            client/release/*.deb

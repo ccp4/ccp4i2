@@ -40,7 +40,7 @@ files:
   - name: reference
     url: https://ddudatabase/api/ccp4i2/fileBy/abc
   - name: external
-    path: /abs/path/to/foo.pdb
+    relativeUrl: /api/proxy/pdbe/entry-files/download/foo.cif
 domains:
   - name: N-lobe
     chain: A
@@ -108,6 +108,308 @@ describe("Moorhen scene — worked kinase example", () => {
 });
 
 // --------------------------------------------------------------------------
+// Representation alpha (per-representation opacity → nonCustomOpacity).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — representation alpha", () => {
+  const withAlpha = (alpha: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+    `elements:\n  - file: p\n    representations:\n` +
+    `      - style: MolecularSurface\n        selection: //A\n` +
+    `        colour: "#9bbcd8"\n        alpha: ${alpha}\n`;
+
+  it("accepts alpha in [0,1] and round-trips it", () => {
+    const scene = parseScene(withAlpha("0.4"));
+    expect(scene.elements![0].representations![0].alpha).toBe(0.4);
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("omits alpha when absent (default opaque)", () => {
+    const yaml =
+      `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+      `elements:\n  - file: p\n    representations:\n      - style: CRs\n`;
+    expect(
+      parseScene(yaml).elements![0].representations![0].alpha,
+    ).toBeUndefined();
+  });
+
+  it("rejects alpha outside [0,1]", () => {
+    expect(() => parseScene(withAlpha("1.5"))).toThrow(/in \[0, 1\]/);
+    expect(() => parseScene(withAlpha("-0.2"))).toThrow(/in \[0, 1\]/);
+  });
+
+  it("rejects non-numeric alpha", () => {
+    expect(() => parseScene(withAlpha('"opaque"'))).toThrow(/must be a number/);
+  });
+});
+
+// --------------------------------------------------------------------------
+// Per-selection colour list (the general "colour these CIDs these colours"
+// form; what coot's default per-chain colouring lifts to).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — per-selection colour list", () => {
+  const repWith = (colour: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - name: p\n    pdb: 1m17\n` +
+    `elements:\n  - file: p\n    representations:\n      - style: CRs\n        colour: ${colour}\n`;
+
+  it("accepts a per-chain colour list and round-trips it", () => {
+    const scene = parseScene(
+      repWith(`[{ selection: "//A", colour: "#a08766" }, { selection: "//B", colour: "#7e9cd8" }]`),
+    );
+    expect(scene.elements![0].representations![0].colour).toEqual([
+      { selection: "//A", colour: "#a08766" },
+      { selection: "//B", colour: "#7e9cd8" },
+    ]);
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("rejects a list entry with no colour", () => {
+    expect(() => parseScene(repWith(`[{ selection: "//A" }]`))).toThrow(
+      /colour.*required/,
+    );
+  });
+
+  it("rejects a list entry with a bad hex", () => {
+    expect(() =>
+      parseScene(repWith(`[{ selection: "//A", colour: "notahex" }]`)),
+    ).toThrow(/must be hex/);
+  });
+});
+
+// --------------------------------------------------------------------------
+// Whole-chain domains (range omitted ⇒ the whole chain; what coot's per-chain
+// colouring hoists to, adopted via colour: by-domain).
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — domain selection (CID) + legacy chain+range", () => {
+  it("accepts a CID selection domain and round-trips it", () => {
+    const scene = parseScene(
+      `scene: x\nversion: 1\ndomains:\n  - { name: F, selection: "//F/32-64", color: "#a06695" }\n`,
+    );
+    expect(scene.domains![0]).toEqual({
+      name: "F",
+      selection: "//F/32-64",
+      color: "#a06695",
+    });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("still accepts the legacy chain+range form (whole chain too)", () => {
+    const whole = parseScene(
+      `scene: x\nversion: 1\ndomains:\n  - { name: A, chain: A, color: "#a08766" }\n`,
+    );
+    expect(whole.domains![0]).toEqual({ name: "A", chain: "A", color: "#a08766" });
+    expect(whole.domains![0].range).toBeUndefined();
+    expect(parseScene(serialiseScene(whole))).toEqual(whole);
+  });
+
+  it("requires selection or chain", () => {
+    expect(() =>
+      parseScene(`scene: x\nversion: 1\ndomains:\n  - { name: d, color: "#ffffff" }\n`),
+    ).toThrow(/required \(or use .selection.\)/);
+  });
+
+  it("still validates a range when one IS given", () => {
+    expect(
+      parseScene(
+        `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1-50", color: "#fff000" }\n`,
+      ).domains![0].range,
+    ).toBe("1-50");
+    expect(() =>
+      parseScene(
+        `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1to50", color: "#fff000" }\n`,
+      ),
+    ).toThrow(/start-end/);
+  });
+});
+
+// --------------------------------------------------------------------------
+// Campaign summary scene shape (regression).
+//
+// The campaign summary scene is built SERVER-SIDE (server/.../campaign_scene.py
+// build_summary_scene), serialised to YAML, and loaded through this exact
+// parse/validate/resolve path. The Python builder is a SEPARATE implementation
+// of the format, so nothing couples it to these TS types — pin its shape here so
+// a format change that would break the summary scene fails loudly in CI.
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — campaign summary scene shape", () => {
+  // Mirrors build_summary_scene output: fileId coords, a fileId dictionary, an
+  // inline-cifText dictionary (disk-only acedrg fallback), a hex-coloured parent
+  // ribbon, an uncoloured member-ligand CBs rep with a scoped dict, resolver +
+  // view, and crucially NO domains block.
+  const SUMMARY_YAML = `
+scene: My Campaign - fragment summary
+version: 1
+authoredIn:
+  projectName: My Campaign
+files:
+  - { name: reference, kind: coordinates, fileId: 10, projectId: parent-uuid }
+  - { name: x0034, kind: coordinates, fileId: 20, projectId: x0034-uuid }
+  - { name: x0034_dict, kind: dictionary, fileId: 21, projectId: x0034-uuid }
+  - name: x0099_dict
+    kind: dictionary
+    cifText: |
+      data_comp_list
+      data_comp_DRG
+elements:
+  - file: reference
+    representations:
+      - { style: CRs, selection: "/*/*/*/*", colour: "#b0bec5" }
+  - file: x0034
+    dictionaries: [x0034_dict]
+    representations:
+      - { style: CBs, selection: "//*/(LIG)||//*/(DRG)" }
+resolver:
+  onMissingResidues: clamp-and-log
+view:
+  origin: [1, 2, 3]
+  quat: [0, 0, 0, -1]
+  zoom: 2.5
+`;
+
+  it("parses, validates, and round-trips", () => {
+    const scene = parseScene(SUMMARY_YAML);
+    expect(scene.files).toHaveLength(4);
+    expect(scene.files![0]).toMatchObject({ name: "reference", kind: "coordinates", fileId: 10 });
+    expect(scene.files![2]).toMatchObject({ name: "x0034_dict", kind: "dictionary", fileId: 21 });
+    expect(scene.files![3].cifText).toContain("data_comp_DRG");
+    expect(scene.elements![0].representations![0].colour).toBe("#b0bec5");
+    expect(scene.elements![1].representations![0].colour).toBeUndefined(); // coot default
+    expect(scene.elements![1].dictionaries).toEqual(["x0034_dict"]);
+    expect(scene.domains).toBeUndefined(); // builder emits no domains, by design
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // stable round-trip
+  });
+});
+
+// --------------------------------------------------------------------------
+// view.centre — selection-based camera centring.
+// --------------------------------------------------------------------------
+
+describe("Moorhen scene — view.clip", () => {
+  const withClip = (clip: string) =>
+    `scene: x\nversion: 1\nview:\n  clip: ${clip}\n`;
+
+  it("accepts auto / lock and round-trips", () => {
+    expect(parseScene(withClip("auto")).view!.clip).toBe("auto");
+    const locked = parseScene(withClip("lock"));
+    expect(locked.view!.clip).toBe("lock");
+    expect(parseScene(serialiseScene(locked))).toEqual(locked);
+  });
+
+  it("accepts field depths { front, back } and round-trips", () => {
+    const scene = parseScene(withClip("{ front: 8, back: 21 }"));
+    expect(scene.view!.clip).toEqual({ front: 8, back: 21 });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene);
+  });
+
+  it("rejects an unknown string", () => {
+    expect(() => parseScene(withClip("wide"))).toThrow(/"auto", "lock", or/);
+  });
+
+  it("rejects field depths missing a side", () => {
+    expect(() => parseScene(withClip("{ front: 8 }"))).toThrow(/clip\.back.*required/);
+  });
+
+  it("rejects an unknown field-depth key", () => {
+    expect(() => parseScene(withClip("{ front: 8, back: 21, side: 5 }"))).toThrow(
+      /unknown key "side"/,
+    );
+  });
+});
+
+describe("Moorhen scene — code-fence tolerance", () => {
+  const body = `scene: x\nversion: 1\nfiles:\n  - { name: s, pdb: 1m17 }`;
+
+  it("parses YAML wrapped in a ```yaml fenced block", () => {
+    const fenced = "```yaml\n" + body + "\n```";
+    expect(parseScene(fenced).scene).toBe("x");
+  });
+
+  it("parses a bare ``` fence and ignores surrounding prose", () => {
+    const fenced = "Here is your scene:\n\n```\n" + body + "\n```\n\nHope that helps!";
+    expect(parseScene(fenced).scene).toBe("x");
+  });
+
+  it("still parses plain YAML with no fence", () => {
+    expect(parseScene(body).scene).toBe("x");
+  });
+});
+
+describe("Moorhen scene — view.slab", () => {
+  const withSlab = (slab: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - { name: apo, pdb: 1m17 }\nview:\n  slab: ${slab}\n`;
+
+  it("accepts file + selection + pad and round-trips", () => {
+    const scene = parseScene(withSlab(`{ file: apo, selection: "//A", pad: 2 }`));
+    expect(scene.view!.slab).toEqual({ file: "apo", selection: "//A", pad: 2 });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("accepts slab with just a file (whole molecule, no pad)", () => {
+    expect(parseScene(withSlab(`{ file: apo }`)).view!.slab).toEqual({ file: "apo" });
+  });
+
+  it("accepts slab with no file (defaults to the sole molecule at apply)", () => {
+    expect(parseScene(withSlab(`{ selection: "//A" }`)).view!.slab).toEqual({
+      selection: "//A",
+    });
+  });
+
+  it("rejects an unknown file", () => {
+    expect(() => parseScene(withSlab(`{ file: nope }`))).toThrow(/unknown file "nope"/);
+  });
+
+  it("rejects a negative pad", () => {
+    expect(() => parseScene(withSlab(`{ file: apo, pad: -1 }`))).toThrow(/pad.*>= 0/);
+  });
+
+  it("rejects an unknown key", () => {
+    expect(() => parseScene(withSlab(`{ file: apo, radius: 5 }`))).toThrow(
+      /unknown key "radius"/,
+    );
+  });
+});
+
+describe("Moorhen scene — view.centre", () => {
+  const withView = (view: string) =>
+    `scene: x\nversion: 1\nfiles:\n  - { name: apo, pdb: 1m17 }\nview:\n${view}`;
+
+  it("accepts file + selection and round-trips", () => {
+    const scene = parseScene(
+      withView(`  centre: { file: apo, selection: "//A" }\n  zoom: 1\n`),
+    );
+    expect(scene.view!.centre).toEqual({ file: "apo", selection: "//A" });
+    expect(parseScene(serialiseScene(scene))).toEqual(scene); // parse→serialise→parse
+  });
+
+  it("accepts a centre with no selection (whole molecule)", () => {
+    expect(
+      parseScene(withView(`  centre: { file: apo }\n`)).view!.centre,
+    ).toEqual({ file: "apo" });
+  });
+
+  it("rejects a centre referencing an unknown file", () => {
+    expect(() => parseScene(withView(`  centre: { file: nope }\n`))).toThrow(
+      /unknown file "nope"/,
+    );
+  });
+
+  it("accepts a centre with no file (defaults to the sole molecule at apply)", () => {
+    expect(
+      parseScene(withView(`  centre: { selection: "//A" }\n`)).view!.centre,
+    ).toEqual({ selection: "//A" });
+  });
+
+  it("rejects an unknown key (catches typos like -selection)", () => {
+    expect(() =>
+      parseScene(withView(`  centre: { file: apo, "-selection": "//A" }\n`)),
+    ).toThrow(/unknown key "-selection"/);
+  });
+});
+
+// --------------------------------------------------------------------------
 // Validation: each error class.
 // --------------------------------------------------------------------------
 
@@ -124,7 +426,7 @@ describe("Moorhen scene — validation errors", () => {
   it("rejects a file ref with no resolution method", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: orphan\n`;
     expect(() => parseScene(yaml)).toThrow(
-      /must set one of: pdb, url, path, bundle, fileId/,
+      /must set one of: pdb, url, relativeUrl, bundle, fileId/,
     );
   });
 
@@ -146,9 +448,18 @@ describe("Moorhen scene — validation errors", () => {
 
   it("requires projectId when fileId is set", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: f\n    fileId: 42\n`;
-    expect(() => parseScene(yaml)).toThrow(
-      /projectId.*required when fileId or job\+param is set/,
-    );
+    expect(() => parseScene(yaml)).toThrow(/projectId.*required when fileId is set/);
+  });
+
+  it("accepts job+param with projectName instead of projectId", () => {
+    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: m\n    job: 21\n    param: XYZOUT\n    projectName: GammaBySAD\n`;
+    const scene = parseScene(yaml);
+    expect(scene.files![0]).toMatchObject({ job: 21, param: "XYZOUT", projectName: "GammaBySAD" });
+  });
+
+  it("requires a project identifier when job+param is set", () => {
+    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: m\n    job: 21\n    param: XYZOUT\n`;
+    expect(() => parseScene(yaml)).toThrow(/required when job\+param is set/);
   });
 
   it("requires job and param to be set together", () => {
@@ -569,7 +880,7 @@ version: 1
 files:
   - { name: f, kind: weird, url: https://example/f.cif }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "coordinates", "dictionary", or "mtz"/);
+    expect(() => parseScene(yaml)).toThrow(/must be "coordinates", "dictionary", "mtz", or "map"/);
   });
 
   it("rejects pdb: on a dictionary ref (pdb makes no sense for dicts)", () => {

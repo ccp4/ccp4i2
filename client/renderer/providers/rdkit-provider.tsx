@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useMemo, PropsWithChildren } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect, PropsWithChildren } from 'react';
 import Script from 'next/script';
 
 // RDKit module type (minimal typing for what we use)
@@ -46,18 +46,62 @@ export const RDKitProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const createArgs = {
-    print(t: string) {
-      console.log(['RDKit output', t]);
-    },
-    printErr(t: string) {
-      console.error(['RDKit error', t]);
-    },
-    locateFile(path: string, prefix: string) {
-      if (path.endsWith('RDKit_minimal.wasm')) return '/RDKit_minimal.wasm';
-      return prefix + path;
-    },
-  };
+  const createArgs = useMemo(
+    () => ({
+      print(t: string) {
+        console.log(['RDKit output', t]);
+      },
+      printErr(t: string) {
+        console.error(['RDKit error', t]);
+      },
+      locateFile(path: string, prefix: string) {
+        if (path.endsWith('RDKit_minimal.wasm')) return '/RDKit_minimal.wasm';
+        return prefix + path;
+      },
+    }),
+    []
+  );
+
+  // Fallback for the Next.js <Script> id-dedupe case: when another RDKit
+  // provider (e.g. from the composed-in compounds frontend) mounts a <Script>
+  // with the same id="rdkit-script" first, our own <Script onLoad> never
+  // fires. In that case initialise from the already-loaded global instead so
+  // rdkitModule doesn't stay null forever (blank SMILES thumbnails).
+  useEffect(() => {
+    if (rdkitModule) return;
+    let cancelled = false;
+    const init = async (): Promise<boolean> => {
+      const g =
+        typeof window !== 'undefined'
+          ? // @ts-ignore - initRDKitModule is defined by the loaded script
+            (window as any).initRDKitModule
+          : undefined;
+      if (!g) return false;
+      try {
+        const module = await g(createArgs);
+        if (cancelled) return true;
+        module.prefer_coordgen(true);
+        setRdkitModule(module);
+        setIsLoading(false);
+      } catch {
+        if (!cancelled) {
+          setError('Failed to load RDKit module');
+          setIsLoading(false);
+        }
+      }
+      return true;
+    };
+    let t: ReturnType<typeof setInterval> | undefined;
+    init().then((done) => {
+      if (done || cancelled) return;
+      t = setInterval(() => init().then((d) => d && t && clearInterval(t)), 300);
+      setTimeout(() => t && clearInterval(t), 15000); // give up after ~15s
+    });
+    return () => {
+      cancelled = true;
+      if (t) clearInterval(t);
+    };
+  }, [rdkitModule, createArgs]);
 
   const contextValue = useMemo(
     () => ({ rdkitModule, isLoading, error }),

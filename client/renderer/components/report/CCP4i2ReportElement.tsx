@@ -116,7 +116,7 @@ export const CCP4i2ReportElement: React.FC<CCP4i2ReportElementProps> = ({
               startIcon={<OpenInNew />}
               onClick={() => {
                 window.open(
-                  `/graph-viewer/${job.id}/${graphKey}`,
+                  `/ccp4i2/graph-viewer/${job.id}/${graphKey}`,
                   "_blank",
                   "width=800,height=600"
                 );

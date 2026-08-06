@@ -70,7 +70,7 @@ class Command(BaseCommand):
         self.stdout.write(f"  Projects on disk:       {summary['projects_on_disk']}")
         self.stdout.write(f"  Jobs on disk:           {summary['jobs_on_disk']}")
         self.stdout.write(f"  Files on disk:          {summary['files_on_disk']}")
-        self.stdout.write(f"  Import sources on disk: {summary['import_sources_on_disk']}")
+        self.stdout.write(f"  Import sources present:  {summary['import_sources_present']} (informational)")
         self.stdout.write(f"  Integrity issues:       {summary['integrity_issues']}")
         self.stdout.write(f"  Data quality issues:    {summary['data_quality_issues']}")
 

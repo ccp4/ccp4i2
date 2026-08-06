@@ -24,17 +24,23 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",  # Required by DRF
     "rest_framework",  # Django REST Framework
+    "django_filters",  # DRF filter backend (matches production settings)
     "ccp4i2.db.config.DbConfig",  # Our database app
 ]
 
 MIDDLEWARE = []
 
-# REST Framework settings for tests
+# REST Framework settings for tests. Mirror production's filter backend so
+# `filterset_fields` actually filters under test (otherwise tests would silently
+# diverge from prod — the very bug that let jobs/?project= return all projects).
 REST_FRAMEWORK = {
     "UNAUTHENTICATED_USER": None,  # Allow anonymous access in tests
     "UNAUTHENTICATED_TOKEN": None,
     "DEFAULT_AUTHENTICATION_CLASSES": [],
     "DEFAULT_PERMISSION_CLASSES": [],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
 }
 
 ROOT_URLCONF = "ccp4i2.api.urls"  # Set default URL conf for API tests

@@ -27,12 +27,16 @@ import {
   MoorhenScene,
   SCENE_SCHEMA_VERSION,
   SceneColour,
+  SceneColourSelection,
   SceneDomain,
   SceneElement,
   SceneFileRef,
+  SceneHints,
+  MaskMap,
   SceneMap,
   SceneMapColumns,
   SceneRepresentation,
+  SceneSuperpose,
   SceneView,
 } from "../types/moorhen-scene";
 
@@ -40,10 +44,16 @@ import {
 // Public API
 // --------------------------------------------------------------------------
 
+/** uniqueId prefix the resolver stamps onto maps it masks, so the lifter can
+ *  round-trip them as maskMaps recipes. The suffix is the recipe's output name.
+ *  Keep in sync with the wrapper's handleMaskSceneMap stamp. */
+export const MASK_PROVENANCE_PREFIX = "maskMaps:";
+
 export interface LiftCtx {
   /** The molecules currently in Moorhen. */
   molecules: moorhen.Molecule[];
-  /** glRef state (origin, quat, zoom, clip*, fog*). Pass `store.getState().glRef`. */
+  /** glRef state (origin, quat, zoom, clip*, fog*, + lighting). Pass
+   *  `store.getState().glRef`. The lighting fields feed hints.lighting. */
   glRef: {
     origin: number[] | Float32Array;
     quat: number[] | Float32Array;
@@ -52,7 +62,47 @@ export interface LiftCtx {
     clipEnd?: number;
     fogStart?: number;
     fogEnd?: number;
+    lightPosition?: number[] | Float32Array;
+    ambient?: number[] | Float32Array;
+    diffuse?: number[] | Float32Array;
+    specular?: number[] | Float32Array;
+    specularPower?: number;
   };
+  /** sceneSettings slice (effect toggles + params). Pass
+   *  `store.getState().sceneSettings`. Feeds hints.effects. Optional — omit
+   *  and no effects are captured. */
+  sceneSettings?: {
+    doSSAO?: boolean | null;
+    ssaoRadius?: number | null;
+    ssaoBias?: number | null;
+    doEdgeDetect?: boolean | null;
+    edgeDetectDepthThreshold?: number | null;
+    edgeDetectNormalThreshold?: number | null;
+    edgeDetectDepthScale?: number | null;
+    edgeDetectNormalScale?: number | null;
+    doShadow?: boolean | null;
+    useOffScreenBuffers?: number | boolean | null;
+    depthBlurRadius?: number | null;
+    depthBlurDepth?: number | null;
+    doPerspectiveProjection?: boolean | null;
+  };
+  /** Superpose directives from the LAST-applied scene, remembered by the host.
+   *  SSM/LSQ move coordinates *inside* coot (there is no display transform to
+   *  capture), so superposition can't be reverse-engineered from a lifted
+   *  molecule. Re-emitting the remembered directives — filtered to those whose
+   *  move/onto files are still present in the lift — keeps superposed scenes
+   *  round-tripping. */
+  superpose?: SceneSuperpose[];
+  /** Mask recipes from the LAST-applied scene, remembered by the host — the
+   *  same deal as `superpose`. A masked map is stored by Moorhen as grid bytes
+   *  with NO record of its operands, so the recipe (source map / model /
+   *  selection / radius) cannot be reverse-engineered from the live map. The
+   *  resolver stamps maps it masks with uniqueId `maskMaps:<name>`; the lifter
+   *  re-emits a remembered recipe when its output map is still live AND its
+   *  source/model files survive the lift. Masked maps with no such recipe (e.g.
+   *  masked via Moorhen's own menu, outside the scene context) are dropped and
+   *  logged — they can't round-trip as a recipe and we don't materialise. */
+  maskMaps?: MaskMap[];
   /** Optional: the ccp4i2 project UUID. If set, file refs get both
    *  projectId and (derivable) fileId. */
   projectId?: string;
@@ -79,6 +129,13 @@ export interface LiftCtx {
   /** molNo of the currently-active map (state.generalStates.activeMap.molNo).
    *  Drives scene.activeMap. */
   activeMapMolNo?: number;
+  /** Per-molecule dictionary provenance: molNo → (comp_id → source project
+   *  file). When a ligand's dict came from a project file, the lifter emits a
+   *  `kind: dictionary` ref by `fileId` (terse, re-fetchable) instead of inlining
+   *  cifText. Keyed by molNo (NOT comp_id alone) so two molecules that both call
+   *  their ligand LIG, with different chemistry from different dict files, stay
+   *  distinct and per-molecule-scoped. */
+  dictSources?: Map<number, Map<string, { fileId: number; projectId?: string }>>;
 }
 
 /**
@@ -111,7 +168,21 @@ export interface MapRenderState {
  * original source. Callers that go through serialiseSceneWithLiftHints
  * see those comments; everyone else sees a clean MoorhenScene.
  */
-export function liftScene(ctx: LiftCtx): MoorhenScene {
+/**
+ * Options controlling how a scene is lifted.
+ *
+ * `inlineDicts`: when a ligand dictionary has no project provenance (no
+ * `fileId` in `dictSources`), should its CIF be inlined as `cifText:`?
+ * Default **false** — the captured/editable YAML stays terse, carrying
+ * dicts only as re-fetchable `fileId` refs. Inlining `cifText` is reserved
+ * for the bundle lift (`liftSceneToBundle`), which immediately moves the
+ * text into a `bundle:` asset, so `cifText` never escapes into authored YAML.
+ */
+export interface LiftOpts {
+  inlineDicts?: boolean;
+}
+
+export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
   const scene: MoorhenScene = {
     scene: ctx.sceneName ?? `scene-${new Date().toISOString().slice(0, 19).replace(/[T:]/g, "-")}`,
     version: SCENE_SCHEMA_VERSION,
@@ -139,7 +210,12 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
   const liftedDicts: { mol: moorhen.Molecule; molFileName: string; refs: { name: string; comp_id: string }[] }[] = [];
   ctx.molecules.forEach((mol, i) => {
     const molFileName = scene.files?.[i]?.name ?? `mol${i}`;
-    const liftedRefs = liftDictionariesForMolecule(mol, molFileName, scene.files!);
+    const liftedRefs = liftDictionariesForMolecule(
+      mol, molFileName, scene.files!,
+      mol.molNo != null ? ctx.dictSources?.get(mol.molNo) : undefined,
+      ctx.projectId,
+      opts.inlineDicts ?? false,
+    );
     if (liftedRefs.length > 0) {
       liftedDicts.push({ mol, molFileName, refs: liftedRefs });
     }
@@ -147,6 +223,20 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
 
   const view = liftView(ctx.glRef);
   if (view) scene.view = view;
+
+  const hints = liftHints(ctx.glRef, ctx.sceneSettings);
+  if (hints) scene.hints = hints;
+
+  // Re-emit the last-applied superpose (coot moved the coords; there's no
+  // transform to capture). Keep only entries whose move + onto files survived
+  // into this lift, so we never emit a dangling reference.
+  if (ctx.superpose?.length) {
+    const fileNames = new Set((scene.files ?? []).map((f) => f.name));
+    const kept = ctx.superpose.filter(
+      (sp) => fileNames.has(sp.move) && fileNames.has(sp.onto),
+    );
+    if (kept.length) scene.superpose = kept;
+  }
 
   const elements = ctx.molecules
     .map((mol, i) => liftElement(mol, scene.files?.[i]?.name ?? `mol${i}`))
@@ -167,23 +257,109 @@ export function liftScene(ctx: LiftCtx): MoorhenScene {
   // promote to scene.activeMap.
   if (ctx.maps && ctx.maps.length > 0) {
     const maps: SceneMap[] = [];
+    // Remembered mask recipes, indexed by output name (the stamp payload).
+    const rememberedMasks = new Map<string, MaskMap>(
+      (ctx.maskMaps ?? []).map((mm) => [mm.name, mm]),
+    );
+
+    // The file-ref name every file-backed map WOULD get, computed up front so a
+    // mask recipe's source-file check doesn't depend on loop order (the masked
+    // output can appear before its source map in ctx.maps). Molecule files are
+    // already in scene.files (added above).
+    const survivingFileNames = new Set((scene.files ?? []).map((f) => f.name));
     ctx.maps.forEach((map, i) => {
+      if (map.uniqueId && !map.uniqueId.startsWith(MASK_PROVENANCE_PREFIX)) {
+        survivingFileNames.add(liftMapFileRef(map, ctx, i).name);
+      }
+    });
+
+    // A recipe is emittable iff its model file survives AND its source is either
+    // a surviving file or another emittable recipe. Resolve the closure over the
+    // remembered recipes (chaining is acyclic — the resolver guarantees it).
+    const emittableMaskNames = new Set<string>();
+    for (let changed = true; changed; ) {
+      changed = false;
+      for (const mm of rememberedMasks.values()) {
+        if (emittableMaskNames.has(mm.name)) continue;
+        const sourceOk = survivingFileNames.has(mm.map) || emittableMaskNames.has(mm.map);
+        if (sourceOk && survivingFileNames.has(mm.model)) {
+          emittableMaskNames.add(mm.name);
+          changed = true;
+        }
+      }
+    }
+
+    const emittedMasks: MaskMap[] = [];
+    const emittedMaskNames = new Set<string>();
+
+    ctx.maps.forEach((map, i) => {
+      const mapName = sanitiseName(map.name) || `map${i}`;
+
+      // Case 1: a map WE masked (resolver stamped its uniqueId). Round-trip it
+      // as a maskMaps recipe + a `from:` render entry — but only if we still
+      // remember the recipe AND its source/model survived this lift.
+      const maskName = map.uniqueId?.startsWith(MASK_PROVENANCE_PREFIX)
+        ? map.uniqueId.slice(MASK_PROVENANCE_PREFIX.length)
+        : null;
+      if (maskName != null) {
+        const recipe = rememberedMasks.get(maskName);
+        if (recipe && emittableMaskNames.has(maskName)) {
+          // Emit each recipe once, even if two live maps share a name.
+          if (!emittedMaskNames.has(maskName)) {
+            emittedMasks.push(recipe);
+            emittedMaskNames.add(maskName);
+          }
+          const sceneMap = liftSceneMap(map, undefined, mapName, ctx.mapState, maskName);
+          maps.push(sceneMap);
+          if (ctx.activeMapMolNo !== undefined && map.molNo === ctx.activeMapMolNo) {
+            scene.activeMap = mapName;
+          }
+        } else {
+          // Output is live but its recipe is unknown or its operands are gone —
+          // can't reconstruct it, and we don't materialise bytes.
+          console.warn(
+            `[lift] dropping masked map "${map.name}" (molNo ${map.molNo}): ` +
+              (recipe
+                ? "its source map or mask model is no longer in the scene"
+                : "no remembered mask recipe (masked outside the scene context?)"),
+          );
+        }
+        return;
+      }
+
+      // Case 2/3: a file-backed map. Drop-and-log if it has no provenance we can
+      // turn into a resolvable ref (rather than emit a "TODO" placeholder that
+      // silently fails on apply).
+      if (!map.uniqueId) {
+        console.warn(
+          `[lift] dropping map "${map.name}" (molNo ${map.molNo}): ` +
+            "no source provenance (no loader URL / fileId, not a scene-masked map)",
+        );
+        return;
+      }
       const fileRef = liftMapFileRef(map, ctx, i);
-      // De-dupe file refs by name. (Possible if a map and a molecule
-      // share a sanitised loader URL — rare but defensive.)
+      // De-dupe file refs by name against what's ALREADY in scene.files (a map
+      // and a molecule can share a sanitised loader URL — rare but defensive).
+      // Note: survivingFileNames was pre-seeded with prospective names, so it
+      // can't be the dedupe key here — check the actual files list.
       if (!(scene.files ?? []).some((f) => f.name === fileRef.name)) {
         scene.files = scene.files ?? [];
         scene.files.push(fileRef);
       }
-      const mapName = sanitiseName(map.name) || `map${i}`;
       const sceneMap = liftSceneMap(map, fileRef.name, mapName, ctx.mapState);
       maps.push(sceneMap);
       if (ctx.activeMapMolNo !== undefined && map.molNo === ctx.activeMapMolNo) {
         scene.activeMap = mapName;
       }
     });
+
+    if (emittedMasks.length > 0) scene.maskMaps = emittedMasks;
     if (maps.length > 0) scene.maps = maps;
   }
+
+  // Fold any whole-chain colour lists into domains: + colour: by-domain, so a
+  // molecule's per-chain colouring is stated once rather than inline per rep.
+  hoistPerChainColours(scene);
 
   return scene;
 }
@@ -203,6 +379,9 @@ function liftDictionariesForMolecule(
   mol: moorhen.Molecule,
   molFileName: string,
   allFiles: SceneFileRef[],
+  sources?: Map<string, { fileId: number; projectId?: string }>,
+  fallbackProjectId?: string,
+  inlineUnsourced: boolean = false,
 ): { name: string; comp_id: string }[] {
   const ligands = mol.ligands ?? [];
   // Dedupe by comp_id — multiple instances of the same ligand share a dict.
@@ -211,26 +390,49 @@ function liftDictionariesForMolecule(
 
   for (const comp_id of compIds) {
     if (STANDARD_MONOMERS.has(comp_id)) continue;
+
+    // Preferred: the dict came from a project file → emit a terse, re-fetchable
+    // `fileId` ref instead of inlining cifText. Deduped by fileId (a multi-comp
+    // dict shared by several ligands becomes ONE ref); per-molecule scoping is
+    // preserved by listing it in THIS molecule's `dictionaries:`.
+    const source = sources?.get(comp_id);
+    if (source) {
+      const name = `dict-file-${source.fileId}`;
+      if (!allFiles.some((f) => f.name === name)) {
+        allFiles.push({
+          name,
+          kind: "dictionary",
+          fileId: source.fileId,
+          projectId: source.projectId ?? fallbackProjectId,
+        });
+      }
+      out.push({ name, comp_id });
+      continue;
+    }
+
+    // No project source. The terse capture path emits nothing here — the
+    // dict can't be expressed as a re-fetchable ref, and inlining cifText is
+    // reserved for the bundle lift (which materialises it into a bundle:
+    // asset). So unless inlining is explicitly requested, skip it: a custom
+    // ligand dict travels only inside a bundle, never as raw cifText in
+    // authored YAML.
+    if (!inlineUnsourced) continue;
+
+    // Bundle lift only → inline cifText. dropLibraryDicts() may later remove
+    // it if the comp_id resolves in the receiver's monomer library, and
+    // liftSceneToBundle moves whatever survives into a bundle: asset.
     let dictText = "";
     try {
       dictText = mol.getDict(comp_id) || "";
     } catch {
-      // getDict may throw for comp_ids without a stored dict — that's
-      // fine, just skip them.
+      // getDict may throw for comp_ids without a stored dict — skip them.
       continue;
     }
     if (!dictText) continue;
 
     const name = `dict-${molFileName}-${comp_id}`;
-    // Skip if a ref with this name already exists (shouldn't happen but
-    // defensive against pathological dupe-suppression).
     if (allFiles.some((f) => f.name === name)) continue;
-
-    allFiles.push({
-      name,
-      kind: "dictionary",
-      cifText: dictText,
-    });
+    allFiles.push({ name, kind: "dictionary", cifText: dictText });
     out.push({ name, comp_id });
   }
   return out;
@@ -271,11 +473,11 @@ export interface SceneLiftHints {
  * Same as liftScene, but also returns hints for richer YAML output
  * (currently: a comment above each file entry naming its uniqueId).
  */
-export function liftSceneWithHints(ctx: LiftCtx): {
+export function liftSceneWithHints(ctx: LiftCtx, opts: LiftOpts = {}): {
   scene: MoorhenScene;
   hints: SceneLiftHints;
 } {
-  const scene = liftScene(ctx);
+  const scene = liftScene(ctx, opts);
   const fileComments: Record<string, string> = {};
   ctx.molecules.forEach((mol, i) => {
     const fr = scene.files?.[i];
@@ -284,6 +486,56 @@ export function liftSceneWithHints(ctx: LiftCtx): {
     }
   });
   return { scene, hints: { fileComments } };
+}
+
+/**
+ * STRAIGHT lift for Capture: real provenance + hints, NO bundling — but it DOES
+ * drop dict refs the receiver's monomer library already has, so library monomers
+ * (CL, ATP, …) aren't carried; the receiving Moorhen resolves those itself. Custom
+ * ligand dicts stay — as terse `fileId` refs when the project supplied them, or
+ * inline `cifText` otherwise. Async because the library check is a HEAD probe.
+ */
+export async function liftSceneStraight(ctx: LiftCtx): Promise<{
+  scene: MoorhenScene;
+  hints: SceneLiftHints;
+}> {
+  const { scene, hints } = liftSceneWithHints(ctx);
+  if (ctx.monomerLibraryPath) {
+    await dropLibraryDicts(scene, ctx.molecules, ctx.monomerLibraryPath);
+  }
+  return { scene, hints };
+}
+
+/**
+ * Remove INLINE (cifText) dictionary refs whose comp_id resolves in the
+ * receiver's monomer library — the receiving Moorhen fetches the same dict from
+ * the same library when it loads the coords, so carrying our copy only bloats the
+ * YAML (and risks a stale variant). `fileId`/`url`/`bundle` dict refs are NEVER
+ * dropped: a project explicitly supplied that dict, so it must travel and win
+ * even if its comp_id name collides with a library entry.
+ */
+async function dropLibraryDicts(
+  scene: MoorhenScene,
+  molecules: moorhen.Molecule[],
+  monomerLibraryPath: string,
+): Promise<void> {
+  const libraryHas = await probeMonomerLibrary(molecules, monomerLibraryPath);
+  if (libraryHas.size === 0) return;
+  const dropNames = new Set<string>();
+  for (const ref of scene.files ?? []) {
+    if (ref.kind !== "dictionary" || !ref.cifText) continue; // only inline dicts
+    // Names are `dict-<molFileName>-<COMP_ID>`; take the trailing comp_id (the
+    // molFileName may itself contain hyphens).
+    const m = /^dict-.*-([A-Za-z0-9]+)$/.exec(ref.name);
+    if (m && libraryHas.has(m[1].toUpperCase())) dropNames.add(ref.name);
+  }
+  if (dropNames.size === 0) return;
+  scene.files = (scene.files ?? []).filter((f) => !dropNames.has(f.name));
+  for (const el of scene.elements ?? []) {
+    if (!el.dictionaries) continue;
+    el.dictionaries = el.dictionaries.filter((n) => !dropNames.has(n));
+    if (el.dictionaries.length === 0) delete el.dictionaries;
+  }
 }
 
 /**
@@ -305,40 +557,16 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
   hints: SceneLiftHints;
   assets: Map<string, ArrayBuffer>;
 }> {
-  const { scene, hints } = liftSceneWithHints(ctx);
+  // Bundle lift: inline unsourced dicts as cifText so step 2 below can move
+  // them into bundle assets. This is the ONLY path that materialises cifText —
+  // the straight/capture lift leaves them out entirely.
+  const { scene, hints } = liftSceneWithHints(ctx, { inlineDicts: true });
   const assets = new Map<string, ArrayBuffer>();
 
-  // 0. Drop dict refs whose comp_id is already in Moorhen's monomer
-  //    library: when the receiving Moorhen loads coords, its
-  //    loadMissingMonomer machinery will fetch the same dict from the
-  //    same library, so carrying our copy in the scene only bloats the
-  //    YAML and risks shipping a stale variant. The probe is keyed off
-  //    the comp_id, which we rebuild by mirroring liftDictionariesForMolecule.
+  // 0. Drop inline dict refs the receiver's monomer library already has (shared
+  //    with the straight-lift path).
   if (ctx.monomerLibraryPath) {
-    const libraryHas = await probeMonomerLibrary(
-      ctx.molecules,
-      ctx.monomerLibraryPath,
-    );
-    if (libraryHas.size > 0) {
-      const dropNames = new Set<string>();
-      for (const ref of scene.files ?? []) {
-        if (ref.kind !== "dictionary") continue;
-        // Names are `dict-<molFileName>-<COMP_ID>` from liftDictionariesForMolecule.
-        // Pull the trailing comp_id off rather than slicing on first hyphen
-        // (the molFileName may itself contain hyphens).
-        const m = /^dict-.*-([A-Za-z0-9]+)$/.exec(ref.name);
-        if (!m) continue;
-        if (libraryHas.has(m[1].toUpperCase())) dropNames.add(ref.name);
-      }
-      if (dropNames.size > 0) {
-        scene.files = (scene.files ?? []).filter((f) => !dropNames.has(f.name));
-        for (const el of scene.elements ?? []) {
-          if (!el.dictionaries) continue;
-          el.dictionaries = el.dictionaries.filter((n) => !dropNames.has(n));
-          if (el.dictionaries.length === 0) delete el.dictionaries;
-        }
-      }
-    }
+    await dropLibraryDicts(scene, ctx.molecules, ctx.monomerLibraryPath);
   }
 
   // 1. Replace each coord file ref with a bundle: ref carrying the
@@ -366,9 +594,9 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
       const ext = (mol.coordsFormat === "mmcif" || mol.coordsFormat === "mmjson") ? "cif" : "pdb";
       const assetPath = `assets/${ref.name}.${ext}`;
       assets.set(assetPath, new TextEncoder().encode(coordText).buffer);
-      // Replace the unresolvable path: form with the portable bundle: form.
+      // Replace the unresolvable relativeUrl: form with the portable bundle: form.
       ref.bundle = assetPath;
-      delete ref.path;
+      delete ref.relativeUrl;
       // Preserve the original path as a comment so the round-tripped
       // YAML still records where the user originally pulled this from.
       if (mol.uniqueId && !hints.fileComments[ref.name]) {
@@ -397,8 +625,12 @@ export async function liftSceneToBundle(ctx: LiftCtx): Promise<{
  * if the ref doesn't carry enough information (e.g. a bare `path:` or
  * an already-bundled ref). Supplied by the wrapper, which knows the
  * site-specific proxy routes.
+ *
+ * Async because some ref forms (notably `job` + `param`) need REST
+ * round-trips (project → job number → output param → file) to derive
+ * the download URL.
  */
-export type SceneRefUrlResolver = (ref: SceneFileRef) => string | null;
+export type SceneRefUrlResolver = (ref: SceneFileRef) => Promise<string | null>;
 
 export interface PromoteCtx {
   /** Parsed scene to promote. Mutated in place; pass a clone if you
@@ -409,7 +641,8 @@ export interface PromoteCtx {
    *  keep, discard, or diff. */
   existingAssets: Map<string, ArrayBuffer>;
   /** Function that yields a fetchable URL for any URL-shaped ref kind
-   *  (pdb / url / fileId+projectId / path-as-URL). */
+   *  (pdb / url / fileId / job+param). Async — job+param needs a REST
+   *  round-trip to resolve. */
   resolveUrl: SceneRefUrlResolver;
   /** Live molecules — used to re-collect library-resolvable dicts that
    *  the lifter omitted from the YAML. Optional: if not provided, no
@@ -474,7 +707,7 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
       delete ref.cifText;
       continue;
     }
-    const url = resolveUrl(ref);
+    const url = await resolveUrl(ref);
     if (!url) {
       warnings.push(`No URL for ref "${ref.name}"; left as-is`);
       continue;
@@ -493,7 +726,7 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
       // `kind` since downstream resolver cares.
       delete ref.pdb;
       delete ref.url;
-      delete ref.path;
+      delete ref.relativeUrl;
       delete ref.fileId;
       delete ref.projectId;
       delete ref.projectName;
@@ -505,12 +738,15 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
     }
   }
 
-  // 2. Library-dict re-collection. The lifter strips dicts whose
-  //    comp_id resolves to the monomer library; self-contained mode
-  //    wants them back. Walk live molecules; for each non-standard
-  //    comp_id that the library has AND isn't already in the scene's
-  //    dict refs, fetch it and append a fresh ref.
-  if (molecules && monomerLibraryPath) {
+  // 2. Dict re-collection for self-contained mode. The capture lift carries
+  //    dicts only as terse `fileId` refs (fetched in step 1 above) and emits
+  //    NOTHING for an unsourced dict — neither library monomers nor custom
+  //    ligand dicts loaded ad-hoc into Moorhen. Self-contained mode wants both
+  //    back, materialised as bundle assets (this is where dict CIF text enters
+  //    a bundle). Walk live molecules; for each non-standard comp_id not
+  //    already represented, take the monomer-library copy, falling back to the
+  //    molecule's own in-memory dict (`mol.getDict`) for custom ligands.
+  if (molecules) {
     const existingDictNames = new Set(
       (scene.files ?? []).filter((f) => f.kind === "dictionary").map((f) => f.name),
     );
@@ -523,28 +759,43 @@ export async function promoteSceneToPortable(ctx: PromoteCtx): Promise<{
         if (STANDARD_MONOMERS.has(compId)) continue; // never travelled
         const dictName = `dict-${molFileName}-${compId}`;
         if (existingDictNames.has(dictName)) continue;
-        const url = `${monomerLibraryPath}/${compId[0].toLowerCase()}/${compId.toUpperCase()}.cif`;
-        try {
-          const res = await fetch(url);
-          if (!res.ok) continue;
-          const buf = await res.arrayBuffer();
-          const assetPath = claim(`assets/${dictName}.cif`);
-          assets.set(assetPath, buf);
-          const newRef: SceneFileRef = {
-            name: dictName,
-            kind: "dictionary",
-            bundle: assetPath,
-          };
-          (scene.files ??= []).push(newRef);
-          existingDictNames.add(dictName);
-          const el = (scene.elements ?? []).find((e) => e.file === molFileName);
-          if (el) {
-            el.dictionaries = el.dictionaries ?? [];
-            if (!el.dictionaries.includes(dictName)) el.dictionaries.push(dictName);
+
+        // Prefer the monomer-library copy; fall back to the molecule's stored
+        // dict so a custom ligand with no library entry still travels.
+        let buf: ArrayBuffer | null = null;
+        if (monomerLibraryPath) {
+          const url = `${monomerLibraryPath}/${compId[0].toLowerCase()}/${compId.toUpperCase()}.cif`;
+          try {
+            const res = await fetch(url);
+            if (res.ok) buf = await res.arrayBuffer();
+          } catch {
+            // network error → fall through to the in-memory dict below.
           }
-        } catch {
-          // network errors → leave the dict out; receiver's own Moorhen
-          // will fetch from its own library at apply time.
+        }
+        if (!buf) {
+          let dictText = "";
+          try {
+            dictText = mol.getDict(compId) || "";
+          } catch {
+            dictText = "";
+          }
+          if (dictText) buf = new TextEncoder().encode(dictText).buffer;
+        }
+        if (!buf) continue; // no library entry and no stored dict → leave out
+
+        const assetPath = claim(`assets/${dictName}.cif`);
+        assets.set(assetPath, buf);
+        const newRef: SceneFileRef = {
+          name: dictName,
+          kind: "dictionary",
+          bundle: assetPath,
+        };
+        (scene.files ??= []).push(newRef);
+        existingDictNames.add(dictName);
+        const el = (scene.elements ?? []).find((e) => e.file === molFileName);
+        if (el) {
+          el.dictionaries = el.dictionaries ?? [];
+          if (!el.dictionaries.includes(dictName)) el.dictionaries.push(dictName);
         }
       }
     }
@@ -613,14 +864,28 @@ function liftFileRef(mol: moorhen.Molecule, ctx: LiftCtx): SceneFileRef {
     };
   }
 
+  // PDBe-fetched structures: recover the portable `pdb:` ref from the proxy
+  // download URL (absolute or origin-relative), e.g.
+  //   /api/proxy/pdbe/entry-files/download/1ogu.cif  ->  pdb: 1OGU
+  // Mirrors the resolver's matchOneFile pdb matching, so a fetched PDB
+  // round-trips as a portable `pdb:` rather than a deployment-bound URL.
+  const pdbMatch = mol.uniqueId?.match(
+    /\/pdbe\/entry-files\/download\/([0-9a-zA-Z_]+)\.(?:cif|pdb|ent)/i,
+  );
+  if (pdbMatch) {
+    const id = pdbMatch[1];
+    return { name, pdb: /^pdb_/i.test(id) ? id.toLowerCase() : id.toUpperCase() };
+  }
+
   // Plain URL fallback for non-ccp4i2 loaders (e.g. PDBe direct fetches).
   if (mol.uniqueId && /^https?:\/\//.test(mol.uniqueId)) {
     return { name, url: mol.uniqueId };
   }
 
-  // Path fallback for local fetches that don't look like URLs.
+  // Fallback: a uniqueId that isn't an absolute URL is an origin-relative
+  // loader URL (e.g. /api/proxy/pdbe/…) — emit it as relativeUrl.
   if (mol.uniqueId) {
-    return { name, path: mol.uniqueId };
+    return { name, relativeUrl: mol.uniqueId };
   }
 
   // Last resort: a placeholder url that the user will edit.
@@ -661,7 +926,7 @@ function liftMapFileRef(map: moorhen.Map, ctx: LiftCtx, index: number): SceneFil
     return { name, kind, url: map.uniqueId };
   }
   if (map.uniqueId) {
-    return { name, kind, path: map.uniqueId };
+    return { name, kind, relativeUrl: map.uniqueId };
   }
   return { name, kind, url: "TODO: URL for this map" };
 }
@@ -675,16 +940,24 @@ function liftMapFileRef(map: moorhen.Map, ctx: LiftCtx, index: number): SceneFil
  */
 function liftSceneMap(
   map: moorhen.Map,
-  fileName: string,
+  fileName: string | undefined,
   mapName: string,
   mapState?: Record<number, MapRenderState>,
+  from?: string,
 ): SceneMap {
-  // Real-space CCP4 map files (incl. masks) carry no columns; MTZ maps do.
+  // A derived (masked) map is backed by `from:` (a maskMaps output), never a
+  // file, and carries no columns. Real-space CCP4 map files (incl. masks) carry
+  // no columns; MTZ maps do.
   const mapFile = isCcp4MapFile(map);
-  const out: SceneMap = mapFile
-    ? { name: mapName, file: fileName }
-    : { name: mapName, file: fileName, columns: stripUndefinedColumns(map.selectedColumns) };
-  if (mapFile && (map as unknown as { isCcp4Mask?: boolean }).isCcp4Mask) {
+  let out: SceneMap;
+  if (from != null) {
+    out = { name: mapName, from };
+  } else if (mapFile) {
+    out = { name: mapName, file: fileName as string };
+  } else {
+    out = { name: mapName, file: fileName as string, columns: stripUndefinedColumns(map.selectedColumns) };
+  }
+  if (from == null && mapFile && (map as unknown as { isCcp4Mask?: boolean }).isCcp4Mask) {
     out.isMask = true;
   }
   if (map.isDifference) out.isDifference = true;
@@ -750,6 +1023,98 @@ function liftView(glRef: LiftCtx["glRef"]): SceneView | undefined {
 }
 
 // --------------------------------------------------------------------------
+// Hints (lighting + effects)
+// --------------------------------------------------------------------------
+
+// Moorhen defaults (glRefSlice). Emit-only-non-default: a captured scene omits
+// any value equal to these, so it stays terse and a viewer falls back to
+// Moorhen's own defaults for anything unspecified.
+const LIGHT_DEFAULTS = {
+  lightPosition: [25, 25, 50, 1],
+  ambient: [0.2, 0.2, 0.2, 1],
+  specular: [0.6, 0.6, 0.6, 1],
+  diffuse: [1, 1, 1, 1],
+  specularPower: 64,
+};
+
+function approxVecEqual(a: number[] | undefined, b: number[], eps = 1e-3): boolean {
+  return !!a && b.every((v, i) => Math.abs((a[i] ?? NaN) - v) < eps);
+}
+
+/** [r,g,b,a] in 0..1 → "#rrggbb" (alpha dropped — lights are opaque). */
+function rgbaToHex(rgba: number[]): string {
+  const h = (x: number) =>
+    Math.max(0, Math.min(255, Math.round(x * 255))).toString(16).padStart(2, "0");
+  return `#${h(rgba[0])}${h(rgba[1])}${h(rgba[2])}`;
+}
+
+/** Moorhen lightPosition (a position) → a unit direction. The resolver
+ *  re-scales on apply, so a unit vector round-trips. */
+function lightPositionToDirection(pos: number[]): [number, number, number] {
+  const [x, y, z] = pos;
+  const len = Math.hypot(x, y, z) || 1;
+  return [round(x / len, 4), round(y / len, 4), round(z / len, 4)];
+}
+
+/**
+ * Capture scene-global lighting + effects as hints — emit-only-non-default,
+ * the inverse of the resolver's applyHints. Returns undefined when nothing
+ * differs from Moorhen's defaults, so most scenes carry no `hints` at all.
+ */
+function liftHints(
+  glRef: LiftCtx["glRef"],
+  sceneSettings: LiftCtx["sceneSettings"],
+): SceneHints | undefined {
+  const hints: SceneHints = {};
+
+  if (glRef) {
+    const lighting: NonNullable<SceneHints["lighting"]> = {};
+    const lp = toArray4(glRef.lightPosition);
+    if (lp && !approxVecEqual(lp, LIGHT_DEFAULTS.lightPosition))
+      lighting.direction = lightPositionToDirection(lp);
+    const amb = toArray4(glRef.ambient);
+    if (amb && !approxVecEqual(amb, LIGHT_DEFAULTS.ambient)) lighting.ambient = rgbaToHex(amb);
+    const dif = toArray4(glRef.diffuse);
+    if (dif && !approxVecEqual(dif, LIGHT_DEFAULTS.diffuse)) lighting.diffuse = rgbaToHex(dif);
+    const spec = toArray4(glRef.specular);
+    if (spec && !approxVecEqual(spec, LIGHT_DEFAULTS.specular)) lighting.specular = rgbaToHex(spec);
+    if (
+      typeof glRef.specularPower === "number" &&
+      Math.abs(glRef.specularPower - LIGHT_DEFAULTS.specularPower) > 1e-6
+    )
+      lighting.shininess = glRef.specularPower;
+    if (Object.keys(lighting).length) hints.lighting = lighting;
+  }
+
+  const s = sceneSettings;
+  if (s) {
+    const effects: NonNullable<SceneHints["effects"]> = {};
+    if (s.doSSAO) {
+      effects.ssao = { enabled: true };
+      if (typeof s.ssaoRadius === "number") effects.ssao.radius = s.ssaoRadius;
+      if (typeof s.ssaoBias === "number") effects.ssao.bias = s.ssaoBias;
+    }
+    if (s.doEdgeDetect) {
+      effects.edgeDetect = { enabled: true };
+      if (typeof s.edgeDetectDepthThreshold === "number") effects.edgeDetect.depthThreshold = s.edgeDetectDepthThreshold;
+      if (typeof s.edgeDetectNormalThreshold === "number") effects.edgeDetect.normalThreshold = s.edgeDetectNormalThreshold;
+      if (typeof s.edgeDetectDepthScale === "number") effects.edgeDetect.depthScale = s.edgeDetectDepthScale;
+      if (typeof s.edgeDetectNormalScale === "number") effects.edgeDetect.normalScale = s.edgeDetectNormalScale;
+    }
+    if (s.doShadow) effects.shadows = true;
+    if (s.doPerspectiveProjection) effects.perspective = true;
+    if (s.useOffScreenBuffers) {
+      effects.depthBlur = {};
+      if (typeof s.depthBlurRadius === "number") effects.depthBlur.radius = s.depthBlurRadius;
+      if (typeof s.depthBlurDepth === "number") effects.depthBlur.depth = s.depthBlurDepth;
+    }
+    if (Object.keys(effects).length) hints.effects = effects;
+  }
+
+  return Object.keys(hints).length ? hints : undefined;
+}
+
+// --------------------------------------------------------------------------
 // Elements + representations
 // --------------------------------------------------------------------------
 
@@ -761,7 +1126,28 @@ function liftElement(mol: moorhen.Molecule, fileName: string): SceneElement | nu
   if (visible.length === 0) return null;
 
   const out: SceneRepresentation[] = visible.map(liftRepresentation);
-  return { file: fileName, representations: out };
+  const element: SceneElement = { file: fileName, representations: out };
+  hoistCommonColour(element);
+  return element;
+}
+
+/**
+ * If every representation carries the SAME colour, hoist it to a molecule-scoped
+ * `element.colour` (matching Moorhen's molecule-level colour) and drop it from
+ * the reps — terser, and the natural "colour this whole structure" form. Reps
+ * with differing colours keep their own (the per-rep override). No hoist unless
+ * all reps have an identical, defined colour.
+ */
+function hoistCommonColour(element: SceneElement): void {
+  const reps = element.representations ?? [];
+  // Only factor out a colour genuinely SHARED by ≥2 reps. A single rep keeps
+  // its own colour (nothing to hoist; avoids surprising the common one-rep case).
+  if (reps.length < 2) return;
+  const first = JSON.stringify(reps[0].colour);
+  if (reps[0].colour === undefined) return;
+  if (!reps.every((r) => JSON.stringify(r.colour) === first)) return;
+  element.colour = reps[0].colour;
+  for (const r of reps) delete r.colour;
 }
 
 function liftRepresentation(rep: moorhen.MoleculeRepresentation): SceneRepresentation {
@@ -770,6 +1156,11 @@ function liftRepresentation(rep: moorhen.MoleculeRepresentation): SceneRepresent
 
   const colour = liftColour(rep.colourRules ?? []);
   if (colour !== undefined) out.colour = colour;
+
+  // Per-representation opacity (Moorhen `nonCustomOpacity`); only emit a
+  // non-default value (default 1 = opaque ⇒ omit, matching the map `alpha`).
+  const a = (rep as { nonCustomOpacity?: number }).nonCustomOpacity;
+  if (typeof a === "number" && a < 1) out.alpha = round(a, 3);
 
   return out;
 }
@@ -787,13 +1178,36 @@ const NAMED_MULTI_RULES = new Set([
   "mol-symm",
 ]);
 
+const HEX_RE = /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/;
+
+/** A single-colour rule with a hex colour (Moorhen "molecule" ruleType etc.). */
+function isSingleHexRule(r: moorhen.ColourRule): boolean {
+  return !r.isMultiColourRule && typeof r.color === "string" && HEX_RE.test(r.color);
+}
+
 function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
   if (rules.length === 0) return undefined;
 
-  // We only attempt to lift the *first* rule. Multiple rules per
-  // representation is rare in normal Moorhen UI flows; if we see it,
-  // the safer thing is to emit the first one and drop the rest rather
-  // than invent some lossy merge. (A future v2 could lift a sequence.)
+  // All single-colour rules → a single hex (one rule) or a per-selection list
+  // (many). The list is the faithful capture of coot's default per-chain
+  // colouring: one entry per chain with the colour coot assigned — instead of
+  // mistaking the first chain's hex for the whole representation. Whole-chain
+  // and residue-range CIDs are the same shape, so by-domain re-applies through
+  // the same path.
+  if (rules.every(isSingleHexRule)) {
+    // Dedup (cid, colour) pairs — Moorhen can accumulate duplicate rules on a
+    // molecule's shared list; the dedup keeps a captured colour clean.
+    const seen = new Set<string>();
+    const uniq = rules.filter((r) => {
+      const k = `${r.cid} ${r.color}`;
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+    if (uniq.length === 1) return uniq[0].color;
+    return uniq.map((r) => ({ selection: r.cid, colour: r.color }));
+  }
+
   const r = rules[0];
 
   // 1. Named multi-rule scheme (b-factor, etc.).
@@ -801,12 +1215,22 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
     return r.ruleType as SceneColour;
   }
 
-  // 2. Single-colour rule with a hex colour (Moorhen's "molecule" ruleType
-  //    or anything with isMultiColourRule=false).
-  // Accept 6-hex (#rrggbb) and 8-hex with alpha (#rrggbbaa) — Moorhen's
-  // default per-chain rules typically come out as 8-hex.
-  if (!r.isMultiColourRule && typeof r.color === "string" && /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/.test(r.color)) {
-    return r.color;
+  // 2. A compiled WHOLE-CHAIN per-selection rule: one multi-rule whose args[0]
+  //    is `//chain^#hex|...` (no residue range). This is what applying a
+  //    hoisted per-chain colouring (domains: + by-domain) produces, so decompose
+  //    it back to the list — hoistPerChainColours then re-folds it into
+  //    domains: + by-domain, keeping capture→apply→capture stable.
+  if (
+    r.isMultiColourRule &&
+    typeof r.args?.[0] === "string" &&
+    /^\/\/[^/^|]+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?(\|\/\/[^/^|]+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?)*$/.test(
+      r.args[0] as string,
+    )
+  ) {
+    return (r.args[0] as string).split("|").map((seg) => {
+      const ix = seg.lastIndexOf("^");
+      return { selection: seg.slice(0, ix), colour: seg.slice(ix + 1) };
+    });
   }
 
   // 3. by-domain shape: a single multi-rule whose args[0] is a string
@@ -833,6 +1257,55 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
       applyColourToNonCarbonAtoms: r.applyColourToNonCarbonAtoms,
     },
   };
+}
+
+/** Chain id of a whole-chain CID ("//A", "/1/A"), else null (has residue/atom
+ *  parts, or is a wildcard). */
+function chainOfWholeChainCid(cid: string): string | null {
+  const parts = cid.split("/"); // "//A" -> ["","","A"]; "/1/A" -> ["","1","A"]
+  if (parts.length === 3 && parts[2] !== "" && parts[2] !== "*") return parts[2];
+  return null;
+}
+
+/**
+ * Hoist whole-chain colour lists into the shared `domains:` block + `colour:
+ * by-domain` on the representations, so a molecule's per-chain colouring is
+ * stated ONCE instead of repeated inline on every representation — the same
+ * "define a colour map once, representations adopt it" pattern by-domain already
+ * uses, at whole-chain granularity.
+ *
+ * Conservative: only fires when every adopting rep's colour list is entirely
+ * whole-chain CIDs, the chain→colour mapping is consistent across reps, and the
+ * `domains:` block is empty (so authored domains are never disturbed). Anything
+ * else (residue-range lists, conflicting per-chain colours) is left inline.
+ */
+function hoistPerChainColours(scene: MoorhenScene): void {
+  if (!scene.elements || (scene.domains && scene.domains.length > 0)) return;
+  const chainColour = new Map<string, string>();
+  const adopters: SceneRepresentation[] = [];
+  let conflict = false;
+  for (const el of scene.elements) {
+    for (const rep of el.representations ?? []) {
+      const c = rep.colour;
+      if (!Array.isArray(c) || c.length === 0) continue;
+      const chains = c.map((e) => chainOfWholeChainCid(e.selection));
+      if (chains.some((ch) => ch === null)) continue; // not all whole-chain
+      adopters.push(rep);
+      c.forEach((e, i) => {
+        const ch = chains[i] as string;
+        const prev = chainColour.get(ch);
+        if (prev !== undefined && prev !== e.colour) conflict = true;
+        chainColour.set(ch, e.colour);
+      });
+    }
+  }
+  if (conflict || chainColour.size === 0 || adopters.length === 0) return;
+  scene.domains = [...chainColour.entries()].map(([chain, color]) => ({
+    name: chain,
+    selection: `//${chain}`, // whole chain, CID form
+    color,
+  }));
+  for (const rep of adopters) rep.colour = "by-domain";
 }
 
 // --------------------------------------------------------------------------

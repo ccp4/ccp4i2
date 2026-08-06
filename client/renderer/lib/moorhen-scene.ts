@@ -22,7 +22,11 @@ import {
   SceneMap,
   SceneMapColumns,
   SceneRepresentation,
+  SceneCentre,
+  SceneClip,
+  SceneSlab,
   SceneColour,
+  SceneColourSelection,
   SceneSuperpose,
   isSceneHexColour,
   isSceneNamedColour,
@@ -58,10 +62,23 @@ export class SceneParseError extends Error {
  * Parse a YAML scene document into a typed MoorhenScene.
  * Throws SceneParseError if validation fails.
  */
+/**
+ * Strip a Markdown code fence around the YAML if present. LLMs are asked to
+ * return a ```yaml block (so the chat UI's copy button preserves indentation),
+ * but a hand-copied response can carry the ``` fences — and surrounding prose —
+ * into the editor. Extract the first fenced block's contents; if there's no
+ * fence, return the text unchanged. Plain YAML never starts a line with ```, so
+ * this is safe for non-LLM input too.
+ */
+function stripCodeFence(text: string): string {
+  const m = text.match(/```[ \t]*[\w+-]*[ \t]*\r?\n([\s\S]*?)\r?\n?```/);
+  return m ? m[1] : text;
+}
+
 export function parseScene(yamlText: string): MoorhenScene {
   let raw: unknown;
   try {
-    raw = YAML.parse(yamlText);
+    raw = YAML.parse(stripCodeFence(yamlText));
   } catch (e) {
     throw new SceneParseError([
       { path: "", message: `YAML parse error: ${(e as Error).message}` },
@@ -177,12 +194,15 @@ export function validateScene(raw: unknown): {
     if (isObject(v)) {
       out.view = {
         origin: tupleField<3>(v, "origin", 3, "view.origin", errors),
+        centre: validateCentre(v.centre, out.files ?? [], errors),
         quat: tupleField<4>(v, "quat", 4, "view.quat", errors),
         zoom: optNum(v, "zoom", "view.zoom", errors),
         clipStart: optNum(v, "clipStart", "view.clipStart", errors),
         clipEnd: optNum(v, "clipEnd", "view.clipEnd", errors),
         fogStart: optNum(v, "fogStart", "view.fogStart", errors),
         fogEnd: optNum(v, "fogEnd", "view.fogEnd", errors),
+        clip: validateClip(v.clip, errors),
+        slab: validateSlab(v.slab, out.files ?? [], errors),
         background: optStr(v, "background", "view.background", errors),
       };
     } else {
@@ -242,12 +262,23 @@ function validateFiles(
     const ref: SceneFileRef = { name };
     if ("kind" in entry) {
       const kind = optStr(entry, "kind", `${p}.kind`, errors);
-      if (kind && kind !== "coordinates" && kind !== "dictionary" && kind !== "mtz") {
+      if (
+        kind &&
+        kind !== "coordinates" &&
+        kind !== "dictionary" &&
+        kind !== "mtz" &&
+        kind !== "map"
+      ) {
         errors.push({
           path: `${p}.kind`,
-          message: `must be "coordinates", "dictionary", or "mtz", got "${kind}"`,
+          message: `must be "coordinates", "dictionary", "mtz", or "map", got "${kind}"`,
         });
-      } else if (kind === "coordinates" || kind === "dictionary" || kind === "mtz") {
+      } else if (
+        kind === "coordinates" ||
+        kind === "dictionary" ||
+        kind === "mtz" ||
+        kind === "map"
+      ) {
         ref.kind = kind;
       }
     }
@@ -255,7 +286,8 @@ function validateFiles(
     if ("cifText" in entry) ref.cifText = optStr(entry, "cifText", `${p}.cifText`, errors);
     if ("bundle" in entry) ref.bundle = optStr(entry, "bundle", `${p}.bundle`, errors);
     if ("url" in entry) ref.url = optStr(entry, "url", `${p}.url`, errors);
-    if ("path" in entry) ref.path = optStr(entry, "path", `${p}.path`, errors);
+    if ("relativeUrl" in entry)
+      ref.relativeUrl = optStr(entry, "relativeUrl", `${p}.relativeUrl`, errors);
     if ("projectId" in entry) ref.projectId = optStr(entry, "projectId", `${p}.projectId`, errors);
     if ("projectName" in entry) ref.projectName = optStr(entry, "projectName", `${p}.projectName`, errors);
     if ("fileId" in entry) ref.fileId = optNum(entry, "fileId", `${p}.fileId`, errors);
@@ -293,20 +325,31 @@ function validateFiles(
     const hasCifText = !!ref.cifText;
     const hasBundle = !!ref.bundle;
     const hasUrl = !!ref.url;
-    const hasPath = !!ref.path;
+    const hasRelativeUrl = !!ref.relativeUrl;
     const hasFileId = ref.fileId !== undefined;
     const hasJobParam = ref.job !== undefined && !!ref.param;
-    if (!hasPdb && !hasCifText && !hasBundle && !hasUrl && !hasPath && !hasFileId && !hasJobParam) {
+    if (!hasPdb && !hasCifText && !hasBundle && !hasUrl && !hasRelativeUrl && !hasFileId && !hasJobParam) {
       errors.push({
         path: p,
-        message: "must set one of: pdb, url, path, bundle, fileId (+projectId), job+param (+projectId), or cifText (for dictionaries)",
+        message: "must set one of: pdb, url, relativeUrl, bundle, fileId (+projectId), job+param (+projectId), or cifText (for dictionaries)",
       });
     }
-    // Project-internal forms need a projectId.
-    if ((hasFileId || hasJobParam) && !ref.projectId) {
+    // fileId form: needs projectId (the lifter always pairs them, and the
+    // resolver's fileId branch guards on it).
+    if (hasFileId && !ref.projectId) {
       errors.push({
         path: `${p}.projectId`,
-        message: "required when fileId or job+param is set",
+        message: "required when fileId is set",
+      });
+    }
+    // job+param: needs a project identifier — projectId (a UUID, preferred for
+    // portability) OR projectName (the human/LLM-friendly form the manifest
+    // shows). The resolver keys job+param off the current project, so either is
+    // accepted as an advisory label.
+    if (hasJobParam && !ref.projectId && !ref.projectName) {
+      errors.push({
+        path: `${p}.projectId`,
+        message: "required when job+param is set (or give projectName)",
       });
     }
     // job and param are paired.
@@ -575,30 +618,10 @@ function validateDomains(
       errors.push({ path: p, message: "must be a mapping" });
       return;
     }
+    const e = entry as Record<string, unknown>;
     const name = strField(entry, "name", "", errors, p);
-    const chain = parseChainField(entry, `${p}.chain`, errors);
-    const range = rangeField(entry, "range", errors, p) ?? "";
     const color = strField(entry, "color", "", errors, p);
     if (!name) errors.push({ path: `${p}.name`, message: "required" });
-    if (chain === undefined) errors.push({ path: `${p}.chain`, message: "required" });
-    if (!range) {
-      errors.push({ path: `${p}.range`, message: "required" });
-    } else if (!RANGE_RE.test(range)) {
-      errors.push({
-        path: `${p}.range`,
-        message: `must be "start-end", got "${range}"`,
-      });
-    } else {
-      const m = RANGE_RE.exec(range)!;
-      const start = parseInt(m[1], 10);
-      const end = parseInt(m[2], 10);
-      if (end < start) {
-        errors.push({
-          path: `${p}.range`,
-          message: `end (${end}) must be >= start (${start})`,
-        });
-      }
-    }
     if (!color) {
       errors.push({ path: `${p}.color`, message: "required" });
     } else if (!isHexColor(color)) {
@@ -613,7 +636,41 @@ function validateDomains(
       }
       seen.add(name);
     }
-    out.push({ name, chain: chain ?? "", range, color });
+
+    const domain: SceneDomain = { name, color };
+    if ("selection" in e) {
+      // Preferred CID form.
+      const sel = strField(entry, "selection", "", errors, p);
+      if (!sel) {
+        errors.push({ path: `${p}.selection`, message: "must be a non-empty CID string" });
+      } else {
+        domain.selection = sel;
+      }
+    } else {
+      // Legacy chain + optional range (omitted ⇒ whole chain).
+      const chain = parseChainField(entry, `${p}.chain`, errors);
+      if (chain === undefined) {
+        errors.push({ path: `${p}.chain`, message: "required (or use `selection`)" });
+      } else {
+        domain.chain = chain;
+      }
+      if ("range" in e) {
+        const range = rangeField(entry, "range", errors, p) ?? "";
+        if (!range || !RANGE_RE.test(range)) {
+          errors.push({ path: `${p}.range`, message: `must be "start-end", got "${range}"` });
+        } else {
+          const m = RANGE_RE.exec(range)!;
+          const start = parseInt(m[1], 10);
+          const end = parseInt(m[2], 10);
+          if (end < start) {
+            errors.push({ path: `${p}.range`, message: `end (${end}) must be >= start (${start})` });
+          } else {
+            domain.range = range;
+          }
+        }
+      }
+    }
+    out.push(domain);
   });
   return out;
 }
@@ -827,7 +884,142 @@ function validateRepresentation(
     const c = (raw as Record<string, unknown>).colour;
     rep.colour = validateColour(c, `${path}.colour`, errors) ?? undefined;
   }
+  if ("alpha" in raw) {
+    const a = optNum(raw, "alpha", `${path}.alpha`, errors);
+    if (a !== undefined) {
+      if (a < 0 || a > 1) {
+        errors.push({ path: `${path}.alpha`, message: "must be in [0, 1]" });
+      } else {
+        rep.alpha = a;
+      }
+    }
+  }
   return rep;
+}
+
+function validateSlab(
+  raw: unknown,
+  files: SceneFileRef[],
+  errors: SceneValidationError[],
+): SceneSlab | undefined {
+  if (raw === undefined) return undefined;
+  if (!isObject(raw)) {
+    errors.push({ path: "view.slab", message: "must be a mapping { file, selection?, pad? }" });
+    return undefined;
+  }
+  for (const k of Object.keys(raw as Record<string, unknown>)) {
+    if (k !== "file" && k !== "selection" && k !== "pad") {
+      errors.push({
+        path: `view.slab.${k}`,
+        message: `unknown key "${k}" — slab takes only "file", "selection", "pad"`,
+      });
+    }
+  }
+  // file is optional: omitted ⇒ the resolver defaults to the sole loaded
+  // molecule (and logs if that's ambiguous). When given, cross-check it.
+  const slab: SceneSlab = {};
+  if ("file" in (raw as Record<string, unknown>)) {
+    const file = strField(raw, "file", "", errors, "view.slab");
+    if (!file) {
+      errors.push({ path: "view.slab.file", message: "must be a non-empty string" });
+      return undefined;
+    }
+    if (files.length > 0 && !files.some((f) => f.name === file)) {
+      errors.push({
+        path: "view.slab.file",
+        message: `unknown file "${file}" (not in top-level files block)`,
+      });
+      return undefined;
+    }
+    slab.file = file;
+  }
+  if ("selection" in (raw as Record<string, unknown>)) {
+    const sel = optStr(raw, "selection", "view.slab.selection", errors);
+    if (sel) slab.selection = sel;
+  }
+  if ("pad" in (raw as Record<string, unknown>)) {
+    const pad = optNum(raw, "pad", "view.slab.pad", errors);
+    if (pad !== undefined) {
+      if (pad < 0) errors.push({ path: "view.slab.pad", message: "must be >= 0" });
+      else slab.pad = pad;
+    }
+  }
+  return slab;
+}
+
+function validateClip(
+  raw: unknown,
+  errors: SceneValidationError[],
+): SceneClip | undefined {
+  if (raw === undefined) return undefined;
+  if (raw === "auto" || raw === "lock") return raw;
+  if (typeof raw === "string" || !isObject(raw)) {
+    errors.push({
+      path: "view.clip",
+      message: `must be "auto", "lock", or { front, back }`,
+    });
+    return undefined;
+  }
+  for (const k of Object.keys(raw as Record<string, unknown>)) {
+    if (k !== "front" && k !== "back") {
+      errors.push({
+        path: `view.clip.${k}`,
+        message: `unknown key "${k}" — field-depth clip takes only "front" and "back"`,
+      });
+    }
+  }
+  const front = optNum(raw, "front", "view.clip.front", errors);
+  const back = optNum(raw, "back", "view.clip.back", errors);
+  if (front === undefined) errors.push({ path: "view.clip.front", message: "required" });
+  if (back === undefined) errors.push({ path: "view.clip.back", message: "required" });
+  if (front === undefined || back === undefined) return undefined;
+  return { front, back };
+}
+
+function validateCentre(
+  raw: unknown,
+  files: SceneFileRef[],
+  errors: SceneValidationError[],
+): SceneCentre | undefined {
+  if (raw === undefined) return undefined;
+  if (!isObject(raw)) {
+    errors.push({ path: "view.centre", message: "must be a mapping { file, selection? }" });
+    return undefined;
+  }
+  // centre takes only file + selection. Reject anything else loudly — it's a
+  // typo (e.g. "-selection"), and silently dropping it gives a wrong-but-quiet
+  // centre (the whole molecule instead of the intended selection).
+  for (const k of Object.keys(raw as Record<string, unknown>)) {
+    if (k !== "file" && k !== "selection") {
+      errors.push({
+        path: `view.centre.${k}`,
+        message: `unknown key "${k}" — centre takes only "file" and "selection"`,
+      });
+    }
+  }
+  // file is optional: omitted ⇒ the resolver defaults to the sole loaded
+  // molecule (and logs if that's ambiguous). When given, cross-check it.
+  const centre: SceneCentre = {};
+  if ("file" in (raw as Record<string, unknown>)) {
+    const file = strField(raw, "file", "", errors, "view.centre");
+    if (!file) {
+      errors.push({ path: "view.centre.file", message: "must be a non-empty string" });
+      return undefined;
+    }
+    if (files.length > 0 && !files.some((f) => f.name === file)) {
+      errors.push({
+        path: "view.centre.file",
+        message: `unknown file "${file}" (not in top-level files block)`,
+      });
+      return undefined;
+    }
+    centre.file = file;
+  }
+  if ("selection" in (raw as Record<string, unknown>)) {
+    const sel = optStr(raw, "selection", "view.centre.selection", errors);
+    if (sel) centre.selection = sel;
+  }
+  return centre;
 }
 
 function validateColour(
@@ -835,6 +1027,27 @@ function validateColour(
   path: string,
   errors: SceneValidationError[],
 ): SceneColour | null {
+  if (Array.isArray(raw)) {
+    // Per-selection colour list: [{ selection, colour }, ...].
+    const list: SceneColourSelection[] = [];
+    raw.forEach((entry, i) => {
+      const ep = `${path}[${i}]`;
+      if (!isObject(entry)) {
+        errors.push({ path: ep, message: "must be a mapping { selection, colour }" });
+        return;
+      }
+      const selection = strField(entry, "selection", "", errors, ep);
+      if (!selection) errors.push({ path: `${ep}.selection`, message: "required" });
+      const colour = strField(entry, "colour", "", errors, ep);
+      if (!colour) {
+        errors.push({ path: `${ep}.colour`, message: "required" });
+      } else if (!isHexColor(colour)) {
+        errors.push({ path: `${ep}.colour`, message: "must be hex (#rrggbb or #rrggbbaa)" });
+      }
+      if (selection && colour && isHexColor(colour)) list.push({ selection, colour });
+    });
+    return list.length > 0 ? list : null;
+  }
   if (typeof raw === "string") {
     if (isHexColor(raw)) return raw;
     if (isSceneNamedColour(raw as SceneColour)) return raw as SceneColour;
@@ -873,7 +1086,11 @@ function validateColour(
       },
     };
   }
-  errors.push({ path, message: "must be a hex string, named scheme, or { raw: ... }" });
+  errors.push({
+    path,
+    message:
+      "must be a hex string, named scheme, per-selection list, or { raw: ... }",
+  });
   return null;
 }
 
@@ -977,6 +1194,9 @@ function buildOrderedScene(scene: MoorhenScene): Record<string, unknown> {
   }
   if (scene.view && hasAnyValue(scene.view)) {
     ordered.view = stripUndefined(scene.view);
+  }
+  if (scene.hints && hasAnyValue(scene.hints)) {
+    ordered.hints = stripUndefined(scene.hints);
   }
   if (scene.resolver && scene.resolver.onMissingResidues) {
     ordered.resolver = { onMissingResidues: scene.resolver.onMissingResidues };

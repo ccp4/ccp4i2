@@ -1,0 +1,354 @@
+# Release CCP4i2: publish the backend wheel to PyPI + attach desktop installers
+# to a GitHub Release — all from one version tag.
+# ============================================================================
+# Trigger: push a tag `vMAJOR.MINOR.PATCH` (e.g. v3.0.2). One tag drives:
+#   1. verify-version — assert the tag matches ccp4i2.__version__ (single
+#      source of truth in server/ccp4i2/__init__.py). Fails fast on mismatch.
+#   2. publish-pypi   — build sdist+wheel from server/ and publish `ccp4i2` to
+#      PyPI via OIDC (no stored token — same mechanism as publish-ccp4i2-api).
+#   3. build-desktop  — build the macOS/Windows/Linux installers, stamping the
+#      Electron backend-version FLOOR from the tag so the app requires the
+#      matching (or newer) backend.
+#   4. release        — create the GitHub Release and attach the installers as
+#      public, permanent, no-login assets (github.com/ccp4/ccp4i2/releases).
+#
+# Why OIDC instead of a stored token: the `ccp4i2-api` package already does this
+# (see .github/workflows/publish-ccp4i2-api.yml and packages/ccp4i2-api/
+# RELEASING.md). Trust lives in a PyPI "Trusted Publisher" config, not a secret.
+#
+# ONE-TIME setup BEFORE the first `v*` tag (Trusted Publishers are per-project;
+# the ccp4i2-api one does NOT cover ccp4i2):
+#   PyPI: https://pypi.org/manage/project/ccp4i2/settings/publishing/
+#     Owner: ccp4  ·  Repository: ccp4i2  ·  Workflow: release.yml
+#     Environment: pypi   (reuses the existing GitHub `pypi` environment)
+#
+# Cutting a release:
+#   1. Bump MAJOR/MINOR/PATCH in server/ccp4i2/__init__.py, commit.
+#   2. git tag v3.0.2 && git push origin v3.0.2
+#   (A version can be published to PyPI only once — re-cutting needs a new patch.)
+# See docs/RELEASING.md for the full runbook.
+# ============================================================================
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-version:
+    name: Verify tag matches package version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+      prerelease: ${{ steps.check.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - id: check
+        name: Assert tag == ccp4i2.__version__
+        working-directory: server
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG="$(python -c 'import ccp4i2; print(ccp4i2.__version__)')"
+          echo "tag=$TAG  package=$PKG"
+          if [ "$TAG" != "$PKG" ]; then
+            echo "::error::Tag '$GITHUB_REF_NAME' does not match ccp4i2.__version__ ($PKG). Bump server/ccp4i2/__init__.py or retag."
+            exit 1
+          fi
+          echo "version=$PKG" >> "$GITHUB_OUTPUT"
+
+          # Guard: the desktop app installs deps from the bundled runtime lock
+          # (ccp4i2/requirements-runtime.txt) via --no-deps, NOT from the wheel's
+          # own requirements. So the lock's ccp4i2-api pin — not pyproject's
+          # `ccp4i2-api>=X` — is what actually reaches users. If they drift, a
+          # published alpha silently ships the wrong ccp4i2-api (this exact bug
+          # shipped in a1-a3: lock pinned 0.3.4 while the wheel required >=0.3.5,
+          # so the health-auth fix never reached the installed backend). Fail the
+          # release here rather than after publishing.
+          FLOOR="$(python -c "import re,tomllib; d=tomllib.load(open('pyproject.toml','rb')); r=[x for x in d['project']['dependencies'] if x.replace(' ','').startswith('ccp4i2-api')][0]; m=re.search(r'>=\s*([0-9][^,;\s]*)', r); print(m.group(1) if m else '')")"
+          LOCK="$(python -c "import re; t=open('ccp4i2/requirements-runtime.txt').read(); m=re.search(r'^ccp4i2-api==([^\s#]+)', t, re.M); print(m.group(1) if m else '')")"
+          echo "ccp4i2-api  wheel floor=>=$FLOOR  lock pin===$LOCK"
+          if [ -z "$LOCK" ]; then
+            echo "::error::runtime lock has no ccp4i2-api== pin (server/ccp4i2/requirements-runtime.txt)."
+            exit 1
+          fi
+          # Pure-stdlib version compare (no `packaging` — it isn't installed in
+          # this bare setup-python step). Both are simple dotted pins
+          # (e.g. 0.3.5), so a leading-numeric tuple compare is sufficient.
+          # Single-line -c so the YAML block scalar stays valid.
+          if [ -n "$FLOOR" ] && ! python -c "import re,sys; f=lambda v:[int((re.match(r'\d*',p).group() or 0)) for p in v.split('.')]; sys.exit(0 if f('$LOCK')>=f('$FLOOR') else 1)"; then
+            echo "::error::runtime lock pins ccp4i2-api==$LOCK but the wheel requires >=$FLOOR. Regenerate/update server/ccp4i2/requirements-runtime.txt — the app installs the LOCK version, so this mismatch would ship the wrong ccp4i2-api to users."
+            exit 1
+          fi
+
+          # PEP 440 final = X.Y.Z (all numeric); anything else (a/b/rc/dev) is a
+          # pre-release — mark the GitHub Release accordingly. `contains('-')`
+          # would miss the canonical alpha form (v3.1.0a1 has no hyphen).
+          if [[ "$PKG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  publish-pypi:
+    name: Publish ccp4i2 to PyPI
+    needs: verify-version
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/ccp4i2/${{ needs.verify-version.outputs.version }}/
+    permissions:
+      # OIDC: exchanged for a short-lived PyPI token via trusted publishing.
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build sdist + wheel
+        working-directory: server
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+          ls -la dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: server/dist/
+
+  build-desktop:
+    name: Package desktop app (${{ matrix.os }})
+    needs: verify-version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            script: package-mac
+            glob: client/release/*.dmg
+          - os: windows-latest
+            script: package-win
+            glob: client/release/*.exe
+          - os: ubuntu-latest
+            script: package-linux-x64
+            glob: |
+              client/release/*.AppImage
+              client/release/*.deb
+    runs-on: ${{ matrix.os }}
+    env:
+      # Stamp the exact backend version from the tag so the released app pins
+      # ccp4i2==<version> in ccp4-python (alpha discipline — no version mixing).
+      # Env var name kept for build compatibility; it now carries an exact version.
+      CCP4I2_SERVER_VERSION_FLOOR: ${{ needs.verify-version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: "npm"
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install ccp4i2-api devDeps (so prepare can run tsc)
+        run: npm ci
+        working-directory: packages/ccp4i2-api
+
+      - name: Install client dependencies
+        run: npm ci
+        working-directory: client
+
+      # Stamp the Electron app version from the release tag so installers are
+      # named by their version (e.g. ccp4i2-django-3.1.0-a2.dmg) instead of the
+      # hardcoded 0.0.1 — which made every alpha's installers indistinguishable
+      # and let a stale a1 build masquerade as the current release. electron-
+      # builder needs a semver-valid version, so convert PEP 440 pre-release
+      # (3.1.0a2) to semver (3.1.0-a2). --no-git-tag-version: don't commit/tag.
+      - name: Stamp installer version from tag
+        shell: bash
+        run: |
+          PEP="${{ needs.verify-version.outputs.version }}"
+          SEMVER="$(printf '%s' "$PEP" | sed -E 's/([0-9])(a|b|rc)([0-9]+)/\1-\2\3/')"
+          echo "Electron app version: $PEP -> $SEMVER"
+          npm version "$SEMVER" --no-git-tag-version --allow-same-version
+        working-directory: client
+
+      # macOS signing + notarisation, ONLY when the Apple secrets are present.
+      # If they're absent, the build stays unsigned (as today) and still ships —
+      # so this workflow is safe to run before the secrets are configured.
+      # Signing needs a Developer ID Application cert (MAC_CSC_*); notarisation
+      # uses an App Store Connect API key (APPLE_API_*).
+      - name: Configure macOS signing
+        if: matrix.os == 'macos-latest'
+        shell: bash
+        env:
+          # Signing is OPT-IN via the repo variable ENABLE_MAC_SIGNING. Leave it
+          # unset (or != "true") to ship UNSIGNED (fast; testers run `xattr -cr`).
+          # Set the variable to "true" (Settings -> Secrets and variables ->
+          # Actions -> Variables) once the Apple secrets are confirmed working,
+          # to build signed + notarised. Keeping the secrets in place while the
+          # variable is off costs nothing.
+          ENABLE_MAC_SIGNING: ${{ vars.ENABLE_MAC_SIGNING }}
+          MAC_CSC_LINK: ${{ secrets.MAC_CSC_LINK }}
+          MAC_CSC_KEY_PASSWORD: ${{ secrets.MAC_CSC_KEY_PASSWORD }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+        run: |
+          # Presence readout (never prints values) so a misconfiguration is
+          # diagnosable from the log instead of a silent "absent". Note: this
+          # job has NO `environment:`, so it sees only REPOSITORY/ORG secrets —
+          # Apple secrets placed in an Environment (e.g. pypi/npm) are invisible
+          # here. Set them as Repository secrets, or add `environment:` to this
+          # job. Names are exact/case-sensitive.
+          if [ "$ENABLE_MAC_SIGNING" != "true" ]; then
+            echo "CSC_IDENTITY_AUTO_DISCOVERY=false" >> "$GITHUB_ENV"
+            echo "macOS: signing disabled (ENABLE_MAC_SIGNING != 'true') -> building UNSIGNED (users run xattr -cr)"
+            exit 0
+          fi
+          echo "Apple signing secrets seen by this job (set = non-empty):"
+          for s in MAC_CSC_LINK MAC_CSC_KEY_PASSWORD APPLE_API_KEY_P8 APPLE_API_KEY_ID APPLE_API_ISSUER; do
+            v="$(eval echo \"\$$s\")"
+            if [ -n "$v" ]; then echo "  $s = set (${#v} chars)"; else echo "  $s = EMPTY"; fi
+          done
+          if [ -n "$MAC_CSC_LINK" ] && [ -n "$APPLE_API_KEY_P8" ]; then
+            KEYDIR="$RUNNER_TEMP/appleapi"; mkdir -p "$KEYDIR"
+            printf '%s' "$APPLE_API_KEY_P8" > "$KEYDIR/AuthKey.p8"
+            {
+              echo "CSC_LINK=$MAC_CSC_LINK"
+              echo "CSC_KEY_PASSWORD=$MAC_CSC_KEY_PASSWORD"
+              echo "APPLE_API_KEY=$KEYDIR/AuthKey.p8"
+              echo "APPLE_API_KEY_ID=$APPLE_API_KEY_ID"
+              echo "APPLE_API_ISSUER=$APPLE_API_ISSUER"
+              echo "EB_MAC_ARGS=-c.mac.notarize=true"
+            } >> "$GITHUB_ENV"
+            echo "macOS: signing + notarisation ENABLED"
+          else
+            echo "CSC_IDENTITY_AUTO_DISCOVERY=false" >> "$GITHUB_ENV"
+            echo "macOS: Apple secrets absent -> building UNSIGNED (users run xattr -cr)"
+          fi
+
+      # Windows code signing via Azure Trusted Signing, ONLY when enabled AND the
+      # Azure inputs are present. Absent/disabled -> unsigned .exe (as today), so
+      # this is safe to run before Trusted Signing exists. Mirrors the macOS gate.
+      #
+      # Prerequisites (one-time, procured separately): an Azure Trusted Signing
+      # account + certificate profile, and a CI service principal granted the
+      # "Trusted Signing Certificate Profile Signer" role on it. The SP creds feed
+      # DefaultAzureCredential (which electron-builder's Azure signer uses) via the
+      # exact env names AZURE_TENANT_ID / AZURE_CLIENT_ID / AZURE_CLIENT_SECRET.
+      # The non-secret account coordinates (endpoint/account/profile/publisher)
+      # come from repo Variables and are injected as -c.win.azureSignOptions.*
+      # CLI overrides, so package.json stays unsigned-by-default.
+      - name: Configure Windows signing
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        env:
+          # Opt-in switch, same pattern as ENABLE_MAC_SIGNING. Leave unset to ship
+          # UNSIGNED (SmartScreen warning until reputation builds). Set to "true"
+          # once the Trusted Signing inputs below are confirmed working.
+          ENABLE_WIN_SIGNING: ${{ vars.ENABLE_WIN_SIGNING }}
+          AZURE_SIGNING_TENANT_ID: ${{ secrets.AZURE_SIGNING_TENANT_ID }}
+          AZURE_SIGNING_CLIENT_ID: ${{ secrets.AZURE_SIGNING_CLIENT_ID }}
+          AZURE_SIGNING_CLIENT_SECRET: ${{ secrets.AZURE_SIGNING_CLIENT_SECRET }}
+          AZURE_SIGNING_ENDPOINT: ${{ vars.AZURE_SIGNING_ENDPOINT }}
+          AZURE_SIGNING_ACCOUNT: ${{ vars.AZURE_SIGNING_ACCOUNT }}
+          AZURE_SIGNING_PROFILE: ${{ vars.AZURE_SIGNING_PROFILE }}
+          AZURE_SIGNING_PUBLISHER: ${{ vars.AZURE_SIGNING_PUBLISHER }}
+        run: |
+          if [ "$ENABLE_WIN_SIGNING" != "true" ]; then
+            echo "Windows: signing disabled (ENABLE_WIN_SIGNING != 'true') -> building UNSIGNED (SmartScreen warning until reputation builds)"
+            exit 0
+          fi
+          echo "Azure Trusted Signing inputs seen by this job (set = non-empty):"
+          for s in AZURE_SIGNING_TENANT_ID AZURE_SIGNING_CLIENT_ID AZURE_SIGNING_CLIENT_SECRET AZURE_SIGNING_ENDPOINT AZURE_SIGNING_ACCOUNT AZURE_SIGNING_PROFILE AZURE_SIGNING_PUBLISHER; do
+            v="$(eval echo \"\$$s\")"
+            if [ -n "$v" ]; then echo "  $s = set (${#v} chars)"; else echo "  $s = EMPTY"; fi
+          done
+          if [ -n "$AZURE_SIGNING_CLIENT_ID" ] && [ -n "$AZURE_SIGNING_ENDPOINT" ] && [ -n "$AZURE_SIGNING_ACCOUNT" ] && [ -n "$AZURE_SIGNING_PROFILE" ]; then
+            ARGS="-c.win.azureSignOptions.endpoint=$AZURE_SIGNING_ENDPOINT"
+            ARGS="$ARGS -c.win.azureSignOptions.codeSigningAccountName=$AZURE_SIGNING_ACCOUNT"
+            ARGS="$ARGS -c.win.azureSignOptions.certificateProfileName=$AZURE_SIGNING_PROFILE"
+            [ -n "$AZURE_SIGNING_PUBLISHER" ] && ARGS="$ARGS -c.win.azureSignOptions.publisherName=$AZURE_SIGNING_PUBLISHER"
+            {
+              # DefaultAzureCredential reads these EXACT names:
+              echo "AZURE_TENANT_ID=$AZURE_SIGNING_TENANT_ID"
+              echo "AZURE_CLIENT_ID=$AZURE_SIGNING_CLIENT_ID"
+              echo "AZURE_CLIENT_SECRET=$AZURE_SIGNING_CLIENT_SECRET"
+              echo "EB_WIN_ARGS=$ARGS"
+            } >> "$GITHUB_ENV"
+            echo "Windows: Azure Trusted Signing ENABLED"
+          else
+            echo "Windows: Trusted Signing inputs incomplete -> building UNSIGNED"
+          fi
+
+      - name: Build and package
+        # Exactly one of EB_MAC_ARGS / EB_WIN_ARGS is ever set (per-OS gate); the
+        # other is empty. Both empty -> unsigned build (Linux, or secrets absent).
+        shell: bash
+        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS}
+        working-directory: client
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-${{ matrix.os }}
+          path: ${{ matrix.glob }}
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    needs: [verify-version, publish-pypi, build-desktop]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all installers
+        uses: actions/download-artifact@v4
+        with:
+          path: installers
+          pattern: installer-*
+          merge-multiple: true
+
+      - name: List assets
+        run: ls -lhR installers
+
+      - name: Create / update the Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: CCP4i2 ${{ needs.verify-version.outputs.version }}
+          generate_release_notes: true
+          prerelease: ${{ needs.verify-version.outputs.prerelease }}
+          files: installers/**/*
+          body: |
+            Desktop installers for **CCP4i2 ${{ needs.verify-version.outputs.version }}**.
+
+            The app installs the matching backend
+            (`ccp4i2==${{ needs.verify-version.outputs.version }}`, published to PyPI)
+            into your CCP4 `ccp4-python` on first launch — see
+            [Give it a try](https://github.com/ccp4/ccp4i2/blob/django/docs/give-it-a-try.md).
+
+            **macOS:** if the build is unsigned, clear quarantine after copying
+            `ccp4i2-django.app` to `/Applications`:
+            `xattr -cr "/Applications/ccp4i2-django.app"`. (Signed+notarised
+            builds open with no warning — skip this.)
+
+            **Linux:** the `.deb` is recommended (Ubuntu/Debian) — it keeps a
+            full Chromium sandbox on modern locked-down kernels:
+            `sudo apt install ./ccp4i2-django_*.deb`. The `.AppImage` is a
+            portable fallback (disables its sandbox automatically on such
+            kernels; no `sysctl` needed).

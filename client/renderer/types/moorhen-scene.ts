@@ -61,11 +61,16 @@ export interface MoorhenScene {
   /** Per-file rendering instructions: representations and colour rules. */
   elements?: SceneElement[];
 
+  /** Map-masking recipes: derive a new map by masking a source map around a
+   *  model's atoms. Each output is named and rendered by a `maps:` entry via
+   *  `from:`. Applied before `maps:`. */
+  maskMaps?: MaskMap[];
+
   /** Map instances to render. Each references either an MTZ file from the
    *  `files:` block (kind: "mtz") with a column-label spec, or a real-space
-   *  CCP4 map file (kind: "map", incl. masks) which needs no columns. Carries
-   *  optional contour/colour/style; masks default to a translucent solid
-   *  surface. */
+   *  CCP4 map file (kind: "map", incl. masks) which needs no columns, or a
+   *  `maskMaps:` output via `from:`. Carries optional contour/colour/style;
+   *  masks default to a translucent solid surface. */
   maps?: SceneMap[];
 
   /** Name of the map (from `maps:`) that should be Moorhen's active
@@ -74,11 +79,51 @@ export interface MoorhenScene {
   activeMap?: string;
 
   /** Camera, clip, fog, background. Portable subset of Moorhen's
-   *  viewDataSession; lighting/SSAO/shadow params intentionally omitted. */
+   *  viewDataSession; lighting/effects live in `hints`. */
   view?: SceneView;
+
+  /** Advisory render hints — lighting + perceptual effects. A conforming
+   *  renderer MAY ignore any of these and still produce a correct image
+   *  (see MOORHEN_SCENES_SCHEMA_V1_DESIGN.md §3, §4). */
+  hints?: SceneHints;
 
   /** Apply-time policy. */
   resolver?: SceneResolverOptions;
+}
+
+// --------------------------------------------------------------------------
+// Hints (advisory render layer)
+// --------------------------------------------------------------------------
+
+export interface SceneHints {
+  lighting?: SceneLighting;
+  effects?: SceneEffects;
+}
+
+/** Scene-global light, mirroring Moorhen's single light (glRefSlice).
+ *  Colours are hex; `direction` maps to Moorhen lightPosition. */
+export interface SceneLighting {
+  direction?: [number, number, number];
+  ambient?: string;
+  diffuse?: string;
+  specular?: string;
+  shininess?: number;
+}
+
+/** Perceptual post-processing. Each has a meaningful "off"; omitting one
+ *  yields a correct-but-plainer render. */
+export interface SceneEffects {
+  ssao?: { enabled?: boolean; radius?: number; bias?: number };
+  edgeDetect?: {
+    enabled?: boolean;
+    depthThreshold?: number;
+    normalThreshold?: number;
+    depthScale?: number;
+    normalScale?: number;
+  };
+  shadows?: boolean;
+  depthBlur?: { radius?: number; depth?: number };
+  perspective?: boolean;
 }
 
 // --------------------------------------------------------------------------
@@ -99,7 +144,7 @@ export interface SceneProvenance {
 
 /**
  * A named file reference. Exactly one of {pdb, url, fileId+project,
- * job+param+project, path} should be set. The resolver first looks for an
+ * job+param+project, relativeUrl} should be set. The resolver first looks for an
  * already-loaded molecule that matches; failing that (and when the ref
  * carries enough info), the resolver fetches the coords and registers a
  * new molecule before binding.
@@ -144,8 +189,12 @@ export interface SceneFileRef {
    *  structures (refined coords on a shared server, e.g.). */
   url?: string;
 
-  /** Absolute path on the local filesystem. Not portable. */
-  path?: string;
+  /** Origin-relative loader URL, e.g. "/api/proxy/pdbe/entry-files/download/1abc.cif"
+   *  or "/api/ccp4i2/download?fileId=…". Portable only WITHIN the serving
+   *  deployment (it resolves against the app's own origin); lowered to a
+   *  `bundle:` asset or absolute `url:` on a strict-portable export.
+   *  Renamed from the misleading `path` — it never held a filesystem path. */
+  relativeUrl?: string;
 
   // -- ccp4i2 project-internal references --------------------------------
 
@@ -174,21 +223,28 @@ export interface SceneDomain {
   /** Free-text name used in `colour: by-domain` and in the resolver log. */
   name: string;
 
-  /** Chain selector. Three forms:
+  /** CID selection — the preferred, general form. Any valid Coot CID:
    *
-   *   - `"A"` (or any non-`*` string) — single chain.
-   *   - `"*"` — every chain present in the structure (useful for symmetric
-   *     assemblies like the apoptosome heptamer).
-   *   - `["A", "B", "C"]` — explicit list, applied to each chain in turn.
+   *   - `"//F"`        — the whole of chain F.
+   *   - `"//F/32-64"`  — residues 32-64 of chain F.
+   *   - a wildcard chain (`//<star>/32-64`) — that range across every chain.
+   *   - `"//A/(ALA,GLY)"`, `"//A/55/CA[C]"` — residue names, atoms, … things
+   *     the chain+range form can't express.
    *
-   *  At apply-time the resolver fans the domain out across the resolved
-   *  chain list and clamps the range per-chain. */
-  chain: string | string[];
+   *  When the CID is the `//chain/start-end` shape the resolver still clamps the
+   *  range to present residues and warns (parity with `chain`+`range`); any other
+   *  CID is passed straight to Coot. Use this in preference to `chain`+`range`. */
+  selection?: string;
 
-  /** Inclusive residue range "start-end", e.g. "1-120". The resolver
-   *  clamps this to the residues actually present in each loaded
-   *  structure (see SceneResolverOptions.onMissingResidues). */
-  range: string;
+  /** @deprecated Legacy chain selector — use `selection`. Kept for a short
+   *  migration window. Forms: `"A"` (single chain), `"*"` (every chain present),
+   *  `["A","B","C"]` (explicit list). The resolver fans out across the resolved
+   *  chains and clamps the range per-chain. */
+  chain?: string | string[];
+
+  /** @deprecated Legacy inclusive residue range "start-end" — use `selection`.
+   *  Omitted ⇒ the whole chain. Clamped to present residues by the resolver. */
+  range?: string;
 
   /** Hex colour, e.g. "#4b8bbe". */
   color: string;
@@ -275,6 +331,11 @@ export interface SceneElement {
    *  different chemistry — each gets its own scoped dictionary. */
   dictionaries?: string[];
 
+  /** Molecule-scoped colour: the default colour rules for every
+   *  representation of this file (maps to Moorhen's molecule-level colour).
+   *  A representation's own `colour` overrides it for that representation. */
+  colour?: SceneColour;
+
   /** Representations to draw on this file. */
   representations?: SceneRepresentation[];
 }
@@ -292,21 +353,63 @@ export interface SceneRepresentation {
 
   /** Colour specification — see SceneColour for the variants. */
   colour?: SceneColour;
+
+  /** Opacity in [0, 1] (1 = fully opaque). Maps to Moorhen's per-representation
+   *  `nonCustomOpacity`; applies to surfaces (MolecularSurface, VdWSurface,
+   *  gaussian, MetaBalls) as well as ribbons/sticks. Omitted ⇒ opaque. This is
+   *  the opacity used when colour is scene-driven (rules / hex / named schemes);
+   *  a hand-picked colour-picker colour would instead carry alpha in its RGBA. */
+  alpha?: number;
+
+  /** Honoured geometry — physical dimensions (Å) a conforming renderer MUST
+   *  reproduce. Maps to Moorhen's per-representation m2tParameters. */
+  geometry?: SceneGeometry;
+}
+
+/** Per-representation honoured geometry. All dimensions are Ångström (except
+ *  vdwScale, a multiplier). See moorhen m2tParameters. */
+export interface SceneGeometry {
+  bondRadius?: number;
+  ballRadius?: number;
+  vdwScale?: number;
+  probeRadius?: number;
+  ribbonCoilThickness?: number;
+  ribbonHelixWidth?: number;
+  ribbonStrandWidth?: number;
+  ribbonArrowWidth?: number;
+  ribbonDNARNAWidth?: number;
 }
 
 /**
- * Colour specification. Three v0 shapes:
+ * Colour specification. Shapes:
  *
- *   1. Hex literal:        colour: "#4b8bbe"
- *   2. Named scheme:       colour: by-domain | b-factor | af2-plddt | ...
- *   3. Raw escape hatch:   colour: { raw: { ruleType, args } }
+ *   1. Hex literal:           colour: "#4b8bbe"
+ *   2. Named scheme:          colour: by-domain | b-factor | af2-plddt | ...
+ *   3. Per-selection list:    colour: [ { selection: "//A", colour: "#a08766" }, ... ]
+ *   4. Raw escape hatch:      colour: { raw: { ruleType, args } }
  *
- * `by-domain` compiles to a single multi-rule built from the top-level
- * `domains:` block. Named schemes map 1:1 to Moorhen's existing multi-rule
- * ruleTypes. The raw form preserves anything we can't lift to a higher
- * abstraction (lossless but ugly).
+ * The per-selection list is the general "colour these CIDs these colours" form:
+ * one entry per selection, each compiled to a single colour rule. A whole chain
+ * (`//A`) and a residue range (`//A/121-130`) are the same shape at different
+ * granularities — so this is what coot's default per-chain colouring lifts to
+ * (one entry per chain, the colour coot assigned), instead of a single
+ * misleading hex. `by-domain` is the named shortcut that compiles the top-level
+ * `domains:` block into this same form. Named schemes map 1:1 to Moorhen's
+ * multi-rule ruleTypes. The raw form preserves anything we can't lift.
  */
-export type SceneColour = string | SceneNamedColour | SceneRawColour;
+export type SceneColour =
+  | string
+  | SceneNamedColour
+  | SceneColourSelection[]
+  | SceneRawColour;
+
+/** One entry of a per-selection colour list: a CID and the hex it gets. */
+export interface SceneColourSelection {
+  /** CID, e.g. "//A" (whole chain) or "//A/121-130" (residue range). */
+  selection: string;
+  /** Hex colour (#rrggbb or #rrggbbaa). */
+  colour: string;
+}
 
 export type SceneNamedColour =
   | "by-domain"
@@ -363,17 +466,56 @@ export interface SceneMapColumns {
  * defaults apply at load time. The lifter only emits a field when its
  * captured value differs from those defaults, so the YAML stays small.
  */
+/**
+ * A map-masking recipe. Masks `map` (a source map) around the atoms of
+ * `model` within `selection`, producing a NEW map named `name` that a
+ * `maps:` entry renders via `from:`. Drives Moorhen's
+ * `mask_map_by_atom_selection`.
+ */
+export interface MaskMap {
+  /** Handle for the NEW masked map. Referenced by `maps[].from` and, for
+   *  chaining, by a later `maskMaps[].map`. Unique across maskMaps. */
+  name: string;
+
+  /** Source map to mask: a `maps:` entry name (preferred — carries the mtz
+   *  column spec), a `files:` map/mtz entry, or an EARLIER `maskMaps:` name
+   *  (to chain masks). Earlier-only — acyclic. */
+  map: string;
+
+  /** Model whose atoms define the mask region: a `files:` coordinates
+   *  entry. */
+  model: string;
+
+  /** CID limiting which of the model's atoms mask the map. Default: the
+   *  whole model. */
+  selection?: string;
+
+  /** Mask radius (Å) around the atoms. Omit for Moorhen's default. */
+  radius?: number;
+
+  /** Which density to retain, relative to the selection. "inside" (default)
+   *  keeps density NEAR the atoms — the usual "density for my ligand/chain"
+   *  figure; "outside" keeps everything except near the atoms (carves a hole).
+   *  Maps to Coot's `invert` flag at the resolver boundary. */
+  keep?: "inside" | "outside";
+}
+
 export interface SceneMap {
   /** Local name, unique within the maps block. Used by `activeMap:` at
    *  the scene root and as a join key for the lifter/promoter. */
   name: string;
 
-  /** Name of an entry in `files:` (kind: "mtz" or "map"). */
-  file: string;
+  /** Name of an entry in `files:` (kind: "mtz" or "map"). Set this OR
+   *  `from` — exactly one (a map is backed by a file or a mask output). */
+  file?: string;
+
+  /** Name of a `maskMaps:` output to render instead of a file. Set this
+   *  OR `file` — exactly one. */
+  from?: string;
 
   /** Column-label spec for reading the referenced MTZ. Required for
    *  `kind: "mtz"` files; omitted for `kind: "map"` (real-space CCP4 maps
-   *  / masks are read directly, no columns). */
+   *  / masks are read directly, no columns). Never set on a `from:` map. */
   columns?: SceneMapColumns;
 
   /** Mark this entry as a mask (a real-space region map). Advisory: when
@@ -418,14 +560,79 @@ export interface SceneMap {
 // --------------------------------------------------------------------------
 
 export interface SceneView {
+  /** Camera centre as an explicit Cartesian point. */
   origin?: [number, number, number];
+  /** Camera centre derived from a selection's centroid — the resolver computes
+   *  it at apply-time, so "centred on chain A" needs no coordinates. Takes
+   *  precedence over `origin` when both are present. */
+  centre?: SceneCentre;
   quat?: [number, number, number, number];
   zoom?: number;
   clipStart?: number;
   clipEnd?: number;
   fogStart?: number;
   fogEnd?: number;
+  /** Clip/fog intent. Coot derives clip and fog from zoom and a shared pair of
+   *  field depths, and recomputes them on zoom unless told not to. This is the
+   *  stable, intent-level control over that. See SceneClip. When present it
+   *  drives clip/fog (and the lock); the raw clipStart/End/fogStart/End above
+   *  stay as an escape hatch. */
+  clip?: SceneClip;
+  /** Set the clip/fog DEPTH window to a selection's bounding sphere — a z-depth
+   *  control only. Computed at apply-time from the selection's atoms. It does NOT
+   *  move the camera: the slab brackets the current origin in depth, so to "show
+   *  just chain A's region" pair it with `centre` on the same selection. `slab`
+   *  and `centre` are independent and both settable. Takes precedence over
+   *  `clip` when present (both control the same clip planes). */
+  slab?: SceneSlab;
   background?: string;        // hex
+}
+
+/**
+ * Clip/fog intent:
+ *
+ *   - `"auto"`              — let coot recompute clip+fog from zoom (its default).
+ *   - `"lock"`             — freeze the current clip+fog so zoom won't change them.
+ *   - `{ front, back }`    — set coot's field depths (zoom-independent depth of
+ *                            field, in front of / behind the centre) and lock.
+ *                            Drives clip AND fog together, the way coot does.
+ *
+ * Any explicit `clipStart/End/fogStart/End` are also locked on apply, so a
+ * scene's clip sticks instead of being recomputed away on the next zoom.
+ */
+export type SceneClip = "auto" | "lock" | SceneClipFieldDepth;
+
+export interface SceneClipFieldDepth {
+  /** Depth of field in front of the view centre (coot default 8). */
+  front: number;
+  /** Depth of field behind the view centre (coot default 21). */
+  back: number;
+}
+
+/** Selection whose centroid the camera centres on (see SceneView.centre). */
+export interface SceneCentre {
+  /** Name of a file from the top-level `files:` block. Optional when exactly one
+   *  molecule is loaded — the resolver then defaults to it. */
+  file?: string;
+  /** CID selection within that file; omitted ⇒ the whole molecule. */
+  selection?: string;
+}
+
+/**
+ * Z-depth clip window for a selection (see SceneView.slab). The resolver walks
+ * the selection's atoms for a bounding radius R and sets a symmetric clip/fog
+ * depth of R + pad about the current origin. It does NOT centre — pair it with
+ * `centre` on the same selection to frame it. Orientation-independent (a sphere);
+ * once `orient` exists it can tighten to the depth along the view axis.
+ */
+export interface SceneSlab {
+  /** Name of a file from the top-level `files:` block. Optional when exactly one
+   *  molecule is loaded — the resolver then defaults to it. */
+  file?: string;
+  /** CID selection within that file; omitted ⇒ the whole molecule. */
+  selection?: string;
+  /** Extra Ångström added to the radius on each side (default 0). */
+  pad?: number;
 }
 
 // --------------------------------------------------------------------------

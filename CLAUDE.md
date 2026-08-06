@@ -330,6 +330,16 @@ consolidated into `tasks.py`.) Output files are persisted to the project by the
 gleaner (`db/async_db_handler.py: glean_job_files`) for any `outputData`
 `CDataFile` that is set and exists on disk — there is no `saveToDb` gate.
 
+### Making a task's data files exportable
+
+To let the job panel's **Export MTZ** button offer a task's principal reflection
+file, either declare a tracked `outputData` `CMtzDataFile` (preferred — the
+generic fallback then offers it automatically) or implement the module-level
+`exportJobFileMenu` / `exportJobFile` contract (for pipelines needing subjob
+lookup or reconstruction). Never shell out to `cad` — use
+`lib/utils/jobs/export.py: combine_mtz_files` for gemmi-based joins. Full guide:
+`wrappers/EXPORT_TASK_GUIDE.md`.
+
 ## Files Preserved from Legacy
 
 - `wrappers/`, `pipelines/` - Crystallographic logic

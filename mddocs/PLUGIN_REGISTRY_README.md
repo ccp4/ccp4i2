@@ -1,5 +1,16 @@
 # Plugin Registry - Lazy Loading System
 
+> ⚠️ **LEGACY / HISTORICAL — this describes a mechanism that no longer exists.**
+>
+> The `plugin_registry.py` scan, the generated `plugin_lookup.json`, the
+> `PLUGIN_NAMES` set, and `CCP4Modules.TASKMANAGER()` were **removed** when task
+> discovery was consolidated. Registering a task is now a **single entry in the
+> `TASKS` dict** in [`server/ccp4i2/core/tasks.py`](../server/ccp4i2/core/tasks.py) —
+> there is no regeneration step.
+>
+> **See instead:** [Authoring a Task](../docs/authoring-a-task.md) (the current
+> end-to-end guide). This file is kept only as a record of the old design.
+
 ## Overview
 
 The plugin registry provides **lazy loading** of CCP4i2 plugins using a pure Python approach with explicit imports. This enables:

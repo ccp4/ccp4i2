@@ -1077,6 +1077,13 @@ class servalcat_pipe(CPluginScript):
                     servalcatJob.container.outputData.MAP_FOFC.annotation)
                 self.container.outputData.MAP_FOFC.subType = \
                     servalcatJob.container.outputData.MAP_FOFC.subType
+
+            # COMPLETE_MTZ (the unsplit reflection file) was copied up from the
+            # final servalcat child by the generic dataOrder() loop; annotate it
+            # so the Export MTZ button can serve this tracked pipeline output.
+            if self.container.outputData.COMPLETE_MTZ.exists():
+                self.container.outputData.COMPLETE_MTZ.annotation.set(
+                    'Complete unsplit reflection file from refinement')
         except Exception as e:
             self.appendErrorReport(101,
                 f'Failed to apply annotations: {e}')
@@ -1209,18 +1216,22 @@ def exportJobFile(jobId=None, mode=None, fileInfo={}):
 
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
+        # The inner servalcat subjob writes the unsplit reflection file
+        # ("refined.mtz" for xtal, "refined_diffmap.mtz" for spa) before
+        # splitting it into the map-coefficient mini-MTZs. That unsplit file
+        # persists on disk, so locate the servalcat subjob and return it.
+        # Take the last servalcat subjob (there is normally one; a trailing
+        # validate_protein subjob does not produce it).
         childJobs = theDb.getChildJobs(jobId=jobId, details=True)
-        if childJobs[-1][2] == 'servalcat':
+        servalcat_jobs = [cj for cj in childJobs if cj[2] == 'servalcat']
+        for cj in reversed(servalcat_jobs):
             jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(
-                jobId=childJobs[-1][1], create=False)
-            if os.path.exists(os.path.join(jobDir, 'refined.mtz')):
-                return os.path.join(jobDir, 'refined.mtz')
-        elif childJobs[-1][2] == 'validate_protein':
-            if childJobs[-2][2] == 'servalcat':
-                jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(
-                    jobId=childJobs[-2][1], create=False)
-                if os.path.exists(os.path.join(jobDir, 'refined.mtz')):
-                    return os.path.join(jobDir, 'refined.mtz')
+                jobId=cj[1], create=False)
+            for name in ('refined.mtz', 'refined_diffmap.mtz'):
+                candidate = os.path.join(jobDir, name)
+                if os.path.exists(candidate):
+                    return candidate
+    return None
 
 
 # Function to return list of names of exportable MTZ(s)

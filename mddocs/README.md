@@ -2,20 +2,34 @@
 
 Reference documentation for the ccp4i2-django project. This folder is for live reference material only; in-flight planning notes, progress reports, and one-time refactor logs are not kept here (they live in commits and PR descriptions).
 
+> **Looking for the full index?** See the top-level
+> **[Documentation Map](../docs/README.md)**, which links every doc tree
+> (`docs/`, `mddocs/`, `client/`, and code-adjacent guides) in one place.
+
 ## Getting Started
 
 - **[Development Setup](setup/DEVELOPMENT_SETUP.md)** — Environment setup for development and testing
 - **[Testing Guide](setup/TESTING.md)** — Running and writing tests
 
+## Authoring a Task
+
+- **[Authoring a Task](../docs/authoring-a-task.md)** — end-to-end guide (def.xml → wrapper → registration → UI)
+- **[def.xml Reference](../docs/def-xml-reference.md)** — declaring a task's data model
+- **[PHIL Task Guide](../server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md)** — the PHIL alternative for tools with a `master_phil`
+- Registration: the `TASKS` dict in [`server/ccp4i2/core/tasks.py`](../server/ccp4i2/core/tasks.py)
+
 ## Architecture
 
 - **[Quick Reference](QUICK_REFERENCE.md)** — Async execution infrastructure reference
-- **[Plugin Registry](PLUGIN_REGISTRY_README.md)** — Plugin discovery and registration system
-- **[Stub Modules for Plugin Discovery](STUBS_README.md)** — PySide2/Qt stub packages used by `plugin_lookup.py`
-- **[Stub/Implementation Inheritance Pattern](STUB_IMPLEMENTATION_INHERITANCE_PATTERN.md)** — How full-fat classes inherit from both their generated stub and their full-fat parent (multiple-inheritance MRO concern)
-- **[Qt-Based Task GUI Guide](qt_task_gui_guide.md)** — Comprehensive guide to the legacy Qt task GUI system
 - [architecture/](architecture/) — System design documentation
-- [migration/](migration/) — Migration notes (subdirectory; legacy)
+
+### Legacy / historical (not current — kept for reference)
+
+- **[Plugin Registry](PLUGIN_REGISTRY_README.md)** ⚠️ — describes the removed `plugin_registry.py` / `plugin_lookup.json` scan; registration is now the `TASKS` dict in `core/tasks.py`
+- **[Stub Modules for Plugin Discovery](STUBS_README.md)** ⚠️ — stubs for the removed `plugin_lookup.py`
+- **[Stub/Implementation Inheritance Pattern](STUB_IMPLEMENTATION_INHERITANCE_PATTERN.md)** — full-fat classes inheriting from generated stub + parent (MRO concern)
+- **[Qt-Based Task GUI Guide](qt_task_gui_guide.md)** ⚠️ — the legacy Qt task GUI system; UIs are now React / `GenericInterface`
+- [migration/](migration/) — in-flight refactor logs (historical)
 
 ## REST API
 

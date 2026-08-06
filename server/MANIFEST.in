@@ -1,0 +1,24 @@
+# Keep the sdist and wheel lean. demo_data alone is ~415 MB — far over PyPI's
+# 100 MB per-file limit — and is only needed when running the test/demo
+# workflows from a repo checkout, never at runtime from an installed package.
+# It is distributed out-of-band (release asset / fetch helper).
+#
+# NOTE: this MANIFEST.in is the authoritative exclusion mechanism. The
+# [tool.setuptools.exclude-package-data] rules in pyproject.toml do NOT
+# reliably override a recursive package-data include ("**/*") in current
+# setuptools, which is why demo_data leaked into the wheel despite them.
+# `prune` here removes the tree from the sdist, and with package-data no
+# longer matching it (see pyproject), it stays out of the wheel too.
+prune ccp4i2/demo_data
+
+# docs/ (~41 MB) is legacy Qt-era HTML help, served by neither the django
+# backend nor the Electron frontend — the in-app help button points at the
+# hosted site https://ccp4i2.gitlab.io/rstdocs/. tests/ (~25 MB) is the test
+# suite, never needed at runtime from an installed package. Both are available
+# from a repo checkout. Pruning them takes the wheel from ~50 MB to ~10 MB.
+prune ccp4i2/docs
+prune ccp4i2/tests
+
+# Drop compiled artefacts and caches.
+global-exclude *.pyc
+global-exclude __pycache__

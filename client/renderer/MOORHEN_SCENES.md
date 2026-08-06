@@ -190,6 +190,39 @@ because they don't translate meaningfully across structures and they
 bloat the YAML. PyMOL-derived clip values (often ±10000+ Å) should
 be stripped at author time — the doc warns about this.
 
+### Intent directives: centre, clip, slab
+
+Alongside the raw `origin`/`quat`/`zoom`, `view:` takes *intent* forms
+that resolve against the loaded structure at apply-time, so a scene can
+say what to look at rather than where the camera sits:
+
+- **`centre: { file?, selection? }`** — centre on a selection's
+  centroid. `file` is optional when one molecule is loaded.
+- **`clip: "auto" | "lock" | { front, back }`** — `auto` hands clip/fog
+  back to coot's zoom-coupled recompute (`resetClippingFogging`);
+  `lock` freezes the current planes; `{ front, back }` sets coot's
+  *field depths* (pre-zoom Å, multiplied by zoom — the same knobs the
+  default 8/21 use).
+- **`slab: { file?, selection?, pad? }`** — a **z-depth control only**:
+  clip/fog the depth window to a selection's bounding sphere. Walks the
+  selection's atoms over the molecule's cached gemmi structure
+  (`window.CCP4Module`) for a radius `R` and sets clip/fog to an
+  **absolute** half-thickness of `R + pad` Å about the current origin. It
+  does **not** move the camera — `centre`/`origin` and `slab` are
+  independent and both settable; the slab only "contains" its selection
+  when `centre` has put the origin there, so pair them to frame a region.
+  Note the asymmetry with `clip`: clip's field depths are zoom-multiplied
+  (coot semantics), but the slab depth is an absolute world-Å distance, so
+  it is *not* multiplied by zoom — the eye-space z is never scaled by zoom
+  (only x/y are). `slab` takes precedence over `clip` (same planes).
+
+These are input-only conveniences: the lifter still captures the
+resolved numeric `origin`/`clip`, so a captured scene records concrete
+values and round-trips without re-deriving from the structure. The
+bounding sphere is orientation-independent (correct from any angle, not
+minimal); once an `orient` directive lands, slab can tighten to the
+selection's depth along the view axis.
+
 ## Known limitations
 
 These are things the format or implementation explicitly does not

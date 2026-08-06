@@ -9,6 +9,7 @@
   },
   "license": "LGPL-3.0-or-later",
   "description": "CCP4i2 Electron application",
+  "homepage": "https://github.com/ccp4/ccp4i2",
   "scripts": {
     "copy-rdkit-minimal": "copyfiles -u 4 node_modules/@rdkit/rdkit/dist/* renderer/public/",
     "copy-moorhen-root": "copyfiles -u 2 -e '**/*.wasm' -e '**/*.wasm.map' node_modules/moorhen/public/* renderer/",
@@ -31,7 +32,7 @@
     "export:web": "cross-env BUILD_TARGET=web npm run build:web && cd renderer && next export",
     "package-mac": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder",
     "package-win": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --win",
-    "package-linux-x64": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage --x64",
+    "package-linux-x64": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage deb --x64",
     "package-linux-arm64": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage --arm64",
     "package-linux-all": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder --linux AppImage --x64 --arm64",
     "test": "vitest run",
@@ -73,7 +74,7 @@
     "jspdf": "^3.0.4",
     "jspdf-autotable": "^5.0.2",
     "jszip": "^3.10.1",
-    "moorhen": "file:moorhen-1.0.0-alpha.3-dev.g065becee.tgz",
+    "moorhen": "file:moorhen-1.0.0-beta.1-dev.g7e39cbc2.tgz",
     "next": "^15.3.0",
     "pptxgenjs": "^4.0.1",
     "react": "^19.2.0",
@@ -90,10 +91,13 @@
     "vis-data": "^8.0.3",
     "vis-network": "^10.0.2",
     "xml2js": "^0.6.2",
-    "yaml": "^2.9.0"
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@electron/packager": "^18.3.6",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/chart.js": "^4.0.1",
     "@types/cytoscape": "^3.21.9",
     "@types/electron": "^1.4.38",
@@ -108,6 +112,7 @@
     "electron": "^33.4.11",
     "electron-builder": "latest",
     "install": "^0.13.0",
+    "jsdom": "^26.1.0",
     "npm": "^11.3.0",
     "vite": "latest",
     "vitest": "^2.1.9"
@@ -159,7 +164,10 @@
     },
     "mac": {
       "target": "dmg",
-      "identity": null
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist"
     },
     "dmg": {
       "writeUpdateInfo": false
@@ -184,12 +192,21 @@
       "createStartMenuShortcut": true
     },
     "linux": {
-      "target": {
-        "target": "AppImage",
-        "arch": [
-          "x64"
-        ]
-      }
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Science"
     }
   },
   "overrides": {

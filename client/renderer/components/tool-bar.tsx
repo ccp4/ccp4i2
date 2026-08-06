@@ -27,6 +27,8 @@ import { usePopcorn } from "../providers/popcorn-provider";
 import { useRunCheck } from "../providers/run-check-provider";
 import { useJobTab } from "../providers/job-tab-provider";
 import { I2RunDialog } from "./i2run-dialog";
+import { ExportJobMenu, doDownload } from "./export-job-file-menu";
+import { BibliographyDialog } from "./bibliography-dialog";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 import { useProjectJobs } from "../utils";
 import { mutate } from "swr";
@@ -34,9 +36,13 @@ import { mutate } from "swr";
 interface ToolbarButton {
   label: string;
   icon: React.ReactNode;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
   show: boolean;
+  // When false, the button is omitted entirely (not shown inline OR in the
+  // overflow menu). Defaults to true. Use for buttons that are conditionally
+  // meaningful (e.g. Export MTZ only when the job has an exportable file).
+  available?: boolean;
 }
 
 export default function ToolBar() {
@@ -49,6 +55,22 @@ export default function ToolBar() {
     id: jobId,
     endpoint: "",
   });
+
+  // Exportable data-file (MTZ) menu for this job. `result` is a list of
+  // [mode, label, mimeType] items; empty => nothing to export (hide button).
+  // NOTE: get_endpoint's fetcher does NOT unwrap the {success, data} envelope
+  // that api_success() adds, so the menu arrives as either
+  // {success, data: {result}} (wrapped) or {result} (already unwrapped) —
+  // accept both so the button surfaces whenever the server reports a file.
+  const { data: exportMenuData } = api.get_endpoint<{
+    success?: boolean;
+    data?: { result?: [string, string, string][] };
+    result?: [string, string, string][];
+  }>(jobId ? { type: "jobs", id: jobId, endpoint: "export_job_file_menu" } : null);
+  const exportItems = useMemo(
+    () => exportMenuData?.data?.result ?? exportMenuData?.result ?? [],
+    [exportMenuData]
+  );
   const { mutateJobs } = useProjectJobs(projectId);
   const router = useRouter();
   const [showHelpPanel, setShowHelpPanel] = useState(false);
@@ -142,6 +164,38 @@ export default function ToolBar() {
 
   const handleLog = () => setJobTabValue(10);
 
+  // Bibliography: job id fed to the BibliographyDialog (null = closed).
+  const [bibliographyJobId, setBibliographyJobId] = useState<number | null>(
+    null
+  );
+  const handleBibliography = () => {
+    if (job?.id != null) setBibliographyJobId(job.id);
+  };
+
+  // Export MTZ: job id fed to the ExportJobMenu dialog (null = closed).
+  const [exportDialogJobId, setExportDialogJobId] = useState<number | null>(
+    null
+  );
+
+  const handleExportMtz = () => {
+    if (!job) return;
+    if (exportItems.length === 1) {
+      // Single exportable file: download it directly (proper blob/anchor
+      // download — Electron-safe, unlike window.open).
+      const mode = encodeURIComponent(exportItems[0][0]);
+      const url = `/api/proxy/ccp4i2/jobs/${job.id}/export_job_file?mode=${mode}`;
+      doDownload(url, exportItems[0][1]).catch((err) =>
+        setMessage(
+          `Export failed: ${err instanceof Error ? err.message : String(err)}`,
+          "error"
+        )
+      );
+    } else if (exportItems.length > 1) {
+      // Multiple exportable files: open the picker dialog.
+      setExportDialogJobId(job.id);
+    }
+  };
+
   // Button definitions with breakpoints
   const toolbarButtons: ToolbarButton[] = useMemo(
     () => [
@@ -179,15 +233,19 @@ export default function ToolBar() {
       {
         label: "Bibliography",
         icon: <MenuBook />,
-        onClick: () => {},
+        onClick: handleBibliography,
         show: panelWidth > 750,
+        // Only meaningful once a job is loaded.
+        available: job?.id != null,
       },
       {
         label: "Export MTZ",
         icon: <SystemUpdateAlt />,
-        onClick: () => {},
-        disabled: job?.status !== 6,
+        onClick: handleExportMtz,
         show: panelWidth > 950,
+        // Present only when the server reports an exportable MTZ for this job
+        // (which already implies a finished job with a real output file).
+        available: exportItems.length > 0,
       },
       {
         label: "Show log file",
@@ -203,11 +261,20 @@ export default function ToolBar() {
         show: panelWidth > 1200,
       },
     ],
-    [panelWidth, job, projectId, router]
+    [panelWidth, job, projectId, router, exportItems]
   );
 
-  const visibleButtons = toolbarButtons.filter((btn) => btn.show);
-  const hiddenButtons = toolbarButtons.filter((btn) => !btn.show);
+  // A button whose `show` is false is moved to the overflow menu, so the
+  // width breakpoint alone must NOT govern availability — otherwise a
+  // narrow panel surfaces buttons that have nothing behind them (e.g. an
+  // Export MTZ with no exportable file, which then silently no-ops).
+  // `available` (default true) gates presence entirely; `show` only decides
+  // inline-vs-overflow.
+  const availableButtons = toolbarButtons.filter(
+    (btn) => btn.available !== false
+  );
+  const visibleButtons = availableButtons.filter((btn) => btn.show);
+  const hiddenButtons = availableButtons.filter((btn) => !btn.show);
 
   return (
     <>
@@ -246,8 +313,8 @@ export default function ToolBar() {
                 {hiddenButtons.map((btn) => (
                   <MenuItem
                     key={btn.label}
-                    onClick={() => {
-                      btn.onClick();
+                    onClick={(e) => {
+                      btn.onClick(e);
                       setMenuAnchor(null);
                     }}
                     disabled={btn.disabled}
@@ -259,6 +326,15 @@ export default function ToolBar() {
               </MuiMenu>
             </>
           )}
+          {/* Export MTZ picker (shown only when >1 exportable file) */}
+          <ExportJobMenu
+            jobId={exportDialogJobId}
+            setJobId={setExportDialogJobId}
+          />
+          <BibliographyDialog
+            jobId={bibliographyJobId}
+            onClose={() => setBibliographyJobId(null)}
+          />
           <HelpIframe
             url={`/help/html/tasks/${job?.task_name}/index.html`}
             open={showHelpPanel}

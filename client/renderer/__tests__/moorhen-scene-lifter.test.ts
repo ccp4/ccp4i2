@@ -15,6 +15,7 @@ import {
   serialiseScene,
   serialiseSceneWithComments,
 } from "../lib/moorhen-scene";
+import { parseScene as parseSceneZod, validateScene } from "../lib/scene";
 
 // Build a fake-but-valid molecule by hand. Cast to moorhen.Molecule via
 // unknown — the lifter only reads `name`, `molNo`, `uniqueId`, and
@@ -45,6 +46,96 @@ const fakeGlRef = {
   quat: [0, 0, 0, -1],
   zoom: 1.5,
 };
+
+describe("liftHints (lighting + effects capture, emit-only-non-default)", () => {
+  const mols = [
+    fakeMol({
+      name: "m",
+      molNo: 0,
+      uniqueId: "https://e/x.cif",
+      representations: [
+        { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+      ],
+    }),
+  ];
+
+  it("emits no hints when lighting/effects are at Moorhen defaults", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: {
+        origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1,
+        lightPosition: [25, 25, 50, 1], ambient: [0.2, 0.2, 0.2, 1],
+        diffuse: [1, 1, 1, 1], specular: [0.6, 0.6, 0.6, 1], specularPower: 64,
+      },
+      sceneSettings: { doSSAO: null, doEdgeDetect: null },
+    });
+    expect(scene.hints).toBeUndefined();
+  });
+
+  it("captures non-default lighting: direction normalised, shininess, hex; defaults omitted", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: {
+        origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1,
+        lightPosition: [1, 1, 1, 1], specularPower: 24, ambient: [0.1, 0.1, 0.1, 1],
+      },
+    });
+    const l = scene.hints!.lighting!;
+    expect(l.direction![0]).toBeCloseTo(0.5774, 3);
+    expect(l.shininess).toBe(24);
+    expect(l.ambient).toBe("#1a1a1a");
+    expect(l.diffuse).toBeUndefined(); // not provided → omitted
+  });
+
+  it("captures effects that are on; off/false omitted", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: { origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1 },
+      sceneSettings: { doSSAO: true, ssaoRadius: 0.5, doEdgeDetect: true, doShadow: false },
+    });
+    expect(scene.hints!.effects!.ssao).toEqual({ enabled: true, radius: 0.5 });
+    expect(scene.hints!.effects!.edgeDetect).toEqual({ enabled: true });
+    expect(scene.hints!.effects!.shadows).toBeUndefined();
+  });
+
+  it("round-trips lift → serialise → Zod parse (the real capture path)", () => {
+    const scene = liftScene({
+      molecules: mols,
+      glRef: { origin: [0, 0, 0], quat: [0, 0, 0, -1], zoom: 1, lightPosition: [1, 1, 1, 1], specularPower: 24 },
+      sceneSettings: { doSSAO: true, doEdgeDetect: true },
+    });
+    const reparsed = parseSceneZod(serialiseScene(scene));
+    expect(reparsed.hints?.lighting?.shininess).toBe(24);
+    expect(reparsed.hints?.effects?.edgeDetect?.enabled).toBe(true);
+    expect(reparsed.hints?.effects?.ssao?.enabled).toBe(true);
+  });
+});
+
+describe("superpose round-trip (re-emit remembered, filtered by present files)", () => {
+  it("re-emits remembered superpose, dropping entries whose files are absent", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({ name: "a", molNo: 0, uniqueId: "ua", representations: [{ style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>] }),
+        fakeMol({ name: "b", molNo: 1, uniqueId: "ub", representations: [{ style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>] }),
+      ],
+      glRef: fakeGlRef,
+      superpose: [
+        { method: "ssm", move: "b", onto: "a", movChain: "A", refChain: "A" },
+        { method: "ssm", move: "ghost", onto: "a", movChain: "A", refChain: "A" },
+      ],
+    });
+    expect(scene.superpose).toHaveLength(1);
+    expect(scene.superpose![0].move).toBe("b");
+  });
+
+  it("emits no superpose when none was remembered", () => {
+    const scene = liftScene({
+      molecules: [fakeMol({ name: "a", molNo: 0, uniqueId: "ua", representations: [{ style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>] })],
+      glRef: fakeGlRef,
+    });
+    expect(scene.superpose).toBeUndefined();
+  });
+});
 
 describe("liftScene", () => {
   it("captures camera and a single file with a single visible representation", () => {
@@ -84,13 +175,13 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![0].selection).toBeUndefined();
   });
 
-  it("falls back to url: when the molecule wasn't loaded via ccp4i2", () => {
+  it("falls back to url: for a non-PDBe absolute loader URL", () => {
     const scene = liftScene({
       molecules: [
         fakeMol({
-          name: "pdb",
+          name: "ext",
           molNo: 0,
-          uniqueId: "https://www.ebi.ac.uk/pdbe/entry-files/download/3jbt.cif",
+          uniqueId: "https://refined.example.org/structures/foo.cif",
           representations: [
             { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
           ],
@@ -99,9 +190,71 @@ describe("liftScene", () => {
       glRef: fakeGlRef,
     });
     expect(scene.files![0]).toEqual({
-      name: "pdb",
-      url: "https://www.ebi.ac.uk/pdbe/entry-files/download/3jbt.cif",
+      name: "ext",
+      url: "https://refined.example.org/structures/foo.cif",
     });
+  });
+
+  it("recovers a portable pdb: ref from a PDBe download URL (absolute or relative)", () => {
+    for (const uniqueId of [
+      "https://www.ebi.ac.uk/pdbe/entry-files/download/3jbt.cif",
+      "/api/proxy/pdbe/entry-files/download/1ogu.cif",
+    ]) {
+      const scene = liftScene({
+        molecules: [
+          fakeMol({
+            name: "p",
+            molNo: 0,
+            uniqueId,
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+          }),
+        ],
+        glRef: fakeGlRef,
+      });
+      expect(scene.files![0].pdb).toBe(uniqueId.includes("3jbt") ? "3JBT" : "1OGU");
+      expect(scene.files![0].relativeUrl).toBeUndefined();
+    }
+  });
+
+  it("hoists a colour shared by all reps to molecule-scoped element.colour", () => {
+    const rule = { ruleType: "molecule", cid: "//A", color: "#abcdef", isMultiColourRule: false, args: ["//A", "#abcdef"] };
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m", molNo: 0, uniqueId: "x",
+          representations: [
+            { style: "CRs", visible: true, colourRules: [rule] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+            { style: "MolecularSurface", visible: true, colourRules: [rule] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    const el = scene.elements![0];
+    expect(el.colour).toBe("#abcdef");
+    expect(el.representations!.every((r) => r.colour === undefined)).toBe(true);
+  });
+
+  it("keeps per-rep colour (no hoist) when representations differ", () => {
+    const mk = (c: string) => ({ ruleType: "molecule", cid: "//A", color: c, isMultiColourRule: false, args: ["//A", c] });
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m", molNo: 0, uniqueId: "x",
+          representations: [
+            { style: "CRs", visible: true, colourRules: [mk("#111111")] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+            { style: "CBs", visible: true, colourRules: [mk("#222222")] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    const el = scene.elements![0];
+    expect(el.colour).toBeUndefined();
+    expect(el.representations![0].colour).toBe("#111111");
+    expect(el.representations![1].colour).toBe("#222222");
   });
 
   it("hides representations that are explicitly hidden", () => {
@@ -170,6 +323,66 @@ describe("liftScene", () => {
       glRef: fakeGlRef,
     });
     expect(scene.elements![0].representations![0].colour).toBe("#2ecc71");
+  });
+
+  it("hoists coot's per-chain default into domains: + colour: by-domain", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 0,
+          uniqueId: "x",
+          representations: [
+            {
+              style: "CRs",
+              visible: true,
+              colourRules: [
+                { ruleType: "molecule", cid: "//A", color: "#a08766", isMultiColourRule: false } as unknown as moorhen.ColourRule,
+                { ruleType: "molecule", cid: "//B", color: "#7e9cd8", isMultiColourRule: false } as unknown as moorhen.ColourRule,
+              ],
+            } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    // per-chain colouring is stated once in domains: (whole-chain CID selection)…
+    expect(scene.domains).toEqual([
+      { name: "A", selection: "//A", color: "#a08766" },
+      { name: "B", selection: "//B", color: "#7e9cd8" },
+    ]);
+    // …and the representation adopts it.
+    expect(scene.elements![0].representations![0].colour).toBe("by-domain");
+  });
+
+  it("captures a non-default nonCustomOpacity as alpha", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 0,
+          uniqueId: "x",
+          representations: [
+            {
+              style: "MolecularSurface",
+              visible: true,
+              colourRules: [],
+              nonCustomOpacity: 0.4,
+            } as Partial<moorhen.MoleculeRepresentation>,
+            // Fully opaque (default) → alpha omitted.
+            {
+              style: "CRs",
+              visible: true,
+              colourRules: [],
+              nonCustomOpacity: 1,
+            } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    expect(scene.elements![0].representations![0].alpha).toBe(0.4);
+    expect(scene.elements![0].representations![1].alpha).toBeUndefined();
   });
 
   it("recognises by-domain pipe-delimited args", () => {
@@ -267,6 +480,82 @@ describe("liftScene", () => {
   });
 });
 
+describe("liftScene — dictionary provenance", () => {
+  it("emits a fileId dict ref (deduped, scoped) when the dict has a project source", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 7,
+          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+          ligands: [{ resName: "LIG" }],
+          dicts: { LIG: "data_comp_LIG\n# would-be cifText" },
+          representations: [
+            { style: "ligands", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+      projectId: "proj-uuid",
+      dictSources: new Map([[7, new Map([["LIG", { fileId: 100 }]])]]),
+    });
+    const dictRef = scene.files!.find((f) => f.kind === "dictionary");
+    expect(dictRef).toMatchObject({
+      name: "dict-file-100",
+      kind: "dictionary",
+      fileId: 100,
+      projectId: "proj-uuid",
+    });
+    expect(dictRef!.cifText).toBeUndefined(); // not inlined
+    expect(scene.elements![0].dictionaries).toEqual(["dict-file-100"]);
+  });
+
+  it("omits an unsourced dict from the terse capture lift (no cifText)", () => {
+    const scene = liftScene({
+      molecules: [
+        fakeMol({
+          name: "m",
+          molNo: 7,
+          uniqueId: "x",
+          ligands: [{ resName: "XYZ" }],
+          dicts: { XYZ: "data_comp_XYZ\nstuff" },
+          representations: [
+            { style: "ligands", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+    });
+    // Default lift never inlines cifText — an unsourced dict simply isn't
+    // emitted. cifText is reserved for the bundle lift.
+    expect((scene.files ?? []).some((f) => f.kind === "dictionary")).toBe(false);
+  });
+
+  it("inlines cifText for an unsourced dict only when inlineDicts is set", () => {
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "m",
+            molNo: 7,
+            uniqueId: "x",
+            ligands: [{ resName: "XYZ" }],
+            dicts: { XYZ: "data_comp_XYZ\nstuff" },
+            representations: [
+              { style: "ligands", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
+    const dictRef = scene.files!.find((f) => f.kind === "dictionary");
+    expect(dictRef).toMatchObject({ kind: "dictionary", cifText: "data_comp_XYZ\nstuff" });
+    expect(dictRef!.fileId).toBeUndefined();
+  });
+});
+
 describe("serialiseSceneWithComments", () => {
   it("attaches a per-file comment above the corresponding entry", () => {
     const { scene, hints } = liftSceneWithHints({
@@ -304,28 +593,31 @@ describe("serialiseSceneWithComments", () => {
   });
 });
 
-describe("liftScene — dictionary lifting", () => {
+describe("liftScene — dictionary lifting (bundle inlining)", () => {
   it("emits a kind: dictionary file ref for each non-standard ligand", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/482/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [
-            { resName: "LIG", chainName: "A", resNum: "401" } as Partial<moorhen.LigandInfo>,
-          ],
-          dicts: {
-            LIG: "data_comp_LIG\n_chem_comp.id LIG\n",
-          },
-        }),
-      ],
-      glRef: fakeGlRef,
-      projectId: "p-uuid",
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/482/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [
+              { resName: "LIG", chainName: "A", resNum: "401" } as Partial<moorhen.LigandInfo>,
+            ],
+            dicts: {
+              LIG: "data_comp_LIG\n_chem_comp.id LIG\n",
+            },
+          }),
+        ],
+        glRef: fakeGlRef,
+        projectId: "p-uuid",
+      },
+      { inlineDicts: true },
+    );
 
     expect(scene.files).toHaveLength(2); // complex + dict
     const dictRef = scene.files!.find((f) => f.kind === "dictionary");
@@ -365,55 +657,61 @@ describe("liftScene — dictionary lifting", () => {
   });
 
   it("dedupes by comp_id across multiple ligand instances", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [
-            { resName: "LIG", resNum: "401" } as Partial<moorhen.LigandInfo>,
-            { resName: "LIG", resNum: "402" } as Partial<moorhen.LigandInfo>,
-            { resName: "LIG", resNum: "403" } as Partial<moorhen.LigandInfo>,
-          ],
-          dicts: { LIG: "data_comp_LIG\n" },
-        }),
-      ],
-      glRef: fakeGlRef,
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [
+              { resName: "LIG", resNum: "401" } as Partial<moorhen.LigandInfo>,
+              { resName: "LIG", resNum: "402" } as Partial<moorhen.LigandInfo>,
+              { resName: "LIG", resNum: "403" } as Partial<moorhen.LigandInfo>,
+            ],
+            dicts: { LIG: "data_comp_LIG\n" },
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
     const dictRefs = scene.files!.filter((f) => f.kind === "dictionary");
     expect(dictRefs).toHaveLength(1);
   });
 
   it("emits separate dict refs for two molecules with same-named ligands", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex-A",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
-          dicts: { LIG: "data_comp_LIG\nA chemistry\n" },
-        }),
-        fakeMol({
-          name: "complex-B",
-          molNo: 1,
-          uniqueId: "/api/proxy/ccp4i2/files/200/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
-          dicts: { LIG: "data_comp_LIG\nB chemistry\n" },
-        }),
-      ],
-      glRef: fakeGlRef,
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex-A",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
+            dicts: { LIG: "data_comp_LIG\nA chemistry\n" },
+          }),
+          fakeMol({
+            name: "complex-B",
+            molNo: 1,
+            uniqueId: "/api/proxy/ccp4i2/files/200/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [{ resName: "LIG" } as Partial<moorhen.LigandInfo>],
+            dicts: { LIG: "data_comp_LIG\nB chemistry\n" },
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
     const dictRefs = scene.files!.filter((f) => f.kind === "dictionary");
     expect(dictRefs).toHaveLength(2);
     // Different dict bodies — that's the whole point of per-molecule scoping.
@@ -425,22 +723,26 @@ describe("liftScene — dictionary lifting", () => {
   });
 
   it("skips non-standard ligands when no dict is stored on the molecule", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "complex",
-          molNo: 0,
-          uniqueId: "/api/proxy/ccp4i2/files/100/download/",
-          representations: [
-            { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
-          ],
-          ligands: [{ resName: "MYS" } as Partial<moorhen.LigandInfo>],
-          // No dicts entry for MYS — getDict returns "" so we skip emission.
-          dicts: {},
-        }),
-      ],
-      glRef: fakeGlRef,
-    });
+    const scene = liftScene(
+      {
+        molecules: [
+          fakeMol({
+            name: "complex",
+            molNo: 0,
+            uniqueId: "/api/proxy/ccp4i2/files/100/download/",
+            representations: [
+              { style: "CRs", visible: true, colourRules: [] } as Partial<moorhen.MoleculeRepresentation>,
+            ],
+            ligands: [{ resName: "MYS" } as Partial<moorhen.LigandInfo>],
+            // No dicts entry for MYS — getDict returns "" so we skip emission
+            // even with inlining requested.
+            dicts: {},
+          }),
+        ],
+        glRef: fakeGlRef,
+      },
+      { inlineDicts: true },
+    );
     const dictRefs = scene.files!.filter((f) => f.kind === "dictionary");
     expect(dictRefs).toHaveLength(0);
   });
@@ -572,5 +874,69 @@ describe("liftScene — maps", () => {
     expect(m.positiveColour).toBe("#00ff00");
     expect(m.negativeColour).toBe("#ff0000");
     expect(m.colour).toBeUndefined();
+  });
+});
+
+describe("liftScene — map masking round-trip", () => {
+  // A source map file + a model, plus the mask recipe the host remembers.
+  const withMask = (opts?: { includeSourceMap?: boolean; remember?: boolean }) =>
+    liftScene({
+      molecules: [
+        fakeMol({
+          name: "model",
+          molNo: 0,
+          uniqueId: "https://e/model.pdb",
+          representations: [
+            { style: "CRs", visible: true, colourRules: [] } as unknown as Partial<moorhen.MoleculeRepresentation>,
+          ],
+        }),
+      ],
+      glRef: fakeGlRef,
+      maskMaps:
+        opts?.remember === false
+          ? undefined
+          : [{ name: "lig-density", map: "src__mtz", model: "model", selection: "//A/1099", radius: 4 }],
+      maps: [
+        // The masked output map, stamped by the resolver.
+        fakeMap({ name: "masked", molNo: 6, uniqueId: "maskMaps:lig-density" }),
+        // The source map only survives the lift if included here.
+        ...(opts?.includeSourceMap
+          ? [fakeMap({ name: "src", molNo: 5, uniqueId: "https://e/src.mtz" })]
+          : []),
+      ],
+    });
+
+  it("re-emits a maskMaps recipe + a from: map when the recipe and source survive", () => {
+    const scene = withMask({ includeSourceMap: true });
+    expect(scene.maskMaps).toHaveLength(1);
+    expect(scene.maskMaps![0]).toMatchObject({
+      name: "lig-density",
+      map: "src__mtz",
+      model: "model",
+      selection: "//A/1099",
+      radius: 4,
+    });
+    const fromMap = scene.maps!.find((m) => m.from === "lig-density");
+    expect(fromMap).toBeDefined();
+    expect(fromMap!.file).toBeUndefined();
+  });
+
+  it("drops a masked map (no from:, no recipe) when its source map is absent", () => {
+    const scene = withMask({ includeSourceMap: false });
+    expect(scene.maskMaps).toBeUndefined();
+    expect((scene.maps ?? []).some((m) => m.from === "lig-density")).toBe(false);
+    // and it did not silently fall back to a file-backed entry
+    expect((scene.maps ?? []).some((m) => m.name === "masked")).toBe(false);
+  });
+
+  it("drops a masked map with no remembered recipe (masked outside the scene)", () => {
+    const scene = withMask({ includeSourceMap: true, remember: false });
+    expect(scene.maskMaps).toBeUndefined();
+    expect((scene.maps ?? []).some((m) => m.from)).toBe(false);
+  });
+
+  it("the round-trip validates through the Zod contract", () => {
+    const scene = withMask({ includeSourceMap: true });
+    expect(validateScene(scene).errors).toEqual([]);
   });
 });

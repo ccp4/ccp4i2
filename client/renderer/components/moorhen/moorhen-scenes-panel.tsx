@@ -27,10 +27,16 @@ import {
   Button,
   ButtonGroup,
   Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   FormControlLabel,
   Menu,
   MenuItem,
   Stack,
+  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -40,11 +46,16 @@ import {
   Save as SaveIcon,
   PlayArrow as ApplyIcon,
   ArrowDropDown as DropDownIcon,
+  AutoAwesome as PromptIcon,
+  AutoFixHigh as GenerateIcon,
 } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
 import JSZip from "jszip";
 
-import { parseScene, serialiseSceneWithComments, SceneParseError } from "../../lib/moorhen-scene";
+import { parseScene, SceneParseError, normaliseGeneratedScene } from "../../lib/scene";
+import { SceneGenerateError } from "./use-scene-nl-capability";
+import { sceneMarkers } from "../../lib/scene/yaml-markers";
+import { serialiseSceneWithComments } from "../../lib/moorhen-scene";
 import type { MoorhenScene } from "../../types/moorhen-scene";
 import type {
   SceneResolveResult,
@@ -113,6 +124,17 @@ interface MoorhenScenesPanelProps {
     assets: SceneBundleAssets;
     warnings: string[];
   }>;
+  /** Assemble the LLM authoring prompt (embedded grammar + project manifest +
+   *  loaded-structure contents) wrapped around the user's natural-language
+   *  request. Optional — when omitted the "Generate prompt" button is hidden
+   *  (e.g. the campaign viewer). */
+  onBuildAuthoringPrompt?: (request: string) => Promise<string>;
+  /** Generate a scene from a natural-language request via an integrated LLM
+   *  endpoint, returning the raw scene text. Optional — passed only when the
+   *  deployment reports the capability. When present, the authoring modal
+   *  offers an in-app "Generate" (result lands in the editor for review, not
+   *  auto-applied); copy-paste stays as a secondary action. */
+  onGenerateScene?: (request: string) => Promise<string>;
   /** True once Moorhen / Coot is ready. Disables apply until then. */
   enabled: boolean;
   /** Optional initial YAML to seed the editor with (e.g. the campaign
@@ -138,11 +160,35 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
   onApplyScene,
   onCaptureScene,
   onPromoteSceneToPortable,
+  onBuildAuthoringPrompt,
+  onGenerateScene,
   enabled,
   initialYaml,
   autoApplyInitial,
 }) => {
   const [yamlText, setYamlText] = useState<string>("");
+  // Monaco refs + live conformance markers (red squiggles) from the Zod
+  // contract — see lib/scene/yaml-markers. No monaco-yaml/worker setup needed.
+  // Loosely typed: monaco-editor is CDN-loaded, not a typed dependency here.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const monacoRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const editorRef = useRef<any>(null);
+  const refreshMarkers = useCallback(() => {
+    const monaco = monacoRef.current;
+    const editor = editorRef.current;
+    if (!monaco || !editor) return;
+    const model = editor.getModel();
+    if (!model) return;
+    monaco.editor.setModelMarkers(
+      model,
+      "moorhen-scene",
+      sceneMarkers(yamlText, monaco.MarkerSeverity.Error),
+    );
+  }, [yamlText]);
+  useEffect(() => {
+    refreshMarkers();
+  }, [refreshMarkers]);
 
   // Seed the editor with a supplied scene (e.g. the campaign summary) the
   // first time it arrives, but only while the editor is still empty so we
@@ -191,6 +237,66 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
       });
     }
   }, [onCaptureScene]);
+
+  // Generate an LLM authoring prompt: the user types a natural-language scene
+  // description in a modal, and we wrap it with the grammar + project manifest +
+  // structure contents and copy the whole thing to the clipboard. One paste into
+  // a chatbot then returns YAML to drop back into this editor.
+  const [promptModalOpen, setPromptModalOpen] = useState<boolean>(false);
+  const [promptRequest, setPromptRequest] = useState<string>("");
+  const [promptBusy, setPromptBusy] = useState<boolean>(false);
+  const handleCopyAsPrompt = useCallback(async () => {
+    if (!onBuildAuthoringPrompt) return;
+    setPromptBusy(true);
+    try {
+      const prompt = await onBuildAuthoringPrompt(promptRequest);
+      await navigator.clipboard.writeText(prompt);
+      setPromptModalOpen(false);
+      setMessage({
+        severity: "success",
+        text: "Prompt copied — paste it into a chatbot, then paste the returned YAML back here and Apply.",
+      });
+    } catch (err) {
+      setMessage({
+        severity: "error",
+        text: `Could not build prompt: ${err instanceof Error ? err.message : "unknown error"}`,
+      });
+    } finally {
+      setPromptBusy(false);
+    }
+  }, [onBuildAuthoringPrompt, promptRequest]);
+
+  // Integrated Generate: call the endpoint, normalise the raw output (strip
+  // fence + strict-mode nulls, tidy to YAML), drop it in the editor for REVIEW
+  // (never auto-applied — generation can be imperfect and the markers show
+  // validity). On failure, keep the modal open so the user can fall back to
+  // copy-paste, with a kind-specific message.
+  const handleGenerateScene = useCallback(async () => {
+    if (!onGenerateScene) return;
+    setPromptBusy(true);
+    try {
+      const raw = await onGenerateScene(promptRequest);
+      setYamlText(normaliseGeneratedScene(raw));
+      setPromptModalOpen(false);
+      setMessage({
+        severity: "success",
+        text: "Scene generated into the editor — review it (check the messages below), then Apply.",
+      });
+    } catch (err) {
+      const fallback = onBuildAuthoringPrompt
+        ? " You can still use Copy as prompt to try another model."
+        : "";
+      const text =
+        err instanceof SceneGenerateError && err.kind === "rate_limited"
+          ? `Daily generation limit reached.${fallback}`
+          : err instanceof SceneGenerateError && err.kind === "disabled"
+            ? `Scene generation is disabled on this deployment.${fallback}`
+            : `Could not generate scene: ${err instanceof Error ? err.message : "unknown error"}.${fallback}`;
+      setMessage({ severity: "error", text });
+    } finally {
+      setPromptBusy(false);
+    }
+  }, [onGenerateScene, onBuildAuthoringPrompt, promptRequest]);
 
   const handleOpenClick = useCallback(() => {
     fileInputRef.current?.click();
@@ -486,6 +592,28 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
           </Tooltip>
         )}
 
+        {(onGenerateScene || onBuildAuthoringPrompt) && (
+          <Tooltip
+            title={
+              onGenerateScene
+                ? "Describe a view in words and generate the scene in-app (into the editor for review before you Apply)"
+                : "Describe a view in words; we bundle it with the scene grammar, this project's files, and the loaded structure's chains & ligands into one prompt for any chatbot"
+            }
+          >
+            <span>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={onGenerateScene ? <GenerateIcon /> : <PromptIcon />}
+                onClick={() => setPromptModalOpen(true)}
+                sx={{ fontSize: "0.75rem", textTransform: "none" }}
+              >
+                {onGenerateScene ? "Generate scene…" : "Generate prompt…"}
+              </Button>
+            </span>
+          </Tooltip>
+        )}
+
         <Tooltip title="Open a .scene.yaml or .scene.zip from disk (zips bring their bundled assets along)">
           <span>
             <Button
@@ -586,6 +714,12 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
             placeholder: DEFAULT_PLACEHOLDER,
           }}
           onChange={(v) => setYamlText(v ?? "")}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onMount={(editor: any, monaco: any) => {
+            editorRef.current = editor;
+            monacoRef.current = monaco;
+            refreshMarkers();
+          }}
         />
       </Box>
 
@@ -637,6 +771,84 @@ export const MoorhenScenesPanel: React.FC<MoorhenScenesPanelProps> = ({
         style={{ display: "none" }}
         onChange={handleOpenFile}
       />
+
+      {/* Authoring modal: the user describes a view in words. When an integrated
+          endpoint is available (onGenerateScene) the primary action generates the
+          scene in-app into the editor; otherwise (copy-paste path) we bundle the
+          request with the grammar + project files + contents to the clipboard.
+          Copy-paste stays as a secondary action even when Generate is available —
+          the better-model / offline / quota escape hatch. */}
+      <Dialog
+        open={promptModalOpen}
+        onClose={() => setPromptModalOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>
+          {onGenerateScene ? "Generate a scene" : "Generate a scene-authoring prompt"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ mb: 1.5, fontSize: "0.85rem" }}>
+            {onGenerateScene ? (
+              <>
+                Describe the view you want in plain language. We ground the request
+                with this project&apos;s files and the loaded structure&apos;s
+                chains &amp; ligands and generate the scene into the editor —
+                review it (see the messages below), then Apply.
+              </>
+            ) : (
+              <>
+                Describe the view you want in plain language. We bundle your
+                description with the scene grammar, this project&apos;s files, and
+                the loaded structure&apos;s chains &amp; ligands into one prompt.
+                Paste it into any chatbot, then paste the returned YAML back here
+                and Apply.
+              </>
+            )}
+          </DialogContentText>
+          <TextField
+            autoFocus
+            multiline
+            minRows={4}
+            fullWidth
+            placeholder={
+              "e.g. Chains A and B as ribbon coloured by domain; the ATP ligand as " +
+              "ball-and-stick; centre on the dimer and slab to it."
+            }
+            value={promptRequest}
+            onChange={(e) => setPromptRequest(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setPromptModalOpen(false)} sx={{ textTransform: "none" }}>
+            Cancel
+          </Button>
+          {/* Copy-as-prompt is primary when there's no endpoint, secondary when
+              there is (kept as the better-model / offline fallback). */}
+          {onBuildAuthoringPrompt && (
+            <Button
+              variant={onGenerateScene ? "outlined" : "contained"}
+              startIcon={<PromptIcon />}
+              onClick={handleCopyAsPrompt}
+              disabled={promptBusy || !promptRequest.trim()}
+              sx={{ textTransform: "none" }}
+            >
+              Copy as prompt
+            </Button>
+          )}
+          {onGenerateScene && (
+            <Button
+              variant="contained"
+              startIcon={<GenerateIcon />}
+              onClick={handleGenerateScene}
+              disabled={promptBusy || !promptRequest.trim()}
+              sx={{ textTransform: "none" }}
+            >
+              {promptBusy ? "Generating…" : "Generate"}
+            </Button>
+          )}
+        </DialogActions>
+      </Dialog>
     </Stack>
   );
 };
