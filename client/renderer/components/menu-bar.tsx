@@ -16,14 +16,13 @@ import FileMenu from "./file-menu";
 import HelpMenu from "./help-menu";
 import UtilMenu from "./util-menu";
 import ViewMenu from "./view-menu";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useCCP4i2Window } from "../app-context";
 import { useApi } from "../api";
 import { Job, Project } from "../types/models";
 import EditableTypography from "./editable-typography";
 import HistoryToolbar from "./history-toolbar";
 import { useRouter } from "next/navigation";
-import { TagsOfProject } from "./tags-of-project";
 import { isElectron } from "../utils/platform";
 
 interface CampaignInfo {
@@ -78,24 +77,24 @@ export default function MenuBar() {
       // Extra small: Only File menu visible, rest in overflow
       return {
         visible: ["file"],
-        overflow: ["edit", "view", "util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
+        overflow: ["edit", "view", "util", "help", ...(hasCampaign ? ["campaign"] : [])],
       };
     } else if (isSmall) {
       // Small: File, Edit, and View visible
       return {
         visible: ["file", "edit", "view"],
-        overflow: ["util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
+        overflow: ["util", "help", ...(hasCampaign ? ["campaign"] : [])],
       };
     } else if (isMedium) {
       // Medium: All menus visible, campaign in overflow if present
       return {
         visible: ["file", "edit", "view", "util", "help"],
-        overflow: ["tags", ...(hasCampaign ? ["campaign"] : [])],
+        overflow: (hasCampaign ? ["campaign"] : []),
       };
     } else {
       // Large: Everything visible including campaign
       return {
-        visible: ["file", "edit", "view", "util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
+        visible: ["file", "edit", "view", "util", "help", ...(hasCampaign ? ["campaign"] : [])],
         overflow: [],
       };
     }
@@ -166,9 +165,6 @@ export default function MenuBar() {
         {visible.includes("view") && <ViewMenu />}
         {visible.includes("util") && <UtilMenu />}
         {visible.includes("help") && <HelpMenu />}
-        {visible.includes("tags") && project && (
-          <TagsOfProject projectId={project.id} />
-        )}
 
         {/* Campaign shortcut - shows when project belongs to a campaign */}
         {visible.includes("campaign") && projectCampaign && (
@@ -244,11 +240,6 @@ export default function MenuBar() {
               {overflow.includes("help") && (
                 <Box sx={{ px: 2, py: 1 }}>
                   <HelpMenu />
-                </Box>
-              )}
-              {overflow.includes("tags") && project && (
-                <Box sx={{ px: 2, py: 1 }}>
-                  <TagsOfProject projectId={project.id} />
                 </Box>
               )}
               {overflow.includes("campaign") && projectCampaign && (
