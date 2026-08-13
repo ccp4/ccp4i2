@@ -1233,7 +1233,7 @@ const backgroundImagePlugin = {
       } else {
         // Image not loaded yet, schedule a redraw
         setTimeout(() => {
-          if (chart && chart.update) {
+          if (chart && chart.update && chart.canvas?.isConnected) {
             chart.update("none");
           }
         }, 100);
