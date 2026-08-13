@@ -72,7 +72,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
 
   const previousJob = usePrevious(job);
   const previousStatus = usePrevious(currentStatus);
-  const { jobTabValue: tabValue, setJobTabValue: setTabValue } = useJobTab();
+  const { jobTabValue: rawTabValue, setJobTabValue: setTabValue } = useJobTab();
 
   // State for editable params XML (only used for pending jobs)
   const [editedParamsXml, setEditedParamsXml] = useState<string | null>(null);
@@ -186,6 +186,17 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
       mutateDiagnosticXml();
     }
   }, [currentStatus, previousStatus, mutateDiagnosticXml]);
+
+  // Clamp synchronously so MUI never receives a value for a hidden tab
+  const status = jobWithCurrentStatus?.status;
+  const tabValue = useMemo(() => {
+    const visible = new Set([0, 8, 9, 10]);
+    if (devMode) [1, 2, 5, 7].forEach((v) => visible.add(v));
+    if (devMode || [3, 4, 6, 7, 9, 10].includes(status ?? -1)) visible.add(3);
+    if (devMode || status === 5) visible.add(4);
+    if (devMode || status === 1) visible.add(6);
+    return visible.has(rawTabValue) ? rawTabValue : 0;
+  }, [devMode, status, rawTabValue]);
 
   return !project || !jobs || !jobWithCurrentStatus ? (
     <LinearProgress />
