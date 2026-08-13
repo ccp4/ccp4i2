@@ -7,7 +7,6 @@ import React, {
   useContext,
 } from "react";
 import {
-  Box,
   Button,
   Checkbox,
   Chip,
@@ -34,7 +33,7 @@ import {
   TreeItem2Root,
   useTreeItem2,
 } from "@mui/x-tree-view";
-import { CheckBoxOutlined, Clear, Delete, Menu as MenuIcon } from "@mui/icons-material";
+import { CheckBoxOutlined, Clear, Delete, MoreVert } from "@mui/icons-material";
 import { useDraggable } from "@dnd-kit/core";
 import { useRouter } from "next/navigation";
 
@@ -890,19 +889,17 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
             {renderContent()}
           </Stack>
 
-          <Button
-            size="small"
-            variant="outlined"
-            sx={{
-              p: 0.5,
-              minWidth: "auto",
-              ml: 1,
-            }}
-            onClick={handleButtonClick}
-            aria-label={`Open ${isJob ? "job" : "file"} menu`}
-          >
-            <MenuIcon fontSize="small" />
-          </Button>
+          <Tooltip title={`Open ${isJob ? "job" : "file"} menu`}>
+            <IconButton
+              color="inherit"
+              onClick={handleButtonClick}
+              aria-label={`Open ${isJob ? "job" : "file"} menu`}
+              size="small"
+              sx={{ ml: 1 }}
+            >
+              <MoreVert fontSize="small" />
+            </IconButton>
+          </Tooltip>
         </TreeItem2Content>
 
         {children && (
