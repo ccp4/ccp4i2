@@ -673,7 +673,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           >
             <CCP4i2TaskElement
               {...props}
-              key="HKLIN"
               itemName="HKLIN"
               qualifiers={{ guiLabel: "Reflections" }}
             />
@@ -716,7 +715,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                     </Grid2>
                     <CCP4i2TaskElement
                       {...props}
-                      key="WAVELENGTH"
                       itemName="WAVELENGTH"
                       qualifiers={{ guiLabel: "Wavelength" }}
                     />
