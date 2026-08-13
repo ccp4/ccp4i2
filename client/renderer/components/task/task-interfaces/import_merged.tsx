@@ -790,7 +790,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
               <CCP4i2TaskElement
                 {...props}
-                key="RESOLUTION_RANGE"
                 itemName="RESOLUTION_RANGE"
                 qualifiers={{ guiLabel: "Select resolution range (Å)" }}
               />
@@ -825,7 +824,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 1 }}>
               <CCP4i2TaskElement
                 {...props}
-                key="FREER_FRACTION"
                 itemName="controlParameters.FREER_FRACTION"
                 qualifiers={{ guiLabel: "Fraction of reflections in generated freeR set" }}
               />
