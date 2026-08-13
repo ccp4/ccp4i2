@@ -712,7 +712,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       }
 
       return (
-        <Stack direction="row" spacing={0.5} flexWrap="wrap">
+        <Stack direction="row" gap={0.5} flexWrap="wrap">
           {charChips}
           {floatChips}
         </Stack>
