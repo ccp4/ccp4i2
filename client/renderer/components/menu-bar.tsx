@@ -252,40 +252,18 @@ export default function MenuBar() {
           </>
         )}
 
-        <Typography sx={{ flexGrow: 1 }} />
-
-        {/* Project/Job info - always visible but might be truncated on mobile */}
-        <Box
+        <Typography
           sx={{
-            display: "flex",
-            alignItems: "center",
-            minWidth: 0, // Allow shrinking
-            maxWidth: isXSmall ? "200px" : "none", // Limit width on mobile
-            height: "100%",
+            flex: 1,
+            overflow: "hidden",
+            textAlign: "right",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
         >
-          {job?.number && (
-            <EditableTypography
-              variant="body1"
-              text={`Job ${job.number}: `}
-              sx={{ fontWeight: 400 }}
-            />
-          )}
-          {project && (
-            <EditableTypography
-              variant="body1"
-              text={project.name}
-              sx={{ fontWeight: 500 }}
-              onDelay={(name) =>
-                api
-                  .patch(`projects/${project.id}`, { name: name })
-                  .then((_) => {
-                    mutateProject();
-                  })
-              }
-            />
-          )}
-        </Box>
+          {job && `Job ${job.number}: `}
+          {project && <span style={{ fontWeight: 500 }}>{project.name}</span>}
+        </Typography>
       </HistoryToolbar>
     </AppBar>
   );
