@@ -7,6 +7,7 @@ import {
   AccordionDetails,
   Typography,
   Box,
+  List,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -98,9 +99,11 @@ export const CCP4i2ReportInputOutputData: React.FC<CCP4i2ReportElementProps> = (
 
         <AccordionDetails sx={{ p: 2 }}>
           {fileUUIDs.length > 0 ? (
-            fileUUIDs.map((fileUUID: string, iFile: number) => (
-              <CCP4i2ReportFile {...props} uuid={fileUUID} key={iFile} />
-            ))
+            <List>
+              {fileUUIDs.map((fileUUID: string, iFile: number) => (
+                <CCP4i2ReportFile uuid={fileUUID} key={iFile} />
+              ))}
+            </List>
           ) : (
             <Typography variant="body2" color="textSecondary">
               No files found
