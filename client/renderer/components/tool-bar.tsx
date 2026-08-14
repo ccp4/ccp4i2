@@ -209,8 +209,8 @@ export default function ToolBar() {
         label: "Run",
         icon: <DirectionsRun />,
         onClick: handleRun,
-        disabled: job?.status !== 1,
-        show: true,
+        show: job?.status === 1,
+        available: job?.status === 1,
       },
       {
         label: "Clone job",
@@ -288,7 +288,7 @@ export default function ToolBar() {
           {visibleButtons.map((btn) => (
             <Button
               key={btn.label}
-              variant="outlined"
+              variant={btn.label == "Run" ? "contained" : "outlined"}
               startIcon={btn.icon}
               onClick={btn.onClick}
               disabled={btn.disabled}
