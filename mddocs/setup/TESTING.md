@@ -73,14 +73,9 @@ Test projects are created in `~/.cache/ccp4i2-tests/` with timestamped names:
 
 ### Compounds App Tests
 
-The compounds app has its own Django settings:
-
-```bash
-cd server
-source /path/to/ccp4-20251105/bin/ccp4.setup-sh
-PYTHONPATH="$PWD:$PWD/../apps" DJANGO_SETTINGS_MODULE=compounds.settings \
-  ccp4-python -m pytest ../apps/compounds/assays/tests/test_aggregation.py -v
-```
+The compounds app was extracted to the `newcastleuniversity/materia` repository
+(2026-04-29 cut) and its tests no longer live here — run them from a Materia
+checkout instead.
 
 ### Troubleshooting
 

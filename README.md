@@ -48,8 +48,8 @@ See [Development Setup](mddocs/setup/DEVELOPMENT_SETUP.md) for the full guide. I
 git clone https://github.com/ccp4/ccp4i2.git
 cd ccp4i2
 
-# 3. Source CCP4 environment
-source /path/to/ccp4-20251105/bin/ccp4.setup-sh
+# 3. Source CCP4 environment (use whichever CCP4 10 build you installed)
+source /path/to/ccp4-<build>/bin/ccp4.setup-sh
 
 # 4. Install ccp4i2 into ccp4-python (editable mode)
 cd server
@@ -60,8 +60,11 @@ cd ..
 ccp4-python -c "import ccp4i2; print('ccp4i2 OK')"
 ccp4-python -c "import django; print(f'Django {django.__version__}')"
 
-# 6. Run tests
-./run_test.sh tests/i2run/test_parrot.py -v
+# 6. Run tests (from server/, paths are relative to the ccp4i2 package)
+cd server
+ccp4-python -m pytest ccp4i2/tests/unit/ -v          # fast, no CCP4 binaries
+./run_test.sh ccp4i2/tests/i2run/test_parrot.py -v   # end-to-end task test
+cd ..
 
 # 7. Run the Electron client (optional)
 cd client
@@ -71,12 +74,19 @@ npm run start:electron
 
 ### Running Tests
 
-```bash
-# Run a single test
-./run_test.sh tests/i2run/test_parrot.py -v
+Run from `server/`; test paths are relative to the `ccp4i2` package:
 
-# Run multiple tests in parallel
-./run_test.sh tests/i2run/ -n 4
+```bash
+cd server
+
+# Fast unit tests (no CCP4 binaries)
+ccp4-python -m pytest ccp4i2/tests/unit/ -v
+
+# A single end-to-end task test
+./run_test.sh ccp4i2/tests/i2run/test_parrot.py -v
+
+# Multiple tests in parallel
+./run_test.sh ccp4i2/tests/i2run/ -n 4
 ```
 
 Test results are stored in `~/.cache/ccp4i2-tests/`. See cleanup instructions printed after each test run.
@@ -113,27 +123,32 @@ Test results are stored in `~/.cache/ccp4i2-tests/`. See cleanup instructions pr
 
 ```
 ccp4i2/
-├── server/             # Django backend (pip-installable package)
+├── server/                 # Django backend (pip-installable package)
 │   ├── ccp4i2/
-│   │   ├── api/        # REST API ViewSets
-│   │   ├── config/     # Django settings, ASGI entry point
-│   │   ├── db/         # Django ORM models
-│   │   ├── i2run/      # Job runner
-│   │   ├── lib/        # Core library (parameters, containers, jobs)
-│   │   └── scripts/    # Shell scripts (run_job_safe.sh)
-│   └── pyproject.toml  # Package definition and dependencies
-├── client/             # Electron + Next.js/React frontend
-│   ├── main/           # Electron main process
-│   ├── renderer/       # Next.js application
-│   └── preload/        # Electron preload scripts
-├── core/               # Core Python modules (CCP4Data, CCP4File, etc.)
-├── wrappers/           # Single-program task wrappers
-├── wrappers2/          # Additional wrapper implementations
-├── pipelines/          # Multi-program workflows
-├── tests/              # Test suite
-├── Docker/             # Docker configuration for web/cloud deployment
-├── mddocs/             # Documentation
-└── demo_data/          # Sample data for testing
+│   │   ├── api/            # REST API ViewSets
+│   │   ├── config/         # Django settings, ASGI entry point
+│   │   ├── core/           # Core Python modules (CCP4Data, CCP4File, tasks.py registry)
+│   │   ├── db/             # Django ORM models, job execution
+│   │   ├── cli/            # Command-line tools (i2, i2run)
+│   │   ├── lib/            # Core library (parameters, containers, jobs)
+│   │   ├── wrappers/       # Single-program task wrappers
+│   │   ├── pipelines/      # Multi-program workflows
+│   │   ├── pimple/         # Matplotlib-based graph generation
+│   │   ├── smartie/        # Log parsing utilities
+│   │   ├── report/         # Report generation
+│   │   ├── scripts/        # Shell scripts (run_job_safe.sh)
+│   │   ├── demo_data/      # Sample data for testing
+│   │   └── tests/          # Test suite (unit/, i2run/, api/, db/, async/)
+│   ├── run_test.sh         # End-to-end test runner (run from server/)
+│   └── pyproject.toml      # Package definition and dependencies
+├── client/                 # Electron + Next.js/React frontend
+│   ├── main/               # Electron main process
+│   ├── renderer/           # Next.js application
+│   └── preload/            # Electron preload scripts
+├── apps/                   # Namespace for optional apps (compounds app extracted to newcastleuniversity/materia)
+├── docs/                   # Developer & user documentation (see docs/README.md)
+├── mddocs/                 # Setup, testing, architecture, API reference
+└── deploy/                 # Deployment tooling (test VMs, infra scripts)
 ```
 
 ## Deployment Modes

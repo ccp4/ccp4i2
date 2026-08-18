@@ -68,12 +68,20 @@ ccp4-python -c "import clipper; import phaser; print('CCP4 libraries OK')"
 
 ### Step 6: Run Tests
 
+Run tests from the `server/` directory; test paths are relative to the `ccp4i2`
+package:
+
 ```bash
-# Run a quick test
-./run_test.sh tests/i2run/test_parrot.py -v
+cd server
+
+# Fast unit tests (no CCP4 binaries needed)
+ccp4-python -m pytest ccp4i2/tests/unit/ -v
+
+# A quick end-to-end task test
+./run_test.sh ccp4i2/tests/i2run/test_parrot.py -v
 
 # Run multiple tests in parallel (requires pytest-xdist, installed by pip)
-./run_test.sh tests/i2run/ -n 4
+./run_test.sh ccp4i2/tests/i2run/ -n 4
 ```
 
 Test projects are stored in `~/.cache/ccp4i2-tests/`. Cleanup instructions are printed after each test run.
@@ -238,20 +246,23 @@ This is used by `run_test.sh` to find CCP4 if not already in the environment.
 
 ### Test Runner
 
-The `run_test.sh` script handles environment setup:
+The `run_test.sh` script (in `server/`) handles environment setup. Run it from
+`server/`, with paths relative to the `ccp4i2` package:
 
 ```bash
+cd server
+
 # Single test
-./run_test.sh tests/i2run/test_parrot.py -v
+./run_test.sh ccp4i2/tests/i2run/test_parrot.py -v
 
 # Test file
-./run_test.sh tests/i2run/test_servalcat.py
+./run_test.sh ccp4i2/tests/i2run/test_servalcat.py
 
 # All i2run tests (parallel)
-./run_test.sh tests/i2run/ -n 4
+./run_test.sh ccp4i2/tests/i2run/ -n 4
 
 # Specific test function
-./run_test.sh tests/i2run/test_refmac.py::test_8xfm_basic -v
+./run_test.sh ccp4i2/tests/i2run/test_refmac.py::test_8xfm_basic -v
 ```
 
 ### Test Output Location
@@ -449,9 +460,10 @@ Follow Linux instructions. CCP4 paths are Linux-style within WSL.
 
 After setup:
 
-1. **Run quick tests** to verify everything works:
+1. **Run quick tests** to verify everything works (from `server/`):
    ```bash
-   ./run_test.sh tests/i2run/test_parrot.py tests/i2run/test_sheetbend.py -v
+   cd server
+   ./run_test.sh ccp4i2/tests/i2run/test_parrot.py ccp4i2/tests/i2run/test_sheetbend.py -v
    ```
 
 2. **Read the architecture docs**:

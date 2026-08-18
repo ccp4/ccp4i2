@@ -9,7 +9,6 @@ Multiple institutions hold copyright over different parts of the codebase. Under
 | Area | Primary Copyright Holder(s) |
 |------|-----------------------------|
 | `client/` (frontend) | Newcastle University |
-| `apps/` (compounds) | Newcastle University |
 | `server/ccp4i2/` | Newcastle University, University of York |
 | `pimple/`, `smartie/`, `report/` | University of York, Newcastle University |
 | `wrappers/`, `wrappers2/`, `pipelines/` | Multiple (see below) |

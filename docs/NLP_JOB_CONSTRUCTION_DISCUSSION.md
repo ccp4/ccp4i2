@@ -2,8 +2,10 @@
 
 > **Status.** Discussion-stage. This document is the seed for a dedicated
 > implementation conversation; it is **not** a locked proposal yet. Builds
-> on the architectural principles of `apps/compounds/docs/NLP_QUERY_PROPOSAL.md`
-> ("Compounds NLP") and reapplies them to a much richer problem space:
+> on the architectural principles of the "Compounds NLP" proposal
+> (`apps/compounds/docs/NLP_QUERY_PROPOSAL.md`, now in the
+> `newcastleuniversity/materia` repo post-cut) and reapplies them to a much
+> richer problem space:
 > describing a CCP4i2 *job* in English and having the system construct,
 > validate, and submit it.
 >

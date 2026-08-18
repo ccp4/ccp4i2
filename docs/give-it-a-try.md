@@ -4,8 +4,10 @@ The fastest way to try the new CCP4i2 on your own machine. No cloning, no
 building — download the desktop app, point it at your CCP4 installation, and let
 it set up the backend for you.
 
-> 🐣 **Early-bird alpha.** The current build is **`3.1.0a1`** — a pre-release for
-> early testers. Expect rough edges, and please report what breaks. The desktop
+> 🐣 **Early-bird alpha.** The current builds are **`3.1.0a…`** pre-releases for
+> early testers (grab the latest from
+> [Releases](https://github.com/ccp4/ccp4i2/releases)). Expect rough edges, and
+> please report what breaks. The desktop
 > app and its backend are **version-locked**: an alpha app installs and runs
 > **only** its exact matching `ccp4i2` from PyPI, so it can't get crossed with
 > any other version. (Any earlier `3.0.x` you may have installed is a separate,
@@ -37,7 +39,7 @@ your CCP4 installation itself (step 3).
 ## 2. Download the desktop app
 
 Go to **[Releases](https://github.com/ccp4/ccp4i2/releases)** and pick the latest
-build marked **Pre-release** (the alpha, e.g. `v3.1.0a1`), then download the
+build marked **Pre-release** (the latest `v3.1.0a…` alpha), then download the
 installer for your OS — no GitHub login needed:
 
 | OS | Asset |
@@ -185,7 +187,7 @@ outputs.
 ## Versions — do I need to match them?
 
 **No, not by hand — and during the alpha they're locked together.** Each alpha
-desktop build is pinned to one **exact** `ccp4i2` version (e.g. `3.1.0a1`), built
+desktop build is pinned to one **exact** `ccp4i2` version (e.g. `3.1.0a21`), built
 from the same release tag, and its Install button installs *precisely* that
 version into `ccp4-python` (step 4). So the app and backend can't drift apart,
 and the app won't run against a different `ccp4i2`.
