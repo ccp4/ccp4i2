@@ -24,9 +24,10 @@ import {
   TextField,
   Tooltip,
 } from "@mui/material";
-import { alpha } from "@mui/material/styles";
+import { alpha, SxProps, Theme } from "@mui/material/styles";
 import {
-  Menu as MenuIcon,
+  AccountTree as AccountTreeIcon,
+  MoreVert as MoreVertIcon,
   ChevronRight as ChevronRightIcon,
   ContentCopy,
   ContentPaste,
@@ -35,7 +36,6 @@ import {
   HelpOutline,
   Preview,
   SaveAlt,
-  Storage as StorageIcon,
 } from "@mui/icons-material";
 import { useDndContext, useDroppable } from "@dnd-kit/core";
 
@@ -80,6 +80,25 @@ const canConvertToRequired = (
   const convertibleTo = CAN_CONVERT_TO[fileContent];
   if (!convertibleTo) return false;
   return requiredFlags.some((required) => convertibleTo.includes(required));
+};
+
+/**
+ * Shared look for the boxed group of file-source buttons (file system /
+ * project database / internet): one outline round the lot, hairline dividers
+ * between the buttons, square corners on the buttons themselves.
+ */
+const FILE_SOURCE_GROUP_SX: SxProps<Theme> = {
+  display: "flex",
+  alignItems: "stretch",
+  // Match the outline weight of an outlined TextField/Button (23% ink). The
+  // theme's `divider` (12%) is too faint to read as a group at this size.
+  border: "1px solid",
+  borderColor: (theme) => alpha(theme.palette.text.primary, 0.23),
+  borderRadius: 1,
+  overflow: "hidden",
+  "& .MuiIconButton-root": { borderRadius: 0 },
+  // Hairlines between the buttons, same ink as the surrounding outline
+  "& .MuiDivider-root": { borderColor: "inherit" },
 };
 
 /** Extra menu items injected by subtype widgets (e.g. CPdbDataFile "Select atoms") */
@@ -563,6 +582,53 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const canUpload = job.status === 1;
   const canFetch = qualifiers?.downloadModes?.length > 0 && job.status === 1;
 
+  // The three logically equivalent ways of choosing a file. Fetch-from-internet
+  // is only offered for file types that declare downloadModes, so the group can
+  // hold two or three buttons.
+  const fileSourceButtons: { key: string; node: ReactNode }[] = [];
+  if (canUpload) {
+    fileSourceButtons.push({
+      key: "filesystem",
+      node: (
+        <InputFileUpload
+          disabled={isDisabled}
+          accept={fileConfig.acceptedExtensions}
+          handleFileChange={handleFileChange}
+        />
+      ),
+    });
+    fileSourceButtons.push({
+      key: "database",
+      node: (
+        <Tooltip title="Browse the project hierarchy">
+          <span>
+            <IconButton
+              size="small"
+              onClick={() => setBrowseDialogOpen(true)}
+              disabled={isDisabled}
+              aria-label="Browse project files"
+            >
+              <AccountTreeIcon fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
+      ),
+    });
+  }
+  if (canFetch) {
+    fileSourceButtons.push({
+      key: "internet",
+      node: (
+        <InputFileFetch
+          disabled={isDisabled}
+          modes={qualifiers.downloadModes}
+          onChange={onChange}
+          item={item}
+        />
+      ),
+    });
+  }
+
   return (
     <Box
       ref={setNodeRef}
@@ -637,53 +703,36 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
           />
         </Box>
 
-        {/* Action buttons */}
-        <Stack direction="row" spacing={0.5} sx={{ ml: 1, flexShrink: 0 }}>
-          {canUpload && (
-            <InputFileUpload
-              sx={{ minWidth: "auto" }}
-              disabled={isDisabled}
-              accept={fileConfig.acceptedExtensions}
-              handleFileChange={handleFileChange}
-            />
-          )}
-
-          {canUpload && (
-            <Tooltip title="Browse files from other projects">
-              <IconButton
-                size="small"
-                onClick={() => setBrowseDialogOpen(true)}
-                disabled={isDisabled}
-                aria-label="Browse project files"
-              >
-                <StorageIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )}
-
-          {canFetch && (
-            <InputFileFetch
-              sx={{ minWidth: "auto" }}
-              disabled={isDisabled}
-              modes={qualifiers.downloadModes}
-              handleFileChange={handleFileChange}
-              onChange={onChange}
-              item={item}
-            />
+        {/* Action buttons: the three ways of choosing a file (file system,
+            project database, internet) are boxed together as one group; the
+            per-file utility icons that follow are unboxed. */}
+        <Stack
+          direction="row"
+          spacing={0.5}
+          alignItems="center"
+          sx={{ ml: 1, flexShrink: 0 }}
+        >
+          {fileSourceButtons.length > 0 && (
+            <Box sx={FILE_SOURCE_GROUP_SX}>
+              {fileSourceButtons.map(({ key, node }, index) => (
+                <React.Fragment key={key}>
+                  {index > 0 && <Divider orientation="vertical" flexItem />}
+                  {node}
+                </React.Fragment>
+              ))}
+            </Box>
           )}
 
           {hasFile && (
-            <>
-              <Tooltip title="File options">
-                <IconButton
-                  size="small"
-                  onClick={handleMenuClick}
-                  aria-label="Open file menu"
-                >
-                  <MenuIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            </>
+            <Tooltip title="File options">
+              <IconButton
+                size="small"
+                onClick={handleMenuClick}
+                aria-label="Open file menu"
+              >
+                <MoreVertIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
           )}
 
           {hasChildren && (

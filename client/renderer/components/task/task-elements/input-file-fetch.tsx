@@ -1,16 +1,21 @@
-import { Button, SxProps } from "@mui/material";
-import { ChangeEvent, useCallback } from "react";
+import { IconButton, SxProps, Tooltip } from "@mui/material";
+import { useCallback } from "react";
 import { useTaskInterface } from "../../../providers/task-provider";
 import { Language } from "@mui/icons-material";
 
 interface InputFileFetchProps {
-  handleFileChange: (ev: ChangeEvent<HTMLInputElement>) => void;
   disabled: boolean;
   modes?: string[];
   item?: any;
   sx?: SxProps;
   onChange?: (updatedItem: any) => void;
 }
+
+/**
+ * "Choose a file" source button: fetch from an online resource (PDB, EBI, ...).
+ * Only offered for file types whose def.xml declares downloadModes, so this is
+ * the one source button that is not always present.
+ */
 export const InputFileFetch: React.FC<InputFileFetchProps> = ({
   disabled,
   sx,
@@ -30,16 +35,19 @@ export const InputFileFetch: React.FC<InputFileFetchProps> = ({
   );
 
   return (
-    <Button
-      disabled={disabled}
-      component="label"
-      role={undefined}
-      variant="outlined"
-      tabIndex={-1}
-      size="small"
-      startIcon={<Language fontSize="small" />}
-      sx={sx}
-      onClick={handleFetchClick}
-    />
+    <Tooltip title="Fetch a file from an online resource">
+      <span>
+        <IconButton
+          disabled={disabled}
+          size="small"
+          tabIndex={-1}
+          aria-label="Fetch a file from an online resource"
+          sx={sx}
+          onClick={handleFetchClick}
+        >
+          <Language fontSize="small" />
+        </IconButton>
+      </span>
+    </Tooltip>
   );
 };

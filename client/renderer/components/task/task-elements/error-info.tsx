@@ -15,6 +15,7 @@ import {
   Collapse,
   Popper,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import {
@@ -380,24 +381,32 @@ export const ErrorTrigger: React.FC<ErrorTriggerProps> = ({ item, job }) => {
   }
 
   return (
-    <Button
-      size="small"
-      variant="text"
-      onClick={handleClick}
-      sx={{
-        minWidth: "auto",
-        p: 0.5,
-        color: validationColor,
-        "&:hover": {
-          backgroundColor: `${validationColor}20`,
-        },
-      }}
-      aria-label={`Show validation information for ${formatObjectPath(
-        item?._objectPath
-      )}`}
+    <Tooltip
+      title={
+        hasValidationIssue
+          ? "Show validation messages"
+          : "No validation messages"
+      }
     >
-      {icon}
-    </Button>
+      <Button
+        size="small"
+        variant="text"
+        onClick={handleClick}
+        sx={{
+          minWidth: "auto",
+          p: 0.5,
+          color: validationColor,
+          "&:hover": {
+            backgroundColor: `${validationColor}20`,
+          },
+        }}
+        aria-label={`Show validation information for ${formatObjectPath(
+          item?._objectPath
+        )}`}
+      >
+        {icon}
+      </Button>
+    </Tooltip>
   );
 };
 
