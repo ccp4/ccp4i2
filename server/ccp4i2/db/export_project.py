@@ -296,6 +296,10 @@ def _export_file_table(
     else:
         files = File.objects.filter(job__project=project)
 
+    # Every row below reads file.job and file.type; without this the export
+    # issues several queries per file, which dominates its cost entirely.
+    files = files.select_related("job", "type")
+
     for file_obj in files:
         file_elem = ET.SubElement(file_table, "file")
 
@@ -303,11 +307,10 @@ def _export_file_table(
         file_elem.set("jobid", _format_uuid_for_xml(file_obj.job.uuid))
         file_elem.set("filename", file_obj.name or "")
 
-        # Use the path property to get directory information
-        if file_obj.path:
-            file_elem.set("pathflag", str(file_obj.directory or ""))
-        else:
-            file_elem.set("pathflag", "")
+        # file.directory is the flag itself. Testing file.path for truthiness
+        # instead used to build the full path -- reaching through job to
+        # project -- purely to throw it away.
+        file_elem.set("pathflag", str(file_obj.directory or ""))
 
         file_elem.set("jobparamname", file_obj.job_param_name or "")
 
@@ -345,6 +348,8 @@ def _export_file_use_table(
         # This is already covered by the above query since we're filtering by the using job
     else:
         file_uses = FileUse.objects.filter(job__project=project)
+
+    file_uses = file_uses.select_related("file", "job")
 
     for file_use in file_uses:
         fileuse_elem = ET.SubElement(fileuse_table, "fileuse")
@@ -404,6 +409,8 @@ def _export_file_import_table(
     else:
         file_imports = FileImport.objects.filter(file__job__project=project)
 
+    file_imports = file_imports.select_related("file")
+
     for file_import in file_imports:
         import_elem = ET.SubElement(import_table, "importfile")
 
@@ -429,6 +436,9 @@ def _export_job_key_value_tables(
     else:
         float_values = JobFloatValue.objects.filter(job__project=project)
         char_values = JobCharValue.objects.filter(job__project=project)
+
+    float_values = float_values.select_related("job", "key")
+    char_values = char_values.select_related("job", "key")
 
     # Export float values
     for float_value in float_values:
