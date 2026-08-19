@@ -271,15 +271,30 @@ export const installIpcHandlers = (
     "browse-path",
     async (
       _event,
-      opts: { mode?: "directory" | "file"; title?: string } = {}
+      opts: {
+        mode?: "directory" | "file";
+        title?: string;
+        message?: string;
+        buttonLabel?: string;
+      } = {}
     ): Promise<string | null> => {
       const mainWindow: BrowserWindow | null = getMainWindow();
       if (!mainWindow) return null;
-      const properties: Array<"openDirectory" | "openFile"> =
-        opts.mode === "file" ? ["openFile"] : ["openDirectory"];
+      // "createDirectory" gives the macOS panel its New Folder button; without
+      // it the user can only pick somewhere that already exists.
+      const properties: Array<
+        "openDirectory" | "openFile" | "createDirectory"
+      > =
+        opts.mode === "file"
+          ? ["openFile"]
+          : ["openDirectory", "createDirectory"];
       const result = await dialog.showOpenDialog(mainWindow, {
         properties,
         title: opts.title,
+        // macOS ignores `title` on an open panel, so anything the user needs to
+        // read has to go in `message`.
+        message: opts.message ?? opts.title,
+        buttonLabel: opts.buttonLabel,
       });
       if (result.canceled || result.filePaths.length === 0) return null;
       return result.filePaths[0];

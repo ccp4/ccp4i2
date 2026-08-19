@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import {
@@ -21,6 +21,7 @@ import {
   Clear,
   Delete,
   Download,
+  DriveFileMove,
   FolderOpen,
   Schedule,
   Science,
@@ -40,6 +41,8 @@ import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
 import { ProjectTagChips } from "./project-tag-chips";
 import { ViewMode, ViewModeToggle } from "./view-mode-toggle";
+import { MoveProjectDialog } from "./move-project-dialog";
+import { isElectron } from "../utils/platform";
 
 // Type for campaign info returned from API
 interface CampaignInfo {
@@ -89,6 +92,7 @@ const ProjectCard = React.memo(
     onToggleSelection,
     onNavigate,
     onExport,
+    onMove,
     onDelete,
   }: {
     project: Project;
@@ -96,6 +100,8 @@ const ProjectCard = React.memo(
     onToggleSelection: () => void;
     onNavigate: () => void;
     onExport: () => void;
+    /** Omitted in the web build, where there is no local filesystem to move to. */
+    onMove?: () => void;
     onDelete: () => void;
   }) => {
     const isRecent =
@@ -219,6 +225,24 @@ const ProjectCard = React.memo(
                 <Download fontSize="small" />
               </IconButton>
             </Tooltip>
+            {onMove && (
+              <Tooltip title="Move project on disk">
+                <IconButton
+                  className="action-button"
+                  size="small"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onMove();
+                  }}
+                  sx={{
+                    color: "primary.main",
+                    "&:hover": { bgcolor: "primary.50" },
+                  }}
+                >
+                  <DriveFileMove fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
             <Tooltip title="Delete project">
               <IconButton
                 className="action-button"
@@ -268,6 +292,14 @@ export default function ProjectsTable() {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const deleteDialog = useDeleteDialog();
   const { setMessage } = usePopcorn();
+  const [projectToMove, setProjectToMove] = useState<Project | null>(null);
+  // Moving a project means moving a directory on the machine running the
+  // server, with a native folder picker to choose where. Neither exists in the
+  // browser build, so the action is desktop-only. Resolved in an effect rather
+  // than inline so the server-rendered markup and the first client render
+  // agree.
+  const [canMoveProjects, setCanMoveProjects] = useState(false);
+  useEffect(() => setCanMoveProjects(isElectron()), []);
 
   // Get campaign info for all projects
   const projectIds = useMemo(
@@ -572,7 +604,7 @@ export default function ProjectsTable() {
       {
         key: "actions",
         label: "",
-        width: 100,
+        width: canMoveProjects ? 140 : 100,
         render: (_, project) => (
           <Stack
             direction="row"
@@ -589,6 +621,17 @@ export default function ProjectsTable() {
                 <Download fontSize="small" />
               </IconButton>
             </Tooltip>
+            {canMoveProjects && (
+              <Tooltip title="Move project on disk">
+                <IconButton
+                  size="small"
+                  onClick={() => setProjectToMove(project)}
+                  sx={{ color: "primary.main" }}
+                >
+                  <DriveFileMove fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
             <Tooltip title="Delete project">
               <IconButton
                 size="small"
@@ -602,7 +645,7 @@ export default function ProjectsTable() {
         ),
       },
     ],
-    [selectedIds, campaignInfo, router]
+    [selectedIds, campaignInfo, router, canMoveProjects]
   );
 
   // Card renderer for virtualized grid
@@ -618,10 +661,13 @@ export default function ProjectsTable() {
         }}
         onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
         onExport={() => exportProject(project)}
+        onMove={
+          canMoveProjects ? () => setProjectToMove(project) : undefined
+        }
         onDelete={() => deleteProjects([project])}
       />
     ),
-    [selectedIds, router]
+    [selectedIds, router, canMoveProjects]
   );
 
   if (projects === undefined) return <LinearProgress />;
@@ -803,6 +849,15 @@ export default function ProjectsTable() {
               Try adjusting your search term
             </Typography>
           </Box>
+        )}
+
+        {canMoveProjects && (
+          <MoveProjectDialog
+            project={projectToMove}
+            open={Boolean(projectToMove)}
+            onClose={() => setProjectToMove(null)}
+            onMoved={() => mutate()}
+          />
         )}
       </Box>
     </Box>

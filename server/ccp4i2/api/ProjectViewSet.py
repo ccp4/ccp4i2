@@ -778,6 +778,124 @@ class ProjectViewSet(ModelViewSet):
         methods=["post"],
         serializer_class=serializers.ProjectSerializer,
     )
+    def move(self, request, pk=None):
+        """
+        Move a project to a new location on disk.
+
+        The project directory is relocated and every absolute path that CCP4i2
+        still reads back - job parameters, Coot scripts, ccp4mg scenes - is
+        rebased onto the new root. Cached reports are deleted and regenerate on
+        demand; logs and command scripts are left as the historical record they
+        are.
+
+        POST body:
+            directory (str): destination path, including the project directory
+                name itself.
+            dry_run (bool, optional): report what would change without doing it.
+
+        Returns a summary of the files rewritten, plus ``stale_roots``: any
+        other locations still referenced inside the project, which a follow-up
+        ``repair_paths`` call can clean up.
+        """
+        from ..db.move_project import MoveProjectError, dry_run_move, move_project
+
+        the_project = self.get_object()
+        destination = request.data.get("directory")
+        if not destination:
+            return api_error("No destination directory supplied", status=400)
+
+        dry_run = str(request.data.get("dry_run", "")).lower() in ("1", "true", "yes")
+
+        try:
+            if dry_run:
+                return api_success(dry_run_move(the_project, pathlib.Path(destination)))
+            return api_success(move_project(the_project, pathlib.Path(destination)))
+        except MoveProjectError as err:
+            logger.warning("Refused to move project %s: %s", the_project.name, err)
+            return api_error(str(err), status=400)
+        except Exception as err:
+            logger.exception(
+                "Failed to move project %s to %s", the_project.name, destination
+            )
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=True,
+        methods=["post"],
+        url_path="repair_paths",
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def repair_paths(self, request, pk=None):
+        """
+        Rewrite stale absolute paths without moving anything.
+
+        For the case where the project directory never moved but its absolute
+        path changed underneath the user - a renamed mount point, a
+        reorganised share - or where an earlier move or import left references
+        to a previous location behind.
+
+        POST body:
+            old_directory (str): the root to replace.
+            dry_run (bool, optional): report what would change without doing it.
+        """
+        from ..db.move_project import MoveProjectError, repair_project_paths
+
+        the_project = self.get_object()
+        old_directory = request.data.get("old_directory")
+        if not old_directory:
+            return api_error("No old_directory supplied", status=400)
+
+        dry_run = str(request.data.get("dry_run", "")).lower() in ("1", "true", "yes")
+
+        try:
+            return api_success(
+                repair_project_paths(the_project, old_directory, dry_run=dry_run)
+            )
+        except MoveProjectError as err:
+            logger.warning("Refused to repair project %s: %s", the_project.name, err)
+            return api_error(str(err), status=400)
+        except Exception as err:
+            logger.exception("Failed to repair paths for project %s", the_project.name)
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path="stale_roots",
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def stale_roots(self, request, pk=None):
+        """
+        List locations other than the project's own that it still refers to.
+
+        Each entry is a candidate ``old_directory`` for ``repair_paths``.
+        """
+        from ..db.move_project import find_stale_roots
+
+        the_project = self.get_object()
+        directory = pathlib.Path(the_project.directory)
+        if not directory.is_dir():
+            return api_error(
+                f"Project directory {directory} does not exist", status=400
+            )
+        try:
+            return api_success(
+                {
+                    "directory": str(directory),
+                    "stale_roots": find_stale_roots(directory, str(directory)),
+                }
+            )
+        except Exception as err:
+            logger.exception(
+                "Failed to scan for stale roots in project %s", the_project.name
+            )
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=True,
+        methods=["post"],
+        serializer_class=serializers.ProjectSerializer,
+    )
     def export(self, request, pk=None):
         the_project = models.Project.objects.get(pk=pk)
 

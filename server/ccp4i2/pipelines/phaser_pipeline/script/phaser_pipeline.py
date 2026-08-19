@@ -55,7 +55,10 @@ class phaser_pipeline(CPluginScript):
                     #setattr(self.phaserPlugin.container.keywords,attrName,attr)
                     getattr(self.phaserPlugin.container.keywords,attrName).set(attr)
         self.phaserPlugin.container.inputData.set(self.container.inputData)
-        self.phaserPlugin.container.inputData.KILLFILEPATH.set(os.path.join(self.getWorkDirectory(),'INTERRUPT'))
+        # KILLFILEPATH is deliberately left unset: each phaser wrapper defaults to
+        # <its own work directory>/INTERRUPT, matching CPluginScript.isInterrupted().
+        # Setting it here baked an absolute path into the subjob's params.xml, which
+        # then went stale whenever the project was moved on disk.
         self.oldXMLLength = 0
         self.phaserPlugin.callbackObject.addResponder(self.phaserXMLUpdated)
         rv = self.phaserPlugin.process()

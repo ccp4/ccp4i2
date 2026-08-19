@@ -221,9 +221,9 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
             map.annotation.set('Phased map')
             map.subType = 1
         if len(self.container.outputData.MAPOUT)>0:
-            self.container.outputData.MAPOUT[0].annotation.set(str(self.container.outputData.MAPOUT[0]) + ' - original hand')
+            self.container.outputData.MAPOUT[0].annotation.set(str(self.container.outputData.MAPOUT[0].annotation) + ' - original hand')
         if len(self.container.outputData.MAPOUT)>1:
-            self.container.outputData.MAPOUT[1].annotation.set(str(self.container.outputData.MAPOUT[1]) + ' - reversed hand')
+            self.container.outputData.MAPOUT[1].annotation.set(str(self.container.outputData.MAPOUT[1].annotation) + ' - reversed hand')
 
         while len(self.container.outputData.HKLOUT) > 0:
             self.container.outputData.HKLOUT.remove(self.container.outputData.HKLOUT[-1])
@@ -241,8 +241,8 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
             llgMap.contentFlag = 1
             llgMap.subType = 2
         if len(self.container.outputData.LLGMAPOUT)>0:
-            self.container.outputData.LLGMAPOUT[0].annotation.set(str(self.container.outputData.LLGMAPOUT[0]) + ' - original hand')
+            self.container.outputData.LLGMAPOUT[0].annotation.set(str(self.container.outputData.LLGMAPOUT[0].annotation) + ' - original hand')
         if len(self.container.outputData.LLGMAPOUT)>1:
-            self.container.outputData.LLGMAPOUT[1].annotation.set(str(self.container.outputData.LLGMAPOUT[1]) + ' - reversed hand')
+            self.container.outputData.LLGMAPOUT[1].annotation.set(str(self.container.outputData.LLGMAPOUT[1].annotation) + ' - reversed hand')
         
         return CPluginScript.SUCCEEDED
