@@ -12,11 +12,16 @@ from ...db.move_project import (
     JOURNAL_NAME,
     MoveProjectError,
     apply_rebase,
+    directory_is_missing,
     dry_run_move,
     find_stale_roots,
+    looks_like_a_project,
     move_project,
     path_variants,
     plan_rebase,
+    plan_root_rebase,
+    rebase_projects_root,
+    relocate_project,
     repair_project_paths,
     substitution_map,
 )
@@ -450,3 +455,213 @@ class MoveProjectTest(TestCase):
         self.assertEqual(len(summary["rewrites"]), 1)
         self.assertEqual(summary["rewritten"], 0)
         self.assertIn(stale_root, params.read_text())
+
+
+@override_settings(
+    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_RELOCATE_TEST_DIR"
+)
+class RelocateProjectTest(TestCase):
+    """The database is intact; the directory is not where it says it is.
+
+    A renamed drive or a projects folder moved outside CCP4i2. Nothing needs
+    moving - the record needs correcting, and the paths inside rebasing.
+    """
+
+    def setUp(self):
+        self.projects_dir = Path(settings.CCP4I2_PROJECTS_DIR)
+        self.projects_dir.mkdir(parents=True, exist_ok=True)
+
+        # Where the project really is.
+        self.actual = self.projects_dir / "NewDriveName" / "MyProject"
+        self.actual.mkdir(parents=True)
+        self.stale = "/Volumes/OldDriveName/MyProject"
+        make_project_tree(self.actual, self.stale)
+
+        # What the database still believes.
+        self.project = Project.objects.create(
+            name="MyProject", directory=self.stale
+        )
+
+    def tearDown(self):
+        rmtree(self.projects_dir, ignore_errors=True)
+
+    def test_missing_directory_is_detected(self):
+        self.assertTrue(directory_is_missing(self.project))
+
+    def test_relocate_repoints_and_rebases(self):
+        summary = relocate_project(self.project, self.actual)
+
+        self.project.refresh_from_db()
+        self.assertEqual(self.project.directory, str(self.actual))
+        self.assertTrue(summary["directory_was_missing"])
+        self.assertEqual(summary["rewritten"], 4)
+
+        params = (self.actual / "CCP4_JOBS" / "job_1" / "params.xml").read_text()
+        self.assertIn(str(self.actual), params)
+        self.assertNotIn(self.stale, params)
+        self.assertEqual(summary["stale_roots"], {})
+
+    def test_relocate_moves_nothing(self):
+        relocate_project(self.project, self.actual)
+        self.assertTrue((self.actual / "CCP4_JOBS" / "job_1").is_dir())
+
+    def test_dry_run_changes_nothing(self):
+        summary = relocate_project(self.project, self.actual, dry_run=True)
+
+        self.assertEqual(len(summary["rewrites"]), 4)
+        self.assertEqual(summary["rewritten"], 0)
+        self.project.refresh_from_db()
+        self.assertEqual(self.project.directory, self.stale)
+
+    def test_refuses_a_folder_that_is_not_a_project(self):
+        elsewhere = self.projects_dir / "Downloads"
+        elsewhere.mkdir()
+        with self.assertRaises(MoveProjectError) as caught:
+            relocate_project(self.project, elsewhere)
+        self.assertIn("does not look like", str(caught.exception))
+
+    def test_refuses_a_directory_another_project_claims(self):
+        Project.objects.create(name="Other", directory=str(self.actual))
+        with self.assertRaises(MoveProjectError):
+            relocate_project(self.project, self.actual)
+
+    def test_looks_like_a_project(self):
+        self.assertTrue(looks_like_a_project(self.actual))
+        self.assertFalse(looks_like_a_project(self.projects_dir))
+
+    def test_repair_points_at_relocate_when_the_directory_is_gone(self):
+        """The message must not send the user somewhere they cannot go."""
+        with self.assertRaises(MoveProjectError) as caught:
+            repair_project_paths(self.project, "/somewhere/else")
+        self.assertIn("re-point", str(caught.exception).lower())
+
+
+@override_settings(
+    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_ROOT_REBASE_TEST_DIR"
+)
+class RebaseProjectsRootTest(TestCase):
+    """One drive rename, every project stale at once."""
+
+    def setUp(self):
+        self.base = Path(settings.CCP4I2_PROJECTS_DIR)
+        self.base.mkdir(parents=True, exist_ok=True)
+        self.old_root = "/Volumes/OldName/CCP4I2_PROJECTS"
+        self.new_root = self.base / "NewName" / "CCP4I2_PROJECTS"
+        self.new_root.mkdir(parents=True)
+
+        self.projects = []
+        for name in ("Alpha", "Beta", "Gamma"):
+            directory = self.new_root / name
+            directory.mkdir()
+            make_project_tree(directory, f"{self.old_root}/{name}")
+            self.projects.append(
+                Project.objects.create(
+                    name=name, directory=f"{self.old_root}/{name}"
+                )
+            )
+        # One project that was never on the renamed drive.
+        self.untouched_dir = self.base / "Local" / "Delta"
+        self.untouched_dir.mkdir(parents=True)
+        make_project_tree(self.untouched_dir, str(self.untouched_dir))
+        self.untouched = Project.objects.create(
+            name="Delta", directory=str(self.untouched_dir)
+        )
+
+    def tearDown(self):
+        rmtree(self.base, ignore_errors=True)
+
+    def test_plan_maps_projects_onto_the_new_root(self):
+        plan = plan_root_rebase(self.old_root, str(self.new_root))
+
+        self.assertEqual({e["name"] for e in plan["matched"]}, {"Alpha", "Beta", "Gamma"})
+        self.assertEqual(plan["missing"], [])
+        self.assertEqual({e["name"] for e in plan["unaffected"]}, {"Delta"})
+
+    def test_plan_reports_projects_it_cannot_find(self):
+        rmtree(self.new_root / "Beta")
+        plan = plan_root_rebase(self.old_root, str(self.new_root))
+
+        self.assertEqual({e["name"] for e in plan["matched"]}, {"Alpha", "Gamma"})
+        self.assertEqual([e["name"] for e in plan["missing"]], ["Beta"])
+        self.assertEqual(plan["missing"][0]["reason"], "not found")
+
+    def test_dry_run_changes_nothing(self):
+        summary = rebase_projects_root(
+            self.old_root, str(self.new_root), dry_run=True
+        )
+        self.assertEqual(summary["relocated"], [])
+        for project in self.projects:
+            project.refresh_from_db()
+            self.assertTrue(project.directory.startswith(self.old_root))
+
+    def test_all_three_projects_are_repointed(self):
+        summary = rebase_projects_root(self.old_root, str(self.new_root))
+
+        self.assertEqual(len(summary["relocated"]), 3)
+        self.assertEqual(summary["failed"], [])
+        for project in self.projects:
+            project.refresh_from_db()
+            self.assertEqual(
+                project.directory, str(self.new_root / project.name)
+            )
+            self.assertFalse(directory_is_missing(project))
+
+    def test_unrelated_project_is_left_alone(self):
+        rebase_projects_root(self.old_root, str(self.new_root))
+        self.untouched.refresh_from_db()
+        self.assertEqual(self.untouched.directory, str(self.untouched_dir))
+
+    def test_a_missing_project_does_not_abandon_the_others(self):
+        rmtree(self.new_root / "Beta")
+        summary = rebase_projects_root(self.old_root, str(self.new_root))
+
+        self.assertEqual(len(summary["relocated"]), 2)
+        self.assertEqual([e["name"] for e in summary["missing"]], ["Beta"])
+        beta = Project.objects.get(name="Beta")
+        self.assertTrue(directory_is_missing(beta))
+
+    def test_paths_inside_the_files_are_rebased_too(self):
+        rebase_projects_root(self.old_root, str(self.new_root))
+        params = (
+            self.new_root / "Alpha" / "CCP4_JOBS" / "job_1" / "params.xml"
+        ).read_text()
+        self.assertIn(str(self.new_root / "Alpha"), params)
+        self.assertNotIn(self.old_root, params)
+
+    def test_endpoints(self):
+        from django.contrib.auth import get_user_model
+        from rest_framework.test import APIClient
+
+        client = APIClient()
+        client.force_authenticate(get_user_model().objects.create(username="tester"))
+
+        broken = client.get("/api/ccp4i2/projects/missing_directories/")
+        self.assertEqual(broken.status_code, 200, broken.data)
+        self.assertEqual(broken.data["data"]["count"], 3)
+
+        preview = client.post(
+            "/api/ccp4i2/projects/rebase_root/",
+            {
+                "old_root": self.old_root,
+                "new_root": str(self.new_root),
+                "dry_run": True,
+            },
+            format="json",
+        )
+        self.assertEqual(preview.status_code, 200, preview.data)
+        self.assertEqual(len(preview.data["data"]["matched"]), 3)
+
+        applied = client.post(
+            "/api/ccp4i2/projects/rebase_root/",
+            {
+                "old_root": self.old_root,
+                "new_root": str(self.new_root),
+                "update_preference": False,
+            },
+            format="json",
+        )
+        self.assertEqual(applied.status_code, 200, applied.data)
+        self.assertEqual(len(applied.data["data"]["relocated"]), 3)
+
+        after = client.get("/api/ccp4i2/projects/missing_directories/")
+        self.assertEqual(after.data["data"]["count"], 0)

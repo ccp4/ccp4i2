@@ -641,8 +641,9 @@ def repair_project_paths(
 
     if not Path(new_root).is_dir():
         raise MoveProjectError(
-            f"Project directory {new_root} does not exist. Point the project at its "
-            "current location first."
+            f"Project directory {new_root} does not exist, so there is nothing here "
+            "to repair. If the directory is intact but its path changed, re-point "
+            "the project at its current location instead."
         )
     if old_root == new_root:
         raise MoveProjectError(
@@ -662,6 +663,235 @@ def repair_project_paths(
     summary["rewritten"] = len(rewritten)
     summary["stale_roots"] = find_stale_roots(Path(new_root), new_root)
     return summary
+
+
+# ---------------------------------------------------------------------------
+# Re-pointing a project whose recorded directory has gone stale
+# ---------------------------------------------------------------------------
+
+
+def directory_is_missing(project: Project) -> bool:
+    """True when the database points somewhere that is no longer there."""
+    return not Path(project.directory).is_dir()
+
+
+def looks_like_a_project(directory: Path) -> bool:
+    """Cheap sanity check that ``directory`` really is a CCP4i2 project.
+
+    Guards against a mistyped or mis-picked folder: re-pointing a project at
+    somebody's Downloads folder and then rewriting paths through it would be a
+    poor way to find out.
+    """
+    return any((directory / marker).is_dir() for marker in PROJECT_MARKERS)
+
+
+def preflight_relocate(project: Project, new_directory: Path) -> Path:
+    """Validate a re-point and return the resolved directory."""
+    new_directory = Path(new_directory).expanduser()
+    if not new_directory.is_absolute():
+        raise MoveProjectError(f"{new_directory} must be an absolute path.")
+    new_directory = Path(os.path.normpath(str(new_directory)))
+
+    if not new_directory.is_dir():
+        raise MoveProjectError(f"{new_directory} does not exist.")
+    if not looks_like_a_project(new_directory):
+        raise MoveProjectError(
+            f"{new_directory} does not look like a CCP4i2 project directory: "
+            "none of CCP4_JOBS, CCP4_IMPORTED_FILES, CCP4_COOT or "
+            "CCP4_PROJECT_FILES is present."
+        )
+    if str(new_directory) == str(Path(project.directory)):
+        raise MoveProjectError(
+            "The project is already recorded at that location."
+        )
+
+    clash = (
+        Project.objects.filter(directory=str(new_directory))
+        .exclude(pk=project.pk)
+        .first()
+    )
+    if clash is not None:
+        raise MoveProjectError(
+            f"Project '{clash.name}' is already registered at {new_directory}."
+        )
+
+    running = _running_jobs(project)
+    if running:
+        raise MoveProjectError(
+            "Cannot re-point a project with jobs still running or queued "
+            f"(job {', '.join(str(number) for number in running[:5])})."
+        )
+
+    return new_directory
+
+
+def relocate_project(
+    project: Project, new_directory: Path, dry_run: bool = False
+) -> Dict:
+    """Record that a project now lives somewhere else, and rebase its paths.
+
+    Nothing is moved. This is for the case where the directory is intact but
+    its absolute path changed underneath the user -- a drive renamed, a share
+    remounted elsewhere, a projects folder moved with the Finder -- so the
+    database is pointing at somewhere that no longer exists.
+
+    The move operation cannot help there: it needs the files to still be where
+    the database says they are.
+    """
+    new_directory = preflight_relocate(project, new_directory)
+    old_root = str(Path(project.directory))
+    new_root = str(new_directory)
+
+    plan = plan_rebase(new_directory, old_root, new_root)
+    summary = plan.as_dict(relative_to=new_directory)
+    summary.update(
+        {
+            "source": old_root,
+            "destination": new_root,
+            "dry_run": dry_run,
+            "directory_was_missing": not Path(old_root).is_dir(),
+        }
+    )
+
+    if dry_run:
+        summary["rewritten"] = 0
+        summary["stale_roots"] = find_stale_roots(new_directory, new_root)
+        return summary
+
+    rewritten: List[Path] = []
+    try:
+        rewritten = apply_rebase(plan)
+        with transaction.atomic():
+            project.directory = new_root
+            project.save(update_fields=["directory"])
+    except Exception as err:
+        logger.exception("Re-pointing project %s failed; rolling back", project.name)
+        undo_rebase(rewritten, old_root, new_root)
+        raise MoveProjectError(
+            f"Could not re-point the project, and the rewrites were undone: {err}"
+        ) from err
+
+    logger.info("Re-pointed project '%s' from %s to %s", project.name, old_root, new_root)
+    summary["rewritten"] = len(rewritten)
+    summary["stale_roots"] = find_stale_roots(new_directory, new_root)
+    return summary
+
+
+# ---------------------------------------------------------------------------
+# The whole store moved: one drive rename, every project stale
+# ---------------------------------------------------------------------------
+
+
+def _under(root: str, candidate: str) -> bool:
+    """True when ``candidate`` is ``root`` itself or sits beneath it."""
+    root = root.rstrip("/\\")
+    if candidate == root:
+        return True
+    return candidate.startswith(root + "/") or candidate.startswith(root + "\\")
+
+
+def plan_root_rebase(old_root: str, new_root: str) -> Dict:
+    """Work out which projects a change of storage root accounts for.
+
+    Renaming a drive or moving a projects folder invalidates every project at
+    once, and re-pointing nineteen of them one at a time is no kind of recovery
+    path. Given the old and new locations of the store, this maps each project
+    beneath the old root onto its counterpart under the new one and reports
+    which of them can actually be found there.
+    """
+    old_root = str(Path(old_root)).rstrip("/\\")
+    new_root = str(Path(new_root)).rstrip("/\\")
+
+    matched, missing, unaffected = [], [], []
+    for project in Project.objects.all().order_by("name"):
+        directory = str(Path(project.directory))
+        if not _under(old_root, directory):
+            unaffected.append({"id": project.pk, "name": project.name})
+            continue
+        remainder = directory[len(old_root):].lstrip("/\\")
+        candidate = Path(new_root) / remainder if remainder else Path(new_root)
+        entry = {
+            "id": project.pk,
+            "name": project.name,
+            "old_directory": directory,
+            "new_directory": str(candidate),
+        }
+        if candidate.is_dir() and looks_like_a_project(candidate):
+            matched.append(entry)
+        else:
+            entry["reason"] = (
+                "not found" if not candidate.is_dir() else "not a project directory"
+            )
+            missing.append(entry)
+
+    return {
+        "old_root": old_root,
+        "new_root": new_root,
+        "matched": matched,
+        "missing": missing,
+        "unaffected": unaffected,
+    }
+
+
+def rebase_projects_root(
+    old_root: str, new_root: str, dry_run: bool = False
+) -> Dict:
+    """Re-point every project that moved with a change of storage root.
+
+    Projects that cannot be found under the new root are reported and left
+    alone; one project failing does not abandon the rest, since a partial
+    recovery is better than none and the survivors can be retried.
+    """
+    summary = plan_root_rebase(old_root, new_root)
+    summary["dry_run"] = dry_run
+
+    if dry_run:
+        summary["relocated"] = []
+        summary["failed"] = []
+        return summary
+
+    relocated, failed = [], []
+    for entry in summary["matched"]:
+        project = Project.objects.get(pk=entry["id"])
+        try:
+            result = relocate_project(project, Path(entry["new_directory"]))
+            relocated.append({**entry, "rewritten": result["rewritten"]})
+        except Exception as err:
+            logger.exception("Could not re-point project %s", project.name)
+            failed.append({**entry, "error": str(err)})
+
+    summary["relocated"] = relocated
+    summary["failed"] = failed
+    logger.info(
+        "Re-pointed %d project(s) from %s to %s (%d failed, %d not found)",
+        len(relocated),
+        summary["old_root"],
+        summary["new_root"],
+        len(failed),
+        len(summary["missing"]),
+    )
+    return summary
+
+
+def update_projects_dir_preference(old_root: str, new_root: str) -> bool:
+    """Follow the store move in ``preferences.json`` as well.
+
+    Without this the database is repaired but the next new project is still
+    created in the location that no longer exists.
+    """
+    from ..config import preferences
+
+    prefs = preferences.load_preferences()
+    current = prefs.get("projectsDir")
+    if not current or not _under(str(Path(old_root)).rstrip("/\\"), str(Path(current))):
+        return False
+
+    remainder = str(Path(current))[len(str(Path(old_root)).rstrip("/\\")):].lstrip("/\\")
+    updated = str(Path(new_root) / remainder) if remainder else str(Path(new_root))
+    prefs["projectsDir"] = updated
+    preferences.save_preferences(prefs)
+    logger.info("Updated projectsDir preference from %s to %s", current, updated)
+    return True
 
 
 # ---------------------------------------------------------------------------

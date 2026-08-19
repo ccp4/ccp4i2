@@ -103,6 +103,31 @@ operation reports these as `stale_roots` — a map of root to reference count �
 and `repair_project_paths` rewrites any one of them onto the current directory,
 in place, moving nothing.
 
+## When the database itself points nowhere
+
+The three operations above all assume the project directory is where
+`Project.directory` says it is. A renamed drive breaks that assumption: the
+database is intact, the files are intact, but the recorded path names a place
+that no longer exists. Moving cannot help — there is nothing at the source to
+move — and repairing cannot help either, because it rebases *onto* the recorded
+directory.
+
+`relocate_project` handles it: point a project at where its directory actually
+is now, update the record, and rebase the paths inside from the old root to the
+new one. Nothing is moved. The destination is checked for one of `CCP4_JOBS`,
+`CCP4_IMPORTED_FILES`, `CCP4_COOT` or `CCP4_PROJECT_FILES` first, so a mistyped
+or mis-picked folder is refused rather than rewritten through.
+
+A drive rename invalidates *every* project at once, and re-pointing nineteen of
+them one at a time is no kind of recovery path. `rebase_projects_root` takes the
+old and new locations of the store, maps each project beneath the old root onto
+its counterpart under the new one, and re-points the ones that are actually
+there. Projects that cannot be found are reported and left alone — one failure
+does not abandon the rest — and projects that were never on that drive are
+untouched. `update_projects_dir_preference` follows the move in
+`preferences.json` as well, so the next new project is not created back in the
+location that has gone.
+
 ## API
 
 | Endpoint | Purpose |
@@ -110,14 +135,23 @@ in place, moving nothing.
 | `POST /projects/{id}/move/` | `{directory, dry_run?}` — relocate and rebase |
 | `POST /projects/{id}/repair_paths/` | `{old_directory, dry_run?}` — rebase in place |
 | `GET /projects/{id}/stale_roots/` | roots the project still refers to |
+| `POST /projects/{id}/relocate/` | `{directory, dry_run?}` — re-point a project whose directory has gone |
+| `GET /projects/missing_directories/` | projects whose recorded directory is not on disk |
+| `POST /projects/rebase_root/` | `{old_root, new_root, dry_run?, update_preference?}` — the drive-rename case |
 
 `PATCH`ing `Project.directory` directly is rejected by the serializer: it would
 leave the record pointing at a directory still sitting somewhere else.
 
-The frontend surfaces all of this through `move-project-dialog.tsx`, reached
-from the move icon on each row and card of the projects table. It always runs
-the dry run first, so the user sees exactly which files will change before
-anything is touched.
+The frontend surfaces moving and repairing through `move-project-dialog.tsx`,
+reached from the move icon on each row and card of the projects table, and
+reconnection through `reconnect-projects-dialog.tsx`, reached from a banner that
+appears when any project directory is missing. Both run the dry run
+automatically, so the user sees what will change before anything is touched.
+Projects that cannot be found are flagged in the list and do not offer a move,
+which could not work until they are reconnected.
+
+Both dialogs are desktop-only: the directories live on the machine running the
+server, and choosing where they are needs a native folder picker.
 
 ## Known gap: importing a project zip
 
