@@ -93,6 +93,21 @@ class ProjectSerializer(ModelSerializer):
                 attrs["directory"] = str(
                     Path(settings.CCP4I2_PROJECTS_DIR) / slugify(attrs["name"])
                 )
+        elif "directory" in attrs and attrs["directory"] != instance.directory:
+            # Changing this field alone would leave the record pointing at a
+            # directory that is still sitting somewhere else, with every job's
+            # baked-in absolute path stale. Relocating a project is a job for
+            # POST /projects/{id}/move/, which moves the bytes and rebases the
+            # paths as one operation.
+            raise ValidationError(
+                {
+                    "directory": (
+                        "A project's directory cannot be changed directly. Use "
+                        "the project move endpoint, which relocates the files "
+                        "and updates the paths inside them."
+                    )
+                }
+            )
         return super().validate(attrs)
 
     def create(self, validated_data):

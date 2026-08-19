@@ -1,9 +1,12 @@
 "use client";
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import {
+  Alert,
+  AlertTitle,
   Box,
+  Button,
   Card,
   CardContent,
   Checkbox,
@@ -21,7 +24,9 @@ import {
   Clear,
   Delete,
   Download,
+  DriveFileMove,
   FolderOpen,
+  LinkOff,
   Schedule,
   Science,
   StarBorder,
@@ -40,6 +45,9 @@ import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
 import { ProjectTagChips } from "./project-tag-chips";
 import { ViewMode, ViewModeToggle } from "./view-mode-toggle";
+import { MoveProjectDialog } from "./move-project-dialog";
+import { ReconnectProjectsDialog } from "./reconnect-projects-dialog";
+import { isElectron } from "../utils/platform";
 
 // Type for campaign info returned from API
 interface CampaignInfo {
@@ -89,6 +97,7 @@ const ProjectCard = React.memo(
     onToggleSelection,
     onNavigate,
     onExport,
+    onMove,
     onDelete,
   }: {
     project: Project;
@@ -96,6 +105,8 @@ const ProjectCard = React.memo(
     onToggleSelection: () => void;
     onNavigate: () => void;
     onExport: () => void;
+    /** Omitted in the web build, where there is no local filesystem to move to. */
+    onMove?: () => void;
     onDelete: () => void;
   }) => {
     const isRecent =
@@ -219,6 +230,24 @@ const ProjectCard = React.memo(
                 <Download fontSize="small" />
               </IconButton>
             </Tooltip>
+            {onMove && (
+              <Tooltip title="Move project on disk">
+                <IconButton
+                  className="action-button"
+                  size="small"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onMove();
+                  }}
+                  sx={{
+                    color: "primary.main",
+                    "&:hover": { bgcolor: "primary.50" },
+                  }}
+                >
+                  <DriveFileMove fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
             <Tooltip title="Delete project">
               <IconButton
                 className="action-button"
@@ -268,6 +297,30 @@ export default function ProjectsTable() {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const deleteDialog = useDeleteDialog();
   const { setMessage } = usePopcorn();
+  const [projectToMove, setProjectToMove] = useState<Project | null>(null);
+  // Moving a project means moving a directory on the machine running the
+  // server, with a native folder picker to choose where. Neither exists in the
+  // browser build, so the action is desktop-only. Resolved in an effect rather
+  // than inline so the server-rendered markup and the first client render
+  // agree.
+  const [canMoveProjects, setCanMoveProjects] = useState(false);
+  useEffect(() => setCanMoveProjects(isElectron()), []);
+
+  const [reconnectOpen, setReconnectOpen] = useState(false);
+  // Projects whose recorded directory is no longer on disk - a renamed drive,
+  // a projects folder moved outside CCP4i2. Desktop only: on the web the
+  // directories live on the server and the user cannot go and find them.
+  const { data: missingResponse, mutate: refreshMissing } = api.get<any>(
+    canMoveProjects ? "projects/missing_directories/" : null
+  );
+  const brokenProjects = useMemo(
+    () => (missingResponse?.data ?? missingResponse)?.projects ?? [],
+    [missingResponse]
+  );
+  const brokenIds = useMemo(
+    () => new Set<number>(brokenProjects.map((p: any) => p.id)),
+    [brokenProjects]
+  );
 
   // Get campaign info for all projects
   const projectIds = useMemo(
@@ -490,9 +543,16 @@ export default function ProjectsTable() {
                 )}
               </Box>
               <Box sx={{ minWidth: 0 }}>
-                <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
-                  {project.name}
-                </Typography>
+                <Stack direction="row" spacing={0.5} alignItems="center">
+                  <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
+                    {project.name}
+                  </Typography>
+                  {brokenIds.has(project.id) && (
+                    <Tooltip title="This project's folder cannot be found on disk">
+                      <LinkOff sx={{ fontSize: 16, color: "warning.main" }} />
+                    </Tooltip>
+                  )}
+                </Stack>
                 <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
                   {new Date(project.last_access).getTime() >
                     Date.now() - 7 * 24 * 60 * 60 * 1000 && (
@@ -572,7 +632,7 @@ export default function ProjectsTable() {
       {
         key: "actions",
         label: "",
-        width: 100,
+        width: canMoveProjects ? 140 : 100,
         render: (_, project) => (
           <Stack
             direction="row"
@@ -589,6 +649,17 @@ export default function ProjectsTable() {
                 <Download fontSize="small" />
               </IconButton>
             </Tooltip>
+            {canMoveProjects && !brokenIds.has(project.id) && (
+              <Tooltip title="Move project on disk">
+                <IconButton
+                  size="small"
+                  onClick={() => setProjectToMove(project)}
+                  sx={{ color: "primary.main" }}
+                >
+                  <DriveFileMove fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
             <Tooltip title="Delete project">
               <IconButton
                 size="small"
@@ -602,7 +673,7 @@ export default function ProjectsTable() {
         ),
       },
     ],
-    [selectedIds, campaignInfo, router]
+    [selectedIds, campaignInfo, router, canMoveProjects, brokenIds]
   );
 
   // Card renderer for virtualized grid
@@ -618,10 +689,15 @@ export default function ProjectsTable() {
         }}
         onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
         onExport={() => exportProject(project)}
+        onMove={
+          canMoveProjects && !brokenIds.has(project.id)
+            ? () => setProjectToMove(project)
+            : undefined
+        }
         onDelete={() => deleteProjects([project])}
       />
     ),
-    [selectedIds, router]
+    [selectedIds, router, canMoveProjects, brokenIds]
   );
 
   if (projects === undefined) return <LinearProgress />;
@@ -647,6 +723,30 @@ export default function ProjectsTable() {
         overflow: "hidden",
       }}
     >
+      {brokenProjects.length > 0 && (
+        <Alert
+          severity="warning"
+          icon={<LinkOff />}
+          sx={{ mb: 2, flexShrink: 0 }}
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => setReconnectOpen(true)}
+            >
+              Reconnect
+            </Button>
+          }
+        >
+          <AlertTitle>
+            {brokenProjects.length} project
+            {brokenProjects.length === 1 ? "" : "s"} cannot be found on disk
+          </AlertTitle>
+          If a drive was renamed or the projects folder moved, say where they
+          are now and they will be reconnected. Nothing is moved or deleted.
+        </Alert>
+      )}
+
       {/* Header with search, view toggle, and selection actions */}
       <Box sx={{ mb: 2, flexShrink: 0 }}>
         {selectedIds.size === 0 ? (
@@ -803,6 +903,29 @@ export default function ProjectsTable() {
               Try adjusting your search term
             </Typography>
           </Box>
+        )}
+
+        {canMoveProjects && (
+          <>
+            <MoveProjectDialog
+              project={projectToMove}
+              open={Boolean(projectToMove)}
+              onClose={() => setProjectToMove(null)}
+              onMoved={() => {
+                mutate();
+                refreshMissing();
+              }}
+            />
+            <ReconnectProjectsDialog
+              open={reconnectOpen}
+              onClose={() => setReconnectOpen(false)}
+              brokenProjects={brokenProjects}
+              onReconnected={() => {
+                mutate();
+                refreshMissing();
+              }}
+            />
+          </>
         )}
       </Box>
     </Box>

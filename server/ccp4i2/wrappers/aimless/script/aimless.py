@@ -406,8 +406,16 @@ class aimless(CPluginScript):
 
         print("outputOptions:", self.container.outputData.HKLOUT_BASENAME)        
 
+        # HKLOUT_BASENAME is stored as a bare basename, never an absolute path, so
+        # that params.xml stays portable when the project is moved on disk. Values
+        # inherited from older jobs may be absolute - strip them back to a basename.
         if not self.container.outputData.HKLOUT_BASENAME.isSet():
-            self.container.outputData.HKLOUT_BASENAME = os.path.join(self.getWorkDirectory(),"HKLOUT")
+            self.container.outputData.HKLOUT_BASENAME = "HKLOUT"
+        else:
+            self.container.outputData.HKLOUT_BASENAME = os.path.basename(
+                str(self.container.outputData.HKLOUT_BASENAME))
+        hkloutBase = os.path.join(self.getWorkDirectory(),
+                                  str(self.container.outputData.HKLOUT_BASENAME))
         par = self.container.controlParameters
 
         # par.OUTPUT_MODE is a CList of CStrings, each type only occurs once
@@ -422,22 +430,22 @@ class aimless(CPluginScript):
         for mode in par.OUTPUT_MODE:
             if mode == 'MERGED':
                 self.appendCommandScript("OUTPUT MTZ MERGED")
-                self.appendCommandLine(['HKLOUT',self.container.outputData.HKLOUT_BASENAME + '.mtz'])
+                self.appendCommandLine(['HKLOUT', hkloutBase + '.mtz'])
                 commandlinehklout = True
             elif mode == 'UNMERGED':
                 self.appendCommandScript("OUTPUT MTZ UNMERGED")
                 if not commandlinehklout:  # not needed if already done
-                    self.appendCommandLine(['HKLOUT',self.container.outputData.HKLOUT_BASENAME + '.mtz'])
+                    self.appendCommandLine(['HKLOUT', hkloutBase + '.mtz'])
                 unmergedout = True
             elif mode == 'ORIGINAL':
                 if unmergedout:  # only relevant for unmerged output
                     self.appendCommandScript("OUTPUT ORIGINAL")
             elif mode == 'SP_MERGED':
                 self.appendCommandScript("OUTPUT SCALEPACK MERGED")
-                self.appendCommandLine(['HKLOUT',self.container.outputData.HKLOUT_BASENAME + '.sca'])
+                self.appendCommandLine(['HKLOUT', hkloutBase + '.sca'])
             elif mode == 'SP_UNMERGED':
                 self.appendCommandScript("OUTPUT SCALEPACK UNMERGED")
-                self.appendCommandLine(['HKLOUT',self.container.outputData.HKLOUT_BASENAME + '.sca'])
+                self.appendCommandLine(['HKLOUT', hkloutBase + '.sca'])
             elif mode == 'NONE':
                 self.appendCommandScript("OUTPUT NONE")
         
