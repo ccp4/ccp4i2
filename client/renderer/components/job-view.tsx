@@ -13,6 +13,7 @@ import { Save as SaveIcon, Restore as RestoreIcon } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
 import { JobHeader } from "../components/job-header";
 import { CCP4i2ReportXMLView } from "../components/report/CCP4i2ReportXMLView";
+import { CCP4i2WhatNext } from "../components/report/CCP4i2WhatNext";
 import { useCCP4i2Window } from "../app-context";
 import { TaskContainer } from "../components/task/task-interfaces/task-container";
 import { prettifyXml, useJob, usePrevious, useProject } from "../utils";
@@ -227,6 +228,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
         <Box
           sx={{
             flex: "auto",
+            minHeight: 0,
             overflowY: "auto",
             scrollbarWidth: "thin",
             pb: 4,
@@ -338,6 +340,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
             <JobLogViewer job={jobWithCurrentStatus} project={project} />
           )}
         </Box>
+        {tabValue == 3 && jobid && <CCP4i2WhatNext />}
         <JobMenu />
       </Stack>
     </>
