@@ -1128,6 +1128,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // (file → job → project), covering the file viewer. Null only on the truly
   // contextless blank page.
   const [projectInfo, setProjectInfo] = useState<{ id: string; name?: string } | null>(null);
+  // The project's primary key, as soon as it is known (given directly on the
+  // project-scoped page, otherwise derived from the job/file). Exposed as state
+  // — not just projectPkRef — so the CCP4i2 browser can open on this project.
+  const [projectPk, setProjectPk] = useState<number | null>(projectId ?? null);
   const firstFileId = fileIds?.[0];
   useEffect(() => {
     let cancelled = false;
@@ -1149,6 +1153,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
         if (projPk == null) return;
         projectPkRef.current = projPk;
+        setProjectPk(projPk);
         const proj = await apiGet(`projects/${projPk}`);
         if (cancelled || !proj?.uuid) return;
         projectUuidRef.current = proj.uuid;
@@ -1372,6 +1377,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         <MoorhenCcp4i2TabbedPanel
           onFileSelect={fetchFile}
           onJobLoad={fetchJobFiles}
+          initialProjectPk={projectPk}
           getViewUrl={getViewUrl}
           molecules={molecules}
           maps={maps}
@@ -1387,7 +1393,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         />
       ),
     },
-  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, handleBuildAuthoringPrompt, sceneNl.available, handleGenerateScene, cootInitialized]);
+  }), [fetchFile, fetchJobFiles, projectPk, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, handleBuildAuthoringPrompt, sceneNl.available, handleGenerateScene, cootInitialized]);
 
   // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
   // (it builds the per-instance MoorhenInstance from it). One per wrapper.

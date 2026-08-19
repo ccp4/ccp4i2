@@ -10,7 +10,8 @@ import {
   Tooltip,
   Chip,
 } from "@mui/material";
-import { MoreHoriz, Home, Science as ScienceIcon, ViewInAr } from "@mui/icons-material";
+import { MoreHoriz, Home, Science as ScienceIcon } from "@mui/icons-material";
+import { CCP4i2MoorhenIcon } from "./General/CCP4i2Icons";
 import EditMenu from "./edit-menu";
 import FileMenu from "./file-menu";
 import HelpMenu from "./help-menu";
@@ -135,9 +136,16 @@ export default function MenuBar() {
     }
   };
 
+  // Open in a new window (Electron's window-open handler turns this into a
+  // fresh BrowserWindow) rather than navigating this one — Moorhen has no way
+  // back into i2, so replacing the project view would strand the user.
   const handleOpenMoorhen = () => {
     if (projectId) {
-      router.push(`/ccp4i2/moorhen-page/project/${projectId}`);
+      window.open(
+        `/ccp4i2/moorhen-page/project/${projectId}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
     }
   };
 
@@ -192,7 +200,7 @@ export default function MenuBar() {
         {/* Moorhen (project-scoped): opens the 3D viewer with this project's
             context for scene authoring + job/param file resolution. */}
         {projectId && (
-          <Tooltip title="Open Moorhen for this project (scenes)">
+          <Tooltip title="Open this project in Moorhen (new window)">
             <IconButton
               color="inherit"
               onClick={handleOpenMoorhen}
@@ -200,7 +208,7 @@ export default function MenuBar() {
               size="small"
               sx={{ ml: 0.5 }}
             >
-              <ViewInAr />
+              <CCP4i2MoorhenIcon />
             </IconButton>
           </Tooltip>
         )}

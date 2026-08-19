@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import {
   Box,
   Paper,
@@ -36,6 +36,10 @@ import SearchField from "../search-field";
 interface CCP4i2HierarchyBrowserProps {
   onFileSelect: (fileId: number) => Promise<void>;
   onJobLoad?: (jobId: number) => Promise<void>;
+  /** Project pk the hosting page is scoped to. When given, the browser opens
+   *  on that project's job list instead of the full project list. Applied once
+   *  per project, so the Back button still returns to the project list. */
+  initialProjectPk?: number | null;
 }
 
 interface HierarchyPanelProps {
@@ -387,6 +391,7 @@ const REFRESH_INTERVALS = {
 export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
   onFileSelect,
   onJobLoad,
+  initialProjectPk,
 }) => {
   const { customColors } = useTheme();
   const api = useApi();
@@ -419,6 +424,20 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
     isLoading: projectsLoading,
     error: projectsError,
   } = api.get<Project[]>("/projects", REFRESH_INTERVALS.PROJECTS);
+
+  // Open on the hosting page's project (project/job/file-scoped Moorhen pages).
+  // Only the first time we see a given pk: after that the user's own
+  // navigation — including Back to the project list — is left alone.
+  const autoSelectedPkRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (initialProjectPk == null) return;
+    if (autoSelectedPkRef.current === initialProjectPk) return;
+    const project = projects?.find((p) => p.id === initialProjectPk);
+    if (!project) return;
+    autoSelectedPkRef.current = initialProjectPk;
+    setSelectedProject(project);
+    setSelectedJob(null);
+  }, [initialProjectPk, projects]);
 
   // This runs in a separate window without ClassicJobsList, so poll independently
   const { jobs } = useProjectJobs(selectedProject?.id, REFRESH_INTERVALS.JOBS);

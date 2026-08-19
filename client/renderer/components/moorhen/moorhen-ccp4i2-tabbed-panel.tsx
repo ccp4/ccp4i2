@@ -26,6 +26,8 @@ import type { MoorhenScene } from "../../types/moorhen-scene";
 export interface MoorhenCcp4i2TabbedPanelProps {
   onFileSelect: (fileId: number) => Promise<void>;
   onJobLoad?: (jobId: number) => Promise<void>;
+  /** Project pk to open the CCP4i2 browser on, when the page has one. */
+  initialProjectPk?: number | null;
   getViewUrl?: () => string;
   molecules: moorhen.Molecule[];
   maps: moorhen.Map[];
@@ -79,6 +81,7 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
     [
       controlsProps.onFileSelect,
       controlsProps.onJobLoad,
+      controlsProps.initialProjectPk,
       controlsProps.getViewUrl,
       controlsProps.molecules,
       controlsProps.maps,
