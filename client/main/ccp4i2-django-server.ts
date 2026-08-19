@@ -174,6 +174,25 @@ export async function startDjangoServer(
     }
   }
 
+  // Write the on-disk recovery snapshot for any project that lacks one.
+  //
+  // Snapshots are normally kept current by database signals, but a project
+  // that predates the mechanism never triggers one -- and a finished, dormant
+  // project is both the kind most worth protecting and the kind nothing will
+  // ever touch again. --missing-only makes this a no-op once every project is
+  // covered, so it is cheap to run on every launch.
+  //
+  // Never fatal: failing to write a safety net must not stop the app starting.
+  try {
+    execSync(`"${PYTHON_PATH}" -m django snapshot_projects`, {
+      env: pythonEnv,
+      stdio: "inherit",
+      ...(serverCwd && { cwd: serverCwd }),
+    });
+  } catch (error) {
+    console.error(`🐍 Could not write project recovery snapshots:`, error);
+  }
+
   // Setup logging for production
   let logStream: fs.WriteStream | null = null;
   if (!isDev) {

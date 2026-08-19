@@ -61,6 +61,7 @@ from ..api.serializers import (
     JobFloatValueSerializer,
     ProjectTagSerializer,
 )
+from . import project_snapshot
 from .models import (
     Project,
     Job,
@@ -103,7 +104,13 @@ def import_ccp4_project_zip(zip_path: Path, relocate_path: Path = None):
     with zipfile.ZipFile(zip_path, "r") as zip_archive:
         with zip_archive.open("DATABASE.db.xml", "r") as database_file:
             root_node = ET.parse(database_file).getroot()
-            import_i2xml_result = import_i2xml(root_node, relocate_path=relocate_path)
+            # An import creates hundreds of rows; snapshotting after each one
+            # would be pointless churn, and the project directory does not even
+            # exist yet. One snapshot at the end covers the lot.
+            with project_snapshot.suspended():
+                import_i2xml_result = import_i2xml(
+                    root_node, relocate_path=relocate_path
+                )
             # print(import_i2xml_result)
             all_archive_files = zip_archive.namelist()
             this_project_node = root_node.findall("ccp4i2_header/projectId")
@@ -153,6 +160,11 @@ def import_ccp4_project_zip(zip_path: Path, relocate_path: Path = None):
                         with zip_archive.open(src, "r") as src_file:
                             with open(destination, "wb") as destination_file:
                                 destination_file.write(src_file.read())
+
+            # Now the files are on disk, record the project so a lost database
+            # can be rebuilt from what was just imported.
+            project_snapshot.write_snapshot(this_project)
+            project_snapshot.update_registry()
 
 
 def renumber_top_job(job_node: ET.Element, root_node: ET.Element):
