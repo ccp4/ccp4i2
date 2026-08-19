@@ -10,7 +10,6 @@ import { useCCP4i2Window } from "../../app-context";
 import { useJob, usePrevious, useProject } from "../../utils";
 import { usePopcorn } from "../../providers/popcorn-provider";
 import { useApi } from "../../api";
-import { CCP4i2WhatNext } from "./CCP4i2WhatNext";
 import { useIsJobEffectivelyActive } from "../../providers/recently-started-jobs-context";
 
 export const CCP4i2ReportXMLView = () => {
@@ -104,12 +103,8 @@ export const CCP4i2ReportXMLView = () => {
     );
   }
 
-  return !reportContent ? (
-    <Skeleton />
-  ) : (
-    <>
-      {reportContent}
-      <CCP4i2WhatNext />
-    </>
-  );
+  // NB the "What next" toolbar is deliberately *not* rendered here: it is a
+  // sibling of the scrolling body in job-view.tsx so it stays pinned to the
+  // bottom of the report pane rather than sitting at the end of the report.
+  return !reportContent ? <Skeleton /> : <>{reportContent}</>;
 };
