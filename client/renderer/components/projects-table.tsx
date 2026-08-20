@@ -24,6 +24,7 @@ import {
   Clear,
   Delete,
   Download,
+  Edit,
   DriveFileMove,
   FolderOpen,
   LinkOff,
@@ -96,6 +97,7 @@ const ProjectCard = React.memo(
     isSelected,
     onToggleSelection,
     onNavigate,
+    onEdit,
     onExport,
     onMove,
     onDelete,
@@ -104,6 +106,7 @@ const ProjectCard = React.memo(
     isSelected: boolean;
     onToggleSelection: () => void;
     onNavigate: () => void;
+    onEdit: () => void;
     onExport: () => void;
     /** Omitted in the web build, where there is no local filesystem to move to. */
     onMove?: () => void;
@@ -229,6 +232,22 @@ const ProjectCard = React.memo(
             justifyContent="flex-end"
             sx={{ mt: 2 }}
           >
+            <Tooltip title="Edit project name, description and tags">
+              <IconButton
+                className="action-button"
+                size="small"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onEdit();
+                }}
+                sx={{
+                  color: "primary.main",
+                  "&:hover": { bgcolor: "primary.50" },
+                }}
+              >
+                <Edit fontSize="small" />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Export project">
               <IconButton
                 className="action-button"
@@ -659,7 +678,7 @@ export default function ProjectsTable() {
       {
         key: "actions",
         label: "",
-        width: canMoveProjects ? 140 : 100,
+        width: canMoveProjects ? 180 : 140,
         render: (_, project) => (
           <Stack
             direction="row"
@@ -667,6 +686,15 @@ export default function ProjectsTable() {
             justifyContent="flex-end"
             onClick={(e) => e.stopPropagation()}
           >
+            <Tooltip title="Edit project name, description and tags">
+              <IconButton
+                size="small"
+                onClick={() => router.push(`/ccp4i2/edit-project/${project.id}`)}
+                sx={{ color: "primary.main" }}
+              >
+                <Edit fontSize="small" />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Export project">
               <IconButton
                 size="small"
@@ -715,6 +743,7 @@ export default function ProjectsTable() {
             : selectedIds.add(project.id);
         }}
         onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
+        onEdit={() => router.push(`/ccp4i2/edit-project/${project.id}`)}
         onExport={() => exportProject(project)}
         onMove={
           canMoveProjects && !brokenIds.has(project.id)

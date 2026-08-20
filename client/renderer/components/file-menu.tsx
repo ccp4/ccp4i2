@@ -14,7 +14,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { Add, Download, Menu as MenuIcon, Upload, PowerSettingsNew } from "@mui/icons-material";
+import { Add, Download, Edit, Menu as MenuIcon, Upload, PowerSettingsNew } from "@mui/icons-material";
 import { useApi } from "../api";
 import { Project } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
@@ -113,6 +113,20 @@ export default function FileMenu() {
           </ListItemIcon>
           <ListItemText>New project</ListItemText>
         </MenuItem>
+        {projectId && (
+          <MenuItem
+            key="Edit"
+            onClick={() => {
+              handleClose();
+              window.open(`/ccp4i2/edit-project/${projectId}`);
+            }}
+          >
+            <ListItemIcon>
+              <Edit fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Edit project...</ListItemText>
+          </MenuItem>
+        )}
         <MenuItem key="Export" onClick={handleExportProject}>
           <ListItemIcon>
             <Download fontSize="small" />
