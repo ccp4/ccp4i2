@@ -291,9 +291,8 @@ def import_project(node: ET.Element, relocate_path: Path = None):
     create_dict["creation_time"] = datetime.datetime.fromtimestamp(
         float(node.attrib["projectcreated"])
     )
-    create_dict["creation_time"] = datetime.datetime.fromtimestamp(
-        float(node.attrib["projectcreated"])
-    )
+    if "projectdescription" in node.attrib:
+        create_dict["description"] = node.attrib["projectdescription"]
 
     try:
         instance = Project.objects.get(uuid=create_dict["uuid"])
@@ -332,6 +331,9 @@ def import_job(node: ET.Element):
         create_dict["title"] = node.attrib["title"]
     else:
         create_dict["title"] = node.attrib["taskname"]
+    # Absent from snapshots written before comments were exported.
+    if "comments" in node.attrib:
+        create_dict["comments"] = node.attrib["comments"]
     create_dict["project"] = Project.objects.get(uuid=node.attrib["projectid"]).pk
     if "parentjobid" in node.attrib and node.attrib["parentjobid"] is not None:
         create_dict["parent"] = Job.objects.get(uuid=node.attrib["parentjobid"]).pk

@@ -135,11 +135,51 @@ project_snapshot.write_snapshot(project)
 the files are actually on disk. Setting `CCP4I2_DISABLE_PROJECT_SNAPSHOT=1`
 disables writing entirely.
 
+## Rebuilding
+
+Restoring is the other half, and it is deliberately *not* the same operation as
+importing, because the two have opposite invariants.
+
+**Import** brings a project in alongside an existing world. Another copy may
+already be present, and job numbers may collide with jobs that already exist,
+so renumbering is correct — `import_ccp4_project_zip` renames the job
+directories as it extracts them so disk and database still agree afterwards.
+
+**Restore** is the reverse. The directory is the truth and the database is what
+is being repaired. Nothing may be renumbered, because the job directories are
+already on disk under the names they have and nothing is going to move them. A
+clash is therefore an error to report, not something to work around, and the
+post-condition is checked rather than assumed: after a restore, every job the
+database records must have a directory on disk. `verify_restored` checks
+exactly that, which catches renumbering, a mis-rooted project and a snapshot
+written for a different tree — none of which would surface as an error during
+the import itself.
+
+```bash
+manage.py restore_projects --registry              # everything the registry knows
+manage.py restore_projects --scan ~/CCP4I2_PROJECTS  # registry lost as well
+manage.py restore_projects --directory <one project>
+manage.py restore_projects --registry --dry-run    # look first
+```
+
+A project already in the database is left alone unless `--replace` is given:
+overwriting a live project with an older snapshot would lose work rather than
+recover it. One project failing does not abandon the rest.
+
+If a project directory has moved since its snapshot was written, the directory
+wins — the snapshot is re-rooted onto it, and the absolute paths inside the
+project's files are rebased to match, reusing the machinery from
+`docs/MOVING_PROJECTS.md`.
+
+`GET /projects/restorable/` (optionally `?scan=PATH`) previews what could be
+recovered without touching anything; `POST /projects/restore/` does it. The
+desktop app exposes both through a Recover button on the projects toolbar.
+
 ## What this does not do
 
-It makes the database *rebuildable*; it does not rebuild it. Reading the
-snapshots and the registry back into a fresh database, and reporting on what
-could and could not be recovered, is a separate piece of work — as is inferring
-a project from its directory when there is no snapshot at all, which is
-necessarily lossy. See the notes on `utils/reconstructDBFromXML.py`, whose own
-TODO header is an honest account of how far inference gets you.
+Inferring a project from its directory when there is **no** snapshot at all is
+still missing, and is necessarily lossy. See the notes on
+`utils/reconstructDBFromXML.py`, whose own TODO header is an honest account of
+how far inference gets you — it recovered 553 of 577 files on the project it
+was measured against, and *over-generated* file-use rows, 269 against a true
+209.
