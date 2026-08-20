@@ -69,31 +69,31 @@ export default function EditMenu() {
           text="Cut"
           icon={ContentCut}
           onClick={handleCut}
-          shortcut={`${ctrlOrCmd}X`}
+          secondary={`${ctrlOrCmd}X`}
         />
         <CCP4i2MenuItem
           text="Copy"
           icon={ContentCopy}
           onClick={handleCopy}
-          shortcut={`${ctrlOrCmd}C`}
+          secondary={`${ctrlOrCmd}C`}
         />
         <CCP4i2MenuItem
           text="Paste"
           icon={ContentPaste}
           onClick={handlePaste}
-          shortcut={`${ctrlOrCmd}V`}
+          secondary={`${ctrlOrCmd}V`}
         />
         <CCP4i2MenuItem
           text="Select All"
           icon={SelectAll}
           onClick={handleSelectAll}
-          shortcut={`${ctrlOrCmd}A`}
+          secondary={`${ctrlOrCmd}A`}
         />
         <CCP4i2MenuItem
           text="Find"
           icon={Search}
           onClick={handleFind}
-          shortcut={`${ctrlOrCmd}F`}
+          secondary={`${ctrlOrCmd}F`}
         />
         <CCP4i2MenuItem
           text="Preferences"

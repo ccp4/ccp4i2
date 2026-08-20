@@ -72,7 +72,7 @@ export default function HelpMenu() {
           text="CCP4i2 documentation"
           icon={MenuBook}
           onClick={handleHelp}
-          shortcut="F1"
+          secondary="F1"
         />
         <CCP4i2MenuItem
           text="Tip of the day"

@@ -94,31 +94,31 @@ export default function ViewMenu() {
           text="Reload"
           icon={Refresh}
           onClick={handleReload}
-          shortcut="Ctrl+R"
+          secondary="Ctrl+R"
         />
         <CCP4i2MenuItem
           text="Force Reload"
           icon={SyncAlt}
           onClick={handleForceReload}
-          shortcut="Ctrl+Shift+R"
+          secondary="Ctrl+Shift+R"
         />
         <CCP4i2MenuItem
           text="Zoom In"
           icon={ZoomIn}
           onClick={handleZoomIn}
-          shortcut="Ctrl++"
+          secondary="Ctrl++"
         />
         <CCP4i2MenuItem
           text="Zoom Out"
           icon={ZoomOut}
           onClick={handleZoomOut}
-          shortcut="Ctrl+-"
+          secondary="Ctrl+-"
         />
         <CCP4i2MenuItem
           text="Reset Zoom"
           icon={YoutubeSearchedFor}
           onClick={handleZoomReset}
-          shortcut="Ctrl+0"
+          secondary="Ctrl+0"
         />
         <MenuItem onClick={handleThemeToggle}>
           <ThemeToggle ref={themeToggleRef} />

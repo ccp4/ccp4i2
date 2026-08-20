@@ -12,13 +12,14 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { Add, Download, Edit, Menu as MenuIcon, OpenInNew, Upload, PowerSettingsNew } from "@mui/icons-material";
+import { Add, Download, Edit, FolderOpen, Menu as MenuIcon, OpenInNew, Upload, PowerSettingsNew } from "@mui/icons-material";
 import { useApi } from "../api";
 import { Project } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
 import { apiPost } from "../api-fetch";
 import { ProjectExportsDialog } from "./project-exports";
 import { CCP4i2MenuItem } from "./menu-item";
+import { shortDate } from "../pipes";
 
 interface ExportResult {
   status: string;
@@ -140,8 +141,11 @@ export default function FileMenu() {
             .slice(-10)
             .reverse()
             .map((project: Project) => (
-              <MenuItem
+              <CCP4i2MenuItem
                 key={project.id}
+                text={project.name}
+                icon={FolderOpen}
+                secondary={shortDate(new Date(project.last_access))}
                 onClick={async () => {
                   setAnchorEl(null);
                   const formData = new FormData();
@@ -154,9 +158,7 @@ export default function FileMenu() {
                     });
                   window.open(`/ccp4i2/project/${project.id}`);
                 }}
-              >
-                {project.name} - {`${new Date(project.last_access)}`}
-              </MenuItem>
+              />
             ))}
         <Divider />
         <CCP4i2MenuItem
