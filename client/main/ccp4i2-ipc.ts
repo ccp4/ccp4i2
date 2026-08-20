@@ -450,6 +450,22 @@ export const installIpcHandlers = (
     if (win) win.webContents.reloadIgnoringCache();
   });
 
+  ipcMain.on("edit-cut", (_event, _data) => {
+    BrowserWindow.getFocusedWindow()?.webContents.cut();
+  });
+
+  ipcMain.on("edit-copy", (_event, _data) => {
+    BrowserWindow.getFocusedWindow()?.webContents.copy();
+  });
+
+  ipcMain.on("edit-paste", (_event, _data) => {
+    BrowserWindow.getFocusedWindow()?.webContents.paste();
+  });
+
+  ipcMain.on("edit-select-all", (_event, _data) => {
+    BrowserWindow.getFocusedWindow()?.webContents.selectAll();
+  });
+
   // Find-in-page: relay to focused window's webContents
   ipcMain.on("find-in-page", (event, data) => {
     const win = BrowserWindow.getFocusedWindow();

@@ -1,16 +1,17 @@
 "use client";
 import { useState } from "react";
+import { Button, Menu } from "@mui/material";
 import {
-  Button,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
-import { Search, Settings, ContentCut, ContentCopy, ContentPaste, SelectAll } from "@mui/icons-material";
+  Search,
+  Settings,
+  ContentCut,
+  ContentCopy,
+  ContentPaste,
+  SelectAll,
+} from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import { useFindInPage } from "../providers/find-in-page-provider";
+import { CCP4i2MenuItem } from "./menu-item";
 
 export default function EditMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -29,30 +30,34 @@ export default function EditMenu() {
     findInPage?.open();
   };
 
-  const handleCut = () => {
-    document.execCommand("cut");
+  // In Electron use webContents native methods via IPC; fall back to execCommand in web mode.
+  const execEdit = (ipcChannel: string, legacyCommand: string) => {
+    if (typeof window !== "undefined" && window?.electronAPI) {
+      window.electronAPI.sendMessage(ipcChannel, {});
+    } else {
+      // execCommand is deprecated but has no viable alternative for cut/paste in plain web
+      (document as any).execCommand(legacyCommand);
+    }
     handleClose();
   };
 
-  const handleCopy = () => {
-    document.execCommand("copy");
-    handleClose();
-  };
-
-  const handlePaste = () => {
-    document.execCommand("paste");
-    handleClose();
-  };
-
-  const handleSelectAll = () => {
-    document.execCommand("selectAll");
-    handleClose();
-  };
+  const handleCut = () => execEdit("edit-cut", "cut");
+  const handleCopy = () => execEdit("edit-copy", "copy");
+  const handlePaste = () => execEdit("edit-paste", "paste");
+  const handleSelectAll = () => execEdit("edit-select-all", "selectAll");
 
   const handlePreferences = () => {
     handleClose();
     router.push("/ccp4i2/preferences");
   };
+
+  let ctrlOrCmd = "Ctrl+";
+  if (
+    typeof navigator !== "undefined" &&
+    navigator?.platform?.includes("Mac")
+  ) {
+    ctrlOrCmd = "\u2318"; // Command key symbol for Mac
+  }
 
   return (
     <>
@@ -60,57 +65,41 @@ export default function EditMenu() {
         Edit
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleCut}>
-          <ListItemIcon>
-            <ContentCut fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+X)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleCopy}>
-          <ListItemIcon>
-            <ContentCopy fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+C)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handlePaste}>
-          <ListItemIcon>
-            <ContentPaste fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+V)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleSelectAll}>
-          <ListItemIcon>
-            <SelectAll fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Select All</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+A)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleFind}>
-          <ListItemIcon>
-            <Search fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Find</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            ({typeof navigator !== "undefined" && navigator?.platform?.includes("Mac") ? "\u2318" : "Ctrl+"}F)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handlePreferences}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Preferences</ListItemText>
-        </MenuItem>
+        <CCP4i2MenuItem
+          text="Cut"
+          icon={ContentCut}
+          onClick={handleCut}
+          shortcut={`${ctrlOrCmd}X`}
+        />
+        <CCP4i2MenuItem
+          text="Copy"
+          icon={ContentCopy}
+          onClick={handleCopy}
+          shortcut={`${ctrlOrCmd}C`}
+        />
+        <CCP4i2MenuItem
+          text="Paste"
+          icon={ContentPaste}
+          onClick={handlePaste}
+          shortcut={`${ctrlOrCmd}V`}
+        />
+        <CCP4i2MenuItem
+          text="Select All"
+          icon={SelectAll}
+          onClick={handleSelectAll}
+          shortcut={`${ctrlOrCmd}A`}
+        />
+        <CCP4i2MenuItem
+          text="Find"
+          icon={Search}
+          onClick={handleFind}
+          shortcut={`${ctrlOrCmd}F`}
+        />
+        <CCP4i2MenuItem
+          text="Preferences"
+          icon={Settings}
+          onClick={handlePreferences}
+        />
       </Menu>
     </>
   );
