@@ -29,6 +29,7 @@ export const NewProjectContent: React.FC = () => {
   const api = useApi();
   const router = useRouter();
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [customDirectory, setCustomDirectory] = useState(false);
   const [ccp4i2ProjectDirectory, setCcp4i2ProjectDirectory] = useState<string>(
     "/home/user/CCP4X_PROJECTS"
@@ -79,6 +80,7 @@ export const NewProjectContent: React.FC = () => {
     try {
       const formData = new FormData();
       formData.append("name", name);
+      formData.append("description", description);
       formData.append("directory", customDirectory ? directory : "__default__");
       const project = await api.post<Project>("projects", formData);
 
@@ -241,6 +243,14 @@ export const NewProjectContent: React.FC = () => {
           error={nameError.length > 0}
           helperText={nameError}
           autoFocus
+        />
+        <TextField
+          label="Description"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          multiline
+          minRows={2}
+          helperText="Optional. What the project is for; shown wherever it is listed."
         />
         <ToggleButtonGroup
           exclusive

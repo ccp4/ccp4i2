@@ -187,6 +187,21 @@ const ProjectCard = React.memo(
               >
                 {project.name}
               </Typography>
+              {project.description && (
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    mt: 0.25,
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
+                  {project.description}
+                </Typography>
+              )}
             </Box>
           </Box>
 
@@ -553,6 +568,18 @@ export default function ProjectsTable() {
                     </Tooltip>
                   )}
                 </Stack>
+                {project.description && (
+                  <Tooltip title={project.description}>
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      noWrap
+                      sx={{ display: "block" }}
+                    >
+                      {project.description}
+                    </Typography>
+                  </Tooltip>
+                )}
                 <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
                   {new Date(project.last_access).getTime() >
                     Date.now() - 7 * 24 * 60 * 60 * 1000 && (
