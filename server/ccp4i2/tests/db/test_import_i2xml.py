@@ -26,6 +26,21 @@ class CCP4i2TestCase(TestCase):
         )
         self.assertEqual(len(list(Project.objects.all())), 1)
 
+    def test_import_dbxml_takes_description_from_comments(self):
+        """A Qt-era file has no projectdescription, only a projectcommentTable.
+
+        That table is where the Qt interface kept what it showed as the project
+        description, so it has to land in Project.description here as it does in
+        the legacy sqlite migration -- otherwise importing a project directory
+        loses the text that migrating the old database would have kept.
+        """
+        import_i2xml_from_file(
+            Path(__file__).parent / "DATABASE.db.xml",
+            relocate_path=settings.CCP4I2_PROJECTS_DIR,
+        )
+        project = Project.objects.get(name="MDM2CCP4X")
+        self.assertEqual(project.description, "Description of this MDM2 project")
+
     def test_import_project_zip(self):
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent

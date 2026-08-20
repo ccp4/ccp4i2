@@ -22,6 +22,9 @@ Functions:
     import_project(node: ET.Element, relocate_path: Path = None):
         Imports a project from an XML node, creating or updating the project in the database.
 
+    import_project_comments(root_node: ET.Element):
+        Folds a Qt-era project's comments into the project description.
+
     import_job(node: ET.Element):
         Imports a job from an XML node, creating or updating the job in the database.
 
@@ -49,6 +52,7 @@ Functions:
 import datetime
 import zipfile
 
+from collections import defaultdict
 from pathlib import Path
 from xml.etree import ElementTree as ET
 from ..api.serializers import (
@@ -249,6 +253,7 @@ def import_i2xml(root_node: ET.Element, relocate_path: Path):
     job_map = {}
     for node in root_node.findall("ccp4i2_body/projectTable/project"):
         import_project(node, relocate_path)
+    import_project_comments(root_node)
     job_nodes = root_node.findall("ccp4i2_body/jobTable/job")
     job_nodes = sorted(
         job_nodes,
@@ -309,6 +314,51 @@ def import_project(node: ET.Element, relocate_path: Path = None):
     else:
         logging.error(f"Issues creating new project {item_form.errors}")
         return item_form.errors
+
+
+def import_project_comments(root_node: ET.Element):
+    """Carry a Qt-era project's comments into ``Project.description``.
+
+    A snapshot this app wrote records the description as a ``projectdescription``
+    attribute on the project element, which :func:`import_project` reads
+    directly. A ``DATABASE.db.xml`` left behind by the Qt-era CCP4i2 has no such
+    attribute: what it has is a ``projectcommentTable``, which is where that
+    interface kept the text it showed as the project description. The legacy
+    sqlite migration already folds those comments into the description (see
+    ``import_sqlite._import_project_comments``); without this, the same project
+    imported from its directory or its zip rather than from the old database
+    would silently lose it.
+
+    Comments are joined oldest-first, and an existing description always wins --
+    a ``projectdescription`` we read a moment ago is the newer of the two.
+    """
+    comments_by_project = defaultdict(list)
+
+    def time_of(node: ET.Element) -> float:
+        try:
+            return float(node.attrib.get("timeofcomment") or 0.0)
+        except ValueError:
+            return 0.0
+
+    comment_nodes = root_node.findall("ccp4i2_body/projectcommentTable/projectcomment")
+    for node in sorted(comment_nodes, key=time_of):
+        comment = node.attrib.get("comment")
+        if comment:
+            comments_by_project[node.attrib["projectid"]].append(comment)
+
+    for project_uuid, comments in comments_by_project.items():
+        try:
+            project = Project.objects.get(uuid=project_uuid)
+        except Project.DoesNotExist:
+            logger.warning(
+                f"Comments for unknown project {project_uuid} were not imported"
+            )
+            continue
+        if project.description:
+            continue
+        project.description = "\n".join(comments)
+        project.save(update_fields=["description"])
+        logger.info(f"Imported {len(comments)} comment(s) as description of {project}")
 
 
 def import_job(node: ET.Element):

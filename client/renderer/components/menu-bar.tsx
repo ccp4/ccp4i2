@@ -270,7 +270,11 @@ export default function MenuBar() {
           }}
         >
           {job && `Job ${job.number}: `}
-          {project && <span style={{ fontWeight: 500 }}>{project.name}</span>}
+          {project && (
+            <Tooltip title={project.description || ""}>
+              <span style={{ fontWeight: 500 }}>{project.name}</span>
+            </Tooltip>
+          )}
         </Typography>
       </HistoryToolbar>
     </AppBar>
