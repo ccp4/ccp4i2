@@ -174,6 +174,10 @@ def _export_project_table(body: ET.Element, project: Project) -> None:
     project_elem.set("projectdirectory", str(project.directory))
     project_elem.set("projectcreated", str(int(project.creation_time.timestamp())))
 
+    # As with job comments: typed by the user, stored only here.
+    if project.description:
+        project_elem.set("projectdescription", project.description)
+
 
 def _get_jobs_from_selection(project: Project, job_selection: Set[str]) -> Set[Job]:
     """
@@ -272,6 +276,11 @@ def _export_job_table(
 
         if job.evaluation is not None:
             job_elem.set("evaluation", str(job.evaluation))
+
+        # The user's own writing, and held nowhere but the database -- a job
+        # directory records what ran, never what was thought of it.
+        if job.comments:
+            job_elem.set("comments", job.comments)
 
         if job.finish_time:
             job_elem.set("finishtime", str(int(job.finish_time.timestamp())))

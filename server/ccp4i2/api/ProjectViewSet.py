@@ -864,6 +864,108 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=False,
         methods=["get"],
+        url_path="restorable",
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def restorable(self, request):
+        """
+        Projects that could be rebuilt from the snapshots in their directories.
+
+        Read-only. Defaults to the project directory registry, which is kept
+        outside the database precisely so it survives one; pass ``?scan=PATH``
+        to look through a folder directly, for when the registry has been lost
+        as well.
+        """
+        from ..db.project_snapshot import read_registry, registry_path
+        from ..db.restore_project import discover_restorable, inspect
+
+        scan = request.query_params.get("scan")
+        try:
+            if scan:
+                directories = discover_restorable(pathlib.Path(scan))
+                source = {"kind": "scan", "path": str(pathlib.Path(scan).expanduser())}
+            else:
+                entries = read_registry()
+                directories = [
+                    pathlib.Path(entry["directory"])
+                    for entry in entries
+                    if entry.get("directory")
+                ]
+                source = {
+                    "kind": "registry",
+                    "path": str(registry_path()),
+                    "entries": len(entries),
+                }
+
+            candidates = [inspect(directory).as_dict() for directory in directories]
+            return api_success(
+                {
+                    "source": source,
+                    "candidates": candidates,
+                    "restorable": len(
+                        [c for c in candidates if c["project_uuid"] is not None]
+                    ),
+                }
+            )
+        except Exception as err:
+            logger.exception("Failed to look for restorable projects")
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=False,
+        methods=["post"],
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def restore(self, request):
+        """
+        Rebuild database rows from the snapshots in project directories.
+
+        A restore, not an import: the directories are the truth and the
+        database is being repaired, so nothing is renumbered and every job
+        comes back under the number its directory already has on disk.
+
+        POST body:
+            source: "registry" (default), "scan" or "directory".
+            path: required for "scan" and "directory".
+            replace (bool): rebuild projects already in the database. Without
+                it they are left alone, since overwriting a live project with
+                an older snapshot loses work rather than recovering it.
+            dry_run (bool): report what would be restored and change nothing.
+        """
+        from ..db.restore_project import (
+            discover_restorable,
+            restore_all,
+            restore_from_registry,
+        )
+
+        source = request.data.get("source", "registry")
+        path = request.data.get("path")
+        replace = str(request.data.get("replace", "")).lower() in ("1", "true", "yes")
+        dry_run = str(request.data.get("dry_run", "")).lower() in ("1", "true", "yes")
+
+        if source in ("scan", "directory") and not path:
+            return api_error(f"A path is required when source is '{source}'", status=400)
+
+        try:
+            if source == "registry":
+                result = restore_from_registry(replace=replace, dry_run=dry_run)
+            elif source == "scan":
+                directories = discover_restorable(pathlib.Path(path))
+                result = restore_all(directories, replace=replace, dry_run=dry_run)
+            elif source == "directory":
+                result = restore_all(
+                    [pathlib.Path(path)], replace=replace, dry_run=dry_run
+                )
+            else:
+                return api_error(f"Unknown source '{source}'", status=400)
+            return api_success(result)
+        except Exception as err:
+            logger.exception("Failed to restore projects from %s", source)
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=False,
+        methods=["get"],
         url_path="missing_directories",
         serializer_class=serializers.ProjectSerializer,
     )
