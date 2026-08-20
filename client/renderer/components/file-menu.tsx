@@ -3,8 +3,6 @@ import { useState } from "react";
 import {
   Button,
   Divider,
-  ListItemIcon,
-  ListItemText,
   Menu,
   MenuItem,
   Dialog,
@@ -14,12 +12,13 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { Add, Download, Edit, Menu as MenuIcon, Upload, PowerSettingsNew } from "@mui/icons-material";
+import { Add, Download, Edit, Menu as MenuIcon, OpenInNew, Upload, PowerSettingsNew } from "@mui/icons-material";
 import { useApi } from "../api";
 import { Project } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
 import { apiPost } from "../api-fetch";
 import { ProjectExportsDialog } from "./project-exports";
+import { CCP4i2MenuItem } from "./menu-item";
 
 interface ExportResult {
   status: string;
@@ -47,7 +46,7 @@ export default function FileMenu() {
     setAnchorEl(null);
   };
 
-  const handleBrowser = () => {
+  const handleNewWindow = () => {
     const newWindow = window.open("/ccp4i2");
     setAnchorEl(null);
     // Check if the window was successfully opened
@@ -89,62 +88,47 @@ export default function FileMenu() {
         File/Projects
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem
-          key="Manage"
+        <CCP4i2MenuItem
+          text="Manage/open projects"
+          icon={MenuIcon}
           onClick={() => {
             handleClose();
             window.open("/ccp4i2");
           }}
-        >
-          <ListItemIcon>
-            <MenuIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Manage/open projects</ListItemText>
-        </MenuItem>
-        <MenuItem
-          key="Add"
+        />
+        <CCP4i2MenuItem
+          text="New project"
+          icon={Add}
           onClick={() => {
             handleClose();
             window.open("/ccp4i2/new-project");
           }}
-        >
-          <ListItemIcon>
-            <Add fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>New project</ListItemText>
-        </MenuItem>
+        />
         {projectId && (
-          <MenuItem
-            key="Edit"
+          <CCP4i2MenuItem
+            text="Edit project..."
+            icon={Edit}
             onClick={() => {
               handleClose();
               window.open(`/ccp4i2/edit-project/${projectId}`);
             }}
-          >
-            <ListItemIcon>
-              <Edit fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Edit project...</ListItemText>
-          </MenuItem>
+          />
         )}
-        <MenuItem key="Export" onClick={handleExportProject}>
-          <ListItemIcon>
-            <Download fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Export project</ListItemText>
-        </MenuItem>
-        <MenuItem key="Import" onClick={handleImportProject}>
-          <ListItemIcon>
-            <Upload fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Import project</ListItemText>
-        </MenuItem>
-        <MenuItem key="Exports" onClick={handleOpenExportsDialog}>
-          <ListItemIcon>
-            <Download fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Exports...</ListItemText>
-        </MenuItem>
+        <CCP4i2MenuItem
+          text="Export Project"
+          icon={Download}
+          onClick={handleExportProject}
+        />
+        <CCP4i2MenuItem
+          text="Import Project"
+          icon={Upload}
+          onClick={handleImportProject}
+        />
+        <CCP4i2MenuItem
+          text="Exports..."
+          icon={Download}
+          onClick={handleOpenExportsDialog}
+        />
         <Divider />
         {Array.isArray(projects) &&
           projects
@@ -175,21 +159,19 @@ export default function FileMenu() {
               </MenuItem>
             ))}
         <Divider />
-        <MenuItem key="Browser" onClick={handleBrowser}>
-          Browser
-        </MenuItem>
+        <CCP4i2MenuItem
+          text="New Window"
+          icon={OpenInNew}
+          onClick={handleNewWindow}
+        />
         {window.electronAPI && (
-          <MenuItem
-            key="Quit"
+          <CCP4i2MenuItem
+            text="Quit"
+            icon={PowerSettingsNew}
             onClick={() => {
               window.electronAPI!.sendMessage("quit-app", {});
             }}
-          >
-            <ListItemIcon>
-              <PowerSettingsNew fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Quit</ListItemText>
-          </MenuItem>
+          />
         )}
       </Menu>
 

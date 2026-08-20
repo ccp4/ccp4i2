@@ -65,7 +65,7 @@ export default function HelpMenu() {
   return (
     <>
       <Button color="inherit" onClick={handleClick}>
-        Help/Tutorials
+        Help
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <CCP4i2MenuItem
