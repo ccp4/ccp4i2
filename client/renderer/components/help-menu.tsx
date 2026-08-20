@@ -7,15 +7,13 @@ import {
   DialogContent,
   DialogTitle,
   Link,
-  ListItemIcon,
-  ListItemText,
   Menu,
-  MenuItem,
   Stack,
   Typography,
 } from "@mui/material";
 import { Help, Info, MenuBook, EmojiObjects } from "@mui/icons-material";
 import { TipOfTheDayDialog } from "./tip-of-the-day-dialog";
+import { CCP4i2MenuItem } from "./menu-item";
 
 const CCP4I2_HELP_URL = "https://www.ccp4.ac.uk/html/ccp4i2.html";
 
@@ -70,27 +68,18 @@ export default function HelpMenu() {
         Help/Tutorials
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleHelp}>
-          <ListItemIcon>
-            <MenuBook fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>CCP4i2 documentation</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (F1)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleTip}>
-          <ListItemIcon>
-            <EmojiObjects fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Tip of the day</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={handleAbout}>
-          <ListItemIcon>
-            <Info fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>About CCP4i2</ListItemText>
-        </MenuItem>
+        <CCP4i2MenuItem
+          text="CCP4i2 documentation"
+          icon={MenuBook}
+          onClick={handleHelp}
+          shortcut="F1"
+        />
+        <CCP4i2MenuItem
+          text="Tip of the day"
+          icon={EmojiObjects}
+          onClick={handleTip}
+        />
+        <CCP4i2MenuItem text="About CCP4i2" icon={Info} onClick={handleAbout} />
       </Menu>
 
       <TipOfTheDayDialog open={tipOpen} onClose={() => setTipOpen(false)} />
@@ -117,12 +106,11 @@ export default function HelpMenu() {
                   <strong>Build:</strong> {version.web.buildTimestamp}
                 </Typography>
               )}
-            {version?.web?.gitCommit &&
-              version.web.gitCommit !== "unknown" && (
-                <Typography variant="body2" color="text.secondary">
-                  <strong>Commit:</strong> {version.web.gitCommit}
-                </Typography>
-              )}
+            {version?.web?.gitCommit && version.web.gitCommit !== "unknown" && (
+              <Typography variant="body2" color="text.secondary">
+                <strong>Commit:</strong> {version.web.gitCommit}
+              </Typography>
+            )}
             <Typography variant="body2" color="text.secondary">
               <Link
                 href="https://www.ccp4.ac.uk"
