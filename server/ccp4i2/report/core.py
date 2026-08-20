@@ -204,6 +204,14 @@ class Container(ReportClass):
         if getattr(self, 'errReport', None) is None:
             self.errReport = CException()
         self.children: list[ReportClass] = []
+        # Elements constructed directly with parent= (rather than through the
+        # addX() helpers, which fill these in) inherit the parent's xml context.
+        # Without this a container such as a GridItem has xmlnode None, and any
+        # select= passed to a child graph/table silently selects nothing.
+        if not jobInfo and self.parent is not None:
+            jobInfo = getattr(self.parent, 'jobInfo', None) or {}
+        if xmlnode is None and self.parent is not None:
+            xmlnode = getattr(self.parent, 'xmlnode', None)
         self.jobInfo: dict[str, Any] = {}
         self.jobInfo.update(jobInfo)
         self.xmlnode = xmlnode
