@@ -14,7 +14,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { Add, Download, Menu as MenuIcon, Upload } from "@mui/icons-material";
+import { Add, Download, Menu as MenuIcon, Upload, PowerSettingsNew } from "@mui/icons-material";
 import { useApi } from "../api";
 import { Project } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
@@ -164,6 +164,19 @@ export default function FileMenu() {
         <MenuItem key="Browser" onClick={handleBrowser}>
           Browser
         </MenuItem>
+        {window.electronAPI && (
+          <MenuItem
+            key="Quit"
+            onClick={() => {
+              window.electronAPI!.sendMessage("quit-app", {});
+            }}
+          >
+            <ListItemIcon>
+              <PowerSettingsNew fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Quit</ListItemText>
+          </MenuItem>
+        )}
       </Menu>
 
       {/* Export Success Dialog */}

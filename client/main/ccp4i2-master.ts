@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, session } from "electron";
+import { app, BrowserWindow, ipcMain, Menu, session } from "electron";
 import path from "path";
 import fs from "fs";
 import Store from "electron-store";
@@ -16,7 +16,6 @@ import { Server } from "node:http";
 import { installWillDownloadHandler } from "./ccp4i2-session";
 import { StoreSchema } from "../types/store";
 import { createWindow } from "./ccp4i2-create-window";
-import { addNewWindowMenuItem } from "./ccp4i2-menu";
 import { setupZoomLevel } from "./ccp4i2-zoom";
 import os from "os";
 
@@ -184,7 +183,7 @@ app
       setDjangoServer
     );
     installWillDownloadHandler(session.defaultSession);
-    addNewWindowMenuItem(nextServerPort, djangoServerPort);
+    Menu.setApplicationMenu(null);
     setupZoomLevel(store);
     // Set both API_BASE_URL (runtime, for server-side proxy routes) and
     // NEXT_PUBLIC_API_BASE_URL (for any client-side code that needs it)

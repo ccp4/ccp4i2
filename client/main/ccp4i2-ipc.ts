@@ -1,4 +1,4 @@
-import { BrowserWindow } from "electron";
+import { app, BrowserWindow } from "electron";
 import { startDjangoServer } from "./ccp4i2-django-server";
 import os, { platform } from "node:os";
 import Store from "electron-store";
@@ -420,18 +420,34 @@ export const installIpcHandlers = (
     event.reply("message-from-main", getConfigResponse());
   });
 
-  // IPC communication to set theme mode
+  // IPC communication to set theme mode — broadcasts to all windows so theme
+  // is consistent across multiple open windows.
   ipcMain.on("set-theme-mode", (event, data) => {
     if (data.theme !== "light" && data.theme !== "dark") {
       console.error("Invalid theme mode:", data.theme);
       return;
     }
     store.set("theme", data.theme);
-    event.reply("message-from-main", {
-      message: "set-theme-mode",
-      status: "Success",
-      theme: data.theme,
+    BrowserWindow.getAllWindows().forEach((win) => {
+      win.webContents.send("message-from-main", {
+        message: "theme-changed",
+        theme: data.theme,
+      });
     });
+  });
+
+  ipcMain.on("quit-app", (_event, _data) => {
+    app.quit();
+  });
+
+  ipcMain.on("reload-window", (_event, _data) => {
+    const win = BrowserWindow.getFocusedWindow();
+    if (win) win.webContents.reload();
+  });
+
+  ipcMain.on("force-reload-window", (_event, _data) => {
+    const win = BrowserWindow.getFocusedWindow();
+    if (win) win.webContents.reloadIgnoringCache();
   });
 
   // Find-in-page: relay to focused window's webContents

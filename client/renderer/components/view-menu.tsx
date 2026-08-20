@@ -9,7 +9,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { YoutubeSearchedFor, ZoomIn, ZoomOut } from "@mui/icons-material";
+import { YoutubeSearchedFor, ZoomIn, ZoomOut, Refresh, SyncAlt } from "@mui/icons-material";
 import { ThemeToggle } from "./theme-toggle";
 import { DevModeToggle } from "./dev-mode-toggle";
 import { useCCP4i2Window } from "../app-context";
@@ -34,6 +34,24 @@ export default function ViewMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleReload = () => {
+    if (typeof window !== "undefined" && window?.electronAPI) {
+      window.electronAPI.sendMessage("reload-window", {});
+    } else {
+      window.location.reload();
+    }
+    handleClose();
+  };
+
+  const handleForceReload = () => {
+    if (typeof window !== "undefined" && window?.electronAPI) {
+      window.electronAPI.sendMessage("force-reload-window", {});
+    } else {
+      window.location.reload();
+    }
+    handleClose();
   };
 
   const handleZoomIn = () => {
@@ -70,6 +88,24 @@ export default function ViewMenu() {
         View
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+        <MenuItem onClick={handleReload}>
+          <ListItemIcon>
+            <Refresh fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Reload</ListItemText>
+          <Typography variant="body2" color="textSecondary">
+            (Ctrl+R)
+          </Typography>
+        </MenuItem>
+        <MenuItem onClick={handleForceReload}>
+          <ListItemIcon>
+            <SyncAlt fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Force Reload</ListItemText>
+          <Typography variant="body2" color="textSecondary">
+            (Ctrl+Shift+R)
+          </Typography>
+        </MenuItem>
         <MenuItem onClick={handleZoomIn}>
           <ListItemIcon>
             <ZoomIn fontSize="small" />
