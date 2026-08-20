@@ -2,28 +2,31 @@
 import { useState, useRef } from "react";
 import {
   Button,
-  IconButton,
   ListItemIcon,
   ListItemText,
   Menu,
   MenuItem,
-  Typography,
 } from "@mui/material";
-import { YoutubeSearchedFor, ZoomIn, ZoomOut, Refresh, SyncAlt } from "@mui/icons-material";
+import {
+  YoutubeSearchedFor,
+  ZoomIn,
+  ZoomOut,
+  Refresh,
+  SyncAlt,
+} from "@mui/icons-material";
 import { ThemeToggle } from "./theme-toggle";
 import { DevModeToggle } from "./dev-mode-toggle";
 import { useCCP4i2Window } from "../app-context";
 import { useApi } from "../api";
-import { Job, Project } from "../types/models";
+import { Project } from "../types/models";
 import { useRouter } from "next/dist/client/components/navigation";
 import LanIcon from "@mui/icons-material/Lan";
+import { CCP4i2MenuItem } from "./menu-item";
 
 export default function ViewMenu() {
-  const { projectId, jobId } = useCCP4i2Window();
+  const { projectId } = useCCP4i2Window();
   const api = useApi();
-  const { data: project, mutate: mutateProject } = api.get<Project>(
-    `projects/${projectId}`
-  );
+  const { data: project } = api.get<Project>(`projects/${projectId}`);
   const router = useRouter();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -88,51 +91,36 @@ export default function ViewMenu() {
         View
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleReload}>
-          <ListItemIcon>
-            <Refresh fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Reload</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+R)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleForceReload}>
-          <ListItemIcon>
-            <SyncAlt fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Force Reload</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+Shift+R)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleZoomIn}>
-          <ListItemIcon>
-            <ZoomIn fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Zoom in</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl++)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleZoomOut}>
-          <ListItemIcon>
-            <ZoomOut fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Zoom out</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+-)
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleZoomReset}>
-          <ListItemIcon>
-            <YoutubeSearchedFor fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Reset zoom</ListItemText>
-          <Typography variant="body2" color="textSecondary">
-            (Ctrl+0)
-          </Typography>
-        </MenuItem>
+        <CCP4i2MenuItem
+          text="Reload"
+          icon={Refresh}
+          onClick={handleReload}
+          shortcut="Ctrl+R"
+        />
+        <CCP4i2MenuItem
+          text="Force Reload"
+          icon={SyncAlt}
+          onClick={handleForceReload}
+          shortcut="Ctrl+Shift+R"
+        />
+        <CCP4i2MenuItem
+          text="Zoom In"
+          icon={ZoomIn}
+          onClick={handleZoomIn}
+          shortcut="Ctrl++"
+        />
+        <CCP4i2MenuItem
+          text="Zoom Out"
+          icon={ZoomOut}
+          onClick={handleZoomOut}
+          shortcut="Ctrl+-"
+        />
+        <CCP4i2MenuItem
+          text="Reset Zoom"
+          icon={YoutubeSearchedFor}
+          onClick={handleZoomReset}
+          shortcut="Ctrl+0"
+        />
         <MenuItem onClick={handleThemeToggle}>
           <ThemeToggle ref={themeToggleRef} />
           <ListItemText>Toggle Theme</ListItemText>
