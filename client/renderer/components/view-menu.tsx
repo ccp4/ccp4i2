@@ -2,7 +2,6 @@
 import { useState, useRef } from "react";
 import {
   Button,
-  ListItemIcon,
   ListItemText,
   Menu,
   MenuItem,
@@ -129,17 +128,14 @@ export default function ViewMenu() {
           <DevModeToggle />
         </MenuItem>
         {project && (
-          <MenuItem
+          <CCP4i2MenuItem
+            text="Project Network"
+            icon={LanIcon}
             onClick={() => {
               router.push(`/ccp4i2/project/${projectId}/network`);
               handleClose();
             }}
-          >
-            <ListItemIcon>
-              <LanIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Project Network</ListItemText>
-          </MenuItem>
+          />
         )}
       </Menu>
     </>
