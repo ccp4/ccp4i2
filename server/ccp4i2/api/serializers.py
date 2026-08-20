@@ -130,12 +130,20 @@ class ProjectSerializer(ModelSerializer):
             raise ValidationError(
                 f"Your project name contains whitespace or special characters [{data}]"
             )
-        project_names = [
-            project.name.upper() for project in models.Project.objects.all()
-        ]
+        # An update has to be allowed to send back the name it already has: an
+        # edit form that PATCHes every field, changed or not, would otherwise
+        # collide with itself.
+        others = models.Project.objects.all()
+        if self.instance is not None:
+            others = others.exclude(pk=self.instance.pk)
+        project_names = [project.name.upper() for project in others]
         if "uuid" not in self.initial_data and data.upper() in project_names:
             raise ValidationError("A project with this name already exists!")
-        if "directory" not in self.initial_data:
+        # Only a project about to be created needs somewhere under
+        # CCP4I2_PROJECTS_DIR to be created in. One that already exists has a
+        # directory of its own, which need not be under that root at all, and
+        # renaming it does not move it.
+        if self.instance is None and "directory" not in self.initial_data:
             assert Path(settings.CCP4I2_PROJECTS_DIR).is_dir()
             try:
                 testWritePath = Path(settings.CCP4I2_PROJECTS_DIR) / "testWrite.txt"
