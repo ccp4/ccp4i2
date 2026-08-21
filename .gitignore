@@ -63,3 +63,8 @@ htmlcov/
 
 # Docker local data (database, projects, uploads)
 Docker/data/
+
+# Report-fixture failure diagnostics. These now go to
+# <test-cache>/report-diffs/ (see tests/unit/lib/test_report_fixtures.py);
+# this entry only catches stragglers from older checkouts.
+**/report_fixtures/**/actual_report.xml
