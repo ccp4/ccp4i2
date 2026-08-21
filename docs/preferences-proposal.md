@@ -62,9 +62,16 @@ environment variable  >  user preferences.json  >  site defaults  >  built-in de
    Consumed by `config/settings.py`. File-resident by necessity. **Implemented.**
 2. **Functional** — consumed by wrappers/pipelines via a `PREFERENCES()` accessor:
    `SHELXDIR`, `DIALSDIR`, `BUSTERDIR`, `COOT_EXECUTABLE`, `CCP4MG_EXECUTABLE`,
-   `EXEPATHLIST`, `PDB_REDO_TOKEN_ID`, `PDB_REDO_TOKEN_SECRET`,
-   `RETAIN_DIAGNOSTIC_FILES`, … In cloud these are supplied as **env vars / secrets**;
-   on desktop they live in the file.
+   `EXEPATHLIST`, `RETAIN_DIAGNOSTIC_FILES`, … In cloud these are supplied as
+   **env vars / secrets**; on desktop they live in the file.
+
+   **Secrets are no longer among them.** `PDB_REDO_TOKEN_ID` /
+   `PDB_REDO_TOKEN_SECRET` were originally in this bag; they now live in a
+   separate credential store (OS keychain, with a 0600-file fallback) so that
+   `preferences.json` stays a file users can safely share. The environment
+   variable names are unchanged, and a value hand-set in `userPreferences` is
+   still read — then migrated out on first write. See
+   [CREDENTIALS_DESIGN.md](CREDENTIALS_DESIGN.md).
 3. **UI chrome** — `theme`, `zoomLevel`, `devMode` — stay in `electron-store`; the CLI
    has no interest in them.
 
@@ -79,7 +86,6 @@ environment variable  >  user preferences.json  >  site defaults  >  built-in de
   "ccp4i2Root":  "/path/to/.../ccp4i2",
   "userPreferences": {                          // functional class (class 2)
     "SHELXDIR": "/opt/shelx",
-    "PDB_REDO_TOKEN_ID": "…",
     "RETAIN_DIAGNOSTIC_FILES": false
   }
 }
@@ -135,4 +141,5 @@ schema above → write `~/.ccp4i2/preferences.json`. Note the case change
 The env-first precedence guarantees containers are unaffected: Materia/cloud sets
 config (and secrets) via env, ships no `preferences.json`, and the file layer returns
 empty. The file is exclusively the desktop persistence layer; functional secrets like
-`PDB_REDO_TOKEN_*` come from env/Key Vault in cloud and from the user file on desktop.
+`PDB_REDO_TOKEN_*` come from env/Key Vault in cloud and, on desktop, from the
+credential store rather than this file (see [CREDENTIALS_DESIGN.md](CREDENTIALS_DESIGN.md)).

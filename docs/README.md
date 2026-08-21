@@ -60,6 +60,17 @@ Supporting references:
 - [CCP4i Classic Mode Thinking](../CCP4I_CLASSIC_MODE_THINKING.md) — strategy for
   absorbing the legacy CCP4i interface
 
+### …handle configuration and secrets
+- [Preferences Handling](preferences-proposal.md) — where non-secret config lives
+  (`~/.ccp4i2-django/preferences.json`, env-first precedence)
+- [Handling Secrets](CREDENTIALS_DESIGN.md) — API tokens, ssh passwords and key
+  passphrases: the credential store, its REST surface, and why a credential is
+  never a task parameter
+- [Web-API Task Guide](../server/ccp4i2/wrappers/WEB_API_TASK_GUIDE.md) — the
+  practical how-to for a task that calls an authenticated service
+- [Remote Job Execution Plan](REMOTE_JOB_EXECUTION_PLAN.md) — ssh/qsub/SLURM
+  dispatch, which reuses the same credential machinery
+
 ### …cut a release
 - [Releasing CCP4i2](RELEASING.md) — one `v*` tag → `ccp4i2` on PyPI + desktop
   installers on a GitHub Release (OIDC, no tokens).

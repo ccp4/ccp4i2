@@ -20,6 +20,7 @@ import { useApi } from "../api";
 import { useJob, useProject } from "../utils";
 import { File as DjangoFile, Project } from "../types/models";
 import { InlineTaskModal } from "../components/task/task-elements/inline-task-modal";
+import { CredentialDialog } from "../components/credential-dialog";
 
 /**
  * An error report keyed by parameter objectPath.
@@ -111,6 +112,11 @@ export const RunCheckProvider: React.FC<RunCheckProviderProps> = ({
  *   "RIGID_BODY_SELECTION[2]"
  */
 const formatErrorPath = (path: string): string => {
+  // Credential markers are internal plumbing, not a parameter the user can see.
+  const credential = credentialForPath(path);
+  if (credential) {
+    return `${credential.replace(/_/g, "-").toUpperCase()} credentials`;
+  }
   const parts = path.split(".");
   const skip = new Set(["container", "inputData", "controlParameters", "outputData"]);
   const meaningful = parts.filter((p, i) => {
@@ -135,6 +141,22 @@ const QUICK_ACTIONS: {
   { suffix: ".ASUFILE",   taskName: "ProvideAsuContents", label: "Create ASU Contents" },
   { suffix: ".ASUIN",     taskName: "ProvideAsuContents", label: "Create ASU Contents" },
 ];
+
+/**
+ * Credential quick-actions: a missing or rejected API token is a blocking
+ * validation error with no parameter behind it, so instead of a helper task the
+ * message carries a button that opens the credential dialog. The plugin marks
+ * such errors with an objectPath ending `.CREDENTIAL_<NAME>` (see
+ * `config/credentials.py` and `docs/CREDENTIALS_DESIGN.md`), which is what we
+ * match on here — the error that blocks the run also carries its own fix.
+ */
+const CREDENTIAL_ACTION_PREFIX = ".CREDENTIAL_";
+
+const credentialForPath = (path: string): string | null => {
+  const index = path.lastIndexOf(CREDENTIAL_ACTION_PREFIX);
+  if (index < 0) return null;
+  return path.slice(index + CREDENTIAL_ACTION_PREFIX.length).toLowerCase();
+};
 
 interface ErrorAwareRunDialogProps {
   runTaskRequested: number | null;
@@ -164,6 +186,9 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
       ? { type: "jobs", id: jobId, endpoint: "run_time_validation" }
       : null
   );
+
+  // Credential name whose dialog is open, if any (e.g. "pdb_redo").
+  const [credentialDialog, setCredentialDialog] = useState<string | null>(null);
 
   // State for inline helper task modal (e.g. "Generate Free-R Flags")
   const [inlineTask, setInlineTask] = useState<{
@@ -251,7 +276,7 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
   return (
     <>
     <Dialog
-      open={runTaskRequested !== null && !inlineTask}
+      open={runTaskRequested !== null && !inlineTask && !credentialDialog}
       onClose={() => handleCancel()}
       maxWidth="md"
       fullWidth
@@ -265,6 +290,7 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
               const quickAction = QUICK_ACTIONS.find((a) =>
                 key.endsWith(a.suffix)
               );
+              const credentialName = credentialForPath(key);
               return issueSet.messages.map((issue, issueIndex) => (
                 <div
                   key={`${key}_${issueIndex}`}
@@ -288,6 +314,16 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
                     {": "}
                     {issue}
                   </span>
+                  {credentialName && issueIndex === 0 && (
+                    <Button
+                      size="small"
+                      variant="contained"
+                      sx={{ textTransform: "none", whiteSpace: "nowrap", flexShrink: 0 }}
+                      onClick={() => setCredentialDialog(credentialName)}
+                    >
+                      Set token…
+                    </Button>
+                  )}
                   {quickAction && issueIndex === 0 && (
                     <Button
                       size="small"
@@ -321,6 +357,19 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
         </DialogActions>
       </DialogContent>
     </Dialog>
+
+    {credentialDialog && (
+      <CredentialDialog
+        open
+        name={credentialDialog}
+        onClose={() => setCredentialDialog(null)}
+        onSaved={async () => {
+          // Re-run both validation tiers: the cheap one clears the "no token"
+          // error, the run-time one re-probes the service.
+          await Promise.all([mutateValidation(), mutateRunTimeValidation()]);
+        }}
+      />
+    )}
 
     {inlineTask && job && (
       <InlineTaskModal

@@ -44,6 +44,10 @@ dependencies = [
     "psutil",
     "future",              # used by crank2
     "requests",            # pdb_redo_api and other HTTP clients
+    "keyring",             # OS secret store for API tokens / passwords
+                           # (config/credentials.py). Pure-Python platform
+                           # backends; degrades to a 0600 file where no secret
+                           # service exists (headless Linux, containers, CI).
     "biopython>=1.80",     # used by adding_stats_to_mmcif (sequence alignment)
     "ccp4i2-api>=0.3.5",   # auth middleware + DRF auth classes (config/settings.py)
                            # >=0.3.5: health/version probes exempt from desktop auth

@@ -3,15 +3,21 @@ import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
+import { CredentialAlert } from "../task-elements/credential-alert";
 import { useJob } from "../../../utils";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { container } = useJob(props.job.id);
+  const { container, mutateValidation } = useJob(props.job.id);
 
   if (!container) return <LinearProgress />;
 
   return (
     <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
+      {/* The token is not a task parameter (it must never reach the project
+          database or an exported project), so it cannot be rendered as a field.
+          This banner is how a user discovers and sets it, at the moment they
+          need it. */}
+      <CredentialAlert name="pdb_redo" onChanged={() => mutateValidation?.()} />
       <CCP4i2Tabs>
         <CCP4i2Tab key="inputData" label="Input Data">
           <CCP4i2ContainerElement

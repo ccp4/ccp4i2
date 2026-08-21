@@ -76,6 +76,16 @@ References:
   (subclass `PhilPluginScript`; implement `get_master_phil()`,
   `get_shim_definitions()`, `get_command_target()`, `processOutputFiles()`).
   Reference wrappers: `wrappers/phasertng_picard/`, `wrappers/phasertng_riker/`.
+- **Web-service path:** [WEB_API_TASK_GUIDE.md](../server/ccp4i2/wrappers/WEB_API_TASK_GUIDE.md)
+  — tasks that submit to a remote API needing a token or password. Reference
+  wrapper: `wrappers/pdb_redo_api/`.
+
+> **A credential is never a task parameter.** If your task needs a token,
+> password or passphrase, it does **not** go in the `def.xml`. Task parameters
+> are written to `input_params.xml`, stored in the project database, and
+> included in every exported project zip. Register the credential in
+> [`config/credentials.py`](../server/ccp4i2/config/credentials.py) and read it
+> with `credentials.get_credential(...)`; see the guide above.
 
 > **Outputs are persisted automatically.** The gleaner saves any `outputData`
 > `CDataFile` that is set and exists on disk after the job — there is no
@@ -146,12 +156,16 @@ ccp4-python -m pytest ccp4i2/tests/i2run/test_mytask.py -v
 - [ ] One entry in `core/tasks.py` `TASKS`
 - [ ] (optional) report class + `reportPath`
 - [ ] (optional) React interface + task-chooser category
+- [ ] (if it calls an authenticated service) credential registered in
+      `config/credentials.py` — **not** in the `def.xml`
 - [ ] An i2run test
 
 ## See also
 
 - [def.xml Reference](def-xml-reference.md)
 - [PHIL Task Guide](../server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md)
+- [Web-API Task Guide](../server/ccp4i2/wrappers/WEB_API_TASK_GUIDE.md) ·
+  [Handling Secrets](CREDENTIALS_DESIGN.md)
 - [Task Interface Implementation Guide](../client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md)
 - [Pipeline Best Practices](pipeline_best_practices.md)
 - [Error Handling Patterns](../mddocs/pipeline/ERROR_HANDLING_PATTERNS.md) ·

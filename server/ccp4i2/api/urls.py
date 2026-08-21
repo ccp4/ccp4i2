@@ -13,7 +13,7 @@ from .FileTypeViewSet import FileTypeViewSet
 from .FileImportViewSet import FileImportViewSet
 from .FileUseViewSet import FileUseViewSet
 from .JobViewSet import JobViewSet
-from . import views
+from . import credential_views, views
 
 router = routers.DefaultRouter()
 router.register("projects", ProjectViewSet)
@@ -59,6 +59,26 @@ _api_patterns = [
         "config/program-preferences/set/",
         views.set_program_preferences,
         name="set_program_preferences",
+    ),
+    path(
+        "config/credentials/",
+        credential_views.list_credentials,
+        name="list_credentials",
+    ),
+    path(
+        "config/credentials/<str:name>/set/",
+        credential_views.set_credential_view,
+        name="set_credential",
+    ),
+    path(
+        "config/credentials/<str:name>/validate/",
+        credential_views.validate_credential_view,
+        name="validate_credential",
+    ),
+    path(
+        "config/credentials/<str:name>/clear/",
+        credential_views.clear_credential_view,
+        name="clear_credential",
     ),
     path("tips/", views.tip_of_the_day, name="tip_of_the_day"),
     path("tips/image/<str:name>", views.tip_image, name="tip_image"),
