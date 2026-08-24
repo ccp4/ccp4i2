@@ -134,7 +134,22 @@ class JobLogFiles(ReportClass):
 
 
 class GenericReport(Report):
-    """Fallback report for tasks without a custom report class."""
+    """Fallback report for tasks that ship no report class of their own.
+
+    Many tasks — the whole ``Import*`` family, ``mtzheader``, ``pisa`` and
+    friends — have no ``*_report.py``.  Qt-i2 still showed them a plain report
+    listing what went in and what came out; the Django port instead showed
+    "No report because: No report class found for task", which reads as a
+    failure rather than as "this task has nothing to plot".
+
+    There is no program XML to parse for these tasks, hence
+    ``USEPROGRAMXML = False``.  Everything the report shows — title, input and
+    output files, job details, log files, references — is added by
+    :meth:`Report.standardisePythonReport`, so this class only needs to name
+    the task and, while the job is still running or has failed, say so.
+    """
+
+    USEPROGRAMXML = False
 
     def __init__(
         self,
@@ -145,8 +160,19 @@ class GenericReport(Report):
         if jobInfo is None:
             jobInfo = {}
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
-        title = jobInfo.get('tasktitle', '')
-        self.addText(text=title)
+        # TASKNAME is a class attribute on hand-written reports; set it per
+        # instance so ReferenceGroup.loadFromMedLine() finds this task's
+        # bibliography, and so the class stays usable for any task.
+        self.TASKNAME = jobInfo.get('taskname', '') or ''
+        # A standardised report gets a Title bar, but that bar only carries the
+        # job's own title - it renders nothing when the job was never given one.
+        # Name the task here in that case, and whenever there is no bar at all.
+        title = jobInfo.get('tasktitle', '') or self.TASKNAME
+        if title and not (self.standardise and jobInfo.get('jobtitle')):
+            self.addText(text=title, style='font-size:1.1em;')
+        status = kw.get('jobStatus') or jobInfo.get('status')
+        if status and status != 'Finished':
+            self.addText(text=f'Job status: {status}')
 
 
 class Reference(ReportClass):

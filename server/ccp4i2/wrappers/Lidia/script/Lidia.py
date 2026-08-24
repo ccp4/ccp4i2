@@ -91,8 +91,11 @@ class Lidia(CPluginScript):
 
 
 def _lidiaPath() -> str:
-    if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
-        path = Path(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE))
+    # PREFERENCES() resolves any name, so hasattr() is always true - test the
+    # value, or Path(str(None)) silently becomes the relative path "None".
+    coot_executable = CCP4Modules.PREFERENCES().COOT_EXECUTABLE
+    if coot_executable:
+        path = Path(str(coot_executable))
         if path.is_file():
             return (str(path.resolve().parent / "lidia"),None)
     if lidiaPath := CCP4Utils.which('lidia'):

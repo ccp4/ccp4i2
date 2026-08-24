@@ -1,6 +1,5 @@
 import os
 import re
-import shutil
 import subprocess
 
 from lxml import etree
@@ -27,14 +26,23 @@ class buster(CPluginScript):
     def process(self):
         goodtogo = False
         # Need to first check that Buster is switch on / present. Rem to put Buster in no-Windows list before release.
-        bpres_act = shutil.which('refine')
+        # Resolve through program discovery rather than a bare which(), so the
+        # BUSTERDIR preference (and exePaths) are honoured here exactly as they
+        # are when the command is finally launched.
+        from ccp4i2.config.program_discovery import resolve_program
+        bpres_act = resolve_program(self.TASKCOMMAND)
         if bpres_act:
             goodtogo = True
-        elif CCP4Modules.PREFERENCES().BUSTERDIR.exists():
-            scriplo = os.path.join(CCP4Modules.PREFERENCES().BUSTERDIR.__str__(), 'setup.sh')
-            print(scriplo)
-            self.source_script(scriplo)
-            goodtogo = True
+        else:
+            # PREFERENCES() returns a plain string (or None when unset), not the
+            # legacy CFilePath object -- calling .exists() on it raised
+            # AttributeError and masked the actionable error below.
+            busterdir = CCP4Modules.PREFERENCES().BUSTERDIR
+            scriplo = os.path.join(str(busterdir), 'setup.sh') if busterdir else None
+            if scriplo and os.path.isfile(scriplo):
+                print(scriplo)
+                self.source_script(scriplo)
+                goodtogo = True
         if not goodtogo:
             # Failed to find BUSTER. Flag problem & also write advice into stdout.
             self.appendErrorReport(101)

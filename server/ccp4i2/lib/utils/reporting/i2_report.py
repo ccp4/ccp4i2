@@ -24,10 +24,11 @@ from typing import Optional, Dict, Any, List, Tuple
 
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.fundamental_types import CList
-from ccp4i2.report.CCP4ReportParser import ReportClass
+from ccp4i2.report.CCP4ReportParser import GenericReport, ReportClass
 from ccp4i2.core import CCP4File
 from ccp4i2.core.tasks import (
     get_report_class,
+    get_task_title,
     get_watched_file,
     supports_running_report,
 )
@@ -119,7 +120,7 @@ def _get_basic_job_info(job: Job) -> Dict[str, Any]:
         "creationtime": job.creation_time.timestamp(),
         "projectname": job.project.name,
         "fileroot": str(job.directory) + "/",
-        "tasktitle": job.task_name,
+        "tasktitle": get_task_title(job.task_name) or job.task_name,
         "jobid": str(job.uuid),
         "project_pk": job.project.pk,
         "descendentjobs": _get_descendent_jobs(job),
@@ -341,8 +342,9 @@ def generate_job_report(job: Job) -> ET.Element:
 
     Returns:
         ET.Element: The generated report as an XML element tree.
+        Tasks with no report class of their own fall back to GenericReport
+        (standard title / input / output / job-details sections).
         Returns a simple failed report if:
-        - No report class found for the task
         - Required XML files not found
         - Report generation raises an exception
 
@@ -361,20 +363,18 @@ def generate_job_report(job: Job) -> ET.Element:
         Job.Status(job.status).label,
     )
 
-    # Step 1: Get report class from registry
+    # Step 1: Get report class from registry.  A task with no report class of
+    # its own (the Import* family, mtzheader, pisa, ...) is not an error: fall
+    # back to GenericReport, which shows the standard title / input files /
+    # output files / job details sections, as Qt-i2 did.
     report_class = get_report_class(task_name)
 
     if report_class is None:
-        logger.error(
-            "No report class found for task '%s'. ",
+        logger.info(
+            "No report class registered for task '%s' - using GenericReport",
             task_name,
         )
-        return simple_failed_report(
-            f"No report class found for task '{task_name}'",
-            task_name,
-            details=f"Task '{task_name}' may not have a report implementation.\n"
-            f"Check that a *_report.py file exists in the task's script directory.",
-        )
+        report_class = GenericReport
 
     logger.debug("Using report class: %s", report_class.__name__)
 

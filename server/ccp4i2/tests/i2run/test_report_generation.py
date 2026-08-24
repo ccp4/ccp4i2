@@ -114,9 +114,9 @@ def test_pointless_report_generation():
         # Verify it's not a failure report
         if "No report because" in report_str:
             print(f"Warning: Report indicates failure: {report_str[:500]}")
-            # This may be expected if no report class exists for pointless
-            # Check if the error message is informative
-            assert "No report class" in report_str or "No program XML" in report_str
+            # A missing report class is no longer a failure - it falls back to
+            # GenericReport - so the only expected failure here is missing XML.
+            assert "No program XML" in report_str
 
         print(f"✓ Report generated ({len(report_str)} chars)")
 
@@ -208,3 +208,32 @@ def test_csymmatch_report_generation():
             print(f"✓ Report generated successfully ({len(report_str)} chars)")
         else:
             print(f"Note: Report shows expected limitation: {report_str[:200]}")
+
+
+def test_report_for_task_without_a_report_class():
+    """A task with no report class of its own still gets a usable report.
+
+    ImportCoordinate ships no ``*_report.py`` and writes no program.xml, so it
+    used to render as "No report because: No report class found for task".
+    It should now fall back to GenericReport and show the standard sections.
+    """
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.reporting.i2_report import generate_job_report
+
+    args = ["ImportCoordinate", "--XYZIN", demoData("gamma", "gamma_model.pdb")]
+
+    with i2run(args) as job_dir:
+        job_number = job_dir.name.replace("job_", "")
+        job = models.Job.objects.filter(number=job_number).first()
+        assert job is not None
+
+        report_str = ET.tostring(generate_job_report(job), encoding="unicode")
+
+        assert "No report because" not in report_str, report_str[:500]
+        for element in (
+            "CCP4i2ReportTitle",
+            "CCP4i2ReportInputData",
+            "CCP4i2ReportOutputData",
+            "CCP4i2ReportJobDetails",
+        ):
+            assert element in report_str, f"{element} missing: {report_str[:500]}"
