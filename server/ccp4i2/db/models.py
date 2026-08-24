@@ -21,6 +21,7 @@ from django.db.models import (
     UUIDField,
     TextChoices,
 )
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 
 
@@ -45,6 +46,14 @@ class Project(Model):
 
 
 class ProjectGroup(Model):
+    """A named set of projects that owns type-dependent state and behaviour.
+
+    Use a ProjectGroup when the collection is itself a working object (a
+    fragment campaign has sites, a summary scene, a PanDDA export). For pure
+    organisation of the project list, use ProjectTag instead — see
+    docs/organising-projects.md.
+    """
+
     class GroupType(TextChoices):
         GENERAL_SET = "general_set", "General set"
         FRAGMENT_SET = "fragment_set", "Fragment set"
@@ -87,8 +96,29 @@ class ProjectGroupMembership(Model):
 
 
 class ProjectTag(Model):
+    """A label on a project. Carries no state beyond its text and its place in
+    the tag forest (``parent``), which is what makes it safe to apply freely.
+    Contrast ProjectGroup — see docs/organising-projects.md.
+
+    ``path`` is the materialised chain of ancestor texts, maintained on save.
+    It exists for two reasons: it gives the tree a real database-level
+    uniqueness constraint (``unique_together = [parent, text]`` does not
+    constrain rows with ``parent = NULL``, because SQL treats NULLs as
+    distinct), and it turns descendant lookup — needed whenever a browser rolls
+    projects up to an ancestor node — into a prefix query rather than recursive
+    descent.
+
+    The separator is an ASCII unit separator rather than "/" so that no
+    restriction has to be placed on what a tag may be called: "A/B" as a root
+    tag and "B" under a root "A" are distinct nodes and must not collide.
+    """
+
+    PATH_SEPARATOR = "\x1f"
+    DISPLAY_SEPARATOR = "/"
+
     parent = ForeignKey("self", CASCADE, blank=True, null=True, related_name="children")
     text = CharField(max_length=50)
+    path = CharField(max_length=1024, unique=True, editable=False, default="")
     projects = ManyToManyField(Project, related_name="tags", blank=True)
 
     class Meta:
@@ -96,6 +126,92 @@ class ProjectTag(Model):
 
     def __str__(self):
         return self.text
+
+    # -- tree maintenance ------------------------------------------------
+
+    def compute_path(self):
+        """The materialised path this tag should have, given its parent."""
+        if self.parent_id is None:
+            return self.text
+        return self.parent.path + self.PATH_SEPARATOR + self.text
+
+    def check_no_cycle(self):
+        """Raise if this tag's parent chain would loop back to itself."""
+        seen = set()
+        ancestor = self.parent
+        while ancestor is not None:
+            if ancestor.pk == self.pk:
+                raise ValidationError(
+                    f"Tag '{self.text}' cannot be a descendant of itself."
+                )
+            if ancestor.pk in seen:
+                raise ValidationError("Tag hierarchy contains a cycle.")
+            seen.add(ancestor.pk)
+            ancestor = ancestor.parent
+        return True
+
+    def clean(self):
+        super().clean()
+        self.check_no_cycle()
+
+    def save(self, *args, **kwargs):
+        self.check_no_cycle()
+        previous_path = None
+        if self.pk is not None:
+            previous_path = (
+                type(self).objects.filter(pk=self.pk).values_list("path", flat=True).first()
+            )
+        self.path = self.compute_path()
+        super().save(*args, **kwargs)
+        # Re-parenting or renaming moves an entire subtree; rewrite it so the
+        # descendants' paths stay consistent with their ancestry.
+        if previous_path is not None and previous_path != self.path:
+            self._rewrite_descendant_paths(previous_path)
+
+    def _rewrite_descendant_paths(self, previous_path):
+        prefix = previous_path + self.PATH_SEPARATOR
+        descendants = type(self).objects.filter(path__startswith=prefix)
+        for descendant in descendants:
+            descendant.path = self.path + self.PATH_SEPARATOR + descendant.path[len(prefix):]
+            super(ProjectTag, descendant).save(update_fields=["path"])
+
+    # -- tree queries ----------------------------------------------------
+
+    @property
+    def display_path(self):
+        """The path as a user would read it, e.g. ``SARS-CoV-2/Mpro``."""
+        return self.DISPLAY_SEPARATOR.join(self.path.split(self.PATH_SEPARATOR))
+
+    @property
+    def depth(self):
+        return self.path.count(self.PATH_SEPARATOR)
+
+    def descendants(self):
+        """Every tag below this one, at any depth."""
+        return type(self).objects.filter(
+            path__startswith=self.path + self.PATH_SEPARATOR
+        )
+
+    def self_and_descendants(self):
+        from django.db.models import Q
+
+        return type(self).objects.filter(
+            Q(pk=self.pk) | Q(path__startswith=self.path + self.PATH_SEPARATOR)
+        )
+
+    def tagged_projects(self, include_descendants=True):
+        """Projects under this node.
+
+        With ``include_descendants`` (the default, and what a nested browser
+        wants) a node answers for everything filed beneath it. The stored
+        many-to-many is untouched either way: roll-up is a read-time concern,
+        never something written back into the database.
+        """
+        if not include_descendants:
+            return self.projects.all()
+        return Project.objects.filter(
+            tags__in=self.self_and_descendants()
+        ).distinct()
 
 
 class ProjectExport(Model):

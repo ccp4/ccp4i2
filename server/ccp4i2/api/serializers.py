@@ -1,7 +1,12 @@
 from pathlib import Path
 from django.utils.text import slugify
 from django.conf import settings
-from rest_framework.serializers import ModelSerializer, ValidationError, SerializerMethodField
+from rest_framework.serializers import (
+    ModelSerializer,
+    ReadOnlyField,
+    SerializerMethodField,
+    ValidationError,
+)
 from ..db import models
 
 
@@ -19,22 +24,48 @@ class FileImportSerializer(ModelSerializer):
 
 class ProjectTagListSerializer(ModelSerializer):
     """Lightweight tag serializer for embedding in project lists (no reverse projects)."""
+
+    display_path = ReadOnlyField()
+
     class Meta:
         model = models.ProjectTag
-        fields = ['id', 'text', 'parent']
+        fields = ['id', 'text', 'parent', 'path', 'display_path']
 
 
 class ProjectTagSerializer(ModelSerializer):
+    display_path = ReadOnlyField()
+
     class Meta:
         model = models.ProjectTag
-        fields = ['id', 'text', 'parent', 'projects']
+        fields = ['id', 'text', 'parent', 'path', 'display_path', 'projects']
 
     def validate(self, attrs):
-        """Validate unique constraint on text and parent combination."""
-        text = attrs.get("text")
-        parent = attrs.get("parent")
+        """Guard the two ways an edit can break the tag forest.
 
-        # Check for existing tag with same text and parent
+        Renaming and re-parenting both arrive as partial updates, so the value
+        not being edited has to come from the instance — reading it out of
+        ``attrs`` alone would compare against ``None`` and wave through a
+        collision that the unique path then rejects with a 500.
+        """
+        text = attrs.get("text", getattr(self.instance, "text", None))
+        if "parent" in attrs:
+            parent = attrs["parent"]
+        else:
+            parent = getattr(self.instance, "parent", None)
+
+        # A tag cannot be moved beneath itself or its own descendant; the model
+        # refuses it too, but only by raising on save, which is a 500.
+        if parent is not None and self.instance is not None:
+            ancestor = parent
+            seen = set()
+            while ancestor is not None and ancestor.pk not in seen:
+                if ancestor.pk == self.instance.pk:
+                    raise ValidationError(
+                        {"parent": "A tag cannot be moved beneath itself."}
+                    )
+                seen.add(ancestor.pk)
+                ancestor = ancestor.parent
+
         existing_tag = models.ProjectTag.objects.filter(
             text=text, parent=parent
         ).first()
