@@ -633,7 +633,11 @@ class Report(Container):
             brief='Biblio',
             jobInfo=self.jobInfo)
         referenceGroup = ReferenceGroup()
-        referenceGroup.loadFromMedLine(self.TASKNAME)
+        # loadFromTask, not loadFromMedLine: a task's citations are often filed
+        # under another key (phaser_MR_FRF -> phaser, crank2_* -> the whole
+        # toolchain). Going straight to {TASKNAME}.medline.txt left 52 of 143
+        # report classes with an empty bibliography for well-cited programs.
+        referenceGroup.loadFromTask(self.TASKNAME)
         fold.children.append(referenceGroup)
         if isinstance(self.children[-1], JobDetails):
             self.children.insert(-1, fold)

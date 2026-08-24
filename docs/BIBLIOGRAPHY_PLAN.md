@@ -123,14 +123,78 @@ Model facts that make this expressible (`server/ccp4i2/db/models.py`):
 
 ## Notes / open questions
 
-- **Missing `references/{task}.medline.txt`**: `loadFromMedLine` appends error
+- ~~**Missing `references/{task}.medline.txt`**: `loadFromMedLine` appends error
   code 100 and returns empty — treat as "no refs for this task", don't fail the
-  whole request.
+  whole request.~~ **Superseded 2026-08-24.** Returning empty is still right —
+  the request must not fail — but doing so *silently* is what hid a real bug for
+  months. It now also logs a warning naming the task, unless the task is
+  declared in `NON_CITABLE`. See "How a citation resolves" below.
 - Reconcile the **bibtex vs medline** duplication eventually (single source);
   out of scope for the first wiring.
 - Dedup key: prefer PMID where present; fall back to normalised title.
 - This shares its shape with Export MTZ: *call plugin/report metadata via a
   server util, expose through an endpoint, render in a frontend modal.*
+
+## How a citation resolves
+
+*Reference section, added 2026-08-24 after three related bugs. If you are adding
+a task, this is the part you need.*
+
+A task's references come from MedLine-format files in
+`server/ccp4i2/references/`. Resolution has three steps, and **both** consumers —
+the Bibliography button and the per-report bibliography — now go through all
+three, from the same maps in `server/ccp4i2/core/citations.py`:
+
+1. **Task name → citation keys.** `TASK_CITES` maps a task to the keys it cites.
+   Unmapped tasks cite themselves. The map is one-to-many: `ShelxCD` →
+   `shelxc` + `shelxd`; every `crank2_*` step → the whole toolchain it can drive.
+2. **Key → file.** `CCP4Utils.findReferenceFile(key)` looks for
+   `references/{key}.medline.txt`, **exact name first, then case-insensitively.**
+3. **File → references.** A record needs a title *or* a source line. `SO` alone is
+   not required, because a program is a legitimate citation and has no journal.
+
+A task with nothing to cite — i2 plumbing, format shims, glue — belongs in
+`NON_CITABLE`. A task whose citation simply lives under another key belongs in
+`TASK_CITES`. Putting the latter in `NON_CITABLE` silences a warning by throwing
+away a real citation; that is what the two lists are for, and they are not
+interchangeable.
+
+### Adding a citation for a new task
+
+- If the program already has a `references/*.medline.txt`, add your task to
+  `TASK_CITES` pointing at that key. Do not copy the file.
+- If it does not, add `references/{key}.medline.txt` (MedLine: `PMID-`, `TI  -`,
+  `SO  -`, `AU  -`, `URL -`), naming it for the program rather than the task, so
+  other tasks can cite it too.
+- If it genuinely has nothing to cite, add it to `NON_CITABLE`.
+- Do nothing and the task's report warns at load, naming itself. `pytest
+  ccp4i2/tests/unit/lib/test_reference_missing_is_loud.py` fails if any report
+  class would render an empty bibliography.
+
+### Why both maps live in `core/citations.py`
+
+`lib/utils/jobs/bibliography.py` imports `ccp4i2.db.models` at module level;
+`report/metadata.py` is Django-free and must stay that way, since reports render
+outside a configured Django. Importing the maps from `bibliography` — even lazily
+inside a method — drags Django into report rendering. `core/citations.py` has no
+imports at all, so both sides can share it. A test renders a bibliography in a
+subprocess and inspects `sys.modules` to keep that honest; the import-time check
+alone does not catch a lazy import.
+
+### Three bugs this shape has already caused
+
+All three were one file being reached two ways, and all three were **silent**:
+
+| Symptom | Cause |
+|---|---|
+| AceDRG citation missing from every report **on Linux only** | Report asked for `Acedrg.medline.txt` (its `TASKNAME`), the file is `acedrg.medline.txt` (the citation key). macOS/Windows resolve case-insensitively; Linux does not. |
+| 52 of 143 report classes rendered an **empty** references section | The Bibliography button expanded `TASK_CITES`; the report side did not. |
+| BUSTER cited nothing despite having a file | `ReferenceGroup` required an `SO` line; BUSTER's entry is a program, not a paper. |
+
+The lesson worth carrying: **never test this class of bug with `Path.exists()`**.
+It consults the filesystem, so on macOS and Windows it answers *yes* to a name
+that fails on Linux — passing on exactly the machines where the bug is invisible.
+Compare against the real directory listing instead.
 
 ## Implementation note
 

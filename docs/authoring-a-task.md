@@ -120,6 +120,35 @@ for tasks that provably need no CCP4 install (verified by the CCP4-free guard).
 At this point the task runs (via i2run and the API) and **renders a default UI
 automatically**.
 
+## Step 3.5 — Cite the program your task runs
+
+If your task wraps a published program, its report should say so. Reports build
+their bibliography from the MedLine files in `server/ccp4i2/references/`, and a
+task that cites nothing renders an empty references section — which used to
+happen silently and now logs a warning naming your task.
+
+There is one thing to get right, and it is not the obvious one: **the lookup is
+by citation key, not by task name.** Register the mapping in
+`server/ccp4i2/core/citations.py`:
+
+```python
+TASK_CITES = {
+    ...
+    "my_new_task": ["theprogram"],   # -> references/theprogram.medline.txt
+}
+```
+
+- Reuse an existing key wherever the program is already cited — don't copy a
+  reference file per task. The map is one-to-many, so a task that drives several
+  programs cites all of them.
+- Only add a new `references/{key}.medline.txt` when the program is not yet
+  cited anywhere, and name it for the *program*, not your task.
+- If your task is pure i2 plumbing with nothing to cite, add it to `NON_CITABLE`
+  in the same file. That is the only correct way to be quiet.
+
+Full rules, and the three bugs that motivated them, are in
+[Bibliography](BIBLIOGRAPHY_PLAN.md#how-a-citation-resolves).
+
 ## Step 4 — (Optional) Custom frontend interface
 
 Only if the auto-generated interface isn't sufficient. Register a React
@@ -158,6 +187,9 @@ ccp4-python -m pytest ccp4i2/tests/i2run/test_mytask.py -v
 - [ ] (optional) React interface + task-chooser category
 - [ ] (if it calls an authenticated service) credential registered in
       `config/credentials.py` — **not** in the `def.xml`
+- [ ] (if it wraps a published program) citation registered in
+      `core/citations.py` — `TASK_CITES`, or `NON_CITABLE` if there is nothing
+      to cite
 - [ ] An i2run test
 
 ## See also
@@ -166,6 +198,7 @@ ccp4-python -m pytest ccp4i2/tests/i2run/test_mytask.py -v
 - [PHIL Task Guide](../server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md)
 - [Web-API Task Guide](../server/ccp4i2/wrappers/WEB_API_TASK_GUIDE.md) ·
   [Handling Secrets](CREDENTIALS_DESIGN.md)
+- [Bibliography — how a citation resolves](BIBLIOGRAPHY_PLAN.md#how-a-citation-resolves)
 - [Task Interface Implementation Guide](../client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md)
 - [Pipeline Best Practices](pipeline_best_practices.md)
 - [Error Handling Patterns](../mddocs/pipeline/ERROR_HANDLING_PATTERNS.md) ·
