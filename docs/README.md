@@ -40,6 +40,11 @@ Supporting references:
 
 ### …work on a pipeline
 - [Pipeline Best Practices](pipeline_best_practices.md)
+- [Error Handling Remediation](error-handling-remediation.md) — the tracked
+  backlog of core-machinery and per-pipeline error-handling defects, with a
+  `scripts/scan_error_handling.py` burn-down. **Read before touching a pipeline's
+  failure paths**; several sections of Pipeline Best Practices are pending
+  amendment against it.
 - [Error Handling Patterns](../mddocs/pipeline/ERROR_HANDLING_PATTERNS.md)
 - [Validity Patterns](../mddocs/pipeline/VALIDITY_PATTERNS.md)
 
