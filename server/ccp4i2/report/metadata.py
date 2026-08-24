@@ -8,6 +8,7 @@ These elements display job metadata (times, status, references) in reports.
 
 from __future__ import annotations
 
+import logging
 import re
 import xml.etree.ElementTree as etree
 from typing import Any
@@ -15,6 +16,8 @@ from typing import Any
 from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2 import I2_TOP
 from ccp4i2.report.core import ReportClass, Container, Report
+
+logger = logging.getLogger(__name__)
 
 
 class Title(ReportClass):
@@ -250,6 +253,21 @@ class ReferenceGroup(Container):
                 self.__class__,
                 100,
                 f'Taskname: {taskName} Filename: {path}')
+            # errReport alone is not enough: nothing reads it, so this used to
+            # render as a silently empty <CCP4i2ReportReferenceGroup/> and the
+            # AceDRG-on-Linux bug sat undetected for as long as the file existed.
+            # Tasks with no citable upstream program are declared in
+            # core.citations.NON_CITABLE and stay quiet; anything else is a real
+            # gap and says so once, at WARNING, naming the task.
+            from ccp4i2.core.citations import NON_CITABLE
+            if taskName not in NON_CITABLE:
+                logger.warning(
+                    "No reference file for report task %r (looked for %s) - "
+                    "this report's bibliography will be empty. Add the file, "
+                    "add the task to bibliography._NON_CITABLE, or - if the "
+                    "citation lives under another key - see "
+                    "docs/error-handling-remediation.md#bibliography",
+                    taskName, path.name)
             return
         self.taskName = taskName
 

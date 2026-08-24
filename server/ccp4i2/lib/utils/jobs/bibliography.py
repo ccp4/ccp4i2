@@ -157,27 +157,8 @@ TASK_CITES: Dict[str, List[str]] = {
 # Tasks that are pure CCP4i2 plumbing (import/provide/select/format shims) with
 # no citable upstream program. Listed for documentation; they simply resolve to
 # an empty bibliography (no {task}.medline.txt, not in TASK_CITES).
-_NON_CITABLE = frozenset({
-    # imports / providers — pure CCP4i2 data-plumbing
-    "ImportAsuContent", "ImportCoordinate", "ImportDictionary", "ImportFreeR",
-    "ImportMap", "ImportMapCoeffs", "ImportObs", "ImportPhases",
-    "ImportSequence", "ProvideAlignment", "ProvideAsuContents",
-    "ProvideSequence", "ProvideTLS",
-    # format converters / column shims — no citable upstream program
-    "coordinate_selector", "splitMtz", "mergeMtz", "cad_copy_column",
-    "TestObsConversions", "adding_stats_to_mmcif_i2", "cif2mtz", "convert2mtz",
-    "x2mtz", "scalepack2mtz", "mtzutils", "mtzheader", "hklin2cif",
-    "add_fractional_coords", "editbfac", "pdbview_edit", "chltofom",
-    "cmapcoeff", "coot_script_lines",
-    # i2 wrapper/glue tasks with no distinct publication
-    "MakeLink", "MakeMonster", "MakeProjectsAndDoLigandPipeline",
-    "SubtractNative", "pdb_extract_wrapper", "PrepareDeposit", "Lidia",
-    # i2 utility tasks with no distinct upstream program paper
-    "density_calculator", "dm_multidomain", "findmyseq",
-    # subjob-composing pipelines: their constituents surface via Job.children
-    # burrowing, so the pipeline name itself needs no citation of its own.
-    "prosmart_refmac", "import_merged",
-})
+# Canonical home is core.citations - Django-free, so report/ can use it too.
+from ccp4i2.core.citations import NON_CITABLE as _NON_CITABLE
 
 # ---------------------------------------------------------------------------
 # MedLine parsing
