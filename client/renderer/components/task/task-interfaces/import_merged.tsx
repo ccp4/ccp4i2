@@ -88,6 +88,19 @@ interface GenericReflDigest {
 }
 
 /**
+ * Preferred order for defaulting the data type within an mmCIF reflection
+ * block, best first: anomalous intensities, mean intensities, anomalous
+ * structure factors, mean structure factors.  You can always merge or convert
+ * downwards, never back up, so the richest data wins.
+ *
+ * This is deliberately not the order the blocks arrive in: mmcifutils.py
+ * matches CIFLabelSets.ACCEPTED_SETS, which happens to list Fmean first, so
+ * simply taking the first observation type defaulted a PDB sfCIF holding
+ * Fmean, Imean, F± and I± to Fmean.
+ */
+const MMCIF_TYPE_PREFERENCE: number[] = [2, 1, 4, 3];
+
+/**
  * Pattern definitions for column type signatures (same as splitMtz.tsx).
  * contentFlag values match backend CONTENT_SIGNATURE_LIST order:
  * - Obs: 1=Anom I (KMKM), 2=Anom SF (GLGL), 3=Mean I (JQ), 4=Mean SF (FQ)
@@ -274,11 +287,23 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     return columnGroups.filter((g) => g.columnGroupType === "FreeR");
   }, [columnGroups]);
 
+  // mmCIF reflection blocks that actually hold merged diffraction data
+  // (a positive type code).  Computed here rather than only in the panel so
+  // that a lone block can be auto-selected.
+  const validMmcifBlocks = useMemo(() => {
+    return (HKLINDigest?.rblock_infos || []).filter((block) =>
+      Boolean(block.typeCodes?.some((tc) => tc > 0))
+    );
+  }, [HKLINDigest]);
+
   // Track if we've already processed the current digest to prevent re-processing
   const [processedDigestKey, setProcessedDigestKey] = useState<string | null>(null);
 
   // Track if we've already auto-selected obs group for this file
   const [autoSelectedObsForFile, setAutoSelectedObsForFile] = useState<string | null>(null);
+
+  // Track if we've already auto-selected an mmCIF reflection block for this file
+  const [autoSelectedBlockForFile, setAutoSelectedBlockForFile] = useState<string | null>(null);
 
   // Effect: Auto-select the first observation group when obsGroups becomes available
   useEffect(() => {
@@ -524,8 +549,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       // Find the best observation data type
       if (block.typeCodes && block.typeCodes.length > 0) {
-        // Find first positive type code (observation data)
-        const obsTypeCode = block.typeCodes.find((tc) => tc > 0);
+        // Prefer the richest data present rather than whichever observation
+        // type the file happens to list first (see MMCIF_TYPE_PREFERENCE).
+        const present = block.typeCodes.filter((tc) => tc > 0);
+        const obsTypeCode =
+          MMCIF_TYPE_PREFERENCE.find((tc) => present.includes(tc)) ?? present[0];
         if (obsTypeCode !== undefined) {
           setSelectedMmcifContentType(obsTypeCode);
           await handleMmcifContentSelect(block, obsTypeCode);
@@ -580,6 +608,32 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     },
     [job?.status, forceSetMMCIF_SELECTED_CONTENT, forceSetMMCIF_SELECTED_COLUMNS, forceSetMMCIF_SELECTED_ISINTENSITY, mutateValidation]
   );
+
+  // Effect: auto-select the reflection block when an mmCIF file holds only one.
+  // Nothing else sets CRYSTALNAME/DATASETNAME for mmCIF input, so leaving a
+  // single block unselected meant the input page looked complete but the job
+  // failed on submission complaining about crystal and dataset names.
+  useEffect(() => {
+    if (
+      job?.status !== 1 ||
+      HKLINDigest?.format?.toUpperCase() !== "MMCIF" ||
+      validMmcifBlocks.length !== 1 ||
+      selectedMmcifBlock ||
+      autoSelectedBlockForFile === HKLINValue?.dbFileId
+    ) {
+      return;
+    }
+    setAutoSelectedBlockForFile(HKLINValue?.dbFileId || null);
+    handleMmcifBlockSelect(validMmcifBlocks[0].bname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    validMmcifBlocks,
+    job?.status,
+    selectedMmcifBlock,
+    HKLINValue?.dbFileId,
+    autoSelectedBlockForFile,
+    HKLINDigest?.format,
+  ]);
 
   // Process column selection from MTZ dialog (legacy path)
   const processColumnSelection = useCallback(
@@ -757,6 +811,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               <MmcifReflectionPanel
                 {...props}
                 digest={HKLINDigest}
+                validBlocks={validMmcifBlocks}
                 selectedBlock={selectedMmcifBlock}
                 selectedContentType={selectedMmcifContentType}
                 onBlockSelect={handleMmcifBlockSelect}
@@ -974,6 +1029,7 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
 
 interface MmcifReflectionPanelProps {
   digest: GenericReflDigest;
+  validBlocks: RBlockInfo[];
   selectedBlock: string | null;
   selectedContentType: number | null;
   onBlockSelect: (blockName: string) => void;
@@ -982,20 +1038,13 @@ interface MmcifReflectionPanelProps {
 
 const MmcifReflectionPanel: React.FC<MmcifReflectionPanelProps> = ({
   digest,
+  validBlocks,
   selectedBlock,
   selectedContentType,
   onBlockSelect,
   onContentSelect,
 }) => {
   const rblocks = digest.rblock_infos || [];
-
-  // Filter to blocks with merged diffraction data (positive typeCodes)
-  const validBlocks = useMemo(() => {
-    return rblocks.filter((block) => {
-      if (!block.typeCodes) return false;
-      return block.typeCodes.some((tc) => tc > 0);
-    });
-  }, [rblocks]);
 
   const currentBlock = selectedBlock
     ? rblocks.find((b) => b.bname === selectedBlock)
@@ -1017,6 +1066,17 @@ const MmcifReflectionPanel: React.FC<MmcifReflectionPanelProps> = ({
                 ? "Reflection Block"
                 : "Select Reflection Block"}
             </Typography>
+
+            {/* The crystal and dataset names come from the chosen block, and
+                the job cannot run without them - say so here rather than
+                letting it fail on submission. */}
+            {!currentBlock && (
+              <Alert severity="warning" sx={{ mb: 1 }}>
+                Choose a reflection block. The crystal name, dataset name and
+                cell are taken from it, and the job cannot run until one is
+                selected.
+              </Alert>
+            )}
 
             <List dense sx={{ mb: 2 }}>
               {validBlocks.map((block, idx) => {

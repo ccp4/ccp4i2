@@ -2,6 +2,7 @@ import sys
 
 from lxml import etree
 
+from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
@@ -19,6 +20,28 @@ class import_merged(CPluginScript):
                         [ 'hklout.mtz' , 5 ],    
                         [ 'HKLOUT.mtz' , 5 ]
                       ]
+    #------------------------------------------------------------------------
+    def validity(self):
+        error = super(import_merged, self).validity()
+
+        # For an mmCIF file the crystal name, dataset name and cell all come
+        # from the chosen reflection block.  Without one the base validity()
+        # reports only "CRYSTALNAME is not set" / "DATASETNAME is not set",
+        # which does not tell the user where to look - and for mmCIF input
+        # those two fields are not even on the page.
+        hklin_format = str(self.container.inputData.HKLIN_FORMAT).upper()
+        if hklin_format == 'MMCIF' and \
+                not self.container.inputData.MMCIF_SELECTED_BLOCK.isSet():
+            error.append(
+                klass=self.TASKNAME, code=201,
+                details='No reflection block has been selected. Choose one '
+                        'under "mmCIF Reflection Data" - the crystal name, '
+                        'dataset name and cell are taken from it.',
+                name=f'{self.TASKNAME}.container.inputData.MMCIF_SELECTED_BLOCK',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR)
+
+        return error
+
     #------------------------------------------------------------------------
     def process(self):
       self.container.inputData.HKLIN.loadFile()

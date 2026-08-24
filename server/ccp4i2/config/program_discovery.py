@@ -24,6 +24,27 @@ Preferences are read via ``config.preferences.user_preference`` (env var >
 can supply them as plain env vars. Pure stdlib — no Django, no CCP4 import — so
 it is safe to call from the CCP4-free server (the probe endpoint) and from the
 ccp4-python job environment (``CCP4PluginScript``) alike.
+
+Which tasks this actually governs
+---------------------------------
+
+``CPluginScript`` resolves ``TASKCOMMAND`` through here, both when launching a
+job and in the pre-run check, so the order above holds for every plain wrapper.
+A handful of tasks find their program some other way, and the Preferences page
+cannot relocate those:
+
+* ``clustalw`` computes ``TASKCOMMAND`` at import time from ``$CCP4/libexec``.
+  Bundled with CCP4, so there is nothing to relocate — but a preference would
+  not override it.
+* ``arp_warp_classic`` sets ``TASKCOMMAND = sys.executable`` and drives ARP/wARP
+  through its own scripts; it is excluded from the probed list (absolute path).
+* ``i2Dimple`` shells out to ``$CBIN/reindex`` directly for one step.
+* ``crank2`` declares no single ``TASKCOMMAND`` — it drives many programs and
+  passes explicit ``binary::`` paths. It reads ``SHELXDIR`` from the *same*
+  preferences store, so that preference does take effect; ``exePaths`` does not.
+* ``buster`` checks for ``refine`` itself before running, and sources
+  ``$BUSTERDIR/setup.sh`` when it is not on ``PATH``. It now performs that check
+  with :func:`resolve_program` so the two agree.
 """
 
 import os

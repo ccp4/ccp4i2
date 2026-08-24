@@ -207,7 +207,8 @@ class crank2(CPluginScript):
       crank_lines.append("createfree {} fraction::{}".format(no_out_next, inp.FREE_RATIO*0.01))
 
     self.i2_shelxdir = None
-    if hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR') and CCP4Modules.PREFERENCES().SHELXDIR:
+    # PREFERENCES() resolves any name, so hasattr() is always true - test the value.
+    if CCP4Modules.PREFERENCES().SHELXDIR:
       self.i2_shelxdir = str(CCP4Modules.PREFERENCES().SHELXDIR)
 
     if basepipe.ToggleDetection() or (basepipe.ToggleShelxCDE() and (inp.XYZIN_SUB.isSet() or inp.XYZIN_SUB_RES.isSet())):
