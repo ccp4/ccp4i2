@@ -18,7 +18,7 @@ from ...db.import_sqlite import (
     StructuralIssuesError,
 )
 from ...db import legacy_structure as ls
-from ...db.models import Project
+from ...db.models import Project, ProjectGroup, ProjectTag
 
 
 # ---------------------------------------------------------------------------
@@ -320,3 +320,141 @@ class ImporterCopyTests(TestCase):
                            allow_structural_issues=True).run()
         finally:
             os.chmod(Path(d) / "CCP4_JOBS", 0o755)
+
+
+# ---------------------------------------------------------------------------
+# Legacy "folders" (parent projects) migrate to tags
+# ---------------------------------------------------------------------------
+
+@override_settings()
+class LegacyFolderMigrationTests(TestCase):
+    """Qt-i2 had no folder object: a folder was a Project row that other
+    Projects named as their parent. It organised the project list and did
+    nothing else, so it migrates to a ProjectTag rather than to a ProjectGroup
+    — see docs/organising-projects.md.
+    """
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.legacy_root = self.tmp / "legacy"
+        self.legacy_root.mkdir()
+        self.dest_root = self.tmp / "CCP4X_PROJECTS"
+        self.db_path = self.tmp / "database.sqlite"
+
+    def _importer(self, **kw):
+        kw.setdefault("dest_root", self.dest_root)
+        kw.setdefault("continue_on_error", True)
+        return SQLiteImporter(db_path=self.db_path, **kw)
+
+    def _build(self, projects, jobs):
+        make_legacy_db(self.db_path, projects, jobs)
+        return self._importer().run()
+
+    def test_empty_folder_becomes_a_tag_not_a_project(self):
+        folder_dir = make_project_tree(self.legacy_root, "SARS-CoV-2", with_jobs=False)
+        child_dir = make_project_tree(self.legacy_root, "Mpro-work")
+        folder_id, child_id = _hex(), _hex()
+
+        self._build(
+            [
+                {"id": folder_id, "name": "SARS-CoV-2", "directory": folder_dir},
+                {"id": child_id, "name": "Mpro-work", "directory": child_dir,
+                 "parent": folder_id},
+            ],
+            [{"id": _hex(), "number": "1", "project_id": child_id}],
+        )
+
+        self.assertFalse(Project.objects.filter(name="SARS-CoV-2").exists())
+        child = Project.objects.get(name="Mpro-work")
+        self.assertEqual([tag.text for tag in child.tags.all()], ["SARS-CoV-2"])
+
+    def test_folder_with_jobs_is_kept_as_a_project_and_tagged(self):
+        folder_dir = make_project_tree(self.legacy_root, "campaign")
+        child_dir = make_project_tree(self.legacy_root, "soak-01")
+        folder_id, child_id = _hex(), _hex()
+
+        self._build(
+            [
+                {"id": folder_id, "name": "campaign", "directory": folder_dir},
+                {"id": child_id, "name": "soak-01", "directory": child_dir,
+                 "parent": folder_id},
+            ],
+            [
+                {"id": _hex(), "number": "1", "project_id": folder_id},
+                {"id": _hex(), "number": "1", "project_id": child_id},
+            ],
+        )
+
+        folder_project = Project.objects.get(name="campaign")
+        tag = ProjectTag.objects.get(text="campaign")
+        # It is a project in its own right *and* the node its children sit under.
+        self.assertEqual(set(tag.projects.all()),
+                         {folder_project, Project.objects.get(name="soak-01")})
+
+    def test_nested_folders_become_a_tag_tree(self):
+        outer_dir = make_project_tree(self.legacy_root, "outer", with_jobs=False)
+        inner_dir = make_project_tree(self.legacy_root, "inner", with_jobs=False)
+        leaf_dir = make_project_tree(self.legacy_root, "leaf")
+        outer_id, inner_id, leaf_id = _hex(), _hex(), _hex()
+
+        self._build(
+            [
+                {"id": outer_id, "name": "outer", "directory": outer_dir},
+                {"id": inner_id, "name": "inner", "directory": inner_dir,
+                 "parent": outer_id},
+                {"id": leaf_id, "name": "leaf", "directory": leaf_dir,
+                 "parent": inner_id},
+            ],
+            [{"id": _hex(), "number": "1", "project_id": leaf_id}],
+        )
+
+        inner_tag = ProjectTag.objects.get(text="inner")
+        self.assertEqual(inner_tag.parent.text, "outer")
+        self.assertEqual(inner_tag.display_path, "outer/inner")
+
+        # The leaf carries only its immediate folder; the ancestor is reached
+        # by rolling up, not by writing implied tags into the database.
+        leaf = Project.objects.get(name="leaf")
+        self.assertEqual([tag.text for tag in leaf.tags.all()], ["inner"])
+        self.assertEqual(
+            set(ProjectTag.objects.get(text="outer").tagged_projects()), {leaf}
+        )
+
+    def test_folder_name_matching_a_legacy_tag_is_not_duplicated(self):
+        folder_dir = make_project_tree(self.legacy_root, "shared", with_jobs=False)
+        child_dir = make_project_tree(self.legacy_root, "child")
+        folder_id, child_id = _hex(), _hex()
+        make_legacy_db(
+            self.db_path,
+            [
+                {"id": folder_id, "name": "shared", "directory": folder_dir},
+                {"id": child_id, "name": "child", "directory": child_dir,
+                 "parent": folder_id},
+            ],
+            [{"id": _hex(), "number": "1", "project_id": child_id}],
+        )
+        # A legacy Tags row with the same text as the folder.
+        conn = sqlite3.connect(str(self.db_path))
+        conn.execute("INSERT INTO Tags (TagID, ParentTagID, Text) VALUES (1, NULL, 'shared')")
+        conn.commit()
+        conn.close()
+
+        self._importer().run()
+
+        self.assertEqual(ProjectTag.objects.filter(text="shared").count(), 1)
+
+    def test_no_project_groups_are_created_from_folders(self):
+        folder_dir = make_project_tree(self.legacy_root, "folder", with_jobs=False)
+        child_dir = make_project_tree(self.legacy_root, "child")
+        folder_id, child_id = _hex(), _hex()
+
+        self._build(
+            [
+                {"id": folder_id, "name": "folder", "directory": folder_dir},
+                {"id": child_id, "name": "child", "directory": child_dir,
+                 "parent": folder_id},
+            ],
+            [{"id": _hex(), "number": "1", "project_id": child_id}],
+        )
+
+        self.assertEqual(ProjectGroup.objects.count(), 0)

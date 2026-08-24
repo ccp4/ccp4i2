@@ -41,8 +41,6 @@ from .models import (
     JobValueKey,
     Project,
     ProjectExport,
-    ProjectGroup,
-    ProjectGroupMembership,
     ProjectImport,
     ProjectTag,
     ServerJob,
@@ -700,8 +698,13 @@ class SQLiteImporter:
         self.tag_map = {}
         self.filerole_map = {}
 
-        # Parent relationships deferred for group creation
+        # Parent relationships deferred for folder-tag creation
         self.parent_relationships = []  # [(child_legacy_id, parent_legacy_id)]
+        # Legacy "folder" analysis, computed before projects are imported
+        self.legacy_project_rows = {}   # legacy_id -> {"parent": ..., "name": ...}
+        self.folder_ids = set()         # legacy projects that had children
+        self.empty_folder_ids = set()   # ...and no jobs of their own
+        self.folder_tag_map = {}        # legacy folder id -> ProjectTag
 
         # Structural plan + issues, computed once in run() and consumed by
         # _import_projects. Keyed by legacy project id for the plan.
@@ -844,11 +847,12 @@ class SQLiteImporter:
         self._import_tags(cur)
 
         self.log_fn("Phase 2: Projects")
+        self._analyse_legacy_folders(cur)
         self._import_projects(cur)
         self._import_projecttags(cur)
 
-        self.log_fn("Phase 3: Project groups (parent relationships)")
-        self._create_project_groups()
+        self.log_fn("Phase 3: Folder tags (legacy parent relationships)")
+        self._create_folder_tags()
 
         self.log_fn("Phase 4: Jobs")
         self._import_jobs(cur)
@@ -948,6 +952,20 @@ class SQLiteImporter:
             try:
                 with self._row_savepoint():
                     pk = row["projectid"]
+                    # A legacy "folder" with no jobs of its own was never a
+                    # project in any meaningful sense — Qt-i2 would not even
+                    # open it while it had children. It survives the migration
+                    # as a tag (see _create_folder_tags) rather than as an
+                    # empty project cluttering the project list.
+                    if pk in self.empty_folder_ids:
+                        self.stats["folders_as_tags_only"] += 1
+                        self.log(f"  Folder (tag only): {row['projectname']}")
+                        if row["parentprojectid"]:
+                            self.parent_relationships.append(
+                                (pk, row["parentprojectid"])
+                            )
+                        continue
+
                     # The plan (from _analyse_structure) decides the final directory:
                     # source dir for in_place, dest dir for copy.
                     entry = self.plan_by_id.get(pk)
@@ -1067,42 +1085,108 @@ class SQLiteImporter:
                 self.stats["projecttags"] += 1
         self.log_count("Project-Tag associations", self.stats["projecttags"])
 
-    def _create_project_groups(self):
-        parent_children = defaultdict(list)
+    def _analyse_legacy_folders(self, cur):
+        """Work out which legacy projects were acting as folders.
+
+        Qt-i2 had no folder object: a folder was a Project row that other
+        Projects named as their ParentProjectID. It organised the project list
+        and did nothing else — it held no state, and could not be opened while
+        it had children. That is a label, so it migrates to a ProjectTag.
+
+        A folder that also holds jobs of its own is a real project too, and is
+        imported as one as well as becoming a tag.
+        """
+        cur.execute("SELECT ProjectID, ParentProjectID, ProjectName FROM Projects")
+        for row in cur.fetchall():
+            self.legacy_project_rows[row["projectid"]] = {
+                "parent": row["parentprojectid"],
+                "name": row["projectname"],
+            }
+            if row["parentprojectid"]:
+                self.folder_ids.add(row["parentprojectid"])
+
+        # Only count folders that actually exist as rows; a dangling
+        # ParentProjectID points at nothing we can name a tag after.
+        self.folder_ids &= set(self.legacy_project_rows)
+
+        cur.execute("SELECT ProjectID, COUNT(*) AS job_count FROM Jobs GROUP BY ProjectID")
+        job_counts = {row["projectid"]: row["job_count"] for row in cur.fetchall()}
+        self.empty_folder_ids = {
+            folder_id
+            for folder_id in self.folder_ids
+            if not job_counts.get(folder_id)
+        }
+
+        if self.folder_ids:
+            self.log(
+                f"  {len(self.folder_ids)} legacy folder(s), "
+                f"{len(self.empty_folder_ids)} with no jobs of their own"
+            )
+
+    def _folder_tag_for(self, legacy_id, seen=None):
+        """The tag standing in for one legacy folder, creating ancestors first.
+
+        Nesting is preserved through ProjectTag.parent, so a folder tree
+        becomes a tag tree of the same shape.
+        """
+        if legacy_id in self.folder_tag_map:
+            return self.folder_tag_map[legacy_id]
+
+        row = self.legacy_project_rows.get(legacy_id)
+        if row is None:
+            return None
+
+        # Guard against a corrupt legacy database describing a parent cycle.
+        seen = seen or set()
+        if legacy_id in seen:
+            self.log(f"  Skipping cyclic folder parentage at {legacy_id}")
+            return None
+        seen.add(legacy_id)
+
+        parent_tag = None
+        parent_id = row["parent"]
+        if parent_id and parent_id in self.folder_ids:
+            parent_tag = self._folder_tag_for(parent_id, seen)
+
+        text = (row["name"] or "Untitled folder")[:50]
+        tag, created = ProjectTag.objects.get_or_create(parent=parent_tag, text=text)
+        if created:
+            self.stats["folder_tags"] += 1
+        self.folder_tag_map[legacy_id] = tag
+        return tag
+
+    def _create_folder_tags(self):
+        """Turn legacy parent-project relationships into tags on the children.
+
+        Each project is tagged with its immediate folder only. Ancestors are
+        reached by rolling up the tag tree at read time, which keeps the stored
+        many-to-many honest about what was actually filed where.
+        """
         for child_id, parent_id in self.parent_relationships:
-            if child_id in self.project_map and parent_id in self.project_map:
-                parent_children[parent_id].append(child_id)
+            if parent_id not in self.folder_ids:
+                continue
+            tag = self._folder_tag_for(parent_id)
+            if tag is None:
+                continue
+            child = self.project_map.get(child_id)
+            if child is not None:
+                tag.projects.add(child)
+                self.stats["folder_tag_assignments"] += 1
 
-        for parent_id, child_ids in parent_children.items():
-            parent_project = self.project_map[parent_id]
-            group_name = f"Legacy_{parent_project.name}_group"
-            base_name = group_name
-            counter = 1
-            while ProjectGroup.objects.filter(name=group_name).exists():
-                group_name = f"{base_name}_{counter}"
-                counter += 1
+        # A folder that survived as a project as well belongs under its own
+        # node, which is where a user will look for it.
+        for folder_id, tag in list(self.folder_tag_map.items()):
+            project = self.project_map.get(folder_id)
+            if project is not None:
+                tag.projects.add(project)
+                self.stats["folder_tag_assignments"] += 1
 
-            group = ProjectGroup.objects.create(
-                name=group_name,
-                type=ProjectGroup.GroupType.FRAGMENT_SET,
+        self.log_count("Folder tags", self.stats["folder_tags"])
+        if self.stats["folders_as_tags_only"]:
+            self.log_count(
+                "Folders migrated as tags only (no jobs)",
+                self.stats["folders_as_tags_only"],
             )
-            self.stats["groups"] += 1
-
-            ProjectGroupMembership.objects.create(
-                group=group, project=parent_project,
-                type=ProjectGroupMembership.MembershipType.PARENT,
-            )
-            self.stats["memberships"] += 1
-
-            for child_id in child_ids:
-                ProjectGroupMembership.objects.create(
-                    group=group, project=self.project_map[child_id],
-                    type=ProjectGroupMembership.MembershipType.MEMBER,
-                )
-                self.stats["memberships"] += 1
-
-        self.log_count("Groups", self.stats["groups"])
-        self.log_count("Memberships", self.stats["memberships"])
 
     # ------------------------------------------------------------------
     # Jobs
