@@ -29,9 +29,10 @@
 name: CI
 
 on:
+  # Every pull request, not only those targeting django: work is sometimes
+  # stacked on an unmerged branch, and a PR with no gate is the situation this
+  # job exists to remove.
   pull_request:
-    branches:
-      - django
   push:
     branches:
       - django
