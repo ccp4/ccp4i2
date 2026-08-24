@@ -7,6 +7,7 @@ import {
   Typography,
   CircularProgress,
   Paper,
+  Tooltip,
 } from "@mui/material";
 import { Add as AddIcon, LocalOffer as TagIcon } from "@mui/icons-material";
 import { useApi } from "../api";
@@ -16,6 +17,8 @@ import { ProjectTag } from "../types/models";
 interface TagOption {
   id?: number;
   text: string;
+  /** Full ancestry, e.g. "SARS-CoV-2/Mpro". Absent for a tag being created. */
+  displayPath?: string;
   isNew?: boolean;
   parent?: number | null;
 }
@@ -48,6 +51,7 @@ export const TagsOfProject: React.FC<{
     return allTags.map((tag) => ({
       id: tag.id,
       text: tag.text,
+      displayPath: tag.display_path ?? tag.text,
       parent: tag.parent,
       isNew: false,
     }));
@@ -58,6 +62,7 @@ export const TagsOfProject: React.FC<{
     return projectTags.map((tag) => ({
       id: tag.id,
       text: tag.text,
+      displayPath: tag.display_path ?? tag.text,
       parent: tag.parent,
       isNew: false,
     }));
@@ -185,15 +190,22 @@ export const TagsOfProject: React.FC<{
     (options: TagOption[], { inputValue }: any) => {
       const filtered = options.filter(
         (option) =>
-          !selectedTags.some((selected) => selected.text === option.text) &&
-          option.text.toLowerCase().includes(inputValue.toLowerCase())
+          // Compare by id: with nesting, two distinct tags can share a text.
+          !selectedTags.some((selected) => selected.id === option.id) &&
+          (option.displayPath ?? option.text)
+            .toLowerCase()
+            .includes(inputValue.toLowerCase())
       );
 
       // Add "+ Create new tag" at the bottom when there's input text
       // and it's not already an exact match for an existing tag or selected tag
       const inputLower = inputValue.toLowerCase();
       const exactMatchExists =
-        filtered.some((option) => option.text.toLowerCase() === inputLower) ||
+        filtered.some(
+          (option) =>
+            option.text.toLowerCase() === inputLower ||
+            (option.displayPath ?? "").toLowerCase() === inputLower
+        ) ||
         selectedTags.some((selected) => selected.text.toLowerCase() === inputLower);
 
       if (inputValue && !exactMatchExists) {
@@ -225,20 +237,28 @@ export const TagsOfProject: React.FC<{
       }
     >
       {option.isNew && <AddIcon sx={{ mr: 1, fontSize: 16 }} />}
-      {option.isNew ? `Create "${option.text}"` : option.text}
+      {option.isNew ? `Create "${option.text}"` : (option.displayPath ?? option.text)}
     </Box>
   );
 
   // Custom tag rendering
   const renderTags = (tagValue: TagOption[], getTagProps: any) =>
     tagValue.map((option, index) => (
-      <Chip
-        {...getTagProps({ index })}
+      <Tooltip
         key={option.id || option.text}
-        label={option.text}
-        size="small"
-        disabled={isSubmitting}
-      />
+        title={
+          option.displayPath && option.displayPath !== option.text
+            ? option.displayPath
+            : ""
+        }
+      >
+        <Chip
+          {...getTagProps({ index })}
+          label={option.text}
+          size="small"
+          disabled={isSubmitting}
+        />
+      </Tooltip>
     ));
 
   if (isLoadingProjectTags || isLoadingAllTags) {
@@ -260,8 +280,10 @@ export const TagsOfProject: React.FC<{
       onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
       options={availableOptions}
       filterOptions={filterOptions}
-      getOptionLabel={(option) => option.text}
-      isOptionEqualToValue={(option, value) => option.text === value.text}
+      getOptionLabel={(option) => option.displayPath ?? option.text}
+      isOptionEqualToValue={(option, value) =>
+        option.id !== undefined ? option.id === value.id : option.text === value.text
+      }
       renderOption={renderOption}
       renderTags={renderTags}
       loading={isSubmitting}

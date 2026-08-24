@@ -82,12 +82,42 @@ class ProjectViewSet(ModelViewSet):
         name = self.request.query_params.get("name")
         if name is not None:
             queryset = queryset.filter(name=name)
+        queryset = self._filter_by_tag(queryset)
         if self.action == 'list':
             # List view: order by most recent first, prefetch tags
             return queryset.prefetch_related('tags').order_by('-last_access')
         else:
             # Detail view: include tags
             return queryset.prefetch_related('tags')
+
+    def _filter_by_tag(self, queryset):
+        """Narrow the list to one node of the tag tree.
+
+        ``?tag=<id>`` rolls up: the node answers for everything filed anywhere
+        beneath it, which is what a nested browser needs from an ancestor node
+        that has no projects of its own. ``?descendants=false`` restricts it to
+        what is filed directly on that tag. ``?untagged=true`` serves the node
+        that catches everything with no tags at all.
+        """
+        if self.request.query_params.get("untagged") in ("true", "1"):
+            return queryset.filter(tags__isnull=True)
+
+        tag_id = self.request.query_params.get("tag")
+        if tag_id is None:
+            return queryset
+
+        try:
+            tag = models.ProjectTag.objects.get(pk=tag_id)
+        except (models.ProjectTag.DoesNotExist, ValueError, TypeError):
+            return queryset.none()
+
+        include_descendants = self.request.query_params.get("descendants") not in (
+            "false",
+            "0",
+        )
+        if include_descendants:
+            return queryset.filter(tags__in=tag.self_and_descendants()).distinct()
+        return queryset.filter(tags=tag)
 
     def get_serializer_class(self):
         """Use lightweight serializer for list view."""

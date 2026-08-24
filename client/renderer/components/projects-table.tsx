@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import {
   Alert,
@@ -27,6 +27,7 @@ import {
   Edit,
   DriveFileMove,
   FolderOpen,
+  LabelOutlined,
   LinkOff,
   Schedule,
   Science,
@@ -36,7 +37,11 @@ import {
 import { alpha } from "@mui/material/styles";
 import { useApi } from "../api";
 import { apiFetch } from "../api-fetch";
-import { Project } from "../types/models";
+import {
+  Project,
+  ProjectTagTree,
+  TagFilter,
+} from "../types/models";
 import { shortDate } from "../pipes";
 import { useDeleteDialog } from "../providers/delete-dialog";
 import { useSet } from "../hooks";
@@ -45,6 +50,8 @@ import { usePopcorn } from "../providers/popcorn-provider";
 import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
 import { ProjectTagChips } from "./project-tag-chips";
+import ProjectTagTreePane, { PROJECT_DRAG_TYPE } from "./project-tag-tree";
+import TagSelectionDialog from "./tag-selection-dialog";
 import { ViewMode, ViewModeToggle } from "./view-mode-toggle";
 import { MoveProjectDialog } from "./move-project-dialog";
 import { ReconnectProjectsDialog } from "./reconnect-projects-dialog";
@@ -328,6 +335,40 @@ export default function ProjectsTable() {
   const { data: projects, mutate } = api.get<Project[]>("projects");
   const selectedIds = useSet<number>([]);
   const [query, setQuery] = useState("");
+  // Which node of the tag tree the list is showing. The tree is fetched here
+  // as well as in the pane purely for its mutate handle — SWR shares the key,
+  // so it is still one request.
+  const [tagFilter, setTagFilter] = useState<TagFilter>({ kind: "all" });
+  const { data: tagTree, mutate: mutateTagTree } =
+    api.get<ProjectTagTree>("projecttags/tree/");
+
+  // ?tag=<id> arrives from a tag chip in the project menu bar. Resolving it
+  // needs the tree, because a filter carries the node's path as well as its
+  // id — so this waits for the tree rather than guessing.
+  const searchParams = useSearchParams();
+  const requestedTagId = searchParams?.get("tag");
+  useEffect(() => {
+    if (!requestedTagId || !tagTree) return;
+    const wanted = Number(requestedTagId);
+    const find = (nodes: typeof tagTree.tags): (typeof tagTree.tags)[0] | null => {
+      for (const node of nodes) {
+        if (node.id === wanted) return node;
+        const inChildren = find(node.children);
+        if (inChildren) return inChildren;
+      }
+      return null;
+    };
+    const node = find(tagTree.tags);
+    if (node) {
+      setTagFilter({
+        kind: "tag",
+        id: node.id,
+        path: node.path,
+        label: node.display_path,
+      });
+    }
+  }, [requestedTagId, tagTree]);
+  const [tagDialogOpen, setTagDialogOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const deleteDialog = useDeleteDialog();
   const { setMessage } = usePopcorn();
@@ -363,10 +404,31 @@ export default function ProjectsTable() {
   );
   const campaignInfo = useProjectCampaigns(projectIds);
 
+  // Does a project sit at or below the selected node of the tag tree? The
+  // ancestry comparison uses the materialised path the server maintains, so a
+  // node answers for everything filed anywhere beneath it — clicking
+  // "SARS-CoV-2" finds projects tagged only "SARS-CoV-2/Mpro/soaks".
+  const matchesTagFilter = useCallback(
+    (project: Project) => {
+      if (tagFilter.kind === "all") return true;
+      const tags = Array.isArray(project.tags) ? project.tags : [];
+      const paths = tags
+        .map((tag) => (typeof tag === "object" ? tag.path : undefined))
+        .filter((path): path is string => Boolean(path));
+      if (tagFilter.kind === "untagged") return tags.length === 0;
+      return paths.some(
+        (path) =>
+          path === tagFilter.path || path.startsWith(`${tagFilter.path}\x1f`)
+      );
+    },
+    [tagFilter]
+  );
+
   // Filter and sort projects
   const filteredProjects = useMemo(() => {
     if (!Array.isArray(projects)) return [];
     return projects
+      ?.filter(matchesTagFilter)
       ?.filter((project) => {
         const searchTerm = query.toLowerCase();
 
@@ -399,9 +461,48 @@ export default function ProjectsTable() {
         (a, b) =>
           new Date(b.last_access).getTime() - new Date(a.last_access).getTime()
       );
-  }, [projects, query]);
+  }, [projects, query, matchesTagFilter]);
 
   // Handlers
+  const selectedProjectIds = useCallback(
+    () => Array.from(selectedIds.values()),
+    [selectedIds]
+  );
+
+  const afterTagging = useCallback(
+    async (label: string, count: number) => {
+      await Promise.all([mutate(), mutateTagTree()]);
+      selectedIds.clear();
+      setMessage(
+        `Tagged ${count} project${count === 1 ? "" : "s"} with "${label}"`,
+        "success"
+      );
+    },
+    [mutate, mutateTagTree, selectedIds, setMessage]
+  );
+
+  // Dropping the selection onto a node of the tree is the quickest way to file
+  // several projects at once; it goes through the same bulk action the dialog
+  // uses.
+  const dropSelectionOnTag = useCallback(
+    async (tagId: number, tagLabel: string) => {
+      const ids = Array.from(selectedIds.values());
+      if (ids.length === 0) return;
+      try {
+        await api.post(`projecttags/${tagId}/add_projects/`, {
+          project_ids: ids,
+        });
+        await afterTagging(tagLabel, ids.length);
+      } catch (error) {
+        setMessage(
+          `Failed to tag projects: ${error instanceof Error ? error.message : String(error)}`,
+          "error"
+        );
+      }
+    },
+    [afterTagging, api, selectedIds, setMessage]
+  );
+
   const deleteSelected = useCallback(() => {
     const selectedProjects = projects?.filter((project) =>
       selectedIds.has(project.id)
@@ -894,14 +995,33 @@ export default function ProjectsTable() {
                   <Clear />
                 </IconButton>
               </Tooltip>
-              <Typography
-                color="primary.main"
-                variant="subtitle1"
-                sx={{ fontWeight: 600, flexGrow: 1 }}
-              >
-                {selectedIds.size} project{selectedIds.size !== 1 ? "s" : ""}{" "}
-                selected
-              </Typography>
+              <Tooltip title="Drag onto a tag to file these projects there">
+                <Typography
+                  color="primary.main"
+                  variant="subtitle1"
+                  draggable
+                  onDragStart={(event) => {
+                    event.dataTransfer.setData(
+                      PROJECT_DRAG_TYPE,
+                      JSON.stringify(Array.from(selectedIds.values()))
+                    );
+                    event.dataTransfer.effectAllowed = "copy";
+                  }}
+                  sx={{ fontWeight: 600, flexGrow: 1, cursor: "grab" }}
+                >
+                  {selectedIds.size} project{selectedIds.size !== 1 ? "s" : ""}{" "}
+                  selected
+                </Typography>
+              </Tooltip>
+              <Tooltip title="Add a tag to selected projects">
+                <IconButton
+                  onClick={() => setTagDialogOpen(true)}
+                  size="small"
+                  color="primary"
+                >
+                  <LabelOutlined />
+                </IconButton>
+              </Tooltip>
               <Tooltip title="Export selected projects">
                 <IconButton
                   onClick={exportSelected}
@@ -921,7 +1041,36 @@ export default function ProjectsTable() {
         )}
       </Box>
 
-      {/* Render based on view mode */}
+      {/* Tag tree beside the list, Gmail-style: the tree filters, it does not
+          move anything. */}
+      <Box
+        sx={{
+          flex: 1,
+          minHeight: 0,
+          display: "flex",
+          gap: 2,
+          overflow: "hidden",
+        }}
+      >
+        <Box
+          sx={{
+            width: 220,
+            flexShrink: 0,
+            display: { xs: "none", md: "block" },
+            borderRight: "1px solid",
+            borderColor: "divider",
+            minHeight: 0,
+          }}
+        >
+          <ProjectTagTreePane
+            selected={tagFilter}
+            onSelect={setTagFilter}
+            onDropProjects={dropSelectionOnTag}
+            onTagsChanged={() => mutate()}
+            totalCount={projects.length}
+          />
+        </Box>
+
       <Box sx={{ flex: 1, overflow: "hidden", minHeight: 0 }}>
         {viewMode === "cards" ? (
           // Virtualized Card Grid View
@@ -984,6 +1133,14 @@ export default function ProjectsTable() {
           </>
         )}
       </Box>
+      </Box>
+
+      <TagSelectionDialog
+        open={tagDialogOpen}
+        projectIds={selectedProjectIds()}
+        onClose={() => setTagDialogOpen(false)}
+        onApplied={afterTagging}
+      />
     </Box>
   ) : (
     <Skeleton variant="rectangular" height={400} />

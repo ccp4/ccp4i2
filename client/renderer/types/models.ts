@@ -25,9 +25,40 @@ export class ProjectTag {
     public id: number,
     public parent: number,
     public text: string,
-    public projects: number[]
+    public projects: number[],
+    // Materialised ancestry, maintained server-side. `path` is separated by an
+    // ASCII unit separator and is what descendant checks compare against;
+    // `display_path` is the same thing rendered with slashes for a user.
+    public path?: string,
+    public display_path?: string
   ) {}
 }
+
+/** One node of `GET projecttags/tree/`. */
+export interface ProjectTagNode {
+  id: number;
+  text: string;
+  parent: number | null;
+  path: string;
+  display_path: string;
+  depth: number;
+  /** Projects filed directly on this tag. */
+  project_count: number;
+  /** Distinct projects anywhere in this subtree — deduplicated, not summed. */
+  total_project_count: number;
+  children: ProjectTagNode[];
+}
+
+export interface ProjectTagTree {
+  tags: ProjectTagNode[];
+  untagged_project_count: number;
+}
+
+/** Which node of the tag tree the project list is showing. */
+export type TagFilter =
+  | { kind: "all" }
+  | { kind: "untagged" }
+  | { kind: "tag"; id: number; path: string; label: string };
 export type ProjectExportStatus = "pending" | "running" | "completed" | "failed";
 
 export class ProjectExport {

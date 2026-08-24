@@ -13,6 +13,8 @@ import { ProjectTag } from "../types/models";
 interface TagOption {
   id?: number;
   text: string;
+  /** Full ancestry, e.g. "SARS-CoV-2/Mpro". Absent for a tag being created. */
+  displayPath?: string;
   isNew?: boolean;
 }
 
@@ -28,7 +30,12 @@ export default function EditTags(props: {
 
   // Convert available tags to options
   const availableOptions: TagOption[] = React.useMemo(
-    () => allTags.map((tag) => ({ id: tag.id, text: tag.text })),
+    () =>
+      allTags.map((tag) => ({
+        id: tag.id,
+        text: tag.text,
+        displayPath: tag.display_path ?? tag.text,
+      })),
     [allTags]
   );
 
@@ -38,7 +45,11 @@ export default function EditTags(props: {
       props.tags
         .map((id) => allTags.find((t) => t.id === id))
         .filter((t): t is ProjectTag => t !== undefined)
-        .map((t) => ({ id: t.id, text: t.text })),
+        .map((t) => ({
+          id: t.id,
+          text: t.text,
+          displayPath: t.display_path ?? t.text,
+        })),
     [props.tags, allTags]
   );
 
@@ -89,7 +100,7 @@ export default function EditTags(props: {
       const filtered = options.filter(
         (option) =>
           !selectedTags.some((s) => s.id === option.id) &&
-          option.text.toLowerCase().includes(inputLower)
+          (option.displayPath ?? option.text).toLowerCase().includes(inputLower)
       );
 
       // Offer to create a new tag if the input doesn't match any existing
@@ -129,7 +140,7 @@ export default function EditTags(props: {
       }
     >
       {option.isNew && <AddIcon sx={{ mr: 1, fontSize: 16 }} />}
-      {option.isNew ? `Create "${option.text}"` : option.text}
+      {option.isNew ? `Create "${option.text}"` : (option.displayPath ?? option.text)}
     </Box>
   );
 
@@ -142,7 +153,7 @@ export default function EditTags(props: {
       onInputChange={(_event, value) => setInputValue(value)}
       options={availableOptions}
       filterOptions={filterOptions}
-      getOptionLabel={(option) => option.text}
+      getOptionLabel={(option) => option.displayPath ?? option.text}
       isOptionEqualToValue={(a, b) => a.id === b.id}
       renderOption={renderOption}
       renderTags={(value, getTagProps) =>

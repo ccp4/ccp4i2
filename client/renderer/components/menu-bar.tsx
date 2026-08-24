@@ -10,7 +10,12 @@ import {
   Tooltip,
   Chip,
 } from "@mui/material";
-import { MoreHoriz, Home, Science as ScienceIcon } from "@mui/icons-material";
+import {
+  MoreHoriz,
+  Home,
+  LocalOffer as LocalOfferIcon,
+  Science as ScienceIcon,
+} from "@mui/icons-material";
 import { CCP4i2MoorhenIcon } from "./General/CCP4i2Icons";
 import EditMenu from "./edit-menu";
 import FileMenu from "./file-menu";
@@ -49,6 +54,14 @@ export default function MenuBar() {
   // Extract campaign info for current project
   const projectCampaign = projectId && campaignInfo ? campaignInfo[String(projectId)] : null;
 
+  // The project's tags, as objects. Older payloads carried bare ids, which
+  // cannot be labelled, so those are simply not shown.
+  const projectTags = Array.isArray(project?.tags)
+    ? (project.tags as any[]).filter(
+        (tag) => typeof tag === "object" && tag !== null
+      )
+    : [];
+
   const router = useRouter();
   const theme = useTheme();
 
@@ -78,24 +91,24 @@ export default function MenuBar() {
       // Extra small: Only File menu visible, rest in overflow
       return {
         visible: ["file"],
-        overflow: ["edit", "view", "util", "help", ...(hasCampaign ? ["campaign"] : [])],
+        overflow: ["edit", "view", "util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
       };
     } else if (isSmall) {
       // Small: File, Edit, and View visible
       return {
         visible: ["file", "edit", "view"],
-        overflow: ["util", "help", ...(hasCampaign ? ["campaign"] : [])],
+        overflow: ["util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
       };
     } else if (isMedium) {
       // Medium: All menus visible, campaign in overflow if present
       return {
-        visible: ["file", "edit", "view", "util", "help"],
+        visible: ["file", "edit", "view", "util", "help", "tags"],
         overflow: (hasCampaign ? ["campaign"] : []),
       };
     } else {
       // Large: Everything visible including campaign
       return {
-        visible: ["file", "edit", "view", "util", "help", ...(hasCampaign ? ["campaign"] : [])],
+        visible: ["file", "edit", "view", "util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
         overflow: [],
       };
     }
@@ -174,6 +187,38 @@ export default function MenuBar() {
         {visible.includes("util") && <UtilMenu />}
         {visible.includes("help") && <HelpMenu />}
 
+        {/* A project's classifications, shown while you are working inside
+            it. Read-only on purpose: an editor in the menu bar was too much,
+            but which tags a project carries is worth seeing. Clicking one
+            opens the project list filtered to that tag. */}
+        {visible.includes("tags") && projectTags.length > 0 && (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, ml: 1 }}>
+            {projectTags.map((tag) => (
+              <Tooltip
+                key={tag.id}
+                title={
+                  tag.display_path && tag.display_path !== tag.text
+                    ? `${tag.display_path} — show projects with this tag`
+                    : "Show projects with this tag"
+                }
+              >
+                <Chip
+                  icon={<LocalOfferIcon />}
+                  label={tag.text}
+                  size="small"
+                  onClick={() => router.push(`/ccp4i2?tag=${tag.id}`)}
+                  sx={{
+                    bgcolor: "rgba(255, 255, 255, 0.15)",
+                    color: "inherit",
+                    "&:hover": { bgcolor: "rgba(255, 255, 255, 0.25)" },
+                    "& .MuiChip-icon": { color: "inherit" },
+                  }}
+                />
+              </Tooltip>
+            ))}
+          </Box>
+        )}
+
         {/* Campaign shortcut - shows when project belongs to a campaign */}
         {visible.includes("campaign") && projectCampaign && (
           <Tooltip title={`Go to ${projectCampaign.campaign_name} campaign`}>
@@ -250,6 +295,19 @@ export default function MenuBar() {
                   <HelpMenu />
                 </Box>
               )}
+              {overflow.includes("tags") &&
+                projectTags.map((tag) => (
+                  <MenuItem
+                    key={tag.id}
+                    onClick={() => {
+                      router.push(`/ccp4i2?tag=${tag.id}`);
+                      handleMoreMenuClose();
+                    }}
+                  >
+                    <LocalOfferIcon sx={{ mr: 1 }} fontSize="small" />
+                    {tag.display_path ?? tag.text}
+                  </MenuItem>
+                ))}
               {overflow.includes("campaign") && projectCampaign && (
                 <MenuItem onClick={() => { handleNavigateToCampaign(); handleMoreMenuClose(); }}>
                   <ScienceIcon sx={{ mr: 1 }} fontSize="small" />

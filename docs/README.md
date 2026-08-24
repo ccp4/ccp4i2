@@ -53,6 +53,11 @@ Supporting references:
 - [Task Interface Implementation Guide](../client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md)
 - Moorhen 3D viewer: `client/renderer/MOORHEN_SCENES_SCHEMA_V1_DESIGN.md`
 
+### …organise projects (tags, groups, campaigns)
+- [Organising Projects](organising-projects.md) — `ProjectTag` vs `ProjectGroup`:
+  which to reach for, why hierarchy lives on tags, and where legacy Qt-i2
+  "folders" map to
+
 ### …understand the architecture
 - Project [`CLAUDE.md`](../CLAUDE.md) — architecture, task registry, validation,
   testing, Docker/Azure (the densest single reference)
