@@ -72,8 +72,14 @@ export const ProjectTagChips = React.memo(
         }}
       >
         {visibleTags.map((tag) => (
-          <Chip
+          // The chip shows the leaf name to stay compact; the tooltip carries
+          // the ancestry, without which two nested tags called "soaks" would
+          // be indistinguishable here.
+          <Tooltip
             key={tag.id}
+            title={tag.display_path && tag.display_path !== tag.text ? tag.display_path : ""}
+          >
+          <Chip
             label={tag.text}
             size={size}
             variant="outlined"
@@ -90,6 +96,7 @@ export const ProjectTagChips = React.memo(
               },
             }}
           />
+          </Tooltip>
         ))}
         {hiddenCount > 0 && (
           <Tooltip
@@ -97,7 +104,7 @@ export const ProjectTagChips = React.memo(
               <Box>
                 {hiddenTags.map((tag) => (
                   <Typography key={tag.id} variant="caption" display="block">
-                    {tag.text}
+                    {tag.display_path ?? tag.text}
                   </Typography>
                 ))}
               </Box>
