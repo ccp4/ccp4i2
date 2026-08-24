@@ -4,6 +4,13 @@ Standalone worker script to process jobs from Azure Service Bus queue.
 This runs independently of Django and monitors the queue for new jobs.
 
 Handles graceful shutdown on SIGTERM/SIGINT by marking in-progress jobs as FAILED.
+
+CONTAINER-ONLY -- not used by the desktop application. This is the worker
+process of the containerised deployment; the Dockerfiles that run it live in
+the newcastleuniversity/materia repository (moved there in commit eb130b163).
+References to /mnt/ccp4data below are the Azure Files share mounted into the
+server, worker and management containers, carrying both the project store and
+the CCP4 distribution; see server/startup-worker.sh for the full note.
 """
 import os
 import json

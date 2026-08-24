@@ -1,4 +1,19 @@
 #!/bin/bash
+#
+# CONTAINER ENTRYPOINT -- not used by the desktop application.
+#
+# This is the entrypoint for the CCP4i2 web/API server container image.
+# The Dockerfiles that invoke it live in the newcastleuniversity/materia
+# repository (moved there in commit eb130b163, "Post-cut tidy: Docker/
+# deleted"); nothing in this repository builds or runs this script.
+#
+# /mnt/ccp4data below is the Azure Files share mounted into the server, worker
+# and management containers. It carries both the project store and the CCP4
+# distribution itself, so the image does not have to bake in the suite and every
+# container sources the same ccp4.setup-sh. That path is deliberate deployment
+# configuration, not a stray developer path -- and it is only a default: set
+# CCP4_DATA_PATH (and CCP4I2_PROJECTS_DIR) to mount the share anywhere else.
+#
 set -e
 
 # Specific variable checks
@@ -12,7 +27,9 @@ echo "DB_SSL_MODE: ${DB_SSL_MODE:-NOT_SET}"
 echo "DB_SSL_ROOT_CERT: ${DB_SSL_ROOT_CERT:-NOT_SET}"
 echo "DB_SSL_REQUIRE_CERT: ${DB_SSL_REQUIRE_CERT:-NOT_SET}"
 
-# Access environment variables (including secrets passed as env vars)
+# Access environment variables (including secrets passed as env vars).
+# CCP4_DATA_PATH is the mounted shared volume (see header); override it to
+# mount the CCP4 tree and project store somewhere other than /mnt/ccp4data.
 CCP4_DATA_PATH=${CCP4_DATA_PATH:-"/mnt/ccp4data"}
 CCP4I2_PROJECTS_DIR=${CCP4I2_PROJECTS_DIR:-"/mnt/ccp4data/ccp4i2-projects"}
 DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE:-"ccp4i2.config.settings"}
