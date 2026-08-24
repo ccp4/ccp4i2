@@ -239,8 +239,13 @@ class ReferenceGroup(Container):
 
     def loadFromMedLine(self, taskName: str) -> None:
         """Parse a MedLine-format file and populate references."""
-        path = I2_TOP / "references" / f"{taskName}.medline.txt"
-        if not path.exists():
+        from ccp4i2.core import CCP4Utils as _utils
+        # Resolved case-insensitively: report classes name the file by TASKNAME
+        # while the bibliography builder names it by citation key, and the two
+        # differ in case for AceDRG. See CCP4Utils.findReferenceFile.
+        path = _utils.findReferenceFile(taskName)
+        if path is None:
+            path = I2_TOP / "references" / f"{taskName}.medline.txt"
             self.errReport.append(
                 self.__class__,
                 100,

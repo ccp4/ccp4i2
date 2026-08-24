@@ -25,6 +25,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Set
 
 from ccp4i2 import I2_TOP
+from ccp4i2.core.CCP4Utils import findReferenceFile as find_reference_file
 from ccp4i2.db import models
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -259,8 +260,11 @@ def references_for_tasks(task_names: Iterable[str]) -> List[dict]:
     seen: Set[str] = set()
     out: List[dict] = []
     for key in sorted(keys):
-        path = REFERENCES_DIR / f"{key}.medline.txt"
-        if not path.exists():
+        # Case-insensitive: a report class names the same file by TASKNAME,
+        # which differs in case from the citation key for AceDRG. Only Linux
+        # notices, and it notices by silently finding nothing.
+        path = find_reference_file(key)
+        if path is None:
             if key not in _NON_CITABLE:
                 logger.debug("No reference file for citation key %s", key)
             continue

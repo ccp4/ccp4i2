@@ -93,8 +93,11 @@ def test_every_cited_key_resolves():
     missing = []
     for task in TASKS:
         for key in bib._citation_keys_for_task(task):
-            path = bib.REFERENCES_DIR / f"{key}.medline.txt"
-            if not path.exists() and key not in bib._NON_CITABLE:
+            # Resolve the way the code does, not via Path.exists(): the latter
+            # answers case-insensitively on macOS/Windows and so would hide a
+            # key that only fails to resolve on Linux.
+            found = bib.find_reference_file(key)
+            if found is None and key not in bib._NON_CITABLE:
                 missing.append((task, key))
     assert not missing, f"citation keys with no reference file: {missing}"
 
