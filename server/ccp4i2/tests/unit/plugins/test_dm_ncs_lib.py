@@ -75,7 +75,9 @@ def test_mask_lands_on_domain_not_lattice_image(model, tmp_path):
     pos, _ = _subvolume_world_points(mask, cell)
     # every mask point must sit within ~ (radius + a grid step) of the domain at
     # its real position, NOT a lattice vector (~100 A) away
-    from scipy.spatial import cKDTree
+    # scipy is a [science] extra, not a core dependency.
+    cKDTree = pytest.importorskip(
+        "scipy.spatial", reason="needs scipy (ccp4i2[science])").cKDTree
     d = cKDTree(ref).query(pos[:3000])[0]
     assert d.mean() < 3.0, f"mask displaced from domain (mean {d.mean():.1f} A)"
 

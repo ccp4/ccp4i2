@@ -429,14 +429,39 @@ class CContainer(CData):
         """
         return len(self.children())
 
-    def __getitem__(self, index):
-        """Get child item by index.
+    def _ordered_children(self):
+        """Children in declaration order, falling back to parenting order.
 
-        Uses HierarchicalObject.children() to access children by index.
-        Note: The order of children may not be deterministic if not added
-        via named attributes tracked in _data_order.
+        ``_data_order`` records the order children were set as named
+        attributes, which for a def.xml-backed container is the order the file
+        declares them. ``children()`` returns the hierarchy's parenting order
+        instead, and the two diverge whenever a child is re-parented after
+        construction -- ``update()`` on a CDataFile before it is attached is
+        enough to move it to the end. Anything parented but never set as a
+        named attribute keeps its place at the end rather than vanishing.
         """
-        return self.children()[index]
+        children = self.children()
+        order = getattr(self, '_data_order', None)
+        if not order:
+            return children
+        remaining = list(children)
+        ordered = []
+        for name in order:
+            child = next((c for c in remaining if c.objectName() == name), None)
+            if child is not None:
+                ordered.append(child)
+                remaining.remove(child)
+        ordered.extend(remaining)
+        return ordered
+
+    def __getitem__(self, index):
+        """Get child item by index, in declaration order.
+
+        Accepts anything list indexing accepts, including slices and negative
+        indices. See :meth:`_ordered_children` for why this is not simply
+        ``children()[index]``.
+        """
+        return self._ordered_children()[index]
 
     def __setattr__(self, name: str, value):
         """Override setattr to maintain _data_order list.

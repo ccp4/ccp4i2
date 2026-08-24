@@ -4,16 +4,17 @@ Unit tests for servalcat fw French-Wilson converter.
 Tests the new ServalcatConverter that replaces ctruncate for
 intensity-to-amplitude conversions.
 """
+import shutil
+
 import pytest
 from pathlib import Path
 from ccp4i2 import I2_TOP
 
-
-def test_servalcat_fw_available():
-    """Check that servalcat fw is available in the environment."""
-    import shutil
-    assert shutil.which('servalcat') is not None, (
-        "servalcat not found in PATH. Source CCP4 environment.")
+# Every test here drives the servalcat binary, which ships with CCP4. Skip the
+# module rather than fail when it is absent, so the suite runs CCP4-free in CI.
+pytestmark = pytest.mark.skipif(
+    shutil.which('servalcat') is None,
+    reason="needs the servalcat binary (CCP4)")
 
 
 def test_imean_to_fmean_conversion(tmp_path):

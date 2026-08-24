@@ -1,0 +1,87 @@
+# Fast test gate for pull requests into `django`.
+# ============================================================================
+# Runs the two suites that need NOTHING from the CCP4 suite — no binaries, no
+# $CCP4 tree, no downloaded test data — on a stock CPython with the pip
+# dependencies `server/pyproject.toml` declares. That is ~800 tests in about a
+# minute on a plain ubuntu runner.
+#
+# Why only these two: `tests/db/` and `tests/async/` do not currently collect
+# without more setup, and `tests/i2run/` and `tests/api/e2e/` run real
+# crystallographic jobs — they need a full CCP4 install and download reference
+# data from PDBe/RCSB, so they belong on a machine with CCP4, not here. What is
+# covered is the whole container/CData/def.xml core, MTZ and PDB handling,
+# converters, reports, plugin infrastructure, validation, serialization and
+# every REST endpoint.
+#
+# Running the suites as SEPARATE steps is deliberate, not tidiness: the
+# heavyweight conftest under tests/api/ builds a Django test database, and once
+# one exists the report-fixture tests in tests/unit/lib/ take a database path
+# and fail looking for jobs that belong to another suite's fixtures. Each suite
+# is green on its own; combining them in one pytest process is not.
+#
+# Anything here needing a CCP4 binary or an optional [science] extra skips
+# rather than fails (see the skipif guards in tests/unit/converters/ and the
+# importorskip in tests/unit/phil/), so the same command is green with or
+# without CCP4 — run it locally under ccp4-python and you get strictly more
+# coverage, not a different answer.
+# ============================================================================
+
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - django
+  push:
+    branches:
+      - django
+  workflow_dispatch: {}
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    name: Unit + API tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.11 is what CCP4 currently ships as ccp4-python, so it is the version
+        # that actually has to work; 3.13 catches drift before the next CCP4
+        # bumps its interpreter.
+        python-version: ['3.11', '3.13']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: server/pyproject.toml
+
+      - name: Install the server and its test toolchain
+        working-directory: server
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Assert CCP4 really is absent
+        # The point of this job is that these suites need no CCP4. If a runner
+        # image ever grew one, the job would silently start proving less.
+        run: |
+          if [ -n "${CCP4:-}" ] || command -v refmacat >/dev/null 2>&1; then
+            echo "::error::CCP4 present on the runner - this job must run CCP4-free"
+            exit 1
+          fi
+          echo "no CCP4 on the runner, as intended"
+
+      - name: Unit tests
+        working-directory: server
+        run: python -m pytest ccp4i2/tests/unit/ -q
+
+      - name: API tests
+        working-directory: server
+        run: python -m pytest ccp4i2/tests/api/unit/ -q

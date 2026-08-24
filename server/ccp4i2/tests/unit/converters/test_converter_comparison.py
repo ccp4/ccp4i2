@@ -19,9 +19,20 @@ Usage:
     output_path = Converter.to_fmean(obs_file, work_dir)
 """
 
+import shutil
+
 import pytest
 from pathlib import Path
 from ccp4i2 import I2_TOP
+
+# These converters shell out to CCP4 binaries; skip when they are not installed
+# so the rest of the module still runs on a CCP4-free interpreter.
+requires_servalcat = pytest.mark.skipif(
+    shutil.which('servalcat') is None,
+    reason="needs the servalcat binary (CCP4)")
+requires_ctruncate = pytest.mark.skipif(
+    shutil.which('ctruncate') is None,
+    reason="needs the ctruncate binary (CCP4)")
 
 
 @pytest.fixture
@@ -51,6 +62,7 @@ def gamma_ipair_data(demo_data_dir):
 class TestConverterAPICompatibility:
     """Test that both converters provide the same API."""
 
+    @requires_servalcat
     def test_servalcat_imean_to_fmean(self, gamma_imean_data, tmp_path):
         """Test ServalcatConverter IMEAN → FMEAN conversion."""
         from ccp4i2.core.CCP4XtalData import CObsDataFile
@@ -75,6 +87,7 @@ class TestConverterAPICompatibility:
         assert Path(output_path).exists()
         print(f"✅ ServalcatConverter output: {output_path}")
 
+    @requires_ctruncate
     def test_ctruncate_imean_to_fmean(self, gamma_imean_data, tmp_path):
         """Test CtruncateConverter IMEAN → FMEAN conversion."""
         from ccp4i2.core.CCP4XtalData import CObsDataFile
@@ -99,6 +112,7 @@ class TestConverterAPICompatibility:
         assert Path(output_path).exists()
         print(f"✅ CtruncateConverter output: {output_path}")
 
+    @requires_servalcat
     def test_drop_in_replacement_pattern(self, gamma_imean_data, tmp_path):
         """
         Demonstrate drop-in replacement pattern.

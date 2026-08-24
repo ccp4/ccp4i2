@@ -9,7 +9,9 @@ import pytest
 import tempfile
 from pathlib import Path
 
-from libtbx.phil import parse
+# libtbx ships with cctbx inside the CCP4 suite; there is no pip wheel for it.
+# Skip rather than error at collection so the suite still runs CCP4-free in CI.
+parse = pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)").parse
 
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
 from ccp4i2.core.base_object.base_classes import CContainer, ValueState
