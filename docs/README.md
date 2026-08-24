@@ -79,6 +79,8 @@ Supporting references:
 ### …cut a release
 - [Releasing CCP4i2](RELEASING.md) — one `v*` tag → `ccp4i2` on PyPI + desktop
   installers on a GitHub Release (OIDC, no tokens).
+- [GitHub Actions](github-actions.md) — what the four workflows run and when,
+  what is and is not gated, and the gotchas that bite when changing them.
 
 ### …deploy
 - Docker / Azure sections in [`CLAUDE.md`](../CLAUDE.md)

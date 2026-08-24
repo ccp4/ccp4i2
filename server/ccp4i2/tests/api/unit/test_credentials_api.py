@@ -6,6 +6,7 @@ accepting one.
 """
 
 import json
+import os
 
 import pytest
 from rest_framework.test import APIClient
@@ -13,6 +14,27 @@ from rest_framework.test import APIClient
 from ccp4i2.config import credentials as cred
 
 VALUES = {"token_id": "tokenid1234", "token_secret": "supersecret"}
+
+# Session-persisted credentials are stored as environment variables (see
+# credentials._session_env_key), so one written by a test outlives it and is
+# visible to every later test in the process. monkeypatch does not undo a write
+# it did not make, so purge them around each test: without this, a test that
+# asserts a shared deployment stored nothing passes alone and fails after a
+# desktop-shaped test has stored something.
+_SESSION_CRED_PREFIX = "CCP4I2_CRED__"
+
+
+def _purge_session_credentials():
+    for key in [k for k in os.environ if k.startswith(_SESSION_CRED_PREFIX)]:
+        del os.environ[key]
+    cred._validation_cache.clear()
+
+
+@pytest.fixture(autouse=True)
+def isolated_credential_store():
+    _purge_session_credentials()
+    yield
+    _purge_session_credentials()
 
 
 @pytest.fixture
@@ -26,13 +48,10 @@ def desktop(tmp_path, monkeypatch):
     monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
     monkeypatch.setenv("CCP4I2_LOCAL_SESSION_TOKEN", "desktop")
     monkeypatch.setattr(cred, "_keyring", lambda: None)
+    # Session-persisted values are purged by the autouse fixture; the plain
+    # env-var overrides still need clearing here.
     for field in cred.PDB_REDO.fields:
         monkeypatch.delenv(field.env, raising=False)
-        monkeypatch.delenv(
-            cred._session_env_key(cred._storage_key("pdb_redo"), field.name),
-            raising=False,
-        )
-    cred._validation_cache.clear()
     return tmp_path
 
 

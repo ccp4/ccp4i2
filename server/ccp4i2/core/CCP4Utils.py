@@ -17,6 +17,39 @@ from typing import List, Optional, Union
 import gemmi
 from lxml import etree
 
+from ccp4i2 import I2_TOP
+
+
+def findReferenceFile(name: str) -> Optional[Path]:
+    """Locate ``references/{name}.medline.txt``, ignoring case.
+
+    Two callers name the same bibliography file by different conventions: a
+    report class asks by its ``TASKNAME`` (``Acedrg``) and the bibliography
+    builder asks by citation key (``acedrg``). On macOS and Windows both
+    resolve, because the filesystem ignores case; on Linux only one can, and
+    the loser silently gets no references at all -- which is how the AceDRG
+    citation went missing from every Linux report.
+
+    Rather than force one convention on the other, match against the real
+    directory listing so both work identically everywhere. Returns None when
+    there is no such file.
+    """
+    directory = Path(I2_TOP) / "references"
+    wanted = f"{name}.medline.txt"
+    try:
+        entries = list(directory.iterdir())
+    except OSError:
+        return None
+    for entry in entries:
+        if entry.name == wanted:
+            return entry
+    lowered = wanted.lower()
+    for entry in entries:
+        if entry.name.lower() == lowered:
+            return entry
+    return None
+
+
 
 class MtzMergeError(Exception):
     """Errors during MTZ merging operations."""

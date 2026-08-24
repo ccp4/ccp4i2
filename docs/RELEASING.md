@@ -1,5 +1,9 @@
 # Releasing CCP4i2
 
+> For the workflows themselves — what runs on a PR, what is gated and what
+> is not, and what to watch when editing them — see
+> [GitHub Actions](github-actions.md).
+
 One version tag produces a complete release: the **`ccp4i2` backend wheel on
 PyPI** and the **desktop installers attached to a GitHub Release**. Driven by
 [`.github/workflows/release.yml`](../.github/workflows/release.yml).

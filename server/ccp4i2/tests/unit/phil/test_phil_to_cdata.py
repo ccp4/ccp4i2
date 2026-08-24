@@ -3,7 +3,9 @@ Tests for Phil2CData — runtime conversion of libtbx.phil scopes to CData hiera
 """
 
 import pytest
-from libtbx.phil import parse
+
+# See test_phil_plugin_script.py: libtbx is CCP4/cctbx-only, no pip wheel.
+parse = pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)").parse
 
 from ccp4i2.utils.phil_to_cdata import Phil2CData
 from ccp4i2.core.base_object.base_classes import CContainer, ValueState

@@ -14,6 +14,8 @@ Tests cover:
 - Invalid data/column issues
 """
 
+import sys
+
 import pytest
 from pathlib import Path
 from unittest.mock import Mock
@@ -105,16 +107,24 @@ class TestPhaseDataConverterErrorHandling:
         assert "contentFlag=99" in report['details']
         assert "Only HL (1)" in report['details']
 
-    def test_chltofom_import_error(self):
-        """Test error code 4: chltofom plugin not available.
+    def test_conversion_needs_no_external_binary(self):
+        """HL <-> PHIFOM is computed in-process, not by shelling out.
 
-        Note: This test is simplified since mocking the import machinery
-        is complex. The actual error code 4 is tested when CCP4I2_ROOT
-        is not set or chltofom is not available.
+        This replaces a test for error code 4, "chltofom plugin not available",
+        which was removed when the converter was ported from the chltofom
+        binary to a direct gemmi/numpy implementation. The invariant worth
+        guarding now is the opposite one: no CCP4 binary is involved, which is
+        what lets phase conversion run on a CCP4-free server.
         """
-        # This test verifies that error code 4 is defined and documented
-        assert 4 in PhaseDataConverter.ERROR_CODES
-        assert 'chltofom' in PhaseDataConverter.ERROR_CODES[4]['description'].lower()
+        assert not any(
+            'chltofom' in code['description'].lower()
+            for code in PhaseDataConverter.ERROR_CODES.values()
+        )
+        # An imported module lands in the namespace, so this catches a
+        # reintroduced shell-out without tripping over the module docstring,
+        # which mentions chltofom precisely to say it is no longer used.
+        module = sys.modules[PhaseDataConverter.__module__]
+        assert not hasattr(module, 'subprocess')
 
     def test_hl_already_hl_returns_input(self, tmp_path):
         """Test that HL → HL returns input path without conversion."""

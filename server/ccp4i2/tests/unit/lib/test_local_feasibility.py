@@ -14,8 +14,10 @@ from ccp4i2.lib.utils.jobs import context_run
 
 class TestTaskRequiresCCP4:
     def test_unflagged_task_requires_ccp4(self):
-        # freerflag shells out to the freerflag binary -> not ccp4_free
-        assert context_run.task_requires_ccp4("freerflag") is True
+        # pointless shells out to the pointless binary -> not ccp4_free.
+        # (This used to name freerflag, which was since ported to gemmi/numpy
+        # and correctly flagged ccp4_free -- see wrappers/freerflag.)
+        assert context_run.task_requires_ccp4("pointless") is True
 
     def test_unknown_task_is_conservative(self):
         assert context_run.task_requires_ccp4("no_such_task_xyz") is True
@@ -34,12 +36,19 @@ class TestCanRunLocal:
 
     def test_no_ccp4_binary_task_refused(self, monkeypatch):
         monkeypatch.setattr(context_run, "ccp4_available", lambda: False)
-        assert context_run.can_run_local("freerflag") is False
+        assert context_run.can_run_local("pointless") is False
 
     def test_with_ccp4_anything_allowed(self, monkeypatch):
         monkeypatch.setattr(context_run, "ccp4_available", lambda: True)
-        assert context_run.can_run_local("freerflag") is True
+        assert context_run.can_run_local("pointless") is True
         assert context_run.can_run_local("ProvideAsuContents") is True
+
+    def test_gemmi_ported_task_runs_without_ccp4(self, monkeypatch):
+        # freerflag was ported off the CCP4 binary onto gemmi/numpy, so it must
+        # stay runnable on a CCP4-free server. Guards that port from regressing.
+        monkeypatch.setattr(context_run, "ccp4_available", lambda: False)
+        assert context_run.task_requires_ccp4("freerflag") is False
+        assert context_run.can_run_local("freerflag") is True
 
 
 class TestCCP4Available:
