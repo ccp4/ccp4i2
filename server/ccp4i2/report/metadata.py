@@ -240,6 +240,43 @@ class ReferenceGroup(Container):
         self._class: str = 'bibreference_group'
         self.taskName: str | None = kw.get('taskName', None)
 
+    def loadFromTask(self, taskName: str) -> None:
+        """Load every reference a task cites, expanding aliases.
+
+        A task's citations are not always filed under its own name: phaser_MR_FRF
+        cites phaser, every crank2_* step cites the whole toolchain it can drive,
+        ShelxCD cites both shelxc and shelxd. That mapping (core.citations.
+        TASK_CITES) has always existed for the Bibliography button, but the
+        per-report bibliography went straight to ``{TASKNAME}.medline.txt`` and so
+        rendered empty for 52 of 143 report classes -- not one of which was
+        actually missing a citation.
+
+        Warns once, naming the task, when nothing resolves and the task is not
+        declared non-citable. That is the same signal loadFromMedLine gives; the
+        difference is that it now fires only for a genuine gap.
+        """
+        from ccp4i2.core.citations import NON_CITABLE, TASK_CITES
+        from ccp4i2.core import CCP4Utils as _utils
+
+        keys = TASK_CITES.get(taskName, [taskName])
+        loaded = 0
+        for key in keys:
+            path = _utils.findReferenceFile(key)
+            if path is None:
+                continue
+            before = len(self)
+            self._loadMedLineFile(path)
+            loaded += len(self) - before
+
+        if loaded == 0 and taskName not in NON_CITABLE:
+            logger.warning(
+                "No references resolved for report task %r (tried %s) - this "
+                "report's bibliography will be empty. Add the file, add the task "
+                "to core.citations.NON_CITABLE, or map it in "
+                "core.citations.TASK_CITES.",
+                taskName, ", ".join(keys))
+        self.taskName = taskName
+
     def loadFromMedLine(self, taskName: str) -> None:
         """Parse a MedLine-format file and populate references."""
         from ccp4i2.core import CCP4Utils as _utils
@@ -270,7 +307,10 @@ class ReferenceGroup(Container):
                     taskName, path.name)
             return
         self.taskName = taskName
+        self._loadMedLineFile(path)
 
+    def _loadMedLineFile(self, path) -> None:
+        """Parse one MedLine file and append its references to this group."""
         from ccp4i2.core import CCP4Utils
         try:
             text = CCP4Utils.readFile(fileName=path)
@@ -292,5 +332,10 @@ class ReferenceGroup(Container):
             m = re.search(r'URL -(.*)', text)
             if m is not None:
                 ref.articleLink = m.groups()[0].strip()
-            if ref.source is not None:
+            # A title alone is enough. Requiring SO (a journal line) silently
+            # dropped software citations -- BUSTER's entry is a program, not a
+            # paper, so it has AU/TI/URL and no SO, and rendered as no citation
+            # at all. bibliography._parse_medline has always accepted these; this
+            # is the same divergence as the alias map, one layer down.
+            if ref.source is not None or ref.articleTitle is not None:
                 self.append(ref)
