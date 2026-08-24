@@ -37,8 +37,17 @@ field stability promises take effect from this version.
 | `lib/` | Built TypeScript output. Generated; gitignored. |
 | `dist/` | Python distribution output (`python -m build`). Generated; gitignored. Kept distinct from `lib/` so `twine upload dist/*` doesn't accidentally pick up TypeScript artefacts. |
 | `ccp4i2_api/` | Python source. Installed editable via `pip install -e .`. |
-| `tests/js/` | TypeScript tests (vitest, when added). |
-| `tests/python/` | Python tests (pytest, when added). |
+| `tests/js/` | TypeScript tests (vitest). |
+| `tests/python/` | Python tests (pytest + pytest-django, run on the 3.9/3.11/3.12 × Django 4.2/5.2 matrix). |
+
+## Python surface
+
+| Module | What it provides |
+|---|---|
+| `ccp4i2_api.middleware` | Django auth middleware, one per deployment shape: `azure_ad.AzureADAuthMiddleware` (validates Azure AD JWTs, also accepting the `X-MS-TOKEN-AAD-ACCESS-TOKEN` header set by Container Apps Easy Auth), `local_session.LocalSessionAuthMiddleware` (a per-launch shared secret, for the desktop app), and `dev_admin.DevAdminMiddleware` (DEBUG-gated local development). They share `base.BaseAuthMiddleware`, which owns the 401/403 response shape and sets the trust flag the DRF class checks. Install exactly one — each is inert unless its own configuration is present. |
+| `ccp4i2_api.drf` | `AzureADAuthentication`, the DRF authentication class that surfaces the middleware's user to `IsAuthenticated`. It honours `request.user` only when the middleware set the trust flag, so nothing else can spoof it. Despite the name it is not Azure-specific — it works for any middleware inheriting the base. |
+| `ccp4i2_api.file_grants` | *New in 0.4.0.* Scoped, expiring read capabilities for requests a browser issues on its own behalf — a report page's images, stylesheets and relative fetches, which cannot carry a bearer token. `mint_grant()` signs one for a directory subtree of the path-based file endpoint; the middleware validates it, but only after normal authentication has failed, and only for GET/HEAD within that subtree. Lifetime is an hour, overridable with the `CCP4I2_FILE_GRANT_TTL` setting. |
+| `ccp4i2_api.exceptions` | `AuthenticationFailed` / `AuthorizationFailed`, the two signals middleware raise to produce a 401 or a 403. |
 
 ## Consumer wiring
 

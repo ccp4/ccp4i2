@@ -9,9 +9,11 @@ authentication class checks before honouring ``request.user`` (anti-
 spoofing, mirroring the existing AzureADAuthMiddleware contract).
 """
 
+from django.contrib.auth import get_user_model
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
 from ..exceptions import AuthenticationFailed, AuthorizationFailed
+from ..file_grants import extract_grant, grant_user_pk
 
 
 # Attribute name set on ``request`` after a successful authentication.
@@ -65,12 +67,37 @@ class BaseAuthMiddleware:
         try:
             user = self.authenticate(request)
         except AuthenticationFailed as exc:
+            # Only once normal authentication has failed: a file grant, which
+            # authenticates browser-issued reads that cannot carry an
+            # Authorization header (a report page's own images, stylesheets
+            # and relative fetches). Trying it second rather than first means
+            # a request that does carry credentials is always the identity
+            # they name — a grant cookie left over from a report someone
+            # else opened can neither shadow a valid token nor borrow it.
+            grant_user = self._grant_user(request)
+            if grant_user is not None:
+                request.user = grant_user
+                setattr(request, REQUEST_FLAG_ATTR, True)
+                return self.get_response(request)
             return self._error_response(str(exc), status=401)
         except AuthorizationFailed as exc:
+            # A valid identity that is not permitted here stays refused: a
+            # grant is a read capability, not a way around authorization.
             return self._error_response(str(exc), status=403, prefix="Access denied")
         request.user = user
         setattr(request, REQUEST_FLAG_ATTR, True)
         return self.get_response(request)
+
+    @staticmethod
+    def _grant_user(request: HttpRequest):
+        """Return the user a valid file grant was minted by, else None."""
+        token = extract_grant(request)
+        if not token:
+            return None
+        user_pk = grant_user_pk(token, path=request.path, method=request.method)
+        if user_pk is None:
+            return None
+        return get_user_model().objects.filter(pk=user_pk).first()
 
     def is_active(self) -> bool:
         raise NotImplementedError
