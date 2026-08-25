@@ -12,8 +12,8 @@ channel.
 
 **Draft v0 — published to npm + PyPI from the in-tree workspace.** Source
 of truth lives at
-[`packages/ccp4i2-api/`](https://github.com/ccp4/ccp4i2/tree/django-sliced/packages/ccp4i2-api)
-inside the `ccp4/ccp4i2` monorepo on the `django-sliced` branch. The npm
+[`packages/ccp4i2-api/`](https://github.com/ccp4/ccp4i2/tree/django/packages/ccp4i2-api)
+inside the `ccp4/ccp4i2` monorepo on the `django` branch. The npm
 scope `@ccp4` and the PyPI name `ccp4i2-api` are CCP4-owned (claimed
 April 2026); a dedicated `ccp4/ccp4i2-api` GitHub repo may follow later
 but is not required while the monorepo hosts the source.
@@ -26,7 +26,7 @@ The old name is unpublished/yanked; consumers should depend on
 
 Versioning follows semver from `0.x.y` onwards. The v0 contract is
 documented in
-[`docs/CCP4I2_SERVICE_CONTRACT.md`](https://github.com/ccp4/ccp4i2/blob/django-sliced/docs/CCP4I2_SERVICE_CONTRACT.md);
+[`docs/CCP4I2_SERVICE_CONTRACT.md`](https://github.com/ccp4/ccp4i2/blob/django/docs/CCP4I2_SERVICE_CONTRACT.md);
 field stability promises take effect from this version.
 
 ## Layout

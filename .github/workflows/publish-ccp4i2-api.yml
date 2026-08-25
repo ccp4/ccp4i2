@@ -33,8 +33,8 @@
 #
 # Behaviour summary by event:
 #   * PR (paths-filtered to the package)   -> tests only
-#   * push to django or moorhen-scenes,
-#     paths-filtered to the package        -> tests only
+#   * push to django, paths-filtered
+#     to the package                       -> tests only
 #   * push of tag ccp4i2-api-v*            -> tests + PyPI + npm publish
 #   * manual workflow_dispatch from a tag  -> tests + PyPI + npm publish
 #   * manual workflow_dispatch from branch -> tests only
@@ -44,7 +44,9 @@ name: Publish ccp4i2-api
 
 on:
   push:
-    branches: [django, moorhen-scenes]
+    # `moorhen-scenes` used to be listed here; that work is in `django` and the
+    # branch no longer exists on the remote.
+    branches: [django]
     paths:
       - 'packages/ccp4i2-api/**'
       - '.github/workflows/publish-ccp4i2-api.yml'
@@ -172,7 +174,12 @@ jobs:
       # the call is effectively unauthenticated. Caught at 0.3.3 (PyPI
       # published, npm failed); see also packages/ccp4i2-api/RELEASING.md.
       - name: Upgrade npm for OIDC registry auth (needs >=11.5)
-        run: npm install -g npm@latest
+        # Pinned to 11.x, not @latest: npm 12 requires Node >=22.22, so on this
+        # Node 20 runner `npm@latest` fails to install at all (EBADENGINE), which
+        # is what broke the 0.4.0 npm publish. 11.x supports Node ^20.17 and
+        # satisfies the >=11.5 that OIDC registry auth needs. Raising Node here
+        # is the other way out, and the one to take when 11.x goes unsupported.
+        run: npm install -g npm@^11.5.0
 
       - name: Install + build
         run: |

@@ -41,7 +41,7 @@ release should re-align.
 | 0.3.3 | ✅ | — | First *automated* release. npm publish failed due to npm CLI 10.8 vs OIDC requirement (≥11.5). |
 | 0.3.4 | ✅ | ✅ | First *successful* end-to-end automated release. |
 | 0.3.5 | ✅ | ✅ | Exempted `/health` from the auth middleware, so the desktop launch-readiness gate can poll before any token exists. Shipped with `ccp4i2` 3.1.0a2. |
-| 0.4.0 | pending | pending | File grants: scoped, expiring read capabilities for the requests a browser issues for itself (a report page's own images, stylesheets and relative fetches), which cannot carry a bearer token. Minor per the policy below — new capability, existing surface unchanged. The TypeScript half moved only to hold lockstep. Both entries become ✅ when `ccp4i2-api-v0.4.0` is pushed. |
+| 0.4.0 | ✅ | — | File grants: scoped, expiring read capabilities for the requests a browser issues for itself (a report page's own images, stylesheets and relative fetches), which cannot carry a bearer token. Minor per the policy below — new capability, existing surface unchanged. npm publish failed: `npm install -g npm@latest` resolved npm 12, which requires Node ≥22.22, on a Node 20 runner. Pinned to npm 11.x afterwards. The TypeScript half is byte-identical to 0.3.5, so nothing is missing from npm; the next release with TypeScript changes re-aligns the versions. |
 
 ## Versioning policy
 
@@ -65,18 +65,16 @@ The package source lives in the `ccp4/ccp4i2` monorepo, which has
 multiple long-lived branches. Releases follow this convention:
 
 - **`django`** — canonical development and release branch. **All
-  release commits land here first.** All version tags point at commits
-  on this branch.
-- **`moorhen-scenes`** — the branch Materia's submodule pin currently
-  tracks. After landing a release commit on `django`, **cherry-pick it
-  onto `moorhen-scenes`** so Materia picks the change up at the next
-  submodule bump.
+  release commits land here.** All version tags point at commits on this
+  branch.
 - **`main`** — legacy; not used for releases of this package.
 
-The cherry-pick step exists because Materia tracks `moorhen-scenes` for
-YAML scene-file support that hasn't yet merged back. When that merges,
-Materia will move its pin back to `django` and the cherry-pick step
-disappears.
+There used to be a second step here: cherry-pick each release commit onto
+`moorhen-scenes`, the branch Materia's submodule pinned for YAML
+scene-file support that had not yet merged back. That work is now in
+`django` and the branch no longer exists on the remote, so the
+cherry-pick has been removed rather than left as an instruction that
+cannot be followed. Consumers pinning a branch should pin `django`.
 
 ## Tag pattern
 
@@ -91,10 +89,7 @@ The `ccp4i2-api-` prefix disambiguates from the **application** tags
 ([`.github/workflows/publish-ccp4i2-api.yml`](../../.github/workflows/publish-ccp4i2-api.yml))
 matches on this prefix; tags without it do nothing.
 
-Tags are always created on **`django` HEAD**, never on
-`moorhen-scenes`. The cherry-picked commit on `moorhen-scenes` has a
-different SHA from the tagged commit; that is expected and not a
-problem (Materia's submodule pin points at the cherry-pick).
+Tags are always created on **`django` HEAD**.
 
 ---
 
@@ -139,31 +134,24 @@ python3 -m venv /tmp/release-check
 /tmp/release-check/bin/python -m pytest tests/python -q
 ```
 
-### 2. Commit + cherry-pick
+### 2. Commit
 
 ```bash
 git add packages/ccp4i2-api/{pyproject.toml,package.json,package-lock.json}
 git commit -m "ccp4i2-api x.y.z: <one-line summary>"
-DJANGO_SHA=$(git rev-parse HEAD)
-
-git checkout moorhen-scenes
-git cherry-pick "$DJANGO_SHA"
 ```
 
-The cherry-pick should be clean (no conflicts), since the only files
-involved are the three version files which rarely diverge between
-branches. If there *is* a conflict, that means `moorhen-scenes` has
-drifted in those files — resolve and document why.
+In practice this goes through a pull request like any other change; the
+same matrix runs on the PR.
 
-### 3. Push both branches
+### 3. Push
 
 ```bash
-git push origin django
-git push origin moorhen-scenes
+git push ccp4 django
 ```
 
 This triggers the test matrix (Python 3.9/3.11/3.12 × Django 4.2/5.2,
-minus the impossible 3.9+5.2 cell) on both branches. The publish jobs
+minus the impossible 3.9+5.2 cell). The publish jobs
 are **skipped** here because they gate on tag refs. Wait for both runs
 to go green at https://github.com/ccp4/ccp4i2/actions/workflows/publish-ccp4i2-api.yml
 before tagging — the tag will re-run the matrix anyway, but if it's
@@ -209,12 +197,12 @@ Both should print `x.y.z`.
 
 ### 6. Coordinate downstream
 
-- **Materia**: bump the CCP4i2 submodule pin to pick up the
-  cherry-picked release commit on `moorhen-scenes`. Materia's
-  Dockerfile pin (`ccp4i2-api>=0.3`) accepts the new version
-  automatically; no Dockerfile edit needed. From the Materia repo:
+- **Materia**: bump the CCP4i2 submodule pin to pick up the release
+  commit on `django`. Materia's Dockerfile pin (`ccp4i2-api>=0.3`)
+  accepts the new version automatically; no Dockerfile edit needed.
+  From the Materia repo:
   ```bash
-  cd external/ccp4i2 && git fetch && git checkout moorhen-scenes && git pull
+  cd external/ccp4i2 && git fetch && git checkout django && git pull
   cd ../.. && git add external/ccp4i2 && git commit -m "Bump CCP4i2 submodule for ccp4i2-api x.y.z"
   ```
 - **Reinspect**: if the release contains something Reinspect needs
@@ -368,12 +356,11 @@ message, not a swallowed error.
 [ ] Decide version (semver; not previously published)
 [ ] Bump 3 files on `django`: pyproject.toml, package.json, package-lock.json
 [ ] Local test: pytest tests/python -q (against current Django)
-[ ] git commit on django
-[ ] git checkout moorhen-scenes && git cherry-pick <django-sha>
-[ ] git push origin django moorhen-scenes
+[ ] git commit on django (via PR, like any other change)
+[ ] git push ccp4 django
 [ ] Verify branch test runs green at github.com/ccp4/ccp4i2/actions
 [ ] git checkout django && git tag -a ccp4i2-api-vx.y.z -m "..."
-[ ] git push origin ccp4i2-api-vx.y.z
+[ ] git push ccp4 ccp4i2-api-vx.y.z
 [ ] gh run watch <id> --exit-status
 [ ] Verify both registries report x.y.z (curl PyPI, npm view)
 [ ] (Materia) bump submodule pin if needed
