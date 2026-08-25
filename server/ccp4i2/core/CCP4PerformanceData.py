@@ -64,17 +64,57 @@ class CPerformanceIndicator(CPerformanceIndicatorStub):
 
 
 class CAtomCountPerformance(CAtomCountPerformanceStub, CPerformanceIndicator):
-    """
+    """How much model a task produced: ``nAtoms`` and ``nResidues``.
 
     Inherits from:
     - CAtomCountPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CAtomCountPerformanceStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def setFromPdbDataFile(self, pdbDataFile):
+        """Count the atoms and residues in *pdbDataFile* into this indicator.
+
+        Both ``chainsaw`` and ``sculptor`` have called this from
+        ``processOutputFiles()`` since the Qt days; it was never ported, so
+        both raised ``AttributeError`` on every run and both jobs were
+        recorded as Finished with the exception printed to the server console.
+        See C1 in ``docs/error-handling-remediation.md``.
+
+        Counts every atom and every residue of the first model, waters and
+        ligands included -- these are model-preparation tasks, and what the
+        indicator reports is the size of the file they produced. The format is
+        determined from the file's content, not its name.
+
+        Args:
+            pdbDataFile: a ``CPdbDataFile`` (or anything whose ``str()`` is a
+                path to a coordinate file).
+
+        Returns:
+            self, so a caller may chain.
+        """
+        import gemmi
+
+        path = None
+        if hasattr(pdbDataFile, 'getFullPath'):
+            full_path = pdbDataFile.getFullPath()
+            if full_path:
+                path = str(full_path)
+        if not path:
+            path = str(pdbDataFile)
+
+        structure = gemmi.read_structure(path, format=gemmi.CoorFormat.Detect)
+
+        nAtoms = 0
+        nResidues = 0
+        if len(structure):
+            for chain in structure[0]:
+                nResidues += len(chain)
+                for residue in chain:
+                    nAtoms += len(residue)
+
+        self.nAtoms.set(nAtoms)
+        self.nResidues.set(nResidues)
+        return self
 
 
 class CDataReductionCCPerformance(CDataReductionCCPerformanceStub, CPerformanceIndicator):
