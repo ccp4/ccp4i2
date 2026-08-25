@@ -125,10 +125,20 @@ def get_job_report_xml(job: models.Job, regenerate: bool = False) -> Result[byte
             if not is_error_report:
                 with open(report_xml_path, "wb") as f:
                     f.write(xml_bytes)
-            else:
-                # Delete any stale cached report so we regenerate next time
-                if report_xml_path.exists():
-                    report_xml_path.unlink()
+            elif report_xml_path.exists():
+                # A report class is written against the program.xml its
+                # wrapper produced at the time, so a newer report class can
+                # fail on an older job's output through no fault of the job.
+                # The cached copy is a rendering that did work, and only
+                # non-error reports are ever cached. Keep it and serve it:
+                # replacing a good report with an error message loses the
+                # only rendering that job will ever have.
+                logger.warning(
+                    "Report regeneration for job %s produced an error; "
+                    "keeping the cached report", job.uuid,
+                )
+                with open(report_xml_path, "rb") as f:
+                    return Result.ok(f.read())
 
             return Result.ok(xml_bytes)
 
