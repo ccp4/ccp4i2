@@ -3,8 +3,16 @@ import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
+import { ExpertLevelContext } from "../task-elements/expert-level-context";
+import {
+  EXCLUDE_EXPERT_LEVEL,
+  PhilExpertLevelSelector,
+  usePhilExpertLevel,
+} from "../task-elements/phil-expert-level";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { expertLevel, changeExpertLevel } = usePhilExpertLevel(props.job);
+
   return (
     <Paper>
       <CCP4i2Tabs>
@@ -100,11 +108,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         </CCP4i2Tab>
 
         <CCP4i2Tab label="Advanced parameters" key="advanced">
-          <CCP4i2TaskElement
-            {...props}
-            itemName="controlParameters"
-            qualifiers={{ guiLabel: "All parameters" }}
+          <PhilExpertLevelSelector
+            expertLevel={expertLevel}
+            onChange={changeExpertLevel}
           />
+          <ExpertLevelContext.Provider value={expertLevel}>
+            <CCP4i2ContainerElement
+              {...props}
+              itemName="controlParameters"
+              qualifiers={{ guiLabel: "multiplex parameters" }}
+              containerHint="FolderLevel"
+              excludeItems={EXCLUDE_EXPERT_LEVEL}
+            />
+          </ExpertLevelContext.Provider>
         </CCP4i2Tab>
       </CCP4i2Tabs>
     </Paper>

@@ -1,10 +1,6 @@
-import { useState } from "react";
 import {
-  Box,
   LinearProgress,
   Paper,
-  ToggleButton,
-  ToggleButtonGroup,
   Typography,
 } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
@@ -12,6 +8,11 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { ExpertLevelContext } from "../task-elements/expert-level-context";
+import {
+  EXCLUDE_EXPERT_LEVEL,
+  PhilExpertLevelSelector,
+  usePhilExpertLevel,
+} from "../task-elements/phil-expert-level";
 import { useJob } from "../../../utils";
 
 /**
@@ -23,7 +24,7 @@ import { useJob } from "../../../utils";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { container } = useJob(props.job.id);
-  const [expertLevel, setExpertLevel] = useState(0);
+  const { expertLevel, changeExpertLevel } = usePhilExpertLevel(props.job);
 
   if (!container) return <LinearProgress />;
 
@@ -72,34 +73,23 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="controlParameters"
               qualifiers={{ guiLabel: "Basic parameters" }}
               containerHint="FolderLevel"
+              excludeItems={EXCLUDE_EXPERT_LEVEL}
             />
           </ExpertLevelContext.Provider>
         </CCP4i2Tab>
 
         <CCP4i2Tab key="controlParameters" label="Advanced parameters">
-          <Box
-            sx={{ mx: 2, mb: 1, display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <Typography variant="body2" sx={{ fontWeight: 600 }}>
-              Expert level:
-            </Typography>
-            <ToggleButtonGroup
-              value={expertLevel}
-              exclusive
-              onChange={(_, value) => value !== null && setExpertLevel(value)}
-              size="small"
-            >
-              <ToggleButton value={0}>Basic</ToggleButton>
-              <ToggleButton value={1}>Advanced</ToggleButton>
-              <ToggleButton value={10}>All</ToggleButton>
-            </ToggleButtonGroup>
-          </Box>
+          <PhilExpertLevelSelector
+            expertLevel={expertLevel}
+            onChange={changeExpertLevel}
+          />
           <ExpertLevelContext.Provider value={expertLevel}>
             <CCP4i2ContainerElement
               {...props}
               itemName="controlParameters"
               qualifiers={{ guiLabel: "Phaser parameters" }}
               containerHint="FolderLevel"
+              excludeItems={EXCLUDE_EXPERT_LEVEL}
             />
           </ExpertLevelContext.Provider>
         </CCP4i2Tab>
