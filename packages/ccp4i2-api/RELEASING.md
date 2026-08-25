@@ -30,7 +30,7 @@ both, with the same `x.y.z`. Skipping a version on one side (e.g. 0.3.2
 on PyPI when the npm publish failed) creates a temporary gap; the next
 release should re-align.
 
-## Version lineage (current state at 2026-06-05)
+## Version lineage (current state at 2026-08-25)
 
 | Version | PyPI | npm | Notes |
 |---|---|---|---|
@@ -40,6 +40,8 @@ release should re-align.
 | 0.3.2 | — | — | Tag exists; never published. Skipped after the publish workflow landed. |
 | 0.3.3 | ✅ | — | First *automated* release. npm publish failed due to npm CLI 10.8 vs OIDC requirement (≥11.5). |
 | 0.3.4 | ✅ | ✅ | First *successful* end-to-end automated release. |
+| 0.3.5 | ✅ | ✅ | Exempted `/health` from the auth middleware, so the desktop launch-readiness gate can poll before any token exists. Shipped with `ccp4i2` 3.1.0a2. |
+| 0.4.0 | pending | pending | File grants: scoped, expiring read capabilities for the requests a browser issues for itself (a report page's own images, stylesheets and relative fetches), which cannot carry a bearer token. Minor per the policy below — new capability, existing surface unchanged. The TypeScript half moved only to hold lockstep. Both entries become ✅ when `ccp4i2-api-v0.4.0` is pushed. |
 
 ## Versioning policy
 
