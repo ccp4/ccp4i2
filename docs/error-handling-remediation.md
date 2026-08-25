@@ -694,6 +694,20 @@ instantiates; declares `ERROR_CODES` covering every code its module passes to
 a pipeline; and (once M1 lands) declares which outputs are optional. Fast, needs
 no CCP4 binaries, runs on every commit alongside the existing unit tier.
 
+**It would already have three findings.** A sweep of all 173 tasks while
+diagnosing the [pre-C1 baseline](#the-pre-c1-baseline) turned up:
+
+- `nucleofind` declares no `TASKNAME`, and `CPluginScript.__init__` loads the
+  def.xml only `if self.TASKNAME` — so its parameters have never been loaded and
+  the task cannot be run from `i2run` at all. It is the only one of the 173.
+- `SIMBAD` and `pisa` are registered but their plugin classes do not load
+  (`get_plugin_class` returns `None`).
+
+Three defects, one of them two months old and one of them fatal to the task,
+found by a ten-line loop over `TASKS`. That is the argument for G1 in one
+paragraph, and the loop is worth landing before the more elaborate assertions
+above.
+
 ## G2 — Negative-path tests
 
 - [ ] Shared fixture set: truncated MTZ, PDB with undescribed ligand,
@@ -776,6 +790,109 @@ failure returns, small file), then the import paths (widest input variety). M2 l
 tables harvested from existing inline checks. G2 negative-path fixtures. Burn the
 G3 lint baseline down as each pipeline is touched, rather than as a separate
 campaign.
+
+---
+
+# The pre-C1 baseline
+
+<a id="the-pre-c1-baseline"></a>
+
+Captured 2026-08-25 at `59579c932` on `ccp4-20260702`:
+**10 failed, 150 passed, 19 skipped** in 51 minutes
+(`server/.test-baselines/pre-C1/`). Two earlier runs are on disk beside it and
+make the arithmetic clean:
+
+| Baseline | Date | CCP4 build | Result |
+|---|---|---|---|
+| `ccp4-20251105` | 2026-06-12 | 20251105 | 4 failed, 148 passed |
+| `ccp4-20260520` | 2026-06-14 | 20260520 | **2 failed**, 151 passed |
+| `pre-C1` | 2026-08-25 | 20260702 | 10 failed, 150 passed |
+
+Eight of today's ten are new since 14 June. **Every one of the ten was
+diagnosed before starting C1**, so any red in the post-C1 run either matches a
+cause below or is C1's doing. That is the whole value of the exercise: without
+it, "10 failed" before and "12 failed" after is an argument, not a measurement.
+
+## The causes
+
+**Environment — 4.** `test_crank2`, `test_shelx::{substrdet, gamma_sad,
+gamma_siras}`, all with `FileNotFoundError: 'shelxc'`. `ccp4-20260702` ships no
+`shelxc`/`shelxd`/`shelxe`; `ccp4-20260520` did. Two other tests already skip
+for this exact gap (`test_arcimboldo` — "no shelx in build"; `test_shelxe_mr` —
+"SHELXE not installed"), so the same absence is handled in two files and
+unhandled in four tests. Worth a shared `skipif` on a binary probe rather than
+four more hand-written skips.
+
+**Never worked — 2.** `test_nucleofind::{test_1hr2, test_1hr2_raw}`, failing
+with `SystemExit: 2` in *every* baseline on disk. `wrappers/nucleofind` declares
+`TASKCOMMAND` but no `TASKNAME`, and `CPluginScript.__init__` loads the def.xml
+only `if self.TASKNAME` — so the def.xml is silently never loaded, the container
+comes up empty, `i2run` builds a parser with no task arguments, and argparse
+rejects `--FPHIIN`. A sweep of all 173 registered tasks found nucleofind is the
+**only** one missing `TASKNAME`; the same sweep found `SIMBAD` and `pisa`, whose
+plugin classes do not load at all. All three are exactly what G1 is for.
+
+**Real regressions, both dated 2026-06-15 — 3.** The day after the last green
+baseline.
+
+- `test_substitute_ligand` ×2. `f8087b070` replaced mmdb2's `ReadCIFASCII` with
+  `gemmi.read_structure` in i2Dimple, commenting that "gemmi auto-detects the
+  input format". It does not — it keys off the extension. Meanwhile
+  `getSelectedAtomsPdbFile` falls back to `shutil.copyfile` when no selection is
+  set, so `SubstituteLigand` copies the mmCIF input verbatim into a file it
+  names `selected_atoms.pdb`. The file begins `data_4HG7`; gemmi raises
+  *"Incorrect file format (perhaps it is cif not pdb?)"*. mmdb2 read by content
+  and never cared. A format-preserving `getSelectedAtomsFile` already exists
+  next door, unused by this call site.
+- `test_import_merged::test_2ceu_cif`. `64cd3bb3d` ("gemmi/numpy-native free-R
+  generation, drop the binary"). At `64cd3bb3d^` the test passes with **21 bins
+  at ~5% each**; at HEAD the output is **binary, 5.6% / 94.4%**. The test's
+  per-bin 2–15% assertion cannot hold for a binary set, but the assertion is not
+  the story: the free set this path produces changed from a 20-bin partition to
+  an inherited binary flag, while the implementation's own docstring says it
+  reproduces freerflag's semantics of "binning into 1/fraction segments". Needs
+  its own look, independently of this work.
+
+**Test asserting the wrong thing — 1.** `test_dm_multidomain` dies on `g0 & g1`
+with `ValueError: shapes (45,55,50) (48,58,61)`. `c100c6f53` (2026-06-23) made
+each mask a tight sub-box on the shared 144×144×432 parent grid. Mapping both
+boxes into the unit-cell frame gives an overlap of **0** — the masks are
+disjoint and the wrapper is right; the test compares raw arrays that are no
+longer comparable.
+
+## What the baseline says about this document
+
+Three of the ten are specimens of the thesis, found without looking for them.
+
+`test_substitute_ligand` is C1, C3, C6 and C7 in one job. The failure is a
+`RuntimeError` in a subjob's `processInputFiles`; the subjob directory holds no
+`diagnostic.xml`, no log and no stderr; the parent records only *"i2Dimple
+pipeline failed"* — twice, once at WARNING and once at ERROR, the same sentence
+in both. Establishing that a file named `.pdb` contained mmCIF meant reading the
+file by hand. Nothing in the product could have told anyone that.
+
+`test_crank2`'s `FileNotFoundError` is filed at **severity 2 (WARNING)**,
+because C2's heuristic searches the message for the word "exception" and finds
+only "Traceback".
+
+`test_nucleofind` is the [second axis](#a-second-axis--nothing-to-discard-in-the-first-place)
+in miniature: one missing class attribute, a guard that treats its absence as
+"nothing to do", and a task that has never once loaded its parameters. No error,
+anywhere, for two months of baselines.
+
+## The interval that hid them
+
+Both 15 June regressions replaced a CCP4 binary or toolkit call with a
+gemmi-native equivalent — the slim-server work — and both changed a behaviour the
+replacement did not reproduce: reading a coordinate file by content rather than
+by extension, and partitioning a free set into 20 bins rather than 2. Neither is
+visible to `tests/unit` or `tests/api/unit`, which is what CI runs. The i2run
+suite would have caught both the next day, and was not run again for ten weeks.
+
+That is an argument for G2 and for running i2run on a schedule, not only before
+a release. It is also a reason to be sceptical of the remaining gemmi-native
+ports: the pattern is not "the port was wrong" but "the port was right about the
+main case and silently different about a case no unit test covers".
 
 ---
 
@@ -1008,6 +1125,7 @@ pattern. Two smaller amendments:
 | 2026-08-24 | Added [Bibliography](#bibliography): a live instance of the silent-failure class, found by PR #276's new CI job and closed by #277. 52 report classes rendered an empty bibliography; all 52 had one cause and went to zero in a single change. Kept as a worked example. |
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
+| 2026-08-25 | Pre-C1 i2run baseline captured and **every one of its 10 failures diagnosed** — see [The pre-C1 baseline](#the-pre-c1-baseline). 4 environment (no `shelxc` in `ccp4-20260702`), 2 never-worked (`nucleofind` has no `TASKNAME`, so its def.xml is silently never loaded), 3 real regressions both dated 2026-06-15 (gemmi-native ports of mmdb2 CIF reading and of freerflag), 1 test asserting the wrong thing. Three of the ten are specimens of this document's thesis. |
 | 2026-08-25 | **C1 landed** (`c1-process-output-files`). One post-program path for both execution modes; `absorbHookStatus()` reads both return conventions; an exception in `processOutputFiles()` fails the job; an unexplained failure gets code 992; `UNSATISFACTORY` mapped so it cannot strand a job in *Running*. 23 unit tests, 15 of which fail against the code as it was. Pre-C1 i2run baseline captured first. Triage of the diff outstanding. |
 | 2026-08-25 | Re-measured at `59579c932` (3.1.0a28). Counts essentially flat; `processOutputFiles` returning `FAILED` **rose** 33 → 35, which is the argument for doing C1 next in one line. |
 | 2026-08-25 | Added [A second axis](#a-second-axis--nothing-to-discard-in-the-first-place): the core silently rewriting what a wrapper was told, from the `setFullPath()` cross-project path bug (`043774c4c`) — no exception, no report, corruption written into `input_params.xml`, surfacing later as a true message about an invented path, attributed to the wrong layer. Includes the weakly-held-parent branch that silently does not run. No scan metric can see this class; it is a guardrails (G2) problem, and it raises C7's provenance work. |
