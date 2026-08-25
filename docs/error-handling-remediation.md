@@ -896,6 +896,107 @@ main case and silently different about a case no unit test covers".
 
 ---
 
+# How this could have been found sooner
+
+<a id="how-this-could-have-been-found-sooner"></a>
+
+C1 turned up six latent defects in one 50-minute run. Every one of them ran on
+the **happy path, on every execution of its wrapper, for months**: chainsaw
+could not compute a sequence identity, cmapcoeff never wrote a program.xml,
+phaser_ensembler never wrote its remarked ensemble, sculptor and chainsaw never
+recorded an atom count, and xia2 never copied a log file out of `LogFiles/`.
+Coverage was not the gap. These lines executed constantly. Nobody could see
+what happened when they did.
+
+That distinction is worth holding on to, because it points at a different class
+of remedy from "write more tests".
+
+## What each technique would actually have caught
+
+| Defect | mypy over `wrappers/` | dead-API lint | recording the exception |
+|---|:--:|:--:|:--:|
+| `float(CInt)` — CInt has no `__float__` | **yes** | no | yes |
+| `ET.tostring(pretty_print=True)` — lxml keyword on the stdlib | **yes** | **yes** | yes |
+| `CPdbData.mmdbManager` — mmdb2 residue | no¹ | **yes** | yes |
+| `CAtomCountPerformance.setFromPdbDataFile` — never ported | no¹ | no² | yes |
+| `shutil.copyfile(logFile, ...)` — wrong variable, both bound | no | no | yes |
+
+¹ Both classes define `__getattr__`, so a type checker must assume any
+attribute may exist. Dynamic attribute access is the norm in `CData`, which
+makes static analysis structurally blind to this whole family.
+² Only findable by grep if you already know the name to grep for.
+
+Static analysis would have found two of the five. A lint banning the API
+surface removed by a port would have found two. **Recording the exception would
+have found all five, at zero marginal cost, the first time each wrapper ran.**
+
+## The core already knew
+
+Every one of these exceptions was caught, formatted, and printed:
+
+```python
+except Exception as e:
+    print(f"Warning: processOutputFiles() exception: {type(e).__name__}: {str(e)}")
+    traceback.print_exc()
+```
+
+The information existed. It was written to a console nobody reads, in a job
+whose panel said nothing and whose status said *Finished*. The distance between
+that and a diagnostic entry is one function call.
+
+## The lesson: make it visible before making it fatal
+
+C1 did two separable things — it started **recording** what
+`processOutputFiles()` reported, and it started **failing the job** on it. Only
+the second is a behaviour change; only the second turns tests red; only the
+second needs a baseline, a predicted red list, and a transition plan.
+
+Had the recording half landed on its own, at `SEVERITY_WARNING`:
+
+- all six defects would have appeared in `diagnostic.xml` and in the
+  Diagnostics panel the first time each wrapper ran;
+- **no test would have gone red** — the i2run harness only fails on severity
+  ≥ 4, and prints `Note: N warning(s)` otherwise;
+- finding them would have been `grep -l 'code>993' ~/.cache/ccp4i2-tests/*/CCP4_JOBS/*/diagnostic.xml`
+  rather than a core change plus a 50-minute run plus six archaeological digs;
+- the flip to fatal would then have been a two-line change against defects
+  already fixed, with a red list of zero.
+
+**Apply this to the rest of Part 1.** C3, C5, C6 and C7 each have a recording
+half and a behaviour half. Land the recording half first, harvest what it finds,
+fix that, and only then change what fails. This is the same staging argument as
+[Why C2 must be staged](#why-c2-must-be-staged), generalised: the expensive,
+risky part of surfacing a hidden failure is never the surfacing.
+
+## Codes are the query language
+
+Triaging six failures took one `grep` because C1 gives its own detections
+distinct codes: **993** for "the hook raised", **992** for "the hook failed
+without saying why". Six diagnostics, one classification, no reading of
+tracebacks to know which bucket each belonged to.
+
+Every core-detected failure mode introduced by this work should get its own
+reserved code, and they should be listed in one place. A code is not decoration;
+it is what lets a future defect be counted rather than recounted.
+
+## Two things worth building
+
+**`scripts/scan_diagnostics.py`** — walk `~/.cache/ccp4i2-tests/*/CCP4_JOBS/*/diagnostic.xml`
+(and a project directory, for real users) and summarise by code, class and
+severity. After any suite run this answers "what did the jobs complain about
+that nobody looked at" in a second. It is the harvesting tool that makes
+"record first" pay off, and it needs no CCP4 environment.
+
+**A lint of removed API surface.** Three of today's six defects, and both
+regressions of 15 June, are *port residue*: mmdb2 names after the gemmi port,
+lxml keywords after the ElementTree port, an API that was never carried across.
+When a port removes an API, add its names to a banned-identifier list scoped to
+`wrappers/` and `pipelines/`. It is a grep in CI, and it is the only cheap
+technique that finds this family, because dynamic attribute access defeats the
+type checker.
+
+---
+
 # The Phase 1 transition
 
 Fixing C1 will turn some currently-passing i2run tests red. This section exists
@@ -1126,6 +1227,7 @@ pattern. Two smaller amendments:
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
 | 2026-08-25 | Pre-C1 i2run baseline captured and **every one of its 10 failures diagnosed** — see [The pre-C1 baseline](#the-pre-c1-baseline). 4 environment (no `shelxc` in `ccp4-20260702`), 2 never-worked (`nucleofind` has no `TASKNAME`, so its def.xml is silently never loaded), 3 real regressions both dated 2026-06-15 (gemmi-native ports of mmdb2 CIF reading and of freerflag), 1 test asserting the wrong thing. Three of the ten are specimens of this document's thesis. |
+| 2026-08-25 | C1 triage complete: **6 newly-failing tests, 5 defects, all fixed** — `float(CInt)`, a missing atom-count KPI, an lxml keyword on the stdlib, an mmdb2 attribute, and a wrong variable in a copy loop. All six ran on the happy path on every execution for months. Added [How this could have been found sooner](#how-this-could-have-been-found-sooner): recording and failing are separable, and only the recording half is free. |
 | 2026-08-25 | **C1 landed** (`c1-process-output-files`). One post-program path for both execution modes; `absorbHookStatus()` reads both return conventions; an exception in `processOutputFiles()` fails the job; an unexplained failure gets code 992; `UNSATISFACTORY` mapped so it cannot strand a job in *Running*. 23 unit tests, 15 of which fail against the code as it was. Pre-C1 i2run baseline captured first. Triage of the diff outstanding. |
 | 2026-08-25 | Re-measured at `59579c932` (3.1.0a28). Counts essentially flat; `processOutputFiles` returning `FAILED` **rose** 33 → 35, which is the argument for doing C1 next in one line. |
 | 2026-08-25 | Added [A second axis](#a-second-axis--nothing-to-discard-in-the-first-place): the core silently rewriting what a wrapper was told, from the `setFullPath()` cross-project path bug (`043774c4c`) — no exception, no report, corruption written into `input_params.xml`, surfacing later as a true message about an invented path, attributed to the wrong layer. Includes the weakly-held-parent branch that silently does not run. No scan metric can see this class; it is a guardrails (G2) problem, and it raises C7's provenance work. |
