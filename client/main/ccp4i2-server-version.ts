@@ -25,7 +25,7 @@
  * not a floor.
  */
 export const CCP4I2_REQUIRED_SERVER_VERSION =
-  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a27";
+  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a28";
 
 /**
  * Compare two dotted numeric version strings (e.g. "3.0.10" vs "3.0.2").
