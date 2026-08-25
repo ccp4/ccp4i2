@@ -979,6 +979,57 @@ Every core-detected failure mode introduced by this work should get its own
 reserved code, and they should be listed in one place. A code is not decoration;
 it is what lets a future defect be counted rather than recounted.
 
+## The same defect, four more times, in the report classes
+
+The cmapcoeff defect — `ET.tostring(root, pretty_print=True)`, an lxml keyword
+passed to the standard library — is not a one-off. It is what happens when code
+written for lxml runs against `xml.etree.ElementTree`, and the tree does both:
+109 modules import lxml, 134 import the standard library, 8 import both.
+
+Object mixing itself is not the danger. Measured on lxml 4.9.4 in
+`ccp4-20260702`, every cross-library operation raises `TypeError` at once —
+`ET.SubElement` on an lxml parent, `LX.SubElement` on a stdlib parent,
+`LX.tostring` of a stdlib element, `append` in either direction. The only
+combination that works is `ET.tostring(lxml_element)`. Nothing is silently
+corrupted. That is cold comfort while the exceptions are being discarded, but
+it does mean the search is for *API* mismatches, not for mixed trees.
+
+Searching for lxml-only APIs in modules that do not import lxml finds four more
+live instances, none of them ever reported:
+
+| Module | Call | Effect |
+|---|---|---|
+| `pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK_report.py` | `self.xmlnode.xpath(...)` ×4 | **The report cannot render at all.** It imports no XML module; `xmlnode` comes from the framework as a stdlib Element, which has no `.xpath`. The task is registered with this `reportPath`. |
+| `wrappers/qtpisa/script/qtpisa_report.py` | `etree.tostring(et, pretty_print=True)`, `et.write(path, pretty_print=True)` | `TypeError`; the scene file is never written |
+| `pipelines/MakeProjectsAndDoLigandPipeline/script/MakeProjectsAndDoLigandPipeline_report.py` | `etree.tostring(svg, pretty_print=True)` | `TypeError` |
+| `wrappers/SIMBAD/script/SIMBAD_report.py` | `self.xmlnode.xpath(...)` | commented out — and `SIMBAD`'s plugin class does not load anyway (see [G1](#g1--a-conformance-test-over-the-task-registry)) |
+
+Two things make this family invisible.
+
+**The report path has no C1.** These live in report classes, which render
+separately from the job. A report class that raises produces an error report,
+and since 2026-08-25 a job with a previously-cached rendering has that stale
+rendering served in its place with only a `logger.warning` — which is exactly
+what [M5](#m5--report-classes-that-degrade-section-by-section) was amended to
+address. The report path needs its own version of the C1 treatment: record what
+the report class said, where a person will see it.
+
+**The naming invites it.** `report/elements.py`, `report/core.py` and most
+report modules say `import xml.etree.ElementTree as etree`. A reader who knows
+CCP4i2's history sees `etree.` and assumes lxml, because for years it was.
+Writing `pretty_print=True` under that assumption is the natural mistake, and
+nothing in the module contradicts it.
+
+**One more, dated rather than broken:** `prosmart_refmac_report.py:263` imports
+`lxml.html.clean`, which was **removed in lxml 5.x**. This build ships 4.9.4, so
+it works today and breaks whenever CCP4 updates lxml — inside a bare
+`except: pass`, so it will break silently.
+
+These are not fixed here: they belong to the report path rather than to C1, and
+they want the M5 work alongside them. They are recorded because they are the
+best available evidence for the lint proposed below — five hits from one grep,
+in a family static typing cannot see.
+
 ## Two things worth building
 
 **`scripts/scan_diagnostics.py`** — walk `~/.cache/ccp4i2-tests/*/CCP4_JOBS/*/diagnostic.xml`
@@ -987,13 +1038,19 @@ severity. After any suite run this answers "what did the jobs complain about
 that nobody looked at" in a second. It is the harvesting tool that makes
 "record first" pay off, and it needs no CCP4 environment.
 
-**A lint of removed API surface.** Three of today's six defects, and both
-regressions of 15 June, are *port residue*: mmdb2 names after the gemmi port,
-lxml keywords after the ElementTree port, an API that was never carried across.
-When a port removes an API, add its names to a banned-identifier list scoped to
-`wrappers/` and `pipelines/`. It is a grep in CI, and it is the only cheap
-technique that finds this family, because dynamic attribute access defeats the
-type checker.
+**A lint of removed API surface.** Three of today's six defects, both
+regressions of 15 June, and all four report defects above are *port residue*:
+mmdb2 names after the gemmi port, lxml-only APIs after the ElementTree port, an
+API that was never carried across. When a port removes an API, add its names to
+a banned-identifier list scoped to `wrappers/` and `pipelines/`.
+
+For the lxml case the rule is sharper than a banned list, and worth writing
+properly: **an lxml-only API in a module that does not import lxml is an
+error.** The identifiers are `pretty_print=`, `.xpath(`, `.getparent()`,
+`.iterancestors(`, `.sourceline`, `CDATA(`, and `lxml.html.clean`. That check,
+which is a grep, would have found the cmapcoeff defect and the four report
+defects above — nine lines of CI standing in for a family that static typing
+cannot see at all, because `CData` and the report nodes are dynamic.
 
 ---
 
