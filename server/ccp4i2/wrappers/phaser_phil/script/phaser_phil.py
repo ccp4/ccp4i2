@@ -1,5 +1,3 @@
-import os
-
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
 
 
@@ -19,16 +17,8 @@ class phaser_phil(PhilPluginScript):
     TASKNAME = "phaser_phil"
     TASKCOMMAND = "ccp4-python"
 
-    def get_master_phil(self):
-        """Phaser's parameter definitions, read from the phaser install."""
-        import phaser
-        from iotbx import phil
-
-        params = os.path.join(
-            phaser.__path__[0], "phenix_interface", "__init__.params"
-        )
-        with open(params) as f:
-            return phil.parse(f.read())
+    #: Phaser ships its parameters as a file inside the package.
+    PHIL_PARAMS_FILE = "phaser:phenix_interface/__init__.params"
 
     def get_command_target(self):
         """Phaser's entry point, which ccp4-python runs with the phil file."""

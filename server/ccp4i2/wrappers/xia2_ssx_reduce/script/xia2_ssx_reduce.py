@@ -60,11 +60,8 @@ class xia2_ssx_reduce(PhilPluginScript):
     #: be written into the phil under their own names.
     SYNTHETIC_PARAMETERS = ("MEDIAN_CELL", "dials_cosym_phil_d_min")
 
-    def get_master_phil(self):
-        """xia2.ssx_reduce's own parameter definitions."""
-        from xia2.cli.ssx_reduce import phil_scope
-
-        return phil_scope
+    #: xia2.ssx_reduce's own parameter definitions.
+    PHIL_SCOPE = "xia2.cli.ssx_reduce:phil_scope"
 
     def get_command_target(self):
         """Nothing precedes the phil file for this task."""

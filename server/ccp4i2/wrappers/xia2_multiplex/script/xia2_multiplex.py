@@ -39,11 +39,8 @@ class xia2_multiplex(PhilPluginScript):
         "ShelxCDE",
     ]
 
-    def get_master_phil(self):
-        """xia2.multiplex's own parameter definitions."""
-        from xia2.cli.multiplex import phil_scope
-
-        return phil_scope
+    #: xia2.multiplex's own parameter definitions.
+    PHIL_SCOPE = "xia2.cli.multiplex:phil_scope"
 
     def get_command_target(self):
         """Nothing precedes the phil file for this task."""

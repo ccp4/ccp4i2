@@ -148,10 +148,8 @@ class my_tool(PhilPluginScript):
         "output",               # Managed by CCP4i2
     ]
 
-    def get_master_phil(self):
-        """Return the tool's master PHIL scope."""
-        from my_tool import master_phil
-        return master_phil
+    #: Where the tool's PHIL comes from (see "Declaring the PHIL source").
+    PHIL_SCOPE = "my_tool:master_phil"
 
     def get_shim_definitions(self):
         """Map CCP4i2 rich file types to PHIL parameters."""
@@ -225,28 +223,41 @@ And add `"my_tool"` to the appropriate category list in the `TASK_CATEGORIES` di
 
 `PhilPluginScript` requires four methods. Here's what each does and when it's called:
 
-### `get_master_phil() → libtbx.phil.scope`
+### Declaring the PHIL source
 
-**When called:** During `__init__` (via `_merge_phil_parameters()`) and during `build_working_phil()`.
+**When resolved:** During `__init__` (via `_merge_phil_parameters()`) and again
+during `build_working_phil()`.
 
-**What to return:** The tool's complete master PHIL scope object.
+Set exactly one of these class attributes. The base class does the import and
+reports a missing tool consistently, so a wrapper does not write that code.
 
-**Notes:**
-- Some tools use custom PHIL types (e.g., phasertng has `filesystem`, `mtzcol`, `scatterer`). These custom converters must be registered before parsing. If your tool uses `iotbx.cli_parser.CCTBXParser`, instantiate it to register converters automatically:
+| Attribute | Form | Use when |
+|-----------|------|----------|
+| `PHIL_SCOPE` | `"module.path:attribute"` | The module already exposes a scope object |
+| `PHIL_PARAMS_FILE` | `"package:relative/file.params"` | The tool ships its parameters as a file inside the package |
+| `PHIL_PROGRAM` | `"module.path:ClassName"` | The tool is a CCTBX program template |
 
 ```python
-def get_master_phil(self):
-    from phasertng.programs import picard
-    from iotbx.cli_parser import CCTBXParser
-    parser = CCTBXParser(
-        program_class=picard.Program,
-        logger=None,
-        parse_phil=False,
-    )
-    return parser.master_phil
+class my_task(PhilPluginScript):
+    PHIL_SCOPE = "xia2.cli.multiplex:phil_scope"
 ```
 
-- If the tool isn't installed, return `None` gracefully — the plugin will still instantiate (without PHIL parameters).
+**`PHIL_PROGRAM` also registers custom PHIL converters.** Tools built on the
+CCTBX program template often define their own types — phasertng has
+`filesystem`, `mtzcol`, `scatterer` — and those converters are registered as a
+side effect of constructing `CCTBXParser`. Reaching for the scope directly
+would fail to parse them, so use `PHIL_PROGRAM` for such tools even where an
+attribute looks available.
+
+**A missing tool resolves to `None`, not an exception.** The task still opens
+in the interface and can say what it needs; `_merge_phil_parameters()` treats
+`None` as "no parameters to merge". A raised `ImportError` would stop the task
+loading at all.
+
+**Override `get_master_phil()` directly** for anything these three do not
+cover — assembling a scope from several sources, say, or one that needs
+arguments. The declarations are a shortcut for the common shapes, not a
+replacement for the method.
 
 ### `get_shim_definitions() → list[PhilShim]`
 
@@ -580,7 +591,7 @@ and between them cover the awkward cases:
 | `xia2_xds` | Subclassing a ported task; narrowing a choice whose upstream default is not valid here |
 | `xia2_multiplex` | Arguments built from a `CList` of input files |
 | `xia2_ssx_reduce` | CCP4i2's own parameters surviving the merge, and one delivered as a nested phil file |
-| `phaser_phil` | The minimal case — `get_master_phil()` and `get_command_target()`, nothing else |
+| `phaser_phil` | The minimal case — two declarations and `get_command_target()`, nothing else |
 
 ## Porting a Task That Already Has a Generated `.def.xml`
 
@@ -620,8 +631,8 @@ so and decide deliberately.
 
 ### The port
 
-1. Subclass `PhilPluginScript`; add `get_master_phil()`, `get_command_target()`
-   and `PHIL_EXCLUDE_SCOPES`. The old `_elts_to_remove` in `create_def_xml.py`
+1. Subclass `PhilPluginScript`; declare the PHIL source (`PHIL_SCOPE` and
+   friends), add `get_command_target()` and `PHIL_EXCLUDE_SCOPES`. The old `_elts_to_remove` in `create_def_xml.py`
    translates directly — swap `__` for `.`.
 2. Delete `extract_parameters()` and the hand-rolled phil writing. Override
    `makeCommandAndScript()` only if arguments follow the phil file.

@@ -62,6 +62,9 @@ class phasertng_picard(PhilPluginScript):
         "output",
     ]
 
+    #: Built from the CCTBX program template.
+    PHIL_PROGRAM = "phasertng.programs.picard:Program"
+
     def _prepare_model(self, file_obj, tag, work_dir):
         """Prepare a CPdbDataFile for PhaserTNG, returning a PDB path.
 
@@ -133,22 +136,6 @@ class phasertng_picard(PhilPluginScript):
 
         self._model_path_map = path_map
         return error
-
-    def get_master_phil(self):
-        """Import picard's master_phil at runtime via CCTBXParser."""
-        try:
-            from phasertng.programs import picard
-            from iotbx.cli_parser import CCTBXParser
-
-            parser = CCTBXParser(
-                program_class=picard.Program,
-                logger=None,
-                parse_phil=False,
-            )
-            return parser.master_phil
-        except ImportError as e:
-            logger.warning("Cannot import phasertng: %s", e)
-            return None
 
     def get_shim_definitions(self):
         """Return shims for picard mode."""

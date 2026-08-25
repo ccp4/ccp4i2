@@ -63,6 +63,9 @@ class xia2_dials(PhilPluginScript):
         "ShelxCDE",
     ]
 
+    #: xia2's own parameter definitions, from the installed xia2.
+    PHIL_SCOPE = "xia2.Handlers.Phil:master_phil"
+
     def validity(self):
         """Cross-parameter checks the Qt interface made with live qualifiers.
 
@@ -124,12 +127,6 @@ class xia2_dials(PhilPluginScript):
                 )
 
         return error
-
-    def get_master_phil(self):
-        """xia2's own parameter definitions, read from the installed xia2."""
-        from xia2.Handlers.Phil import master_phil
-
-        return master_phil
 
     def get_command_target(self):
         """Arguments preceding the phil file — the pipeline selection."""

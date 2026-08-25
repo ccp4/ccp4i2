@@ -143,14 +143,98 @@ class PhilPluginScript(CPluginScript):
 
     # --- Subclass contract (override these) ---
 
+    # --- Declaring where the tool's PHIL comes from ---
+    #
+    # Every wrapper wrote the same few lines of import-and-return, in one of
+    # three shapes. Declare which shape applies and the base class does it,
+    # with one consistent failure when the tool is not installed. Override
+    # get_master_phil() directly for anything these do not cover.
+
+    #: "module.path:attribute" — a scope object a module already exposes,
+    #: e.g. "xia2.Handlers.Phil:master_phil".
+    PHIL_SCOPE = None
+
+    #: "package:relative/path.params" — a PHIL file shipped inside a package,
+    #: e.g. "phaser:phenix_interface/__init__.params".
+    PHIL_PARAMS_FILE = None
+
+    #: "module.path:ClassName" — a CCTBX Program template whose master_phil is
+    #: assembled by CCTBXParser, e.g. "phasertng.programs.picard:Program".
+    PHIL_PROGRAM = None
+
     def get_master_phil(self):
         """Return the tool's master PHIL scope.
 
-        Override in subclass to import and return the libtbx.phil scope.
+        Resolves whichever of PHIL_SCOPE / PHIL_PARAMS_FILE / PHIL_PROGRAM the
+        subclass declared. Returns None when the tool is not installed, so the
+        task still opens in the interface and can say what it needs, rather
+        than failing to load at all.
         """
-        raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_master_phil()"
+        declared = {
+            "PHIL_SCOPE": self.PHIL_SCOPE,
+            "PHIL_PARAMS_FILE": self.PHIL_PARAMS_FILE,
+            "PHIL_PROGRAM": self.PHIL_PROGRAM,
+        }
+        named = {k: v for k, v in declared.items() if v}
+
+        if not named:
+            raise NotImplementedError(
+                f"{self.__class__.__name__} must declare one of "
+                f"{', '.join(declared)}, or override get_master_phil()"
+            )
+        if len(named) > 1:
+            raise ValueError(
+                f"{self.__class__.__name__} declares more than one PHIL "
+                f"source ({', '.join(sorted(named))}); exactly one is allowed"
+            )
+
+        kind, declaration = next(iter(named.items()))
+        resolver = {
+            "PHIL_SCOPE": self._phil_from_scope,
+            "PHIL_PARAMS_FILE": self._phil_from_params_file,
+            "PHIL_PROGRAM": self._phil_from_program,
+        }[kind]
+        try:
+            return resolver(declaration)
+        except (ImportError, AttributeError, OSError) as err:
+            logger.warning(
+                "%s: cannot resolve %s=%r (%s); the tool is probably not "
+                "installed", self.TASKNAME, kind, declaration, err
+            )
+            return None
+
+    @staticmethod
+    def _phil_from_scope(declaration):
+        """"module.path:attribute" -> that attribute."""
+        import importlib
+
+        module_path, _, attribute = declaration.partition(":")
+        return getattr(importlib.import_module(module_path), attribute)
+
+    @staticmethod
+    def _phil_from_params_file(declaration):
+        """"package:relative/file.params" -> the parsed contents of that file."""
+        import importlib
+
+        from iotbx import phil
+
+        package, _, relative = declaration.partition(":")
+        root = Path(importlib.import_module(package).__file__).parent
+        return phil.parse((root / relative).read_text())
+
+    @staticmethod
+    def _phil_from_program(declaration):
+        """"module.path:ClassName" -> the CCTBX program template's master_phil."""
+        import importlib
+
+        from iotbx.cli_parser import CCTBXParser
+
+        module_path, _, class_name = declaration.partition(":")
+        program = getattr(importlib.import_module(module_path), class_name)
+        parser = CCTBXParser(
+            program_class=program, logger=None, parse_phil=False
         )
+        return parser.master_phil
 
     def get_phil_exclude_scopes(self):
         """Return list of PHIL scope paths to exclude from the GUI.
