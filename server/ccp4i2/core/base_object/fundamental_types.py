@@ -114,6 +114,17 @@ class CInt(CData):
     def __int__(self):
         return int(self.value)
 
+    def __float__(self):
+        # An integer is a number, and wrapper code reasonably writes
+        # float(someCInt) -- e.g. to divide two counts scraped from a log.
+        # Without this, that raises TypeError deep inside processOutputFiles.
+        return float(self.value)
+
+    def __index__(self):
+        # Lets a CInt be used where Python requires a true integer:
+        # sequence indexing, slicing, range().
+        return int(self.value)
+
     def set(self, value: int):
         """Set the value directly using .set() method.
 
@@ -518,6 +529,11 @@ class CFloat(CData):
 
     def __float__(self):
         return float(self.value)
+
+    def __int__(self):
+        # The counterpart of CInt.__float__: int(someCFloat) truncates, as
+        # int() does for any float.
+        return int(self.value)
 
     def __abs__(self):
         """Return absolute value of the float."""

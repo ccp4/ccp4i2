@@ -45,11 +45,13 @@ class phaser_ensembler(CPluginScript):
             remarkedFilePath = os.path.join(self.getWorkDirectory(),'ensemble_remarked.pdb')
             if self.container.inputData.OVERRIDEID.isSet():
                 with open(remarkedFilePath,'w') as remarkedFile:
-                    from ccp4i2.core.CCP4ModelData import CPdbData
-                    ensembledUnremarked = CPdbData()
-                    ensembledUnremarked.loadFile(fileIfMadePath)
-                    mmdbManager = ensembledUnremarked.mmdbManager
-                    for i in range(mmdbManager.GetNumberOfModels()):
+                    # One REMARK per model in the merged ensemble. This used
+                    # to count models through CPdbData's mmdbManager, which
+                    # went with mmdb2; gemmi reports the same number.
+                    import gemmi
+                    ensembledUnremarked = gemmi.read_structure(
+                        fileIfMadePath, format=gemmi.CoorFormat.Detect)
+                    for i in range(len(ensembledUnremarked)):
                         remarkedFile.write('REMARK PHASER ENSEMBLE MODEL{0:2d} ID {1:4.1f}\n'.format(i+1, float(self.container.inputData.OVERRIDEID)))
                     remarkedFile.write(open(fileIfMadePath).read())
         

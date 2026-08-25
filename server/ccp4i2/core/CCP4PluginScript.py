@@ -868,43 +868,11 @@ class CPluginScript(CData):
             self.reportStatus(self.FAILED)
             return self.FAILED
 
-        # For synchronous execution (subprocess.run), process is complete when startProcess returns
-        # Check if the process succeeded by examining exit code
-        status, exit_status, exit_code = self.postProcessCheck()
-        import logging
-        logger = logging.getLogger(__name__)
-        logger.debug(f"[process] postProcessCheck returned status: {status}, exitStatus: {exit_status}, exitCode: {exit_code} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
-
-        # Only proceed with output processing if the process succeeded
-        if status == self.SUCCEEDED:
-            # Call processOutputFiles to extract output data
-            try:
-                error = self.processOutputFiles()
-                if error:
-                    self.errorReport.extend(error)
-                    # Don't fail the job for processOutputFiles errors if the process succeeded
-                    # Legacy wrappers often have non-fatal issues in processOutputFiles
-                    print(f"Warning: processOutputFiles() returned errors but process completed successfully")
-                    # status = self.FAILED  # Commented out - don't fail for postprocessing errors
-            except Exception as e:
-                # Legacy wrappers may not have processOutputFiles implemented
-                print(f"Warning: processOutputFiles() exception: {type(e).__name__}: {str(e)}")
-                import traceback
-                traceback.print_exc()
-                # Don't change status - process succeeded even if postprocessing failed
-
-            # Glean output files to database if in database-connected mode
-            # This is essential for subjobs created via makePluginObject() which don't go
-            # through the async track_job context manager
-            self._glean_output_files_sync()
-
-        # Emit finished signal so pipelines can continue
-        # This is essential for sub-plugins in pipelines
-        logger.debug(f"[process] Calling reportStatus with status: {status}")
-        self.reportStatus(status)
-        logger.debug(f"[process] Returning status: {status}")
-
-        return status
+        # For synchronous execution (subprocess.run) the program has finished by
+        # the time startProcess() returns, so everything from here is the same
+        # work the asynchronous path does when its process exits. It is done in
+        # one place: postProcess().
+        return self.postProcess()
 
     def _find_datafile_descendants(self, container) -> list:
         """
@@ -2177,38 +2145,139 @@ class CPluginScript(CData):
 
         return status
 
-    def postProcess(self) -> int:
-        """
-        Post-processing after program completes.
+    def absorbHookStatus(self, result, hookName: str) -> int:
+        """Translate a lifecycle hook's return value into a job status.
 
-        This method calls:
-        1. postProcessCheck() - check if program succeeded
-        2. processOutputFiles() - extract output data
-        3. reportStatus() - save params and report to database
+        A hook may return an int (the legacy convention: ``SUCCEEDED``,
+        ``FAILED``, ``UNSATISFACTORY``), a ``CErrorReport`` (the modern one),
+        or nothing at all. All three say the same thing -- did this step
+        succeed, and if not, why -- so all three are honoured here, and a
+        wrapper author does not have to know which convention ``process()``
+        happens to read.
+
+        For an int, the wrapper has stated its verdict and that verdict stands;
+        severities are not consulted, because ``appendErrorReport`` defaults
+        most messages to WARNING (see C2 in
+        ``docs/error-handling-remediation.md``) and a wrapper that says FAILED
+        means it. For a ``CErrorReport``, the messages are merged into the
+        plugin's own report and the job fails only at severity ERROR or above:
+        a hook that returns warnings is reporting, not refusing.
+
+        Args:
+            result: whatever the hook returned
+            hookName: the hook's name, used in any message written here
 
         Returns:
-            Status code (SUCCEEDED or FAILED)
+            ``SUCCEEDED``, or the failing status the hook asked for
         """
-        # Check if process succeeded
+        if result is None:
+            return self.SUCCEEDED
+
+        if isinstance(result, CErrorReport):
+            self.errorReport.extend(result)
+            if result.maxSeverity() >= SEVERITY_ERROR:
+                return self.FAILED
+            return self.SUCCEEDED
+
+        if isinstance(result, int):
+            if result == self.SUCCEEDED:
+                return self.SUCCEEDED
+            return result
+
+        # Neither convention. Something was returned and it means something to
+        # whoever wrote it, so treat truthiness as the failure it looks like
+        # rather than discarding it silently.
+        logger.warning(
+            "%s: %s() returned %r, which is neither a status nor a "
+            "CErrorReport", self.TASKNAME, hookName, result,
+        )
+        return self.FAILED if result else self.SUCCEEDED
+
+    def runProcessOutputFiles(self) -> int:
+        """Run ``processOutputFiles()`` and return the status it implies.
+
+        The checks a wrapper makes here are the ones the framework cannot make
+        generically -- *the program exited 0 but wrote no XMLOUT*, *the ligand
+        had no dictionary* -- and they were, until this was fixed, the checks
+        most likely to be discarded. See C1 in
+        ``docs/error-handling-remediation.md``.
+
+        A hook that fails without saying anything still gets a message naming
+        it. An unexplained failure is a poor diagnostic, but it beats a job
+        marked *Finished* with no outputs and nothing in the panel.
+        """
+        errorsBefore = len(self.errorReport)
+
+        try:
+            result = self.processOutputFiles()
+        except Exception as e:
+            import traceback
+            tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=993,
+                details=f'Python exception in processOutputFiles(): '
+                        f'{type(e).__name__}: {str(e)}\n\n{tb_str}',
+                name='processOutputFiles',
+                severity=SEVERITY_ERROR,
+            )
+            logger.error(
+                "%s: processOutputFiles() raised %s: %s",
+                self.TASKNAME, type(e).__name__, e, exc_info=True,
+            )
+            return self.FAILED
+
+        status = self.absorbHookStatus(result, 'processOutputFiles')
+
+        if status != self.SUCCEEDED and len(self.errorReport) == errorsBefore:
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=992,
+                details='processOutputFiles() reported failure without giving '
+                        'a reason. The program may have run, but its output '
+                        'could not be used.',
+                name='processOutputFiles',
+                severity=SEVERITY_ERROR,
+            )
+
+        return status
+
+    def postProcess(self) -> int:
+        """
+        Everything that happens after the program exits.
+
+        Both execution paths end here -- ``process()`` calls it directly once
+        a synchronous subprocess returns, and ``_onProcessFinished()`` calls it
+        when an asynchronous one exits -- so a wrapper behaves the same way
+        whichever path ran it.
+
+        1. ``postProcessCheck()`` - did the program itself succeed
+        2. ``processOutputFiles()`` - are its outputs usable
+        3. glean the outputs, if both said yes
+        4. ``reportStatus()`` - save params, tell the database, emit finished
+
+        Returns:
+            Status code (SUCCEEDED, FAILED or UNSATISFACTORY)
+        """
         status, exit_status, exit_code = self.postProcessCheck()
+        logger.debug(
+            "[postProcess] postProcessCheck returned status=%s exitStatus=%s "
+            "exitCode=%s (SUCCEEDED=%s, FAILED=%s)",
+            status, exit_status, exit_code, self.SUCCEEDED, self.FAILED,
+        )
 
         if status == self.SUCCEEDED:
-            # Extract output data
-            # Wrap in try/except to handle legacy wrappers that may have incomplete implementations
-            try:
-                error = self.processOutputFiles()
-                if error:
-                    self.errorReport.extend(error)
-                    status = self.FAILED
-            except Exception as e:
-                # Legacy wrappers may depend on methods we haven't implemented yet
-                # For now, just log a warning and continue
-                print(f"Warning: processOutputFiles() exception: {type(e).__name__}: {str(e)}")
-                import traceback
-                traceback.print_exc()
-                # Don't fail the job for this - the main output file should still be created
+            status = self.runProcessOutputFiles()
 
-        # Report status and save params
+        if status == self.SUCCEEDED:
+            # Glean output files to database if in database-connected mode.
+            # Essential for subjobs created via makePluginObject(), which do not
+            # go through the async track_job context manager. A no-op for jobs
+            # that do. Only successful jobs are gleaned, here and everywhere:
+            # the outputs of a failed job must not become inputs to another.
+            self._glean_output_files_sync()
+
+        logger.debug("[postProcess] Calling reportStatus with status: %s", status)
         self.reportStatus(status)
 
         return status

@@ -4,7 +4,7 @@ Tracking document for the work arising from the error-handling audit of
 `server/ccp4i2/wrappers/` and `server/ccp4i2/pipelines/`.
 
 **Baseline:** commit `b3a83af8a` (branch `django`), scanned 2026-08-24;
-re-measured unchanged at `7c54f4a5b`.
+re-measured at `7c54f4a5b` and again at `59579c932` (3.1.0a28, 2026-08-25).
 **Status:** not started, except the [Bibliography](#bibliography) case, which is
 closed and kept as a worked example.
 
@@ -36,6 +36,43 @@ Phase 1 will turn some currently-passing i2run tests red. That is the fix
 working, not a regression — the affected tests are predictable in advance and
 the handling is set out in [The Phase 1 transition](#the-phase-1-transition).
 
+## A second axis — nothing to discard in the first place
+
+The paragraph above describes reports that are produced and then thrown away.
+There is a second shape, found on 2026-08-25 and not covered by any metric in
+this document, where **no report is produced because nothing goes wrong at the
+point where it goes wrong**.
+
+`CDataFile.setFullPath()` decided whether a path was project-relative by
+looking for `CCP4_JOBS` or `CCP4_IMPORTED_FILES` anywhere in the string. A file
+chosen from *another* CCP4i2 project matches, so its real location was
+discarded and `getFullPath()` rebuilt it under the *current* project, where
+nothing exists. No exception, no error report, and the corrupted path was
+written into `input_params.xml` at parameter-set time. The failure surfaced
+much later as xia2 saying `Could not find … in …` — a true statement, about a
+path the core had invented, attributed to the wrong layer entirely. It was not
+xia2-specific: it cost inputs in any task fed a file from another project.
+
+The same commit turned up the purest instance of the shape. The database-aware
+branch it lives in runs only when the plugin carries a `_dbProjectId`, and the
+parent chain holds the plugin *weakly* — so if nothing else holds a reference,
+`_find_plugin_parent()` returns `None` and the branch **silently does not run**.
+No test reached it for exactly that reason.
+
+Three consequences for this plan:
+
+1. **The scan cannot find this class.** A silently-skipped conditional has no
+   `except:`, no `[0]`, no `return FAILED`. Every count in the burn-down is a
+   count of *visible* mishandling. Treat the scan as a reading order for Part 3,
+   never as a measure of how much is left.
+2. **It belongs to the guardrails, not the core-defect list.** The defence is
+   G2-style negative-path tests over the paths that rewrite user-supplied data
+   — and, specifically, a test that a conditional fast-path is actually taken,
+   not merely that its outcome looks plausible when it is skipped.
+3. **It raises the priority of C7's provenance work.** A message naming a file
+   the user never chose should say who chose it. When the core rewrites an
+   input, the rewrite is the thing worth reporting.
+
 ## Measuring progress
 
 All counts in this document are reproducible:
@@ -56,23 +93,33 @@ not to declare a file guilty.
 
 ## Burn-down
 
+Measured at `59579c932` (2026-08-25) unless noted.
+
 | Metric | Baseline (2026-08-24) | Current | Target |
 |---|---:|---:|---|
-| `bare except:` | 381 (92 files) | 381 | 0 outside a reviewed allowlist |
-| `except …: pass` / `continue` | 83 (49 files) | 83 | 0 |
-| `.findall(…)[0]` / `.xpath(…)[0]` | 924 (85 files) | 924 | 0 (via M4) |
-| `print()` | 917 (146 files) | 917 | 0 (via M6) |
-| `logger.*()` | 56 (5 files) | 56 | rising |
-| `return FAILED` with no error report nearby | 128 (56 files) | 128 | 0 |
-| `appendErrorReport` calls passing explicit severity | 7 of 320 | 7 of 320 | n/a once C2 lands |
+| `bare except:` | 381 (92 files) | 381 (92) | 0 outside a reviewed allowlist |
+| `except …: pass` / `continue` | 83 (49 files) | 84 (50) | 0 |
+| `.findall(…)[0]` / `.xpath(…)[0]` | 924 (85 files) | 924 (85) | 0 (via M4) |
+| `print()` | 917 (146 files) | 913 (142) | 0 (via M6) |
+| `logger.*()` | 56 (5 files) | 54 (5) | rising |
+| `return FAILED` with no error report nearby | 128 (56 files) | 128 (56) | 0 |
+| `processOutputFiles` returning `FAILED`/`UNSATISFACTORY` | 33 + 3 | 35 + 3 | n/a once C1 lands |
+| `appendErrorReport` calls passing explicit severity | 7 of 320 | 7 of 326 | n/a once C2 lands |
 | Tasks overriding `runTimeValidity` | 6 of 173 | 6 | rising |
 | Tasks overriding `postProcessCheck` | 3 of 173 | 3 | n/a once M1/M2 land |
 | Tasks declaring `LOG_FAILURES` | 0 of 173 | 1 (`arcimboldo`) | rising |
 | Tasks declaring `AUXILIARY_PROGRAMS` | 0 of 173 | 1 (`arcimboldo`) | rising |
 | i2run negative-path tests | 0 | 0 | ≥ 12 |
-| unit negative-path tests | 0 | 20 | rising |
-| `C1:`/`C2:` xfail markers outstanding | 0 | 0 | 0 (rises during Phase 1, then falls) |
+| unit negative-path tests (hand-counted) | 0 | 28 | rising |
+| `C1:`/`C2:` xfail markers outstanding | 0 | **0** — none needed; every C1 red was fixed outright | 0 (rises during Phase 1, then falls) |
 | Pre-existing `@pytest.mark.skip` in i2run | 18 | 18 | falling — see [transition](#the-phase-1-transition) |
+
+The two counts that moved on their own are worth reading correctly. `print()`
+fell by four because the PHIL and xia2 refactors of 2026-08-25 deleted
+boilerplate, not because anything was remediated. `processOutputFiles` returning
+`FAILED` **rose by two**: authors keep writing the correct check into the one
+hook that still discards it. Nothing in this document has yet made a wrapper
+author's correct code count for anything.
 
 ---
 
@@ -84,9 +131,19 @@ producing.
 
 ## C1 — `processOutputFiles()` returning `FAILED` does not fail the job
 
-- [ ] Honour the int return in `process()`
-- [ ] Delete the duplicate post-process path
-- [ ] Triage the i2run failures this exposes
+- [x] Honour the int return in `process()`
+- [x] Delete the duplicate post-process path
+- [x] Triage the i2run failures this exposes
+
+**Landed and confirmed 2026-08-25**, on branch `c1-process-output-files`. C1
+exposed six defects, all five distinct causes fixed on the same branch; the
+confirmation run is **identical to the pre-C1 baseline** — 10 failed, 150
+passed, 19 skipped, no test changed outcome in either direction
+(`server/.test-baselines/post-C1-fixed/`, diffed with
+`scripts/diff_i2run_baselines.py`). The ten remaining failures are the
+diagnosed pre-existing set, none of them C1's. What the change does, beyond the two boxes above,
+is set out under [What C1 turned out to
+include](#what-c1-turned-out-to-include).
 
 **Where:** `server/ccp4i2/core/CCP4PluginScript.py:853`,
 `server/ccp4i2/core/base_object/error_reporting.py:71`
@@ -129,6 +186,43 @@ one and delete the other rather than repairing both.
 
 **Expect this to turn currently-green i2run tests red.** That is the point.
 Capture the list — it is the work queue for Part 3.
+
+<a id="what-c1-turned-out-to-include"></a>
+### What C1 turned out to include
+
+Four decisions were forced by the fix, and are recorded here because each one
+changes behaviour beyond "the int is now read".
+
+**One post-program path, not two.** `process()` now calls `postProcess()` once
+its subprocess returns, and `postProcess()` does the whole of what happens after
+a program exits — check, process outputs, glean, report status — for the
+synchronous and asynchronous paths alike. Which of two near-identical code paths
+a wrapper met no longer decides whether its verdict counts.
+
+**The int is authoritative; a `CErrorReport` is read at ERROR.**
+`absorbHookStatus()` takes an int as the wrapper's stated verdict and does not
+consult severities — `appendErrorReport` defaults most messages to WARNING (C2),
+so consulting them would discard the verdict again by a different route. A
+`CErrorReport` is merged into the plugin's report and fails the job only at
+severity ERROR or above, which is the C5 rule applied at this one call site: a
+hook returning warnings is reporting, not refusing. Returning nothing still
+means success.
+
+**An exception in `processOutputFiles()` now fails the job**, with the traceback
+recorded (code 993), as it already did for the three hooks before it. This
+widens the red list beyond wrappers' deliberate checks, so triage should expect
+two kinds of red and can tell them apart by the code.
+
+**A failure with no message gets one** (code 992): *"processOutputFiles()
+reported failure without giving a reason"*. 128 sites return `FAILED` with no
+report nearby. It is a poor diagnostic and a good deal better than a job marked
+*Finished* with no outputs and an empty panel — and `grep 992` finds the sites
+worth fixing first.
+
+`UNSATISFACTORY` is reachable for the first time. `track_job` and `run_subjob`
+mapped only SUCCEEDED and FAILED, so such a job would have been left *Running*
+for ever; both now map it to `Job.Status.UNSATISFACTORY`, which
+`updateJobStatus` already did.
 
 ## C2 — Error severity is decided by searching the message for the word "exception"
 
@@ -377,6 +471,48 @@ hung program hangs the worker indefinitely with no diagnostic. A generous defaul
 (configurable, per-task overridable) raising a clear "timed out after N minutes"
 would close that.
 
+## C8 — A failure before the job exists has nowhere to report
+
+- [ ] A task that cannot be configured produces a job record and a `diagnostic.xml`
+- [ ] `CPluginScript.__init__` treats a registered task with no `TASKNAME` as an error
+- [ ] `i2run` does not exit through argparse for a task-level configuration failure
+- [ ] G1 catches the class at CI time
+
+**Where:** `core/CCP4PluginScript.py:246`, `cli/i2run/CCP4i2RunnerBase.py:133`,
+`core/tasks.py`
+
+C1 through C7 are about failures *during* a job. Every one of them assumes a job
+directory exists to write `diagnostic.xml` into. Nothing covers the failures that
+happen before that point — the task will not load, its parameters will not parse,
+validation refuses — and they have no reporting path at all.
+
+Measured on the [pre-C1 baseline](#the-pre-c1-baseline), this is not
+hypothetical:
+
+- **`nucleofind`** declares `TASKCOMMAND` but no `TASKNAME`.
+  `CPluginScript.__init__` loads the def.xml only `if self.TASKNAME`, so it
+  silently loaded nothing; the container came up empty; `i2run` built a parser
+  with no task arguments; argparse rejected `--FPHIIN` and called
+  `sys.exit(2)`. The project directory was created and left **empty** — no job,
+  no diagnostic, no log. The task has never once run, in any baseline on disk.
+- **`SIMBAD`** and **`pisa`** are registered and their plugin classes do not
+  load at all (`get_plugin_class` returns `None`).
+
+Three registered tasks that cannot run, and the only trace of any of them is an
+argparse usage message on stderr in a test log.
+
+The shape of the defect is the one this document keeps finding: a guard that
+treats a missing precondition as *nothing to do*. `if self.TASKNAME:` is the
+same construction as the weakly-held-parent branch in
+[A second axis](#a-second-axis--nothing-to-discard-in-the-first-place). A
+registered task without a `TASKNAME` is not a task that needs no def.xml — it is
+a task that is broken, and saying so at import time costs one line.
+
+For the desktop the consequence is worse than for `i2run`: a task whose
+parameters never loaded opens as an empty form, with nothing anywhere to say
+why. Whatever C6 settles for the Diagnostics panel needs a story for jobs that
+were never created.
+
 ---
 
 # Part 2 — Mechanisms
@@ -451,10 +587,30 @@ is the natural first conversion and worked example.
 - [ ] Guard each top-level report section in the report base class
 - [ ] Emit a visible "this section could not be generated: <reason>" block
 - [ ] Land the failure in the error report at WARNING
+- [ ] Say so in the UI when a served report is a preserved rendering rather than
+      a current one
 
 141 of the 173 tasks have a report class, and reports are where the unguarded XML
 indexing concentrates. A report that raises produces no report at all — the user
 loses the 90% that would have rendered because of one absent table.
+
+**Amended 2026-08-25.** `get_job_report_xml()` no longer deletes a cached
+`report_xml.xml` when regeneration produces an error report; it keeps and serves
+the cached copy. That is right — a report class is written against the
+`program.xml` its wrapper produced at the time, so a newer report class can fail
+on an older job's output through no fault of the job, and only renderings that
+worked are ever cached. It is also why the cache is deliberately not
+version-stamped: invalidating on a report-format version would regenerate every
+finished job against report classes that may no longer understand their
+`program.xml`.
+
+But as it stands the regeneration failure is recorded in a `logger.warning` that
+no user will ever see, and the viewer is shown a rendering from an earlier
+report class with nothing saying so. That is a loud, destructive failure traded
+for a quiet one — the thing this document is against. M5 is therefore not
+"guard the sections" alone: **a preserved rendering must announce itself**, with
+the reason regeneration currently fails. The per-section guards then reduce how
+often the whole-report fallback is needed at all.
 
 ## M6 — Logging that reaches the job, not the console
 
@@ -478,10 +634,52 @@ job failure — which is exactly how the aimless_pipe Windows bug behaved.
 
 Six tasks use it. The mechanism is good — `_checkProgramAvailable` and
 `_checkSameCrystalAs` in the base class are exactly the right idea, well
-executed. The gap is that nothing prompts an author to consider it. Put the hook
+executed, and `_checkProgramAvailable` now covers `AUXILIARY_PROGRAMS` too (M8). The gap is that nothing prompts an author to consider it. Put the hook
 in front of them at the moment they are writing, with the three questions: *are
 the inputs mutually consistent? is everything the program needs present? is this
 combination one the program supports?*
+
+## M8 — Declare the tool; let the base class find it, and say so when it is missing
+
+- [x] `AUXILIARY_PROGRAMS` — binaries a task drives from *inside* `TASKCOMMAND`
+- [x] `PHIL_SCOPE` / `PHIL_PARAMS_FILE` / `PHIL_PROGRAM` — where a PHIL task's
+      parameters come from
+- [ ] State the missing-dependency policy once, in `authoring-a-task.md`
+- [ ] Apply the same shape to monomer dictionaries and reference data
+
+Two changes on 2026-08-25 landed the same idea from different directions, and
+together they are a mechanism in their own right rather than incidents of M2.
+
+`AUXILIARY_PROGRAMS` exists because `TASKCOMMAND` names only the leaf binary:
+arcimboldo declares `ARCIMBOLDO_LITE` but drives phaser and shelxe from within
+it, so the pre-run availability check saw nothing to check. Declaring the extra
+binaries as class data brings them under the same check and onto Preferences →
+Program locations, and made a correctly-configured `SHELXDIR` effective for that
+task for the first time.
+
+`PhilPluginScript` did the same for parameters. Seven wrappers each implemented
+`get_master_phil()`, all seven the same import-and-return in one of three
+shapes, the bodies carrying no information beyond the name of the thing to
+import. They now declare the shape and the base class resolves it — and in doing
+so fixed a disagreement of exactly the audited kind: the phasertng pair caught
+`ImportError` and returned `None`, while the xia2 tasks let it escape, so a
+missing tool stopped the task **loading at all** rather than opening so it could
+say what it needed.
+
+That disagreement is the general point, and the policy is worth stating once for
+every mechanism in Part 2 to follow:
+
+> A missing external dependency resolves to a defined "absent" value, logs one
+> warning naming the task and the declaration, and lets the task open. The task
+> tells the user what it needs. It does not fail to load, and it does not
+> pretend the dependency is there.
+
+Declaring nothing, or declaring two sources, is an error at the point of
+declaration rather than a silent preference for one — the same reasoning as
+M1's output contract: an author who states an intention gets a specific message,
+and an author who states none gets told to.
+
+---
 
 ---
 
@@ -543,6 +741,20 @@ instantiates; declares `ERROR_CODES` covering every code its module passes to
 a pipeline; and (once M1 lands) declares which outputs are optional. Fast, needs
 no CCP4 binaries, runs on every commit alongside the existing unit tier.
 
+**It would already have three findings.** A sweep of all 173 tasks while
+diagnosing the [pre-C1 baseline](#the-pre-c1-baseline) turned up:
+
+- `nucleofind` declares no `TASKNAME`, and `CPluginScript.__init__` loads the
+  def.xml only `if self.TASKNAME` — so its parameters have never been loaded and
+  the task cannot be run from `i2run` at all. It is the only one of the 173.
+- `SIMBAD` and `pisa` are registered but their plugin classes do not load
+  (`get_plugin_class` returns `None`).
+
+Three defects, one of them two months old and one of them fatal to the task,
+found by a ten-line loop over `TASKS`. That is the argument for G1 in one
+paragraph, and the loop is worth landing before the more elaborate assertions
+above.
+
 ## G2 — Negative-path tests
 
 - [ ] Shared fixture set: truncated MTZ, PDB with undescribed ligand,
@@ -550,10 +762,20 @@ no CCP4 binaries, runs on every commit alongside the existing unit tier.
 - [ ] Run against the dozen most-used tasks
 - [ ] Assert `diagnostic.xml` contains an ERROR whose `details` is non-empty and
       names the actual problem
+- [ ] Cover the paths that **rewrite** user-supplied data — a file from another
+      project, a file in a sub-directory of `CCP4_IMPORTED_FILES` — asserting
+      the recorded path, not merely that the job ran
 
 All 96 i2run tests are happy-path; the failure modes users report are the unhappy
-ones. That last assertion is the one that prevents regression to blank error
-cards.
+ones. That last-but-one assertion is the one that prevents regression to blank
+error cards.
+
+The last bullet comes from [A second
+axis](#a-second-axis--nothing-to-discard-in-the-first-place). Where a fast path
+is conditional, assert that it was *taken*: the `setFullPath()` bug hid behind a
+branch that no test reached because the plugin was held weakly and the branch
+therefore silently did not run. A test whose fixture drops the reference passes
+while testing nothing.
 
 ## G3 — Lint rules scoped to `wrappers/` and `pipelines/`
 
@@ -615,6 +837,322 @@ failure returns, small file), then the import paths (widest input variety). M2 l
 tables harvested from existing inline checks. G2 negative-path fixtures. Burn the
 G3 lint baseline down as each pipeline is touched, rather than as a separate
 campaign.
+
+---
+
+# The pre-C1 baseline
+
+<a id="the-pre-c1-baseline"></a>
+
+Captured 2026-08-25 at `59579c932` on `ccp4-20260702`:
+**10 failed, 150 passed, 19 skipped** in 51 minutes
+(`server/.test-baselines/pre-C1/`). Two earlier runs are on disk beside it and
+make the arithmetic clean:
+
+| Baseline | Date | CCP4 build | Result |
+|---|---|---|---|
+| `ccp4-20251105` | 2026-06-12 | 20251105 | 4 failed, 148 passed |
+| `ccp4-20260520` | 2026-06-14 | 20260520 | **2 failed**, 151 passed |
+| `pre-C1` | 2026-08-25 | 20260702 | 10 failed, 150 passed |
+
+Eight of today's ten are new since 14 June. **Every one of the ten was
+diagnosed before starting C1**, so any red in the post-C1 run either matches a
+cause below or is C1's doing. That is the whole value of the exercise: without
+it, "10 failed" before and "12 failed" after is an argument, not a measurement.
+
+## The causes
+
+**Environment — 4.** `test_crank2`, `test_shelx::{substrdet, gamma_sad,
+gamma_siras}`, all with `FileNotFoundError: 'shelxc'`. `ccp4-20260702` ships no
+`shelxc`/`shelxd`/`shelxe`; `ccp4-20260520` did. Two other tests already skip
+for this exact gap (`test_arcimboldo` — "no shelx in build"; `test_shelxe_mr` —
+"SHELXE not installed"), so the same absence is handled in two files and
+unhandled in four tests. Worth a shared `skipif` on a binary probe rather than
+four more hand-written skips.
+
+**Never worked — 2.** `test_nucleofind::{test_1hr2, test_1hr2_raw}`, failing
+with `SystemExit: 2` in *every* baseline on disk. `wrappers/nucleofind` declares
+`TASKCOMMAND` but no `TASKNAME`, and `CPluginScript.__init__` loads the def.xml
+only `if self.TASKNAME` — so the def.xml is silently never loaded, the container
+comes up empty, `i2run` builds a parser with no task arguments, and argparse
+rejects `--FPHIIN`. A sweep of all 173 registered tasks found nucleofind is the
+**only** one missing `TASKNAME`; the same sweep found `SIMBAD` and `pisa`, whose
+plugin classes do not load at all. All three are exactly what G1 is for.
+
+**Real regressions, both dated 2026-06-15 — 3.** The day after the last green
+baseline.
+
+- `test_substitute_ligand` ×2. `f8087b070` replaced mmdb2's `ReadCIFASCII` with
+  `gemmi.read_structure` in i2Dimple, commenting that "gemmi auto-detects the
+  input format". It does not — it keys off the extension. Meanwhile
+  `getSelectedAtomsPdbFile` falls back to `shutil.copyfile` when no selection is
+  set, so `SubstituteLigand` copies the mmCIF input verbatim into a file it
+  names `selected_atoms.pdb`. The file begins `data_4HG7`; gemmi raises
+  *"Incorrect file format (perhaps it is cif not pdb?)"*. mmdb2 read by content
+  and never cared. A format-preserving `getSelectedAtomsFile` already exists
+  next door, unused by this call site.
+- `test_import_merged::test_2ceu_cif`. `64cd3bb3d` ("gemmi/numpy-native free-R
+  generation, drop the binary"). At `64cd3bb3d^` the test passes with **21 bins
+  at ~5% each**; at HEAD the output is **binary, 5.6% / 94.4%**. The test's
+  per-bin 2–15% assertion cannot hold for a binary set, but the assertion is not
+  the story: the free set this path produces changed from a 20-bin partition to
+  an inherited binary flag, while the implementation's own docstring says it
+  reproduces freerflag's semantics of "binning into 1/fraction segments". Needs
+  its own look, independently of this work.
+
+**Test asserting the wrong thing — 1.** `test_dm_multidomain` dies on `g0 & g1`
+with `ValueError: shapes (45,55,50) (48,58,61)`. `c100c6f53` (2026-06-23) made
+each mask a tight sub-box on the shared 144×144×432 parent grid. Mapping both
+boxes into the unit-cell frame gives an overlap of **0** — the masks are
+disjoint and the wrapper is right; the test compares raw arrays that are no
+longer comparable.
+
+## Did the product say why? — measured
+
+For each of the ten, the question worth asking is not "what was wrong" but
+"could anyone have found out from what CCP4i2 wrote down". The answer decides
+whether a defect costs five minutes or an afternoon.
+
+| Test(s) | What the test reported | What `diagnostic.xml` held | Cause propagated? |
+|---|---|---|---|
+| `crank2`, `shelx` ×3 | a **missing output** — "Failed to open `FPHOUT_DIFFANOM.mtz`", "…`n_part.pdb`" | the whole cause: `FileNotFoundError: 'shelxc'` with traceback — **at severity 2, WARNING** | **Yes** — and still not what anyone was shown |
+| `nucleofind` ×2 | `SystemExit: 2` | **nothing at all** — no job directory, no file | **No.** The cause was in argparse's stderr; the *why* took five steps |
+| `substitute_ligand` ×2 | "Error reports found: i2Dimple pipeline failed" | that one sentence, twice — severity 2 and severity 4 | **No.** The real cause exists in no artefact |
+| `dm_multidomain`, `import_merged` | `ValueError: shapes …`, `Flag 1 has 94.4%` | `<errorReportList/>` — empty; the job genuinely succeeded | **N/A** — nothing to propagate |
+
+**Four of ten recorded the cause. Four recorded nothing usable. Two had nothing
+to record.**
+
+### The four that propagated were still no help
+
+`shelxc`'s `FileNotFoundError` was written to `diagnostic.xml` in full, with its
+traceback — and filed at **severity 2**. The i2run harness fails at severity ≥ 4,
+so it never looked; each test failed instead on a downstream symptom, *"Failed
+to open n_part.pdb"*. A user sees the same thing: an orange advisory, and a job
+that did not produce its outputs.
+
+This is [C2](#c2--error-severity-is-decided-by-searching-the-message-for-the-word-exception)
+measured rather than argued. The severity heuristic asks whether the message
+contains the word "exception"; a Python traceback says *Traceback*. Four jobs
+had their true cause written down, in the right file, and the heuristic kept it
+from being the reported failure.
+
+### The four that recorded nothing name two different gaps
+
+**Failures before a job exists have nowhere to go.** `i2run` could not build a
+parser for `nucleofind`, so there was no job directory to write a diagnostic
+into, and the only trace was argparse's stderr. Configuration-time failures —
+task will not load, parameters will not parse, validation refuses — need a home
+as much as run-time ones do. Nothing in Part 1 currently covers this.
+
+**A subjob's cause dies with the subjob.** `SubstituteLigand`'s i2Dimple raised
+`RuntimeError: Incorrect file format (perhaps it is cif not pdb?)`, and that
+string exists in no artefact on disk: the subjob wrote no `diagnostic.xml`, no
+log and no stderr, and the parent recorded its own generic sentence twice, once
+at WARNING and once at ERROR, with no cause and no traceback. Establishing what
+happened meant reading the first line of a coordinate file by hand. That is
+[C3](#c3--exceptions-in-pipeline-continuation-callbacks-are-swallowed-into-the-server-log)
+and [C6](#c6--the-diagnostics-panel-reads-three-field-names-the-backend-never-writes)
+together, and it is the strongest argument for both.
+
+### The contrast that justifies the exercise
+
+The six defects C1 revealed on the same suite, the same day, all carried the
+full traceback at severity 4 under code 993. Classifying them was one `grep`,
+with no ferreting whatever. Same failures, same harness — the entire difference
+is whether the core wrote down what it already knew.
+
+## What the baseline says about this document
+
+Three of the ten are specimens of the thesis, found without looking for them.
+
+`test_substitute_ligand` is C1, C3, C6 and C7 in one job. The failure is a
+`RuntimeError` in a subjob's `processInputFiles`; the subjob directory holds no
+`diagnostic.xml`, no log and no stderr; the parent records only *"i2Dimple
+pipeline failed"* — twice, once at WARNING and once at ERROR, the same sentence
+in both. Establishing that a file named `.pdb` contained mmCIF meant reading the
+file by hand. Nothing in the product could have told anyone that.
+
+`test_crank2`'s `FileNotFoundError` is filed at **severity 2 (WARNING)**,
+because C2's heuristic searches the message for the word "exception" and finds
+only "Traceback".
+
+`test_nucleofind` is the [second axis](#a-second-axis--nothing-to-discard-in-the-first-place)
+in miniature: one missing class attribute, a guard that treats its absence as
+"nothing to do", and a task that has never once loaded its parameters. No error,
+anywhere, for two months of baselines.
+
+## The interval that hid them
+
+Both 15 June regressions replaced a CCP4 binary or toolkit call with a
+gemmi-native equivalent — the slim-server work — and both changed a behaviour the
+replacement did not reproduce: reading a coordinate file by content rather than
+by extension, and partitioning a free set into 20 bins rather than 2. Neither is
+visible to `tests/unit` or `tests/api/unit`, which is what CI runs. The i2run
+suite would have caught both the next day, and was not run again for ten weeks.
+
+That is an argument for G2 and for running i2run on a schedule, not only before
+a release. It is also a reason to be sceptical of the remaining gemmi-native
+ports: the pattern is not "the port was wrong" but "the port was right about the
+main case and silently different about a case no unit test covers".
+
+---
+
+# How this could have been found sooner
+
+<a id="how-this-could-have-been-found-sooner"></a>
+
+C1 turned up six latent defects in one 50-minute run. Every one of them ran on
+the **happy path, on every execution of its wrapper, for months**: chainsaw
+could not compute a sequence identity, cmapcoeff never wrote a program.xml,
+phaser_ensembler never wrote its remarked ensemble, sculptor and chainsaw never
+recorded an atom count, and xia2 never copied a log file out of `LogFiles/`.
+Coverage was not the gap. These lines executed constantly. Nobody could see
+what happened when they did.
+
+That distinction is worth holding on to, because it points at a different class
+of remedy from "write more tests".
+
+## What each technique would actually have caught
+
+| Defect | mypy over `wrappers/` | dead-API lint | recording the exception |
+|---|:--:|:--:|:--:|
+| `float(CInt)` — CInt has no `__float__` | **yes** | no | yes |
+| `ET.tostring(pretty_print=True)` — lxml keyword on the stdlib | **yes** | **yes** | yes |
+| `CPdbData.mmdbManager` — mmdb2 residue | no¹ | **yes** | yes |
+| `CAtomCountPerformance.setFromPdbDataFile` — never ported | no¹ | no² | yes |
+| `shutil.copyfile(logFile, ...)` — wrong variable, both bound | no | no | yes |
+
+¹ Both classes define `__getattr__`, so a type checker must assume any
+attribute may exist. Dynamic attribute access is the norm in `CData`, which
+makes static analysis structurally blind to this whole family.
+² Only findable by grep if you already know the name to grep for.
+
+Static analysis would have found two of the five. A lint banning the API
+surface removed by a port would have found two. **Recording the exception would
+have found all five, at zero marginal cost, the first time each wrapper ran.**
+
+## The core already knew
+
+Every one of these exceptions was caught, formatted, and printed:
+
+```python
+except Exception as e:
+    print(f"Warning: processOutputFiles() exception: {type(e).__name__}: {str(e)}")
+    traceback.print_exc()
+```
+
+The information existed. It was written to a console nobody reads, in a job
+whose panel said nothing and whose status said *Finished*. The distance between
+that and a diagnostic entry is one function call.
+
+## The lesson: make it visible before making it fatal
+
+C1 did two separable things — it started **recording** what
+`processOutputFiles()` reported, and it started **failing the job** on it. Only
+the second is a behaviour change; only the second turns tests red; only the
+second needs a baseline, a predicted red list, and a transition plan.
+
+Had the recording half landed on its own, at `SEVERITY_WARNING`:
+
+- all six defects would have appeared in `diagnostic.xml` and in the
+  Diagnostics panel the first time each wrapper ran;
+- **no test would have gone red** — the i2run harness only fails on severity
+  ≥ 4, and prints `Note: N warning(s)` otherwise;
+- finding them would have been `grep -l 'code>993' ~/.cache/ccp4i2-tests/*/CCP4_JOBS/*/diagnostic.xml`
+  rather than a core change plus a 50-minute run plus six archaeological digs;
+- the flip to fatal would then have been a two-line change against defects
+  already fixed, with a red list of zero.
+
+**Apply this to the rest of Part 1.** C3, C5, C6 and C7 each have a recording
+half and a behaviour half. Land the recording half first, harvest what it finds,
+fix that, and only then change what fails. This is the same staging argument as
+[Why C2 must be staged](#why-c2-must-be-staged), generalised: the expensive,
+risky part of surfacing a hidden failure is never the surfacing.
+
+## Codes are the query language
+
+Triaging six failures took one `grep` because C1 gives its own detections
+distinct codes: **993** for "the hook raised", **992** for "the hook failed
+without saying why". Six diagnostics, one classification, no reading of
+tracebacks to know which bucket each belonged to.
+
+Every core-detected failure mode introduced by this work should get its own
+reserved code, and they should be listed in one place. A code is not decoration;
+it is what lets a future defect be counted rather than recounted.
+
+## The same defect, four more times, in the report classes
+
+The cmapcoeff defect — `ET.tostring(root, pretty_print=True)`, an lxml keyword
+passed to the standard library — is not a one-off. It is what happens when code
+written for lxml runs against `xml.etree.ElementTree`, and the tree does both:
+109 modules import lxml, 134 import the standard library, 8 import both.
+
+Object mixing itself is not the danger. Measured on lxml 4.9.4 in
+`ccp4-20260702`, every cross-library operation raises `TypeError` at once —
+`ET.SubElement` on an lxml parent, `LX.SubElement` on a stdlib parent,
+`LX.tostring` of a stdlib element, `append` in either direction. The only
+combination that works is `ET.tostring(lxml_element)`. Nothing is silently
+corrupted. That is cold comfort while the exceptions are being discarded, but
+it does mean the search is for *API* mismatches, not for mixed trees.
+
+Searching for lxml-only APIs in modules that do not import lxml finds four more
+live instances, none of them ever reported:
+
+| Module | Call | Effect |
+|---|---|---|
+| `pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK_report.py` | `self.xmlnode.xpath(...)` ×4 | **The report cannot render at all.** It imports no XML module; `xmlnode` comes from the framework as a stdlib Element, which has no `.xpath`. The task is registered with this `reportPath`. |
+| `wrappers/qtpisa/script/qtpisa_report.py` | `etree.tostring(et, pretty_print=True)`, `et.write(path, pretty_print=True)` | `TypeError`; the scene file is never written |
+| `pipelines/MakeProjectsAndDoLigandPipeline/script/MakeProjectsAndDoLigandPipeline_report.py` | `etree.tostring(svg, pretty_print=True)` | `TypeError` |
+| `wrappers/SIMBAD/script/SIMBAD_report.py` | `self.xmlnode.xpath(...)` | commented out — and `SIMBAD`'s plugin class does not load anyway (see [G1](#g1--a-conformance-test-over-the-task-registry)) |
+
+Two things make this family invisible.
+
+**The report path has no C1.** These live in report classes, which render
+separately from the job. A report class that raises produces an error report,
+and since 2026-08-25 a job with a previously-cached rendering has that stale
+rendering served in its place with only a `logger.warning` — which is exactly
+what [M5](#m5--report-classes-that-degrade-section-by-section) was amended to
+address. The report path needs its own version of the C1 treatment: record what
+the report class said, where a person will see it.
+
+**The naming invites it.** `report/elements.py`, `report/core.py` and most
+report modules say `import xml.etree.ElementTree as etree`. A reader who knows
+CCP4i2's history sees `etree.` and assumes lxml, because for years it was.
+Writing `pretty_print=True` under that assumption is the natural mistake, and
+nothing in the module contradicts it.
+
+**One more, dated rather than broken:** `prosmart_refmac_report.py:263` imports
+`lxml.html.clean`, which was **removed in lxml 5.x**. This build ships 4.9.4, so
+it works today and breaks whenever CCP4 updates lxml — inside a bare
+`except: pass`, so it will break silently.
+
+These are not fixed here: they belong to the report path rather than to C1, and
+they want the M5 work alongside them. They are recorded because they are the
+best available evidence for the lint proposed below — five hits from one grep,
+in a family static typing cannot see.
+
+## Two things worth building
+
+**`scripts/scan_diagnostics.py`** — walk `~/.cache/ccp4i2-tests/*/CCP4_JOBS/*/diagnostic.xml`
+(and a project directory, for real users) and summarise by code, class and
+severity. After any suite run this answers "what did the jobs complain about
+that nobody looked at" in a second. It is the harvesting tool that makes
+"record first" pay off, and it needs no CCP4 environment.
+
+**A lint of removed API surface.** Three of today's six defects, both
+regressions of 15 June, and all four report defects above are *port residue*:
+mmdb2 names after the gemmi port, lxml-only APIs after the ElementTree port, an
+API that was never carried across. When a port removes an API, add its names to
+a banned-identifier list scoped to `wrappers/` and `pipelines/`.
+
+For the lxml case the rule is sharper than a banned list, and worth writing
+properly: **an lxml-only API in a module that does not import lxml is an
+error.** The identifiers are `pretty_print=`, `.xpath(`, `.getparent()`,
+`.iterancestors(`, `.sourceline`, `CDATA(`, and `lxml.html.clean`. That check,
+which is a grep, would have found the cmapcoeff defect and the four report
+defects above — nine lines of CI standing in for a family that static typing
+cannot see at all, because `CData` and the report nodes are dynamic.
 
 ---
 
@@ -825,6 +1363,7 @@ problem:
 | §9.3 "Bare Except Clauses" | Already correct; add that it is now lint-enforced. | G3 |
 | §9.4 "Debug Prints in Production" | Already correct; point at `self.log()`. | M6, G3 |
 | new §13 | Log-failure tables (M2) and `runTimeValidity` (M7). | M2, M7 |
+| new §14 | Declaring a task's external dependencies — `AUXILIARY_PROGRAMS`, the PHIL source declarations, and the missing-dependency policy. | M8 (landed) |
 
 `mddocs/pipeline/ERROR_HANDLING_PATTERNS.md` is largely sound — its worked
 example does pair `reportStatus(FAILED)` with `return CPluginScript.FAILED`, and
@@ -846,4 +1385,13 @@ pattern. Two smaller amendments:
 | 2026-08-24 | Added [Bibliography](#bibliography): a live instance of the silent-failure class, found by PR #276's new CI job and closed by #277. 52 report classes rendered an empty bibliography; all 52 had one cause and went to zero in a single change. Kept as a worked example. |
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
+| 2026-08-25 | Pre-C1 i2run baseline captured and **every one of its 10 failures diagnosed** — see [The pre-C1 baseline](#the-pre-c1-baseline). 4 environment (no `shelxc` in `ccp4-20260702`), 2 never-worked (`nucleofind` has no `TASKNAME`, so its def.xml is silently never loaded), 3 real regressions both dated 2026-06-15 (gemmi-native ports of mmdb2 CIF reading and of freerflag), 1 test asserting the wrong thing. Three of the ten are specimens of this document's thesis. |
+| 2026-08-25 | **C8 added** — failures before a job exists have nowhere to report. C1–C7 all assume a job directory to write `diagnostic.xml` into; task-load, parameter-parse and validation failures have no path at all. Three live instances: `nucleofind` (no `TASKNAME`, so its def.xml was silently never loaded — has never run in any baseline), `SIMBAD` and `pisa` (plugin classes do not load). |
+| 2026-08-25 | **C1 confirmed.** Re-run of the full i2run suite with the six fixes in place is byte-for-byte the pre-C1 result: 10 failed, 150 passed, 19 skipped, `NEWLY FAILING: 0`, `NEWLY PASSING: 0`. Unit (860) and api/unit (79) green under `ccp4-python` and under the CCP4-free venv. No xfail markers were needed at any point — the transition machinery in [The Phase 1 transition](#the-phase-1-transition) went unused because every revealed defect was cheap to fix. `post-C1-fixed` is the comparator from here. |
+| 2026-08-25 | C1 triage complete: **6 newly-failing tests, 5 defects, all fixed** — `float(CInt)`, a missing atom-count KPI, an lxml keyword on the stdlib, an mmdb2 attribute, and a wrong variable in a copy loop. All six ran on the happy path on every execution for months. Added [How this could have been found sooner](#how-this-could-have-been-found-sooner): recording and failing are separable, and only the recording half is free. |
+| 2026-08-25 | **C1 landed** (`c1-process-output-files`). One post-program path for both execution modes; `absorbHookStatus()` reads both return conventions; an exception in `processOutputFiles()` fails the job; an unexplained failure gets code 992; `UNSATISFACTORY` mapped so it cannot strand a job in *Running*. 23 unit tests, 15 of which fail against the code as it was. Pre-C1 i2run baseline captured first. Triage of the diff outstanding. |
+| 2026-08-25 | Re-measured at `59579c932` (3.1.0a28). Counts essentially flat; `processOutputFiles` returning `FAILED` **rose** 33 → 35, which is the argument for doing C1 next in one line. |
+| 2026-08-25 | Added [A second axis](#a-second-axis--nothing-to-discard-in-the-first-place): the core silently rewriting what a wrapper was told, from the `setFullPath()` cross-project path bug (`043774c4c`) — no exception, no report, corruption written into `input_params.xml`, surfacing later as a true message about an invented path, attributed to the wrong layer. Includes the weakly-held-parent branch that silently does not run. No scan metric can see this class; it is a guardrails (G2) problem, and it raises C7's provenance work. |
+| 2026-08-25 | **M5 amended** after `363d60e1c`. Keeping a cached rendering when regeneration fails is right, and the report cache is deliberately not version-stamped for the same reason. But the failure now reaches only a `logger.warning`, and the viewer sees an older rendering with nothing saying so — one silent failure traded for another. M5 gains: a preserved rendering must announce itself and say why regeneration fails. |
+| 2026-08-25 | **M8 added** — declare the tool, let the base class find it, and say so when it is missing. Covers `AUXILIARY_PROGRAMS` and the `PHIL_SCOPE`/`PHIL_PARAMS_FILE`/`PHIL_PROGRAM` declarations (`3fd357f40`), which removed seven identical `get_master_phil()` bodies and settled a real disagreement: a missing tool used to stop the xia2 tasks loading at all, while the phasertng pair returned `None`. States the missing-dependency policy the rest of Part 2 should follow. |
 | 2026-08-24 | C2 split into C2a/C2b after measuring that the proposed default would flip 268 of 320 calls, and confirming `appendErrorReport` severity does not gate job status. Added Phase 0 (baseline capture) and [The Phase 1 transition](#the-phase-1-transition); added `--predict-red-list` to the scan script. |
