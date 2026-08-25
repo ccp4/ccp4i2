@@ -64,9 +64,22 @@ const ROW_CONTAINER_SX = {
  * carry no expertLevel at all, so filtering without this leaves a stack of
  * empty accordions where the expert parameters used to be.
  */
+/**
+ * An item's expert level, wherever it happens to live.
+ *
+ * PHIL-generated containers set it directly as a qualifier; def.xml puts it
+ * inside guiDefinition, which is where the great majority of tasks keep it.
+ */
+const expertLevelOf = (item: any): number | undefined => {
+  const qualifiers = item?._qualifiers;
+  const level =
+    qualifiers?.expertLevel ?? qualifiers?.guiDefinition?.expertLevel;
+  return typeof level === "number" ? level : undefined;
+};
+
 const passesExpertLevel = (item: any, maxExpertLevel: number): boolean => {
-  const level = item?._qualifiers?.expertLevel;
-  if (level !== undefined && level !== null && level > maxExpertLevel) {
+  const level = expertLevelOf(item);
+  if (level !== undefined && level > maxExpertLevel) {
     return false;
   }
   if (item?._baseClass !== "CContainer") return true;
@@ -212,7 +225,14 @@ export const CCP4i2ContainerElement: React.FC<
 
   if (containerHint === "FolderLevel") {
     return (
-      <Accordion disableGutters defaultExpanded={initiallyOpen}>
+      <Accordion
+        disableGutters
+        defaultExpanded={initiallyOpen}
+        // Without this MUI keeps a collapsed folder's children mounted, so a
+        // large auto-generated parameter tree costs the same folded away as
+        // open. Nothing visible changes; collapsed content is not on screen.
+        slotProps={{ transition: { unmountOnExit: true } }}
+      >
         <AccordionSummary
           expandIcon={<ExpandMore />}
           sx={{

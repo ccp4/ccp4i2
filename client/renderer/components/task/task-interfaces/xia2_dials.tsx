@@ -30,10 +30,10 @@ import { useJob } from "../../../utils";
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { container } = useJob(props.job.id);
 
-  // Qt showed expert levels 0 and 1 and nothing above; keep that as the
-  // default but let "All" reach the level-2 parameters, which were previously
-  // unreachable from the interface altogether.
-  const [expertLevel, setExpertLevel] = useState(1);
+  // Start at Basic and let the user opt upward. Advanced is 179 of xia2's
+  // 281 parameters and All is all of them, which is a lot of widgets to build
+  // before anyone has asked for them.
+  const [expertLevel, setExpertLevel] = useState(0);
 
   if (!container) return <LinearProgress />;
 

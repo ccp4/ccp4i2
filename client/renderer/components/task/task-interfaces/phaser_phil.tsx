@@ -23,7 +23,7 @@ import { useJob } from "../../../utils";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { container } = useJob(props.job.id);
-  const [expertLevel, setExpertLevel] = useState(1);
+  const [expertLevel, setExpertLevel] = useState(0);
 
   if (!container) return <LinearProgress />;
 
