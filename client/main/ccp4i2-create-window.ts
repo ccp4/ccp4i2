@@ -23,6 +23,33 @@ export const createWindow = async (
     createWindow(url, store);
     return { action: "deny" }; // Prevent default behavior
   });
+  // The app clears the native application menu (ccp4i2-master.ts) so it doesn't
+  // duplicate the in-app menu bar — which also takes the standard View-menu
+  // accelerators with it, leaving Reload and Toggle Developer Tools greyed out
+  // and their shortcuts dead. Re-register them per window, so they work in
+  // report pop-ups (opened through the handler above) as well as the main one.
+  newWindow.webContents.on("before-input-event", (event, input) => {
+    if (input.type !== "keyDown") return;
+    const isMac = process.platform === "darwin";
+    const key = input.key.toLowerCase();
+    const primary = isMac ? input.meta : input.control;
+
+    if (key === "f12" || (primary && input.shift && key === "i") ||
+        (isMac && input.meta && input.alt && key === "i")) {
+      newWindow.webContents.toggleDevTools();
+      event.preventDefault();
+      return;
+    }
+    if (primary && key === "r") {
+      if (input.shift) {
+        newWindow.webContents.reloadIgnoringCache();
+      } else {
+        newWindow.webContents.reload();
+      }
+      event.preventDefault();
+    }
+  });
+
   newWindow.webContents.on("did-finish-load", () => {
     // Restore the persisted zoom level, but guard against corrupted/out-of-range
     // values. A stray accumulated value (e.g. -10.5) renders the whole UI

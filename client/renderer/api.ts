@@ -505,21 +505,25 @@ export function useApi() {
  *
  * Note: This doesn't provide progress feedback, but avoids memory issues with large files.
  */
+export const withAccessToken = async (theURL: string): Promise<string> => {
+  // Browser-issued requests (anchor clicks, window.open, <img src>, <iframe src>)
+  // never carry an Authorization header, and every API path behind the proxy is
+  // authenticated — the desktop app's Django middleware 401s anything without a
+  // bearer token. The proxy route accepts the token as an ``access_token`` query
+  // parameter for exactly these cases.
+  const token = await getAccessToken();
+  if (!token) return theURL;
+  const separator = theURL.includes("?") ? "&" : "?";
+  return `${theURL}${separator}access_token=${encodeURIComponent(token)}`;
+};
+
 export const doDownload = async (
   theURL: string,
   targetName: string,
   _optionsIn?: any,
   _onProgress?: (bytesRead: number) => void
 ) => {
-  // Get access token to append to URL (anchor clicks don't send Authorization header)
-  const token = await getAccessToken();
-
-  // Append token as query parameter if available
-  let downloadUrl = theURL;
-  if (token) {
-    const separator = theURL.includes("?") ? "&" : "?";
-    downloadUrl = `${theURL}${separator}access_token=${encodeURIComponent(token)}`;
-  }
+  const downloadUrl = await withAccessToken(theURL);
 
   // Use direct anchor approach - browser handles streaming to disk
   // This avoids loading the entire file into memory

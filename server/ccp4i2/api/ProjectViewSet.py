@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.db.models import Prefetch
 from django.http import FileResponse, Http404, JsonResponse
+from django.urls import reverse
 from django.utils.text import slugify
 from pytz import timezone
 from rest_framework import status
@@ -19,6 +20,8 @@ from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+
+from ccp4i2_api.file_grants import grant_ttl, mint_grant
 
 from ..db import models
 from ..lib.async_create_job import create_job_async
@@ -679,6 +682,45 @@ class ProjectViewSet(ModelViewSet):
         if not composite_path.exists():
             raise Http404("File not found")
         return FileResponse(open(composite_path, "rb"), filename=composite_path.name)
+
+    @action(
+        detail=True,
+        methods=["post"],
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def file_grant(self, request, pk=None):
+        """Mint a short-lived read grant for one directory of the project.
+
+        Opening a task's HTML report in a browser tab means the page's own
+        images, stylesheets and relative fetches are issued by the browser
+        with no Authorization header, so they 401. The client mints a grant
+        for the report's directory and hands it to the tab; the proxy turns
+        it into a path-scoped cookie that rides along on those requests.
+
+        The grant authorises GET/HEAD under that one directory of
+        files_by_path and expires within the hour — it is a capability for
+        reading a report, not a stand-in for the caller's credentials.
+        """
+        the_project = models.Project.objects.get(pk=pk)
+        relative_path = (request.data.get("path") or "").strip("/")
+        project_root = pathlib.Path(the_project.directory).resolve()
+        directory = (project_root / relative_path).resolve()
+        # Same containment rule as files_by_path: the grant can only ever
+        # name a directory inside the project it belongs to.
+        if directory != project_root and project_root not in directory.parents:
+            return api_error("Unacceptable path", status=404)
+        if not directory.is_dir():
+            return api_error("Directory not found", status=404)
+        prefix = reverse(
+            "project-files-by-path",
+            kwargs={"pk": the_project.pk, "file_path": relative_path},
+        )
+        return api_success(
+            {
+                "grant": mint_grant(user_pk=request.user.pk, path_prefix=prefix),
+                "expires_in": grant_ttl(),
+            }
+        )
 
     @action(
         detail=True,

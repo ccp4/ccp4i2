@@ -16,7 +16,7 @@
     "copy-moorhen-assets": "copyfiles -u 4 \"node_modules/moorhen/public/MoorhenAssets/**/*\" renderer/public/MoorhenAssets/",
     "copy-moorhen-wasm": "echo 'WASM files copied by copy-moorhen-assets from MoorhenAssets/wasm/'",
     "copy-report-files-base": "copyfiles -u 1 assets/report_files/* renderer/public/",
-    "copy-report-files": "copyfiles -u 1 assets/report_files/**/* renderer/public/",
+    "copy-report-files": "copyfiles -u 1 \"assets/report_files/**/*\" renderer/public/",
     "copy-qticons-base": "copyfiles -u 2 assets/qticons/* renderer/public/qticons/",
     "copy-qticons": "copyfiles -u 2 assets/qticons/**/* renderer/public/qticons/",
     "copy-svgicons": "copyfiles -u 2 assets/svgicons/* renderer/public/svgicons/",

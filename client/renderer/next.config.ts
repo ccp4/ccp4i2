@@ -7,7 +7,9 @@ const isDevelopment = process.env.NODE_ENV === "development";
 // Set the Content Security Policy header
 const csp = {
   defaultSrc: "'self'",
-  imgSrc: "'self' data: blob: https://*.blob.core.windows.net",
+  // pdb-redo.eu: the PDB-REDO results page (served from the job directory)
+  // renders status icons straight from the databank host.
+  imgSrc: "'self' data: blob: https://*.blob.core.windows.net https://pdb-redo.eu",
   connectSrc:
     "'self' https://www.ebi.ac.uk https://www.uniprot.org https://pubmed.ncbi.nlm.nih.gov https://raw.githubusercontent.com/MonomerLibrary/monomers/master/ " +
     "https://files.rcsb.org https://www.rcsb.org https://alphafold.ebi.ac.uk https://pdb-redo.eu https://cdn.jsdelivr.net " +
@@ -16,7 +18,10 @@ const csp = {
     "https://res.cdn.office.net " + // Teams SDK validDomains fetch
     process.env.NEXT_PUBLIC_API_BASE_URL,
   styleSrc:
-    "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.googleapis.com/css2",
+    "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.googleapis.com",
+  // Host, not a path: a path-scoped source only matches URLs starting
+  // with it, so "/css2" silently blocked the older "/css?family="
+  // endpoint that embedded task reports (MrParse) still use.
   fontSrc:
     "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.gstatic.com data:",
   scriptSrc: "'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval' blob:",

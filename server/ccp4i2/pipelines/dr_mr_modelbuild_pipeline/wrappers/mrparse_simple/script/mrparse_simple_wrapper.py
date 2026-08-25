@@ -5,6 +5,7 @@ from pathlib import Path
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4XtalData
 from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.lib.utils.logs.mrparse_log import search_program_failure
 
 
 class mrparse_simple(CPluginScript):
@@ -12,6 +13,14 @@ class mrparse_simple(CPluginScript):
     TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
+
+    ERROR_CODES = {
+        201: {'description': 'MrParse could not run a search program'},
+        202: {'description': 'MrParse found no homologues or models',
+              'severity': CCP4ErrorHandling.SEVERITY_WARNING},
+        203: {'description': 'A MrParse search program failed; results are incomplete',
+              'severity': CCP4ErrorHandling.SEVERITY_WARNING},
+    }
 
     def __init__(self, *args, **kwargs):
         self.seqin = None
@@ -59,6 +68,21 @@ class mrparse_simple(CPluginScript):
                     self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
                     self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
                     self.container.outputData.XYZOUT[-1].annotation = "AFDB hit: {}".format(i['name'])
+
+        # MrParse logs a failed search program and then writes an empty report,
+        # so an unrunnable binary looks exactly like an honest "nothing found".
+        # Say which of the two happened rather than reporting a bare success.
+        failure = search_program_failure(self.workDirectory / "mrparse_0" / "mrparse.log")
+        found_any = len(self.container.outputData.XYZOUT) > 0
+        if failure and not found_any:
+            self.appendErrorReport(201, failure)
+            return CPluginScript.FAILED
+        if failure:
+            self.appendErrorReport(203, failure)
+        elif not found_any:
+            self.appendErrorReport(
+                202, 'The searches ran but matched no homologues or predicted models'
+            )
 
         return CPluginScript.SUCCEEDED
 

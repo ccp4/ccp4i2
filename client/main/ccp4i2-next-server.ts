@@ -100,14 +100,19 @@ export const startNextServer = async (
   // Set the Content Security Policy header
   const csp = {
     defaultSrc: "'self'",
-    imgSrc: "'self' data: blob:",
+    // pdb-redo.eu: the PDB-REDO results page (served from the job directory)
+    // renders status icons straight from the databank host.
+    imgSrc: "'self' data: blob: https://pdb-redo.eu",
     connectSrc:
       "'self' https://www.ebi.ac.uk https://www.uniprot.org https://pubmed.ncbi.nlm.nih.gov https://raw.githubusercontent.com/MonomerLibrary/monomers/master/ " +
       "https://login.microsoftonline.com https://graph.microsoft.com https://*.microsoftonline.com https://*.microsoft.com " +
       "https://graph.windows.net https://management.azure.com https://cdn.jsdelivr.net " +
       (process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || ""),
     styleSrc:
-      "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.googleapis.com/css2",
+      "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.googleapis.com",
+    // Host, not a path: a path-scoped source only matches URLs starting
+    // with it, so "/css2" silently blocked the older "/css?family="
+    // endpoint that embedded task reports (MrParse) still use.
     fontSrc:
       "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.gstatic.com data:",
     scriptSrc: "'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'",
