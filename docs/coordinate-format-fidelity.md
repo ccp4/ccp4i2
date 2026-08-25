@@ -277,6 +277,49 @@ The i2run evidence should be a targeted run of the affected wrappers —
 `refmac`, `servalcat`, `sheetbend`, `zanuda`, `coordinate_selector` — **with a
 selection set**, since that is the untested half and the whole point.
 
+## What was implemented, and what was not
+
+**Landed 2026-08-25** on `coordinate-format-fidelity`, against the post-C1
+baseline.
+
+Done:
+
+1. `detect_coordinate_format()` — content first (a cheap scan of the leading
+   lines), gemmi's `CoorFormat.Detect` second, the extension last. `isMMCIF` and
+   the `contentFlag` introspection both go through it.
+2. Every `gemmi.read_structure` in `CCP4ModelData` passes
+   `format=gemmi.CoorFormat.Detect`.
+3. `writeSelection` takes the format as an argument.
+4. `getSelectedAtomsPdbFile` guarantees PDB on both paths; the no-selection path
+   converts instead of copying. Where PDB cannot express the structure, gemmi
+   raises and the error is returned.
+5. `getSelectedAtomsFile` guarantees the source format on both paths, with a
+   matching name.
+6. Callers: the five hand-rolled suffix swaps (`refmac`, `servalcat`,
+   `sheetbend`, `csymmatch`, `coordinate_selector`) now call
+   `getSelectedAtomsFile`; `i2Dimple` and `SubstituteLigand` do the same and
+   drop the cast; `zanuda` makes one call and no longer writes `.tmp`.
+
+**Not done: the five Group A wrappers that pass the input through unconverted
+when no selection is set** — `chainsaw`, `acorn`, `findmyseq`,
+`phaser_ensembler`, `mrbump_basic`. Routing those through the PDB-guaranteeing
+call would fix an mmCIF reaching a PDB-only program, but it is a behaviour
+change on the most-used path, and it rests on the assumption that each program
+needs PDB. That assumption is exactly what proved false for dimple. Changing
+five wrappers on the strength of a comment and a filename would repeat today's
+mistake in the opposite direction.
+
+Each needs one experiment before it moves: run the program on an mmCIF model and
+see whether it reads it. `chainsaw` cannot be tested trivially — it exits on a
+missing alignment file before it looks at coordinates — so the experiment is an
+i2run run with a `.cif` model rather than a bare invocation. `molrep` already
+guards itself (`elif getExt() != '.pdb': convertFormat(...)`), and the
+`phasertng` pair guard with an extension test that becomes redundant once
+detection is content-based.
+
+Until then the position is unchanged from before this work, and no worse: an
+mmCIF with no selection reaches those five programs as mmCIF, exactly as it did.
+
 ## When to apply this
 
 Not yet, and not alongside C1.
