@@ -1,5 +1,7 @@
 import logging
 import os
+import re
+from pathlib import Path
 
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
@@ -402,3 +404,85 @@ def tip_image(request, name):
     if not os.path.isfile(path):
         raise Http404("Tip image not found")
     return FileResponse(open(path, "rb"))
+
+
+# Diffraction image sweeps -------------------------------------------------
+#
+# xia2 is given one image and finds the rest of the sweep itself. The interface
+# needs the same information to show the user what they picked and to offer a
+# sensible default image range, so this reports the sweep an image belongs to.
+
+_IMAGE_TEMPLATE_RE = re.compile(r"^(?P<prefix>.*?)(?P<digits>\d+)(?P<suffix>\D*)$")
+
+
+@api_view(["GET"])
+def image_sweep(request):
+    """
+    Describe the diffraction-image sweep that a given image belongs to.
+
+    GET /api/ccp4i2/image_sweep/?path=/data/th_8_2/th_8_2_0001.cbf
+
+    Sweeps are named by a numeric field in the file name, so the sweep is every
+    sibling matching the same prefix/width/suffix. Response:
+
+    {
+        "success": true,
+        "data": {
+            "template": "th_8_2_####.cbf",
+            "directory": "/data/th_8_2",
+            "start": 1, "end": 20, "count": 20
+        }
+    }
+
+    Reports only files the caller has already named the directory of; it is not
+    a directory-listing endpoint.
+    """
+    path = request.GET.get("path", "")
+    if not path:
+        return JsonResponse(
+            {"success": False, "error": "No path supplied"}, status=400
+        )
+
+    image = Path(path)
+    if not image.is_file():
+        return JsonResponse(
+            {"success": False, "error": f"Not a file: {path}"}, status=404
+        )
+
+    match = _IMAGE_TEMPLATE_RE.match(image.name)
+    if not match:
+        # No numeric field: a single-image "sweep" (e.g. an HDF5 master file).
+        return JsonResponse({
+            "success": True,
+            "data": {
+                "template": image.name,
+                "directory": str(image.parent),
+                "start": None, "end": None, "count": 1,
+            },
+        })
+
+    prefix, digits, suffix = match.group("prefix", "digits", "suffix")
+    width = len(digits)
+    numbers = []
+    for sibling in image.parent.iterdir():
+        sib = _IMAGE_TEMPLATE_RE.match(sibling.name)
+        if not sib:
+            continue
+        if (
+            sib.group("prefix") == prefix
+            and sib.group("suffix") == suffix
+            and len(sib.group("digits")) == width
+        ):
+            numbers.append(int(sib.group("digits")))
+
+    numbers.sort()
+    return JsonResponse({
+        "success": True,
+        "data": {
+            "template": f"{prefix}{'#' * width}{suffix}",
+            "directory": str(image.parent),
+            "start": numbers[0] if numbers else None,
+            "end": numbers[-1] if numbers else None,
+            "count": len(numbers),
+        },
+    })

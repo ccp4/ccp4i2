@@ -42,6 +42,8 @@ import {
 } from "./coccupancygroups";
 import { CTLSRangeListElement } from "./ctlsranges";
 import { CAtomSelectionElement } from "./catomselection";
+import { CPathElement } from "./cpath";
+import { CXia2ImageSelectionElement } from "./cxia2imageselection";
 import { useInferredVisibility } from "./hooks/useInferredVisibility";
 import type { ItemClass } from "./types/item-classes";
 
@@ -152,6 +154,7 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   // List / collection types
   CList: { component: CListElement },
   CImportUnmergedList: { component: CListElement },
+  CXia2ImageSelectionList: { component: CListElement },
   CAltSpaceGroupList: { component: CListElement },
   CColumnGroupList: { component: CListElement },
   CEnsembleList: { component: CListElement },
@@ -176,6 +179,7 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   CAltSpaceGroup: { component: CAltSpaceGroupElement },
 
   // Specialized types
+  CXia2ImageSelection: { component: CXia2ImageSelectionElement },
   CReindexOperator: { component: CReindexOperatorElement },
   CColumnGroup: { component: CColumnGroupElement },
   CRunBatchRange: { component: CRunBatchRangeElement },
@@ -215,6 +219,22 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
 
   const interfaceElement = useMemo(() => {
     const itemClass = item?._class as ItemClass | undefined;
+
+    // `isDirectory` is a qualifier rather than a class, so it cannot be
+    // dispatched from COMPONENT_REGISTRY. Any CDataFile carrying it names a
+    // path on the job's machine and needs the directory widget, not the
+    // upload/project/internet file sources.
+    if (qualifiers?.isDirectory && item?._baseClass === "CDataFile") {
+      return (
+        <CPathElement
+          key={the_uuid}
+          {...props}
+          qualifiers={qualifiers}
+          mode="directory"
+        />
+      );
+    }
+
     const entry = itemClass ? COMPONENT_REGISTRY[itemClass] : undefined;
 
     if (!entry) {

@@ -6,7 +6,7 @@ import shutil
 
 from lxml import etree
 
-from ccp4i2.core import CCP4Container, CCP4XtalData
+from ccp4i2.core import CCP4Container, CCP4ErrorHandling, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -21,6 +21,9 @@ class xia2_dials(CPluginScript):
         203: {"description": "Failed harvesting aimless xml"},
         204: {"description": "Failed harvesting truncate xml"},
         205: {"description": "Failed parsing xia2.json"},
+        210: {"description": "No image file or image directory supplied"},
+        211: {"description": "Both image files and an image directory supplied"},
+        212: {"description": "Unit cell required by this indexing method"},
     }
     PERFORMANCECLASS = "CDataReductionPerformance"
     ASYNCHRONOUS = True
@@ -31,6 +34,68 @@ class xia2_dials(CPluginScript):
         "ShelxCD",
         "ShelxCDE",
     ]
+
+    def validity(self):
+        """Cross-parameter checks the Qt interface made with live qualifiers.
+
+        The old GUI enforced these by mutating qualifiers as the user typed
+        (handleImageFile/handleImageDirectory/handleIndexMethod). The server is
+        now the sole authority for validation, so they belong here.
+        """
+        inp = self.container.inputData
+
+        images_supplied = any(
+            str(e.imageFile).strip() for e in inp.IMAGE_FILE
+        )
+        directory_supplied = inp.IMAGE_DIRECTORY.isSet()
+
+        # IMAGE_FILE and IMAGE_DIRECTORY are alternatives. Relax the list's
+        # minimum length before the base class runs, so an unused IMAGE_FILE is
+        # not reported as "too short" on top of the clearer message below.
+        inp.IMAGE_FILE.set_qualifier("listMinLength", 0)
+
+        error = super(xia2_dials, self).validity()
+
+        if not images_supplied and not directory_supplied:
+            error.append(
+                klass=self.TASKNAME, code=210,
+                details="Specify one image from each dataset, or a parent "
+                        "directory for xia2 to search",
+                name=f"{self.TASKNAME}.container.inputData.IMAGE_FILE",
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
+            )
+        elif images_supplied and directory_supplied:
+            # Both end up on the command line, so xia2 processes the named
+            # images *and* everything under the directory. Rarely intended.
+            error.append(
+                klass=self.TASKNAME, code=211,
+                details="Both image files and an image directory are set; "
+                        "xia2 will process both",
+                name=f"{self.TASKNAME}.container.inputData.IMAGE_DIRECTORY",
+                severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+
+        # real_space_grid_search cannot run without a target cell. xia2_xds
+        # inherits this method but has no DIALS indexing scope, hence getattr.
+        par = self.container.controlParameters
+        index_method = None
+        try:
+            index_method = str(par.dials.dials__index.dials__index__method)
+        except AttributeError:
+            pass
+        if index_method == "real_space_grid_search":
+            unit_cell = par.xia2.xia2__settings.xia2__settings__unit_cell
+            if not unit_cell.isSet():
+                error.append(
+                    klass=self.TASKNAME, code=212,
+                    details="Indexing method real_space_grid_search requires "
+                            "a unit cell",
+                    name=f"{self.TASKNAME}.container.controlParameters."
+                         "xia2__settings__unit_cell",
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR,
+                )
+
+        return error
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set
