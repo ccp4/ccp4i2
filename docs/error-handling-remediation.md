@@ -860,6 +860,61 @@ boxes into the unit-cell frame gives an overlap of **0** — the masks are
 disjoint and the wrapper is right; the test compares raw arrays that are no
 longer comparable.
 
+## Did the product say why? — measured
+
+For each of the ten, the question worth asking is not "what was wrong" but
+"could anyone have found out from what CCP4i2 wrote down". The answer decides
+whether a defect costs five minutes or an afternoon.
+
+| Test(s) | What the test reported | What `diagnostic.xml` held | Cause propagated? |
+|---|---|---|---|
+| `crank2`, `shelx` ×3 | a **missing output** — "Failed to open `FPHOUT_DIFFANOM.mtz`", "…`n_part.pdb`" | the whole cause: `FileNotFoundError: 'shelxc'` with traceback — **at severity 2, WARNING** | **Yes** — and still not what anyone was shown |
+| `nucleofind` ×2 | `SystemExit: 2` | **nothing at all** — no job directory, no file | **No.** The cause was in argparse's stderr; the *why* took five steps |
+| `substitute_ligand` ×2 | "Error reports found: i2Dimple pipeline failed" | that one sentence, twice — severity 2 and severity 4 | **No.** The real cause exists in no artefact |
+| `dm_multidomain`, `import_merged` | `ValueError: shapes …`, `Flag 1 has 94.4%` | `<errorReportList/>` — empty; the job genuinely succeeded | **N/A** — nothing to propagate |
+
+**Four of ten recorded the cause. Four recorded nothing usable. Two had nothing
+to record.**
+
+### The four that propagated were still no help
+
+`shelxc`'s `FileNotFoundError` was written to `diagnostic.xml` in full, with its
+traceback — and filed at **severity 2**. The i2run harness fails at severity ≥ 4,
+so it never looked; each test failed instead on a downstream symptom, *"Failed
+to open n_part.pdb"*. A user sees the same thing: an orange advisory, and a job
+that did not produce its outputs.
+
+This is [C2](#c2--error-severity-is-decided-by-searching-the-message-for-the-word-exception)
+measured rather than argued. The severity heuristic asks whether the message
+contains the word "exception"; a Python traceback says *Traceback*. Four jobs
+had their true cause written down, in the right file, and the heuristic kept it
+from being the reported failure.
+
+### The four that recorded nothing name two different gaps
+
+**Failures before a job exists have nowhere to go.** `i2run` could not build a
+parser for `nucleofind`, so there was no job directory to write a diagnostic
+into, and the only trace was argparse's stderr. Configuration-time failures —
+task will not load, parameters will not parse, validation refuses — need a home
+as much as run-time ones do. Nothing in Part 1 currently covers this.
+
+**A subjob's cause dies with the subjob.** `SubstituteLigand`'s i2Dimple raised
+`RuntimeError: Incorrect file format (perhaps it is cif not pdb?)`, and that
+string exists in no artefact on disk: the subjob wrote no `diagnostic.xml`, no
+log and no stderr, and the parent recorded its own generic sentence twice, once
+at WARNING and once at ERROR, with no cause and no traceback. Establishing what
+happened meant reading the first line of a coordinate file by hand. That is
+[C3](#c3--exceptions-in-pipeline-continuation-callbacks-are-swallowed-into-the-server-log)
+and [C6](#c6--the-diagnostics-panel-reads-three-field-names-the-backend-never-writes)
+together, and it is the strongest argument for both.
+
+### The contrast that justifies the exercise
+
+The six defects C1 revealed on the same suite, the same day, all carried the
+full traceback at severity 4 under code 993. Classifying them was one `grep`,
+with no ferreting whatever. Same failures, same harness — the entire difference
+is whether the core wrote down what it already knew.
+
 ## What the baseline says about this document
 
 Three of the ten are specimens of the thesis, found without looking for them.
