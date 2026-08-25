@@ -13,11 +13,12 @@ class coordinate_selector(CPluginScript):
 
     def startProcess(self):
         try:
-            self.container.inputData.XYZIN.loadFile()
+            # The whole task is "apply this selection", so the output keeps the
+            # input's format --- and takes the name that goes with it.
             oldFullPath = pathlib.Path(self.container.outputData.XYZOUT.fullPath.__str__())
-            if self.container.inputData.XYZIN.isMMCIF():
-                self.container.outputData.XYZOUT.setFullPath(str(oldFullPath.with_suffix('.cif')))
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(str(self.container.outputData.XYZOUT.fullPath))
+            written = self.container.inputData.XYZIN.getSelectedAtomsFile(
+                oldFullPath.stem, str(oldFullPath.parent))
+            self.container.outputData.XYZOUT.setFullPath(written)
         except:
             raise
             self.appendErrorReport(202)

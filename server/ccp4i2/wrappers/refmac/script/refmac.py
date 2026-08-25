@@ -117,11 +117,11 @@ class refmac(CPluginScript):
         import os
         self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
         if self.container.inputData.XYZIN.isSelectionSet():
-            self.inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected.pdb'))
-            self.container.inputData.XYZIN.loadFile()
-            if self.container.inputData.XYZIN.isMMCIF():
-                self.inputCoordPath = str(pathlib.Path(self.inputCoordPath).with_suffix('.cif'))
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.inputCoordPath)
+            # refmac reads both formats, so keep whichever came in --- and let
+            # getSelectedAtomsFile name the file, rather than writing the
+            # extension dance by hand.
+            self.inputCoordPath = self.container.inputData.XYZIN.getSelectedAtomsFile(
+                'selected', self.getWorkDirectory())
 
         #Create DICT by merging dictionaries in DICT_LIST
         rv = self.joinDicts(self.container.outputData.DICT, self.container.inputData.DICT_LIST)
