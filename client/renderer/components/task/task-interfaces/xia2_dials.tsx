@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   LinearProgress,
@@ -28,12 +28,30 @@ import { useJob } from "../../../utils";
  * alternatives.
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { container } = useJob(props.job.id);
+  const { container, useTaskItem } = useJob(props.job.id);
 
-  // Start at Basic and let the user opt upward. Advanced is 179 of xia2's
-  // 281 parameters and All is all of them, which is a lot of widgets to build
+  // PhilPluginScript injects PHIL_EXPERT_LEVEL into controlParameters, and it
+  // is more than a display filter: the wrapper also uses it to decide which
+  // parameters reach working.phil. Holding it in the container rather than in
+  // React state keeps the two in step and persists the choice with the job.
+  const { item: expertLevelItem, update: updateExpertLevel } = useTaskItem(
+    "controlParameters.PHIL_EXPERT_LEVEL"
+  );
+
+  // Start at Basic and let the user opt upward. Advanced is 159 of xia2's
+  // 286 parameters and All is all of them, which is a lot of widgets to build
   // before anyone has asked for them.
   const [expertLevel, setExpertLevel] = useState(0);
+
+  useEffect(() => {
+    const value = expertLevelItem?._value;
+    if (value !== undefined && value !== null) setExpertLevel(Number(value));
+  }, [expertLevelItem?._value]);
+
+  const changeExpertLevel = (value: number) => {
+    setExpertLevel(value);
+    updateExpertLevel(value);
+  };
 
   if (!container) return <LinearProgress />;
 
@@ -72,6 +90,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="controlParameters"
               qualifiers={{ guiLabel: "Basic parameters" }}
               containerHint="FolderLevel"
+              excludeItems={["PHIL_EXPERT_LEVEL"]}
             />
           </ExpertLevelContext.Provider>
         </CCP4i2Tab>
@@ -86,7 +105,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <ToggleButtonGroup
               value={expertLevel}
               exclusive
-              onChange={(_, value) => value !== null && setExpertLevel(value)}
+              onChange={(_, value) => value !== null && changeExpertLevel(value)}
               size="small"
             >
               <ToggleButton value={0}>Basic</ToggleButton>
@@ -100,6 +119,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="controlParameters"
               qualifiers={{ guiLabel: "xia2 parameters" }}
               containerHint="FolderLevel"
+              excludeItems={["PHIL_EXPERT_LEVEL"]}
             />
           </ExpertLevelContext.Provider>
         </CCP4i2Tab>

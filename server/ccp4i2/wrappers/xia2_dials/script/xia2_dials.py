@@ -6,14 +6,42 @@ import shutil
 
 from lxml import etree
 
-from ccp4i2.core import CCP4Container, CCP4ErrorHandling, CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.PhilPluginScript import PhilPluginScript
 
 
-class xia2_dials(CPluginScript):
+class xia2_dials(PhilPluginScript):
+    """xia2 driving DIALS.
+
+    controlParameters come from xia2's own master_phil at runtime rather than
+    a generated .def.xml, so they track upstream instead of a snapshot. The
+    .def.xml carries only inputData and outputData, where CCP4i2's rich file
+    types earn their keep.
+    """
 
     TASKNAME = "xia2_dials"
     TASKCOMMAND = "xia2"
+
+    # Scopes kept out of the interface:
+    #   xds*     - this task is the DIALS pipeline
+    #   strategy - belongs to xia2.strategy, not to data reduction
+    #   pipeline - fixed to dials here; xia2_xds offers the XDS variants
+    #   input.image - images come from inputData, as paths on the machine
+    PHIL_EXCLUDE_SCOPES = [
+        "xds",
+        "xia2.settings.xds",
+        "xia2.settings.xds_cell_deviation",
+        "xia2.settings.pipeline",
+        "strategy",
+        "xia2.settings.input.image",
+    ]
+
+    #: Pipeline selection, placed on the command line after the phil file.
+    PIPELINE_ARGS = ["pipeline=dials"]
+
+    #: Root element of the report XML this wrapper harvests into.
+    XML_ROOT_TAG = "Xia2Dials"
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         201: {"description": "Failed scaled data"},
@@ -97,80 +125,58 @@ class xia2_dials(CPluginScript):
 
         return error
 
-    def extract_parameters(self, container):
-        """Walk through a container locating parameters that have been set
-        and return a list of name, value pairs"""
+    def get_master_phil(self):
+        """xia2's own parameter definitions, read from the installed xia2."""
+        from xia2.Handlers.Phil import master_phil
 
-        result = []
-        dataOrder = container.dataOrder()
-        contents = [getattr(container, name) for name in dataOrder]
-        for model in contents:
-            if isinstance(model, CCP4Container.CContainer):
-                result.extend(self.extract_parameters(model))
-            elif model.isSet():
-                name = model.objectName().replace("__", ".")
-                # ensure commas are converted to whitespace-separated lists.
-                # Only whitespace appears to work correctly with PHIL multiple
-                # choice definitions.
-                val = str(model.get()).split()
-                val = " ".join([v[:-1] if v.endswith(",") else v for v in val])
-                result.append((name, val))
-        return result
+        return master_phil
 
-    def _setCommandLineCore(self, phil_filename):
-        """Parts of makeCommandAndScript shared by xia2/dials and xia2/xds"""
-        par = self.container.controlParameters
+    def get_command_target(self):
+        """Arguments preceding the phil file — the pipeline selection."""
+        return list(self.PIPELINE_ARGS)
+
+    def _append_image_arguments(self):
+        """Tell xia2 where the images are.
+
+        Two alternatives, enforced in validity(): one image per dataset, which
+        xia2 expands into the whole sweep, or a directory to search. Both name
+        paths on the machine running the job; nothing is copied into the
+        project, so the paths are used exactly as the user gave them.
+        """
         inp = self.container.inputData
 
-        # PHIL parameters set by the gui
-        phil_file = os.path.normpath(
-            os.path.join(self.getWorkDirectory(), phil_filename)
-        )
-        with open(phil_file, "w") as f:
-            for (name, val) in self.extract_parameters(par):
-                f.write(name + "={0}\n".format(val))
-        self.appendCommandLine([phil_file])
+        for entry in inp.IMAGE_FILE:
+            im_file = str(entry.imageFile).strip()
+            if not im_file:
+                continue
+            start, end = entry.imageStart, entry.imageEnd
+            postfix = f":{start}:{end}" if start and end else ""
+            self.appendCommandLine([f'image="{im_file}{postfix}"'])
 
-        # Data location as image files
-        for e in inp.IMAGE_FILE:
-            im_file = str(e.imageFile).strip()
-            start = e.imageStart
-            end = e.imageEnd
-            postfix = ""
-            if start and end:
-                postfix = ":{0}:{1}".format(start, end)
-            if im_file:
-                self.appendCommandLine('image="{0}{1}"'.format(im_file, postfix))
-
-        # Data location as a directory
-        if inp.IMAGE_DIRECTORY:
-            # FIXME: quoting the image directory in order to deal with
-            # whitespace in paths causes xia2 to fail! It is not obvious how to
-            # work around this, so for now remove this change:
-
-            # self.appendCommandLine(['"%s"' % str(inp.IMAGE_DIRECTORY)])
-
-            # and replace with the unquoted version, which at least only fails
-            # when the path does contain whitespace
-            self.appendCommandLine(["%s" % str(inp.IMAGE_DIRECTORY)])
-
-        return
+        if inp.IMAGE_DIRECTORY.isSet():
+            # FIXME: quoting the directory to cope with whitespace makes xia2
+            # fail, and it is not obvious how to work around that, so an
+            # unquoted path it is — which at least only fails when the path
+            # does contain whitespace.
+            self.appendCommandLine([f"{inp.IMAGE_DIRECTORY}"])
 
     def makeCommandAndScript(self):
-        par = self.container.controlParameters
-        inp = self.container.inputData
+        """xia2 <pipeline args> <working.phil> image=... [directory]
 
-        # Set xia2 switches
-        self.appendCommandLine(
-            [
-                "pipeline=dials",
-            ]
-        )
+        build_working_phil() assembles the phil through master_phil.fetch(),
+        which validates types and resolves defaults, rather than concatenating
+        name=value lines as this wrapper used to.
+        """
+        phil_path = self.build_working_phil()
 
-        # Create PHIL file and command line
-        self._setCommandLineCore(phil_filename="xia2_dials.phil")
+        self.appendCommandLine([phil_path])
+        # After the phil file, not before: build_working_phil() now writes the
+        # whole fetched scope, defaults included, so a pipeline named ahead of
+        # it would be overridden by the default the file carries.
+        self.appendCommandLine(self.get_command_target())
+        self._append_image_arguments()
 
-        self.xmlroot = etree.Element("Xia2Dials")
+        self.xmlroot = etree.Element(self.XML_ROOT_TAG)
 
         self.watchFile(
             os.path.normpath(os.path.join(self.getWorkDirectory(), "xia2.txt")),

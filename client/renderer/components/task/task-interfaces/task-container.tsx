@@ -272,6 +272,8 @@ const TASK_INTERFACES: Record<
   unique: UniqueInterface,
   validate_protein: ValidateProteinInterface,
   xia2_dials: Xia2DialsInterface,
+  // Same parameters, same inputs: xia2_xds subclasses xia2_dials.
+  xia2_xds: Xia2DialsInterface,
   xia2_multiplex: Xia2MultiplexInterface,
   xia2_ssx_reduce: Xia2SsxReduceInterface,
   zanuda: ZanudaInterface,
