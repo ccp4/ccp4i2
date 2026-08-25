@@ -113,7 +113,10 @@ class cmapcoeff(CPluginScript):
 
         with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
             xmlRoot = ET.Element('cmapcoeff')
-            xmlString = ET.tostring ( xmlRoot, pretty_print=True )
+            # pretty_print is lxml's; this module uses the standard library,
+            # where the equivalent is ET.indent() before serialising.
+            ET.indent ( xmlRoot )
+            xmlString = ET.tostring ( xmlRoot )
             CCP4Utils.writeXML(xmlFile,xmlString)
 
         return CPluginScript.SUCCEEDED
