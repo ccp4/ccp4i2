@@ -4,7 +4,7 @@ Tracking document for the work arising from the error-handling audit of
 `server/ccp4i2/wrappers/` and `server/ccp4i2/pipelines/`.
 
 **Baseline:** commit `b3a83af8a` (branch `django`), scanned 2026-08-24;
-re-measured unchanged at `7c54f4a5b`.
+re-measured at `7c54f4a5b` and again at `59579c932` (3.1.0a28, 2026-08-25).
 **Status:** not started, except the [Bibliography](#bibliography) case, which is
 closed and kept as a worked example.
 
@@ -36,6 +36,43 @@ Phase 1 will turn some currently-passing i2run tests red. That is the fix
 working, not a regression — the affected tests are predictable in advance and
 the handling is set out in [The Phase 1 transition](#the-phase-1-transition).
 
+## A second axis — nothing to discard in the first place
+
+The paragraph above describes reports that are produced and then thrown away.
+There is a second shape, found on 2026-08-25 and not covered by any metric in
+this document, where **no report is produced because nothing goes wrong at the
+point where it goes wrong**.
+
+`CDataFile.setFullPath()` decided whether a path was project-relative by
+looking for `CCP4_JOBS` or `CCP4_IMPORTED_FILES` anywhere in the string. A file
+chosen from *another* CCP4i2 project matches, so its real location was
+discarded and `getFullPath()` rebuilt it under the *current* project, where
+nothing exists. No exception, no error report, and the corrupted path was
+written into `input_params.xml` at parameter-set time. The failure surfaced
+much later as xia2 saying `Could not find … in …` — a true statement, about a
+path the core had invented, attributed to the wrong layer entirely. It was not
+xia2-specific: it cost inputs in any task fed a file from another project.
+
+The same commit turned up the purest instance of the shape. The database-aware
+branch it lives in runs only when the plugin carries a `_dbProjectId`, and the
+parent chain holds the plugin *weakly* — so if nothing else holds a reference,
+`_find_plugin_parent()` returns `None` and the branch **silently does not run**.
+No test reached it for exactly that reason.
+
+Three consequences for this plan:
+
+1. **The scan cannot find this class.** A silently-skipped conditional has no
+   `except:`, no `[0]`, no `return FAILED`. Every count in the burn-down is a
+   count of *visible* mishandling. Treat the scan as a reading order for Part 3,
+   never as a measure of how much is left.
+2. **It belongs to the guardrails, not the core-defect list.** The defence is
+   G2-style negative-path tests over the paths that rewrite user-supplied data
+   — and, specifically, a test that a conditional fast-path is actually taken,
+   not merely that its outcome looks plausible when it is skipped.
+3. **It raises the priority of C7's provenance work.** A message naming a file
+   the user never chose should say who chose it. When the core rewrites an
+   input, the rewrite is the thing worth reporting.
+
 ## Measuring progress
 
 All counts in this document are reproducible:
@@ -56,23 +93,33 @@ not to declare a file guilty.
 
 ## Burn-down
 
+Measured at `59579c932` (2026-08-25) unless noted.
+
 | Metric | Baseline (2026-08-24) | Current | Target |
 |---|---:|---:|---|
-| `bare except:` | 381 (92 files) | 381 | 0 outside a reviewed allowlist |
-| `except …: pass` / `continue` | 83 (49 files) | 83 | 0 |
-| `.findall(…)[0]` / `.xpath(…)[0]` | 924 (85 files) | 924 | 0 (via M4) |
-| `print()` | 917 (146 files) | 917 | 0 (via M6) |
-| `logger.*()` | 56 (5 files) | 56 | rising |
-| `return FAILED` with no error report nearby | 128 (56 files) | 128 | 0 |
-| `appendErrorReport` calls passing explicit severity | 7 of 320 | 7 of 320 | n/a once C2 lands |
+| `bare except:` | 381 (92 files) | 381 (92) | 0 outside a reviewed allowlist |
+| `except …: pass` / `continue` | 83 (49 files) | 84 (50) | 0 |
+| `.findall(…)[0]` / `.xpath(…)[0]` | 924 (85 files) | 924 (85) | 0 (via M4) |
+| `print()` | 917 (146 files) | 913 (142) | 0 (via M6) |
+| `logger.*()` | 56 (5 files) | 54 (5) | rising |
+| `return FAILED` with no error report nearby | 128 (56 files) | 128 (56) | 0 |
+| `processOutputFiles` returning `FAILED`/`UNSATISFACTORY` | 33 + 3 | 35 + 3 | n/a once C1 lands |
+| `appendErrorReport` calls passing explicit severity | 7 of 320 | 7 of 326 | n/a once C2 lands |
 | Tasks overriding `runTimeValidity` | 6 of 173 | 6 | rising |
 | Tasks overriding `postProcessCheck` | 3 of 173 | 3 | n/a once M1/M2 land |
 | Tasks declaring `LOG_FAILURES` | 0 of 173 | 1 (`arcimboldo`) | rising |
 | Tasks declaring `AUXILIARY_PROGRAMS` | 0 of 173 | 1 (`arcimboldo`) | rising |
 | i2run negative-path tests | 0 | 0 | ≥ 12 |
-| unit negative-path tests | 0 | 20 | rising |
+| unit negative-path tests (hand-counted) | 0 | 28 | rising |
 | `C1:`/`C2:` xfail markers outstanding | 0 | 0 | 0 (rises during Phase 1, then falls) |
 | Pre-existing `@pytest.mark.skip` in i2run | 18 | 18 | falling — see [transition](#the-phase-1-transition) |
+
+The two counts that moved on their own are worth reading correctly. `print()`
+fell by four because the PHIL and xia2 refactors of 2026-08-25 deleted
+boilerplate, not because anything was remediated. `processOutputFiles` returning
+`FAILED` **rose by two**: authors keep writing the correct check into the one
+hook that still discards it. Nothing in this document has yet made a wrapper
+author's correct code count for anything.
 
 ---
 
@@ -451,10 +498,30 @@ is the natural first conversion and worked example.
 - [ ] Guard each top-level report section in the report base class
 - [ ] Emit a visible "this section could not be generated: <reason>" block
 - [ ] Land the failure in the error report at WARNING
+- [ ] Say so in the UI when a served report is a preserved rendering rather than
+      a current one
 
 141 of the 173 tasks have a report class, and reports are where the unguarded XML
 indexing concentrates. A report that raises produces no report at all — the user
 loses the 90% that would have rendered because of one absent table.
+
+**Amended 2026-08-25.** `get_job_report_xml()` no longer deletes a cached
+`report_xml.xml` when regeneration produces an error report; it keeps and serves
+the cached copy. That is right — a report class is written against the
+`program.xml` its wrapper produced at the time, so a newer report class can fail
+on an older job's output through no fault of the job, and only renderings that
+worked are ever cached. It is also why the cache is deliberately not
+version-stamped: invalidating on a report-format version would regenerate every
+finished job against report classes that may no longer understand their
+`program.xml`.
+
+But as it stands the regeneration failure is recorded in a `logger.warning` that
+no user will ever see, and the viewer is shown a rendering from an earlier
+report class with nothing saying so. That is a loud, destructive failure traded
+for a quiet one — the thing this document is against. M5 is therefore not
+"guard the sections" alone: **a preserved rendering must announce itself**, with
+the reason regeneration currently fails. The per-section guards then reduce how
+often the whole-report fallback is needed at all.
 
 ## M6 — Logging that reaches the job, not the console
 
@@ -478,10 +545,52 @@ job failure — which is exactly how the aimless_pipe Windows bug behaved.
 
 Six tasks use it. The mechanism is good — `_checkProgramAvailable` and
 `_checkSameCrystalAs` in the base class are exactly the right idea, well
-executed. The gap is that nothing prompts an author to consider it. Put the hook
+executed, and `_checkProgramAvailable` now covers `AUXILIARY_PROGRAMS` too (M8). The gap is that nothing prompts an author to consider it. Put the hook
 in front of them at the moment they are writing, with the three questions: *are
 the inputs mutually consistent? is everything the program needs present? is this
 combination one the program supports?*
+
+## M8 — Declare the tool; let the base class find it, and say so when it is missing
+
+- [x] `AUXILIARY_PROGRAMS` — binaries a task drives from *inside* `TASKCOMMAND`
+- [x] `PHIL_SCOPE` / `PHIL_PARAMS_FILE` / `PHIL_PROGRAM` — where a PHIL task's
+      parameters come from
+- [ ] State the missing-dependency policy once, in `authoring-a-task.md`
+- [ ] Apply the same shape to monomer dictionaries and reference data
+
+Two changes on 2026-08-25 landed the same idea from different directions, and
+together they are a mechanism in their own right rather than incidents of M2.
+
+`AUXILIARY_PROGRAMS` exists because `TASKCOMMAND` names only the leaf binary:
+arcimboldo declares `ARCIMBOLDO_LITE` but drives phaser and shelxe from within
+it, so the pre-run availability check saw nothing to check. Declaring the extra
+binaries as class data brings them under the same check and onto Preferences →
+Program locations, and made a correctly-configured `SHELXDIR` effective for that
+task for the first time.
+
+`PhilPluginScript` did the same for parameters. Seven wrappers each implemented
+`get_master_phil()`, all seven the same import-and-return in one of three
+shapes, the bodies carrying no information beyond the name of the thing to
+import. They now declare the shape and the base class resolves it — and in doing
+so fixed a disagreement of exactly the audited kind: the phasertng pair caught
+`ImportError` and returned `None`, while the xia2 tasks let it escape, so a
+missing tool stopped the task **loading at all** rather than opening so it could
+say what it needed.
+
+That disagreement is the general point, and the policy is worth stating once for
+every mechanism in Part 2 to follow:
+
+> A missing external dependency resolves to a defined "absent" value, logs one
+> warning naming the task and the declaration, and lets the task open. The task
+> tells the user what it needs. It does not fail to load, and it does not
+> pretend the dependency is there.
+
+Declaring nothing, or declaring two sources, is an error at the point of
+declaration rather than a silent preference for one — the same reasoning as
+M1's output contract: an author who states an intention gets a specific message,
+and an author who states none gets told to.
+
+---
 
 ---
 
@@ -550,10 +659,20 @@ no CCP4 binaries, runs on every commit alongside the existing unit tier.
 - [ ] Run against the dozen most-used tasks
 - [ ] Assert `diagnostic.xml` contains an ERROR whose `details` is non-empty and
       names the actual problem
+- [ ] Cover the paths that **rewrite** user-supplied data — a file from another
+      project, a file in a sub-directory of `CCP4_IMPORTED_FILES` — asserting
+      the recorded path, not merely that the job ran
 
 All 96 i2run tests are happy-path; the failure modes users report are the unhappy
-ones. That last assertion is the one that prevents regression to blank error
-cards.
+ones. That last-but-one assertion is the one that prevents regression to blank
+error cards.
+
+The last bullet comes from [A second
+axis](#a-second-axis--nothing-to-discard-in-the-first-place). Where a fast path
+is conditional, assert that it was *taken*: the `setFullPath()` bug hid behind a
+branch that no test reached because the plugin was held weakly and the branch
+therefore silently did not run. A test whose fixture drops the reference passes
+while testing nothing.
 
 ## G3 — Lint rules scoped to `wrappers/` and `pipelines/`
 
@@ -825,6 +944,7 @@ problem:
 | §9.3 "Bare Except Clauses" | Already correct; add that it is now lint-enforced. | G3 |
 | §9.4 "Debug Prints in Production" | Already correct; point at `self.log()`. | M6, G3 |
 | new §13 | Log-failure tables (M2) and `runTimeValidity` (M7). | M2, M7 |
+| new §14 | Declaring a task's external dependencies — `AUXILIARY_PROGRAMS`, the PHIL source declarations, and the missing-dependency policy. | M8 (landed) |
 
 `mddocs/pipeline/ERROR_HANDLING_PATTERNS.md` is largely sound — its worked
 example does pair `reportStatus(FAILED)` with `return CPluginScript.FAILED`, and
@@ -846,4 +966,8 @@ pattern. Two smaller amendments:
 | 2026-08-24 | Added [Bibliography](#bibliography): a live instance of the silent-failure class, found by PR #276's new CI job and closed by #277. 52 report classes rendered an empty bibliography; all 52 had one cause and went to zero in a single change. Kept as a worked example. |
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
+| 2026-08-25 | Re-measured at `59579c932` (3.1.0a28). Counts essentially flat; `processOutputFiles` returning `FAILED` **rose** 33 → 35, which is the argument for doing C1 next in one line. |
+| 2026-08-25 | Added [A second axis](#a-second-axis--nothing-to-discard-in-the-first-place): the core silently rewriting what a wrapper was told, from the `setFullPath()` cross-project path bug (`043774c4c`) — no exception, no report, corruption written into `input_params.xml`, surfacing later as a true message about an invented path, attributed to the wrong layer. Includes the weakly-held-parent branch that silently does not run. No scan metric can see this class; it is a guardrails (G2) problem, and it raises C7's provenance work. |
+| 2026-08-25 | **M5 amended** after `363d60e1c`. Keeping a cached rendering when regeneration fails is right, and the report cache is deliberately not version-stamped for the same reason. But the failure now reaches only a `logger.warning`, and the viewer sees an older rendering with nothing saying so — one silent failure traded for another. M5 gains: a preserved rendering must announce itself and say why regeneration fails. |
+| 2026-08-25 | **M8 added** — declare the tool, let the base class find it, and say so when it is missing. Covers `AUXILIARY_PROGRAMS` and the `PHIL_SCOPE`/`PHIL_PARAMS_FILE`/`PHIL_PROGRAM` declarations (`3fd357f40`), which removed seven identical `get_master_phil()` bodies and settled a real disagreement: a missing tool used to stop the xia2 tasks loading at all, while the phasertng pair returned `None`. States the missing-dependency policy the rest of Part 2 should follow. |
 | 2026-08-24 | C2 split into C2a/C2b after measuring that the proposed default would flip 268 of 320 calls, and confirming `appendErrorReport` severity does not gate job status. Added Phase 0 (baseline capture) and [The Phase 1 transition](#the-phase-1-transition); added `--predict-red-list` to the scan script. |
