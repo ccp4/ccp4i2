@@ -67,7 +67,10 @@ not to declare a file guilty.
 | `appendErrorReport` calls passing explicit severity | 7 of 320 | 7 of 320 | n/a once C2 lands |
 | Tasks overriding `runTimeValidity` | 6 of 173 | 6 | rising |
 | Tasks overriding `postProcessCheck` | 3 of 173 | 3 | n/a once M1/M2 land |
+| Tasks declaring `LOG_FAILURES` | 0 of 173 | 1 (`arcimboldo`) | rising |
+| Tasks declaring `AUXILIARY_PROGRAMS` | 0 of 173 | 1 (`arcimboldo`) | rising |
 | i2run negative-path tests | 0 | 0 | ≥ 12 |
+| unit negative-path tests | 0 | 20 | rising |
 | `C1:`/`C2:` xfail markers outstanding | 0 | 0 | 0 (rises during Phase 1, then falls) |
 | Pre-existing `@pytest.mark.skip` in i2run | 18 | 18 | falling — see [transition](#the-phase-1-transition) |
 
@@ -398,8 +401,15 @@ line 4213"*.
 
 ## M2 — Declarative log scanning
 
-- [ ] `LOG_FAILURES` class attribute honoured by base `postProcessCheck`
+- [x] `LOG_FAILURES` class attribute honoured by base `postProcessCheck`
 - [ ] Harvest the strings from existing inline `if … in logFileText` checks
+
+**Landed** (arcimboldo case, 2026-08-25). `CPluginScript.LOG_FAILURES`,
+`scanLogForFailures()` and the `reportLogFailures()` surfacing hook are in
+`core/CCP4PluginScript.py`; `tests/unit/plugins/test_log_failures.py` covers
+them. Deliberately placed in `postProcessCheck`, not `processOutputFiles`, so it
+works on the synchronous and asynchronous paths alike and does not depend on C1.
+Tasks declaring no patterns are untouched — the scan is skipped entirely.
 
 Only 3 tasks override `postProcessCheck`, so the very common CCP4 case of a
 program exiting 0 while writing a fatal message to its log is essentially
@@ -457,6 +467,11 @@ on Windows, and inside one of the 381 bare `except:` blocks that becomes a silen
 job failure — which is exactly how the aimless_pipe Windows bug behaved.
 
 ## M7 — Make `runTimeValidity` discoverable
+
+> Partly addressed 2026-08-25: the base `runTimeValidity` program check now
+> blocks rather than merely warns wherever it is authoritative, so authors get
+> a visible reason to reach for the hook. See the changelog.
+
 
 - [ ] Ship a stubbed `runTimeValidity` in the task-authoring template
 - [ ] Name the three questions worth asking in its comment
@@ -829,4 +844,6 @@ pattern. Two smaller amendments:
 |---|---|
 | 2026-08-24 | Document created from the audit of `b3a83af8a`; baseline counts recorded; nothing started. |
 | 2026-08-24 | Added [Bibliography](#bibliography): a live instance of the silent-failure class, found by PR #276's new CI job and closed by #277. 52 report classes rendered an empty bibliography; all 52 had one cause and went to zero in a single change. Kept as a worked example. |
+| 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
+| 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
 | 2026-08-24 | C2 split into C2a/C2b after measuring that the proposed default would flip 268 of 320 calls, and confirming `appendErrorReport` severity does not gate job status. Added Phase 0 (baseline capture) and [The Phase 1 transition](#the-phase-1-transition); added `--predict-red-list` to the scan script. |

@@ -58,7 +58,9 @@ via `get_master_phil()` in the wrapper.)*
 Create `wrappers/<Name>/script/<Name>.py` — a `CPluginScript` subclass. The
 essentials:
 
-- Class constants (`TASKNAME`, command template, whether it runs async).
+- Class constants (`TASKNAME`, `TASKCOMMAND`, whether it runs async) — plus
+  `AUXILIARY_PROGRAMS` and `LOG_FAILURES` if they apply; see
+  [Declaring the programs your task needs](#declaring-the-programs-your-task-needs).
 - `process()` — build the command line from the container and run the program.
 - `processOutputFiles()` — register/convert outputs so they can be gleaned.
 - Optionally override `validity()` (fast, polled during editing) and
@@ -90,6 +92,67 @@ References:
 > **Outputs are persisted automatically.** The gleaner saves any `outputData`
 > `CDataFile` that is set and exists on disk after the job — there is no
 > `saveToDb` gate.
+
+### Declaring the programs your task needs
+
+`TASKCOMMAND` names the one program the base class launches. Two class
+attributes cover what it does not.
+
+**`AUXILIARY_PROGRAMS`** — binaries your task drives from *inside*
+`TASKCOMMAND`, or (for a pipeline that overrides `process()`) binaries it runs
+itself. Without this they are invisible to CCP4i2 until the job fails:
+
+```python
+class arcimboldo(CPluginScript):
+    TASKCOMMAND = 'ARCIMBOLDO_LITE'
+    # ARCIMBOLDO_LITE is a driver: phaser and shelxe do the real work, and
+    # shelxe is licence-restricted so it is NOT shipped with CCP4.
+    AUXILIARY_PROGRAMS = ('phaser', 'shelxe')
+```
+
+Declaring them buys two things:
+
+- The pre-run check (`runTimeValidity`) reports a missing one *before* the job
+  starts, naming the program and pointing at Preferences → Program locations.
+  Where CCP4i2 will run the job itself — desktop/Electron, i2run — this
+  **blocks** submission, because a missing binary there is a certain failure.
+  Where the job is queued for a remote worker, or this is the CCP4-free API
+  server, it stays advisory: "not found here" says nothing about the run host.
+- They appear on the Preferences → Program locations page, so a user can point
+  CCP4i2 at their own copy.
+
+**Resolve paths, never hardcode them.** If you write a program path into a
+config file, get it from `resolve_program()` so the user's `SHELXDIR` /
+`exePaths` preferences are honoured — a hardcoded `$CCP4/bin/<name>` silently
+ignores a correctly-configured install:
+
+```python
+from ccp4i2.config.program_discovery import resolve_program
+
+path = resolve_program('shelxe') or os.path.join(ccp4_home, 'bin', 'shelxe')
+```
+
+**`LOG_FAILURES`** — patterns that mean the run failed even though it exited 0.
+A great many CCP4 programs report a fatal error to their log and exit cleanly
+anyway, so the exit code is not evidence of success. Declare a table rather
+than writing a log parser:
+
+```python
+LOG_FAILURES = (
+    # (pattern, error code, details)  -- details=None means "use what the
+    # pattern captured": group(1) if it has one, else the whole line.
+    (r'^\s*FATAL(?:\s+ERROR)?\b[:\s]*(.*)$', 301, None),
+    (r'minimum or no description', 302,
+     'No geometry dictionary for a ligand -- run Make Ligand first'),
+)
+```
+
+The base `postProcessCheck()` applies these after a successful exit, matching
+per line with ANSI colour codes stripped. Any match fails the job and files the
+message in the error report. Override `reportLogFailures(failures)` if your
+report class needs the text in `PROGRAMXML` to render something better than an
+empty panel. Tasks that declare no patterns are unaffected — the scan is
+skipped entirely.
 
 ## Step 3 — Register the task
 
@@ -187,6 +250,11 @@ ccp4-python -m pytest ccp4i2/tests/i2run/test_mytask.py -v
 - [ ] (optional) React interface + task-chooser category
 - [ ] (if it calls an authenticated service) credential registered in
       `config/credentials.py` — **not** in the `def.xml`
+- [ ] (if it needs binaries beyond `TASKCOMMAND`) `AUXILIARY_PROGRAMS`
+      declared, and any program paths written into config files resolved with
+      `resolve_program()` rather than hardcoded
+- [ ] (if the program can exit 0 after a fatal log message) `LOG_FAILURES`
+      declared
 - [ ] (if it wraps a published program) citation registered in
       `core/citations.py` — `TASK_CITES`, or `NON_CITABLE` if there is nothing
       to cite

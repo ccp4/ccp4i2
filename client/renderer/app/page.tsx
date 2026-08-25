@@ -18,12 +18,12 @@ import {
   Search,
   Assignment,
   TableChart,
-  Folder,
   Logout,
   Person,
 } from "@mui/icons-material";
 import { useMsal } from "@azure/msal-react";
 import { isElectron } from "../utils/platform";
+import { CCP4Icon } from "../components/General/CCP4i2Icons";
 
 const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true";
 
@@ -136,7 +136,7 @@ function AppSelector() {
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 3, height: "100%" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
-              <Folder sx={{ fontSize: 48, color: "primary.main" }} />
+              <CCP4Icon sx={{ fontSize: 48, color: "primary.main" }} />
               <Box>
                 <Typography variant="h4">CCP4i2</Typography>
                 <Typography color="text.secondary">

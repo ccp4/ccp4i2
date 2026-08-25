@@ -93,7 +93,23 @@ class MyPipeline(CPluginScript):
         211: {'description': 'Missing required output from sub-plugin'},
         212: {'description': 'Invalid input configuration'},
     }
+
+    # Binaries this task runs beyond TASKCOMMAND. Declaring them gets a
+    # missing one reported before the job starts, and lists them on
+    # Preferences -> Program locations so a user can relocate them.
+    AUXILIARY_PROGRAMS = ('phaser', 'shelxe')
+
+    # Patterns meaning "this failed" even though the program exited 0.
+    # (pattern, code, details); details=None uses the matched text.
+    LOG_FAILURES = (
+        (r'^\s*FATAL(?:\s+ERROR)?\b[:\s]*(.*)$', 301, None),
+    )
 ```
+
+`AUXILIARY_PROGRAMS` and `LOG_FAILURES` are documented in full under
+[Declaring the programs your task needs](authoring-a-task.md#declaring-the-programs-your-task-needs).
+Both matter most for pipelines, which drive several binaries and often have no
+single meaningful `TASKCOMMAND`.
 
 ### 2.2 Instance Initialization
 

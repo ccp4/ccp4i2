@@ -3,7 +3,7 @@ import React from "react";
 import { ConfigContent } from "../../../components/config-content";
 import { NavigationShortcutsProvider } from "../../../providers/navigation-shortcuts-provider";
 import { Box, Container, Stack, Typography } from "@mui/material";
-import { Science } from "@mui/icons-material";
+import { CCP4Icon } from "../../../components/General/CCP4i2Icons";
 
 /**
  * The launch / "get ready" screen — the first thing an Electron user sees.
@@ -32,7 +32,7 @@ export default function ConfigPage() {
                   "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
               }}
             >
-              <Science sx={{ fontSize: 34 }} />
+              <CCP4Icon sx={{ fontSize: 34 }} />
             </Box>
             <Typography variant="h4" fontWeight={700}>
               CCP4i2
