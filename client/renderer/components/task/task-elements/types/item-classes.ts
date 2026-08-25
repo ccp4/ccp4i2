@@ -82,7 +82,8 @@ export type ListItemClass =
   | "CAtomRefmacSelectionList"
   | "COccRefmacSelectionList"
   | "COccRelationRefmacList"
-  | "CTLSRangeList";
+  | "CTLSRangeList"
+  | "CXia2ImageSelectionList";
 
 /**
  * Container/composite types
@@ -104,7 +105,11 @@ export type SpaceGroupItemClass = "CSpaceGroup" | "CAltSpaceGroup";
 /**
  * Specialized types
  */
-export type SpecializedItemClass = "CReindexOperator" | "CColumnGroup" | "CRunBatchRange";
+export type SpecializedItemClass =
+  | "CReindexOperator"
+  | "CColumnGroup"
+  | "CRunBatchRange"
+  | "CXia2ImageSelection";
 
 /**
  * All known item class names
@@ -186,6 +191,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "COccRefmacSelectionList",
     "COccRelationRefmacList",
     "CTLSRangeList",
+    "CXia2ImageSelectionList",
     // Container types
     "CContainer",
     "CSpaceGroupCell",
@@ -201,6 +207,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CReindexOperator",
     "CColumnGroup",
     "CRunBatchRange",
+    "CXia2ImageSelection",
   ];
 
   return knownClasses.includes(className as ItemClass);

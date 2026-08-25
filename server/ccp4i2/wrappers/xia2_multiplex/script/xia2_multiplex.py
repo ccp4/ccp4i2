@@ -11,11 +11,17 @@ except ImportError:
 
 from lxml import etree
 
-from ccp4i2.core import CCP4Container, CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.PhilPluginScript import PhilPluginScript
 
 
-class xia2_multiplex(CPluginScript):
+class xia2_multiplex(PhilPluginScript):
+    """xia2.multiplex, with its parameters read from xia2 at runtime.
+
+    See xia2_dials for the reasoning; this task follows the same pattern with
+    a different phil scope and DIALS integrated files instead of images.
+    """
 
     TASKNAME = "xia2_multiplex"
     TASKCOMMAND = "xia2.multiplex"
@@ -33,57 +39,26 @@ class xia2_multiplex(CPluginScript):
         "ShelxCDE",
     ]
 
-    def extract_parameters(self, container):
-        """Walk through a container locating parameters that have been set
-        and return a list of name, value pairs"""
+    #: xia2.multiplex's own parameter definitions.
+    PHIL_SCOPE = "xia2.cli.multiplex:phil_scope"
 
-        result = []
-        dataOrder = container.dataOrder()
-        contents = [getattr(container, name) for name in dataOrder]
-        for model in contents:
-            if isinstance(model, CCP4Container.CContainer):
-                result.extend(self.extract_parameters(model))
-            elif model.isSet():
-                name = model.objectName().replace("__", ".")
-                # ensure commas are converted to whitespace-separated lists.
-                # Only whitespace appears to work correctly with PHIL multiple
-                # choice definitions.
-                val = str(model.get()).split()
-                val = " ".join([v[:-1] if v.endswith(",") else v for v in val])
-                result.append((name, val))
-        return result
-
-    def _setCommandLineCore(self, phil_filename):
-        par = self.container.controlParameters
-        inp = self.container.inputData
-
-        # PHIL parameters set by the gui
-        phil_file = os.path.normpath(
-            os.path.join(self.getWorkDirectory(), phil_filename)
-        )
-        with open(phil_file, "w") as f:
-            for (name, val) in self.extract_parameters(par):
-                f.write(name + "={0}\n".format(val))
-        self.appendCommandLine(phil_file)
-
-        # Extract integrated DIALS files
-        for refl in inp.DIALS_INTEGRATED:
-            refl = str(refl)
-            expt = refl.rsplit(".refl", 1)[0] + ".expt"
-
-            self.appendCommandLine([f"experiments={expt}", f"reflections={refl}"])
-
-        # Disable unit cell refinement by two_theta_refine, as the geometry
-        # derived from MTZ files is suspect.
-        # if self._disable_geometry_refinement:
-        #    self.appendCommandLine(["unit_cell.refine=None",])
-
-        return
+    def get_command_target(self):
+        """Nothing precedes the phil file for this task."""
+        return []
 
     def makeCommandAndScript(self):
+        """xia2.multiplex <working.phil> experiments=... reflections=..."""
+        phil_path = self.build_working_phil()
+        self.appendCommandLine([phil_path])
 
-        # Create PHIL file and command line
-        self._setCommandLineCore(phil_filename="xia2_multiplex.phil")
+        for refl in self.container.inputData.DIALS_INTEGRATED:
+            refl = str(refl).strip()
+            if not refl:
+                # An empty list slot would otherwise become "reflections="
+                # on the command line, which the tool reads as a bad argument.
+                continue
+            expt = refl.rsplit(".refl", 1)[0] + ".expt"
+            self.appendCommandLine([f"experiments={expt}", f"reflections={refl}"])
 
         self.xmlroot = etree.Element("Xia2Multiplex")
 

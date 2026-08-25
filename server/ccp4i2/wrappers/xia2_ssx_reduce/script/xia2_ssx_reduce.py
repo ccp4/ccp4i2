@@ -12,11 +12,20 @@ except ImportError:
     ExperimentList = None
 from lxml import etree
 
-from ccp4i2.core import CCP4Container, CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.PhilPluginScript import PhilPluginScript
+from ccp4i2.utils.phil_shims import InputFileShim
 
 
-class xia2_ssx_reduce(CPluginScript):
+class xia2_ssx_reduce(PhilPluginScript):
+    """xia2.ssx_reduce, with its parameters read from xia2 at runtime.
+
+    Two parameters are CCP4i2's own rather than xia2's and stay declared in
+    the .def.xml: MEDIAN_CELL, which the interface displays but never sends,
+    and dials_cosym_phil_d_min, which is delivered to xia2 indirectly as a
+    phil file of its own.
+    """
 
     TASKNAME = "xia2_ssx_reduce"
     TASKCOMMAND = "xia2.ssx_reduce"
@@ -34,72 +43,75 @@ class xia2_ssx_reduce(CPluginScript):
         "prosmart_refmac"
     ]
 
-    def extract_parameters(self, container):
-        """Walk through a container locating parameters that have been set
-        and return a list of name, value pairs"""
+    #: Scopes CCP4i2 supplies itself, so they must not also be offered as
+    #: parameters: the integrated files and reference/grouping inputs come
+    #: from inputData, and symmetry.phil is written by _cosym_phil_parameter.
+    PHIL_EXCLUDE_SCOPES = [
+        "input.directory",
+        "input.experiments",
+        "input.reflections",
+        "input.processed_directory",
+        "reference",
+        "grouping",
+        "symmetry.phil",
+    ]
 
-        result = []
-        dataOrder = container.dataOrder()
-        contents = [getattr(container, name) for name in dataOrder]
-        for model in contents:
-            if isinstance(model, CCP4Container.CContainer):
-                result.extend(self.extract_parameters(model))
-            elif model.isSet():
-                name = model.objectName().replace("__", ".")
-                if name == "dials_cosym_phil_d_min":
-                    val = self.container.controlParameters.dials_cosym_phil_d_min.__str__()
-                    phil_file_cosym = os.path.normpath(
-                        os.path.join(self.getWorkDirectory(), "cosym_i2.phil")
-                    )
-                    with open(phil_file_cosym, "w") as f:
-                        f.write("d_min={0}\n".format(val))
-                    name_xia2 = "symmetry.phil"
-                    val_xia2 = "cosym_i2.phil"
-                    result.append((name_xia2, val_xia2))
-                    continue
-                elif name == "MEDIAN_CELL":
-                    continue
-                # ensure commas are converted to whitespace-separated lists.
-                # Only whitespace appears to work correctly with PHIL multiple
-                # choice definitions.
-                val = str(model.get()).split()
-                val = " ".join([v[:-1] if v.endswith(",") else v for v in val])
-                result.append((name, val))
-        return result
+    #: Parameters that belong to CCP4i2 rather than to xia2, and so must never
+    #: be written into the phil under their own names.
+    SYNTHETIC_PARAMETERS = ("MEDIAN_CELL", "dials_cosym_phil_d_min")
 
-    def _setCommandLineCore(self, phil_filename):
-        par = self.container.controlParameters
-        inp = self.container.inputData
+    #: xia2.ssx_reduce's own parameter definitions.
+    PHIL_SCOPE = "xia2.cli.ssx_reduce:phil_scope"
 
-        # PHIL parameters set by the gui
-        phil_file = os.path.normpath(
-            os.path.join(self.getWorkDirectory(), phil_filename)
-        )
-        with open(phil_file, "w") as f:
-            for (name, val) in self.extract_parameters(par):
-                f.write(name + "={0}\n".format(val))
-            # reference and grouping are in self.container.inputData
-            if self.container.inputData.reference.isSet():
-                name = "reference"
-                val = self.container.inputData.reference.fullPath.__str__()
-                f.write(name + "={0}\n".format(val))
-            if self.container.inputData.grouping.isSet():
-                name = "grouping"
-                val = self.container.inputData.grouping.fullPath.__str__()
-                f.write(name + "={0}\n".format(val))
-        self.appendCommandLine(phil_file)
+    def get_command_target(self):
+        """Nothing precedes the phil file for this task."""
+        return []
 
-        # Extract integrated DIALS files
-        for refl in inp.DIALS_INTEGRATED:
-            refl = str(refl)
-            expt = refl.rsplit(".refl", 1)[0] + ".expt"
+    def get_shim_definitions(self):
+        return [
+            InputFileShim("reference", "reference"),
+            InputFileShim("grouping", "grouping"),
+        ]
 
-            self.appendCommandLine([f"experiments={expt}", f"reflections={refl}"])
-        return
+    def _cosym_phil_parameter(self):
+        """Hand dials.cosym its resolution cutoff the only way xia2 accepts it.
+
+        xia2 passes symmetry.phil straight through to dials.cosym rather than
+        exposing its parameters, so a d_min for that step has to travel as a
+        phil file of its own.
+        """
+        d_min = self.container.controlParameters.dials_cosym_phil_d_min
+        if not d_min.isSet():
+            return []
+        phil_name = "cosym_i2.phil"
+        path = os.path.normpath(os.path.join(self.getWorkDirectory(), phil_name))
+        with open(path, "w") as f:
+            f.write(f"d_min={d_min}\n")
+        return [("symmetry.phil", phil_name)]
+
+    def extract_phil_parameters(self):
+        """As the base class, less CCP4i2's own parameters, plus the cosym one."""
+        params = [
+            (path, value)
+            for path, value in super().extract_phil_parameters()
+            if path not in self.SYNTHETIC_PARAMETERS
+        ]
+        params.extend(self._cosym_phil_parameter())
+        return params
 
     def makeCommandAndScript(self):
-        # Create PHIL file and command line
-        self._setCommandLineCore(phil_filename="xia2_ssx_reduce.phil")
+        """xia2.ssx_reduce <working.phil> experiments=... reflections=..."""
+        phil_path = self.build_working_phil()
+        self.appendCommandLine([phil_path])
+
+        for refl in self.container.inputData.DIALS_INTEGRATED:
+            refl = str(refl).strip()
+            if not refl:
+                # An empty list slot would otherwise become "reflections="
+                # on the command line, which the tool reads as a bad argument.
+                continue
+            expt = refl.rsplit(".refl", 1)[0] + ".expt"
+            self.appendCommandLine([f"experiments={expt}", f"reflections={refl}"])
 
         self.xmlroot = etree.Element("Xia2SsxReduce")
 

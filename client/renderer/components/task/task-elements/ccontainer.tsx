@@ -55,6 +55,41 @@ const ROW_CONTAINER_SX = {
   py: 1,
 } as const;
 
+/**
+ * Does anything under this item survive the expert-level filter?
+ *
+ * Mirrors the recursion the Qt UI did in `nestedAutoGenerate`: a container is
+ * worth drawing only if some leaf beneath it is visible. Testing the
+ * container's own expertLevel alone is not enough — most container scopes
+ * carry no expertLevel at all, so filtering without this leaves a stack of
+ * empty accordions where the expert parameters used to be.
+ */
+/**
+ * An item's expert level, wherever it happens to live.
+ *
+ * PHIL-generated containers set it directly as a qualifier; def.xml puts it
+ * inside guiDefinition, which is where the great majority of tasks keep it.
+ */
+const expertLevelOf = (item: any): number | undefined => {
+  const qualifiers = item?._qualifiers;
+  const level =
+    qualifiers?.expertLevel ?? qualifiers?.guiDefinition?.expertLevel;
+  return typeof level === "number" ? level : undefined;
+};
+
+const passesExpertLevel = (item: any, maxExpertLevel: number): boolean => {
+  const level = expertLevelOf(item);
+  if (level !== undefined && level > maxExpertLevel) {
+    return false;
+  }
+  if (item?._baseClass !== "CContainer") return true;
+  const children = item?._value;
+  if (!children || typeof children !== "object") return false;
+  return Object.values(children).some((child) =>
+    passesExpertLevel(child, maxExpertLevel)
+  );
+};
+
 export const CCP4i2ContainerElement: React.FC<
   PropsWithChildren<CCP4i2ContainerElementProps>
 > = (props) => {
@@ -120,12 +155,12 @@ export const CCP4i2ContainerElement: React.FC<
           const childObjectPath = `${item._objectPath}.${childName}`;
           const { item: childItem } = useTaskItem(childObjectPath);
 
-          // Expert level filtering: hide children above the threshold
-          if (maxExpertLevel !== undefined) {
-            const childLevel = childItem?._qualifiers?.expertLevel;
-            if (childLevel !== undefined && childLevel !== null && childLevel > maxExpertLevel) {
-              return null;
-            }
+          // Expert level filtering: hide children with nothing visible beneath
+          if (
+            maxExpertLevel !== undefined &&
+            !passesExpertLevel(childItem, maxExpertLevel)
+          ) {
+            return null;
           }
 
           return (
@@ -134,7 +169,7 @@ export const CCP4i2ContainerElement: React.FC<
               {...props}
               sx={elementSx}
               itemName={childObjectPath}
-              qualifiers={{ ...childItem._qualifiers }}
+              qualifiers={{ ...childItem?._qualifiers }}
             />
           );
         })}
@@ -150,12 +185,12 @@ export const CCP4i2ContainerElement: React.FC<
           const childObjectPath = `${item._objectPath}.${childName}`;
           const { item: childItem } = useTaskItem(childObjectPath);
 
-          // Expert level filtering: hide children above the threshold
-          if (maxExpertLevel !== undefined) {
-            const childLevel = childItem?._qualifiers?.expertLevel;
-            if (childLevel !== undefined && childLevel !== null && childLevel > maxExpertLevel) {
-              return null;
-            }
+          // Expert level filtering: hide children with nothing visible beneath
+          if (
+            maxExpertLevel !== undefined &&
+            !passesExpertLevel(childItem, maxExpertLevel)
+          ) {
+            return null;
           }
 
           return (
@@ -164,7 +199,7 @@ export const CCP4i2ContainerElement: React.FC<
               {...props}
               sx={elementSx}
               itemName={childObjectPath}
-              qualifiers={{ ...childItem._qualifiers }}
+              qualifiers={{ ...childItem?._qualifiers }}
             />
           );
         })}
@@ -190,7 +225,14 @@ export const CCP4i2ContainerElement: React.FC<
 
   if (containerHint === "FolderLevel") {
     return (
-      <Accordion disableGutters defaultExpanded={initiallyOpen}>
+      <Accordion
+        disableGutters
+        defaultExpanded={initiallyOpen}
+        // Without this MUI keeps a collapsed folder's children mounted, so a
+        // large auto-generated parameter tree costs the same folded away as
+        // open. Nothing visible changes; collapsed content is not on screen.
+        slotProps={{ transition: { unmountOnExit: true } }}
+      >
         <AccordionSummary
           expandIcon={<ExpandMore />}
           sx={{

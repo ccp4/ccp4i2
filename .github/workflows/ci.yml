@@ -22,8 +22,13 @@
 # Anything here needing a CCP4 binary or an optional [science] extra skips
 # rather than fails (see the skipif guards in tests/unit/converters/ and the
 # importorskip in tests/unit/phil/), so the same command is green with or
-# without CCP4 — run it locally under ccp4-python and you get strictly more
-# coverage, not a different answer.
+# without CCP4 — but running it locally under ccp4-python does NOT check this
+# job. You get strictly more coverage there, and that can be a different
+# answer: a test that itself needs CCP4 passes locally and fails here. To
+# reproduce this job, use a stock venv with no CCP4:
+#     cd server && python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"
+#     .venv/bin/python -m pytest ccp4i2/tests/unit/ -q
+# See CLAUDE.md, "Reproducing CI locally: the CCP4-free venv".
 # ============================================================================
 
 name: CI

@@ -45,6 +45,7 @@ _api_patterns = [
     path("task_lookup/", views.task_lookup, name="task_lookup"),
     path("active_jobs/", views.active_jobs, name="active_jobs"),
     path("monomer-info/<str:code>/", views.monomer_info, name="monomer_info"),
+    path("image_sweep/", views.image_sweep, name="image_sweep"),
     path(
         "config/discover-programs/",
         views.discover_programs_view,

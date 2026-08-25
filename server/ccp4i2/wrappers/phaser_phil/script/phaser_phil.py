@@ -1,54 +1,27 @@
-import os
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.PhilPluginScript import PhilPluginScript
 
 
-class phaser_phil(CPluginScript):
-    TASKNAME = 'phaser_phil'
-    TASKCOMMAND='ccp4-python'
+class phaser_phil(PhilPluginScript):
+    """Phaser, driven through its PHIL interface.
 
-    # Copied here from xia2_dials - if useful should be moved to the base
-    # class
-    def extract_parameters(self, container):
-        """Walk through a container locating parameters that have been set
-        and return a list of name, value pairs"""
+    The parameters come from the phaser installation's own
+    phenix_interface/__init__.params at runtime, rather than from a def.xml
+    generated from a snapshot of it.
 
-        result=[]
-        dataOrder = container.dataOrder()
-        contents = [getattr(container,name) for name in dataOrder]
-        for model in contents:
-            if isinstance(model, CCP4Container.CContainer):
-                result.extend(self.extract_parameters(model))
-            elif model.isSet():
-                name = model.objectName().replace('__','.')
-                # ensure commas are converted to whitespace-separated lists. Only
-                # whitespace appears to work correctly with PHIL multiple
-                # choice definitions.
-                val = str(model.get()).split()
-                val = ' '.join([v[:-1] if v.endswith(',') else v for v in val])
-                result.append((name, val))
-        return result
+    This also settles the FIXME the previous implementation carried: it wrote
+    a file of bare definition=value lines and noted that fetching them against
+    Phaser's master phil would be better. build_working_phil() does exactly
+    that, so the job gets a validated, fully-formed phil.
+    """
 
-    def makeCommandAndScript(self):
-        par = self.container.controlParameters
-        inp = self.container.inputData
+    TASKNAME = "phaser_phil"
+    TASKCOMMAND = "ccp4-python"
 
-        # PHIL parameters set by the gui
-        phil_file = os.path.normpath(os.path.join(
-                    self.getWorkDirectory(), 'phaser.phil'))
-        with open(phil_file, 'w') as f:
-            for (name, val) in self.extract_parameters(par):
-                #self.appendCommandLine()
-                f.write(name + '={0}\n'.format(val))
+    #: Phaser ships its parameters as a file inside the package.
+    PHIL_PARAMS_FILE = "phaser:phenix_interface/__init__.params"
 
-        # FIXME it is possibly better, rather than writing out a file of
-        # definition=value lines, to fetch this against the Phaser master phil
-        # and hence construct a fully formatted phil definition for the job.
-
-        # Get path to phaser's main.py
+    def get_command_target(self):
+        """Phaser's entry point, which ccp4-python runs with the phil file."""
         from phaser.command_line import main
-        self.appendCommandLine([main.__file__])
 
-        self.appendCommandLine([phil_file])
-
-        return CPluginScript.SUCCEEDED
+        return [main.__file__]

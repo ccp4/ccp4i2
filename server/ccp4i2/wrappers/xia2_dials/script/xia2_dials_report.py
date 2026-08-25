@@ -6,7 +6,10 @@
 #
 
 import os
+from pathlib import Path
+
 from ccp4i2.report.CCP4ReportParser import Report
+from ccp4i2.report.embedded_assets import localise_dials_report
 import json
 import re
 
@@ -41,10 +44,16 @@ class xia2_dials_report(Report):
         xia2TxtNode = self.xmlnode.findall("Xia2Txt")[0]
         xia2html = os.path.normpath(os.path.join(self.jobInfo["fileroot"], "xia2.html"))
         if os.path.exists(xia2html):
+            # xia2 writes its report against DIALS' CDN template, so every
+            # library it needs is refused by the content security policy and
+            # the report arrives unstyled and plotless. Point it at the copies
+            # DIALS ships instead, and link to that version.
+            localised = localise_dials_report(Path(xia2html))
+            relative_path = localised.name if localised else 'xia2.html'
             xia2HtmlFold = parent.addFold(label="xia2 report", initiallyOpen=True)
             xia2HtmlFold.addFileLink(
                 label='Open xia2.html report',
-                relativePath='xia2.html',
+                relativePath=relative_path,
                 fileType='html',
             )
         if len(self.xmlnode.findall("Xia2Error"))>0:

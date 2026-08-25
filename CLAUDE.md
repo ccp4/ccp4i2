@@ -158,6 +158,31 @@ ccp4i2/tests/
 └── i2run/                       # End-to-end task tests via CLI
 ```
 
+#### Reproducing CI locally: the CCP4-free venv
+
+CI runs `tests/unit/` and `tests/api/unit/` on **stock Python with no CCP4**, to
+prove those suites need none. Running them under `ccp4-python` gives strictly
+*more* coverage and so cannot prove it: a test that needs CCP4 passes locally
+and fails in CI. That has happened.
+
+```bash
+cd server
+python3 -m venv .venv                 # .gitignore already expects .venv/
+.venv/bin/pip install -e ".[dev]"     # exactly what CI installs
+
+.venv/bin/python -m pytest ccp4i2/tests/unit/ -q
+.venv/bin/python -m pytest ccp4i2/tests/api/unit/ -q
+```
+
+Run the two suites as **separate** commands — sharing one pytest process makes
+the report-fixture tests fail against the API suite's database (the CI workflow
+explains why at length).
+
+Anything needing CCP4 must skip rather than fail: guard with
+`pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)")` or a
+`skipif`. Better still, test the CCP4-free part against something stdlib so it
+runs everywhere.
+
 #### Running Tests
 
 ```bash

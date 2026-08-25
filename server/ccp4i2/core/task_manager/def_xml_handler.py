@@ -204,6 +204,12 @@ class DefXmlParser:
         container_obj = CContainer()
         container_obj._name = container_id
 
+        # A <container> carries <qualifiers> just as <content> does — that is
+        # where a folder's guiLabel lives. They were never read, so every
+        # folder in a def.xml-derived task rendered as an unlabelled bar.
+        for key, value in self._parse_qualifiers(container.find("./qualifiers")).items():
+            container_obj.set_qualifier(key, value)
+
         # Parse all content elements
         for content in container.findall("./content[@id]"):
             self._parse_content(content, container_obj)
@@ -276,6 +282,24 @@ class DefXmlParser:
             # Add to parent - setattr will trigger hierarchy setup via __setattr__
             setattr(parent, content_id, obj)
 
+    def _parse_nested_qualifier(self, element: ET.Element) -> Dict[str, Any]:
+        """Parse a qualifier that holds elements rather than a value."""
+        nested: Dict[str, Any] = {}
+        for child in element:
+            if len(child) > 0:
+                nested[child.tag] = self._parse_nested_qualifier(child)
+                continue
+            text = (child.text or "").strip()
+            if not text:
+                nested[child.tag] = None
+            elif text.lower() in ("true", "false"):
+                nested[child.tag] = text.lower() == "true"
+            elif self._is_number(text):
+                nested[child.tag] = self._parse_number(text)
+            else:
+                nested[child.tag] = text
+        return nested
+
     def _parse_qualifiers(self, qualifiers: Optional[ET.Element]) -> Dict[str, Any]:
         """Parse qualifiers element into a dictionary."""
         if qualifiers is None:
@@ -285,6 +309,15 @@ class DefXmlParser:
         for child in qualifiers:
             tag = child.tag
             text = child.text
+
+            # A qualifier with element children is a nested structure, not a
+            # value. <guiDefinition><expertLevel>2</expertLevel></guiDefinition>
+            # is the common one: taking child.text here yielded the whitespace
+            # between the tags and dropped the expert level entirely, so no
+            # def.xml task has ever had a working expert level.
+            if len(child) > 0:
+                result[tag] = self._parse_nested_qualifier(child)
+                continue
 
             # Handle different value types
             if text is None:

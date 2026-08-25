@@ -148,10 +148,8 @@ class my_tool(PhilPluginScript):
         "output",               # Managed by CCP4i2
     ]
 
-    def get_master_phil(self):
-        """Return the tool's master PHIL scope."""
-        from my_tool import master_phil
-        return master_phil
+    #: Where the tool's PHIL comes from (see "Declaring the PHIL source").
+    PHIL_SCOPE = "my_tool:master_phil"
 
     def get_shim_definitions(self):
         """Map CCP4i2 rich file types to PHIL parameters."""
@@ -225,28 +223,41 @@ And add `"my_tool"` to the appropriate category list in the `TASK_CATEGORIES` di
 
 `PhilPluginScript` requires four methods. Here's what each does and when it's called:
 
-### `get_master_phil() → libtbx.phil.scope`
+### Declaring the PHIL source
 
-**When called:** During `__init__` (via `_merge_phil_parameters()`) and during `build_working_phil()`.
+**When resolved:** During `__init__` (via `_merge_phil_parameters()`) and again
+during `build_working_phil()`.
 
-**What to return:** The tool's complete master PHIL scope object.
+Set exactly one of these class attributes. The base class does the import and
+reports a missing tool consistently, so a wrapper does not write that code.
 
-**Notes:**
-- Some tools use custom PHIL types (e.g., phasertng has `filesystem`, `mtzcol`, `scatterer`). These custom converters must be registered before parsing. If your tool uses `iotbx.cli_parser.CCTBXParser`, instantiate it to register converters automatically:
+| Attribute | Form | Use when |
+|-----------|------|----------|
+| `PHIL_SCOPE` | `"module.path:attribute"` | The module already exposes a scope object |
+| `PHIL_PARAMS_FILE` | `"package:relative/file.params"` | The tool ships its parameters as a file inside the package |
+| `PHIL_PROGRAM` | `"module.path:ClassName"` | The tool is a CCTBX program template |
 
 ```python
-def get_master_phil(self):
-    from phasertng.programs import picard
-    from iotbx.cli_parser import CCTBXParser
-    parser = CCTBXParser(
-        program_class=picard.Program,
-        logger=None,
-        parse_phil=False,
-    )
-    return parser.master_phil
+class my_task(PhilPluginScript):
+    PHIL_SCOPE = "xia2.cli.multiplex:phil_scope"
 ```
 
-- If the tool isn't installed, return `None` gracefully — the plugin will still instantiate (without PHIL parameters).
+**`PHIL_PROGRAM` also registers custom PHIL converters.** Tools built on the
+CCTBX program template often define their own types — phasertng has
+`filesystem`, `mtzcol`, `scatterer` — and those converters are registered as a
+side effect of constructing `CCTBXParser`. Reaching for the scope directly
+would fail to parse them, so use `PHIL_PROGRAM` for such tools even where an
+attribute looks available.
+
+**A missing tool resolves to `None`, not an exception.** The task still opens
+in the interface and can say what it needs; `_merge_phil_parameters()` treats
+`None` as "no parameters to merge". A raised `ImportError` would stop the task
+loading at all.
+
+**Override `get_master_phil()` directly** for anything these three do not
+cover — assembling a scope from several sources, say, or one that needs
+arguments. The declarations are a shortcut for the common shapes, not a
+replacement for the method.
 
 ### `get_shim_definitions() → list[PhilShim]`
 
@@ -571,11 +582,145 @@ The `phasertng_picard` wrapper serves as the canonical example:
 | `tests/test_phil_plugin_script.py` | PhilPluginScript unit tests |
 | `tests/i2run/test_phasertng_picard.py` | Integration tests |
 
+Five more tasks were ported to this pattern from generated `.def.xml` files,
+and between them cover the awkward cases:
+
+| Task | What it shows |
+|------|---------------|
+| `xia2_dials` | The plain shape: exclusions, arguments after the phil file, a `validity()` that reads PHIL-built paths |
+| `xia2_xds` | Subclassing a ported task; narrowing a choice whose upstream default is not valid here |
+| `xia2_multiplex` | Arguments built from a `CList` of input files |
+| `xia2_ssx_reduce` | CCP4i2's own parameters surviving the merge, and one delivered as a nested phil file |
+| `phaser_phil` | The minimal case — two declarations and `get_command_target()`, nothing else |
+
+## Porting a Task That Already Has a Generated `.def.xml`
+
+Some tasks predate `PhilPluginScript` and carry a `.def.xml` **generated
+offline** from an upstream PHIL scope and checked in, usually by a
+`create_def_xml.py` beside it. Those are exactly the tasks worth porting: the
+checked-in XML is a snapshot that stops tracking upstream the moment it is
+written.
+
+**Find them:** a `create_def_xml.py` in the task's `script/` directory, or
+`content id` values joined with `__` (`dials__index__method`), which is what
+`PhilTaskCreator` emits and nobody writes by hand.
+
+### Check first: is upstream well enough annotated?
+
+Generated def.xml files sometimes exist because upstream lacked
+`short_caption` and `expert_level`, and someone vendored a patched copy of the
+scope to add them. Before porting, compare:
+
+```python
+for label, scope in (("upstream", upstream_phil), ("vendored", vendored_phil)):
+    defs = list(scope.all_definitions())
+    print(label, len(defs),
+          sum(1 for o in defs if o.object.expert_level is not None),
+          sum(1 for o in defs if o.object.short_caption is not None))
+```
+
+When the xia2 family was ported, upstream had *overtaken* its 2016 fork —
+338 definitions against 167, 124 expert levels against 84, 241 short captions
+against 104 — so the port lost one expert level and no captions at all. It
+also *gained* labels, because `Phil2CData` falls back to a scope's name where
+upstream gives no caption: 67 of 67 folders labelled, against 28 of 66 in the
+generated XML.
+
+If upstream is genuinely poorer, porting trades freshness for annotation. Say
+so and decide deliberately.
+
+### The port
+
+1. Subclass `PhilPluginScript`; declare the PHIL source (`PHIL_SCOPE` and
+   friends), add `get_command_target()` and `PHIL_EXCLUDE_SCOPES`. The old `_elts_to_remove` in `create_def_xml.py`
+   translates directly — swap `__` for `.`.
+2. Delete `extract_parameters()` and the hand-rolled phil writing. Override
+   `makeCommandAndScript()` only if arguments follow the phil file.
+3. Cut the `.def.xml` down to `inputData` and `outputData`, **keeping an empty
+   `controlParameters` container** — `_merge_phil_parameters()` merges into it
+   and cannot create it.
+4. Delete `create_def_xml.py` and any vendored phil module.
+5. Register the interface (see below) and run the tool end to end.
+
+Parameter paths do not change: `Phil2CData` builds the same nested containers
+with the same `__`-joined names as `PhilTaskCreator` did, so saved
+`input_params.xml` still loads and any `validity()` accessors still resolve.
+
+### Traps
+
+**Command-line arguments must follow the phil file.** `build_working_phil()`
+writes the *whole fetched scope, defaults included* — unlike the hand-rolled
+approach, which wrote only what the user had set. An argument placed before the
+file is overridden by the default inside it. `xia2 pipeline=3dii working.phil`
+silently ran DIALS.
+
+**A tool's default may not be legal for your task.** `xia2_xds` offers only the
+XDS pipelines, but xia2's scope marks `dials` as default. Narrow the
+enumerators *and* assert the choice on the command line; narrowing alone leaves
+an out-of-range value that fails validation.
+
+**Parameters that are CCP4i2's, not the tool's**, stay declared in the
+`.def.xml`: `_merge_phil_parameters()` skips names already present. They must
+then be kept *out* of the phil by overriding `extract_phil_parameters()`, or
+they are written under names the tool does not know. `xia2_ssx_reduce` has two
+— one shown in the interface and never sent, one delivered indirectly as a
+phil file of its own because xia2 passes `symmetry.phil` through to
+`dials.cosym` rather than exposing its parameters.
+
+**Keep the `.def.xml` encoding declaration as UTF-8.** At least one guiLabel in
+the tree contains an en-dash; rewriting the header as ASCII makes the file
+unparseable.
+
+**Guard empty list slots.** An unset entry in a `CList` of files becomes
+`reflections=` on the command line, which the tool reads as a bad argument.
+
+## The Interface
+
+A PHIL task's parameters are far too numerous to enumerate by hand — xia2/DIALS
+has 286. Render the container and let expert level do the filtering.
+
+```tsx
+import { ExpertLevelContext } from "../task-elements/expert-level-context";
+import {
+  EXCLUDE_EXPERT_LEVEL,
+  PhilExpertLevelSelector,
+  usePhilExpertLevel,
+} from "../task-elements/phil-expert-level";
+
+const { expertLevel, changeExpertLevel } = usePhilExpertLevel(props.job);
+
+<PhilExpertLevelSelector expertLevel={expertLevel} onChange={changeExpertLevel} />
+<ExpertLevelContext.Provider value={expertLevel}>
+  <CCP4i2ContainerElement
+    {...props}
+    itemName="controlParameters"
+    qualifiers={{ guiLabel: "Parameters" }}
+    containerHint="FolderLevel"
+    excludeItems={EXCLUDE_EXPERT_LEVEL}
+  />
+</ExpertLevelContext.Provider>
+```
+
+Lay out by hand only what needs prose around it — the file inputs, and any
+pair of parameters that are alternatives.
+
+**`PHIL_EXPERT_LEVEL` is not a display setting.** `extract_phil_parameters()`
+also uses it to decide which parameters reach `working.phil`, so the interface
+must bind to the container parameter rather than keep its own copy in React
+state; two copies can disagree and silently drop a value the user set. That is
+what `usePhilExpertLevel` is for. Exclude it from the rendered tree — it is a
+control, not a parameter.
+
+**Where expert level lives differs by route.** PHIL-generated containers carry
+it as a plain qualifier; def.xml tasks nest it inside `guiDefinition`.
+`CCP4i2ContainerElement` reads either, so an interface works before and after a
+port.
+
 ## Design Decisions
 
 ### Why not generate `.def.xml` from PHIL?
 
-Considered and rejected. PHIL types don't map 1:1 to CCP4i2's XML schema (e.g., PHIL has no concept of `CMtzDataFile` with column selection, `CAsuDataFile` with sequence parsing, or `CDictDataFile` with dictionary preview). Generating XML would either lose CCP4i2 features or require complex translation logic that's harder to maintain than the shim approach.
+Considered and rejected — and the tasks that did it bear the argument out. The xia2 family's generated files had fallen 34 to 171 definitions behind upstream, and one carried a vendored fork of the scope that upstream had long since overtaken. PHIL types don't map 1:1 to CCP4i2's XML schema (e.g., PHIL has no concept of `CMtzDataFile` with column selection, `CAsuDataFile` with sequence parsing, or `CDictDataFile` with dictionary preview). Generating XML would either lose CCP4i2 features or require complex translation logic that's harder to maintain than the shim approach.
 
 ### Why runtime conversion instead of a build step?
 

@@ -68,6 +68,9 @@ class phasertng_riker(PhilPluginScript):
         "output",
     ]
 
+    #: Built from the CCTBX program template.
+    PHIL_PROGRAM = "phasertng.programs.riker:Program"
+
     def _prepare_model(self, file_obj, tag, work_dir):
         """Prepare a CPdbDataFile for PhaserTNG, returning a PDB path.
 
@@ -155,22 +158,6 @@ class phasertng_riker(PhilPluginScript):
 
         self._model_path_map = path_map
         return error
-
-    def get_master_phil(self):
-        """Import riker's master_phil at runtime via CCTBXParser."""
-        try:
-            from phasertng.programs import riker
-            from iotbx.cli_parser import CCTBXParser
-
-            parser = CCTBXParser(
-                program_class=riker.Program,
-                logger=None,
-                parse_phil=False,
-            )
-            return parser.master_phil
-        except ImportError as e:
-            logger.warning("Cannot import phasertng riker: %s", e)
-            return None
 
     def get_shim_definitions(self):
         """Return shims for riker mode."""

@@ -1,4 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!--
+  Inputs, outputs, and the two parameters that are CCP4i2's rather than xia2's.
+
+  The rest of controlParameters is built at runtime from xia2.ssx_reduce's
+  own phil scope by PhilPluginScript, so it tracks the installed xia2 rather
+  than a snapshot. PhilPluginScript leaves anything already declared here
+  alone, which is how these two survive the merge.
+-->
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
@@ -134,55 +142,16 @@
       <qualifiers/>
     </container>
     <container id="controlParameters">
-      <container id="input">
-        <qualifiers>
-          <guiDefinition/>
-        </qualifiers>
-      </container>
-      <container id="workflow">
-        <qualifiers>
-          <guiDefinition/>
-        </qualifiers>
-        <content id="workflow__steps">
-          <className>CString</className>
-          <qualifiers>
-            <onlyEnumerators>True</onlyEnumerators>
-            <guiLabel>Workflow</guiLabel>
-            <toolTip>Option to control either full reduction (steps=scale+merge) or just merging already scaled data (steps=merge).</toolTip>
-            <guiDefinition>
-              <expertLevel>2</expertLevel>
-            </guiDefinition>
-               <menuText>scale and merge, only merge already-scaled data</menuText>
-               <enumerators>scale+merge,merge</enumerators>
-               <default>scale+merge</default>
-          </qualifiers>
-        </content>
-      </container>
+      <qualifiers/>
+      <!-- MEDIAN_CELL is shown by the interface and never sent to xia2.
+           dials_cosym_phil_d_min reaches xia2 as symmetry.phil, a phil
+           file of its own written at run time. Both are filtered out of
+           working.phil by extract_phil_parameters(). -->
       <content id="MEDIAN_CELL">
         <className>CString</className>
         <qualifiers>
           <guiLabel>Median cell</guiLabel>
           <guiDefinition/>
-        </qualifiers>
-      </content>
-      <content id="multiprocessing__nproc">
-        <className>CInt</className>
-        <qualifiers>
-          <guiLabel>Number of parallel processes used</guiLabel>
-          <guiDefinition>
-            <expertLevel>1</expertLevel>
-          </guiDefinition>
-          <default>Auto</default>
-        </qualifiers>
-      </content>
-      <content id="d_min">
-        <className>CFloat</className>
-        <qualifiers>
-          <guiLabel>High resolution cutoff</guiLabel>
-          <guiDefinition>
-            <expertLevel>1</expertLevel>
-          </guiDefinition>
-          <default>None</default>
         </qualifiers>
       </content>
       <content id="dials_cosym_phil_d_min">
@@ -195,195 +164,6 @@
           <default>None</default>
         </qualifiers>
       </content>
-      <content id="dose_series_repeat">
-        <className>CInt</className>
-        <qualifiers>
-          <guiLabel>Dose series - number of repeated measurements at each point</guiLabel>
-          <toolTip>This option allows the user to specify that the data is a dose series by providing the number of repeated measurements at each point. i.e. it is assumed that $dose_series_repeat measurements are taken on each crystal and that these form consecutive images in the input image files. Each dose point will be merged separately</toolTip>
-          <guiDefinition>
-            <expertLevel>2</expertLevel>
-          </guiDefinition>
-          <default>None</default>
-          <min>2</min>
-        </qualifiers>
-      </content>
-      <content id="reduction_batch_size">
-        <className>CInt</className>
-        <qualifiers>
-          <guiLabel>Batch size (number of crystals) in each processing batch</guiLabel>
-          <guiDefinition>
-            <expertLevel>2</expertLevel>
-          </guiDefinition>
-          <default>1000</default>
-        </qualifiers>
-      </content>
-      <content id="partiality_threshold">
-        <className>CFloat</className>
-        <qualifiers>
-          <guiLabel>Partiality threshold – observations below this partiality will be discarded</guiLabel>
-          <toolTip>Filter out reflections below this partiality in data reduction.</toolTip>
-          <guiDefinition/>
-          <default>0.25</default>
-        </qualifiers>
-      </content>
-      <container id="reference_model">
-        <qualifiers>
-          <guiDefinition/>
-        </qualifiers>
-        <content id="reference_model__k_sol">
-          <className>CFloat</className>
-          <qualifiers>
-            <guiLabel>Average solvent density (k-sol)</guiLabel>
-            <toolTip>Average solvent density to use when calculating the bulk solvent contribution to the structure factors from a structural model. See Fokine and Urzhumtsev, Acta Cryst. (2002). D58, 1387-1392 for further details on the meaning of this parameter.</toolTip>
-            <guiDefinition>
-              <expertLevel>3</expertLevel>
-            </guiDefinition>
-            <default>0.35</default>
-          </qualifiers>
-        </content>
-        <content id="reference_model__b_sol">
-          <className>CFloat</className>
-          <qualifiers>
-            <guiLabel>Average solvent B-factor (B-sol)</guiLabel>
-            <toolTip>Average solvent B-factor to use when calculating the bulk solvent contribution to the structure factors from a structural model. See Fokine and Urzhumtsev, Acta Cryst. (2002). D58, 1387-1392 for further details on the meaning of this parameter.</toolTip>
-            <guiDefinition>
-              <expertLevel>3</expertLevel>
-            </guiDefinition>
-            <default>46.0</default>
-          </qualifiers>
-        </content>
-      </container>
-      <container id="clustering">
-        <qualifiers>
-          <guiLabel>Clustering</guiLabel>
-          <guiDefinition/>
-        </qualifiers>
-        <content id="clustering__threshold">
-          <className>CFloat</className>
-          <qualifiers>
-            <guiLabel>Instead of filtering based on cell values and tolerances, use a clustering approach to select a cell cluster. Clustering threshold (Andrews–Bernstein distance)</guiLabel>
-            <guiDefinition>
-              <expertLevel>2</expertLevel>
-            </guiDefinition>
-            <default>None</default>
-            <min>0</min>
-          </qualifiers>
-        </content>
-        <content id="clustering__absolute_angle_tolerance">
-          <className>CFloat</className>
-          <qualifiers>
-            <guiLabel>Absolute angle tolerance (degrees)</guiLabel>
-            <toolTip>Filter the integrated data based on the median unit cell angles and this tolerance.</toolTip>
-            <guiDefinition>
-              <expertLevel>2</expertLevel>
-            </guiDefinition>
-            <default>1.0</default>
-            <min>0</min>
-          </qualifiers>
-        </content>
-        <content id="clustering__absolute_length_tolerance">
-          <className>CFloat</className>
-          <qualifiers>
-            <guiLabel>Absolute length tolerance (A)</guiLabel>
-            <toolTip>Filters the integrated data based on the median unit cell lengths and this tolerance.</toolTip>
-            <guiDefinition>
-              <expertLevel>2</expertLevel>
-            </guiDefinition>
-            <default>1.0</default>
-            <min>0</min>
-          </qualifiers>
-        </content>
-        <content id="clustering__central_unit_cell">
-          <className>CString</className>
-          <qualifiers>
-            <guiLabel>Instead of using the median cell, use these central cell values for the cell filtering</guiLabel>
-            <toolTip>Filter the integrated data based on the tolerances about these cell parameters, rather than the median cell.</toolTip>
-            <allowUndefined>True</allowUndefined>
-            <guiDefinition>
-              <expertLevel>2</expertLevel>
-            </guiDefinition>
-          </qualifiers>
-        </content>
-      </container>
-      <container id="symmetry">
-        <qualifiers>
-          <guiLabel>Symmetry</guiLabel>
-          <guiDefinition/>
-        </qualifiers>
-        <content id="symmetry__lattice_symmetry_max_delta">
-          <className>CFloat</className>
-          <qualifiers>
-            <guiLabel>Lattice tolerance for triggering mis-indexing assessment</guiLabel>
-            <toolTip>Tolerance for lattice symmetry analysis, used for example when determining possible symmetries for ambiguity resolution.</toolTip>
-            <guiDefinition>
-              <expertLevel>3</expertLevel>
-            </guiDefinition>
-            <default>0.5</default>
-          </qualifiers>
-        </content>
-        <content id="symmetry__phil">
-          <className>CDataFile</className>
-          <qualifiers>
-            <guiLabel>Phil options file for dials.cosym</guiLabel>
-            <toolTip>Phil options file to use for symmetry analysis with dials.cosym.  Parameters defined in the xia2.ssx phil scope will take precedent over identical options defined in the phil file.</toolTip>
-            <guiDefinition>
-              <expertLevel>3</expertLevel>
-            </guiDefinition>
-          </qualifiers>
-        </content>
-        <content id="symmetry__space_group">
-          <className>CSpaceGroup</className>
-          <qualifiers>
-            <guiLabel>Space group for scaling and merging</guiLabel>
-            <guiDefinition>
-              <expertLevel>2</expertLevel>
-            </guiDefinition>
-          </qualifiers>
-        </content>
-      </container>
-      <container id="scaling">
-        <qualifiers>
-          <guiLabel>Scaling</guiLabel>
-          <guiDefinition/>
-        </qualifiers>
-        <content id="scaling__anomalous">
-          <className>CBoolean</className>
-          <qualifiers>
-            <guiLabel>Anomalous</guiLabel>
-            <toolTip>If True, keep anomalous pairs separate during scaling.</toolTip>
-            <guiDefinition>
-              <expertLevel>1</expertLevel>
-            </guiDefinition>
-            <default>False</default>
-          </qualifiers>
-        </content>
-        <content id="scaling__phil">
-          <className>CDataFile</className>
-          <qualifiers>
-            <guiLabel>Phil options file for dials.scale</guiLabel>
-            <toolTip>Phil options file to use for dials.scale.  Parameters defined in the xia2.ssx phil scope will take precedent over identical options defined in the phil file.</toolTip>
-            <guiDefinition>
-              <expertLevel>3</expertLevel>
-            </guiDefinition>
-          </qualifiers>
-        </content>
-      </container>
-      <container id="filtering">
-        <qualifiers>
-          <guiDefinition/>
-        </qualifiers>
-        <content id="filtering__mean_i_over_sigma_threshold">
-          <className>CFloat</className>
-          <qualifiers>
-            <guiLabel>I/sigma threshold</guiLabel>
-            <guiDefinition>
-              <expertLevel>1</expertLevel>
-              <toolTip>Apply a per-image mean I/sigma filter, calculated on reflections with partialities above the partiality_threshold.</toolTip>
-            </guiDefinition>
-            <default>None</default>
-          </qualifiers>
-        </content>
-      </container>
     </container>
   </ccp4i2_body>
 </ccp4i2>

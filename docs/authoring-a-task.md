@@ -75,6 +75,7 @@ References:
   [ERROR_HANDLING_PATTERNS.md](../mddocs/pipeline/ERROR_HANDLING_PATTERNS.md).
 - Simple examples to copy: `wrappers/freerflag/`, `wrappers/nucleofind/`.
 - **PHIL path:** [PHIL_TASK_GUIDE.md](../server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md)
+  — includes [porting a task that already has a generated `.def.xml`](../server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md#porting-a-task-that-already-has-a-generated-defxml) and the interface half of a PHIL task.
   (subclass `PhilPluginScript`; implement `get_master_phil()`,
   `get_shim_definitions()`, `get_command_target()`, `processOutputFiles()`).
   Reference wrappers: `wrappers/phasertng_picard/`, `wrappers/phasertng_riker/`.

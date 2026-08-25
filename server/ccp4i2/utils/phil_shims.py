@@ -304,3 +304,31 @@ class DagFileShim(PhilShim):
             if file_path:
                 result.append((self.phil_path, file_path))
         return result
+
+class InputFileShim(PhilShim):
+    """Convert any inputData file to a PHIL path parameter.
+
+    For inputs whose only job is to name a file the tool should read, with no
+    conversion or column selection — a reference data set, a grouping
+    definition. The richer shims exist because MTZs and models need more than
+    their path; these do not.
+    """
+
+    def __init__(self, input_name, phil_path):
+        """
+        Args:
+            input_name: Name of the file object in container.inputData
+            phil_path: PHIL dotted path to set to its full path
+        """
+        self.input_name = input_name
+        self.phil_path = phil_path
+
+    def convert(self, container, work_directory):
+        try:
+            file_obj = getattr(container.inputData, self.input_name)
+        except AttributeError:
+            return []
+        if file_obj is None or not file_obj.isSet():
+            return []
+        full_path = file_obj.getFullPath()
+        return [(self.phil_path, full_path)] if full_path else []

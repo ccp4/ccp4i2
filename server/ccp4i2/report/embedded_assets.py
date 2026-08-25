@@ -76,20 +76,34 @@ def discover_install_dir(html_text: str, marker: str) -> Optional[Path]:
 def localise_report_assets(
     html_path: Path,
     *,
-    marker: str,
     subdirectory: str,
+    marker: Optional[str] = None,
+    install_dir: Optional[Path] = None,
     extra_assets: Optional[Mapping[str, Path]] = None,
+    url_rewrites: Optional[Mapping[str, str]] = None,
     output_path: Optional[Path] = None,
 ) -> Optional[Path]:
     """Copy an HTML report's asset directory in beside it and relativise it.
 
     Args:
         html_path: the report as the program wrote it. Left untouched.
-        marker: tail of the install directory to look for, e.g. "mrparse/html".
         subdirectory: name to copy that directory to, beside the report.
+        marker: tail of the install directory to look for, e.g. "mrparse/html".
+            Ignored when install_dir is given.
+        install_dir: the directory to copy, when the caller already knows it.
+            Reports that reference their assets only by URL carry no absolute
+            path to discover, so the source has to be named — xia2's report
+            loads its libraries from CDNs, but DIALS ships those same
+            libraries, at those same versions, in dials/static.
         extra_assets: URLs appearing in the report mapped to local files to
             serve in their place — CDN references, which are localised the
             same way and for the same reasons as the install-directory ones.
+            Each file is copied to the top of ``subdirectory``.
+        url_rewrites: URLs mapped to paths *within* the copied directory, for
+            assets that are already there. Preferred over extra_assets when
+            an asset resolves siblings relatively — KaTeX's stylesheet asks
+            for ``fonts/…``, so flattening it to the top would strand its
+            fonts.
         output_path: where to write the rewritten HTML (default: the input
             name with an ``_i2`` suffix, matching the convention the xia2
             reports already use).
@@ -104,9 +118,11 @@ def localise_report_assets(
         output_path = html_path.with_name(f"{html_path.stem}_i2{html_path.suffix}")
 
     html_text = html_path.read_text(encoding="utf-8", errors="replace")
-    install_dir = discover_install_dir(html_text, marker)
-    if install_dir is None:
+    if install_dir is None and marker is not None:
+        install_dir = discover_install_dir(html_text, marker)
+    if install_dir is None or not Path(install_dir).is_dir():
         return output_path if output_path.exists() else None
+    install_dir = Path(install_dir)
 
     # Report classes re-run on every view of a finished job, so only pay the
     # copy once — the assets are a fixed part of the installation, not job output.
@@ -124,6 +140,14 @@ def localise_report_assets(
     # sets a `const mrparse_html_dir` the Vue bundle then interpolates).
     localised = html_text.replace(str(install_dir), subdirectory)
 
+    for url, relative in (url_rewrites or {}).items():
+        if not (destination / relative).is_file():
+            logger.warning(
+                "%s is not in %s; leaving %s alone", relative, destination, url
+            )
+            continue
+        localised = localised.replace(url, f"{subdirectory}/{relative}")
+
     for url, source in (extra_assets or {}).items():
         if url not in localised:
             continue
@@ -138,3 +162,58 @@ def localise_report_assets(
 
     output_path.write_text(localised, encoding="utf-8")
     return output_path
+
+
+# The libraries a DIALS-templated report loads from CDNs, mapped to where the
+# same file sits inside ``dials/static``. DIALS ships all of them, at these
+# exact versions, because its own report templates offer a local-dependency
+# mode (``report_local_dep.html``) — but xia2 renders from ``report_base.html``,
+# which hardcodes the CDN block with no way to switch. Taking them from the
+# DIALS install rather than vendoring copies here keeps them matched to the
+# DIALS that produced the report, and brings KaTeX's 60 font files along.
+DIALS_CDN_ASSETS = {
+    "https://code.jquery.com/jquery-1.12.0.min.js": "js/jquery-1.12.0.min.js",
+    "https://cdn.plot.ly/plotly-latest.min.js": "js/plotly-latest.min.js",
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js": "js/bootstrap.min.js",
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css": "css/bootstrap.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js": "katex/katex.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js": "katex/contrib/auto-render.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css": "katex/katex.min.css",
+}
+
+
+def dials_static_dir() -> Optional[Path]:
+    """Where the installed DIALS keeps the libraries its reports use."""
+    try:
+        import dials
+    except ImportError:
+        logger.debug("DIALS is not importable; cannot localise its report assets")
+        return None
+    static = Path(dials.__file__).parent / "static"
+    return static if static.is_dir() else None
+
+
+def localise_dials_report(
+    html_path: Path, subdirectory: str = "dials_static"
+) -> Optional[Path]:
+    """Make a DIALS-templated HTML report load without reaching the network.
+
+    A report that fetches jQuery, Plotly, Bootstrap and KaTeX from CDNs is
+    refused by the app's content security policy, so it arrives unstyled and
+    with no plots at all. Beyond the policy, a job report is a record: it
+    should still render on an offline beamline machine, and years after those
+    CDNs stopped serving these versions.
+
+    Copies ``dials/static`` in beside the report (~3.7 MB, of which KaTeX's
+    fonts are 2.2 MB) and points the report at it. Returns the rewritten
+    file's path, or None if DIALS is not importable.
+    """
+    static = dials_static_dir()
+    if static is None:
+        return None
+    return localise_report_assets(
+        html_path,
+        install_dir=static,
+        subdirectory=subdirectory,
+        url_rewrites=DIALS_CDN_ASSETS,
+    )
