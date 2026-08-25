@@ -4,7 +4,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { Description, OpenInNew } from "@mui/icons-material";
 import { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
 import { useFilePreviewContext } from "../../providers/file-preview-context";
-import { apiBlob } from "../../api-fetch";
+import { apiBlob, apiPost } from "../../api-fetch";
 
 /**
  * Detect Monaco language from a filename extension.
@@ -50,15 +50,25 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
   // This avoids <img src> making unauthenticated browser requests.
   const [blobUrl, setBlobUrl] = useState<string | null>(null);
 
-  const fileUrl = useMemo(() => {
-    if (!projectId || !relativePath) return null;
-    // Job files live under CCP4_JOBS/job_N/ inside the project directory.
-    // We use the job number from props.job to build the full project-relative path.
+  // Project-relative path of the file. Job files live under CCP4_JOBS/job_N/,
+  // with dotted job numbers (sub-jobs) nesting one directory per component.
+  const fullPath = useMemo(() => {
+    if (!relativePath) return null;
     const jobDirSegments = props.job.number
       .split(".")
       .map((n: string) => `job_${n}`);
-    const jobDirPath = `CCP4_JOBS/${jobDirSegments.join("/")}`;
-    const fullPath = `${jobDirPath}/${relativePath}`;
+    return `CCP4_JOBS/${jobDirSegments.join("/")}/${relativePath}`;
+  }, [relativePath, props.job]);
+
+  // The directory the report lives in — the subtree a grant is scoped to,
+  // and the one a multi-page report's relative links stay within.
+  const reportDirectory = useMemo(
+    () => (fullPath ? fullPath.replace(/\/[^/]*$/, "") : null),
+    [fullPath]
+  );
+
+  const fileUrl = useMemo(() => {
+    if (!projectId || !fullPath) return null;
 
     if (fileType === "html") {
       // Path-based URL so relative links in multi-page HTML reports (e.g. ProSMART)
@@ -67,13 +77,36 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
     }
     // Query-parameter approach is fine for programmatic fetches (text, image).
     return `/api/proxy/ccp4i2/projects/${projectId}/project_file?path=${encodeURIComponent(fullPath)}`;
-  }, [projectId, relativePath, fileType, props.job]);
+  }, [projectId, fullPath, fileType]);
 
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback(async () => {
     if (!fileUrl) return;
 
     if (fileType === "html") {
-      // HTML reports open in a new browser tab
+      // HTML reports open in a new browser tab, which issues a plain browser
+      // navigation with no Authorization header — as do every image, stylesheet
+      // and relative fetch the page then makes for itself. Mint a read grant
+      // for the report's own directory and seed the tab with it; the proxy
+      // turns it into a cookie scoped to that directory, which the page's
+      // subsequent requests inherit.
+      try {
+        const response = await apiPost<{ data?: { grant?: string } }>(
+          `projects/${projectId}/file_grant`,
+          { path: reportDirectory }
+        );
+        const grant = response?.data?.grant;
+        if (grant) {
+          window.open(
+            `${fileUrl}?file_grant=${encodeURIComponent(grant)}`,
+            "_blank"
+          );
+          return;
+        }
+      } catch (error) {
+        console.error("Failed to mint file grant:", error);
+      }
+      // No grant: open anyway rather than doing nothing, so the failure shows
+      // up as the backend's 401 rather than a dead button.
       window.open(fileUrl, "_blank");
     } else if (fileType === "image") {
       // Use the already-fetched blob URL for the preview dialog too
@@ -92,7 +125,16 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
         language: languageFromFilename(filename),
       });
     }
-  }, [fileUrl, fileType, relativePath, label, blobUrl, setContentSpecification]);
+  }, [
+    fileUrl,
+    fileType,
+    relativePath,
+    label,
+    blobUrl,
+    projectId,
+    reportDirectory,
+    setContentSpecification,
+  ]);
 
   useEffect(() => {
     if (fileType !== "image" || !fileUrl) return;

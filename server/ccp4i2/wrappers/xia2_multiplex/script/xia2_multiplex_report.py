@@ -54,7 +54,7 @@ class xia2_multiplex_report(Report):
                 if "https://code.jquery.com/jquery-1.12.0.min.js" in l:
                     l = l.replace("https://code.jquery.com/jquery-1.12.0.min.js","/report_files/0.1.0/jquery.min.js")
                 if "https://cdn.plot.ly/plotly-latest.min.js" in l:
-                    l = l.replace("https://cdn.plot.ly/plotly-latest.min.js","/report_files/0.1.0/plotly.js")
+                    l = l.replace("https://cdn.plot.ly/plotly-latest.min.js","/report_files/0.1.0/plotly.min.js")
                 new_lines.append(l)
         with open(xia2MultiplexI2Html,"w") as new_html:
             new_html.writelines(new_lines)

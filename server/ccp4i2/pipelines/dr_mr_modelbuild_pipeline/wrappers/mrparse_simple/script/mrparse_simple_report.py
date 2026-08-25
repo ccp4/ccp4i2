@@ -1,6 +1,8 @@
 import os
+from pathlib import Path
 
 from ccp4i2.report import Report
+from ccp4i2.report.embedded_assets import localise_report_assets, vendored_asset
 
 
 class mrparse_simple_report(Report):
@@ -28,9 +30,26 @@ class mrparse_simple_report(Report):
 
         ResultsI2Folder = parent.addFold(label='MrParse Reports', initiallyOpen=True)
         if os.path.exists(mrparse_rep):
+            # MrParse writes its stylesheets and scripts as absolute paths into
+            # its own installation, which 404 when the report is served over
+            # HTTP and do not survive export or relocation. Copy them in beside
+            # the report and rewrite the references to be relative.
+            localised = localise_report_assets(
+                Path(mrparse_rep),
+                marker='mrparse/html',
+                subdirectory='mrparse_html',
+                # MrParse loads d3 from d3js.org. Serve our own copy: the
+                # report is an archival record that should still draw its
+                # feature viewer offline, and on a machine with no route to
+                # the internet.
+                extra_assets={
+                    'https://d3js.org/d3.v5.min.js': vendored_asset('d3.v5.min.js'),
+                },
+            )
+            report_name = localised.name if localised else 'mrparse.html'
             ResultsI2Folder.addFileLink(
                 label='Open MrParse Results',
-                relativePath='mrparse_0/mrparse.html',
+                relativePath=f'mrparse_0/{report_name}',
                 fileType='html',
             )
         else:

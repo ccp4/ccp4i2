@@ -46,6 +46,54 @@ function isAuthRequired(path: string): boolean {
 }
 
 /**
+ * File-grant plumbing.
+ *
+ * A grant is a signed, expiring, directory-scoped read capability minted by
+ * the backend (see ccp4i2_api.file_grants). It exists for requests the
+ * browser issues on its own behalf — the images, stylesheets and relative
+ * fetches of a task's HTML report opened in a tab — which can never carry an
+ * Authorization header.
+ *
+ * The initial navigation carries the grant as a query parameter; we hand it
+ * back as a cookie scoped to that report's directory, so the page's own
+ * subsequent requests carry it and nothing else on the origin does. The
+ * backend re-checks the grant's scope on every request, so the cookie's path
+ * is a convenience, not the security boundary.
+ */
+const GRANT_QUERY_PARAM = "file_grant";
+const GRANT_COOKIE = "ccp4i2_file_grant";
+const GRANT_HEADER = "X-CCP4I2-File-Grant";
+// Matches the backend's default grant lifetime; an expired cookie is
+// harmless (the backend rejects the grant and the tab must be reopened).
+const GRANT_COOKIE_MAX_AGE = 60 * 60;
+
+function extractGrant(req: NextRequest): string | null {
+  return (
+    req.nextUrl.searchParams.get(GRANT_QUERY_PARAM) ||
+    req.cookies.get(GRANT_COOKIE)?.value ||
+    null
+  );
+}
+
+/**
+ * Whether a grant may stand in for a token at this edge.
+ *
+ * The backend validates the grant properly — signature, expiry, and that the
+ * request path lies inside the subtree it was minted for. This check mirrors
+ * the two limits that are cheap to enforce here, so that presenting any
+ * grant-shaped string cannot widen what reaches the backend beyond read
+ * requests for the path-based file endpoint. It matters when the backend's
+ * own auth is misconfigured: without it, a deployment that requires proxy
+ * auth but has no auth middleware behind it would be fully exposed by an
+ * arbitrary ?file_grant= value.
+ */
+function grantMayAuthenticate(req: NextRequest, path: string): boolean {
+  if (req.method !== "GET" && req.method !== "HEAD") return false;
+  if (!path.includes("files_by_path/")) return false;
+  return Boolean(extractGrant(req));
+}
+
+/**
  * Extract authentication token from request.
  * Checks (in order): Authorization header, Azure Easy Auth header, query parameter.
  * Query parameter is needed for file downloads where anchor clicks don't send headers.
@@ -112,7 +160,7 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
   const path = params.path ? params.path.join("/") : "";
 
   // Check authentication if required
-  if (isAuthRequired(path)) {
+  if (isAuthRequired(path) && !grantMayAuthenticate(req, path)) {
     const token = extractAuthToken(req);
     if (!token) {
       const principalId = req.headers.get("X-MS-CLIENT-PRINCIPAL-ID");
@@ -169,6 +217,11 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     const token = extractAuthToken(req);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
+    }
+
+    const grant = extractGrant(req);
+    if (grant) {
+      headers.set(GRANT_HEADER, grant);
     }
 
     // Forward Azure Easy Auth headers if present
@@ -229,10 +282,24 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     // CORP header allows loading from pages with COEP: require-corp (Moorhen)
     responseHeaders.set('Cross-Origin-Resource-Policy', 'cross-origin');
 
-    return new NextResponse(response.body, {
+    const fileResponse = new NextResponse(response.body, {
       status: response.status,
       headers: responseHeaders,
     });
+    // The navigation that carried ?file_grant= is the report page itself:
+    // hand the grant back as a cookie scoped to its directory so the page's
+    // relative requests inherit it, and nothing above that directory does.
+    const seededGrant = req.nextUrl.searchParams.get(GRANT_QUERY_PARAM);
+    if (seededGrant && response.ok) {
+      fileResponse.cookies.set(GRANT_COOKIE, seededGrant, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: req.nextUrl.pathname.replace(/[^/]*$/, ""),
+        maxAge: GRANT_COOKIE_MAX_AGE,
+      });
+    }
+    return fileResponse;
   } catch (error: any) {
     // Only log unexpected errors, not connection-refused during startup
     if (error.code !== "ECONNREFUSED") {

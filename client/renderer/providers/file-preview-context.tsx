@@ -3,6 +3,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { doRetrieve, doDownload } from "../api";
@@ -20,7 +21,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { apiArrayBuffer, apiJson } from "../api-fetch";
+import { apiArrayBuffer, apiBlob, apiJson } from "../api-fetch";
 import { Editor, loader } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
 import { createContext } from "react";
@@ -145,6 +146,8 @@ const FilePreviewDialog: React.FC = () => {
   const [previewContent, setPreviewContent] = useState<string | null>("");
   const [mtzData, setMtzData] = useState<ArrayBuffer | null>(null);
   const [dictDigest, setDictDigest] = useState<DictDigest | null>(null);
+  // Object URL minted for image previews; revoked when the dialog content changes.
+  const objectUrlRef = useRef<string | null>(null);
   const { mode } = useTheme();
 
   const compactCifPreview = (parsed: Record<string, any>): string => {
@@ -188,9 +191,25 @@ const FilePreviewDialog: React.FC = () => {
           return;
         }
 
-        // Image files: use the URL directly as img src, no fetch needed
+        // Image files: blob/data URLs are already local, but API URLs must be
+        // fetched through apiBlob so the Authorization header is sent — a bare
+        // <img src> issues an unauthenticated request and renders as broken.
         if (contentSpecification.language === "image") {
-          setPreviewContent(contentSpecification.url);
+          const url = contentSpecification.url;
+          if (url.startsWith("blob:") || url.startsWith("data:")) {
+            setPreviewContent(url);
+            return;
+          }
+          setPreviewContent(null);
+          try {
+            const blob = await apiBlob(url);
+            const objectUrl = URL.createObjectURL(blob);
+            objectUrlRef.current = objectUrl;
+            setPreviewContent(objectUrl);
+          } catch (error) {
+            console.error("Failed to fetch image:", error);
+            setPreviewContent(null);
+          }
           return;
         }
 
@@ -264,11 +283,30 @@ const FilePreviewDialog: React.FC = () => {
       };
       asyncFunc();
     }
+    return () => {
+      if (objectUrlRef.current) {
+        URL.revokeObjectURL(objectUrlRef.current);
+        objectUrlRef.current = null;
+      }
+    };
   }, [contentSpecification]);
 
   const handleDownload = () => {
-    if (!contentSpecification?.url) return;
-    doDownload(contentSpecification.url, contentSpecification.title || "download");
+    const url = contentSpecification?.url;
+    if (!url) return;
+    const name = contentSpecification.title || "download";
+    if (url.startsWith("blob:") || url.startsWith("data:")) {
+      // Already a local URL — doDownload's access_token query parameter would
+      // corrupt it, so anchor-click it directly.
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
+    doDownload(url, name);
   };
 
   const monacoLanguage = useMemo(() => {
