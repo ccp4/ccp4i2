@@ -79,6 +79,27 @@ def can_run_local(task_name):
     return ccp4_available() or not task_requires_ccp4(task_name)
 
 
+def program_checks_are_authoritative():
+    """True when "binary not found here" really means the job will fail.
+
+    A pre-run program-availability check is only trustworthy when this process
+    is the one that will spawn the job, and it has a CCP4 installation to look
+    in. Three deployments, three answers:
+
+    * desktop / Electron / i2run — local mode with CCP4 mounted. The check is
+      authoritative, so a missing binary should *block* submission: the job is
+      certain to fail, and failing now with "shelxe was not found; set its
+      location in Preferences" beats failing later with a silent empty result.
+    * Azure mode — the job is queued for a worker whose filesystem we cannot
+      see. A "not found" here says nothing about the worker.
+    * the slim CCP4-free API server — there is nothing to look in at all.
+
+    In the last two the absence is our ignorance, not a defect in the user's
+    setup, so the check stays advisory and must not block Confirm.
+    """
+    return get_execution_mode() == "local" and ccp4_available()
+
+
 def _lazy_import_azure_servicebus():
     """
     Lazy import Azure Service Bus dependencies.

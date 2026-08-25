@@ -1551,13 +1551,16 @@ def supports_running_report(task_name: str):
 
 @cache
 def task_commands() -> dict[str, list[str]]:
-    """Map each distinct plugin ``TASKCOMMAND`` to the tasks that invoke it.
+    """Map each distinct plugin executable to the tasks that invoke it.
+
+    Covers both ``TASKCOMMAND`` (the program the wrapper launches) and
+    ``AUXILIARY_PROGRAMS`` (further binaries that program runs internally).
 
     This is the honest, registry-derived list of the external executables the
     task suite actually runs — the correct basis for program discovery (the
     executable name is whatever the plugin declares, e.g. ``cbuccaneer``, not
     the task name ``buccaneer``). Tasks whose plugin fails to import, or that
-    declare no ``TASKCOMMAND`` (pure-Python pipelines, importers), are skipped.
+    name no executable at all (pure-Python pipelines, importers), are skipped.
 
     Returns ``{taskcommand: [task_name, ...]}`` sorted for stable output.
     Cached — the registry is static for a process.
@@ -1568,8 +1571,18 @@ def task_commands() -> dict[str, list[str]]:
             cls = get_plugin_class(task_name)
         except Exception:
             continue
+        names = []
         taskcommand = getattr(cls, "TASKCOMMAND", None)
-        if not taskcommand:
-            continue
-        commands.setdefault(str(taskcommand), []).append(task_name)
+        if taskcommand:
+            names.append(str(taskcommand))
+        # Binaries the task drives from *inside* TASKCOMMAND (arcimboldo runs
+        # phaser and shelxe itself). They are just as relocatable, so they
+        # belong on the Preferences -> Program locations page too.
+        for aux in getattr(cls, "AUXILIARY_PROGRAMS", ()) or ():
+            if aux and str(aux) not in names:
+                names.append(str(aux))
+        for name in names:
+            tasks = commands.setdefault(name, [])
+            if task_name not in tasks:
+                tasks.append(task_name)
     return {cmd: sorted(tasks) for cmd, tasks in sorted(commands.items())}

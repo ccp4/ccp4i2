@@ -11,6 +11,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 import logging
 import os
+import re
 import shutil
 
 from ccp4i2.core.base_object.base_classes import CData, CContainer
@@ -19,6 +20,10 @@ from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
 from ccp4i2.core.task_manager.params_xml_handler import ParamsXmlHandler
 from ccp4i2.core.tasks import get_plugin_class, get_import_error, locate_def_xml
 from ccp4i2.core.base_object.class_metadata import cdata_class
+
+# Many CCP4 programs colourise their log output; strip SGR escapes before
+# matching LOG_FAILURES patterns so authors write plain text, not ANSI.
+_ANSI_RE = re.compile(r'\x1b\[[0-9;]*m')
 
 # Module-level logger
 logger = logging.getLogger(__name__)
@@ -106,11 +111,35 @@ class CPluginScript(CData):
     Subclasses should define:
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
+        AUXILIARY_PROGRAMS: Other executables the task shells out to
     """
 
     # Class attributes to be defined in subclasses
     TASKNAME = None
     TASKCOMMAND = None
+    # Programs the task needs beyond TASKCOMMAND -- e.g. arcimboldo drives
+    # phaser and shelxe from inside ARCIMBOLDO_LITE. Checked by the pre-run
+    # program-availability check so a missing one is flagged before the job
+    # is launched rather than surfacing as an obscure runtime failure.
+    AUXILIARY_PROGRAMS = ()
+
+    # Declarative log scanning -- mechanism M2 of
+    # docs/error-handling-remediation.md. A great many CCP4 programs exit 0
+    # while writing a fatal message to their log, so a clean exit code is not
+    # evidence of success. Rather than have each author write a log parser,
+    # declare the patterns as class data and let postProcessCheck apply them:
+    #
+    #     LOG_FAILURES = [
+    #         (r'\*\*\* Fatal error', 302, None),
+    #         (r'no dictionary for ligand', 301, 'Run Make Ligand first'),
+    #     ]
+    #
+    # Each entry is (pattern, code, details). ``details=None`` means "use the
+    # text the pattern matched" -- group(1) if the pattern has a group, else the
+    # whole line. Patterns are matched per line, case-sensitively, against the
+    # log with ANSI colour codes stripped. Any match fails the job.
+    LOG_FAILURES = ()
+
     ASYNCHRONOUS = False  # Set to True for async execution
 
     # Status codes
@@ -1076,40 +1105,72 @@ class CPluginScript(CData):
         return error
 
     def _checkProgramAvailable(self, error: CErrorReport) -> None:
-        """Advisory pre-flight check that the task's program can be found.
+        """Pre-flight check that the task's programs can be found.
 
-        Resolves TASKCOMMAND against program-location preferences + PATH (the
-        same resolution used at execution). If it cannot be found, append a
-        WARNING (not a blocking error): the run environment (worker) may differ
-        from where validation runs, so a false negative must not block Confirm —
-        but a heads-up at job-config time, pointing at Preferences, is far
-        friendlier than a cryptic runtime failure.
+        Resolves TASKCOMMAND -- and any AUXILIARY_PROGRAMS the task shells out
+        to internally -- against program-location preferences + PATH (the same
+        resolution used at execution).
 
-        Only checks the leaf program a plain wrapper declares. Pipelines that
-        drive several programs internally (e.g. crank2) don't set a single
-        TASKCOMMAND and are skipped here.
+        Severity depends on two things. First, whether this process is the one
+        that will run the job (see program_checks_are_authoritative): where jobs
+        execute locally against a real CCP4 installation -- desktop/Electron,
+        i2run -- a missing binary is a certain failure, so it blocks submission
+        with an actionable message; where the job is queued for a remote worker,
+        or this is the slim CCP4-free API server, "not found" reflects what
+        *this* host can see and nothing about the executing host, so it stays
+        advisory. Second, whether the program is one we can be sure the task
+        launches -- see the comment on `required` below.
+
+        AUXILIARY_PROGRAMS exists because TASKCOMMAND only names the leaf
+        program a plain wrapper launches. Tasks that drive further binaries
+        from inside that program (arcimboldo -> phaser, shelxe) would otherwise
+        pass this check and then fail at runtime. Pipelines that declare no
+        single TASKCOMMAND (e.g. crank2) can still list their binaries here.
         """
+        # AUXILIARY_PROGRAMS is opt-in: declaring one asserts the task cannot
+        # work without it, so it may block. TASKCOMMAND may only block for a
+        # plugin that leaves process() to the base class and therefore really
+        # does launch it. A plugin overriding process() owns its own execution
+        # and may never spawn TASKCOMMAND at all -- crank2 declares
+        # 'crank2.py' but runs its pipeline in-process, and buster declares
+        # 'refine' but sources $BUSTERDIR/setup.sh to find it -- so for those
+        # the check stays advisory whatever the deployment.
+        required = [str(a) for a in (getattr(self, 'AUXILIARY_PROGRAMS', ()) or ()) if a]
+        advisory = []
         taskcommand = getattr(self, 'TASKCOMMAND', None)
-        if not taskcommand:
+        if taskcommand and str(taskcommand) not in required:
+            launches_taskcommand = type(self).process is CPluginScript.process
+            (required if launches_taskcommand else advisory).append(str(taskcommand))
+        if not required and not advisory:
             return
         try:
             from ccp4i2.config.program_discovery import resolve_program
-            if resolve_program(taskcommand) is not None:
-                return
+            missing_required = [n for n in required if resolve_program(n) is None]
+            missing_advisory = [n for n in advisory if resolve_program(n) is None]
         except Exception:
             return  # never let the check itself break validation
-        error.append(
-            self.__class__,
-            299,
-            details=(
-                f"Program '{taskcommand}' was not found on PATH or in your "
-                f"program-location preferences. If it is installed in a "
-                f"non-standard location, set it in Preferences -> Program "
-                f"locations before running."
-            ),
-            name=f'{getattr(self, "TASKNAME", self.__class__.__name__)}',
-            severity=SEVERITY_WARNING,
-        )
+        if not missing_required and not missing_advisory:
+            return
+        try:
+            from ccp4i2.lib.utils.jobs.context_run import (
+                program_checks_are_authoritative)
+            authoritative = program_checks_are_authoritative()
+        except Exception:
+            authoritative = False  # if we cannot tell, do not block
+        for name in missing_required + missing_advisory:
+            blocking = authoritative and name in missing_required
+            error.append(
+                self.__class__,
+                299,
+                details=(
+                    f"Program '{name}' was not found on PATH or in your "
+                    f"program-location preferences. If it is installed in a "
+                    f"non-standard location, set it in Preferences -> Program "
+                    f"locations before running."
+                ),
+                name=f'{getattr(self, "TASKNAME", self.__class__.__name__)}',
+                severity=SEVERITY_ERROR if blocking else SEVERITY_WARNING,
+            )
 
     def _checkSameCrystalAs(self, error: CErrorReport) -> None:
         """Enforce sameCrystalAs constraints declared in def.xml.
@@ -2231,6 +2292,28 @@ class CPluginScript(CData):
                 )
                 status = self.FAILED
 
+        # A zero exit code is not evidence of success for the many CCP4
+        # programs that report fatal errors to their log and exit 0 anyway
+        # (M2). Only worth scanning when nothing else has failed the job.
+        if status == self.SUCCEEDED and getattr(self, 'LOG_FAILURES', ()):
+            failures = self.scanLogForFailures()
+            if failures:
+                for failure in failures:
+                    self.errorReport.append(
+                        self.__class__.__name__,
+                        failure['code'],
+                        details=failure['details'],
+                        name='%s.logFailure' % (getattr(self, 'TASKNAME', '') or
+                                                self.__class__.__name__),
+                        severity=SEVERITY_ERROR,
+                    )
+                try:
+                    self.reportLogFailures(failures)
+                except Exception as e:  # surfacing must never mask the failure
+                    logger.warning(f"[postProcessCheck] reportLogFailures failed: {e}")
+                status = self.FAILED
+                exit_status = 1
+
         # Always return tuple for consistency
         if exit_code is None:
             exit_code = 0
@@ -2238,6 +2321,67 @@ class CPluginScript(CData):
             exit_status = 0 if status == self.SUCCEEDED else 1
 
         return status, exit_status, exit_code
+
+    def scanLogForFailures(self):
+        """Apply LOG_FAILURES to the job log; return the matches.
+
+        Returns a list of ``{'code', 'details', 'line'}`` dicts, de-duplicated
+        on details so a message repeated down the log is reported once. Never
+        raises: an unreadable log or a bad pattern yields no matches rather
+        than replacing the program's failure with our own.
+        """
+        patterns = getattr(self, 'LOG_FAILURES', ()) or ()
+        if not patterns:
+            return []
+        try:
+            logFile = self.makeFileName('LOG')
+        except Exception:
+            return []
+        if not logFile or not os.path.exists(logFile):
+            return []
+
+        compiled = []
+        for entry in patterns:
+            try:
+                pattern, code, details = entry
+                compiled.append((re.compile(pattern), code, details))
+            except (TypeError, ValueError, re.error):
+                continue  # a malformed declaration must not break the run
+        if not compiled:
+            return []
+
+        failures = []
+        seen = set()
+        try:
+            with open(logFile, 'r', encoding='utf-8', errors='replace') as log:
+                for number, raw in enumerate(log, start=1):
+                    line = _ANSI_RE.sub('', raw).rstrip()
+                    if not line:
+                        continue
+                    for regex, code, details in compiled:
+                        match = regex.search(line)
+                        if not match:
+                            continue
+                        if details is None:
+                            text = (match.group(1) if match.groups() else line).strip()
+                        else:
+                            text = details
+                        if not text or text in seen:
+                            continue
+                        seen.add(text)
+                        failures.append({'code': code, 'details': text, 'line': number})
+        except OSError:
+            return failures
+        return failures
+
+    def reportLogFailures(self, failures):
+        """Hook: surface LOG_FAILURES matches in the task's own report XML.
+
+        The base class has already recorded them in ``errorReport`` and failed
+        the job; override this only when the task's report class needs them in
+        PROGRAMXML to render something better than a blank panel.
+        """
+        return None
 
     def processOutputFiles(self) -> CErrorReport:
         """

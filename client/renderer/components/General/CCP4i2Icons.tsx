@@ -46,7 +46,9 @@ export const CCP4Icon = createSvgIcon(
           />
           <path d="m25.56 575.35v-10.477h21.24l-10.44 10.53c-5.7006 5.7497-11.265 11.597-10.8 10.62 5e-3 -0.0114 0-4.9482 0-10.673z" />
         </g>
-        <g fill="none" stroke="#000" strokeWidth=".72">
+        {/* currentColor, not #000: the icon sits on a dark surface in dark
+            mode and on a coloured tile on the setup page. */}
+        <g fill="none" stroke="currentColor" strokeWidth=".72">
           <path d="m2.8804 564.51 22.32-22.32 22.32 22.32-22.32 22.32z" />
           <path d="m25.2 542.19v44.64" />
           <path d="m2.8804 564.51h44.64" />

@@ -8,7 +8,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { ErrorOutline, Science } from "@mui/icons-material";
+import { ErrorOutline } from "@mui/icons-material";
+import { CCP4Icon } from "./General/CCP4i2Icons";
 import { useServerReady } from "@/hooks/use-server-ready";
 
 /**
@@ -42,7 +43,7 @@ export const LaunchGate: React.FC<{ children: React.ReactNode }> = ({
         <>
           <Box sx={{ position: "relative", display: "grid", placeItems: "center" }}>
             <CircularProgress size={72} thickness={2.5} />
-            <Science
+            <CCP4Icon
               sx={{
                 position: "absolute",
                 fontSize: 32,

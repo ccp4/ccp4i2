@@ -24,6 +24,11 @@ class arcimboldo_report ( Report ) :
 			self.errorReport().report()
 			return
 
+		# ARCIMBOLDO exits 0 even when it aborts, so the wrapper records any
+		# FATAL lines it found in the log into PROGRAMXML. Show them first --
+		# without this the report for a failed run is an empty "job finished".
+		self.fatalErrorReport()
+
 		fileXml = self.xmlnode.findall('pathXml')[0].text
 
 		if os.path.exists(fileXml):
@@ -45,6 +50,35 @@ class arcimboldo_report ( Report ) :
 			self.borReport(jobInfo)
 		else:
 			self.append('<p><b>Starting job. Waiting for results.</b></p>')
+
+	def fatalErrorReport(self, parent=None):
+		"""Render the FATAL messages ARCIMBOLDO wrote to its log, if any."""
+		if parent is None:
+			parent = self
+
+		fatalErrors = [
+			node.text for node in self.xmlnode.findall('fatalError') if node.text
+		]
+		if not fatalErrors:
+			return
+
+		div = parent.addDiv(style='clear:both;')
+		html = ('<div style="border:1px solid #d32f2f; border-left:6px solid #d32f2f; '
+				'background:#fdecea; padding:0.6em 1em; margin:0.5em 0;">'
+				'<p style="color:#d32f2f; margin:0 0 0.4em 0;"><b>ARCIMBOLDO aborted</b></p>')
+		for message in fatalErrors:
+			html += '<p style="margin:0.2em 0;">{0}</p>'.format(
+				self.escapeHtml(message))
+		html += ('<p style="margin:0.6em 0 0 0;">See the log file for full details. '
+				 'If a program could not be found, set its location in '
+				 'Preferences &#8594; Program locations.</p></div>')
+		div.append(html)
+
+	@staticmethod
+	def escapeHtml(text):
+		return (str(text).replace('&', '&amp;')
+						 .replace('<', '&lt;')
+						 .replace('>', '&gt;'))
 
 	def defaultReport(self, status, parent=None):
 		if parent is None:

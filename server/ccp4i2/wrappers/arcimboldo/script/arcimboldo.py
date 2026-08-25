@@ -7,14 +7,39 @@ from lxml import etree
 
 from ccp4i2.core import CCP4Modules, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.config.program_discovery import resolve_program
 
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
+
 
 class arcimboldo(CPluginScript):
     TASKNAME = 'arcimboldo'
     TASKCOMMAND = 'ARCIMBOLDO_LITE'
+    # ARCIMBOLDO_LITE/BORGES/SHREDDER are drivers: the real work is done by
+    # phaser and shelxe, whose paths we hand it in setup.bor. shelxe in
+    # particular is licence-restricted and is NOT shipped with CCP4, so a
+    # missing shelxe is the single most common way this task fails.
+    AUXILIARY_PROGRAMS = ( 'phaser', 'shelxe' )
+    # ARCIMBOLDO reports unrecoverable problems by printing a red FATAL line
+    # and calling sys.exit(1) -- but ARCIMBOLDO_LITE.main() wraps the whole run
+    # in `except SystemExit: pass`, so the process still exits 0 with an empty
+    # stderr. The log is the only signal that the run died, hence LOG_FAILURES.
+    LOG_FAILURES = (
+        (r'^\s*FATAL(?:\s+ERROR)?\b[:\s]*(.*)$', 301, None),
+    )
     WHATNEXT = [ 'prosmart_refmac' ]
     ASYNCHRONOUS = True
+
+    @staticmethod
+    def helperProgramPath(name):
+        """Absolute path for a helper binary, honouring program-location prefs.
+
+        Falls back to the historical $CCP4/bin/<name> guess so the value written
+        into setup.bor is unchanged when nothing is configured -- but a user who
+        has pointed SHELXDIR (or exePaths) at their own shelxe now gets it used,
+        which the hardcoded path never did.
+        """
+        return resolve_program(name) or os.path.join(ccp4_home, 'bin', name)
 
     def genHKL(self, hklin):
         arglist = ['-f', hklin.__str__()]
@@ -130,8 +155,8 @@ class arcimboldo(CPluginScript):
             f_bor.write('i_label = %s\n' % (columns[0]))
             f_bor.write('sigi_label = %s\n' % (columns[1]))
         f_bor.write('[LOCAL]\n')
-        f_bor.write('path_local_phaser = %s/bin/phaser\n' % (ccp4_home))
-        f_bor.write('path_local_shelxe = %s/bin/shelxe\n' % (ccp4_home))
+        f_bor.write('path_local_phaser = %s\n' % (self.helperProgramPath('phaser')))
+        f_bor.write('path_local_shelxe = %s\n' % (self.helperProgramPath('shelxe')))
         f_bor.close()
 
     def generateProgram(self):
@@ -182,6 +207,22 @@ class arcimboldo(CPluginScript):
         if self.container.developerOptions.DEVELOPER_MODE != 'BOR':
             self.appendCommandLine([os.path.join(self.getWorkDirectory(),'setup.bor')])
         return CPluginScript.SUCCEEDED
+
+    def reportLogFailures(self, failures):
+        """Record the FATAL messages in PROGRAMXML so the report can show them.
+
+        The base class has already failed the job and filed the error report;
+        this puts the same text where arcimboldo_report can read it, so a failed
+        run gets an explanation instead of an empty "the job is finished".
+        """
+        if getattr(self, 'programXml', None) is None:
+            self.programXml = etree.Element('arcimboldo')
+        for failure in failures:
+            element = etree.SubElement(self.programXml, 'fatalError')
+            element.text = failure['details']
+        with open(self.makeFileName('PROGRAMXML'), 'w+') as xml:
+            xml.write(etree.tostring(self.programXml, encoding='unicode',
+                                     pretty_print=True))
 
     def processOutputFiles(self):
         outputData = self.container.outputData
