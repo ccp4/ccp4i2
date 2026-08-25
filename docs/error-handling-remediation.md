@@ -471,6 +471,48 @@ hung program hangs the worker indefinitely with no diagnostic. A generous defaul
 (configurable, per-task overridable) raising a clear "timed out after N minutes"
 would close that.
 
+## C8 — A failure before the job exists has nowhere to report
+
+- [ ] A task that cannot be configured produces a job record and a `diagnostic.xml`
+- [ ] `CPluginScript.__init__` treats a registered task with no `TASKNAME` as an error
+- [ ] `i2run` does not exit through argparse for a task-level configuration failure
+- [ ] G1 catches the class at CI time
+
+**Where:** `core/CCP4PluginScript.py:246`, `cli/i2run/CCP4i2RunnerBase.py:133`,
+`core/tasks.py`
+
+C1 through C7 are about failures *during* a job. Every one of them assumes a job
+directory exists to write `diagnostic.xml` into. Nothing covers the failures that
+happen before that point — the task will not load, its parameters will not parse,
+validation refuses — and they have no reporting path at all.
+
+Measured on the [pre-C1 baseline](#the-pre-c1-baseline), this is not
+hypothetical:
+
+- **`nucleofind`** declares `TASKCOMMAND` but no `TASKNAME`.
+  `CPluginScript.__init__` loads the def.xml only `if self.TASKNAME`, so it
+  silently loaded nothing; the container came up empty; `i2run` built a parser
+  with no task arguments; argparse rejected `--FPHIIN` and called
+  `sys.exit(2)`. The project directory was created and left **empty** — no job,
+  no diagnostic, no log. The task has never once run, in any baseline on disk.
+- **`SIMBAD`** and **`pisa`** are registered and their plugin classes do not
+  load at all (`get_plugin_class` returns `None`).
+
+Three registered tasks that cannot run, and the only trace of any of them is an
+argparse usage message on stderr in a test log.
+
+The shape of the defect is the one this document keeps finding: a guard that
+treats a missing precondition as *nothing to do*. `if self.TASKNAME:` is the
+same construction as the weakly-held-parent branch in
+[A second axis](#a-second-axis--nothing-to-discard-in-the-first-place). A
+registered task without a `TASKNAME` is not a task that needs no def.xml — it is
+a task that is broken, and saying so at import time costs one line.
+
+For the desktop the consequence is worse than for `i2run`: a task whose
+parameters never loaded opens as an empty form, with nothing anywhere to say
+why. Whatever C6 settles for the Diagnostics panel needs a story for jobs that
+were never created.
+
 ---
 
 # Part 2 — Mechanisms
@@ -1344,6 +1386,7 @@ pattern. Two smaller amendments:
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
 | 2026-08-25 | Pre-C1 i2run baseline captured and **every one of its 10 failures diagnosed** — see [The pre-C1 baseline](#the-pre-c1-baseline). 4 environment (no `shelxc` in `ccp4-20260702`), 2 never-worked (`nucleofind` has no `TASKNAME`, so its def.xml is silently never loaded), 3 real regressions both dated 2026-06-15 (gemmi-native ports of mmdb2 CIF reading and of freerflag), 1 test asserting the wrong thing. Three of the ten are specimens of this document's thesis. |
+| 2026-08-25 | **C8 added** — failures before a job exists have nowhere to report. C1–C7 all assume a job directory to write `diagnostic.xml` into; task-load, parameter-parse and validation failures have no path at all. Three live instances: `nucleofind` (no `TASKNAME`, so its def.xml was silently never loaded — has never run in any baseline), `SIMBAD` and `pisa` (plugin classes do not load). |
 | 2026-08-25 | **C1 confirmed.** Re-run of the full i2run suite with the six fixes in place is byte-for-byte the pre-C1 result: 10 failed, 150 passed, 19 skipped, `NEWLY FAILING: 0`, `NEWLY PASSING: 0`. Unit (860) and api/unit (79) green under `ccp4-python` and under the CCP4-free venv. No xfail markers were needed at any point — the transition machinery in [The Phase 1 transition](#the-phase-1-transition) went unused because every revealed defect was cheap to fix. `post-C1-fixed` is the comparator from here. |
 | 2026-08-25 | C1 triage complete: **6 newly-failing tests, 5 defects, all fixed** — `float(CInt)`, a missing atom-count KPI, an lxml keyword on the stdlib, an mmdb2 attribute, and a wrong variable in a copy loop. All six ran on the happy path on every execution for months. Added [How this could have been found sooner](#how-this-could-have-been-found-sooner): recording and failing are separable, and only the recording half is free. |
 | 2026-08-25 | **C1 landed** (`c1-process-output-files`). One post-program path for both execution modes; `absorbHookStatus()` reads both return conventions; an exception in `processOutputFiles()` fails the job; an unexplained failure gets code 992; `UNSATISFACTORY` mapped so it cannot strand a job in *Running*. 23 unit tests, 15 of which fail against the code as it was. Pre-C1 i2run baseline captured first. Triage of the diff outstanding. |
