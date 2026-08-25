@@ -111,7 +111,7 @@ Measured at `59579c932` (2026-08-25) unless noted.
 | Tasks declaring `AUXILIARY_PROGRAMS` | 0 of 173 | 1 (`arcimboldo`) | rising |
 | i2run negative-path tests | 0 | 0 | ≥ 12 |
 | unit negative-path tests (hand-counted) | 0 | 28 | rising |
-| `C1:`/`C2:` xfail markers outstanding | 0 | 0 | 0 (rises during Phase 1, then falls) |
+| `C1:`/`C2:` xfail markers outstanding | 0 | **0** — none needed; every C1 red was fixed outright | 0 (rises during Phase 1, then falls) |
 | Pre-existing `@pytest.mark.skip` in i2run | 18 | 18 | falling — see [transition](#the-phase-1-transition) |
 
 The two counts that moved on their own are worth reading correctly. `print()`
@@ -133,10 +133,15 @@ producing.
 
 - [x] Honour the int return in `process()`
 - [x] Delete the duplicate post-process path
-- [ ] Triage the i2run failures this exposes
+- [x] Triage the i2run failures this exposes
 
-**Landed 2026-08-25**, on branch `c1-process-output-files`; the triage of the
-i2run diff is what remains. What the change does, beyond the two boxes above,
+**Landed and confirmed 2026-08-25**, on branch `c1-process-output-files`. C1
+exposed six defects, all five distinct causes fixed on the same branch; the
+confirmation run is **identical to the pre-C1 baseline** — 10 failed, 150
+passed, 19 skipped, no test changed outcome in either direction
+(`server/.test-baselines/post-C1-fixed/`, diffed with
+`scripts/diff_i2run_baselines.py`). The ten remaining failures are the
+diagnosed pre-existing set, none of them C1's. What the change does, beyond the two boxes above,
 is set out under [What C1 turned out to
 include](#what-c1-turned-out-to-include).
 
@@ -1339,6 +1344,7 @@ pattern. Two smaller amendments:
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
 | 2026-08-25 | Pre-C1 i2run baseline captured and **every one of its 10 failures diagnosed** — see [The pre-C1 baseline](#the-pre-c1-baseline). 4 environment (no `shelxc` in `ccp4-20260702`), 2 never-worked (`nucleofind` has no `TASKNAME`, so its def.xml is silently never loaded), 3 real regressions both dated 2026-06-15 (gemmi-native ports of mmdb2 CIF reading and of freerflag), 1 test asserting the wrong thing. Three of the ten are specimens of this document's thesis. |
+| 2026-08-25 | **C1 confirmed.** Re-run of the full i2run suite with the six fixes in place is byte-for-byte the pre-C1 result: 10 failed, 150 passed, 19 skipped, `NEWLY FAILING: 0`, `NEWLY PASSING: 0`. Unit (860) and api/unit (79) green under `ccp4-python` and under the CCP4-free venv. No xfail markers were needed at any point — the transition machinery in [The Phase 1 transition](#the-phase-1-transition) went unused because every revealed defect was cheap to fix. `post-C1-fixed` is the comparator from here. |
 | 2026-08-25 | C1 triage complete: **6 newly-failing tests, 5 defects, all fixed** — `float(CInt)`, a missing atom-count KPI, an lxml keyword on the stdlib, an mmdb2 attribute, and a wrong variable in a copy loop. All six ran on the happy path on every execution for months. Added [How this could have been found sooner](#how-this-could-have-been-found-sooner): recording and failing are separable, and only the recording half is free. |
 | 2026-08-25 | **C1 landed** (`c1-process-output-files`). One post-program path for both execution modes; `absorbHookStatus()` reads both return conventions; an exception in `processOutputFiles()` fails the job; an unexplained failure gets code 992; `UNSATISFACTORY` mapped so it cannot strand a job in *Running*. 23 unit tests, 15 of which fail against the code as it was. Pre-C1 i2run baseline captured first. Triage of the diff outstanding. |
 | 2026-08-25 | Re-measured at `59579c932` (3.1.0a28). Counts essentially flat; `processOutputFiles` returning `FAILED` **rose** 33 → 35, which is the argument for doing C1 next in one line. |
