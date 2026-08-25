@@ -381,7 +381,7 @@ class xia2_dials(PhilPluginScript):
                 destLogPath = os.path.normpath(
                     os.path.join(self.getWorkDirectory(), os.path.split(logFilePath)[1])
                 )
-                shutil.copyfile(logFile, destLogPath)
+                shutil.copyfile(logFilePath, destLogPath)
 
         self._collect_pickles_and_jsons()
 
