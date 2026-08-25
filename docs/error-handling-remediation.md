@@ -131,9 +131,14 @@ producing.
 
 ## C1 — `processOutputFiles()` returning `FAILED` does not fail the job
 
-- [ ] Honour the int return in `process()`
-- [ ] Delete the duplicate post-process path
+- [x] Honour the int return in `process()`
+- [x] Delete the duplicate post-process path
 - [ ] Triage the i2run failures this exposes
+
+**Landed 2026-08-25**, on branch `c1-process-output-files`; the triage of the
+i2run diff is what remains. What the change does, beyond the two boxes above,
+is set out under [What C1 turned out to
+include](#what-c1-turned-out-to-include).
 
 **Where:** `server/ccp4i2/core/CCP4PluginScript.py:853`,
 `server/ccp4i2/core/base_object/error_reporting.py:71`
@@ -176,6 +181,43 @@ one and delete the other rather than repairing both.
 
 **Expect this to turn currently-green i2run tests red.** That is the point.
 Capture the list — it is the work queue for Part 3.
+
+<a id="what-c1-turned-out-to-include"></a>
+### What C1 turned out to include
+
+Four decisions were forced by the fix, and are recorded here because each one
+changes behaviour beyond "the int is now read".
+
+**One post-program path, not two.** `process()` now calls `postProcess()` once
+its subprocess returns, and `postProcess()` does the whole of what happens after
+a program exits — check, process outputs, glean, report status — for the
+synchronous and asynchronous paths alike. Which of two near-identical code paths
+a wrapper met no longer decides whether its verdict counts.
+
+**The int is authoritative; a `CErrorReport` is read at ERROR.**
+`absorbHookStatus()` takes an int as the wrapper's stated verdict and does not
+consult severities — `appendErrorReport` defaults most messages to WARNING (C2),
+so consulting them would discard the verdict again by a different route. A
+`CErrorReport` is merged into the plugin's report and fails the job only at
+severity ERROR or above, which is the C5 rule applied at this one call site: a
+hook returning warnings is reporting, not refusing. Returning nothing still
+means success.
+
+**An exception in `processOutputFiles()` now fails the job**, with the traceback
+recorded (code 993), as it already did for the three hooks before it. This
+widens the red list beyond wrappers' deliberate checks, so triage should expect
+two kinds of red and can tell them apart by the code.
+
+**A failure with no message gets one** (code 992): *"processOutputFiles()
+reported failure without giving a reason"*. 128 sites return `FAILED` with no
+report nearby. It is a poor diagnostic and a good deal better than a job marked
+*Finished* with no outputs and an empty panel — and `grep 992` finds the sites
+worth fixing first.
+
+`UNSATISFACTORY` is reachable for the first time. `track_job` and `run_subjob`
+mapped only SUCCEEDED and FAILED, so such a job would have been left *Running*
+for ever; both now map it to `Job.Status.UNSATISFACTORY`, which
+`updateJobStatus` already did.
 
 ## C2 — Error severity is decided by searching the message for the word "exception"
 
@@ -966,6 +1008,7 @@ pattern. Two smaller amendments:
 | 2026-08-24 | Added [Bibliography](#bibliography): a live instance of the silent-failure class, found by PR #276's new CI job and closed by #277. 52 report classes rendered an empty bibliography; all 52 had one cause and went to zero in a single change. Kept as a worked example. |
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
+| 2026-08-25 | **C1 landed** (`c1-process-output-files`). One post-program path for both execution modes; `absorbHookStatus()` reads both return conventions; an exception in `processOutputFiles()` fails the job; an unexplained failure gets code 992; `UNSATISFACTORY` mapped so it cannot strand a job in *Running*. 23 unit tests, 15 of which fail against the code as it was. Pre-C1 i2run baseline captured first. Triage of the diff outstanding. |
 | 2026-08-25 | Re-measured at `59579c932` (3.1.0a28). Counts essentially flat; `processOutputFiles` returning `FAILED` **rose** 33 → 35, which is the argument for doing C1 next in one line. |
 | 2026-08-25 | Added [A second axis](#a-second-axis--nothing-to-discard-in-the-first-place): the core silently rewriting what a wrapper was told, from the `setFullPath()` cross-project path bug (`043774c4c`) — no exception, no report, corruption written into `input_params.xml`, surfacing later as a true message about an invented path, attributed to the wrong layer. Includes the weakly-held-parent branch that silently does not run. No scan metric can see this class; it is a guardrails (G2) problem, and it raises C7's provenance work. |
 | 2026-08-25 | **M5 amended** after `363d60e1c`. Keeping a cached rendering when regeneration fails is right, and the report cache is deliberately not version-stamped for the same reason. But the failure now reaches only a `logger.warning`, and the viewer sees an older rendering with nothing saying so — one silent failure traded for another. M5 gains: a preserved rendering must announce itself and say why regeneration fails. |
