@@ -953,9 +953,12 @@ class AsyncDatabaseHandler:
                 logger.warning(f"Job {job_uuid}: plugin.get_status() returned None, assuming SUCCEEDED")
                 plugin_status = CPluginScript.SUCCEEDED
 
+            # UNSATISFACTORY is reachable now that processOutputFiles()'s return
+            # is honoured (C1); without it here the job would be left RUNNING.
             status_map = {
                 CPluginScript.SUCCEEDED: models.Job.Status.FINISHED,
                 CPluginScript.FAILED: models.Job.Status.FAILED,
+                CPluginScript.UNSATISFACTORY: models.Job.Status.UNSATISFACTORY,
             }
 
             if plugin_status in status_map:
@@ -1058,6 +1061,7 @@ class AsyncDatabaseHandler:
                 status_map = {
                     CPluginScript.SUCCEEDED: models.Job.Status.FINISHED,
                     CPluginScript.FAILED: models.Job.Status.FAILED,
+                    CPluginScript.UNSATISFACTORY: models.Job.Status.UNSATISFACTORY,
                 }
                 if status in status_map:
                     await self.update_job_status(job.uuid, status_map[status])
