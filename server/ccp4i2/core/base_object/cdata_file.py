@@ -328,6 +328,38 @@ class CDataFile(CData):
             logger.debug(f"Failed to create ad-hoc db handler: {e}")
             return None
 
+    def _project_directory(self, plugin, project_id):
+        """Absolute path of the project this job belongs to, or None."""
+        from pathlib import Path
+        import os
+
+        db_handler = self._get_db_handler()
+        if not db_handler:
+            try:
+                db_handler = self._create_adhoc_db_handler(project_id)
+            except Exception:
+                db_handler = None
+        if db_handler and hasattr(db_handler, 'getProjectDirectory'):
+            try:
+                project_dir = db_handler.getProjectDirectory(project_id)
+                if project_dir:
+                    return Path(os.path.realpath(str(project_dir)))
+            except Exception as e:
+                logger.debug("  Could not get project directory from db: %s", e)
+
+        # Fallback: the project root is the nearest ancestor of the work
+        # directory that holds CCP4_JOBS.
+        work_dir = getattr(plugin, 'workDirectory', None)
+        if work_dir:
+            current = Path(os.path.realpath(str(work_dir)))
+            for _ in range(10):
+                if (current / 'CCP4_JOBS').is_dir():
+                    return current
+                if current.parent == current:
+                    break
+                current = current.parent
+        return None
+
     def _parse_output_path_database(self, path: str, plugin):
         """Parse output file path and set project/relPath/baseName for database context.
 
@@ -349,6 +381,7 @@ class CDataFile(CData):
             plugin: Parent CPluginScript instance
         """
         from pathlib import Path
+        import os
         import re
 
         input_path = Path(path)
@@ -369,6 +402,35 @@ class CDataFile(CData):
         project_id = getattr(plugin, '_dbProjectId', None)
         if not project_id:
             logger.debug("  No _dbProjectId on plugin, cannot parse for database")
+            return
+
+        # "CCP4_JOBS" and "CCP4_IMPORTED_FILES" only mean "inside the project"
+        # when the path really is inside THIS project. Matching the marker
+        # anywhere in the string re-roots any file chosen from *another* CCP4i2
+        # project: the real location is discarded and a path is rebuilt under
+        # the current project, where nothing exists. Diffraction images hit this
+        # constantly, because they are referenced in place and never copied.
+        project_dir = self._project_directory(plugin, project_id)
+        inside_project = False
+        rel_to_project = None
+        if project_dir is not None:
+            try:
+                rel_to_project = Path(
+                    os.path.realpath(path_str)
+                ).relative_to(project_dir)
+                inside_project = True
+            except ValueError:
+                inside_project = False
+
+        if project_dir is not None and not inside_project:
+            logger.debug(
+                "  Path is outside project %s, keeping absolute: %s",
+                project_dir, path_str,
+            )
+            if hasattr(self, 'baseName') and hasattr(self.baseName, 'set'):
+                self.baseName.set(path_str)
+            if hasattr(self, 'relPath') and hasattr(self.relPath, 'set'):
+                self.relPath.set('')
             return
 
         # Determine relPath by looking for known directory patterns FIRST
@@ -399,8 +461,14 @@ class CDataFile(CData):
                 self.baseName.set(Path(path_str).name)
                 logger.debug("  Set baseName = %s", Path(path_str).name)
             if hasattr(self, 'relPath') and hasattr(self.relPath, 'set'):
-                self.relPath.set('CCP4_IMPORTED_FILES')
-                logger.debug("  Set relPath = CCP4_IMPORTED_FILES")
+                # Images usually sit in a per-sweep sub-directory, so keep the
+                # directory the file is actually in rather than assuming it
+                # lies directly under CCP4_IMPORTED_FILES.
+                rel_dir = 'CCP4_IMPORTED_FILES'
+                if rel_to_project is not None:
+                    rel_dir = str(rel_to_project.parent)
+                self.relPath.set(rel_dir)
+                logger.debug("  Set relPath = %s", rel_dir)
             return
 
         # Pattern 3: External path (outside project structure)
