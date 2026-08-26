@@ -22,15 +22,13 @@ class sheetbend(CPluginScript):
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         #Preprocess coordinates to extract a subset
-        self.selectedCoordinatesPath = os.path.join(self.getWorkDirectory(), "selected_xyzin.pdb")
-        self.container.inputData.XYZIN.loadFile()
+        # sheetbend reads both formats; keep whichever came in, and name the
+        # output to match it.
+        self.selectedCoordinatesPath = self.container.inputData.XYZIN.getSelectedAtomsFile(
+            "selected_xyzin", self.getWorkDirectory())
         if self.container.inputData.XYZIN.isMMCIF():
-            self.selectedCoordinatesPath = str(pathlib.Path(self.selectedCoordinatesPath).with_suffix('.cif'))
-        oldFullPath = pathlib.Path(self.container.outputData.XYZOUT.fullPath.__str__())
-        if self.container.inputData.XYZIN.isMMCIF():
+            oldFullPath = pathlib.Path(self.container.outputData.XYZOUT.fullPath.__str__())
             self.container.outputData.XYZOUT.setFullPath(str(oldFullPath.with_suffix('.cif')))
-
-        self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):

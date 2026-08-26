@@ -1331,6 +1331,76 @@ class CBioPythonSeqInterface:
         return None
 
 
+COORDINATE_FORMAT_PDB = 'pdb'
+COORDINATE_FORMAT_MMCIF = 'mmcif'
+
+#: Records that only ever begin a line in a PDB file.
+_PDB_RECORD_STARTS = (
+    'HEADER', 'OBSLTE', 'TITLE ', 'SPLIT ', 'CAVEAT', 'COMPND', 'SOURCE',
+    'KEYWDS', 'EXPDTA', 'NUMMDL', 'MDLTYP', 'AUTHOR', 'REVDAT', 'SPRSDE',
+    'JRNL  ', 'REMARK', 'DBREF', 'SEQADV', 'SEQRES', 'MODRES', 'HET   ',
+    'HETNAM', 'HETSYN', 'FORMUL', 'HELIX ', 'SHEET ', 'SSBOND', 'LINK  ',
+    'CISPEP', 'SITE  ', 'CRYST1', 'ORIGX', 'SCALE', 'MTRIX', 'MODEL ',
+    'ATOM  ', 'ANISOU', 'TER   ', 'HETATM', 'ENDMDL', 'CONECT', 'MASTER',
+)
+
+
+def detect_coordinate_format(path, sniff_lines: int = 200):
+    """Is *path* a PDB or an mmCIF file? Decided by content, never by name.
+
+    A coordinate file's name is a claim, not evidence. CCP4i2 writes files
+    called ``.pdb`` that hold mmCIF, and hands programs files called ``.tmp``;
+    gemmi's default reader detects from the extension and fails on both. See
+    ``docs/coordinate-format-fidelity.md``.
+
+    The scan is cheap -- it reads the leading lines and stops at the first
+    decisive one. If those are inconclusive it asks gemmi, which is
+    authoritative but parses the whole file, and only then falls back to the
+    extension.
+
+    Returns:
+        ``'mmcif'``, ``'pdb'``, or None if the file cannot be read or is
+        neither.
+    """
+    from pathlib import Path
+
+    file_path = Path(str(path))
+    try:
+        with open(file_path, 'r', errors='replace') as handle:
+            for _ in range(sniff_lines):
+                line = handle.readline()
+                if not line:
+                    break
+                stripped = line.lstrip()
+                if stripped.startswith('data_'):
+                    return COORDINATE_FORMAT_MMCIF
+                if line.startswith(_PDB_RECORD_STARTS):
+                    return COORDINATE_FORMAT_PDB
+    except OSError:
+        return None
+
+    # Inconclusive: let gemmi decide from the content. CoorFormat.Detect must
+    # be passed explicitly -- the default, CoorFormat.Unknown, means "detect
+    # from the extension" and raises on a name it does not recognise.
+    try:
+        import gemmi
+        structure = gemmi.read_structure(
+            str(file_path), format=gemmi.CoorFormat.Detect)
+        if structure.input_format == gemmi.CoorFormat.Mmcif:
+            return COORDINATE_FORMAT_MMCIF
+        if structure.input_format == gemmi.CoorFormat.Pdb:
+            return COORDINATE_FORMAT_PDB
+    except Exception:
+        pass
+
+    suffix = file_path.suffix.lower()
+    if suffix in ('.cif', '.mmcif'):
+        return COORDINATE_FORMAT_MMCIF
+    if suffix in ('.pdb', '.ent'):
+        return COORDINATE_FORMAT_PDB
+    return None
+
+
 class CPdbDataComposition:
     """
     Coordinate file composition analysis using gemmi.
@@ -1618,7 +1688,7 @@ class CPdbData(CPdbDataStub):
 
         try:
             # Read structure using gemmi (handles PDB and mmCIF automatically)
-            structure = gemmi.read_structure(str(file_path))
+            structure = gemmi.read_structure(str(file_path), format=gemmi.CoorFormat.Detect)
 
             # Infer entity information when the file lacks it (common for
             # bare PDB files without ENTITY/SEQRES records).  This assigns
@@ -1739,13 +1809,18 @@ class CPdbData(CPdbDataStub):
         except Exception as e:
             raise ValueError(f"Failed to interpret selection '{selection_string}': {e}")
 
-    def writeSelection(self, selected_atoms, file_path: str):
+    def writeSelection(self, selected_atoms, file_path: str, fmt: str = None):
         """
         Write selected atoms to a PDB or mmCIF file.
 
         Args:
             selected_atoms: List of (model, chain, residue, atom) tuples from interpretSelection()
-            file_path: Output file path (.pdb or .cif extension)
+            file_path: Output file path
+            fmt: ``'pdb'`` or ``'mmcif'`` -- what to write. Callers state this;
+                deriving it from *file_path*'s extension is how a file called
+                ``.pdb`` came to hold mmCIF (see
+                ``docs/coordinate-format-fidelity.md``). ``None`` keeps the old
+                extension-derived behaviour for any caller outside this module.
 
         Returns:
             0 on success, non-zero on failure
@@ -1817,12 +1892,17 @@ class CPdbData(CPdbDataStub):
                             new_atom.altloc = atom.altloc
                             output_residue.add_atom(new_atom)
 
-            # Determine output format from extension
-            suffix = Path(file_path).suffix.lower()
-            if suffix in ['.cif', '.mmcif']:
+            if fmt is None:
+                suffix = Path(file_path).suffix.lower()
+                fmt = (COORDINATE_FORMAT_MMCIF if suffix in ['.cif', '.mmcif']
+                       else COORDINATE_FORMAT_PDB)
+
+            if fmt == COORDINATE_FORMAT_MMCIF:
                 output_structure.make_mmcif_document().write_file(str(file_path))
             else:
-                # Default to PDB format
+                # gemmi raises for a structure PDB cannot express -- a chain
+                # name longer than two characters, for instance. Let it: a
+                # truncated model is worse than a refusal.
                 output_structure.write_pdb(str(file_path))
 
             return 0
@@ -1948,7 +2028,6 @@ class CPdbDataFile(CPdbDataFileStub):
         Returns:
             int: CONTENT_FLAG_PDB (1), CONTENT_FLAG_MMCIF (2), or None if undetermined
         """
-        import gemmi
         from pathlib import Path
 
         input_path = self.getFullPath()
@@ -1956,22 +2035,15 @@ class CPdbDataFile(CPdbDataFileStub):
             return None
 
         try:
-            # Use gemmi to read the structure - it auto-detects format
-            structure = gemmi.read_structure(input_path)
-
-            # Check the file extension to determine format
-            path = Path(input_path)
-            suffix = path.suffix.lower()
-
-            # mmCIF files
-            if suffix in ['.cif', '.mmcif']:
+            # The content decides. Reading the structure and then classifying it
+            # by its file extension --- which is what this did --- records the
+            # name's claim, not the file's format.
+            detected = detect_coordinate_format(input_path)
+            if detected == COORDINATE_FORMAT_MMCIF:
                 return self.CONTENT_FLAG_MMCIF
-            # PDB files
-            elif suffix in ['.pdb', '.ent']:
+            if detected == COORDINATE_FORMAT_PDB:
                 return self.CONTENT_FLAG_PDB
-            else:
-                # Default to PDB if ambiguous
-                return self.CONTENT_FLAG_PDB
+            return None
 
         except Exception as e:
             # If gemmi fails, fall back to simple text introspection
@@ -2005,7 +2077,7 @@ class CPdbDataFile(CPdbDataFileStub):
             try:
                 # Use gemmi to determine format from actual file
                 import gemmi
-                structure = gemmi.read_structure(full_path)
+                structure = gemmi.read_structure(full_path, format=gemmi.CoorFormat.Detect)
 
                 # Check file extension to determine format
                 suffix = Path(full_path).suffix.lower()
@@ -2048,33 +2120,16 @@ class CPdbDataFile(CPdbDataFileStub):
             >>> if pdb_file.isMMCIF():
             ...     print("File is in mmCIF format")
         """
-        # Check file extension and content to determine format.
-        # We cannot trust the extension alone — a .cif file may contain
-        # garbage (e.g. a failed download).  Always verify content.
+        # The content decides, never the extension. The hand-rolled version of
+        # this read the first two lines looking for data_ or loop_, which
+        # misreads an mmCIF that opens with comments or blank lines.
         full_path = self.getFullPath()
         if full_path:
             from pathlib import Path
-            suffix = Path(full_path).suffix.lower()
-            has_cif_extension = suffix in ['.cif', '.mmcif']
-
-            # Quick file content check
             if Path(full_path).exists():
-                try:
-                    with open(full_path, 'r') as f:
-                        first_line = f.readline().strip()
-                        # mmCIF files start with "data_" or have "loop_" structures early on
-                        if first_line.startswith('data_'):
-                            return True
-                        second_line = f.readline().strip()
-                        if second_line.startswith('data_') or first_line.startswith('loop_') or second_line.startswith('loop_'):
-                            return True
-                except Exception:
-                    pass  # If we can't read, fall through to other checks
-
-            # If extension says CIF but content doesn't confirm, don't trust it
-            # (file may be corrupt or a failed download)
-            if has_cif_extension:
-                return False
+                detected = detect_coordinate_format(full_path)
+                if detected is not None:
+                    return detected == COORDINATE_FORMAT_MMCIF
 
         # If file content is already loaded (from previous loadFile call), check it
         # Note: We check this AFTER the quick file peek to avoid triggering loadFile()
@@ -2092,12 +2147,84 @@ class CPdbDataFile(CPdbDataFileStub):
 
         return False
 
+    def _writeSelectedAtoms(self, fileName, fmt):
+        """Write this file's selected atoms to *fileName* in *fmt*.
+
+        The single implementation behind ``getSelectedAtomsPdbFile`` and
+        ``getSelectedAtomsFile``. Both paths -- selection and no selection --
+        honour *fmt*, which is what makes each method's promise true.
+
+        Args:
+            fileName: output path
+            fmt: ``'pdb'`` or ``'mmcif'``
+
+        Returns:
+            0 on success, non-zero on failure
+        """
+        import shutil
+        from pathlib import Path
+
+        input_path = self.getFullPath()
+        if not input_path or not Path(str(input_path)).exists():
+            print(f"Error: Input file does not exist: {input_path}")
+            return 1
+
+        if not self.isSelectionSet():
+            # No selection: the whole file. Copy it only when it is already in
+            # the format asked for -- copying an mmCIF to a name ending .pdb is
+            # how a coordinate file comes to lie about what it holds, and the
+            # program that reads it next fails a long way from the cause.
+            if detect_coordinate_format(input_path) == fmt:
+                shutil.copyfile(str(input_path), str(fileName))
+                return 0
+            return self._convertWholeFile(input_path, fileName, fmt)
+
+        self.loadFile()
+        selection_string = (str(self.selection.text.value)
+                            if hasattr(self.selection.text, 'value')
+                            else str(self.selection.text))
+        try:
+            n_atoms, selected_atoms = self.fileContent.interpretSelection(selection_string)
+            return self.fileContent.writeSelection(selected_atoms, fileName, fmt=fmt)
+        except Exception as e:
+            print(f"Error applying selection '{selection_string}': {e}")
+            import traceback
+            traceback.print_exc()
+            return 1
+
+    def _convertWholeFile(self, input_path, fileName, fmt):
+        """Read *input_path* by content and write all of it to *fileName* in *fmt*."""
+        import gemmi
+
+        try:
+            structure = gemmi.read_structure(
+                str(input_path), format=gemmi.CoorFormat.Detect)
+            structure.setup_entities()
+            if fmt == COORDINATE_FORMAT_MMCIF:
+                structure.make_mmcif_document().write_file(str(fileName))
+            else:
+                structure.write_pdb(str(fileName))
+            return 0
+        except Exception as e:
+            # Includes the case PDB cannot express: gemmi raises "chain name
+            # too long for the PDB format" rather than truncating, and a
+            # refusal naming the file beats a model quietly missing a chain.
+            print(f"Error converting {input_path} to {fmt}: {e}")
+            return 1
+
     def getSelectedAtomsPdbFile(self, fileName=None):
         """
-        Apply atom selection and write selected atoms to file.
+        Write the selected atoms -- or the whole file, when no selection is set
+        -- to *fileName* **as PDB**, whatever the input format.
 
-        This method replicates the legacy mmdb-based selection behavior,
-        using our modern gemmi-based selection system.
+        For programs that read nothing else. A caller that can take either
+        format wants :meth:`getSelectedAtomsFile`, which preserves it.
+
+        This used to copy the input verbatim when no selection was set, so an
+        mmCIF input arrived at a program under a name ending ``.pdb``; and it
+        chose the format from *fileName*'s extension when one was, so the same
+        method wrote mmCIF or PDB depending on what it was asked to call the
+        file. See ``docs/coordinate-format-fidelity.md``.
 
         Args:
             fileName: Output file path (required)
@@ -2107,55 +2234,23 @@ class CPdbDataFile(CPdbDataFileStub):
 
         Example:
             >>> pdb_file = CPdbDataFile()
-            >>> pdb_file.setFullPath('/path/to/model.pdb')
+            >>> pdb_file.setFullPath('/path/to/model.cif')
             >>> pdb_file.selection.text.set("A/27-50")
-            >>> pdb_file.getSelectedAtomsPdbFile("/tmp/selected.pdb")
+            >>> pdb_file.getSelectedAtomsPdbFile("/tmp/selected.pdb")   # real PDB
         """
-        import shutil
-        from pathlib import Path
-
         if fileName is None:
             raise ValueError("fileName parameter is required")
-
-        # If no selection is set, just copy the file
-        if not self.isSelectionSet():
-            input_path = self.getFullPath()
-            if input_path and Path(input_path).exists():
-                shutil.copyfile(input_path, fileName)
-                return 0
-            else:
-                print(f"Error: Input file does not exist: {input_path}")
-                return 1
-
-        # Load the file if not already loaded
-        self.loadFile()
-
-        # Get the selection string
-        selection_string = str(self.selection.text.value) if hasattr(self.selection.text, 'value') else str(self.selection.text)
-
-        try:
-            # Interpret the selection
-            n_atoms, selected_atoms = self.fileContent.interpretSelection(selection_string)
-
-            # Write the selection to file
-            rc = self.fileContent.writeSelection(selected_atoms, fileName)
-
-            return rc
-
-        except Exception as e:
-            print(f"Error applying selection '{selection_string}': {e}")
-            import traceback
-            traceback.print_exc()
-            return 1
+        return self._writeSelectedAtoms(fileName, COORDINATE_FORMAT_PDB)
 
     def getSelectedAtomsFile(self, baseName, workDirectory):
         """
-        Format-preserving atom selection: writes selected atoms (or the full
-        file when no selection is set) to *workDirectory*, keeping the input
-        format (PDB or mmCIF).
+        Format-preserving: writes the selected atoms (or the whole file when no
+        selection is set) to *workDirectory*, **keeping the input's format** and
+        giving the file a name that matches it.
 
-        The output filename is ``baseName.pdb`` or ``baseName.cif`` depending
-        on the source format detected by :meth:`isMMCIF`.
+        For programs that read both and lose information when down-converted --
+        refmac, servalcat, sheetbend, modelcraft, gesamt, dimple. A caller whose
+        program needs PDB wants :meth:`getSelectedAtomsPdbFile`.
 
         Args:
             baseName:      Stem of the output file (no extension).
@@ -2165,9 +2260,11 @@ class CPdbDataFile(CPdbDataFileStub):
             str: Absolute path to the written file.
         """
         import os
-        ext = '.cif' if self.isMMCIF() else '.pdb'
-        outPath = os.path.join(str(workDirectory), baseName + ext)
-        rc = self.getSelectedAtomsPdbFile(outPath)
+
+        isMMCIF = self.isMMCIF()
+        fmt = COORDINATE_FORMAT_MMCIF if isMMCIF else COORDINATE_FORMAT_PDB
+        outPath = os.path.join(str(workDirectory), baseName + ('.cif' if isMMCIF else '.pdb'))
+        rc = self._writeSelectedAtoms(outPath, fmt)
         if rc != 0:
             raise RuntimeError(
                 f"getSelectedAtomsFile failed (rc={rc}) writing {outPath}")
@@ -2281,7 +2378,7 @@ class CPdbDataFile(CPdbDataFileStub):
                 is_mmcif = False
 
             # Load the structure
-            structure = gemmi.read_structure(source_path)
+            structure = gemmi.read_structure(source_path, format=gemmi.CoorFormat.Detect)
         except Exception as e:
             raise CException(self.__class__, 411, f"Failed to load structure from {source_path}: {str(e)}")
 

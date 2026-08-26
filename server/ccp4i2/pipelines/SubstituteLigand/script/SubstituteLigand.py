@@ -132,10 +132,13 @@ class SubstituteLigand(CPluginScript):
 
         # Extract selected atoms from input structure
         try:
-            selAtomsFilePath = os.path.normpath(
-                os.path.join(self.getWorkDirectory(), 'selected_atoms.pdb')
-            )
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(selAtomsFilePath)
+            # Keep the input's format here and let each sub-task convert as
+            # its own program requires --- i2Dimple hands dimple the file as
+            # it is, phaser gets PDB from its own wrapper. Writing an mmCIF
+            # model into a file called selected_atoms.pdb, which is what this
+            # did, made every DIMPLE run fail inside dimple's reader.
+            selAtomsFilePath = self.container.inputData.XYZIN.getSelectedAtomsFile(
+                'selected_atoms', self.getWorkDirectory())
             from ccp4i2.core.CCP4ModelData import CPdbDataFile
             self.selAtomsFile = CPdbDataFile(selAtomsFilePath)
         except Exception as e:

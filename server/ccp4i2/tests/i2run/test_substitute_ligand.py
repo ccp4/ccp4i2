@@ -29,7 +29,14 @@ def test_substitute_ligand_no_ligand():
             "ANOMFPHIOUT",
         ):
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
-        gemmi.read_structure(str(job / "selected_atoms.pdb"), format=gemmi.CoorFormat.Mmcif)
+        # The input is mmCIF, so the extracted selection stays mmCIF and is
+        # named accordingly. This used to be selected_atoms.pdb holding mmCIF,
+        # and the test asserted exactly that by forcing the reader past the
+        # extension --- which is how the format lie survived. Read it by
+        # content, and require the name to match.
+        gemmi.read_structure(str(job / "selected_atoms.cif"),
+                             format=gemmi.CoorFormat.Detect)
+        assert not (job / "selected_atoms.pdb").exists()
         gemmi.read_structure(str(job / "XYZOUT.pdb"))
         xml = ET.parse(job / "program.xml")
         rworks = [float(e.text) for e in xml.iter("r_factor")]
@@ -59,7 +66,14 @@ def test_substitute_ligand_with_smiles():
             "FREERFLAG_OUT",
         ):
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
-        gemmi.read_structure(str(job / "selected_atoms.pdb"), format=gemmi.CoorFormat.Mmcif)
+        # The input is mmCIF, so the extracted selection stays mmCIF and is
+        # named accordingly. This used to be selected_atoms.pdb holding mmCIF,
+        # and the test asserted exactly that by forcing the reader past the
+        # extension --- which is how the format lie survived. Read it by
+        # content, and require the name to match.
+        gemmi.read_structure(str(job / "selected_atoms.cif"),
+                             format=gemmi.CoorFormat.Detect)
+        assert not (job / "selected_atoms.pdb").exists()
         gemmi.read_structure(str(job / "XYZOUT.pdb"))
         xml = ET.parse(job / "program.xml")
         rworks = [float(e.text) for e in xml.iter("r_factor")]

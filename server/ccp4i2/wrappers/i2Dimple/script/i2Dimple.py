@@ -23,26 +23,20 @@ class i2Dimple(CPluginScript):
             return CPluginScript.FAILED
         self.columnsAsArray = self.columns.split(",")
 
-        self.xyzin = os.path.join(self.getWorkDirectory(),"selected_xyzin.pdb")
-
-        #A work around to cast input coordinates into PDB format for dimple if necessary
-        # dimple needs PDB input. If XYZIN is mmCIF, convert it to PDB first so the
-        # (PDB-based) atom-selection machinery can be applied; otherwise use XYZIN
-        # directly. gemmi auto-detects the input format, replacing the previous
-        # mmdb2 ReadCIFASCII/WritePDBASCII cast (which needed the CCP4 toolkit).
-        structure = gemmi.read_structure(str(self.container.inputData.XYZIN.fullPath))
-        if structure.input_format == gemmi.CoorFormat.Mmcif:
-            temp_pdb = os.path.join(self.getWorkDirectory(),"selected_xyzin_temp.pdb")
-            structure.write_pdb(self.xyzin)
-            from ccp4i2.core.CCP4ModelData import CPdbDataFile
-            temporaryObject = CPdbDataFile(fullPath=self.xyzin)
-            temporaryObject.loadFile()
-            if self.container.inputData.XYZIN.isSelectionSet():
-                temporaryObject.selection = self.container.inputData.XYZIN.selection
-            temporaryObject.getSelectedAtomsPdbFile(temp_pdb)
-            self.xyzin = temp_pdb
-        else:
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.xyzin)
+        # dimple 2.7 reads mmCIF: its argument list accepts .cif/.mmcif (and
+        # their .gz forms), and workflow.copy_uncompressed --- which is not a
+        # copy --- reads the model with gemmi and writes its own ini.pdb. So
+        # the cast this wrapper used to do by hand is dimple's job, done once,
+        # inside dimple.
+        #
+        # What dimple does need is a file whose name matches its contents,
+        # because its reader detects format from the extension. That is exactly
+        # what getSelectedAtomsFile guarantees. The previous code wrote mmCIF
+        # into a file called selected_xyzin.pdb whenever no selection was set,
+        # and dimple failed with "Incorrect file format (perhaps it is cif not
+        # pdb?)" --- see docs/coordinate-format-fidelity.md.
+        self.xyzin = self.container.inputData.XYZIN.getSelectedAtomsFile(
+            "selected_xyzin", self.getWorkDirectory())
 
         return CPluginScript.SUCCEEDED
 

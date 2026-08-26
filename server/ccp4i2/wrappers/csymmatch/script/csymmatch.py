@@ -16,24 +16,19 @@ class csymmatch(CPluginScript):
       out = self.container.outputData
 
       import os
+      # csymmatch reads both formats: keep whichever came in, and match the
+      # output's name to the query's format.
       if inp.XYZIN_QUERY.isSelectionSet():
-        xyzin_query_file = os.path.join(self.getWorkDirectory(),'XYZIN_QUERY_sel.pdb')
-        inp.XYZIN_QUERY.loadFile()
-        if inp.XYZIN_QUERY.isMMCIF():
-            xyzin_query_file = str(pathlib.Path(xyzin_query_file).with_suffix('.cif'))
-            out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
-        inp.XYZIN_QUERY.getSelectedAtomsPdbFile(xyzin_query_file)
+        xyzin_query_file = inp.XYZIN_QUERY.getSelectedAtomsFile(
+            'XYZIN_QUERY_sel', self.getWorkDirectory())
       else:
         xyzin_query_file = inp.XYZIN_QUERY.fullPath.__str__()
-        inp.XYZIN_QUERY.loadFile()
-        if inp.XYZIN_QUERY.isMMCIF():
-            out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
+      if inp.XYZIN_QUERY.isMMCIF():
+        out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
+
       if inp.XYZIN_TARGET.isSelectionSet():
-        xyzin_target_file = os.path.join(self.getWorkDirectory(),'XYZIN_TARGET_sel.pdb')
-        inp.XYZIN_TARGET.loadFile()
-        if inp.XYZIN_TARGET.isMMCIF():
-            xyzin_target_file = str(pathlib.Path(xyzin_target_file).with_suffix('.cif'))
-        inp.XYZIN_TARGET.getSelectedAtomsPdbFile(xyzin_target_file)
+        xyzin_target_file = inp.XYZIN_TARGET.getSelectedAtomsFile(
+            'XYZIN_TARGET_sel', self.getWorkDirectory())
       else:
         xyzin_target_file = inp.XYZIN_TARGET.fullPath.__str__()
       self.appendCommandLine( [ '-pdbin', xyzin_query_file ] )

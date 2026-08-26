@@ -69,14 +69,9 @@ class servalcat(CPluginScript):
         self.inputCoordPath = os.path.normpath(
             str(self.container.inputData.XYZIN.fullPath))
         if self.container.inputData.XYZIN.isSelectionSet():
-            self.inputCoordPath = os.path.normpath(
-                os.path.join(self.getWorkDirectory(), 'selected.pdb'))
-            self.container.inputData.XYZIN.loadFile()
-            if self.container.inputData.XYZIN.isMMCIF():
-                self.inputCoordPath = str(
-                    pathlib.Path(self.inputCoordPath).with_suffix('.cif'))
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(
-                self.inputCoordPath)
+            # servalcat reads both formats; keep whichever came in.
+            self.inputCoordPath = self.container.inputData.XYZIN.getSelectedAtomsFile(
+                'selected', self.getWorkDirectory())
 
         # Create DICT by merging dictionaries in DICT_LIST
         self.joinDicts(self.container.outputData.DICT,

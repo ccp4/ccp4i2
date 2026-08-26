@@ -9,22 +9,30 @@ from ccp4i2.core.CCP4XtalData import CObsDataFile
 class zanuda(CPluginScript):
     TASKNAME = "zanuda"
     TASKCOMMAND = "zanuda"
+    ERROR_CODES = {
+        201: {'description': 'Could not prepare a PDB model for zanuda'},
+    }
     PERFORMANCECLASS = "CRefinementPerformance"
 
     def processInputFiles(self):
         # Zanuda's internal pipeline (ZnTrimmed, ZnEqualised, etc.) parses
-        # PDB-format lines directly, so we must always provide PDB input.
-        # Read input (any format) via gemmi and write as PDB.
-        import gemmi
+        # PDB-format lines directly, so we must always provide PDB input ---
+        # which is precisely what getSelectedAtomsPdbFile now guarantees, with
+        # or without a selection.
+        #
+        # It used to write the selection to model_selected.tmp and read it back
+        # with gemmi. Two faults: the writer chose its format from the ".tmp"
+        # extension (so it wrote PDB, not "the source format" as the comment
+        # claimed), and the reader detects format from the extension too, so
+        # ".tmp" raised "Unknown format" --- zanuda was broken for any atom
+        # selection, and no test sets one.
         self.xyzin = os.path.join(self.getWorkDirectory(), "model.pdb")
-        inputPath = str(self.container.inputData.XYZIN.fullPath)
-        if self.container.inputData.XYZIN.isSelectionSet():
-            # Apply selection first (writes in source format), then convert
-            tmpPath = os.path.join(self.getWorkDirectory(), "model_selected.tmp")
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(tmpPath)
-            inputPath = tmpPath
-        st = gemmi.read_structure(inputPath)
-        st.write_pdb(self.xyzin)
+        rc = self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.xyzin)
+        if rc != 0:
+            self.appendErrorReport(
+                201, f'Could not prepare a PDB model for zanuda from '
+                     f'{self.container.inputData.XYZIN.fullPath}')
+            return CPluginScript.FAILED
         miniMtzs = [["F_SIGF", CObsDataFile.CONTENT_FLAG_FMEAN], "FREERFLAG"]
         self.hklin, _, errorReport = self.makeHklin0(miniMtzs)
         return errorReport
