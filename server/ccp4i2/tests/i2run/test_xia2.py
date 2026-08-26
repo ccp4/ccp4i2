@@ -5,6 +5,7 @@ from tempfile import TemporaryDirectory
 import re
 from gemmi import read_mtz_file
 from pytest import fixture, mark
+from .programs import requires_program
 from .utils import download, i2run
 
 
@@ -55,6 +56,6 @@ def test_xia2_dials_directory(image_dir):
 
 
 @mark.skipif(platform == "win32", reason="Not supported on Windows")
-@mark.skipif(which("xds_par") is None and which("xds") is None, reason="XDS not installed")
+@requires_program("xds_par")
 def test_xia2_xds_file(image_dir):
     run_test_from_image_file("xia2_xds", image_dir)

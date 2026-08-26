@@ -1,8 +1,10 @@
 import re
 from gemmi import read_mtz_file, read_pdb
+from .programs import requires_program
 from .utils import demoData, i2run
 
 
+@requires_program("shelxc", "shelxd")
 def test_substrdet():
     args = ["shelx"]
     args += [
@@ -20,6 +22,7 @@ def test_substrdet():
     with i2run(args) as job:
         read_pdb(str(job / "PDBCUR.pdb"))
 
+@requires_program("shelxc", "shelxd", "shelxe")
 def test_gamma_sad():
     args = ["shelx"]
     args += [
@@ -43,6 +46,7 @@ def test_gamma_sad():
         _check_output(job, min_fom=0.7, max_rwork=0.27, max_rfree=0.30)
 
 
+@requires_program("shelxc", "shelxd", "shelxe")
 def test_gamma_siras():
     args = ["shelx"]
     args += [

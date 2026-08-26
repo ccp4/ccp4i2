@@ -23,6 +23,21 @@ from .urls import pdbe_fasta, pdbe_pdb, redo_cif, redo_mtz, rcsb_mmcif, uniprot_
 from .utils import download
 
 
+def pytest_report_header(config):
+    """Record which gated programs were found, and how.
+
+    A run in which SHELX resolves through a user's SHELXDIR is a different run
+    from one in which it resolves through $CBIN, or not at all. Two baselines
+    that disagree should say why in their own headers rather than costing
+    somebody an afternoon --- see the ccp4-20260520 baseline summary, which
+    spent several paragraphs and two corrections working out whether SHELX's
+    absence was a CCP4 build defect.
+    """
+    from .programs import GATED_PROGRAMS, resolution_report
+    return ["program resolution (as a job would resolve it):"] + \
+        resolution_report(GATED_PROGRAMS)
+
+
 def pytest_collection_modifyitems(items):
     """Automatically add django_db marker to all test items."""
     for item in items:
