@@ -893,14 +893,31 @@ baseline.
   next door, unused by this call site.
 - `test_import_merged::test_2ceu_cif`. `64cd3bb3d` ("gemmi/numpy-native free-R
   generation, drop the binary"). At `64cd3bb3d^` the test passes with **21 bins
-  at ~5% each**; at HEAD the output is **binary, 5.6% / 94.4%**. The test's
-  per-bin 2–15% assertion cannot hold for a binary set, but the assertion is not
-  the story: the free set this path produces changed from a 20-bin partition to
-  an inherited binary flag, while the implementation's own docstring says it
-  reproduces freerflag's semantics of "binning into 1/fraction segments". Needs
-  its own look, independently of this work.
+  at ~5% each**; at HEAD the output is **binary, 5.6% / 94.4%**.
 
-**Test asserting the wrong thing — 1.** `test_dm_multidomain` dies on `g0 & g1`
+  This was first recorded here as an assertion that "cannot hold for a binary
+  set", needing a decision rather than a fix. **That inverted the blame**, and
+  the correction is worth keeping. The 2–15% band is satisfied by the
+  conformant output — 21 even segments of 4.8% — so the assertion passed before
+  the change and failed after. It was not a broken test but a working
+  regression detector, and the only thing in the tree that had noticed the
+  native freerflag no longer reproduced the binary.
+
+  Whether the output should be binary or segmented was never ours to assume:
+  both are gemmi-calculable, and the answer comes from the program being
+  replaced. Measured against it, freerflag keeps every free reflection free,
+  moves nothing from the working set into the test set, partitions previously
+  unflagged reflections at the usual fraction, and re-segments the working set.
+  Fixed on `freerflag-conformance`, with that contract asserted of the binary
+  and of us in `tests/parity/`.
+
+  **The general lesson:** a red test is a claim about the code until the code
+  has been checked against something independent. Treating the observed
+  behaviour as the standard and reasoning backwards to a faulty test is the
+  same error as attributing a failure to the environment — twice recorded
+  elsewhere in this document — wearing a different costume.
+
+**Test asserting the wrong thing — 1** (dm_multidomain only; import_merged's, above, was right)**.** `test_dm_multidomain` dies on `g0 & g1`
 with `ValueError: shapes (45,55,50) (48,58,61)`. `c100c6f53` (2026-06-23) made
 each mask a tight sub-box on the shared 144×144×432 parent grid. Mapping both
 boxes into the unit-cell frame gives an overlap of **0** — the masks are

@@ -150,6 +150,8 @@ ccp4i2/tests/
 │   ├── validation/              # Validity checks, error reporting
 │   ├── serialization/           # JSON/XML encoding
 │   └── lib/                     # Utilities, reports, sequences, uploads
+├── parity/                      # Native ports vs the CCP4 binary they
+│                                #   replaced (needs the CCP4 binaries)
 ├── async/                       # Async execution infrastructure
 ├── db/                          # Database, project import/export
 ├── api/
@@ -197,6 +199,10 @@ ccp4-python -m pytest ccp4i2/tests/unit/mtz/ -v
 ccp4-python -m pytest ccp4i2/tests/unit/containers/ -v
 ccp4-python -m pytest ccp4i2/tests/unit/plugins/ -v
 
+# ── Parity with the CCP4 binaries we replaced (needs those binaries) ──
+# Run after touching any gemmi/numpy port of a CCP4 program.
+ccp4-python -m pytest ccp4i2/tests/parity/ -v
+
 # ── End-to-end task tests via CLI (slow, needs CCP4) ──
 ccp4-python -m pytest ccp4i2/tests/i2run/ -v
 ccp4-python -m pytest ccp4i2/tests/i2run/test_servalcat.py -v
@@ -221,6 +227,7 @@ ccp4-python -m pytest ccp4i2/tests/ -v
 | `async/` | Async execution framework | Fast | No | With unit tests |
 | `db/` | Database operations, project import/export | Medium | No | When touching DB code |
 | `api/unit/` | REST endpoint behaviour | Fast | No | When touching API code |
+| `parity/` | Native gemmi/numpy implementations against the CCP4 binary they replaced (freerflag, chltofom, matthews, clipper cell checks) | Fast | Yes — the binaries | After changing any gemmi-native port |
 | `api/e2e/` | Full pipeline execution via REST API | Slow | Yes | Before release, after pipeline changes |
 | `i2run/` | Full task execution via CLI | Slow | Yes | Before release, after wrapper changes |
 
@@ -230,6 +237,12 @@ ccp4-python -m pytest ccp4i2/tests/ -v
 - E2e tests (i2run, api/e2e) download test data via session-scoped fixtures from PDBe/RCSB/PDB-REDO
 - All tests use `ccp4-python -m pytest` (not `run_test.sh`) for cross-platform consistency
 - Failed test directories are preserved in `~/.cache/ccp4i2-tests/` for debugging
+- **The parity tier guards the slim-server ports.** Replacing a CCP4 binary with
+  gemmi/numpy is only as good as the evidence it behaves the same, and that
+  evidence goes stale quietly: the freerflag parity tests sat in the tree for two
+  months while *no documented command collected them*, and in that time the
+  completion path diverged from the binary unnoticed. Run this tier whenever you
+  touch a port
 - Each test gets an isolated SQLite database and project directory
 
 ### Compounds App Tests
