@@ -94,3 +94,26 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+
+
+def test_a_cdata_value_is_not_a_dict_key():
+    """Equal to a str, but not interchangeable with one as a key.
+
+    The identity hash the tests above require means a CString cannot be used to
+    look up a dict keyed by plain strings: it compares equal and hashes
+    differently, so the lookup misses and returns the default. A wrapper author
+    who writes ``ext_map.get(par.OUTPUT_TYPE, ".map")`` gets the default every
+    time --- which is how every nucleofind RAW run came to look for a file
+    nucleofind had not written.
+
+    Convert at the call site: ``ext_map.get(str(par.OUTPUT_TYPE), ...)``.
+    """
+    from ccp4i2.core.base_object.fundamental_types import CString
+
+    value = CString()
+    value.set("RAW")
+    table = {"RAW": ".raw.map"}
+
+    assert value == "RAW"
+    assert table.get(value) is None, "equal, but not the same key"
+    assert table.get(str(value)) == ".raw.map"
