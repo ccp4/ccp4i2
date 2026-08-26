@@ -183,3 +183,50 @@ def test_migration_non_destructive(monkeypatch, tmp_path):
     preferences_migration.migrate_legacy_program_prefs()
     bag = preferences.load_preferences()["userPreferences"]
     assert bag["SHELXDIR"] == "/my/django/shelx"  # existing value wins
+
+
+# --- the child's PATH, so an in-process or vendored pipeline finds it too ----
+
+def test_shims_link_only_what_the_user_configured(monkeypatch, tmp_path):
+    """A {SUITE}DIR is commonly the bin of a whole other CCP4 installation.
+    Putting it on PATH shadows everything in it --- ccp4-python included, whose
+    launcher then execs an interpreter that is not there. Link the programs."""
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    other_ccp4 = tmp_path / "other-ccp4-bin"
+    other_ccp4.mkdir()
+    _make_exe(other_ccp4 / "shelxd")
+    _make_exe(other_ccp4 / "ccp4-python")     # the innocent bystander
+    _write_prefs(tmp_path, {"SHELXDIR": str(other_ccp4)})
+
+    work = tmp_path / "job"
+    work.mkdir()
+    shim = program_discovery.make_program_shims(work)
+
+    assert shim is not None
+    names = sorted(p.name for p in Path(shim).iterdir())
+    assert "shelxd" in names
+    assert "ccp4-python" not in names, "a SHELX preference must supply SHELX only"
+
+
+def test_shim_resolves_to_the_configured_program(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    sdir = tmp_path / "shelxbin"
+    sdir.mkdir()
+    _make_exe(sdir / "shelxe")
+    _write_prefs(tmp_path, {"SHELXDIR": str(sdir)})
+
+    work = tmp_path / "job"
+    work.mkdir()
+    path = program_discovery.program_search_path(work, "/usr/bin:/bin")
+    first = path.split(os.pathsep)[0]
+    assert (Path(first) / "shelxe").resolve() == (sdir / "shelxe").resolve()
+    assert path.endswith("/usr/bin:/bin")
+
+
+def test_a_program_already_on_path_is_not_shimmed(monkeypatch, tmp_path):
+    """No preference, nothing to do: PATH is returned untouched."""
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    _write_prefs(tmp_path, {})
+    work = tmp_path / "job"
+    work.mkdir()
+    assert program_discovery.program_search_path(work, "/usr/bin:/bin") == "/usr/bin:/bin"

@@ -1787,8 +1787,18 @@ class CPluginScript(CData):
             )
             command = [self.TASKCOMMAND] + self.commandLine
 
-        # Copy environment to ensure subprocess inherits all variables
+        # Copy environment to ensure subprocess inherits all variables, with
+        # the user's program-location directories in front of PATH. The task's
+        # own TASKCOMMAND is resolved above, but a program the task invokes
+        # itself -- crank2 spawning shelxc, a vendored pipeline shelling out --
+        # only ever sees what it inherits, so without this a correctly
+        # configured SHELXDIR works for some tasks and not others.
         env = os.environ.copy()
+        try:
+            from ccp4i2.config.program_discovery import program_search_path
+            env['PATH'] = program_search_path(self.workDirectory, env.get('PATH'))
+        except Exception:
+            pass  # never let discovery stop a job from running
 
         # Prepare stdin input
         stdin_input = None
