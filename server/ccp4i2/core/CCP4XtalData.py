@@ -580,6 +580,40 @@ class CMiniMtzDataFile(CMiniMtzDataFileStub):
 
     # Note: _get_conversion_output_path() is now in CDataFile base class
 
+    def miniMtzType(self):
+        """Which kind of mini-MTZ this file is, decided by its columns.
+
+        Returns ``(class, contentFlag)`` --- e.g. ``(CObsDataFile, 1)`` for
+        anomalous intensities --- or ``(None, None)`` if the columns match no
+        known signature.
+
+        Each mini-MTZ class declares ``CONTENT_SIGNATURE_LIST``: the column
+        names for each of its content flags, in flag order. This inverts that,
+        which is the only place the mapping is written down. ``mergeMtz`` needs
+        it to know which column names to hand ``joinMtz`` for each input, and
+        called it for years without it existing.
+
+        The columns are read from the file, so the answer comes from the
+        content rather than from a contentFlag someone may not have set.
+        """
+        import gemmi
+
+        path = self.getFullPath()
+        if not path:
+            return None, None
+        try:
+            mtz = gemmi.read_mtz_file(str(path))
+        except Exception:
+            return None, None
+
+        labels = [c.label for c in mtz.columns if c.label not in ('H', 'K', 'L')]
+
+        for cls in (CObsDataFile, CPhsDataFile, CMapCoeffsDataFile, CFreeRDataFile):
+            for index, signature in enumerate(getattr(cls, 'CONTENT_SIGNATURE_LIST', []) or []):
+                if labels == list(signature):
+                    return cls, index + 1
+        return None, None
+
     def columnNames(self, asString=False, ifString=None):
         """
         Get column names from the file content, or expected names based on contentFlag.
