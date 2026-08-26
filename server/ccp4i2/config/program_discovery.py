@@ -168,6 +168,90 @@ def discover_program(name: str) -> Dict[str, Optional[str]]:
     return {"name": name, "path": None, "source": SOURCE_MISSING}
 
 
+def preference_resolved_programs() -> Dict[str, str]:
+    """The programs the user has deliberately pointed CCP4i2 at.
+
+    Every name this module knows how to resolve, that resolves through a
+    *preference* rather than through ``PATH`` -- so a program already on ``PATH``
+    is left exactly as it is.
+    """
+    from_preferences = (SOURCE_EXECUTABLE_PREF, SOURCE_SUITE_DIR, SOURCE_EXE_PATHS)
+    resolved: Dict[str, str] = {}
+    for name in list(_EXECUTABLE_PREF) + list(_SUITE_DIR_PREF):
+        if name in resolved:
+            continue
+        found = discover_program(name)
+        if found["path"] and found["source"] in from_preferences:
+            resolved[name] = found["path"]
+    return resolved
+
+
+def make_program_shims(directory) -> Optional[str]:
+    """Build a directory of links to preference-resolved programs; return it.
+
+    Returns None when the user has configured nothing, in which case there is
+    nothing to put on ``PATH``.
+
+    **Why links and not the directories themselves.** Putting a ``{SUITE}DIR``
+    on ``PATH`` supplies far more than the program it was set for. ``SHELXDIR``
+    commonly points at the ``bin`` of an entire other CCP4 installation, and
+    prepending that shadows every binary in it --- including ``ccp4-python``,
+    whose launcher then tries to exec an interpreter version that is not there.
+    Observed, from a job that wanted shelxe and got a broken Python:
+
+        servalcat fw failed with return code 127
+        Stderr: /Applications/ccp4-9/bin/ccp4-python: line 25:
+                exec: python3.9: not found
+
+    A preference that names SHELX must supply SHELX and nothing else.
+    """
+    resolved = preference_resolved_programs()
+    if not resolved:
+        return None
+
+    shim_dir = Path(str(directory)) / ".program-shims"
+    try:
+        shim_dir.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        return None
+
+    made = 0
+    for name, target in resolved.items():
+        try:
+            if os.name == "nt":
+                link = shim_dir / f"{name}.bat"
+                link.write_text(f'@echo off\r\n"{target}" %*\r\n')
+            else:
+                link = shim_dir / name
+                if link.is_symlink() or link.exists():
+                    link.unlink()
+                link.symlink_to(target)
+            made += 1
+        except OSError:
+            continue
+    return str(shim_dir) if made else None
+
+
+def program_search_path(directory, base: Optional[str] = None) -> str:
+    """*base* (default the current ``PATH``) with a shim directory in front.
+
+    A task resolves its own ``TASKCOMMAND`` through :func:`discover_program`, so
+    it runs whatever the user pointed CCP4i2 at. Programs the task then invokes
+    *itself* --- crank2 spawning shelxc, a vendored pipeline shelling out --- see
+    only the environment they inherit, so a correctly configured ``SHELXDIR``
+    used to work for some tasks and not others.
+
+    The shim carries exactly the programs the user configured, so nothing else
+    in those directories is put in anybody's way.
+    """
+    if base is None:
+        base = os.environ.get("PATH", "")
+    shim = make_program_shims(directory)
+    if not shim:
+        return base
+    return os.pathsep.join([shim] + ([base] if base else []))
+
+
 def discover_programs(names: List[str]) -> List[Dict[str, Optional[str]]]:
     """Discover an explicit list of programs (the caller supplies the names)."""
     return [discover_program(n) for n in names]

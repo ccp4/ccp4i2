@@ -1,8 +1,10 @@
 import re
 import gemmi
+from .programs import requires_program
 from .utils import demoData, i2run
 
 
+@requires_program("shelxc", "shelxd", "shelxe")
 def test_crank2():
     args = ["crank2"]
     args += [

@@ -2,6 +2,7 @@ from sys import platform
 from gemmi import read_mtz_file, read_pdb
 from pytest import fixture, mark
 from .urls import redo_mtz
+from .programs import requires_program
 from .utils import download, i2run
 
 
@@ -14,7 +15,7 @@ def mtz_fixture():
         yield path
 
 
-@mark.skip(reason="Skipping temporarily as no shelx in build")
+@requires_program("ARCIMBOLDO_LITE", "phaser", "shelxe")
 def test_arcimboldo(mtz):
     args = ["arcimboldo"]
     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]

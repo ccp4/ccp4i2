@@ -453,6 +453,18 @@ class crank2(CPluginScript):
         sys.path.insert(0, crank2_parent_dir)
       from crank2 import ccp4i2crank, common
       import traceback
+      # crank2 runs in this process and spawns its own programs -- shelxc,
+      # shelxd, shelxe, refmac -- by bare name, so they are found on the PATH
+      # this process inherited. A task that shells out through
+      # _prepareProcessExecution() gets the user's program-location
+      # preferences put in front of PATH for it; an in-process pipeline has to
+      # do the same for itself, or a correctly configured SHELXDIR works for
+      # some tasks and not for others.
+      try:
+        from ccp4i2.config.program_discovery import program_search_path
+        os.environ['PATH'] = program_search_path(self.workDirectory, os.environ.get('PATH'))
+      except Exception:
+        pass  # never let discovery stop a job from running
       try:
         crank2 = ccp4i2crank.CallCrankFromCCP4i2(self, inpfile=inpfile, defaults=defaults, rvapi_style=rvapi_style)
         if not defaults and self.has_cont_attr(ctrl,"CLEANUP") and bool(ctrl.CLEANUP):
