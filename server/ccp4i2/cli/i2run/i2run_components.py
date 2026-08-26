@@ -333,6 +333,31 @@ class PluginPopulator:
                 PluginPopulator._handle_item(plugin, kw["path"], val)
 
     @staticmethod
+    def _check_field_exists(target, key, context=""):
+        """Refuse a sub-field the target does not declare.
+
+        CData supports dynamic attributes, so ``setattr(item, "filename", ...)``
+        on a ``CMergeMiniMtz`` --- which declares ``fileName`` --- quietly creates
+        a second, unrelated attribute that nothing reads. The job then runs with
+        its input unset: mergeMtz skipped both files, called joinMtz with an
+        empty list, wrote no HKLOUT and reported success.
+
+        A mistyped parameter must stop the run, not change what it does.
+        """
+        try:
+            declared = [c.objectName() for c in target.children()]
+        except Exception:
+            return  # not a container we can check; leave it alone
+        if not declared or key in declared:
+            return
+        lowered = {name.lower(): name for name in declared}
+        suggestion = lowered.get(key.lower())
+        where = f" of {context}" if context else ""
+        hint = (f" Did you mean {suggestion!r}?" if suggestion
+                else f" Valid fields{where} are: {', '.join(sorted(declared))}.")
+        raise ValueError(f"No field {key!r}{where}.{hint}")
+
+    @staticmethod
     def _handle_item(plugin: CPluginScript, object_path: str, value: Any) -> None:
         """
         Set a value on a plugin parameter.
@@ -525,6 +550,8 @@ class PluginPopulator:
                                 # Direct attribute - CData objects support dynamic attributes
                                 # For attributes that collide with HierarchicalObject properties (like 'name'),
                                 # we must bypass __setattr__ and create CData values directly
+                                PluginPopulator._check_field_exists(
+                                    target, key, type(target).__name__)
                                 try:
                                     # Import CString locally
                                     from ccp4i2.core.base_object.fundamental_types import CString, CInt, CFloat, CBoolean

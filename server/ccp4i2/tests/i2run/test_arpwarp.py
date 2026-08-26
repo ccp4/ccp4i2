@@ -1,3 +1,4 @@
+import os
 from sys import platform
 import re
 from gemmi import read_mtz_file, read_pdb
@@ -11,7 +12,13 @@ pytestmark = mark.skipif(platform == "win32", reason="Not supported on Windows")
 # TODO: Test long ligand names (e.g. 8xfm)
 
 
-@mark.skip(reason="Skipping temporarily for comprehensive test")
+@mark.skipif(
+    not os.environ.get("warpbin"),
+    reason="ARP/wARP not installed ($warpbin unset). It is licensed separately, "
+           "like SHELX. NOTE: without it this task reports success and writes "
+           "no outputs -- the wrapper finds ARP/wARP by its own means, so the "
+           "pre-run program check cannot see the dependency.",
+)
 def test_arpwarp():
     args = ["arp_warp_classic"]
     args += ["--AWA_FOBS", demoData("gamma", "merged_intensities_Xe.mtz")]

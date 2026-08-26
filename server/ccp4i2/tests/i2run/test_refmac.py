@@ -226,7 +226,6 @@ def _check_output(job, anom, expected_cycles, expected_rwork, require_molprobity
                 print(f"  ... and {len(hierarchy['file_uses']) - 10} more")
 
 
-@pytest.mark.skip(reason="Clipper library crashes during Iris validation - use test_8xfm_basic instead")
 def test_8xfm(cif8xfm, mtz8xfm):
     """Test refmac WITH water addition and full validation (SKIPPED: clipper crashes)"""
     args = ["prosmart_refmac"]
@@ -255,7 +254,6 @@ def test_8xfm_basic(cif8xfm, mtz8xfm):
         _check_output(job, anom=False, expected_cycles=3, expected_rwork=0.19, require_molprobity=False)
 
 
-@pytest.mark.skip(reason="Clipper library crashes during Iris validation - use test_gamma_basic instead")
 def test_gamma():
     """Test refmac with anomalous data WITH full validation (SKIPPED: clipper crashes)"""
     args = ["prosmart_refmac"]

@@ -2,7 +2,7 @@ import pytest
 from .utils import i2run
 
 
-@pytest.mark.skip(reason="Requires external PDB-REDO web service; not suitable for offline CI")
+@pytest.mark.skip(reason="NOT IMPLEMENTED: no test body. Would also need the live PDB-REDO service, so it could not run offline; see the docstring.")
 def test_pdb_redo():
     """Test PDB-REDO web services task.
 
