@@ -34,6 +34,49 @@ def assign_class_flags(hkl, spacegroup, irfrac, seed=FREER_SEED):
     return flags, keys
 
 
+def complete_class_flags(hkl, spacegroup, existing, irfrac, seed=FREER_SEED):
+    """Complete a partial free set, reproducing CCP4 freerflag's contract.
+
+    What must be preserved is the *test set*, not the labelling. Measured
+    against the binary (see tests/parity/test_freerflag_parity.py): every free
+    reflection stays free; no reflection that was already used in refinement
+    becomes free; reflections that carried no flag are partitioned at the usual
+    fraction; and the working set is re-segmented into 1..irfrac so a later
+    re-partition has segments to work with.
+
+    Args:
+        hkl: (N, 3) Miller indices
+        spacegroup: gemmi.SpaceGroup, for the equivalence classes
+        existing: (N,) float flags, NaN where a reflection carries none
+        irfrac: number of segments, i.e. round(1 / free fraction)
+        seed: fixed, so a re-run reproduces the same completion
+
+    Returns:
+        (N,) int array of flags, 0 for the test set.
+    """
+    gops = spacegroup.operations()
+    asu = gemmi.ReciprocalAsu(spacegroup)
+    keys = [tuple(asu.to_asu((int(h[0]), int(h[1]), int(h[2])), gops)[0]) for h in hkl]
+    rng = np.random.default_rng(seed)
+    present = ~np.isnan(existing)
+
+    # A class is free if any member is free, working if any member carries a
+    # flag and none is free, otherwise new.
+    free_classes, flagged_classes = set(), set()
+    for i, kk in enumerate(keys):
+        if present[i]:
+            (free_classes if int(existing[i]) == 0 else flagged_classes).add(kk)
+    flagged_classes -= free_classes
+
+    class_flag = {kk: 0 for kk in free_classes}
+    for kk in sorted(flagged_classes):
+        class_flag[kk] = int(rng.integers(1, irfrac + 1))   # never back into 0
+    for kk in sorted(set(keys) - free_classes - flagged_classes):
+        class_flag[kk] = int(rng.integers(0, irfrac + 1))   # may join the test set
+
+    return np.array([class_flag[kk] for kk in keys], dtype=int)
+
+
 class freerflag(CPluginScript):
     TASKNAME = 'freerflag'
     # gemmi/numpy-native: no CCP4 binary (see generateFreeR). Removing TASKCOMMAND
@@ -170,24 +213,11 @@ class freerflag(CPluginScript):
       hkl = data[:, :3].astype(int)
 
       if complete:
-          # Preserve existing flags, fill only the missing ones (per class).
           idx = self._freer_column_index(mtz)
           existing = data[:, idx].astype(float)
-          present = ~np.isnan(existing)
-          irfrac = (int(round(existing[present].max())) + 1) if present.any() else self._irfrac()
-          keys = [key(h) for h in hkl]
-          class_flag = {}
-          # seed class flags from reflections that already have one
-          for i, kk in enumerate(keys):
-              if present[i]:
-                  class_flag.setdefault(kk, int(existing[i]))
-          # draw flags for the remaining classes
-          for kk in sorted(set(keys)):
-              class_flag.setdefault(kk, int(rng.integers(0, irfrac)))
-          for i, kk in enumerate(keys):
-              if not present[i]:
-                  existing[i] = class_flag[kk]
-          data[:, idx] = existing
+          data[:, idx] = complete_class_flags(
+              hkl, spacegroup, existing, self._irfrac(), seed=FREER_SEED
+          ).astype(float)
           mtz.set_data(data)
       else:
           irfrac = self._irfrac()

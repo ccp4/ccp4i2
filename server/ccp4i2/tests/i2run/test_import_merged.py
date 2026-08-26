@@ -23,64 +23,68 @@ def test_gamma_mtz():
 
 
 def check_output(job, freerin):
+    """Check import_merged's outputs, and that the free set obeys freerflag's contract.
+
+    Completing a free set is not a formatting question. What CCP4 freerflag
+    guarantees, and what this asserts, is:
+
+    - every reflection that was free stays free;
+    - no reflection already used in refinement becomes free, which would
+      quietly invalidate an R-free;
+    - reflections that carried no flag are partitioned at the usual fraction;
+    - the working set is segmented, so the set can be re-partitioned later.
+
+    The same contract is checked directly against the CCP4 binary in
+    tests/parity/test_freerflag_parity.py. This test previously asserted only
+    that every flag value held between 2% and 15% of the reflections, which no
+    binary free set can satisfy -- its working flag holds ~95% -- and which
+    said nothing about the test set being preserved.
     """
-    Check that import_merged produces valid output files.
+    gemmi.read_mtz_file(str(job / "OBSOUT.mtz"))
 
-    Note: We don't expect perfect preservation of FreeR flags when using
-    COMPLETE mode, as freerflag will:
-    1. Extend the set to cover all observations
-    2. Ensure symmetry-equivalent reflections have the same flag
-    3. Maintain reasonable flag distribution
-
-    This can cause some flags to be reassigned compared to the input.
-    """
-    # Check OBSOUT.mtz exists and is valid
-    obs_mtz = gemmi.read_mtz_file(str(job / "OBSOUT.mtz"))
-
-    # Check FREEOUT.mtz exists and is valid
     free_mtz = gemmi.read_mtz_file(str(job / "FREEOUT.mtz"))
     free_mtz.ensure_asu()
-
-    # Verify FreeR column exists
     freecol = free_mtz.rfree_column()
     assert freecol is not None, "FREEOUT.mtz missing FreeR column"
 
-    # Count reflections by flag value (20-bin system: flags 0-19)
-    flag_counts = {}
-    for flag in freecol:
-        flag_counts[int(flag)] = flag_counts.get(int(flag), 0) + 1
+    hcol = free_mtz.column_with_label("H")
+    kcol = free_mtz.column_with_label("K")
+    lcol = free_mtz.column_with_label("L")
+    output = {(h, k, l): int(f) for h, k, l, f in zip(hcol, kcol, lcol, freecol)}
+    total = len(output)
 
-    total = sum(flag_counts.values())
-    num_bins = len(flag_counts)
+    # the test set, at the fraction freerflag uses
+    free_fraction = sum(1 for f in output.values() if f == 0) / total
+    assert 0.03 <= free_fraction <= 0.08, (
+        f"test set is {free_fraction:.1%} of reflections; freerflag holds out ~5%"
+    )
 
-    # DEBUG: Print flag distribution
-    print(f"\n=== FreeR Flag Distribution ===")
-    print(f"Total reflections: {total}")
-    print(f"Number of bins: {num_bins}")
-    for flag in sorted(flag_counts.keys())[:5]:
-        print(f"  Flag {flag}: {flag_counts[flag]} ({flag_counts[flag]/total*100:.1f}%)")
-    if num_bins > 5:
-        print(f"  ... (showing first 5 of {num_bins} bins)")
+    # the working set is segmented rather than left as a single flag
+    distinct = len(set(output.values()))
+    assert distinct > 2, (
+        f"only {distinct} distinct flag values -- the working set should be "
+        "segmented so the free set can be re-partitioned later"
+    )
 
-    # Verify we have a reasonable number of bins (typically 20 for CCP4)
-    assert num_bins >= 2, f"Too few FreeR bins: {num_bins}"
-
-    # Verify each bin has reasonable size
-    # In a 20-bin system, each should be ~5% (100/20)
-    # In a binary system, test set should be ~5-10%
-    expected_fraction = 1.0 / num_bins
-    for flag, count in flag_counts.items():
-        fraction = count / total
-        # Each bin should be within reasonable range of expected
-        # (allow 2-15% for flexibility - covers both 20-bin at ~5% and binary at ~5-10%)
-        assert 0.02 < fraction < 0.15, \
-            f"Flag {flag} has {fraction:.1%} of reflections (expected ~{expected_fraction:.1%})"
-
-    # Verify output has at least as many reflections as input
-    # (COMPLETE mode extends the set)
+    # nothing crosses between the test and working sets
     input_flags = freer_flag_dict(freerin)
-    assert total >= len(input_flags), \
-        f"Output has fewer reflections ({total}) than input ({len(input_flags)})"
+    was_free = [hkl for hkl, f in input_flags.items() if f == 0]
+    was_working = [hkl for hkl, f in input_flags.items() if f != 0]
+    if was_free:
+        lost = [hkl for hkl in was_free if output.get(hkl, 0) != 0]
+        assert not lost, (
+            f"{len(lost)} of {len(was_free)} free reflections stopped being free"
+        )
+    if was_working:
+        moved = [hkl for hkl in was_working if output.get(hkl, 1) == 0]
+        assert not moved, (
+            f"{len(moved)} reflections already used in refinement became free"
+        )
+
+    # COMPLETE mode extends the set, never shrinks it
+    assert total >= len(input_flags), (
+        f"output has fewer reflections ({total}) than input ({len(input_flags)})"
+    )
 
 
 def freer_flag_dict(hklin):
