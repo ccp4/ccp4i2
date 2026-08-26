@@ -18,7 +18,30 @@ is in the remediation document under *The pre-C1 baseline*; in brief:
 | `nucleofind` ×2 | **See the correction below.** |
 | `substitute_ligand` ×2 | `f8087b070` (2026-06-15) replaced mmdb2's content-based `ReadCIFASCII` with `gemmi.read_structure`, which detects format by extension. `SubstituteLigand` copies an mmCIF input verbatim into a file it names `selected_atoms.pdb`, so dimple's reader fails. Audited in [docs/coordinate-format-fidelity.md](../../../docs/coordinate-format-fidelity.md). |
 | `dm_multidomain` | Test asserts on two mask arrays that stopped being the same shape when `c100c6f53` made masks tight sub-boxes. The masks are disjoint — verified in the unit-cell frame. The test is wrong. |
-| `import_merged::test_2ceu_cif` | `64cd3bb3d` (2026-06-15) changed this path's free set from a 20-bin partition to a binary flag. Verified by running the test at `64cd3bb3d^`, where it passes with 21 bins at ~5% each. Needs a decision, not a fix. |
+| `import_merged::test_2ceu_cif` | `64cd3bb3d` (2026-06-15) changed this path's free set from a 20-bin partition to a binary flag. Verified by running the test at `64cd3bb3d^`, where it passes with 21 bins at ~5% each. **The test was right and the code was wrong** — see the correction below. |
+
+## Correction to this summary — the import_merged test was doing its job
+
+Recorded above as needing "a decision, not a fix", on the reasoning that the
+test's per-flag 2–15% band could not hold for a binary free set. That reasoning
+inverted the blame.
+
+The band is satisfied by the conformant output: freerflag completes this dataset
+into 21 even segments of about 4.8% each, comfortably inside it. The assertion
+passed before `64cd3bb3d` and failed after. It was not a broken test — it was
+the only thing in the tree that noticed the native freerflag had stopped
+reproducing the binary, and it had been saying so for two months.
+
+The error was assuming the observed behaviour was the standard and reasoning
+backwards to a faulty test. It is the same mistake as attributing a failure to
+the environment, in a different costume: a red test is a claim about the code
+until the code has been checked against something independent. Here that
+something was the CCP4 binary itself — see
+`tests/parity/test_freerflag_parity.py`, which now asks the same questions of
+the binary and of us.
+
+What the test *did* lack was any assertion that the test set survived
+completion, which is the property with an R-free at stake. It now checks both.
 
 ## Correction to this summary — the SHELX failures were a defect
 

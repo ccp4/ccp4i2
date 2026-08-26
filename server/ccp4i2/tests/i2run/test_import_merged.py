@@ -1,3 +1,4 @@
+from collections import Counter
 import gemmi
 from .urls import pdbe_sfcif
 from .utils import demoData, download, i2run
@@ -60,11 +61,24 @@ def check_output(job, freerin):
     )
 
     # the working set is segmented rather than left as a single flag
-    distinct = len(set(output.values()))
+    counts = Counter(output.values())
+    distinct = len(counts)
     assert distinct > 2, (
         f"only {distinct} distinct flag values -- the working set should be "
         "segmented so the free set can be re-partitioned later"
     )
+
+    # and the segments are even. This is the check that caught the divergence
+    # in the first place: it passed on the 21 even segments freerflag produces
+    # and failed when the native implementation started returning a binary
+    # column, whose working flag holds ~95% of the reflections.
+    expected = 1.0 / distinct
+    for flag, count in sorted(counts.items()):
+        share = count / total
+        assert 0.5 * expected <= share <= 2.0 * expected, (
+            f"segment {flag} holds {share:.1%} of reflections; "
+            f"{distinct} segments should hold about {expected:.1%} each"
+        )
 
     # nothing crosses between the test and working sets
     input_flags = freer_flag_dict(freerin)

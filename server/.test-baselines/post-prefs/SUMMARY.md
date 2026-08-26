@@ -41,4 +41,4 @@ a fresh install would do.
 |---|---|
 | `nucleofind` ×2 | No `TASKNAME`, so the def.xml has never been loaded. One line, plus the G1 loop that also catches `SIMBAD` and `pisa`. C8 in the remediation document. |
 | `dm_multidomain` | The test ANDs two mask arrays that stopped being the same shape when masks became tight sub-boxes. The masks are disjoint. Fix the test. |
-| `import_merged::test_2ceu_cif` | The free set changed from a 20-bin partition to a binary flag in `64cd3bb3d`. A decision, not a fix. |
+| `import_merged::test_2ceu_cif` | The free set changed from a 20-bin partition to a binary flag in `64cd3bb3d`. The test was detecting a real divergence from CCP4 freerflag; fixed on `freerflag-conformance`. |
