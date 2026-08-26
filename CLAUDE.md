@@ -236,7 +236,14 @@ ccp4-python -m pytest ccp4i2/tests/ -v
 - Unit tests must not depend on external data (test101, ProjectZips). Use `demo_data/` from the repo or `I2_TOP` for paths
 - E2e tests (i2run, api/e2e) download test data via session-scoped fixtures from PDBe/RCSB/PDB-REDO
 - All tests use `ccp4-python -m pytest` (not `run_test.sh`) for cross-platform consistency
-- Failed test directories are preserved in `~/.cache/ccp4i2-tests/` for debugging
+- Failed test directories are preserved in `~/.cache/ccp4i2-tests/` for debugging.
+  They are never pruned, so this grows: **2.1 GB across 133 directories** after a
+  few weeks of runs. Delete the old ones when disk gets tight
+- Downloaded fixtures are cached in `~/.cache/ccp4i2-tests/downloads/`, so a run
+  does not depend on every external host being up. Files over 100 MB are *not*
+  cached — the xia2 fixture pulls a 335 MB archive to use twenty frames of it.
+  `CCP4I2_TEST_CACHE_MAX_MB=400` includes it, `=0` removes the limit, and
+  `CCP4I2_TEST_REFETCH=1` ignores what is cached
 - **The parity tier guards the slim-server ports.** Replacing a CCP4 binary with
   gemmi/numpy is only as good as the evidence it behaves the same, and that
   evidence goes stale quietly: the freerflag parity tests sat in the tree for two

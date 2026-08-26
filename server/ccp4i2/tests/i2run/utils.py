@@ -27,13 +27,62 @@ except ImportError:
         return str(Path(__file__).parent.parent.parent)
 
 
+#: Files at or under this size are kept between runs. The cap exists because
+#: the xia2 fixture pulls a 335 MB archive to use twenty frames out of it, and
+#: a developer's disk should not fill up as the price of a faster suite. Raise
+#: it (or set it to 0 for no limit) with CCP4I2_TEST_CACHE_MAX_MB.
+DEFAULT_CACHE_MAX_MB = 100
+
+
+def _download_cache_dir() -> Path:
+    """Where cached downloads live: beside the preserved project directories."""
+    from ccp4i2.tests.i2run.test_config import get_test_projects_dir
+
+    cache = get_test_projects_dir() / "downloads"
+    cache.mkdir(parents=True, exist_ok=True)
+    return cache
+
+
+def _cache_name(url: str) -> str:
+    """A readable file name that cannot collide between two URLs."""
+    from hashlib import sha256
+
+    raw = unquote(basename(urlparse(url).path)) or "download"
+    safe = "".join(c for c in raw.strip().replace(" ", "_")
+                   if c.isalnum() or c in "-_.")
+    return f"{sha256(url.encode()).hexdigest()[:12]}_{safe or 'download'}"
+
+
+def _cache_limit_bytes() -> int:
+    try:
+        megabytes = float(environ.get("CCP4I2_TEST_CACHE_MAX_MB",
+                                      DEFAULT_CACHE_MAX_MB))
+    except ValueError:
+        megabytes = DEFAULT_CACHE_MAX_MB
+    return int(megabytes * 1024 * 1024)
+
+
 @contextmanager
 def download(url: str):
+    """Fetch *url*, reusing an earlier copy when there is one.
+
+    Yields a path to the file. Small files are kept in
+    ``~/.cache/ccp4i2-tests/downloads/`` between runs, so a suite run does not
+    depend on every external host being up: on 2026-08-26 Zenodo was
+    unreachable and two xia2 tests errored in *setup*, which reads as a code
+    failure in a baseline and is not one.
+
+    Files larger than :data:`DEFAULT_CACHE_MAX_MB` are fetched to a temporary
+    file and deleted afterwards, as before --- caching them would cost more disk
+    than the time is worth. ``CCP4I2_TEST_CACHE_MAX_MB=0`` removes the limit,
+    and ``CCP4I2_TEST_REFETCH=1`` ignores anything already cached.
     """
-    Downloads a file from the given URL and saves it to a temporary file.
-    Yields a string path to the temporary file.
-    Use in a with statement to ensure the file is deleted afterwards.
-    """
+    cached = _download_cache_dir() / _cache_name(url)
+    if cached.is_file() and cached.stat().st_size > 0 and \
+            not environ.get("CCP4I2_TEST_REFETCH"):
+        yield str(cached)
+        return
+
     urlName = unquote(basename(urlparse(url).path))
     with urlopen(url, timeout=30) as response:
         name = response.headers.get_filename() or urlName
@@ -43,6 +92,18 @@ def download(url: str):
             while chunk := response.read(1_000_000):
                 temp.write(chunk)
         path = Path(temp.name).resolve()
+
+        limit = _cache_limit_bytes()
+        if limit == 0 or path.stat().st_size <= limit:
+            # Move into place, so a run interrupted mid-download never leaves a
+            # truncated file to be reused as though it were whole.
+            try:
+                path.replace(cached)
+                yield str(cached)
+                return
+            except OSError:
+                pass  # cross-device or read-only cache: fall back to the temp file
+
         try:
             yield str(path)
         finally:
