@@ -14,11 +14,35 @@ is in the remediation document under *The pre-C1 baseline*; in brief:
 
 | Failures | Cause |
 |---|---|
-| `crank2`, `shelx` ×3 | `shelxc` absent from this CCP4 build. SHELX ships separately under Sheldrick's licence (see the ccp4-20260520 summary), so this is an environment gap, not a defect. Two other tests already skip for it. |
+| `crank2`, `shelx` ×3 | **This diagnosis was wrong — see the correction below.** Recorded at the time as: `shelxc` absent from this CCP4 build, an environment gap rather than a defect. |
 | `nucleofind` ×2 | **See the correction below.** |
 | `substitute_ligand` ×2 | `f8087b070` (2026-06-15) replaced mmdb2's content-based `ReadCIFASCII` with `gemmi.read_structure`, which detects format by extension. `SubstituteLigand` copies an mmCIF input verbatim into a file it names `selected_atoms.pdb`, so dimple's reader fails. Audited in [docs/coordinate-format-fidelity.md](../../../docs/coordinate-format-fidelity.md). |
 | `dm_multidomain` | Test asserts on two mask arrays that stopped being the same shape when `c100c6f53` made masks tight sub-boxes. The masks are disjoint — verified in the unit-cell frame. The test is wrong. |
 | `import_merged::test_2ceu_cif` | `64cd3bb3d` (2026-06-15) changed this path's free set from a 20-bin partition to a binary flag. Verified by running the test at `64cd3bb3d^`, where it passes with 21 bins at ~5% each. Needs a decision, not a fix. |
+
+## Correction to this summary — the SHELX failures were a defect
+
+Recorded above as an environment gap. They were not. Asking the question the
+application asks — `discover_program("shelxc")` rather than
+`shutil.which("shelxc")` — shows SHELX resolving perfectly well on this machine,
+through the `SHELXDIR` preference, at `/Applications/ccp4-9/bin`.
+
+The jobs could not find it because `_prepareProcessExecution()` resolves a
+task's own `TASKCOMMAND` against the preferences and then copies the environment
+unchanged, so any program the task invokes *itself* sees only what it inherited.
+arcimboldo worked because PR #282 changed its wrapper to call `resolve_program()`
+by hand; crank2 did not, because it spawns `shelxc` by bare name from vendored
+code. One preference, one machine, two answers.
+
+Fixed on `tests-honour-program-preferences`: the child's `PATH` carries links to
+the programs the user configured. `test_crank2` and `test_shelx` ×3 pass, and
+`test_arcimboldo` and `test_shelxe_mr` go from skipped to passing.
+
+The lesson is the same one as the ccp4-20260520 correction below, which is why
+both are recorded rather than quietly amended: **a failure attributed to the
+environment is a diagnosis, and it needs the same evidence as any other.** Twice
+now, "the build is missing a binary" has been the comfortable answer and the
+wrong one.
 
 ## Correction to the ccp4-20260520 summary
 
