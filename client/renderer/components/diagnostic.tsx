@@ -22,85 +22,23 @@ import {
   KeyboardArrowDown as KeyboardArrowDownIcon,
   KeyboardArrowRight as KeyboardArrowRightIcon,
 } from "@mui/icons-material";
+import {
+  ErrorReport,
+  HeaderInfo,
+  describeReport,
+  parseDiagnosticXml,
+} from "../lib/diagnostic-parse";
 
 interface DiagnosticProps {
   xmlDocument: string;
-}
-
-interface ErrorReport {
-  className: string;
-  code: string;
-  description: string;
-  severity: string;
-  details: string;
-  stack: string;
-}
-
-interface HeaderInfo {
-  function: string;
-  userId: string;
-  hostName: string;
-  creationTime: string;
-  pluginName: string;
-  projectName: string;
-  projectId: string;
-  jobId: string;
-  jobNumber: string;
 }
 
 const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
   const [expandedCard, setExpandedCard] = useState<number>(-1); // Initially nothing expanded
   const [expandedStacks, setExpandedStacks] = useState<Set<number>>(new Set()); // Track which stack traces are open
 
-  const parseXML = (xmlString: string) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlString, "text/xml");
-
-    // Parse header information
-    const header: Partial<HeaderInfo> = {};
-    const headerElement = doc.querySelector("ccp4i2_header");
-    if (headerElement) {
-      [
-        "function",
-        "userId",
-        "hostName",
-        "creationTime",
-        "pluginName",
-        "projectName",
-        "projectId",
-        "jobId",
-        "jobNumber",
-      ].forEach((field) => {
-        const element = headerElement.querySelector(field);
-        if (element) {
-          header[field as keyof HeaderInfo] = element.textContent || "";
-        }
-      });
-    }
-
-    // Parse error reports
-    const errorReports: ErrorReport[] = [];
-    const errorElements = doc.querySelectorAll("errorReport");
-
-    errorElements.forEach((errorElement) => {
-      const getTextContent = (selector: string) =>
-        errorElement.querySelector(selector)?.textContent?.trim() || "";
-
-      errorReports.push({
-        className: getTextContent("className"),
-        code: getTextContent("code"),
-        description: getTextContent("description"),
-        severity: getTextContent("severityName") || getTextContent("severity"),
-        details: getTextContent("details"),
-        stack: getTextContent("stack"),
-      });
-    });
-
-    return { header, errorReports };
-  };
-
   const { header, errorReports } = useMemo(
-    () => parseXML(xmlDocument),
+    () => parseDiagnosticXml(xmlDocument),
     [xmlDocument]
   );
 
@@ -274,7 +212,7 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
             >
               {getSeverityIcon(report.severity)}
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                {report.className} - {report.code}
+                {describeReport(report)}
               </Typography>
               <Chip
                 label={report.severity}
@@ -285,17 +223,20 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
           </AccordionSummary>
           <AccordionDetails>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {/* Description */}
-              <Box>
-                <Typography
-                  variant="subtitle2"
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Description
-                </Typography>
-                <Typography variant="body2">{report.description}</Typography>
-              </Box>
+              {/* Description -- absent for most reports, so do not draw an
+                  empty heading over nothing. */}
+              {report.description && (
+                <Box>
+                  <Typography
+                    variant="subtitle2"
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    Description
+                  </Typography>
+                  <Typography variant="body2">{report.description}</Typography>
+                </Box>
+              )}
 
               {/* Details */}
               {report.details && (
