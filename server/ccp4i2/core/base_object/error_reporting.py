@@ -50,17 +50,26 @@ class CErrorReport:
         self._errors: List[Dict[str, Any]] = []
 
     def append(self, klass: str, code: int, details: str, name: str = "",
-               severity: int = SEVERITY_ERROR):
+               severity: int = SEVERITY_ERROR, description: str = "",
+               stack: str = ""):
         """Add a single error to the report.
 
         Args:
             klass: Class name where error occurred
             code: Error code number
-            details: Error description/details
-            name: Object name (optional)
+            details: what went wrong on *this* occasion --- the specifics
+            name: Object name (optional): which parameter the report is about
             severity: Severity level (default: SEVERITY_ERROR)
+            description: what this error code means in general, from the
+                task's ``ERROR_CODES``. The Diagnostics panel shows it above
+                the details, so the reader gets the sentence before the
+                specifics.
+            stack: a traceback, when there is one. Kept apart from *details*
+                so the panel can fold it away.
         """
         self._errors.append({
+            'description': description,
+            'stack': stack,
             'class': klass,
             'code': code,
             'details': details,
@@ -235,6 +244,17 @@ class CErrorReport:
             # Add name element
             name_elem = ET.SubElement(error_elem, "name")
             name_elem.text = str(error.get('name', ''))
+
+            # What the code means in general, and the traceback, when known.
+            # Both are optional: emitted only when there is something to say,
+            # so a reader is never shown an empty heading over nothing.
+            if error.get('description'):
+                description_elem = ET.SubElement(error_elem, "description")
+                description_elem.text = str(error['description'])
+
+            if error.get('stack'):
+                stack_elem = ET.SubElement(error_elem, "stack")
+                stack_elem.text = str(error['stack'])
 
             # Add severity element (both as number and name)
             severity = error.get('severity', SEVERITY_OK)

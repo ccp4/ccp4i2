@@ -13,6 +13,8 @@ import logging
 import os
 import re
 import shutil
+import sys
+import traceback
 
 from ccp4i2.core.base_object.base_classes import CData, CContainer
 from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
@@ -4656,6 +4658,42 @@ class CPluginScript(CData):
             return self._runningProcessId
         return id(self)
 
+    #: (class name, code) pairs already complained about, so a task that
+    #: reports the same undeclared code on every run says so once.
+    _undeclared_codes_seen = set()
+
+    def _describeErrorCode(self, code, cls):
+        """What *code* means, from the task's ``ERROR_CODES``; '' if unknown.
+
+        An undeclared code is a fault in the task: `ERROR_CODES` is how a task
+        states what its codes mean, and the Diagnostics panel has nothing to
+        show above the specifics without it. It must not stop the job --- the
+        report being made is more important than its being well-formed --- so
+        this warns once per code and carries on.
+        """
+        declared = getattr(self, 'ERROR_CODES', None) or {}
+        entry = declared.get(code)
+
+        if isinstance(entry, dict):
+            described = str(entry.get('description', '') or '')
+            if described:
+                return described
+            reason = 'declares it with no description'
+        elif entry is not None:
+            reason = f'declares it as {type(entry).__name__}, not a dict'
+        else:
+            reason = 'does not declare it'
+
+        seen_key = (cls.__name__, code)
+        if seen_key not in CPluginScript._undeclared_codes_seen:
+            CPluginScript._undeclared_codes_seen.add(seen_key)
+            logger.warning(
+                "%s reported error code %s but %s in ERROR_CODES. Add "
+                "%s: {'description': '...'} so the Diagnostics panel can say "
+                "what it means.", cls.__name__, code, reason, code,
+            )
+        return ''
+
     def appendErrorReport(self, code=0, details='', name=None, label=None, cls=None,
                          stack=True, exc_info=None, severity=None):
         """
@@ -4688,10 +4726,38 @@ class CPluginScript(CData):
                 # Legacy code often uses appendErrorReport for non-fatal issues
                 severity = SEVERITY_WARNING
 
+        # What this code means in general, as the task declared it. The panel
+        # shows it above the specifics, so a reader gets the sentence before
+        # the traceback.
+        description = self._describeErrorCode(code, cls)
+
+        # 38 calls in the tree pass a code and nothing else, so when the code is
+        # also undeclared the reader would be shown a card with no words on it
+        # at all. Say plainly what happened instead: it is a poor diagnostic,
+        # and it is reportable, which a blank card is not.
+        if not details and not description:
+            details = (
+                f'{cls.__name__} reported error code {code}, which it does not '
+                f'describe. This is a fault in the task rather than in your '
+                f'data --- please report it, with this job.'
+            )
+
+        # The traceback, when we are inside an exception. Kept apart from
+        # details so the panel can fold it away. This method has always taken a
+        # `stack` argument and always ignored it.
+        stack_text = ''
+        if stack:
+            if exc_info is not None:
+                stack_text = ''.join(traceback.format_exception(*exc_info))
+            elif sys.exc_info()[0] is not None:
+                stack_text = traceback.format_exc()
+
         self.errorReport.append(
             klass=cls.__name__,
             code=code,
             details=details,
             name=name,
-            severity=severity
+            severity=severity,
+            description=description,
+            stack=stack_text
         )
