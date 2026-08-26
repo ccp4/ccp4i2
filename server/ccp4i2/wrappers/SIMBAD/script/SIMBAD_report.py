@@ -2,7 +2,6 @@ import os
 import re
 import xml.etree.ElementTree as ET
 
-from simbad.util import SIMBAD_DIRNAME, SIMBAD_PYRVAPI_SHAREDIR
 
 from ccp4i2.report.CCP4ReportParser import Report
 
@@ -12,6 +11,10 @@ class SIMBAD_report(Report):
     RUNNING = True
     def __init__(self, xmlnode=None, jobInfo={}, **kw):
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
+        # `simbad` lives only in the execution (worker) environment, and a
+        # report class must import on the slim API server, which is what
+        # renders reports. Take the constants when the report is drawn.
+        from simbad.util import SIMBAD_DIRNAME, SIMBAD_PYRVAPI_SHAREDIR
         repdir = os.path.join(jobInfo.get('fileroot', None), SIMBAD_DIRNAME, SIMBAD_PYRVAPI_SHAREDIR)
         self.get_tables_as_elements(repdir)
         #print("JMHT WRITING REPORT %s" % self.e1_dict)

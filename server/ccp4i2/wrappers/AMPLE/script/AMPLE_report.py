@@ -1,7 +1,6 @@
 import os
 import re
 
-from ample.util.ample_util import I2DIR
 from lxml import etree as ET
 
 from ccp4i2.report.CCP4ReportParser import Report
@@ -12,6 +11,10 @@ class AMPLE_report(Report):
     RUNNING = True
     def __init__(self, xmlnode=None, jobInfo={}, **kw):
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
+        # `ample` lives only in the execution (worker) environment, and a
+        # report class must import on the slim API server, which is what
+        # renders reports. Take the constant when the report is drawn.
+        from ample.util.ample_util import I2DIR
         repdir = os.path.join(jobInfo.get('fileroot', None), I2DIR, 'jsrview')
         self.table_elements = self.get_tables_as_elements(repdir)
         #print("JMHT WRITING REPORT %s" % self.tables)

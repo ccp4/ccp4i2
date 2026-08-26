@@ -4,7 +4,12 @@ import shutil
 try:
     from simbad.util import SIMBAD_DIRNAME
     from simbad.util.simbad_results import SimbadResults
-except ImportError:  # `simbad` is present only in the execution (worker) env, not on the slim API
+except Exception:  # `simbad` is present only in the execution (worker) env, not on the slim API
+    # Not just ImportError: simbad/__init__.py raises RuntimeError("Cannot find
+    # CCP4 root directory") when $CCP4 is unset, which happens whenever
+    # ccp4-python runs without ccp4.setup-sh having been sourced. A guard that
+    # catches only ImportError lets that escape and the whole task fails to
+    # load, with nowhere to report it (C8).
     SIMBAD_DIRNAME = SimbadResults = None
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript

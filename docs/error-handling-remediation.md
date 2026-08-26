@@ -93,7 +93,7 @@ not to declare a file guilty.
 
 ## Burn-down
 
-Measured at `59579c932` (2026-08-25) unless noted.
+Measured at `8240732c2` (2026-08-26) unless noted.
 
 | Metric | Baseline (2026-08-24) | Current | Target |
 |---|---:|---:|---|
@@ -103,8 +103,8 @@ Measured at `59579c932` (2026-08-25) unless noted.
 | `print()` | 917 (146 files) | 913 (142) | 0 (via M6) |
 | `logger.*()` | 56 (5 files) | 54 (5) | rising |
 | `return FAILED` with no error report nearby | 128 (56 files) | 128 (56) | 0 |
-| `processOutputFiles` returning `FAILED`/`UNSATISFACTORY` | 33 + 3 | 35 + 3 | n/a once C1 lands |
-| `appendErrorReport` calls passing explicit severity | 7 of 320 | 7 of 326 | n/a once C2 lands |
+| `processOutputFiles` returning `FAILED`/`UNSATISFACTORY` | 33 + 3 | 35 + 3 | **honoured** since C1 |
+| `appendErrorReport` calls passing explicit severity | 7 of 320 | 7 of 327 | n/a once C2 lands |
 | Tasks overriding `runTimeValidity` | 6 of 173 | 6 | rising |
 | Tasks overriding `postProcessCheck` | 3 of 173 | 3 | n/a once M1/M2 land |
 | Tasks declaring `LOG_FAILURES` | 0 of 173 | 1 (`arcimboldo`) | rising |
@@ -114,12 +114,20 @@ Measured at `59579c932` (2026-08-25) unless noted.
 | `C1:`/`C2:` xfail markers outstanding | 0 | **0** — none needed; every C1 red was fixed outright | 0 (rises during Phase 1, then falls) |
 | Pre-existing `@pytest.mark.skip` in i2run | 18 | 18 | falling — see [transition](#the-phase-1-transition) |
 
-The two counts that moved on their own are worth reading correctly. `print()`
-fell by four because the PHIL and xia2 refactors of 2026-08-25 deleted
-boilerplate, not because anything was remediated. `processOutputFiles` returning
-`FAILED` **rose by two**: authors keep writing the correct check into the one
-hook that still discards it. Nothing in this document has yet made a wrapper
-author's correct code count for anything.
+**The counts have barely moved, and that is worth stating rather than
+glossing.** Part 1 is about the core no longer discarding what wrappers already
+report; it deletes no bare `except:` clauses at all. The 35
+`processOutputFiles` implementations returning `FAILED` are the same 35 — they
+are simply honoured now instead of thrown away, which is why six latent defects
+surfaced the day C1 landed.
+
+The scan measures *visible* mishandling, and everything found between
+2026-08-25 and 26 is invisible to every row above: six exceptions swallowed in
+`processOutputFiles`, a coordinate format decided by a filename, a preference
+that reached a task but not its children, three tasks that could not load, four
+report classes calling lxml APIs on the standard library, and a free set that
+had stopped matching the program it replaced. Treat the table as a reading
+order for Part 3, never as a measure of how much is left.
 
 ---
 

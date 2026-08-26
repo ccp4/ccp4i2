@@ -1472,10 +1472,29 @@ def _get_task_class(task_name: str, class_type: str):
     if task is None:
         return None
     path = getattr(task, f"{class_type}Path")
+    if not path:
+        # A declaration that was never made is not an import that failed. Some
+        # entries exist only to give a def.xml a name -- `pisa` names one of
+        # pisapipe's components -- and asking those for a class is a question
+        # with a legitimate answer of "there isn't one". Recording it as an
+        # import error produced "'NoneType' object has no attribute 'split'",
+        # which names neither the task nor the cause.
+        return None
     try:
         module_name, class_name = path.split(":")
         module = importlib.import_module(module_name)
-        return getattr(module, class_name)
+        cls = getattr(module, class_name)
+        if class_type == "plugin":
+            declared = getattr(cls, "TASKNAME", None)
+            if declared != task_name:
+                # TASKNAME is what CPluginScript.__init__ uses to find the
+                # def.xml, so a class that does not declare it, or declares
+                # something else, silently loads no parameters at all.
+                logging.getLogger(f"ccp4i2:{__name__}").error(
+                    "Task %r is registered but its class declares TASKNAME=%r; "
+                    "its def.xml will not be loaded", task_name, declared,
+                )
+        return cls
     except Exception as e:
         logger = logging.getLogger(f"ccp4i2:{__name__}")
         logger.error(f"Failed to import {class_type} for {task_name}: {e}")
