@@ -57,6 +57,26 @@ are collected together by the parser (they are not separate `--` flags).
 | `fullPath=<path>` | Absolute filesystem path — works for all `CDataFile`-derived types |
 | `columnLabels=/*/*/[F,SIGF]` | MTZ column selection (triggers automatic column extraction) |
 | `annotation=<text>` | Human-readable label shown in the GUI |
+| `seqFile=<path>` | For `CAsuDataFile` parameters (e.g. `--ASUIN`): converts a sequence file to the ASU XML the task expects |
+
+**Which keys are accepted.** The four above are handled specially. Beyond them,
+**any field the target object declares is a valid key** — `fileName`,
+`columnNames`, `crystalName`, `dataset`, `segments`, `mode`, and so on,
+depending on the parameter. There is no fixed list, because it differs per
+parameter.
+
+**A key the object does not declare is an error**, and the message names the
+fields that *are* valid:
+
+```
+$ ccp4-python manage.py i2run mergeMtz --project_name p --MINIMTZINLIST filename=/data/a.mtz
+No field 'filename' of CMergeMiniMtz. Did you mean 'fileName'?
+```
+
+Until 3.1.0a31 such a key was **accepted and ignored**: the job ran with that
+input unset, which for `mergeMtz` meant merging nothing and reporting success.
+If you have scripts that pass a key CCP4i2 was quietly discarding, they will now
+stop and tell you — and the job they used to run was not the job you asked for.
 
 Examples:
 
@@ -92,7 +112,8 @@ for list-type top-level parameters (but see Nested access below).
 
 ### Nested / sub-object access
 
-Use `/` to navigate into sub-objects:
+The same rule applies at each level: the key must be a field the object at that
+level declares. Use `/` to navigate into sub-objects:
 
 ```bash
 --UNMERGEDFILES file=/data/sweep1.mtz crystalName=mycrystal dataset=DS1
