@@ -532,16 +532,65 @@ defaults in the base class, and CI that refuses the bad shape.
 
 ## M1 — A declared output contract, checked by the base class
 
-- [ ] Base `postProcessCheck` walks `outputData` declarations from the def.xml
-- [ ] Fail with a specific message for any non-optional output missing or zero-length
-- [ ] Mark genuinely-optional outputs in the def.xml, not in code
-- [ ] Delete the hand-rolled equivalents from wrappers
+**Withdrawn as a mechanism, 2026-08-26.** Kept here with the reasoning, because
+it reads plausible and someone will propose it again.
 
-Verifying that a program actually produced its outputs is left to each wrapper's
-`processOutputFiles`, done inconsistently, and then discarded (C1). The def.xml
-already declares every `outputData` file. Roughly 90 wrappers get a real
-completeness check for free — *"refmac completed but produced no FPHIOUT; see log
-line 4213"*.
+- [x] ~~Base `postProcessCheck` walks `outputData` declarations from the def.xml~~
+- [x] ~~Fail for any non-optional output missing or zero-length~~
+- [x] ~~Mark genuinely-optional outputs in the def.xml, not in code~~
+
+### Why it cannot work as stated
+
+**`outputData` declares what a task *may* produce, not what it must.**
+`SubstituteLigand` has reflection outputs if and only if a reindexing was
+needed while positioning the molecule. Whether an output should exist is a
+property of the *run*, not of the task, and it is not knowable in advance
+without reproducing the pipeline's own logic.
+
+**The framework erases the only signal that might have substituted for a
+contract.** "Check what the wrapper claimed" fails because nothing claims
+anything: `checkOutputData()` assigns a default path to *every* declared output
+before the program runs, so afterwards there is no way to distinguish an output
+the wrapper produced from one the framework merely named.
+
+**"Declared outputs, produced none at all" is not safely an error either.**
+`coot_script_lines` collects its outputs by globbing what coot dropped; a script
+that writes no coordinates is a legitimate run, not a failure.
+
+### Why inferring the contract empirically is not the answer
+
+The obvious rescue is to record rather than fail — emit a warning per absent
+output, harvest across a suite run, and mark as required whatever appears every
+time. It does not earn its keep. **The test suite already carries the contract,
+per scenario and far more precisely**: `test_import_merged` reads `OBSOUT.mtz`
+and `FREEOUT.mtz`, `test_xia2` names three specific MTZs, `test_refmac` checks
+its XYZOUT. Those assertions know the inputs that produced them. An aggregate
+frequency count across runs would re-derive the same information more weakly,
+and then present it with unearned confidence — and it would be measuring only
+the paths the tests happen to take.
+
+### What the motivating cases actually needed
+
+Three tasks were found reporting success while producing nothing (the triage of
+the skipped tests, 2026-08-26). None of them wanted a contract:
+
+| Task | What was wrong | Where it belongs |
+|---|---|---|
+| `mergeMtz` | builds its input list with `if fileName.isSet() and exists()`, then calls `joinMtz` with an empty list, which succeeds having written nothing | a three-line guard in the wrapper: an empty input list is a failure |
+| `arp_warp_classic` | ARP/wARP absent, and the dependency is invisible — `TASKCOMMAND` is `sys.executable` and the wrapper finds ARP/wARP by its own means | [M8](#m8--declare-the-tool-let-the-base-class-find-it-and-say-so-when-it-is-missing) — declare the dependency |
+| `coot_script_lines` | produced no coordinates | not a defect; the test is the right place to assert, and it does |
+
+So the shape "produced nothing, said nothing" is real, and it is **not one
+mechanism**. It decomposes into an ignored guard, an undeclared dependency, and
+a case that is not a defect at all. The budget M1 would have taken belongs to
+C5, C6, C7 and the harvester.
+
+### What survives
+
+One practice, for `pipeline_best_practices.md` rather than the base class: **a
+wrapper that computes the inputs to its own step must fail when that
+computation comes up empty.** `mergeMtz` is the worked example. This is a review
+point, not something the framework can check.
 
 ## M2 — Declarative log scanning
 
@@ -832,8 +881,10 @@ misread as a regression.
 
 ### Phase 2 — Give authors somewhere to land
 
-C3, C4/M3, M1, M4, M5, G1, G3. Everything here is additive — no wrapper has to
-change for it to start paying off, which is what makes it stick.
+C3, C4/M3, M4, M5, G1, G3. Everything here is additive — no wrapper has to
+change for it to start paying off, which is what makes it stick. (M1 was in
+this list and is [withdrawn](#m1--a-declared-output-contract-checked-by-the-base-class);
+G1 has since landed.)
 
 ### Phase 3 — Work the pipelines
 
@@ -1411,6 +1462,7 @@ pattern. Two smaller amendments:
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
 | 2026-08-25 | Pre-C1 i2run baseline captured and **every one of its 10 failures diagnosed** — see [The pre-C1 baseline](#the-pre-c1-baseline). 4 environment (no `shelxc` in `ccp4-20260702`), 2 never-worked (`nucleofind` has no `TASKNAME`, so its def.xml is silently never loaded), 3 real regressions both dated 2026-06-15 (gemmi-native ports of mmdb2 CIF reading and of freerflag), 1 test asserting the wrong thing. Three of the ten are specimens of this document's thesis. |
+| 2026-08-26 | **M1 withdrawn.** `outputData` declares what a task *may* produce, not what it must — `SubstituteLigand` has reflection outputs only if a reindexing was needed — and `checkOutputData()` pre-names every declared output, so there is no signal of what a wrapper actually produced. Inferring the contract from suite runs was considered and rejected: the tests already carry it per scenario and more precisely. The three motivating cases turn out to belong to a wrapper guard, to M8, and to nothing at all. |
 | 2026-08-25 | **C8 added** — failures before a job exists have nowhere to report. C1–C7 all assume a job directory to write `diagnostic.xml` into; task-load, parameter-parse and validation failures have no path at all. Three live instances: `nucleofind` (no `TASKNAME`, so its def.xml was silently never loaded — has never run in any baseline), `SIMBAD` and `pisa` (plugin classes do not load). |
 | 2026-08-25 | **C1 confirmed.** Re-run of the full i2run suite with the six fixes in place is byte-for-byte the pre-C1 result: 10 failed, 150 passed, 19 skipped, `NEWLY FAILING: 0`, `NEWLY PASSING: 0`. Unit (860) and api/unit (79) green under `ccp4-python` and under the CCP4-free venv. No xfail markers were needed at any point — the transition machinery in [The Phase 1 transition](#the-phase-1-transition) went unused because every revealed defect was cheap to fix. `post-C1-fixed` is the comparator from here. |
 | 2026-08-25 | C1 triage complete: **6 newly-failing tests, 5 defects, all fixed** — `float(CInt)`, a missing atom-count KPI, an lxml keyword on the stdlib, an mmdb2 attribute, and a wrong variable in a copy loop. All six ran on the happy path on every execution for months. Added [How this could have been found sooner](#how-this-could-have-been-found-sooner): recording and failing are separable, and only the recording half is free. |
