@@ -76,3 +76,27 @@ def test_find_child_cannot_find_an_item_today():
     lst = _list_of(2)
     assert lst.find_child('[0]') is None, \
         'the name cache is re-keyed on rename -- Defect C has landed'
+
+
+def test_assigning_by_index_works_at_all():
+    """It did not: `self.name` does not exist on CList, so every CData
+    assigned to a list index raised AttributeError. Nothing in the tree
+    exercised the path, so nothing said so until the mutation tier did."""
+    lst = _list_of(3)
+    lst[1] = CInt(99)
+    assert int(lst[1]) == 99
+
+
+def test_assignment_names_the_item_the_way_append_does():
+    lst = _list_of(3)
+    lst[1] = CInt(99)
+    assert lst[1]._name == '[1]', 'it used to write "LIST[1]", a third convention'
+
+
+def test_the_displaced_item_is_still_a_child_today():
+    """Defect C: __setitem__ does not detach what it replaces."""
+    lst = _list_of(3)
+    displaced = lst[1]
+    lst[1] = CInt(99)
+    assert any(c is displaced for c in lst.children()), \
+        'assignment now detaches what it displaces -- Defect C has landed'

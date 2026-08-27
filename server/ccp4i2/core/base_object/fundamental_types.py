@@ -1698,7 +1698,15 @@ class CList(CData):
     def __setitem__(self, index: int, value: Any) -> None:
         if isinstance(value, CData):
             value.set_parent(self)
-            value.name = f"{self.name}[{index}]"
+            # `self.name` does not exist --- the attribute is `_name` --- so
+            # this raised AttributeError for every CData ever assigned to a
+            # list index, which is to say the method had never worked. It also
+            # wrote a different format from append() and insert(), which name
+            # items '[n]'.
+            #
+            # Still outstanding, and pinned in the conformance tier: the item
+            # this displaces is not detached, so it stays a child of the list.
+            value._name = f"[{index}]"
 
         self._items[index] = value
         self._value_states["_items"] = ValueState.EXPLICITLY_SET
