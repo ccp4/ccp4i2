@@ -121,7 +121,11 @@ def _model(tmp_path, name="start.pdb", residue=None):
 
 def _prepared(tmp_path, ligand_as="SMILES", xyzin=None, complaint="No dictionary at all for: ZZZ"):
     plugin = _plugin("SubstituteLigand", tmp_path)
-    plugin.container.inputData.XYZIN.setFullPath(str(xyzin or _model(tmp_path)))
+    if xyzin is None:
+        # A model holding the residue the check complains about, so the advice
+        # can name it.
+        xyzin = _model(tmp_path, residue="ZZZ") if complaint else _model(tmp_path)
+    plugin.container.inputData.XYZIN.setFullPath(str(xyzin))
     plugin.container.controlParameters.LIGANDAS.set(ligand_as)
     check = _RecordedCheck(plugin, complaint=complaint)
     plugin.checkMonomeCoverage = check
@@ -146,6 +150,35 @@ def test_the_refusal_says_what_to_do_about_it(tmp_path):
     assert "ZZZ" in details, "the residue is named"
     assert "atom selection" in details, "remedy one: take it out of the model"
     assert "supply its dictionary" in details, "remedy two: describe it"
+
+
+def test_the_refusal_spells_out_the_selection_that_clears_it(tmp_path):
+    """Naming the remedy is not the same as giving it."""
+    plugin, _check = _prepared(tmp_path)
+    details = " ".join(e["details"] for e in plugin.runTimeValidity().entries())
+    assert "not (ZZZ)" in details
+
+
+def test_the_selection_advice_names_only_residues_that_are_there(tmp_path):
+    plugin, _check = _prepared(tmp_path, xyzin=_model(tmp_path, residue="AAA"),
+                               complaint="No dictionary at all for: ZZZ")
+    details = " ".join(e["details"] for e in plugin.runTimeValidity().entries())
+    assert "not (" not in details, "advice must not name a residue the model lacks"
+
+
+def test_several_undescribed_ligands_get_one_selection(tmp_path):
+    model = tmp_path / "two.pdb"
+    model.write_text(
+        "HETATM    1  C1  ZZZ A 401       0.000   0.000   0.000  1.00 20.00           C  \n"
+        "HETATM    2  C1  YYY A 402       1.000   0.000   0.000  1.00 20.00           C  \n"
+        "END\n",
+        encoding="utf-8",
+    )
+    plugin, _check = _prepared(tmp_path, xyzin=model,
+                               complaint="No dictionary at all for: YYY, ZZZ")
+    details = " ".join(e["details"] for e in plugin.runTimeValidity().entries())
+    # "not (YYY or ZZZ)" parses and selects everything, so it must not be that.
+    assert "not (YYY) and not (ZZZ)" in details
 
 
 def test_the_refusal_points_at_the_coordinates(tmp_path):
@@ -229,6 +262,7 @@ def test_the_clash_message_offers_both_ways_out(tmp_path):
     assert "LIG" in details, "say what to call it instead"
     assert "atom selection" in details, "or take the old copy out"
     assert "repositioned against new data" in details, "the same-ligand case, named"
+    assert "not (DRG)" in details, "and the selection that would do it"
 
 
 def test_the_clash_points_at_the_code_not_the_coordinates(tmp_path):

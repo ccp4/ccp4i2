@@ -655,16 +655,19 @@ class SubstituteLigand(CPluginScript):
         finally:
             self.errorReport = saved
 
+        present = self._residueCodesIn(model) or set()
         for entry in found.entries():
+            offending = self._codesMentionedIn(entry['details'], present)
             error.append(
                 klass=self.TASKNAME,
                 code=213,
                 details=(
                     f"{entry['details']}\n\n"
                     "Refinement cannot describe a ligand it has no dictionary for. "
-                    "Either remove it from the starting coordinates using the atom "
-                    "selection on that file, or supply its dictionary under "
-                    "'Dictionaries for ligands already in this model'."
+                    "Either supply its dictionary under 'Dictionaries for ligands "
+                    "already in this model', or exclude it from the starting "
+                    "coordinates with the atom selection on that file"
+                    f"{self._selectionAdvice(offending)}."
                 ),
                 name=f'{self.TASKNAME}.container.inputData.XYZIN',
                 severity=CCP4ErrorHandling.SEVERITY_ERROR,
@@ -690,13 +693,39 @@ class SubstituteLigand(CPluginScript):
                     "would describe them both.\n\n"
                     "Give the fitted ligand a different code (LIG is the usual "
                     "second choice where DRG is taken), or remove the existing "
-                    f"{code} from the starting coordinates with the atom selection "
-                    "-- which is the answer when it is the same ligand being "
-                    "repositioned against new data."
+                    f"{code} from the starting coordinates with the atom selection"
+                    f"{self._selectionAdvice({code})} -- which is the answer when "
+                    "it is the same ligand being repositioned against new data."
                 ),
                 name=f'{self.TASKNAME}.container.controlParameters.LIGAND_CODE',
                 severity=CCP4ErrorHandling.SEVERITY_ERROR,
             )
+
+    @staticmethod
+    def _codesMentionedIn(details, present) -> set:
+        """Which of the model's residue codes a coverage message names.
+
+        Read back from the message rather than recomputed, but intersected
+        with what is actually in the model, so no advice can name a residue
+        that is not there.
+        """
+        import re
+
+        return {code for code in present
+                if re.search(rf'\b{re.escape(str(code))}\b', details or '')}
+
+    @staticmethod
+    def _selectionAdvice(codes) -> str:
+        """The selection that would exclude *codes*, ready to paste.
+
+        "not (DRG) and not (LIG)" and not "not (DRG or LIG)" --- the latter
+        parses, selects everything, and would read as advice that did nothing.
+        """
+        wanted = sorted(str(c) for c in codes if str(c))
+        if not wanted:
+            return ""
+        selection = " and ".join(f"not ({code})" for code in wanted)
+        return f" -- '{selection}'"
 
     def _newLigandCodes(self) -> set:
         """The code(s) the ligand being fitted will carry; empty if none is."""

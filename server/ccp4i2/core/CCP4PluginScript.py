@@ -31,6 +31,28 @@ _ANSI_RE = re.compile(r'\x1b\[[0-9;]*m')
 logger = logging.getLogger(__name__)
 
 
+# Codes the base class reports on a task's behalf. A task's own ERROR_CODES
+# cannot describe them --- it did not raise them and has no business knowing
+# them --- so the Diagnostics panel had nothing to put above the specifics of,
+# for instance, a monomer coverage failure, which is one of the commonest
+# things a user actually meets. Consulted only when the task itself does not
+# declare the code, so a task that wants to say something more specific wins.
+SHARED_ERROR_CODES = {
+    108: {'description': 'The task could not be loaded'},
+    109: {'description': 'The task could not be started'},
+    110: {'description': 'The task could not be started'},
+    200: {'description': 'Failed to assemble the reflection data for this job'},
+    350: {'description': 'A ligand or modified residue has no geometry dictionary'},
+    992: {'description': 'The task reported failure without saying why'},
+    993: {'description': 'The task failed while checking its output files'},
+    994: {'description': 'The task failed while launching the program'},
+    995: {'description': 'The task failed while building the command'},
+    996: {'description': 'The task failed while preparing its input files'},
+    997: {'description': 'The task failed while setting up its output files'},
+    998: {'description': 'The task failed its pre-run checks'},
+}
+
+
 # Windows native-crash exit codes (NTSTATUS, returned as large unsigned ints by
 # subprocess). Unlike POSIX, Windows has no negative "killed by signal" code, so
 # crashes surface as these.
@@ -4911,6 +4933,10 @@ class CPluginScript(CData):
         """
         declared = getattr(self, 'ERROR_CODES', None) or {}
         entry = declared.get(code)
+        if not isinstance(entry, dict) or not entry.get('description'):
+            shared = SHARED_ERROR_CODES.get(code)
+            if shared:
+                return str(shared['description'])
 
         if isinstance(entry, dict):
             described = str(entry.get('description', '') or '')
