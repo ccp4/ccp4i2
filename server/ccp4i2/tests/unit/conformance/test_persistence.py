@@ -181,3 +181,30 @@ def test_serialising_everything_marks_everything_explicit():
     assert became_set, \
         'a full serialisation no longer marks unset values as set -- good, ' \
         'but the reevaluation should say so deliberately'
+
+
+# --- the two ways a value gets set must agree -------------------------------
+
+def test_the_gui_route_and_the_python_route_reach_the_same_state():
+    """A job built in the GUI and the same job built by i2run must agree.
+
+    The GUI goes through CContainer.set_parameter(); a plugin or i2run calls
+    .set() directly. If one marked EXPLICITLY_SET and the other DEFAULT for
+    the same visible value, the two jobs would send different keywords to the
+    program while looking identical in every view we have --- phaser skips
+    keywords that are at their default.
+    """
+    by_python = _build('freerflag')
+    section = by_python.container.controlParameters
+    name = next(n for n in section.dataOrder())
+    getattr(section, name).set('1')
+
+    by_gui = _build('freerflag')
+    by_gui.container.set_parameter(f'controlParameters.{name}', '1', skip_first=False)
+
+    python_obj = getattr(by_python.container.controlParameters, name)
+    gui_obj = getattr(by_gui.container.controlParameters, name)
+
+    assert str(python_obj) == str(gui_obj)
+    assert python_obj.isSet() == gui_obj.isSet() is True
+    assert python_obj.getValueState() == gui_obj.getValueState()
