@@ -1,4 +1,5 @@
 import glob
+import logging
 import os
 import shutil
 import traceback
@@ -12,7 +13,10 @@ except ImportError:
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4ErrorHandling import CErrorReport
+
+logger = logging.getLogger(__name__)
 
 
 class SubstituteLigand(CPluginScript):
@@ -45,7 +49,14 @@ class SubstituteLigand(CPluginScript):
         210: {'description': 'Failed in servalcat refinement'},
         211: {'description': 'Missing required output from sub-plugin'},
         212: {'description': 'Invalid input configuration'},
+        213: {'description': 'A ligand in the starting coordinates has no dictionary'},
+        214: {'description': 'The fitted ligand\'s code is already used in the starting coordinates'},
     }
+
+    # The code a fitted ligand is given if the user does not choose one. It
+    # used to be hard-coded, which is how a model from an earlier run --- full
+    # of DRG --- collided with the DRG this run was about to make.
+    DEFAULT_LIGAND_CODE = 'DRG'
 
     def __init__(self, *args, **kws):
         super(SubstituteLigand, self).__init__(*args, **kws)
@@ -243,7 +254,7 @@ class SubstituteLigand(CPluginScript):
                 plugin.container.inputData.SMILESIN = self.container.inputData.SMILESIN
 
             plugin.container.inputData.CONFORMERSFROM = 'RDKIT'
-            plugin.container.inputData.TLC = 'DRG'
+            plugin.container.inputData.TLC = self._generatedLigandCode()
 
             print(f"[SubstituteLigand] Running LidiaAcedrg...")
             status = plugin.process()
@@ -514,6 +525,15 @@ class SubstituteLigand(CPluginScript):
             for dictionary in self._startingLigandDictionaries():
                 plugin.container.inputData.DICT_LIST.append(dictionary)
 
+            # The dictionary this pipeline made for the ligand it is about to
+            # fit describes residue DRG --- and a starting model that came
+            # from an earlier SubstituteLigand run contains a residue called
+            # DRG, because the code is fixed. So the answer to that failure
+            # was generated in job_1 and then not handed on: iterating on
+            # your own result failed at refinement every time.
+            if self.dictToUse is not None and self.dictToUse.isSet():
+                plugin.container.inputData.DICT_LIST.append(str(self.dictToUse.fullPath))
+
             # Refinement configuration
             plugin.container.controlParameters.NCYCLES.set(5)
             plugin.container.controlParameters.DATA_METHOD.set('xtal')
@@ -572,6 +592,105 @@ class SubstituteLigand(CPluginScript):
             return error
 
         return error
+
+    def runTimeValidity(self):
+        """Refuse at the Run dialog what refinement would refuse four steps in.
+
+        A ligand already in the starting coordinates has to be describable, or
+        servalcat's monomer check stops the pipeline --- after ligand
+        generation, merging and molecular replacement have run. The same check
+        made here costs nothing and is made before any of that.
+
+        What counts as covered is everything that will be available when
+        refinement happens: the dictionaries supplied for the starting model,
+        the one supplied for the ligand being substituted, and --- when the
+        pipeline is going to generate a dictionary --- the code it generates
+        it under, which is fixed and therefore knowable in advance.
+        """
+        error = super(SubstituteLigand, self).runTimeValidity()
+        if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+            return error
+
+        xyzin = self.container.inputData.XYZIN
+        if not xyzin.isSet():
+            return error
+
+        dictionaries = self._startingLigandDictionaries()
+        dictin = self.container.inputData.DICTIN
+        if dictin.isSet():
+            dictionaries.append(str(dictin.fullPath))
+
+        generating = str(self.container.controlParameters.LIGANDAS) not in ('NONE', 'DICT')
+        generated = self._generatedLigandCode()
+        ignore = (generated,) if generating else ()
+
+        # A code the pipeline is about to mint, already present in the model
+        # it starts from, is not a missing dictionary --- it is two different
+        # molecules under one name, and refinement would apply the dictionary
+        # for the new one to the old one. Reported before the coverage check
+        # so the clearer message comes first.
+        if generating and generated in (self._residueCodesIn(str(xyzin.fullPath)) or ()):
+            error.append(
+                klass=self.TASKNAME,
+                code=214,
+                details=(
+                    f"The starting coordinates already contain a residue called "
+                    f"{generated}, and {generated} is the code this job would give "
+                    "the ligand it fits. The two could not be told apart, and the "
+                    "dictionary written for the new ligand would be applied to the "
+                    "old one.\n\n"
+                    "Give the fitted ligand a different code (LIG is the usual "
+                    "second choice where DRG is taken), or remove the existing "
+                    f"{generated} from the starting coordinates."
+                ),
+                name=f'{self.TASKNAME}.container.controlParameters.LIGAND_CODE',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
+            )
+
+        saved = self.errorReport
+        self.errorReport = CErrorReport()
+        try:
+            self.checkMonomeCoverage(str(xyzin.fullPath), dictionaries, ignoreCodes=ignore)
+            found = self.errorReport
+        finally:
+            self.errorReport = saved
+
+        for entry in found.entries():
+            error.append(
+                klass=self.TASKNAME,
+                code=213,
+                details=(
+                    f"{entry['details']}\n\n"
+                    "Refinement cannot describe a ligand it has no dictionary for. "
+                    "Either remove it from the starting coordinates using the atom "
+                    "selection on that file, or supply its dictionary under "
+                    "'Dictionaries for ligands already in this model'."
+                ),
+                name=f'{self.TASKNAME}.container.inputData.XYZIN',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
+            )
+        return error
+
+    def _generatedLigandCode(self) -> str:
+        """The code the fitted ligand will be given."""
+        chosen = str(self.container.controlParameters.LIGAND_CODE or '').strip().upper()
+        return chosen or self.DEFAULT_LIGAND_CODE
+
+    def _residueCodesIn(self, path):
+        """Every residue code in a coordinate file, or None if it cannot be read.
+
+        None rather than an empty set on failure: an unreadable file must not
+        read as *contains nothing*, which would quietly pass a check whose
+        whole purpose is to find something.
+        """
+        try:
+            import gemmi
+            structure = gemmi.read_structure(str(path))
+            return {residue.name for model in structure
+                    for chain in model for residue in chain}
+        except Exception as err:
+            logger.warning(f"[SubstituteLigand] Could not read residue codes from {path}: {err}")
+            return None
 
     def _startingLigandDictionaries(self):
         """Paths of the dictionaries supplied for ligands already in XYZIN.

@@ -184,6 +184,15 @@
                     <toolTip>Chemistry of the ligand can be provided in any of the above ways...no ligand means no ligand search</toolTip>
                 </qualifiers>
             </content>
+            <content id="LIGAND_CODE">
+                <className>CString</className>
+                <qualifiers>
+                    <default>DRG</default>
+                    <maxLength>3</maxLength>
+                    <guiLabel>Code for the fitted ligand</guiLabel>
+                    <toolTip>The three-letter code the ligand being fitted will be given. It must differ from every residue code already in the starting coordinates: two ligands sharing a code cannot be told apart, and the dictionary written for one would be applied to the other. Where DRG is already taken, LIG is the usual second choice.</toolTip>
+                </qualifiers>
+            </content>
             <content id="RESOLUTION_RANGE">
                 <className>CFloatRange</className>
                 <qualifiers>

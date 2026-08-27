@@ -36,6 +36,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           itemName="DICTIN"
           visibility={() => ligandAs === "DICT"}
         />
+        <CCP4i2TaskElement
+          {...props}
+          itemName="LIGAND_CODE"
+          visibility={() => ligandAs !== "NONE" && ligandAs !== "DICT"}
+        />
       </CCP4i2ContainerElement>
       <CCP4i2ContainerElement
         itemName=""
