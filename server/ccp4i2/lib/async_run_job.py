@@ -243,15 +243,11 @@ async def write_diagnostic_xml(plugin, job_directory):
         plugin: CPluginScript instance with errorReport attribute
         job_directory: Path to job directory where diagnostic.xml will be written
     """
-    try:
-        diagnostic_path = Path(job_directory) / "diagnostic.xml"
-        error_report = plugin.errorReport.getEtree()
-        ET.indent(error_report, space="\t", level=0)
-        with open(diagnostic_path, "wb") as f:
-            f.write(ET.tostring(error_report, encoding="utf-8"))
-        logger.info(f"Wrote diagnostic.xml to {diagnostic_path}")
-    except Exception as err:
-        logger.warning(f"Failed to write diagnostic.xml: {err}")
+    from ccp4i2.core.base_object.error_reporting import write_diagnostic_xml
+
+    written = write_diagnostic_xml(plugin.errorReport, job_directory)
+    if written:
+        logger.info(f"Wrote diagnostic.xml to {written}")
 
 
 async def create_plugin_for_job(job, db_handler):
