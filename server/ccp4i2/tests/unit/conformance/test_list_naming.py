@@ -33,17 +33,24 @@ def test_item_names_use_brackets():
     assert [i._name for i in _list_of(3)._items] == ['[0]', '[1]', '[2]']
 
 
-def test_the_two_disagree_today():
-    """The point of the pin. When Defect C lands, this should fail."""
+def test_the_two_are_deliberately_different():
+    """Not unified, and on purpose.
+
+    dataOrder() is an ordering of positions, used for serialisation; _name is
+    a handle, used to build object paths like DICT_LIST[0]. Making dataOrder()
+    emit '[0]' would change the shape of every params.xml for no gain, so
+    Defect C left the difference and made the *handle* work instead.
+    """
     lst = _list_of(3)
-    assert lst.dataOrder() != [i._name for i in lst._items], \
-        'the naming was unified -- update Defect C notes and delete this pin'
+    assert lst.dataOrder() == ['0', '1', '2']
+    assert [i._name for i in lst._items] == ['[0]', '[1]', '[2]']
 
 
-def test_an_item_is_not_reachable_by_either_name():
+def test_an_item_is_reachable_by_its_own_name():
+    """It was not: the cache held the name the item had at registration."""
     lst = _list_of(2)
-    assert not hasattr(lst, '0')
-    assert not hasattr(lst, '[0]')
+    assert hasattr(lst, '[0]')
+    assert not hasattr(lst, '0'), 'dataOrder positions are not handles'
 
 
 def test_indexing_is_the_route_that_works():
@@ -59,23 +66,19 @@ def test_removing_an_item_renumbers_the_survivors():
     assert lst.dataOrder() == ['0', '1']
 
 
-def test_a_removed_item_is_still_a_child_today():
-    """Defect C: pop renumbers but never detaches, so the parent keeps it.
-
-    Two children end up named '[0]' --- a stale one and a live one.
-    """
+def test_a_removed_item_stops_being_a_child():
+    """pop used to renumber the survivors and keep the departed one, so a
+    three-item list held two items and three children, two named '[0]'."""
     lst = _list_of(3)
     lst.pop(0)
-    names = [c._name for c in lst.children()]
-    assert len(names) > len(lst._items), \
-        'pop now detaches -- Defect C has landed, update this pin'
+    assert [c._name for c in lst.children()] == [i._name for i in lst._items]
+    assert len(lst.children()) == 2
 
 
-def test_find_child_cannot_find_an_item_today():
-    """The name cache is keyed on the name held at registration time."""
+def test_find_child_finds_an_item_by_its_name():
     lst = _list_of(2)
-    assert lst.find_child('[0]') is None, \
-        'the name cache is re-keyed on rename -- Defect C has landed'
+    assert lst.find_child('[0]') is lst._items[0]
+    assert lst.find_child('[1]') is lst._items[1]
 
 
 def test_assigning_by_index_works_at_all():
@@ -93,10 +96,17 @@ def test_assignment_names_the_item_the_way_append_does():
     assert lst[1]._name == '[1]', 'it used to write "LIST[1]", a third convention'
 
 
-def test_the_displaced_item_is_still_a_child_today():
-    """Defect C: __setitem__ does not detach what it replaces."""
+def test_assignment_detaches_what_it_displaces():
     lst = _list_of(3)
     displaced = lst[1]
     lst[1] = CInt(99)
-    assert any(c is displaced for c in lst.children()), \
-        'assignment now detaches what it displaces -- Defect C has landed'
+    assert not any(c is displaced for c in lst.children())
+    assert len(lst.children()) == 3
+
+
+def test_the_cache_holds_the_names_the_items_actually_have():
+    """The root of all three: keys were the name held at registration."""
+    lst = _list_of(3)
+    assert list(lst._children_by_name.keys()) == ['[0]', '[1]', '[2]']
+    lst.pop(0)
+    assert list(lst._children_by_name.keys()) == ['[0]', '[1]']

@@ -297,6 +297,35 @@ class HierarchicalObject(ABC):
                     result.append(child)
             return result
 
+    def rename(self, new_name: str) -> None:
+        """Change this object's name, keeping the parent's caches in step.
+
+        A name is used as a key: the parent holds `_children_by_name` and
+        `_child_storage` keyed on the name a child had when it was registered.
+        Assigning to `_name` afterwards left those keys stale, with three
+        consequences that took a while to connect to each other ---
+        `find_child()` could not find a renamed child, `_remove_child()` could
+        not clear its cache entry (so removing left an orphan that `children()`
+        would resurrect), and a CList item's `[n]` name, correct in `_items`,
+        was unusable as a handle.
+        """
+        with self._lock:
+            old_name = self._name
+            if old_name == new_name:
+                return
+            parent = self.parent()
+            self._name = new_name
+            if parent is None:
+                return
+            with parent._lock:
+                cached = parent._children_by_name.get(old_name)
+                if cached is not None and cached() is self:
+                    del parent._children_by_name[old_name]
+                    stored = parent._child_storage.pop(old_name, None)
+                    parent._children_by_name[new_name] = cached
+                    if stored is not None:
+                        parent._child_storage[new_name] = stored
+
     def find_child(
         self, name: str, recursive: bool = False
     ) -> Optional["HierarchicalObject"]:

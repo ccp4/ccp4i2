@@ -1518,7 +1518,22 @@ class CList(CData):
         for i, item in enumerate(self._items):
             if isinstance(item, CData):
                 item.set_parent(self)
-                item._name = f"[{i}]"
+                item.rename(f"[{i}]")
+
+    def _detach(self, item: Any) -> None:
+        """Let go of an item that has left the list.
+
+        Removing renumbered the survivors but never detached the departing
+        item, so it stayed a child of the list: after pop(0) a three-item list
+        held two items and three children, two of them named '[0]' --- a stale
+        one colliding with a live one --- and `_child_storage` kept a strong
+        reference to it for as long as the list lived.
+        """
+        if isinstance(item, CData):
+            try:
+                item.set_parent(None)
+            except Exception:  # a detach must not break the removal
+                pass
 
     def append(self, item: Any) -> None:
         """Add an item to the list.
@@ -1544,10 +1559,11 @@ class CList(CData):
         # If item is CData, register as child
         if isinstance(item, CData):
             item.set_parent(self)
-            # Set hierarchical name to just the index (no parent name)
-            # The parent's name will be included in path_from_root() traversal
-            # This produces paths like "list_name[0]" not "list_name.list_name[0]"
-            item._name = f"[{index}]"
+            # rename(), not `_name = `: the parent registered this child under
+            # whatever name it carried at set_parent() time --- "temp_item_0"
+            # for a path appended as a string --- and assigning to _name left
+            # that key stale, so find_child('[0]') found nothing.
+            item.rename(f"[{index}]")
 
         self._items.append(item)
 
@@ -1558,15 +1574,14 @@ class CList(CData):
         """Insert an item at specified index."""
         if isinstance(item, CData):
             item.set_parent(self)
-            # Set hierarchical name to just the index
-            item._name = f"[{index}]"
+            item.rename(f"[{index}]")
 
         self._items.insert(index, item)
 
         # Update names of subsequent items
         for i in range(index + 1, len(self._items)):
             if isinstance(self._items[i], CData):
-                self._items[i]._name = f"[{i}]"
+                self._items[i].rename(f"[{i}]")
 
         # Mark as explicitly set
         self._value_states["_items"] = ValueState.EXPLICITLY_SET
@@ -1575,11 +1590,12 @@ class CList(CData):
         """Remove an item from the list."""
         index = self._items.index(item)
         self._items.remove(item)
+        self._detach(item)
 
         # Update names of subsequent items
         for i in range(index, len(self._items)):
             if isinstance(self._items[i], CData):
-                self._items[i]._name = f"[{i}]"
+                self._items[i].rename(f"[{i}]")
 
         # Mark as explicitly set
         self._value_states["_items"] = ValueState.EXPLICITLY_SET
@@ -1587,12 +1603,13 @@ class CList(CData):
     def pop(self, index: int = -1) -> Any:
         """Remove and return item at index."""
         item = self._items.pop(index)
+        self._detach(item)
 
         # Update names of subsequent items if needed
         if index >= 0:
             for i in range(index, len(self._items)):
                 if isinstance(self._items[i], CData):
-                    self._items[i]._name = f"[{i}]"
+                    self._items[i].rename(f"[{i}]")
 
         # Mark as explicitly set
         self._value_states["_items"] = ValueState.EXPLICITLY_SET
@@ -1600,6 +1617,8 @@ class CList(CData):
 
     def clear(self) -> None:
         """Remove all items from the list."""
+        for item in list(self._items):
+            self._detach(item)
         self._items.clear()
         self._value_states["_items"] = ValueState.EXPLICITLY_SET
 
@@ -1706,9 +1725,12 @@ class CList(CData):
             #
             # Still outstanding, and pinned in the conformance tier: the item
             # this displaces is not detached, so it stays a child of the list.
-            value._name = f"[{index}]"
+            value.rename(f"[{index}]")
 
+        displaced = self._items[index]
         self._items[index] = value
+        if displaced is not value:
+            self._detach(displaced)
         self._value_states["_items"] = ValueState.EXPLICITLY_SET
 
     def __iter__(self):
