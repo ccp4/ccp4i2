@@ -222,6 +222,24 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               </FieldRow>
             </CCP4i2ContainerElement>
 
+            {/* The two settings that govern heavy-atom completion itself.
+                Without them the elements to search for could be chosen but
+                neither how many cycles to spend nor whether to look for pure
+                anomalous scatterers. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="LLGC_CYCLES"
+              qualifiers={{
+                guiLabel: "Cycles of heavy atom model completion",
+              }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="PURE_ANOMALOUS"
+              qualifiers={{
+                guiLabel: "Search for pure anomalous scatterers",
+              }}
+            />
             <CCP4i2TaskElement
               {...props}
               itemName="ELEMENTS"
@@ -273,14 +291,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         </CCP4i2Tab>
 
         <CCP4i2Tab label="Keywords" key="keywords">
-          <CCP4i2TaskElement
+          {/* `keywords` is a container of Phaser's own settings, not a free-text
+              field: rendering it as a multiline string showed none of the
+              fifteen parameters inside. Qt lays the whole container out with
+              `autoGenerate(container=self.container.keywords,
+              selection={'excludeParameters': ['TITL','ROOT']})`, and a
+              self-closing container element is the same thing here -- the run
+              title and output root are set by the job, not the user. */}
+          <CCP4i2ContainerElement
             {...props}
             itemName="keywords"
-            qualifiers={{
-              guiLabel: "Additional keywords",
-              guiMode: "multiLine",
-              toolTip: "Additional Phaser keywords for advanced control",
-            }}
+            qualifiers={{ guiLabel: "Phaser keywords" }}
+            containerHint="FolderLevel"
+            initiallyOpen={true}
+            excludeItems={["TITL", "ROOT"]}
           />
         </CCP4i2Tab>
       </CCP4i2Tabs>

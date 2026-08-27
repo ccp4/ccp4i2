@@ -20,6 +20,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: chooseMode } = useTaskItem("CHOOSE_MODE");
   const { value: referenceDataset } = useTaskItem("REFERENCE_DATASET");
   const { value: sdcorrOptions } = useTaskItem("SDCORRECTION_OPTIONS");
+  const { value: parallel } = useTaskItem("PARALLEL");
+  const { value: parallelMode } = useTaskItem("PARALLEL_MODE");
   const { value: scalingProtocol } = useTaskItem("SCALING_PROTOCOL");
   const { value: scalesRotType } = useTaskItem("SCALES_ROTATION_TYPE");
   const { value: scalesBrotType } = useTaskItem("SCALES_BROTATION_TYPE");
@@ -112,6 +114,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <ImportantOptionsTab
             {...props}
             sdcorrOptions={sdcorrOptions}
+            parallel={parallel}
+            parallelMode={parallelMode}
             analysisOverride={analysisOverride}
             intensitiesOverride={intensitiesOverride}
             sdcorrOverride={sdcorrOverride}

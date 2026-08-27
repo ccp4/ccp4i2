@@ -29,10 +29,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Get task items
   const { item: F_SIGFItem } = useTaskItem("F_SIGF");
   const { forceUpdate: forceUpdateF_OR_I } = useTaskItem("F_OR_I");
-  const { value: INPUT_FIXED_value } = useTaskItem("INPUT_FIXED");
   const { value: COMP_BY_value } = useTaskItem("COMP_BY");
-  const { value: SGALT_SELECT_value } = useTaskItem("SGALT_SELECT");
-  const { value: ID_RMS_value } = useTaskItem("ID_RMS");
 
   // Stable initialization function (runs once per job)
   const handleInitialization = useCallback(async () => {
@@ -94,12 +91,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const visibility = {
     showF_OR_I: () =>
       F_SIGFItem?.contentFlag && [1, 3].includes(F_SIGFItem.contentFlag),
-    showXYZIN_FIXED: () => INPUT_FIXED_value === true,
+    // Four more predicates lived here, on INPUT_FIXED, SGALT_SELECT and
+    // ID_RMS. None of those names is in this task's container -- they belong
+    // to phaser_simple and phaser_mr -- so each read undefined, and nothing
+    // referenced the predicates anyway. The equivalents here, if they are ever
+    // wanted, are FIXENSEMBLES and sgalternative.SGAL_SELE.
     showASUFile: () => COMP_BY_value === "ASU",
     showMolecularWeights: () => COMP_BY_value === "MW",
-    showSpacegroupList: () => SGALT_SELECT_value === "LIST",
-    showSequenceIdentity: () => ID_RMS_value === "ID",
-    showRMSD: () => ID_RMS_value === "RMS",
   };
 
   return (

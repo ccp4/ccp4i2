@@ -885,6 +885,32 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 into account.
               </Typography>
             </Box>
+
+            {/* The three decisions about what to do with an incoming FreeR set:
+                skip it, cut its resolution to match, or accept a cell that does
+                not quite agree. None was available, so an incompatible set
+                could only be discovered when the job failed. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="controlParameters.SKIP_FREER"
+              qualifiers={{ guiLabel: "Do not copy or generate a FreeR set" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="controlParameters.CUTRESOLUTION"
+              qualifiers={{
+                guiLabel:
+                  "Cut resolution of FreeR set if necessary to match the data",
+              }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="controlParameters.OVERRIDE_CELL_DIFFERENCE"
+              qualifiers={{
+                guiLabel:
+                  "Accept a FreeR set whose cell differs from the data",
+              }}
+            />
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
       </CCP4i2Tabs>

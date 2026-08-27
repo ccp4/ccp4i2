@@ -5,10 +5,12 @@ import { CCP4i2TaskElement } from "../../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
 import { FieldRow } from "../../task-elements/field-row";
 import { InlineField } from "../../task-elements/inline-field";
-import { BoolToggle } from "../../task-elements/shared-hooks";
+import { BoolToggle, isTruthy } from "../../task-elements/shared-hooks";
 
 interface ImportantOptionsTabProps extends CCP4i2TaskInterfaceProps {
   sdcorrOptions: string;
+  parallel: any;
+  parallelMode: any;
   analysisOverride: BoolToggle;
   intensitiesOverride: BoolToggle;
   sdcorrOverride: BoolToggle;
@@ -25,6 +27,8 @@ export const ImportantOptionsTab: React.FC<ImportantOptionsTabProps> = (
 ) => {
   const {
     sdcorrOptions,
+    parallel,
+    parallelMode,
     analysisOverride,
     intensitiesOverride,
     sdcorrOverride,
@@ -83,6 +87,17 @@ export const ImportantOptionsTab: React.FC<ImportantOptionsTabProps> = (
         }}
         containerHint="FolderLevel"
       >
+        {/* Scale against a reference dataset. Qt offers it only once a
+            reference has been chosen, and warns that it is not normally
+            recommended. */}
+        <CCP4i2TaskElement
+          itemName="REFINE_REFERENCE"
+          {...taskProps}
+          qualifiers={{
+            guiLabel:
+              "Determine scales relative to reference dataset (not normally recommended)",
+          }}
+        />
         {/* Analysis override */}
         <CCP4i2TaskElement
           itemName="ANALYSIS_OVERRIDE"
@@ -199,6 +214,16 @@ export const ImportantOptionsTab: React.FC<ImportantOptionsTabProps> = (
                 flexWrap: "wrap",
               }}
             >
+              {/* Whether partials outside the rejection range are scaled at
+                  all. Qt puts this first and swaps the wording after it; here
+                  it gates the range that follows. */}
+              <CCP4i2TaskElement
+                itemName="PARTIALS_CHECK"
+                {...taskProps}
+                qualifiers={{
+                  guiLabel: "Check partials against the acceptance range",
+                }}
+              />
               <CCP4i2TaskElement
                 itemName="PARTIALS_SCALE"
                 {...taskProps}
@@ -400,17 +425,55 @@ export const ImportantOptionsTab: React.FC<ImportantOptionsTabProps> = (
               <Typography variant="body1">cycles</Typography>
             </Box>
 
-            <InlineField
-              label="use multiple processors"
-              hint="determined from number of reflections"
-              width="auto"
-            >
+            {/* PARALLEL turned multiprocessing on but there was no way to say
+                how many processors to use: PARALLEL_MODE and its two values
+                were missing, so the hint below ("determined from number of
+                reflections") described the AUTO case as though it were the
+                only one. */}
+            <InlineField label="use multiple processors" width="auto">
               <CCP4i2TaskElement
                 itemName="PARALLEL"
                 {...taskProps}
                 qualifiers={{ guiLabel: " " }}
               />
             </InlineField>
+            {isTruthy(parallel) && (
+              <Box sx={{ pl: 3 }}>
+                <InlineField
+                  label="Processors"
+                  width="12rem"
+                  hint={
+                    parallelMode === "AUTO"
+                      ? "determined from number of reflections"
+                      : undefined
+                  }
+                >
+                  <CCP4i2TaskElement
+                    itemName="PARALLEL_MODE"
+                    {...taskProps}
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
+                {parallelMode === "NUMBER" && (
+                  <InlineField label="Number of processors">
+                    <CCP4i2TaskElement
+                      itemName="NPROC"
+                      {...taskProps}
+                      qualifiers={{ guiLabel: " " }}
+                    />
+                  </InlineField>
+                )}
+                {parallelMode === "FRACTION" && (
+                  <InlineField label="Fraction of processors">
+                    <CCP4i2TaskElement
+                      itemName="FRACPROC"
+                      {...taskProps}
+                      qualifiers={{ guiLabel: " " }}
+                    />
+                  </InlineField>
+                )}
+              </Box>
+            )}
 
             {/* Selection thresholds */}
             <Box

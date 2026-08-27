@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
@@ -16,27 +16,12 @@ import { InlineField } from "../task-elements/inline-field";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, fetchDigest } = useJob(job.id);
-
-  // --- Input data items ---
-  const { item: F_SIGFItem } = useTaskItem("inputData.F_SIGF");
+  const { useTaskItem } = useJob(job.id);
 
   // --- Values for conditional visibility ---
   const { value: sgOptions } = useTaskItem("controlParameters.SG_OPTIONS");
   const { value: highPathVar } = useTaskItem("controlParameters.HIGH_PATH_VAR");
   const { value: lowPathVar } = useTaskItem("controlParameters.LOW_PATH_VAR");
-
-  // --- F_SIGF onChange: extract wavelength from digest ---
-  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
-
-  const handleF_SIGFChange = useCallback(async () => {
-    if (!F_SIGFItem?._objectPath) return;
-    const digestData = await fetchDigest(F_SIGFItem._objectPath);
-    const wavelength = digestData?.wavelengths?.at(-1);
-    if (wavelength && wavelength > 0 && wavelength < 9) {
-      await forceUpdateWAVELENGTH(wavelength);
-    }
-  }, [F_SIGFItem?._objectPath, fetchDigest, forceUpdateWAVELENGTH]);
 
   return (
     <Paper>
@@ -56,7 +41,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               {...props}
               itemName="inputData.F_SIGF"
               qualifiers={{ guiLabel: "Reflections" }}
-              onChange={handleF_SIGFChange}
             />
             <CCP4i2TaskElement
               {...props}
@@ -302,6 +286,24 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <Typography variant="body2" sx={{ mb: 1 }}>
               PF = Packing Function
             </Typography>
+            {/* Which search method Molrep uses. SAPTF = spherically averaged
+                phased translation function; PRF = phased rotation function;
+                RF(M) takes f-obs from the density outside the fixed model,
+                RF(S) from inside a sphere. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="controlParameters.PRF"
+              qualifiers={{
+                guiLabel: "Search method",
+                guiMode: "radio",
+                menuText: [
+                  "RF(M) + PTF",
+                  "SAPTF + PRF + PTF",
+                  "SAPTF + RF(S) + PTF",
+                ],
+                enumerators: ["n", "y", "s"],
+              }}
+            />
             <CCP4i2TaskElement
               {...props}
               itemName="controlParameters.SCORE"

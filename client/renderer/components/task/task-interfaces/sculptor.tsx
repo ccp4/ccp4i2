@@ -83,6 +83,27 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2TaskElement itemName="SEQUENCEIN" {...props} />
         )}
       </CCP4i2ContainerElement>
+
+      {/* How Sculptor trims and reweights the model. Both were missing, so the
+          two decisions that define what it does to a search model could not be
+          made. */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Model modification" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement
+          itemName="PRUNING"
+          {...props}
+          qualifiers={{ guiLabel: "Side chain pruning" }}
+        />
+        <CCP4i2TaskElement
+          itemName="BFACTOR"
+          {...props}
+          qualifiers={{ guiLabel: "B-factor treatment" }}
+        />
+      </CCP4i2ContainerElement>
     </Paper>
   );
 };

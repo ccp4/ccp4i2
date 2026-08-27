@@ -114,7 +114,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               <CCP4i2TaskElement itemName="REFMAC_NCYC" {...props} qualifiers={{ guiLabel: " " }} />
             </InlineField>
             <InlineField label="Run" hint="model building pipeline iterations">
-              <CCP4i2TaskElement itemName="BUCC_NCYC" {...props} qualifiers={{ guiLabel: " " }} />
+              <CCP4i2TaskElement itemName="MODELCRAFT_NCYC" {...props} qualifiers={{ guiLabel: " " }} />
             </InlineField>
           </CCP4i2ContainerElement>
 
@@ -169,11 +169,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: "Advanced model building pipeline options" }}
             containerHint="FolderLevel"
           >
-            <InlineField label="Use" hint="model building pipeline (Buccaneer or Modelcraft)">
-              <CCP4i2TaskElement itemName="BUCCANEER_OR_MODELCRAFT" {...props} qualifiers={{ guiLabel: " " }} />
-            </InlineField>
+            {/* The Buccaneer-or-Modelcraft chooser is gone from the def.xml:
+                modelcraft is simply what this pipeline runs now. The field
+                that offered the choice named nothing and set nothing. */}
             <Typography variant="body2" color="text.secondary">
-              The modelcraft pipeline is now the default option and recommended in most cases
+              Model building uses the modelcraft pipeline.
             </Typography>
           </CCP4i2ContainerElement>
         </CCP4i2Tab>

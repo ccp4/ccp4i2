@@ -5,7 +5,7 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import { useBoolToggle } from "../task-elements/shared-hooks";
+import { useBoolToggle, isTruthy } from "../task-elements/shared-hooks";
 import { InlineField } from "../task-elements/inline-field";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
@@ -21,8 +21,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: LITE_MODELS } = useTaskItem("LITE_MODELS");
   const litePartial = useBoolToggle(useTaskItem, "LITE_PARTIAL");
 
-  // BORGES mode
+  // BORGES mode. Each option is a switch plus the value it applies, so the
+  // value is only worth showing once the switch is on.
   const { value: BORGES_LIBRARY } = useTaskItem("BORGES_LIBRARY");
+  const { value: borgesGyre } = useTaskItem("BORGES_GYRE");
+  const { value: borgesGimble } = useTaskItem("BORGES_GIMBLE");
+  const { value: borgesMulticopy } = useTaskItem("BORGES_MULTICOPY");
 
   // SHREDDER mode
   const { value: SHREDDER_OPTIONS } = useTaskItem("SHREDDER_OPTIONS");
@@ -265,20 +269,42 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   />
                 </Box>
               )}
+              {/* Each of these is a pair: a CBoolean switch that decides
+                  whether to override ARCIMBOLDO's default, and the value to
+                  use. Only the values were here, so nothing a user set was
+                  ever applied -- the switch that applies it was missing. */}
+              <CCP4i2TaskElement
+                itemName="BORGES_GYRE"
+                {...props}
+                qualifiers={{ guiLabel: "Set Phaser GYRE option" }}
+              />
               <CCP4i2TaskElement
                 itemName="BORGES_GYRE_T"
                 {...props}
                 qualifiers={{ guiLabel: "Phaser GYRE option" }}
+                visibility={() => isTruthy(borgesGyre)}
+              />
+              <CCP4i2TaskElement
+                itemName="BORGES_GIMBLE"
+                {...props}
+                qualifiers={{ guiLabel: "Set Phaser GIMBLE option" }}
               />
               <CCP4i2TaskElement
                 itemName="BORGES_GIMBLE_T"
                 {...props}
                 qualifiers={{ guiLabel: "Phaser GIMBLE option" }}
+                visibility={() => isTruthy(borgesGimble)}
+              />
+              <CCP4i2TaskElement
+                itemName="BORGES_MULTICOPY"
+                {...props}
+                qualifiers={{ guiLabel: "Set MULTICOPY option" }}
               />
               <CCP4i2TaskElement
                 itemName="BORGES_MULTICOPY_T"
                 {...props}
                 qualifiers={{ guiLabel: "MULTICOPY option" }}
+                visibility={() => isTruthy(borgesMulticopy)}
               />
             </CCP4i2ContainerElement>
           )}
@@ -299,6 +325,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
               <InlineField label="Expected r.m.s.d." hint="Å">
                 <CCP4i2TaskElement
+                  itemName="SHREDDER_RMSD"
+                  {...props}
+                  qualifiers={{ guiLabel: "Override the expected r.m.s.d." }}
+                />
+                <CCP4i2TaskElement
                   itemName="SHREDDER_RMSD_T"
                   {...props}
                   qualifiers={{ guiLabel: " " }}
@@ -306,9 +337,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               </InlineField>
 
               <CCP4i2TaskElement
+                itemName="SHREDDER_CONVERT"
+                {...props}
+                qualifiers={{ guiLabel: "Set polyalanine conversion" }}
+              />
+              <CCP4i2TaskElement
                 itemName="SHREDDER_CONVERT_T"
                 {...props}
                 qualifiers={{ guiLabel: "Convert to polyalanine" }}
+              />
+              <CCP4i2TaskElement
+                itemName="SHREDDER_MAKE"
+                {...props}
+                qualifiers={{ guiLabel: "Set B-factor equalisation" }}
               />
               <CCP4i2TaskElement
                 itemName="SHREDDER_MAKE_T"
@@ -324,9 +365,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               {SHREDDER_OPTIONS === "spherical" && (
                 <>
                   <CCP4i2TaskElement
+                    itemName="SHREDDER_COIL"
+                    {...props}
+                    qualifiers={{ guiLabel: "Set coil handling" }}
+                  />
+                  <CCP4i2TaskElement
                     itemName="SHREDDER_COIL_T"
                     {...props}
                     qualifiers={{ guiLabel: "Maintain coil in the model" }}
+                  />
+                  <CCP4i2TaskElement
+                    itemName="SHREDDER_GYRE"
+                    {...props}
+                    qualifiers={{ guiLabel: "Set gyre refinement" }}
                   />
                   <CCP4i2TaskElement
                     itemName="SHREDDER_GYRE_T"
@@ -334,9 +385,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                     qualifiers={{ guiLabel: "Perform gyre refinement" }}
                   />
                   <CCP4i2TaskElement
+                    itemName="SHREDDER_GIMBLE"
+                    {...props}
+                    qualifiers={{ guiLabel: "Set gimble refinement" }}
+                  />
+                  <CCP4i2TaskElement
                     itemName="SHREDDER_GIMBLE_T"
                     {...props}
                     qualifiers={{ guiLabel: "Perform gimble refinement" }}
+                  />
+                  <CCP4i2TaskElement
+                    itemName="SHREDDER_LLG"
+                    {...props}
+                    qualifiers={{ guiLabel: "Set LLG-guided pruning" }}
                   />
                   <CCP4i2TaskElement
                     itemName="SHREDDER_LLG_T"
@@ -344,9 +405,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                     qualifiers={{ guiLabel: "Perform LLG-guided pruning" }}
                   />
                   <CCP4i2TaskElement
+                    itemName="SHREDDER_COMBINE"
+                    {...props}
+                    qualifiers={{ guiLabel: "Set alixe phase combination" }}
+                  />
+                  <CCP4i2TaskElement
                     itemName="SHREDDER_COMBINE_T"
                     {...props}
                     qualifiers={{ guiLabel: "Combine phases with alixe" }}
+                  />
+                  <CCP4i2TaskElement
+                    itemName="SHREDDER_MULTICOPY"
+                    {...props}
+                    qualifiers={{ guiLabel: "Set MULTICOPY option" }}
                   />
                   <CCP4i2TaskElement
                     itemName="SHREDDER_MULTICOPY_T"
@@ -361,6 +432,30 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
         {/* ===== Tab 2: Advanced Data ===== */}
         <CCP4i2Tab label="Advanced data">
+          {/* Fragment size, shown for spherical SHREDDER only, as in Qt's
+              showSpherical toggle. Switch plus value, like TNCS below. */}
+          {isShredder && SHREDDER_OPTIONS === "spherical" && (
+            <InlineField
+              width="auto"
+              after={
+                <InlineField label="Fragment size" width="8rem" hint="residues">
+                  <CCP4i2TaskElement
+                    itemName="FRAGMENT_SIZE_T"
+                    {...props}
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
+              }
+            >
+              <CCP4i2TaskElement
+                itemName="FRAGMENT_SIZE"
+                {...props}
+                qualifiers={{ guiLabel: " " }}
+                sx={{ width: "auto" }}
+              />
+            </InlineField>
+          )}
+
           {/* TNCS option: checkbox + dropdown inline */}
           <InlineField
             width="auto"

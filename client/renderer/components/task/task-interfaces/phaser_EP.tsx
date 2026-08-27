@@ -275,6 +275,26 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               </FieldRow>
             </CCP4i2ContainerElement>
 
+            {/* The pipeline hands its whole inputData container to the
+                phaser_EP_AUTO sub-job, so these govern heavy-atom completion
+                there just as they do when that task is run directly. Without
+                them the elements to search for could be chosen but neither the
+                number of cycles nor whether to seek pure anomalous
+                scatterers. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="LLGC_CYCLES"
+              qualifiers={{
+                guiLabel: "Cycles of heavy atom model completion",
+              }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="PURE_ANOMALOUS"
+              qualifiers={{
+                guiLabel: "Search for pure anomalous scatterers",
+              }}
+            />
             <CCP4i2TaskElement
               {...props}
               itemName="ELEMENTS"
@@ -356,14 +376,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         </CCP4i2Tab>
 
         <CCP4i2Tab label="Keywords" key="keywords">
-          <CCP4i2TaskElement
+          {/* As in phaser_EP_AUTO and phaser_EP_LLG, `keywords` is a container
+              of Phaser's own settings rather than a free-text field, so a
+              string widget pointed at it rendered nothing. `run_phaser` copies
+              each keyword this pipeline has set onto the phaser_EP_AUTO
+              sub-job, so they are live here too. TITL and ROOT are set by the
+              job rather than the user. */}
+          <CCP4i2ContainerElement
             {...props}
             itemName="keywords"
-            qualifiers={{
-              guiLabel: "Additional keywords",
-              guiMode: "multiLine",
-              toolTip: "Additional Phaser keywords for advanced control",
-            }}
+            qualifiers={{ guiLabel: "Phaser keywords" }}
+            containerHint="FolderLevel"
+            initiallyOpen={true}
+            excludeItems={["TITL", "ROOT"]}
           />
         </CCP4i2Tab>
       </CCP4i2Tabs>

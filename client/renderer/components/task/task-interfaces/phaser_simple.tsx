@@ -30,6 +30,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { item: F_SIGFItem } = useTaskItem("F_SIGF");
   const { forceUpdate: forceUpdateF_OR_I } = useTaskItem("F_OR_I");
   const { value: INPUT_FIXED_value } = useTaskItem("INPUT_FIXED");
+  const { value: fixedIdRms } = useTaskItem("FIXED_ID_RMS");
   const { value: COMP_BY_value } = useTaskItem("COMP_BY");
   const { value: SGALT_SELECT_value } = useTaskItem("SGALT_SELECT");
   const { value: ID_RMS_value } = useTaskItem("ID_RMS");
@@ -163,6 +164,33 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 toolTip: "Coordinates of the fixed partial model",
               }}
               visibility={visibility.showXYZIN_FIXED}
+            />
+
+            {/* How similar the fixed model is to the target -- Phaser needs
+                one or the other to weight it. The choice and both values were
+                missing, so a known partial model could be supplied with no way
+                to say how good it is. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="FIXED_ID_RMS"
+              qualifiers={{ guiLabel: "Similarity of fixed ensemble to target" }}
+              visibility={visibility.showXYZIN_FIXED}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="FIXEDSEQUENCEIDENTITY"
+              qualifiers={{ guiLabel: "Sequence identity" }}
+              visibility={() =>
+                Boolean(visibility.showXYZIN_FIXED()) && fixedIdRms === "ID"
+              }
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="FIXEDRMS"
+              qualifiers={{ guiLabel: "R.m.s. deviation (Å)" }}
+              visibility={() =>
+                Boolean(visibility.showXYZIN_FIXED()) && fixedIdRms === "RMS"
+              }
             />
 
             <CCP4i2TaskElement

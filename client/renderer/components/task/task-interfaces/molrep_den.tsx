@@ -8,6 +8,7 @@ import { useBoolToggle } from "../task-elements/shared-hooks";
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem, container } = useJob(props.job.id);
   const perform = useBoolToggle(useTaskItem, "PERFORM");
+  const { value: HIGH_PATH_VAR } = useTaskItem("HIGH_PATH_VAR");
 
   if (!container) return <LinearProgress />;
 
@@ -21,9 +22,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         containerHint="FolderLevel"
       >
         <CCP4i2TaskElement itemName="PERFORM" {...props} />
-        {!perform.value && (
-          <CCP4i2TaskElement itemName="F_SIGF" {...props} />
-        )}
+        {/* No F_SIGF field here: this task's def.xml declares none. The
+            molrep wrappers share one plugin, and its F_SIGF branch is the
+            one PERFORM != 'den' takes -- which is never, here. */}
         {perform.value && (
           <CCP4i2TaskElement itemName="XYZIN_FIX" {...props} />
         )}
@@ -77,6 +78,29 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2TaskElement itemName="ANISO" {...props} />
         )}
         <CCP4i2TaskElement itemName="HIGH_PATH_VAR" {...props} />
+        {/* HIGH_PATH_VAR chooses how B-add is arrived at, and each route needs
+            its own value. None of the three was here, so the choice had no
+            effect a user could see. */}
+        <CCP4i2TaskElement
+          itemName="SIM"
+          {...props}
+          qualifiers={{
+            guiLabel: "Identity between search and target sequences (0 to 1)",
+          }}
+          visibility={() => HIGH_PATH_VAR === "i"}
+        />
+        <CCP4i2TaskElement
+          itemName="RESMAX"
+          {...props}
+          qualifiers={{ guiLabel: "High resolution limit (Å)" }}
+          visibility={() => HIGH_PATH_VAR === "r"}
+        />
+        <CCP4i2TaskElement
+          itemName="BADD"
+          {...props}
+          qualifiers={{ guiLabel: "B-add" }}
+          visibility={() => HIGH_PATH_VAR === "b"}
+        />
         <CCP4i2TaskElement itemName="LOW_PATH_VAR" {...props} />
       </CCP4i2ContainerElement>
     </Paper>

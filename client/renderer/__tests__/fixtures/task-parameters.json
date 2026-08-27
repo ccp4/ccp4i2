@@ -1,0 +1,8315 @@
+{
+ "skipped": {
+  "crank2_comb_phdmmb": "no def.xml",
+  "crank2_createfree": "declares no input or control parameters",
+  "crank2_dmfull": "no def.xml",
+  "crank2_faest": "no def.xml",
+  "crank2_handdet": "no def.xml",
+  "crank2_mbref": "no def.xml",
+  "crank2_phas": "no def.xml",
+  "crank2_phdmmb": "no def.xml",
+  "crank2_ref": "no def.xml",
+  "crank2_refatompick": "no def.xml",
+  "crank2_substrdet": "no def.xml",
+  "imosflm": "declares no input or control parameters"
+ },
+ "tasks": {
+  "AMPLE": {
+   "declared": {
+    "inputData": [
+     "AMPLE_SEQIN",
+     "AMPLE_F_SIGF",
+     "AMPLE_MODELS_DIR",
+     "AMPLE_MODELS_FILE",
+     "AMPLE_MODELS_SOURCE",
+     "AMPLE_EXISTING_MODELS",
+     "AMPLE_PROTEIN_CLASS",
+     "AMPLE_MODEL_GENERATION",
+     "AMPLE_MODEL_TYPE",
+     "AMPLE_NMR_REMODEL",
+     "AMPLE_ROSETTA_DIR",
+     "AMPLE_ROSETTA_FRAGS3",
+     "AMPLE_ROSETTA_FRAGS9",
+     "AMPLE_CONTACT_FORMAT",
+     "AMPLE_CONTACT_FILE",
+     "AMPLE_NPROC",
+     "AMPLE_ENSEMBLING_TM",
+     "AMPLE_USE_SHELXE",
+     "AMPLE_REFINE_REBUILD",
+     "AMPLE_SHELXE_REBUILD",
+     "AMPLE_EXTRA_FLAGS"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "HKLOUT",
+    "DIFFPHIOUT",
+    "FPHIOUT"
+   ],
+   "qtExposed": [
+    "AMPLE_CONTACT_FILE",
+    "AMPLE_CONTACT_FORMAT",
+    "AMPLE_ENSEMBLING_TM",
+    "AMPLE_EXISTING_MODELS",
+    "AMPLE_EXTRA_FLAGS",
+    "AMPLE_F_SIGF",
+    "AMPLE_MODELS_DIR",
+    "AMPLE_MODELS_FILE",
+    "AMPLE_MODELS_SOURCE",
+    "AMPLE_MODEL_GENERATION",
+    "AMPLE_MODEL_TYPE",
+    "AMPLE_NMR_REMODEL",
+    "AMPLE_NPROC",
+    "AMPLE_PROTEIN_CLASS",
+    "AMPLE_REFINE_REBUILD",
+    "AMPLE_ROSETTA_DIR",
+    "AMPLE_ROSETTA_FRAGS3",
+    "AMPLE_ROSETTA_FRAGS9",
+    "AMPLE_SEQIN",
+    "AMPLE_SHELXE_REBUILD",
+    "AMPLE_USE_SHELXE"
+   ]
+  },
+  "AUSPEX": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "YLIM",
+     "DLIM",
+     "SINGFIG",
+     "FLAGICE"
+    ]
+   },
+   "outputData": [
+    "IM_OUT"
+   ],
+   "qtExposed": [
+    "DLIM",
+    "FLAGICE",
+    "F_SIGF",
+    "SINGFIG",
+    "YLIM"
+   ]
+  },
+  "AcedrgLink": {
+   "declared": {
+    "controlParameters": [
+     "EXTRA_ACEDRG_KEYWORDS"
+    ],
+    "inputData": [
+     "INSTRUCTION_FILE",
+     "LINK_ID",
+     "ANNOTATION"
+    ]
+   },
+   "outputData": [
+    "CIF_OUT",
+    "UNL_PDB",
+    "UNL_CIF"
+   ]
+  },
+  "AlternativeImportXIA2": {
+   "declared": {
+    "controlParameters": [
+     "runSummaries",
+     "directoryPath"
+    ],
+    "inputData": [
+     "XIA2_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDOUT",
+    "HKLOUT",
+    "FREEROUT"
+   ],
+   "qtExposed": [
+    "runSummaries",
+    "tip"
+   ]
+  },
+  "ImportAsuContent": {
+   "declared": {
+    "inputData": [
+     "ASUIN"
+    ]
+   },
+   "outputData": [
+    "ASUOUT"
+   ]
+  },
+  "ImportCoordinate": {
+   "declared": {
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ]
+  },
+  "ImportDictionary": {
+   "declared": {
+    "inputData": [
+     "DICTIN"
+    ]
+   },
+   "outputData": [
+    "DICTOUT"
+   ]
+  },
+  "ImportFreeR": {
+   "declared": {
+    "controlParameters": [
+     "COLUMNS"
+    ],
+    "inputData": [
+     "HKLIN"
+    ]
+   },
+   "outputData": [
+    "FREEROUT"
+   ]
+  },
+  "ImportMap": {
+   "declared": {
+    "inputData": [
+     "MAPIN"
+    ]
+   },
+   "outputData": [
+    "MAPOUT"
+   ]
+  },
+  "ImportMapCoeffs": {
+   "declared": {
+    "controlParameters": [
+     "COLUMNS"
+    ],
+    "inputData": [
+     "HKLIN"
+    ]
+   },
+   "outputData": [
+    "FPHIOUT"
+   ]
+  },
+  "ImportObs": {
+   "declared": {
+    "controlParameters": [
+     "COLUMNS"
+    ],
+    "inputData": [
+     "HKLIN"
+    ]
+   },
+   "outputData": [
+    "OBSOUT"
+   ]
+  },
+  "ImportPhases": {
+   "declared": {
+    "controlParameters": [
+     "COLUMNS"
+    ],
+    "inputData": [
+     "HKLIN"
+    ]
+   },
+   "outputData": [
+    "PHSOUT"
+   ]
+  },
+  "ImportSequence": {
+   "declared": {
+    "inputData": [
+     "SEQIN"
+    ]
+   },
+   "outputData": [
+    "SEQOUT"
+   ]
+  },
+  "Lidia": {
+   "declared": {
+    "inputData": [
+     "MOLIN"
+    ]
+   },
+   "outputData": [
+    "MOLOUT_LIST"
+   ]
+  },
+  "LidiaAcedrgNew": {
+   "declared": {
+    "controlParameters": [
+     "USE_COORD",
+     "TOGGLE_METAL",
+     "TOGGLE_NRANDOM",
+     "NOPROT"
+    ],
+    "inputData": [
+     "DICTIN2",
+     "DICTIN",
+     "MOLSMILESORSKETCH",
+     "ATOMMATCHOPTION",
+     "TLC",
+     "MATCHTLC",
+     "SMILESFILEIN",
+     "MOLIN",
+     "MOL2IN",
+     "SMILESIN",
+     "METAL_STRUCTURE",
+     "CONFORMERSFROM",
+     "NRANDOM"
+    ]
+   },
+   "outputData": [
+    "MOLOUT_LIST",
+    "DICTOUT_LIST",
+    "XYZOUT_LIST"
+   ],
+   "qtExposed": [
+    "ATOMMATCHOPTION",
+    "DICTIN",
+    "DICTIN2",
+    "MATCHTLC",
+    "METAL_STRUCTURE",
+    "MOL2IN",
+    "MOLIN",
+    "MOLSMILESORSKETCH",
+    "NOPROT",
+    "NRANDOM",
+    "SMILESFILEIN",
+    "SMILESIN",
+    "TLC",
+    "TOGGLE_METAL",
+    "TOGGLE_NRANDOM",
+    "USE_COORD"
+   ]
+  },
+  "MakeLink": {
+   "declared": {
+    "controlParameters": [
+     "BOND_ORDER",
+     "TOGGLE_LINK",
+     "LINK_MODE",
+     "LINK_DISTANCE",
+     "MODEL_RES_LIST",
+     "MODEL_LINK_DISTANCE",
+     "EXTRA_ACEDRG_INSTRUCTIONS",
+     "EXTRA_ACEDRG_KEYWORDS"
+    ],
+    "inputData": [
+     "LINK_ID",
+     "ANNOTATION",
+     "MON_1_TYPE",
+     "MON_2_TYPE",
+     "DICT_1",
+     "DICT_2",
+     "RES_NAME_1_TLC",
+     "RES_NAME_2_TLC",
+     "RES_NAME_1_CIF",
+     "RES_NAME_2_CIF",
+     "ATOM_NAME_1_TLC",
+     "ATOM_NAME_2_TLC",
+     "ATOM_NAME_1_CIF",
+     "ATOM_NAME_2_CIF",
+     "ATOM_NAME_1",
+     "ATOM_NAME_2",
+     "TOGGLE_DELETE_1",
+     "TOGGLE_DELETE_2",
+     "DELETE_1",
+     "DELETE_2",
+     "DELETE_1_LIST",
+     "DELETE_2_LIST",
+     "TOGGLE_CHARGE_1",
+     "TOGGLE_CHARGE_2",
+     "CHARGE_1",
+     "CHARGE_2",
+     "CHARGE_1_LIST",
+     "CHARGE_2_LIST",
+     "CHARGE_1_VALUE",
+     "CHARGE_2_VALUE",
+     "TOGGLE_CHANGE_1",
+     "TOGGLE_CHANGE_2",
+     "CHANGE_BOND_1_LIST",
+     "CHANGE_BOND_2_LIST",
+     "CHANGE_BOND_1",
+     "CHANGE_BOND_2",
+     "CHANGE_BOND_1_TYPE",
+     "CHANGE_BOND_2_TYPE",
+     "CHANGE_1_TYPE",
+     "CHANGE_2_TYPE",
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "INSTRUCTION_FILE",
+    "CIF_OUT",
+    "XYZOUT",
+    "UNL_PDB",
+    "UNL_CIF"
+   ],
+   "qtExposed": [
+    "ATOM_NAME_1_CIF",
+    "ATOM_NAME_1_TLC",
+    "ATOM_NAME_2_CIF",
+    "ATOM_NAME_2_TLC",
+    "BOND_ORDER",
+    "CHANGE_BOND_1_LIST",
+    "CHANGE_BOND_1_TYPE",
+    "CHANGE_BOND_2_LIST",
+    "CHANGE_BOND_2_TYPE",
+    "CHARGE_1_LIST",
+    "CHARGE_1_VALUE",
+    "CHARGE_2_LIST",
+    "CHARGE_2_VALUE",
+    "DELETE_1_LIST",
+    "DELETE_2_LIST",
+    "DICT_1",
+    "DICT_2",
+    "EXTRA_ACEDRG_INSTRUCTIONS",
+    "EXTRA_ACEDRG_KEYWORDS",
+    "LINK_DISTANCE",
+    "LINK_MODE",
+    "MODEL_LINK_DISTANCE",
+    "MODEL_RES_LIST",
+    "MON_1_TYPE",
+    "MON_2_TYPE",
+    "RES_NAME_1_CIF",
+    "RES_NAME_1_TLC",
+    "RES_NAME_2_CIF",
+    "RES_NAME_2_TLC",
+    "TOGGLE_CHANGE_1",
+    "TOGGLE_CHANGE_2",
+    "TOGGLE_CHARGE_1",
+    "TOGGLE_CHARGE_2",
+    "TOGGLE_DELETE_1",
+    "TOGGLE_DELETE_2",
+    "TOGGLE_LINK",
+    "XYZIN"
+   ]
+  },
+  "MakeMonster": {
+   "declared": {
+    "inputData": [
+     "NObsObjects",
+     "Obs_1",
+     "Obs_1_OutputRepresentation",
+     "Obs_1_Suffix",
+     "Obs_2",
+     "Obs_2_OutputRepresentation",
+     "Obs_2_Suffix",
+     "Obs_3",
+     "Obs_3_OutputRepresentation",
+     "Obs_3_Suffix",
+     "Obs_4",
+     "Obs_4_OutputRepresentation",
+     "Obs_4_Suffix",
+     "Obs_5",
+     "Obs_5_OutputRepresentation",
+     "Obs_5_Suffix",
+     "Obs_6",
+     "Obs_6_OutputRepresentation",
+     "Obs_6_Suffix",
+     "NPhiObjects",
+     "Phi_1",
+     "Phi_1_OutputRepresentation",
+     "Phi_1_Suffix",
+     "Phi_2",
+     "Phi_2_OutputRepresentation",
+     "Phi_2_Suffix",
+     "Phi_3",
+     "Phi_3_OutputRepresentation",
+     "Phi_3_Suffix",
+     "Phi_4",
+     "Phi_4_OutputRepresentation",
+     "Phi_4_Suffix",
+     "Phi_5",
+     "Phi_5_OutputRepresentation",
+     "Phi_5_Suffix",
+     "Phi_6",
+     "Phi_6_OutputRepresentation",
+     "Phi_6_Suffix",
+     "NFWTObjects",
+     "FWT_1",
+     "FWT_1_Suffix",
+     "FWT_2",
+     "FWT_2_Suffix",
+     "FWT_3",
+     "FWT_3_Suffix",
+     "FWT_4",
+     "FWT_4_Suffix",
+     "FWT_5",
+     "FWT_5_Suffix",
+     "FWT_6",
+     "FWT_6_Suffix",
+     "NDELFWTObjects",
+     "DELFWT_1",
+     "DELFWT_1_Suffix",
+     "DELFWT_2",
+     "DELFWT_2_Suffix",
+     "DELFWT_3",
+     "DELFWT_3_Suffix",
+     "DELFWT_4",
+     "DELFWT_4_Suffix",
+     "DELFWT_5",
+     "DELFWT_5_Suffix",
+     "DELFWT_6",
+     "DELFWT_6_Suffix",
+     "NFREERObjects",
+     "FREER_1",
+     "FREER_1_Suffix",
+     "FREER_2",
+     "FREER_2_Suffix",
+     "FREER_3",
+     "FREER_3_Suffix",
+     "FREER_4",
+     "FREER_4_Suffix",
+     "FREER_5",
+     "FREER_5_Suffix",
+     "FREER_6",
+     "FREER_6_Suffix"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "MakeProjectsAndDoLigandPipeline": {
+   "declared": {
+    "inputData": [
+     "ROOT_DIRECTORY",
+     "PIPELINE",
+     "XYZIN",
+     "FREERFLAG",
+     "PATH_LIST",
+     "PROJECTNAME_LIST",
+     "SMILES_LIST"
+    ]
+   },
+   "outputData": [
+    "XYZOUT_LIST",
+    "DIFFPHIOUT_LIST",
+    "FPHIOUT_LIST"
+   ],
+   "qtExposed": [
+    "FREERFLAG",
+    "PATH_LIST",
+    "PIPELINE",
+    "PROJECTNAME_LIST",
+    "ROOT_DIRECTORY",
+    "SMILES_LIST",
+    "XYZIN"
+   ]
+  },
+  "Platonyzer": {
+   "declared": {
+    "controlParameters": [
+     "MODE",
+     "RM_VDW"
+    ],
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "RESTRAINTS",
+    "XYZOUT"
+   ]
+  },
+  "PrepareDeposit": {
+   "declared": {
+    "inputData": [
+     "USINGIORF",
+     "USINGANOMALOUS",
+     "ISREFMACMMCIFOUTPUT",
+     "B_REFINEMENT_MODE",
+     "PROVIDEDICT",
+     "PROVIDETLS",
+     "PROVIDESEQUENCES",
+     "XYZIN",
+     "F_SIGF",
+     "FREERFLAG",
+     "TLSIN",
+     "DICT",
+     "ASUIN",
+     "OUTPUTTYPE",
+     "OUTPUT_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "CIFREFLECTIONS",
+    "CIFCOORDINATES"
+   ],
+   "qtAutoGenerated": true,
+   "qtExposed": [
+    "ASUIN",
+    "B_REFINEMENT_MODE",
+    "DICT",
+    "FREERFLAG",
+    "F_SIGF",
+    "PROVIDEDICT",
+    "PROVIDESEQUENCES",
+    "PROVIDETLS",
+    "TLSIN",
+    "USINGIORF",
+    "XYZIN"
+   ]
+  },
+  "ProvideAlignment": {
+   "declared": {
+    "controlParameters": [
+     "PASTEORREAD",
+     "ANNOTATION",
+     "SEQUENCETEXT"
+    ],
+    "inputData": [
+     "ALIGNIN",
+     "HHPREDIN",
+     "ALI_INDEX",
+     "BLASTIN"
+    ]
+   },
+   "outputData": [
+    "ALIGNMENTFILE"
+   ],
+   "qtExposed": [
+    "ANNOTATION",
+    "PASTEORREAD",
+    "SEQUENCETEXT",
+    "tip"
+   ]
+  },
+  "ProvideAsuContents": {
+   "declared": {
+    "inputData": [
+     "ASUCONTENTIN",
+     "HKLIN",
+     "ASU_CONTENT"
+    ]
+   },
+   "outputData": [
+    "ASUCONTENTFILE"
+   ],
+   "qtExposed": [
+    "ASUCONTENTIN",
+    "ASU_CONTENT",
+    "HKLIN"
+   ]
+  },
+  "ProvideSequence": {
+   "declared": {
+    "controlParameters": [
+     "SEQUENCETEXT"
+    ],
+    "inputData": [
+     "SEQIN",
+     "XYZMODE",
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "SEQUENCEFILE_LIST",
+    "CASUCONTENTOUT"
+   ],
+   "qtExposed": [
+    "SEQIN",
+    "SEQUENCETEXT",
+    "tip"
+   ]
+  },
+  "ProvideTLS": {
+   "declared": {
+    "controlParameters": [
+     "TLSTEXT",
+     "TLSGROUPS"
+    ],
+    "inputData": [
+     "TLSIN",
+     "XYZIN"
+    ]
+   },
+   "guiParameters": [
+    "EDIT_MODE"
+   ],
+   "outputData": [
+    "TLSFILE"
+   ],
+   "qtExposed": [
+    "TLSTEXT",
+    "tip"
+   ]
+  },
+  "SIMBAD": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "SIMBAD_SEARCH_LEVEL",
+     "SIMBAD_ORGANISM",
+     "SIMBAD_NPROC",
+     "SIMBAD_PROCESS_ALL",
+     "SIMBAD_SGALTERNATIVE",
+     "SIMBAD_MR_PROGRAM",
+     "SIMBAD_ROT_PROGRAM",
+     "SIMBAD_NMOL"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "HKLOUT"
+   ],
+   "qtExposed": [
+    "F_SIGF",
+    "SIMBAD_MR_PROGRAM",
+    "SIMBAD_NMOL",
+    "SIMBAD_NPROC",
+    "SIMBAD_ORGANISM",
+    "SIMBAD_PROCESS_ALL",
+    "SIMBAD_ROT_PROGRAM",
+    "SIMBAD_SEARCH_LEVEL",
+    "SIMBAD_SGALTERNATIVE"
+   ]
+  },
+  "ShelxCD": {
+   "declared": {
+    "controlParameters": [
+     "MODE",
+     "SHEL",
+     "SFAC",
+     "NTRY",
+     "MIND",
+     "FIND",
+     "RIPW",
+     "DSCA",
+     "ASCA",
+     "SEED"
+    ],
+    "inputData": [
+     "SAD",
+     "HREM",
+     "LREM",
+     "INFL",
+     "PEAK",
+     "NAT",
+     "SIR",
+     "SIRA",
+     "RIP",
+     "RIPA",
+     "FREERFLAG"
+    ]
+   },
+   "outputData": [
+    "FA",
+    "XYZOUT",
+    "PERFORMANCE"
+   ],
+   "qtAutoGenerated": true,
+   "qtExposed": [
+    "ASCA",
+    "DSCA",
+    "FIND",
+    "HREM",
+    "INFL",
+    "LREM",
+    "MIND",
+    "MODE",
+    "NAT",
+    "NTRY",
+    "PEAK",
+    "RIP",
+    "RIPA",
+    "RIPW",
+    "SAD",
+    "SEED",
+    "SFAC",
+    "SHEL",
+    "SIR",
+    "SIRA"
+   ]
+  },
+  "SubstituteLigand": {
+   "declared": {
+    "controlParameters": [
+     "OBSAS",
+     "LIGANDAS",
+     "LIGAND_CODE",
+     "RESOLUTION_RANGE"
+    ],
+    "inputData": [
+     "SMILES",
+     "XYZIN",
+     "STARTING_DICT_LIST",
+     "UNMERGEDFILES",
+     "F_SIGF_IN",
+     "FREERFLAG_IN",
+     "MOLIN",
+     "SMILESIN",
+     "PIPELINE",
+     "DICTIN"
+    ]
+   },
+   "outputData": [
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "DICTOUT",
+    "DIFFPHIOUT",
+    "FPHIOUT",
+    "ANOMFPHIOUT",
+    "XYZOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "DICTIN",
+    "FREERFLAG_IN",
+    "F_SIGF_IN",
+    "LIGANDAS",
+    "MOLIN",
+    "OBSAS",
+    "PIPELINE",
+    "SMILESIN",
+    "UNMERGEDFILES",
+    "XYZIN"
+   ]
+  },
+  "SubtractNative": {
+   "declared": {
+    "controlParameters": [
+     "FRACTION"
+    ],
+    "inputData": [
+     "XYZIN",
+     "MAPIN"
+    ]
+   },
+   "outputData": [
+    "MAPOUT"
+   ],
+   "qtExposed": [
+    "FRACTION",
+    "MAPIN",
+    "XYZIN"
+   ]
+  },
+  "TestObsConversions": {
+   "declared": {
+    "controlParameters": [
+     "INPUT_REPRESENTATION",
+     "OUTPUT_REPRESENTATION"
+    ],
+    "inputData": [
+     "F_SIGF_AS_IPAIR",
+     "F_SIGF_AS_IMEAN",
+     "F_SIGF_AS_FPAIR",
+     "F_SIGF_INTERMEDIATE"
+    ]
+   },
+   "outputData": [
+    "PERFORMANCEINDICATOR",
+    "F_SIGF_FINAL"
+   ],
+   "qtExposed": [
+    "INPUT_REPRESENTATION",
+    "OUTPUT_REPRESENTATION"
+   ]
+  },
+  "acedrg": {
+   "declared": {
+    "inputData": [
+     "MOLORSMILES",
+     "TLC",
+     "MOLIN",
+     "NRANDOM",
+     "SMILESIN"
+    ]
+   },
+   "outputData": [
+    "DICTOUT",
+    "DICTOUT_RDKIT",
+    "XYZOUT",
+    "XYZOUT_RDKIT",
+    "MOLOUT"
+   ]
+  },
+  "acedrgNew": {
+   "declared": {
+    "controlParameters": [
+     "USE_COORD",
+     "NOPROT"
+    ],
+    "inputData": [
+     "DICTIN2",
+     "DICTIN",
+     "ATOMMATCHOPTION",
+     "MOLORSMILES",
+     "TLC",
+     "MATCHTLC",
+     "SMILESFILEIN",
+     "MOLIN",
+     "MOL2IN",
+     "NRANDOM",
+     "SMILESIN",
+     "METAL_STRUCTURE"
+    ]
+   },
+   "outputData": [
+    "DICTOUT",
+    "DICTOUT_RDKIT",
+    "XYZOUT",
+    "XYZOUT_RDKIT",
+    "MOLOUT"
+   ]
+  },
+  "acorn": {
+   "declared": {
+    "controlParameters": [
+     "ACORN_PHSIN_TYPE",
+     "ACORN_ECALC",
+     "ACORN_EXTEND",
+     "ACORN_EXTENDRES",
+     "ACORN_ANISOTROPY",
+     "ACORN_BGRID",
+     "ACOGEN_GRID",
+     "ACORN_BSEED",
+     "ACOGEN_SEED",
+     "ACORN_BRESOL",
+     "ACOREF_RESOLL",
+     "ACOREF_RESOLU",
+     "ACORN_BEXCLUDE",
+     "ACORN_BECUT",
+     "ACOREF_EXCLUDE",
+     "ACOREF_ECUT",
+     "ACOPH_CUSTOM",
+     "ACOPH_CUSTDDM",
+     "ACOPH_TRIALS",
+     "ACOPH_NCDDM_1",
+     "ACOPH_DDMK_1",
+     "ACOPH_REFINE_1",
+     "ACOPH_NCDDM_2",
+     "ACOPH_DDMK_2",
+     "ACOPH_REFINE_2",
+     "ACOPH_NCDDM_3",
+     "ACOPH_DDMK_3",
+     "ACOPH_REFINE_3",
+     "ACOPH_NCDDM_4",
+     "ACOPH_DDMK_4",
+     "ACOPH_REFINE_4",
+     "ACOPH_NCDDM_5",
+     "ACOPH_DDMK_5",
+     "ACOPH_REFINE_5",
+     "ACOPH_NCDDM_6",
+     "ACOPH_DDMK_6",
+     "ACOPH_REFINE_6",
+     "ACOPH_NCDDM_7",
+     "ACOPH_DDMK_7",
+     "ACOPH_REFINE_7",
+     "ACOPH_NCDDM_8",
+     "ACOPH_DDMK_8",
+     "ACOPH_REFINE_8",
+     "ACOPH_NCDDM_9",
+     "ACOPH_DDMK_9",
+     "ACOPH_REFINE_9",
+     "ACOPH_NCDDM_10",
+     "ACOPH_DDMK_10",
+     "ACOPH_REFINE_10",
+     "ACOPH_PATSUP",
+     "ACOPH_CUTDDM",
+     "ACOPH_PSFINISH",
+     "ACOPH_CCFINISH",
+     "ACOMPS_PEAKSEARCH",
+     "ACOMPS_MAXPEAKS",
+     "ACOMPS_RMSMULT"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "ABCD",
+     "XYZIN",
+     "PERFORMANCE"
+    ]
+   },
+   "outputData": [
+    "PHSOUT",
+    "FPHIOUT",
+    "EPHIOUT"
+   ],
+   "qtExposed": [
+    "ABCD",
+    "ACOGEN_GRID",
+    "ACOPH_CUSTDDM",
+    "ACOPH_CUSTOM",
+    "ACOPH_CUTDDM",
+    "ACOPH_PSFINISH",
+    "ACOPH_TRIALS",
+    "ACOREF_ECUT",
+    "ACOREF_EXCLUDE",
+    "ACOREF_RESOLL",
+    "ACOREF_RESOLU",
+    "ACORN_BECUT",
+    "ACORN_BEXCLUDE",
+    "ACORN_BGRID",
+    "ACORN_BRESOL",
+    "ACORN_PHSIN_TYPE",
+    "F_SIGF",
+    "XYZIN"
+   ]
+  },
+  "add_fractional_coords": {
+   "declared": {
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "XYZIN"
+   ]
+  },
+  "adding_stats_to_mmcif_i2": {
+   "declared": {
+    "controlParameters": [
+     "SENDTOVALIDATIONSERVER",
+     "USEAIMLESSXML",
+     "INCLUDEUNMERGED",
+     "TLSOUT_ADDU",
+     "USEANOMALOUS",
+     "USE_TWIN"
+    ],
+    "inputData": [
+     "XYZIN",
+     "ASUCONTENT",
+     "F_SIGF",
+     "SCALEDUNMERGED",
+     "FREERFLAG",
+     "DIFFPHIOUT",
+     "FPHIOUT",
+     "DICT_LIST",
+     "TLSIN",
+     "CIFSTATSOUT",
+     "AIMLESSXML",
+     "REFMACINPUTPARAMSXML"
+    ]
+   },
+   "outputData": [
+    "MMCIFOUT",
+    "CIFREFLECTIONS",
+    "PDFOUT",
+    "VALIDATIONXML",
+    "DIFFPHIOUT",
+    "FPHIOUT",
+    "COOTSCRIPTOUT"
+   ],
+   "qtExposed": [
+    "ASUCONTENT",
+    "DICT_LIST",
+    "INCLUDEUNMERGED",
+    "SENDTOVALIDATIONSERVER",
+    "USEAIMLESSXML",
+    "USEANOMALOUS",
+    "USE_TWIN"
+   ]
+  },
+  "aimless": {
+   "declared": {
+    "controlParameters": [
+     "RESOLUTION_RANGE",
+     "REFERENCE_DATASET",
+     "REFERENCE_FOR_AIMLESS",
+     "OUTPUT_MODE",
+     "ACCEPT_OVERLOADS",
+     "ACCEPT_EDGES",
+     "ACCEPT_XDS_MISFITS",
+     "SCALING_PROTOCOL",
+     "BFACTOR_SCALE",
+     "SCALES_ROTATION_TYPE",
+     "SCALES_ROTATION_SPACING",
+     "SCALES_ROTATION_NBINS",
+     "SCALES_BROTATION_TYPE",
+     "SCALES_BROTATION_SPACING",
+     "SCALES_BROTATION_NBINS",
+     "SCALES_SECONDARY_NSPHHARMONICS",
+     "SCALES_TILETYPE",
+     "SCALES_NTILEX",
+     "SCALES_NTILEY",
+     "OUTLIER_OVERRIDE",
+     "OUTLIER_EMAX",
+     "OUTLIER_SDMAX",
+     "OUTLIER_SDMAX2",
+     "OUTLIER_SDMAXALL",
+     "OUTLIER_SDMAXALL_ADJUST",
+     "OUTLIER_COMBINE",
+     "ANALYSIS_OVERRIDE",
+     "CCMINIMUM",
+     "CCANOMMINIMUM",
+     "ISIGMINIMUM",
+     "RUN_MODE",
+     "RUN_BATCHLIST",
+     "SDCORRECTION_OVERRIDE",
+     "SDCORRECTION_REFINE",
+     "SDCORRECTION_FIXSDB",
+     "SDCORRECTION_OPTIONS",
+     "SDCORRECTION_DAMP",
+     "SDCORRECTION_SIMILARITY_SDFAC",
+     "SDCORRECTION_SIMILARITY_SDB",
+     "SDCORRECTION_SIMILARITY_SDADD",
+     "SDCORRECTION_SET",
+     "SDCORRECTION_SDFAC",
+     "SDCORRECTION_SDB",
+     "SDCORRECTION_SDADD",
+     "SDCORRECTION_TIESDB_SD",
+     "INTENSITIES_OVERRIDE",
+     "INTENSITIES_OPTIONS",
+     "PARTIALS_TEST",
+     "PARTIALS_FRACLOW",
+     "PARTIALS_FRACHIGH",
+     "PARTIALS_CHECK",
+     "PARTIALS_SCALE",
+     "PARTIALS_SCALE_MIN",
+     "SCALING_DETAILS",
+     "CYCLES_FLAG",
+     "CYCLES_N",
+     "PARALLEL",
+     "PARALLEL_MODE",
+     "NPROC",
+     "FRACPROC",
+     "SELECT1",
+     "SELECT_IOVSDMIN",
+     "SELECT2",
+     "SELECT_EMIN",
+     "REFINE_REFERENCE",
+     "TIE_ROTATION",
+     "TIE_ROTATION_SD",
+     "TIE_BFACTOR",
+     "TIE_BFACTOR_SD",
+     "TIE_SURFACE",
+     "TIE_SURFACE_SD",
+     "TIE_BZERO",
+     "TIE_BZERO_SD",
+     "ONLYMERGE"
+    ],
+    "inputData": [
+     "UNMERGEDFILE",
+     "HKLIN_REF",
+     "XYZIN_REF"
+    ]
+   },
+   "outputData": [
+    "XMLOUT",
+    "HKLOUT_BASENAME",
+    "MTZMERGEDOUT",
+    "MTZUNMERGEDOUT",
+    "SPMERGEDOUT",
+    "SPUNMERGEDOUT",
+    "SCALES",
+    "ROGUES",
+    "NORMPLOT",
+    "ANOMPLOT",
+    "CORRELPLOT",
+    "ROGUEPLOT"
+   ]
+  },
+  "aimless_pipe": {
+   "declared": {
+    "controlParameters": [
+     "DOPHASERANALYSIS",
+     "AUTOCUTOFF",
+     "ANALYSIS_MODE",
+     "MODE",
+     "SET_SETTING",
+     "REFERENCE_DATASET",
+     "REFERENCE_FOR_AIMLESS",
+     "CHOOSE_MODE",
+     "CHOOSE_SOLUTION_NO",
+     "CHOOSE_LAUEGROUP",
+     "CHOOSE_SPACEGROUP",
+     "REINDEX_OPERATOR",
+     "EXCLUDE_BATCH",
+     "EXCLUDED_BATCHES",
+     "RESOLUTION_RANGE",
+     "INFOCONTENTTHRESHOLD",
+     "ISIGLIMIT",
+     "CCHALFLIMIT",
+     "CCHALFDISASTER",
+     "MULTIPLICITYDISASTER",
+     "TOLERANCE",
+     "CELL",
+     "WAVELENGTH",
+     "COMPLETE",
+     "FREER_FRACTION",
+     "CUTRESOLUTION",
+     "OVERRIDE_CELL_DIFFERENCE",
+     "ACCEPT_OVERLOADS",
+     "ACCEPT_EDGES",
+     "ACCEPT_XDS_MISFITS",
+     "SCALING_PROTOCOL",
+     "BFACTOR_SCALE",
+     "SCALES_ROTATION_TYPE",
+     "SCALES_ROTATION_SPACING",
+     "SCALES_ROTATION_NBINS",
+     "SCALES_BROTATION_TYPE",
+     "SCALES_BROTATION_SPACING",
+     "SCALES_BROTATION_NBINS",
+     "SCALES_SECONDARY_NSPHHARMONICS",
+     "SCALES_TILETYPE",
+     "SCALES_NTILEX",
+     "SCALES_NTILEY",
+     "OUTLIER_OVERRIDE",
+     "OUTLIER_EMAX",
+     "OUTLIER_SDMAX",
+     "OUTLIER_SDMAX2",
+     "OUTLIER_SDMAXALL",
+     "OUTLIER_SDMAXALL_ADJUST",
+     "OUTLIER_COMBINE",
+     "ANALYSIS_OVERRIDE",
+     "CCMINIMUM",
+     "CCANOMMINIMUM",
+     "ISIGMINIMUM",
+     "RUN_MODE",
+     "RUN_BATCHLIST",
+     "SDCORRECTION_OVERRIDE",
+     "SDCORRECTION_REFINE",
+     "SDCORRECTION_FIXSDB",
+     "SDCORRECTION_OPTIONS",
+     "SDCORRECTION_DAMP",
+     "SDCORRECTION_SIMILARITY_SDFAC",
+     "SDCORRECTION_SIMILARITY_SDB",
+     "SDCORRECTION_SIMILARITY_SDADD",
+     "SDCORRECTION_SET",
+     "SDCORRECTION_SDFAC",
+     "SDCORRECTION_SDB",
+     "SDCORRECTION_SDADD",
+     "SDCORRECTION_TIESDB_SD",
+     "INTENSITIES_OVERRIDE",
+     "INTENSITIES_OPTIONS",
+     "PARTIALS_TEST",
+     "PARTIALS_FRACLOW",
+     "PARTIALS_FRACHIGH",
+     "PARTIALS_CHECK",
+     "PARTIALS_SCALE",
+     "PARTIALS_SCALE_MIN",
+     "SCALING_DETAILS",
+     "CYCLES_FLAG",
+     "CYCLES_N",
+     "PARALLEL",
+     "PARALLEL_MODE",
+     "NPROC",
+     "FRACPROC",
+     "SELECT1",
+     "SELECT_IOVSDMIN",
+     "SELECT2",
+     "SELECT_EMIN",
+     "REFINE_REFERENCE",
+     "TIE_ROTATION",
+     "TIE_ROTATION_SD",
+     "TIE_BFACTOR",
+     "TIE_BFACTOR_SD",
+     "TIE_SURFACE",
+     "TIE_SURFACE_SD",
+     "TIE_BZERO",
+     "TIE_BZERO_SD",
+     "ONLYMERGE",
+     "POINTLESS_USE_RESOLUTION_RANGE",
+     "OUTPUT_UNMERGED",
+     "ORIGINAL_HKL",
+     "EXPERT_OPTIONS",
+     "REMOVE_LATTICE_CENTERING",
+     "LATTICE_CENTERING",
+     "KEEP_LATTICE_CENTERING",
+     "LATTICE_CENTERING_THRESHOLD",
+     "ALLOW_NONCHIRAL"
+    ],
+    "inputData": [
+     "UNMERGEDFILES",
+     "HKLIN_FORMAT",
+     "HKLIN_IS_SCALED",
+     "HKLIN_IS_MERGED",
+     "NUMBER_OF_DATASETS",
+     "HKLIN_REF",
+     "XYZIN_REF",
+     "FREERFLAG",
+     "MMCIF_SELECTED_BLOCK",
+     "MMCIF_SELECTED_DETAILS",
+     "MMCIF_SELECTED_INFO",
+     "MMCIF_SELECTED_COLUMNS",
+     "MMCIF_SELECTED_ISINTENSITY",
+     "MMCIF_FILE_INDEX"
+    ]
+   },
+   "guiParameters": [
+    "REFERENCE_DATASET_SET",
+    "SCALING_PROTOCOL_SET",
+    "SHOW_MMCIF_BLOCKS",
+    "MMCIF_INDICES",
+    "MMCIF_BLOCKNAMES",
+    "MMCIF_BLOCK_DETAILS",
+    "MMCIF_BLOCK_INFO",
+    "MMCIF_BLOCK_COLUMNS",
+    "MMCIF_BLOCK_OTHER",
+    "NFILES_WITH_MULTIPLE_DATASETS"
+   ],
+   "outputData": [
+    "HKLOUT",
+    "IMEANOUT",
+    "FREEROUT",
+    "COMPLETE_MTZ",
+    "XMLOUT",
+    "PERFORMANCE",
+    "UNMERGEDOUT",
+    "CIFSTATSOUT"
+   ],
+   "qtExposed": [
+    "ACCEPT_EDGES",
+    "ACCEPT_OVERLOADS",
+    "ACCEPT_XDS_MISFITS",
+    "ALLOW_NONCHIRAL",
+    "ANALYSIS_OVERRIDE",
+    "AUTOCUTOFF",
+    "BFACTOR_SCALE",
+    "CCANOMMINIMUM",
+    "CCHALFDISASTER",
+    "CCHALFLIMIT",
+    "CCMINIMUM",
+    "CHOOSE_MODE",
+    "CHOOSE_SOLUTION_NO",
+    "CHOOSE_SPACEGROUP",
+    "CUTRESOLUTION",
+    "CYCLES_FLAG",
+    "CYCLES_N",
+    "EXPERT_OPTIONS",
+    "FRACPROC",
+    "FREERFLAG",
+    "FREER_FRACTION",
+    "INFOCONTENTTHRESHOLD",
+    "INTENSITIES_OPTIONS",
+    "INTENSITIES_OVERRIDE",
+    "ISIGLIMIT",
+    "ISIGMINIMUM",
+    "KEEP_LATTICE_CENTERING",
+    "LATTICE_CENTERING",
+    "LATTICE_CENTERING_THRESHOLD",
+    "MODE",
+    "MULTIPLICITYDISASTER",
+    "NPROC",
+    "ORIGINAL_HKL",
+    "OUTLIER_COMBINE",
+    "OUTLIER_EMAX",
+    "OUTLIER_OVERRIDE",
+    "OUTLIER_SDMAX",
+    "OUTLIER_SDMAX2",
+    "OUTLIER_SDMAXALL",
+    "OUTLIER_SDMAXALL_ADJUST",
+    "OUTPUT_UNMERGED",
+    "OVERRIDE_CELL_DIFFERENCE",
+    "PARALLEL",
+    "PARALLEL_MODE",
+    "PARTIALS_CHECK",
+    "PARTIALS_FRACHIGH",
+    "PARTIALS_FRACLOW",
+    "PARTIALS_SCALE_MIN",
+    "PARTIALS_TEST",
+    "POINTLESS_USE_RESOLUTION_RANGE",
+    "REFERENCE_DATASET",
+    "REFERENCE_FOR_AIMLESS",
+    "REFINE_REFERENCE",
+    "REINDEX_OPERATOR",
+    "REMOVE_LATTICE_CENTERING",
+    "RESOLUTION_RANGE",
+    "RUN_BATCHLIST",
+    "RUN_MODE",
+    "SCALES_BROTATION_NBINS",
+    "SCALES_BROTATION_SPACING",
+    "SCALES_BROTATION_TYPE",
+    "SCALES_NTILEX",
+    "SCALES_NTILEY",
+    "SCALES_ROTATION_NBINS",
+    "SCALES_ROTATION_SPACING",
+    "SCALES_ROTATION_TYPE",
+    "SCALES_SECONDARY_NSPHHARMONICS",
+    "SCALES_TILETYPE",
+    "SCALING_DETAILS",
+    "SCALING_PROTOCOL",
+    "SDCORRECTION_FIXSDB",
+    "SDCORRECTION_OPTIONS",
+    "SDCORRECTION_OVERRIDE",
+    "SDCORRECTION_REFINE",
+    "SDCORRECTION_SDADD",
+    "SDCORRECTION_SDB",
+    "SDCORRECTION_SDFAC",
+    "SDCORRECTION_SET",
+    "SDCORRECTION_SIMILARITY_SDADD",
+    "SDCORRECTION_SIMILARITY_SDB",
+    "SDCORRECTION_SIMILARITY_SDFAC",
+    "SDCORRECTION_TIESDB_SD",
+    "SELECT1",
+    "SELECT2",
+    "SELECT_EMIN",
+    "SELECT_IOVSDMIN",
+    "SET_SETTING",
+    "TIE_BFACTOR",
+    "TIE_BFACTOR_SD",
+    "TIE_BZERO",
+    "TIE_BZERO_SD",
+    "TIE_ROTATION",
+    "TIE_ROTATION_SD",
+    "TIE_SURFACE",
+    "TIE_SURFACE_SD",
+    "TOLERANCE",
+    "UNMERGEDFILES",
+    "XYZIN_REF"
+   ]
+  },
+  "arcimboldo": {
+   "declared": {
+    "advancedData": [
+     "SHELXE_LINE",
+     "KEYWORDS"
+    ],
+    "controlParameters": [
+     "ARCIMBOLDO_RUN",
+     "RUN_MODE",
+     "ARCIMBOLDO_OPTIONS",
+     "MOLECULAR_WEIGHT",
+     "N_COMPONENTS",
+     "COIL_COILED",
+     "N_FRAGMENTS",
+     "HELIX_LENGTH",
+     "TNCS",
+     "TNCS_T",
+     "FRAGMENT_SIZE",
+     "FRAGMENT_SIZE_T",
+     "LITE_MODELS",
+     "LITE_RMSD",
+     "LITE_PARTIAL",
+     "BORGES_LIBRARY",
+     "BORGES_GYRE",
+     "BORGES_GYRE_T",
+     "BORGES_GIMBLE",
+     "BORGES_GIMBLE_T",
+     "BORGES_MULTICOPY",
+     "BORGES_MULTICOPY_T",
+     "SHREDDER_RMSD",
+     "SHREDDER_RMSD_T",
+     "SHREDDER_CONVERT",
+     "SHREDDER_CONVERT_T",
+     "SHREDDER_MAKE",
+     "SHREDDER_MAKE_T",
+     "SHREDDER_OPTIONS",
+     "SHREDDER_COIL",
+     "SHREDDER_COIL_T",
+     "SHREDDER_GYRE",
+     "SHREDDER_GYRE_T",
+     "SHREDDER_GIMBLE",
+     "SHREDDER_GIMBLE_T",
+     "SHREDDER_LLG",
+     "SHREDDER_LLG_T",
+     "SHREDDER_COMBINE",
+     "SHREDDER_COMBINE_T",
+     "SHREDDER_MULTICOPY",
+     "SHREDDER_MULTICOPY_T",
+     "SHREDDER_PREDICTED"
+    ],
+    "developerOptions": [
+     "DEVELOPER_MODE",
+     "EXISTING_FOLDER"
+    ],
+    "inputData": [
+     "CONFIG_FILE",
+     "F_SIGF",
+     "LITE_HELICES_LIST",
+     "LITE_CUSTOMS_LIST",
+     "PDB_LITE",
+     "LITE_FIXED",
+     "BORGES_CUSTOM",
+     "PDB_SHREDDER"
+    ]
+   },
+   "outputData": [
+    "XMLOUT",
+    "XYZOUT",
+    "PHSOUT"
+   ],
+   "qtExposed": [
+    "ARCIMBOLDO_OPTIONS",
+    "ARCIMBOLDO_RUN",
+    "BORGES_CUSTOM",
+    "BORGES_GIMBLE",
+    "BORGES_GIMBLE_T",
+    "BORGES_GYRE",
+    "BORGES_GYRE_T",
+    "BORGES_LIBRARY",
+    "BORGES_MULTICOPY",
+    "BORGES_MULTICOPY_T",
+    "COIL_COILED",
+    "CONFIG_FILE",
+    "DEVELOPER_MODE",
+    "EXISTING_FOLDER",
+    "FRAGMENT_SIZE",
+    "FRAGMENT_SIZE_T",
+    "F_SIGF",
+    "HELIX_LENGTH",
+    "KEYWORDS",
+    "LITE_CUSTOMS_LIST",
+    "LITE_FIXED",
+    "LITE_HELICES_LIST",
+    "LITE_MODELS",
+    "LITE_PARTIAL",
+    "LITE_RMSD",
+    "MOLECULAR_WEIGHT",
+    "N_COMPONENTS",
+    "N_FRAGMENTS",
+    "PDB_LITE",
+    "PDB_SHREDDER",
+    "RUN_MODE",
+    "SHELXE_LINE",
+    "SHREDDER_COIL",
+    "SHREDDER_COIL_T",
+    "SHREDDER_COMBINE",
+    "SHREDDER_COMBINE_T",
+    "SHREDDER_CONVERT",
+    "SHREDDER_CONVERT_T",
+    "SHREDDER_GIMBLE",
+    "SHREDDER_GIMBLE_T",
+    "SHREDDER_GYRE",
+    "SHREDDER_GYRE_T",
+    "SHREDDER_LLG",
+    "SHREDDER_LLG_T",
+    "SHREDDER_MAKE",
+    "SHREDDER_MAKE_T",
+    "SHREDDER_MULTICOPY",
+    "SHREDDER_MULTICOPY_T",
+    "SHREDDER_OPTIONS",
+    "SHREDDER_PREDICTED",
+    "SHREDDER_RMSD",
+    "SHREDDER_RMSD_T",
+    "TNCS",
+    "TNCS_T"
+   ]
+  },
+  "areaimol": {
+   "declared": {
+    "controlParameters": [
+     "EXCLUDE",
+     "DIFFMODE",
+     "OUTPUT_MODE",
+     "OUTPUT_MODE_COMPARE",
+     "EXTRA_AREAIMOL_KEYWORDS",
+     "SYMMETRY"
+    ],
+    "inputData": [
+     "XYZIN",
+     "XYZIN2"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "DIFFMODE",
+    "EXCLUDE",
+    "OUTPUT_MODE",
+    "OUTPUT_MODE_COMPARE",
+    "SYMMETRY",
+    "XYZIN",
+    "XYZIN2"
+   ]
+  },
+  "arp_warp_classic": {
+   "declared": {
+    "controlParameters": [
+     "AWA_ARP_MODE",
+     "AWA_REF_MODE",
+     "AWA_SCAT_LAMBDA_AWA_SAD",
+     "AWA_BIG_CYCLES",
+     "AWA_SMALL_CYCLES",
+     "AWA_MOCKYES",
+     "AWA_JSRVIEW",
+     "AWA_MOCKPAUSE",
+     "AWA_ANO_OPTION",
+     "AWA_SCAT_ATOM",
+     "AWA_SCAT_FP_AWA_SAD",
+     "AWA_SCAT_FDP_AWA_SAD",
+     "AWA_USE_COND",
+     "AWA_FORCE_COND",
+     "AWA_FAKE_DATA",
+     "AWA_NCS_RESTRAINTS",
+     "AWA_NCS_EXTENSION",
+     "AWA_LOOPS",
+     "AWA_BUILD_SIDE",
+     "AWA_SIDE_AFTER",
+     "AWA_IS_SEMET",
+     "AWA_ALBE",
+     "AWA_SKIP_BUILD",
+     "AWA_SKIP_CYCLES",
+     "AWA_FREEBUILD",
+     "AWA_FLATTEN",
+     "AWA_MULTITRACE",
+     "AWA_ADDATOM_SIGMA",
+     "AWA_REMATOM_SIGMA",
+     "AWA_UP_UPDATE",
+     "AWA_TWIN",
+     "AWA_NCYCLES",
+     "AWA_PHASE_BLUR",
+     "AWA_WEIGHT_MODE",
+     "AWA_WMAT",
+     "AWA_RIDGE_RESTRAINTS",
+     "AWA_SCALE",
+     "AWA_SCANIS",
+     "AWA_REFMAC_REF_SET",
+     "AWA_SOLVENT"
+    ],
+    "inputData": [
+     "AWA_FOBS",
+     "AWA_FREE",
+     "AWA_MODELIN",
+     "AWA_PHINI",
+     "AWA_HEAVYIN",
+     "AWA_PHREF",
+     "AWA_SEQIN"
+    ]
+   },
+   "guiParameters": [
+    "AWA_TOTAL_CYCLES"
+   ],
+   "outputData": [
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "XYZOUT",
+    "XYZDUM",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "AWA_ADDATOM_SIGMA",
+    "AWA_ALBE",
+    "AWA_ANO_OPTION",
+    "AWA_ARP_MODE",
+    "AWA_BIG_CYCLES",
+    "AWA_BUILD_SIDE",
+    "AWA_FAKE_DATA",
+    "AWA_FLATTEN",
+    "AWA_FOBS",
+    "AWA_FORCE_COND",
+    "AWA_FREE",
+    "AWA_FREEBUILD",
+    "AWA_HEAVYIN",
+    "AWA_IS_SEMET",
+    "AWA_JSRVIEW",
+    "AWA_LOOPS",
+    "AWA_MOCKPAUSE",
+    "AWA_MOCKYES",
+    "AWA_MODELIN",
+    "AWA_MULTITRACE",
+    "AWA_NCS_EXTENSION",
+    "AWA_NCS_RESTRAINTS",
+    "AWA_NCYCLES",
+    "AWA_PHASE_BLUR",
+    "AWA_PHINI",
+    "AWA_PHREF",
+    "AWA_REFMAC_REF_SET",
+    "AWA_REF_MODE",
+    "AWA_REMATOM_SIGMA",
+    "AWA_RIDGE_RESTRAINTS",
+    "AWA_SCALE",
+    "AWA_SCANIS",
+    "AWA_SCAT_ATOM",
+    "AWA_SCAT_FDP_AWA_SAD",
+    "AWA_SCAT_FP_AWA_SAD",
+    "AWA_SCAT_LAMBDA_AWA_SAD",
+    "AWA_SEQIN",
+    "AWA_SIDE_AFTER",
+    "AWA_SKIP_BUILD",
+    "AWA_SKIP_CYCLES",
+    "AWA_SMALL_CYCLES",
+    "AWA_SOLVENT",
+    "AWA_TWIN",
+    "AWA_UP_UPDATE",
+    "AWA_USE_COND",
+    "AWA_WEIGHT_MODE",
+    "AWA_WMAT"
+   ]
+  },
+  "baverage": {
+   "declared": {
+    "controlParameters": [
+     "SET_BLIMIT",
+     "BLIMIT_MC",
+     "BLIMIT_SC",
+     "SET_BRANGE",
+     "BRANGE"
+    ],
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "RMSTAB",
+    "XYZOUT"
+   ]
+  },
+  "buster": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "XYZIN",
+     "DICT"
+    ],
+    "inputParameters": [
+     "NBCYCLES",
+     "NSCYCLES",
+     "AUTO_NCS",
+     "RBR",
+     "TLS",
+     "WAT",
+     "WATCYC"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "CIFFILE",
+    "REFLFN_CIFFILE",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "ABCDOUT",
+    "PERFORMANCEINDICATOR"
+   ],
+   "qtExposed": [
+    "AUTO_NCS",
+    "DICT",
+    "FREERFLAG",
+    "F_SIGF",
+    "NBCYCLES",
+    "NSCYCLES",
+    "RBR",
+    "TLS",
+    "WAT",
+    "WATCYC",
+    "XYZIN"
+   ]
+  },
+  "cad_copy_column": {
+   "declared": {
+    "controlParameters": [
+     "TITLE"
+    ],
+    "inputData": [
+     "HKLIN1",
+     "HKLIN2",
+     "FREERFLAG",
+     "FSIGF"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "ccp4mg_edit_model": {
+   "declared": {
+    "inputData": [
+     "ASUIN",
+     "REDUNDANCYLEVEL",
+     "SEARCH_PDB",
+     "AFDBLEVEL",
+     "SEARCH_AFDB",
+     "PHMMERCUTOFF",
+     "MRMAX",
+     "HHPREDIN",
+     "PDBLOCAL"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "AFDBLEVEL",
+    "ASUIN",
+    "MRMAX",
+    "REDUNDANCYLEVEL",
+    "SEARCH_AFDB",
+    "SEARCH_PDB",
+    "tip"
+   ]
+  },
+  "ccp4mg_edit_nomrbump": {
+   "declared": {
+    "inputData": [
+     "XYZIN_LIST"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "XYZIN_LIST"
+   ]
+  },
+  "ccp4mg_general": {
+   "declared": {
+    "inputData": [
+     "DICT",
+     "XYZIN_LIST",
+     "FPHIIN_LIST",
+     "DELFPHIIN_LIST",
+     "SEQUENCE_LIST"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHIOUT",
+    "DELFPHIOUT"
+   ],
+   "qtExposed": [
+    "DELFPHIIN_LIST",
+    "DICT",
+    "FPHIIN_LIST",
+    "SEQUENCE_LIST",
+    "XYZIN_LIST"
+   ]
+  },
+  "chainsaw": {
+   "declared": {
+    "controlParameters": [
+     "TARGETINDEX",
+     "MODE"
+    ],
+    "inputData": [
+     "XYZIN",
+     "ALIGNIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "NO_DELETED",
+    "NO_CONSERVED",
+    "NO_MUTATED",
+    "NUMRES_MODEL",
+    "SEQID",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ALIGNIN",
+    "MODE",
+    "TARGETINDEX",
+    "XYZIN"
+   ]
+  },
+  "chltofom": {
+   "declared": {
+    "controlParameters": [
+     "OUTPUTMINIMTZ",
+     "DIRECTION"
+    ],
+    "inputData": [
+     "HKLIN"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ],
+   "qtExposed": [
+    "HKLIN"
+   ]
+  },
+  "cif2mtz": {
+   "declared": {
+    "controlParameters": [
+     "SPLITMTZ"
+    ],
+    "inputData": [
+     "HKLIN",
+     "SPACEGROUPCELL",
+     "HKLIN_OBS_CONTENT_FLAG",
+     "HKLIN_OBS_COLUMNS",
+     "HKLIN_FREER_COLUMN",
+     "CRYSTALNAME",
+     "DATASETNAME",
+     "MMCIF_SELECTED_BLOCK"
+    ]
+   },
+   "outputData": [
+    "HKLOUT",
+    "OBSOUT",
+    "FREEOUT"
+   ],
+   "qtExposed": [
+    "HKLIN",
+    "SPACEGROUPCELL"
+   ]
+  },
+  "clustalw": {
+   "declared": {
+    "inputData": [
+     "SEQUENCELISTORALIGNMENT",
+     "SEQIN",
+     "ALIGNMENTIN"
+    ]
+   },
+   "outputData": [
+    "ALIGNMENTOUT"
+   ],
+   "qtExposed": [
+    "ALIGNMENTIN",
+    "SEQUENCELISTORALIGNMENT"
+   ]
+  },
+  "cmapcoeff": {
+   "declared": {
+    "controlParameters": [
+     "MAPTYPE",
+     "MAP_OUTPUT",
+     "U_VALUE",
+     "B_VALUE",
+     "SCALE",
+     "F1_TO_F2"
+    ],
+    "inputData": [
+     "F_SIGF1",
+     "ABCD1",
+     "F_SIGF2",
+     "ABCD2",
+     "RESOLUTION",
+     "INDEX_U",
+     "INDEX_V",
+     "INDEX_W"
+    ]
+   },
+   "outputData": [
+    "FPHIOUT",
+    "MAPOUT",
+    "XMLOUT"
+   ],
+   "qtExposed": [
+    "ABCD1",
+    "ABCD2",
+    "B_VALUE",
+    "F1_TO_F2",
+    "F_SIGF1",
+    "F_SIGF2",
+    "INDEX_U",
+    "INDEX_V",
+    "INDEX_W",
+    "MAPTYPE",
+    "MAP_OUTPUT",
+    "RESOLUTION",
+    "SCALE"
+   ]
+  },
+  "comit": {
+   "declared": {
+    "controlParameters": [
+     "NOMIT",
+     "PAD_RADIUS"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "F_PHI_IN"
+    ]
+   },
+   "outputData": [
+    "F_PHI_OUT"
+   ],
+   "qtExposed": [
+    "F_PHI_IN",
+    "F_SIGF",
+    "NOMIT",
+    "PAD_RADIUS"
+   ]
+  },
+  "convert2mtz": {
+   "declared": {
+    "controlParameters": [
+     "NO_COMPLETE",
+     "ANOMALOUS",
+     "SEED"
+    ],
+    "inputData": [
+     "HKLIN",
+     "SPACEGROUPCELL",
+     "WAVELENGTH",
+     "HKLIN_OBS_CONTENT_FLAG",
+     "HKLIN_OBS_COLUMNS",
+     "HKLIN_FREER_COLUMN",
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "coordinate_selector": {
+   "declared": {
+    "controlParameters": [
+     "OVERRIDE_SUBTYPE"
+    ],
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "NATOMS"
+   ],
+   "qtExposed": [
+    "OVERRIDE_SUBTYPE",
+    "XYZIN"
+   ]
+  },
+  "coot1": {
+   "declared": {
+    "inputData": [
+     "XYZIN_LIST",
+     "FPHIIN_LIST",
+     "DELFPHIIN_LIST",
+     "DELFPHIINANOM_LIST",
+     "DICT"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "DELFPHIINANOM_LIST",
+    "DELFPHIIN_LIST",
+    "DICT",
+    "FPHIIN_LIST",
+    "XYZIN_LIST"
+   ]
+  },
+  "coot_find_ligand": {
+   "declared": {
+    "controlParameters": [
+     "THRESHOLD",
+     "FLEXIBLE",
+     "CONFORMERS"
+    ],
+    "inputData": [
+     "XYZIN",
+     "FPHI",
+     "COMPID",
+     "DICT"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ]
+  },
+  "coot_find_waters": {
+   "declared": {
+    "controlParameters": [
+     "THRESHOLD",
+     "MINDIST",
+     "MAXDIST"
+    ],
+    "inputData": [
+     "XYZIN",
+     "FPHIIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "FPHIIN",
+    "MAXDIST",
+    "MINDIST",
+    "THRESHOLD",
+    "XYZIN"
+   ]
+  },
+  "coot_rebuild": {
+   "declared": {
+    "inputData": [
+     "USEKEYBINDINGS",
+     "XYZIN_LIST",
+     "FPHIIN_LIST",
+     "DELFPHIIN_LIST",
+     "DELFPHIINANOM_LIST",
+     "DICT",
+     "COOTSTATEFILE",
+     "COOTSCRIPTFILE"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "DICTOUT"
+   ],
+   "qtExposed": [
+    "COOTSCRIPTFILE",
+    "DELFPHIINANOM_LIST",
+    "DELFPHIIN_LIST",
+    "DICT",
+    "FPHIIN_LIST",
+    "USEKEYBINDINGS",
+    "XYZIN_LIST"
+   ]
+  },
+  "coot_rsr_morph": {
+   "declared": {
+    "controlParameters": [
+     "LOCAL_RADIUS",
+     "GM_ALPHA",
+     "BLUR_B_FACTOR"
+    ],
+    "inputData": [
+     "XYZIN",
+     "FPHIIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "BLUR_B_FACTOR",
+    "FPHIIN",
+    "GM_ALPHA",
+    "LOCAL_RADIUS",
+    "XYZIN"
+   ]
+  },
+  "coot_script_lines": {
+   "declared": {
+    "controlParameters": [
+     "STARTPOINT",
+     "SHOWSCRIPT",
+     "SCRIPT"
+    ],
+    "inputData": [
+     "XYZIN",
+     "FPHIIN",
+     "DELFPHIIN",
+     "DICT"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "DICTOUT"
+   ],
+   "qtExposed": [
+    "DELFPHIIN",
+    "DICT",
+    "FPHIIN",
+    "SCRIPT",
+    "SHOWSCRIPT",
+    "STARTPOINT",
+    "XYZIN"
+   ]
+  },
+  "cpatterson": {
+   "declared": {
+    "inputData": [
+     "F_SIGF"
+    ]
+   },
+   "outputData": [
+    "MAPOUT"
+   ],
+   "qtExposed": [
+    "F_SIGF"
+   ]
+  },
+  "cphasematch": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "ABCD1",
+     "ABCD2"
+    ]
+   },
+   "outputData": [
+    "ABCDOUT",
+    "PERFORMANCE"
+   ]
+  },
+  "crank2": {
+   "declared": {
+    "controlParameters": [
+     "REFATOMPICK_REF_PROGRAM",
+     "REFATOMPICK_RMS_THRESHOLD",
+     "USER_REFATOMPICK_RMS_THRESHOLD",
+     "REFATOMPICK_OCC_CUT",
+     "USER_REFATOMPICK_OCC_CUT",
+     "REFATOMPICK_NUM_ITER",
+     "USER_REFATOMPICK_NUM_ITER",
+     "REFATOMPICK_REFCYC",
+     "USER_REFATOMPICK_REFCYC",
+     "KEYWORDS_REFATOMPICK",
+     "FAEST_PROGRAM",
+     "SUBSTRDET_PROGRAM",
+     "SUBSTRDET_HIGH_RES_CUTOFF",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF",
+     "SUBSTRDET_HIGH_RES_CUTOFF_CCHALF",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF_CCHALF",
+     "SUBSTRDET_HIGH_RES_CUTOFF_RADIUS",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF_RADIUS",
+     "SUBSTRDET_HIGH_RES_CUTOFF_STEP",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF_STEP",
+     "SUBSTRDET_THRESHOLD_STOP",
+     "USER_SUBSTRDET_THRESHOLD_STOP",
+     "SUBSTRDET_THRESHOLD_WEAK",
+     "USER_SUBSTRDET_THRESHOLD_WEAK",
+     "SUBSTRDET_NUM_TRIALS",
+     "USER_SUBSTRDET_NUM_TRIALS",
+     "SUBSTRDET_NUM_THREADS",
+     "USER_SUBSTRDET_NUM_THREADS",
+     "SUBSTRDET_MIN_DIST_ATOMS",
+     "USER_SUBSTRDET_MIN_DIST_ATOMS",
+     "SUBSTRDET_MIN_DIST_SYMM_ATOMS",
+     "USER_SUBSTRDET_MIN_DIST_SYMM_ATOMS",
+     "SUBSTRDET_OPTIMIZE_SOL",
+     "USER_SUBSTRDET_OPTIMIZE_SOL",
+     "SUBSTRDET_NUM_ATOMS",
+     "USER_SUBSTRDET_NUM_ATOMS",
+     "PRASA_MINPEAKS",
+     "KEYWORDS_SUBSTRDET",
+     "PHAS_PROGRAM",
+     "PHAS_CYCLES",
+     "USER_PHAS_CYCLES",
+     "KEYWORDS_PHAS",
+     "DO_HANDDET",
+     "HANDDET_DMCYC",
+     "HANDDET_THRESHOLD_DISCRIM",
+     "HANDDET_DMFULL_DM_PROGRAM",
+     "KEYWORDS_HANDDET_DM",
+     "HANDDET_DMFULL_PHCOMB_PROGRAM",
+     "KEYWORDS_HANDDET_PHCOMB",
+     "DMFULL_DMCYC",
+     "USER_DMFULL_DMCYC",
+     "DMFULL_THRESHOLD_STOP",
+     "USER_DMFULL_THRESHOLD_STOP",
+     "DMFULL_DM_PROGRAM",
+     "DMFULL_PHCOMB_PROGRAM",
+     "KEYWORDS_DMFULL_PHCOMB",
+     "KEYWORDS_DMFULL_DM",
+     "PHDMMB_DMCYC",
+     "USER_PHDMMB_DMCYC",
+     "PHDMMB_BIGCYC",
+     "USER_PHDMMB_BIGCYC",
+     "PHDMMB_THRESHOLD_STOP",
+     "USER_PHDMMB_THRESHOLD_STOP",
+     "PHDMMB_THRESHOLD_HAND_STOP",
+     "USER_PHDMMB_THRESHOLD_HAND_STOP",
+     "PHDMMB_THOROUGH_BUILD",
+     "USER_PHDMMB_THOROUGH_BUILD",
+     "ARGUMENTS_SHELXE",
+     "USE_COMB",
+     "COMB_PHDMMB_MINBIGCYC",
+     "USER_COMB_PHDMMB_MINBIGCYC",
+     "COMB_PHDMMB_MAXBIGCYC",
+     "USER_COMB_PHDMMB_MAXBIGCYC",
+     "COMB_PHDMMB_NCS_DET",
+     "USER_COMB_PHDMMB_NCS_DET",
+     "COMB_PHDMMB_NCS_DET_MR",
+     "USER_COMB_PHDMMB_NCS_DET_MR",
+     "COMB_PHDMMB_SKIP_INITIAL_BUILD",
+     "USER_COMB_PHDMMB_SKIP_INITIAL_BUILD",
+     "COMB_PHDMMB_REBUILD_ONLY",
+     "USER_COMB_PHDMMB_REBUILD_ONLY",
+     "COMB_PHDMMB_START_SHELXE",
+     "USER_COMB_PHDMMB_START_SHELXE",
+     "COMB_PHDMMB_NUM_PARALLEL",
+     "USER_COMB_PHDMMB_NUM_PARALLEL",
+     "COMB_PHDMMB_DMFULL_DM_PROGRAM",
+     "KEYWORDS_COMB_DM",
+     "KEYWORDS_COMB_SHELXE",
+     "USER_MBREF_BIGCYC",
+     "COMB_PHDMMB_DMFULL_REF_PROGRAM",
+     "MB_PROGRAM",
+     "KEYWORDS_MB",
+     "MBREF_REF_PROGRAM",
+     "MBREF_BIGCYC",
+     "KEYWORDS_MB_REF",
+     "REF_PROGRAM",
+     "KEYWORDS_REF",
+     "REF_CYCLES",
+     "USER_REF_CYCLES",
+     "REF_EXCLUDE_FREE",
+     "MBREF_EXCLUDE_FREE",
+     "COMB_PHDMMB_EXCLUDE_FREE",
+     "PRESENT_STYLE",
+     "INITIAL_DEFAULTS_GEN",
+     "CLEANUP"
+    ],
+    "inputData": [
+     "F_SIGFanom",
+     "F_SIGFanom2",
+     "F_SIGFanom3",
+     "F_SIGFanom4",
+     "NON_MTZ",
+     "F_SIGFanom_nonmtz",
+     "F_SIGFanom2_nonmtz",
+     "F_SIGFanom3_nonmtz",
+     "F_SIGFanom4_nonmtz",
+     "ATOM_TYPE",
+     "F_SIGFnative",
+     "F_SIGFnative_nonmtz",
+     "WAVELENGTH4",
+     "WAVELENGTH3",
+     "WAVELENGTH2",
+     "WAVELENGTH",
+     "USER_WAVELENGTH",
+     "USER_WAVELENGTH2",
+     "USER_WAVELENGTH3",
+     "USER_WAVELENGTH4",
+     "FPRIME",
+     "FDPRIME",
+     "FPRIME2",
+     "FDPRIME2",
+     "FPRIME3",
+     "FDPRIME3",
+     "FPRIME4",
+     "FDPRIME4",
+     "USER_FPRIME",
+     "USER_FDPRIME",
+     "USER_FPRIME2",
+     "USER_FDPRIME2",
+     "USER_FPRIME3",
+     "USER_FDPRIME3",
+     "USER_FPRIME4",
+     "USER_FDPRIME4",
+     "CELL_A",
+     "CELL_B",
+     "CELL_C",
+     "CELL_D",
+     "CELL_E",
+     "CELL_F",
+     "SPACEGROUP",
+     "USER_CELL_A",
+     "USER_CELL_B",
+     "USER_CELL_C",
+     "USER_CELL_D",
+     "USER_CELL_E",
+     "USER_CELL_F",
+     "USER_SPACEGROUP",
+     "NUMBER_SUBSTRUCTURE",
+     "SUBSTRDET_NUM_DSUL",
+     "USER_NUMBER_SUBSTRUCTURE",
+     "USER_SUBSTRDET_NUM_DSUL",
+     "SEQIN",
+     "XYZIN",
+     "XYZIN_SUB",
+     "XYZIN_SUB_RES",
+     "FPHIN_HL",
+     "INPUT_PHASES",
+     "EXPTYPE",
+     "USER_EXPTYPE",
+     "REPLACE_MET_MSE",
+     "START_PIPELINE",
+     "END_PIPELINE",
+     "SHELXCDE",
+     "SHELX_SEPAR",
+     "DNA",
+     "SUBSTR_ATOMS_NATIVE",
+     "USER_SUBSTR_ATOMS_NATIVE",
+     "NATIVE",
+     "MAD2",
+     "MAD3",
+     "MAD4",
+     "DNAME",
+     "DNAME2",
+     "DNAME3",
+     "DNAME4",
+     "USER_DNAME",
+     "USER_DNAME2",
+     "USER_DNAME3",
+     "USER_DNAME4",
+     "INPUT_PARTIAL",
+     "PARTIAL_AS_SUBSTR",
+     "SUBSTR_IN_PARTIAL",
+     "FREE",
+     "MONOMERS_ASYM",
+     "USER_MONOMERS_ASYM",
+     "SOLVENT_CONTENT",
+     "USER_SOLVENT_CONTENT",
+     "RESIDUES_MON",
+     "USER_RESIDUES_MON",
+     "RESIDUES_MON_COPY",
+     "RESIDUES_MON_INFO",
+     "NUCLEOTIDES_MON",
+     "INPUT_SEQUENCE",
+     "SAVED_FPMFILE",
+     "SAVED_FPMFILE2",
+     "SAVED_FPMFILE3",
+     "SAVED_FPMFILE4",
+     "SAVED_FAVFILE",
+     "SAVED_FAVFILE2",
+     "SAVED_FAVFILE3",
+     "SAVED_FAVFILE4",
+     "SAVED_FAVFILE_NATIVE",
+     "SAVED_FPLUS",
+     "SAVED_FPLUS2",
+     "SAVED_FPLUS3",
+     "SAVED_FPLUS4",
+     "SAVED_SIGFPLUS",
+     "SAVED_SIGFPLUS2",
+     "SAVED_SIGFPLUS3",
+     "SAVED_SIGFPLUS4",
+     "SAVED_FMIN",
+     "SAVED_FMIN2",
+     "SAVED_FMIN3",
+     "SAVED_FMIN4",
+     "SAVED_SIGFMIN",
+     "SAVED_SIGFMIN2",
+     "SAVED_SIGFMIN3",
+     "SAVED_SIGFMIN4",
+     "SAVED_FAVER",
+     "SAVED_FAVER2",
+     "SAVED_FAVER3",
+     "SAVED_FAVER4",
+     "SAVED_FAVER_NATIVE",
+     "SAVED_SIGFAVER",
+     "SAVED_SIGFAVER2",
+     "SAVED_SIGFAVER3",
+     "SAVED_SIGFAVER4",
+     "SAVED_SIGFAVER_NATIVE",
+     "FREERFLAG",
+     "FREE_RATIO"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHOUT",
+    "FPHOUT_2FOFC",
+    "XYZOUT_SUBSTR",
+    "XYZOUT_SUB_RES",
+    "FPHOUT_HL",
+    "FPHOUT_DIFF",
+    "FPHOUT_DIFFANOM",
+    "XYZOUT_HAND2",
+    "FPHOUT_HAND2",
+    "FPHOUT_HL_HAND2",
+    "F_SIGFanom_OUT",
+    "F_SIGFanom_OUT2",
+    "F_SIGFanom_OUT3",
+    "F_SIGFanom_OUT4",
+    "F_SIGF_OUT",
+    "FREEROUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ARGUMENTS_SHELXE",
+    "ATOM_TYPE",
+    "CELL_A",
+    "CELL_B",
+    "CELL_C",
+    "CELL_D",
+    "CELL_E",
+    "CELL_F",
+    "CLEANUP",
+    "COMB_PHDMMB_DMFULL_DM_PROGRAM",
+    "COMB_PHDMMB_EXCLUDE_FREE",
+    "COMB_PHDMMB_MAXBIGCYC",
+    "COMB_PHDMMB_MINBIGCYC",
+    "COMB_PHDMMB_NCS_DET",
+    "COMB_PHDMMB_NCS_DET_MR",
+    "COMB_PHDMMB_NUM_PARALLEL",
+    "COMB_PHDMMB_REBUILD_ONLY",
+    "COMB_PHDMMB_SKIP_INITIAL_BUILD",
+    "COMB_PHDMMB_START_SHELXE",
+    "DMFULL_DMCYC",
+    "DMFULL_DM_PROGRAM",
+    "DMFULL_PHCOMB_PROGRAM",
+    "DMFULL_THRESHOLD_STOP",
+    "DO_HANDDET",
+    "END_PIPELINE",
+    "EXPTYPE",
+    "FAEST_PROGRAM",
+    "FPHIN_HL",
+    "FREE",
+    "FREERFLAG",
+    "FREE_RATIO",
+    "HANDDET_DMFULL_DM_PROGRAM",
+    "HANDDET_DMFULL_PHCOMB_PROGRAM",
+    "HANDDET_THRESHOLD_DISCRIM",
+    "INPUT_PARTIAL",
+    "INPUT_PHASES",
+    "INPUT_SEQUENCE",
+    "KEYWORDS_COMB_DM",
+    "KEYWORDS_COMB_SHELXE",
+    "KEYWORDS_DMFULL_DM",
+    "KEYWORDS_MB",
+    "KEYWORDS_SUBSTRDET",
+    "MAD2",
+    "MAD3",
+    "MAD4",
+    "MBREF_BIGCYC",
+    "MBREF_EXCLUDE_FREE",
+    "MB_PROGRAM",
+    "MONOMERS_ASYM",
+    "NATIVE",
+    "NON_MTZ",
+    "NUCLEOTIDES_MON",
+    "NUMBER_SUBSTRUCTURE",
+    "PARTIAL_AS_SUBSTR",
+    "PHAS_PROGRAM",
+    "PHDMMB_BIGCYC",
+    "PHDMMB_DMCYC",
+    "PHDMMB_THOROUGH_BUILD",
+    "PHDMMB_THRESHOLD_HAND_STOP",
+    "PHDMMB_THRESHOLD_STOP",
+    "PRASA_MINPEAKS",
+    "REFATOMPICK_NUM_ITER",
+    "REFATOMPICK_OCC_CUT",
+    "REFATOMPICK_REFCYC",
+    "REFATOMPICK_RMS_THRESHOLD",
+    "REF_CYCLES",
+    "REF_EXCLUDE_FREE",
+    "RESIDUES_MON",
+    "RESIDUES_MON_COPY",
+    "SEQIN",
+    "SHELXCDE",
+    "SOLVENT_CONTENT",
+    "SPACEGROUP",
+    "START_PIPELINE",
+    "SUBSTRDET_HIGH_RES_CUTOFF",
+    "SUBSTRDET_HIGH_RES_CUTOFF_CCHALF",
+    "SUBSTRDET_HIGH_RES_CUTOFF_RADIUS",
+    "SUBSTRDET_HIGH_RES_CUTOFF_STEP",
+    "SUBSTRDET_MIN_DIST_ATOMS",
+    "SUBSTRDET_MIN_DIST_SYMM_ATOMS",
+    "SUBSTRDET_NUM_ATOMS",
+    "SUBSTRDET_NUM_DSUL",
+    "SUBSTRDET_NUM_THREADS",
+    "SUBSTRDET_NUM_TRIALS",
+    "SUBSTRDET_OPTIMIZE_SOL",
+    "SUBSTRDET_PROGRAM",
+    "SUBSTRDET_THRESHOLD_STOP",
+    "SUBSTRDET_THRESHOLD_WEAK",
+    "SUBSTR_ATOMS_NATIVE",
+    "USE_COMB",
+    "XYZIN",
+    "XYZIN_SUB"
+   ]
+  },
+  "csymmatch": {
+   "declared": {
+    "controlParameters": [
+     "ORIGIN_HAND",
+     "CONNECTIVITY_RADIUS"
+    ],
+    "inputData": [
+     "XYZIN_QUERY",
+     "XYZIN_TARGET"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "CONNECTIVITY_RADIUS",
+    "ORIGIN_HAND",
+    "XYZIN_QUERY",
+    "XYZIN_TARGET"
+   ]
+  },
+  "ctruncate": {
+   "declared": {
+    "controlParameters": [
+     "NRES",
+     "NO_ANISO",
+     "AMPLITUDES",
+     "OUTPUTMINIMTZ",
+     "OUTPUT_INTENSITIES",
+     "OUTPUTMINIMTZCONTENTFLAG"
+    ],
+    "inputData": [
+     "HKLIN",
+     "OBSIN",
+     "ISIGI",
+     "FSIGF",
+     "ISIGIanom",
+     "FSIGFanom",
+     "SEQIN"
+    ]
+   },
+   "outputData": [
+    "HKLOUT",
+    "OBSOUT",
+    "OBSOUT1",
+    "XMLOUT"
+   ],
+   "qtExposed": [
+    "NO_ANISO",
+    "NRES",
+    "OBSIN",
+    "SEQIN"
+   ]
+  },
+  "density_calculator": {
+   "declared": {
+    "controlParameters": [
+     "FORM_FACTOR",
+     "D_MIN",
+     "RATE",
+     "BLUR_MODE",
+     "BLUR",
+     "UNBLUR",
+     "CUTOFF",
+     "MOTT_BETHE"
+    ],
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "MAPOUT",
+    "FPHIOUT"
+   ],
+   "qtExposed": [
+    "BLUR",
+    "BLUR_MODE",
+    "CUTOFF",
+    "D_MIN",
+    "FORM_FACTOR",
+    "MOTT_BETHE",
+    "RATE",
+    "UNBLUR",
+    "XYZIN"
+   ]
+  },
+  "dials_image": {
+   "declared": {
+    "inputData": [
+     "JSON_IN",
+     "PICKLE_IN"
+    ]
+   },
+   "qtExposed": [
+    "JSON_IN",
+    "PICKLE_IN"
+   ]
+  },
+  "dials_rlattice": {
+   "declared": {
+    "inputData": [
+     "JSON_IN",
+     "PICKLE_IN"
+    ]
+   },
+   "qtExposed": [
+    "JSON_IN",
+    "PICKLE_IN"
+   ]
+  },
+  "dm_multidomain": {
+   "declared": {
+    "controlParameters": [
+     "PHASE_SOURCE",
+     "ASSEMBLY",
+     "DOMAINS",
+     "MODE_SOLVENT",
+     "MODE_HISTOGRAM",
+     "SOLVENT_CONTENT",
+     "NCYCLES",
+     "MASK_RADIUS"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "ABCD",
+     "FREERFLAG",
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "ABCDOUT",
+    "FPHIOUT",
+    "PERFORMANCE",
+    "MASKOUT"
+   ]
+  },
+  "dr_mr_modelbuild_pipeline": {
+   "declared": {
+    "controlParameters": [
+     "MERGED_OR_UNMERGED",
+     "LIGANDAS",
+     "NMON",
+     "AUTOCUTOFF"
+    ],
+    "inputData": [
+     "SEARCH_AFDB",
+     "SEARCH_PDB",
+     "DICTIN",
+     "MOLIN",
+     "SMILESIN",
+     "F_SIGF",
+     "F_PHI_MAP",
+     "ASUIN",
+     "XYZIN",
+     "AFDBLEVEL",
+     "REDUNDANCYLEVEL",
+     "MRMAX",
+     "XYZIN_FIX",
+     "FREER_IN",
+     "F_SIGF_IN",
+     "HKLIN",
+     "UNMERGEDFILES",
+     "MODELCRAFT_NCYC",
+     "RUNACORN",
+     "RUNSHEETBEND",
+     "REFMAC_NCYC",
+     "FREERFLAG",
+     "RESOLUTION_RANGE",
+     "XYZINORMRBUMP"
+    ]
+   },
+   "outputData": [
+    "DICTOUT",
+    "HKLOUT",
+    "FREEROUT",
+    "HKLOUT_OTHERSG",
+    "FREEROUT_OTHERSG",
+    "XYZOUT",
+    "F_SIGF",
+    "FREERFLAG",
+    "DIFFPHIOUT",
+    "FPHIOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "AFDBLEVEL",
+    "ASUIN",
+    "AUTOCUTOFF",
+    "BUCCANEER_OR_MODELCRAFT",
+    "BUCC_NCYC",
+    "DICTIN",
+    "LIGANDAS",
+    "MERGED_OR_UNMERGED",
+    "MOLIN",
+    "MRMAX",
+    "NMON",
+    "REDUNDANCYLEVEL",
+    "REFMAC_NCYC",
+    "RUNACORN",
+    "SEARCH_AFDB",
+    "SEARCH_PDB",
+    "SMILESIN",
+    "UNMERGEDFILES",
+    "XYZIN",
+    "XYZINORMRBUMP"
+   ]
+  },
+  "dui": {
+   "declared": {
+    "inputData": [
+     "DUI2_RUN_DATA"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDMTZ",
+    "MERGEDMTZ"
+   ],
+   "qtExposed": [
+    "DUI2_RUN_DATA"
+   ]
+  },
+  "editbfac": {
+   "declared": {
+    "controlParameters": [
+     "AUTOSETALPHAFOLD",
+     "AUTOSETROSETTAFOLD",
+     "BTREATMENT",
+     "BFACTOR_STATIC",
+     "CONFCUT",
+     "COMPACTREG",
+     "MAXDOM",
+     "DOMAINSIZE",
+     "MINDOML",
+     "MAXFRACCL",
+     "MINSEQRESI",
+     "MINREMSEQL",
+     "MINLDDT",
+     "MAXRMSD",
+     "SUBMINB",
+     "WEIGHTCA",
+     "DISTPOW",
+     "PAEPOWER",
+     "PAECUTOFF",
+     "PAEGRAPHRES"
+    ],
+    "inputData": [
+     "XYZIN",
+     "XYZDISTMOD",
+     "PAEIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "XYZFILES"
+   ],
+   "qtExposed": [
+    "BTREATMENT",
+    "COMPACTREG",
+    "CONFCUT",
+    "DISTPOW",
+    "DOMAINSIZE",
+    "MAXDOM",
+    "MAXFRACCL",
+    "MAXRMSD",
+    "MINDOML",
+    "MINLDDT",
+    "MINREMSEQL",
+    "MINSEQRESI",
+    "PAECUTOFF",
+    "PAEGRAPHRES",
+    "PAEIN",
+    "PAEPOWER",
+    "SUBMINB",
+    "WEIGHTCA",
+    "XYZDISTMOD",
+    "XYZIN"
+   ]
+  },
+  "edstats": {
+   "declared": {
+    "controlParameters": [
+     "OUTPUT_PDB_FILE",
+     "MAIN_AVERAGING",
+     "SIDE_AVERAGING",
+     "SCALING",
+     "SIGMA_RZ_MINUS",
+     "SIGMA_RZ_PLUS",
+     "SIGMA_RO",
+     "SCALING_TYPE"
+    ],
+    "inputData": [
+     "XYZIN",
+     "MAPIN1",
+     "MAPIN2",
+     "FPHIIN1",
+     "FPHIIN2",
+     "RES_LOW",
+     "RES_HIGH"
+    ]
+   },
+   "outputData": [
+    "XMLOUT",
+    "COOTSCRIPTOUT"
+   ],
+   "qtExposed": [
+    "FPHIIN1",
+    "FPHIIN2",
+    "MAIN_AVERAGING",
+    "OUTPUT_PDB_FILE",
+    "RES_HIGH",
+    "RES_LOW",
+    "SCALING",
+    "SCALING_TYPE",
+    "SIDE_AVERAGING",
+    "SIGMA_RO",
+    "SIGMA_RZ_MINUS",
+    "SIGMA_RZ_PLUS",
+    "XYZIN"
+   ]
+  },
+  "fft": {
+   "declared": {
+    "controlParameters": [
+     "U_VALUE",
+     "B_VALUE"
+    ],
+    "inputData": [
+     "FPHIIN",
+     "FPHIIN2",
+     "RESOLUTION",
+     "INDEX_U",
+     "INDEX_V",
+     "INDEX_W"
+    ]
+   },
+   "outputData": [
+    "MAPOUT",
+    "XMLOUT"
+   ]
+  },
+  "findmyseq": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "XYZIN",
+     "FPHI",
+     "LSEQDB"
+    ]
+   },
+   "outputData": [
+    "SEQOUT"
+   ],
+   "qtExposed": [
+    "FPHI",
+    "F_SIGF",
+    "XYZIN",
+    "tip"
+   ]
+  },
+  "freerflag": {
+   "declared": {
+    "controlParameters": [
+     "CUTRESOLUTION",
+     "COMPLETE",
+     "FRAC",
+     "UNIQUEIFY",
+     "RESMAX",
+     "GEN_MODE",
+     "RELATIVE_RESOLUTION",
+     "FSIGF_RESMAX",
+     "FREER_RESMAX"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG"
+    ]
+   },
+   "outputData": [
+    "FREEROUT"
+   ],
+   "qtExposed": [
+    "CUTRESOLUTION",
+    "FRAC",
+    "FREERFLAG",
+    "F_SIGF",
+    "GEN_MODE",
+    "RESMAX"
+   ]
+  },
+  "gesamt": {
+   "declared": {
+    "controlParameters": [
+     "OUTPUT_COORDS",
+     "MODE",
+     "PAIRMULTI"
+    ],
+    "inputData": [
+     "XYZIN_QUERY",
+     "XYZIN_TARGET",
+     "XYZIN_LIST"
+    ]
+   },
+   "outputData": [
+    "XYZOUT_QUERY",
+    "XYZOUT",
+    "TRANSFORMATION",
+    "RMS",
+    "Q",
+    "NRES",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "MODE",
+    "PAIRMULTI",
+    "XYZIN_LIST",
+    "XYZIN_QUERY",
+    "XYZIN_TARGET"
+   ]
+  },
+  "hklin2cif": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "SCALEDUNMERGED"
+    ]
+   },
+   "outputData": [
+    "CIFFILE"
+   ]
+  },
+  "i2Dimple": {
+   "declared": {
+    "controlParameters": [
+     "MR_WHEN_R"
+    ],
+    "inputData": [
+     "XYZIN",
+     "F_SIGF",
+     "FREERFLAG"
+    ]
+   },
+   "outputData": [
+    "COMPLETE_MTZ",
+    "XYZOUT",
+    "DIFFPHIOUT",
+    "FPHIOUT",
+    "PERFORMANCEINDICATOR",
+    "COOTSCRIPTOUT",
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT"
+   ],
+   "qtExposed": [
+    "FREERFLAG",
+    "F_SIGF",
+    "MR_WHEN_R",
+    "XYZIN"
+   ]
+  },
+  "import_merged": {
+   "declared": {
+    "controlParameters": [
+     "SKIP_FREER",
+     "STARANISO_DATA",
+     "COMPLETE",
+     "FREER_FRACTION",
+     "CUTRESOLUTION",
+     "OVERRIDE_CELL_DIFFERENCE"
+    ],
+    "inputData": [
+     "HKLIN",
+     "HKLIN_OBS_CONTENT_FLAG",
+     "HKLIN_OBS_COLUMNS",
+     "HKLIN_FREER_COLUMN",
+     "HKLIN_OBS",
+     "UNITCELL",
+     "SPACEGROUP",
+     "SPACEGROUPCELL",
+     "WAVELENGTH",
+     "CRYSTALNAME",
+     "DATASETNAME",
+     "FREERFLAG",
+     "HKLIN_FORMAT",
+     "MMCIF_SELECTED_BLOCK",
+     "MMCIF_SELECTED_DETAILS",
+     "MMCIF_SELECTED_INFO",
+     "MMCIF_SELECTED_COLUMNS",
+     "MMCIF_SELECTED_CONTENT",
+     "HASFREER",
+     "MMCIF_SELECTED_ISINTENSITY",
+     "CAN_CUT_RESOLUTION",
+     "MAXIMUM_RESOLUTION",
+     "RESOLUTION_RANGE",
+     "RESOLUTION_RANGE_SET"
+    ]
+   },
+   "guiParameters": [
+    "HKLINISMTZ",
+    "HKLIN_HAS_COLUMNS",
+    "SHOW_MMCIF_BLOCKS",
+    "MMCIF_INDICES",
+    "MMCIF_BLOCKNAMES",
+    "MMCIF_BLOCK_DETAILS",
+    "MMCIF_BLOCK_INFO",
+    "MMCIF_BLOCK_COLUMNS",
+    "MMCIF_BLOCK_OTHER"
+   ],
+   "outputData": [
+    "HKLOUT",
+    "OBSOUT",
+    "FREEOUT"
+   ],
+   "qtExposed": [
+    "CRYSTALNAME",
+    "CUTRESOLUTION",
+    "DATASETNAME",
+    "FREERFLAG",
+    "FREER_FRACTION",
+    "HKLIN",
+    "OVERRIDE_CELL_DIFFERENCE",
+    "RESOLUTION_RANGE",
+    "SKIP_FREER",
+    "SPACEGROUP",
+    "UNITCELL",
+    "WAVELENGTH"
+   ]
+  },
+  "import_mosflm": {
+   "declared": {
+    "inputData": [
+     "MOSFLMXML",
+     "UNMERGEDMTZ"
+    ]
+   },
+   "qtExposed": [
+    "MOSFLMXML",
+    "UNMERGEDMTZ"
+   ]
+  },
+  "import_serial": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "HKLIN1",
+     "HKLIN2",
+     "SYMMETRY_SOURCE",
+     "CELLFILE",
+     "STREAMFILE",
+     "REFERENCEFILE"
+    ],
+    "inputParameters": [
+     "SPACEGROUP",
+     "CELL",
+     "D_MAX",
+     "D_MIN",
+     "N_BINS",
+     "WAVELENGTH"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ],
+   "qtExposed": [
+    "CELL",
+    "CELLFILE",
+    "D_MAX",
+    "D_MIN",
+    "HKLIN",
+    "HKLIN1",
+    "HKLIN2",
+    "N_BINS",
+    "REFERENCEFILE",
+    "SPACEGROUP",
+    "STREAMFILE",
+    "SYMMETRY_SOURCE"
+   ]
+  },
+  "import_serial_pipe": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "HKLIN1",
+     "HKLIN2",
+     "SYMMETRY_SOURCE",
+     "CELLFILE",
+     "STREAMFILE",
+     "REFERENCEFILE"
+    ],
+    "inputParameters": [
+     "SPACEGROUP",
+     "CELL",
+     "D_MAX",
+     "D_MIN",
+     "N_BINS",
+     "WAVELENGTH"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ],
+   "qtExposed": [
+    "CELL",
+    "CELLFILE",
+    "D_MAX",
+    "D_MIN",
+    "HKLIN",
+    "HKLIN1",
+    "HKLIN2",
+    "N_BINS",
+    "REFERENCEFILE",
+    "SPACEGROUP",
+    "STREAMFILE",
+    "SYMMETRY_SOURCE",
+    "WAVELENGTH"
+   ]
+  },
+  "import_xia2": {
+   "declared": {
+    "inputData": [
+     "XIA2_DIRECTORY"
+    ]
+   },
+   "guiParameters": [
+    "COPY_XIA2_DIRECTORY"
+   ],
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "lorestr_i2": {
+   "declared": {
+    "controlParameters": [
+     "TITLE",
+     "AUTO",
+     "CPU",
+     "MR",
+     "OVB",
+     "SS",
+     "NC",
+     "NH",
+     "DNA",
+     "MINRES"
+    ],
+    "inputData": [
+     "XYZIN",
+     "F_SIGF",
+     "FREERFLAG",
+     "TLSIN",
+     "DICT",
+     "REFERENCE_MODEL",
+     "REFERENCE_LIST"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "EXTERNAL_RESTRAINTS_FILE",
+    "PERFORMANCE",
+    "COOTSCRIPTOUT",
+    "TLSOUT"
+   ],
+   "qtExposed": [
+    "AUTO",
+    "CPU",
+    "DNA",
+    "MINRES",
+    "MR",
+    "NC",
+    "NH",
+    "OVB",
+    "REFERENCE_LIST",
+    "SS"
+   ]
+  },
+  "matthews": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "ASUIN",
+     "MOLWT",
+     "NRES",
+     "MODE"
+    ]
+   },
+   "qtExposed": [
+    "ASUIN",
+    "HKLIN",
+    "MOLWT",
+    "NRES"
+   ]
+  },
+  "mergeMtz": {
+   "declared": {
+    "inputData": [
+     "MINIMTZINLIST"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ],
+   "qtExposed": [
+    "HKLOUT",
+    "MINIMTZINLIST"
+   ]
+  },
+  "metalCoord": {
+   "declared": {
+    "controlParameters": [
+     "MAXIMUM_COORDINATION_NUMBER",
+     "MINIMUM_SAMPLE_SIZE",
+     "DISTANCE_THRESHOLD",
+     "PROCRUSTES_DISTANCE_THRESHOLD",
+     "IDEAL_ANGLES",
+     "SIMPLE",
+     "USE_PDB",
+     "SAVE_PDBMMCIF",
+     "KEEP_LINKS"
+    ],
+    "coordination": [
+     "COORD02",
+     "COORD03",
+     "COORD04",
+     "COORD05",
+     "COORD06",
+     "COORD07",
+     "COORD08",
+     "COORD09",
+     "COORD10",
+     "COORD11",
+     "COORD12",
+     "COORD13",
+     "COORD15",
+     "COORD16",
+     "COORD17",
+     "COORD24"
+    ],
+    "inputData": [
+     "LIGAND_CODE",
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "RESTRAINTS",
+    "JSON",
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "DISTANCE_THRESHOLD",
+    "IDEAL_ANGLES",
+    "KEEP_LINKS",
+    "LIGAND_CODE",
+    "MAXIMUM_COORDINATION_NUMBER",
+    "MINIMUM_SAMPLE_SIZE",
+    "PROCRUSTES_DISTANCE_THRESHOLD",
+    "SAVE_PDBMMCIF",
+    "SIMPLE",
+    "USE_PDB",
+    "XYZIN"
+   ]
+  },
+  "modelASUCheck": {
+   "declared": {
+    "inputData": [
+     "XYZIN",
+     "ASUIN"
+    ]
+   },
+   "qtExposed": [
+    "ASUIN",
+    "XYZIN"
+   ]
+  },
+  "modelcraft": {
+   "declared": {
+    "controlParameters": [
+     "USE_MODEL_PHASES",
+     "CYCLES",
+     "AUTO_STOP",
+     "STOP_CYCLES",
+     "BASIC",
+     "TWINNED",
+     "SHEETBEND",
+     "PRUNING",
+     "PARROT",
+     "DUMMY_ATOMS",
+     "WATERS",
+     "SIDE_CHAIN_FIXING",
+     "UNBIASED",
+     "SELENOMET"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "PHASES",
+     "ASUIN",
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "ABCDOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ASUIN",
+    "AUTO_STOP",
+    "BASIC",
+    "CYCLES",
+    "DUMMY_ATOMS",
+    "FREERFLAG",
+    "F_SIGF",
+    "PARROT",
+    "PHASES",
+    "PRUNING",
+    "SELENOMET",
+    "SHEETBEND",
+    "SIDE_CHAIN_FIXING",
+    "STOP_CYCLES",
+    "TWINNED",
+    "UNBIASED",
+    "USE_MODEL_PHASES",
+    "WATERS",
+    "XYZIN"
+   ]
+  },
+  "molrep_den": {
+   "declared": {
+    "controlParameters": [
+     "PRF",
+     "NP",
+     "NPT",
+     "NMON",
+     "SCORE",
+     "ANISO",
+     "SEQ",
+     "SURF",
+     "NMON_EXP",
+     "SIM",
+     "RESMAX",
+     "BADD",
+     "RESMIN",
+     "BOFF",
+     "HIGH_PATH_VAR",
+     "LOW_PATH_VAR",
+     "SG_OPTIONS",
+     "SG"
+    ],
+    "inputData": [
+     "F_PHI_MAP",
+     "XYZIN_FIX",
+     "ASUIN",
+     "XYZIN",
+     "SEQIN_2",
+     "XYZIN_2"
+    ]
+   },
+   "guiParameters": [
+    "PERFORM",
+    "OPEN_HIGH_PATH_VAR"
+   ],
+   "outputData": [
+    "XYZOUT",
+    "XMLOUT"
+   ],
+   "qtExposed": [
+    "ANISO",
+    "ASUIN",
+    "BADD",
+    "F_PHI_MAP",
+    "HIGH_PATH_VAR",
+    "LOW_PATH_VAR",
+    "NMON",
+    "NMON_EXP",
+    "NP",
+    "NPT",
+    "PRF",
+    "RESMAX",
+    "SCORE",
+    "SEQ",
+    "SIM",
+    "SURF",
+    "XYZIN",
+    "XYZIN_FIX"
+   ]
+  },
+  "molrep_mr": {
+   "declared": {
+    "controlParameters": [
+     "PRF",
+     "NP",
+     "NPT",
+     "NMON",
+     "SCORE",
+     "ANISO",
+     "SEQ",
+     "SURF",
+     "NMON_EXP",
+     "SIM",
+     "RESMAX",
+     "BADD",
+     "RESMIN",
+     "BOFF",
+     "HIGH_PATH_VAR",
+     "LOW_PATH_VAR",
+     "SG_OPTIONS",
+     "SG"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "F_PHI_MAP",
+     "ASUIN",
+     "XYZIN",
+     "SEQIN_2",
+     "XYZIN_2",
+     "XYZIN_FIX"
+    ]
+   },
+   "guiParameters": [
+    "PERFORM",
+    "OPEN_HIGH_PATH_VAR"
+   ],
+   "outputData": [
+    "XYZOUT",
+    "XMLOUT"
+   ],
+   "qtExposed": [
+    "ANISO",
+    "BADD",
+    "F_SIGF",
+    "HIGH_PATH_VAR",
+    "LOW_PATH_VAR",
+    "NMON",
+    "NMON_EXP",
+    "NP",
+    "NPT",
+    "PRF",
+    "RESMAX",
+    "RESMIN",
+    "SCORE",
+    "SEQ",
+    "SEQIN",
+    "SG",
+    "SG_OPTIONS",
+    "SIM",
+    "SURF",
+    "XYZIN",
+    "XYZIN_FIX"
+   ]
+  },
+  "molrep_pipe": {
+   "declared": {
+    "controlParameters": [
+     "PRF",
+     "NP",
+     "NPT",
+     "NMON",
+     "SCORE",
+     "ANISO",
+     "SEQ",
+     "SURF",
+     "NMON_EXP",
+     "SIM",
+     "RESMAX",
+     "BADD",
+     "RESMIN",
+     "BOFF",
+     "HIGH_PATH_VAR",
+     "LOW_PATH_VAR",
+     "SG_OPTIONS",
+     "SG"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "F_PHI_MAP",
+     "ASUIN",
+     "XYZIN",
+     "SEQIN_2",
+     "XYZIN_2",
+     "XYZIN_FIX",
+     "RUNSHEETBEND",
+     "REFMAC_NCYC",
+     "FREERFLAG"
+    ]
+   },
+   "guiParameters": [
+    "PERFORM",
+    "OPEN_HIGH_PATH_VAR"
+   ],
+   "outputData": [
+    "XYZOUT",
+    "XMLOUT",
+    "F_SIGF",
+    "FREERFLAG",
+    "XYZOUT_SHEETBEND",
+    "XYZOUT_MOLREP",
+    "DIFFPHIOUT",
+    "FPHIOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ANISO",
+    "ASUIN",
+    "BADD",
+    "DYNREP",
+    "FREERFLAG",
+    "F_SIGF",
+    "HIGH_PATH_VAR",
+    "LOW_PATH_VAR",
+    "NMON",
+    "NMON_EXP",
+    "NP",
+    "NPT",
+    "PRF",
+    "RESMAX",
+    "RESMIN",
+    "SCORE",
+    "SEQ",
+    "SG",
+    "SG_OPTIONS",
+    "SIM",
+    "SURF",
+    "XYZIN",
+    "XYZIN_FIX"
+   ]
+  },
+  "molrep_selfrot": {
+   "declared": {
+    "controlParameters": [
+     "PRF",
+     "NP",
+     "NPT",
+     "NMON",
+     "SCORE",
+     "ANISO",
+     "SEQ",
+     "SURF",
+     "NMON_EXP",
+     "SIM",
+     "RESMAX",
+     "BADD",
+     "RESMIN",
+     "BOFF",
+     "HIGH_PATH_VAR",
+     "LOW_PATH_VAR",
+     "SG_OPTIONS",
+     "SG"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "F_PHI_MAP",
+     "ASUIN",
+     "XYZIN",
+     "SEQIN_2",
+     "XYZIN_2",
+     "XYZIN_FIX",
+     "SEQIN"
+    ]
+   },
+   "guiParameters": [
+    "PERFORM",
+    "OPEN_HIGH_PATH_VAR"
+   ],
+   "outputData": [
+    "XYZOUT",
+    "XMLOUT",
+    "PSOUT"
+   ],
+   "qtExposed": [
+    "ANISO",
+    "BADD",
+    "F_SIGF",
+    "HIGH_PATH_VAR",
+    "LOW_PATH_VAR",
+    "NMON_EXP",
+    "NP",
+    "NPT",
+    "PRF",
+    "RESMAX",
+    "SCORE",
+    "SEQ",
+    "SIM",
+    "SURF"
+   ]
+  },
+  "morda_i2": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "ASUIN",
+     "ALTSG",
+     "NSTRUCT",
+     "NCPU",
+     "MOCK_PAUSE",
+     "CHECK_PAUSE",
+     "MOCK_DIR"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "PERFORMANCE",
+    "COOTSCRIPTOUT"
+   ],
+   "qtExposed": [
+    "ALTSG",
+    "ASUIN",
+    "CHECK_PAUSE",
+    "FREERFLAG",
+    "F_SIGF",
+    "MOCK_DIR",
+    "MOCK_PAUSE",
+    "NCPU",
+    "NSTRUCT"
+   ]
+  },
+  "mosflm": {
+   "declared": {
+    "controlParameters": [
+     "SCRIPT"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDMTZ"
+   ],
+   "qtExposed": [
+    "SCRIPT"
+   ]
+  },
+  "mrbump_basic": {
+   "declared": {
+    "controlParameters": [
+     "INCLUDE",
+     "PJOBS",
+     "LOCALONLY",
+     "NCYC",
+     "BUCC",
+     "BCYC",
+     "PRF",
+     "NP",
+     "NPT",
+     "NMON",
+     "SCORE",
+     "ANISO",
+     "SEQ",
+     "SURF",
+     "NMASU",
+     "SIM",
+     "RESMAX",
+     "BADD",
+     "RESMIN",
+     "BOFF"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "ASUIN",
+     "SEQIN_2",
+     "KEYIN",
+     "SELECTEDCHAINS"
+    ],
+    "modelParameters": [
+     "MRMAX",
+     "REDUNDANCYLEVEL",
+     "SEARCH_PDB",
+     "AFDBLEVEL",
+     "SEARCH_AFDB",
+     "HHPREDIN",
+     "PDBLOCAL",
+     "LOCAL",
+     "XYZIN_LIST",
+     "ENSEMBLES"
+    ]
+   },
+   "guiParameters": [
+    "USE_FIXED",
+    "OPEN_PRF",
+    "OPEN_NPEAKS",
+    "OPEN_SCORE",
+    "OPEN_ANISO",
+    "OPEN_HIGH_PATH_VAR",
+    "HIGH_PATH_VAR",
+    "OPEN_LOW_PATH_VAR",
+    "LOW_PATH_VAR",
+    "OPEN_SEQ",
+    "OPEN_SURF"
+   ],
+   "outputData": [
+    "HKLOUT",
+    "XYZOUT",
+    "DIFFPHIOUT",
+    "FPHIOUT",
+    "XMLOUT"
+   ],
+   "qtExposed": [
+    "AFDBLEVEL",
+    "ASUIN",
+    "BUCC",
+    "FREERFLAG",
+    "F_SIGF",
+    "LOCAL",
+    "LOCALONLY",
+    "MRMAX",
+    "NCYC",
+    "NMON",
+    "PJOBS",
+    "REDUNDANCYLEVEL",
+    "SEARCH_AFDB",
+    "SEARCH_PDB",
+    "XYZIN_LIST",
+    "tip"
+   ]
+  },
+  "mrbump_model_prep": {
+   "declared": {
+    "inputData": [
+     "SEARCH_AFDB",
+     "SEARCH_PDB",
+     "ASUIN",
+     "F_SIGF",
+     "FREERFLAG",
+     "AFDBLEVEL",
+     "REDUNDANCYLEVEL",
+     "MRMAX"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "ASUIN",
+    "FREERFLAG",
+    "F_SIGF",
+    "MRMAX",
+    "REDUNDANCYLEVEL"
+   ]
+  },
+  "mrparse": {
+   "declared": {
+    "inputData": [
+     "SEQIN",
+     "F_SIGF"
+    ],
+    "options": [
+     "DO_CLASSIFY",
+     "MAXHITS",
+     "DATABASE",
+     "PDBLOCAL",
+     "PDBSEQDB",
+     "AFDBSEQDB",
+     "NPROC",
+     "USEAPI"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "DATABASE",
+    "DO_CLASSIFY",
+    "F_SIGF",
+    "MAXHITS",
+    "NPROC",
+    "SEQIN",
+    "USEAPI",
+    "tip"
+   ]
+  },
+  "mrparse_simple": {
+   "declared": {
+    "inputData": [
+     "SEQIN",
+     "F_SIGF"
+    ],
+    "options": [
+     "DO_CLASSIFY",
+     "MAXHITS",
+     "DATABASE",
+     "PDBLOCAL",
+     "PDBSEQDB",
+     "AFDBSEQDB",
+     "NPROC",
+     "USEAPI",
+     "CLOUD"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ]
+  },
+  "mtzheader": {
+   "declared": {
+    "inputData": [
+     "HKLIN"
+    ]
+   },
+   "outputData": [
+    "MERGED",
+    "SPACEGROUPCELL",
+    "MAXRESOLUTION",
+    "NO_REFLECTIONS"
+   ]
+  },
+  "mtzutils": {
+   "declared": {
+    "controlParameters": [
+     "TITLE",
+     "MODE"
+    ],
+    "inputData": [
+     "HKLIN1",
+     "FSIGF",
+     "HKLIN2"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ],
+   "qtExposed": [
+    "FSIGF",
+    "HKLIN1",
+    "HKLIN2",
+    "HKLOUT",
+    "MODE"
+   ]
+  },
+  "nucleofind": {
+   "declared": {
+    "controlParameters": [
+     "FULL_CELL",
+     "OVERLAP",
+     "GPU",
+     "THREADS",
+     "RESOLUTION",
+     "OUTPUT_TYPE"
+    ],
+    "inputData": [
+     "FPHIIN"
+    ]
+   },
+   "outputData": [
+    "PHOSPHATE",
+    "SUGAR",
+    "BASE"
+   ],
+   "qtExposed": [
+    "FPHIIN",
+    "FULL_CELL",
+    "GPU",
+    "OUTPUT_TYPE",
+    "OVERLAP",
+    "RESOLUTION",
+    "THREADS"
+   ]
+  },
+  "pairef": {
+   "declared": {
+    "inputData": [
+     "DICT",
+     "UNMERGED",
+     "F_SIGF",
+     "FREERFLAG",
+     "XYZIN",
+     "TLSIN"
+    ],
+    "inputParameters": [
+     "SH_TYPE",
+     "NCYCLES",
+     "USE_PREREF",
+     "NPRECYCLES",
+     "USE_SHAKE",
+     "SHAKE",
+     "WSHELL",
+     "NSHELL",
+     "MANSHELL",
+     "INIRES",
+     "COMPLETE",
+     "RESETBFAC",
+     "AUTO_WGT",
+     "WGT_TRM",
+     "FIXED_TLS",
+     "TLSCYC",
+     "REFMAC_KEYWORD_FILE"
+    ]
+   },
+   "outputData": [
+    "PERFORMANCEINDICATOR"
+   ],
+   "qtExposed": [
+    "AUTO_WGT",
+    "COMPLETE",
+    "DICT",
+    "FIXED_TLS",
+    "FREERFLAG",
+    "F_SIGF",
+    "INIRES",
+    "MANSHELL",
+    "NCYCLES",
+    "NPRECYCLES",
+    "NSHELL",
+    "REFMAC_KEYWORD_FILE",
+    "RESETBFAC",
+    "SHAKE",
+    "SH_TYPE",
+    "TLSCYC",
+    "UNMERGED",
+    "USE_PREREF",
+    "USE_SHAKE",
+    "WGT_TRM",
+    "WSHELL",
+    "XYZIN",
+    "tip"
+   ]
+  },
+  "parrot": {
+   "declared": {
+    "controlParameters": [
+     "F_SIGF_REF",
+     "ABCD_REF",
+     "XYZIN_REF",
+     "CYCLES",
+     "ANISOTROPY_CORRECTION",
+     "RESOLUTION",
+     "SOLVENT_CONTENT",
+     "NCS_MASK_FILTER_RADIUS",
+     "VERBOSE"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "ABCD",
+     "FREERFLAG",
+     "ASUIN",
+     "F_PHI",
+     "XYZIN_MODE",
+     "XYZIN_HA",
+     "XYZIN_MR"
+    ]
+   },
+   "outputData": [
+    "ABCDOUT",
+    "FPHIOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ABCD",
+    "ABCD_REF",
+    "ANISOTROPY_CORRECTION",
+    "ASUIN",
+    "CYCLES",
+    "FREERFLAG",
+    "F_PHI",
+    "F_SIGF",
+    "F_SIGF_REF",
+    "NCS_MASK_FILTER_RADIUS",
+    "RESOLUTION",
+    "SOLVENT_CONTENT",
+    "XYZIN_HA",
+    "XYZIN_MODE",
+    "XYZIN_MR",
+    "XYZIN_REF"
+   ]
+  },
+  "pdb_extract_wrapper": {
+   "declared": {
+    "inputData": [
+     "XYZIN",
+     "ENTRYDATAIN",
+     "SEQUENCE_LIST",
+     "CHAINID_LIST"
+    ]
+   },
+   "outputData": [
+    "ENTRYDATA",
+    "CIFFILE"
+   ]
+  },
+  "pdb_redo_api": {
+   "declared": {
+    "controlParameters": [
+     "PAIRED",
+     "NOLOOPS",
+     "NOPEPFLIP",
+     "NOSCBUILD",
+     "NOCENTRIFUGE",
+     "NOSUGARBUILD",
+     "NOREBUILD",
+     "NEWMODEL",
+     "ISOTROPIC",
+     "ANISOTROPIC",
+     "NOTLS",
+     "TIGHTER",
+     "LOOSER"
+    ],
+    "inputData": [
+     "DICT",
+     "SEQIN",
+     "XYZIN",
+     "F_SIGF",
+     "FREERFLAG"
+    ]
+   },
+   "outputData": [
+    "XYZOUT_BESTTLS",
+    "XYZOUT_FINAL",
+    "FPHIOUT_BESTTLS",
+    "DIFFPHIOUT_BESTTLS",
+    "FPHIOUT_FINAL",
+    "DIFFPHIOUT_FINAL",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ANISOTROPIC",
+    "DICT",
+    "FREERFLAG",
+    "F_SIGF",
+    "ISOTROPIC",
+    "LOOSER",
+    "NEWMODEL",
+    "NOCENTRIFUGE",
+    "NOLOOPS",
+    "NOPEPFLIP",
+    "NOREBUILD",
+    "NOSCBUILD",
+    "NOSUGARBUILD",
+    "NOTLS",
+    "PAIRED",
+    "SEQIN",
+    "TIGHTER",
+    "XYZIN"
+   ]
+  },
+  "pdbset_ui": {
+   "declared": {
+    "controlParameters": [
+     "EXTRA_PDBSET_KEYWORDS"
+    ],
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "EXTRA_PDBSET_KEYWORDS",
+    "XYZIN"
+   ]
+  },
+  "pdbview_edit": {
+   "declared": {
+    "inputData": [
+     "XYZIN_LIST"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "XYZIN_LIST"
+   ]
+  },
+  "phaser_EP": {
+   "declared": {
+    "controlParameters": [
+     "RUNPARROT",
+     "RUNMODELCRAFT",
+     "MODELCRAFT_ITERATIONS"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "XYZIN_PARTIAL",
+     "MAPCOEFF_PARTIAL",
+     "XYZIN_HA",
+     "ASUFILE",
+     "SFAC",
+     "NTRY",
+     "FIND",
+     "PARTIALMODELORMAP",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "WAVELENGTH",
+     "PURE_ANOMALOUS",
+     "LLGC_CYCLES",
+     "ELEMENTS"
+    ],
+    "keywords": [
+     "ROOT",
+     "TITL",
+     "VERB",
+     "DEBU",
+     "MUTE",
+     "XYZO",
+     "XYZO_ENSE",
+     "HKLO",
+     "JOBS",
+     "KEYW",
+     "CLUS_PDB",
+     "HAND",
+     "LLGM",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "PART_VARI",
+     "PART_DEVI"
+    ]
+   },
+   "outputData": [
+    "XMLOUT",
+    "HKLOUT",
+    "LLGMAPOUT",
+    "MAPOUT",
+    "XYZOUT",
+    "ABCDOUT",
+    "FPHIOUT"
+   ],
+   "qtExposed": [
+    "ASUFILE",
+    "ASU_NUCLEICACID_MW",
+    "ASU_PROTEIN_MW",
+    "BUCCANEER_ITERATIONS",
+    "COMP_BY",
+    "ELEMENTS",
+    "FIND",
+    "FREERFLAG",
+    "F_SIGF",
+    "LLGC_CYCLES",
+    "MAPCOEFF_PARTIAL",
+    "NTRY",
+    "PARTIALMODELORMAP",
+    "PURE_ANOMALOUS",
+    "RESOLUTION_HIGH",
+    "RESOLUTION_LOW",
+    "RUNBUCCANEER",
+    "RUNPARROT",
+    "SFAC",
+    "WAVELENGTH",
+    "XYZIN_HA",
+    "XYZIN_PARTIAL"
+   ]
+  },
+  "phaser_EP_AUTO": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "PARTIALMODELORMAP",
+     "XYZIN_PARTIAL",
+     "MAPCOEFF_PARTIAL",
+     "XYZIN_HA",
+     "ASUFILE",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "WAVELENGTH",
+     "PURE_ANOMALOUS",
+     "LLGC_CYCLES",
+     "ELEMENTS"
+    ],
+    "keywords": [
+     "ROOT",
+     "TITL",
+     "VERB",
+     "DEBU",
+     "MUTE",
+     "XYZO",
+     "XYZO_ENSE",
+     "HKLO",
+     "JOBS",
+     "KEYW",
+     "CLUS_PDB",
+     "HAND",
+     "LLGM",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "PART_VARI",
+     "PART_DEVI"
+    ]
+   },
+   "outputData": [
+    "XMLOUT",
+    "HKLOUT",
+    "LLGMAPOUT",
+    "MAPOUT",
+    "XYZOUT",
+    "ABCDOUT"
+   ],
+   "qtAutoGenerated": true,
+   "qtExposed": [
+    "ASUFILE",
+    "ASU_NUCLEICACID_MW",
+    "ASU_PROTEIN_MW",
+    "CLUS_PDB",
+    "COMP_BY",
+    "DEBU",
+    "ELEMENTS",
+    "F_SIGF",
+    "HAND",
+    "HKLO",
+    "JOBS",
+    "KEYW",
+    "LLGC_CYCLES",
+    "LLGM",
+    "MAPCOEFF_PARTIAL",
+    "MUTE",
+    "PARTIALMODELORMAP",
+    "PART_DEVI",
+    "PART_VARI",
+    "PURE_ANOMALOUS",
+    "RESH_PERC",
+    "RESOLUTION_HIGH",
+    "RESOLUTION_LOW",
+    "RFAC_CUTO",
+    "RFAC_USE",
+    "VERB",
+    "WAVELENGTH",
+    "XYZIN_HA",
+    "XYZIN_PARTIAL",
+    "XYZO",
+    "XYZO_ENSE"
+   ]
+  },
+  "phaser_EP_LLG": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "PARTIALMODELORMAP",
+     "XYZIN_PARTIAL",
+     "MAPCOEFF_PARTIAL",
+     "XYZIN_HA",
+     "ASUFILE",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "WAVELENGTH",
+     "PURE_ANOMALOUS",
+     "LLGC_CYCLES",
+     "ELEMENTS"
+    ],
+    "keywords": [
+     "ROOT",
+     "TITL",
+     "VERB",
+     "DEBU",
+     "MUTE",
+     "XYZO",
+     "XYZO_ENSE",
+     "HKLO",
+     "JOBS",
+     "KEYW",
+     "CLUS_PDB",
+     "HAND",
+     "LLGM",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "PART_VARI",
+     "PART_DEVI"
+    ]
+   },
+   "outputData": [
+    "XMLOUT",
+    "HKLOUT",
+    "LLGMAPOUT",
+    "MAPOUT",
+    "XYZOUT",
+    "ABCDOUT"
+   ],
+   "qtAutoGenerated": true,
+   "qtExposed": [
+    "ASUFILE",
+    "ASU_COMPONENTS",
+    "ASU_NUCLEICACID_MW",
+    "ASU_PROTEIN_MW",
+    "CLUS_PDB",
+    "COMP_BY",
+    "DEBU",
+    "F_SIGF",
+    "HAND",
+    "HKLO",
+    "JOBS",
+    "KEYW",
+    "LLGM",
+    "MUTE",
+    "PART_DEVI",
+    "PART_VARI",
+    "RESH_PERC",
+    "RESOLUTION_HIGH",
+    "RESOLUTION_LOW",
+    "RFAC_CUTO",
+    "RFAC_USE",
+    "VERB",
+    "WAVELENGTH",
+    "XYZIN_PARTIAL",
+    "XYZO",
+    "XYZO_ENSE"
+   ]
+  },
+  "phaser_MR": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ]
+  },
+  "phaser_MR_AUTO": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SGALT_SELECT",
+     "SGALT_TEST",
+     "SOLIN",
+     "RFILEIN",
+     "USINGSOLELEMENTS"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "dataReindexed",
+    "XMLOUT",
+    "SOLUTION_LLG",
+    "XYZOUT",
+    "SOLOUT",
+    "RFILEOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT"
+   ],
+   "qtExposed": [
+    "ABCD",
+    "ASUFILE",
+    "ASU_NUCLEICACID_MW",
+    "ASU_PROTEIN_MW",
+    "COMP_BY",
+    "ENSEMBLES",
+    "EXPERT_LEVEL",
+    "FPHI",
+    "F_OR_I",
+    "F_SIGF",
+    "MODE_TY",
+    "RESOLUTION_HIGH",
+    "RESOLUTION_LOW",
+    "SGALT_SELECT",
+    "SGALT_TEST",
+    "USINGSOLELEMENTS"
+   ],
+   "qtExposedIncomplete": true
+  },
+  "phaser_MR_FRF": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SGALT_SELECT",
+     "SGALT_TEST",
+     "SOLIN",
+     "RFILEIN",
+     "USINGSOLELEMENTS"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "RFILEOUT"
+   ]
+  },
+  "phaser_MR_FTF": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SGALT_SELECT",
+     "SGALT_TEST",
+     "SOLIN",
+     "RFILEIN",
+     "USINGSOLELEMENTS"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "dataReindexed",
+    "XMLOUT",
+    "SOLUTION_LLG",
+    "XYZOUT",
+    "SOLOUT"
+   ]
+  },
+  "phaser_MR_PAK": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SOLIN",
+     "USINGSOLELEMENTS"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "dataReindexed",
+    "XMLOUT",
+    "SOLUTION_LLG",
+    "SOLOUT"
+   ]
+  },
+  "phaser_MR_RNP": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SOLIN",
+     "USINGSOLELEMENTS"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "dataReindexed",
+    "XMLOUT",
+    "SOLUTION_LLG",
+    "XYZOUT",
+    "SOLOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT"
+   ],
+   "qtAutoGenerated": true,
+   "qtExposed": [
+    "ASUFILE",
+    "ASU_NUCLEICACID_MW",
+    "ASU_PROTEIN_MW",
+    "COMP_BY",
+    "ENSEMBLES",
+    "FORM",
+    "F_SIGF",
+    "RESOLUTION_HIGH",
+    "RESOLUTION_LOW",
+    "TARG_TRAN",
+    "TARG_TRAN_TYPE",
+    "TOPF",
+    "USINGSOLELEMENTS",
+    "general.JOBS"
+   ]
+  },
+  "phaser_analysis": {
+   "declared": {
+    "controlParameters": [
+     "INFOCONTENTTHRESHOLD"
+    ],
+    "inputData": [
+     "HKLIN",
+     "PXDNAME"
+    ]
+   }
+  },
+  "phaser_ensembler": {
+   "declared": {
+    "inputData": [
+     "XYZIN_LIST",
+     "ALIGNIN",
+     "OVERRIDEID"
+    ],
+    "keywords": [
+     "input__model",
+     "input__alignment",
+     "output__location",
+     "output__gui_output_dir",
+     "output__root",
+     "output__style",
+     "output__sort",
+     "output__job_title",
+     "configuration__superposition__method",
+     "configuration__superposition__convergence",
+     "configuration__mapping",
+     "configuration__atoms",
+     "configuration__clustering",
+     "configuration__weighting__scheme",
+     "configuration__weighting__convergence",
+     "configuration__weighting__incremental_damping_factor",
+     "configuration__weighting__max_damping_factor",
+     "configuration__weighting__robust_resistant__critical",
+     "configuration__trim",
+     "configuration__trimming__threshold"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "ALIGNIN",
+    "OVERRIDEID",
+    "XYZIN_LIST"
+   ]
+  },
+  "phaser_phil": {
+   "declared": {
+    "inputData": [
+     "XYZIN",
+     "F_SIGF"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "philDriven": true,
+   "qtExposed": [
+    "F_SIGF",
+    "XYZIN"
+   ],
+   "qtExposedIncomplete": true
+  },
+  "phaser_pipeline": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SGALT_SELECT",
+     "SGALT_TEST",
+     "SOLIN",
+     "RFILEIN",
+     "USINGSOLELEMENTS",
+     "FREERFLAG",
+     "RUNSHEETBEND",
+     "RUNREFMAC",
+     "XYZIN_TARGET"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "dataReindexed",
+    "XMLOUT",
+    "SOLUTION_LLG",
+    "XYZOUT",
+    "SOLOUT",
+    "RFILEOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT",
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "XYZOUT_COOT",
+    "XYZOUT_CSYMMATCH",
+    "XYZOUT_SHEETBEND",
+    "XYZOUT_REFMAC",
+    "DIFMAPOUT_REFMAC",
+    "MAPOUT_REFMAC",
+    "PERFORMANCEINDICATOR"
+   ],
+   "qtExposed": [
+    "FREERFLAG",
+    "RUNCOOT",
+    "RUNREFMAC",
+    "RUNSHEETBEND"
+   ]
+  },
+  "phaser_rnp_pipeline": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SOLIN",
+     "USINGSOLELEMENTS",
+     "FREERFLAG",
+     "RUNSHEETBEND",
+     "RUNREFMAC",
+     "XYZIN_PARENT",
+     "SELECTIONS"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "dataReindexed",
+    "XMLOUT",
+    "SOLUTION_LLG",
+    "XYZOUT",
+    "SOLOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT",
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "XYZOUT_COOT",
+    "XYZOUT_REFMAC",
+    "DIFMAPOUT_REFMAC",
+    "MAPOUT_REFMAC",
+    "PERFORMANCEINDICATOR"
+   ],
+   "qtExposed": [
+    "ASUFILE",
+    "ASU_NUCLEICACID_MW",
+    "ASU_PROTEIN_MW",
+    "COMP_BY",
+    "FREERFLAG",
+    "F_SIGF",
+    "RESOLUTION_HIGH",
+    "RESOLUTION_LOW",
+    "RUNCOOT",
+    "RUNREFMAC",
+    "SELECTIONS",
+    "XYZIN_PARENT"
+   ]
+  },
+  "phaser_simple": {
+   "declared": {
+    "inputData": [
+     "F_OR_I",
+     "F_SIGF",
+     "I_SIGI",
+     "FPHI",
+     "ABCD",
+     "KILLFILEPATH",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "ASUFILE",
+     "ENSEMBLES",
+     "FIXENSEMBLES",
+     "MODE_TY",
+     "COMP_BY",
+     "RESOLUTION_LOW",
+     "RESOLUTION_HIGH",
+     "SGALT_SELECT",
+     "SGALT_TEST",
+     "SOLIN",
+     "RFILEIN",
+     "USINGSOLELEMENTS",
+     "FREERFLAG",
+     "RUNSHEETBEND",
+     "RUNREFMAC",
+     "XYZIN_TARGET",
+     "XYZIN",
+     "NCOPIES",
+     "ID_RMS",
+     "SEARCHSEQUENCEIDENTITY",
+     "SEARCHRMS",
+     "FIXED_ID_RMS",
+     "FIXEDSEQUENCEIDENTITY",
+     "FIXEDRMS",
+     "INPUT_FIXED",
+     "XYZIN_FIXED"
+    ],
+    "keywords": [
+     "BOXS",
+     "FORM",
+     "PERM",
+     "RESC_ROTA",
+     "RESC_TRAN",
+     "RESH_PERC",
+     "RFAC_USE",
+     "RFAC_CUTO",
+     "SAMP_ROTA",
+     "SAMP_TRAN",
+     "SOLU_ORIG_ENSE",
+     "TARG_ROTA",
+     "TARG_ROTA_TYPE",
+     "TARG_TRAN",
+     "TARG_TRAN_TYPE",
+     "TOPF",
+     "OUTP_LEVE",
+     "general.ROOT",
+     "general.TITL",
+     "general.MUTE",
+     "general.XYZO",
+     "general.XYZO_ENSE",
+     "general.XYZO_PACK",
+     "general.HKLO",
+     "general.INFO",
+     "general.JOBS",
+     "general.KEYW",
+     "bfactor_refine.BFAC_REFI_REST",
+     "bfactor_refine.BFAC_REFI_SIGM",
+     "bins_data.BINS_DATA_MINI",
+     "bins_data.BINS_DATA_MAXI",
+     "bins_data.BINS_DATA_WIDT",
+     "ellg.ELLG_TARG",
+     "ellg.ELLG_RMSD_MULT",
+     "macano.MACA_PROT",
+     "macano.MACA_MACR_REF_ANIS",
+     "macano.MACA_MACR_REF_BINS",
+     "macano.MACA_MACR_REF_SOLK",
+     "macano.MACA_MACR_REF_SOLB",
+     "macano.MACA_MACR_NCYC",
+     "macano.MACA_MACR_MINI",
+     "macmr.MACM_PROT",
+     "macmr.MACM_MACR_REF_ROTA",
+     "macmr.MACM_MACR_REF_TRAN",
+     "macmr.MACM_MACR_REF_BFAC",
+     "macmr.MACM_MACR_REF_VRMS",
+     "macmr.MACM_MACR_REF_CELL",
+     "macmr.MACM_MACR_REF_OFAC",
+     "macmr.MACM_MACR_LAST_ONLY",
+     "macmr.MACM_MACR_NCYC",
+     "macmr.MACM_MACR_MINI",
+     "occupancy.OCCU_MIN",
+     "occupancy.OCCU_MAX",
+     "occupancy.OCCU_MERG",
+     "occupancy.OCCU_OFFS",
+     "occupancy.OCCU_FRAC",
+     "occupancy.OCCU_BIAS",
+     "occupancy.OCCU_WIND_ELLG",
+     "occupancy.OCCU_WIND_MAX",
+     "occupancy.OCCU_WIND_NRES",
+     "outliers.OUTL_REJE",
+     "outliers.OUTL_PROB",
+     "outliers.OUTL_INFO",
+     "pack.PACK_SELE",
+     "pack.PACK_CUTO",
+     "pack.PACK_QUIC",
+     "pack.PACK_COMP",
+     "pack.PACK_KEEP_HIGH_TFZ",
+     "peaks_rotation.PEAK_ROTA_SELE",
+     "peaks_rotation.PEAK_ROTA_CUTO",
+     "peaks_rotation.PEAK_ROTA_CLUS",
+     "peaks_rotation.PEAK_ROTA_DOWN",
+     "peaks_translation.PEAK_TRAN_SELE",
+     "peaks_translation.PEAK_TRAN_CUTO",
+     "peaks_translation.PEAK_TRAN_CLUS",
+     "purge_rotation.PURG_ROTA_ENAB",
+     "purge_rotation.PURG_ROTA_PERC",
+     "purge_rotation.PURG_ROTA_NUMB",
+     "purge_gyre.PURG_GYRE_ENAB",
+     "purge_gyre.PURG_GYRE_PERC",
+     "purge_gyre.PURG_GYRE_NUMB",
+     "purge_translation.PURG_TRAN_ENAB",
+     "purge_translation.PURG_TRAN_PERC",
+     "purge_translation.PURG_TRAN_NUMB",
+     "purge_rnp.PURG_RNP_ENAB",
+     "purge_rnp.PURG_RNP_PERC",
+     "purge_rnp.PURG_RNP_NUMB",
+     "resolution.RESO_HIGH",
+     "resolution.RESO_LOW",
+     "resolution.RESO_AUTO_HIGH",
+     "rotate.ROTA_VOLU",
+     "rotate.ROTA_EULE",
+     "rotate.ROTA_RANG",
+     "search.SEAR_ORDE_AUTO",
+     "search.SEAR_METH",
+     "search.SEAR_PRUN",
+     "search.SEAR_BFAC",
+     "search.SEAR_OFAC",
+     "sgalternative.SGAL_SELE",
+     "sgalternative.SGAL_BASE",
+     "sgalternative.SGAL_TEST",
+     "solparameters.SOLP_SIGA_FSOL",
+     "solparameters.SOLP_SIGA_BSOL",
+     "solparameters.SOLP_SIGA_MIN",
+     "solparameters.SOLP_BULK_USE",
+     "solparameters.SOLP_BULK_FSOL",
+     "solparameters.SOLP_BULK_BSOL",
+     "tncs.TNCS_USE",
+     "tncs.TNCS_NMOL",
+     "tncs.TNCS_MAXN",
+     "tncs.TNCS_RLIS_ADD",
+     "tncs.TNCS_TRAN_VECT",
+     "tncs.TNCS_TRAN_PERT",
+     "tncs.TNCS_PATT_HIRE",
+     "tncs.TNCS_PATT_MAPS",
+     "tncs.TNCS_PATT_LORE",
+     "tncs.TNCS_PATT_PERC",
+     "tncs.TNCS_PATT_DIST",
+     "tncs.TNCS_VARI_RMSD",
+     "tncs.TNCS_VARI_FRAC",
+     "tncs.TNCS_ROTA_ANGL",
+     "tncs.TNCS_ROTA_SAMP",
+     "tncs.TNCS_ROTA_RANG",
+     "tncs.TNCS_GFUN_RADI",
+     "tncs.TNCS_COMM_PEAK",
+     "tncs.TNCS_COMM_TOLF",
+     "tncs.TNCS_COMM_TOLO",
+     "tncs.TNCS_COMM_PATT",
+     "tncs.TNCS_COMM_MISS",
+     "translation.TRAN_VOLU",
+     "translation.TRAN_FRAC",
+     "translation.TRAN_STAR",
+     "translation.TRAN_END",
+     "translation.TRAN_RANG",
+     "translation.TRAN_PACK_USE",
+     "translation.TRAN_PACK_BASE",
+     "translation.TRAN_PACK_CUTO",
+     "translation.TRAN_PACK_NUMB",
+     "zscore.ZSCO_USE",
+     "zscore.ZSCO_STOP",
+     "zscore.ZSCO_SOLV",
+     "zscore.ZSCO_POSS_SOLV",
+     "zscore.ZSCO_HALF"
+    ]
+   },
+   "guiParameters": [
+    "EXPERT_LEVEL"
+   ],
+   "outputData": [
+    "dataReindexed",
+    "XMLOUT",
+    "SOLUTION_LLG",
+    "XYZOUT",
+    "SOLOUT",
+    "RFILEOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "DIFMAPOUT",
+    "PHASEOUT",
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "XYZOUT_COOT",
+    "XYZOUT_CSYMMATCH",
+    "XYZOUT_SHEETBEND",
+    "XYZOUT_REFMAC",
+    "DIFMAPOUT_REFMAC",
+    "MAPOUT_REFMAC",
+    "PERFORMANCEINDICATOR"
+   ],
+   "qtExposed": [
+    "FIXEDRMS",
+    "FIXEDSEQUENCEIDENTITY",
+    "FIXED_ID_RMS",
+    "FREERFLAG",
+    "F_OR_I",
+    "F_SIGF",
+    "ID_RMS",
+    "INPUT_FIXED",
+    "NCOPIES",
+    "RESOLUTION_HIGH",
+    "RESOLUTION_LOW",
+    "RUNCOOT",
+    "RUNREFMAC",
+    "RUNSHEETBEND",
+    "SEARCHRMS",
+    "SEARCHSEQUENCEIDENTITY",
+    "SGALT_SELECT",
+    "XYZIN",
+    "XYZIN_FIXED"
+   ]
+  },
+  "phaser_singleMR": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "ASUFILE",
+     "COMP_BY",
+     "ASU_PROTEIN_MW",
+     "ASU_NUCLEICACID_MW",
+     "RESOL_ON",
+     "RESOL_LO",
+     "RESOL_HI",
+     "SINGLE_ATOM_TYPE",
+     "SINGLE_ATOM_NUM",
+     "LLG_COMPL_ON",
+     "LLG_COMPL_ATOMTYP",
+     "LLG_COMPL_SIGCO_ON",
+     "LLG_COMPL_SIGCO",
+     "LLG_COMPL_ATMSEP_ON",
+     "LLG_COMPL_ATMSEP",
+     "LLG_COMPL_MAXCYC_ON",
+     "LLG_COMPL_MAXCYC"
+    ],
+    "inputDataExp": [
+     "EXP_PACKCT_ON",
+     "EXP_PACKCT_TYPE",
+     "EXP_PACKCT_AMT",
+     "EXP_QKPACK_ON",
+     "EXP_TRAN_SRCHPK_ON",
+     "EXP_TRAN_SRCHPK_TYPE",
+     "EXP_TRAN_SRCHPK_AMT",
+     "EXP_PURGE_TRANPK_ON",
+     "EXP_PURGE_TRANPK_PER",
+     "EXP_PURGE_TRANPK_NUM",
+     "EXP_EXPLLG_CRT_ON",
+     "EXP_EXPLLG_CRT",
+     "EXP_RESRAN_HRREFINE_ON",
+     "EXP_RESRAN_HRREFINE_LO",
+     "EXP_RESRAN_HRREFINE_HI",
+     "EXP_TRAN_NCS_ON"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "HKLOUT",
+    "MAPOUT",
+    "ABCDOUT",
+    "DIFMAPOUT",
+    "PHASEOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ASUFILE",
+    "ASU_NUCLEICACID_MW",
+    "ASU_PROTEIN_MW",
+    "COMP_BY",
+    "EXP_EXPLLG_CRT",
+    "EXP_EXPLLG_CRT_ON",
+    "EXP_PACKCT_AMT",
+    "EXP_PACKCT_ON",
+    "EXP_PACKCT_TYPE",
+    "EXP_PURGE_TRANPK_NUM",
+    "EXP_PURGE_TRANPK_ON",
+    "EXP_PURGE_TRANPK_PER",
+    "EXP_QKPACK_ON",
+    "EXP_RESRAN_HRREFINE_HI",
+    "EXP_RESRAN_HRREFINE_LO",
+    "EXP_RESRAN_HRREFINE_ON",
+    "EXP_TRAN_NCS_ON",
+    "EXP_TRAN_SRCHPK_AMT",
+    "EXP_TRAN_SRCHPK_ON",
+    "EXP_TRAN_SRCHPK_TYPE",
+    "FREERFLAG",
+    "F_SIGF",
+    "LLG_COMPL_ATMSEP",
+    "LLG_COMPL_ATMSEP_ON",
+    "LLG_COMPL_ATOMTYP",
+    "LLG_COMPL_MAXCYC",
+    "LLG_COMPL_MAXCYC_ON",
+    "LLG_COMPL_ON",
+    "LLG_COMPL_SIGCO",
+    "LLG_COMPL_SIGCO_ON",
+    "RESOL_HI",
+    "RESOL_LO",
+    "RESOL_ON",
+    "SINGLE_ATOM_NUM",
+    "SINGLE_ATOM_TYPE"
+   ]
+  },
+  "phasertng_picard": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "XYZIN",
+     "ASUIN",
+     "DICT"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "HKLOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "DAGOUT"
+   ],
+   "philDriven": true
+  },
+  "phasertng_riker": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "FIXED",
+     "XYZIN",
+     "ASUIN",
+     "DICT",
+     "DAGIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "HKLOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "DAGOUT"
+   ],
+   "philDriven": true
+  },
+  "pisa": {
+   "declared": {
+    "inputData": [
+     "PDBIN"
+    ]
+   }
+  },
+  "pisa_analyse": {
+   "declared": {
+    "controlParameters": [
+     "IDENTIFIER"
+    ],
+    "inputData": [
+     "PDBIN"
+    ]
+   }
+  },
+  "pisa_list": {
+   "declared": {
+    "controlParameters": [
+     "IDENTIFIER"
+    ]
+   }
+  },
+  "pisa_xml": {
+   "declared": {
+    "controlParameters": [
+     "IDENTIFIER"
+    ]
+   }
+  },
+  "pisapipe": {
+   "declared": {
+    "inputData": [
+     "PDBIN"
+    ]
+   },
+   "qtExposed": [
+    "PDBIN"
+   ]
+  },
+  "pointless": {
+   "declared": {
+    "controlParameters": [
+     "MODE",
+     "REFERENCE_DATASET",
+     "WRITE_HKLOUT",
+     "EXCLUDE_BATCH",
+     "EXCLUDED_BATCHES",
+     "COPY",
+     "SET_SETTING",
+     "RESOLUTION_RANGE",
+     "POINTLESS_USE_RESOLUTION_RANGE",
+     "ISIGLIMIT",
+     "CCHALFLIMIT",
+     "TOLERANCE",
+     "CHOOSE_MODE",
+     "CHOOSE_SOLUTION_NO",
+     "CHOOSE_LAUEGROUP",
+     "CHOOSE_SPACEGROUP",
+     "REINDEX_OPERATOR",
+     "CELL",
+     "WAVELENGTH",
+     "RUN_MODE",
+     "RUN_BATCHLIST",
+     "REMOVE_LATTICE_CENTERING",
+     "LATTICE_CENTERING",
+     "KEEP_LATTICE_CENTERING",
+     "LATTICE_CENTERING_THRESHOLD",
+     "ALLOW_NONCHIRAL",
+     "MMCIF_SELECTED_BLOCK"
+    ],
+    "inputData": [
+     "UNMERGEDFILES",
+     "HKLIN_REF",
+     "XYZIN_REF"
+    ]
+   },
+   "outputData": [
+    "MTZUNMERGEDOUT",
+    "MTZMERGEDOUT"
+   ]
+  },
+  "pointless_reindexToMatch": {
+   "declared": {
+    "controlParameters": [
+     "REFERENCE",
+     "CHOOSE_SPACEGROUP",
+     "REINDEX_OPERATOR",
+     "USE_REINDEX",
+     "LATTICE_CENTERING"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "HKLIN_FOBS_REF",
+     "HKLIN_FMAP_REF",
+     "HKLIN_FC_REF",
+     "XYZIN_REF"
+    ]
+   },
+   "outputData": [
+    "F_SIGF_OUT",
+    "FREERFLAG_OUT",
+    "BestReindexIdentified"
+   ],
+   "qtExposed": [
+    "CHOOSE_SPACEGROUP",
+    "HKLIN_FC_REF",
+    "HKLIN_FMAP_REF",
+    "HKLIN_FOBS_REF",
+    "LATTICE_CENTERING",
+    "REFERENCE",
+    "REINDEX_OPERATOR",
+    "USE_REINDEX",
+    "XYZIN_REF"
+   ]
+  },
+  "privateer": {
+   "declared": {
+    "controlParameters": [
+     "SHOWGEOM",
+     "RADIUSIN",
+     "CODEIN",
+     "NEW_SUGAR",
+     "ANOMER",
+     "HAND",
+     "RING_TYPE",
+     "RING_OXYGEN",
+     "RING_C1",
+     "RING_C2",
+     "RING_C3",
+     "RING_C4",
+     "RING_C5",
+     "CONFORMATION_PYRANOSE",
+     "CONFORMATION_FURANOSE",
+     "EXPRESSION",
+     "VERTICAL",
+     "ESSENTIALS",
+     "INVERT",
+     "BLOBS",
+     "BLOBSLEVEL",
+     "OLDSTYLE",
+     "GLYTOUCAN",
+     "CLOSESTMATCH",
+     "ALLPERMUTATIONS",
+     "SINGLETHREADED",
+     "NUMTHREADS"
+    ],
+    "inputData": [
+     "XYZIN",
+     "F_SIGF"
+    ]
+   },
+   "outputData": [
+    "XMLOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "LIBOUT",
+    "REFMAC_KEYWORD_FILE",
+    "COOTSCRIPTOUT"
+   ],
+   "qtExposed": [
+    "ALLPERMUTATIONS",
+    "ANOMER",
+    "CLOSESTMATCH",
+    "CODEIN",
+    "CONFORMATION_FURANOSE",
+    "CONFORMATION_PYRANOSE",
+    "ESSENTIALS",
+    "EXPRESSION",
+    "F_SIGF",
+    "GLYTOUCAN",
+    "HAND",
+    "INVERT",
+    "NEW_SUGAR",
+    "NUMTHREADS",
+    "OLDSTYLE",
+    "RADIUSIN",
+    "RING_C1",
+    "RING_C2",
+    "RING_C3",
+    "RING_C4",
+    "RING_C5",
+    "RING_OXYGEN",
+    "RING_TYPE",
+    "VERTICAL",
+    "XYZIN"
+   ]
+  },
+  "prosmart": {
+   "declared": {
+    "controlParameters": [
+     "PROGRAM_MODE",
+     "NUCLEIC_ACID",
+     "LIB_MODE",
+     "ALIGN_MODE",
+     "FRAGLEN",
+     "ALIGN_THRESHOLD",
+     "HELIX_CUTOFF",
+     "HELIX_PENALTY",
+     "REWARD_SEQ",
+     "ALIGN_REFINE",
+     "SUPERPOSE_THRESHOLD",
+     "INCLUDE_MAIN",
+     "PERFORM_FLIPS",
+     "CLUSTER_PERFORM",
+     "CLUSTER_SCORE",
+     "CLUSTER_ANGLE",
+     "CLUSTER_MIN",
+     "CLUSTER_LINK",
+     "CLUSTER_RIGID",
+     "RESTRAIN_MAIN_VS_SIDE",
+     "RESTRAIN_ALL_VS_BEST",
+     "RESTRAIN_TO_SELF",
+     "RESTRAIN_SEQID",
+     "RESTRAIN_RMAX",
+     "RESTRAIN_RMIN",
+     "RESTRAIN_SIGMA",
+     "RESTRAIN_MIN_SIGMA",
+     "RESTRAIN_SIGMATYPE",
+     "RESTRAIN_MAIN_CUTOFF",
+     "RESTRAIN_SIDE_CUTOFF",
+     "RESTRAIN_OUTLIER_THRESHOLD",
+     "RESTRAIN_SCALE_SIGMAS",
+     "RESTRAIN_BFAC_FILTER",
+     "RESTRAIN_BFAC_ALPHA",
+     "RESTRAIN_ALT",
+     "RESTRAIN_OCCUP",
+     "RESTRAIN_RM_BONDS",
+     "RESTRAIN_REFMAC_TYPE",
+     "RESTRAIN_SELF",
+     "H_BOND",
+     "H_HELIX",
+     "H_SHEET",
+     "H_310",
+     "H_ALPHA",
+     "H_PI",
+     "H_STRICT",
+     "H_DIST",
+     "H_MIN",
+     "H_MAX",
+     "H_MIN_SEP",
+     "H_MAX_SEP",
+     "H_BOND_OPT",
+     "H_BOND_OVERRIDE",
+     "OUTPUT_DM",
+     "DISPLAY_AS_DEGREES",
+     "OUTPUT_PDB_CHAIN_RESTRAINTS",
+     "MERGE_CHAINS",
+     "RENAME_CHAIN",
+     "IS_NMR_MD_ENSEMBLE",
+     "KEYWORDS"
+    ],
+    "inputData": [
+     "TARGET_MODEL",
+     "CHAINLIST_1",
+     "REFERENCE_MODELS",
+     "EXT_FILE",
+     "FRAGLIB"
+    ]
+   },
+   "outputData": [
+    "RESTRAINTS"
+   ],
+   "qtAutoGenerated": true,
+   "qtExposed": [
+    "ALIGN_MODE",
+    "ALIGN_REFINE",
+    "ALIGN_THRESHOLD",
+    "CLUSTER_ANGLE",
+    "CLUSTER_LINK",
+    "CLUSTER_MIN",
+    "CLUSTER_PERFORM",
+    "CLUSTER_RIGID",
+    "CLUSTER_SCORE",
+    "DISPLAY_AS_DEGREES",
+    "EXT_FILE",
+    "FRAGLEN",
+    "FRAGLIB",
+    "HELIX_CUTOFF",
+    "HELIX_PENALTY",
+    "H_310",
+    "H_ALPHA",
+    "H_BOND",
+    "H_BOND_OPT",
+    "H_BOND_OVERRIDE",
+    "H_DIST",
+    "H_HELIX",
+    "H_MAX",
+    "H_MAX_SEP",
+    "H_MIN",
+    "H_MIN_SEP",
+    "H_PI",
+    "H_SHEET",
+    "H_STRICT",
+    "INCLUDE_MAIN",
+    "IS_NMR_MD_ENSEMBLE",
+    "LIB_MODE",
+    "MERGE_CHAINS",
+    "OUTPUT_DM",
+    "OUTPUT_PDB_CHAIN_RESTRAINTS",
+    "PERFORM_FLIPS",
+    "PROGRAM_MODE",
+    "RENAME_CHAIN",
+    "RESTRAIN_ALL_VS_BEST",
+    "RESTRAIN_ALT",
+    "RESTRAIN_BFAC_ALPHA",
+    "RESTRAIN_BFAC_FILTER",
+    "RESTRAIN_MAIN_CUTOFF",
+    "RESTRAIN_MAIN_VS_SIDE",
+    "RESTRAIN_MIN_SIGMA",
+    "RESTRAIN_OCCUP",
+    "RESTRAIN_OUTLIER_THRESHOLD",
+    "RESTRAIN_REFMAC_TYPE",
+    "RESTRAIN_RMAX",
+    "RESTRAIN_RMIN",
+    "RESTRAIN_RM_BONDS",
+    "RESTRAIN_SCALE_SIGMAS",
+    "RESTRAIN_SELF",
+    "RESTRAIN_SEQID",
+    "RESTRAIN_SIDE_CUTOFF",
+    "RESTRAIN_SIGMA",
+    "RESTRAIN_SIGMATYPE",
+    "RESTRAIN_TO_SELF",
+    "REWARD_SEQ",
+    "SUPERPOSE_THRESHOLD",
+    "XYZIN"
+   ]
+  },
+  "prosmart_refmac": {
+   "declared": {
+    "controlParameters": [
+     "REFINEMENT_MODE",
+     "NCYCRIGID",
+     "RIGID_BODY_SELECTION",
+     "OCCUPANCY_REFINEMENT",
+     "OCCUPANCY_GROUPS",
+     "OCCUPANCY_COMPLETE",
+     "OCCUPANCY_INCOMPLETE",
+     "OCCUPANCY_SELECTION",
+     "OCCUPANCY_COMPLETE_TABLE",
+     "OCCUPANCY_INCOMPLETE_TABLE",
+     "TITLE",
+     "TOGGLE_INPUT",
+     "TOGGLE_PARAMETERS",
+     "TOGGLE_RESTRAINTS",
+     "TOGGLE_SCALING",
+     "TOGGLE_OUTPUT",
+     "NCYCLES",
+     "TLSMODE",
+     "AUTOTLS",
+     "NTLSCYCLES",
+     "NTLSCYCLES_AUTO",
+     "WEIGHT_OPT",
+     "WEIGHT",
+     "USE_TWIN",
+     "HYDR_USE",
+     "HYDR_ALL",
+     "HYDROGENS",
+     "H_REFINE",
+     "H_REFINE_SELECT",
+     "H_TORSION",
+     "HD_FRACTION",
+     "HD_FRACTION_TYPE",
+     "HD_INIT_TOGGLE",
+     "HD_INIT",
+     "USE_NCS",
+     "NCS_TYPE",
+     "NCS_AUTO",
+     "USE_LOCAL_SYMMETRY",
+     "USE_JELLY",
+     "JELLY_SIGMA",
+     "JELLY_DIST",
+     "PROSMART_PROTEIN_WEIGHT",
+     "PROSMART_PROTEIN_ALPHA",
+     "PROSMART_PROTEIN_DMAX",
+     "PROSMART_NUCLEICACID_WEIGHT",
+     "PROSMART_NUCLEICACID_ALPHA",
+     "PROSMART_NUCLEICACID_DMAX",
+     "MAKE_LINK",
+     "OVERRIDE_LINK",
+     "TLSOUT_ADDU",
+     "TLSTEXT",
+     "B_REFINEMENT_MODE",
+     "PHOUT",
+     "MAP_SHARP",
+     "MAP_SHARP_CUSTOM",
+     "BSHARP",
+     "BFACSETUSE",
+     "BFACSET",
+     "OUTPUT_HYDROGENS",
+     "RESOLUTION",
+     "RES_CUSTOM",
+     "RES_MIN",
+     "RES_MAX",
+     "USEANOMALOUS",
+     "USEANOMALOUSFOR",
+     "WAVELENGTH",
+     "MAKE_NEW_LIGAND_EXIT",
+     "SCALE_TYPE",
+     "SOLVENT_MASK_TYPE",
+     "SOLVENT_ADVANCED",
+     "SOLVENT_VDW_RADIUS",
+     "SOLVENT_IONIC_RADIUS",
+     "SOLVENT_SHRINK",
+     "EXTRAREFMACKEYWORDS",
+     "REFPRO_RSR_RWORK_LIMIT",
+     "ADD_WATERS",
+     "REFPRO_USERAMA",
+     "SCATTERING_FACTORS",
+     "SCATTERING_ELECTRON",
+     "REFMAC_CLEANUP",
+     "VALIDATE_IRIS",
+     "VALIDATE_BAVERAGE",
+     "VALIDATE_RAMACHANDRAN",
+     "VALIDATE_MOLPROBITY",
+     "RUN_MOLPROBITY"
+    ],
+    "inputData": [
+     "XYZIN",
+     "F_SIGF",
+     "FREERFLAG",
+     "ABCD",
+     "TLSIN",
+     "EXTERNALRESTRAINTS",
+     "EXTERNAL_RESTRAINTS_FILE",
+     "PROSMART_PROTEIN_RESTRAINTS",
+     "PROSMART_NUCLEICACID_RESTRAINTS",
+     "PLATONYZER_RESTRAINTS",
+     "REFMAC_KEYWORD_FILE",
+     "DICT_LIST",
+     "ASUIN",
+     "AMINOACID_CHAINS",
+     "NUCLEOTIDE_CHAINS"
+    ],
+    "libg": [
+     "MODE",
+     "TOGGLE",
+     "OPTION",
+     "BP",
+     "ADVANCED",
+     "KEYWORDS"
+    ],
+    "platonyzer": [
+     "TOGGLE",
+     "MODE",
+     "RM_VDW"
+    ],
+    "prosmartNucleicAcid": [
+     "REFERENCE_MODELS",
+     "MODE",
+     "TOGGLE",
+     "CHAINLIST_1",
+     "ALL_BEST",
+     "SEQID",
+     "WEIGHT",
+     "ALPHA",
+     "DMAX",
+     "SIDE_MAIN",
+     "RMIN",
+     "RMAX",
+     "ADVANCED",
+     "TOGGLE_BFAC",
+     "BFAC",
+     "TOGGLE_ALT",
+     "OCCUPANCY",
+     "KEYWORDS"
+    ],
+    "prosmartProtein": [
+     "REFERENCE_MODELS",
+     "MODE",
+     "TOGGLE",
+     "CHAINLIST_1",
+     "ALL_BEST",
+     "SEQID",
+     "WEIGHT",
+     "ALPHA",
+     "DMAX",
+     "SIDE_MAIN",
+     "RMIN",
+     "RMAX",
+     "ADVANCED",
+     "TOGGLE_BFAC",
+     "BFAC",
+     "TOGGLE_ALT",
+     "OCCUPANCY",
+     "KEYWORDS"
+    ]
+   },
+   "outputData": [
+    "COMPLETE_MTZ",
+    "XYZOUT",
+    "CIFFILE",
+    "CIFFILEDEP",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "ANOMFPHIOUT",
+    "DIFANOMFPHIOUT",
+    "ABCDOUT",
+    "TLSOUT",
+    "LIBOUT",
+    "DICT",
+    "COOTSCRIPTOUT",
+    "PSOUT",
+    "PERFORMANCEINDICATOR"
+   ],
+   "qtExposed": [
+    "ADD_WATERS",
+    "ASUIN",
+    "BFACSET",
+    "BFACSETUSE",
+    "BSHARP",
+    "B_REFINEMENT_MODE",
+    "EXTRAREFMACKEYWORDS",
+    "HD_FRACTION",
+    "HD_FRACTION_TYPE",
+    "HD_INIT",
+    "HD_INIT_TOGGLE",
+    "HYDR_ALL",
+    "HYDR_USE",
+    "H_REFINE",
+    "H_REFINE_SELECT",
+    "H_TORSION",
+    "JELLY_DIST",
+    "JELLY_SIGMA",
+    "MAKE_LINK",
+    "MAP_SHARP",
+    "MAP_SHARP_CUSTOM",
+    "NCS_TYPE",
+    "NCYCLES",
+    "NCYCRIGID",
+    "NTLSCYCLES",
+    "OCCUPANCY_COMPLETE",
+    "OCCUPANCY_COMPLETE_TABLE",
+    "OCCUPANCY_GROUPS",
+    "OCCUPANCY_INCOMPLETE",
+    "OCCUPANCY_INCOMPLETE_TABLE",
+    "OCCUPANCY_REFINEMENT",
+    "OCCUPANCY_SELECTION",
+    "OUTPUT_HYDROGENS",
+    "OVERRIDE_LINK",
+    "REFINEMENT_MODE",
+    "REFMAC_CLEANUP",
+    "REFPRO_RSR_RWORK_LIMIT",
+    "RES_CUSTOM",
+    "RES_MAX",
+    "RES_MIN",
+    "RIGID_BODY_SELECTION",
+    "SCALE_TYPE",
+    "SCATTERING_ELECTRON",
+    "SCATTERING_FACTORS",
+    "SOLVENT_ADVANCED",
+    "SOLVENT_IONIC_RADIUS",
+    "SOLVENT_MASK_TYPE",
+    "SOLVENT_SHRINK",
+    "SOLVENT_VDW_RADIUS",
+    "TLSMODE",
+    "TLSOUT_ADDU",
+    "USEANOMALOUSFOR",
+    "USE_JELLY",
+    "USE_NCS",
+    "USE_TWIN",
+    "VALIDATE_BAVERAGE",
+    "VALIDATE_IRIS",
+    "VALIDATE_MOLPROBITY",
+    "VALIDATE_RAMACHANDRAN",
+    "WAVELENGTH",
+    "WEIGHT",
+    "WEIGHT_OPT",
+    "platonyzer.MODE",
+    "platonyzer.RM_VDW",
+    "platonyzer.TOGGLE",
+    "prosmartNucleicAcid.ADVANCED",
+    "prosmartNucleicAcid.ALL_BEST",
+    "prosmartNucleicAcid.ALPHA",
+    "prosmartNucleicAcid.BFAC",
+    "prosmartNucleicAcid.CHAINLIST_1",
+    "prosmartNucleicAcid.DMAX",
+    "prosmartNucleicAcid.KEYWORDS",
+    "prosmartNucleicAcid.OCCUPANCY",
+    "prosmartNucleicAcid.RMAX",
+    "prosmartNucleicAcid.RMIN",
+    "prosmartNucleicAcid.SEQID",
+    "prosmartNucleicAcid.SIDE_MAIN",
+    "prosmartNucleicAcid.TOGGLE",
+    "prosmartNucleicAcid.TOGGLE_ALT",
+    "prosmartNucleicAcid.TOGGLE_BFAC",
+    "prosmartNucleicAcid.WEIGHT",
+    "prosmartProtein.ADVANCED",
+    "prosmartProtein.ALL_BEST",
+    "prosmartProtein.ALPHA",
+    "prosmartProtein.BFAC",
+    "prosmartProtein.CHAINLIST_1",
+    "prosmartProtein.DMAX",
+    "prosmartProtein.KEYWORDS",
+    "prosmartProtein.OCCUPANCY",
+    "prosmartProtein.RMAX",
+    "prosmartProtein.RMIN",
+    "prosmartProtein.SEQID",
+    "prosmartProtein.SIDE_MAIN",
+    "prosmartProtein.TOGGLE",
+    "prosmartProtein.TOGGLE_ALT",
+    "prosmartProtein.TOGGLE_BFAC",
+    "prosmartProtein.WEIGHT"
+   ]
+  },
+  "qtpisa": {
+   "declared": {
+    "inputData": [
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "XYZIN"
+   ]
+  },
+  "refmac": {
+   "declared": {
+    "controlParameters": [
+     "REFINEMENT_MODE",
+     "NCYCRIGID",
+     "RIGID_BODY_SELECTION",
+     "OCCUPANCY_REFINEMENT",
+     "OCCUPANCY_GROUPS",
+     "OCCUPANCY_COMPLETE",
+     "OCCUPANCY_INCOMPLETE",
+     "OCCUPANCY_SELECTION",
+     "OCCUPANCY_COMPLETE_TABLE",
+     "OCCUPANCY_INCOMPLETE_TABLE",
+     "TITLE",
+     "TOGGLE_INPUT",
+     "TOGGLE_PARAMETERS",
+     "TOGGLE_RESTRAINTS",
+     "TOGGLE_SCALING",
+     "TOGGLE_OUTPUT",
+     "NCYCLES",
+     "TLSMODE",
+     "AUTOTLS",
+     "NTLSCYCLES",
+     "NTLSCYCLES_AUTO",
+     "WEIGHT_OPT",
+     "WEIGHT",
+     "USE_TWIN",
+     "HYDR_USE",
+     "HYDR_ALL",
+     "HYDROGENS",
+     "H_REFINE",
+     "H_REFINE_SELECT",
+     "H_TORSION",
+     "HD_FRACTION",
+     "HD_FRACTION_TYPE",
+     "HD_INIT_TOGGLE",
+     "HD_INIT",
+     "USE_NCS",
+     "NCS_TYPE",
+     "NCS_AUTO",
+     "USE_LOCAL_SYMMETRY",
+     "USE_JELLY",
+     "JELLY_SIGMA",
+     "JELLY_DIST",
+     "PROSMART_PROTEIN_WEIGHT",
+     "PROSMART_PROTEIN_ALPHA",
+     "PROSMART_PROTEIN_DMAX",
+     "PROSMART_NUCLEICACID_WEIGHT",
+     "PROSMART_NUCLEICACID_ALPHA",
+     "PROSMART_NUCLEICACID_DMAX",
+     "MAKE_LINK",
+     "OVERRIDE_LINK",
+     "TLSOUT_ADDU",
+     "TLSTEXT",
+     "B_REFINEMENT_MODE",
+     "PHOUT",
+     "MAP_SHARP",
+     "MAP_SHARP_CUSTOM",
+     "BSHARP",
+     "BFACSETUSE",
+     "BFACSET",
+     "OUTPUT_HYDROGENS",
+     "RESOLUTION",
+     "RES_CUSTOM",
+     "RES_MIN",
+     "RES_MAX",
+     "USEANOMALOUS",
+     "USEANOMALOUSFOR",
+     "WAVELENGTH",
+     "MAKE_NEW_LIGAND_EXIT",
+     "SCALE_TYPE",
+     "SOLVENT_MASK_TYPE",
+     "SOLVENT_ADVANCED",
+     "SOLVENT_VDW_RADIUS",
+     "SOLVENT_IONIC_RADIUS",
+     "SOLVENT_SHRINK",
+     "EXTRAREFMACKEYWORDS",
+     "REFPRO_RSR_RWORK_LIMIT",
+     "ADD_WATERS",
+     "REFPRO_USERAMA",
+     "SCATTERING_FACTORS",
+     "SCATTERING_ELECTRON"
+    ],
+    "inputData": [
+     "XYZIN",
+     "F_SIGF",
+     "FREERFLAG",
+     "ABCD",
+     "TLSIN",
+     "EXTERNALRESTRAINTS",
+     "EXTERNAL_RESTRAINTS_FILE",
+     "PROSMART_PROTEIN_RESTRAINTS",
+     "PROSMART_NUCLEICACID_RESTRAINTS",
+     "PLATONYZER_RESTRAINTS",
+     "REFMAC_KEYWORD_FILE",
+     "DICT_LIST"
+    ]
+   },
+   "outputData": [
+    "COMPLETE_MTZ",
+    "XYZOUT",
+    "CIFFILE",
+    "CIFFILEDEP",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "ANOMFPHIOUT",
+    "DIFANOMFPHIOUT",
+    "ABCDOUT",
+    "TLSOUT",
+    "LIBOUT",
+    "DICT",
+    "COOTSCRIPTOUT",
+    "PSOUT",
+    "PERFORMANCEINDICATOR"
+   ]
+  },
+  "scaleit": {
+   "declared": {
+    "controlParameters": [
+     "RESOLUTION_MAX"
+    ],
+    "inputData": [
+     "MERGEDFILES"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ],
+   "qtExposed": [
+    "RESOLUTION_MAX"
+   ]
+  },
+  "scalepack2mtz": {
+   "declared": {
+    "controlParameters": [
+     "ANOMALOUS"
+    ],
+    "inputData": [
+     "HKLIN",
+     "SPACEGROUPCELL",
+     "WAVELENGTH",
+     "HKLIN_OBS_CONTENT_FLAG",
+     "HKLIN_OBS_COLUMNS",
+     "HKLIN_FREER_COLUMN",
+     "CRYSTALNAME",
+     "DATASETNAME",
+     "RESOLUTION_RANGE"
+    ]
+   },
+   "outputData": [
+    "HKLOUT",
+    "OBSOUT",
+    "FREEOUT"
+   ]
+  },
+  "sculptor": {
+   "declared": {
+    "controlParameters": [
+     "TITLE",
+     "CHAINIDS",
+     "TARGETINDEX",
+     "DELETION",
+     "POLISHING",
+     "PRUNING",
+     "BFACTOR",
+     "RENUMBER",
+     "RENAME"
+    ],
+    "inputData": [
+     "XYZIN",
+     "ALIGNMENTORSEQUENCEIN",
+     "ALIGNIN",
+     "SEQUENCEIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ALIGNIN",
+    "ALIGNMENTORSEQUENCEIN",
+    "BFACTOR",
+    "CHAINIDS",
+    "PRUNING",
+    "SEQUENCEIN",
+    "TARGETINDEX",
+    "XYZIN"
+   ]
+  },
+  "servalcat": {
+   "declared": {
+    "controlParameters": [
+     "DATA_METHOD",
+     "MERGED_OR_UNMERGED",
+     "ADD_WATERS",
+     "NCYCLES_AFTER_ADD_WATERS",
+     "NCYCLES",
+     "HYDR_USE",
+     "HYDR_ALL",
+     "H_REFINE",
+     "H_OUT",
+     "UNRESTRAINED",
+     "WEIGHT_OPT",
+     "WEIGHT",
+     "WEIGHT_NO_ADJUST",
+     "WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN",
+     "WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX",
+     "USE_NCS",
+     "USE_JELLY",
+     "JELLY_SIGMA",
+     "JELLY_DIST",
+     "JELLY_ONLY",
+     "FIND_LINKS",
+     "B_REFINEMENT_MODE",
+     "VDWR_WEIGHT",
+     "ADPR_WEIGHT",
+     "MAX_DIST_FOR_ADP_RESTRAINT",
+     "ADP_RESTRAINT_POWER",
+     "ADP_RESTRAINT_NO_LONG_RANGE",
+     "FIX_XYZ",
+     "KEEP_CHARGES",
+     "BFACSETUSE",
+     "BFACSET",
+     "RANDOMIZEUSE",
+     "RANDOMIZE",
+     "EXTRA_SERVALCAT_OPTIONS",
+     "OCCUPANCY_REFINEMENT",
+     "OCCUPANCY_NCYCLE",
+     "OCCUPANCY_GROUPS",
+     "OCCUPANCY_COMPLETE",
+     "OCCUPANCY_INCOMPLETE",
+     "OCCUPANCY_SELECTION",
+     "OCCUPANCY_COMPLETE_TABLE",
+     "OCCUPANCY_INCOMPLETE_TABLE",
+     "HKLIN_IS_I_SIGI",
+     "F_SIGF_OR_I_SIGI",
+     "FREERFLAG_NUMBER",
+     "RES_CUSTOM",
+     "RES_MAX",
+     "RES_MIN",
+     "USE_TWIN",
+     "SCATTERING_FACTORS",
+     "NO_SOLVENT",
+     "USE_WORK_IN_EST",
+     "MASK_RADIUS",
+     "PIXEL_SIZE",
+     "POINTGROUP",
+     "IGNORE_SYMMETRY",
+     "TWIST",
+     "RISE",
+     "CENTER_X",
+     "CENTER_Y",
+     "CENTER_Z",
+     "AXIS1_X",
+     "AXIS1_Y",
+     "AXIS1_Z",
+     "AXIS2_X",
+     "AXIS2_Y",
+     "AXIS2_Z",
+     "BLURUSE",
+     "BLUR",
+     "CROSS_VALIDATION",
+     "PROSMART_PROTEIN_SGMN",
+     "PROSMART_PROTEIN_SGMX",
+     "PROSMART_PROTEIN_ALPHA",
+     "PROSMART_PROTEIN_DMAX",
+     "PROSMART_NUCLEICACID_SGMN",
+     "PROSMART_NUCLEICACID_SGMX",
+     "PROSMART_NUCLEICACID_ALPHA",
+     "PROSMART_NUCLEICACID_DMAX",
+     "REFINEMENT_MODE",
+     "RESOLUTION",
+     "TITLE",
+     "SCATTERING_ELECTRON",
+     "NCYCRIGID",
+     "RIGID_BODY_SELECTION",
+     "USEANOMALOUS",
+     "USEANOMALOUSFOR",
+     "REFPRO_USERAMA",
+     "PHOUT",
+     "TOGGLE_INPUT",
+     "TOGGLE_PARAMETERS",
+     "TOGGLE_RESTRAINTS",
+     "TOGGLE_SCALING",
+     "TOGGLE_OUTPUT"
+    ],
+    "inputData": [
+     "XYZIN",
+     "HKLIN",
+     "HKLIN_UNMERGED",
+     "FREERFLAG",
+     "MAPIN1",
+     "MAPIN2",
+     "MAPMASK",
+     "METALCOORD_RESTRAINTS",
+     "PROSMART_PROTEIN_RESTRAINTS",
+     "PROSMART_NUCLEICACID_RESTRAINTS",
+     "SERVALCAT_KEYWORD_FILE",
+     "DICT_LIST"
+    ]
+   },
+   "outputData": [
+    "COMPLETE_MTZ",
+    "CIFFILE",
+    "XYZOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "MAP_FO",
+    "MAP_FOFC",
+    "ANOMFPHIOUT",
+    "DIFANOMFPHIOUT",
+    "DICT",
+    "COOTSCRIPTOUT",
+    "PERFORMANCEINDICATOR"
+   ]
+  },
+  "servalcat_pipe": {
+   "declared": {
+    "controlParameters": [
+     "DATA_METHOD",
+     "MERGED_OR_UNMERGED",
+     "ADD_WATERS",
+     "NCYCLES_AFTER_ADD_WATERS",
+     "NCYCLES",
+     "HYDR_USE",
+     "HYDR_ALL",
+     "H_REFINE",
+     "H_OUT",
+     "UNRESTRAINED",
+     "WEIGHT_OPT",
+     "WEIGHT",
+     "WEIGHT_NO_ADJUST",
+     "WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN",
+     "WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX",
+     "USE_NCS",
+     "USE_JELLY",
+     "JELLY_SIGMA",
+     "JELLY_DIST",
+     "JELLY_ONLY",
+     "FIND_LINKS",
+     "B_REFINEMENT_MODE",
+     "VDWR_WEIGHT",
+     "ADPR_WEIGHT",
+     "MAX_DIST_FOR_ADP_RESTRAINT",
+     "ADP_RESTRAINT_POWER",
+     "ADP_RESTRAINT_NO_LONG_RANGE",
+     "FIX_XYZ",
+     "KEEP_CHARGES",
+     "BFACSETUSE",
+     "BFACSET",
+     "RANDOMIZEUSE",
+     "RANDOMIZE",
+     "EXTRA_SERVALCAT_OPTIONS",
+     "OCCUPANCY_REFINEMENT",
+     "OCCUPANCY_NCYCLE",
+     "OCCUPANCY_GROUPS",
+     "OCCUPANCY_COMPLETE",
+     "OCCUPANCY_INCOMPLETE",
+     "OCCUPANCY_SELECTION",
+     "OCCUPANCY_COMPLETE_TABLE",
+     "OCCUPANCY_INCOMPLETE_TABLE",
+     "HKLIN_IS_I_SIGI",
+     "F_SIGF_OR_I_SIGI",
+     "FREERFLAG_NUMBER",
+     "RES_CUSTOM",
+     "RES_MAX",
+     "RES_MIN",
+     "USE_TWIN",
+     "SCATTERING_FACTORS",
+     "NO_SOLVENT",
+     "USE_WORK_IN_EST",
+     "MASK_RADIUS",
+     "PIXEL_SIZE",
+     "POINTGROUP",
+     "IGNORE_SYMMETRY",
+     "TWIST",
+     "RISE",
+     "CENTER_X",
+     "CENTER_Y",
+     "CENTER_Z",
+     "AXIS1_X",
+     "AXIS1_Y",
+     "AXIS1_Z",
+     "AXIS2_X",
+     "AXIS2_Y",
+     "AXIS2_Z",
+     "BLURUSE",
+     "BLUR",
+     "CROSS_VALIDATION",
+     "PROSMART_PROTEIN_SGMN",
+     "PROSMART_PROTEIN_SGMX",
+     "PROSMART_PROTEIN_ALPHA",
+     "PROSMART_PROTEIN_DMAX",
+     "PROSMART_NUCLEICACID_SGMN",
+     "PROSMART_NUCLEICACID_SGMX",
+     "PROSMART_NUCLEICACID_ALPHA",
+     "PROSMART_NUCLEICACID_DMAX",
+     "REFINEMENT_MODE",
+     "RESOLUTION",
+     "TITLE",
+     "SCATTERING_ELECTRON",
+     "NCYCRIGID",
+     "RIGID_BODY_SELECTION",
+     "USEANOMALOUS",
+     "USEANOMALOUSFOR",
+     "REFPRO_USERAMA",
+     "PHOUT",
+     "TOGGLE_INPUT",
+     "TOGGLE_PARAMETERS",
+     "TOGGLE_RESTRAINTS",
+     "TOGGLE_SCALING",
+     "TOGGLE_OUTPUT",
+     "REFMAC_CLEANUP",
+     "VALIDATE_IRIS",
+     "VALIDATE_BAVERAGE",
+     "VALIDATE_RAMACHANDRAN",
+     "VALIDATE_MOLPROBITY",
+     "RUN_ADP_ANALYSIS",
+     "ADP_IQR_FACTOR",
+     "RUN_MOLPROBITY"
+    ],
+    "inputData": [
+     "XYZIN",
+     "HKLIN",
+     "HKLIN_UNMERGED",
+     "FREERFLAG",
+     "MAPIN1",
+     "MAPIN2",
+     "MAPMASK",
+     "METALCOORD_RESTRAINTS",
+     "PROSMART_PROTEIN_RESTRAINTS",
+     "PROSMART_NUCLEICACID_RESTRAINTS",
+     "SERVALCAT_KEYWORD_FILE",
+     "DICT_LIST",
+     "AMINOACID_CHAINS",
+     "NUCLEOTIDE_CHAINS"
+    ],
+    "libg": [
+     "MODE",
+     "TOGGLE",
+     "OPTION",
+     "BP",
+     "ADVANCED",
+     "KEYWORDS"
+    ],
+    "metalCoordPipeline": [
+     "RUN_METALCOORD",
+     "LIGAND_CODES_AVAILABLE",
+     "LIGAND_CODES_SELECTED",
+     "LINKS",
+     "TOGGLE_ADVANCED",
+     "GENERATE_OR_USE",
+     "METALCOORD_RESTRAINTS"
+    ],
+    "metalCoordWrapper": [
+     "inputData.LIGAND_CODE",
+     "inputData.XYZIN",
+     "outputData.RESTRAINTS",
+     "outputData.JSON",
+     "outputData.XYZOUT",
+     "controlParameters.MAXIMUM_COORDINATION_NUMBER",
+     "controlParameters.MINIMUM_SAMPLE_SIZE",
+     "controlParameters.DISTANCE_THRESHOLD",
+     "controlParameters.PROCRUSTES_DISTANCE_THRESHOLD",
+     "controlParameters.IDEAL_ANGLES",
+     "controlParameters.SIMPLE",
+     "controlParameters.USE_PDB",
+     "controlParameters.SAVE_PDBMMCIF",
+     "controlParameters.KEEP_LINKS",
+     "coordination.COORD02",
+     "coordination.COORD03",
+     "coordination.COORD04",
+     "coordination.COORD05",
+     "coordination.COORD06",
+     "coordination.COORD07",
+     "coordination.COORD08",
+     "coordination.COORD09",
+     "coordination.COORD10",
+     "coordination.COORD11",
+     "coordination.COORD12",
+     "coordination.COORD13",
+     "coordination.COORD15",
+     "coordination.COORD16",
+     "coordination.COORD17",
+     "coordination.COORD24"
+    ],
+    "monitor": [
+     "RUN_COORDADPDEV_ANALYSIS",
+     "MIN_COORDDEV",
+     "MIN_ADPDEV"
+    ],
+    "platonyzer": [
+     "TOGGLE",
+     "MODE",
+     "RM_VDW"
+    ],
+    "prosmartNucleicAcid": [
+     "REFERENCE_MODELS",
+     "MODE",
+     "TOGGLE",
+     "CHAINLIST_1",
+     "ALL_BEST",
+     "SEQID",
+     "WEIGHT",
+     "SGMN",
+     "SGMX",
+     "ALPHA",
+     "DMAX",
+     "SIDE_MAIN",
+     "RMIN",
+     "RMAX",
+     "ADVANCED",
+     "TOGGLE_BFAC",
+     "BFAC",
+     "TOGGLE_ALT",
+     "OCCUPANCY",
+     "KEYWORDS"
+    ],
+    "prosmartProtein": [
+     "REFERENCE_MODELS",
+     "MODE",
+     "TOGGLE",
+     "CHAINLIST_1",
+     "ALL_BEST",
+     "SEQID",
+     "SGMN",
+     "SGMX",
+     "ALPHA",
+     "DMAX",
+     "SIDE_MAIN",
+     "RMIN",
+     "RMAX",
+     "ADVANCED",
+     "TOGGLE_BFAC",
+     "BFAC",
+     "TOGGLE_ALT",
+     "OCCUPANCY",
+     "KEYWORDS"
+    ]
+   },
+   "outputData": [
+    "COMPLETE_MTZ",
+    "CIFFILE",
+    "XYZOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "MAP_FO",
+    "MAP_FOFC",
+    "ANOMFPHIOUT",
+    "DIFANOMFPHIOUT",
+    "DICT",
+    "COOTSCRIPTOUT",
+    "PERFORMANCEINDICATOR",
+    "METALCOORD_XYZ",
+    "METALCOORD_RESTRAINTS"
+   ],
+   "qtExposed": [
+    "ADD_WATERS",
+    "ADPR_WEIGHT",
+    "ADP_IQR_FACTOR",
+    "ADP_RESTRAINT_NO_LONG_RANGE",
+    "AXIS1_X",
+    "AXIS1_Y",
+    "AXIS1_Z",
+    "AXIS2_X",
+    "AXIS2_Y",
+    "AXIS2_Z",
+    "BFACSET",
+    "BFACSETUSE",
+    "BLUR",
+    "BLURUSE",
+    "B_REFINEMENT_MODE",
+    "CENTER_X",
+    "CENTER_Y",
+    "CENTER_Z",
+    "CROSS_VALIDATION",
+    "EXTRA_SERVALCAT_OPTIONS",
+    "FIND_LINKS",
+    "FIX_XYZ",
+    "FREERFLAG_NUMBER",
+    "F_SIGF_OR_I_SIGI",
+    "HYDR_ALL",
+    "HYDR_USE",
+    "H_OUT",
+    "H_REFINE",
+    "IGNORE_SYMMETRY",
+    "JELLY_DIST",
+    "JELLY_ONLY",
+    "JELLY_SIGMA",
+    "KEEP_CHARGES",
+    "MASK_RADIUS",
+    "MAX_DIST_FOR_ADP_RESTRAINT",
+    "MERGED_OR_UNMERGED",
+    "NCYCLES",
+    "NCYCLES_AFTER_ADD_WATERS",
+    "NO_SOLVENT",
+    "OCCUPANCY_COMPLETE",
+    "OCCUPANCY_COMPLETE_TABLE",
+    "OCCUPANCY_GROUPS",
+    "OCCUPANCY_INCOMPLETE",
+    "OCCUPANCY_INCOMPLETE_TABLE",
+    "OCCUPANCY_NCYCLE",
+    "OCCUPANCY_REFINEMENT",
+    "OCCUPANCY_SELECTION",
+    "PIXEL_SIZE",
+    "POINTGROUP",
+    "RANDOMIZE",
+    "RANDOMIZEUSE",
+    "RES_CUSTOM",
+    "RES_MAX",
+    "RES_MIN",
+    "RISE",
+    "RUN_ADP_ANALYSIS",
+    "RUN_COORDADPDEV_ANALYSIS",
+    "SCATTERING_FACTORS",
+    "TWIST",
+    "UNRESTRAINED",
+    "USE_JELLY",
+    "USE_NCS",
+    "USE_TWIN",
+    "USE_WORK_IN_EST",
+    "VALIDATE_IRIS",
+    "VALIDATE_MOLPROBITY",
+    "VALIDATE_RAMACHANDRAN",
+    "VDWR_WEIGHT",
+    "WEIGHT",
+    "WEIGHT_NO_ADJUST",
+    "WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX",
+    "WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN",
+    "metalCoordPipeline.GENERATE_OR_USE",
+    "metalCoordPipeline.LINKS",
+    "metalCoordPipeline.METALCOORD_RESTRAINTS",
+    "metalCoordPipeline.RUN_METALCOORD",
+    "metalCoordPipeline.TOGGLE_ADVANCED",
+    "metalCoordWrapper.DISTANCE_THRESHOLD",
+    "metalCoordWrapper.IDEAL_ANGLES",
+    "metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER",
+    "metalCoordWrapper.MINIMUM_SAMPLE_SIZE",
+    "metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD",
+    "metalCoordWrapper.SIMPLE",
+    "metalCoordWrapper.USE_PDB",
+    "monitor.MIN_ADPDEV",
+    "monitor.MIN_COORDDEV",
+    "prosmartNucleicAcid.ADVANCED",
+    "prosmartNucleicAcid.ALL_BEST",
+    "prosmartNucleicAcid.ALPHA",
+    "prosmartNucleicAcid.BFAC",
+    "prosmartNucleicAcid.CHAINLIST_1",
+    "prosmartNucleicAcid.DMAX",
+    "prosmartNucleicAcid.KEYWORDS",
+    "prosmartNucleicAcid.OCCUPANCY",
+    "prosmartNucleicAcid.RMAX",
+    "prosmartNucleicAcid.RMIN",
+    "prosmartNucleicAcid.SEQID",
+    "prosmartNucleicAcid.SIDE_MAIN",
+    "prosmartNucleicAcid.TOGGLE",
+    "prosmartNucleicAcid.TOGGLE_ALT",
+    "prosmartNucleicAcid.TOGGLE_BFAC",
+    "prosmartNucleicAcid.WEIGHT",
+    "prosmartProtein.ADVANCED",
+    "prosmartProtein.ALL_BEST",
+    "prosmartProtein.ALPHA",
+    "prosmartProtein.BFAC",
+    "prosmartProtein.CHAINLIST_1",
+    "prosmartProtein.DMAX",
+    "prosmartProtein.KEYWORDS",
+    "prosmartProtein.OCCUPANCY",
+    "prosmartProtein.RMAX",
+    "prosmartProtein.RMIN",
+    "prosmartProtein.SEQID",
+    "prosmartProtein.SGMN",
+    "prosmartProtein.SGMX",
+    "prosmartProtein.SIDE_MAIN",
+    "prosmartProtein.TOGGLE",
+    "prosmartProtein.TOGGLE_ALT",
+    "prosmartProtein.TOGGLE_BFAC"
+   ]
+  },
+  "sheetbend": {
+   "declared": {
+    "controlParameters": [
+     "REFINE_COORD",
+     "REFINE_U_ISO",
+     "REFINE_U_ANISO",
+     "CYCLES",
+     "RESOLUTION",
+     "RADIUS_SCALE",
+     "REFINE_REGULARIZE_CYCLES",
+     "PSEUDO_REGULARIZE",
+     "POSTREFINE_COORD",
+     "POSTREFINE_U_ISO",
+     "POSTREFINE_U_ANISO"
+    ],
+    "inputData": [
+     "XYZIN",
+     "F_SIGF",
+     "FREERFLAG"
+    ]
+   },
+   "outputData": [
+    "XYZOUT"
+   ],
+   "qtExposed": [
+    "CYCLES",
+    "FREERFLAG",
+    "F_SIGF",
+    "POSTREFINE_COORD",
+    "POSTREFINE_U_ANISO",
+    "POSTREFINE_U_ISO",
+    "PSEUDO_REGULARIZE",
+    "RADIUS_SCALE",
+    "REFINE_COORD",
+    "REFINE_REGULARIZE_CYCLES",
+    "REFINE_U_ANISO",
+    "REFINE_U_ISO",
+    "RESOLUTION",
+    "XYZIN"
+   ]
+  },
+  "shelx": {
+   "declared": {
+    "controlParameters": [
+     "REFATOMPICK_REF_PROGRAM",
+     "REFATOMPICK_RMS_THRESHOLD",
+     "USER_REFATOMPICK_RMS_THRESHOLD",
+     "REFATOMPICK_OCC_CUT",
+     "USER_REFATOMPICK_OCC_CUT",
+     "REFATOMPICK_NUM_ITER",
+     "USER_REFATOMPICK_NUM_ITER",
+     "REFATOMPICK_REFCYC",
+     "USER_REFATOMPICK_REFCYC",
+     "KEYWORDS_REFATOMPICK",
+     "FAEST_PROGRAM",
+     "SUBSTRDET_PROGRAM",
+     "SUBSTRDET_HIGH_RES_CUTOFF",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF",
+     "SUBSTRDET_HIGH_RES_CUTOFF_CCHALF",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF_CCHALF",
+     "SUBSTRDET_HIGH_RES_CUTOFF_RADIUS",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF_RADIUS",
+     "SUBSTRDET_HIGH_RES_CUTOFF_STEP",
+     "USER_SUBSTRDET_HIGH_RES_CUTOFF_STEP",
+     "SUBSTRDET_THRESHOLD_STOP",
+     "USER_SUBSTRDET_THRESHOLD_STOP",
+     "SUBSTRDET_THRESHOLD_WEAK",
+     "USER_SUBSTRDET_THRESHOLD_WEAK",
+     "SUBSTRDET_NUM_TRIALS",
+     "USER_SUBSTRDET_NUM_TRIALS",
+     "SUBSTRDET_NUM_THREADS",
+     "USER_SUBSTRDET_NUM_THREADS",
+     "SUBSTRDET_MIN_DIST_ATOMS",
+     "USER_SUBSTRDET_MIN_DIST_ATOMS",
+     "SUBSTRDET_MIN_DIST_SYMM_ATOMS",
+     "USER_SUBSTRDET_MIN_DIST_SYMM_ATOMS",
+     "SUBSTRDET_OPTIMIZE_SOL",
+     "USER_SUBSTRDET_OPTIMIZE_SOL",
+     "SUBSTRDET_NUM_ATOMS",
+     "USER_SUBSTRDET_NUM_ATOMS",
+     "PRASA_MINPEAKS",
+     "KEYWORDS_SUBSTRDET",
+     "PHAS_PROGRAM",
+     "PHAS_CYCLES",
+     "USER_PHAS_CYCLES",
+     "KEYWORDS_PHAS",
+     "DO_HANDDET",
+     "HANDDET_DMCYC",
+     "HANDDET_THRESHOLD_DISCRIM",
+     "HANDDET_DMFULL_DM_PROGRAM",
+     "KEYWORDS_HANDDET_DM",
+     "HANDDET_DMFULL_PHCOMB_PROGRAM",
+     "KEYWORDS_HANDDET_PHCOMB",
+     "DMFULL_DMCYC",
+     "USER_DMFULL_DMCYC",
+     "DMFULL_THRESHOLD_STOP",
+     "USER_DMFULL_THRESHOLD_STOP",
+     "DMFULL_DM_PROGRAM",
+     "DMFULL_PHCOMB_PROGRAM",
+     "KEYWORDS_DMFULL_PHCOMB",
+     "KEYWORDS_DMFULL_DM",
+     "PHDMMB_DMCYC",
+     "USER_PHDMMB_DMCYC",
+     "PHDMMB_BIGCYC",
+     "USER_PHDMMB_BIGCYC",
+     "PHDMMB_THRESHOLD_STOP",
+     "USER_PHDMMB_THRESHOLD_STOP",
+     "PHDMMB_THRESHOLD_HAND_STOP",
+     "USER_PHDMMB_THRESHOLD_HAND_STOP",
+     "PHDMMB_THOROUGH_BUILD",
+     "USER_PHDMMB_THOROUGH_BUILD",
+     "ARGUMENTS_SHELXE",
+     "USE_COMB",
+     "COMB_PHDMMB_MINBIGCYC",
+     "USER_COMB_PHDMMB_MINBIGCYC",
+     "COMB_PHDMMB_MAXBIGCYC",
+     "USER_COMB_PHDMMB_MAXBIGCYC",
+     "COMB_PHDMMB_NCS_DET",
+     "USER_COMB_PHDMMB_NCS_DET",
+     "COMB_PHDMMB_NCS_DET_MR",
+     "USER_COMB_PHDMMB_NCS_DET_MR",
+     "COMB_PHDMMB_SKIP_INITIAL_BUILD",
+     "USER_COMB_PHDMMB_SKIP_INITIAL_BUILD",
+     "COMB_PHDMMB_REBUILD_ONLY",
+     "USER_COMB_PHDMMB_REBUILD_ONLY",
+     "COMB_PHDMMB_START_SHELXE",
+     "USER_COMB_PHDMMB_START_SHELXE",
+     "COMB_PHDMMB_NUM_PARALLEL",
+     "USER_COMB_PHDMMB_NUM_PARALLEL",
+     "COMB_PHDMMB_DMFULL_DM_PROGRAM",
+     "KEYWORDS_COMB_DM",
+     "KEYWORDS_COMB_SHELXE",
+     "USER_MBREF_BIGCYC",
+     "COMB_PHDMMB_DMFULL_REF_PROGRAM",
+     "MB_PROGRAM",
+     "KEYWORDS_MB",
+     "MBREF_REF_PROGRAM",
+     "MBREF_BIGCYC",
+     "KEYWORDS_MB_REF",
+     "REF_PROGRAM",
+     "KEYWORDS_REF",
+     "REF_CYCLES",
+     "USER_REF_CYCLES",
+     "REF_EXCLUDE_FREE",
+     "MBREF_EXCLUDE_FREE",
+     "COMB_PHDMMB_EXCLUDE_FREE",
+     "PRESENT_STYLE",
+     "INITIAL_DEFAULTS_GEN",
+     "CLEANUP"
+    ],
+    "inputData": [
+     "F_SIGFanom",
+     "F_SIGFanom2",
+     "F_SIGFanom3",
+     "F_SIGFanom4",
+     "NON_MTZ",
+     "F_SIGFanom_nonmtz",
+     "F_SIGFanom2_nonmtz",
+     "F_SIGFanom3_nonmtz",
+     "F_SIGFanom4_nonmtz",
+     "ATOM_TYPE",
+     "F_SIGFnative",
+     "F_SIGFnative_nonmtz",
+     "WAVELENGTH4",
+     "WAVELENGTH3",
+     "WAVELENGTH2",
+     "WAVELENGTH",
+     "USER_WAVELENGTH",
+     "USER_WAVELENGTH2",
+     "USER_WAVELENGTH3",
+     "USER_WAVELENGTH4",
+     "FPRIME",
+     "FDPRIME",
+     "FPRIME2",
+     "FDPRIME2",
+     "FPRIME3",
+     "FDPRIME3",
+     "FPRIME4",
+     "FDPRIME4",
+     "USER_FPRIME",
+     "USER_FDPRIME",
+     "USER_FPRIME2",
+     "USER_FDPRIME2",
+     "USER_FPRIME3",
+     "USER_FDPRIME3",
+     "USER_FPRIME4",
+     "USER_FDPRIME4",
+     "CELL_A",
+     "CELL_B",
+     "CELL_C",
+     "CELL_D",
+     "CELL_E",
+     "CELL_F",
+     "SPACEGROUP",
+     "USER_CELL_A",
+     "USER_CELL_B",
+     "USER_CELL_C",
+     "USER_CELL_D",
+     "USER_CELL_E",
+     "USER_CELL_F",
+     "USER_SPACEGROUP",
+     "NUMBER_SUBSTRUCTURE",
+     "SUBSTRDET_NUM_DSUL",
+     "USER_NUMBER_SUBSTRUCTURE",
+     "USER_SUBSTRDET_NUM_DSUL",
+     "SEQIN",
+     "XYZIN",
+     "XYZIN_SUB",
+     "XYZIN_SUB_RES",
+     "FPHIN_HL",
+     "INPUT_PHASES",
+     "EXPTYPE",
+     "USER_EXPTYPE",
+     "REPLACE_MET_MSE",
+     "START_PIPELINE",
+     "END_PIPELINE",
+     "SHELXCDE",
+     "SHELX_SEPAR",
+     "DNA",
+     "SUBSTR_ATOMS_NATIVE",
+     "USER_SUBSTR_ATOMS_NATIVE",
+     "NATIVE",
+     "MAD2",
+     "MAD3",
+     "MAD4",
+     "DNAME",
+     "DNAME2",
+     "DNAME3",
+     "DNAME4",
+     "USER_DNAME",
+     "USER_DNAME2",
+     "USER_DNAME3",
+     "USER_DNAME4",
+     "INPUT_PARTIAL",
+     "PARTIAL_AS_SUBSTR",
+     "SUBSTR_IN_PARTIAL",
+     "FREE",
+     "MONOMERS_ASYM",
+     "USER_MONOMERS_ASYM",
+     "SOLVENT_CONTENT",
+     "USER_SOLVENT_CONTENT",
+     "RESIDUES_MON",
+     "USER_RESIDUES_MON",
+     "RESIDUES_MON_COPY",
+     "RESIDUES_MON_INFO",
+     "NUCLEOTIDES_MON",
+     "INPUT_SEQUENCE",
+     "SAVED_FPMFILE",
+     "SAVED_FPMFILE2",
+     "SAVED_FPMFILE3",
+     "SAVED_FPMFILE4",
+     "SAVED_FAVFILE",
+     "SAVED_FAVFILE2",
+     "SAVED_FAVFILE3",
+     "SAVED_FAVFILE4",
+     "SAVED_FAVFILE_NATIVE",
+     "SAVED_FPLUS",
+     "SAVED_FPLUS2",
+     "SAVED_FPLUS3",
+     "SAVED_FPLUS4",
+     "SAVED_SIGFPLUS",
+     "SAVED_SIGFPLUS2",
+     "SAVED_SIGFPLUS3",
+     "SAVED_SIGFPLUS4",
+     "SAVED_FMIN",
+     "SAVED_FMIN2",
+     "SAVED_FMIN3",
+     "SAVED_FMIN4",
+     "SAVED_SIGFMIN",
+     "SAVED_SIGFMIN2",
+     "SAVED_SIGFMIN3",
+     "SAVED_SIGFMIN4",
+     "SAVED_FAVER",
+     "SAVED_FAVER2",
+     "SAVED_FAVER3",
+     "SAVED_FAVER4",
+     "SAVED_FAVER_NATIVE",
+     "SAVED_SIGFAVER",
+     "SAVED_SIGFAVER2",
+     "SAVED_SIGFAVER3",
+     "SAVED_SIGFAVER4",
+     "SAVED_SIGFAVER_NATIVE",
+     "FREERFLAG",
+     "FREE_RATIO"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHOUT",
+    "FPHOUT_2FOFC",
+    "XYZOUT_SUBSTR",
+    "XYZOUT_SUB_RES",
+    "FPHOUT_HL",
+    "FPHOUT_DIFF",
+    "FPHOUT_DIFFANOM",
+    "XYZOUT_HAND2",
+    "FPHOUT_HAND2",
+    "FPHOUT_HL_HAND2",
+    "F_SIGFanom_OUT",
+    "F_SIGFanom_OUT2",
+    "F_SIGFanom_OUT3",
+    "F_SIGFanom_OUT4",
+    "F_SIGF_OUT",
+    "FREEROUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "ARGUMENTS_SHELXE",
+    "ATOM_TYPE",
+    "CELL_A",
+    "CELL_B",
+    "CELL_C",
+    "CELL_D",
+    "CELL_E",
+    "CELL_F",
+    "CLEANUP",
+    "COMB_PHDMMB_DMFULL_DM_PROGRAM",
+    "COMB_PHDMMB_EXCLUDE_FREE",
+    "COMB_PHDMMB_MAXBIGCYC",
+    "COMB_PHDMMB_MINBIGCYC",
+    "COMB_PHDMMB_NCS_DET",
+    "COMB_PHDMMB_NCS_DET_MR",
+    "COMB_PHDMMB_NUM_PARALLEL",
+    "COMB_PHDMMB_REBUILD_ONLY",
+    "COMB_PHDMMB_SKIP_INITIAL_BUILD",
+    "COMB_PHDMMB_START_SHELXE",
+    "DMFULL_DMCYC",
+    "DMFULL_DM_PROGRAM",
+    "DMFULL_PHCOMB_PROGRAM",
+    "DMFULL_THRESHOLD_STOP",
+    "DO_HANDDET",
+    "END_PIPELINE",
+    "EXPTYPE",
+    "FPHIN_HL",
+    "FREE",
+    "FREERFLAG",
+    "FREE_RATIO",
+    "HANDDET_DMFULL_DM_PROGRAM",
+    "HANDDET_DMFULL_PHCOMB_PROGRAM",
+    "HANDDET_THRESHOLD_DISCRIM",
+    "INPUT_PHASES",
+    "INPUT_SEQUENCE",
+    "KEYWORDS_COMB_DM",
+    "KEYWORDS_COMB_SHELXE",
+    "KEYWORDS_DMFULL_DM",
+    "KEYWORDS_MB",
+    "KEYWORDS_SUBSTRDET",
+    "MAD2",
+    "MAD3",
+    "MAD4",
+    "MBREF_BIGCYC",
+    "MBREF_EXCLUDE_FREE",
+    "MB_PROGRAM",
+    "MONOMERS_ASYM",
+    "NATIVE",
+    "NON_MTZ",
+    "NUCLEOTIDES_MON",
+    "NUMBER_SUBSTRUCTURE",
+    "PHAS_PROGRAM",
+    "PHDMMB_BIGCYC",
+    "PHDMMB_DMCYC",
+    "PHDMMB_THOROUGH_BUILD",
+    "PHDMMB_THRESHOLD_HAND_STOP",
+    "PHDMMB_THRESHOLD_STOP",
+    "PRASA_MINPEAKS",
+    "REFATOMPICK_NUM_ITER",
+    "REFATOMPICK_OCC_CUT",
+    "REFATOMPICK_REFCYC",
+    "REFATOMPICK_RMS_THRESHOLD",
+    "REF_CYCLES",
+    "REF_EXCLUDE_FREE",
+    "RESIDUES_MON",
+    "RESIDUES_MON_COPY",
+    "SEQIN",
+    "SOLVENT_CONTENT",
+    "SPACEGROUP",
+    "START_PIPELINE",
+    "SUBSTRDET_HIGH_RES_CUTOFF",
+    "SUBSTRDET_HIGH_RES_CUTOFF_CCHALF",
+    "SUBSTRDET_HIGH_RES_CUTOFF_RADIUS",
+    "SUBSTRDET_HIGH_RES_CUTOFF_STEP",
+    "SUBSTRDET_MIN_DIST_ATOMS",
+    "SUBSTRDET_MIN_DIST_SYMM_ATOMS",
+    "SUBSTRDET_NUM_ATOMS",
+    "SUBSTRDET_NUM_DSUL",
+    "SUBSTRDET_NUM_THREADS",
+    "SUBSTRDET_NUM_TRIALS",
+    "SUBSTRDET_OPTIMIZE_SOL",
+    "SUBSTRDET_THRESHOLD_STOP",
+    "SUBSTRDET_THRESHOLD_WEAK",
+    "SUBSTR_ATOMS_NATIVE",
+    "USE_COMB",
+    "XYZIN_SUB"
+   ],
+   "qtReferenceFrom": "crank2"
+  },
+  "shelxeMR": {
+   "declared": {
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "XYZIN",
+     "FSOLVENT",
+     "NTCYCLES",
+     "NMCYCLES",
+     "SALPHELICE",
+     "PRUNRES",
+     "USENFOLD",
+     "TIMEFAC",
+     "SBETA",
+     "SANTIBETA",
+     "PERFORMANCE"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHIOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "FREERFLAG",
+    "FSOLVENT",
+    "F_SIGF",
+    "NMCYCLES",
+    "NTCYCLES",
+    "PRUNRES",
+    "SALPHELICE",
+    "SANTIBETA",
+    "SBETA",
+    "TIMEFAC",
+    "USENFOLD",
+    "XYZIN"
+   ]
+  },
+  "slicendice": {
+   "declared": {
+    "controlParameters": [
+     "INCLUDE",
+     "NPROC",
+     "LOCALONLY",
+     "NCYC",
+     "BCYC",
+     "PRF",
+     "NP",
+     "NPT",
+     "NO_MOLS",
+     "SCORE",
+     "ANISO",
+     "SEQ",
+     "SURF",
+     "NMASU",
+     "SIM",
+     "RESMAX",
+     "BADD",
+     "RESMIN",
+     "BOFF"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "ASUIN",
+     "XYZIN",
+     "SEQIN_2",
+     "KEYIN",
+     "SELECTEDCHAINS"
+    ],
+    "modelParameters": [
+     "MIN_SPLITS",
+     "MAX_SPLITS",
+     "BFACTOR_TREATMENT",
+     "MRMAX",
+     "REDUNDANCYLEVEL",
+     "SEARCH_PDB",
+     "PLDDT_THRESHOLD",
+     "RMS_THRESHOLD",
+     "SEARCH_AFDB",
+     "HHPREDIN",
+     "PDBLOCAL",
+     "LOCAL",
+     "XYZIN_LIST",
+     "ENSEMBLES"
+    ]
+   },
+   "guiParameters": [
+    "USE_FIXED",
+    "OPEN_PRF",
+    "OPEN_NPEAKS",
+    "OPEN_SCORE",
+    "OPEN_ANISO",
+    "OPEN_HIGH_PATH_VAR",
+    "HIGH_PATH_VAR",
+    "OPEN_LOW_PATH_VAR",
+    "LOW_PATH_VAR",
+    "OPEN_SEQ",
+    "OPEN_SURF"
+   ],
+   "outputData": [
+    "HKLOUT",
+    "XYZOUT",
+    "DIFFPHIOUT",
+    "FPHIOUT",
+    "XMLOUT",
+    "PERFORMANCEINDICATOR"
+   ],
+   "qtExposed": [
+    "ASUIN",
+    "BFACTOR_TREATMENT",
+    "FREERFLAG",
+    "F_SIGF",
+    "MAX_SPLITS",
+    "MIN_SPLITS",
+    "NCYC",
+    "NO_MOLS",
+    "NPROC",
+    "PLDDT_THRESHOLD",
+    "RMS_THRESHOLD",
+    "XYZIN"
+   ]
+  },
+  "splitMtz": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "COLUMNGROUPLIST",
+     "USERCOLUMNGROUP"
+    ]
+   },
+   "outputData": [
+    "MINIMTZOUTLIST"
+   ],
+   "qtExposed": [
+    "COLUMNGROUPLIST",
+    "HKLIN"
+   ]
+  },
+  "tableone": {
+   "declared": {
+    "inputData": [
+     "UNMERGED",
+     "F_SIGF",
+     "FREERFLAG",
+     "XYZIN"
+    ]
+   },
+   "qtExposed": [
+    "FREERFLAG",
+    "F_SIGF",
+    "UNMERGED",
+    "XYZIN"
+   ]
+  },
+  "validate_protein": {
+   "declared": {
+    "controlParameters": [
+     "DO_IRIS",
+     "DO_RAMA",
+     "DO_BFACT",
+     "DO_MOLPROBITY",
+     "DO_TORTOIZE",
+     "TWO_DATASETS"
+    ],
+    "inputData": [
+     "F_SIGF_1",
+     "XYZIN_1",
+     "F_SIGF_2",
+     "XYZIN_2",
+     "NAME_1",
+     "NAME_2"
+    ]
+   },
+   "outputData": [
+    "COOTSCRIPTOUT"
+   ],
+   "qtExposed": [
+    "DO_BFACT",
+    "DO_IRIS",
+    "DO_MOLPROBITY",
+    "DO_RAMA",
+    "DO_TORTOIZE",
+    "NAME_1",
+    "NAME_2",
+    "TWO_DATASETS"
+   ]
+  },
+  "x2mtz": {
+   "declared": {
+    "inputData": [
+     "HKLIN",
+     "HKLIN_OBS_CONTENT_FLAG",
+     "HKLIN_OBS_COLUMNS",
+     "HKLIN_FREER_COLUMN"
+    ]
+   },
+   "outputData": [
+    "HKLOUT",
+    "OBSOUT",
+    "FREEOUT"
+   ]
+  },
+  "xia2_aimless": {
+   "declared": {
+    "inputData": [
+     "XIA2_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "xia2_ctruncate": {
+   "declared": {
+    "inputData": [
+     "XIA2_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "xia2_dials": {
+   "declared": {
+    "inputData": [
+     "IMAGE_FILE",
+     "IMAGE_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDOUT",
+    "HKLOUT",
+    "FREEROUT",
+    "DIALSJOUT",
+    "DIALSPOUT",
+    "PERFORMANCE"
+   ],
+   "philDriven": true,
+   "qtExposed": [
+    "IMAGE_DIRECTORY",
+    "IMAGE_FILE"
+   ],
+   "qtExposedIncomplete": true
+  },
+  "xia2_integration": {
+   "declared": {
+    "inputData": [
+     "XIA2_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "xia2_multiplex": {
+   "declared": {
+    "inputData": [
+     "SEARCH_ROOT_DIR",
+     "DIALS_INTEGRATED",
+     "XIA2_RUN"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDOUT",
+    "HKLOUT",
+    "PERFORMANCE"
+   ],
+   "philDriven": true,
+   "qtExposed": [
+    "DIALS_INTEGRATED",
+    "SEARCH_ROOT_DIR"
+   ],
+   "qtExposedIncomplete": true
+  },
+  "xia2_pointless": {
+   "declared": {
+    "inputData": [
+     "XIA2_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "HKLOUT"
+   ]
+  },
+  "xia2_run": {
+   "declared": {
+    "controlParameters": [
+     "RUN_MODE"
+    ],
+    "inputData": [
+     "XIA2_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDHKL",
+    "HKLOUT",
+    "FSIGF",
+    "FANOM",
+    "IANOM",
+    "FREER",
+    "PERFORMANCE"
+   ]
+  },
+  "xia2_ssx_reduce": {
+   "declared": {
+    "controlParameters": [
+     "MEDIAN_CELL",
+     "dials_cosym_phil_d_min"
+    ],
+    "inputData": [
+     "SEARCH_ROOT_DIR",
+     "DIALS_INTEGRATED",
+     "XIA2_RUN",
+     "SEARCH_PREFERENCE",
+     "reference",
+     "grouping"
+    ]
+   },
+   "outputData": [
+    "HKLOUT",
+    "DIALS_INTEGRATED",
+    "PERFORMANCE"
+   ],
+   "philDriven": true,
+   "qtAutoGenerated": true,
+   "qtExposed": [
+    "DIALS_INTEGRATED",
+    "MEDIAN_CELL",
+    "SEARCH_PREFERENCE",
+    "SEARCH_ROOT_DIR",
+    "clustering__absolute_angle_tolerance",
+    "clustering__absolute_length_tolerance",
+    "clustering__central_unit_cell",
+    "clustering__threshold",
+    "dials_cosym_phil_d_min",
+    "dose_series_repeat",
+    "reference_model__b_sol",
+    "reference_model__k_sol",
+    "scaling__anomalous",
+    "symmetry__lattice_symmetry_max_delta",
+    "symmetry__space_group",
+    "workflow__steps"
+   ]
+  },
+  "xia2_xds": {
+   "declared": {
+    "inputData": [
+     "IMAGE_FILE",
+     "IMAGE_DIRECTORY"
+    ]
+   },
+   "outputData": [
+    "UNMERGEDOUT",
+    "HKLOUT",
+    "FREEROUT",
+    "DIALSJOUT",
+    "DIALSPOUT",
+    "PERFORMANCE"
+   ],
+   "philDriven": true
+  },
+  "zanuda": {
+   "declared": {
+    "controlParameters": [
+     "AVERAGE"
+    ],
+    "inputData": [
+     "F_SIGF",
+     "FREERFLAG",
+     "XYZIN"
+    ]
+   },
+   "outputData": [
+    "XYZOUT",
+    "FPHIOUT",
+    "DIFFPHIOUT",
+    "PERFORMANCE"
+   ],
+   "qtExposed": [
+    "AVERAGE",
+    "FREERFLAG",
+    "F_SIGF",
+    "XYZIN"
+   ]
+  }
+ }
+}

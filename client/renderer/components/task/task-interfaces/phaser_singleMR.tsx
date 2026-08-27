@@ -267,6 +267,15 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               />
             </InlineField>
 
+            {/* Quick packing, offered by Qt once packing criteria are set. Not
+                relevant if all solutions are selected. */}
+            <CCP4i2TaskElement
+              itemName="EXP_QKPACK_ON"
+              {...props}
+              qualifiers={{ guiLabel: "Use Quick Packing" }}
+              visibility={() => Boolean(expPackOn.value)}
+            />
+
             {/* Translation search peak criteria */}
             <InlineField
               width="auto"
