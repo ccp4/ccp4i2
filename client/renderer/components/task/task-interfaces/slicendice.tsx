@@ -5,7 +5,8 @@ import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { container } = useJob(props.job.id);
+  const { container, useTaskItem } = useJob(props.job.id);
+  const { value: BFACTOR_TREATMENT } = useTaskItem("BFACTOR_TREATMENT");
 
   if (!container) return <LinearProgress />;
 
@@ -24,6 +25,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2TaskElement itemName="NO_MOLS" {...props} qualifiers={{ guiLabel: "The number of monomers to search for" }} />
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
         <CCP4i2TaskElement itemName="BFACTOR_TREATMENT" {...props} />
+        {/* The threshold each treatment needs. Neither was here, so choosing a
+            treatment left its cut-off at whatever the default happened to be. */}
+        <CCP4i2TaskElement
+          itemName="PLDDT_THRESHOLD"
+          {...props}
+          qualifiers={{ guiLabel: "pLDDT threshold" }}
+          visibility={() => BFACTOR_TREATMENT === "plddt"}
+        />
+        <CCP4i2TaskElement
+          itemName="RMS_THRESHOLD"
+          {...props}
+          qualifiers={{ guiLabel: "R.m.s. threshold" }}
+          visibility={() => BFACTOR_TREATMENT === "rms"}
+        />
       </CCP4i2ContainerElement>
 
       {/* Options */}

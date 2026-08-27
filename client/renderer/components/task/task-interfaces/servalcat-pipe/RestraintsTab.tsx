@@ -200,6 +200,28 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
             />
           </>
         )}
+        {/* The other two ways to restrain, alongside jelly-body: refine with no
+            geometric restraints at all, or hold coordinates entirely fixed.
+            Qt gates the restraint sub-frames on all three together
+            (ToggleRestraintsOn/Off take UNRESTRAINED, FIX_XYZ and JELLY_ONLY),
+            so offering only one of them left the other two unreachable. */}
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="UNRESTRAINED"
+          qualifiers={{ guiLabel: "Unrestrained refinement" }}
+        />
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="FIX_XYZ"
+          qualifiers={{ guiLabel: "Fix coordinates (refine B-factors only)" }}
+        />
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="VDWR_WEIGHT"
+          qualifiers={{
+            guiLabel: "Van der Waals repulsion restraint weight",
+          }}
+        />
       </CCP4i2ContainerElement>
 
       {/* MetalCoord External Restraints for Metals */}

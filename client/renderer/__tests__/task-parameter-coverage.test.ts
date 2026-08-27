@@ -233,7 +233,6 @@ function reachable(
   ambiguous: Set<string>
 ): boolean {
   const leaf = parameter.split(".").pop()!;
-  if (exposure.excluded.has(leaf) || exposure.excluded.has(parameter)) return false;
 
   if (exposure.names.has(parameter)) return true;
 
@@ -258,6 +257,14 @@ function reachable(
   }
 
   // The whole section, or some container on the way down to this parameter.
+  // `excludeItems` subtracts from what an auto-rendered container lays out --
+  // it says nothing about a field named explicitly elsewhere. ShelxCD renders
+  // MODE, FIND, NTRY and SFAC by hand on its first tab and excludes them from
+  // the auto-generated Keywords tab, exactly as Qt does; reading the exclusion
+  // as a blanket suppression would call all four unreachable.
+  if (exposure.excluded.has(leaf) || exposure.excluded.has(parameter)) {
+    return false;
+  }
   if (exposure.autoRendered.has(section)) return true;
   const segments = parameter.split(".");
   for (let i = 1; i < segments.length; i++) {

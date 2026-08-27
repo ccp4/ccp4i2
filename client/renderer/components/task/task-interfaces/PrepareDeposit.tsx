@@ -23,6 +23,26 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Input data" }}
         containerHint="FolderLevel"
       >
+        {/* The data being deposited. Qt auto-generates the whole inputData
+            container, excluding only the twelve parameters it draws by hand;
+            these three were in neither list here, so a deposition-preparation
+            form offered no coordinates and no reflections. */}
+        <CCP4i2TaskElement
+          itemName="XYZIN"
+          {...props}
+          qualifiers={{ guiLabel: "Final refined coordinates" }}
+        />
+        <CCP4i2TaskElement
+          itemName="F_SIGF"
+          {...props}
+          qualifiers={{ guiLabel: "Reflections used in refinement" }}
+        />
+        <CCP4i2TaskElement
+          itemName="FREERFLAG"
+          {...props}
+          qualifiers={{ guiLabel: "Free R set" }}
+        />
+
         <InlineField label="Refinement in final step used reflection">
           <CCP4i2TaskElement itemName="USINGIORF" {...props} qualifiers={{ guiLabel: " " }} />
         </InlineField>

@@ -1,65 +1,5 @@
 {
- "gaps": {
-  "import_merged": [
-   "CUTRESOLUTION",
-   "OVERRIDE_CELL_DIFFERENCE",
-   "SKIP_FREER"
-  ],
-  "molrep_den": [
-   "BADD",
-   "RESMAX",
-   "SIM"
-  ],
-  "molrep_pipe": [
-   "PRF"
-  ],
-  "morda_i2": [
-   "CHECK_PAUSE",
-   "MOCK_DIR",
-   "MOCK_PAUSE"
-  ],
-  "mrbump_basic": [
-   "LOCAL",
-   "LOCALONLY"
-  ],
-  "phaser_simple": [
-   "FIXEDRMS",
-   "FIXEDSEQUENCEIDENTITY",
-   "FIXED_ID_RMS"
-  ],
-  "phaser_singleMR": [
-   "EXP_QKPACK_ON"
-  ],
-  "PrepareDeposit": [
-   "FREERFLAG",
-   "F_SIGF",
-   "XYZIN"
-  ],
-  "prosmart_refmac": [
-   "OVERRIDE_LINK"
-  ],
-  "sculptor": [
-   "BFACTOR",
-   "PRUNING"
-  ],
-  "servalcat_pipe": [
-   "FIX_XYZ",
-   "UNRESTRAINED",
-   "VDWR_WEIGHT"
-  ],
-  "ShelxCD": [
-   "ASCA",
-   "DSCA",
-   "MIND",
-   "RIPW",
-   "SEED",
-   "SHEL"
-  ],
-  "slicendice": [
-   "PLDDT_THRESHOLD",
-   "RMS_THRESHOLD"
-  ]
- },
+ "gaps": {},
  "phantom": {},
  "reachable": {
   "acorn": [
@@ -726,7 +666,10 @@
    "inputData.XYZIN"
   ],
   "import_merged": [
+   "controlParameters.CUTRESOLUTION",
    "controlParameters.FREER_FRACTION",
+   "controlParameters.OVERRIDE_CELL_DIFFERENCE",
+   "controlParameters.SKIP_FREER",
    "inputData.CRYSTALNAME",
    "inputData.DATASETNAME",
    "inputData.FREERFLAG",
@@ -937,6 +880,7 @@
   ],
   "molrep_den": [
    "controlParameters.ANISO",
+   "controlParameters.BADD",
    "controlParameters.HIGH_PATH_VAR",
    "controlParameters.LOW_PATH_VAR",
    "controlParameters.NMON",
@@ -944,8 +888,10 @@
    "controlParameters.NP",
    "controlParameters.NPT",
    "controlParameters.PRF",
+   "controlParameters.RESMAX",
    "controlParameters.SCORE",
    "controlParameters.SEQ",
+   "controlParameters.SIM",
    "controlParameters.SURF",
    "inputData.ASUIN",
    "inputData.F_PHI_MAP",
@@ -962,6 +908,7 @@
    "controlParameters.NMON_EXP",
    "controlParameters.NP",
    "controlParameters.NPT",
+   "controlParameters.PRF",
    "controlParameters.RESMAX",
    "controlParameters.RESMIN",
    "controlParameters.SCORE",
@@ -1018,6 +965,7 @@
   "mrbump_basic": [
    "controlParameters.BUCC",
    "controlParameters.INCLUDE",
+   "controlParameters.LOCALONLY",
    "controlParameters.NCYC",
    "controlParameters.NMON",
    "controlParameters.PJOBS",
@@ -1026,6 +974,7 @@
    "inputData.F_SIGF",
    "modelParameters.AFDBLEVEL",
    "modelParameters.HHPREDIN",
+   "modelParameters.LOCAL",
    "modelParameters.MRMAX",
    "modelParameters.PDBLOCAL",
    "modelParameters.REDUNDANCYLEVEL",
@@ -1264,6 +1213,9 @@
    "inputData.ASU_NUCLEICACID_MW",
    "inputData.ASU_PROTEIN_MW",
    "inputData.COMP_BY",
+   "inputData.FIXEDRMS",
+   "inputData.FIXEDSEQUENCEIDENTITY",
+   "inputData.FIXED_ID_RMS",
    "inputData.FREERFLAG",
    "inputData.F_OR_I",
    "inputData.F_SIGF",
@@ -1309,6 +1261,7 @@
    "inputDataExp.EXP_PURGE_TRANPK_NUM",
    "inputDataExp.EXP_PURGE_TRANPK_ON",
    "inputDataExp.EXP_PURGE_TRANPK_PER",
+   "inputDataExp.EXP_QKPACK_ON",
    "inputDataExp.EXP_RESRAN_HRREFINE_HI",
    "inputDataExp.EXP_RESRAN_HRREFINE_LO",
    "inputDataExp.EXP_RESRAN_HRREFINE_ON",
@@ -1337,12 +1290,15 @@
    "inputData.ASUIN",
    "inputData.B_REFINEMENT_MODE",
    "inputData.DICT",
+   "inputData.FREERFLAG",
+   "inputData.F_SIGF",
    "inputData.OUTPUT_DIRECTORY",
    "inputData.PROVIDEDICT",
    "inputData.PROVIDESEQUENCES",
    "inputData.PROVIDETLS",
    "inputData.TLSIN",
-   "inputData.USINGIORF"
+   "inputData.USINGIORF",
+   "inputData.XYZIN"
   ],
   "privateer": [
    "controlParameters.ALLPERMUTATIONS",
@@ -1471,6 +1427,7 @@
    "controlParameters.OCCUPANCY_REFINEMENT",
    "controlParameters.OCCUPANCY_SELECTION",
    "controlParameters.OUTPUT_HYDROGENS",
+   "controlParameters.OVERRIDE_LINK",
    "controlParameters.REFINEMENT_MODE",
    "controlParameters.REFMAC_CLEANUP",
    "controlParameters.REFPRO_RSR_RWORK_LIMIT",
@@ -1580,7 +1537,9 @@
    "inputData.MERGEDFILES"
   ],
   "sculptor": [
+   "controlParameters.BFACTOR",
    "controlParameters.CHAINIDS",
+   "controlParameters.PRUNING",
    "controlParameters.TARGETINDEX",
    "inputData.ALIGNIN",
    "inputData.ALIGNMENTORSEQUENCEIN",
@@ -1610,6 +1569,7 @@
    "controlParameters.DATA_METHOD",
    "controlParameters.EXTRA_SERVALCAT_OPTIONS",
    "controlParameters.FIND_LINKS",
+   "controlParameters.FIX_XYZ",
    "controlParameters.FREERFLAG_NUMBER",
    "controlParameters.F_SIGF_OR_I_SIGI",
    "controlParameters.HYDR_ALL",
@@ -1647,6 +1607,7 @@
    "controlParameters.SCATTERING_ELECTRON",
    "controlParameters.SCATTERING_FACTORS",
    "controlParameters.TWIST",
+   "controlParameters.UNRESTRAINED",
    "controlParameters.USEANOMALOUS",
    "controlParameters.USEANOMALOUSFOR",
    "controlParameters.USE_JELLY",
@@ -1656,6 +1617,7 @@
    "controlParameters.VALIDATE_IRIS",
    "controlParameters.VALIDATE_MOLPROBITY",
    "controlParameters.VALIDATE_RAMACHANDRAN",
+   "controlParameters.VDWR_WEIGHT",
    "controlParameters.WEIGHT",
    "controlParameters.WEIGHT_NO_ADJUST",
    "controlParameters.WEIGHT_OPT",
@@ -1743,10 +1705,16 @@
    "inputData.XYZIN"
   ],
   "ShelxCD": [
+   "controlParameters.ASCA",
+   "controlParameters.DSCA",
    "controlParameters.FIND",
+   "controlParameters.MIND",
    "controlParameters.MODE",
    "controlParameters.NTRY",
+   "controlParameters.RIPW",
+   "controlParameters.SEED",
    "controlParameters.SFAC",
+   "controlParameters.SHEL",
    "inputData.HREM",
    "inputData.INFL",
    "inputData.LREM",
@@ -1893,7 +1861,9 @@
    "inputData.XYZIN",
    "modelParameters.BFACTOR_TREATMENT",
    "modelParameters.MAX_SPLITS",
-   "modelParameters.MIN_SPLITS"
+   "modelParameters.MIN_SPLITS",
+   "modelParameters.PLDDT_THRESHOLD",
+   "modelParameters.RMS_THRESHOLD"
   ],
   "splitMtz": [
    "inputData.COLUMNGROUPLIST",

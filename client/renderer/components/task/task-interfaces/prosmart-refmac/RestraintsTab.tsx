@@ -589,6 +589,15 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
             guiLabel: "Detect covalent linkages based on coordinates",
           }}
         />
+        {/* Whether detected linkages replace what the model already declares.
+            Qt shows it once link detection is on. */}
+        <CCP4i2TaskElement
+          {...allProps}
+          itemName="OVERRIDE_LINK"
+          qualifiers={{
+            guiLabel: "Ignore all LINK records in the input model",
+          }}
+        />
       </CCP4i2ContainerElement>
 
       {/* Platonyzer */}

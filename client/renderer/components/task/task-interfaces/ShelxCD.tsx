@@ -114,7 +114,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
         <CCP4i2Tab key="controlParameters" label="Keywords">
-          {/* Auto-generated keywords excluding MODE, FIND, NTRY, SFAC */}
+          {/* This tab held only the comment below and rendered nothing, so
+              SHEL, MIND, RIPW, DSCA, ASCA and SEED could not be set. Qt draws
+              the container with `autoGenerate(container=controlParameters,
+              selection={'excludeParameters': ['MODE','FIND','NTRY','SFAC']})`
+              -- those four are on the first tab -- and a self-closing
+              container element does the same. The def.xml gives these no
+              guiLabel, so they show as SHELXD names them, as they did in Qt. */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName="controlParameters"
+            qualifiers={{ guiLabel: "SHELXD keywords" }}
+            containerHint="FolderLevel"
+            initiallyOpen={true}
+            excludeItems={["MODE", "FIND", "NTRY", "SFAC"]}
+          />
         </CCP4i2Tab>
       </CCP4i2Tabs>
     </Paper>

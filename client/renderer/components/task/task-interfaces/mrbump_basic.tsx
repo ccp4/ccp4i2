@@ -75,6 +75,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: "Model databases" }}
             containerHint="FolderLevel"
           >
+            {/* Locally supplied search models. Without these the database
+                search could not be supplemented, nor replaced. */}
+            <CCP4i2TaskElement
+              itemName="LOCAL"
+              {...props}
+              qualifiers={{ guiLabel: "Include local files" }}
+            />
+            <CCP4i2TaskElement
+              itemName="LOCALONLY"
+              {...props}
+              qualifiers={{
+                guiLabel:
+                  "Only use locally provided search models (no sequence search)",
+              }}
+            />
             <CCP4i2TaskElement
               itemName="SEARCH_PDB"
               {...props}

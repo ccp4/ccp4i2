@@ -286,6 +286,24 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <Typography variant="body2" sx={{ mb: 1 }}>
               PF = Packing Function
             </Typography>
+            {/* Which search method Molrep uses. SAPTF = spherically averaged
+                phased translation function; PRF = phased rotation function;
+                RF(M) takes f-obs from the density outside the fixed model,
+                RF(S) from inside a sphere. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="controlParameters.PRF"
+              qualifiers={{
+                guiLabel: "Search method",
+                guiMode: "radio",
+                menuText: [
+                  "RF(M) + PTF",
+                  "SAPTF + PRF + PTF",
+                  "SAPTF + RF(S) + PTF",
+                ],
+                enumerators: ["n", "y", "s"],
+              }}
+            />
             <CCP4i2TaskElement
               {...props}
               itemName="controlParameters.SCORE"

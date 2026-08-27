@@ -15,6 +15,20 @@
     "must still be unreachable (so an exclusion that someone has since",
     "implemented gets removed rather than quietly contradicting the code)."
   ],
+  "morda_i2": [
+    {
+      "reason": [
+        "Developer scaffolding. Qt puts these behind",
+        "`if b1 or b2 or b3 or 'MRD_DEVEL' in os.environ:` -- shown only when one",
+        "is already set or the developer environment variable is present -- and",
+        "labels the section with the tooltip 'There is a bug if you see this",
+        "section'. MOCK_DIR starts the job from a copy of an existing work",
+        "directory; the two pauses are for watching it run. None belongs in a",
+        "form a crystallographer uses."
+      ],
+      "parameters": ["CHECK_PAUSE", "MOCK_DIR", "MOCK_PAUSE"]
+    }
+  ],
   "shelx": [
     {
       "reason": [
