@@ -148,7 +148,7 @@ def test_a_failing_subjob_writes_its_own_diagnostic(tmp_path):
     child = _plugin(child_dir)
     child.errorReport.append(klass='dimple', code=101, details='cif not pdb')
 
-    child.recordFailureCauses()
+    child.recordCauses(CPluginScript.FAILED)
 
     assert (child_dir / 'diagnostic.xml').exists()
 
@@ -161,25 +161,69 @@ def test_the_parent_learns_why_the_child_failed(tmp_path):
     child.errorReport.append(klass='i2Dimple', code=101,
                              details='Incorrect file format (perhaps it is cif not pdb?)')
 
-    child.recordFailureCauses()
-    parent.recordFailureCauses()
+    child.recordCauses(CPluginScript.FAILED)
+    parent.recordCauses(CPluginScript.FAILED)
 
     assert _names(parent.errorReport) == ['job_2']
     assert 'cif not pdb' in parent.errorReport.entries()[0]['details']
 
 
-def test_a_pipeline_that_recovers_does_not_report_what_it_recovered_from(tmp_path):
-    """Several pipelines try something, have it fail, and carry on."""
+def test_a_pipeline_that_carried_on_still_shows_what_it_carried_on_past(tmp_path):
+    """Which pipelines *should* survive a failed subjob is not decided here.
+
+    The failure is shown either way; what changes is whether it is fatal. A
+    job that finished keeps its finished status and gains a warning, so the
+    situation is visible and countable rather than silently either way.
+    """
     parent = _plugin(tmp_path)
     child_dir = tmp_path / 'job_2'
     child_dir.mkdir()
     child = _plugin(child_dir, parent=parent)
-    child.errorReport.append(klass='t', code=1, details='first attempt failed')
+    child.errorReport.append(klass='t', code=1, details='first attempt failed',
+                             severity=SEVERITY_ERROR)
 
-    child.recordFailureCauses()
+    child.recordCauses(CPluginScript.FAILED)
+    parent.recordCauses(CPluginScript.SUCCEEDED)
 
-    assert (child_dir / 'diagnostic.xml').exists(), 'still on disk for forensics'
-    assert len(parent.errorReport) == 0, 'but not on a job that went on to succeed'
+    assert (child_dir / 'diagnostic.xml').exists()
+    entries = parent.errorReport.entries()
+    assert [e['name'] for e in entries] == ['job_2']
+    assert entries[0]['severity'] == SEVERITY_WARNING, (
+        'a job that finished must not be marked failed by a step it survived')
+    assert 'first attempt failed' in entries[0]['details']
+
+
+def test_severity_only_ever_moves_down_as_a_cause_travels(tmp_path):
+    top = _plugin(tmp_path)
+    middle_dir = tmp_path / 'job_1'
+    middle_dir.mkdir()
+    middle = _plugin(middle_dir, parent=top)
+    bottom_dir = middle_dir / 'job_2'
+    bottom_dir.mkdir()
+    bottom = _plugin(bottom_dir, parent=middle)
+    bottom.errorReport.append(klass='t', code=1, details='boom')
+
+    bottom.recordCauses(CPluginScript.FAILED)
+    middle.recordCauses(CPluginScript.SUCCEEDED)   # middle survived it
+    top.recordCauses(CPluginScript.FAILED)         # top did not
+
+    entries = top.errorReport.entries()
+    assert [e['name'] for e in entries] == ['job_1/job_2']
+    assert entries[0]['severity'] == SEVERITY_WARNING, (
+        'downgraded on the way past a job that survived, and not re-promoted')
+
+
+def test_a_successful_job_does_not_repeat_its_own_advisories_upward(tmp_path):
+    parent = _plugin(tmp_path)
+    child_dir = tmp_path / 'job_2'
+    child_dir.mkdir()
+    child = _plugin(child_dir, parent=parent)
+    child.errorReport.append(klass='t', code=1, details='low completeness',
+                             severity=SEVERITY_WARNING)
+
+    child.recordCauses(CPluginScript.SUCCEEDED)
+
+    assert len(parent.errorReport) == 0
 
 
 def test_causes_are_recorded_once_however_often_asked(tmp_path):
@@ -189,9 +233,9 @@ def test_causes_are_recorded_once_however_often_asked(tmp_path):
     child = _plugin(child_dir, parent=parent)
     child.errorReport.append(klass='t', code=1, details='boom')
 
-    child.recordFailureCauses()
-    child.recordFailureCauses()
-    parent.recordFailureCauses()
+    child.recordCauses(CPluginScript.FAILED)
+    child.recordCauses(CPluginScript.FAILED)
+    parent.recordCauses(CPluginScript.FAILED)
 
     assert len(parent.errorReport) == 1
 
@@ -199,7 +243,7 @@ def test_causes_are_recorded_once_however_often_asked(tmp_path):
 def test_a_top_level_job_still_writes_its_diagnostic(tmp_path):
     plugin = _plugin(tmp_path)
     plugin.errorReport.append(klass='t', code=1, details='boom')
-    plugin.recordFailureCauses()
+    plugin.recordCauses(CPluginScript.FAILED)
     assert (tmp_path / 'diagnostic.xml').exists()
 
 
@@ -227,7 +271,7 @@ def test_report_status_records_causes_on_failure(tmp_path):
     child.finished = type('S', (), {'emit': staticmethod(lambda *a: None)})()
 
     child.reportStatus(CPluginScript.FAILED)
-    parent.recordFailureCauses()
+    parent.recordCauses(CPluginScript.FAILED)
 
     assert (child_dir / 'diagnostic.xml').exists()
     assert _names(parent.errorReport) == ['job_3']

@@ -331,7 +331,8 @@ class CErrorReport:
                 error.get('name'), error.get('details'))
 
     def absorb(self, other: 'CErrorReport', label: str,
-               severity_threshold: int = SEVERITY_WARNING) -> int:
+               severity_threshold: int = SEVERITY_WARNING,
+               downgrade: bool = False) -> int:
         """Take *other*'s causes as one's own, each named for where it came from.
 
         A pipeline that reports only "child step failed" tells the user which
@@ -348,6 +349,11 @@ class CErrorReport:
             other: the subjob's report.
             label: how to name the subjob, e.g. ``job_2``.
             severity_threshold: entries below this are left behind.
+            downgrade: cap what is taken at WARNING. Used when the absorbing
+                job went on to succeed: the child's failure is still shown,
+                but it does not mark a finished job as failed. Severity only
+                ever moves down, so a warning stays a warning however many
+                levels it travels.
 
         Returns:
             How many entries were taken.
@@ -360,6 +366,9 @@ class CErrorReport:
             if error.get('severity', SEVERITY_ERROR) < severity_threshold:
                 continue
             merged = dict(error)
+            merged['fromSubjob'] = True
+            if downgrade and merged.get('severity', SEVERITY_ERROR) > SEVERITY_WARNING:
+                merged['severity'] = SEVERITY_WARNING
             name = str(merged.get('name') or '')
             merged['name'] = f"{label}/{name}" if name else label
             identity = self._identity(merged)
