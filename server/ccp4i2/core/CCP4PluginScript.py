@@ -260,6 +260,7 @@ class CPluginScript(CData):
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
         AUXILIARY_PROGRAMS: Other executables the task shells out to
+        OPTIONAL_PROGRAMS: Executables the task may run but does not require
     """
 
     # Class attributes to be defined in subclasses
@@ -270,6 +271,21 @@ class CPluginScript(CData):
     # program-availability check so a missing one is flagged before the job
     # is launched rather than surfacing as an obscure runtime failure.
     AUXILIARY_PROGRAMS = ()
+
+    # Programs the task may run, but need not. Listed on the Preferences ->
+    # Program locations page so a user can point at an installation we would
+    # not otherwise find, and never blocking, because we cannot honestly say
+    # the task needs them.
+    #
+    # Two different situations want the same treatment. crank2 drives shelxc,
+    # shelxd, shelxe, prasa and parrot, but which of them it needs depends on
+    # the phasing route chosen at run time --- declaring them as auxiliary
+    # would refuse runs that never touch SHELX. And a program may be genuinely
+    # required yet unverifiable, where the task locates it by means our
+    # discovery cannot reproduce. Membership of the Preferences page and
+    # blocking severity used to come from the same declaration, so neither
+    # case could be expressed at all.
+    OPTIONAL_PROGRAMS = ()
 
     # Declarative log scanning -- mechanism M2 of
     # docs/error-handling-remediation.md. A great many CCP4 programs exit 0
@@ -1252,7 +1268,8 @@ class CPluginScript(CData):
         # 'refine' but sources $BUSTERDIR/setup.sh to find it -- so for those
         # the check stays advisory whatever the deployment.
         required = [str(a) for a in (getattr(self, 'AUXILIARY_PROGRAMS', ()) or ()) if a]
-        advisory = []
+        advisory = [str(a) for a in (getattr(self, 'OPTIONAL_PROGRAMS', ()) or ())
+                    if a and str(a) not in required]
         taskcommand = getattr(self, 'TASKCOMMAND', None)
         if taskcommand and str(taskcommand) not in required:
             launches_taskcommand = type(self).process is CPluginScript.process

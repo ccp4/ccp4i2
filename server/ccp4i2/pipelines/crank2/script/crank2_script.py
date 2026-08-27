@@ -17,7 +17,9 @@ class crank2(CPluginScript):
   # shelx among them -- while saying nothing about the programs crank2 really
   # needs. Those are not declared either, because which of them is required
   # depends on the phasing route chosen at run time, and AUXILIARY_PROGRAMS
-  # asserts a program is needed unconditionally.
+  # asserts a program is needed unconditionally --- so they are declared
+  # optional instead: listed in Preferences, never blocking.
+  OPTIONAL_PROGRAMS = ('shelxc', 'shelxd', 'shelxe', 'prasa', 'parrot')
   PERFORMANCECLASS = 'CExpPhasPerformance'
   ERROR_CODES = {
     0: {'description': ' '},
