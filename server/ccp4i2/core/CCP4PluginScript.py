@@ -45,6 +45,117 @@ _WINDOWS_CRASH_CODES = {
 }
 
 
+#: Lines worth putting in front of a reader, when a program leaves no clearer
+#: statement. Deliberately generic: a task that knows what its own program says
+#: when it dies declares that in LOG_FAILURES, where the knowledge belongs.
+_EVIDENCE_MARKERS = re.compile(
+    r"traceback \(most recent call last\)|segmentation fault|bus error"
+    r"|\bfatal\b|\berror\b|cannot open|can't open|no such file"
+    r"|not found|permission denied|killed",
+    re.IGNORECASE,
+)
+
+#: How much of a program's output may enter an error report. The report carries
+#: evidence, not artefacts: the files themselves stay in the job directory, and
+#: are named rather than copied. Seven wrappers embed whole logs into
+#: program.xml and produce 0.9 MB files for it --- see C7 in
+#: docs/error-handling-remediation.md.
+EVIDENCE_MAX_LINES = 12
+EVIDENCE_MAX_CHARS = 2000
+
+
+#: A progress frame: "Predicting:  33%|###   | 10/30 [00:24<00:47, 2.39s/it]".
+#: nucleofind emits thirty of these to stderr, and a reader wants none of them.
+_PROGRESS_FRAME = re.compile(r"\d+%\s*\||\d+/\d+\s*\[\d+:\d+<")
+
+
+def _collapse_progress(text):
+    """Drop what a progress display overwrote, and the frames themselves.
+
+    Two mechanisms, because tools use both: a carriage return rewriting one
+    line, and a fresh line per frame. nucleofind's stderr is thirty frames of
+    "Predicting: 3%|..."; without this they arrive in the error report as
+    thirty lines and crowd out anything that matters.
+    """
+    kept = []
+    for line in text.splitlines():
+        line = line.split("\r")[-1]
+        if _PROGRESS_FRAME.search(line):
+            continue
+        kept.append(line)
+    return "\n".join(kept)
+
+
+def _tail_of(path, max_lines=EVIDENCE_MAX_LINES, max_chars=EVIDENCE_MAX_CHARS):
+    """The last lines of *path*, bounded, with progress overwriting collapsed."""
+    try:
+        with open(path, "r", errors="replace") as handle:
+            text = handle.read()
+    except OSError:
+        return ""
+    lines = _collapse_progress(text).splitlines()
+    tail = "\n".join(line for line in lines[-max_lines:] if line.strip())
+    return tail[-max_chars:]
+
+
+def _candidate_lines(text, limit=6):
+    """Lines that look like they might say what went wrong.
+
+    Candidates, not conclusions. Presented under a heading that says so: a log
+    tail is often adjacent to the truth without being it --- crank2, dying for
+    want of shelxc, ends with a warning about SHELXC *parameters*.
+    """
+    seen, found = set(), []
+    for line in _collapse_progress(text).splitlines():
+        stripped = line.strip()
+        if not stripped or stripped in seen:
+            continue
+        if _EVIDENCE_MARKERS.search(stripped):
+            seen.add(stripped)
+            found.append(stripped[:200])
+            if len(found) >= limit:
+                break
+    return found
+
+
+def failure_evidence(stderr_path=None, log_path=None):
+    """Bounded, labelled evidence from a program that failed.
+
+    Returns text for an error report's details, or "" when there is nothing to
+    say. Every section names the file it came from and claims no more than it
+    is: the reader can open the job directory for the rest.
+    """
+    sections = []
+
+    for label, path in (("stderr", stderr_path), ("log", log_path)):
+        if not path or not os.path.exists(path):
+            continue
+        try:
+            if os.path.getsize(path) == 0:
+                continue
+        except OSError:
+            continue
+
+        with open(path, "r", errors="replace") as handle:
+            text = handle.read()
+
+        candidates = _candidate_lines(text)
+        if candidates:
+            sections.append(
+                f"Possibly relevant, from {os.path.basename(path)}:\n  "
+                + "\n  ".join(candidates)
+            )
+
+        tail = _tail_of(path)
+        if tail:
+            sections.append(
+                f"Last lines of {os.path.basename(path)}:\n  "
+                + "\n  ".join(tail.splitlines())
+            )
+
+    return "\n\n".join(sections)
+
+
 def describe_signal_exit(returncode):
     """Classify a subprocess return code as a *native crash* vs. a clean error.
 
@@ -1893,30 +2004,28 @@ class CPluginScript(CData):
 
             # Check return code
             if result.returncode != 0:
+                # What the program itself said, bounded and labelled. It used to
+                # be print()ed to the server's console, where the user cannot
+                # see it, while the panel showed only the exit code (C7).
+                evidence = failure_evidence(stderr_path, self.makeFileName('LOG'))
+
                 crash = describe_signal_exit(result.returncode)
                 if crash is not None:
                     # A native crash (signal death / NTSTATUS), not a clean
                     # program error - flag it as its own class with code 105.
-                    error.append(
-                        klass=self.__class__.__name__,
-                        code=105,
-                        details=f"Process {self.TASKCOMMAND} crashed: {crash}",
-                        severity=4  # ERROR
-                    )
+                    summary = f"Process {self.TASKCOMMAND} crashed: {crash}"
+                    code = 105
                 else:
-                    error.append(
-                        klass=self.__class__.__name__,
-                        code=101,
-                        details=f"Process {self.TASKCOMMAND} exited with code {result.returncode}",
-                        severity=4  # ERROR
-                    )
+                    summary = (f"Process {self.TASKCOMMAND} exited with code "
+                               f"{result.returncode}")
+                    code = 101
 
-                # Read stderr for error details
-                if os.path.exists(stderr_path):
-                    with open(stderr_path, 'r') as f:
-                        stderr_content = f.read()
-                        if stderr_content:
-                            print(f"STDERR:\n{stderr_content}")
+                error.append(
+                    klass=self.__class__.__name__,
+                    code=code,
+                    details=f"{summary}\n\n{evidence}" if evidence else summary,
+                    severity=4  # ERROR
+                )
 
             else:
                 print(f"Process completed successfully (exit code 0)")
@@ -2050,10 +2159,20 @@ class CPluginScript(CData):
                 self._exitStatus = 0 if process.returncode == 0 else 1
 
                 if process.returncode != 0:
+                    evidence = failure_evidence(stderr_path,
+                                                self.makeFileName('LOG'))
+                    crash = describe_signal_exit(process.returncode)
+                    if crash is not None:
+                        summary = f"Process {self.TASKCOMMAND} crashed: {crash}"
+                        code = 105
+                    else:
+                        summary = (f"Process {self.TASKCOMMAND} exited with code "
+                                   f"{process.returncode}")
+                        code = 101
                     error.append(
                         klass=self.__class__.__name__,
-                        code=101,
-                        details=f"Process {self.TASKCOMMAND} exited with code {process.returncode}",
+                        code=code,
+                        details=f"{summary}\n\n{evidence}" if evidence else summary,
                         severity=4  # ERROR
                     )
 

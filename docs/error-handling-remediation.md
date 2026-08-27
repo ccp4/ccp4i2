@@ -483,7 +483,8 @@ queries only those fields.
 ## C7 — stderr goes to the server console; no execution has a timeout
 
 - [ ] Attach the stderr tail (and log tail) to the failure report
-- [ ] Wire a real timeout to the handler that already exists for it
+- [ ] ~~Wire a real timeout to the handler that already exists for it~~ —
+      **dropped, see below**
 
 **Where:** `server/ccp4i2/core/CCP4PluginScript.py:1839,1878`
 
@@ -573,11 +574,38 @@ log and no stderr. Its cause exists only as its own error report, and that is
 The two mechanisms divide the problem: **leaf program steps → C7's evidence;
 plugin and sub-pipeline steps → C3's propagation.**
 
-Separately, `subprocess.run()` is called with no `timeout=`, which makes the
-`except subprocess.TimeoutExpired` branch immediately below it unreachable. A
-hung program hangs the worker indefinitely with no diagnostic. A generous default
-(configurable, per-task overridable) raising a clear "timed out after N minutes"
-would close that.
+### The timeout is dropped, and the real risk is the opposite one
+
+`subprocess.run()` is called with no `timeout=`, which makes the
+`except subprocess.TimeoutExpired` branch immediately below it unreachable. The
+original proposal here was a generous configurable default. **That was wrong,
+and the checkbox is struck out rather than deleted so the reasoning survives.**
+
+A timeout cannot be calibrated from inside the framework. The same task on
+different data legitimately spans orders of magnitude: xia2 on 20 frames against
+3600, refmac at 5 cycles against 100, a phaser search over one ensemble against
+twelve. Any default is either so generous it never fires, or it kills work that
+was proceeding normally — and the failure it manufactures is worse than the one
+it prevents, because it destroys hours of computation *and* reports a fault that
+did not occur. That is the same error as asserting a cause from a log tail.
+
+In practice programs do not hang; and when one does, it is **visible** — the job
+sits at Running and a person can stop it.
+
+**The risk worth guarding is the opposite: a termination that is not captured.**
+A job whose program has finished but whose status never moves is
+indistinguishable from a hang, and is our fault rather than the program's. One
+was fixed on 2026-08-25: `UNSATISFACTORY` was absent from the status maps in
+`track_job` and `run_subjob`, so a job returning it would have stayed at Running
+for ever. So the second half of C7 becomes:
+
+- [ ] Audit that every termination path updates the job's status — normal exit,
+      signal death, exception in each lifecycle hook, and every status a plugin
+      may return
+
+Leave `except subprocess.TimeoutExpired` dormant and honest. A per-task opt-in
+remains possible for anyone who has a specific program that genuinely hangs;
+nothing should ship with a default.
 
 ## C8 — A failure before the job exists has nowhere to report
 
@@ -1562,6 +1590,7 @@ pattern. Two smaller amendments:
 | 2026-08-25 | Pre-run program-availability check made **blocking where it is authoritative**. Severity is now decided by deployment: local execution against a mounted CCP4 (desktop/Electron, i2run) blocks submission, because a missing binary there is a certain failure; Azure mode (job queued for a worker whose filesystem we cannot see) and the slim CCP4-free API server stay advisory. Orthogonally, `TASKCOMMAND` only blocks for plugins that leave `process()` to the base class — `crank2` declares `crank2.py` but runs in-process, and `buster` declares `refine` but sources `$BUSTERDIR/setup.sh` to find it, so blocking either would break a working task. `AUXILIARY_PROGRAMS` is opt-in and always blocks when authoritative. Helper: `context_run.program_checks_are_authoritative()`. |
 | 2026-08-25 | **M2 landed** for its motivating case. ARCIMBOLDO exits 0 after printing `FATAL` (`ARCIMBOLDO_LITE.main()` wraps the run in `except SystemExit: pass`), so a missing shelxe produced a job marked *Finished* with no outputs and no message — verified by rerunning the failing job's `setup.bor`: exit code 0, empty stderr, `FATAL` in the log only. Base `postProcessCheck` now applies `LOG_FAILURES`. Also added `AUXILIARY_PROGRAMS`, so binaries a task drives from *inside* `TASKCOMMAND` are covered by the pre-run availability check and listed on Preferences → Program locations; arcimboldo now resolves phaser/shelxe through `resolve_program()` instead of hardcoding `$CCP4/bin`, which is what made a correctly-configured `SHELXDIR` ineffective for this task. |
 | 2026-08-25 | Pre-C1 i2run baseline captured and **every one of its 10 failures diagnosed** — see [The pre-C1 baseline](#the-pre-c1-baseline). 4 environment (no `shelxc` in `ccp4-20260702`), 2 never-worked (`nucleofind` has no `TASKNAME`, so its def.xml is silently never loaded), 3 real regressions both dated 2026-06-15 (gemmi-native ports of mmdb2 CIF reading and of freerflag), 1 test asserting the wrong thing. Three of the ten are specimens of this document's thesis. |
+| 2026-08-27 | **C7's timeout dropped.** It cannot be calibrated from inside the framework — the same task on different data spans orders of magnitude — and the failure it manufactures is worse than the one it prevents, destroying hours of work and reporting a fault that did not occur. Programs rarely hang, and a hang is visible. The risk worth guarding is the reverse: a termination that is not captured, which looks identical to a hang and is ours, not the program's — as `UNSATISFACTORY` missing from the status maps would have been. |
 | 2026-08-27 | C7 and C3 specified from evidence. **The rule for C7: the error report carries a bounded tail and the name of the file, never the artefact** — seven wrappers already embed whole logs into `program.xml` via CDATA, producing 0.9 MB files that are re-parsed on every report render. What to attach, in order of confidence, with the measurement behind it: stderr is empty 86% of the time, and when it is not it is half cause and half noise (a GLib warning; a progress bar). C3 gains the finding that `write_diagnostic_xml()` runs only for the top-level job, so a seven-subjob pipeline writes one diagnostic and the child's cause reaches no artefact at all. |
 | 2026-08-26 | **M1 withdrawn.** `outputData` declares what a task *may* produce, not what it must — `SubstituteLigand` has reflection outputs only if a reindexing was needed — and `checkOutputData()` pre-names every declared output, so there is no signal of what a wrapper actually produced. Inferring the contract from suite runs was considered and rejected: the tests already carry it per scenario and more precisely. The three motivating cases turn out to belong to a wrapper guard, to M8, and to nothing at all. |
 | 2026-08-25 | **C8 added** — failures before a job exists have nowhere to report. C1–C7 all assume a job directory to write `diagnostic.xml` into; task-load, parameter-parse and validation failures have no path at all. Three live instances: `nucleofind` (no `TASKNAME`, so its def.xml was silently never loaded — has never run in any baseline), `SIMBAD` and `pisa` (plugin classes do not load). |
