@@ -69,12 +69,15 @@ class CErrorReport:
                 so the panel can fold it away.
         """
         self._errors.append({
-            'description': description,
-            'stack': stack,
-            'class': klass,
+            'description': description or '',
+            'stack': stack or '',
+            'class': klass or '',
             'code': code,
-            'details': details,
-            'name': name,
+            # An unset name must serialise as an empty element, not as the
+            # word "None": str(None) is what the panel would otherwise show
+            # as the parameter this report is about.
+            'details': details or '',
+            'name': '' if name is None else name,
             'severity': severity
         })
 
