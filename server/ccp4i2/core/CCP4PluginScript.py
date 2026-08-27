@@ -78,7 +78,10 @@ def _collapse_progress(text):
     thirty lines and crowd out anything that matters.
     """
     kept = []
-    for line in text.splitlines():
+    # split("\n"), not splitlines(): the latter treats a bare \r as a line
+    # boundary of its own, which undoes the overwriting before it can be
+    # collapsed.
+    for line in text.split("\n"):
         line = line.split("\r")[-1]
         if _PROGRESS_FRAME.search(line):
             continue
