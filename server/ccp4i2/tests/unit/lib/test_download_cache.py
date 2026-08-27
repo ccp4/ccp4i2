@@ -139,3 +139,39 @@ def test_a_truncated_cache_entry_is_not_reused(cache, monkeypatch):
     with utils.download("https://example.org/a.cif") as again:
         assert Path(again).read_bytes() == b"whole file"
     assert len(fetches) == 2
+
+
+def test_the_servers_name_is_what_the_cache_keeps(cache, monkeypatch):
+    """Robetta serves a PDB from a URL ending ".php".
+
+    Naming the cached copy after the URL cost it the extension, and every
+    reader in CCP4i2 tells a format by extension: the first cached run failed
+    with "Unknown format of ...models_download.php" on a file that was
+    perfectly good. The readable half of the name is not knowable before the
+    request, so lookup is by key and the name comes from the response.
+    """
+    def fake_urlopen(url, timeout=None):
+        return _Response(b"ATOM      1  N   MET A   1\n", filename="model.pdb")
+    monkeypatch.setattr(utils, "urlopen", fake_urlopen)
+
+    url = "https://robetta.bakerlab.org/models_download.php?id=14697"
+    with utils.download(url) as path:
+        first = Path(path)
+    assert first.name.endswith("_model.pdb"), first.name
+
+    # And the copy is found again, despite the name being unguessable from
+    # the URL alone.
+    def refuse(url, timeout=None):
+        raise AssertionError("should have been served from the cache")
+    monkeypatch.setattr(utils, "urlopen", refuse)
+    with utils.download(url) as path:
+        assert Path(path) == first
+
+
+def test_a_url_with_no_useful_name_still_caches(cache, monkeypatch):
+    def fake_urlopen(url, timeout=None):
+        return _Response(b"data")
+    monkeypatch.setattr(utils, "urlopen", fake_urlopen)
+
+    with utils.download("https://example.org/") as path:
+        assert Path(path).is_file()
