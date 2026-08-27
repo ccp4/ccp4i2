@@ -51,6 +51,19 @@ Supporting references:
 ### …use the REST API or CLI
 - [API Overview](../mddocs/api/API_OVERVIEW.md)
 - [i2run](i2run.md) · [i2remote](i2remote.md) · [CLI Reference](../mddocs/cli/CLI.md)
+- [Container Construction Defects (brief)](container-construction-defects.md) —
+  two defects that make jobs run and be wrong: the def.xml parser duplicates
+  nested containers onto the root (2,304 ghost parameters), and `children()`
+  iterates a weakref set so sibling order — and therefore which parameter a bare
+  `--FLAG` means — is a coin flip. Evidence, measured blast radius, proposed
+  fixes. Read alongside
+  [error-handling-remediation.md](error-handling-remediation.md).
+- [i2run Parameter Syntax (proposal)](i2run-parameter-syntax.md) — a single
+  addressing rule to replace the current three, a declared default field so
+  `--XYZIN beta.pdb` works at every depth, ambiguity and undeclared fields as
+  errors, and `--describe`/`--echo`. Assumes the container fixes above. Includes
+  a measured argument for why PHIL's *behaviours* are worth adopting and its
+  object model is not.
 
 ### …work on the frontend
 - [Frontend README](../client/README.md)
