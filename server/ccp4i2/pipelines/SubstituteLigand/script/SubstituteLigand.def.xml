@@ -24,6 +24,30 @@
                     <toolTip>Reference PDB will be used to direct spacegroup choice and as start point for molecular replacement - use atom selection to exclude waters and/or ligands</toolTip>
                 </qualifiers>
             </content>
+            <content id="STARTING_DICT_LIST">
+               <className>CList</className>
+               <qualifiers>
+                  <listMinLength>0</listMinLength>
+                  <guiLabel>Dictionaries for ligands already in the starting model</guiLabel>
+                  <toolTip>Geometry dictionaries for any ligand already present in the starting coordinates - a ligand from an earlier soak that is genuinely still there, or one left in a model built against different data. Without a dictionary, refinement cannot describe it and the job stops before it starts. This is not the ligand being substituted, which is generated or supplied separately.</toolTip>
+               </qualifiers>
+               <subItem>
+                  <className>CDictDataFile</className>
+                  <qualifiers>
+                     <default><contentFlag>1</contentFlag></default>
+                     <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                     <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                     <toolTip>Restraint dictionary (mmCIF) for a ligand already present in the starting coordinates.</toolTip>
+                     <label>Ligand geometry</label>
+                     <fileExtensions>cif</fileExtensions>
+                     <guiLabel>Restraint dictionary</guiLabel>
+                     <saveToDb>True</saveToDb>
+                     <mustExist>True</mustExist>
+                     <allowUndefined>True</allowUndefined>
+                     <fromPreviousJob>True</fromPreviousJob>
+                  </qualifiers>
+               </subItem>
+            </content>
             <content id="UNMERGEDFILES">
                 <className>CImportUnmergedList</className>
                 <qualifiers>
@@ -158,6 +182,15 @@
                     <menuText>MDL Mol file,REFMAC Dict,SMILES String,LIDIA Sketch,NONE</menuText>
                     <default>SMILES</default>
                     <toolTip>Chemistry of the ligand can be provided in any of the above ways...no ligand means no ligand search</toolTip>
+                </qualifiers>
+            </content>
+            <content id="LIGAND_CODE">
+                <className>CString</className>
+                <qualifiers>
+                    <default>DRG</default>
+                    <maxLength>3</maxLength>
+                    <guiLabel>Code for the fitted ligand</guiLabel>
+                    <toolTip>The three-letter code the ligand being fitted will be given. It must differ from every residue code already in the starting coordinates: two ligands sharing a code cannot be told apart, and the dictionary written for one would be applied to the other. Where DRG is already taken, LIG is the usual second choice.</toolTip>
                 </qualifiers>
             </content>
             <content id="RESOLUTION_RANGE">

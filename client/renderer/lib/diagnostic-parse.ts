@@ -67,8 +67,15 @@ export const parseDiagnosticXml = (
 
   const errorReports: ErrorReport[] = [];
   doc.querySelectorAll("errorReport").forEach((errorElement) => {
-    const text = (selector: string) =>
-      errorElement.querySelector(selector)?.textContent?.trim() || "";
+    const text = (selector: string) => {
+      const value = errorElement.querySelector(selector)?.textContent?.trim() || "";
+      // A field the backend left unset is serialised through Python's str(),
+      // so it arrives as the word "None" and rendered as one --- the heading
+      // read "SubstituteLigand \u00b7 None \u2014 210". Newer jobs write an empty
+      // element instead; diagnostic.xml files already on disk do not, and
+      // they are still opened.
+      return value === "None" ? "" : value;
+    };
 
     errorReports.push({
       // `class` is what the backend writes, and what every diagnostic.xml

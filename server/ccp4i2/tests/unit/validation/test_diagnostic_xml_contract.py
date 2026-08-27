@@ -166,3 +166,31 @@ def test_the_same_undeclared_code_is_complained_about_once(caplog):
             plugin.appendErrorReport(999, "again")
     complaints = [r for r in caplog.records if "ERROR_CODES" in r.getMessage()]
     assert len(complaints) == 1
+
+
+# --- codes the base class reports on a task's behalf -------------------------
+
+def test_a_shared_code_is_described_even_though_the_task_never_declared_it():
+    """The panel showed "servalcat_pipe - job_4/... - 350" with no words above it.
+
+    checkMonomeCoverage is a base-class check reporting code 350; the task did
+    not raise it and has no business declaring it, so the reader got a card
+    with only the specifics on it.
+    """
+    plugin = _plugin({})
+    plugin.appendErrorReport(350, "No dictionary at all for: DRG")
+    assert _only(plugin)["description"] == \
+        "A ligand or modified residue has no geometry dictionary"
+
+
+def test_the_task_still_wins_where_it_has_something_to_say():
+    plugin = _plugin({350: {"description": "This task's own words"}})
+    plugin.appendErrorReport(350, "No dictionary at all for: DRG")
+    assert _only(plugin)["description"] == "This task's own words"
+
+
+def test_a_code_nobody_declares_is_still_only_a_warning_in_the_log():
+    plugin = _plugin({})
+    plugin.appendErrorReport(4242, "something happened")
+    assert _only(plugin)["description"] == ""
+    assert _only(plugin)["details"] == "something happened"

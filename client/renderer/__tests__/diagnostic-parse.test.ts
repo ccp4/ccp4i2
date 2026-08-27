@@ -89,6 +89,27 @@ describe("describeReport", () => {
     expect(describeReport(errorReports[0])).toBe("refmac · XYZIN — 201");
   });
 
+  it("does not render an unset parameter as the word None", () => {
+    // A job that failed in a pipeline step showed
+    // "SubstituteLigand · None — 210": the backend had serialised an unset
+    // name through Python's str(). Jobs already on disk still say None.
+    const xml = `<?xml version="1.0"?>
+<ccp4i2>
+  <errorReportList>
+    <errorReport>
+      <class>SubstituteLigand</class>
+      <code>210</code>
+      <details>Servalcat refinement failed</details>
+      <name>None</name>
+      <severity>2</severity>
+    </errorReport>
+  </errorReportList>
+</ccp4i2>`;
+    const { errorReports } = parseDiagnosticXml(xml);
+    expect(errorReports[0].name).toBe("");
+    expect(describeReport(errorReports[0])).toBe("SubstituteLigand — 210");
+  });
+
   it("never renders a heading of punctuation alone", () => {
     // What the panel showed for years: " - 993".
     expect(
