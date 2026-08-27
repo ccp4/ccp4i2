@@ -40,6 +40,11 @@ class Walk:
     """Everything the harness found in one task."""
     task: str
     paths: List[str] = field(default_factory=list)
+    # (path, object) for every parameter that is not itself a container. Kept
+    # as objects rather than re-resolved from the path afterwards: re-walking a
+    # path string is a second implementation of attribute access, and a second
+    # implementation is a second thing to be wrong.
+    leaves: List[tuple] = field(default_factory=list)
     divergences: List[Divergence] = field(default_factory=list)
 
     def note(self, path: str, check: str, detail: str) -> None:
@@ -71,8 +76,19 @@ def order_of(obj: Any) -> List[str]:
         return []
 
 
+def is_list_like(obj: Any) -> bool:
+    """A CList: its children are reached by index, not by name."""
+    return hasattr(obj, '_items') and callable(getattr(obj, '__getitem__', None))
+
+
 def is_container_like(obj: Any) -> bool:
-    return callable(getattr(obj, 'dataOrder', None))
+    """Something with children to visit.
+
+    Not merely "has a dataOrder()": every CData does, and a CString's is empty.
+    Defining it by the method made every parameter look like a container and
+    left the walk with no leaves at all --- which the tier's own floor caught.
+    """
+    return bool(order_of(obj)) or is_list_like(obj)
 
 
 def walk(plugin, task: str) -> Walk:
@@ -80,11 +96,6 @@ def walk(plugin, task: str) -> Walk:
     found = Walk(task=task)
     _visit(plugin.container, '', found, 0, set())
     return found
-
-
-def is_list_like(obj: Any) -> bool:
-    """A CList: its children are reached by index, not by name."""
-    return hasattr(obj, '_items') and callable(getattr(obj, '__getitem__', None))
 
 
 def _visit(obj: Any, prefix: str, found: Walk, depth: int, seen: set) -> None:
@@ -101,8 +112,12 @@ def _visit(obj: Any, prefix: str, found: Walk, depth: int, seen: set) -> None:
         path = f"{prefix}.{name}" if prefix else name
         found.paths.append(path)
         child = _agree_on(obj, name, path, found)
-        if child is not None and is_container_like(child):
+        if child is None:
+            continue
+        if is_container_like(child):
             _visit(child, path, found, depth + 1, seen)
+        else:
+            found.leaves.append((path, child))
 
 
 def _visit_list(obj: Any, prefix: str, found: Walk, depth: int, seen: set) -> None:
@@ -134,6 +149,8 @@ def _visit_list(obj: Any, prefix: str, found: Walk, depth: int, seen: set) -> No
                        f'lst[{index}] is not _items[{index}]')
         if is_container_like(by_index):
             _visit(by_index, path, found, depth + 1, seen)
+        else:
+            found.leaves.append((path, by_index))
 
 
 def _agree_on(parent: Any, name: str, path: str, found: Walk) -> Optional[Any]:
