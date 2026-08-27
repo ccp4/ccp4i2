@@ -54,6 +54,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         containerHint="BlockLevel"
       >
         <CCP4i2TaskElement {...props} itemName="XYZIN" />
+        <CCP4i2TaskElement
+          {...props}
+          itemName="STARTING_DICT_LIST"
+          qualifiers={{
+            guiLabel: "Dictionaries for ligands already in this model",
+          }}
+        />
       </CCP4i2ContainerElement>
       <CCP4i2ContainerElement
         itemName=""

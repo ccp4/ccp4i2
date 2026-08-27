@@ -504,6 +504,16 @@ class SubstituteLigand(CPluginScript):
             plugin.container.inputData.HKLIN = self.obsToUse
             plugin.container.inputData.FREERFLAG = self.freerToUse
 
+            # Ligands that were already in the starting model reach servalcat
+            # in these coordinates --- the ligand being substituted does not,
+            # because it is fitted afterwards. Servalcat's pre-flight monomer
+            # check refuses a residue it has no dictionary for, so without
+            # this the pipeline stops at refinement with no way past it: an
+            # old ligand that genuinely belongs (a second soak on a crystal
+            # that already had one) had nowhere to declare itself.
+            for dictionary in self._startingLigandDictionaries():
+                plugin.container.inputData.DICT_LIST.append(dictionary)
+
             # Refinement configuration
             plugin.container.controlParameters.NCYCLES.set(5)
             plugin.container.controlParameters.DATA_METHOD.set('xtal')
@@ -562,6 +572,16 @@ class SubstituteLigand(CPluginScript):
             return error
 
         return error
+
+    def _startingLigandDictionaries(self):
+        """Paths of the dictionaries supplied for ligands already in XYZIN.
+
+        Paths rather than the objects themselves: appending a CDataFile to
+        another container's list re-parents it, which would take the input
+        out of this pipeline's own container.
+        """
+        supplied = self.container.inputData.STARTING_DICT_LIST
+        return [str(d.fullPath) for d in supplied if d.isSet()]
 
     def _runCootLigandFitting(self):
         """Fit ligand into density using coot_headless_api."""
