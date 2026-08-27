@@ -133,6 +133,15 @@ from ccp4i2.config.program_discovery import resolve_program
 path = resolve_program('shelxe') or os.path.join(ccp4_home, 'bin', 'shelxe')
 ```
 
+If you have met `self.getCommand(name)` in the Qt line, it is still there and
+still works — it delegates to `resolve_program()` and defaults to `TASKCOMMAND`
+when called with no argument, as it always did. One difference: where the Qt
+version ended `if exePath is None: return exeName`, this raises. Handing a bare
+name onwards is what let an unresolved program reach `subprocess` as `None` and
+fail there talking about types, a long way from the actual cause — and since
+discovery already searches `PATH`, a name that resolves to nothing is not on the
+system at all.
+
 **`LOG_FAILURES`** — patterns that mean the run failed even though it exited 0.
 A great many CCP4 programs report a fatal error to their log and exit cleanly
 anyway, so the exit code is not evidence of success. Declare a table rather

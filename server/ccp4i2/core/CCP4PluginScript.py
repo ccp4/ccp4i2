@@ -3611,8 +3611,22 @@ class CPluginScript(CData):
         "Get the absolute working directory path as string."
         return str(self.workDirectory)
 
-    def getCommand(self, command: str) -> str:
+    def getCommand(self, exeName: str = None) -> str:
         """Return the path to an executable, honouring program preferences.
+
+        The legacy API, kept for wrappers that already call it. New code should
+        use :func:`ccp4i2.config.program_discovery.resolve_program` directly ---
+        that is what the authoring guide recommends, and what this delegates to.
+
+        Defaults to ``TASKCOMMAND`` when called with no argument, as the Qt
+        version did.
+
+        One deliberate difference from the Qt version, which ended
+        ``if exePath is None: return exeName``: returning the bare name is
+        precisely what produced the failure this was fixed for. Discovery
+        already searches PATH, so a name that resolves to nothing is not on the
+        system at all, and handing it onwards only moves the error further from
+        its cause.
 
         This used to return the bare name under a docstring saying the Django
         backend had no preference store. That stopped being true when program
@@ -3631,6 +3645,14 @@ class CPluginScript(CData):
         from ccp4i2.config.program_discovery import resolve_program
         from ccp4i2.core.base_object.error_reporting import CException
 
+        if exeName is None:
+            exeName = getattr(self, 'TASKCOMMAND', None)
+        if exeName is None:
+            raise CException(
+                f"{getattr(self, 'TASKNAME', self.__class__.__name__)} asked for "
+                "its own program, but declares no TASKCOMMAND."
+            )
+        command = str(exeName)
         resolved = resolve_program(command)
         if resolved:
             return resolved

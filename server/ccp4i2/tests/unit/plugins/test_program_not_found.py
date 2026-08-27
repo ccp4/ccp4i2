@@ -148,3 +148,20 @@ def test_shelxcd_has_a_code_for_the_step_that_actually_failed():
     assert 'shelxc' in cls.ERROR_CODES[213]['description']
     assert 'mtz2various' in cls.ERROR_CODES[201]['description'], \
         '201 keeps its own meaning; 213 stops it being used for shelxc'
+
+
+def test_get_command_defaults_to_taskcommand_as_it_always_did(tmp_path, monkeypatch):
+    """`self.getCommand()` with no argument is the Qt-era spelling."""
+    monkeypatch.setattr('ccp4i2.config.program_discovery.resolve_program',
+                        lambda name: f'/opt/{name}')
+    plugin = _plugin(tmp_path)
+    plugin.TASKCOMMAND = 'shelxd'
+    assert plugin.getCommand() == '/opt/shelxd'
+
+
+def test_get_command_with_nothing_to_go_on_says_so(tmp_path):
+    plugin = _plugin(tmp_path)
+    plugin.TASKCOMMAND = None
+    with pytest.raises(CException) as excinfo:
+        plugin.getCommand()
+    assert 'TASKCOMMAND' in str(excinfo.value)
