@@ -1,5 +1,6 @@
 import logging
 import pathlib
+import uuid
 import json
 import gemmi
 import re
@@ -204,6 +205,58 @@ def extract_from_first_bracketed(path: str) -> str:
     return parts[-1]  # fallback to the last part if no bracketed part found
 
 
+def _file_currently_held_by(param_object, job):
+    """The File record this parameter points at, if this job owns it.
+
+    Empty when the slot is new, when it holds a file from another job (which
+    must never be deleted --- it belongs to that job's outputs), or when the
+    record has already gone.
+    """
+    from ccp4i2.lib.utils.parameters.value_dict import value_dict_for_object
+
+    try:
+        file_id = value_dict_for_object(param_object).get("dbFileId")
+    except Exception:
+        return models.File.objects.none()
+    if not file_id or isinstance(file_id, dict):
+        return models.File.objects.none()
+    try:
+        return models.File.objects.filter(uuid=uuid.UUID(str(file_id)), job=job)
+    except (ValueError, TypeError):
+        return models.File.objects.none()
+
+
+def _is_referenced_elsewhere(container, file_id, param_object) -> bool:
+    """Whether any *other* parameter in this job still points at that file.
+
+    The check that would have prevented the data loss on its own. A file may
+    legitimately appear in two slots --- a user adding the same reflections
+    twice --- and replacing one of them must not delete the other's file.
+    """
+    try:
+        others = container.find_all_files()
+    except Exception:
+        # Cannot tell, so do not delete. False here means "go ahead and
+        # unlink", which is the wrong way for an unanswerable question about a
+        # destructive act to fail.
+        logger.warning("Could not check whether %s is referenced elsewhere; "
+                       "leaving it alone", file_id)
+        return True
+    from ccp4i2.lib.utils.parameters.value_dict import value_dict_for_object
+
+    for other in others:
+        if other is param_object:
+            continue
+        try:
+            if str(value_dict_for_object(other).get("dbFileId")) == str(file_id):
+                return True
+        except Exception:
+            # Same reasoning: an unreadable sibling might be the reference
+            # that matters.
+            return True
+    return False
+
+
 def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
     logger.info("=== upload_file_param START ===")
@@ -236,17 +289,20 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     logger.info("param_object: %s (type: %s)", param_object, type(param_object).__name__)
     logger.info("final_path_with_index: %s", final_path_with_index)
 
-    # Look for existing file import for this job/job_param_name and delete
-    # the associated file if exists
-
-    # Use the final path (with index) for job_param_name extraction
+    # Replace the file this slot currently holds --- identified by *which file
+    # it is*, not by the name of the slot.
+    #
+    # job_param_name is positional: 'UNMERGEDFILES[1].file'. Deleting every
+    # record sharing that name deleted whichever file happened to occupy the
+    # index, which after any list insert or removal is a different row's file.
+    # Observed on a real job: add gamma at [1], add mdm2 at [2], remove a row,
+    # re-add mdm2 --- the re-add landed at [1], matched gamma's record by name,
+    # and unlinked gamma's file. The gamma row survived pointing at a dbFileId
+    # that no longer existed, and the panel said only "File does not exist".
     job_param_name = extract_from_first_bracketed(final_path_with_index)
 
-    # Look to see if file import(s) already exist(s) for this param in the current job
     try:
-        previous_files = models.File.objects.filter(
-            job=job, job_param_name=job_param_name
-        )
+        previous_files = _file_currently_held_by(param_object, job)
         for previous_file in previous_files:
             logger.warning(
                 "Upload will replace existing imported file [%s]", previous_file
@@ -260,6 +316,12 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
                     job.uuid,
                     job_param_name,
                 )
+            if _is_referenced_elsewhere(container, previous_file.uuid, param_object):
+                logger.warning(
+                    "Not deleting %s: another parameter in this job still "
+                    "refers to it", previous_file,
+                )
+                continue
             try:
                 previous_file.path.unlink()
                 previous_file.delete()
