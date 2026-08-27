@@ -49,6 +49,41 @@ function getBaseSteps(
   return steps;
 }
 
+/**
+ * Labels for the pipeline steps, taken from the def.xml's own menuText.
+ *
+ * START_PIPELINE and END_PIPELINE offer all eight steps whatever the
+ * configuration, but only the applicable ones exist at run time:
+ * `crank2_basepipe.py` builds `base_steps_ind` from `getBaseSteps`'s list alone
+ * and then indexes it with whatever the user chose, so selecting a step outside
+ * it raises a KeyError as soon as any applicable step is checked. With SHELXCDE
+ * off that is `refatompick` and `phdmmb`; with it on, four of the eight. The
+ * form empties out before the job runs, because `checkStartEnd` returns false
+ * for a step it cannot find.
+ *
+ * Narrowing the menu to `getBaseSteps` removes the choice that cannot work. A
+ * job already carrying a bad value still shows it -- the widget appends an
+ * unrecognised current value rather than dropping it.
+ */
+const STEP_LABELS: Record<string, string> = {
+  refatompick: "Substructure improvement",
+  substrdet: "Substructure detection",
+  phdmmb: "Den.mod. + poly-Ala tracing",
+  phas: "Substructure phasing",
+  handdet: "Hand determination",
+  dmfull: "Density modification",
+  building: "Model building",
+  ref: "Refinement",
+};
+
+function stepQualifiers(baseSteps: string[]) {
+  return {
+    enumerators: baseSteps,
+    menuText: baseSteps.map((step) => STEP_LABELS[step] ?? step),
+    onlyEnumerators: true,
+  };
+}
+
 function checkStartEnd(
   step: string,
   baseSteps: string[],
@@ -199,7 +234,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // --- Advanced Options ---
   useTaskItem("FAEST_PROGRAM");
-  useTaskItem("SUBSTRDET_PROGRAM");
+  const { value: substrdetProgram } = useTaskItem("SUBSTRDET_PROGRAM");
   useTaskItem("SUBSTRDET_HIGH_RES_CUTOFF");
   useTaskItem("SUBSTRDET_NUM_TRIALS");
   useTaskItem("SUBSTRDET_THRESHOLD_STOP");
@@ -295,6 +330,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       ),
     [baseSteps, startPipeline, endPipeline]
   );
+
+  // prasa refines its resolution cutoff and bounds the atom count; shelxd and
+  // crunch2 do neither, so Qt shows those options only for prasa.
+  const isPrasa = substrdetProgram === "prasa";
 
   const showDetection = useMemo(() => check("substrdet"), [check]);
   const showPeakSearch = useMemo(() => check("refatompick"), [check]);
@@ -425,7 +464,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   <CCP4i2TaskElement
                     {...props}
                     itemName="END_PIPELINE"
-                    qualifiers={{ guiLabel: " " }}
+                    qualifiers={{ guiLabel: " ", ...stepQualifiers(baseSteps) }}
                   />
                 </InlineField>
               }
@@ -433,7 +472,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               <CCP4i2TaskElement
                 {...props}
                 itemName="START_PIPELINE"
-                qualifiers={{ guiLabel: " " }}
+                qualifiers={{ guiLabel: " ", ...stepQualifiers(baseSteps) }}
               />
             </InlineField>
           </FieldRow>
@@ -834,6 +873,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 itemName="RESIDUES_MON"
                 qualifiers={{ guiLabel: "Residues/monomer" }}
               />
+              {/* Its nucleic-acid counterpart, which had no field here either:
+                  a protein/nucleotide complex could only have half its
+                  composition described. Qt: "Nucleotides per monomer:". */}
+              <CCP4i2TaskElement
+                {...props}
+                itemName="NUCLEOTIDES_MON"
+                qualifiers={{ guiLabel: "Nucleotides/monomer" }}
+              />
               <CCP4i2TaskElement
                 {...props}
                 itemName="MONOMERS_ASYM"
@@ -907,7 +954,35 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="SUBSTRDET_HIGH_RES_CUTOFF"
-              qualifiers={{ guiLabel: "High resolution cutoff" }}
+              qualifiers={{
+                guiLabel: isPrasa
+                  ? "Initial high resol. cutoff"
+                  : "High resolution cutoff",
+              }}
+            />
+            {/* prasa refines the cutoff rather than taking one value, so it
+                alone needs a radius and a step. Qt gates all three on
+                SUBSTRDET_PROGRAM == 'prasa'. */}
+            {isPrasa && (
+              <FieldRow>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="SUBSTRDET_HIGH_RES_CUTOFF_RADIUS"
+                  qualifiers={{ guiLabel: "Cutoff radius" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="SUBSTRDET_HIGH_RES_CUTOFF_STEP"
+                  qualifiers={{ guiLabel: "Cutoff step" }}
+                />
+              </FieldRow>
+            )}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_HIGH_RES_CUTOFF_CCHALF"
+              qualifiers={{
+                guiLabel: "Use CCanom1/2 based cutoff (if available)",
+              }}
             />
             <FieldRow>
               <CCP4i2TaskElement
@@ -937,6 +1012,27 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 }}
               />
             </FieldRow>
+            {isPrasa && (
+              <>
+                <FieldRow>
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="PRASA_MINPEAKS"
+                    qualifiers={{ guiLabel: "Min. atoms" }}
+                  />
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="SUBSTRDET_NUM_ATOMS"
+                    qualifiers={{ guiLabel: "Max. atoms" }}
+                  />
+                </FieldRow>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="SUBSTRDET_OPTIMIZE_SOL"
+                  qualifiers={{ guiLabel: "Optimize solutions" }}
+                />
+              </>
+            )}
             <CCP4i2TaskElement
               {...props}
               itemName="SUBSTRDET_NUM_THREADS"

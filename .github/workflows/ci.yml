@@ -1,9 +1,9 @@
 # Fast test gate for pull requests into `django`.
 # ============================================================================
-# Runs the two suites that need NOTHING from the CCP4 suite — no binaries, no
+# Runs the suites that need NOTHING from the CCP4 suite — no binaries, no
 # $CCP4 tree, no downloaded test data — on a stock CPython with the pip
-# dependencies `server/pyproject.toml` declares. That is ~800 tests in about a
-# minute on a plain ubuntu runner.
+# dependencies `server/pyproject.toml` declares, plus the client's vitest
+# suite. That is ~1100 tests in about a minute on a plain ubuntu runner.
 #
 # Why only these two: `tests/db/` and `tests/async/` do not currently collect
 # without more setup, and `tests/i2run/` and `tests/api/e2e/` run real
@@ -91,3 +91,28 @@ jobs:
       - name: API tests
         working-directory: server
         run: python -m pytest ccp4i2/tests/api/unit/ -q
+
+  frontend-tests:
+    # The client had 278 vitest tests and no job running them, so nothing on a
+    # PR could tell you they had broken. They need no CCP4 and no database --
+    # scene lifting, diagnostics parsing, and the task-interface parameter
+    # coverage ratchet, which is only a ratchet if something pulls it.
+    name: Frontend tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install
+        working-directory: client
+        run: npm ci
+
+      - name: Vitest
+        working-directory: client
+        run: npm test

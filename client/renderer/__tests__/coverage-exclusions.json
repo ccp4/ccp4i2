@@ -1,0 +1,68 @@
+{
+  "_README": [
+    "Parameters a Qt GUI exposed that this branch's interface deliberately does",
+    "not, with the reason. Hand-maintained: unlike baselines/task-coverage.json",
+    "this file is never regenerated, because each entry is a judgement someone",
+    "made rather than a measurement.",
+    "",
+    "An entry here is a decision not to do the work. An entry in the baseline's",
+    "gaps is work not yet done. Keeping them apart is the point -- otherwise a",
+    "closed question and an open one look identical, and the shrinking gap count",
+    "stops meaning anything.",
+    "",
+    "The test checks each entry still earns its place: the parameter must still",
+    "be declared by the task (so a rename does not leave a stale excuse) and",
+    "must still be unreachable (so an exclusion that someone has since",
+    "implemented gets removed rather than quietly contradicting the code)."
+  ],
+  "shelx": [
+    {
+      "reason": [
+        "Steps the SHELX pipeline does not run. crank2_basepipe.py sets",
+        "shelx_steps = [substrdet, phdmmb, building, ref] against",
+        "crank2_steps = [substrdet, phas, handdet, dmfull, building, ref], and",
+        "gates hand determination on `CheckStartEnd('handdet') and not SHELXCDE`.",
+        "SHELXE does the density modification, the poly-Ala tracing and the hand",
+        "discrimination itself inside the phdmmb step -- the hand parameter shelx",
+        "does expose is PHDMMB_THRESHOLD_HAND_STOP, 'Other hand CC threshold'.",
+        "",
+        "These appear in the Qt reference only because CTaskCrank2 creates the",
+        "widgets unconditionally and hides them at run time through",
+        "toggleFunction=[self.basepipe.ToggleHandDetermination, ...], which a",
+        "static read of the GUI cannot evaluate. Adding them would put fields on",
+        "screen that no shelx run can use."
+      ],
+      "parameters": [
+        "DMFULL_DMCYC",
+        "DMFULL_DM_PROGRAM",
+        "DMFULL_PHCOMB_PROGRAM",
+        "DMFULL_THRESHOLD_STOP",
+        "DO_HANDDET",
+        "HANDDET_DMFULL_DM_PROGRAM",
+        "HANDDET_DMFULL_PHCOMB_PROGRAM",
+        "HANDDET_THRESHOLD_DISCRIM",
+        "KEYWORDS_DMFULL_DM",
+        "PHAS_PROGRAM",
+        "REFATOMPICK_NUM_ITER",
+        "REFATOMPICK_OCC_CUT",
+        "REFATOMPICK_REFCYC",
+        "REFATOMPICK_RMS_THRESHOLD"
+      ]
+    },
+    {
+      "reason": [
+        "Substructure detection options specific to prasa. Qt gates every one of",
+        "them on `toggle = ['SUBSTRDET_PROGRAM', 'open', ['prasa']]`, and shelx",
+        "detects with shelxd -- SUBSTRDET_PROGRAM is one of the parameters",
+        "CTaskCrank2 withholds from shelx under `if self.TASKNAME != 'shelx'`."
+      ],
+      "parameters": [
+        "PRASA_MINPEAKS",
+        "SUBSTRDET_HIGH_RES_CUTOFF_RADIUS",
+        "SUBSTRDET_HIGH_RES_CUTOFF_STEP",
+        "SUBSTRDET_NUM_ATOMS",
+        "SUBSTRDET_OPTIMIZE_SOL"
+      ]
+    }
+  ]
+}

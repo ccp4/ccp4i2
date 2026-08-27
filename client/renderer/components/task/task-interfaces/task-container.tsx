@@ -10,7 +10,6 @@ import { Job } from "../../../types/models";
 import { LinearProgress } from "@mui/material";
 import { useJob } from "../../../utils";
 
-import AcedrgLinkInterface from "./AcedrgLink";
 import AcornInterface from "./acorn";
 import AddFractionalCoordsInterface from "./add_fractional_coords";
 import AddingStatsToMmcifI2Interface from "./adding_stats_to_mmcif_i2";
@@ -27,7 +26,6 @@ import ImportPhasesInterface from "./ImportPhases";
 import ImportSequenceInterface from "./ImportSequence";
 import AMPLEInterface from "./ample";
 import ArcimboldoInterface from "./arcimboldo";
-import ArpWarpClassicInterface from "./arp_warp_classic";
 import AuspexInterface from "./auspex";
 import BuccaneerBuildRefineMrInterface from "./buccaneer_build_refine_mr";
 import BusterInterface from "./buster";
@@ -148,11 +146,19 @@ export interface CCP4i2TaskInterfaceProps {
  *   2. Import it above
  *   3. Add one line to this record: "task_name": TaskNameInterface,
  */
+/**
+ * Deliberately absent, though a file for each exists in this directory:
+ * `AcedrgLink` and `arp_warp_classic`. Both were scaffolded as containers with
+ * nothing inside them, so registering them put an empty form in front of the
+ * user -- arp_warp_classic over a 47-parameter def.xml. Unregistered, they fall
+ * through to GenericInterface, which renders the def.xml and works. Re-register
+ * each as soon as it has fields; `task-parameter-coverage.test.ts` fails if an
+ * entry here renders nothing.
+ */
 const TASK_INTERFACES: Record<
   string,
   React.ComponentType<CCP4i2TaskInterfaceProps>
 > = {
-  AcedrgLink: AcedrgLinkInterface,
   acorn: AcornInterface,
   add_fractional_coords: AddFractionalCoordsInterface,
   adding_stats_to_mmcif_i2: AddingStatsToMmcifI2Interface,
@@ -169,7 +175,6 @@ const TASK_INTERFACES: Record<
   ImportSequence: ImportSequenceInterface,
   AMPLE: AMPLEInterface,
   arcimboldo: ArcimboldoInterface,
-  arp_warp_classic: ArpWarpClassicInterface,
   AUSPEX: AuspexInterface,
   buccaneer_build_refine_mr: BuccaneerBuildRefineMrInterface,
   buster: BusterInterface,

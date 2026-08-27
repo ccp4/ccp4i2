@@ -456,6 +456,18 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
           {...taskProps}
           qualifiers={{ guiLabel: "Free R set" }}
         />
+        {/* The fraction used when a FreeR set is generated rather than copied.
+            Qt shows it whenever COMPLETE is off, i.e. when a set is being made
+            here; without it the default 0.05 could not be changed. */}
+        <CCP4i2TaskElement
+          itemName="FREER_FRACTION"
+          {...taskProps}
+          qualifiers={{
+            guiLabel: "Fraction of reflections in generated FreeR set",
+            toolTip:
+              "Default fraction is 0.05. Potential twinning operations will be taken into account",
+          }}
+        />
         <CCP4i2TaskElement
           itemName="CUTRESOLUTION"
           {...taskProps}

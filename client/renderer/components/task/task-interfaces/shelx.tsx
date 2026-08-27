@@ -15,6 +15,39 @@ const isTruthy = (val: any): boolean =>
 // ---------------------------------------------------------------------------
 const SHELX_STEPS = ["substrdet", "phdmmb", "building", "ref"];
 
+/**
+ * Labels for the pipeline steps, taken from the def.xml's own menuText.
+ *
+ * The def.xml offers all eight crank2 steps in START_PIPELINE and
+ * END_PIPELINE whatever the configuration, but only four of them are steps of
+ * the SHELX pipeline -- `crank2_basepipe.py` builds `base_steps_ind` from the
+ * applicable list alone and then indexes it with whatever the user chose, so
+ * picking `handdet` here raises a KeyError once any applicable step is
+ * checked. The form empties out first, because `checkStartEnd` below returns
+ * false for a step it cannot find.
+ *
+ * Narrowing the menu to the steps this pipeline actually has removes the
+ * choice that cannot work. It does not repair a job that already carries a bad
+ * value: the widget appends an unrecognised current value to its options
+ * rather than dropping it, so an old job still shows what it was set to.
+ */
+const STEP_LABELS: Record<string, string> = {
+  refatompick: "Substructure improvement",
+  substrdet: "Substructure detection",
+  phdmmb: "Den.mod. + poly-Ala tracing",
+  phas: "Substructure phasing",
+  handdet: "Hand determination",
+  dmfull: "Density modification",
+  building: "Model building",
+  ref: "Refinement",
+};
+
+const STEP_QUALIFIERS = {
+  enumerators: SHELX_STEPS,
+  menuText: SHELX_STEPS.map((step) => STEP_LABELS[step]),
+  onlyEnumerators: true,
+};
+
 function checkStartEnd(
   step: string,
   startPipeline: string | undefined,
@@ -191,6 +224,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // --- Advanced Options: Model building ---
   const { value: useCombRaw } = useTaskItem("USE_COMB");
+  const { value: combNcsDet } = useTaskItem("COMB_PHDMMB_NCS_DET");
+
+  // --- Input Data: starting phases ---
+  const { value: inputPhasesRaw } = useTaskItem("INPUT_PHASES");
+  useTaskItem("FPHIN_HL");
   useTaskItem("MB_PROGRAM");
   useTaskItem("KEYWORDS_MB");
   useTaskItem("MBREF_BIGCYC");
@@ -243,6 +281,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const [mad4, setMad4] = useState(() => isTruthy(mad4Raw));
   const [native, setNative] = useState(() => isTruthy(nativeRaw));
   const [useComb, setUseComb] = useState(() => isTruthy(useCombRaw));
+  const [inputPhases, setInputPhases] = useState(() =>
+    isTruthy(inputPhasesRaw)
+  );
 
   // Sync from server
   useEffect(() => setInputSequence(isTruthy(inputSequenceRaw)), [inputSequenceRaw]);
@@ -252,6 +293,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   useEffect(() => setMad4(isTruthy(mad4Raw)), [mad4Raw]);
   useEffect(() => setNative(isTruthy(nativeRaw)), [nativeRaw]);
   useEffect(() => setUseComb(isTruthy(useCombRaw)), [useCombRaw]);
+  useEffect(() => setInputPhases(isTruthy(inputPhasesRaw)), [inputPhasesRaw]);
 
   const onToggle =
     (setter: (v: boolean) => void) => (item: any) =>
@@ -389,7 +431,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="START_PIPELINE"
-                  qualifiers={{ guiLabel: " " }}
+                  qualifiers={{ guiLabel: " ", ...STEP_QUALIFIERS }}
                 />
               </Box>
               <Typography variant="body1">and end with</Typography>
@@ -397,7 +439,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="END_PIPELINE"
-                  qualifiers={{ guiLabel: " " }}
+                  qualifiers={{ guiLabel: " ", ...STEP_QUALIFIERS }}
                 />
               </Box>
             </Box>
@@ -429,6 +471,25 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             )}
           </CCP4i2ContainerElement>
 
+          {/* Starting phases. Folded away by default, as in crank2: it is the
+              route in for a job that already has phases from elsewhere. */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Input starting phases" }}
+            containerHint="FolderLevel"
+            initiallyOpen={false}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="INPUT_PHASES"
+              onChange={onToggle(setInputPhases)}
+            />
+            {inputPhases && (
+              <CCP4i2TaskElement {...props} itemName="FPHIN_HL" />
+            )}
+          </CCP4i2ContainerElement>
+
           {/* Crystal #1 composition and anomalous datasets */}
           <CCP4i2ContainerElement
             {...props}
@@ -456,6 +517,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 }}
               />
             </FieldRow>
+
+            {/* A substructure to start from, when detection is not the first
+                step. Without this the only way into the pipeline was to let it
+                find the substructure itself. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="XYZIN_SUB"
+              qualifiers={{ guiLabel: "Substructure" }}
+              visibility={() => !showDetection}
+            />
 
             {/* Disulfide count — visible for Sulphur */}
             <CCP4i2TaskElement
@@ -744,6 +815,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="RESIDUES_MON"
               qualifiers={{ guiLabel: "Residues/monomer" }}
             />
+            {/* Its nucleic-acid counterpart, which had no field: a
+                protein/nucleotide complex could only have half its composition
+                described. Qt labels it "Nucleotides per monomer:". */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="NUCLEOTIDES_MON"
+              qualifiers={{ guiLabel: "Nucleotides/monomer" }}
+            />
             <CCP4i2TaskElement
               {...props}
               itemName="MONOMERS_ASYM"
@@ -883,6 +962,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             </FieldRow>
             <CCP4i2TaskElement
               {...props}
+              itemName="PHDMMB_THOROUGH_BUILD"
+              qualifiers={{ guiLabel: "Use thorough SHELXE building" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
               itemName="SUBSTRDET_THRESHOLD_WEAK"
               qualifiers={{
                 guiLabel:
@@ -928,12 +1012,105 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               }}
             />
 
+            {/* Combined building, density modification and phasing. Labels
+                and grouping follow crank2's interface, which renders the same
+                parameters from the same container. */}
+            {useComb && (
+              <>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="COMB_PHDMMB_DMFULL_DM_PROGRAM"
+                  qualifiers={{ guiLabel: "Density modif. program" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="KEYWORDS_COMB_DM"
+                  qualifiers={{
+                    guiLabel: "Custom keywords for dens.mod. program",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="COMB_PHDMMB_START_SHELXE"
+                  qualifiers={{
+                    guiLabel: "Start with a few SHELXE tracing cycles",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="KEYWORDS_COMB_SHELXE"
+                  qualifiers={{ guiLabel: "with custom keywords" }}
+                />
+                <FieldRow>
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="COMB_PHDMMB_MINBIGCYC"
+                    qualifiers={{ guiLabel: "Minimum number of cycles" }}
+                  />
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="COMB_PHDMMB_MAXBIGCYC"
+                    qualifiers={{ guiLabel: "Maximum number of cycles" }}
+                  />
+                </FieldRow>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="COMB_PHDMMB_NUM_PARALLEL"
+                  qualifiers={{
+                    guiLabel:
+                      "Parallel model building: simultaneous building and refinement processes",
+                  }}
+                />
+                <FieldRow>
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="COMB_PHDMMB_SKIP_INITIAL_BUILD"
+                    qualifiers={{
+                      guiLabel: "Skip the first model building cycle",
+                    }}
+                  />
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="COMB_PHDMMB_REBUILD_ONLY"
+                    qualifiers={{ guiLabel: "Soft rebuilding" }}
+                  />
+                </FieldRow>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="COMB_PHDMMB_EXCLUDE_FREE"
+                  qualifiers={{
+                    guiLabel:
+                      "Exclude the free reflections in model building",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="COMB_PHDMMB_NCS_DET"
+                  qualifiers={{ guiLabel: "Try to determine NCS" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="COMB_PHDMMB_NCS_DET_MR"
+                  qualifiers={{
+                    guiLabel:
+                      "from partial model (rather than heavy atoms)",
+                  }}
+                  visibility={() => isTruthy(combNcsDet)}
+                />
+              </>
+            )}
+
             <CCP4i2ContainerElement
               {...props}
               itemName=""
               qualifiers={{ guiLabel: " " }}
               containerHint="BlockLevel"
             >
+              <CCP4i2TaskElement
+                {...props}
+                itemName="MBREF_REF_PROGRAM"
+                qualifiers={{ guiLabel: "Refinement program" }}
+              />
               <CCP4i2TaskElement
                 {...props}
                 itemName="MBREF_BIGCYC"

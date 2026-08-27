@@ -21,9 +21,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         containerHint="FolderLevel"
       >
         <CCP4i2TaskElement itemName="PERFORM" {...props} />
-        {!perform.value && (
-          <CCP4i2TaskElement itemName="F_SIGF" {...props} />
-        )}
+        {/* No F_SIGF field here: this task's def.xml declares none. The
+            molrep wrappers share one plugin, and its F_SIGF branch is the
+            one PERFORM != 'den' takes -- which is never, here. */}
         {perform.value && (
           <CCP4i2TaskElement itemName="XYZIN_FIX" {...props} />
         )}

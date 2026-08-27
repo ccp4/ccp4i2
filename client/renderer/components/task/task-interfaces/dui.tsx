@@ -18,7 +18,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Input Data and Run Parameters" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="DUI_DIR" {...props} />
+        {/* DUI_DIR named nothing: the def.xml declares one input, and it is
+            this. The field rendered as empty space until now. */}
+        <CCP4i2TaskElement itemName="DUI2_RUN_DATA" {...props} />
       </CCP4i2ContainerElement>
     </Paper>
   );

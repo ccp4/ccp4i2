@@ -6,6 +6,7 @@ import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { Grid2 } from "@mui/material";
 import { RDKitView } from "../../rdkit-view";
+import { isTruthy } from "../task-elements/shared-hooks";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const api = useApi();
@@ -13,6 +14,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem, useFileContent } = useJob(job.id);
   const { value: MOLSMILESORSKETCH } = useTaskItem("MOLSMILESORSKETCH");
   const { value: ATOMMATCHOPTION } = useTaskItem("ATOMMATCHOPTION");
+  const { value: TOGGLE_METAL } = useTaskItem("TOGGLE_METAL");
+  const { value: USE_COORD } = useTaskItem("USE_COORD");
+  const { value: TOGGLE_NRANDOM } = useTaskItem("TOGGLE_NRANDOM");
   const { data: MOLINContent, mutate: mutateMOLINContent } =
     useFileContent("MOLIN");
   const { data: SMILESFILEContent } = useFileContent("SMILESFILE");
@@ -54,6 +58,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               )}
             </Grid2>
           </Grid2>
+          {/* The MOL2 branch of MOLSMILESORSKETCH had no input field, so that
+              option could be selected but never satisfied. */}
+          <CCP4i2TaskElement
+            {...props}
+            itemName="MOL2IN"
+            qualifiers={{ guiLabel: "MOL2 file" }}
+            visibility={() => MOLSMILESORSKETCH === "MOL2"}
+          />
           <CCP4i2TaskElement
             {...props}
             itemName="DICTIN2"
@@ -111,6 +123,70 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               qualifiers={{ guiLabel: "Local dictionary" }}
               visibility={() => {
                 return ATOMMATCHOPTION === "LOCALDICT";
+              }}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* A monomer given as a dictionary can declare that it holds a metal,
+              and offer a complex to take ideal bond angles from. Neither field
+              was here, so the metal path was unreachable. */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Metal coordination" }}
+            visibility={() => MOLSMILESORSKETCH === "DICT"}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="TOGGLE_METAL"
+              qualifiers={{ guiLabel: "This monomer contains a metal atom" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="METAL_STRUCTURE"
+              qualifiers={{
+                guiLabel:
+                  "Structure model in complex with this monomer, for ideal bond angles",
+              }}
+              visibility={() => isTruthy(TOGGLE_METAL)}
+            />
+          </CCP4i2ContainerElement>
+
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Conformer generation" }}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="USE_COORD"
+              qualifiers={{
+                guiLabel:
+                  "Use the coordinates from the input file for further optimisation (requires a reasonable input conformation)",
+              }}
+            />
+            {/* Qt disables the conformer count when USE_COORD is on, since the
+                input conformation is being kept rather than searched for. */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="TOGGLE_NRANDOM"
+              qualifiers={{
+                guiLabel: "Set number of initial conformers to try",
+              }}
+              visibility={() => !isTruthy(USE_COORD)}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="NRANDOM"
+              qualifiers={{ guiLabel: "Number of initial conformers" }}
+              visibility={() => !isTruthy(USE_COORD) && isTruthy(TOGGLE_NRANDOM)}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="NOPROT"
+              qualifiers={{
+                guiLabel:
+                  "No further protonation/deprotonation to be done by AceDRG",
               }}
             />
           </CCP4i2ContainerElement>

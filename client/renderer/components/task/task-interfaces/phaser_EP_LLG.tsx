@@ -110,7 +110,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           label: "Sequence identity (0.0-1.0) or RMSD (Angstroms)",
         },
       ],
-      keywords: [{ key: "keywords", label: "Additional keywords" }],
     }),
     [visibility, handleF_SIGFChange]
   );
@@ -190,7 +189,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         </CCP4i2Tab>
 
         <CCP4i2Tab label="Keywords" key="keywords">
-          {renderElements(elementConfigs.keywords)}
+          {/* `keywords` is a container of Phaser's own settings, not a
+              free-text field: rendering it as one showed none of the fourteen
+              parameters inside. Qt lays the whole container out with
+              `autoGenerate(container=self.container.keywords,
+              selection={'excludeParameters': ['TITL','ROOT']})`, and a
+              self-closing container element is the same thing here -- the run
+              title and output root are set by the job, not the user. */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName="keywords"
+            qualifiers={{ guiLabel: "Phaser keywords" }}
+            containerHint="FolderLevel"
+            initiallyOpen={true}
+            excludeItems={["TITL", "ROOT"]}
+          />
         </CCP4i2Tab>
       </CCP4i2Tabs>
     </Paper>
