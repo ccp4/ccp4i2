@@ -43,14 +43,35 @@ def _download_cache_dir() -> Path:
     return cache
 
 
-def _cache_name(url: str) -> str:
-    """A readable file name that cannot collide between two URLs."""
+def _safe_name(raw: str) -> str:
+    """*raw* reduced to something safe to put on a disk."""
+    safe = "".join(c for c in (raw or "").strip().replace(" ", "_")
+                   if c.isalnum() or c in "-_.")
+    return safe or "download"
+
+
+def _cache_key(url: str) -> str:
+    """The part of a cached file's name that identifies the URL."""
     from hashlib import sha256
 
-    raw = unquote(basename(urlparse(url).path)) or "download"
-    safe = "".join(c for c in raw.strip().replace(" ", "_")
-                   if c.isalnum() or c in "-_.")
-    return f"{sha256(url.encode()).hexdigest()[:12]}_{safe or 'download'}"
+    return sha256(url.encode()).hexdigest()[:12]
+
+
+def _cached_copy(url: str):
+    """An already-downloaded copy of *url*, or None.
+
+    Found by the key alone, not by the whole file name: the readable half
+    comes from the server's Content-Disposition when it offers one, which is
+    not knowable before the request. Robetta serves a PDB from a URL ending
+    ".php", and caching it under the URL's name cost it the extension that
+    every reader in CCP4i2 uses to tell a format --- "Unknown format of
+    ...models_download.php", on a file that was perfectly good.
+    """
+    matches = sorted(_download_cache_dir().glob(f"{_cache_key(url)}_*"))
+    for path in matches:
+        if path.is_file() and path.stat().st_size > 0:
+            return path
+    return None
 
 
 def _cache_limit_bytes() -> int:
@@ -77,17 +98,16 @@ def download(url: str):
     than the time is worth. ``CCP4I2_TEST_CACHE_MAX_MB=0`` removes the limit,
     and ``CCP4I2_TEST_REFETCH=1`` ignores anything already cached.
     """
-    cached = _download_cache_dir() / _cache_name(url)
-    if cached.is_file() and cached.stat().st_size > 0 and \
-            not environ.get("CCP4I2_TEST_REFETCH"):
-        yield str(cached)
-        return
+    if not environ.get("CCP4I2_TEST_REFETCH"):
+        cached = _cached_copy(url)
+        if cached is not None:
+            yield str(cached)
+            return
 
     urlName = unquote(basename(urlparse(url).path))
     with urlopen(url, timeout=30) as response:
-        name = response.headers.get_filename() or urlName
-        name = name.strip().replace(" ", "_")
-        name = "".join(c for c in name if c.isalnum() or c in "-_.")
+        name = _safe_name(response.headers.get_filename() or urlName)
+        cached = _download_cache_dir() / f"{_cache_key(url)}_{name}"
         with NamedTemporaryFile(suffix=f"_{name}", delete=False) as temp:
             while chunk := response.read(1_000_000):
                 temp.write(chunk)
