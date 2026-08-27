@@ -207,10 +207,13 @@ def test_severity_only_ever_moves_down_as_a_cause_travels(tmp_path):
     middle.recordCauses(CPluginScript.SUCCEEDED)   # middle survived it
     top.recordCauses(CPluginScript.FAILED)         # top did not
 
-    entries = top.errorReport.entries()
-    assert [e['name'] for e in entries] == ['job_1/job_2']
-    assert entries[0]['severity'] == SEVERITY_WARNING, (
+    inherited = [e for e in top.errorReport.entries() if e.get('fromSubjob')]
+    assert [e['name'] for e in inherited] == ['job_1/job_2']
+    assert inherited[0]['severity'] == SEVERITY_WARNING, (
         'downgraded on the way past a job that survived, and not re-promoted')
+    # The top-level job did fail, so it also says so in its own right --- see
+    # recordThatItFailed. That entry is the job's, not the subjob's.
+    assert any(e['code'] == 991 for e in top.errorReport.entries())
 
 
 def test_a_successful_job_does_not_repeat_its_own_advisories_upward(tmp_path):

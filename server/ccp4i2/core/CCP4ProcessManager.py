@@ -207,6 +207,20 @@ class CProcessManager:
                 cwd='/path/to/job'
             )
         """
+        # Refuse to launch something we cannot name. An unresolved program used
+        # to reach subprocess as None and fail there with "expected str, bytes
+        # or os.PathLike object, not NoneType" --- a message about types, in
+        # the server's stdout, for what is really "this program is not
+        # installed here". The reason was recorded on this job's errorReport
+        # below and then read by nobody, so the wrapper saw only that its step
+        # had failed and reported whatever it guessed.
+        if command is None or (isinstance(command, str) and not command.strip()):
+            raise ValueError(
+                "Cannot start a process: no program was given. The caller "
+                "resolved it to nothing --- usually a program that is not "
+                "installed, or installed somewhere the program-location "
+                "preferences do not point at."
+            )
         # Allocate unique PID
         self.lastProcessId += 1
         pid = self.lastProcessId
@@ -225,6 +239,7 @@ class CProcessManager:
         if interpreter == 'python':
             python_exe = sys.executable
             argList = [python_exe, command] + (args if isinstance(args, list) else args.split())
+
 
         # Initialize process info
         ifAsync = kw.get('ifAsync', self.ifAsync)
