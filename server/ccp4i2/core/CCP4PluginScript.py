@@ -2608,6 +2608,107 @@ class CPluginScript(CData):
         """
         return CErrorReport()
 
+    def jobLabel(self) -> str:
+        """How this job names itself in a parent's diagnostics, e.g. ``job_2``.
+
+        ``makePluginObject`` gives every subjob a working directory named
+        ``job_N`` under its parent's, so the directory name is the job number
+        the user sees in the project tree.
+        """
+        label = ""
+        try:
+            label = os.path.basename(os.path.normpath(str(self.workDirectory)))
+        except Exception:
+            pass
+        return label or str(self.objectName() or self.__class__.__name__)
+
+    def parentPlugin(self) -> Optional['CPluginScript']:
+        """The plugin that made this one a subjob, or None if it is top level."""
+        current = self.parent() if callable(getattr(self, 'parent', None)) else None
+        depth = 0
+        while current is not None and depth < 10:
+            if isinstance(current, CPluginScript):
+                return current
+            current = current.parent() if callable(getattr(current, 'parent', None)) else None
+            depth += 1
+        return None
+
+    def recordCauses(self, status: int) -> None:
+        """Put this job's causes where they can be found: on disk, and upstairs.
+
+        Called once, from ``reportStatus``. Two things happen, and each
+        addresses a way a cause used to be lost:
+
+        - the job writes its own ``diagnostic.xml``, in its own directory.
+          Only the top-level job used to get one, so in a seven-step pipeline
+          the six steps that could actually break wrote nothing at all.
+        - the parent takes up the causes, tagged with this job's label, so the
+          job the user actually ran can say why it failed and not merely that
+          it did.
+
+        A job that *succeeded* despite a subjob failing under it still shows
+        that subjob's cause, capped at WARNING. Which pipelines ought to carry
+        on past a failed step is not a question this code can answer --- it
+        would have to know each pipeline's intent --- so it answers none of
+        them, and makes the situation visible instead. If it turns out that
+        few or no pipelines should survive a failed subjob, the warnings say
+        exactly where, and a later change can make them fatal with evidence
+        behind it.
+        """
+        if getattr(self, '_causesRecorded', False):
+            return
+        self._causesRecorded = True
+        succeeded = (status == self.SUCCEEDED)
+        self.absorbPendingCauses(downgrade=succeeded)
+
+        inherited = [e for e in self.errorReport.entries() if e.get('fromSubjob')]
+        if succeeded and not inherited:
+            return
+
+        from ccp4i2.core.base_object.error_reporting import (
+            CErrorReport, write_diagnostic_xml,
+        )
+        try:
+            if self.workDirectory and os.path.isdir(str(self.workDirectory)):
+                write_diagnostic_xml(self.errorReport, self.workDirectory)
+        except Exception as err:
+            logger.warning(f"[recordCauses] Could not write diagnostic.xml: {err}")
+
+        try:
+            parent = self.parentPlugin()
+            if parent is None:
+                return
+            if succeeded:
+                # Nothing of our own to complain about --- carry up only what
+                # came from below, or every advisory warning in a long
+                # pipeline would be repeated at every level.
+                upward = CErrorReport()
+                for entry in inherited:
+                    upward._errors.append(dict(entry))
+            else:
+                upward = self.errorReport
+            parent.noteFailedSubjob(self.jobLabel(), upward)
+        except Exception as err:
+            logger.warning(f"[recordCauses] Could not report causes to parent: {err}")
+
+    def noteFailedSubjob(self, label: str, report) -> None:
+        """Hold a subjob's causes until this job's own verdict is known.
+
+        The causes cannot be taken up at the moment the child fails, because
+        how to record them depends on what happens next: fatal if this job
+        also fails, an advisory if it does not.
+        """
+        if not hasattr(self, '_pendingCauses'):
+            self._pendingCauses = []
+        self._pendingCauses.append((label, report))
+
+    def absorbPendingCauses(self, downgrade: bool = False) -> None:
+        """Take up the causes of any subjob that failed under this one."""
+        pending = getattr(self, '_pendingCauses', None) or []
+        self._pendingCauses = []
+        for label, report in pending:
+            self.errorReport.absorb(report, label, downgrade=downgrade)
+
     def reportStatus(self, status: int):
         """
         Report job completion and save parameters.
@@ -2652,6 +2753,11 @@ class CPluginScript(CData):
 
         # Emit finished signal with status dict (modern API)
         # Legacy plugins may expect just int, handled by connectSignal() wrapper
+        # Before anyone is told this job is over: leave the causes somewhere
+        # they can be found. A subjob's report is otherwise thrown away with
+        # the object.
+        self.recordCauses(status)
+
         status_dict = {
             'finishStatus': status,
             'jobId': getattr(self, 'jobId', None)

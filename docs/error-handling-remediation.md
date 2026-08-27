@@ -332,8 +332,8 @@ Regenerate the table above with
 - [ ] Record slot exceptions on the emitting plugin's error report
 - [ ] Mark the emitting plugin failed before continuing to other slots
 - [ ] Keep the inter-slot isolation
-- [ ] **A subjob writes its own `diagnostic.xml`, in its own directory**
-- [ ] **The parent merges the child's report, attributed to the subjob**
+- [x] **A subjob writes its own `diagnostic.xml`, in its own directory**
+- [x] **The parent merges the child's report, attributed to the subjob**
 
 `write_diagnostic_xml()` is called only from `lib/async_run_job.py`, for the
 top-level job. A pipeline that ran seven subjobs produces exactly **one**
@@ -355,6 +355,68 @@ three deep. Merging every descendant into the root would swamp the panel;
 merging one level loses the leaf that actually failed. The proposal is the whole
 chain, flattened, each entry naming its job number — so the panel shows a path
 from the pipeline the user ran down to the program that broke.
+
+### What was built for the two subjob boxes
+
+Both hang off `reportStatus()` — chosen because it is the funnel *every*
+termination path already passes through, the eleven `reportStatus(FAILED)` calls
+scattered through `process()` included. Hooking `postProcess()` instead would
+have missed exactly the failures that matter most: the ones that happen before a
+program is ever launched, which is how the DIMPLE case failed.
+
+A job that ends other than successfully now does two things:
+
+- writes its own `diagnostic.xml`, in its own directory, subjob or not;
+- hands its causes to its parent, tagged with its `job_N` label.
+
+The flattening is in `CErrorReport.absorb(other, label)`: each entry's `name`
+gains a segment rather than a level, so a cause reported as `job_2/XYZIN` one
+level down reads `job_1/job_2/XYZIN` at the top. Three-deep pipelines still
+yield a flat list, and the panel gets a path from the job the user ran to the
+program that broke. `absorb` de-duplicates on (class, code, name, details), so a
+child reported by both its own `reportStatus` and an explicit parent-side check
+appears once.
+
+**Which pipelines may survive a failed subjob is not decided here.** The first
+attempt held a failed child's causes back unless the parent also failed, on the
+assumption that pipelines legitimately carry on past a failed step. That
+assumption was challenged and does not hold up: nobody can say, without reading
+the intent of all thirty-odd pipelines, which of them *should* continue. A step
+that failed and was silently survived is at least as likely to be a defect as a
+design.
+
+So the code decides none of it. Causes are held only until the parent's own
+verdict is known, because the *recording* depends on it, not the *showing*:
+
+| the parent | the child's cause becomes |
+|---|---|
+| failed | an ERROR, naming the subjob — the panel shows the path to the program that broke |
+| succeeded | a WARNING, naming the subjob — the job stays finished, and says what it finished despite |
+
+Severity only ever moves down as a cause travels, so a warning stays a warning
+however many levels it passes. A job that succeeded carries up only what came
+from below, not its own advisories, or every warning in a long pipeline would be
+repeated at every level.
+
+This is the document's own [make it visible before making it
+fatal](#the-lesson-make-it-visible-before-making-it-fatal) lesson applied to
+itself: recording a failure and failing on it are separable, and only the
+recording half is free. The i2run harness now prints `SURVIVED A FAILED SUBJOB:
+job_N: …` for each such warning, so the next baseline answers *how often, and
+which pipelines* by counting:
+
+```bash
+grep -c "SURVIVED A FAILED SUBJOB" .test-baselines/<label>/pytest.log
+```
+
+If the answer is "never", the tolerance can be removed and a failed subjob can
+simply fail its parent. If it is "often, in these four pipelines", those four
+are the ones worth reading. Either way it is decided with evidence.
+
+`async_run_job`'s private copy of the diagnostic writer is now the shared one in
+`core/base_object/error_reporting.py`.
+
+Remaining in C3 are the three slot boxes above — the `signal_system.py` half.
 
 **Where:** `server/ccp4i2/core/base_object/signal_system.py:355`
 
@@ -942,9 +1004,10 @@ above.
 
 ## G2 — Negative-path tests
 
-- [ ] Shared fixture set: truncated MTZ, PDB with undescribed ligand,
-      non-matching sequence, deliberately absent binary
-- [ ] Run against the dozen most-used tasks
+- [x] **Tier A: deterministic failure injection, no CCP4, ~1s for the set**
+- [ ] Tier B: shared fixture set of bad real data — truncated MTZ, PDB with
+      undescribed ligand, non-matching sequence, deliberately absent binary
+- [ ] Run Tier B against the dozen most-used tasks
 - [ ] Assert `diagnostic.xml` contains an ERROR whose `details` is non-empty and
       names the actual problem
 - [ ] Cover the paths that **rewrite** user-supplied data — a file from another
@@ -952,7 +1015,40 @@ above.
       the recorded path, not merely that the job ran
 
 All 96 i2run tests are happy-path; the failure modes users report are the unhappy
-ones. That last-but-one assertion is the one that prevents regression to blank
+ones. Every fix in this document — C1's status, C6's descriptions, C7's evidence,
+C3's attribution — was therefore only ever exercised *by accident*, on the runs
+where something happened to break.
+
+### Two tiers, because the cost profile differs
+
+The objection to negative testing is cost: a suite that runs crystallography to
+watch it fail buys little for a lot of CPU. The answer is that the two things
+worth testing separate cleanly.
+
+**Tier A — the plumbing between a failure and the panel.** This is identical
+whether the process that died was `refmac` or `python -c "sys.exit(3)"`, so the
+tests use the latter: real `CPluginScript` subclasses, a real `process()` call, a
+real parent/child relationship, and this interpreter standing in for the program.
+Four ways of failing — non-zero exit, a refused input, a wrapper's own
+`processOutputFiles` verdict, an exception in a hook — are each asserted to reach
+the parent, to leave a `diagnostic.xml` on disk, and to arrive as *what went
+wrong* rather than as a status code. No CCP4, no download, no crystallography:
+**12 tests in 1.0 s**, in `tests/unit/plugins/test_failure_end_to_end.py`.
+
+They are fast for a reason that generalises: **a job that fails, fails early.**
+Deliberate-failure tests are cheaper than the happy path they shadow, not dearer,
+provided the failure is arranged near the start of the run.
+
+**Tier B — whether a real wrapper says anything specific.** Tier A cannot answer
+that; only a real program can. This is the expensive tier, so it stays small and
+picks inputs that fail in the first seconds: files written on the spot that no
+parser will accept, fed to one wrapper and one pipeline. What it asserts is the
+contract and not any program's wording — that the job records a severity-4
+report, that the report says more than *the task failed*, and that a failure in a
+subjob names the subjob. In `tests/i2run/test_failure_surfacing.py`.
+
+The division matters for what a green suite means. Tier A proves the machinery
+carries a cause; Tier B proves there was a cause worth carrying. That last-but-one assertion is the one that prevents regression to blank
 error cards.
 
 The last bullet comes from [A second

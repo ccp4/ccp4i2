@@ -310,6 +310,19 @@ def i2run(args: list[str], project_name: str = None, project_path: Path = None, 
         if warnings:
             print(f"Note: {len(warnings)} warning(s) in diagnostic.xml (non-fatal)")
 
+        # A warning naming a subjob means this job finished despite a step
+        # under it failing. Whether any pipeline *should* do that is an open
+        # question (see docs/error-handling-remediation.md, C3); printing it
+        # in a greppable form is how the baseline answers it with counts
+        # rather than opinion.
+        for report in warnings:
+            name = report.find("name")
+            name = name.text if name is not None else ""
+            if name and name.startswith("job_"):
+                details = report.find("details")
+                details = (details.text or "").split("\n")[0] if details is not None else ""
+                print(f"SURVIVED A FAILED SUBJOB: {name}: {details[:160]}")
+
         if not allow_errors:
             if errors:
                 error_details = []

@@ -6,6 +6,7 @@ error tracking, severity levels, and validation reporting capabilities.
 
 from typing import List, Optional, Dict, Any
 from enum import IntEnum
+import os
 import xml.etree.ElementTree as ET
 
 
@@ -316,6 +317,68 @@ class CErrorReport:
         """
         return iter(self.get_broken_files())
 
+    def entries(self) -> List[Dict[str, Any]]:
+        """The individual reports, in the order they were made.
+
+        A shallow copy of the list, so callers can iterate while the report is
+        still being added to.
+        """
+        return list(self._errors)
+
+    @staticmethod
+    def _identity(error: Dict[str, Any]):
+        return (error.get('class'), error.get('code'),
+                error.get('name'), error.get('details'))
+
+    def absorb(self, other: 'CErrorReport', label: str,
+               severity_threshold: int = SEVERITY_WARNING,
+               downgrade: bool = False) -> int:
+        """Take *other*'s causes as one's own, each named for where it came from.
+
+        A pipeline that reports only "child step failed" tells the user which
+        step broke but never why. Absorbing the child's report puts the actual
+        cause in the parent's diagnostics, tagged with *label* --- the subjob's
+        working-directory name --- so the reader can see the path from the job
+        they ran down to the program that broke.
+
+        Paths accumulate rather than nest: a cause that already reads
+        ``job_4/XYZIN`` becomes ``job_1/job_4/XYZIN`` one level up, so an
+        arbitrarily deep pipeline still yields a flat list.
+
+        Args:
+            other: the subjob's report.
+            label: how to name the subjob, e.g. ``job_2``.
+            severity_threshold: entries below this are left behind.
+            downgrade: cap what is taken at WARNING. Used when the absorbing
+                job went on to succeed: the child's failure is still shown,
+                but it does not mark a finished job as failed. Severity only
+                ever moves down, so a warning stays a warning however many
+                levels it travels.
+
+        Returns:
+            How many entries were taken.
+        """
+        if not isinstance(other, CErrorReport) or not label:
+            return 0
+        seen = {self._identity(e) for e in self._errors}
+        taken = 0
+        for error in other._errors:
+            if error.get('severity', SEVERITY_ERROR) < severity_threshold:
+                continue
+            merged = dict(error)
+            merged['fromSubjob'] = True
+            if downgrade and merged.get('severity', SEVERITY_ERROR) > SEVERITY_WARNING:
+                merged['severity'] = SEVERITY_WARNING
+            name = str(merged.get('name') or '')
+            merged['name'] = f"{label}/{name}" if name else label
+            identity = self._identity(merged)
+            if identity in seen:
+                continue
+            seen.add(identity)
+            self._errors.append(merged)
+            taken += 1
+        return taken
+
     def remove(self, item: str):
         """Remove all errors for a specific file name (legacy compatibility).
 
@@ -353,3 +416,31 @@ class CException(CErrorReport, Exception):
 
         if klass or code or details:
             self.append(klass, code, details, name, severity)
+
+
+def write_diagnostic_xml(report: "CErrorReport", directory) -> Optional[str]:
+    """Write *report* as ``diagnostic.xml`` in *directory*.
+
+    Every job that fails writes one of these in its own working directory ---
+    subjobs included. A pipeline used to leave a single diagnostic.xml at the
+    top, so the one thing the user needed (which step broke, and why) was the
+    one thing not on disk.
+
+    Never raises: a job that is already failing must not fail again over its
+    own diagnostics.
+
+    Returns:
+        The path written, or None if it could not be written.
+    """
+    import logging
+
+    try:
+        path = os.path.join(str(directory), "diagnostic.xml")
+        etree = report.getEtree()
+        ET.indent(etree, space="\t", level=0)
+        with open(path, "wb") as f:
+            f.write(ET.tostring(etree, encoding="utf-8"))
+        return path
+    except Exception as err:
+        logging.getLogger(__name__).warning(f"Failed to write diagnostic.xml: {err}")
+        return None
