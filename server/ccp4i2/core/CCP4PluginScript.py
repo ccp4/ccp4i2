@@ -39,6 +39,8 @@ logger = logging.getLogger(__name__)
 # declare the code, so a task that wants to say something more specific wins.
 SHARED_ERROR_CODES = {
     108: {'description': 'The task could not be loaded'},
+    299: {'description': 'A program this task needs was not found'},
+    991: {'description': 'The job failed'},
     109: {'description': 'The task could not be started'},
     110: {'description': 'The task could not be started'},
     200: {'description': 'Failed to assemble the reflection data for this job'},
@@ -2704,6 +2706,9 @@ class CPluginScript(CData):
         if succeeded and not inherited:
             return
 
+        if not succeeded:
+            self.recordThatItFailed()
+
         from ccp4i2.core.base_object.error_reporting import (
             CErrorReport, write_diagnostic_xml,
         )
@@ -2729,6 +2734,49 @@ class CPluginScript(CData):
             parent.noteFailedSubjob(self.jobLabel(), upward)
         except Exception as err:
             logger.warning(f"[recordCauses] Could not report causes to parent: {err}")
+
+    def recordThatItFailed(self) -> None:
+        """Make sure a failed job carries at least one error-severity report.
+
+        A job can end FAILED with nothing above WARNING in its diagnostics, and
+        then the panel contradicts itself: the job is marked failed and the only
+        thing on the page is orange. That happens because appendErrorReport
+        infers severity from the wording when none is given --- ShelxCD reported
+        a fatal launch failure as a warning because the text did not contain the
+        word "exception".
+
+        Nothing already recorded is altered: promoting someone else's advisory
+        would be a lie in the other direction. One entry is added, quoting what
+        was recorded, or saying plainly that nothing was and where to look.
+        """
+        report = self.errorReport
+        if any(e.get('severity', 0) >= SEVERITY_ERROR for e in report.entries()):
+            return
+
+        worst = report.entries()[-1] if len(report) else None
+        if worst is not None:
+            details = (
+                "The job failed. The most recent thing it recorded was "
+                f"only a warning:\n\n{worst.get('details', '')}"
+            )
+        else:
+            log = ''
+            try:
+                log = str(self.makeFileName('LOG'))
+            except Exception:
+                pass
+            details = (
+                "The job failed and recorded no reason. "
+                + (f"The program log is at {log}." if log else
+                   "Look in the job directory for the program log.")
+            )
+        report.append(
+            klass=self.__class__.__name__,
+            code=991,
+            details=details,
+            name=getattr(self, 'TASKNAME', self.__class__.__name__),
+            severity=SEVERITY_ERROR,
+        )
 
     def noteFailedSubjob(self, label: str, report) -> None:
         """Hold a subjob's causes until this job's own verdict is known.
@@ -3563,14 +3611,64 @@ class CPluginScript(CData):
         "Get the absolute working directory path as string."
         return str(self.workDirectory)
 
-    def getCommand(self, command: str) -> str:
-        """Return the path to an executable command.
+    def getCommand(self, exeName: str = None) -> str:
+        """Return the path to an executable, honouring program preferences.
 
-        In legacy Qt CCP4i2 this looked up user preferences for custom
-        executable paths.  The Django backend has no such preference store,
-        so we simply return the bare command name (assumes it is on PATH).
+        The legacy API, kept for wrappers that already call it. New code should
+        use :func:`ccp4i2.config.program_discovery.resolve_program` directly ---
+        that is what the authoring guide recommends, and what this delegates to.
+
+        Defaults to ``TASKCOMMAND`` when called with no argument, as the Qt
+        version did.
+
+        One deliberate difference from the Qt version, which ended
+        ``if exePath is None: return exeName``: returning the bare name is
+        precisely what produced the failure this was fixed for. Discovery
+        already searches PATH, so a name that resolves to nothing is not on the
+        system at all, and handing it onwards only moves the error further from
+        its cause.
+
+        This used to return the bare name under a docstring saying the Django
+        backend had no preference store. That stopped being true when program
+        discovery was built, and the one caller left in the tree --- ShelxCD
+        asking for shelxc --- silently lost preference support with it: crank2
+        reads PREFERENCES().SHELXDIR and finds SHELX, while ShelxCD handed a
+        bare name to the process manager, which resolved it to None and died
+        inside subprocess with "expected str, bytes or os.PathLike object, not
+        NoneType".
+
+        Raises:
+            CException: if the program cannot be found, naming it and saying
+                where to set its location. Better than returning something
+                unusable and failing further away from the cause.
         """
-        return command
+        from ccp4i2.config.program_discovery import resolve_program
+        from ccp4i2.core.base_object.error_reporting import CException
+
+        if exeName is None:
+            exeName = getattr(self, 'TASKCOMMAND', None)
+        if exeName is None:
+            raise CException(
+                f"{getattr(self, 'TASKNAME', self.__class__.__name__)} asked for "
+                "its own program, but declares no TASKCOMMAND."
+            )
+        command = str(exeName)
+        resolved = resolve_program(command)
+        if resolved:
+            return resolved
+
+        details = (
+            f"Program '{command}' was not found on PATH or in your "
+            f"program-location preferences. If it is installed in a "
+            f"non-standard location, set it in Preferences -> Program "
+            f"locations before running."
+        )
+        self.appendErrorReport(
+            299, details,
+            name=getattr(self, 'TASKNAME', self.__class__.__name__),
+            severity=SEVERITY_ERROR,
+        )
+        raise CException(details)
 
     def testForInterrupt(self) -> bool:
         """Test if user has requested pipeline interruption.
