@@ -10,7 +10,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class pisa_xml(CPluginScript):
 
     TASKNAME = 'pisa_xml'
-    TASKCOMMAND = 'pisa'
+    # Not TASKCOMMAND: the base class never launches this. process() is
+    # overridden without delegating, and goes through CCP4Modules.LAUNCHER(). TASKCOMMAND would be treated as
+    # advisory on that account, when pisa is in fact required.
+    AUXILIARY_PROGRAMS = ('pisa',)
 
     def process(self):
         self.xmlroot = etree.Element('pisa_xml')

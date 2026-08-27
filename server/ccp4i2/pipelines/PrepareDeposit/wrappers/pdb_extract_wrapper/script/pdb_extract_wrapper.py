@@ -8,7 +8,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pdb_extract_wrapper(CPluginScript):
     TASKNAME = 'pdb_extract_wrapper'
-    TASKCOMMAND = 'pdb_extract'
+    # Not TASKCOMMAND: the base class never launches this. process() is
+    # overridden without delegating, and builds its own arg list and env edits. TASKCOMMAND would be treated as
+    # advisory on that account, when pdb_extract is in fact required.
+    AUXILIARY_PROGRAMS = ('pdb_extract',)
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' },}
     
