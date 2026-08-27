@@ -174,6 +174,26 @@ A complete, real task — good to copy from
   visibility, custom layout, or reactive behaviour — see the
   [Task Interface Implementation Guide](../client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md).
 
+## Declaration order is preserved, and observable
+
+The order you declare things in is the order they come back in — from
+`children()`, from `dataOrder()`, in the JSON the GUI renders sections from, and
+in `params.xml`. Re-ordering a `def.xml` is therefore a visible change, not a
+cosmetic one.
+
+This matters beyond tidiness, because **order breaks ties**. Where the same name
+appears in two sections — `F_SIGF` in both `inputData` and `outputData`, say —
+i2run resolves a bare `--F_SIGF` by preferring the shortest path, and when the
+candidates are equally deep it takes the first. Declaring `inputData` before
+`outputData` is what makes `--F_SIGF` mean the input, and 158 of 163 task trees
+do exactly that (none does the reverse). The rule nobody had to write down is
+delivered by the order authors already believe they are choosing.
+
+It was not always so. `children()` iterated a set of weak references hashed on
+object identity, so sibling order was allocation-address order — arbitrary per
+process *and* per object. `i2run molrep_pipe --F_SIGF native.mtz` populated an
+*output* slot on roughly half its invocations, and nothing downstream noticed.
+
 ## Validation
 
 `allowUndefined`, `mustExist`, and `requiredContentFlag` are checked
