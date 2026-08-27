@@ -245,10 +245,39 @@ class HierarchicalObject(ABC):
             self._child_storage.pop(name, None)
 
     def children(self) -> List["HierarchicalObject"]:
-        """Get list of all child objects."""
+        """Get list of all child objects, in the order they were added.
+
+        Order comes from ``_children_by_name``, which is a dict and therefore
+        insertion-ordered; ``_children`` is a set of weak references hashed on
+        the referent's identity, so iterating it yields allocation-address
+        order --- arbitrary per process *and* per object within a process.
+
+        That was observable, not theoretical. i2run breaks a name collision by
+        preferring the shortest path and falls through to this order when the
+        candidates are equally deep, so ``i2run molrep_pipe --F_SIGF
+        native.mtz`` populated an *output* slot on roughly half its
+        invocations: same command, same tree, different meaning run to run.
+        Nothing corrected it downstream --- ``checkOutputData`` leaves an
+        explicitly set output alone, and ``validity()`` filters outputData
+        errors on the grounds that outputs are set during execution.
+
+        Children with no name cache entry --- CList items, which all share the
+        name '[0]' and so collide --- follow. A CList orders its items from its
+        own ``_items``, not from here, so their order among themselves does not
+        matter.
+        """
         with self._lock:
             self._cleanup_dead_children()
-            result = [ref() for ref in self._children if ref() is not None]
+            result, seen = [], set()
+            for ref in self._children_by_name.values():
+                child = ref()
+                if child is not None:
+                    result.append(child)
+                    seen.add(id(child))
+            for ref in self._children:
+                child = ref()
+                if child is not None and id(child) not in seen:
+                    result.append(child)
             return result
 
     def find_child(
