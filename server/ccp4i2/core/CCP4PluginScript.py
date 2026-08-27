@@ -3037,7 +3037,7 @@ class CPluginScript(CData):
             logger.error(f"Failed to merge dictionaries: {e}")
             return self.FAILED, 28
 
-    def checkMonomeCoverage(self, xyzin_path, dict_paths=None, ignoreCodes=()):
+    def checkMonomeCoverage(self, xyzin_path, dict_paths=None):
         """Check that dictionaries cover all non-polymer residues at atom level.
 
         Uses gemmi.prepare_topology — the same function refmac and servalcat
@@ -3050,11 +3050,6 @@ class CPluginScript(CData):
             xyzin_path: Path to the coordinate file (PDB or mmCIF).
             dict_paths: Optional list of user-dictionary file paths.
                         If None, an empty list is used.
-            ignoreCodes: Residue codes to leave out of the check. For a
-                        pre-flight check made before the job runs, this is how
-                        a caller declares a dictionary that does not exist yet
-                        but certainly will --- one the pipeline itself
-                        generates as its first step.
 
         Returns:
             SUCCEEDED if all atoms are covered, FAILED otherwise.
@@ -3111,9 +3106,6 @@ class CPluginScript(CData):
             except Exception as e:
                 logger.warning(f"checkMonomeCoverage: cannot read user dict {p}: {e}")
 
-        if ignoreCodes:
-            all_codes -= {str(c) for c in ignoreCodes}
-
         remaining = [c for c in all_codes if c not in ml.monomers]
         if remaining and monlib_dir:
             ml.read_monomer_lib(monlib_dir, remaining, io.StringIO())
@@ -3129,16 +3121,9 @@ class CPluginScript(CData):
         # Parse warnings for unrestrained atoms ("definition not found for ...")
         # and collect missing-from-model atoms (dict defines them, structure lacks them)
         unrestrained = []
-        ignored = {str(c) for c in ignoreCodes}
         for line in log.getvalue().splitlines():
-            if 'definition not found' not in line:
-                continue
-            # "definition not found for A/DRG 1/N1" --- the residue sits
-            # between the chain and the atom.
-            parts = line.split('/')
-            if len(parts) >= 3 and parts[1].split()[0] in ignored:
-                continue
-            unrestrained.append(line.replace('Warning: ', ''))
+            if 'definition not found' in line:
+                unrestrained.append(line.replace('Warning: ', ''))
 
         missing_from_model = topo.find_missing_atoms()
 

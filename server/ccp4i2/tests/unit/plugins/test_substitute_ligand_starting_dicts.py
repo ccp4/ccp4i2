@@ -94,35 +94,50 @@ class _RecordedCheck:
     def __init__(self, plugin, complaint="No dictionary at all for: ZZZ"):
         self.plugin = plugin
         self.complaint = complaint
+        self.model = None
         self.dict_paths = None
-        self.ignore = None
 
-    def __call__(self, xyzin_path, dict_paths=None, ignoreCodes=()):
+    def __call__(self, xyzin_path, dict_paths=None):
+        self.model = str(xyzin_path)
         self.dict_paths = list(dict_paths or [])
-        self.ignore = tuple(ignoreCodes)
         if self.complaint:
             self.plugin.appendErrorReport(350, f"Monomer coverage check failed:\n{self.complaint}")
             return self.plugin.FAILED
         return self.plugin.SUCCEEDED
 
 
-def _prepared(tmp_path, ligand_as="SMILES", xyzin=None):
+def _model(tmp_path, name="start.pdb", residue=None):
+    path = tmp_path / name
+    if residue:
+        path.write_text(
+            f"HETATM    1  C1  {residue} A 401       0.000   0.000   0.000  1.00 20.00           C  \n"
+            "END\n",
+            encoding="utf-8",
+        )
+    else:
+        path.write_text("END\n", encoding="utf-8")
+    return path
+
+
+def _prepared(tmp_path, ligand_as="SMILES", xyzin=None, complaint="No dictionary at all for: ZZZ"):
     plugin = _plugin("SubstituteLigand", tmp_path)
-    model = xyzin or (tmp_path / "start.pdb")
-    if xyzin is None:
-        model.write_text("END\n", encoding="utf-8")
-    plugin.container.inputData.XYZIN.setFullPath(str(model))
+    plugin.container.inputData.XYZIN.setFullPath(str(xyzin or _model(tmp_path)))
     plugin.container.controlParameters.LIGANDAS.set(ligand_as)
-    check = _RecordedCheck(plugin)
+    check = _RecordedCheck(plugin, complaint=complaint)
     plugin.checkMonomeCoverage = check
     return plugin, check
 
 
+def _codes(error):
+    return [e["code"] for e in error.entries()]
+
+
+# --- coverage: every ligand already in the model needs a dictionary ---------
+
 def test_an_undescribed_ligand_is_refused_before_the_job_runs(tmp_path):
     plugin, _check = _prepared(tmp_path)
-    error = plugin.runTimeValidity()
-    codes = [e["code"] for e in error.entries()]
-    assert 213 in codes, "the pipeline would have run four steps to learn this"
+    assert 213 in _codes(plugin.runTimeValidity()), \
+        "the pipeline would have run four steps to learn this"
 
 
 def test_the_refusal_says_what_to_do_about_it(tmp_path):
@@ -139,21 +154,20 @@ def test_the_refusal_points_at_the_coordinates(tmp_path):
     assert names == ["SubstituteLigand.container.inputData.XYZIN"]
 
 
-def test_the_code_the_pipeline_will_generate_is_not_held_against_it(tmp_path):
-    """A model from an earlier run contains DRG, and DRG is what this run makes."""
-    plugin, check = _prepared(tmp_path, ligand_as="SMILES")
-    plugin.runTimeValidity()
-    assert check.ignore == ("DRG",)
+def test_the_code_the_pipeline_will_mint_excuses_nothing(tmp_path):
+    """A DRG in the starting model is a different molecule from the DRG we make.
+
+    An earlier draft waved this through on the grounds that a DRG dictionary
+    was coming. It describes the ligand being fitted, and covers nothing that
+    is already there.
+    """
+    plugin, _check = _prepared(tmp_path, xyzin=_model(tmp_path, residue="DRG"),
+                               complaint="No dictionary at all for: DRG")
+    assert 213 in _codes(plugin.runTimeValidity())
 
 
-def test_nothing_is_excused_when_no_dictionary_will_be_generated(tmp_path):
-    for ligand_as in ("NONE", "DICT"):
-        plugin, check = _prepared(tmp_path, ligand_as=ligand_as)
-        plugin.runTimeValidity()
-        assert check.ignore == (), f"{ligand_as} generates no dictionary"
-
-
-def test_every_dictionary_that_will_be_there_is_counted(tmp_path, old_ligand_dict):
+def test_only_dictionaries_for_the_starting_model_count(tmp_path, old_ligand_dict):
+    """DICTIN describes the ligand being fitted, so it covers nothing here."""
     plugin, check = _prepared(tmp_path, ligand_as="DICT")
     plugin.container.inputData.STARTING_DICT_LIST.append(old_ligand_dict)
     substituted = tmp_path / "substituted.cif"
@@ -162,73 +176,95 @@ def test_every_dictionary_that_will_be_there_is_counted(tmp_path, old_ligand_dic
 
     plugin.runTimeValidity()
 
-    assert check.dict_paths == [old_ligand_dict, str(substituted)]
+    assert check.dict_paths == [old_ligand_dict]
 
 
 def test_a_covered_model_passes(tmp_path):
-    plugin, check = _prepared(tmp_path)
-    check.complaint = ""
-    codes = [e["code"] for e in plugin.runTimeValidity().entries()]
-    assert 213 not in codes
+    plugin, _check = _prepared(tmp_path, complaint="")
+    assert 213 not in _codes(plugin.runTimeValidity())
 
 
-# --- two ligands cannot share a code ----------------------------------------
-
-@pytest.fixture(name="model_with_drg")
-def model_with_drg_fixture(tmp_path):
-    path = tmp_path / "already_has_drg.pdb"
-    path.write_text(
-        "HETATM    1  C1  DRG A 401       0.000   0.000   0.000  1.00 20.00           C  \n"
-        "END\n",
-        encoding="utf-8",
-    )
-    return path
+def test_the_check_reads_the_selected_atoms_not_the_file_as_supplied(tmp_path):
+    """Excluding a ligand with the atom selection is a real answer."""
+    plugin, check = _prepared(tmp_path, complaint="")
+    supplied = str(plugin.container.inputData.XYZIN.fullPath)
+    plugin.runTimeValidity()
+    assert check.model != supplied, \
+        "checked the file as supplied, so the atom selection could never clear it"
 
 
-def test_a_clash_with_the_fitted_ligands_code_is_refused(tmp_path, model_with_drg):
-    """A model from an earlier run is full of DRG, and DRG is what we would mint."""
-    plugin, check = _prepared(tmp_path, xyzin=model_with_drg)
-    check.complaint = ""
-    codes = [e["code"] for e in plugin.runTimeValidity().entries()]
-    assert 214 in codes
+def test_an_unusable_selection_falls_back_to_the_file(tmp_path):
+    plugin, check = _prepared(tmp_path, complaint="")
+
+    def refuse(*args, **kwargs):
+        raise RuntimeError("selection cannot be applied")
+
+    plugin.container.inputData.XYZIN.getSelectedAtomsFile = refuse
+    plugin.runTimeValidity()
+    assert check.model == str(plugin.container.inputData.XYZIN.fullPath), \
+        "a check that cannot apply the selection must still be made"
 
 
-def test_the_clash_message_offers_the_house_convention(tmp_path, model_with_drg):
-    plugin, check = _prepared(tmp_path, xyzin=model_with_drg)
-    check.complaint = ""
+# --- identity: two ligands cannot share a code ------------------------------
+
+def test_a_clash_with_the_fitted_ligands_code_is_refused(tmp_path):
+    plugin, _check = _prepared(tmp_path, xyzin=_model(tmp_path, residue="DRG"),
+                               complaint="")
+    assert 214 in _codes(plugin.runTimeValidity())
+
+
+def test_the_two_problems_are_reported_separately(tmp_path):
+    """An undescribed DRG in the model is both: it needs a dictionary, and it
+    clashes. Fixing either one alone does not make the job runnable."""
+    plugin, _check = _prepared(tmp_path, xyzin=_model(tmp_path, residue="DRG"),
+                               complaint="No dictionary at all for: DRG")
+    codes = _codes(plugin.runTimeValidity())
+    assert 213 in codes and 214 in codes
+
+
+def test_the_clash_message_offers_both_ways_out(tmp_path):
+    plugin, _check = _prepared(tmp_path, xyzin=_model(tmp_path, residue="DRG"),
+                               complaint="")
     details = " ".join(e["details"] for e in plugin.runTimeValidity().entries())
     assert "LIG" in details, "say what to call it instead"
-    assert "could not be told apart" in details
+    assert "atom selection" in details, "or take the old copy out"
+    assert "repositioned against new data" in details, "the same-ligand case, named"
 
 
-def test_the_clash_points_at_the_code_not_the_coordinates(tmp_path, model_with_drg):
-    plugin, check = _prepared(tmp_path, xyzin=model_with_drg)
-    check.complaint = ""
+def test_the_clash_points_at_the_code_not_the_coordinates(tmp_path):
+    plugin, _check = _prepared(tmp_path, xyzin=_model(tmp_path, residue="DRG"),
+                               complaint="")
     names = [e["name"] for e in plugin.runTimeValidity().entries() if e["code"] == 214]
     assert names == ["SubstituteLigand.container.controlParameters.LIGAND_CODE"]
 
 
-def test_choosing_another_code_resolves_it(tmp_path, model_with_drg):
-    plugin, check = _prepared(tmp_path, xyzin=model_with_drg)
-    check.complaint = ""
+def test_choosing_another_code_resolves_it(tmp_path):
+    plugin, _check = _prepared(tmp_path, xyzin=_model(tmp_path, residue="DRG"),
+                               complaint="")
     plugin.container.controlParameters.LIGAND_CODE.set("LIG")
-
-    codes = [e["code"] for e in plugin.runTimeValidity().entries()]
-
-    assert 214 not in codes
-    assert check.ignore == ("LIG",), "and it is LIG that a dictionary will describe"
+    assert 214 not in _codes(plugin.runTimeValidity())
 
 
-def test_no_clash_when_the_pipeline_mints_nothing(tmp_path, model_with_drg):
-    """With a dictionary supplied or no ligand at all, no code is being minted."""
-    for ligand_as in ("DICT", "NONE"):
-        plugin, check = _prepared(tmp_path, ligand_as=ligand_as, xyzin=model_with_drg)
-        check.complaint = ""
-        codes = [e["code"] for e in plugin.runTimeValidity().entries()]
-        assert 214 not in codes, ligand_as
+def test_a_supplied_dictionary_clashes_by_the_code_it_declares(tmp_path):
+    """In DICT mode the pipeline does not choose the code; the file does."""
+    plugin, _check = _prepared(tmp_path, ligand_as="DICT",
+                               xyzin=_model(tmp_path, residue="LIG"), complaint="")
+    dictin = tmp_path / "supplied.cif"
+    dictin.write_text(
+        "data_comp_list\nloop_\n_chem_comp.id\n_chem_comp.name\n"
+        "LIG  ligand\ndata_comp_LIG\n", encoding="utf-8")
+    plugin.container.inputData.DICTIN.setFullPath(str(dictin))
+
+    assert 214 in _codes(plugin.runTimeValidity())
 
 
-def test_the_chosen_code_is_what_acedrg_is_told(tmp_path):
+def test_no_clash_when_no_ligand_is_being_fitted(tmp_path):
+    plugin, _check = _prepared(tmp_path, ligand_as="NONE",
+                               xyzin=_model(tmp_path, residue="DRG"), complaint="")
+    assert 214 not in _codes(plugin.runTimeValidity())
+
+
+def test_the_chosen_code_is_what_acedrg_and_coot_are_told(tmp_path):
     plugin = _plugin("SubstituteLigand", tmp_path)
     assert plugin._generatedLigandCode() == "DRG"
     plugin.container.controlParameters.LIGAND_CODE.set("lig")
