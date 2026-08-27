@@ -268,15 +268,32 @@ class HierarchicalObject(ABC):
         """
         with self._lock:
             self._cleanup_dead_children()
+            # Order from the name cache, membership from the set. The two are
+            # not equivalent: `_remove_child` always drops the set entry but
+            # clears the cache entry only when `_children_by_name[child._name]`
+            # still points at that child, so a child renamed since it was
+            # registered leaves its cache entry orphaned. Reading the cache
+            # alone resurrects removed children --- a CFloat keyword came back
+            # holding a child named after itself, so phaser_MR.setKeywords took
+            # the leaf for a sub-container and asked the float for a BOXS of
+            # its own.
+            live = {}
+            for ref in self._children:
+                child = ref()
+                if child is not None:
+                    live[id(child)] = child
+
             result, seen = [], set()
             for ref in self._children_by_name.values():
                 child = ref()
-                if child is not None:
+                if child is None:
+                    continue
+                key = id(child)
+                if key in live and key not in seen:
                     result.append(child)
-                    seen.add(id(child))
-            for ref in self._children:
-                child = ref()
-                if child is not None and id(child) not in seen:
+                    seen.add(key)
+            for key, child in live.items():
+                if key not in seen:
                     result.append(child)
             return result
 

@@ -138,3 +138,26 @@ def test_a_bare_flag_means_the_same_thing_every_run(task, flag):
                 landed.add(keyword['path'].split('.')[1])
 
     assert landed == {'inputData'}, f'--{flag} resolved to {landed}'
+
+
+def test_a_removed_child_does_not_come_back_through_the_cache():
+    """Membership is the set's business; the cache only decides order.
+
+    `_remove_child` always drops the set entry, but clears the cache entry
+    only when `_children_by_name[child._name]` still points at that child ---
+    so a child renamed since it was registered leaves its cache entry
+    orphaned. Reading the cache alone resurrected it: a CFloat phaser keyword
+    came back holding a child named after itself, `dataOrder()` reported that
+    child, and `phaser_MR.setKeywords` took the leaf for a sub-container and
+    asked the float for a BOXS of its own.
+    """
+    parent = HierarchicalObject(name='root')
+    kept = _named(parent, 'stays')
+    renamed = _named(parent, 'registered_as_this')
+    renamed._name = 'renamed_to_that'      # cache key is now stale
+    renamed.set_parent(None)               # removed from the set, not the cache
+
+    returned = parent.children()
+
+    assert renamed not in returned, 'a removed child came back through the cache'
+    assert kept in returned
