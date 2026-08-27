@@ -81,6 +81,9 @@ def _run_as_subjob(tmp_path, child_class, label='job_1'):
     child_dir.mkdir(exist_ok=True)
     child = child_class(parent=parent, workDirectory=str(child_dir), name='child')
     child.process()
+    # The pipeline itself then fails, which is when it takes up the causes of
+    # the subjob that failed under it.
+    parent.reportStatus(CPluginScript.FAILED)
     return parent, child
 
 
@@ -143,6 +146,7 @@ def test_a_cause_two_levels_down_still_arrives_flattened(tmp_path):
     bottom = _ExitsNonZero(parent=middle, workDirectory=str(bottom_dir), name='bottom')
     bottom.process()
     middle.reportStatus(CPluginScript.FAILED)
+    top.reportStatus(CPluginScript.FAILED)
 
     names = [e['name'] for e in top.errorReport.entries()]
     assert any(n.startswith('job_1/job_2') for n in names), names

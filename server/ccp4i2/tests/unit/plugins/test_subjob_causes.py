@@ -162,9 +162,24 @@ def test_the_parent_learns_why_the_child_failed(tmp_path):
                              details='Incorrect file format (perhaps it is cif not pdb?)')
 
     child.recordFailureCauses()
+    parent.recordFailureCauses()
 
     assert _names(parent.errorReport) == ['job_2']
     assert 'cif not pdb' in parent.errorReport.entries()[0]['details']
+
+
+def test_a_pipeline_that_recovers_does_not_report_what_it_recovered_from(tmp_path):
+    """Several pipelines try something, have it fail, and carry on."""
+    parent = _plugin(tmp_path)
+    child_dir = tmp_path / 'job_2'
+    child_dir.mkdir()
+    child = _plugin(child_dir, parent=parent)
+    child.errorReport.append(klass='t', code=1, details='first attempt failed')
+
+    child.recordFailureCauses()
+
+    assert (child_dir / 'diagnostic.xml').exists(), 'still on disk for forensics'
+    assert len(parent.errorReport) == 0, 'but not on a job that went on to succeed'
 
 
 def test_causes_are_recorded_once_however_often_asked(tmp_path):
@@ -176,6 +191,7 @@ def test_causes_are_recorded_once_however_often_asked(tmp_path):
 
     child.recordFailureCauses()
     child.recordFailureCauses()
+    parent.recordFailureCauses()
 
     assert len(parent.errorReport) == 1
 
@@ -211,6 +227,7 @@ def test_report_status_records_causes_on_failure(tmp_path):
     child.finished = type('S', (), {'emit': staticmethod(lambda *a: None)})()
 
     child.reportStatus(CPluginScript.FAILED)
+    parent.recordFailureCauses()
 
     assert (child_dir / 'diagnostic.xml').exists()
     assert _names(parent.errorReport) == ['job_3']

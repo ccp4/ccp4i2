@@ -2650,6 +2650,7 @@ class CPluginScript(CData):
         if getattr(self, '_causesRecorded', False):
             return
         self._causesRecorded = True
+        self.absorbPendingCauses()
         from ccp4i2.core.base_object.error_reporting import write_diagnostic_xml
         try:
             if self.workDirectory and os.path.isdir(str(self.workDirectory)):
@@ -2659,9 +2660,30 @@ class CPluginScript(CData):
         try:
             parent = self.parentPlugin()
             if parent is not None:
-                parent.errorReport.absorb(self.errorReport, self.jobLabel())
+                parent.noteFailedSubjob(self.jobLabel(), self.errorReport)
         except Exception as err:
             logger.warning(f"[recordFailureCauses] Could not report causes to parent: {err}")
+
+    def noteFailedSubjob(self, label: str, report) -> None:
+        """Hold a subjob's causes until this job's own verdict is known.
+
+        A pipeline is allowed to try something, have it fail, and carry on ---
+        several do. Reporting the child's error the moment it happens would
+        put a severity-4 entry on a job that went on to succeed, which is a
+        different kind of lie from the one C3 set out to fix. The causes are
+        kept aside and taken up only if this job itself ends badly; either
+        way the child's own diagnostic.xml is on disk for anyone looking.
+        """
+        if not hasattr(self, '_pendingCauses'):
+            self._pendingCauses = []
+        self._pendingCauses.append((label, report))
+
+    def absorbPendingCauses(self) -> None:
+        """Take up the causes of any subjob that failed under this one."""
+        pending = getattr(self, '_pendingCauses', None) or []
+        self._pendingCauses = []
+        for label, report in pending:
+            self.errorReport.absorb(report, label)
 
     def reportStatus(self, status: int):
         """
