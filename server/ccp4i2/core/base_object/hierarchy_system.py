@@ -245,10 +245,56 @@ class HierarchicalObject(ABC):
             self._child_storage.pop(name, None)
 
     def children(self) -> List["HierarchicalObject"]:
-        """Get list of all child objects."""
+        """Get list of all child objects, in the order they were added.
+
+        Order comes from ``_children_by_name``, which is a dict and therefore
+        insertion-ordered; ``_children`` is a set of weak references hashed on
+        the referent's identity, so iterating it yields allocation-address
+        order --- arbitrary per process *and* per object within a process.
+
+        That was observable, not theoretical. i2run breaks a name collision by
+        preferring the shortest path and falls through to this order when the
+        candidates are equally deep, so ``i2run molrep_pipe --F_SIGF
+        native.mtz`` populated an *output* slot on roughly half its
+        invocations: same command, same tree, different meaning run to run.
+        Nothing corrected it downstream --- ``checkOutputData`` leaves an
+        explicitly set output alone, and ``validity()`` filters outputData
+        errors on the grounds that outputs are set during execution.
+
+        Children with no name cache entry --- CList items, which all share the
+        name '[0]' and so collide --- follow. A CList orders its items from its
+        own ``_items``, not from here, so their order among themselves does not
+        matter.
+        """
         with self._lock:
             self._cleanup_dead_children()
-            result = [ref() for ref in self._children if ref() is not None]
+            # Order from the name cache, membership from the set. The two are
+            # not equivalent: `_remove_child` always drops the set entry but
+            # clears the cache entry only when `_children_by_name[child._name]`
+            # still points at that child, so a child renamed since it was
+            # registered leaves its cache entry orphaned. Reading the cache
+            # alone resurrects removed children --- a CFloat keyword came back
+            # holding a child named after itself, so phaser_MR.setKeywords took
+            # the leaf for a sub-container and asked the float for a BOXS of
+            # its own.
+            live = {}
+            for ref in self._children:
+                child = ref()
+                if child is not None:
+                    live[id(child)] = child
+
+            result, seen = [], set()
+            for ref in self._children_by_name.values():
+                child = ref()
+                if child is None:
+                    continue
+                key = id(child)
+                if key in live and key not in seen:
+                    result.append(child)
+                    seen.add(key)
+            for key, child in live.items():
+                if key not in seen:
+                    result.append(child)
             return result
 
     def find_child(

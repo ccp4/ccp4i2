@@ -124,27 +124,34 @@ class DefXmlParser:
         root_container = CContainer()
         root_container._name = task_name
 
-        # Parse the main ccp4i2_body structure
+        # Parse the main ccp4i2_body structure.
         body = root.find(".//ccp4i2_body[@id]")
+        if body is None:
+            # Five def.xml files --- cmapcoeff, comit, cpatterson, fft and
+            # validate_protein --- open with a <ccp4i2_body> carrying no id.
+            # Without this they have no body at all, and the loop below is the
+            # only thing that builds their container.
+            body = root.find(".//ccp4i2_body")
+
+        # Anything the body owns, at any depth, has been placed where the
+        # def.xml put it. What used to be tracked was a set of *id strings* of
+        # the body's *direct* children, so every container nested deeper ---
+        # phaser's 29 keyword sub-containers, servalcat_pipe's prosmart ones ---
+        # failed the test and was attached to the root a second time. That
+        # built a parallel ghost tree, 2,304 parameters across 15 tasks, which
+        # nothing reads: i2run's bare keyword flags set the ghost, so they were
+        # silent no-ops, and the ghosts were serialised into params.xml.
+        #
+        # Identity, not the id string: two containers in different parts of a
+        # tree may legitimately share an id.
+        placed = set()
         if body is not None:
+            for element in body.findall(".//container[@id]"):
+                placed.add(id(element))
             self._parse_body(body, root_container)
 
-        # Parse any additional containers at root level (skip those already processed)
-        all_containers = root.findall(".//container[@id]")
-        processed = set()
-
-        if body is not None:
-            # Add direct child containers of the main body to processed set
-            for c in body.findall("./container[@id]"):
-                processed.add(c.get("id"))
-            # Also add containers from nested ccp4i2_body elements
-            for nested_body in body.findall(".//ccp4i2_body"):
-                for c in nested_body.findall("./container[@id]"):
-                    processed.add(c.get("id"))
-
-        for container in all_containers:
-            container_id = container.get("id")
-            if container_id not in processed:
+        for container in root.findall(".//container[@id]"):
+            if id(container) not in placed:
                 self._parse_container(container, root_container)
 
         # Re-enable validation after parsing is complete
