@@ -80,9 +80,16 @@ def _collapse_progress(text):
     kept = []
     # split("\n"), not splitlines(): the latter treats a bare \r as a line
     # boundary of its own, which undoes the overwriting before it can be
-    # collapsed.
-    for line in text.split("\n"):
-        line = line.split("\r")[-1]
+    # collapsed. The file must be read with newline="" for the \r to survive
+    # this far.
+    for raw in text.split("\n"):
+        segments = raw.split("\r")
+        # A CRLF line ends "text\r" and splits to ["text", ""]. That trailing
+        # empty segment is a line terminator, not an overwrite, and taking it
+        # would blank every line of every log written on Windows.
+        if len(segments) > 1 and segments[-1] == "":
+            segments = segments[:-1]
+        line = segments[-1]
         if _PROGRESS_FRAME.search(line):
             continue
         kept.append(line)
@@ -92,7 +99,10 @@ def _collapse_progress(text):
 def _tail_of(path, max_lines=EVIDENCE_MAX_LINES, max_chars=EVIDENCE_MAX_CHARS):
     """The last lines of *path*, bounded, with progress overwriting collapsed."""
     try:
-        with open(path, "r", errors="replace") as handle:
+        # newline="": without it Python's universal-newline translation turns
+        # every \r into \n before we see it, and a progress display that
+        # overwrote a single line arrives as one line per frame.
+        with open(path, "r", newline="", errors="replace") as handle:
             text = handle.read()
     except OSError:
         return ""
@@ -139,7 +149,7 @@ def failure_evidence(stderr_path=None, log_path=None):
         except OSError:
             continue
 
-        with open(path, "r", errors="replace") as handle:
+        with open(path, "r", newline="", errors="replace") as handle:
             text = handle.read()
 
         candidates = _candidate_lines(text)
