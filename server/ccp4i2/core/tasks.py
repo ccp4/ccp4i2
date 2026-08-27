@@ -1597,7 +1597,14 @@ def task_commands() -> dict[str, list[str]]:
         # Binaries the task drives from *inside* TASKCOMMAND (arcimboldo runs
         # phaser and shelxe itself). They are just as relocatable, so they
         # belong on the Preferences -> Program locations page too.
-        for aux in getattr(cls, "AUXILIARY_PROGRAMS", ()) or ():
+        #
+        # OPTIONAL_PROGRAMS as well: a user needs to be able to point at a
+        # SHELX installation for crank2 even though crank2 will not always
+        # use it. Being listed here is about relocatability, not requirement
+        # --- whether a missing one blocks is decided by which tuple it is in,
+        # not by whether it appears on this page.
+        for aux in list(getattr(cls, "AUXILIARY_PROGRAMS", ()) or ()) + \
+                list(getattr(cls, "OPTIONAL_PROGRAMS", ()) or ()):
             if aux and str(aux) not in names:
                 names.append(str(aux))
         for name in names:

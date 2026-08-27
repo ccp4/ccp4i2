@@ -10,7 +10,16 @@ from ccp4i2.pipelines.crank2.script import crank2_basepipe
 class crank2(CPluginScript):
 
   TASKNAME         = 'crank2'
-  TASKCOMMAND      = 'crank2.py'
+  # No TASKCOMMAND: there is no crank2.py binary. This pipeline imports
+  # crank2_basepipe and runs in process, driving shelxc/shelxd/shelxe, prasa
+  # and parrot itself. Naming a program that does not exist made the pre-run
+  # check warn about a phantom -- for all twelve tasks that inherit this class,
+  # shelx among them -- while saying nothing about the programs crank2 really
+  # needs. Those are not declared either, because which of them is required
+  # depends on the phasing route chosen at run time, and AUXILIARY_PROGRAMS
+  # asserts a program is needed unconditionally --- so they are declared
+  # optional instead: listed in Preferences, never blocking.
+  OPTIONAL_PROGRAMS = ('shelxc', 'shelxd', 'shelxe', 'prasa', 'parrot')
   PERFORMANCECLASS = 'CExpPhasPerformance'
   ERROR_CODES = {
     0: {'description': ' '},

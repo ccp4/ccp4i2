@@ -139,3 +139,71 @@ def test_authority_helper_reflects_execution_mode(monkeypatch):
     monkeypatch.setattr(context_run, 'get_execution_mode', lambda: 'local')
     monkeypatch.setattr(context_run, 'ccp4_available', lambda: False)
     assert context_run.program_checks_are_authoritative() is False
+
+
+# --- OPTIONAL_PROGRAMS: listed in Preferences, never blocking ---------------
+
+
+class _MayUseHelpers(CPluginScript):
+    """Declares programs it *may* run (cf. crank2's phasing routes)."""
+    TASKNAME = 'mayusehelpers'
+    OPTIONAL_PROGRAMS = ('no-such-optional-xyzzy',)
+
+    def process(self, container=None):
+        return self.SUCCEEDED
+
+
+class _NeedsAndMayUse(CPluginScript):
+    TASKNAME = 'needsandmayuse'
+    AUXILIARY_PROGRAMS = ('no-such-helper-xyzzy',)
+    OPTIONAL_PROGRAMS = ('no-such-optional-xyzzy',)
+
+    def process(self, container=None):
+        return self.SUCCEEDED
+
+
+def test_a_missing_optional_program_never_blocks(authoritative):
+    """Even where we are the ones who will run the job.
+
+    crank2 drives shelxc, shelxd, shelxe, prasa and parrot, but which of them
+    it needs depends on the phasing route chosen at run time. Declaring them
+    as auxiliary would refuse runs that never touch SHELX.
+    """
+    error = _check(_MayUseHelpers)
+    assert len(error) == 1
+    assert error.maxSeverity() == SEVERITY_WARNING
+
+
+def test_a_missing_optional_program_is_still_reported(authoritative):
+    """Silence would leave the user guessing when the route does need it."""
+    details = ' '.join(e['details'] for e in _check(_MayUseHelpers).entries())
+    assert 'no-such-optional-xyzzy' in details
+    assert 'Preferences' in details
+
+
+def test_required_and_optional_keep_their_own_severities(authoritative):
+    error = _check(_NeedsAndMayUse)
+    by_name = {}
+    for entry in error.entries():
+        for program in ('no-such-helper-xyzzy', 'no-such-optional-xyzzy'):
+            if program in entry['details']:
+                by_name[program] = entry['severity']
+    assert by_name['no-such-helper-xyzzy'] == SEVERITY_ERROR
+    assert by_name['no-such-optional-xyzzy'] == SEVERITY_WARNING
+
+
+def test_optional_programs_reach_the_preferences_page():
+    """Membership of that page is about relocatability, not requirement."""
+    from ccp4i2.core.tasks import task_commands
+
+    declared = task_commands()
+    for program in ('shelxc', 'shelxd', 'shelxe', 'prasa', 'parrot'):
+        assert 'crank2' in declared.get(program, []), \
+            f'{program} is not offered on the Program locations page'
+
+
+def test_crank2_no_longer_names_a_program_that_does_not_exist():
+    from ccp4i2.core.tasks import task_commands
+
+    assert 'crank2.py' not in task_commands(), \
+        'the phantom is back; twelve tasks inherit this declaration'
