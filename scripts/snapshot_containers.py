@@ -38,7 +38,22 @@ Usage
     ccp4-python ../scripts/snapshot_containers.py --diff before.json after.json
 
 The diff is the thing to read: it reports trees changed, paths gained (which
-should be zero for a removal), paths lost, and any task that stopped loading.
+should be zero for a removal), paths lost, any task that stopped loading, and
+whether the i2run addressing, GUI-rendered shape or validity report differ.
+
+**Every difference must be predicted before it is observed.** An unpredicted
+difference is a defect; a predicted one is the deliverable. Defect A's
+acceptance test was not "nothing changed" --- it was "0 paths gained, 1,358
+removed, in these ten tasks", a shape stated in advance. So a gain fails the
+run outright, since nothing should invent a parameter; losses and derived
+changes are reported for a human to check against their prediction; and
+``--strict`` fails on any difference at all, which is what a pure refactor
+should assert.
+
+Not every change is visible here. Content cached on *read* --- a file's cell
+and spacegroup --- never appears, because these containers are freshly built
+and have read nothing. Match the instrument to the change: that one belongs to
+the persistence tier and to a before/after over real ``params.xml`` files.
 """
 import argparse
 import json
@@ -181,7 +196,7 @@ def take(out_path):
     return out
 
 
-def diff(before_path, after_path):
+def diff(before_path, after_path, strict=False):
     with open(before_path) as f:
         before = json.load(f)
     with open(after_path) as f:
@@ -233,7 +248,25 @@ def diff(before_path, after_path):
         print(f'{label:20}: {len(differing)} tasks differ'
               + (f'  {differing[:6]}' if differing else ''))
 
-    return 1 if (gained or derived_changed) else 0
+    # Gains and losses are not the same kind of event. Inventing a parameter
+    # that was not there is almost always wrong; removing one is frequently the
+    # entire point --- defect A removed 1,358 ghost paths on purpose. So a gain
+    # is fatal by default and everything else is reported for a human to check
+    # against what they predicted. --strict fails on any difference at all,
+    # which is what a pure refactor should assert.
+    if gained:
+        print('\nFAIL: paths were gained. Nothing should invent a parameter.')
+        return 1
+    if strict and (lost or derived_changed):
+        print('\nFAIL: --strict, and something differs. For a refactor that '
+              'should be nothing; for a fix, drop --strict and check the diff '
+              'against what you predicted.')
+        return 1
+    if lost or derived_changed:
+        print('\nDifferences above are not failures by themselves. They are '
+              'the deliverable if you predicted them, and a defect if you did '
+              'not.')
+    return 0
 
 
 def main():
@@ -242,12 +275,15 @@ def main():
                         help='output file, or two snapshots with --diff')
     parser.add_argument('--diff', action='store_true',
                         help='compare two snapshots instead of taking one')
+    parser.add_argument('--strict', action='store_true',
+                        help='fail on any difference, not only on gained paths. '
+                             'What a pure refactor should assert.')
     args = parser.parse_args()
 
     if args.diff:
         if len(args.paths) != 2:
             parser.error('--diff needs exactly two snapshot files')
-        return diff(*args.paths)
+        return diff(*args.paths, strict=args.strict)
 
     _setup_django()
     take(args.paths[0])

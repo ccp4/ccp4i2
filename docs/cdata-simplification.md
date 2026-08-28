@@ -355,6 +355,53 @@ That is the difference between this being a rewrite and being a refactor.
 
 ---
 
+## Conformance is accountability, not frozenness
+
+An earlier draft of this note demanded that nothing derived from a container
+should change. That is wrong, and it would forbid every fix --- including ones
+already shipped. The rule actually being followed is:
+
+> **Every difference must be predicted before it is observed.** An unpredicted
+> difference is a defect. A predicted one is the deliverable.
+
+Defect A's acceptance test was never "no change". It was *0 paths gained, 1,358
+removed, in these ten tasks* --- a shape stated in advance, so that the diff
+could confirm the prediction and rule out anything riding along with it.
+Defect B's was *13 unstable tasks become 0, total paths unchanged*.
+
+The demand therefore gets **stronger** when a change is a genuine fix, because
+that is exactly when something unintended can hide behind the intended
+difference.
+
+`snapshot_containers.py --diff` now reflects this:
+
+- **gains fail the run outright** --- nothing should invent a parameter
+- **losses and derived changes are reported**, for a human to check against
+  what they predicted
+- **`--strict` fails on any difference**, which is what a pure refactor asserts
+
+Verified on a real case: defect A's removal passes by default and fails under
+`--strict`.
+
+### Match the instrument to the change
+
+The container snapshot is not universal, and assuming it is would be the
+subtler mistake. Cached file content --- a file's cell and spacegroup ---
+**never appears in it**, because the snapshot builds fresh containers that have
+read nothing. That fix belongs to the persistence tier and to a before/after
+over real `params.xml` files.
+
+Its expected shape, when someone takes it:
+
+| | |
+|---|---|
+| container snapshot | **no difference** --- content is not present at construction |
+| `params.xml` / `input_params.xml` | content elements **removed**: 27 of 42 and 7 of the files in one project |
+| reading an old params file | **must still work** --- tier 4 holds this already |
+| a cloned job | **recomputes** the cell rather than restoring a stale one; desirable, and visible |
+
+---
+
 ## Suggested order
 
 1. **`_children` key and contents.** Container-side only. Ordered, keyed on the
