@@ -8,14 +8,26 @@ than in someone's scratch directory so those numbers can be reproduced by
 anyone, and so the next structural change to CData can be held to the same
 standard.
 
-Records two things, because the two questions differ:
+Records what the container *is*, and what the rest of the system *derives*
+from it. The second half matters more for a structural change: tiers 1 to 5 of
+the conformance suite assert that the access mechanisms agree with each other,
+which is a different claim from "nothing any consumer sees has changed".
 
-- ``paths``: the sorted set of full paths in each task's container. A change
-  that removes ghosts *removes* paths; the acceptance test is that nothing is
-  ever gained.
-- ``order``: the top-level child order from several fresh instantiations of
-  the same task in one process. Non-determinism shows up as these differing
-  from each other.
+  paths     the sorted set of full paths in each task's container. A change
+            that removes ghosts *removes* paths; the acceptance test for a
+            removal is that nothing is ever gained.
+  order     the top-level child order from several fresh instantiations in one
+            process. Non-determinism shows up as these differing.
+  keywords  every task's i2run addressing table --- path, minimumPath, and
+            which candidate a bare --FLAG resolves to. Derived entirely from
+            container structure, so this is the cheap proxy for what the i2run
+            suite checks about addressing, without running a job. It would have
+            caught the sibling-ordering defect on its own.
+  json      the shape the GUI renders, from CCP4i2JsonEncoder, whose ordering
+            comes from dataOrder(). If membership or order shifts, every task
+            interface shifts.
+  validity  the error report validity() produces, which is what the Run dialog
+            shows. It recurses children.
 
 Usage
 -----
@@ -58,13 +70,72 @@ def walk(obj, prefix, out, depth=0):
             walk(child, path, out, depth + 1)
 
 
+def keyword_table(task):
+    """Every parameter's i2run addressing, derived from container structure."""
+    from ccp4i2.cli.i2run.i2run_components import KeywordExtractor
+
+    rows = []
+    for keyword in KeywordExtractor.extract_from_task_name(task):
+        rows.append({
+            'path': str(keyword.get('path', '')),
+            'simpleName': str(keyword.get('simpleName', '')),
+            'minimumPath': str(keyword.get('minimumPath', '')),
+            'shortest': bool(keyword.get('isShortestForSimpleName', False)),
+            'ambiguous': bool(keyword.get('isAmbiguousSimpleName', False)),
+        })
+    return sorted(rows, key=lambda r: (r['path'], r['simpleName']))
+
+
+def json_shape(container):
+    """What the GUI renders: class and child order at every node.
+
+    Values are deliberately excluded --- they carry temp directories and other
+    per-run noise. The shape is what a structural change would disturb.
+    """
+    import json as _json
+
+    from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
+
+    encoded = _json.loads(_json.dumps(container, cls=CCP4i2JsonEncoder))
+
+    def shape(node, depth=0):
+        if depth > MAX_DEPTH or not isinstance(node, dict):
+            return None
+        out = {'_class': node.get('_class')}
+        value = node.get('_value')
+        if isinstance(value, dict):
+            out['_children'] = [[k, shape(v, depth + 1)] for k, v in value.items()]
+        elif isinstance(value, list):
+            out['_items'] = [shape(v, depth + 1) for v in value]
+        return out
+
+    return shape(encoded)
+
+
+def validity_report(plugin):
+    """The errors the Run dialog would show, as codes and names."""
+    try:
+        error = plugin.validity()
+    except Exception as err:
+        return [{'error': f'{type(err).__name__}: {err}'}]
+    rows = []
+    for entry in error.entries() if hasattr(error, 'entries') else []:
+        rows.append({
+            'class': str(entry.get('class', '')),
+            'code': entry.get('code'),
+            'name': str(entry.get('name', '')),
+            'severity': entry.get('severity'),
+        })
+    return sorted(rows, key=lambda r: (r['name'], str(r['code'])))
+
+
 def snapshot_task(task):
     from ccp4i2.core.tasks import get_plugin_class
 
     plugin_class = get_plugin_class(task)
     if plugin_class is None:
         return {'error': 'did not import'}
-    orders, paths = [], None
+    orders, paths, shape, validity = [], None, None, None
     for _ in range(INSTANTIATIONS):
         # Hold the plugin: a container outliving its plugin comes back empty,
         # because children are reached through weak references.
@@ -74,7 +145,15 @@ def snapshot_task(task):
             collected = []
             walk(plugin.container, '', collected)
             paths = sorted(set(collected))
-    return {'paths': paths, 'order': orders}
+            shape = json_shape(plugin.container)
+            validity = validity_report(plugin)
+
+    out = {'paths': paths, 'order': orders, 'json': shape, 'validity': validity}
+    try:
+        out['keywords'] = keyword_table(task)
+    except Exception as err:
+        out['keywords'] = [{'error': f'{type(err).__name__}: {err}'}]
+    return out
 
 
 def take(out_path):
@@ -94,6 +173,8 @@ def take(out_path):
                 if len({tuple(o) for o in out[t]['order']}) > 1]
     print(f'tasks snapshotted: {len(good)} of {len(out)}')
     print(f'total paths:       {sum(len(out[t]["paths"]) for t in good)}')
+    print(f'keywords:          {sum(len(out[t].get("keywords", [])) for t in good)}')
+    print(f'validity entries:  {sum(len(out[t].get("validity", [])) for t in good)}')
     print(f'unstable order:    {len(unstable)} tasks')
     for task in unstable[:10]:
         print(f'  {task}')
@@ -139,7 +220,20 @@ def diff(before_path, after_path):
                if 'order' in v and len({tuple(o) for o in v['order']}) > 1]
         print(f'unstable order {label:6}: {len(bad)} tasks')
 
-    return 1 if gained else 0
+    # What the rest of the system derives from the container. Any difference
+    # here is a difference a user or a script can see.
+    derived_changed = 0
+    for field, label in (('keywords', 'i2run addressing'),
+                         ('json', 'GUI-rendered shape'),
+                         ('validity', 'validity report')):
+        differing = [t for t in sorted(before)
+                     if field in before[t] and field in after.get(t, {})
+                     and before[t][field] != after[t][field]]
+        derived_changed += len(differing)
+        print(f'{label:20}: {len(differing)} tasks differ'
+              + (f'  {differing[:6]}' if differing else ''))
+
+    return 1 if (gained or derived_changed) else 0
 
 
 def main():
