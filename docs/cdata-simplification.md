@@ -1,0 +1,274 @@
+# CData: what the magic buys, and what it would take to stop paying for it
+
+**Status:** design note, 2026-08-28. Written to be argued with. Every number in
+it was measured on this tree; the scripts are named so they can be re-run.
+
+**Related:** [container-construction-defects.md](container-construction-defects.md)
+recorded the defects that prompted this and holds the conformance harness
+design. This note is the destination that work is heading towards.
+
+---
+
+## The proposition
+
+Paul's position, and it is the right instinct: a CData object should carry as
+close to no magic as possible. Children and values might collapse into ordinary
+Python attributes, or dataclasses.
+
+Two objections have kept it from happening:
+
+1. **Two-way navigation.** A leaf walks *up* the tree to find out where it
+   lives. Plain attributes cannot do that.
+2. **Construction from def.xml.** The shapes are not known until a file is
+   read, and dataclasses are declared in source.
+
+Both are real. Both turn out to fall on one side of a distinction the current
+model does not make.
+
+---
+
+## What a leaf costs today
+
+A `CInt` leaf carries **16 instance attributes**:
+
+    _children              _children_by_name      _child_storage
+    _lock                  _event_handlers        _properties
+    _sigmgr                _qualifiers            _default_values
+    _value_states          _parent_ref            _name
+    _state                 _hierarchy_initialized _skip_validation
+    _value
+
+That is **~352 bytes against 28 for a plain int**, and **86%** of a task tree's
+objects are leaves --- 335 of 391 in `phaser_pipeline`. Across the registry:
+about 18,000 leaves, each with five dicts and an `RLock`, none of which they
+use, because a leaf never has children.
+
+The machinery is paid overwhelmingly by the objects that do not need it.
+
+---
+
+## The distinction the model does not make
+
+Measured over every task in the registry (`/tmp` script, reproduced in the
+appendix): 23 classes own children, 289 instances; 23 classes are always
+leaves, 1,936 instances. `CContainer` appears in **both** lists --- 189 with
+children, 168 empty --- so even "is a container" is not a stable property of a
+class.
+
+The revealing measurement is what those 23 owner classes look like:
+
+| | |
+|---|---:|
+| classes whose children are **always the same set** | **22** |
+| classes whose children **vary between instances** | **1** (`CContainer`, 70 shapes) |
+
+`CObsDataFile` is always exactly those 7 fields. `CPdbDataFile` always 8.
+`CI2XmlHeader` always 13. Only `CContainer` varies, because its contents come
+from def.xml at runtime.
+
+So one word --- "children" --- is doing two jobs:
+
+**Composition.** A `CObsDataFile` *is made of* `baseName`, `relPath`,
+`project`, `annotation`, `dbFileId`, `contentFlag`, `subType`. The *shape* is
+fixed and declared in Python source, identical for every instance. This is a
+**record** --- though see the note on qualifiers below: what each field *means*
+can still be adjusted by the def.xml that uses it.
+
+**Containment.** A task's `inputData` *contains* `XYZIN`. Dynamic, arbitrary
+depth, addressable by path, defined by data outside the program. This is a
+**tree**.
+
+Conflating them is why the model needs machinery general enough for the tree
+on every object that only needs the record.
+
+---
+
+## Objection 1: two-way navigation
+
+Real, and specific. `_find_plugin_parent()` is how a **file value answers
+questions about where it lives**:
+
+- am I in database-aware mode (`cdata_file.py:203`)
+- what is my database handler (`:285`)
+- what is my project root, or my job's working directory, for resolving
+  `relPath` (`:715`)
+
+That is why `container.inputData.XYZIN = "/some/path"` can create a File record
+in the right project: the leaf walks up and asks. Upward navigation appears
+about 350 times across its spellings.
+
+**But the walk is already known not to work.** `_find_plugin_parent` opens with
+an escape hatch:
+
+```python
+if hasattr(self, '_temp_plugin_ref'):
+    return self._temp_plugin_ref
+```
+
+and the gleaner bolts that attribute on before use and strips it off afterwards
+(`db/async_db_handler.py:676, 697`). A hierarchy walk with a manual override
+for the cases it cannot reach is already passing context explicitly --- by
+monkey-patching, rather than by design.
+
+**What the leaf needs is not its parent. It is its context**: project root,
+working directory, whether a database is attached, which handler. One object.
+The parent chain is a *lookup mechanism* for it, not the requirement.
+
+Hand the context down instead of walking up and:
+
+- no depth limit, no weak reference to a parent, no `_temp_plugin_ref`
+- **children need not be discoverable from below at all** --- which is the
+  property that blocks plain attributes
+- the requirement lands on **file values**, one level, not on all 18,000 leaves.
+  `baseName` and `annotation` need no context whatsoever.
+
+---
+
+## Objection 2: construction from def.xml
+
+The resolution is to stop trying. **Nothing generates a class from def.xml.**
+
+def.xml describes *containment*, which is data; a container built from it stays
+a dynamic mapping. Dataclasses are for the 22 *composition* classes, which are
+declared in Python source and never vary.
+
+A sketch, built from the real `freerflag.def.xml`:
+
+```python
+@dataclass
+class Context:
+    """What a file value needs to resolve itself. Handed down, never walked up."""
+    project_root: str = ''
+    work_directory: str = ''
+    db_handler: Any = None
+
+@dataclass
+class DataFile:
+    """The 7 fields every CDataFile has --- fixed for every instance."""
+    baseName: str = ''
+    relPath: str = ''
+    project: str = ''
+    annotation: str = ''
+    dbFileId: Optional[str] = None
+    contentFlag: int = 0
+    subType: int = 0
+    _context: Optional[Context] = field(default=None, repr=False, compare=False)
+
+    def full_path(self):
+        root = self._context.project_root if self._context else ''
+        return os.path.join(root, self.relPath, self.baseName)
+
+class Container(dict):
+    """Dynamic, ordered, addressable. The shape is data; pretending otherwise
+    buys nothing."""
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(key)
+```
+
+Parsing the actual def.xml and walking it gives:
+
+    sections      : ['inputData', 'outputData', 'controlParameters']
+    dotted access : DataFile
+    addressing    : ['container.inputData.F_SIGF', 'container.inputData.FREERFLAG',
+                     'container.outputData.FREEROUT', 'container.controlParameters.CUTRESOLUTION']
+    full_path     : /projects/demo/CCP4_IMPORTED_FILES/gamma.mtz
+
+Dotted access, path addressing, and a file value resolving its own full path,
+with no generated classes and no upward navigation. The context was handed to
+the value when it was made.
+
+---
+
+## What the sketch does not yet carry
+
+Stated plainly, because these are the work:
+
+**Value state.** The three-way NOT_SET / DEFAULT / EXPLICITLY_SET, on which 719
+`isSet()` calls depend, and which decides whether a parameter reaches a program
+at all --- phaser skips keywords sitting at their default, so a user who types
+the default and a user who leaves it alone must differ. Most naturally a
+**state map on the container** rather than a wrapper per value, which is
+precisely what unburdens the 1,936 leaf instances.
+
+**Qualifiers.** Currently a per-instance dict, and the obvious simplification
+--- put them on the class --- does not work, because **def.xml overrides them
+per field**. Measured across the registry: 18 of 44 classes carry more than one
+qualifier set, `CString` alone in **109 distinct** variants; and the same class
+with the same field name still differs, `CFilePath.baseName` in 17 variants,
+`CObsDataFile.F_SIGF` in 3. A `baseName` under one task's file input is not
+qualified the same way as under another's.
+
+They are nonetheless not *instance* data. Two instantiations of the same task
+agree at every path, in **all 170** tasks checked --- so qualifiers are a
+property of **(task, path)**, and belong in a per-task schema computed once
+when the def.xml is read, layering its overrides over the class defaults.
+
+That is a larger structure than a class attribute, and it is the honest cost of
+the override facility. It is still ~21,000 schema entries held once per task
+rather than once per object, and it removes a dict from every one of the 1,936
+leaf instances.
+
+**Assignment coercion.** `container.inputData.XYZIN = "/some/path"` setting a
+file from a string --- 28 uses, against 3,711 dotted reads. Making that work
+means the container intercepts assignment. That is magic, but in one place
+rather than eighteen thousand.
+
+**CList.** Items are addressed by index and named `[n]`; see Defect C in the
+companion note.
+
+---
+
+## Why this is attemptable now, and was not before
+
+Everything built this week pins the **facade**, not the implementation:
+
+- 21,014 container paths, and the ordering of every one
+- **9,142 i2run addressing rows** --- which candidate a bare `--FLAG` resolves
+  to, derived purely from container structure
+- the GUI-rendered JSON shape for all 171 tasks
+- the validity report for every task
+- that serialisation reports exactly the children the tree has
+- five tiers of conformance: access agreement, leaf operations, mutation,
+  persistence, identity and lifetime
+- the same invariants over the PHIL construction route
+
+All of it is stated in terms of what a caller sees. **An implementation that
+satisfies those numbers is a correct implementation, by construction** --- and
+`scripts/snapshot_containers.py --diff` answers in 25 seconds, without running
+a job.
+
+That is the difference between this being a rewrite and being a refactor.
+
+---
+
+## Suggested order
+
+1. **`_children` key and contents.** Container-side only. Ordered, keyed on the
+   `weakref.ref` rather than `id()` --- CPython reuses ids after collection, and
+   tier 5 exists to catch that.
+2. **Leaves stop being `HierarchicalObject`s.** 86% of objects, none of the
+   hierarchy semantics. Value plus shared qualifiers; state on the container.
+3. **Composition classes become dataclasses.** The 22 with fixed field lists.
+4. **Context handed down, `_find_plugin_parent` and `_temp_plugin_ref` retired.**
+5. **`contents()` as one declared answer**, so `value_dict_for_object`'s five
+   strategies, `CCP4i2JsonEncoder`'s walk and `find_all_files` collapse onto one
+   call instead of agreeing by coincidence.
+
+Steps 1 and 2 are worthwhile on their own and do not commit to the rest.
+
+---
+
+## Appendix: reproducing the measurements
+
+    cd server
+    ccp4-python ../scripts/snapshot_containers.py before.json
+    ccp4-python ../scripts/snapshot_containers.py --diff before.json after.json
+
+The class-shape and leaf-cost figures came from short scripts walking
+`get_plugin_class(task)(...).container` for every task in `TASKS`, recording
+`type(obj).__name__` against `tuple(dataOrder())`. They are quick to rewrite
+and were deliberately not committed as tests: they measure the present shape,
+which is expected to change.
