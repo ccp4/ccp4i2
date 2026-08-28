@@ -82,7 +82,7 @@ Four, and the fourth is the new one:
 | state | meaning | persisted? | recomputed? |
 |---|---|---|---|
 | `UNSET` | nobody has given it a value | no | --- |
-| `DEFAULT` | the value the schema specifies | no --- the schema has it | on load |
+| `DEFAULT` | the value the schema specifies | see *provenance is not policy* | on load |
 | `DERIVED` | the system worked it out from evidence | **as a cache, marked as such** | when the evidence changes |
 | `USER` | chosen through the GUI, the API or i2run | **always** | never |
 
@@ -100,6 +100,46 @@ The immediate payoffs:
 - **`isSet()` can mean one thing.** See below.
 - **An empty string a user typed is a value**, distinct from a field never
   touched.
+
+## Provenance is not policy
+
+A correction to an earlier draft of this note, which had `DEFAULT` implying
+"need not be transmitted". Those are two different questions, and conflating
+them is already causing trouble.
+
+`phaser_MR.setKeyword` sends a keyword only when:
+
+```python
+if (not parameterObject.isDefault() and not str(parameterObject) == 'Auto') \
+        or parameterName in self.requiredDefaultList:
+```
+
+Some parameters **must be given to phaser even at their default value**, or the
+script does not work. `phaser_EP_LLG` names `PART_VARI`, `PART_DEVI` and
+`LLGM`; `phaser_EP_AUTO` names the first two. The `requiredDefaultList` is the
+patch for a distinction the model does not make.
+
+So:
+
+- **state** says where a value came from --- schema, system, or user
+- **transmission** says whether the consuming program needs to be told
+- **persistence** says whether the job's record needs it to be reproducible
+
+Phaser needs `PART_VARI` on its command line whether or not anybody chose it.
+And if a program requires a value, then a job's `params.xml` needs it too, or
+the job cannot be reproduced from its own record --- so "never persist
+defaults" is wrong for the same reason.
+
+The place for that is a **qualifier in the def.xml, beside the default it
+concerns** --- `alwaysSend`, or its inverse --- rather than a hand-maintained
+Python list inside one wrapper. A list in a wrapper is invisible to everything
+else, easy to omit when a parameter is added, and easy to leave stale:
+`phaser_MR`'s is empty, and nothing says whether that is correct or merely
+unchecked.
+
+This also means `isDefault()` cannot simply be deleted in favour of provenance.
+Its nine callers are asking a policy question, and they need an answer whatever
+the storage becomes.
 
 ## Replacing `isSet()`
 
@@ -148,9 +188,11 @@ one. Treating unmarked values as `USER` is safe and wrong; treating them as
 `DERIVED` is correct and risks discarding a real choice. This needs deciding
 explicitly rather than by default.
 
-**Whether `DEFAULT` needs storing at all**, given the schema knows it. Probably
-not, but `isDefault()` has 9 callers and one of them is phaser's keyword
-filter, so the behaviour must survive whatever replaces the storage.
+**Whether `DEFAULT` needs storing at all.** The schema knows the value, so
+storing it looks redundant --- but see *provenance is not policy*: a job whose
+program requires a defaulted parameter needs that parameter in its own record
+to be reproducible. The decision is probably per-parameter rather than global,
+which is an argument for the `alwaysSend` qualifier carrying it.
 
 ---
 
