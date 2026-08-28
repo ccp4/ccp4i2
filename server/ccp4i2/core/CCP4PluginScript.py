@@ -16,7 +16,7 @@ import shutil
 import sys
 import traceback
 
-from ccp4i2.core.base_object.base_classes import CData, CContainer
+from ccp4i2.core.base_object.base_classes import CData, CContainer, ValueState
 from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
 from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
 from ccp4i2.core.task_manager.params_xml_handler import ParamsXmlHandler
@@ -522,27 +522,27 @@ class CPluginScript(CData):
         standard_containers = ['inputData', 'outputData', 'controlParameters', 'guiAdmin']
 
         for container_name in standard_containers:
-            # Check if container exists as a child
+            # Check if section exists as a child
             try:
                 # Try to access via __getattr__ (which searches children)
-                container = getattr(self.container, container_name)
-                logger.debug(f"[_ensure_standard_containers] {container_name} already exists with {len(container.children())} children")
+                section = getattr(self.container, container_name)
+                logger.debug(f"[_ensure_standard_containers] {container_name} already exists with {len(section.children())} children")
             except AttributeError:
                 # Container doesn't exist - create it
-                logger.debug(f"[_ensure_standard_containers] Creating new {container_name} container")
-                container = CContainer(
+                logger.debug(f"[_ensure_standard_containers] Creating new {container_name} section")
+                section = CContainer(
                     parent=self.container,
                     name=container_name
                 )
                 # Use setattr to properly register in _data_order for serialization
-                setattr(self.container, container_name, container)
+                setattr(self.container, container_name, section)
 
             # Add standard fields to guiAdmin
             if container_name == 'guiAdmin':
                 # Ensure jobTitle exists (used by arcimboldo, baverage, etc.)
-                if not hasattr(container, 'jobTitle'):
+                if not hasattr(section, 'jobTitle'):
                     job_title = CString(
-                        parent=container,
+                        parent=section,
                         name='jobTitle'
                     )
                     # Set default value from job database if available
@@ -556,18 +556,24 @@ class CPluginScript(CData):
                             # If we can't get job name from DB, leave it unset
                             pass
                     # Use setattr to properly register in _data_order for serialization
-                    setattr(container, 'jobTitle', job_title)
+                    setattr(section, 'jobTitle', job_title)
 
                 # Ensure jobStatus exists (stores job completion status)
                 # Values: 0=Pending, 1=Running, 2=Finished, 3=Failed, etc.
-                if not hasattr(container, 'jobStatus'):
+                if not hasattr(section, 'jobStatus'):
                     job_status = CInt(
-                        parent=container,
+                        parent=section,
                         name='jobStatus'
                     )
-                    job_status.value = 0  # Default: Pending
+                    job_status.value = 0
                     # Use setattr to properly register in _data_order for serialization
-                    setattr(container, 'jobStatus', job_status)
+                    setattr(section, 'jobStatus', job_status)
+                    # ...and it is a default, as the comment above says, so
+                    # record that. Assignment marks EXPLICITLY_SET, which
+                    # claimed a user had chosen Pending on all 171 tasks. This
+                    # has to come *after* the setattr, which is itself an
+                    # assignment and would otherwise undo it.
+                    section.jobStatus._value_states["value"] = ValueState.DEFAULT
 
     def _set_container_order(self):
         """

@@ -92,61 +92,8 @@ def _walk(obj, path, out, depth=0, seen=None):
         _walk(child, f"{path}.{getattr(child, '_name', '?')}", out, depth + 1, seen)
 
 
-#: Where construction still over-claims, by the field it happens on. These are
-#: two different problems wearing the same symptom, and they want different
-#: answers --- which is why they are recorded rather than quietly fixed:
-#:
-#:   jobStatus   the framework recording a real value. Arguably genuinely set,
-#:               just not *by a user* --- a distinction the three-state model
-#:               does not currently make.
-#:   the rest    a def.xml <default> or a class-metadata default applied by
-#:               *assignment*, so a declared value claims a user chose it. Same
-#:               defect as CString.__init__ (see "An empty CString is not a
-#:               user choice"), reached by a different code path.
-KNOWN_OVER_CLAIMING = {"jobStatus", "subType", "contentFlag", "annotation"}
-
-
-def test_construction_over_claims_only_where_it_is_known_to():
-    """The guard: no *new* field may start claiming to be explicitly set.
-
-    Pinning the shape rather than the count, so adding a task cannot fail this
-    and introducing a fifth over-claiming field cannot pass it.
-    """
-    django = pytest.importorskip("django")
-    from ccp4i2.core.tasks import TASKS, get_plugin_class
-
-    unexpected, fields = [], set()
-    for name in TASKS:
-        try:
-            plugin = get_plugin_class(name)(parent=None, name=name)
-        except Exception:
-            continue
-        found = []
-        _walk(plugin.container, "container", found)
-        for path, obj, state in found:
-            if state != ValueState.EXPLICITLY_SET:
-                continue
-            field = path.rsplit(".", 1)[-1]
-            fields.add(field)
-            if field not in KNOWN_OVER_CLAIMING:
-                unexpected.append(f"{name}.{path} ({type(obj).__name__})")
-
-    assert not unexpected, (
-        f"{len(unexpected)} leaves newly claim EXPLICITLY_SET at construction, "
-        f"on fields outside {sorted(KNOWN_OVER_CLAIMING)}: {unexpected[:8]}"
-    )
-    assert fields, "found none at all --- the walk is not reaching the tree"
-
-
-@pytest.mark.xfail(strict=True, reason=(
-    "456 leaves still claim EXPLICITLY_SET at construction --- 171 "
-    "guiAdmin.jobStatus, 285 subType/contentFlag/annotation applied by "
-    "assignment from a <default>. Fixing them needs the two populations "
-    "separated first; see KNOWN_OVER_CLAIMING above. strict=True so this "
-    "flips to a failure the moment it is fixed, rather than passing silently."
-))
 def test_no_task_has_explicitly_set_parameters_at_construction():
-    """The goal state: every task, every leaf, at every depth."""
+    """Every task, every leaf, at every depth, straight after building."""
     django = pytest.importorskip("django")
     from ccp4i2.core.tasks import TASKS, get_plugin_class
 
