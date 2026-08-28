@@ -36,11 +36,18 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         self.processes = {}
         self.pluginsStarted = {}
         self.datasetElements = {}
-        self.dumpXml()
 
     def startProcess(self):
         from ccp4i2.core.CCP4Modules import JOBCONTROLLER, PROJECTSMANAGER
         pm = PROJECTSMANAGER()
+
+        # The running report needs a program.xml as soon as the job starts, so
+        # write the skeleton here. It used to be written from __init__, which
+        # meant merely *constructing* the plugin --- to read its parameters, or
+        # to render its task interface --- wrote a file, and since
+        # workDirectory defaults to Path.cwd() when none is supplied, it landed
+        # wherever the process happened to be standing.
+        self.dumpXml()
         
         for iLigand, projectName in enumerate(self.container.inputData.PROJECTNAME_LIST):
             print(iLigand, projectName)
