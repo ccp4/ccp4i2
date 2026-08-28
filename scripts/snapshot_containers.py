@@ -144,6 +144,27 @@ def validity_report(plugin):
     return sorted(rows, key=lambda r: (r['name'], str(r['code'])))
 
 
+def params_xml(plugin):
+    """What the container actually serialises to.
+
+    The shape of a container and the artefact it writes are different
+    surfaces, and this one was unguarded. Marking guiAdmin.jobStatus as
+    DEFAULT rather than EXPLICITLY_SET --- correct, and invisible to every
+    other section here --- removed `<jobStatus>0</jobStatus>` from 171 of 173
+    task params.xml files, and nothing said so. `params.xml` is what a rerun
+    reads and what a user's saved job carries, so a change to it is a change
+    to behaviour whether or not any container path moves.
+    """
+    import tempfile as _t
+    try:
+        path = os.path.join(_t.mkdtemp(), 'params.xml')
+        plugin.saveDataToXml(path)
+        with open(path) as handle:
+            return handle.read()
+    except Exception as exc:
+        return f'<error: {type(exc).__name__}>'
+
+
 def snapshot_task(task):
     from ccp4i2.core.tasks import get_plugin_class
 
@@ -163,7 +184,8 @@ def snapshot_task(task):
             shape = json_shape(plugin.container)
             validity = validity_report(plugin)
 
-    out = {'paths': paths, 'order': orders, 'json': shape, 'validity': validity}
+    out = {'paths': paths, 'order': orders, 'json': shape, 'validity': validity,
+           'params': params_xml(plugin)}
     try:
         out['keywords'] = keyword_table(task)
     except Exception as err:
@@ -240,7 +262,8 @@ def diff(before_path, after_path, strict=False):
     derived_changed = 0
     for field, label in (('keywords', 'i2run addressing'),
                          ('json', 'GUI-rendered shape'),
-                         ('validity', 'validity report')):
+                         ('validity', 'validity report'),
+                         ('params', 'params.xml written')):
         differing = [t for t in sorted(before)
                      if field in before[t] and field in after.get(t, {})
                      and before[t][field] != after[t][field]]
