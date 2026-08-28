@@ -32,6 +32,27 @@ class ValueState(Enum):
 from .class_metadata import cdata_class
 
 
+_QUALIFIER_TEMPLATE_CACHE: Dict[type, Dict[str, Any]] = {}
+
+
+def _merged_qualifier_template(cls: type) -> Dict[str, Any]:
+    """The qualifier template for `cls`, merged down its MRO and memoised.
+
+    Keyed on the class object, so a class that is never instantiated costs
+    nothing and one instantiated 2,452 times merges once. The returned dict is
+    shared and must be treated as read-only --- callers copy it.
+    """
+    merged = _QUALIFIER_TEMPLATE_CACHE.get(cls)
+    if merged is None:
+        merged = {}
+        for ancestor in reversed(cls.__mro__):
+            template = ancestor.__dict__.get('_qualifiers_template')
+            if template is not None:
+                merged.update(template)
+        _QUALIFIER_TEMPLATE_CACHE[cls] = merged
+    return merged
+
+
 @cdata_class(gui_label="CData")
 class CData(HierarchicalObject):
     """Base class for all CCP4i2 data objects with hierarchical relationships."""
@@ -53,15 +74,15 @@ class CData(HierarchicalObject):
         self._apply_metadata_attributes()
 
         # --- Per-instance qualifier setup ---
-        # Walk the MRO to merge _qualifiers_template from all ancestors.
-        # Parent qualifiers are applied first, child qualifiers override.
-        # This is the sole runtime source of truth for qualifiers.
+        # Merge _qualifiers_template down the MRO --- parent first, child
+        # overriding --- which is the sole runtime source of truth for
+        # qualifiers. The *result* depends only on the class, so it is merged
+        # once per class rather than once per object; a task container builds
+        # a hundred of these per API request and the containers do not persist.
+        # Still a fresh dict per instance, so set_qualifier stays safe and the
+        # aliasing of nested values is exactly what the loop produced.
         cls = self.__class__
-        self._qualifiers = {}
-        for ancestor in reversed(cls.__mro__):
-            template = ancestor.__dict__.get('_qualifiers_template')
-            if template is not None:
-                self._qualifiers.update(template)
+        self._qualifiers = dict(_merged_qualifier_template(cls))
 
         # CONTENT_ORDER - copy from class if defined
         if hasattr(cls, 'CONTENT_ORDER'):
@@ -579,6 +600,52 @@ class CData(HierarchicalObject):
             ValueState indicating current state
         """
         return self._value_states.get(field_name, ValueState.NOT_SET)
+
+    #: Declared transmission policies, the values `<sendWhen>` may take.
+    #: `ifSet` and `ifChosen` differ only for a parameter sitting on a
+    #: default: `ifSet` sends it, `ifChosen` does not.
+    SEND_ALWAYS = "always"
+    SEND_IF_CHOSEN = "ifChosen"
+    SEND_IF_SET = "ifSet"
+    SEND_POLICIES = (SEND_ALWAYS, SEND_IF_CHOSEN, SEND_IF_SET)
+
+    def sendWhen(self, default: str = SEND_IF_SET) -> str:
+        """The transmission policy declared for this parameter.
+
+        Wrappers differ in what they do with an untouched parameter, so the
+        caller supplies its own baseline and the def.xml overrides it per
+        parameter. phaser omits anything sitting on a default, and so passes
+        ``ifChosen``; a wrapper that sends whatever has a value passes nothing.
+
+        A `<sendWhen>` naming something outside the vocabulary raises rather
+        than quietly falling back, because a policy that silently means its
+        opposite is the failure this whole mechanism exists to remove.
+        """
+        policy = self.get_qualifier("sendWhen")
+        if policy is None:
+            policy = default
+        if policy not in self.SEND_POLICIES:
+            raise ValueError(
+                f"{self.objectPath() if hasattr(self, 'objectPath') else self._name}: "
+                f"sendWhen={policy!r} is not one of {list(self.SEND_POLICIES)}"
+            )
+        return policy
+
+    def shouldSend(self, default: str = SEND_IF_SET) -> bool:
+        """Whether this parameter should be passed to the program.
+
+        Replaces the hand-rolled tests wrappers grew for the same question ---
+        phaser's ``requiredDefaultList``, aimless's override flags --- by
+        asking the declaration instead of the caller's memory.
+        """
+        policy = self.sendWhen(default)
+        if policy == self.SEND_ALWAYS:
+            # A defaulted value is still a value the program needs; an unset
+            # one is not, and emitting it would put nothing on the wire.
+            return self.getValueState("value") != ValueState.NOT_SET
+        if policy == self.SEND_IF_CHOSEN:
+            return self.getValueState("value") == ValueState.EXPLICITLY_SET
+        return self.isSet()
 
     def isDefault(self, field_name: str = 'value') -> bool:
         """Check if a field is at its default value.

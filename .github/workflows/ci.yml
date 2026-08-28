@@ -92,6 +92,15 @@ jobs:
         working-directory: server
         run: python -m pytest ccp4i2/tests/api/unit/ -q
 
+      # Configuring a job without running it: adding rows to a list, uploading
+      # into them, removing one, adding another. Neither i2run (which never
+      # touches the upload endpoint) nor api/e2e (busy running pipelines) does
+      # that, and the gap is how a file-deleting bug reached a user. No CCP4
+      # binaries, about five seconds.
+      - name: API configuration tests
+        working-directory: server
+        run: python -m pytest ccp4i2/tests/api/config/ -q
+
   frontend-tests:
     # The client had 278 vitest tests and no job running them, so nothing on a
     # PR could tell you they had broken. They need no CCP4 and no database --

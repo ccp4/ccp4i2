@@ -51,6 +51,18 @@ Supporting references:
 ### …use the REST API or CLI
 - [API Overview](../mddocs/api/API_OVERVIEW.md)
 - [i2run](i2run.md) · [i2remote](i2remote.md) · [CLI Reference](../mddocs/cli/CLI.md)
+- [Value State (design note)](value-state-design.md) — what NOT_SET / DEFAULT /
+  EXPLICITLY_SET claim, what they do (a CString is EXPLICITLY_SET from birth,
+  and `isSet()` reports non-emptiness for strings but state for ints), and the
+  fourth state that is missing: DERIVED, for what the system worked out rather
+  than what a user chose. The dependency for leaves ceasing to be
+  HierarchicalObjects.
+- [CData Simplification (design note)](cdata-simplification.md) — what the
+  magic in CData buys, measured, and what a plain-attribute or dataclass
+  foundation would have to replace. Distinguishes *composition* (22 classes,
+  fixed fields, a record) from *containment* (`CContainer` alone, 70 shapes,
+  built from def.xml). Addresses the two standing objections: two-way
+  navigation, and construction from def.xml.
 - [Container Construction Defects (brief)](container-construction-defects.md) —
   two defects that make jobs run and be wrong: the def.xml parser duplicates
   nested containers onto the root (2,304 ghost parameters), and `children()`

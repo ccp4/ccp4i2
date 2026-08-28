@@ -59,27 +59,31 @@ class HierarchicalObject(ABC):
         self, parent: Optional["HierarchicalObject"] = None, name: str = None
     ):
         self._parent_ref: Optional[weakref.ReferenceType] = None
-        self._children: Set[weakref.ReferenceType] = set()
+        # An insertion-ordered dict used as an ordered set. A weakref.ref
+        # hashes and compares by its *referent*, so this keys on identity
+        # without ever naming an integer --- id() would be wrong here, because
+        # CPython reuses id values after collection and a fresh object could
+        # land on a dead one's key.
+        #
+        # Membership and order now come from the same structure. They used to
+        # be a set (arbitrary order) plus a name cache (ordered), and keeping
+        # two structures agreeing is what produced the orphaned entry that made
+        # a CFloat keyword report a child named after itself.
+        self._children: Dict[weakref.ReferenceType, None] = {}
         self._children_by_name: Dict[str, weakref.ReferenceType] = {}  # O(1) name lookup cache
         self._child_storage: Dict[str, Any] = {}  # Strong references to prevent GC of children
         self._name = name or f"{self.__class__.__name__}_{id(self)}"
         self._lock = threading.RLock()
-        self._signal_manager = SignalManager()
+        # Created on first use. Every HierarchicalObject used to build a
+        # SignalManager and four signals --- destroyed, parent_changed,
+        # child_added, child_removed --- and nothing in either process ever
+        # connected to any of them: the frontend learns about changes by
+        # polling the REST API. A full registry build made about 115,000 of
+        # them, for no subscriber.
+        self._sigmgr = None
         self._state = ObjectState.CREATED
         self._properties: Dict[str, Any] = {}
         self._event_handlers: Dict[str, List[Callable]] = {}
-
-        # Core signals that all objects have
-        self.destroyed = self._signal_manager.create_signal("destroyed", type(None))
-        self.parent_changed = self._signal_manager.create_signal(
-            "parent_changed", "HierarchicalObject"
-        )
-        self.child_added = self._signal_manager.create_signal(
-            "child_added", "HierarchicalObject"
-        )
-        self.child_removed = self._signal_manager.create_signal(
-            "child_removed", "HierarchicalObject"
-        )
 
         # Set parent relationship
         if parent is not None:
@@ -90,6 +94,18 @@ class HierarchicalObject(ABC):
 
     # NOTE: No 'name' property to avoid collision with CData 'name' attributes
     # Use objectName() to get the hierarchical name, or _name directly in internal code
+
+    @property
+    def _signal_manager(self):
+        """The signal manager, made when something first wants one.
+
+        CPluginScript is the only thing that does --- it creates `finished`,
+        and pipelines connect to it. Everything else got one and never used
+        it.
+        """
+        if self._sigmgr is None:
+            self._sigmgr = SignalManager()
+        return self._sigmgr
 
     @property
     def state(self) -> ObjectState:
@@ -166,8 +182,6 @@ class HierarchicalObject(ABC):
                 self._parent_ref = None
 
             # Emit signal (guard against GC ordering issues)
-            if hasattr(self, 'parent_changed') and self.parent_changed is not None:
-                self.parent_changed.emit(parent)
 
             # Log parent change (safely handle non-HierarchicalObject parents)
             parent_name = None
@@ -188,7 +202,9 @@ class HierarchicalObject(ABC):
             self._cleanup_dead_children()
 
             child_ref = weakref.ref(child)
-            self._children.add(child_ref)
+            # dict keys deduplicate, and re-adding an existing child keeps its
+            # original position rather than moving it to the end.
+            self._children.setdefault(child_ref, None)
 
             # Add to name lookup cache for O(1) access
             child_name = child._name
@@ -198,8 +214,6 @@ class HierarchicalObject(ABC):
                 self._child_storage[child_name] = child
 
             # Guard against GC ordering issues
-            if hasattr(self, 'child_added') and self.child_added is not None:
-                self.child_added.emit(child)
             logging.debug(f"Added child {child._name} to {self._name}")
 
     def _remove_child(self, child: "HierarchicalObject"):
@@ -214,7 +228,7 @@ class HierarchicalObject(ABC):
                     break
 
             if to_remove:
-                self._children.remove(to_remove)
+                del self._children[to_remove]
 
                 # Remove from name lookup cache and strong storage
                 child_name = child._name
@@ -227,16 +241,14 @@ class HierarchicalObject(ABC):
                         self._child_storage.pop(child_name, None)
 
                 # Guard against GC ordering issues - signal might be cleaned up already
-                if hasattr(self, 'child_removed') and self.child_removed is not None:
-                    self.child_removed.emit(child)
                 logger.debug(
                     f"Removed child {child._name} from {self._name}"
                 )
 
     def _cleanup_dead_children(self):
         """Remove weak references to destroyed children."""
-        dead_refs = {ref for ref in self._children if ref() is None}
-        self._children -= dead_refs
+        for ref in [ref for ref in self._children if ref() is None]:
+            del self._children[ref]
 
         # Also clean up dead entries in name cache and strong storage
         dead_names = [name for name, ref in self._children_by_name.items() if ref() is None]
@@ -247,55 +259,34 @@ class HierarchicalObject(ABC):
     def children(self) -> List["HierarchicalObject"]:
         """Get list of all child objects, in the order they were added.
 
-        Order comes from ``_children_by_name``, which is a dict and therefore
-        insertion-ordered; ``_children`` is a set of weak references hashed on
-        the referent's identity, so iterating it yields allocation-address
-        order --- arbitrary per process *and* per object within a process.
+        Order and membership both come from ``_children``, which is an
+        insertion-ordered dict. That is the whole implementation, and it is
+        worth saying why it took two goes.
 
-        That was observable, not theoretical. i2run breaks a name collision by
-        preferring the shortest path and falls through to this order when the
-        candidates are equally deep, so ``i2run molrep_pipe --F_SIGF
-        native.mtz`` populated an *output* slot on roughly half its
-        invocations: same command, same tree, different meaning run to run.
-        Nothing corrected it downstream --- ``checkOutputData`` leaves an
-        explicitly set output alone, and ``validity()`` filters outputData
-        errors on the grounds that outputs are set during execution.
+        ``_children`` was a *set* of weak references, so iteration yielded
+        allocation-address order --- arbitrary per process *and* per object.
+        That was observable: i2run breaks a name collision by preferring the
+        shortest path and falls through to this order when candidates are
+        equally deep, so ``i2run molrep_pipe --F_SIGF native.mtz`` populated an
+        *output* slot on roughly half its invocations. Nothing corrected it
+        downstream --- ``checkOutputData`` leaves an explicitly set output
+        alone, and ``validity()`` filters outputData errors because outputs are
+        set during execution.
 
-        Children with no name cache entry --- CList items, which all share the
-        name '[0]' and so collide --- follow. A CList orders its items from its
-        own ``_items``, not from here, so their order among themselves does not
-        matter.
+        The first fix took order from ``_children_by_name`` and membership from
+        the set. Keeping two structures in agreement is what broke next:
+        ``_remove_child`` always dropped the set entry but cleared the cache
+        entry only when the cached name still matched, so a renamed child left
+        an orphan, and reading the cache resurrected it. A CFloat keyword came
+        back holding a child named after itself, ``phaser_MR.setKeywords`` took
+        the leaf for a sub-container, and five phaser tests failed.
+
+        One structure cannot disagree with itself.
         """
         with self._lock:
             self._cleanup_dead_children()
-            # Order from the name cache, membership from the set. The two are
-            # not equivalent: `_remove_child` always drops the set entry but
-            # clears the cache entry only when `_children_by_name[child._name]`
-            # still points at that child, so a child renamed since it was
-            # registered leaves its cache entry orphaned. Reading the cache
-            # alone resurrects removed children --- a CFloat keyword came back
-            # holding a child named after itself, so phaser_MR.setKeywords took
-            # the leaf for a sub-container and asked the float for a BOXS of
-            # its own.
-            live = {}
-            for ref in self._children:
-                child = ref()
-                if child is not None:
-                    live[id(child)] = child
-
-            result, seen = [], set()
-            for ref in self._children_by_name.values():
-                child = ref()
-                if child is None:
-                    continue
-                key = id(child)
-                if key in live and key not in seen:
-                    result.append(child)
-                    seen.add(key)
-            for key, child in live.items():
-                if key not in seen:
-                    result.append(child)
-            return result
+            return [child for child in
+                    (ref() for ref in self._children) if child is not None]
 
     def rename(self, new_name: str) -> None:
         """Change this object's name, keeping the parent's caches in step.
@@ -538,7 +529,8 @@ class HierarchicalObject(ABC):
         #         pass
 
         # Cleanup
-        self._signal_manager.cleanup()
+        if self._sigmgr is not None:
+            self._sigmgr.cleanup()
         self._children.clear()
         self._children_by_name.clear()
         self._child_storage.clear()  # Clear strong references to children

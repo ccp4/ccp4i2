@@ -182,14 +182,20 @@ def handle_cdata(ccp4i2_object):
     # This handles objects where data is stored directly
     if not result:
         try:
-            skip_attrs = {
-                'destroyed', 'parent_changed', 'child_added', 'child_removed',
-            }
+            from ccp4i2.core.base_object.signal_system import Signal
+
             for attr_name, attr_value in ccp4i2_object.__dict__.items():
                 # Skip private attributes, signals, and metadata
                 if attr_name.startswith('_'):
                     continue
-                if attr_name in skip_attrs:
+                # Signals are machinery, not parameters. This used to be a list
+                # of four names --- destroyed, parent_changed, child_added,
+                # child_removed --- because every HierarchicalObject created
+                # them and they surfaced here as if they were data. They are no
+                # longer created per object, so that list had gone stale; a
+                # plugin still carries `finished` and `progressUpdated`, and
+                # matching on type catches those and anything added later.
+                if isinstance(attr_value, Signal):
                     continue
                 # Include CData, basic types, lists, dicts, or custom objects
                 result[attr_name] = value_dict_for_object(attr_value)

@@ -4,6 +4,7 @@ import re
 from lxml import etree
 
 from ccp4i2.core import CCP4Data
+from ccp4i2.core.base_object.cdata import CData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -82,7 +83,6 @@ class phaser_MR(CPluginScript):
     '''
     excludedSections = ['macano', 'macmr', 'sgalternative', 'OUTP_LEVE']
     excludedKeywords = ['TITL', 'ROOT', 'HKLO', 'OUTP_LEVE', 'RESO_HIGH', 'RESO_LOW']
-    requiredDefaultList = []
     
     def setKeywords(self, inputObject):
         #methodsOfInputObject = [getattr(inputObject, maybeMethod) for maybeMethod in dir(inputObject) if callable(getattr(inputObject, maybeMethod))]
@@ -103,8 +103,17 @@ class phaser_MR(CPluginScript):
             if parameterObject.isSet():
                 setterName = 'set'+parameterName
                 if hasattr(inputObject, setterName) and callable(getattr(inputObject,setterName)):
-                    # don't set keywords set to their default values or 'Auto'
-                    if (not parameterObject.isDefault() and not str(parameterObject) == 'Auto') or parameterName in self.requiredDefaultList:
+                    # Ask the declaration, not a list kept in this class. Inside
+                    # the isSet() guard above a parameter is DEFAULT or
+                    # EXPLICITLY_SET, so shouldSend(ifChosen) is exactly the
+                    # old `not isDefault()`. 'Auto' is PHIL's ternary third
+                    # state --- a value meaning "let phaser decide" --- so it
+                    # is skipped on what it means, not on where it came from,
+                    # and a parameter declared `always` overrides both.
+                    policy = parameterObject.sendWhen(CData.SEND_IF_CHOSEN)
+                    required = policy == CData.SEND_ALWAYS
+                    if required or (parameterObject.shouldSend(policy)
+                                    and str(parameterObject) != 'Auto'):
                         if type(parameterObject) == CCP4Data.CString:
                             # the following functions expect the argument to be a tuple of floats that is converted to scitbx::vec3<floatType>
                             if parameterName in ['ROTA_EULE', 'TNCS_TRAN_VECT', 'TNCS_ROTA_ANGL', 'TRAN_STAR', 'TRAN_END']:
@@ -117,7 +126,10 @@ class phaser_MR(CPluginScript):
                         print('Setting: ', setterEval)
                         eval(setterEval,{"__builtins__":None},{"inputObject":inputObject,"True":True,"False":False})
                     else:
-                        print('parameterObject for {} isDefault:{} isAuto:{} in requiredDefaultList:{}'.format(setterName, parameterObject.isDefault(), str(parameterObject) == 'Auto', parameterName in self.requiredDefaultList))
+                        print('Not setting: {} sendWhen:{} state:{} isAuto:{}'.format(
+                            setterName, policy,
+                            parameterObject.getValueState('value').name,
+                            str(parameterObject) == 'Auto'))
                 else:
                     print('Setter {} not present or not callable'.format(setterName))
         except:

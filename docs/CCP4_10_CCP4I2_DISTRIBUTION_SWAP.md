@@ -36,6 +36,40 @@ Prepared for the distribution conversation with Charles Ballard.
 | GUI toolkit (Python) | PySide2 / shiboken2 | none (frontend is Electron/web) |
 | Install | bundled tree in the distribution | `pip install ccp4i2` into `ccp4-python` |
 
+### Why the legacy tree must actually go, not merely be superseded
+
+Both trees install to the **same path**, `site-packages/ccp4i2/`. Measured on
+`ccp4-20260702`, which still bundles the legacy tree:
+
+- The bundled `site-packages/ccp4i2/` has **no `__init__.py`**, so Python treats
+  it as a *namespace package*. It claims the name and `ccp4i2.__path__` contains
+  only the bundled directory — an editable install of the new backend is then
+  **entirely invisible**:
+
+  ```
+  ccp4i2.__path__               ['<ccp4>/site-packages/ccp4i2']
+  ccp4i2.core.CCP4PluginScript  ModuleNotFoundError    # new tree unreachable
+  ccp4i2.core.CCP4Bazaar        OK                     # legacy tree importable
+  ```
+
+  The new backend is reachable under `ccp4-python` only when the working
+  directory happens to supply it. That is why a job launched as a detached
+  subprocess — a different working directory — can fail where the app works.
+
+- A non-editable install **merges** into the bundled directory rather than
+  replacing it. Nine top-level directories are shared (`core`, `pipelines`,
+  `wrappers`, `report`, `pimple`, `smartie`, `utils`, `docs`, `demo_data`), and
+  `core/` alone would keep **17 orphaned legacy modules**, 11 of which import
+  PySide. Nothing in the new backend imports any of them — checked — so they are
+  inert rather than dangerous, but `pip uninstall` will not remove them, since
+  pip only removes what it recorded.
+
+So removing the legacy tree is not just disk hygiene: while it is present the
+distribution can silently serve the wrong `ccp4i2`, and afterwards it leaves
+residue no packaging step will clean. Alpha and beta testers installing over a
+distribution that still bundles it should expect this; see the troubleshooting
+entry in [give-it-a-try.md](give-it-a-try.md).
+
 ## 2. Safe to remove — legacy-i2-exclusive
 
 **2a. The legacy CCP4i2 Qt application.** On `main`, the GUI application surface

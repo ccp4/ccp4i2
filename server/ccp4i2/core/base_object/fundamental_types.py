@@ -886,7 +886,16 @@ class CString(CData):
     """String value type with Python string dunder methods."""
     def __init__(self, value: str = "", parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
-        self.value = value
+        if value != "":
+            self.value = value
+        elif self.getValueState("value") == ValueState.NOT_SET:
+            # Seed the backing store without recording a set. Assigning here
+            # would mark EXPLICITLY_SET, so every defaulted CString claimed a
+            # user had chosen it --- 812 parameters across 65 tasks. CInt,
+            # CFloat and CBoolean declare no __init__ at all and so never did.
+            # Skipping when the state is already DEFAULT also stops a
+            # constructor-supplied default being clobbered by the empty value.
+            super().__setattr__("_value", value)
 
     def __hash__(self):
         """Make CString hashable by object identity for use in sets and as dict keys.
