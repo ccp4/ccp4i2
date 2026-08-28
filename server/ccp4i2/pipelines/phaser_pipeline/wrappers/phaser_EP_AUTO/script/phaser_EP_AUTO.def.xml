@@ -126,6 +126,7 @@
             <content id="PART_VARI">
                 <className>CString</className>
                 <qualifiers>
+                    <sendWhen>always</sendWhen>
                     <guiLabel>Specify expected model accuracy by %ID or RMSD</guiLabel>
                     <onlyEnumerators>True</onlyEnumerators>
                     <enumerators>ID,RMS</enumerators>
@@ -135,6 +136,7 @@
             <content id="PART_DEVI">
                 <className>CFloat</className>
                 <qualifiers>
+                    <sendWhen>always</sendWhen>
                     <guiLabel>%ID or RMSD of model</guiLabel>
                     <default>0.8</default>
                 </qualifiers>

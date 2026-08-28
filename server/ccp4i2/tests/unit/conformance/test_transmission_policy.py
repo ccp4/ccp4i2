@@ -102,26 +102,59 @@ def test_the_error_names_the_parameter():
         frac.shouldSend()
 
 
-def test_nothing_declares_a_policy_yet():
-    """Phase 1 is inert by construction, and this is what says so.
+def test_the_declared_set_is_exactly_what_phaser_used_to_hold_in_code():
+    """What replaced `requiredDefaultList`, pinned against what it contained.
 
-    When a def.xml starts declaring `sendWhen`, this test fails and should be
-    replaced by one asserting the expected set --- deliberately, not silently.
+    The old lists were `['PART_VARI', 'PART_DEVI']` on phaser_EP_AUTO and
+    `['PART_VARI', 'PART_DEVI', 'LLGM']` on phaser_EP_LLG --- so LLGM is
+    required by the second and not the first, which is expressible only
+    because each declares its own LLGM while PART_VARI and PART_DEVI are
+    declared once on EP_AUTO and inherited.
+
+    Any further declaration is a deliberate act and should land here with it.
     """
     django = pytest.importorskip("django")
     from ccp4i2.core.tasks import TASKS, get_plugin_class
 
-    declared = []
+    expected = {
+        "phaser_EP_AUTO.keywords.PART_VARI",
+        "phaser_EP_AUTO.keywords.PART_DEVI",
+        "phaser_EP_LLG.keywords.PART_VARI",
+        "phaser_EP_LLG.keywords.PART_DEVI",
+        "phaser_EP_LLG.keywords.LLGM",
+    }
+
+    def walk(container, prefix, found):
+        for child in container.children():
+            name = f"{prefix}.{child._name}"
+            if child.get_qualifier("sendWhen") is not None:
+                found.add(name)
+            if child.dataOrder():
+                walk(child, name, found)
+
+    found = set()
     for name in TASKS:
         try:
             plugin = get_plugin_class(name)(parent=None, name=name)
         except Exception:
             continue
-        for section in ("controlParameters", "inputData", "outputData"):
+        for section in ("controlParameters", "inputData", "outputData", "keywords"):
             container = getattr(plugin.container, section, None)
-            if container is None:
-                continue
-            for child in container.children():
-                if child.get_qualifier("sendWhen") is not None:
-                    declared.append(f"{name}.{section}.{child._name}")
-    assert not declared, f"sendWhen is now declared by: {declared}"
+            if container is not None:
+                walk(container, f"{name}.{section}", found)
+
+    assert found == expected, (
+        f"declared but not expected: {sorted(found - expected)}; "
+        f"expected but not declared: {sorted(expected - found)}"
+    )
+
+
+def test_phaser_EP_AUTO_does_not_require_LLGM():
+    """The asymmetry is the whole reason this had to be per-task."""
+    django = pytest.importorskip("django")
+    from ccp4i2.core.tasks import get_plugin_class
+
+    auto = get_plugin_class("phaser_EP_AUTO")(parent=None, name="a")
+    llg = get_plugin_class("phaser_EP_LLG")(parent=None, name="l")
+    assert auto.container.keywords.LLGM.sendWhen(CData.SEND_IF_CHOSEN) == CData.SEND_IF_CHOSEN
+    assert llg.container.keywords.LLGM.sendWhen(CData.SEND_IF_CHOSEN) == CData.SEND_ALWAYS

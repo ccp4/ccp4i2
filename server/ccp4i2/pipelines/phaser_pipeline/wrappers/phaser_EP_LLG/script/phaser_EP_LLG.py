@@ -7,7 +7,6 @@ class phaser_EP_LLG(phaser_EP_AUTO.phaser_EP_AUTO):
     WHATNEXT = ['coot_rebuild',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }, 202 : { 'description' : 'Failed to interpret searches from Ensemble list' },}
-    requiredDefaultList = ['PART_VARI', 'PART_DEVI', 'LLGM']
 
     def validity(self):
         error = super(phaser_EP_LLG, self).validity()
