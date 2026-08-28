@@ -420,6 +420,69 @@ Its expected shape, when someone takes it:
 
 Steps 1 and 2 are worthwhile on their own and do not commit to the rest.
 
+### Progress
+
+| Step | State | |
+|---|---|---|
+| 1. `_children` key and contents | **landed** | #305 |
+| 2. Leaves stop being `HierarchicalObject`s | not started | groundwork done, see below |
+| 3. Composition classes become dataclasses | not started | scope revised, see below |
+| 4. Context handed down | not started | |
+| 5. `contents()` as one declared answer | not started | |
+
+Landed alongside, and not foreseen when this note was written:
+
+| | | |
+|---|---|---|
+| Signals belong to the thing with subscribers | #304 | |
+| An empty `CString` is not a user choice | #306 | 812 leaves, 14%, wrongly `EXPLICITLY_SET` at construction |
+| `<sendWhen>` declares transmission policy | #307 | retires phaser's `requiredDefaultList` |
+| Qualifier template merged once per class | `qualifier-cache` | ~6% off construction |
+
+Step 2 acquired a prerequisite that took most of the effort: *"state on the
+container"* presupposes knowing what the state model **is**, and it turned out
+to be wrong at construction for 14% of leaves. That is
+[value-state-design.md](value-state-design.md), and #306 is the fix. Nothing can
+read `ValueState` to decide behaviour until it means what it says.
+
+### Two findings that change the plan
+
+**Leaves cannot become dataclasses, and the note should stop implying they
+might.** Wrappers call `param.isSet()`, `str(param)`, arithmetic dunders,
+everywhere --- `phaser_MR.setKeyword` leans on several in one expression. That
+API is what the codebase promises plugin authors. The win in step 2 is therefore
+*lighter objects*, not the absence of objects: **six of the sixteen attributes
+--- `_children`, `_children_by_name`, `_child_storage`, `_event_handlers`,
+`_properties`, `_sigmgr` --- are empty on all 1,454 leaves measured across 60
+tasks, without exception**, so they can be removed one at a time rather than in
+one replatform. Step 3's 22 composition classes remain genuine dataclass
+candidates.
+
+**Qualifiers are shareable, and are not shared.** 16,989 leaves across the
+registry hold 16,989 separate `_qualifiers` dicts with only **1,214 distinct
+contents** between them --- one identical `CString` set duplicated 2,452 times,
+`CInt` 1,218, `CBoolean` 1,130 --- for 6.3 MB. They are a property of (class +
+def.xml declaration), identical on every request, so they can be interned behind
+copy-on-write. The audit for that is done: `set_qualifier` is the single
+mutation entry point, nothing mutates the dict `qualifiers()` returns, and
+`MakeLink` proves copy-on-write is *needed* rather than precautionary, since it
+sets `allowUndefined` on ~20 parameters conditionally inside a method.
+
+### A caution about the evidence in this note
+
+Every "byte-identical across 171 trees" recorded here and in the PRs above was
+first measured with a `snapshot_containers.py` that could import the **wrong
+tree**: it inserted `os.getcwd()` and trusted `import ccp4i2` to follow, and the
+dev venv carries an editable install pinned to the main checkout. Run from a
+worktree root it compared the main tree with itself and reported success.
+
+All affected claims were re-measured from a clean worktree with the resolved
+import verified, and all held. The tool now imports the tree it lives in and
+refuses to start otherwise. More to the point, it has a **positive control** it
+never had: renaming `freerflag`'s `FRAC` is shown to be caught. An instrument
+nobody has watched fail is not evidence, and this note leans on that instrument
+throughout.
+
 ---
 
 ## Appendix: reproducing the measurements
