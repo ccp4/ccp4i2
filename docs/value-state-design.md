@@ -355,6 +355,30 @@ as *semantics* --- and, by consulting state rather than comparing values, stops
 demoting the user who chose the default on purpose. Uniform declaration also
 removes the reason the base/leaf polarity split exists.
 
+### `Auto` is not one of these
+
+phaser's `setKeyword` gates on a third thing beside `isDefault()` and
+`requiredDefaultList` --- `not str(parameterObject) == 'Auto'` --- and it is
+tempting to read that as a fourth hand-rolled provenance signal. It is not.
+
+`phaser_MR.def.xml` is generated: `create_def_xml.py` in the same directory
+says *"create phaser_MR_AUTO.def.xml from PHIL parameters"*, after David
+Waterman's xia2 converter. Its 15 `<default>Auto</default>` parameters all
+carry `<enumerators>True,False,Auto</enumerators>`, and our own modern
+converter documents the type they came from:
+
+    ternary  ->  CString (with enumerators for True/False/original)
+
+So `Auto` is PHIL's ternary third state --- a legitimate domain value in a
+foreign type system, faithfully represented, which a user can pick from a
+menu. Declining to emit a keyword when its value is `Auto` is a **value-to-wire
+mapping**, not a statement about who chose it, and it belongs with the ternary
+type rather than with provenance. molrep_mr and molrep_den do the same thing at
+six more sites (`str(par.NP) != 'Auto'`).
+
+Absorbing it into the vocabulary would conflate what a value *means* with where
+it *came from*. Leave that clause alone.
+
 ### The GUI flags stay
 
 The four aimless override booleans are not only backend gates: they drive
