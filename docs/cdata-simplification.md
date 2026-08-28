@@ -141,6 +141,41 @@ dataclasses were added to the language to solve.
 
 ---
 
+## Why the model went into metadata, and what became of that goal
+
+The decorator was not an accident or an operational necessity. The intent, in
+migrating away from QObject, was to **capture each class's data model somewhere
+that is not Python code**, so that it could later be harvested to inform
+frontend items. Discipline rather than mechanism.
+
+The ambition is right, and it deserves recording because the rest of this note
+reads as criticism otherwise. Two things happened to it.
+
+**The harvest never took place.** Nothing in the client reads
+`get_merged_metadata`, the `attributes` dicts, or the generated stubs. What the
+frontend actually consumes is the **live container JSON** --- `{_class,
+_value, _qualifiers}` at every node --- fetched over REST and rendered by
+`GenericInterface`. So the goal was met by a different route: the *instance*
+turned out to be a perfectly good harvest of the *model*, and it arrives
+already, per task, at runtime.
+
+**And a better mechanism for the original goal exists in this repository.**
+The Moorhen scene format declares its schema in Zod and *generates* JSON Schema
+from it (`client/renderer/lib/scene/`). Author in a language the type checker
+and the IDE understand; emit the language-neutral artefact for whoever needs
+it. That is the same ambition without putting the model beyond Python's reach
+--- and `dataclasses.fields()` plus `field(metadata=...)` is directly
+harvestable in exactly that way, at build time, to JSON Schema or anything
+else.
+
+So the cost of keeping the model out of Python --- 21,472 generated lines, no
+single introspection point, consumers each reconstructing the field list --- was
+paid, and the benefit it was paid for has been taken by another route. That is
+the strongest reason to think the model can come back into the class body
+without losing anything that was wanted.
+
+---
+
 ## Objection 1: two-way navigation
 
 Real, and specific. `_find_plugin_parent()` is how a **file value answers
@@ -276,6 +311,24 @@ rather than eighteen thousand.
 
 **CList.** Items are addressed by index and named `[n]`; see Defect C in the
 companion note.
+
+**Cached file content, which is not a parameter at all.** A `CDataFile` caches
+a digest of what is *inside* the file --- cell, spaceGroup, wavelengths --- on
+read, and it is then serialised as though it were data the user supplied.
+Measured in one real project: **27 of 42** `params.xml` files carry it, and
+**7** `input_params.xml` files do, including one configured by hand in the GUI
+(8,099 bytes for a form somebody filled in).
+
+It is derived, it can go stale --- the file may change while `params.xml` keeps
+the old cell --- and `setEtree` restores it, so a reloaded or cloned job can
+carry a cached cell that no longer matches its file without anything reading
+the file to find out.
+
+This is the signals leak one level up: **machinery surfacing as data because
+nothing distinguishes them.** `value_dict_for_object` needed a name-based skip
+list to keep signals out; `getEtree` has no way to know that `content` is a
+cache rather than a value. Where a record's fields are declared, a cache simply
+is not one of them and the question does not arise.
 
 ---
 
