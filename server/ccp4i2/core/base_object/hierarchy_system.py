@@ -64,22 +64,16 @@ class HierarchicalObject(ABC):
         self._child_storage: Dict[str, Any] = {}  # Strong references to prevent GC of children
         self._name = name or f"{self.__class__.__name__}_{id(self)}"
         self._lock = threading.RLock()
-        self._signal_manager = SignalManager()
+        # Created on first use. Every HierarchicalObject used to build a
+        # SignalManager and four signals --- destroyed, parent_changed,
+        # child_added, child_removed --- and nothing in either process ever
+        # connected to any of them: the frontend learns about changes by
+        # polling the REST API. A full registry build made about 115,000 of
+        # them, for no subscriber.
+        self._sigmgr = None
         self._state = ObjectState.CREATED
         self._properties: Dict[str, Any] = {}
         self._event_handlers: Dict[str, List[Callable]] = {}
-
-        # Core signals that all objects have
-        self.destroyed = self._signal_manager.create_signal("destroyed", type(None))
-        self.parent_changed = self._signal_manager.create_signal(
-            "parent_changed", "HierarchicalObject"
-        )
-        self.child_added = self._signal_manager.create_signal(
-            "child_added", "HierarchicalObject"
-        )
-        self.child_removed = self._signal_manager.create_signal(
-            "child_removed", "HierarchicalObject"
-        )
 
         # Set parent relationship
         if parent is not None:
@@ -90,6 +84,18 @@ class HierarchicalObject(ABC):
 
     # NOTE: No 'name' property to avoid collision with CData 'name' attributes
     # Use objectName() to get the hierarchical name, or _name directly in internal code
+
+    @property
+    def _signal_manager(self):
+        """The signal manager, made when something first wants one.
+
+        CPluginScript is the only thing that does --- it creates `finished`,
+        and pipelines connect to it. Everything else got one and never used
+        it.
+        """
+        if self._sigmgr is None:
+            self._sigmgr = SignalManager()
+        return self._sigmgr
 
     @property
     def state(self) -> ObjectState:
@@ -166,8 +172,6 @@ class HierarchicalObject(ABC):
                 self._parent_ref = None
 
             # Emit signal (guard against GC ordering issues)
-            if hasattr(self, 'parent_changed') and self.parent_changed is not None:
-                self.parent_changed.emit(parent)
 
             # Log parent change (safely handle non-HierarchicalObject parents)
             parent_name = None
@@ -198,8 +202,6 @@ class HierarchicalObject(ABC):
                 self._child_storage[child_name] = child
 
             # Guard against GC ordering issues
-            if hasattr(self, 'child_added') and self.child_added is not None:
-                self.child_added.emit(child)
             logging.debug(f"Added child {child._name} to {self._name}")
 
     def _remove_child(self, child: "HierarchicalObject"):
@@ -227,8 +229,6 @@ class HierarchicalObject(ABC):
                         self._child_storage.pop(child_name, None)
 
                 # Guard against GC ordering issues - signal might be cleaned up already
-                if hasattr(self, 'child_removed') and self.child_removed is not None:
-                    self.child_removed.emit(child)
                 logger.debug(
                     f"Removed child {child._name} from {self._name}"
                 )
@@ -538,7 +538,8 @@ class HierarchicalObject(ABC):
         #         pass
 
         # Cleanup
-        self._signal_manager.cleanup()
+        if self._sigmgr is not None:
+            self._sigmgr.cleanup()
         self._children.clear()
         self._children_by_name.clear()
         self._child_storage.clear()  # Clear strong references to children
