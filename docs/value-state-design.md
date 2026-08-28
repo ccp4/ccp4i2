@@ -255,28 +255,81 @@ default --- useless as a provenance test --- while the identical call on a
 `CDataFile` excludes defaults and *is* one. `isDefault()` is what remains once
 `isSet()` cannot be trusted to mean the same thing twice.
 
-### The two tests are not equivalent
+### The container does not persist --- so only the file carries provenance
 
-`isDefault()` is a pure state test, `getValueState() == DEFAULT`.
-`isSet(allowDefault=False)` is that plus a value comparison. They part company
-in two places:
+In the client/server setting a container is not a living object. Every
+parameter set over the API constructs the plugin afresh
+(`get_plugin_with_context`), applies one value, rewrites the whole
+`input_params.xml`, and discards it. `ValueState` therefore never survives a
+request on its own account. Whatever provenance exists is whatever the file
+encodes.
 
-**On `NOT_SET`.** `not isDefault()` is *true* for a parameter that was never
-set at all, so `if not par.OUTLIER_EMAX.isDefault()` would emit `REJECT EMAX`
-with an unset value. Aimless is safe only because its def.xml gives all three
-a default (`5.0`, `6.0`, `0.05`), making their state `DEFAULT` at construction.
-Correctness rests on the def.xml always supplying one, which nothing enforces.
+Measured, the file encodes it **soundly, by absence**:
 
-**On an explicit choice that equals the default.** `isSet(allowDefault=False)`
-returns False --- it compares against the qualifier default even when the state
-is `EXPLICITLY_SET` (`cdata.py:519`). A user who deliberately types 5.0 is
-indistinguishable from one who left it alone.
+| | |
+|---|---|
+| untouched container saved | 0 of 106 aimless control parameters written; 0 of 101 servalcat; 0 of 9 freerflag |
+| set a value, save, reload | returns `EXPLICITLY_SET` |
+| set a value *equal to the default*, save, reload | returns `EXPLICITLY_SET` --- the deliberate choice survives |
+| repeat the round trip six times | stable; no ratchet |
 
-That second point matters more than it first appears: **the demotion described
-below as a consequence of reading legacy files is already the live behaviour**
-of every `allowDefault=False` call site, including the one that decides what a
-PHIL program is told. It is not a migration artefact to be accepted --- it is a
-present-tense loss that the same fix addresses.
+So the rule on read is **present ⟹ explicit, absent ⟹ default**, and it is
+correct in both directions. This is worth stating plainly because it retires
+the concern that prompted the exercise: `params.xml` does *not* accumulate
+values nobody set, and provenance does not decay toward "everything is
+explicit" under repeated editing.
+
+### Where the wrongly-set parameters actually come from
+
+They are real, but they are not a persistence failure --- they are wrong the
+moment the container is built, before anything touches it.
+
+`CString` marks itself `EXPLICITLY_SET` at construction. Alone among the four
+scalar leaves:
+
+    CString    value=''      EXPLICITLY_SET
+    CInt       value=0       NOT_SET
+    CFloat     value=0.0     NOT_SET
+    CBoolean   value=False   NOT_SET
+
+Across all 171 constructible tasks that is **812 of 5,803 leaf parameters ---
+14%, in 65 tasks --- claiming a user chose them before a user has seen them**
+(790 `CString`, the rest its subclasses: `CFilePath`, `CSpaceGroup`,
+`CSMILESString`, `CCrystalName`, `CDatasetName`). Aimless's
+`CHOOSE_LAUEGROUP`, `CHOOSE_SPACEGROUP` and `EXCLUDED_BATCHES` are three of
+them.
+
+Nothing breaks today, for a reason worth noticing: **`CString.isSet()` does not
+trust the state.** It overrides the base to return False for an empty string
+regardless, so every consumer that asks `isSet()` gets the right answer from
+the wrong reasoning, and the file stays clean because the write filter asks
+`isSet()` too.
+
+That is the load-bearing warning for this design. A model that reads
+`ValueState` directly --- which is precisely what provenance-driven
+transmission would do --- inherits all 812 as *"the user chose this"*. **The
+state machine must be fixed before anything is built on it**, and the fix is
+small: construct `CString` as `NOT_SET`, like its three siblings, and let the
+emptiness override retire with the workaround it exists to be.
+
+### The comparison branch is dormant, not absent
+
+`isSet(allowDefault=False)` contains a second test beyond the state check: it
+compares the value against the `default` qualifier and returns False on a match
+even when the state is `EXPLICITLY_SET` (`cdata.py:519`). That would demote a
+user who deliberately chose the default value.
+
+It never fires. The def.xml `<default>` is applied to `value` and recorded as
+`ValueState.DEFAULT`; it is not kept as a qualifier and not kept in
+`_default_values`, both of which come back empty. So `get_qualifier('default')`
+is None, the branch short-circuits, and `isSet(allowDefault=False)` is in
+practice a *pure state test* --- which is the correct behaviour.
+
+It is dormant rather than harmless. Anyone who later stores the default where
+that lookup can find it --- a reasonable-looking tidy-up --- switches on
+value-comparison demotion simultaneously at every `allowDefault=False` call
+site, including the one deciding what a PHIL program is told. Delete the
+branch rather than leave it armed.
 
 ### What that suggests for the def.xml
 
@@ -327,15 +380,13 @@ be an enhancement, and is only worth doing once we can say concretely how a
 consumer would use it. Whatever is done must be backward compatible, since a
 reader of today's files must keep working.
 
-**Legacy `params.xml`: a persisted value is `USER` unless it equals the
-default, in which case `DEFAULT`.** Simple, implementable, and it does not
-disturb the use of an old file to condition a repeat run.
-
-It does demote a user who deliberately chose the default --- and that is
-exactly the case `always` covers, so the two decisions make each other safe.
-Where a program needs a defaulted value, `always` sends it regardless of how
-the provenance was reconstructed; where it does not, the demotion is
-invisible.
+**Legacy `params.xml`: presence means explicit, absence means default.**
+Not the "explicit unless it equals the default" rule considered earlier --- the
+measurements above retire that. Absence already carries "default" unambiguously,
+so comparing values adds nothing and costs something: it would demote the user
+who deliberately chose the default, introducing exactly the loss the dormant
+branch above is one tidy-up away from causing. The simpler rule is also the one
+the code already implements, so legacy files need no special reader.
 
 **`DEFAULT` is stored sometimes**, per parameter, governed by the vocabulary
 above rather than by a global rule.
