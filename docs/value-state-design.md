@@ -305,6 +305,14 @@ regardless, so every consumer that asks `isSet()` gets the right answer from
 the wrong reasoning, and the file stays clean because the write filter asks
 `isSet()` too.
 
+There are in fact **two write filters, and they disagree.** The live path for
+`controlParameters` is `CContainer.getEtree(excludeUnset=True)`, which asks
+`isSet()` (`cdata.py:845`) and so drops the empty strings. Beside it sits
+`ParamsXmlHandler._is_explicitly_set`, which asks the *state* --- and returns
+True for all 812. It governs a different branch today, so it never runs on
+them; confirmed by calling it directly on aimless's `CHOOSE_LAUEGROUP`, which
+answers True while the parameter is correctly absent from the file.
+
 That is the load-bearing warning for this design. A model that reads
 `ValueState` directly --- which is precisely what provenance-driven
 transmission would do --- inherits all 812 as *"the user chose this"*. **The
