@@ -279,12 +279,15 @@ the value when it was made.
 
 Stated plainly, because these are the work:
 
-**Value state.** The three-way NOT_SET / DEFAULT / EXPLICITLY_SET, on which 719
-`isSet()` calls depend, and which decides whether a parameter reaches a program
-at all --- phaser skips keywords sitting at their default, so a user who types
-the default and a user who leaves it alone must differ. Most naturally a
-**state map on the container** rather than a wrapper per value, which is
-precisely what unburdens the 1,936 leaf instances.
+**Value state.** The dependency for step 2, and the one that has to be
+*decided* rather than moved. It has its own note ---
+[value-state-design.md](value-state-design.md) --- because measuring it turned
+up that the three-state model is not what the system runs on: a `CString` is
+`EXPLICITLY_SET` from birth, and `isSet()` reports non-emptiness for strings
+but state for ints, so the predicate 719 call sites depend on means different
+things by type. A fourth state is also missing --- `DERIVED`, for what the
+system worked out rather than what a user chose --- which is why `contentFlag`,
+`cell` and output paths are recorded as though somebody typed them.
 
 **Qualifiers.** Currently a per-instance dict, and the obvious simplification
 --- put them on the class --- does not work, because **def.xml overrides them
