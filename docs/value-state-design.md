@@ -192,8 +192,8 @@ attribute naming parameters the program must be given regardless ---
 `PART_VARI`, `PART_DEVI`, `LLGM`. Inherited properly through
 `phaser_MR` → `phaser_EP_AUTO` → `phaser_EP_LLG`.
 
-**aimless: only send it if the user opted in.** Four booleans in the def.xml,
-each labelled "override default …":
+**aimless: gate a block, then ask each parameter.** Four booleans in the
+def.xml, each labelled "override default …":
 
     OUTLIER_OVERRIDE        override default outlier rejection
     ANALYSIS_OVERRIDE       override default outlier rejection
@@ -207,9 +207,17 @@ if not par.OUTLIER_EMAX.isDefault():
     self.appendCommandScript("REJECT EMAX %f" % par.OUTLIER_EMAX)
 ```
 
-That checkbox exists so a user can say *the values below are mine, not
-defaults* --- a hand-rolled provenance signal, presented to the user as though
-it were science. With reliable provenance it is unnecessary semantically,
+It is tempting to read that checkbox as a hand-rolled provenance signal
+presented as though it were science. That reading is wrong, and the design is
+better than it looks: it is deliberately **two-level**. The toggle is a
+use/don't-use gate for the block; provenance stays with each parameter, which
+answers for itself.
+
+The consequence is the one a user would want. Untick the box and a value you
+determined is **kept** --- it round-trips as `EXPLICITLY_SET`, stays in the
+file, and re-ticking recovers it rather than the default. Had the flag carried
+the provenance, unticking would have destroyed it. That is also why `ifChosen`
+must consult per-parameter state and never a block flag. With reliable provenance it is unnecessary semantically,
 though it may well be worth keeping as a **UI affordance**: "let me adjust
 outlier rejection" is a reasonable thing to offer, and removing the checkbox
 would change the interface. The point is that it should stop carrying meaning
