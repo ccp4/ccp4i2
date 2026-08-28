@@ -66,28 +66,10 @@ MAX_DEPTH = 12
 
 
 def _setup_django():
-    # Import the tree this script lives in, not whatever `import ccp4i2` would
-    # otherwise find. The dev venv carries an *editable* install pinned to the
-    # main checkout, so inserting os.getcwd() only worked when run from the
-    # `server` directory --- run from a worktree root it silently measured the
-    # main tree instead, and every comparison then reported byte-identical
-    # because it was comparing that tree with itself.
-    server = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'server')
-    sys.path.insert(0, server)
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.test_settings')
-    import django
-    django.setup()
-
-    # An instrument that cannot say which tree it measured is not evidence.
-    import ccp4i2
-    got = os.path.abspath(ccp4i2.__file__)
-    want = os.path.join(server, 'ccp4i2') + os.sep
-    if not got.startswith(want):
-        raise SystemExit(
-            f"refusing to run: snapshot_containers.py lives in {server}\n"
-            f"but `import ccp4i2` resolved to {got}\n"
-            "Any result would describe the wrong tree."
-        )
+    # Locate and verify the tree; see scripts/_bootstrap.py for why this is not
+    # simply sys.path.insert(0, os.getcwd()).
+    from _bootstrap import setup
+    setup()
 
 
 def walk(obj, prefix, out, depth=0):
