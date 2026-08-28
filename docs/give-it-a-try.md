@@ -217,6 +217,34 @@ and the app won't run against a different `ccp4i2`.
   **not** weaken the kernel with `sudo sysctl … unprivileged_userns=0`.
 - **Install step fails** — confirm the CCP4 install is complete and its
   `ccp4-python` runs (`<ccp4>/bin/ccp4-python --version`).
+- **`ModuleNotFoundError: ccp4i2.core.…` even though the backend installed
+  cleanly** — your CCP4 build still ships the **old Qt-era ccp4i2** (v2.6.x) at
+  `<ccp4>/…/site-packages/ccp4i2/`. That directory has no `__init__.py`, so
+  Python treats it as a *namespace package*: it claims the name `ccp4i2` and
+  the new backend becomes invisible. Check with
+
+  ```bash
+  cd /tmp && ccp4-python -c "import ccp4i2; print(ccp4i2.__path__)"
+  ```
+
+  If the path printed is inside your CCP4 installation and the new backend was
+  installed there too, the old tree is shadowing it. Two consequences worth
+  knowing while testing:
+
+  - installing the new backend **merges into** that directory rather than
+    replacing it, leaving orphaned Qt-era modules behind (17 in `core/` alone,
+    11 of which import PySide). They are inert — nothing in the new backend
+    imports them — but they will confuse anyone reading the installed tree, and
+    `pip uninstall` will not remove them.
+  - anything launched with a *different* working directory — notably a job
+    started as a detached subprocess — can hit the shadowing even when the app
+    itself works.
+
+  This is transitional. Shipped releases place the new `ccp4i2` as the **only**
+  one in CCP4's `site-packages`, and the problem disappears. Until then, if you
+  hit it, remove or rename the bundled `site-packages/ccp4i2/` directory before
+  installing the backend — and say so when you report, since it changes what
+  everything else means.
 
 ## Prefer to run from source? (developer path)
 
