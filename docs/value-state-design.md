@@ -225,19 +225,98 @@ Two other things that block should be read for:
   `isDefault()` calls inside it are a second filter on an already-filtered
   block.
 
+### `isSet` already takes `allowDefault`
+
+The vocabulary is not missing. `isSet()` has taken an `allowDefault` argument
+all along --- *"if False, consider values that equal the default as not set"*
+--- and it is load-bearing where it matters most: `PhilPluginScript.py:312`
+uses it to decide what reaches a PHIL program at all, `i2run.py:110` to decide
+what to echo, `CCP4Data.py` to decide what a copy carries, and `cdata.py:1100`
+to decide what persists.
+
+So the gap is not the concept. It is that the choice is made **at each call
+site**, by whoever wrote that line, rather than declared once beside the
+parameter --- which is why two wrappers reached for two different mechanisms
+instead of the argument that was already there.
+
+**And why aimless could not simply use it: the polarity of its default is
+inverted between the base class and the leaves.**
+
+| | `allowDefault` defaults to |
+|---|---|
+| `CData` (base) | `False` --- a defaulted value is *not* set |
+| `CInt`, `CFloat`, `CString`, `CBoolean` | `True` --- a defaulted value *is* set |
+| `CDataFile`, `CProgramColumnGroup`, `CPerformanceIndicator` | `False` |
+| `CPdbEnsembleItem` | `True` |
+
+The four types a control parameter actually is are the four that flip it. So a
+bare `isSet()` on `OUTLIER_EMAX` answers "does it have a value", including the
+default --- useless as a provenance test --- while the identical call on a
+`CDataFile` excludes defaults and *is* one. `isDefault()` is what remains once
+`isSet()` cannot be trusted to mean the same thing twice.
+
+### The two tests are not equivalent
+
+`isDefault()` is a pure state test, `getValueState() == DEFAULT`.
+`isSet(allowDefault=False)` is that plus a value comparison. They part company
+in two places:
+
+**On `NOT_SET`.** `not isDefault()` is *true* for a parameter that was never
+set at all, so `if not par.OUTLIER_EMAX.isDefault()` would emit `REJECT EMAX`
+with an unset value. Aimless is safe only because its def.xml gives all three
+a default (`5.0`, `6.0`, `0.05`), making their state `DEFAULT` at construction.
+Correctness rests on the def.xml always supplying one, which nothing enforces.
+
+**On an explicit choice that equals the default.** `isSet(allowDefault=False)`
+returns False --- it compares against the qualifier default even when the state
+is `EXPLICITLY_SET` (`cdata.py:519`). A user who deliberately types 5.0 is
+indistinguishable from one who left it alone.
+
+That second point matters more than it first appears: **the demotion described
+below as a consequence of reading legacy files is already the live behaviour**
+of every `allowDefault=False` call site, including the one that decides what a
+PHIL program is told. It is not a migration artefact to be accepted --- it is a
+present-tense loss that the same fix addresses.
+
 ### What that suggests for the def.xml
 
-Not a boolean but a small vocabulary, declared beside the default it governs:
+Move the decision from the call site to the declaration, beside the default it
+governs:
 
 | | |
 |---|---|
 | `always` | send it whatever its provenance --- phaser's `PART_VARI` |
 | `ifChosen` | send it only when a user chose it --- aimless's outlier block |
-| `ifSet` | send it whenever it has a value, the present default behaviour |
+| `ifSet` | send it whenever it has a value, today's leaf-type behaviour |
 
-`always` replaces `requiredDefaultList`; `ifChosen` replaces the four aimless
-override flags as *semantics*, leaving them free to remain as grouping in the
-GUI.
+`always` replaces `requiredDefaultList`. `ifChosen` replaces the aimless flags
+as *semantics* --- and, by consulting state rather than comparing values, stops
+demoting the user who chose the default on purpose. Uniform declaration also
+removes the reason the base/leaf polarity split exists.
+
+### The GUI flags stay
+
+The four aimless override booleans are not only backend gates: they drive
+conditional visibility in the interface, through `useBoolToggle` and
+`{outlierOverride.value && (…)}` in `ImportantOptionsTab` and
+`AdditionalOptionsTab`. Revealing a block of controls is a real job, and a good
+one --- "let me adjust outlier rejection" is a reasonable thing to offer.
+
+So this is one flag doing two jobs, and only the second should go. Note that
+the code already knows they are different: the flag reveals the block, and the
+`isDefault()` test inside then filters what within it the user actually
+touched. Ticking the box and changing nothing correctly sends nothing. The
+proposal keeps the reveal and lets provenance do the filtering it is already
+being asked to do by hand.
+
+### One signature to fix on the way past
+
+`CPdbEnsembleItem.isSet(attributeName=None, allowDefault=True)` does not accept
+`field_name`, `allowUndefined` or `allSet` --- the three keywords the base
+class passes in its own recursion over container children (`cdata.py:476`).
+It does not fire today, because that loop short-circuits on an earlier set
+child before reaching one. A landmine rather than a bug, but it should be
+brought into line with the others whenever this area is touched.
 
 ## Decisions taken
 
