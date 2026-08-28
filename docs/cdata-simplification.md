@@ -83,6 +83,64 @@ on every object that only needs the record.
 
 ---
 
+## The fixed field list is itself the weirdness
+
+A record class's fields look like attributes and are not. `CDataFile` declares
+them as entries in a decorator argument:
+
+```python
+@cdata_class(
+    attributes={
+        "baseName":    attribute(AttributeType.CUSTOM, custom_class="CFilePath"),
+        "relPath":     attribute(AttributeType.CUSTOM, custom_class="CFilePath"),
+        "dbFileId":    attribute(AttributeType.CUSTOM, custom_class="CUUID"),
+        "annotation":  attribute(AttributeType.CUSTOM, custom_class="CString"),
+        "subType":     attribute(AttributeType.CUSTOM, custom_class="CInt"),
+        "contentFlag": attribute(AttributeType.CUSTOM, custom_class="CInt"),
+    },
+    qualifiers={...})
+class CDataFile(CData):
+    """Attributes are automatically created from embedded metadata..."""
+```
+
+Nothing in the class body names a field. The docstring lists them in prose,
+which is the tell: the source cannot say what the object is made of, so a
+human wrote it down twice.
+
+And the declaration is not even in the same file as the class. `CObsDataFile`
+is `class CObsDataFile(CObsDataFileStub, CMiniMtzDataFile)` --- data model in a
+stub, methods in the derived class:
+
+| | |
+|---|---:|
+| classes decorated `@cdata_class` | 229 |
+| `*Stub` classes | 210 |
+| classes inheriting a stub | 253 |
+| lines of auto-generated stubs | 21,472 |
+
+`CObsDataFileStub` is at line 5,742 of an auto-generated
+`core/cdata_stubs/CCP4XtalData.py` marked **DO NOT EDIT**, and carries four
+separate kinds of metadata --- `attributes`, `qualifiers` (a list of names),
+`qualifiers_definition`, `content_qualifiers`.
+
+So answering "what is a `CObsDataFile` made of" means finding the derived class
+in one file, its stub in another, and merging decorator metadata up an MRO that
+runs through `CMiniMtzDataFileStub`, `CDataFileStub`, `CDataStub`.
+
+**This is why `dataOrder()` merges four sources and `value_dict_for_object`
+tries five strategies.** When a field list is assembled from decorator metadata
+across two parallel class hierarchies, there is no single place to ask --- so
+every consumer invents its own way of asking, and they agree by luck.
+
+A dataclass removes exactly this. Fields are visible in the body of the class
+that has them; `dataclasses.fields(cls)` is the one introspection point;
+`field(metadata=...)` carries what the `attribute(...)` entries and the
+qualifier dicts carry now. The 21,472 lines of generated stubs exist to
+work around Python not being told about the fields --- which is the problem
+dataclasses were added to the language to solve.
+
+---
+
 ## Objection 1: two-way navigation
 
 Real, and specific. `_find_plugin_parent()` is how a **file value answers
