@@ -316,10 +316,20 @@ the wrong reasoning, and the file stays clean because the write filter asks
 There are in fact **two write filters, and they disagree.** The live path for
 `controlParameters` is `CContainer.getEtree(excludeUnset=True)`, which asks
 `isSet()` (`cdata.py:845`) and so drops the empty strings. Beside it sits
-`ParamsXmlHandler._is_explicitly_set`, which asks the *state* --- and returns
-True for all 812. It governs a different branch today, so it never runs on
-them; confirmed by calling it directly on aimless's `CHOOSE_LAUEGROUP`, which
-answers True while the parameter is correctly absent from the file.
+`ParamsXmlHandler._is_explicitly_set`, which asks the *state* --- and before
+the construction fix returned True for all 812. It governs a different branch,
+so it never ran on them; confirmed by calling it directly on aimless's
+`CHOOSE_LAUEGROUP`, which answered True while the parameter was correctly
+absent from the file.
+
+With construction fixed the two now agree on all 5,787 scalar and file leaves.
+What survives is narrow and is not about provenance at all: they disagree on
+**16 leaves, every one a `CList`**, where the live filter calls an empty list
+set and the state filter does not. Those 16 are exactly the empty elements an
+untouched container writes --- `<UNMERGEDFILES />`, `<XYZIN_LIST />`,
+`<DOMAINS />` --- across 14 tasks. It is the residue of the original
+complaint, and the remaining question is whether an empty `CList` should
+report itself as set, not which filter is right.
 
 That is the load-bearing warning for this design. A model that reads
 `ValueState` directly --- which is precisely what provenance-driven
