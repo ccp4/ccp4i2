@@ -130,12 +130,19 @@ And if a program requires a value, then a job's `params.xml` needs it too, or
 the job cannot be reproduced from its own record --- so "never persist
 defaults" is wrong for the same reason.
 
-The place for that is a **qualifier in the def.xml, beside the default it
-concerns** --- `alwaysSend`, or its inverse --- rather than a hand-maintained
-Python list inside one wrapper. A list in a wrapper is invisible to everything
-else, easy to omit when a parameter is added, and easy to leave stale:
-`phaser_MR`'s is empty, and nothing says whether that is correct or merely
-unchecked.
+The existing mechanism is sound as far as it goes: `phaser_MR` is the base
+class, `phaser_EP_AUTO` extends it and `phaser_EP_LLG` extends that, so the
+empty list in `phaser_MR` is a base-class default the EP wrappers override.
+phaser_MR genuinely requires none.
+
+What it is not is *visible*. The knowledge that phaser must be told `PART_VARI`
+even at its default lives in a Python class attribute inside one wrapper
+family, where nothing else can see it: not the GUI deciding what to show as
+meaningfully set, not `params.xml` deciding what a reproducible record
+contains, not a reader wondering why a keyword appears in one job and not
+another. A **qualifier in the def.xml, beside the default it concerns** ---
+`alwaysSend`, or its inverse --- puts it where the parameter is defined and
+where every consumer already looks.
 
 This also means `isDefault()` cannot simply be deleted in favour of provenance.
 Its nine callers are asking a policy question, and they need an answer whatever
