@@ -32,6 +32,27 @@ class ValueState(Enum):
 from .class_metadata import cdata_class
 
 
+_QUALIFIER_TEMPLATE_CACHE: Dict[type, Dict[str, Any]] = {}
+
+
+def _merged_qualifier_template(cls: type) -> Dict[str, Any]:
+    """The qualifier template for `cls`, merged down its MRO and memoised.
+
+    Keyed on the class object, so a class that is never instantiated costs
+    nothing and one instantiated 2,452 times merges once. The returned dict is
+    shared and must be treated as read-only --- callers copy it.
+    """
+    merged = _QUALIFIER_TEMPLATE_CACHE.get(cls)
+    if merged is None:
+        merged = {}
+        for ancestor in reversed(cls.__mro__):
+            template = ancestor.__dict__.get('_qualifiers_template')
+            if template is not None:
+                merged.update(template)
+        _QUALIFIER_TEMPLATE_CACHE[cls] = merged
+    return merged
+
+
 @cdata_class(gui_label="CData")
 class CData(HierarchicalObject):
     """Base class for all CCP4i2 data objects with hierarchical relationships."""
@@ -53,15 +74,15 @@ class CData(HierarchicalObject):
         self._apply_metadata_attributes()
 
         # --- Per-instance qualifier setup ---
-        # Walk the MRO to merge _qualifiers_template from all ancestors.
-        # Parent qualifiers are applied first, child qualifiers override.
-        # This is the sole runtime source of truth for qualifiers.
+        # Merge _qualifiers_template down the MRO --- parent first, child
+        # overriding --- which is the sole runtime source of truth for
+        # qualifiers. The *result* depends only on the class, so it is merged
+        # once per class rather than once per object; a task container builds
+        # a hundred of these per API request and the containers do not persist.
+        # Still a fresh dict per instance, so set_qualifier stays safe and the
+        # aliasing of nested values is exactly what the loop produced.
         cls = self.__class__
-        self._qualifiers = {}
-        for ancestor in reversed(cls.__mro__):
-            template = ancestor.__dict__.get('_qualifiers_template')
-            if template is not None:
-                self._qualifiers.update(template)
+        self._qualifiers = dict(_merged_qualifier_template(cls))
 
         # CONTENT_ORDER - copy from class if defined
         if hasattr(cls, 'CONTENT_ORDER'):
