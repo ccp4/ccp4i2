@@ -181,27 +181,95 @@ container asking each child; validity walks a container; the GUI renders a
 container. Nothing asks a lone leaf about its state without having walked from
 a container to reach it.
 
-## What this note does not decide
+## What plugin authors have already invented
 
-**Whether `DERIVED` is persisted at all.** Recording it as a marked cache makes
-reload fast and lets a stale value be detected; omitting it entirely makes
-staleness impossible but means every load re-reads files. The measurement to
-inform that: how long a digest takes against how often a job is reloaded.
+Worth looking, because where implementers have hand-rolled a mechanism they
+have told us what the model failed to provide. There are two, and they solve
+**opposite halves of the same missing distinction**.
 
-**What happens to existing `params.xml` files.** 27 of 42 in one project carry
-cached content, and 7 `input_params.xml` do. They must keep loading --- tier 4
-holds that --- but a value that arrives with no provenance has to be assigned
-one. Treating unmarked values as `USER` is safe and wrong; treating them as
-`DERIVED` is correct and risks discarding a real choice. This needs deciding
-explicitly rather than by default.
+**phaser: send it even though it is default.** `requiredDefaultList`, a class
+attribute naming parameters the program must be given regardless ---
+`PART_VARI`, `PART_DEVI`, `LLGM`. Inherited properly through
+`phaser_MR` → `phaser_EP_AUTO` → `phaser_EP_LLG`.
 
-**Whether `DEFAULT` needs storing at all.** The schema knows the value, so
-storing it looks redundant --- but see *provenance is not policy*: a job whose
-program requires a defaulted parameter needs that parameter in its own record
-to be reproducible. The decision is probably per-parameter rather than global,
-which is an argument for the `alwaysSend` qualifier carrying it.
+**aimless: only send it if the user opted in.** Four booleans in the def.xml,
+each labelled "override default …":
 
----
+    OUTLIER_OVERRIDE        override default outlier rejection
+    ANALYSIS_OVERRIDE       override default outlier rejection
+    SDCORRECTION_OVERRIDE   override default SDcorrection
+    INTENSITIES_OVERRIDE
+
+```python
+if not par.OUTLIER_OVERRIDE:
+    return
+if not par.OUTLIER_EMAX.isDefault():
+    self.appendCommandScript("REJECT EMAX %f" % par.OUTLIER_EMAX)
+```
+
+That checkbox exists so a user can say *the values below are mine, not
+defaults* --- a hand-rolled provenance signal, presented to the user as though
+it were science. With reliable provenance it is unnecessary semantically,
+though it may well be worth keeping as a **UI affordance**: "let me adjust
+outlier rejection" is a reasonable thing to offer, and removing the checkbox
+would change the interface. The point is that it should stop carrying meaning
+the model ought to supply.
+
+Two other things that block should be read for:
+
+- `isSet()` and `isDefault()` are used within the same function for similar
+  decisions --- `OUTLIER_COMBINE.isSet()` beside `OUTLIER_SDMAX.isDefault()`.
+  Given that `isSet()` means non-emptiness for strings and state for numbers,
+  adjacent lines are asking materially different questions.
+- The whole file is only reachable behind an override flag, so the
+  `isDefault()` calls inside it are a second filter on an already-filtered
+  block.
+
+### What that suggests for the def.xml
+
+Not a boolean but a small vocabulary, declared beside the default it governs:
+
+| | |
+|---|---|
+| `always` | send it whatever its provenance --- phaser's `PART_VARI` |
+| `ifChosen` | send it only when a user chose it --- aimless's outlier block |
+| `ifSet` | send it whenever it has a value, the present default behaviour |
+
+`always` replaces `requiredDefaultList`; `ifChosen` replaces the four aimless
+override flags as *semantics*, leaving them free to remain as grouping in the
+GUI.
+
+## Decisions taken
+
+**`DERIVED` is not persisted.** It has not been historically, and continuing
+not to is the conservative choice: nothing can go stale if nothing is stored.
+Recording it later --- as a marked cache, so staleness is detectable --- would
+be an enhancement, and is only worth doing once we can say concretely how a
+consumer would use it. Whatever is done must be backward compatible, since a
+reader of today's files must keep working.
+
+**Legacy `params.xml`: a persisted value is `USER` unless it equals the
+default, in which case `DEFAULT`.** Simple, implementable, and it does not
+disturb the use of an old file to condition a repeat run.
+
+It does demote a user who deliberately chose the default --- and that is
+exactly the case `always` covers, so the two decisions make each other safe.
+Where a program needs a defaulted value, `always` sends it regardless of how
+the provenance was reconstructed; where it does not, the demotion is
+invisible.
+
+**`DEFAULT` is stored sometimes**, per parameter, governed by the vocabulary
+above rather than by a global rule.
+
+## What this note still does not decide
+
+**Whether `ifChosen` should apply per parameter or per block.** Aimless's
+override flags gate whole sections; expressing that as a qualifier on each
+member is repetitive, and on the container is a different kind of statement.
+
+**What to do about `isSet()`/`isDefault()` being mixed within a block.**
+Mechanical replacement will preserve today's behaviour including its
+inconsistencies; deciding which was *meant* needs someone who knows aimless.
 
 ## Acceptance
 
