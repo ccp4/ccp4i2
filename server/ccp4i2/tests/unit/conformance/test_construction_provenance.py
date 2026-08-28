@@ -67,36 +67,55 @@ def test_an_applied_default_survives_construction():
     assert obj.isDefault() is True
 
 
+def _walk(obj, path, out, depth=0, seen=None):
+    """Every CData in the tree, not just the ones hanging off the sections.
+
+    An earlier version of this file walked one level --- the direct children of
+    inputData, outputData and controlParameters --- and called itself
+    exhaustive. It reported zero while 456 leaves one level deeper were
+    claiming to be explicitly set, because a data file's `contentFlag` is a
+    child of the *file*, not of the section, and `guiAdmin` was not visited at
+    all.
+    """
+    if seen is None:
+        seen = set()
+    if id(obj) in seen or depth > 6:
+        return
+    seen.add(id(obj))
+    try:
+        state = obj.getValueState("value")
+    except Exception:
+        state = None
+    if state is not None:
+        out.append((path, obj, state))
+    for child in (obj.children() if hasattr(obj, "children") else []):
+        _walk(child, f"{path}.{getattr(child, '_name', '?')}", out, depth + 1, seen)
+
+
 def test_no_task_has_explicitly_set_parameters_at_construction():
-    """The exhaustive form: every task, every leaf, straight after building."""
+    """Every task, every leaf, at every depth, straight after building."""
     django = pytest.importorskip("django")
     from ccp4i2.core.tasks import TASKS, get_plugin_class
 
-    offenders = []
-    examined = built = 0
+    offenders, examined, built = [], 0, 0
     for name in TASKS:
         try:
             plugin = get_plugin_class(name)(parent=None, name=name)
         except Exception:
             continue          # unbuildable tasks are a separate concern
         built += 1
-        for section in ("controlParameters", "inputData", "outputData"):
-            container = getattr(plugin.container, section, None)
-            if container is None:
-                continue
-            for child in container.children():
-                try:
-                    state = child.getValueState("value")
-                except Exception:
-                    continue
-                examined += 1
-                if state == ValueState.EXPLICITLY_SET:
-                    offenders.append(
-                        f"{name}.{section}.{child._name} "
-                        f"({type(child).__name__})"
-                    )
+        found = []
+        _walk(plugin.container, "container", found)
+        for path, obj, state in found:
+            examined += 1
+            if state == ValueState.EXPLICITLY_SET:
+                offenders.append(f"{name}.{path} ({type(obj).__name__})")
 
     assert built > 100, f"only {built} tasks built --- the sweep proves little"
+    assert examined > 15000, (
+        f"only {examined} leaves examined --- the walk is not reaching the "
+        "tree it claims to cover"
+    )
     assert not offenders, (
         f"{len(offenders)} of {examined} leaf parameters claim EXPLICITLY_SET "
         f"at construction, e.g. {offenders[:8]}"

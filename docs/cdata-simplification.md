@@ -468,6 +468,61 @@ mutation entry point, nothing mutates the dict `qualifiers()` returns, and
 `MakeLink` proves copy-on-write is *needed* rather than precautionary, since it
 sets `allowUndefined` on ~20 parameters conditionally inside a method.
 
+### Step 2 was aimed at the wrong cost
+
+The note argues from a leaf's **16 instance attributes** and 352 bytes against 28
+for a plain int. Both true, and both nearly irrelevant, because the profiling
+was never done. Measured:
+
+| | |
+|---|---|
+| the five eager dicts plus the `RLock` | 384 B, **232 ns** per object |
+| per API request (~100 leaves) | **0.023 ms**, against 40--56 ms construction |
+| across the whole registry | 3.9 ms, 6.2 MB |
+
+Removing them buys about **0.05%** of construction, in exchange for touching
+`_children_by_name`, which is read on every attribute access, and `_lock`. The
+memory number is worse than it looks too: the registry is never resident, since
+containers are built per request and discarded, so the live saving is ~38 kB.
+
+Leaves are cheap because they are few and short-lived. The note reasoned from
+the size of one object and never multiplied by how many exist at once.
+
+### Where the time actually goes
+
+Profiling one `servalcat_pipe` construction:
+
+| tottime | calls | |
+|---|---|---|
+| **44.5 ms** | **146,790** | `cdata.py:107 __getattribute__` |
+| 11.2 ms | 160,707 | `str.startswith` --- the `name.startswith('_')` inside it |
+| 8.3 ms | 6,533 | `load_xml.py:534 _build_id_path_map` |
+
+`CData.__getattribute__` runs on **every attribute access of every CData
+object**. Against default lookup it costs 192 ns versus 15 ns --- **12.8x** ---
+which at that call count is about **26 ms of a 56 ms construction**. Half the
+cost of building a container is one method, and it is paid on every parameter
+edit because containers do not persist.
+
+It exists for one reason: children are stored in the hierarchy rather than in
+`__dict__`, so ordinary attribute lookup cannot find them and every access has
+to be intercepted to check. That was a deliberate choice --- one source of truth
+for the tree --- and the interception is what it costs.
+
+**So the real step 2 is to delete the override, by making `__dict__` the place
+children live.** Default lookup then finds them with no Python-level code at
+all, and the structure stays single because `__dict__` *is* the structure ---
+the same argument that made `_children` an ordered dict in #305, applied one
+level out. `_child_storage` already holds strong references by name, so a
+per-name mapping exists; this would make it the one Python already consults.
+
+Not attempted here. Before it is, three things need answering: what
+`__setattr__` (already overridden, 5.4 ms) must do to keep the hierarchy in
+step; whether anything depends on a child being absent from `__dict__`, notably
+the serialisers that walk `vars()`; and what happens to a child whose name is
+not a valid identifier. The prize is large enough to justify asking properly:
+roughly half of every container build, on the hot path of the API.
+
 ### A caution about the evidence in this note
 
 Every "byte-identical across 171 trees" recorded here and in the PRs above was

@@ -464,6 +464,15 @@ class DefXmlParser:
                                     attr.value = attr_value
                                 else:
                                     setattr(obj, attr_name, attr_value)
+                                # Assignment records EXPLICITLY_SET, so say what
+                                # this actually is. The scalar branch below has
+                                # always done this; the dict branch never did,
+                                # and so a <default> declared in a def.xml
+                                # claimed a user had chosen it --- 285 fields
+                                # across the registry, all subType, contentFlag
+                                # or annotation.
+                                if hasattr(attr, "_value_states"):
+                                    attr._value_states["value"] = ValueState.DEFAULT
                             except Exception as e:
                                 print(f"Error setting default {attr_name}={attr_value}: {e}")
                 else:
