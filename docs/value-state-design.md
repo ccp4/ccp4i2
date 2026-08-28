@@ -338,40 +338,52 @@ state machine must be fixed before anything is built on it**, and the fix is
 small: construct `CString` as `NOT_SET`, like its three siblings, and let the
 emptiness override retire with the workaround it exists to be.
 
-### The comparison branch is dormant, not absent
+### The comparison branch is live, and I said otherwise
 
 `isSet(allowDefault=False)` contains a second test beyond the state check: it
 compares the value against the `default` qualifier and returns False on a match
-even when the state is `EXPLICITLY_SET` (`cdata.py:519`). That would demote a
-user who deliberately chose the default value.
+even when the state is `EXPLICITLY_SET` (`cdata.py:519`), demoting a user who
+deliberately chose the default value.
 
-It never fires. The def.xml `<default>` is applied to `value` and recorded as
-`ValueState.DEFAULT`; it is not kept as a qualifier and not kept in
-`_default_values`, both of which come back empty. So `get_qualifier('default')`
-is None, the branch short-circuits, and `isSet(allowDefault=False)` is in
-practice a *pure state test* --- which is the correct behaviour.
+An earlier revision of this note called that branch dormant, on the evidence of
+`freerflag.FRAC`, where `get_qualifier('default')` is None because the def.xml
+`<default>` is consumed --- applied to `value`, recorded as state, and not
+retained as a qualifier. That generalised from one case and was wrong.
 
-It is dormant rather than harmless. Anyone who later stores the default where
-that lookup can find it --- a reasonable-looking tidy-up --- switches on
-value-comparison demotion simultaneously at every `allowDefault=False` call
-site, including the one deciding what a PHIL program is told. Delete the
-branch rather than leave it armed.
+**806 objects across the registry carry a live `default` qualifier**, almost all
+of them `subType` and `contentFlag` on data files, which take theirs from the
+class-metadata path (`class_metadata.py:485`) rather than from a def.xml. For
+those the branch fires:
 
-### What that suggests for the def.xml
+    MakeLink.inputData.XYZIN.subType    default qualifier = 0
+    explicitly set to 0  ->  state EXPLICITLY_SET, isSet(allowDefault=False) False
+    explicitly set to 2  ->  state EXPLICITLY_SET, isSet(allowDefault=False) True
 
-Move the decision from the call site to the declaration, beside the default it
-governs:
+So the demotion is real and running today. Its practical effect is mild --- a
+value equal to its default is not serialised, and reload restores the same
+value --- but it means state and serialisation disagree *by design* for those
+806, which is worth knowing before anything reads state to decide transmission.
 
-| | |
-|---|---|
-| `always` | send it whatever its provenance --- phaser's `PART_VARI` |
-| `ifChosen` | send it only when a user chose it --- aimless's outlier block |
-| `ifSet` | send it whenever it has a value, today's leaf-type behaviour |
+Removing the branch is therefore **not a tidy-up**: it would change what
+`params.xml` contains for 806 objects. It needs its own change, its own
+prediction, and i2run behind it.
 
-`always` replaces `requiredDefaultList`. `ifChosen` replaces the aimless flags
-as *semantics* --- and, by consulting state rather than comparing values, stops
-demoting the user who chose the default on purpose. Uniform declaration also
-removes the reason the base/leaf polarity split exists.
+### An untouched list writes placeholders, and that is not a defect
+
+Fourteen tasks write list elements from an untouched container ---
+`<UNMERGEDFILES><CImportUnmerged /></UNMERGEDFILES>`, `<XYZIN_LIST>` with two
+blank `CPdbDataFile`s, `<DOMAINS>` with one blank `CDmDomain`. It looks like
+the last residue of "params.xml contains things nobody set".
+
+It is not. Those lists are not empty: they are pre-populated to `listMinLength`,
+which is a deliberate GUI affordance --- show the user one blank row to fill in
+--- and `_items` is `EXPLICITLY_SET` because appending marks it. A bare `CList()`
+correctly reports `isSet()` False.
+
+Nor do they compound: five save/load round trips leave the lengths at
+`[1,1,1,1,1,1]` and `[2,2,2,2,2,2]`. Suppressing them would be a serialisation
+change made for tidiness, against a GUI behaviour nobody has complained about,
+and is the same trade rejected for aimless above.
 
 ### `Auto` is not one of these
 
