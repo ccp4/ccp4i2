@@ -5,6 +5,23 @@ from typing import List, Any, Optional, TYPE_CHECKING
 from ..base_object.base_classes import CData, ValueState
 from .class_metadata import cdata_class, attribute, AttributeType
 
+
+def _unwrap(value):
+    """A value type set from another value type takes its *number*.
+
+    `identity.set(SEARCHSEQUENCEIDENTITY)` passes a CFloat, not a float --- 72
+    call sites across the tree pass a container member this way. Without
+    unwrapping, `self.value = value` stores a CData and the assignment path
+    adopts it as a child, leaving the backing store at its initial 0.0. The
+    __getattribute__ override then concealed that, because `.value` resolved to
+    the adopted child rather than the store: the number was never stored, and
+    code that checked `!= 0.0` passed because it was holding an object.
+    """
+    if isinstance(value, CData) and value._is_value_type():
+        return value.get()
+    return value
+
+
 if TYPE_CHECKING:
     import xml.etree.ElementTree as ET
 
@@ -126,6 +143,7 @@ class CInt(CData):
         return int(self.value)
 
     def set(self, value: int):
+        value = _unwrap(value)
         """Set the value directly using .set() method.
 
         Args:
@@ -552,6 +570,7 @@ class CFloat(CData):
         return other - self.value
 
     def set(self, value: float):
+        value = _unwrap(value)
         """Set the value directly using .set() method.
 
         Args:
@@ -993,6 +1012,7 @@ class CString(CData):
             self._value_states["value"] = ValueState.EXPLICITLY_SET
 
     def set(self, value: str):
+        value = _unwrap(value)
         """Set the value directly using .set() method.
 
         Args:
@@ -1381,6 +1401,7 @@ class CBoolean(CData):
         return self.isSet(allowDefault=True) and bool(self.value)
 
     def set(self, value: bool):
+        value = _unwrap(value)
         """Set the value directly using .set() method.
 
         Args:
