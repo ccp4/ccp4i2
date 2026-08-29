@@ -309,8 +309,43 @@ leaf instances.
 
 **Assignment coercion.** `container.inputData.XYZIN = "/some/path"` setting a
 file from a string --- 28 uses, against 3,711 dotted reads. Making that work
-means the container intercepts assignment. That is magic, but in one place
-rather than eighteen thousand.
+means something intercepts assignment.
+
+An earlier draft said "the container intercepts assignment --- magic, but in one
+place rather than eighteen thousand". That is wrong twice, and one concrete path
+shows both. Setting the annotation of the third model in the second assembly of
+a `phaser_MR` input:
+
+```python
+container.inputData.ENSEMBLES[1].pdbItemList[2].structure.annotation = "..."
+```
+
+**It is not one place, because the interception happens on a `CPdbDataFile`.**
+`structure` is not a `CContainer`; neither is the `CEnsemble` above it nor the
+`CPdbEnsembleItem` between them. Every type that has `CData` children has to
+intercept, so the magic lives on `CContainer`, on `CList`, and on each of the
+composed classes --- three of them on this single path. That is still a real
+reduction, from every object to the 14% that are parents, but it is ~22 classes,
+not one.
+
+**And leaves cannot shed it either, because the leaf owns its own state.**
+`_value_states` is written inside `__setattr__` *on the object being assigned
+to*, so a leaf must intercept to record that it was set:
+
+    frac.value = 0.3          # no parent involved anywhere
+    frac.getValueState('value')   ->  EXPLICITLY_SET
+
+That is not a rare back door: **55 sites** assign `leaf.value` directly, against
+228 that go through a parent. So "state on the container" cannot simply be
+declared --- either those 55 sites change, or the leaf reaches up to its parent
+to record the change, which is precisely the two-way navigation the sketch was
+trying to remove.
+
+The honest position: assignment coercion is reducible from eighteen thousand
+objects to about twenty classes, and value-state tracking is **not** reducible
+without first deciding what `leaf.value = x` should mean when the leaf does not
+know its parent. That question is upstream of the dataclass sketch, not a detail
+inside it.
 
 **CList.** Items are addressed by index and named `[n]`; see Defect C in the
 companion note.
