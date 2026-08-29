@@ -536,6 +536,7 @@ class CPluginScript(CData):
                 )
                 # Use setattr to properly register in _data_order for serialization
                 setattr(self.container, container_name, section)
+                self.container.declare_content(container_name)
 
             # Add standard fields to guiAdmin
             if container_name == 'guiAdmin':
@@ -557,6 +558,7 @@ class CPluginScript(CData):
                             pass
                     # Use setattr to properly register in _data_order for serialization
                     setattr(section, 'jobTitle', job_title)
+                    section.declare_content('jobTitle')
 
                 # Ensure jobStatus exists (stores job completion status)
                 # Values: 0=Pending, 1=Running, 2=Finished, 3=Failed, etc.
@@ -568,6 +570,7 @@ class CPluginScript(CData):
                     job_status.value = 0
                     # Use setattr to properly register in _data_order for serialization
                     setattr(section, 'jobStatus', job_status)
+                    section.declare_content('jobStatus')
                     # ...and it is a default, as the comment above says, so
                     # record that. Assignment marks EXPLICITLY_SET, which
                     # claimed a user had chosen Pending on all 171 tasks. This
@@ -670,6 +673,11 @@ class CPluginScript(CData):
                 setattr(self.container, child_name, child)
                 # Update parent to be our container (which is parented to self)
                 child.set_parent(self.container)
+                # This is where the def.xml actually installs content, as far
+                # as the plugin is concerned: the parse builds a throwaway
+                # container and its children are re-attached here, so anything
+                # the parser recorded per-container does not survive.
+                self.container.declare_content(child_name)
 
             self.defFile = fileName
             logger.debug(f"[loadContentsFromXml] Successfully loaded .def.xml and attached all children")

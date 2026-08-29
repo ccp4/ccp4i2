@@ -46,8 +46,17 @@ class CContainer(CData):
                 self._data_order = list(contents_order)  # Copy to avoid aliasing
             else:
                 self._data_order = []
+                self._declared_content = []
         else:
             self._data_order = []  # Track order of content items
+            # What this container is *declared* to contain, as opposed to what
+            # has been assigned onto it. Only the explicit installation paths
+            # append here --- addContent, addObject, the copy path, and
+            # declare_content(), which def.xml and PHIL construction call.
+            # Plain `container.foo = obj` does not, so it cannot silently
+            # extend the model. CContainer has no _metadata, so without this
+            # there is nothing to compare an assignment against.
+            self._declared_content = []
 
     def addContent(self, content_class, name: str, **kwargs):
         """Add a new content item to the container (old API compatibility).
@@ -87,6 +96,7 @@ class CContainer(CData):
             new_obj.set_parent(self)
 
         self._data_order.append(name)
+        self.declare_content(name)
         return new_obj
 
     def addObject(self, obj: CData, name: str = None, reparent: bool = True):
@@ -118,6 +128,7 @@ class CContainer(CData):
         setattr(self, obj_name, obj)
         if obj_name not in self._data_order:
             self._data_order.append(obj_name)
+        self.declare_content(obj_name)
 
         return obj
 
@@ -147,6 +158,24 @@ class CContainer(CData):
         # Remove from data order
         if name in self._data_order:
             self._data_order.remove(name)
+
+    def declare_content(self, name: str) -> None:
+        """Record `name` as part of this container's declared model.
+
+        Called by the paths that *construct* a container --- addContent,
+        addObject, the deep-copy path, and def.xml and PHIL parsing --- and not
+        by ordinary assignment. The difference is the point: `_data_order` is
+        appended to by `__setattr__` for any CData assigned to a non-underscore
+        name, so anything dropped on a container joins the model and is
+        serialised under its own `_name`. This list records only what was
+        declared.
+        """
+        if name and name not in self._declared_content:
+            self._declared_content.append(name)
+
+    def declaredContent(self) -> list:
+        """The declared model, as opposed to whatever has been assigned."""
+        return list(getattr(self, "_declared_content", []))
 
     def dataOrder(self) -> list:
         """Return complete ordering of all children for serialization.
@@ -296,6 +325,7 @@ class CContainer(CData):
                     new_item.set_parent(self)
                 if item_name not in self._data_order:
                     self._data_order.append(item_name)
+                self.declare_content(item_name)
 
                 # Now populate it with the source data using deep copy
                 if hasattr(new_item, '_deep_copy_from'):

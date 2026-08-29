@@ -231,6 +231,8 @@ class DefXmlParser:
 
         # Add to parent - setattr will trigger hierarchy setup via __setattr__
         setattr(parent, container_id, container_obj)
+        if hasattr(parent, "declare_content"):
+            parent.declare_content(container_id)
 
     def _parse_content(self, content: ET.Element, parent: CData) -> None:
         """Parse a content element and add it to parent."""
@@ -288,6 +290,8 @@ class DefXmlParser:
 
             # Add to parent - setattr will trigger hierarchy setup via __setattr__
             setattr(parent, content_id, obj)
+            if hasattr(parent, "declare_content"):
+                parent.declare_content(content_id)
 
     def _parse_nested_qualifier(self, element: ET.Element) -> Dict[str, Any]:
         """Parse a qualifier that holds elements rather than a value."""
