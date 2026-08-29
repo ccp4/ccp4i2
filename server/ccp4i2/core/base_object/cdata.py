@@ -1239,7 +1239,7 @@ class CData(HierarchicalObject):
                 import weakref
                 child_ref = weakref.ref(value)
                 self._children_by_name[key] = child_ref
-                self._child_storage[key] = value
+                self.__dict__[key] = value
         elif isinstance(value, list):
             # Handle list of CData objects
             for i, item in enumerate(value):
@@ -1520,7 +1520,7 @@ class CData(HierarchicalObject):
         # First try to remove from hierarchy (for CData children)
         if name in self._children_by_name:
             child_ref = self._children_by_name.pop(name, None)
-            self._child_storage.pop(name, None)
+            self.__dict__.pop(name, None)
             found = True
 
             # If there's a live child, clean it up

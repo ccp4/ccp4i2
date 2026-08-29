@@ -71,7 +71,11 @@ class HierarchicalObject(ABC):
         # a CFloat keyword report a child named after itself.
         self._children: Dict[weakref.ReferenceType, None] = {}
         self._children_by_name: Dict[str, weakref.ReferenceType] = {}  # O(1) name lookup cache
-        self._child_storage: Dict[str, Any] = {}  # Strong references to prevent GC of children
+        # Strong references to children live in __dict__, which is also where
+        # ordinary attribute lookup finds them. There used to be a parallel
+        # _child_storage keyed the same way, holding the same objects --- 19,529
+        # entries, every one of them already in __dict__ under the same key with
+        # the same object.
         self._name = name or f"{self.__class__.__name__}_{id(self)}"
         self._lock = threading.RLock()
         # Created on first use. Every HierarchicalObject used to build a
@@ -211,9 +215,8 @@ class HierarchicalObject(ABC):
             if child_name:
                 self._children_by_name[child_name] = child_ref
                 # Store strong reference to prevent GC
-                self._child_storage[child_name] = child
-                # ...and in __dict__, so ordinary attribute lookup finds it and
-                # CData needs no __getattribute__ override to reach children.
+                # In __dict__: ordinary attribute lookup finds it, and it is
+                # the strong reference that keeps the child alive.
                 self.__dict__[child_name] = child
 
             # Guard against GC ordering issues
@@ -241,7 +244,6 @@ class HierarchicalObject(ABC):
                     if cached_ref is not None and cached_ref() is child:
                         del self._children_by_name[child_name]
                         # Also remove from strong storage
-                        self._child_storage.pop(child_name, None)
                         if self.__dict__.get(child_name) is child:
                             del self.__dict__[child_name]
 
@@ -259,7 +261,6 @@ class HierarchicalObject(ABC):
         dead_names = [name for name, ref in self._children_by_name.items() if ref() is None]
         for name in dead_names:
             del self._children_by_name[name]
-            self._child_storage.pop(name, None)
 
     def children(self) -> List["HierarchicalObject"]:
         """Get list of all child objects, in the order they were added.
@@ -317,13 +318,10 @@ class HierarchicalObject(ABC):
                 cached = parent._children_by_name.get(old_name)
                 if cached is not None and cached() is self:
                     del parent._children_by_name[old_name]
-                    stored = parent._child_storage.pop(old_name, None)
                     parent._children_by_name[new_name] = cached
                     if parent.__dict__.get(old_name) is self:
                         del parent.__dict__[old_name]
                     parent.__dict__[new_name] = self
-                    if stored is not None:
-                        parent._child_storage[new_name] = stored
 
     def find_child(
         self, name: str, recursive: bool = False
@@ -541,7 +539,6 @@ class HierarchicalObject(ABC):
             self._sigmgr.cleanup()
         self._children.clear()
         self._children_by_name.clear()
-        self._child_storage.clear()  # Clear strong references to children
         self._properties.clear()
         self._event_handlers.clear()
 

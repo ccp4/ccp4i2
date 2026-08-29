@@ -87,12 +87,17 @@ def test_children_that_compare_equal_are_still_distinct_children():
 # --- lifetime --------------------------------------------------------------
 
 def test_a_parent_keeps_its_children_alive():
-    """Lifetime is governed by `_child_storage`, not by the weak references.
+    """Lifetime is governed by the strong reference, not by the weak ones.
 
-    `_add_child` stores a strong reference keyed by name, so a child with its
-    own name cannot be collected while its parent lives. The weakref set does
-    not manage lifetime; it manages membership. Worth stating plainly, because
-    the weakness is what the structure looks like it is for.
+    `_add_child` puts the child in `__dict__` keyed by name, so a child with
+    its own name cannot be collected while its parent lives. The weakref set
+    does not manage lifetime; it manages membership. Worth stating plainly,
+    because the weakness is what the structure looks like it is for.
+
+    That strong reference used to live in a separate `_child_storage` dict
+    keyed identically --- 19,529 entries, every one already in `__dict__`
+    under the same key holding the same object. `__dict__` is now the only
+    copy, which is also what ordinary attribute lookup reads.
     """
     parent = HierarchicalObject(name='root')
     _child(parent, 'stays')
@@ -101,13 +106,14 @@ def test_a_parent_keeps_its_children_alive():
     gc.collect()
 
     assert _names(parent) == ['stays', 'goes']
-    assert list(parent._child_storage) == ['stays', 'goes']
+    strong = [k for k, v in vars(parent).items() if v in (parent.children())]
+    assert strong == ['stays', 'goes']
 
 
 def test_children_sharing_a_name_are_not_all_kept_alive():
     """A hazard, recorded rather than endorsed.
 
-    `_child_storage` is keyed by name, so of several children sharing one only
+    The strong reference is keyed by name, so of several children sharing one only
     the last is strongly held; drop the outside references and the rest are
     collected. That was every CList item before Defect C, when they were all
     named '[0]' --- so an item could be collected if nothing else held it.
@@ -133,7 +139,7 @@ def test_a_detached_child_is_no_longer_kept_alive():
     gc.collect()
 
     assert parent.children() == []
-    assert 'temporary' not in parent._child_storage
+    assert 'temporary' not in vars(parent)
 
 
 def test_a_new_object_does_not_inherit_a_dead_ones_place():
