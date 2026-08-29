@@ -631,6 +631,37 @@ cheap instrument available, including two added this week, called the change
 clean. Only running actual jobs found the problem. Worth remembering when
 judging how far the fast tiers can be trusted for a change of this shape.
 
+### `_children` cannot collapse onto `__dict__`
+
+`_child_storage` went, because it was `__dict__` keyed identically --- 19,529
+entries, all present, all the same object. `_children` looked like the same
+kind of duplication: derived from `__dict__` by taking non-underscore entries
+holding a `HierarchicalObject`, it reproduced `children()` **exactly, in
+membership and in order, for all 19,700 objects** across the registry.
+
+It still cannot go, and the conformance tier said so within a minute:
+
+    test_a_child_whose_name_collided_is_still_returned
+    test_a_collided_child_is_not_returned_twice
+    test_two_children_with_the_same_name_...
+    test_children_sharing_a_name_are_not_all_kept_alive
+
+`__dict__` is keyed by name; `_children` is keyed by the weakref, which hashes
+by referent *identity*. Two children sharing a name --- which every `CList`
+item did before Defect C gave them distinct ones --- are two entries in
+`_children` and one in `__dict__`. The second silently replaces the first.
+
+So the 19,700 agreement was a fact about today's data, not an invariant, and
+the distinction between those two things is the whole reason that tier exists.
+A container can hold two children with one name; a `__dict__` cannot represent
+that.
+
+What would make it collapsible is not more measurement but a decided rule:
+that a child's name is unique among its siblings, enforced at registration
+rather than hoped for. Defect C moved `CList` towards that by numbering items,
+and `_declared_content` gives containers somewhere to state their model, but
+`HierarchicalObject` still permits collisions and four tests pin that it does.
+
 ### A caution about the evidence in this note
 
 Every "byte-identical across 171 trees" recorded here and in the PRs above was
