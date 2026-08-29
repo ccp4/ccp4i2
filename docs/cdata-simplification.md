@@ -597,10 +597,33 @@ RMS to be set"* --- and the failing job's `params.xml` holds the ensemble item's
 
 Bisected: restoring **only** the override, with the `__dict__` storage and both
 renames still in place, makes it pass. So the cause is the override itself, not
-the supporting changes. Not isolated further. Reproducing the sequence
-standalone --- `makeItem`, the `remove`/`append` loop, `structure.set`,
-`identity_to_target.set`, save --- keeps the value every time, so whatever
-differs lives in the i2run path rather than the operations themselves.
+the supporting changes.
+
+**It is not an i2run artefact.** The same scenario driven through the REST API
+--- `tests/api/e2e/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_basic`
+--- passes on the working tree in 9 s and fails on the refactor in 3 s, with the
+identical error. Two independent drivers agreeing is what makes the bug real
+rather than a harness fault, and the API test is much the faster reproduction
+for whoever picks this up.
+
+Not isolated further, and these are ruled out --- each measured identical on
+both trees:
+
+- `ENSEMBLES` is empty at construction, and after loading the failing job's
+  `input_params.xml`; the container-level validity report is the same three
+  errors either way
+- `identity_to_target.set(0.9)` on a bare `CPdbEnsembleItem` gives
+  `EXPLICITLY_SET`, `isSet(allowDefault=False)` True, and serialises
+- the pipeline's own sequence run standalone --- `makeItem`, the
+  `remove`/`append` loop, `structure.set`, `identity_to_target.set`, save ---
+  keeps the value
+
+What remains unexamined is the subjob path: `phaser_simple` populates the
+ensemble in `process()` and hands it to `phaser_MR`, and the failing job's
+`params.xml` carries the item's `<structure>` but not its
+`<identity_to_target>`. Validation runs *before* `process()`, so the error is
+raised against a container the pipeline has not filled in yet --- which is why a
+probe placed at the `identity_to_target.set(0.9)` line never fires.
 
 **What this establishes.** The prize is real and large --- about 43% of
 container construction, on the hot path of every parameter edit --- and every
