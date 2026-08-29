@@ -212,6 +212,9 @@ class HierarchicalObject(ABC):
                 self._children_by_name[child_name] = child_ref
                 # Store strong reference to prevent GC
                 self._child_storage[child_name] = child
+                # ...and in __dict__, so ordinary attribute lookup finds it and
+                # CData needs no __getattribute__ override to reach children.
+                self.__dict__[child_name] = child
 
             # Guard against GC ordering issues
             logging.debug(f"Added child {child._name} to {self._name}")
@@ -239,6 +242,8 @@ class HierarchicalObject(ABC):
                         del self._children_by_name[child_name]
                         # Also remove from strong storage
                         self._child_storage.pop(child_name, None)
+                        if self.__dict__.get(child_name) is child:
+                            del self.__dict__[child_name]
 
                 # Guard against GC ordering issues - signal might be cleaned up already
                 logger.debug(
@@ -314,6 +319,9 @@ class HierarchicalObject(ABC):
                     del parent._children_by_name[old_name]
                     stored = parent._child_storage.pop(old_name, None)
                     parent._children_by_name[new_name] = cached
+                    if parent.__dict__.get(old_name) is self:
+                        del parent.__dict__[old_name]
+                    parent.__dict__[new_name] = self
                     if stored is not None:
                         parent._child_storage[new_name] = stored
 
