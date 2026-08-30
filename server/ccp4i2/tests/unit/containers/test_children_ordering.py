@@ -61,8 +61,20 @@ def test_two_trees_built_the_same_way_agree():
            [c._name for c in b.children()]
 
 
-def test_a_child_whose_name_collided_is_still_returned():
-    """CList items all take the name '[0]', so only the last is in the cache."""
+def test_a_child_replaces_an_earlier_one_of_the_same_name():
+    """Names follow dict semantics: the second assignment wins.
+
+    This used to keep both. `_children` is keyed by weakref, which hashes by
+    identity, while `_children_by_name` and `__dict__` are keyed by name --- so
+    the displaced child stayed in `children()`, and therefore in every
+    traversal built on it, while being unreachable by name and never
+    serialised. A ghost: visible to walkers, invisible to addressing and
+    persistence.
+
+    There is no way to address such a child, so nothing could read it, set it,
+    name it in a def.xml or write it to params.xml. It was only reachable by
+    iterating and comparing identity.
+    """
     parent = HierarchicalObject(name='root')
     first = HierarchicalObject(name='[0]')
     first.set_parent(parent)
@@ -71,17 +83,26 @@ def test_a_child_whose_name_collided_is_still_returned():
 
     returned = parent.children()
 
-    assert first in returned and second in returned
-    assert len(returned) == 2
+    assert returned == [second]
+    assert first not in returned
 
 
-def test_a_collided_child_is_not_returned_twice():
+def test_the_displaced_child_is_detached_not_orphaned():
+    """Replacement must let go, or the ghost is merely quieter.
+
+    The displaced object keeps working as an object; it simply stops being
+    anyone's child. Code holding a reference can *tell*, because its parent is
+    None --- which is the difference between the old behaviour and this one.
+    Before, such a reference pointed at something still parented, still walked,
+    still counted, and yet never written.
+    """
     parent = HierarchicalObject(name='root')
-    kept = [HierarchicalObject(name='[0]') for _ in range(3)]
-    for child in kept:
-        child.set_parent(parent)
-    returned = parent.children()
-    assert len({id(c) for c in returned}) == len(returned) == 3
+    first = HierarchicalObject(name='[0]')
+    first.set_parent(parent)
+    HierarchicalObject(name='[0]').set_parent(parent)
+
+    assert first._parent_ref is None
+    assert first not in parent.children()
 
 
 def test_dead_children_are_left_out():
