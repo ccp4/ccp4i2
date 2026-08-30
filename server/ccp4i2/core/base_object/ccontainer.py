@@ -216,11 +216,30 @@ class CContainer(CData):
                     result.append(name)
                     seen.add(name)
 
-        # 3. Finally, add any remaining children not in either list
+        # 3. Finally, any remaining children --- but only those this container
+        # was *declared* to contain.
+        #
+        # __setattr__ appends to _data_order for any CData assigned to a
+        # non-underscore name, so before _declared_content existed anything
+        # dropped on a container joined the model and was written to
+        # params.xml under its own _name:
+        #
+        #     c.casual_cdata = CString('dropped')
+        #     c.dataOrder()  -> [..., 'casual_cdata']
+        #     getEtree()     -> <CString_4443846000>dropped</CString_4443846000>
+        #
+        # _declared_content records only what an installation path put here ---
+        # addContent, addObject, the deep-copy path, def.xml and PHIL parsing,
+        # and the standard containers --- so an assignment cannot extend the
+        # model. Where nothing has been declared the old behaviour stands, so
+        # containers built by routes that do not declare are unaffected.
+        declared = getattr(self, '_declared_content', None)
         for child in self.children():
             if hasattr(child, 'objectName'):
                 name = child.objectName()
                 if name and name not in seen:
+                    if declared and name not in declared:
+                        continue
                     result.append(name)
                     seen.add(name)
 
