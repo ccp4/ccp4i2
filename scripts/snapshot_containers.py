@@ -58,6 +58,7 @@ the persistence tier and to a before/after over real ``params.xml`` files.
 import argparse
 import json
 import os
+import re
 import sys
 import tempfile
 
@@ -160,7 +161,12 @@ def params_xml(plugin):
         path = os.path.join(_t.mkdtemp(), 'params.xml')
         plugin.saveDataToXml(path)
         with open(path) as handle:
-            return handle.read()
+            written = handle.read()
+        # <creationTime> is a clock reading, so two runs of an unchanged tree
+        # differ and the comparison cries wolf. Normalise it rather than drop
+        # the tag, so its presence or absence is still compared.
+        return re.sub(r'<creationTime>[^<]*</creationTime>',
+                      '<creationTime>NORMALISED</creationTime>', written)
     except Exception as exc:
         return f'<error: {type(exc).__name__}>'
 

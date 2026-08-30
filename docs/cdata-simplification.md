@@ -558,6 +558,79 @@ the serialisers that walk `vars()`; and what happens to a child whose name is
 not a valid identifier. The prize is large enough to justify asking properly:
 roughly half of every container build, on the hot path of the API.
 
+### Removing `__getattribute__`: attempted twice, not yet viable
+
+**First attempt** --- delete the override, store children in `__dict__` --- failed
+32 unit tests. Two naming faults were in the way, and finding them was the
+useful part.
+
+The `fileContent` backing store was `self.content`, not underscore-prefixed, so
+`__setattr__` registered it as a *child* named `content` while the property had
+already registered the same object as a child named `fileContent`. One object
+under two keys, with `__dict__['content']` left a stale `None` that only the
+override concealed. That also **disabled the property**: the override consults
+`_children_by_name` before the descriptor protocol, so the getter ran once and
+never again --- its reload-if-unloaded branch is dead code beyond first access.
+Fixed by renaming to `_content`, which lands on its own.
+
+Second, `__setattr__` keys `_children_by_name` by the *attribute* name while
+`_add_child` keys it by the child's `_name`, and they differ whenever a caller
+writes `container.input_file = CDataFile(name="XYZIN")`.
+
+**Second attempt**, with both fixed. Everything cheap said yes:
+
+| | |
+|---|---|
+| unit tests | **1946 passed** |
+| api/unit | 79 passed |
+| container snapshot | byte-identical, `--strict`, **including `params.xml`** |
+| API round-trip | identical across 173 tasks |
+| construction | `prosmart_refmac` 40.6 → **23.0 ms**, `aimless_pipe` 41.6 → **22.7**, `servalcat_pipe` 53.2 → **30.7** --- about **43%** |
+| unit suite wall clock | 28.7 s → 19.3 s |
+
+**i2run said no: 7 of 182 failed**, four of them phaser, plus
+`provide_sequence`, `servalcat` neutron and `substitute_ligand` with SMILES.
+The symptom is a validity error --- *"Ensemble item requires either Identity or
+RMS to be set"* --- and the failing job's `params.xml` holds the ensemble item's
+`<structure>` but no `<identity_to_target>`, so a value the pipeline sets with
+`pdbItem.identity_to_target.set(0.9)` never reaches serialisation.
+
+Bisected: restoring **only** the override, with the `__dict__` storage and both
+renames still in place, makes it pass. So the cause is the override itself, not
+the supporting changes.
+
+**It is not an i2run artefact.** The same scenario driven through the REST API
+--- `tests/api/e2e/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_basic`
+--- passes on the working tree in 9 s and fails on the refactor in 3 s, with the
+identical error. Two independent drivers agreeing is what makes the bug real
+rather than a harness fault, and the API test is much the faster reproduction
+for whoever picks this up.
+
+Not isolated further, and these are ruled out --- each measured identical on
+both trees:
+
+- `ENSEMBLES` is empty at construction, and after loading the failing job's
+  `input_params.xml`; the container-level validity report is the same three
+  errors either way
+- `identity_to_target.set(0.9)` on a bare `CPdbEnsembleItem` gives
+  `EXPLICITLY_SET`, `isSet(allowDefault=False)` True, and serialises
+- the pipeline's own sequence run standalone --- `makeItem`, the
+  `remove`/`append` loop, `structure.set`, `identity_to_target.set`, save ---
+  keeps the value
+
+What remains unexamined is the subjob path: `phaser_simple` populates the
+ensemble in `process()` and hands it to `phaser_MR`, and the failing job's
+`params.xml` carries the item's `<structure>` but not its
+`<identity_to_target>`. Validation runs *before* `process()`, so the error is
+raised against a container the pipeline has not filled in yet --- which is why a
+probe placed at the `identity_to_target.set(0.9)` line never fires.
+
+**What this establishes.** The prize is real and large --- about 43% of
+container construction, on the hot path of every parameter edit --- and every
+cheap instrument available, including two added this week, called the change
+clean. Only running actual jobs found the problem. Worth remembering when
+judging how far the fast tiers can be trusted for a change of this shape.
+
 ### A caution about the evidence in this note
 
 Every "byte-identical across 171 trees" recorded here and in the PRs above was

@@ -73,7 +73,12 @@ class CDataFile(CData):
         self.file_path = file_path
 
         # File content instance (instantiated by loadFile())
-        self.content = None
+        # The backing store for the `fileContent` property. Underscore-prefixed
+        # deliberately: __setattr__ registers a public CData attribute as a
+        # *child*, which left `content` in _children_by_name beside the
+        # `fileContent` child --- one object under two names --- while
+        # __dict__['content'] stayed a stale None.
+        self._content = None
 
         # Set baseName if file_path provided
         if file_path is not None:
@@ -95,16 +100,16 @@ class CDataFile(CData):
             CDataFileContent instance or None if content class not configured
         """
         # If content already exists but appears unloaded, try to load it
-        if self.content is not None and hasattr(self.content, 'loadFile'):
+        if self._content is not None and hasattr(self._content, 'loadFile'):
             # Check if the content appears to be unloaded (e.g., resolutionRange.high is not set for MTZ files)
-            if hasattr(self.content, 'resolutionRange') and self.content.resolutionRange is not None:
-                high_val = self.content.resolutionRange.high
+            if hasattr(self._content, 'resolutionRange') and self._content.resolutionRange is not None:
+                high_val = self._content.resolutionRange.high
                 is_unloaded = (high_val is None or
                              (hasattr(high_val, 'value') and high_val.value is None) or
                              (hasattr(high_val, 'isSet') and not high_val.isSet()))
                 if is_unloaded:
                     try:
-                        error = self.content.loadFile()
+                        error = self._content.loadFile()
                         if error and hasattr(error, 'count') and error.count() > 0:
                             logger.debug(
                                 "[fileContent property] loadFile() returned errors: %s",
@@ -121,7 +126,7 @@ class CDataFile(CData):
                             e
                         )
 
-        if self.content is None:
+        if self._content is None:
             # Auto-create content object
             content_class_name = self.get_qualifier('fileContentClassName')
             if content_class_name:
@@ -139,7 +144,7 @@ class CDataFile(CData):
 
                     if content_class is not None:
                         # Create content instance
-                        self.content = content_class(parent=self, name='fileContent')
+                        self._content = content_class(parent=self, name='fileContent')
                         logger.debug(
                             "[fileContent property] Auto-created content for %s: %s",
                             self.name if hasattr(self, 'name') else 'unnamed',
@@ -148,10 +153,10 @@ class CDataFile(CData):
 
                         # Auto-load by calling loadFile() without a path
                         # Let loadFile() get the path from the parent CDataFile
-                        if hasattr(self.content, 'loadFile'):
+                        if hasattr(self._content, 'loadFile'):
                             try:
                                 logger.debug("[fileContent property] Calling loadFile() to get path from parent")
-                                error = self.content.loadFile()  # loadFile will call self.get_parent().getFullPath()
+                                error = self._content.loadFile()  # loadFile will call self.get_parent().getFullPath()
                                 if error and hasattr(error, 'count') and error.count() > 0:
                                     logger.warning(
                                         "[fileContent property] loadFile() returned errors: %s",
@@ -172,12 +177,12 @@ class CDataFile(CData):
                         content_class_name, e
                     )
 
-        return self.content
+        return self._content
 
     @fileContent.setter
     def fileContent(self, value):
         """Set the file content object."""
-        self.content = value
+        self._content = value
 
     def setFullPath(self, path: str):
         """Set the full path of the file.
@@ -1077,12 +1082,12 @@ class CDataFile(CData):
             super().set(value.get())
             # IMPORTANT: Also copy non-metadata attributes like 'content'
             # that are set directly in __init__ but not tracked by metadata
-            if hasattr(value, 'content') and value.content is not None:
+            if hasattr(value, '_content') and value._content is not None:
                 # Deep-copy the content and re-parent it to self
-                # A shallow reference copy (self.content = value.content) doesn't work
+                # A shallow reference copy (self._content = value._content) doesn't work
                 # because the content's parent would still be the source file,
                 # and it wouldn't be serialized as a child of this file
-                source_content = value.content
+                source_content = value._content
                 content_type = type(source_content)
                 try:
                     # Create a new content object with self as parent
@@ -1090,10 +1095,10 @@ class CDataFile(CData):
                     # Deep copy the data from source to new content
                     if hasattr(new_content, '_deep_copy_from'):
                         new_content._deep_copy_from(source_content)
-                    self.content = new_content
+                    self._content = new_content
                 except Exception:
                     # Fallback to reference copy if deep copy fails
-                    self.content = source_content
+                    self._content = source_content
             if hasattr(value, 'file_path'):
                 self.file_path = value.file_path
         elif isinstance(value, dict):
@@ -1136,7 +1141,7 @@ class CDataFile(CData):
             >>> mtz_file.setFullPath('/path/to/data.mtz')
             >>> error = mtz_file.loadFile()
             >>> if error.count() == 0:
-            ...     print(f"Cell: {mtz_file.content.cell}")
+            ...     print(f"Cell: {mtz_file.fileContent.cell}")
         """
         from ccp4i2.core.base_object.error_reporting import CErrorReport, CException, SEVERITY_ERROR
         from pathlib import Path
@@ -1153,7 +1158,7 @@ class CDataFile(CData):
             return error  # No content class specified - not an error
 
         # Instantiate content object if needed
-        if self.content is None or initialise:
+        if self._content is None or initialise:
             try:
                 # Import the content class
                 # Try local imports first (CCP4XtalData, CCP4ModelData, etc.)
@@ -1177,7 +1182,7 @@ class CDataFile(CData):
                     return error
 
                 # Create content instance
-                self.content = content_class(parent=self, name='fileContent')
+                self._content = content_class(parent=self, name='fileContent')
 
             except Exception as e:
                 error.append(
@@ -1192,8 +1197,8 @@ class CDataFile(CData):
         file_path = self.getFullPath()
         if not file_path:
             # No path set - unset content
-            if self.content is not None:
-                self.content.unSet()
+            if self._content is not None:
+                self._content.unSet()
             return error
 
         # Check file exists
@@ -1201,7 +1206,7 @@ class CDataFile(CData):
         if path_obj.exists() and path_obj.is_file():
             try:
                 # Delegate to content class's loadFile()
-                content_error = self.content.loadFile(file_path)
+                content_error = self._content.loadFile(file_path)
                 if content_error is not None:
                     error.extend(content_error)
 
@@ -1217,8 +1222,8 @@ class CDataFile(CData):
                 )
         else:
             # File doesn't exist - unset content
-            if self.content is not None:
-                self.content.unSet()
+            if self._content is not None:
+                self._content.unSet()
 
         # Emit signal (if event system available)
         if hasattr(self, 'dataLoaded'):
