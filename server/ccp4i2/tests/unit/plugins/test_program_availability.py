@@ -197,9 +197,15 @@ def test_optional_programs_reach_the_preferences_page():
     from ccp4i2.core.tasks import task_commands
 
     declared = task_commands()
-    for program in ('shelxc', 'shelxd', 'shelxe', 'prasa', 'parrot'):
+    # Binary names. 'parrot' was listed here and on the page for months --- it
+    # is the ccp4i2 task that wraps the program, and the name of its html and
+    # legacy .tcl in the distribution, but the binary is cparrot. Every shelx
+    # run warned that a program was missing while cparrot sat on PATH.
+    for program in ('shelxc', 'shelxd', 'shelxe', 'prasa', 'cparrot'):
         assert 'crank2' in declared.get(program, []), \
             f'{program} is not offered on the Program locations page'
+    assert 'parrot' not in declared, \
+        'parrot is a task name, not a binary; crank2 runs cparrot'
 
 
 def test_crank2_no_longer_names_a_program_that_does_not_exist():
