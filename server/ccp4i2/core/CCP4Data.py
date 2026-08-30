@@ -290,9 +290,15 @@ class CRangeSelection(CRangeSelectionStub):
         202: {'description': 'Range selection contains bad syntax'}
     }
 
-    def validity(self, arg):
+    def validity(self, arg=NotImplemented):
         """
         Validate range selection string syntax.
+
+        `arg` defaults to this object's own value, so the framework can call
+        `child.validity()` like every other CData. It could not: the argument
+        was required, so every call raised TypeError --- and `CData.validity`
+        swallowed it, which meant no CRangeSelection has ever been validated.
+        The explicit form is kept for the legacy callers that pass a string.
 
         Legacy API compatibility method for validating range selection format.
         Checks for:
@@ -310,6 +316,15 @@ class CRangeSelection(CRangeSelectionStub):
         from ccp4i2.core.base_object.base_classes import CData
 
         err = CErrorReport()
+
+        if arg is NotImplemented:
+            # Own value. An unset CString holds '' rather than None, and an
+            # empty selection is not a malformed one --- without this the check
+            # reports every unset excludeSelection, which is a warning that is
+            # always wrong.
+            arg = self.value
+            if isinstance(arg, str) and not arg.strip():
+                arg = None
 
         # Check for undefined value
         if arg is None:
