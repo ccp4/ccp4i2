@@ -133,6 +133,8 @@ class Phil2CData:
                 sub._name = full_path.replace(".", "__")
                 self._apply_scope_qualifiers(obj, sub)
                 setattr(container, sub._name, sub)
+                if hasattr(container, 'declare_content'):
+                    container.declare_content(sub._name)
                 self._convert_scope(obj, sub)
 
     def _convert_definition(self, keyword, container):
@@ -163,6 +165,8 @@ class Phil2CData:
 
         # Add to parent container
         setattr(container, obj._name, obj)
+        if hasattr(container, 'declare_content'):
+            container.declare_content(obj._name)
 
     def _apply_definition_qualifiers(self, keyword, obj, phil_type, value):
         """Map PHIL definition attributes to CData qualifiers."""
