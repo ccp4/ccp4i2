@@ -104,18 +104,51 @@ class CData(HierarchicalObject):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
+    #: Set when metadata-driven attribute creation failed, so `validity()` can
+    #: say so. An object whose model failed to build is otherwise
+    #: indistinguishable from one that legitimately declares nothing.
+    _metadata_failure = None
+
     def _apply_metadata_attributes(self):
-        """Apply metadata-driven attribute creation if metadata is available."""
+        """Build this object's declared attributes from its class metadata.
+
+        Failure is reported, not swallowed. It used to be caught by a bare
+        `except Exception: pass`, commented "skip silently to avoid breaking
+        existing code" --- and the failure mode is not a crash but *silence*: a
+        class whose model fails to build produces an object with no attributes,
+        which looks exactly like a class that declares none. A one-line
+        NameError here presented as fifty unrelated assertion failures
+        elsewhere, all of the form "'NoneType' object has no attribute 'set'".
+
+        Measured across all 171 registered tasks, that except caught nothing,
+        so the tolerance protected nothing.
+
+        It still does not raise. Objects are constructed during introspection
+        --- the task registry, the container snapshot, the task chooser --- and
+        one malformed class must not take the registry down with it. So the
+        failure is logged with the class that failed, and recorded on the
+        instance for `validity()` to surface.
+        """
         try:
             from .class_metadata import apply_metadata_to_instance
-
-            apply_metadata_to_instance(self)
         except ImportError:
-            # Metadata system not available, skip
-            pass
-        except Exception:
-            # Any other error, skip silently to avoid breaking existing code
-            pass
+            # No metadata system: nothing declares attributes, so nothing is
+            # missing. Distinct from the failures below, and not an error.
+            return
+
+        try:
+            apply_metadata_to_instance(self)
+        except (AttributeError, TypeError, KeyError, NameError,
+                ValueError, RecursionError) as exc:
+            # The declaration-bug family. A custom_class that does not resolve
+            # or is not CData-shaped, a content_qualifier naming a field that
+            # is not declared, a class declaring an attribute of its own type.
+            # Each means this object is missing parameters it should have.
+            self._metadata_failure = f"{type(exc).__name__}: {exc}"
+            logger.error(
+                "failed to build the declared attributes of %s: %s",
+                type(self).__name__, exc, exc_info=True,
+            )
 
     def get_qualifier(self, key, default=None):
         """Get a qualifier value for this instance."""
@@ -656,6 +689,22 @@ class CData(HierarchicalObject):
         from .error_reporting import CErrorReport, SEVERITY_ERROR
 
         report = CErrorReport()
+
+        # An object whose declared attributes failed to build has no parameters
+        # to validate, so every other check below passes vacuously and it looks
+        # like a task with nothing to fill in. Say so instead.
+        if self._metadata_failure is not None:
+            report.append(
+                self.__class__,
+                299,
+                details=(
+                    f"the declared attributes of {type(self).__name__} could "
+                    f"not be built ({self._metadata_failure}), so its "
+                    f"parameters are missing"
+                ),
+                name=self.objectPath() if hasattr(self, 'objectPath') else self._name,
+                severity=SEVERITY_ERROR,
+            )
 
         # Check if this object is optional and not set
         # If so, child validation errors should be warnings, not errors
