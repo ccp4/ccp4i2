@@ -19,7 +19,12 @@ class crank2(CPluginScript):
   # depends on the phasing route chosen at run time, and AUXILIARY_PROGRAMS
   # asserts a program is needed unconditionally --- so they are declared
   # optional instead: listed in Preferences, never blocking.
-  OPTIONAL_PROGRAMS = ('shelxc', 'shelxd', 'shelxe', 'prasa', 'parrot')
+  # Binary names, not task names: the density-modification step runs
+  # `cparrot`. Declaring 'parrot' --- the ccp4i2 task that wraps it, and
+  # the name of its html and legacy .tcl in the CCP4 distribution ---
+  # warned that a program was missing on every run, while the binary sat
+  # on PATH the whole time.
+  OPTIONAL_PROGRAMS = ('shelxc', 'shelxd', 'shelxe', 'prasa', 'cparrot')
   PERFORMANCECLASS = 'CExpPhasPerformance'
   ERROR_CODES = {
     0: {'description': ' '},
