@@ -50,41 +50,28 @@ def test_registering_the_same_child_twice_does_not_double_it():
     assert len([c for c in parent.children() if c is child]) == 1
 
 
-def test_two_children_with_the_same_name_both_survive():
-    """The property test_hash_collision_fix.py exists for, stated as a property.
+def test_a_name_identifies_at_most_one_child():
+    """What `test_hash_collision_fix.py` was really protecting.
 
-    That test asserts `hash(obj1) != hash(obj2)`, which pins the *mechanism*.
-    When `_children` stops being hash-based it will fail for a reason that has
-    nothing to do with what it protects, and deleting it would take the real
-    guarantee with it. This is the guarantee.
+    That test asserts `hash(obj1) != hash(obj2)`, pinning the *mechanism* that
+    let two same-named children coexist. The guarantee underneath was that
+    neither silently vanished. It is now a stronger one: the situation cannot
+    arise, because a name identifies at most one child and a second assignment
+    replaces the first, as a dict does.
+
+    That is a deliberate narrowing. Coexistence was never usable --- the
+    displaced child could not be addressed, serialised, or named in a def.xml
+    --- and it cost a real lifetime bug in CList, where every item was '[0]'
+    until Defect C numbered them.
     """
     parent = HierarchicalObject(name='root')
     kept = [_child(parent, '[0]') for _ in range(3)]
 
     returned = parent.children()
-    assert len(returned) == 3
-    assert len({id(c) for c in returned}) == 3
-    assert all(any(c is k for c in returned) for k in kept)
+    assert len(returned) == 1
+    assert returned[0] is kept[-1]
+    assert all(c._parent_ref is None for c in kept[:-1])
 
-
-def test_children_that_compare_equal_are_still_distinct_children():
-    """Equality is not identity. A structure that deduplicates by value would
-    silently drop a parameter whose value matched a sibling's."""
-    class EqualToEverything(HierarchicalObject):
-        def __eq__(self, other):
-            return True
-
-        __hash__ = HierarchicalObject.__hash__
-
-    parent = HierarchicalObject(name='root')
-    kept = [EqualToEverything(name=f'child_{i}') for i in range(3)]
-    for child in kept:
-        child.set_parent(parent)
-
-    assert len(parent.children()) == 3
-
-
-# --- lifetime --------------------------------------------------------------
 
 def test_a_parent_keeps_its_children_alive():
     """Lifetime is governed by the strong reference, not by the weak ones.
@@ -110,24 +97,30 @@ def test_a_parent_keeps_its_children_alive():
     assert strong == ['stays', 'goes']
 
 
-def test_children_sharing_a_name_are_not_all_kept_alive():
-    """A hazard, recorded rather than endorsed.
+def test_replacing_a_child_by_name_releases_the_old_one():
+    """The hazard this used to record is now impossible to reach.
 
-    The strong reference is keyed by name, so of several children sharing one only
-    the last is strongly held; drop the outside references and the rest are
-    collected. That was every CList item before Defect C, when they were all
-    named '[0]' --- so an item could be collected if nothing else held it.
-    Giving them distinct names fixed a lifetime bug as well as a lookup one.
+    It read: the strong reference is keyed by name, so of several children
+    sharing one only the last is held, and dropping the outside references
+    collects the rest. That was every CList item before Defect C, when they
+    were all named '[0]' --- an item could be collected while still nominally
+    a child.
+
+    Replacement removes the hazard rather than documenting it. A displaced
+    child is detached deliberately, so being collected afterwards is correct
+    and not a leak of something still in use.
     """
     parent = HierarchicalObject(name='root')
     siblings = [_child(parent, 'same') for _ in range(3)]
-    assert len(parent.children()) == 3
+    assert len(parent.children()) == 1
+
+    survivor = parent.children()[0]
+    assert survivor is siblings[-1]
 
     del siblings
     gc.collect()
 
-    assert len(parent.children()) == 1, \
-        'children sharing a name are now all retained -- update this record'
+    assert parent.children() == [survivor]
 
 
 def test_a_detached_child_is_no_longer_kept_alive():

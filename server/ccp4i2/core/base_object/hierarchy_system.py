@@ -213,6 +213,22 @@ class HierarchicalObject(ABC):
             # Add to name lookup cache for O(1) access
             child_name = child._name
             if child_name:
+                # Dict semantics. A second child of the same name replaces the
+                # first, rather than joining it as an unaddressable ghost:
+                # before this, both were in _children while only the last was in
+                # _children_by_name and __dict__, so the displaced one was
+                # visible to children() --- and so to find_all_files, the JSON
+                # encoder and every other traversal --- while being impossible
+                # to reach by name and never serialised.
+                incumbent = self.__dict__.get(child_name)
+                if (incumbent is not None and incumbent is not child
+                        and isinstance(incumbent, HierarchicalObject)):
+                    logger.debug(
+                        "child %r of %r replaced by a new object of the same name",
+                        child_name, self._name,
+                    )
+                    self._remove_child(incumbent)
+                    incumbent._parent_ref = None
                 self._children_by_name[child_name] = child_ref
                 # Store strong reference to prevent GC
                 # In __dict__: ordinary attribute lookup finds it, and it is
