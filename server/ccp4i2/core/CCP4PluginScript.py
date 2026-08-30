@@ -1216,6 +1216,37 @@ class CPluginScript(CData):
         """
         error = CErrorReport()
 
+        # A class whose declared attributes failed to build produces an object
+        # with no parameters, which every check below then passes vacuously ---
+        # the task looks like it has nothing to fill in. Sweep for it here
+        # rather than in CData.validity, because 11 of the 14 classes that
+        # define validity() do not call super() and so would never reach it.
+        seen = set()
+
+        def _metadata_failures(obj, depth=0):
+            if id(obj) in seen or depth > 8:
+                return
+            seen.add(id(obj))
+            failure = getattr(obj, "_metadata_failure", None)
+            if failure is not None:
+                error.append(
+                    self.__class__,
+                    299,
+                    details=(
+                        f"the declared attributes of {type(obj).__name__} could "
+                        f"not be built ({failure}), so its parameters are missing"
+                    ),
+                    name=f'{getattr(self, "TASKNAME", self.__class__.__name__)}',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR,
+                )
+            for child in (obj.children() if hasattr(obj, "children") else []):
+                _metadata_failures(child, depth + 1)
+
+        try:
+            _metadata_failures(self.container)
+        except Exception:  # never let the sweep itself break validation
+            logger.debug("metadata-failure sweep failed", exc_info=True)
+
         # Container validation recursively validates all children,
         # including CDataFile objects (allowUndefined, mustExist, contentFlag).
         # Filter out outputData errors — outputs are set during execution,
