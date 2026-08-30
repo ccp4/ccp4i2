@@ -104,39 +104,6 @@ class CData(HierarchicalObject):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    def __getattribute__(self, name: str):
-        """Override to check hierarchy first for CData children, then fall back to normal lookup.
-
-        This enables storing CData children in hierarchy only (not in __dict__),
-        providing O(1) access via _children_by_name cache while keeping a clean
-        separation between hierarchy and instance storage.
-        """
-        # Use object.__getattribute__ for internal/private attributes to avoid recursion
-        # Also skip for common attributes that are definitely in __dict__
-        if name.startswith('_') or name in ('parent', 'children', 'signals'):
-            return object.__getattribute__(self, name)
-
-        # Check if object is initialized enough to have hierarchy
-        try:
-            children_by_name = object.__getattribute__(self, '_children_by_name')
-        except AttributeError:
-            # Object not fully initialized yet
-            return object.__getattribute__(self, name)
-
-        # O(1) lookup in hierarchy cache for CData children
-        if name in children_by_name:
-            child_ref = children_by_name[name]
-            if child_ref is not None:
-                child = child_ref()
-                if child is not None:
-                    return child
-                else:
-                    # Dead reference - clean it up
-                    del children_by_name[name]
-
-        # Fall back to normal attribute lookup (checks __dict__, class, __getattr__)
-        return object.__getattribute__(self, name)
-
     def _apply_metadata_attributes(self):
         """Apply metadata-driven attribute creation if metadata is available."""
         try:
@@ -1476,7 +1443,13 @@ class CData(HierarchicalObject):
         self._setup_hierarchy_for_value(name, value)
 
         if isinstance(value, CData):
-            pass  # stored in hierarchy only — __getattribute__ resolves via _children_by_name
+            # Reachable as `self.<name>` through ordinary lookup. The child is
+            # also in __dict__ under its *own* _name via _add_child, and the two
+            # differ whenever a caller assigns a differently-named object ---
+            # `container.input_file = CDataFile(name="XYZIN")`. _children_by_name
+            # has always carried both keys; __dict__ now does too, so removing
+            # the __getattribute__ override does not lose the attribute name.
+            self.__dict__[name] = value
         else:
             super().__setattr__(name, value)
 
