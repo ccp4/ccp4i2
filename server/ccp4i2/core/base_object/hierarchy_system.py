@@ -69,8 +69,13 @@ class HierarchicalObject(ABC):
         # be a set (arbitrary order) plus a name cache (ordered), and keeping
         # two structures agreeing is what produced the orphaned entry that made
         # a CFloat keyword report a child named after itself.
-        self._children: Dict[weakref.ReferenceType, None] = {}
-        self._children_by_name: Dict[str, weakref.ReferenceType] = {}  # O(1) name lookup cache
+        # Children live in __dict__, keyed by name --- which is also where
+        # ordinary attribute lookup finds them, and the strong reference that
+        # keeps them alive. There is deliberately nothing else. The three
+        # structures this replaces (_children, _children_by_name,
+        # _child_storage) all held the same objects and could disagree, which
+        # is what produced the renamed-child orphan, the content/fileContent
+        # double registration, and the collided ghost.
         # Strong references to children live in __dict__, which is also where
         # ordinary attribute lookup finds them. There used to be a parallel
         # _child_storage keyed the same way, holding the same objects --- 19,529
@@ -205,21 +210,10 @@ class HierarchicalObject(ABC):
             # Clean up any dead references first
             self._cleanup_dead_children()
 
-            child_ref = weakref.ref(child)
-            # dict keys deduplicate, and re-adding an existing child keeps its
-            # original position rather than moving it to the end.
-            self._children.setdefault(child_ref, None)
-
-            # Add to name lookup cache for O(1) access
             child_name = child._name
             if child_name:
-                # Dict semantics. A second child of the same name replaces the
-                # first, rather than joining it as an unaddressable ghost:
-                # before this, both were in _children while only the last was in
-                # _children_by_name and __dict__, so the displaced one was
-                # visible to children() --- and so to find_all_files, the JSON
-                # encoder and every other traversal --- while being impossible
-                # to reach by name and never serialised.
+                # Dict semantics: a second child of the same name replaces the
+                # first rather than joining it as an unaddressable ghost.
                 incumbent = self.__dict__.get(child_name)
                 if (incumbent is not None and incumbent is not child
                         and isinstance(incumbent, HierarchicalObject)):
@@ -229,10 +223,6 @@ class HierarchicalObject(ABC):
                     )
                     self._remove_child(incumbent)
                     incumbent._parent_ref = None
-                self._children_by_name[child_name] = child_ref
-                # Store strong reference to prevent GC
-                # In __dict__: ordinary attribute lookup finds it, and it is
-                # the strong reference that keeps the child alive.
                 self.__dict__[child_name] = child
 
             # Guard against GC ordering issues
@@ -241,103 +231,66 @@ class HierarchicalObject(ABC):
     def _remove_child(self, child: "HierarchicalObject"):
         """Internal method to remove a child (called by set_parent)."""
         with self._lock:
-            # Find and remove the child reference
-            # Use 'is' for identity comparison to avoid calling __eq__ during GC
-            to_remove = None
-            for child_ref in self._children:
-                if child_ref() is child:
-                    to_remove = child_ref
-                    break
-
-            if to_remove:
-                del self._children[to_remove]
-
-                # Remove from name lookup cache and strong storage
-                child_name = child._name
-                if child_name and child_name in self._children_by_name:
-                    # Only remove if it's the same child (names can be reused)
-                    cached_ref = self._children_by_name.get(child_name)
-                    if cached_ref is not None and cached_ref() is child:
-                        del self._children_by_name[child_name]
-                        # Also remove from strong storage
-                        if self.__dict__.get(child_name) is child:
-                            del self.__dict__[child_name]
-
-                # Guard against GC ordering issues - signal might be cleaned up already
-                logger.debug(
-                    f"Removed child {child._name} from {self._name}"
-                )
+            # Under every name it was registered under: its own _name, and the
+            # attribute name too when a caller wrote
+            # `container.input_file = CDataFile(name="XYZIN")`. Identity
+            # comparison, never __eq__, which can run during GC.
+            for key in [k for k, v in list(self.__dict__.items()) if v is child]:
+                del self.__dict__[key]
+            logger.debug(f"Removed child {child._name} from {self._name}")
 
     def _cleanup_dead_children(self):
-        """Remove weak references to destroyed children."""
-        for ref in [ref for ref in self._children if ref() is None]:
-            del self._children[ref]
-
-        # Also clean up dead entries in name cache and strong storage
-        dead_names = [name for name, ref in self._children_by_name.items() if ref() is None]
-        for name in dead_names:
-            del self._children_by_name[name]
+        """Nothing to clean: __dict__ holds strong references, so a registered
+        child cannot die while its parent lives. Kept as a no-op because
+        callers outside this module still invoke it."""
+        return
 
     def children(self) -> List["HierarchicalObject"]:
-        """Get list of all child objects, in the order they were added.
+        """Child objects, in the order they were added.
 
-        Order and membership both come from ``_children``, which is an
-        insertion-ordered dict. That is the whole implementation, and it is
-        worth saying why it took two goes.
+        Read straight out of ``__dict__``: it is where ``_add_child`` puts
+        them, where ordinary attribute lookup finds them, and the reference
+        that keeps them alive. A dict preserves insertion order, so order and
+        membership come from one structure and cannot disagree.
 
-        ``_children`` was a *set* of weak references, so iteration yielded
-        allocation-address order --- arbitrary per process *and* per object.
-        That was observable: i2run breaks a name collision by preferring the
-        shortest path and falls through to this order when candidates are
-        equally deep, so ``i2run molrep_pipe --F_SIGF native.mtz`` populated an
-        *output* slot on roughly half its invocations. Nothing corrected it
-        downstream --- ``checkOutputData`` leaves an explicitly set output
-        alone, and ``validity()`` filters outputData errors because outputs are
-        set during execution.
+        Underscore-prefixed entries are internals, never children, and the
+        isinstance check excludes plain values --- ``file_path``,
+        ``CONTENT_ORDER`` --- which live in ``__dict__`` without being
+        children.
 
-        The first fix took order from ``_children_by_name`` and membership from
-        the set. Keeping two structures in agreement is what broke next:
-        ``_remove_child`` always dropped the set entry but cleared the cache
-        entry only when the cached name still matched, so a renamed child left
-        an orphan, and reading the cache resurrected it. A CFloat keyword came
-        back holding a child named after itself, ``phaser_MR.setKeywords`` took
-        the leaf for a sub-container, and five phaser tests failed.
-
-        One structure cannot disagree with itself.
+        It took four goes. ``_children`` began as a *set* of weak references,
+        so iteration yielded allocation-address order: ``i2run molrep_pipe
+        --F_SIGF native.mtz`` populated an *output* slot on roughly half its
+        invocations. Taking order from ``_children_by_name`` and membership
+        from the set left a renamed child as an orphan the cache resurrected,
+        which broke five phaser tests. Making ``_children`` an ordered dict
+        fixed that but left three structures holding the same objects. This
+        needed one more thing to be safe: a name identifying at most one
+        child, since ``__dict__`` cannot represent two.
         """
         with self._lock:
-            self._cleanup_dead_children()
-            return [child for child in
-                    (ref() for ref in self._children) if child is not None]
+            return [value for key, value in self.__dict__.items()
+                    if not key.startswith("_")
+                    and isinstance(value, HierarchicalObject)]
 
     def rename(self, new_name: str) -> None:
-        """Change this object's name, keeping the parent's caches in step.
+        """Change this object's name, keeping the parent's key in step.
 
-        A name is used as a key: the parent holds `_children_by_name` and
-        `_child_storage` keyed on the name a child had when it was registered.
-        Assigning to `_name` afterwards left those keys stale, with three
-        consequences that took a while to connect to each other ---
-        `find_child()` could not find a renamed child, `_remove_child()` could
-        not clear its cache entry (so removing left an orphan that `children()`
-        would resurrect), and a CList item's `[n]` name, correct in `_items`,
-        was unusable as a handle.
+        A name is a key: the parent holds its children in ``__dict__`` under
+        the name each had when registered. Assigning ``_name`` directly leaves
+        the parent indexing the old one, so the child becomes unreachable
+        under its new name and reachable under a name it no longer has.
         """
         with self._lock:
             old_name = self._name
             if old_name == new_name:
                 return
-            parent = self.parent()
             self._name = new_name
-            if parent is None:
-                return
-            with parent._lock:
-                cached = parent._children_by_name.get(old_name)
-                if cached is not None and cached() is self:
-                    del parent._children_by_name[old_name]
-                    parent._children_by_name[new_name] = cached
-                    if parent.__dict__.get(old_name) is self:
-                        del parent.__dict__[old_name]
-                    parent.__dict__[new_name] = self
+            parent = self.parent()
+            if parent is not None:
+                if parent.__dict__.get(old_name) is self:
+                    del parent.__dict__[old_name]
+                parent.__dict__[new_name] = self
 
     def find_child(
         self, name: str, recursive: bool = False
@@ -345,14 +298,9 @@ class HierarchicalObject(ABC):
         """Find a child by name. Uses O(1) cache lookup for direct children."""
         with self._lock:
             # O(1) lookup in name cache for direct children
-            child_ref = self._children_by_name.get(name)
-            if child_ref is not None:
-                child = child_ref()
-                if child is not None:
-                    return child
-                else:
-                    # Dead reference - clean it up
-                    del self._children_by_name[name]
+            child = self.__dict__.get(name)
+            if isinstance(child, HierarchicalObject):
+                return child
 
             # Recursive search if requested
             if recursive:
@@ -553,8 +501,9 @@ class HierarchicalObject(ABC):
         # Cleanup
         if self._sigmgr is not None:
             self._sigmgr.cleanup()
-        self._children.clear()
-        self._children_by_name.clear()
+        for key in [k for k, v in list(self.__dict__.items())
+                    if not k.startswith("_") and isinstance(v, HierarchicalObject)]:
+            del self.__dict__[key]
         self._properties.clear()
         self._event_handlers.clear()
 
@@ -669,23 +618,15 @@ class HierarchicalObject(ABC):
             name = path_parts[0]
 
             # O(1) lookup in name cache
-            child_ref = self._children_by_name.get(name)
-            if child_ref is not None:
-                child = child_ref()
-                if child is not None:
-                    # Verify not destroyed
-                    if hasattr(child, '_state') and child.state == ObjectState.DESTROYED:
-                        del self._children_by_name[name]
-                    else:
-                        return child
-                else:
-                    # Dead reference - clean it up
-                    del self._children_by_name[name]
+            child = self.__dict__.get(name)
+            if isinstance(child, HierarchicalObject):
+                if not (hasattr(child, '_state')
+                        and child.state == ObjectState.DESTROYED):
+                    return child
 
-            # Not found in cache - search recursively in children
-            for child_ref in list(self._children):
-                child = child_ref() if isinstance(child_ref, weakref.ReferenceType) else child_ref
-                if child is not None and hasattr(child, 'find'):
+            # Not found here - search recursively in children
+            for child in self.children():
+                if hasattr(child, 'find'):
                     result = child.find(name)
                     if result is not None:
                         return result
@@ -697,16 +638,12 @@ class HierarchicalObject(ABC):
         remaining_path = '.'.join(path_parts[1:])
 
         # O(1) lookup for first component
-        child_ref = self._children_by_name.get(first_name)
-        if child_ref is not None:
-            child = child_ref()
-            if child is not None:
-                if hasattr(child, '_state') and child.state == ObjectState.DESTROYED:
-                    del self._children_by_name[first_name]
-                elif hasattr(child, 'find'):
-                    return child.find(remaining_path)
-            else:
-                del self._children_by_name[first_name]
+        child = self.__dict__.get(first_name)
+        if isinstance(child, HierarchicalObject):
+            destroyed = (hasattr(child, '_state')
+                         and child.state == ObjectState.DESTROYED)
+            if not destroyed and hasattr(child, 'find'):
+                return child.find(remaining_path)
 
         return None
 
