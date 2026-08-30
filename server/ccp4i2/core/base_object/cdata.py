@@ -1236,9 +1236,8 @@ class CData(HierarchicalObject):
             # - self.pointless = self.makePluginObject('pointless') where plugin._name differs
             # - self.AUTOCUTOFF = self.container.controlParameters.AUTOCUTOFF (same name, different parent)
             if value._name != key or (existing_parent is not None and existing_parent is not self):
-                import weakref
-                child_ref = weakref.ref(value)
-                self._children_by_name[key] = child_ref
+                # Registered under the *attribute* name as well as its own
+                # _name, so both reach it. __dict__ carries both keys.
                 self.__dict__[key] = value
         elif isinstance(value, list):
             # Handle list of CData objects
@@ -1518,8 +1517,9 @@ class CData(HierarchicalObject):
         found = False
 
         # First try to remove from hierarchy (for CData children)
-        if name in self._children_by_name:
-            child_ref = self._children_by_name.pop(name, None)
+        existing = self.__dict__.get(name)
+        if isinstance(existing, CData):
+            child_ref = lambda _c=existing: _c
             self.__dict__.pop(name, None)
             found = True
 

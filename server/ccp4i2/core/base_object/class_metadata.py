@@ -457,8 +457,10 @@ def apply_metadata_to_instance(instance):
         # This is important because generated classes have type annotations like
         # `label: Optional[COneWord] = None` which creates a class attribute,
         # but we want to replace it with an actual COneWord instance
-        children_by_name = getattr(instance, '_children_by_name', {})
-        if attr_name not in children_by_name:
+        # Children live in __dict__ now, keyed by name.
+        from .hierarchy_system import HierarchicalObject
+        existing_child = instance.__dict__.get(attr_name)
+        if not isinstance(existing_child, HierarchicalObject):
             attr_obj = MetadataAttributeFactory.create_attribute(
                 attr_name, attr_def, instance
             )

@@ -104,9 +104,19 @@ def test_assignment_detaches_what_it_displaces():
     assert len(lst.children()) == 3
 
 
-def test_the_cache_holds_the_names_the_items_actually_have():
-    """The root of all three: keys were the name held at registration."""
+def test_the_keys_are_the_names_the_items_actually_have():
+    """The root of all three: keys were the name held at registration.
+
+    There is now one structure rather than three --- children live in
+    ``__dict__``, keyed by name --- so the question is whether renumbering
+    after a pop keeps the keys and the items' own names in step.
+    """
     lst = _list_of(3)
-    assert list(lst._children_by_name.keys()) == ['[0]', '[1]', '[2]']
+    keyed = [k for k, v in vars(lst).items() if not k.startswith('_')]
+    assert keyed == ['[0]', '[1]', '[2]']
+    assert [c._name for c in lst.children()] == ['[0]', '[1]', '[2]']
+
     lst.pop(0)
-    assert list(lst._children_by_name.keys()) == ['[0]', '[1]']
+    keyed = [k for k, v in vars(lst).items() if not k.startswith('_')]
+    assert keyed == ['[0]', '[1]']
+    assert [c._name for c in lst.children()] == ['[0]', '[1]']
