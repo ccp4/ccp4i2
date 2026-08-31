@@ -65,6 +65,21 @@ class CDataFile(CData):
     - fullPath property and getFullPath() method return the full path
     """
 
+    # The declaration, as annotations --- the form a dataclass uses, and the
+    # form apply_metadata_to_instance now reads. Quoted, because CUUID lives in
+    # core/CCP4Data.py and CFilePath in core/CCP4File.py, both *above*
+    # base_object/ in the layering: a real import here would invert it. A
+    # forward reference needs no import, which is the same late binding the
+    # decorator's custom_class string was doing.
+    project: Optional["CUUID"] = None
+    baseName: Optional["CFilePath"] = None
+    relPath: Optional["CFilePath"] = None
+    dbFileId: Optional["CUUID"] = None
+    annotation: Optional["CString"] = None
+    subType: Optional["CInt"] = None
+    contentFlag: Optional["CInt"] = None
+
+
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         # Pass per-instance metadata overrides to base
         super().__init__(parent=parent, name=name, **kwargs)

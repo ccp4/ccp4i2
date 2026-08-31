@@ -44,6 +44,22 @@ def _stub_classes():
             if "_metadata" in vars(k) and vars(k)["_metadata"].attributes]
 
 
+def _built_class(definition):
+    """The class a definition builds, rather than how it spells it.
+
+    The two encodings are equivalent and both appear: a generated stub writes
+    `attribute(AttributeType.STRING)` while `CDataFile`, hand-written, writes
+    `attribute(CUSTOM, custom_class="CString")`. Comparing the spelling would
+    report a difference where there is none.
+    """
+    from ccp4i2.core.base_object.class_metadata import AttributeType
+    if definition.custom_class:
+        return definition.custom_class
+    return {AttributeType.STRING: "CString", AttributeType.INT: "CInt",
+            AttributeType.FLOAT: "CFloat", AttributeType.BOOLEAN: "CBoolean",
+            }.get(definition.attr_type, definition.attr_type)
+
+
 def test_annotations_reproduce_the_decorator():
     """The two declarations must agree, or reading one changes behaviour."""
     from ccp4i2.core.base_object.class_metadata import attributes_from_annotations
@@ -53,10 +69,10 @@ def test_annotations_reproduce_the_decorator():
         declared = vars(klass)["_metadata"].attributes
         from_annotations = attributes_from_annotations(klass)
         if not from_annotations:
-            continue          # hand-written, no annotations: the fallback case
+            continue          # no annotations at all: the fallback case
         checked += 1
-        a = {n: (d.attr_type, d.custom_class) for n, d in declared.items()}
-        b = {n: (d.attr_type, d.custom_class) for n, d in from_annotations.items()}
+        a = {n: _built_class(d) for n, d in declared.items()}
+        b = {n: _built_class(d) for n, d in from_annotations.items()}
         if a != b:
             disagreeing.append(
                 f"{klass.__name__}: {[n for n in a if b.get(n) != a[n]][:3]}")
