@@ -38,12 +38,6 @@ from ccp4i2.core.cdata_stubs.CCP4File import CFilePathStub, CI2XmlDataFileStub, 
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CSeqDataFileListStub(CList):
     """
@@ -81,9 +75,6 @@ class CSeqDataFileListStub(CList):
         "selectionMode": 0,
     },
     qualifiers_order=['autoLoadHeader'],
-    qualifiers_definition={
-        "selectionMode": {'type': 'int', 'description': 'Chain selection options'},
-    },
     contents_order=['selection'],
     content_qualifiers={
         "subType": {'default': None},
@@ -119,12 +110,6 @@ class CAsuDataFileStub(CI2XmlDataFileStub):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CAtomRefmacSelectionListStub(CList):
     """
@@ -268,15 +253,6 @@ class CAtomRefmacSelectionListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'groupId',
         'chainIds',
@@ -319,12 +295,6 @@ class CAtomRefmacSelectionOccupancyStub(CData):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CResidueRangeListStub(CList):
     """
@@ -424,22 +394,6 @@ class CResidueRangeListStub(CList):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -504,15 +458,6 @@ class CTLSDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['groupId', 'chainId', 'firstRes', 'lastRes', 'selection'],
     content_qualifiers={
         "selection": {'default': 'ALL'},
@@ -543,12 +488,6 @@ class CTLSRangeStub(CData):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item.'},
-    },
 )
 class CTLSRangeListStub(CList):
     """A list of CTLSRange items defining TLS groups."""
@@ -587,15 +526,6 @@ class CTLSRangeListStub(CList):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CSequenceStringStub(CString):
     """
@@ -695,22 +625,6 @@ class CSequenceStringStub(CString):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -752,15 +666,6 @@ class CHhpredDataFileStub(CDataFile):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CElementStub(COneWordStub):
     """
@@ -851,15 +756,6 @@ class CElementStub(COneWordStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'identifier',
         'name',
@@ -1031,15 +927,6 @@ What about nucleic/polysach?
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['identifier', 'moleculeType'],
     content_qualifiers={
         "identifier": {'toolTip': 'Optional convenient name for sequence alignment'},
@@ -1152,22 +1039,6 @@ or interleaved sequences.
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1230,15 +1101,6 @@ class CBlastDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CDictDataStub(CData):
     """
@@ -1382,15 +1244,6 @@ class CDictDataStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['identifier', 'formula', 'dictionaryName', 'smiles'],
     content_qualifiers={
         "identifier": {'toolTip': 'The name you use for the monomer'},
@@ -1546,15 +1399,6 @@ class CMonomerStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CBlastItemStub(CData):
     """
@@ -1700,15 +1544,6 @@ class CBlastItemStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['groupIds'],
 )
 class CAtomRefmacSelectionGroupsStub(CData):
@@ -1740,12 +1575,6 @@ class CAtomRefmacSelectionGroupsStub(CData):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class COccRelationRefmacListStub(CList):
     """
@@ -1809,22 +1638,6 @@ class COccRelationRefmacListStub(CList):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1972,15 +1785,6 @@ class CDictDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "number": {'min': 0, 'default': 1, 'enumerators': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'menuText': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']},
         "use": {'default': True},
@@ -2128,9 +1932,6 @@ A single ensemble is a CList of structures.
         "pdbFileKey": None,
     },
     qualifiers_order=['pdbFileKey'],
-    qualifiers_definition={
-        "pdbFileKey": {'type': 'str', 'description': 'The key for a CPdbDataFile in the same CContainer'},
-    },
     contents_order=['chainId', 'firstRes', 'lastRes'],
     content_qualifiers={
         "chainId": {'default': ''},
@@ -2280,9 +2081,6 @@ class CResidueRangeStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "pdbFileKey": {'type': 'str', 'description': 'The key for a CPdbDataFile in the same CContainer'},
-    },
 )
 class CAtomSelectionStub(CData):
     """
@@ -2330,15 +2128,6 @@ class CAtomSelectionStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CBlastDataStub(CDataFileContent):
     """
@@ -2385,15 +2174,6 @@ class CBlastDataStub(CDataFileContent):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CHhpredDataStub(CDataFileContent):
     """
@@ -2424,12 +2204,6 @@ class CHhpredDataStub(CDataFileContent):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CPdbDataFileListStub(CList):
     """
@@ -2529,22 +2303,6 @@ class CPdbDataFileListStub(CList):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2578,12 +2336,6 @@ class CMol2DataFileStub(CDataFile):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class COccRefmacSelectionListStub(CList):
     """
@@ -2633,15 +2385,6 @@ class COccRefmacSelectionListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CSequenceMetaStub(CData):
     """
@@ -2699,22 +2442,6 @@ class CSequenceMetaStub(CData):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2790,9 +2517,6 @@ class CSeqDataFileStub(CDataFile):
         "helpFile": 'model_data#alignments',
     },
     qualifiers_order=['requiredSequences'],
-    qualifiers_definition={
-        "requiredSequences": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed numbers of sequences in file (usually [2])'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2941,15 +2665,6 @@ class CSeqAlignDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CHhpredItemStub(CData):
     """
@@ -2980,12 +2695,6 @@ class CHhpredItemStub(CData):
         "listMinLength": 1,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CEnsembleListStub(CList):
     """
@@ -3068,15 +2777,6 @@ class CEnsembleListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CPdbDataStub(CDataFileContent):
     """
@@ -3220,15 +2920,6 @@ class CPdbDataStub(CDataFileContent):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['groupId', 'chainId', 'firstRes', 'lastRes'],
 )
 class CAtomRefmacSelectionStub(CData):
@@ -3278,15 +2969,6 @@ class CAtomRefmacSelectionStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CChemCompStub(CData):
     """
@@ -3394,22 +3076,6 @@ class CChemCompStub(CData):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -3449,12 +3115,6 @@ class CMDLMolDataFileStub(CDataFile):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CAsuContentSeqListStub(CList):
     """
@@ -3598,15 +3258,6 @@ class CAsuContentSeqListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "sequence": {'allowUndefined': False, 'minLength': 1},
         "nCopies": {'enumerators': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'default': 1, 'min': 0},
@@ -3711,9 +3362,6 @@ class CAsuContentSeqStub(CData):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "ifAtomSelection": {'type': 'bool', 'description': 'Atom selection option enabled'},
-    },
     content_qualifiers={
         "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
         "contentFlag": {'min': 0, 'default': None},
@@ -3778,15 +3426,6 @@ class CPdbDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CAsuContentStub(CDataFileContent):
     """
@@ -3848,9 +3487,6 @@ class CAsuContentStub(CDataFileContent):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "ifAtomSelection": {'type': 'bool', 'description': 'Atom selection option enabled'},
-    },
     content_qualifiers={
         "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
         "contentFlag": {'min': 0, 'default': None},
@@ -3896,15 +3532,6 @@ class CEnsemblePdbDataFileStub(CPdbDataFileStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['structure', 'identity_to_target', 'rms_to_target'],
     content_qualifiers={
         "structure": {'allowUndefined': False, 'mustExist': True, 'fromPreviousJob': True, 'ifAtomSelection': True},

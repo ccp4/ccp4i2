@@ -25,12 +25,6 @@ from ccp4i2.core.cdata_stubs.CCP4Data import CI2DataTypeStub, COneWordStub
         "listMinLength": 1,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CImportedJobDataListStub(CList):
     """
@@ -174,15 +168,6 @@ class CImportedJobDataListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "dataType": {'default': 'CPdbDataFile'},
         "fileName": {'mustExist': True, 'saveToDb': True, 'allowUndefined': False},
@@ -402,15 +387,6 @@ class CImportedJobDataStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CImportedJobDefinitionStub(CContainer):
     """

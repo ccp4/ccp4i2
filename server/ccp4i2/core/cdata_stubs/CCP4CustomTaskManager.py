@@ -31,15 +31,6 @@ from ccp4i2.core.cdata_stubs.CCP4Data import CI2DataTypeStub, COneWordStub
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CCustomTaskFileFunctionStub(CString):
     """
@@ -68,12 +59,6 @@ class CCustomTaskFileFunctionStub(CString):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CCustomTaskParamListStub(CList):
     """
@@ -217,15 +202,6 @@ class CCustomTaskParamListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "name": {'default': './com.txt'},
     },
@@ -442,15 +418,6 @@ class CCustomComFileStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CCustomTaskDefinitionStub(CContainer):
     """
@@ -477,12 +444,6 @@ class CCustomTaskDefinitionStub(CContainer):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CCustomComFileListStub(CList):
     """
@@ -626,15 +587,6 @@ class CCustomComFileListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "dataType": {'default': 'CPdbDataFile'},
         "obligatory": {'default': True},

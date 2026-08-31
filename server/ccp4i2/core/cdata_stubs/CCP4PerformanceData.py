@@ -55,15 +55,6 @@ from ccp4i2.core.cdata_stubs.CCP4XtalData import CSpaceGroupStub
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['value', 'annotation'],
     content_qualifiers={
         "value": {'min': 0.0},
@@ -106,15 +97,6 @@ class CPerformanceIndicatorStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['spaceGroup', 'highResLimit', 'rMeas'],
     content_qualifiers={
         "highResLimit": {'min': 0.0},
@@ -158,15 +140,6 @@ class CDataReductionPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['cutoff'],
     content_qualifiers={
         "cutoff": {'min': 0.0},
@@ -208,15 +181,6 @@ class CPairefPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['spaceGroup', 'highResLimit', 'ccHalf'],
     content_qualifiers={
         "highResLimit": {'min': 0.0},
@@ -260,15 +224,6 @@ class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'RFactor',
         'RFree',
@@ -342,15 +297,6 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'FOM',
         'CFOM',
@@ -410,15 +356,6 @@ class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['nAtoms', 'nResidues'],
 )
 class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
@@ -458,15 +395,6 @@ class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['RFactor', 'completeness', 'annotation'],
     content_qualifiers={
         "RFactor": {'min': 0.0},
@@ -510,15 +438,6 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'RFactor',
         'RFree',
@@ -573,15 +492,6 @@ class CRefinementPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['RMSxyz', 'nResidues'],
 )
 class CSuperposePerformanceStub(CPerformanceIndicatorStub):
@@ -621,15 +531,6 @@ class CSuperposePerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'spaceGroup',
         'highResLimit',
@@ -682,15 +583,6 @@ class CDataReductionRefinementPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'phaseError',
         'weightedPhaseError',
@@ -739,15 +631,6 @@ class CPhaseErrorPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['columnLabelsString'],
 )
 class CTestObsConversionsPerformanceStub(CPerformanceIndicatorStub):

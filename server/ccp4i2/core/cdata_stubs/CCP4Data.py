@@ -41,17 +41,6 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
         'allowedCharsCode',
         'patternRegex',
         'patternErrorMessage'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-        "patternRegex": {'type': 'str', 'description': 'Regular expression pattern that the value must match'},
-        "patternErrorMessage": {'type': 'str', 'description': 'Custom error message when patternRegex validation fails'},
-    },
 )
 class COneWordStub(CString):
     """
@@ -92,15 +81,6 @@ class COneWordStub(CString):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CJobTitleStub(CString):
     """
@@ -138,14 +118,6 @@ class CJobTitleStub(CString):
         'onlyEnumerators',
         'enumerators',
         'menuText'],
-    qualifiers_definition={
-        "default": {'type': 'int'},
-        "max": {'type': 'int', 'description': 'The inclusive minimum allowed value'},
-        "min": {'type': 'int', 'description': 'The inclusive maximum allowed value'},
-        "enumerators": {'type': 'list', 'listItemType': int, 'description': 'A Python list of allowed or recommended values - see onlyEnumerators'},
-        "menuText": {'type': 'list', 'listItemType': str, 'description': 'A Python list of strings, matching items in enumerators list, to appear on GUI menu'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-    },
 )
 class CJobStatusStub(CInt):
     """
@@ -289,15 +261,6 @@ class CJobStatusStub(CInt):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CCollectionStub(CData):
     """
@@ -331,15 +294,6 @@ class CCollectionStub(CData):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CI2DataTypeStub(CString):
     """
@@ -386,15 +340,6 @@ class CI2DataTypeStub(CString):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CRangeSelectionStub(CString):
     """
@@ -442,17 +387,6 @@ class CRangeSelectionStub(CString):
         'allowedCharsCode',
         'patternRegex',
         'patternErrorMessage'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-        "patternRegex": {'type': 'str', 'description': 'Regular expression pattern that the value must match'},
-        "patternErrorMessage": {'type': 'str', 'description': 'Custom error message when patternRegex validation fails'},
-    },
 )
 class CUUIDStub(CString):
     """
@@ -502,17 +436,6 @@ class CUUIDStub(CString):
         'allowedCharsCode',
         'patternRegex',
         'patternErrorMessage'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-        "patternRegex": {'type': 'str', 'description': 'Regular expression pattern that the value must match'},
-        "patternErrorMessage": {'type': 'str', 'description': 'Custom error message when patternRegex validation fails'},
-    },
 )
 class CSMILESStringStub(CString):
     """
@@ -666,15 +589,6 @@ class CSMILESStringStub(CString):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['taskName', 'patch'],
 )
 class CPatchSelectionStub(CData):
@@ -710,13 +624,6 @@ class CPatchSelectionStub(CData):
         'listMaxLength',
         'listCompare',
         'nameRoot'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-        "nameRoot": {'type': 'str', 'description': 'Name hint for the base name of output files'},
-    },
 )
 class COutputFileListStub(CList):
     """
@@ -748,9 +655,6 @@ class COutputFileListStub(CList):
         }
     },
     qualifiers_order=['compare'],
-    qualifiers_definition={
-        "compare": {'type': 'int', 'description': 'If value is  1/-1 the end value must be greater/less than start.'},
-    },
     contents_order=['start', 'end'],
 )
 class CRangeStub(CData):
@@ -886,9 +790,6 @@ class CRangeStub(CData):
         "charWidth": 10,
     },
     qualifiers_order=['charWidth'],
-    qualifiers_definition={
-        "charWidth": {'type': 'int'},
-    },
 )
 class CBaseDataStub(CData):
     """
@@ -933,15 +834,6 @@ class CBaseDataStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CDictStub(CCollectionStub):
     """
@@ -980,15 +872,6 @@ class CDictStub(CCollectionStub):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CFollowFromJobStub(CUUIDStub):
     """
@@ -1014,9 +897,6 @@ class CFollowFromJobStub(CUUIDStub):
     error_codes={
     },
     qualifiers_order=['compare'],
-    qualifiers_definition={
-        "compare": {'type': 'int', 'description': 'If value is  1/-1 the end value must be greater/less than start.'},
-    },
     contents_order=['start', 'end'],
 )
 class CFloatRangeStub(CRangeStub):
@@ -1046,9 +926,6 @@ class CFloatRangeStub(CRangeStub):
     error_codes={
     },
     qualifiers_order=['compare'],
-    qualifiers_definition={
-        "compare": {'type': 'int', 'description': 'If value is  1/-1 the end value must be greater/less than start.'},
-    },
     contents_order=['start', 'end'],
 )
 class CIntRangeStub(CRangeStub):

@@ -100,7 +100,6 @@ def cdata_class(
     gui_label: Optional[str] = None,
     contents_order: Optional[List[str]] = None,
     qualifiers_order: Optional[List[str]] = None,
-    qualifiers_definition: Optional[Dict[str, Any]] = None,
     content_qualifiers: Optional[Dict[str, Dict[str, Any]]] = None,
 ):
     """Class decorator to add metadata to CData classes.
@@ -120,8 +119,6 @@ def cdata_class(
         gui_label: Label for GUI display
         contents_order: List specifying display order of attributes in UI
         qualifiers_order: List specifying display order of qualifiers
-        qualifiers_definition: Deprecated, ignored. Qualifier types are inferred
-            from the template values.
         content_qualifiers: Per-field qualifiers for child attributes (from CONTENTS)
 
     Example:

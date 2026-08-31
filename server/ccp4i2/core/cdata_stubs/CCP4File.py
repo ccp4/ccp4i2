@@ -45,11 +45,6 @@ from ccp4i2.core.cdata_stubs.CCP4Data import CUUIDStub
         "default": None,
     },
     qualifiers_order=['allowUndefined', 'allowUnfound', 'default'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if allow undefined value at run time'},
-        "allowUnfound": {'type': 'bool', 'description': 'Flag if allow unfound project at run time'},
-        "default": {'type': 'str'},
-    },
 )
 class CProjectIdStub(CUUIDStub):
     """
@@ -83,11 +78,6 @@ class CProjectIdStub(CUUIDStub):
         "charWidth": 10,
     },
     qualifiers_order=['allowUndefined', 'default', 'charWidth'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if allow an unset value at run time'},
-        "default": {'description': 'A default value'},
-        "charWidth": {'type': 'int', 'description': 'Number of characters allowed for widget in GUI'},
-    },
 )
 class CVersionStub(CString):
     """
@@ -125,15 +115,6 @@ class CVersionStub(CString):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CMmcifDataStub(CDataFileContent):
     """
@@ -274,15 +255,6 @@ specific to coordinates, reflections or geometry data.
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['exeName', 'exePath'],
     content_qualifiers={
         "exePath": {'mustExist': True, 'allowUndefined': False},
@@ -344,12 +316,6 @@ class CExePathStub(CData):
         'allowAlias',
         'allowUnfound',
         'default'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if allow undefined value at run time'},
-        "allowAlias": {'type': 'bool', 'description': 'Flag if allow project to be directory alias at run time'},
-        "allowUnfound": {'type': 'bool', 'description': 'Flag if allow unfound project at run time'},
-        "default": {'type': 'str'},
-    },
 )
 class CProjectNameStub(CString):
     """
@@ -385,10 +351,6 @@ class CProjectNameStub(CString):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "enumerators": {'type': 'list'},
-        "onlyEnumerators": {'type': 'bool', 'editable': False},
-    },
 )
 class CFileFunctionStub(CString):
     """
@@ -532,15 +494,6 @@ class CFileFunctionStub(CString):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CExportedFileStub(CData):
     """
@@ -569,12 +522,6 @@ class CExportedFileStub(CData):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CExportedFileListStub(CList):
     """
@@ -603,12 +550,6 @@ class CExportedFileListStub(CList):
         "listMinLength": 1,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CExePathListStub(CList):
     """
@@ -752,15 +693,6 @@ class CExePathListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CSearchPathStub(CData):
     """
@@ -790,12 +722,6 @@ class CSearchPathStub(CData):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CSearchPathListStub(CList):
     """
@@ -838,12 +764,6 @@ class CSearchPathListStub(CList):
         'allowedCharacters',
         'allowedCharactersMode',
         'default'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if allow undefined value at run time'},
-        "allowedCharacters": {'type': 'str', 'description': 'Set of characters allowed in file name'},
-        "allowedCharactersMode": {'type': 'int', 'description': 'Handling of violation of allowed characters'},
-        "default": {'type': 'str', 'description': 'Default file path'},
-    },
 )
 class CFilePathStub(CString):
     """
@@ -896,15 +816,6 @@ class CFilePathStub(CString):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "projectId": {'allowUnfound': True},
     },
@@ -1015,22 +926,6 @@ class CI2XmlHeaderStub(CData):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1131,22 +1026,6 @@ class CXmgrDataFileStub(CDataFile):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1245,22 +1124,6 @@ class CTextDataFileStub(CDataFile):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1360,22 +1223,6 @@ class CDataReflFileStub(CDataFile):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1476,22 +1323,6 @@ class CPostscriptDataFileStub(CDataFile):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1570,22 +1401,6 @@ class CYmlFileStub(CDataFile):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1683,22 +1498,6 @@ class CXmlDataFileStub(CDataFile):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1800,22 +1599,6 @@ specific to coordinates, reflections or geometry data.
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1917,22 +1700,6 @@ class CPDFDataFileStub(CDataFile):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1977,9 +1744,6 @@ class CSceneDataFileStub(CDataFile):
         "autoLoadHeader": True,
     },
     qualifiers_order=['autoLoadHeader'],
-    qualifiers_definition={
-        "autoLoadHeader": {'type': 'bool'},
-    },
 )
 class CI2XmlDataFileStub(CXmlDataFileStub):
     """
@@ -2025,22 +1789,6 @@ class CI2XmlDataFileStub(CXmlDataFileStub):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
