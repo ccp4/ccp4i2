@@ -690,3 +690,73 @@ The class-shape and leaf-cost figures came from short scripts walking
 `type(obj).__name__` against `tuple(dataOrder())`. They are quick to rewrite
 and were deliberately not committed as tests: they measure the present shape,
 which is expected to change.
+
+## Direction of travel: retire the stub / implementation split
+
+Recorded 2026-08-31, as a preference rather than a scheduled step.
+
+Every CData type is currently two classes: a generated `CFooStub` in
+`core/cdata_stubs/` carrying the data model, and a hand-written `CFoo`
+carrying the methods. That split was right when it was made --- the stubs were
+machine-produced from the Qt-era definitions, and a "do not edit" half kept
+regeneration from clobbering hand-written code.
+
+The regeneration it protects is over:
+
+| | |
+|---|---|
+| stub classes | 209 |
+| with an implementation subclass | 208 |
+| whose implementation is **empty** (docstring only) | **153 --- 74%** |
+| whose implementation has 3+ members | 20 |
+| things that invoke `migration/CData/stub_generator.py` | **none** |
+| commits hand-editing the stubs since | 18, most recently 2026-06-23 |
+
+The generator sits under `migration/`, nothing calls it, and the stubs have
+been hand-edited eighteen times --- adding a KPI class, adding mask fields.
+The banner is already false, so the contract it names is not being kept.
+
+### It is not only a navigation cost
+
+The two halves interleave in the MRO, and the implementation can drop out of
+it entirely:
+
+    CObsDataFile -> CObsDataFileStub -> CMiniMtzDataFile
+                 -> CMiniMtzDataFileStub -> CMtzDataFileStub
+
+`CMtzDataFile` is not in that chain. So `isinstance(obs, CMtzDataFile)` is
+`False` for a file that plainly is one, and every method defined on
+`CMtzDataFile` is unreachable from `CObsDataFile`. Twelve implementation
+classes are bypassed this way, across 30 subclass relationships --- among them
+`CSpaceGroup`, `CXmlDataFile` and `CI2XmlDataFile`.
+
+Two modules already work around it in comments rather than fix it:
+
+    # Import stub class for isinstance checks - subclasses like CObsDataFile
+    # inherit from stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
+
+That is this note's recurring shape: a mechanism that conceals a defect rather
+than causing one. Anywhere outside `lib/utils/files/` that tests
+`isinstance(x, CMtzDataFile)` is quietly wrong, and nothing reports it.
+
+### Preferred end state
+
+One class per type. `CFoo` declares its fields as annotations and carries its
+own methods.
+
+1. **Collapse the 153 empty implementations** --- mechanical, no behaviour to
+   preserve, removes 153 classes and one level of indirection.
+2. **Merge the 55 that have members** --- stub fields become annotations on
+   the implementation. This is what fixes the MRO bypass, and it is the half
+   that needs the snapshot under `--strict`.
+3. **Retire the "do not edit" banner regardless of when 1 and 2 happen.** It
+   currently misleads about a contract nobody keeps, which is its own small
+   version of the problem.
+
+The annotations step (`5ad7c00b0`) is what makes this cheap: a stub's whole
+content is now annotations plus a decorator, and the annotations are the
+declaration. Collapsing two classes into one is a merge, not a re-derivation.
+
+Blast radius is small but not zero: `lib/utils/files/digest.py` and
+`upload_param.py` import stub names deliberately, and both do so *because* of
+the bypass --- they get simpler, not harder, when it goes.
