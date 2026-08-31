@@ -203,15 +203,6 @@ from ccp4i2.core.base_object.base_classes import CContainer
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CPreferencesStub(CContainer):
     """

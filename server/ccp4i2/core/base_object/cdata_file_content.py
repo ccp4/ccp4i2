@@ -58,15 +58,6 @@ from .class_metadata import cdata_class
         'saveToDb': False
     },
     qualifiers_order=['allowUndefined', 'default', 'toolTip', 'guiLabel', 'guiDefinition', 'helpFile', 'saveToDb'],
-    qualifiers_definition={
-        'allowUndefined': {'type': "<class 'bool'>"},
-        'default': {'type': "<class 'dict'>"},
-        'toolTip': {'type': "<class 'str'>"},
-        'guiLabel': {'type': "<class 'str'>"},
-        'guiDefinition': {'type': "<class 'dict'>"},
-        'helpFile': {'type': "<class 'str'>"},
-        'saveToDb': {'type': "<class 'bool'>", 'description': 'Save this data in the database'}
-    },
     gui_label='CDataFileContent'
 )
 class CDataFileContent(CData):

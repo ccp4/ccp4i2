@@ -19,10 +19,6 @@ from ccp4i2.core.cdata_stubs.CCP4XtalData import CSpaceGroupStub
 
 
 @cdata_class(
-    attributes={
-        "value": attribute(AttributeType.FLOAT),
-        "annotation": attribute(AttributeType.STRING),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -59,15 +55,6 @@ from ccp4i2.core.cdata_stubs.CCP4XtalData import CSpaceGroupStub
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['value', 'annotation'],
     content_qualifiers={
         "value": {'min': 0.0},
@@ -95,33 +82,7 @@ class CPerformanceIndicatorStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "highResLimit": attribute(AttributeType.FLOAT),
-        "rMeas": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -136,15 +97,6 @@ class CPerformanceIndicatorStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['spaceGroup', 'highResLimit', 'rMeas'],
     content_qualifiers={
         "highResLimit": {'min': 0.0},
@@ -173,31 +125,7 @@ class CDataReductionPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "cutoff": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -212,15 +140,6 @@ class CDataReductionPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['cutoff'],
     content_qualifiers={
         "cutoff": {'min': 0.0},
@@ -247,33 +166,7 @@ class CPairefPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "highResLimit": attribute(AttributeType.FLOAT),
-        "ccHalf": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -288,15 +181,6 @@ class CPairefPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['spaceGroup', 'highResLimit', 'ccHalf'],
     content_qualifiers={
         "highResLimit": {'min': 0.0},
@@ -325,43 +209,7 @@ class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-        "R": attribute(AttributeType.FLOAT),
-        "R1Factor": attribute(AttributeType.FLOAT),
-        "R1Free": attribute(AttributeType.FLOAT),
-        "R1": attribute(AttributeType.FLOAT),
-        "CCFwork_avg": attribute(AttributeType.FLOAT),
-        "CCFfree_avg": attribute(AttributeType.FLOAT),
-        "CCF_avg": attribute(AttributeType.FLOAT),
-        "CCIwork_avg": attribute(AttributeType.FLOAT),
-        "CCIfree_avg": attribute(AttributeType.FLOAT),
-        "CCI_avg": attribute(AttributeType.FLOAT),
-        "FSCaverage": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -376,15 +224,6 @@ class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'RFactor',
         'RFree',
@@ -443,37 +282,7 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "FOM": attribute(AttributeType.FLOAT),
-        "CFOM": attribute(AttributeType.FLOAT),
-        "Hand1Score": attribute(AttributeType.FLOAT),
-        "Hand2Score": attribute(AttributeType.FLOAT),
-        "CC": attribute(AttributeType.FLOAT),
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -488,15 +297,6 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'FOM',
         'CFOM',
@@ -541,32 +341,7 @@ class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "nAtoms": attribute(AttributeType.INT),
-        "nResidues": attribute(AttributeType.INT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -581,15 +356,6 @@ class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['nAtoms', 'nResidues'],
 )
 class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
@@ -614,32 +380,7 @@ class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RFactor": attribute(AttributeType.FLOAT),
-        "completeness": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -654,15 +395,6 @@ class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['RFactor', 'completeness', 'annotation'],
     content_qualifiers={
         "RFactor": {'min': 0.0},
@@ -691,35 +423,7 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-        "RMSBond": attribute(AttributeType.FLOAT),
-        "RMSAngle": attribute(AttributeType.FLOAT),
-        "weightUsed": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -734,15 +438,6 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'RFactor',
         'RFree',
@@ -782,32 +477,7 @@ class CRefinementPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RMSxyz": attribute(AttributeType.FLOAT),
-        "nResidues": attribute(AttributeType.INT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -822,15 +492,6 @@ class CRefinementPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['RMSxyz', 'nResidues'],
 )
 class CSuperposePerformanceStub(CPerformanceIndicatorStub):
@@ -855,35 +516,7 @@ class CSuperposePerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "highResLimit": attribute(AttributeType.FLOAT),
-        "rMeas": attribute(AttributeType.FLOAT),
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -898,15 +531,6 @@ class CSuperposePerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'spaceGroup',
         'highResLimit',
@@ -944,33 +568,7 @@ class CDataReductionRefinementPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "phaseError": attribute(AttributeType.FLOAT),
-        "weightedPhaseError": attribute(AttributeType.FLOAT),
-        "reflectionCorrelation": attribute(AttributeType.FLOAT),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -985,15 +583,6 @@ class CDataReductionRefinementPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'phaseError',
         'weightedPhaseError',
@@ -1027,31 +616,7 @@ class CPhaseErrorPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "columnLabelsString": attribute(AttributeType.STRING),
-    },
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -1066,15 +631,6 @@ class CPhaseErrorPerformanceStub(CPerformanceIndicatorStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['columnLabelsString'],
 )
 class CTestObsConversionsPerformanceStub(CPerformanceIndicatorStub):

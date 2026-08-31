@@ -20,18 +20,6 @@ from ccp4i2.core.cdata_stubs.CCP4Data import CI2DataTypeStub, COneWordStub
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "enumerators": ['unknown', 'input', 'output', 'control parameter', 'log'],
@@ -43,15 +31,6 @@ from ccp4i2.core.cdata_stubs.CCP4Data import CI2DataTypeStub, COneWordStub
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CCustomTaskFileFunctionStub(CString):
     """
@@ -75,50 +54,11 @@ class CCustomTaskFileFunctionStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CCustomTaskParamListStub(CList):
     """
@@ -141,10 +81,6 @@ class CCustomTaskParamListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "text": attribute(AttributeType.STRING),
-        "name": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -266,15 +202,6 @@ class CCustomTaskParamListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "name": {'default': './com.txt'},
     },
@@ -491,15 +418,6 @@ class CCustomComFileStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CCustomTaskDefinitionStub(CContainer):
     """
@@ -521,50 +439,11 @@ class CCustomTaskDefinitionStub(CContainer):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CCustomComFileListStub(CList):
     """
@@ -587,18 +466,6 @@ class CCustomComFileListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "name": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "dataType": attribute(AttributeType.CUSTOM, custom_class="CI2DataTypeStub"),
-        "label": attribute(AttributeType.STRING),
-        "obligatory": attribute(AttributeType.BOOLEAN),
-        "saveDataToDb": attribute(AttributeType.BOOLEAN),
-        "function": attribute(AttributeType.CUSTOM, custom_class="CCustomTaskFileFunctionStub"),
-        "mergeTo": attribute(AttributeType.STRING),
-        "splitColumns": attribute(AttributeType.STRING),
-        "requiredContentType": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "outputFilePath": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -720,15 +587,6 @@ class CCustomComFileListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "dataType": {'default': 'CPdbDataFile'},
         "obligatory": {'default': True},

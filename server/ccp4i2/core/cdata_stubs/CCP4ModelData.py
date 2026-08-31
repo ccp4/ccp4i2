@@ -38,12 +38,6 @@ from ccp4i2.core.cdata_stubs.CCP4File import CFilePathStub, CI2XmlDataFileStub, 
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CSeqDataFileListStub(CList):
     """
@@ -66,20 +60,7 @@ class CSeqDataFileListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "selection": attribute(AttributeType.CUSTOM, custom_class="CDictStub"),
-    },
     error_codes={
-        "1003": {
-            "description": "XML does not have <ccp4i2> root node"
-        },
-        "1004": {
-            "severity": 2,
-            "description": "XML does not have <ccp4i2_header> section"
-        },
-        "1005": {
-            "description": "XML does not have <ccp4i2_body> section"
-        }
     },
     qualifiers={
         "mimeTypeName": 'application/CCP4-asu-content',
@@ -94,9 +75,6 @@ class CSeqDataFileListStub(CList):
         "selectionMode": 0,
     },
     qualifiers_order=['autoLoadHeader'],
-    qualifiers_definition={
-        "selectionMode": {'type': 'int', 'description': 'Chain selection options'},
-    },
     contents_order=['selection'],
     content_qualifiers={
         "subType": {'default': None},
@@ -127,50 +105,11 @@ class CAsuDataFileStub(CI2XmlDataFileStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CAtomRefmacSelectionListStub(CList):
     """
@@ -193,14 +132,6 @@ class CAtomRefmacSelectionListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "groupId": attribute(AttributeType.INT),
-        "chainIds": attribute(AttributeType.STRING),
-        "firstRes": attribute(AttributeType.INT),
-        "lastRes": attribute(AttributeType.INT),
-        "atoms": attribute(AttributeType.STRING),
-        "alt": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -322,15 +253,6 @@ class CAtomRefmacSelectionListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'groupId',
         'chainIds',
@@ -368,50 +290,11 @@ class CAtomRefmacSelectionOccupancyStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CResidueRangeListStub(CList):
     """
@@ -434,8 +317,6 @@ class CResidueRangeListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -513,22 +394,6 @@ class CResidueRangeListStub(CList):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -556,13 +421,6 @@ class CTLSDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "groupId": attribute(AttributeType.INT),
-        "chainId": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "firstRes": attribute(AttributeType.INT),
-        "lastRes": attribute(AttributeType.INT),
-        "selection": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -600,15 +458,6 @@ class CTLSDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['groupId', 'chainId', 'firstRes', 'lastRes', 'selection'],
     content_qualifiers={
         "selection": {'default': 'ALL'},
@@ -634,50 +483,11 @@ class CTLSRangeStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item.'},
-    },
 )
 class CTLSRangeListStub(CList):
     """A list of CTLSRange items defining TLS groups."""
@@ -716,15 +526,6 @@ class CTLSRangeListStub(CList):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CSequenceStringStub(CString):
     """
@@ -747,8 +548,6 @@ class CSequenceStringStub(CString):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -826,22 +625,6 @@ class CSequenceStringStub(CString):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -883,15 +666,6 @@ class CHhpredDataFileStub(CDataFile):
         'enumerators',
         'menuText',
         'allowedCharsCode'],
-    qualifiers_definition={
-        "default": {'type': 'str'},
-        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
-        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
-        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
-        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
-    },
 )
 class CElementStub(COneWordStub):
     """
@@ -914,15 +688,6 @@ class CElementStub(COneWordStub):
 
 
 @cdata_class(
-    attributes={
-        "identifier": attribute(AttributeType.STRING),
-        "referenceDb": attribute(AttributeType.STRING),
-        "reference": attribute(AttributeType.STRING),
-        "name": attribute(AttributeType.STRING),
-        "description": attribute(AttributeType.STRING),
-        "sequence": attribute(AttributeType.STRING),
-        "moleculeType": attribute(AttributeType.STRING),
-    },
     error_codes={
         "201": {
             "description": "Sequence undefined",
@@ -991,15 +756,6 @@ class CElementStub(COneWordStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=[
         'identifier',
         'name',
@@ -1050,10 +806,6 @@ What about nucleic/polysach?
 
 
 @cdata_class(
-    attributes={
-        "identifier": attribute(AttributeType.STRING),
-        "moleculeType": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1175,15 +927,6 @@ What about nucleic/polysach?
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['identifier', 'moleculeType'],
     content_qualifiers={
         "identifier": {'toolTip': 'Optional convenient name for sequence alignment'},
@@ -1219,8 +962,6 @@ or interleaved sequences.
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1298,22 +1039,6 @@ or interleaved sequences.
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1339,9 +1064,6 @@ class CBlastDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "monomerList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "101": {
             "description": "Error opening MMCIF format file"
@@ -1379,15 +1101,6 @@ class CBlastDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CDictDataStub(CData):
     """
@@ -1410,12 +1123,6 @@ class CDictDataStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "identifier": attribute(AttributeType.STRING),
-        "formula": attribute(AttributeType.STRING),
-        "dictionaryName": attribute(AttributeType.STRING),
-        "smiles": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1537,15 +1244,6 @@ class CDictDataStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['identifier', 'formula', 'dictionaryName', 'smiles'],
     content_qualifiers={
         "identifier": {'toolTip': 'The name you use for the monomer'},
@@ -1580,11 +1278,6 @@ class CMonomerStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "hitId": attribute(AttributeType.STRING),
-        "querySequence": attribute(AttributeType.STRING),
-        "hitSequence": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1706,15 +1399,6 @@ class CMonomerStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CBlastItemStub(CData):
     """
@@ -1739,9 +1423,6 @@ class CBlastItemStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "groupIds": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1863,15 +1544,6 @@ class CBlastItemStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['groupIds'],
 )
 class CAtomRefmacSelectionGroupsStub(CData):
@@ -1898,50 +1570,11 @@ class CAtomRefmacSelectionGroupsStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class COccRelationRefmacListStub(CList):
     """
@@ -1964,8 +1597,6 @@ class COccRelationRefmacListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Error attempting to merge geometry files - no libcheck script"
@@ -2007,22 +1638,6 @@ class COccRelationRefmacListStub(CList):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2050,12 +1665,6 @@ class CDictDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "label": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "number": attribute(AttributeType.INT),
-        "use": attribute(AttributeType.BOOLEAN),
-        "pdbItemList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -2176,15 +1785,6 @@ class CDictDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "number": {'min': 0, 'default': 1, 'enumerators': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'menuText': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']},
         "use": {'default': True},
@@ -2220,11 +1820,6 @@ A single ensemble is a CList of structures.
 
 
 @cdata_class(
-    attributes={
-        "chainId": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "firstRes": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "lastRes": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -2337,9 +1932,6 @@ A single ensemble is a CList of structures.
         "pdbFileKey": None,
     },
     qualifiers_order=['pdbFileKey'],
-    qualifiers_definition={
-        "pdbFileKey": {'type': 'str', 'description': 'The key for a CPdbDataFile in the same CContainer'},
-    },
     contents_order=['chainId', 'firstRes', 'lastRes'],
     content_qualifiers={
         "chainId": {'default': ''},
@@ -2370,9 +1962,6 @@ class CResidueRangeStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "text": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -2492,9 +2081,6 @@ class CResidueRangeStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "pdbFileKey": {'type': 'str', 'description': 'The key for a CPdbDataFile in the same CContainer'},
-    },
 )
 class CAtomSelectionStub(CData):
     """
@@ -2517,10 +2103,6 @@ class CAtomSelectionStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "queryId": attribute(AttributeType.STRING),
-        "alignmentList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "201": {
             "description": "Failed reading blast file"
@@ -2546,15 +2128,6 @@ class CAtomSelectionStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CBlastDataStub(CDataFileContent):
     """
@@ -2580,9 +2153,6 @@ class CBlastDataStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-        "alignmentList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "201": {
             "description": "Failed to read HHPred file"
@@ -2604,15 +2174,6 @@ class CBlastDataStub(CDataFileContent):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CHhpredDataStub(CDataFileContent):
     """
@@ -2638,50 +2199,11 @@ class CHhpredDataStub(CDataFileContent):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CPdbDataFileListStub(CList):
     """
@@ -2704,8 +2226,6 @@ class CPdbDataFileListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -2783,22 +2303,6 @@ class CPdbDataFileListStub(CList):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2827,50 +2331,11 @@ class CMol2DataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class COccRefmacSelectionListStub(CList):
     """
@@ -2893,11 +2358,6 @@ class COccRefmacSelectionListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "uniprotId": attribute(AttributeType.STRING),
-        "organism": attribute(AttributeType.STRING),
-        "expressionSystem": attribute(AttributeType.STRING),
-    },
     error_codes={
         "401": {
             "description": "No uniprot id available"
@@ -2925,15 +2385,6 @@ class COccRefmacSelectionListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CSequenceMetaStub(CData):
     """
@@ -2958,8 +2409,6 @@ class CSequenceMetaStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Error reading sequence file"
@@ -2993,22 +2442,6 @@ class CSequenceMetaStub(CData):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -3036,8 +2469,6 @@ class CSeqDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "202": {
             "description": "Error reading from file"
@@ -3086,9 +2517,6 @@ class CSeqDataFileStub(CDataFile):
         "helpFile": 'model_data#alignments',
     },
     qualifiers_order=['requiredSequences'],
-    qualifiers_definition={
-        "requiredSequences": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed numbers of sequences in file (usually [2])'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -3116,11 +2544,6 @@ class CSeqAlignDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "annotation": attribute(AttributeType.STRING),
-        "identifier": attribute(AttributeType.STRING),
-        "chain": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -3242,15 +2665,6 @@ class CSeqAlignDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CHhpredItemStub(CData):
     """
@@ -3276,50 +2690,11 @@ class CHhpredItemStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 1,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CEnsembleListStub(CList):
     """
@@ -3402,15 +2777,6 @@ class CEnsembleListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CPdbDataStub(CDataFileContent):
     """
@@ -3433,12 +2799,6 @@ class CPdbDataStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-        "groupId": attribute(AttributeType.INT),
-        "chainId": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "firstRes": attribute(AttributeType.INT),
-        "lastRes": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -3560,15 +2920,6 @@ class CPdbDataStub(CDataFileContent):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['groupId', 'chainId', 'firstRes', 'lastRes'],
 )
 class CAtomRefmacSelectionStub(CData):
@@ -3597,15 +2948,6 @@ class CAtomRefmacSelectionStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "id": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "three_letter_code": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "name": attribute(AttributeType.STRING),
-        "group": attribute(AttributeType.STRING),
-        "number_atoms_all": attribute(AttributeType.INT),
-        "number_atoms_nh": attribute(AttributeType.INT),
-        "desc_level": attribute(AttributeType.INT),
-    },
     error_codes={
         "201": {
             "description": "Error reading monomer id and name"
@@ -3627,15 +2969,6 @@ class CAtomRefmacSelectionStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CChemCompStub(CData):
     """
@@ -3666,8 +2999,6 @@ class CChemCompStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -3745,22 +3076,6 @@ class CChemCompStub(CData):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool', 'description': 'Flag if data file can be undefined at run time'},
-        "mustExist": {'type': 'bool', 'description': 'Flag if data file must exist at run time'},
-        "fromPreviousJob": {'type': 'bool', 'description': 'Flag if input data file can be inferred from preceeding jobs'},
-        "jobCombo": {'type': 'bool', 'description': 'Flag if data widget should be a combo box '},
-        "mimeTypeName": {'type': 'str', 'description': ''},
-        "mimeTypeDescription": {'type': 'str', 'description': ''},
-        "fileLabel": {'type': 'str', 'description': 'Label for file'},
-        "fileExtensions": {'type': 'list', 'listItemType': str, 'description': 'A list of strings containing allowed file extensions (no dot)'},
-        "fileContentClassName": {'type': 'str', 'editable': False, 'description': 'A string containing the name of a class which will hold the file contents'},
-        "isDirectory": {'type': 'bool', 'description': 'Flag if the data is a directory'},
-        "ifInfo": {'type': 'bool', 'description': 'Flag if gui widget should have info icon'},
-        "saveToDb": {'type': 'bool', 'description': 'Save the name of this file in the database'},
-        "requiredSubType": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed sub types'},
-        "requiredContentFlag": {'type': 'list', 'listItemType': int, 'description': 'A list of allowed content flags'},
-    },
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -3800,12 +3115,6 @@ class CMDLMolDataFileStub(CDataFile):
         "listMinLength": 0,
     },
     qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
-    qualifiers_definition={
-        "default": {'type': 'list'},
-        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
-        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
-        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.'},
-    },
 )
 class CAsuContentSeqListStub(CList):
     """
@@ -3828,14 +3137,6 @@ class CAsuContentSeqListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "sequence": attribute(AttributeType.CUSTOM, custom_class="CSequenceStringStub"),
-        "nCopies": attribute(AttributeType.INT),
-        "polymerType": attribute(AttributeType.STRING),
-        "name": attribute(AttributeType.STRING),
-        "description": attribute(AttributeType.STRING),
-        "source": attribute(AttributeType.CUSTOM, custom_class="CSeqDataFileStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -3957,15 +3258,6 @@ class CAsuContentSeqListStub(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     content_qualifiers={
         "sequence": {'allowUndefined': False, 'minLength': 1},
         "nCopies": {'enumerators': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'default': 1, 'min': 0},
@@ -4000,9 +3292,6 @@ class CAsuContentSeqStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "selection": attribute(AttributeType.CUSTOM, custom_class="CAtomSelectionStub"),
-    },
     error_codes={
         "401": {
             "description": "Failed running coord_format to fix coordinate file - is it a PDB file?"
@@ -4073,9 +3362,6 @@ class CAsuContentSeqStub(CData):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "ifAtomSelection": {'type': 'bool', 'description': 'Atom selection option enabled'},
-    },
     content_qualifiers={
         "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
         "contentFlag": {'min': 0, 'default': None},
@@ -4119,9 +3405,6 @@ class CPdbDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "seqList": attribute(AttributeType.CUSTOM, custom_class="CAsuContentSeqListStub"),
-    },
     error_codes={
         "101": {
             "description": "Failed reading file - is it correct file type?"
@@ -4143,15 +3426,6 @@ class CPdbDataFileStub(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CAsuContentStub(CDataFileContent):
     """
@@ -4176,42 +3450,7 @@ class CAsuContentStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
-        "401": {
-            "description": "Failed running coord_format to fix coordinate file - is it a PDB file?"
-        },
-        "402": {
-            "severity": 2,
-            "description": "Badly formated PDB file fixed"
-        },
-        "403": {
-            "severity": 2,
-            "description": "Fixed by removing text"
-        },
-        "404": {
-            "severity": 2,
-            "description": "Fixed by adding text"
-        },
-        "405": {
-            "description": "There are no ATOM or HETATM lines in the PDB file"
-        },
-        "410": {
-            "description": "No file loaded - can not convert coordinate file format"
-        },
-        "411": {
-            "description": "Failed loading file - can not convert coordinate file format"
-        },
-        "412": {
-            "description": "Can not overwrite existing file - can not convert coordinate file format"
-        },
-        "413": {
-            "description": "Failed writing coordinate file"
-        },
-        "414": {
-            "description": "Failed to identify coordinate file format"
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -4248,9 +3487,6 @@ class CAsuContentStub(CDataFileContent):
         'saveToDb',
         'requiredSubType',
         'requiredContentFlag'],
-    qualifiers_definition={
-        "ifAtomSelection": {'type': 'bool', 'description': 'Atom selection option enabled'},
-    },
     content_qualifiers={
         "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
         "contentFlag": {'min': 0, 'default': None},
@@ -4278,11 +3514,6 @@ class CEnsemblePdbDataFileStub(CPdbDataFileStub):
 
 
 @cdata_class(
-    attributes={
-        "structure": attribute(AttributeType.CUSTOM, custom_class="CPdbDataFileStub"),
-        "identity_to_target": attribute(AttributeType.FLOAT),
-        "rms_to_target": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "101": {
             "description": "No sequence identity or structure RMS to target set"
@@ -4301,15 +3532,6 @@ class CEnsemblePdbDataFileStub(CPdbDataFileStub):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['structure', 'identity_to_target', 'rms_to_target'],
     content_qualifiers={
         "structure": {'allowUndefined': False, 'mustExist': True, 'fromPreviousJob': True, 'ifAtomSelection': True},

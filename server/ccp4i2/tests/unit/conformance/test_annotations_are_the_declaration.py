@@ -1,26 +1,24 @@
-"""A stub's annotations are its field declaration.
+"""A class's annotations are its field declaration --- the only one.
 
-Every generated stub declares its fields twice:
+Generated stubs used to declare their fields twice, once as an annotation and
+once in the decorator:
 
-    @cdata_class(attributes={"structure": attribute(CUSTOM, "CPdbDataFileStub"), ...})
+    @cdata_class(attributes={"structure": attribute(CUSTOM, "CPdbDataFileStub")})
     class CPdbEnsembleItemStub(CData):
         structure: Optional[CPdbDataFileStub] = None
 
-Only the decorator was load-bearing; the annotation was decoration, and the
-`= None` is what the runtime walk overwrites. But the annotation is the
-declaration a dataclass uses, and it carries strictly more --- the class
-itself, rather than its name as a string to be looked up later.
+Only the decorator was load-bearing; the annotation was decoration. That was
+inverted first --- the runtime reads the annotations --- and then the duplicate
+was removed, because two declarations of one fact can disagree and this pair
+had no way to notice if they did.
 
-Measured across the stubs the two agree exactly. At the time this was written
-that was 621 fields over 122 classes; removing the inherited restatements
-later reduced it to 319 fields over 82, because a class that adds nothing now
-declares nothing. The agreement is the invariant, not the count.
-
-The runtime now reads the annotations, falling back to the decorator for
-hand-written classes such as CDataFile which carry one but no annotations.
-That makes the annotation the single declaration, and the duplicate in the
-decorator removable --- which is what a dataclass conversion needs, and why
-this comes before it.
+There was a test here asserting the two agreed, over 319 fields. It has been
+deleted rather than adapted: it existed to license removing the decorator, and
+once `attributes=` is gone there is nothing to compare a declaration against.
+Keeping it would have meant keeping the thing it was written to retire. What
+survives are the two statements that do not depend on there being two sources
+--- that a declaration builds the object it describes, and that inheritance
+supplies what a class does not declare.
 
 Pure Python -- no CCP4 binaries needed.
 """
@@ -29,75 +27,32 @@ import pytest
 django = pytest.importorskip("django")
 
 
-def _stub_classes():
-    import ccp4i2.core.CCP4ModelData          # noqa: F401  (registers subclasses)
-    import ccp4i2.core.CCP4XtalData           # noqa: F401
-    import ccp4i2.core.CCP4PerformanceData    # noqa: F401
-    import ccp4i2.core.CCP4Data               # noqa: F401
-    from ccp4i2.core.base_object.cdata import CData
-
-    def walk(cls):
-        for sub in cls.__subclasses__():
-            yield sub
-            yield from walk(sub)
-
-    return [k for k in set(walk(CData))
-            if "_metadata" in vars(k) and vars(k)["_metadata"].attributes]
+@pytest.fixture(scope="module", autouse=True)
+def _django():
+    import os
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
+    django.setup()
 
 
-def _built_class(definition):
-    """The class a definition builds, rather than how it spells it.
+def test_a_class_inherits_what_it_does_not_declare():
+    """`CDataFile` declares these; its subclasses no longer restate them.
 
-    The two encodings are equivalent and both appear: a generated stub writes
-    `attribute(AttributeType.STRING)` while `CDataFile`, hand-written, writes
-    `attribute(CUSTOM, custom_class="CString")`. Comparing the spelling would
-    report a difference where there is none.
+    This used to read "CDataFile is hand-written: decorator, no annotations",
+    which stopped being true when it was given annotations, and the test kept
+    passing while describing the opposite of the arrangement it checked. The
+    assertion was always the useful part.
     """
-    from ccp4i2.core.base_object.class_metadata import AttributeType
-    if definition.custom_class:
-        return definition.custom_class
-    return {AttributeType.STRING: "CString", AttributeType.INT: "CInt",
-            AttributeType.FLOAT: "CFloat", AttributeType.BOOLEAN: "CBoolean",
-            }.get(definition.attr_type, definition.attr_type)
-
-
-def test_annotations_reproduce_the_decorator():
-    """The two declarations must agree, or reading one changes behaviour."""
-    from ccp4i2.core.base_object.class_metadata import attributes_from_annotations
-
-    checked, disagreeing = 0, []
-    for klass in _stub_classes():
-        declared = vars(klass)["_metadata"].attributes
-        from_annotations = attributes_from_annotations(klass)
-        if not from_annotations:
-            continue          # no annotations at all: the fallback case
-        checked += len(from_annotations)
-        a = {n: _built_class(d) for n, d in declared.items()}
-        b = {n: _built_class(d) for n, d in from_annotations.items()}
-        if a != b:
-            disagreeing.append(
-                f"{klass.__name__}: {[n for n in a if b.get(n) != a[n]][:3]}")
-
-    # Counted in fields, not classes. The class count is not a measure of
-    # coverage and fell from 122 to 82 when the restatements were removed ---
-    # a class that declares nothing and inherits everything is the intended
-    # end state, not a weaker test. The fields are still compared wherever
-    # they are declared.
-    assert checked > 250, f"only {checked} fields checked --- proves little"
-    assert not disagreeing, (
-        f"{len(disagreeing)} classes where the annotation and the decorator "
-        f"declare different fields: {disagreeing[:5]}"
-    )
-
-
-def test_a_class_with_no_annotations_still_works():
-    """CDataFile is hand-written: decorator, no annotations. The fallback."""
     from ccp4i2.core.base_object.cdata_file import CDataFile
+    from ccp4i2.core.CCP4ModelData import CPdbDataFile
 
-    obj = CDataFile()
-    names = {c._name for c in obj.children()}
-    assert {"baseName", "relPath", "project", "annotation"} <= names, \
-        f"the decorator fallback did not build the fields: {sorted(names)}"
+    declared = {c._name for c in CDataFile().children()}
+    assert {"baseName", "relPath", "project", "annotation"} <= declared, \
+        f"the declaration did not build the fields: {sorted(declared)}"
+
+    # The subclass declares none of these and must still have them.
+    inherited = {c._name for c in CPdbDataFile().children()}
+    assert {"baseName", "relPath", "project", "annotation"} <= inherited, \
+        f"inheritance did not supply the base fields: {sorted(inherited)}"
 
 
 def test_the_declaration_actually_builds_the_object():
@@ -108,3 +63,18 @@ def test_the_declaration_actually_builds_the_object():
     names = [c._name for c in item.children()]
     assert names[:3] == ["structure", "identity_to_target", "rms_to_target"], names
     assert type(item.identity_to_target).__name__ == "CFloat"
+
+
+def test_project_keeps_its_type_through_inheritance():
+    """`CProjectId`, not `CUUID` --- the qualifier that restatement concealed.
+
+    47 stub classes restated `project` as a CProjectId while the base declared
+    CUUID, so removing the restatements would have widened the type in every
+    one of them and dropped `allowUnfound`. The base was corrected first; this
+    pins it, because nothing else would notice.
+    """
+    from ccp4i2.core.CCP4ModelData import CPdbDataFile
+
+    project = CPdbDataFile().project
+    assert type(project).__name__ == "CProjectId", type(project).__name__
+    assert project.qualifiers().get("allowUnfound") is True

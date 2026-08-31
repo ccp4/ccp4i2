@@ -137,15 +137,6 @@ from ccp4i2.core.base_object.fundamental_types import CFloat
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CMatrix33Stub(CData):
     """
@@ -166,14 +157,6 @@ class CMatrix33Stub(CData):
 
 
 @cdata_class(
-    attributes={
-        "xMin": attribute(AttributeType.FLOAT),
-        "yMin": attribute(AttributeType.FLOAT),
-        "zMin": attribute(AttributeType.FLOAT),
-        "xMax": attribute(AttributeType.FLOAT),
-        "yMax": attribute(AttributeType.FLOAT),
-        "zMax": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "201": {
             "description": "Maximum x,y or z value less than minimum"
@@ -192,15 +175,6 @@ class CMatrix33Stub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CXyzBoxStub(CData):
     """
@@ -229,15 +203,6 @@ class CXyzBoxStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "below minimum"
-        },
-        "102": {
-            "description": "above maximum"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        }
     },
     qualifiers={
         "max": None,
@@ -252,14 +217,6 @@ class CXyzBoxStub(CData):
         'onlyEnumerators',
         'enumerators',
         'menuText'],
-    qualifiers_definition={
-        "default": {'type': 'float'},
-        "max": {'description': 'The inclusive maximum value'},
-        "min": {'description': 'The inclusive minimum value'},
-        "enumerators": {'type': 'list', 'description': 'A Python list of allowed or recommended values - see onlyEnumerators'},
-        "menuText": {'type': 'list', 'listItemType': str, 'description': 'A Python list of strings, matching items in enumerators list, to appear on GUI menu'},
-        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
-    },
 )
 class CAngleStub(CFloat):
     """
@@ -282,11 +239,6 @@ class CAngleStub(CFloat):
 
 
 @cdata_class(
-    attributes={
-        "x": attribute(AttributeType.FLOAT),
-        "y": attribute(AttributeType.FLOAT),
-        "z": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "201": {
             "description": "Attempting arithmetic with inappropriate data type"
@@ -311,15 +263,6 @@ class CAngleStub(CFloat):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
 )
 class CXyzStub(CData):
     """
@@ -344,11 +287,6 @@ class CXyzStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "alpha": attribute(AttributeType.CUSTOM, custom_class="CAngleStub"),
-        "beta": attribute(AttributeType.CUSTOM, custom_class="CAngleStub"),
-        "gamma": attribute(AttributeType.CUSTOM, custom_class="CAngleStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -470,15 +408,6 @@ class CXyzStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['alpha', 'beta', 'gamma'],
 )
 class CEulerRotationStub(CData):
@@ -504,10 +433,6 @@ class CEulerRotationStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "translation": attribute(AttributeType.CUSTOM, custom_class="CXyzStub"),
-        "rotation": attribute(AttributeType.CUSTOM, custom_class="CEulerRotationStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -629,15 +554,6 @@ class CEulerRotationStub(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    qualifiers_definition={
-        "allowUndefined": {'type': 'bool'},
-        "default": {'type': 'dict'},
-        "toolTip": {'type': 'str'},
-        "guiLabel": {'type': 'str'},
-        "guiDefinition": {'type': 'dict'},
-        "helpFile": {'type': 'str'},
-        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
-    },
     contents_order=['translation', 'rotation'],
 )
 class CTransformationStub(CData):
