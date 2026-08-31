@@ -344,9 +344,13 @@ class MetadataAttributeFactory:
                     obj._qualifiers = {}
                 # Update qualifiers
                 if isinstance(obj._qualifiers, dict):
-                    obj._qualifiers.update(qualifiers)
+                    from .cdata import _coerced_qualifier
+                    obj._qualifiers.update(
+                        {k: _coerced_qualifier(k, v) for k, v in qualifiers.items()})
                 else:
-                    obj._qualifiers = qualifiers
+                    from .cdata import _coerced_qualifier
+                    obj._qualifiers = {k: _coerced_qualifier(k, v)
+                                       for k, v in qualifiers.items()}
 
             # Set default value from qualifiers if provided
             default_value = qualifiers.get('default')

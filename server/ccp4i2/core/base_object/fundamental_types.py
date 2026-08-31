@@ -1839,7 +1839,9 @@ class CList(CData):
 
         # Apply qualifiers if provided
         if item_qualifiers and hasattr(item, '_qualifiers'):
-            item._qualifiers.update(item_qualifiers)
+            from .cdata import _coerced_qualifier
+            item._qualifiers.update(
+                {k: _coerced_qualifier(k, v) for k, v in item_qualifiers.items()})
 
         return item
 

@@ -35,6 +35,35 @@ from .class_metadata import cdata_class
 _QUALIFIER_TEMPLATE_CACHE: Dict[type, Dict[str, Any]] = {}
 
 
+
+#: Qualifiers that constrain a value numerically. A def.xml is text, so these
+#: arrive as strings unless something coerces them --- and the comparisons that
+#: use them then raise TypeError, which validity() was swallowing. Measured
+#: across the registry, 99 of them were strings and every bounds check on those
+#: had therefore never run.
+_NUMERIC_QUALIFIERS = frozenset({
+    "min", "max", "minLength", "maxLength",
+    "listMinLength", "listMaxLength", "charWidth",
+})
+
+
+def _coerced_qualifier(key, value):
+    """Numeric qualifiers as numbers, whatever route they arrived by."""
+    if key in _NUMERIC_QUALIFIERS and isinstance(value, str):
+        text = value.strip()
+        if text in ("", "None"):
+            # A def.xml writing <min>None</min> means "no bound". As the string
+            # 'None' it is truthy, so `if minimum is not None` passes and the
+            # comparison raises --- the same swallowed TypeError by a second
+            # route. 37 qualifiers across the registry are this.
+            return None
+        try:
+            return float(text) if ("." in text or "e" in text.lower()) else int(text)
+        except ValueError:
+            return value          # not a number at all: leave it, and let the
+                                  # check that reads it say so
+    return value
+
 def _merged_qualifier_template(cls: type) -> Dict[str, Any]:
     """The qualifier template for `cls`, merged down its MRO and memoised.
 
@@ -82,7 +111,8 @@ class CData(HierarchicalObject):
         # Still a fresh dict per instance, so set_qualifier stays safe and the
         # aliasing of nested values is exactly what the loop produced.
         cls = self.__class__
-        self._qualifiers = dict(_merged_qualifier_template(cls))
+        self._qualifiers = {k: _coerced_qualifier(k, v)
+                            for k, v in _merged_qualifier_template(cls).items()}
 
         # CONTENT_ORDER - copy from class if defined
         if hasattr(cls, 'CONTENT_ORDER'):
@@ -160,7 +190,7 @@ class CData(HierarchicalObject):
         """Set or override a qualifier value for this instance."""
         if not hasattr(self, '_qualifiers') or self._qualifiers is None:
             self._qualifiers = {}
-        self._qualifiers[key] = value
+        self._qualifiers[key] = _coerced_qualifier(key, value)
 
     def qualifiers(self, key=None, default=None):
         """
@@ -738,9 +768,30 @@ class CData(HierarchicalObject):
                             if is_optional_and_unset:
                                 child_report.downgrade_to_warnings()
                             report.extend(child_report)
-                    except Exception:
-                        # Don't let one child's validation failure stop others
-                        pass
+                    except Exception as exc:
+                        # One child's validation failing must not suppress its
+                        # siblings --- that part was right. But it must not be
+                        # reported as *valid* either: a check that raised is a
+                        # check that did not happen, and silently treating it
+                        # as passed lets a job run on an assurance nobody gave.
+                        logger.error(
+                            "validity() failed for %s (%s): %s",
+                            getattr(child, '_name', '?'),
+                            type(child).__name__, exc, exc_info=True,
+                        )
+                        report.append(
+                            self.__class__,
+                            298,
+                            details=(
+                                f"could not validate "
+                                f"{getattr(child, '_name', type(child).__name__)}: "
+                                f"{type(exc).__name__}: {exc}"
+                            ),
+                            name=(child.objectPath()
+                                  if hasattr(child, 'objectPath')
+                                  else getattr(child, '_name', '?')),
+                            severity=SEVERITY_ERROR,
+                        )
 
         return report
 
