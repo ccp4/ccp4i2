@@ -855,3 +855,83 @@ order puts a parent's fields first, so no arrangement of declarations reaches
 it. That is a real residual job, and the reason the argument stays.
 
 Deleting the 28 redundant ones is a follow-on, and now provably a no-op.
+
+### The redeclarations are transcription, not intent
+
+Established 2026-08-31 by reading the Qt-era source on `main`, after the
+question was put: is there really any intent in a subclass restating its
+parent's fields?
+
+There is not, and the reason is that **the legacy model used replace
+semantics**. A class's `CONTENTS` *was* its complete definition:
+
+```python
+class CPerformanceIndicator(CCP4Data.CData):
+  # This class should be reimplemented if value is not a float
+  CONTENTS_ORDER = ['value','annotation']
+  CONTENTS = {'value': ..., 'annotation': ...}
+
+class CRefinementPerformance(CPerformanceIndicator):
+  CONTENTS_ORDER = ['RFactor','RFree','RMSBond','RMSAngle','weightUsed','annotation']
+  CONTENTS = {'RFactor': ..., ..., 'annotation': ...}      # no 'value'
+```
+
+So `annotation` *had* to be restated and `CONTENTS_ORDER` *had* to list
+everything. Neither expresses a choice. Measured across the stubs: **77
+restated fields, and 0 of them differ from the ancestor's declaration.**
+
+The generator transcribed those complete lists into a model that **merges**
+across the MRO, where they read as decisions. Two consequences follow.
+
+**Classes gained fields their authors excluded.** 11 of 12 performance classes
+now carry `value`, and 7 also carry `annotation`; `CPairefPerformance` went
+from 1 declared field to 3. It went unnoticed because the transcribed
+`contents_order` does not name `value`, so it lands at the end of the list
+rather than the front. Nothing sets it and `extract_kpi_values` gates on
+`isSet()`, so it never reaches the database --- it is structural noise, not
+corruption.
+
+**A "convention" was inferred that does not exist.** An earlier pass here
+concluded that 12 classes wanted "own fields first, inherited last", in
+conflict with the file classes wanting the opposite. They want nothing of the
+sort: their complete legacy list was copied into a slot that now means
+something else.
+
+#### What `value` and `annotation` were for
+
+`CPerformanceIndicator` is the *simple* case --- a KPI that is one float plus a
+label --- and its own comment says to reimplement when that does not fit. The
+typed subclasses did exactly that, so `value` was never theirs. It is not a
+computed rollup.
+
+The rollup existed, as `__str__`: `CRefinementPerformance` composed
+`"R=0.21 RFree=0.24"` from its typed members, and Qt's `data(DisplayRole)`
+put that in the job tree. **The port dropped all 8**, along with the Qt method
+that consumed them. That is not a functional gap: `job-card.tsx` and
+`classic-jobs-list.tsx` build the same summary from the harvested
+`JobFloatValue`/`JobCharValue` rows, so the data reaches the client typed
+instead of pre-flattened. Worth knowing before anyone reintroduces a
+Python-side `__str__` to fix a display that is not broken.
+
+#### Where this leaves `contents_order`
+
+The 12 performance entries have no defender: they order fields that were
+never meant to be present. Removing the 77 restatements and those 12 entries
+is a fidelity restoration rather than a change of intent --- but it needs the
+merge defect below fixed first, or declaration order still will not be
+honoured.
+
+#### The merge ignores a redeclaring class's order
+
+Independent of the above, and the reason "just shuffle the declarations"
+cannot work today. `apply_metadata_to_instance` merges with `dict.update` over
+`reversed(__mro__)`, and updating an existing key **keeps its original
+position**. So:
+
+    CAsuDataFileStub declares : project, baseName, relPath, annotation, dbFileId, ...
+    what is actually built    : project, baseName, relPath, dbFileId, annotation, ...
+
+The subclass restated the fields in its own order and got the ancestor's. A
+class's declaration order is not honoured for any field an ancestor also
+declares. Fixing it means reinserting at the redeclaring class's position
+rather than leaving the key where it was first seen.
