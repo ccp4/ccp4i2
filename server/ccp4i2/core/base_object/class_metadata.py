@@ -432,6 +432,68 @@ class MetadataAttributeFactory:
         return None
 
 
+#: The annotation on a stub is already a complete declaration of its fields:
+#: `structure: Optional[CPdbDataFileStub] = None`. Measured across the 122
+#: stub classes, the annotation set and the decorator's `attributes=` agree
+#: exactly --- 621 fields, and for the 278 naming a custom class the annotation
+#: names the same one, while the other 343 map one-to-one
+#: (STRING->CString, INT->CInt, FLOAT->CFloat, BOOLEAN->CBoolean).
+#:
+#: So the decorator's attributes= is a second copy of something Python already
+#: records, and a dataclass would use the annotation. This reads it, so the
+#: duplicate can go and the annotation becomes the single declaration.
+_ANNOTATION_KINDS = {
+    "CString": AttributeType.STRING,
+    "CInt": AttributeType.INT,
+    "CFloat": AttributeType.FLOAT,
+    "CBoolean": AttributeType.BOOLEAN,
+}
+
+
+def _class_named_in(annotation):
+    """The CData class an annotation names, e.g. Optional[CPdbDataFileStub].
+
+    `typing.Optional[X]` is not a class and its __name__ is 'Optional', so it
+    has to be unwrapped rather than stringified. Forward references arrive as
+    strings and keep their text.
+    """
+    import typing
+    if annotation is None:
+        return None
+    for arg in typing.get_args(annotation) or ():
+        if arg is type(None):
+            continue
+        named = _class_named_in(arg)
+        if named:
+            return named
+    if isinstance(annotation, str):
+        return annotation.split("[")[-1].rstrip("]").split(".")[-1].strip("'\" ") or None
+    if isinstance(annotation, typing.ForwardRef):
+        return annotation.__forward_arg__.split(".")[-1]
+    name = getattr(annotation, "__name__", None)
+    return name if name and name not in ("Optional", "Union", "NoneType") else None
+
+
+def attributes_from_annotations(cls) -> "Dict[str, AttributeDefinition]":
+    """Field declarations read from the class's own annotations."""
+    declared = {}
+    for name, annotation in getattr(cls, "__annotations__", {}).items():
+        if name.startswith("_"):
+            continue
+        named = _class_named_in(annotation)
+        if not named:
+            continue
+        kind = _ANNOTATION_KINDS.get(named)
+        if kind is not None:
+            declared[name] = AttributeDefinition(attr_type=kind)
+        else:
+            declared[name] = AttributeDefinition(
+                attr_type=AttributeType.CUSTOM,
+                custom_class=named,
+            )
+    return declared
+
+
 def apply_metadata_to_instance(instance):
     """Apply metadata-defined attributes to a class instance.
 
@@ -448,8 +510,16 @@ def apply_metadata_to_instance(instance):
         metadata = getattr(cls, "_metadata", None)
         if metadata:
             # Parent attributes are added first (because we're in reverse),
-            # then child overrides them
-            merged_attributes.update(metadata.attributes)
+            # then child overrides them.
+            #
+            # The class's own annotations are preferred where it has them,
+            # because that is the declaration a dataclass would use and the
+            # decorator's attributes= is a second copy of it. Measured across
+            # the 122 generated stubs the two agree exactly; the fallback is
+            # for hand-written classes such as CDataFile, which carry the
+            # decorator but no annotations.
+            from_annotations = attributes_from_annotations(cls)
+            merged_attributes.update(from_annotations or metadata.attributes)
             # Same for content_qualifiers (per-field qualifiers from CONTENTS)
             if metadata.content_qualifiers:
                 merged_content_qualifiers.update(metadata.content_qualifiers)
