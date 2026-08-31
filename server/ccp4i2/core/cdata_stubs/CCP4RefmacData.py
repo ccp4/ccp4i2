@@ -352,39 +352,6 @@ class CRefmacAnomalousAtomStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,

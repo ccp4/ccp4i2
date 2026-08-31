@@ -92,27 +92,6 @@ class CPerformanceIndicatorStub(CData):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -165,27 +144,6 @@ class CDataReductionPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -236,27 +194,6 @@ class CPairefPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -309,27 +246,6 @@ class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -412,27 +328,6 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -501,27 +396,6 @@ class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -570,27 +444,6 @@ class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -643,27 +496,6 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -727,27 +559,6 @@ class CRefinementPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -796,27 +607,6 @@ class CSuperposePerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -878,27 +668,6 @@ class CDataReductionRefinementPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -956,27 +725,6 @@ class CPhaseErrorPerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
     },
     qualifiers={
         "allowUndefined": True,

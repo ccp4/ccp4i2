@@ -22,15 +22,6 @@ from ccp4i2.core.cdata_stubs.CCP4ModelData import CElementStub, CSeqDataFileStub
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "below minimum"
-        },
-        "102": {
-            "description": "above maximum"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        }
     },
     qualifiers={
         "min": 0.0,
@@ -192,39 +183,6 @@ class CPhaserRFileDataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -259,57 +217,6 @@ class CColumnGroupListStub(CList):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "File does not exist"
-        },
-        "102": {
-            "description": "No mime type for data file"
-        },
-        "103": {
-            "description": "Attempting to set file content with inappropriate data"
-        },
-        "104": {
-            "description": "There is no file content class specified for this type of file"
-        },
-        "105": {
-            "description": "The file content class specified for this type of file can not be found"
-        },
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "305": {
-            "description": "Neither original nor test file exists",
-            "severity": 0
-        },
-        "306": {
-            "description": "Original file does not exists"
-        },
-        "307": {
-            "description": "Test file does not exist "
-        },
-        "308": {
-            "description": "Files failed checksum comparison"
-        },
-        "309": {
-            "description": "Files failed size comparison"
-        },
-        "310": {
-            "description": "No comparison testing implemented for this file type",
-            "severity": 2
-        },
-        "311": {
-            "description": "Failed loading original file for comparison"
-        },
-        "312": {
-            "description": "Failed loading test file for comparison"
-        },
-        "313": {
-            "description": "Files failed simple text diff comparison"
-        },
-        "320": {
-            "description": "Unrecognised error attempting to load file"
-        }
     },
     qualifiers={
         "guiLabel": 'mmCIF reflection data',
@@ -633,18 +540,6 @@ class CMtzDataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "onlyEnumerators": True,
@@ -969,15 +864,6 @@ class CDialsPickleFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "below minimum"
-        },
-        "102": {
-            "description": "above maximum"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        }
     },
     qualifiers={
         "min": 0.0,
@@ -1023,39 +909,6 @@ class CCellAngleStub(CFloat):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 2,
@@ -1328,18 +1181,6 @@ class CDialsJsonFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "onlyEnumerators": True,
@@ -1450,15 +1291,6 @@ class CReindexOperatorStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "below minimum"
-        },
-        "102": {
-            "description": "above maximum"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        }
     },
     qualifiers={
         "min": 0.0,
@@ -1634,18 +1466,6 @@ class CSpaceGroupStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "allowUndefined": False,
@@ -1692,39 +1512,6 @@ class CDatasetNameStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -1759,39 +1546,6 @@ class CMiniMtzDataFileListStub(CList):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -1826,18 +1580,6 @@ class CUnmergedDataFileListStub(CList):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
@@ -1883,39 +1625,6 @@ class CColumnTypeStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -2068,39 +1777,6 @@ class CPhaserSolDataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 1,
@@ -2253,39 +1929,6 @@ class CShelxFADataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -2473,39 +2116,6 @@ class CMtzDatasetStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -2540,39 +2150,6 @@ class CImageFileListStub(CList):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 1,
@@ -2725,39 +2302,6 @@ class CGenericReflDataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -2952,9 +2496,6 @@ class CFormFactorStub(CData):
 
 @cdata_class(
     error_codes={
-        "201": {
-            "description": "Word contains white space item"
-        }
     },
     qualifiers={
         "onlyEnumerators": False,
@@ -3478,39 +3019,6 @@ class CMapDataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -3545,39 +3053,6 @@ class CRunBatchRangeListStub(CList):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -3730,18 +3205,6 @@ class CImosflmXmlDataFileStub(CDataFile):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "allowUndefined": False,
@@ -3894,44 +3357,6 @@ class CMiniMtzDataFileStub(CMtzDataFileStub):
 
 @cdata_class(
     error_codes={
-        "151": {
-            "description": "Failed converting MTZ file to alternative format"
-        },
-        "152": {
-            "description": "Failed merging MTZ file - invalid input"
-        },
-        "153": {
-            "description": "Failed merging MTZ files - error running cmtzjoin - see log"
-        },
-        "154": {
-            "description": "Failed merging MTZ files - error running cad - see log"
-        },
-        "401": {
-            "description": "MTZ file header data differs"
-        },
-        "402": {
-            "description": "MTZ file columns differ"
-        },
-        "403": {
-            "description": "Error trying to access number of reflections",
-            "severity": 2
-        },
-        "404": {
-            "description": "MTZ files have different number of reflections"
-        },
-        "405": {
-            "description": "MTZ column mean value differs"
-        },
-        "406": {
-            "description": "MTZ file header data differs - may be autogenerated names",
-            "severity": 2
-        },
-        "407": {
-            "description": "Error splitting MTZ file - failed creating input command to cmtzsplit"
-        },
-        "408": {
-            "description": "Error splitting MTZ file - output file missing"
-        }
     },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-unmerged',
@@ -4154,33 +3579,6 @@ class CCellStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Invalid space group"
-        },
-        "102": {
-            "description": "Space group is not chiral",
-            "severity": 2
-        },
-        "103": {
-            "description": "Space group is not Hermann-Mauguin standard"
-        },
-        "104": {
-            "description": "Space group is not a chiral Hermann-Mauguin standard. Full syminfo.lib information not loaded."
-        },
-        "105": {
-            "description": "Space group is not Hermann-Mauguin standard - has wrong number of spaces?"
-        },
-        "106": {
-            "description": "Space group is undefined",
-            "severity": 1
-        },
-        "107": {
-            "description": "Space group is undefined"
-        },
-        "108": {
-            "description": "Space group is incomplete",
-            "severity": 2
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -4226,18 +3624,6 @@ class CAltSpaceGroupStub(CSpaceGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
@@ -4658,30 +4044,6 @@ class CXia2ImageSelectionStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Anomalous structure factors and sigma',
@@ -4716,30 +4078,6 @@ class CFPairColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Anomalous intensities and sigma',
@@ -4774,30 +4112,6 @@ class CIPairColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Structure factor and phase to define a map',
@@ -4832,30 +4146,6 @@ class CMapColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Hendrickson-Lattmann coefficients',
@@ -4890,30 +4180,6 @@ class CHLColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Set of FreeR flags',
@@ -4948,30 +4214,6 @@ class CFreeRColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Structure factor and sigma',
@@ -5006,30 +4248,6 @@ class CFSigFColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "toolTipList": ['The real part of the experimental intensity', 'The anomalous part of the experimental intensity'],
@@ -5066,30 +4284,6 @@ Expected to be part of ab initio phasing dataset ( CDataset)
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Intensity and sigma',
@@ -5124,30 +4318,6 @@ class CISigIColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "toolTipList": ['The real part of the experimental structure factors', 'The anomalous part of the experimental structure factors'],
@@ -5183,30 +4353,6 @@ Expected to be part of ab initio phasing dataset ( CDataset)
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
     },
     qualifiers={
         "guiLabel": 'Phase and figure of merit',
@@ -5241,55 +4387,6 @@ class CPhiFomColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     error_codes={
-        "201": {
-            "description": "Wrong number of columns"
-        },
-        "202": {
-            "description": "Wrong column types"
-        },
-        "203": {
-            "description": "No correct column types found in file"
-        },
-        "204": {
-            "description": "Duplicate or additional column types found in file"
-        },
-        "205": {
-            "description": "Columns in file have non-standard labels"
-        },
-        "206": {
-            "description": "File contains unmerged data"
-        },
-        "210": {
-            "description": "Failed creating mini-MTZ"
-        },
-        "211": {
-            "description": "Insufficient columns selected from imported MTZ"
-        },
-        "212": {
-            "description": "Data already imported as",
-            "severity": 2
-        },
-        "220": {
-            "description": "Can not convert file content, file does not exist"
-        },
-        "221": {
-            "description": "Can not convert file content, existing content insufficiently rich"
-        },
-        "222": {
-            "description": "Can not convert file content, bad input for target content"
-        },
-        "223": {
-            "description": "Can not recognise file content"
-        },
-        "224": {
-            "description": "Not possible to convert to required content - no mechanism implemented"
-        },
-        "225": {
-            "description": "Failed importing from an mmcif file - failed running cif2mtz"
-        },
-        "226": {
-            "description": "Failed importing from an mmcif file - no output from cif2mtz"
-        }
     },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-map',
@@ -5457,55 +4554,6 @@ class CObsDataFileStub(CMiniMtzDataFileStub):
 
 @cdata_class(
     error_codes={
-        "201": {
-            "description": "Wrong number of columns"
-        },
-        "202": {
-            "description": "Wrong column types"
-        },
-        "203": {
-            "description": "No correct column types found in file"
-        },
-        "204": {
-            "description": "Duplicate or additional column types found in file"
-        },
-        "205": {
-            "description": "Columns in file have non-standard labels"
-        },
-        "206": {
-            "description": "File contains unmerged data"
-        },
-        "210": {
-            "description": "Failed creating mini-MTZ"
-        },
-        "211": {
-            "description": "Insufficient columns selected from imported MTZ"
-        },
-        "212": {
-            "description": "Data already imported as",
-            "severity": 2
-        },
-        "220": {
-            "description": "Can not convert file content, file does not exist"
-        },
-        "221": {
-            "description": "Can not convert file content, existing content insufficiently rich"
-        },
-        "222": {
-            "description": "Can not convert file content, bad input for target content"
-        },
-        "223": {
-            "description": "Can not recognise file content"
-        },
-        "224": {
-            "description": "Not possible to convert to required content - no mechanism implemented"
-        },
-        "225": {
-            "description": "Failed importing from an mmcif file - failed running cif2mtz"
-        },
-        "226": {
-            "description": "Failed importing from an mmcif file - no output from cif2mtz"
-        }
     },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-phases',
@@ -5638,55 +4686,6 @@ class CMergeMiniMtzStub(CData):
 
 @cdata_class(
     error_codes={
-        "201": {
-            "description": "Wrong number of columns"
-        },
-        "202": {
-            "description": "Wrong column types"
-        },
-        "203": {
-            "description": "No correct column types found in file"
-        },
-        "204": {
-            "description": "Duplicate or additional column types found in file"
-        },
-        "205": {
-            "description": "Columns in file have non-standard labels"
-        },
-        "206": {
-            "description": "File contains unmerged data"
-        },
-        "210": {
-            "description": "Failed creating mini-MTZ"
-        },
-        "211": {
-            "description": "Insufficient columns selected from imported MTZ"
-        },
-        "212": {
-            "description": "Data already imported as",
-            "severity": 2
-        },
-        "220": {
-            "description": "Can not convert file content, file does not exist"
-        },
-        "221": {
-            "description": "Can not convert file content, existing content insufficiently rich"
-        },
-        "222": {
-            "description": "Can not convert file content, bad input for target content"
-        },
-        "223": {
-            "description": "Can not recognise file content"
-        },
-        "224": {
-            "description": "Not possible to convert to required content - no mechanism implemented"
-        },
-        "225": {
-            "description": "Failed importing from an mmcif file - failed running cif2mtz"
-        },
-        "226": {
-            "description": "Failed importing from an mmcif file - no output from cif2mtz"
-        }
     },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-freerflag',
@@ -6155,112 +5154,6 @@ class CMtzDataStub(CDataFileContent):
 
 @cdata_class(
     error_codes={
-        "0": {
-            "severity": 0,
-            "description": "OK"
-        },
-        "1": {
-            "severity": 1,
-            "description": "Data has undefined value"
-        },
-        "2": {
-            "severity": 3,
-            "description": "Data has undefined value"
-        },
-        "3": {
-            "severity": 2,
-            "description": "Missing data"
-        },
-        "4": {
-            "description": "Missing data"
-        },
-        "5": {
-            "description": "Attempting to set data of wrong type"
-        },
-        "6": {
-            "description": "Default value does not satisfy validity check"
-        },
-        "7": {
-            "severity": 2,
-            "description": "Unrecognised qualifier in data input"
-        },
-        "8": {
-            "severity": 2,
-            "description": "Attempting to get inaccessible attribute:"
-        },
-        "9": {
-            "description": "Failed to get property"
-        },
-        "10": {
-            "severity": 2,
-            "description": "Attempting to set inaccessible attribute:"
-        },
-        "11": {
-            "description": "Failed to set property:"
-        },
-        "12": {
-            "description": "Undetermined error setting value from XML"
-        },
-        "13": {
-            "description": "Unrecognised class name in qualifier"
-        },
-        "14": {
-            "severity": 2,
-            "description": "No object name when saving qualifiers to XML"
-        },
-        "15": {
-            "description": "Error saving qualifier to XML"
-        },
-        "16": {
-            "severity": 2,
-            "description": "Unrecognised item in XML data file"
-        },
-        "17": {
-            "description": "Attempting to set unrecognised qualifier"
-        },
-        "18": {
-            "description": "Attempting to set qualifier with wrong type"
-        },
-        "19": {
-            "description": "Attempting to set qualifier with wrong list item type"
-        },
-        "20": {
-            "description": "Error creating a list/dict item object"
-        },
-        "21": {
-            "description": "Unknown error setting qualifiers from Xml file"
-        },
-        "22": {
-            "description": "Unknown error testing validity"
-        },
-        "23": {
-            "description": "Error saving data object to XML"
-        },
-        "24": {
-            "description": "Unable to test validity of default",
-            "severity": 2
-        },
-        "300": {
-            "description": "Compared objects are the same",
-            "severity": 0
-        },
-        "315": {
-            "description": "Both compared objects are null",
-            "severity": 0
-        },
-        "301": {
-            "description": "Unable to compare this class of data",
-            "severity": 2
-        },
-        "302": {
-            "description": "Other data has null value"
-        },
-        "303": {
-            "description": "My data has null value"
-        },
-        "304": {
-            "description": "Data has different values"
-        }
     },
     qualifiers={
         "allowUndefined": True,

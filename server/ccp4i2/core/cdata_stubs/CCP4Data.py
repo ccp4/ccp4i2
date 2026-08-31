@@ -75,18 +75,6 @@ class COneWordStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "minLength": None,
@@ -136,15 +124,6 @@ class CJobTitleStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "below minimum"
-        },
-        "102": {
-            "description": "above maximum"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        }
     },
     qualifiers={
         "max": None,
@@ -340,18 +319,6 @@ class CCollectionStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "enumerators": ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile', 'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
@@ -509,9 +476,6 @@ class CUUIDStub(CString):
 
 @cdata_class(
     error_codes={
-        "105": {
-            "description": "Value does not match required pattern"
-        },
         "201": {
             "description": "Invalid SMILES string"
         }
@@ -736,39 +700,6 @@ class CPatchSelectionStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -1032,18 +963,6 @@ class CDictStub(CCollectionStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "minLength": None,
@@ -1093,12 +1012,6 @@ class CFollowFromJobStub(CUUIDStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "End of range less than start"
-        },
-        "102": {
-            "description": "End of range greater than start"
-        }
     },
     qualifiers_order=['compare'],
     qualifiers_definition={
@@ -1131,12 +1044,6 @@ class CFloatRangeStub(CRangeStub):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "End of range less than start"
-        },
-        "102": {
-            "description": "End of range greater than start"
-        }
     },
     qualifiers_order=['compare'],
     qualifiers_definition={

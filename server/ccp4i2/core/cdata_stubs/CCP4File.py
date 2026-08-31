@@ -111,112 +111,6 @@ class CVersionStub(CString):
 
 @cdata_class(
     error_codes={
-        "0": {
-            "severity": 0,
-            "description": "OK"
-        },
-        "1": {
-            "severity": 1,
-            "description": "Data has undefined value"
-        },
-        "2": {
-            "severity": 3,
-            "description": "Data has undefined value"
-        },
-        "3": {
-            "severity": 2,
-            "description": "Missing data"
-        },
-        "4": {
-            "description": "Missing data"
-        },
-        "5": {
-            "description": "Attempting to set data of wrong type"
-        },
-        "6": {
-            "description": "Default value does not satisfy validity check"
-        },
-        "7": {
-            "severity": 2,
-            "description": "Unrecognised qualifier in data input"
-        },
-        "8": {
-            "severity": 2,
-            "description": "Attempting to get inaccessible attribute:"
-        },
-        "9": {
-            "description": "Failed to get property"
-        },
-        "10": {
-            "severity": 2,
-            "description": "Attempting to set inaccessible attribute:"
-        },
-        "11": {
-            "description": "Failed to set property:"
-        },
-        "12": {
-            "description": "Undetermined error setting value from XML"
-        },
-        "13": {
-            "description": "Unrecognised class name in qualifier"
-        },
-        "14": {
-            "severity": 2,
-            "description": "No object name when saving qualifiers to XML"
-        },
-        "15": {
-            "description": "Error saving qualifier to XML"
-        },
-        "16": {
-            "severity": 2,
-            "description": "Unrecognised item in XML data file"
-        },
-        "17": {
-            "description": "Attempting to set unrecognised qualifier"
-        },
-        "18": {
-            "description": "Attempting to set qualifier with wrong type"
-        },
-        "19": {
-            "description": "Attempting to set qualifier with wrong list item type"
-        },
-        "20": {
-            "description": "Error creating a list/dict item object"
-        },
-        "21": {
-            "description": "Unknown error setting qualifiers from Xml file"
-        },
-        "22": {
-            "description": "Unknown error testing validity"
-        },
-        "23": {
-            "description": "Error saving data object to XML"
-        },
-        "24": {
-            "description": "Unable to test validity of default",
-            "severity": 2
-        },
-        "300": {
-            "description": "Compared objects are the same",
-            "severity": 0
-        },
-        "315": {
-            "description": "Both compared objects are null",
-            "severity": 0
-        },
-        "301": {
-            "description": "Unable to compare this class of data",
-            "severity": 2
-        },
-        "302": {
-            "description": "Other data has null value"
-        },
-        "303": {
-            "description": "My data has null value"
-        },
-        "304": {
-            "description": "Data has different values"
-        }
     },
     qualifiers={
         "allowUndefined": True,
@@ -479,18 +373,6 @@ class CProjectNameStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
-        }
     },
     qualifiers={
         "enumerators": ['DEF', 'PARAMS', 'LOG', 'PROJECTDIRECTORIES', 'COM', 'REFMAC', 'OUTPUT', 'STATUS', 'PROJECTDATABASE', 'MGSCENE', 'JOBSERVERSTATUS', 'WORKFLOW', 'COMFILEPATCH', 'CUSTOMTASK', 'IMPORTEDJOB', 'I1SUPPLEMENT', 'ASUCONTENT', 'UNKNOWN'],
@@ -682,39 +564,6 @@ class CExportedFileStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -749,39 +598,6 @@ class CExportedFileListStub(CList):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 1,
@@ -969,39 +785,6 @@ class CSearchPathStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "List shorter than required minimum length"
-        },
-        "102": {
-            "description": "List longer than required maximum length"
-        },
-        "103": {
-            "description": "Consecutive values in list fail comparison test"
-        },
-        "104": {
-            "description": "Attempting to add object of wrong type"
-        },
-        "105": {
-            "description": "Attempting to add object of correct type but wrong qualifiers"
-        },
-        "106": {
-            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
-        },
-        "107": {
-            "description": "Deleting item will reduce list below minimum length"
-        },
-        "108": {
-            "description": "Adding item will extend list beyond maximum length"
-        },
-        "109": {
-            "description": "Invalid item class"
-        },
-        "110": {
-            "description": "etree (XML) list item of wrong type"
-        },
-        "112": {
-            "description": "No list item object set for list"
-        }
     },
     qualifiers={
         "listMinLength": 0,
@@ -2222,36 +2005,6 @@ class CI2XmlDataFileStub(CXmlDataFileStub):
 
 @cdata_class(
     error_codes={
-        "1001": {
-            "description": "Unknown error reading XML file"
-        },
-        "1002": {
-            "description": "Error trying to find root node in XML"
-        },
-        "1006": {
-            "description": "Attempting to save XML file with incorrect body"
-        },
-        "1007": {
-            "description": "Error creating XML text"
-        },
-        "1008": {
-            "description": "Error saving XML text to file"
-        },
-        "1009": {
-            "description": "Error reading XML file"
-        },
-        "1010": {
-            "description": "XML file does not exist"
-        },
-        "1011": {
-            "description": "No file name given for making I2XMlDataFile"
-        },
-        "1012": {
-            "description": "Error creating I2XMlDataFile object"
-        },
-        "1013": {
-            "description": "Error creating I2XMlDataFile file"
-        }
     },
     qualifiers={
         "mimeTypeName": 'application/EBI-validation-xml',

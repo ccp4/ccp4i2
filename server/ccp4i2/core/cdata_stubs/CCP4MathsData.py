@@ -221,15 +221,6 @@ class CXyzBoxStub(CData):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "below minimum"
-        },
-        "102": {
-            "description": "above maximum"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        }
     },
     qualifiers={
         "max": None,
