@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CUUID"),
+        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectId"),
         "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePath"),
         "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePath"),
         "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUID"),
@@ -71,7 +71,7 @@ class CDataFile(CData):
     # base_object/ in the layering: a real import here would invert it. A
     # forward reference needs no import, which is the same late binding the
     # decorator's custom_class string was doing.
-    project: Optional["CUUID"] = None
+    project: Optional["CProjectId"] = None
     baseName: Optional["CFilePath"] = None
     relPath: Optional["CFilePath"] = None
     dbFileId: Optional["CUUID"] = None
