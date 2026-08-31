@@ -86,12 +86,6 @@ class CImportedJobDataListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "name": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "dataType": attribute(AttributeType.CUSTOM, custom_class="CI2DataTypeStub"),
-        "label": attribute(AttributeType.STRING),
-        "fileName": attribute(AttributeType.CUSTOM, custom_class="CDataFile"),
-    },
     error_codes={
         "0": {
             "severity": 0,

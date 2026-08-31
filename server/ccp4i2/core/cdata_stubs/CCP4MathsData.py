@@ -166,14 +166,6 @@ class CMatrix33Stub(CData):
 
 
 @cdata_class(
-    attributes={
-        "xMin": attribute(AttributeType.FLOAT),
-        "yMin": attribute(AttributeType.FLOAT),
-        "zMin": attribute(AttributeType.FLOAT),
-        "xMax": attribute(AttributeType.FLOAT),
-        "yMax": attribute(AttributeType.FLOAT),
-        "zMax": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "201": {
             "description": "Maximum x,y or z value less than minimum"
@@ -282,11 +274,6 @@ class CAngleStub(CFloat):
 
 
 @cdata_class(
-    attributes={
-        "x": attribute(AttributeType.FLOAT),
-        "y": attribute(AttributeType.FLOAT),
-        "z": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "201": {
             "description": "Attempting arithmetic with inappropriate data type"
@@ -344,11 +331,6 @@ class CXyzStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "alpha": attribute(AttributeType.CUSTOM, custom_class="CAngleStub"),
-        "beta": attribute(AttributeType.CUSTOM, custom_class="CAngleStub"),
-        "gamma": attribute(AttributeType.CUSTOM, custom_class="CAngleStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -504,10 +486,6 @@ class CEulerRotationStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "translation": attribute(AttributeType.CUSTOM, custom_class="CXyzStub"),
-        "rotation": attribute(AttributeType.CUSTOM, custom_class="CEulerRotationStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,

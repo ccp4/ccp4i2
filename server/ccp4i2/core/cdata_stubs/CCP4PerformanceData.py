@@ -19,10 +19,6 @@ from ccp4i2.core.cdata_stubs.CCP4XtalData import CSpaceGroupStub
 
 
 @cdata_class(
-    attributes={
-        "value": attribute(AttributeType.FLOAT),
-        "annotation": attribute(AttributeType.STRING),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -95,11 +91,6 @@ class CPerformanceIndicatorStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "highResLimit": attribute(AttributeType.FLOAT),
-        "rMeas": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -173,9 +164,6 @@ class CDataReductionPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "cutoff": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -247,11 +235,6 @@ class CPairefPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "highResLimit": attribute(AttributeType.FLOAT),
-        "ccHalf": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -325,21 +308,6 @@ class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-        "R": attribute(AttributeType.FLOAT),
-        "R1Factor": attribute(AttributeType.FLOAT),
-        "R1Free": attribute(AttributeType.FLOAT),
-        "R1": attribute(AttributeType.FLOAT),
-        "CCFwork_avg": attribute(AttributeType.FLOAT),
-        "CCFfree_avg": attribute(AttributeType.FLOAT),
-        "CCF_avg": attribute(AttributeType.FLOAT),
-        "CCIwork_avg": attribute(AttributeType.FLOAT),
-        "CCIfree_avg": attribute(AttributeType.FLOAT),
-        "CCI_avg": attribute(AttributeType.FLOAT),
-        "FSCaverage": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -443,15 +411,6 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "FOM": attribute(AttributeType.FLOAT),
-        "CFOM": attribute(AttributeType.FLOAT),
-        "Hand1Score": attribute(AttributeType.FLOAT),
-        "Hand2Score": attribute(AttributeType.FLOAT),
-        "CC": attribute(AttributeType.FLOAT),
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -541,10 +500,6 @@ class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "nAtoms": attribute(AttributeType.INT),
-        "nResidues": attribute(AttributeType.INT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -614,10 +569,6 @@ class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RFactor": attribute(AttributeType.FLOAT),
-        "completeness": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -691,13 +642,6 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-        "RMSBond": attribute(AttributeType.FLOAT),
-        "RMSAngle": attribute(AttributeType.FLOAT),
-        "weightUsed": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -782,10 +726,6 @@ class CRefinementPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "RMSxyz": attribute(AttributeType.FLOAT),
-        "nResidues": attribute(AttributeType.INT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -855,13 +795,6 @@ class CSuperposePerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "highResLimit": attribute(AttributeType.FLOAT),
-        "rMeas": attribute(AttributeType.FLOAT),
-        "RFactor": attribute(AttributeType.FLOAT),
-        "RFree": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -944,11 +877,6 @@ class CDataReductionRefinementPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "phaseError": attribute(AttributeType.FLOAT),
-        "weightedPhaseError": attribute(AttributeType.FLOAT),
-        "reflectionCorrelation": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "300": {
             "description": "Passed",
@@ -1027,9 +955,6 @@ class CPhaseErrorPerformanceStub(CPerformanceIndicatorStub):
 
 
 @cdata_class(
-    attributes={
-        "columnLabelsString": attribute(AttributeType.STRING),
-    },
     error_codes={
         "300": {
             "description": "Passed",

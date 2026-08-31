@@ -74,8 +74,6 @@ class CCellLengthStub(CFloat):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -260,8 +258,6 @@ class CColumnGroupListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -381,13 +377,6 @@ class CMmcifReflDataFileStub(CMmcifDataFileStub):
 
 
 @cdata_class(
-    attributes={
-        "columnGroupType": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "contentFlag": attribute(AttributeType.INT),
-        "dataset": attribute(AttributeType.STRING),
-        "columnList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "selected": attribute(AttributeType.BOOLEAN),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -549,8 +538,6 @@ class CColumnGroupStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "151": {
             "description": "Failed converting MTZ file to alternative format"
@@ -702,11 +689,6 @@ class CExperimentalDataTypeStub(CString):
 
 
 @cdata_class(
-    attributes={
-        "moleculeType": attribute(AttributeType.STRING),
-        "seqFile": attribute(AttributeType.CUSTOM, custom_class="CSeqDataFileStub"),
-        "numberOfCopies": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -869,8 +851,6 @@ what we are searching for.
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1110,8 +1090,6 @@ class CMergeMiniMtzListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1232,8 +1210,6 @@ class CUnmergedDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1410,11 +1386,6 @@ class CShelxLabelStub(CString):
 
 
 @cdata_class(
-    attributes={
-        "h": attribute(AttributeType.STRING),
-        "k": attribute(AttributeType.STRING),
-        "l": attribute(AttributeType.STRING),
-    },
     error_codes={
         "201": {
             "description": "Operator has bad syntax (needs three comma-separated fields)"
@@ -1529,13 +1500,6 @@ class CWavelengthStub(CFloat):
 
 
 @cdata_class(
-    attributes={
-        "runNumber": attribute(AttributeType.INT),
-        "batchRange0": attribute(AttributeType.INT),
-        "batchRange1": attribute(AttributeType.INT),
-        "resolution": attribute(AttributeType.FLOAT),
-        "fileNumber": attribute(AttributeType.INT),
-    },
     error_codes={
         "101": {
             "description": "End of batch range less than start"
@@ -1985,8 +1949,6 @@ class CColumnTypeListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -2172,8 +2134,6 @@ class CImportUnmergedListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -2359,10 +2319,6 @@ class CAltSpaceGroupListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "name": attribute(AttributeType.STRING),
-        "columnGroups": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -2651,8 +2607,6 @@ class CAsuComponentListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -2837,10 +2791,6 @@ class CXia2ImageSelectionListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "Fp": attribute(AttributeType.FLOAT),
-        "Fpp": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -3050,8 +3000,6 @@ class CAnomalousScatteringElementStub(CElementStub):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -3229,8 +3177,6 @@ class CProgramColumnGroupStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -3348,10 +3294,6 @@ class CRefmacKeywordFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "low": attribute(AttributeType.FLOAT),
-        "high": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "201": {
             "description": "High/low resolution wrong way round?"
@@ -3406,8 +3348,6 @@ class CResolutionRangeStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -3671,8 +3611,6 @@ class CDatasetListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -3849,8 +3787,6 @@ class CCrystalNameStub(CString):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Wrong number of columns"
@@ -3957,8 +3893,6 @@ class CMiniMtzDataFileStub(CMtzDataFileStub):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "151": {
             "description": "Failed converting MTZ file to alternative format"
@@ -4052,14 +3986,6 @@ class CUnmergedMtzDataFileStub(CMtzDataFileStub):
 
 
 @cdata_class(
-    attributes={
-        "a": attribute(AttributeType.CUSTOM, custom_class="CCellLengthStub"),
-        "b": attribute(AttributeType.CUSTOM, custom_class="CCellLengthStub"),
-        "c": attribute(AttributeType.CUSTOM, custom_class="CCellLengthStub"),
-        "alpha": attribute(AttributeType.CUSTOM, custom_class="CCellAngleStub"),
-        "beta": attribute(AttributeType.CUSTOM, custom_class="CCellAngleStub"),
-        "gamma": attribute(AttributeType.CUSTOM, custom_class="CCellAngleStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -4356,12 +4282,6 @@ class CMtzColumnGroupTypeStub(CColumnTypeStub):
 
 
 @cdata_class(
-    attributes={
-        "columnLabel": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "columnType": attribute(AttributeType.CUSTOM, custom_class="CColumnTypeStub"),
-        "dataset": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "groupIndex": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -4522,13 +4442,6 @@ class CMtzColumnStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "columnName": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "defaultList": attribute(AttributeType.STRING),
-        "columnType": attribute(AttributeType.CUSTOM, custom_class="CColumnTypeListStub"),
-        "partnerTo": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "partnerOffset": attribute(AttributeType.INT),
-    },
     error_codes={
         "1": {
             "description": "Attempting to change immutable object"
@@ -4587,11 +4500,6 @@ class CColumnGroupItemStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "imageFile": attribute(AttributeType.CUSTOM, custom_class="CImageFileStub"),
-        "imageStart": attribute(AttributeType.INT),
-        "imageEnd": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -5332,8 +5240,6 @@ class CPhiFomColumnGroupStub(CProgramColumnGroupStub):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Wrong number of columns"
@@ -5458,8 +5364,6 @@ class CMapCoeffsDataFileStub(CMiniMtzDataFileStub):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "301": {
             "description": "Running ctruncate failed"
@@ -5552,8 +5456,6 @@ class CObsDataFileStub(CMiniMtzDataFileStub):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Wrong number of columns"
@@ -5677,11 +5579,6 @@ class CPhsDataFileStub(CMiniMtzDataFileStub):
 
 
 @cdata_class(
-    attributes={
-        "fileName": attribute(AttributeType.CUSTOM, custom_class="CMiniMtzDataFileStub"),
-        "columnTag": attribute(AttributeType.STRING),
-        "columnNames": attribute(AttributeType.STRING),
-    },
     error_codes={
         "201": {
             "description": "Selected file is not a suitable 'mini' MTZ containing experimental data object"
@@ -5740,8 +5637,6 @@ class CMergeMiniMtzStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Wrong number of columns"
@@ -5860,10 +5755,6 @@ class CFreeRDataFileStub(CMiniMtzDataFileStub):
 
 
 @cdata_class(
-    attributes={
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "cell": attribute(AttributeType.CUSTOM, custom_class="CCellStub"),
-    },
     error_codes={
         "101": {
             "description": "Cell lengths should NOT be identical"
@@ -5938,16 +5829,6 @@ class CSpaceGroupCellStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "cell": attribute(AttributeType.CUSTOM, custom_class="CCellStub"),
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "wavelength": attribute(AttributeType.CUSTOM, custom_class="CWavelengthStub"),
-        "haveFreeRColumn": attribute(AttributeType.BOOLEAN),
-        "haveFobsColumn": attribute(AttributeType.BOOLEAN),
-        "haveFpmObsColumn": attribute(AttributeType.BOOLEAN),
-        "haveIobsColumn": attribute(AttributeType.BOOLEAN),
-        "haveIpmObsColumn": attribute(AttributeType.BOOLEAN),
-    },
     error_codes={
         "101": {
             "description": "Attempting to load mmCIF data from non-existant/broken file"
@@ -6011,14 +5892,6 @@ specific to coordinates, reflections or geometry data.
 
 
 @cdata_class(
-    attributes={
-        "file": attribute(AttributeType.CUSTOM, custom_class="CUnmergedDataFileStub"),
-        "cell": attribute(AttributeType.CUSTOM, custom_class="CCellStub"),
-        "wavelength": attribute(AttributeType.CUSTOM, custom_class="CWavelengthStub"),
-        "crystalName": attribute(AttributeType.STRING),
-        "dataset": attribute(AttributeType.STRING),
-        "excludeSelection": attribute(AttributeType.CUSTOM, custom_class="CRangeSelectionStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -6187,17 +6060,6 @@ class CImportUnmergedStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "cell": attribute(AttributeType.CUSTOM, custom_class="CCellStub"),
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "resolutionRange": attribute(AttributeType.CUSTOM, custom_class="CResolutionRangeStub"),
-        "listOfColumns": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "datasets": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "crystalNames": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "wavelengths": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "datasetCells": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "merged": attribute(AttributeType.BOOLEAN),
-    },
     error_codes={
         "101": {
             "description": "Attempting to load MTZ data from non-existant/broken file"
@@ -6292,22 +6154,6 @@ class CMtzDataStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-        "format": attribute(AttributeType.STRING),
-        "merged": attribute(AttributeType.STRING),
-        "crystalName": attribute(AttributeType.CUSTOM, custom_class="CCrystalNameStub"),
-        "datasetName": attribute(AttributeType.CUSTOM, custom_class="CDatasetNameStub"),
-        "cell": attribute(AttributeType.CUSTOM, custom_class="CCellStub"),
-        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
-        "batchs": attribute(AttributeType.STRING),
-        "lowRes": attribute(AttributeType.FLOAT),
-        "highRes": attribute(AttributeType.FLOAT),
-        "knowncell": attribute(AttributeType.BOOLEAN),
-        "knownwavelength": attribute(AttributeType.BOOLEAN),
-        "numberLattices": attribute(AttributeType.INT),
-        "wavelength": attribute(AttributeType.CUSTOM, custom_class="CWavelengthStub"),
-        "numberofdatasets": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -6479,10 +6325,6 @@ class CUnmergedDataContentStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-        "groupType": attribute(AttributeType.CUSTOM, custom_class="CMtzColumnGroupTypeStub"),
-        "columns": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -6636,14 +6478,6 @@ class CMtzColumnGroupStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "selected": attribute(AttributeType.BOOLEAN),
-        "obsDataFile": attribute(AttributeType.CUSTOM, custom_class="CObsDataFileStub"),
-        "crystalName": attribute(AttributeType.CUSTOM, custom_class="CCrystalNameStub"),
-        "datasetName": attribute(AttributeType.CUSTOM, custom_class="CDatasetNameStub"),
-        "formFactors": attribute(AttributeType.CUSTOM, custom_class="CFormFactorStub"),
-        "formFactorSource": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -6806,10 +6640,6 @@ class CDatasetStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "columnGroup": attribute(AttributeType.CUSTOM, custom_class="CMtzColumnGroupStub"),
-        "datasetName": attribute(AttributeType.STRING),
-    },
     error_codes={
         "101": {
             "description": "Column not in MTZ file"
@@ -6863,8 +6693,6 @@ class CProgramColumnGroup0Stub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"

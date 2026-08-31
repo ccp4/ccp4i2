@@ -581,10 +581,6 @@ class CSMILESStringStub(CString):
 
 
 @cdata_class(
-    attributes={
-        "taskName": attribute(AttributeType.STRING),
-        "patch": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1096,10 +1092,6 @@ class CFollowFromJobStub(CUUIDStub):
 
 
 @cdata_class(
-    attributes={
-        "start": attribute(AttributeType.FLOAT),
-        "end": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "101": {
             "description": "End of range less than start"
@@ -1138,10 +1130,6 @@ class CFloatRangeStub(CRangeStub):
 
 
 @cdata_class(
-    attributes={
-        "start": attribute(AttributeType.INT),
-        "end": attribute(AttributeType.INT),
-    },
     error_codes={
         "101": {
             "description": "End of range less than start"

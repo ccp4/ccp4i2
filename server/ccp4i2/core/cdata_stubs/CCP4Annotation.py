@@ -16,14 +16,6 @@ from ccp4i2.core.base_object.fundamental_types import CBoolean, CFloat, CInt, CL
 
 
 @cdata_class(
-    attributes={
-        "pmid": attribute(AttributeType.INT),
-        "title": attribute(AttributeType.STRING),
-        "authorList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "source": attribute(AttributeType.STRING),
-        "url": attribute(AttributeType.STRING),
-        "selected": attribute(AttributeType.BOOLEAN),
-    },
     error_codes={
         "101": {
             "description": "Failed to load Medline data"
@@ -87,12 +79,6 @@ class CBibReferenceStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "taskName": attribute(AttributeType.STRING),
-        "version": attribute(AttributeType.STRING),
-        "title": attribute(AttributeType.STRING),
-        "references": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "100": {
             "description": "Failed attempting to load MedLine file - file not found"
@@ -154,12 +140,6 @@ class CBibReferenceGroupStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "family": attribute(AttributeType.STRING),
-        "style": attribute(AttributeType.INT),
-        "pointSize": attribute(AttributeType.INT),
-        "weight": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -480,9 +460,6 @@ class CAnnotationListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "tag": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -625,14 +602,6 @@ class CMetaDataTagStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "year": attribute(AttributeType.INT),
-        "month": attribute(AttributeType.STRING),
-        "day": attribute(AttributeType.INT),
-        "yearRange": attribute(AttributeType.INT),
-        "monthRange": attribute(AttributeType.INT),
-        "dayRange": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -991,21 +960,6 @@ class CMetaDataTagListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "name": attribute(AttributeType.STRING),
-        "mechanism": attribute(AttributeType.STRING),
-        "serverList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "userExtensible": attribute(AttributeType.BOOLEAN),
-        "customCodeFile": attribute(AttributeType.CUSTOM, custom_class="CDataFile"),
-        "queueOptionsFile": attribute(AttributeType.CUSTOM, custom_class="CDataFile"),
-        "ccp4Dir": attribute(AttributeType.STRING),
-        "tempDir": attribute(AttributeType.STRING),
-        "sge_root": attribute(AttributeType.STRING),
-        "keyFilename": attribute(AttributeType.STRING),
-        "validate": attribute(AttributeType.STRING),
-        "timeout": attribute(AttributeType.FLOAT),
-        "maxTries": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1195,10 +1149,6 @@ class CServerGroupStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "platformNode": attribute(AttributeType.STRING),
-        "userId": attribute(AttributeType.CUSTOM, custom_class="CUserIdStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1354,11 +1304,6 @@ class CUserAddressStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "text": attribute(AttributeType.STRING),
-        "time": attribute(AttributeType.CUSTOM, custom_class="CTimeStub"),
-        "author": attribute(AttributeType.CUSTOM, custom_class="CUserIdStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,

@@ -20,8 +20,6 @@ from ccp4i2.core.cdata_stubs.CCP4File import CFilePathStub, CProjectIdStub
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -137,11 +135,6 @@ class CRefmacRestraintsDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "chain_id": attribute(AttributeType.STRING),
-        "residue_1": attribute(AttributeType.INT),
-        "residue_2": attribute(AttributeType.INT),
-    },
     error_codes={
         "101": {
             "description": "No sequence identity or structure RMS to target set"
@@ -199,11 +192,6 @@ class CRefmacRigidGroupSegmentStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "atomType": attribute(AttributeType.STRING),
-        "Fp": attribute(AttributeType.FLOAT),
-        "Fpp": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -430,10 +418,6 @@ class CRefmacRigidGroupListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "rigid_group_id": attribute(AttributeType.STRING),
-        "segmentList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "0": {
             "severity": 0,

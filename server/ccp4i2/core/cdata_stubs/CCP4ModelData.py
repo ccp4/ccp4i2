@@ -66,9 +66,6 @@ class CSeqDataFileListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "selection": attribute(AttributeType.CUSTOM, custom_class="CDictStub"),
-    },
     error_codes={
         "1003": {
             "description": "XML does not have <ccp4i2> root node"
@@ -193,14 +190,6 @@ class CAtomRefmacSelectionListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "groupId": attribute(AttributeType.INT),
-        "chainIds": attribute(AttributeType.STRING),
-        "firstRes": attribute(AttributeType.INT),
-        "lastRes": attribute(AttributeType.INT),
-        "atoms": attribute(AttributeType.STRING),
-        "alt": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -434,8 +423,6 @@ class CResidueRangeListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -556,13 +543,6 @@ class CTLSDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "groupId": attribute(AttributeType.INT),
-        "chainId": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "firstRes": attribute(AttributeType.INT),
-        "lastRes": attribute(AttributeType.INT),
-        "selection": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -747,8 +727,6 @@ class CSequenceStringStub(CString):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -914,15 +892,6 @@ class CElementStub(COneWordStub):
 
 
 @cdata_class(
-    attributes={
-        "identifier": attribute(AttributeType.STRING),
-        "referenceDb": attribute(AttributeType.STRING),
-        "reference": attribute(AttributeType.STRING),
-        "name": attribute(AttributeType.STRING),
-        "description": attribute(AttributeType.STRING),
-        "sequence": attribute(AttributeType.STRING),
-        "moleculeType": attribute(AttributeType.STRING),
-    },
     error_codes={
         "201": {
             "description": "Sequence undefined",
@@ -1050,10 +1019,6 @@ What about nucleic/polysach?
 
 
 @cdata_class(
-    attributes={
-        "identifier": attribute(AttributeType.STRING),
-        "moleculeType": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1219,8 +1184,6 @@ or interleaved sequences.
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1339,9 +1302,6 @@ class CBlastDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "monomerList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "101": {
             "description": "Error opening MMCIF format file"
@@ -1410,12 +1370,6 @@ class CDictDataStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "identifier": attribute(AttributeType.STRING),
-        "formula": attribute(AttributeType.STRING),
-        "dictionaryName": attribute(AttributeType.STRING),
-        "smiles": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1580,11 +1534,6 @@ class CMonomerStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "hitId": attribute(AttributeType.STRING),
-        "querySequence": attribute(AttributeType.STRING),
-        "hitSequence": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1739,9 +1688,6 @@ class CBlastItemStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "groupIds": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1964,8 +1910,6 @@ class COccRelationRefmacListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Error attempting to merge geometry files - no libcheck script"
@@ -2050,12 +1994,6 @@ class CDictDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "label": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "number": attribute(AttributeType.INT),
-        "use": attribute(AttributeType.BOOLEAN),
-        "pdbItemList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -2220,11 +2158,6 @@ A single ensemble is a CList of structures.
 
 
 @cdata_class(
-    attributes={
-        "chainId": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "firstRes": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "lastRes": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -2370,9 +2303,6 @@ class CResidueRangeStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "text": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -2517,10 +2447,6 @@ class CAtomSelectionStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "queryId": attribute(AttributeType.STRING),
-        "alignmentList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "201": {
             "description": "Failed reading blast file"
@@ -2580,9 +2506,6 @@ class CBlastDataStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-        "alignmentList": attribute(AttributeType.CUSTOM, custom_class="CList"),
-    },
     error_codes={
         "201": {
             "description": "Failed to read HHPred file"
@@ -2704,8 +2627,6 @@ class CPdbDataFileListStub(CList):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -2893,11 +2814,6 @@ class COccRefmacSelectionListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "uniprotId": attribute(AttributeType.STRING),
-        "organism": attribute(AttributeType.STRING),
-        "expressionSystem": attribute(AttributeType.STRING),
-    },
     error_codes={
         "401": {
             "description": "No uniprot id available"
@@ -2958,8 +2874,6 @@ class CSequenceMetaStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "201": {
             "description": "Error reading sequence file"
@@ -3036,8 +2950,6 @@ class CSeqDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "202": {
             "description": "Error reading from file"
@@ -3116,11 +3028,6 @@ class CSeqAlignDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "annotation": attribute(AttributeType.STRING),
-        "identifier": attribute(AttributeType.STRING),
-        "chain": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -3433,12 +3340,6 @@ class CPdbDataStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-        "groupId": attribute(AttributeType.INT),
-        "chainId": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "firstRes": attribute(AttributeType.INT),
-        "lastRes": attribute(AttributeType.INT),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -3597,15 +3498,6 @@ class CAtomRefmacSelectionStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "id": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "three_letter_code": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "name": attribute(AttributeType.STRING),
-        "group": attribute(AttributeType.STRING),
-        "number_atoms_all": attribute(AttributeType.INT),
-        "number_atoms_nh": attribute(AttributeType.INT),
-        "desc_level": attribute(AttributeType.INT),
-    },
     error_codes={
         "201": {
             "description": "Error reading monomer id and name"
@@ -3666,8 +3558,6 @@ class CChemCompStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -3828,14 +3718,6 @@ class CAsuContentSeqListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "sequence": attribute(AttributeType.CUSTOM, custom_class="CSequenceStringStub"),
-        "nCopies": attribute(AttributeType.INT),
-        "polymerType": attribute(AttributeType.STRING),
-        "name": attribute(AttributeType.STRING),
-        "description": attribute(AttributeType.STRING),
-        "source": attribute(AttributeType.CUSTOM, custom_class="CSeqDataFileStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -4000,9 +3882,6 @@ class CAsuContentSeqStub(CData):
 
 
 @cdata_class(
-    attributes={
-        "selection": attribute(AttributeType.CUSTOM, custom_class="CAtomSelectionStub"),
-    },
     error_codes={
         "401": {
             "description": "Failed running coord_format to fix coordinate file - is it a PDB file?"
@@ -4119,9 +3998,6 @@ class CPdbDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "seqList": attribute(AttributeType.CUSTOM, custom_class="CAsuContentSeqListStub"),
-    },
     error_codes={
         "101": {
             "description": "Failed reading file - is it correct file type?"
@@ -4176,8 +4052,6 @@ class CAsuContentStub(CDataFileContent):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "401": {
             "description": "Failed running coord_format to fix coordinate file - is it a PDB file?"
@@ -4278,11 +4152,6 @@ class CEnsemblePdbDataFileStub(CPdbDataFileStub):
 
 
 @cdata_class(
-    attributes={
-        "structure": attribute(AttributeType.CUSTOM, custom_class="CPdbDataFileStub"),
-        "identity_to_target": attribute(AttributeType.FLOAT),
-        "rms_to_target": attribute(AttributeType.FLOAT),
-    },
     error_codes={
         "101": {
             "description": "No sequence identity or structure RMS to target set"

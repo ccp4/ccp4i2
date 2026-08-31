@@ -264,10 +264,6 @@ specific to coordinates, reflections or geometry data.
 
 
 @cdata_class(
-    attributes={
-        "exeName": attribute(AttributeType.STRING),
-        "exePath": attribute(AttributeType.CUSTOM, custom_class="CDataFile"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -533,9 +529,6 @@ class CFileFunctionStub(CString):
 
 
 @cdata_class(
-    attributes={
-        "exportId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -822,10 +815,6 @@ class CExePathListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "name": attribute(AttributeType.STRING),
-        "path": attribute(AttributeType.CUSTOM, custom_class="CDataFile"),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -1094,21 +1083,6 @@ class CFilePathStub(CString):
 
 
 @cdata_class(
-    attributes={
-        "function": attribute(AttributeType.CUSTOM, custom_class="CFileFunctionStub"),
-        "userId": attribute(AttributeType.CUSTOM, custom_class="CUserIdStub"),
-        "hostName": attribute(AttributeType.CUSTOM, custom_class="CHostNameStub"),
-        "creationTime": attribute(AttributeType.CUSTOM, custom_class="CTimeStub"),
-        "pluginName": attribute(AttributeType.STRING),
-        "pluginVersion": attribute(AttributeType.CUSTOM, custom_class="CVersionStub"),
-        "pluginTitle": attribute(AttributeType.STRING),
-        "projectName": attribute(AttributeType.CUSTOM, custom_class="CProjectNameStub"),
-        "projectId": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "jobId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "jobNumber": attribute(AttributeType.STRING),
-        "comment": attribute(AttributeType.STRING),
-        "OS": attribute(AttributeType.STRING),
-    },
     error_codes={
         "101": {
             "description": "Attempting to read header from non-existant Xml file"
@@ -1187,8 +1161,6 @@ class CI2XmlHeaderStub(CData):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1303,8 +1275,6 @@ class CXmgrDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1421,8 +1391,6 @@ class CTextDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1537,8 +1505,6 @@ class CDataReflFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1654,8 +1620,6 @@ class CPostscriptDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1772,8 +1736,6 @@ class CYmlFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "1001": {
             "description": "Unknown error reading XML file"
@@ -1868,8 +1830,6 @@ class CXmlDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -1985,8 +1945,6 @@ specific to coordinates, reflections or geometry data.
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -2102,8 +2060,6 @@ class CPDFDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
@@ -2221,9 +2177,6 @@ class CSceneDataFileStub(CDataFile):
 
 
 @cdata_class(
-    attributes={
-        "header": attribute(AttributeType.CUSTOM, custom_class="CI2XmlHeaderStub"),
-    },
     error_codes={
         "1003": {
             "description": "XML does not have <ccp4i2> root node"
@@ -2268,8 +2221,6 @@ class CI2XmlDataFileStub(CXmlDataFileStub):
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "1001": {
             "description": "Unknown error reading XML file"

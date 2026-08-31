@@ -141,10 +141,6 @@ class CCustomTaskParamListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "text": attribute(AttributeType.STRING),
-        "name": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,
@@ -587,18 +583,6 @@ class CCustomComFileListStub(CList):
 
 
 @cdata_class(
-    attributes={
-        "name": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
-        "dataType": attribute(AttributeType.CUSTOM, custom_class="CI2DataTypeStub"),
-        "label": attribute(AttributeType.STRING),
-        "obligatory": attribute(AttributeType.BOOLEAN),
-        "saveDataToDb": attribute(AttributeType.BOOLEAN),
-        "function": attribute(AttributeType.CUSTOM, custom_class="CCustomTaskFileFunctionStub"),
-        "mergeTo": attribute(AttributeType.STRING),
-        "splitColumns": attribute(AttributeType.STRING),
-        "requiredContentType": attribute(AttributeType.CUSTOM, custom_class="CList"),
-        "outputFilePath": attribute(AttributeType.STRING),
-    },
     error_codes={
         "0": {
             "severity": 0,

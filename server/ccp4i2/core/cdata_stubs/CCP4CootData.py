@@ -20,8 +20,6 @@ from ccp4i2.core.cdata_stubs.CCP4File import CFilePathStub, CProjectIdStub
 
 
 @cdata_class(
-    attributes={
-    },
     error_codes={
         "101": {
             "description": "File does not exist"
