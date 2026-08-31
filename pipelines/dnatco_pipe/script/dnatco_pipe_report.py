@@ -62,5 +62,10 @@ class dnatco_pipe_report(Report):
         ciffilePaths = [ciffile1Path]
         if Path(ciffile2Path).is_file():
             ciffilePaths.append(ciffile2Path)
+        jsonfile1Path = str(self.jobInfo['filenames']['JSONOUT1'])
+        jsonfile2Path = str(self.jobInfo['filenames']['JSONOUT2'])
+        jsonfilePaths = [jsonfile1Path]
+        if Path(jsonfile2Path).is_file():
+            jsonfilePaths.append(jsonfile2Path)
         dnatco_report1 = dnatco_report()
-        dnatco_report1.defaultReport(parent, ciffilePaths)
+        dnatco_report1.defaultReport(parent, ciffilePaths, jsonfilePaths)

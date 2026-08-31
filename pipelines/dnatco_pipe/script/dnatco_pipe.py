@@ -32,7 +32,7 @@ class dnatco_pipe(CPluginScript):
     TASKMODULE = 'pipelines'  # Where this plugin will appear on gui
     TASKNAME = 'dnatco_pipe'  # Task name - should be same as class name
     TASKVERSION = 0.1         # Version of this plugin
-    MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
+    MAINTAINER = 'martin.maly@mrclmb.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from DNATCO' },
                     202 : { 'description' : 'No output extended mmCIF file from DNATCO' },
@@ -82,14 +82,22 @@ class dnatco_pipe(CPluginScript):
 
         ciffile1PathJob = str(self.dnatco1.container.outputData.CIFOUT.fullPath)
         ciffile1PathPipeline = str(self.container.outputData.CIFOUT1.fullPath)
+        jsonfile1PathJob = str(self.dnatco1.container.outputData.JSONOUT.fullPath)
+        jsonfile1PathPipeline = str(self.container.outputData.JSONOUT1.fullPath)
         if Path(ciffile1PathJob).is_file():
             shutil.copyfile(ciffile1PathJob, ciffile1PathPipeline)
             self.container.outputData.CIFOUT1.annotation.set(self.dnatco1.container.outputData.CIFOUT.annotation)
+        if Path(jsonfile1PathJob).is_file():
+            shutil.copyfile(jsonfile1PathJob, jsonfile1PathPipeline)
+            self.container.outputData.JSONOUT1.annotation.set(self.dnatco1.container.outputData.JSONOUT.annotation)
         if bool(self.container.controlParameters.TOGGLE_XYZIN2):
             ciffile2PathJob = str(self.dnatco2.container.outputData.CIFOUT.fullPath)
             ciffile2PathPipeline = str(self.container.outputData.CIFOUT2.fullPath)
+            jsonfile2PathJob = str(self.dnatco2.container.outputData.JSONOUT.fullPath)
+            jsonfile2PathPipeline = str(self.container.outputData.JSONOUT2.fullPath)
             if Path(ciffile2PathJob).is_file():
                 shutil.copyfile(ciffile2PathJob, ciffile2PathPipeline)
+                shutil.copyfile(jsonfile2PathJob, jsonfile2PathPipeline)
                 self.container.outputData.CIFOUT1.annotation.set(
                     str(self.dnatco1.container.outputData.CIFOUT.annotation).replace("model", "model 1")
                     )

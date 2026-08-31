@@ -59,6 +59,18 @@
           <saveToDb>True</saveToDb>
         </qualifiers>
       </content>
+      <content id="JSONOUT1">
+        <className>CDialsJsonFile</className>
+        <qualifiers>
+          <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="JSONOUT2">
+        <className>CDialsJsonFile</className>
+        <qualifiers>
+          <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
       <content id="RESTRAINTS">
         <className>CRefmacRestraintsDataFile</className>
         <qualifiers>

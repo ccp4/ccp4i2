@@ -30,13 +30,14 @@ class dnatco(CPluginScript):
     TASKMODULE = 'wrappers'  # Where this plugin will appear on gui
     TASKNAME = 'dnatco'      # Task name - should be same as class name
     TASKVERSION= 0.1         # Version of this plugin
-    TASKCOMMAND = '/opt/ccp4-10/bin/dnatco'   # The command to run the executable
-    MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
+    TASKCOMMAND = '/opt/ccp4-20260629/bin/dnatco.sh'   # The command to run the executable
+    MAINTAINER = 'martin.maly@mrclmb.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from DNATCO' },
                     202 : { 'description' : 'No output extended mmCIF file from DNATCO' },
                     203 : { 'description' : 'No output PDF report file from DNATCO' },
                     204 : { 'description' : 'Failed to dnatcoify structure' },
+                    205 : { 'description' : 'No output NAVAL validation JSON file from DNATCO' },
                     }
 
 
@@ -45,6 +46,7 @@ class dnatco(CPluginScript):
         self.appendCommandLine(['--outputDir', self.workDirectory])
         self.appendCommandLine(['--prefix', "dnatco"])
         self.appendCommandLine(['--extendedCIF'])
+        self.appendCommandLine(['--anglesLengthsByResidueJson'])
         # if self.container.inputData.HKLIN.isSet():
         #     self.appendCommandLine(['--reflns', str(self.container.inputData.HKLIN.fullPath)])
         if bool(self.container.controlParameters.GENERATE_RESTRAINTS):
@@ -72,27 +74,33 @@ class dnatco(CPluginScript):
         # outputCifFilename = outputFilenamePrefix + '_extended.cif'
         # outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), outputCifFilename))
         work_dir = Path(self.workDirectory)
-        cif_file = "dnatco_extended.cif"
-        if Path(str(cif_file)).is_file():
-            self.appendErrorReport(202, str(cif_file))
+        cif_path = work_dir / "dnatco_extended.cif"
+        json_naval_path = work_dir / "dnatco_angles_lengths_by_residue.json"
+        if not Path(str(cif_path)).is_file():
+            self.appendErrorReport(202, str(cif_path))
             return CPluginScript.FAILED
-        self.container.outputData.CIFOUT.setFullPath(str(cif_file))
+        if not Path(str(json_naval_path)).is_file():
+            self.appendErrorReport(205, str(json_naval_path))
+            return CPluginScript.FAILED
+        self.container.outputData.CIFOUT.setFullPath(str(cif_path))
         self.container.outputData.CIFOUT.annotation.set('Extended model (mmCIF format)')
+        print(dir(self.container.outputData))
+        print(self.container.outputData.CONTENTS)
+        self.container.outputData.JSONOUT.setFullPath(str(json_naval_path))
+        self.container.outputData.JSONOUT.annotation.set('Naval validation data (JSON format)')
 
         if bool(self.container.controlParameters.GENERATE_RESTRAINTS):
             # outputRestraintsFilename = outputFilenamePrefix + '_restraints_refmac.txt'
             # outputRestraintsPath = os.path.normpath(os.path.join(self.getWorkDirectory(), outputRestraintsFilename))
-            restraint_file = "dnatco_restraints_refmac.txt"
-            if Path(str(restraint_file)).is_file():
-                outputRestraintsPath = str(restraint_file)
-            else:
-                outputRestraintsPath = ""
-            if Path(outputRestraintsPath).is_file():
-                self.container.outputData.RESTRAINTS.setFullPath(outputRestraintsPath)
-                self.container.outputData.RESTRAINTS.annotation.set('DNATCO restraints')
-            else:
-                self.appendErrorReport(201, outputRestraintsPath)
+            restraint_path = work_dir / "dnatco_restraints_refmac.txt"
+            if not restraint_path.is_file():
+                self.appendErrorReport(201, str(restraint_path))
                 return CPluginScript.FAILED
+
+            self.container.outputData.RESTRAINTS.setFullPath(str(restraint_path))
+            self.container.outputData.RESTRAINTS.annotation.set(
+                'DNATCO restraints'
+            )
 
         xmlText = ""
         xmlroot = ET.fromstringlist(["<DNATCO>", xmlText, "</DNATCO>"])

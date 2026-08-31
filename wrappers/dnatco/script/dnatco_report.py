@@ -22,6 +22,7 @@ from report.CCP4ReportParser import *
 from core import CCP4Modules
 from pathlib import Path
 import gemmi
+import json
 
 
 class dnatco_report(Report):
@@ -52,30 +53,40 @@ class dnatco_report(Report):
             jobLogFold.addPre("DNATCO is running...")
 
 
-    def defaultReport(self, parent=None, ciffilePaths=[]):
+    def defaultReport(self, parent=None, ciffilePaths=[], jsonfilePaths=[]):
 
         if parent is None:
             parent = self
         self.addDiv(style="clear:both;")  # gives space for the title
 
-        if ciffilePaths:
-            if len(ciffilePaths) == 2:
+        if ciffilePaths and jsonfilePaths:
+            if len(ciffilePaths) == 2 and len(jsonfilePaths) == 2:
                 compare_two = True
             else:
                 compare_two = False
         else:
-            # only one mmCIF file from this job
+            # only one mmCIF file and one JSON file from this job
             compare_two = False
             if self.jobInfo:
                 if 'filenames' in self.jobInfo and 'CIFOUT' in self.jobInfo['filenames']:
                     ciffilePaths = [self.jobInfo['filenames']['CIFOUT']]
-            
+                if 'filenames' in self.jobInfo and 'JSONOUT' in self.jobInfo['filenames']:
+                    jsonfilePaths = [self.jobInfo['filenames']['JSONOUT']]
         cif_data1 = self.read_data_from_cif(ciffilePaths[0], parent)
+        json_naval_data1 = self.read_naval_json(jsonfilePaths[0], parent)
         if compare_two:
             cif_data2 = self.read_data_from_cif(ciffilePaths[1], parent)
+            json_naval_data2 = self.read_naval_json(jsonfilePaths[1], parent)
 
         # draw report
-        overallFold = parent.addFold(label="Overall structure quality", initiallyOpen=True)
+        ####################################################################################################
+        ntcFold = parent.addFold(label="DNATCO Dinucleotide Conformer Class Validation", initiallyOpen=True)
+        ####################################################################################################
+        # title1 = parent.addDiv(style="font-size:150%;font-weight:bold;clear:both;")
+        # title1.append("DNATCO Dinucleotide Conformer Class Validation")
+
+        indentDiv = ntcFold.addDiv(style="margin-left:1.5em;")
+        overallFold = indentDiv.addFold(label="Overall structure quality", initiallyOpen=True)
         noteDiv = overallFold.addDiv(style='font-size:110%;')
         noteDiv.append(
             "Assignment of conformer class (NtC) to dinucleotide steps and the quality of fit between each"
@@ -102,11 +113,34 @@ class dnatco_report(Report):
             table.addData(title="Confal score", data=[cif_data1['overall_confal_score']])
             table.addData(title="Confal score percentile", data=[cif_data1['overall_confal_percentile']])
 
+        graphPerStep = overallFold.addFlotGraph(
+            title="RMSD per step",
+            style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;")
+        graphPerStep.addData(title="step", data=cif_data1['step_id'])
+        graphPerStep.addData(title="RMSD_model1(A)", data=cif_data1['rmsd'])
+        if compare_two:
+            graphPerStep.addData(title="RMSD_model2(A)", data=cif_data2['rmsd'])
+        plotPerStep = graphPerStep.addPlotObject()
+        plotPerStep.append('title', 'RMSD per step')
+        plotPerStep.append('plottype', 'xy')
+        plotPerStep.append('xlabel', 'step id')
+        plotPerStep.append('ylabel', 'RMSD (A)')
+        plotPerStep.append('legendposition', x=1, y=0)  # right bottom corner
+        plotLine = plotPerStep.append('plotline', xcol=1, ycol=2)
+        plotLine.append('symbolsize', '1')
+        plotLine.append('linestyle', '.')
+        plotLine.append('colour', 'gray')
+        if compare_two:
+            plotLine2 = plotPerStep.append('plotline', xcol=1, ycol=3)
+            plotLine2.append('symbolsize', '1')
+            plotLine2.append('linestyle', '.')
+            plotLine2.append('colour', 'blue')
+
         if compare_two:
             model_label = " (model 1)"
         else:
             model_label = ""
-        outliersFold = parent.addFold(label="Dinucleotides outliers", initiallyOpen=True)
+        outliersFold = ntcFold.addFold(label="Dinucleotides outliers", initiallyOpen=True)
         noteDiv = outliersFold.addDiv(style='font-size:110%;')
         noteDiv.append(
             "List all unassigned dinucleotide steps. Dinucleotide conformer (NtC)"
@@ -146,7 +180,7 @@ class dnatco_report(Report):
             noteDiv = outliersFold.addDiv(style='font-size:110%;')
             noteDiv.append("No dinucleotide outliers found.")
 
-        improvablesFold = parent.addFold(label="Improvable dinucleotide outliers", initiallyOpen=True)
+        improvablesFold = ntcFold.addFold(label="Improvable dinucleotide outliers", initiallyOpen=True)
         noteDiv = improvablesFold.addDiv(style='font-size:110%;')
         noteDiv.append(
             " List of unassigned dinucleotide steps that are considered"
@@ -183,30 +217,7 @@ class dnatco_report(Report):
             noteDiv = improvablesFold.addDiv(style='font-size:110%;')
             noteDiv.append("No improvable dinucleotide outliers found.")
 
-        allDinucleotidesFold = parent.addFold(label="All dinucleotides", initiallyOpen=True)
-
-        graphPerStep = allDinucleotidesFold.addFlotGraph(
-            title="RMSD per step",
-            style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;")
-        graphPerStep.addData(title="step", data=cif_data1['step_id'])
-        graphPerStep.addData(title="RMSD_model1(A)", data=cif_data1['rmsd'])
-        if compare_two:
-            graphPerStep.addData(title="RMSD_model2(A)", data=cif_data2['rmsd'])
-        plotPerStep = graphPerStep.addPlotObject()
-        plotPerStep.append('title', 'RMSD per step')
-        plotPerStep.append('plottype', 'xy')
-        plotPerStep.append('xlabel', 'step id')
-        plotPerStep.append('ylabel', 'RMSD (A)')
-        plotPerStep.append('legendposition', x=1, y=0)  # right bottom corner
-        plotLine = plotPerStep.append('plotline', xcol=1, ycol=2)
-        plotLine.append('symbolsize', '1')
-        plotLine.append('linestyle', '.')
-        plotLine.append('colour', 'gray')
-        if compare_two:
-            plotLine2 = plotPerStep.append('plotline', xcol=1, ycol=3)
-            plotLine2.append('symbolsize', '1')
-            plotLine2.append('linestyle', '.')
-            plotLine2.append('colour', 'blue')
+        allDinucleotidesFold = ntcFold.addFold(label="All dinucleotides", initiallyOpen=False)
 
         table = allDinucleotidesFold.addTable(title="All dinucleotides")
         table.addData(title="Step ID", data=cif_data1['step_id'])
@@ -224,6 +235,23 @@ class dnatco_report(Report):
         table.addData(title=f"RMSD to closest NtC representative (&#197;){model_label}", data=cif_data1['rmsd_NtC_assigned'])
         if compare_two:
             table.addData(title="RMSD to closest NtC representative (&#197;) (model 2)", data=cif_data2['rmsd_NtC_assigned'])
+
+
+        ################################################################################################
+        navalFold = parent.addFold(label="NAVAL Bond Lengths and Angles Validation", initiallyOpen=True)
+        ################################################################################################
+
+        indentDiv = navalFold.addDiv(style="margin-left:1.5em;")
+
+        table = indentDiv.addTable(title="All dinucleotides", transpose=True)
+        if json_naval_data1.get('navalLengthsStats', None):
+            header = list(json_naval_data1['navalLengthsStats'][0].keys())
+            header.remove('navalTier') if 'navalTier' in header else header
+            table.addData(title="", data=header)
+            for tier in json_naval_data1['navalLengthsStats']:
+                # tier.pop('navalTier', None)
+                tier_title = tier.pop('navalTier', None)
+                table.addData(title=tier_title, data=tier.values())
 
         self.addDiv(style="clear:both;")
 
@@ -355,3 +383,11 @@ class dnatco_report(Report):
         cif_data['assigned_NtC'] = [ntc if ntc != 'NANT' else '-' for ntc in cif_data['assigned_NtC']]
 
         return cif_data
+
+
+    def read_naval_json(self, jsonfilePath, parent=None):
+        if not Path(jsonfilePath).is_file():
+            return None
+        with open(jsonfilePath, 'r') as f:
+            naval_data = json.load(f)
+        return naval_data
