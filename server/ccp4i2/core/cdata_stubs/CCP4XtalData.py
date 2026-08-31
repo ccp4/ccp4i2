@@ -75,13 +75,6 @@ class CCellLengthStub(CFloat):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -186,13 +179,6 @@ class CPhaserRFileDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -275,13 +261,6 @@ class CColumnGroupListStub(CList):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -388,13 +367,6 @@ class CMmcifReflDataFileStub(CMmcifDataFileStub):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -578,13 +550,6 @@ class CColumnGroupStub(CData):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "151": {
@@ -666,13 +631,6 @@ class CMtzDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -912,13 +870,6 @@ what we are searching for.
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -1023,13 +974,6 @@ class CDialsPickleFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1167,13 +1111,6 @@ class CMergeMiniMtzListStub(CList):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -1281,13 +1218,6 @@ class CUnmergedDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1303,13 +1233,6 @@ class CUnmergedDataFileStub(CDataFile):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -1414,13 +1337,6 @@ class CDialsJsonFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2070,13 +1986,6 @@ class CColumnTypeListStub(CList):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -2182,13 +2091,6 @@ class CPhaserSolDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2271,13 +2173,6 @@ class CImportUnmergedListStub(CList):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -2383,13 +2278,6 @@ class CShelxFADataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2764,13 +2652,6 @@ class CAsuComponentListStub(CList):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -2875,13 +2756,6 @@ class CGenericReflDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3177,13 +3051,6 @@ class CAnomalousScatteringElementStub(CElementStub):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -3287,13 +3154,6 @@ class CImageFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3370,13 +3230,6 @@ class CProgramColumnGroupStub(CData):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -3481,13 +3334,6 @@ class CRefmacKeywordFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3561,13 +3407,6 @@ class CResolutionRangeStub(CData):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -3684,13 +3523,6 @@ class CMapDataFileStub(CDataFile):
     SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
     SUBTYPE_MASK = 4             # real-space mask (mode-0 region map)
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3840,13 +3672,6 @@ class CDatasetListStub(CList):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -3952,13 +3777,6 @@ class CImosflmXmlDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -4032,13 +3850,6 @@ class CCrystalNameStub(CString):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "201": {
@@ -4132,13 +3943,6 @@ class CMiniMtzDataFileStub(CMtzDataFileStub):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -4154,13 +3958,6 @@ class CMiniMtzDataFileStub(CMtzDataFileStub):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "151": {
@@ -4241,13 +4038,6 @@ class CUnmergedMtzDataFileStub(CMtzDataFileStub):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -5543,13 +5333,6 @@ class CPhiFomColumnGroupStub(CProgramColumnGroupStub):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "201": {
@@ -5661,13 +5444,6 @@ class CMapCoeffsDataFileStub(CMiniMtzDataFileStub):
     # Column signatures for each content flag (indexed by contentFlag - 1)
     CONTENT_SIGNATURE_LIST = [['F', 'PHI']]
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -5683,13 +5459,6 @@ class CMapCoeffsDataFileStub(CMiniMtzDataFileStub):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "301": {
@@ -5769,13 +5538,6 @@ class CObsDataFileStub(CMiniMtzDataFileStub):
     CONTENT_SIGNATURE_LIST = [['Iplus', 'SIGIplus', 'Iminus', 'SIGIminus'], [
         'Fplus', 'SIGFplus', 'Fminus', 'SIGFminus'], ['I', 'SIGI'], ['F', 'SIGF']]
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -5791,13 +5553,6 @@ class CObsDataFileStub(CMiniMtzDataFileStub):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "201": {
@@ -5908,13 +5663,6 @@ class CPhsDataFileStub(CMiniMtzDataFileStub):
     # Column signatures for each content flag (indexed by contentFlag - 1)
     CONTENT_SIGNATURE_LIST = [['HLA', 'HLB', 'HLC', 'HLD'], ['PHI', 'FOM']]
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -5993,13 +5741,6 @@ class CMergeMiniMtzStub(CData):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "201": {
@@ -6105,13 +5846,6 @@ class CFreeRDataFileStub(CMiniMtzDataFileStub):
     # Column signatures for each content flag (indexed by contentFlag - 1)
     CONTENT_SIGNATURE_LIST = [['FREER']]
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -7130,13 +6864,6 @@ class CProgramColumnGroup0Stub(CData):
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -7240,13 +6967,6 @@ class CPhaserTngDagFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

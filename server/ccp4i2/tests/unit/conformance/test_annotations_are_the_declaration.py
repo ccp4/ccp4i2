@@ -11,9 +11,10 @@ Only the decorator was load-bearing; the annotation was decoration, and the
 declaration a dataclass uses, and it carries strictly more --- the class
 itself, rather than its name as a string to be looked up later.
 
-Measured across the stubs the two agree exactly: 621 fields; for the 278
-naming a custom class the annotation names the same one, and the other 343
-map one-to-one (STRING->CString, INT->CInt, FLOAT->CFloat, BOOLEAN->CBoolean).
+Measured across the stubs the two agree exactly. At the time this was written
+that was 621 fields over 122 classes; removing the inherited restatements
+later reduced it to 319 fields over 82, because a class that adds nothing now
+declares nothing. The agreement is the invariant, not the count.
 
 The runtime now reads the annotations, falling back to the decorator for
 hand-written classes such as CDataFile which carry one but no annotations.
@@ -70,14 +71,19 @@ def test_annotations_reproduce_the_decorator():
         from_annotations = attributes_from_annotations(klass)
         if not from_annotations:
             continue          # no annotations at all: the fallback case
-        checked += 1
+        checked += len(from_annotations)
         a = {n: _built_class(d) for n, d in declared.items()}
         b = {n: _built_class(d) for n, d in from_annotations.items()}
         if a != b:
             disagreeing.append(
                 f"{klass.__name__}: {[n for n in a if b.get(n) != a[n]][:3]}")
 
-    assert checked > 100, f"only {checked} stubs checked --- proves little"
+    # Counted in fields, not classes. The class count is not a measure of
+    # coverage and fell from 122 to 82 when the restatements were removed ---
+    # a class that declares nothing and inherits everything is the intended
+    # end state, not a weaker test. The fields are still compared wherever
+    # they are declared.
+    assert checked > 250, f"only {checked} fields checked --- proves little"
     assert not disagreeing, (
         f"{len(disagreeing)} classes where the annotation and the decorator "
         f"declare different fields: {disagreeing[:5]}"

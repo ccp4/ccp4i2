@@ -21,13 +21,6 @@ from ccp4i2.core.cdata_stubs.CCP4File import CFilePathStub, CProjectIdStub
 
 @cdata_class(
     attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectIdStub"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePathStub"),
-        "annotation": attribute(AttributeType.STRING),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUIDStub"),
-        "subType": attribute(AttributeType.INT),
-        "contentFlag": attribute(AttributeType.INT),
     },
     error_codes={
         "101": {
@@ -130,13 +123,6 @@ class CRefmacRestraintsDataFileStub(CDataFile):
     to add methods and implementation-specific functionality.
     """
 
-    project: Optional[CProjectIdStub] = None
-    baseName: Optional[CFilePathStub] = None
-    relPath: Optional[CFilePathStub] = None
-    annotation: Optional[CString] = None
-    dbFileId: Optional[CUUIDStub] = None
-    subType: Optional[CInt] = None
-    contentFlag: Optional[CInt] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

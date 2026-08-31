@@ -339,7 +339,6 @@ class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
         "CCIfree_avg": attribute(AttributeType.FLOAT),
         "CCI_avg": attribute(AttributeType.FLOAT),
         "FSCaverage": attribute(AttributeType.FLOAT),
-        "annotation": attribute(AttributeType.STRING),
     },
     error_codes={
         "300": {
@@ -430,7 +429,6 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
     CCIfree_avg: Optional[CFloat] = None
     CCI_avg: Optional[CFloat] = None
     FSCaverage: Optional[CFloat] = None
-    annotation: Optional[CString] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -453,7 +451,6 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
         "CC": attribute(AttributeType.FLOAT),
         "RFactor": attribute(AttributeType.FLOAT),
         "RFree": attribute(AttributeType.FLOAT),
-        "annotation": attribute(AttributeType.STRING),
     },
     error_codes={
         "300": {
@@ -530,7 +527,6 @@ class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
     CC: Optional[CFloat] = None
     RFactor: Optional[CFloat] = None
     RFree: Optional[CFloat] = None
-    annotation: Optional[CString] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -621,7 +617,6 @@ class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
     attributes={
         "RFactor": attribute(AttributeType.FLOAT),
         "completeness": attribute(AttributeType.FLOAT),
-        "annotation": attribute(AttributeType.STRING),
     },
     error_codes={
         "300": {
@@ -682,7 +677,6 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
 
     RFactor: Optional[CFloat] = None
     completeness: Optional[CFloat] = None
-    annotation: Optional[CString] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -703,7 +697,6 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
         "RMSBond": attribute(AttributeType.FLOAT),
         "RMSAngle": attribute(AttributeType.FLOAT),
         "weightUsed": attribute(AttributeType.FLOAT),
-        "annotation": attribute(AttributeType.STRING),
     },
     error_codes={
         "300": {
@@ -775,7 +768,6 @@ class CRefinementPerformanceStub(CPerformanceIndicatorStub):
     RMSBond: Optional[CFloat] = None
     RMSAngle: Optional[CFloat] = None
     weightUsed: Optional[CFloat] = None
-    annotation: Optional[CString] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
