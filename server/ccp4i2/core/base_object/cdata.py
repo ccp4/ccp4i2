@@ -472,8 +472,8 @@ class CData(HierarchicalObject):
         expects CONTENTS_ORDER to be available on all CData objects.
 
         For CContainer subclasses, returns _data_order.
-        For other CData subclasses, returns contents_order from metadata if available,
-        otherwise returns list of child attribute names in alphabetical order.
+        For other CData subclasses, returns contents_order from metadata if
+        available, otherwise the order the fields were declared in.
 
         Returns:
             List of child names in order
@@ -491,8 +491,21 @@ class CData(HierarchicalObject):
             if contents_order:
                 return list(contents_order)
 
-        # Fallback: return CONTENTS (attribute names) in alphabetical order
-        return sorted(self.CONTENTS)
+        # Fallback: the order the fields were declared in.
+        #
+        # This used to sort alphabetically, and because CONTENTS_ORDER is a
+        # property rather than an attribute, `hasattr` in dataOrder() is always
+        # true and this value always won --- so an alphabetical order nobody
+        # had chosen was imposed on every CData that did not set
+        # contents_order, and dataOrder()'s own MRO walk never got to run.
+        # A unit cell rendered as a, alpha, b, beta, c, gamma.
+        #
+        # children() is in __dict__ insertion order, which is the order
+        # apply_metadata_to_instance created the fields, which is the order
+        # they are declared. So declaration order is what a reader of the
+        # class sees, and contents_order stays available for the cases that
+        # genuinely want a different one.
+        return list(self.CONTENTS)
 
     def isSet(self, field_name: str = None, allowUndefined: bool = False,
               allowDefault: bool = False, allSet: bool = True) -> bool:

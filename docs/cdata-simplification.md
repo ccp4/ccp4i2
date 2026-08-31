@@ -760,3 +760,178 @@ declaration. Collapsing two classes into one is a merge, not a re-derivation.
 Blast radius is small but not zero: `lib/utils/files/digest.py` and
 `upload_param.py` import stub names deliberately, and both do so *because* of
 the bypass --- they get simpler, not harder, when it goes.
+
+### `contents_order` is not the free step it looked like
+
+Measured 2026-08-31, before attempting it. The expectation was that a
+dataclass preserves declaration order, so `contents_order=` would become a
+duplicate of the annotation order and could simply be deleted. It is not, for
+a reason worth recording.
+
+`dataOrder()` (`cdata.py:798`) resolves in three stages: an explicit
+`CONTENT_ORDER`, then the MRO attribute walk, then `children()`. The second
+stage **sorts alphabetically**. So declaration order is not preserved anywhere
+today, and `contents_order` is the only thing holding a meaningful order:
+
+| | |
+|---|---|
+| stub classes carrying `contents_order` | 44 |
+| **load-bearing** --- order changes if removed | **33** |
+| redundant --- order unchanged if removed | 11 |
+
+Delete it from `CCellStub` and a unit cell renders `a, alpha, b, beta, c,
+gamma`. Delete it from `CSpaceGroupCellStub` and the cell precedes the space
+group. These are not cosmetic.
+
+The clean fix is to make stage two use declaration order --- which is exactly
+what a dataclass gives, so it is the same direction of travel. But it is a
+behavioural change, not a refactor:
+
+| | |
+|---|---|
+| stub classes whose order would change | **88 of 125** |
+| ...that have a `contents_order` today | 16 |
+| ...that have none, and so render alphabetically today | **72** |
+
+Much of that change is an improvement. `CCootHistoryDataFile` currently renders
+`annotation, baseName, contentFlag, dbFileId, project, relPath` --- alphabetical,
+and worse than the `project, baseName, relPath, ...` its declaration states.
+But 88 classes shifting is a visible change to every task interface built on
+them, and it needs saying out loud rather than arriving inside a refactor.
+
+**Recommendation.** Take it as a deliberate, separately-justified step:
+switch stage two to declaration order, take the snapshot diff *without*
+`--strict`, and read the changed orders as the deliverable. Then the 33
+load-bearing `contents_order` entries can be checked against it and the
+redundant ones deleted. Do not attempt it as a silent equivalence --- it is
+not one.
+
+#### Resolved: the alphabetical order was manufactured by a property
+
+The measurement above was right about the symptom and wrong about the cause,
+which turned a feared 88-class rewrite into one line.
+
+`CONTENTS_ORDER` is a **property**, and its last resort was
+`sorted(self.CONTENTS)`. `dataOrder()` stage 1 asks `hasattr(self,
+'CONTENTS_ORDER')` --- always true for a property --- and takes the value if
+non-empty. So stage 1 always won, the alphabetical fallback was imposed on
+every CData that did not set `contents_order`, and **stage 3's MRO walk, which
+already computed declaration order correctly, was unreachable**.
+
+`children()` is `__dict__` insertion order, which is the order
+`apply_metadata_to_instance` created the fields, which is the order they are
+declared. So the fix is `sorted(self.CONTENTS)` -> `list(self.CONTENTS)`.
+
+What it changes, from the snapshot over 171 tasks:
+
+| surface | difference |
+|---|---|
+| paths | **0** --- nothing invented or lost |
+| i2run addressing | **0 tasks** |
+| validity report | **0 tasks** |
+| `params.xml` written | **0 tasks** --- saved jobs and reruns unaffected |
+| GUI-rendered shape | **164 tasks** --- the deliverable |
+
+The scale is explained by `CDataFile`, whose declared order is `project,
+baseName, relPath, dbFileId, annotation, subType, contentFlag` and which
+rendered as `annotation, baseName, contentFlag, dbFileId, project, relPath,
+subType` --- in every task, for every file parameter.
+
+#### What `contents_order` is actually for
+
+It orders an unordered bag, and it never contracted to span every field: named
+fields come first in the given order, the rest follow. Only the meaning of "the
+rest" changed here. With declaration order supplying it:
+
+| | before | after |
+|---|---|---|
+| redundant --- restates declaration order | 11 | **28** |
+| load-bearing | 33 | **16** |
+
+The 16 survivors all do the one thing declaration order cannot express:
+hoisting a subclass's own field ahead of the inherited ones, as
+`CAsuDataFile` does putting `selection` before `project, baseName, ...`. MRO
+order puts a parent's fields first, so no arrangement of declarations reaches
+it. That is a real residual job, and the reason the argument stays.
+
+Deleting the 28 redundant ones is a follow-on, and now provably a no-op.
+
+### The redeclarations are transcription, not intent
+
+Established 2026-08-31 by reading the Qt-era source on `main`, after the
+question was put: is there really any intent in a subclass restating its
+parent's fields?
+
+There is not, and the reason is that **the legacy model used replace
+semantics**. A class's `CONTENTS` *was* its complete definition:
+
+```python
+class CPerformanceIndicator(CCP4Data.CData):
+  # This class should be reimplemented if value is not a float
+  CONTENTS_ORDER = ['value','annotation']
+  CONTENTS = {'value': ..., 'annotation': ...}
+
+class CRefinementPerformance(CPerformanceIndicator):
+  CONTENTS_ORDER = ['RFactor','RFree','RMSBond','RMSAngle','weightUsed','annotation']
+  CONTENTS = {'RFactor': ..., ..., 'annotation': ...}      # no 'value'
+```
+
+So `annotation` *had* to be restated and `CONTENTS_ORDER` *had* to list
+everything. Neither expresses a choice. Measured across the stubs: **77
+restated fields, and 0 of them differ from the ancestor's declaration.**
+
+The generator transcribed those complete lists into a model that **merges**
+across the MRO, where they read as decisions. Two consequences follow.
+
+**Classes gained fields their authors excluded.** 11 of 12 performance classes
+now carry `value`, and 7 also carry `annotation`; `CPairefPerformance` went
+from 1 declared field to 3. It went unnoticed because the transcribed
+`contents_order` does not name `value`, so it lands at the end of the list
+rather than the front. Nothing sets it and `extract_kpi_values` gates on
+`isSet()`, so it never reaches the database --- it is structural noise, not
+corruption.
+
+**A "convention" was inferred that does not exist.** An earlier pass here
+concluded that 12 classes wanted "own fields first, inherited last", in
+conflict with the file classes wanting the opposite. They want nothing of the
+sort: their complete legacy list was copied into a slot that now means
+something else.
+
+#### What `value` and `annotation` were for
+
+`CPerformanceIndicator` is the *simple* case --- a KPI that is one float plus a
+label --- and its own comment says to reimplement when that does not fit. The
+typed subclasses did exactly that, so `value` was never theirs. It is not a
+computed rollup.
+
+The rollup existed, as `__str__`: `CRefinementPerformance` composed
+`"R=0.21 RFree=0.24"` from its typed members, and Qt's `data(DisplayRole)`
+put that in the job tree. **The port dropped all 8**, along with the Qt method
+that consumed them. That is not a functional gap: `job-card.tsx` and
+`classic-jobs-list.tsx` build the same summary from the harvested
+`JobFloatValue`/`JobCharValue` rows, so the data reaches the client typed
+instead of pre-flattened. Worth knowing before anyone reintroduces a
+Python-side `__str__` to fix a display that is not broken.
+
+#### Where this leaves `contents_order`
+
+The 12 performance entries have no defender: they order fields that were
+never meant to be present. Removing the 77 restatements and those 12 entries
+is a fidelity restoration rather than a change of intent --- but it needs the
+merge defect below fixed first, or declaration order still will not be
+honoured.
+
+#### The merge ignores a redeclaring class's order
+
+Independent of the above, and the reason "just shuffle the declarations"
+cannot work today. `apply_metadata_to_instance` merges with `dict.update` over
+`reversed(__mro__)`, and updating an existing key **keeps its original
+position**. So:
+
+    CAsuDataFileStub declares : project, baseName, relPath, annotation, dbFileId, ...
+    what is actually built    : project, baseName, relPath, dbFileId, annotation, ...
+
+The subclass restated the fields in its own order and got the ancestor's. A
+class's declaration order is not honoured for any field an ancestor also
+declares. Fixing it means reinserting at the redeclaring class's position
+rather than leaving the key where it was first seen.
