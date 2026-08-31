@@ -805,3 +805,53 @@ switch stage two to declaration order, take the snapshot diff *without*
 load-bearing `contents_order` entries can be checked against it and the
 redundant ones deleted. Do not attempt it as a silent equivalence --- it is
 not one.
+
+#### Resolved: the alphabetical order was manufactured by a property
+
+The measurement above was right about the symptom and wrong about the cause,
+which turned a feared 88-class rewrite into one line.
+
+`CONTENTS_ORDER` is a **property**, and its last resort was
+`sorted(self.CONTENTS)`. `dataOrder()` stage 1 asks `hasattr(self,
+'CONTENTS_ORDER')` --- always true for a property --- and takes the value if
+non-empty. So stage 1 always won, the alphabetical fallback was imposed on
+every CData that did not set `contents_order`, and **stage 3's MRO walk, which
+already computed declaration order correctly, was unreachable**.
+
+`children()` is `__dict__` insertion order, which is the order
+`apply_metadata_to_instance` created the fields, which is the order they are
+declared. So the fix is `sorted(self.CONTENTS)` -> `list(self.CONTENTS)`.
+
+What it changes, from the snapshot over 171 tasks:
+
+| surface | difference |
+|---|---|
+| paths | **0** --- nothing invented or lost |
+| i2run addressing | **0 tasks** |
+| validity report | **0 tasks** |
+| `params.xml` written | **0 tasks** --- saved jobs and reruns unaffected |
+| GUI-rendered shape | **164 tasks** --- the deliverable |
+
+The scale is explained by `CDataFile`, whose declared order is `project,
+baseName, relPath, dbFileId, annotation, subType, contentFlag` and which
+rendered as `annotation, baseName, contentFlag, dbFileId, project, relPath,
+subType` --- in every task, for every file parameter.
+
+#### What `contents_order` is actually for
+
+It orders an unordered bag, and it never contracted to span every field: named
+fields come first in the given order, the rest follow. Only the meaning of "the
+rest" changed here. With declaration order supplying it:
+
+| | before | after |
+|---|---|---|
+| redundant --- restates declaration order | 11 | **28** |
+| load-bearing | 33 | **16** |
+
+The 16 survivors all do the one thing declaration order cannot express:
+hoisting a subclass's own field ahead of the inherited ones, as
+`CAsuDataFile` does putting `selection` before `project, baseName, ...`. MRO
+order puts a parent's fields first, so no arrangement of declarations reaches
+it. That is a real residual job, and the reason the argument stays.
+
+Deleting the 28 redundant ones is a follow-on, and now provably a no-op.
