@@ -140,7 +140,8 @@ class dnatco_report(Report):
             model_label = " (model 1)"
         else:
             model_label = ""
-        outliersFold = ntcFold.addFold(label="Dinucleotides outliers", initiallyOpen=True)
+
+        outliersFold = indentDiv.addFold(label="Dinucleotides outliers", initiallyOpen=True)
         noteDiv = outliersFold.addDiv(style='font-size:110%;')
         noteDiv.append(
             "List all unassigned dinucleotide steps. Dinucleotide conformer (NtC)"
@@ -180,7 +181,7 @@ class dnatco_report(Report):
             noteDiv = outliersFold.addDiv(style='font-size:110%;')
             noteDiv.append("No dinucleotide outliers found.")
 
-        improvablesFold = ntcFold.addFold(label="Improvable dinucleotide outliers", initiallyOpen=True)
+        improvablesFold = indentDiv.addFold(label="Improvable dinucleotide outliers", initiallyOpen=True)
         noteDiv = improvablesFold.addDiv(style='font-size:110%;')
         noteDiv.append(
             " List of unassigned dinucleotide steps that are considered"
@@ -217,7 +218,7 @@ class dnatco_report(Report):
             noteDiv = improvablesFold.addDiv(style='font-size:110%;')
             noteDiv.append("No improvable dinucleotide outliers found.")
 
-        allDinucleotidesFold = ntcFold.addFold(label="All dinucleotides", initiallyOpen=False)
+        allDinucleotidesFold = indentDiv.addFold(label="All dinucleotides", initiallyOpen=False)
 
         table = allDinucleotidesFold.addTable(title="All dinucleotides")
         table.addData(title="Step ID", data=cif_data1['step_id'])
@@ -236,6 +237,7 @@ class dnatco_report(Report):
         if compare_two:
             table.addData(title="RMSD to closest NtC representative (&#197;) (model 2)", data=cif_data2['rmsd_NtC_assigned'])
 
+        self.addDiv(style="clear:both;")
 
         ################################################################################################
         navalFold = parent.addFold(label="NAVAL Bond Lengths and Angles Validation", initiallyOpen=True)
@@ -243,7 +245,7 @@ class dnatco_report(Report):
 
         indentDiv = navalFold.addDiv(style="margin-left:1.5em;")
 
-        table = indentDiv.addTable(title="All dinucleotides", transpose=True)
+        table = indentDiv.addTable(title="NAVAL overall validation", transpose=True)
         if json_naval_data1.get('navalLengthsStats', None):
             header = list(json_naval_data1['navalLengthsStats'][0].keys())
             header.remove('navalTier') if 'navalTier' in header else header
