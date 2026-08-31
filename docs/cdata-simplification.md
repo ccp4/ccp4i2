@@ -760,3 +760,48 @@ declaration. Collapsing two classes into one is a merge, not a re-derivation.
 Blast radius is small but not zero: `lib/utils/files/digest.py` and
 `upload_param.py` import stub names deliberately, and both do so *because* of
 the bypass --- they get simpler, not harder, when it goes.
+
+### `contents_order` is not the free step it looked like
+
+Measured 2026-08-31, before attempting it. The expectation was that a
+dataclass preserves declaration order, so `contents_order=` would become a
+duplicate of the annotation order and could simply be deleted. It is not, for
+a reason worth recording.
+
+`dataOrder()` (`cdata.py:798`) resolves in three stages: an explicit
+`CONTENT_ORDER`, then the MRO attribute walk, then `children()`. The second
+stage **sorts alphabetically**. So declaration order is not preserved anywhere
+today, and `contents_order` is the only thing holding a meaningful order:
+
+| | |
+|---|---|
+| stub classes carrying `contents_order` | 44 |
+| **load-bearing** --- order changes if removed | **33** |
+| redundant --- order unchanged if removed | 11 |
+
+Delete it from `CCellStub` and a unit cell renders `a, alpha, b, beta, c,
+gamma`. Delete it from `CSpaceGroupCellStub` and the cell precedes the space
+group. These are not cosmetic.
+
+The clean fix is to make stage two use declaration order --- which is exactly
+what a dataclass gives, so it is the same direction of travel. But it is a
+behavioural change, not a refactor:
+
+| | |
+|---|---|
+| stub classes whose order would change | **88 of 125** |
+| ...that have a `contents_order` today | 16 |
+| ...that have none, and so render alphabetically today | **72** |
+
+Much of that change is an improvement. `CCootHistoryDataFile` currently renders
+`annotation, baseName, contentFlag, dbFileId, project, relPath` --- alphabetical,
+and worse than the `project, baseName, relPath, ...` its declaration states.
+But 88 classes shifting is a visible change to every task interface built on
+them, and it needs saying out loud rather than arriving inside a refactor.
+
+**Recommendation.** Take it as a deliberate, separately-justified step:
+switch stage two to declaration order, take the snapshot diff *without*
+`--strict`, and read the changed orders as the deliverable. Then the 33
+load-bearing `contents_order` entries can be checked against it and the
+redundant ones deleted. Do not attempt it as a silent equivalence --- it is
+not one.
