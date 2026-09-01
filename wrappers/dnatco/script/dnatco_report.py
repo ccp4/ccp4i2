@@ -104,10 +104,7 @@ class dnatco_report(Report):
             header.remove('cumulativeCount') if 'cumulativeCount' in header else header
             header.remove('cumulativePercentage') if 'cumulativePercentage' in header else header
             if compare_two_jsons:
-                header_two = []
-                for h in header:
-                    header_two.append(f"{h} model 1")
-                    header_two.append(f"{h} model 2")
+                header_two = [f"{h} model 1" for h in header] + [f"{h} model 2" for h in header]
                 header = header_two
             table.addData(title="", data=header)
 
