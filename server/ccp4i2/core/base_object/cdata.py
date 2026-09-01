@@ -86,6 +86,60 @@ def _merged_qualifier_template(cls: type) -> Dict[str, Any]:
 class CData(HierarchicalObject):
     """Base class for all CCP4i2 data objects with hierarchical relationships."""
 
+    # The error codes every CData shares. They used to be repeated verbatim
+    # in each class --- a consequence of the Qt-era replace semantics, where
+    # a class's ERROR_CODES was its complete set. Codes merge along the MRO
+    # now, so these are declared once and inherited.
+    ERROR_CODES = {
+        '0': {'severity': 0, 'description': 'OK'},
+        '1': {'severity': 1, 'description': 'Data has undefined value'},
+        '2': {'severity': 3, 'description': 'Data has undefined value'},
+        '3': {'severity': 2, 'description': 'Missing data'},
+        '4': {'description': 'Missing data'},
+        '5': {'description': 'Attempting to set data of wrong type'},
+        '6': {'description': 'Default value does not satisfy validity check'},
+        '7': {'severity': 2, 'description': 'Unrecognised qualifier in data input'},
+        '8': {'severity': 2, 'description': 'Attempting to get inaccessible attribute:'},
+        '9': {'description': 'Failed to get property'},
+        '10': {'severity': 2, 'description': 'Attempting to set inaccessible attribute:'},
+        '11': {'description': 'Failed to set property:'},
+        '12': {'description': 'Undetermined error setting value from XML'},
+        '13': {'description': 'Unrecognised class name in qualifier'},
+        '14': {'severity': 2, 'description': 'No object name when saving qualifiers to XML'},
+        '15': {'description': 'Error saving qualifier to XML'},
+        '16': {'severity': 2, 'description': 'Unrecognised item in XML data file'},
+        '17': {'description': 'Attempting to set unrecognised qualifier'},
+        '18': {'description': 'Attempting to set qualifier with wrong type'},
+        '19': {'description': 'Attempting to set qualifier with wrong list item type'},
+        '20': {'description': 'Error creating a list/dict item object'},
+        '21': {'description': 'Unknown error setting qualifiers from Xml file'},
+        '22': {'description': 'Unknown error testing validity'},
+        '23': {'description': 'Error saving data object to XML'},
+        '24': {'description': 'Unable to test validity of default', 'severity': 2},
+        '101': {'description': 'File does not exist'},
+        '102': {'description': 'No mime type for data file'},
+        '103': {'description': 'Attempting to set file content with inappropriate data'},
+        '104': {'description': 'There is no file content class specified for this type of file'},
+        '105': {'description': 'The file content class specified for this type of file can not be found'},
+        '300': {'description': 'Compared objects are the same', 'severity': 0},
+        '300': {'description': 'Passed', 'severity': 0},
+        '301': {'description': 'Unable to compare this class of data', 'severity': 2},
+        '302': {'description': 'Other data has null value'},
+        '303': {'description': 'My data has null value'},
+        '304': {'description': 'Data has different values'},
+        '305': {'description': 'Neither original nor test file exists', 'severity': 0},
+        '306': {'description': 'Original file does not exists'},
+        '307': {'description': 'Test file does not exist '},
+        '308': {'description': 'Files failed checksum comparison'},
+        '309': {'description': 'Files failed size comparison'},
+        '310': {'description': 'No comparison testing implemented for this file type', 'severity': 2},
+        '311': {'description': 'Failed loading original file for comparison'},
+        '312': {'description': 'Failed loading test file for comparison'},
+        '313': {'description': 'Files failed simple text diff comparison'},
+        '315': {'description': 'Both compared objects are null', 'severity': 0},
+        '320': {'description': 'Unrecognised error attempting to load file'},
+    }
+
     def __init__(self, parent=None, name=None, **kwargs):
         # Initialize hierarchical object first (it only takes parent and name)
         super().__init__(parent=parent, name=name)
