@@ -79,6 +79,57 @@ class dnatco_report(Report):
             json_naval_data2 = self.read_naval_json(jsonfilePaths[1], parent)
 
         # draw report
+
+        ################################################################################################
+        navalFold = parent.addFold(label="NAVAL Bond Lengths and Angles Validation", initiallyOpen=True)
+        ################################################################################################
+
+        indentDiv = navalFold.addDiv(style="margin-left:1.5em;")
+
+        if json_naval_data1.get('navalLengthsStats', None):
+
+            if (
+                compare_two and
+                json_naval_data2.get('navalLengthsStats', None) and
+                len(json_naval_data1['navalLengthsStats']) == len(json_naval_data2['navalLengthsStats']) and
+                len(json_naval_data1['navalLengthsStats'][0].keys()) == len(json_naval_data2['navalLengthsStats'][0].keys())
+            ):
+                compare_two_jsons = True
+            else:
+                compare_two_jsons = False
+
+            table = indentDiv.addTable(title="NAVAL overall validation", transpose=True)
+            header = list(json_naval_data1['navalLengthsStats'][0].keys())
+            header.remove('navalTier') if 'navalTier' in header else header
+            header.remove('cumulativeCount') if 'cumulativeCount' in header else header
+            header.remove('cumulativePercentage') if 'cumulativePercentage' in header else header
+            if compare_two_jsons:
+                header_two = []
+                for h in header:
+                    header_two.append(f"{h} model 1")
+                    header_two.append(f"{h} model 2")
+                header = header_two
+            table.addData(title="", data=header)
+
+            if compare_two_jsons:
+                for tier1, tier2 in zip(json_naval_data1['navalLengthsStats'], json_naval_data2['navalLengthsStats']):
+                    tier_title = tier1.pop('navalTier', None)
+                    _ = tier2.pop('navalTier', None)
+                    _ = tier1.pop('cumulativeCount', None)
+                    _ = tier1.pop('cumulativePercentage', None)
+                    _ = tier2.pop('cumulativeCount', None)
+                    _ = tier2.pop('cumulativePercentage', None)
+                    values = list(tier1.values()) + list(tier2.values())
+                    table.addData(title=tier_title, data=values)
+            else:
+                for tier1 in json_naval_data1['navalLengthsStats']:
+                    tier_title = tier1.pop('navalTier', None)
+                    _ = tier1.pop('cumulativeCount', None)
+                    _ = tier1.pop('cumulativePercentage', None)
+                    table.addData(title=tier_title, data=tier1.values())
+
+        self.addDiv(style="clear:both;")
+
         ####################################################################################################
         ntcFold = parent.addFold(label="DNATCO Dinucleotide Conformer Class Validation", initiallyOpen=True)
         ####################################################################################################
@@ -236,24 +287,6 @@ class dnatco_report(Report):
         table.addData(title=f"RMSD to closest NtC representative (&#197;){model_label}", data=cif_data1['rmsd_NtC_assigned'])
         if compare_two:
             table.addData(title="RMSD to closest NtC representative (&#197;) (model 2)", data=cif_data2['rmsd_NtC_assigned'])
-
-        self.addDiv(style="clear:both;")
-
-        ################################################################################################
-        navalFold = parent.addFold(label="NAVAL Bond Lengths and Angles Validation", initiallyOpen=True)
-        ################################################################################################
-
-        indentDiv = navalFold.addDiv(style="margin-left:1.5em;")
-
-        table = indentDiv.addTable(title="NAVAL overall validation", transpose=True)
-        if json_naval_data1.get('navalLengthsStats', None):
-            header = list(json_naval_data1['navalLengthsStats'][0].keys())
-            header.remove('navalTier') if 'navalTier' in header else header
-            table.addData(title="", data=header)
-            for tier in json_naval_data1['navalLengthsStats']:
-                # tier.pop('navalTier', None)
-                tier_title = tier.pop('navalTier', None)
-                table.addData(title=tier_title, data=tier.values())
 
         self.addDiv(style="clear:both;")
 
