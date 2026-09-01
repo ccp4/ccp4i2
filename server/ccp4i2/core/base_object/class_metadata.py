@@ -52,7 +52,6 @@ class ClassMetadata:
     docstring: Optional[str] = None
     file_extensions: Optional[List[str]] = None
     mime_type: Optional[str] = None
-    gui_label: Optional[str] = None
     contents_order: Optional[List[str]] = None
     content_qualifiers: Optional[Dict[str, Dict[str, Any]]] = None  # Per-field qualifiers
     _owner_class: Optional[Type] = field(default=None, repr=False)
@@ -96,7 +95,6 @@ def cdata_class(
     error_codes: Optional[Dict[int, str]] = None,
     file_extensions: Optional[List[str]] = None,
     mime_type: Optional[str] = None,
-    gui_label: Optional[str] = None,
     contents_order: Optional[List[str]] = None,
     content_qualifiers: Optional[Dict[str, Dict[str, Any]]] = None,
 ):
@@ -114,7 +112,6 @@ def cdata_class(
         error_codes: Dictionary of error code -> message
         file_extensions: List of supported file extensions
         mime_type: MIME type for file classes
-        gui_label: Label for GUI display
         contents_order: List specifying display order of attributes in UI
         content_qualifiers: Per-field qualifiers for child attributes (from CONTENTS)
 
@@ -141,7 +138,6 @@ def cdata_class(
             docstring=cls.__doc__,
             file_extensions=file_extensions,
             mime_type=mime_type,
-            gui_label=gui_label,
             contents_order=contents_order,
             content_qualifiers=content_qualifiers,
         )
@@ -627,6 +623,21 @@ def apply_metadata_to_instance(instance):
     for cls in reversed(instance.__class__.__mro__):
         if cls is object:
             continue
+        # A class's content() declarations are read whether or not it has
+        # class-level metadata. They used to be reached only inside the
+        # `if metadata:` below, which worked by accident: a class with no Meta
+        # inherited CData's _metadata and so passed the test. Once CData itself
+        # stopped carrying one, every such class silently lost its fields ---
+        # CExePath went from ['exeName', 'exePath'] to [].
+        for _name, _decl in contents_from_declarations(cls).items():
+            _cls = _decl.cls if isinstance(_decl.cls, str) else _decl.cls.__name__
+            _kind = _ANNOTATION_KINDS.get(_cls)
+            merged_attributes[_name] = (
+                attribute(_kind) if _kind is not None
+                else attribute(AttributeType.CUSTOM, custom_class=_cls))
+            if _decl.qualifiers:
+                merged_content_qualifiers[_name] = dict(_decl.qualifiers)
+
         metadata = getattr(cls, "_metadata", None)
         if metadata:
             # Parent attributes are added first (because we're in reverse),
@@ -647,23 +658,6 @@ def apply_metadata_to_instance(instance):
             # that carries the field's qualifiers alongside its class.
             from_annotations = attributes_from_annotations(cls)
             merged_attributes.update(from_annotations or metadata.attributes)
-            for _name, _decl in contents_from_declarations(cls).items():
-                _cls = _decl.cls if isinstance(_decl.cls, str) else _decl.cls.__name__
-                # The fundamental types get their own AttributeType, exactly as
-                # attributes_from_annotations gives them. They are not merely a
-                # different spelling of CUSTOM: the two construction paths treat
-                # qualifiers differently, and routing a CString through CUSTOM
-                # puts the *class's* qualifiers onto the child --- CAnnotation's
-                # label and toolTip landed on its `text` field that way.
-                _kind = _ANNOTATION_KINDS.get(_cls)
-                merged_attributes[_name] = (
-                    attribute(_kind) if _kind is not None
-                    else attribute(AttributeType.CUSTOM, custom_class=_cls))
-                if _decl.qualifiers:
-                    # Replace, as a class-level content_qualifiers entry does:
-                    # the declaration here is this class's whole statement about
-                    # the field, not an overlay on an ancestor's.
-                    merged_content_qualifiers[_name] = dict(_decl.qualifiers)
             # Same for content_qualifiers (per-field qualifiers from CONTENTS)
             if metadata.content_qualifiers:
                 merged_content_qualifiers.update(metadata.content_qualifiers)

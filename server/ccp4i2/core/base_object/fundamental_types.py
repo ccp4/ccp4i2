@@ -42,7 +42,6 @@ class CInt(CData):
             "menuText": [],
             "onlyEnumerators": False
         }
-        gui_label = "CInt"
 
     def __hash__(self):
         """Make CInt hashable by object identity for use in sets and as dict keys."""
@@ -435,7 +434,6 @@ class CFloat(CData):
             "menuText": [],
             "onlyEnumerators": False
         }
-        gui_label = "CFloat"
 
     def __hash__(self):
         """Make CFloat hashable by object identity for use in sets and as dict keys."""
@@ -852,7 +850,6 @@ class CString(CData):
             "charWidth": -1,
             "allowedCharsCode": 0
         }
-        gui_label = "CString"
     def __init__(self, value: str = "", parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
         if value != "":
@@ -1265,7 +1262,6 @@ class CBoolean(CData):
         qualifiers = {
             "menuText": ['NotImplemented', 'NotImplemented']
         }
-        gui_label = "CBoolean"
 
     def __init__(self, value: bool = None, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -1457,7 +1453,6 @@ class CList(CData):
         qualifiers = {
             "listMinLength": 0
         }
-        gui_label = "CList"
 
     def __init__(
         self, items: Optional[List[Any]] = None, parent=None, name=None, **kwargs
