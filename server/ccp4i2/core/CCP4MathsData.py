@@ -1,13 +1,17 @@
 """
-Implementation classes for CCP4MathsData.py
+CCP4MathsData.py --- CData classes.
 
-Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logic.
-This file is safe to edit - add your implementation code here.
+These were once two classes each: a generated stub carrying the data
+model, and an implementation carrying the methods. The generator is no
+longer run and the split cost more than it saved --- the two halves
+interleaved in the MRO, so an implementation could drop out of its own
+subclass's ancestry and `isinstance` would say no to a file that plainly
+was one. They are one class now.
 """
 
 from typing import Optional, Any
 from typing import TYPE_CHECKING, Optional, Any
-from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CData
 from ccp4i2.core.base_object.fundamental_types import CFloat
 
@@ -73,12 +77,12 @@ class CMatrix33(CData):
 )
 class CXyzBox(CData):
 
-    xMin: Optional["CFloat"] = None
-    yMin: Optional["CFloat"] = None
-    zMin: Optional["CFloat"] = None
-    xMax: Optional["CFloat"] = None
-    yMax: Optional["CFloat"] = None
-    zMax: Optional["CFloat"] = None
+    xMin = content("CFloat")
+    yMin = content("CFloat")
+    zMin = content("CFloat")
+    xMax = content("CFloat")
+    yMax = content("CFloat")
+    zMax = content("CFloat")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -167,9 +171,9 @@ class CAngle(CFloat):
 )
 class CXyz(CData):
 
-    x: Optional["CFloat"] = None
-    y: Optional["CFloat"] = None
-    z: Optional["CFloat"] = None
+    x = content("CFloat")
+    y = content("CFloat")
+    z = content("CFloat")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -206,13 +210,12 @@ class CXyz(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=['alpha', 'beta', 'gamma'],
 )
 class CEulerRotation(CData):
 
-    alpha: Optional["CAngle"] = None
-    beta: Optional["CAngle"] = None
-    gamma: Optional["CAngle"] = None
+    alpha = content("CAngle")
+    beta = content("CAngle")
+    gamma = content("CAngle")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -249,12 +252,11 @@ class CEulerRotation(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=['translation', 'rotation'],
 )
 class CTransformation(CData):
 
-    translation: Optional["CXyz"] = None
-    rotation: Optional["CEulerRotation"] = None
+    translation = content("CXyz")
+    rotation = content("CEulerRotation")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

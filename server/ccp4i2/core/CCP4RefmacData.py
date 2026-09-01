@@ -1,13 +1,17 @@
 """
-Implementation classes for CCP4RefmacData.py
+CCP4RefmacData.py --- CData classes.
 
-Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logic.
-This file is safe to edit - add your implementation code here.
+These were once two classes each: a generated stub carrying the data
+model, and an implementation carrying the methods. The generator is no
+longer run and the split cost more than it saved --- the two halves
+interleaved in the MRO, so an implementation could drop out of its own
+subclass's ancestry and `isinstance` would say no to a file that plainly
+was one. They are one class now.
 """
 
 from typing import Optional, Any
 from typing import TYPE_CHECKING, Optional, Any
-from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CData, CDataFile
 from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CString
 from ccp4i2.core.CCP4Data import CUUID
@@ -85,18 +89,12 @@ class CRefmacRestraintsDataFile(CDataFile):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=['chain_id', 'residue_1', 'residue_2'],
-    content_qualifiers={
-        "chain_id": {'charWidth': 1, 'allowUndefined': False, 'mustExist': True},
-        "residue_1": {'mustExist': True, 'allowUndefined': False},
-        "residue_2": {'mustExist': True, 'allowUndefined': False},
-    },
 )
 class CRefmacRigidGroupSegment(CData):
 
-    chain_id: Optional["CString"] = None
-    residue_1: Optional["CInt"] = None
-    residue_2: Optional["CInt"] = None
+    chain_id = content("CString", charWidth=1, allowUndefined=False, mustExist=True)
+    residue_1 = content("CInt", mustExist=True, allowUndefined=False)
+    residue_2 = content("CInt", mustExist=True, allowUndefined=False)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -133,17 +131,12 @@ class CRefmacRigidGroupSegment(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "atomType": {'charWidth': 5, 'toolTip': 'Element name as in PDB file'},
-        "Fp": {'toolTip': "Form factor f' for element at given wavelength"},
-        "Fpp": {'toolTip': "Form factor f'' for element at given wavelength"},
-    },
 )
 class CRefmacAnomalousAtom(CData):
 
-    atomType: Optional["CString"] = None
-    Fp: Optional["CFloat"] = None
-    Fpp: Optional["CFloat"] = None
+    atomType = content("CString", charWidth=5, toolTip='Element name as in PDB file')
+    Fp = content("CFloat", toolTip="Form factor f' for element at given wavelength")
+    Fpp = content("CFloat", toolTip="Form factor f'' for element at given wavelength")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -211,14 +204,11 @@ class CRefmacRigidGroupList(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "segmentList": {'listMinLength': 1},
-    },
 )
 class CRefmacRigidGroupItem(CData):
 
-    rigid_group_id: Optional["CString"] = None
-    segmentList: Optional["CList"] = None
+    rigid_group_id = content("CString")
+    segmentList = content("CList", listMinLength=1)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

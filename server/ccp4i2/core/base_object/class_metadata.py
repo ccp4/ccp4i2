@@ -388,8 +388,15 @@ class MetadataAttributeFactory:
     def _get_class_from_registry(cls, class_name: str):
         """Get a class from the registry, building it if needed.
 
-        If class_name ends with 'Stub', tries to find the implementation class first
-        (without the Stub suffix), falling back to the stub if not found.
+        Class names arrive as strings --- from `content()`, from a quoted
+        annotation, from a def.xml `<className>` --- and are resolved here, which
+        is what lets a field name a class defined later or in a module that
+        would import circularly.
+
+        The 'Stub' suffix is still stripped on the way in. No class carries it
+        any more and nothing in the tree writes one, but a saved job or an
+        out-of-tree wrapper may name one, and mapping it to the merged class is
+        exactly right.
         """
         # Import here to avoid circular dependencies
         from .fundamental_types import CInt, CFloat, CBoolean, CString, CList
@@ -494,6 +501,86 @@ def _class_named_in(annotation):
     return name if name and name not in ("Optional", "Union", "NoneType") else None
 
 
+class Content:
+    """One declared field of a CData class: its type and its own qualifiers.
+
+    Deliberately *not* a `dataclasses.field`. The declaration reads similarly
+    and that is the point --- but a dataclass makes promises CData cannot keep,
+    and importing the syntax would import the expectations with it:
+
+      - `CCell() == CCell()` would compare field by field; CData compares by
+        identity, and `isSet()` compares a value against its default.
+      - `hash()` would be disabled, and CData objects are hashable.
+      - `asdict()` would recurse into a tree of live parented objects.
+      - `a: CCellLength` would say "assign a CCellLength here", when in fact
+        `cell.a = 55.0` coerces and the field stays a CCellLength. That is the
+        plugin API, at 231 call sites.
+
+    So `is_dataclass()` on a CData class stays False, and a reader who knows
+    dataclasses is not invited to assume the rest of the protocol.
+
+    What this *does* carry is the pair that belongs together and used to be
+    written apart --- the field's class, and the qualifiers for that field,
+    which lived in a class-level `content_qualifiers` dict keyed by name.
+
+    Qualifiers given here are the *declaration*. They seed the instance's own
+    `_qualifiers`, which stays mutable and private: 56 sites change a qualifier
+    at runtime, and `test_qualifiers_are_per_instance` pins the isolation.
+    """
+
+    __slots__ = ("cls", "qualifiers", "order", "name")
+    _counter = 0
+
+    def __init__(self, cls, **qualifiers):
+        self.cls = cls
+        self.qualifiers = qualifiers
+        Content._counter += 1
+        self.order = Content._counter          # declaration order, for py<3.7 safety
+
+    def __set_name__(self, owner, name):
+        """Record the declaration on the class as the class body runs.
+
+        Not for elegance: a plain class attribute can be overwritten by a later
+        statement in the same body, and several classes do exactly that ---
+        CResolutionRange declares `low` and `high` and then defines properties
+        of the same name, which replace them in the class dict. Annotations
+        survive that because they live in `__annotations__`, a separate
+        mapping; assignments do not.
+
+        `__set_name__` fires at the moment of assignment, so the declaration is
+        captured before anything can shadow it.
+        """
+        self.name = name
+        # Must be the class's *own* mapping, not one inherited from a base ---
+        # otherwise a subclass's fields would be recorded onto its parent.
+        if "__cdata_contents__" not in vars(owner):
+            setattr(owner, "__cdata_contents__", {})
+        vars(owner)["__cdata_contents__"][name] = self
+
+    def __repr__(self):
+        name = self.cls if isinstance(self.cls, str) else getattr(self.cls, "__name__", self.cls)
+        return f"content({name}{', ' if self.qualifiers else ''}{', '.join(f'{k}={v!r}' for k, v in self.qualifiers.items())})"
+
+
+def content(cls, **qualifiers):
+    """Declare a field of a CData class.
+
+        class CCell(CData):
+            a = content(CCellLength, toolTip='Cell length a in A', guiLabel='a')
+
+    `cls` may be the class or its name; a name is resolved when the field is
+    built, which is how a field can refer to a class defined later or in a
+    module that would import circularly.
+    """
+    return Content(cls, **qualifiers)
+
+
+def contents_from_declarations(cls):
+    """The `content()` declarations made by `cls` itself, in declaration order."""
+    declared = vars(cls).get("__cdata_contents__") or {}
+    return dict(sorted(declared.items(), key=lambda kv: kv[1].order))
+
+
 def attributes_from_annotations(cls) -> "Dict[str, AttributeDefinition]":
     """Field declarations read from the class's own annotations."""
     declared = {}
@@ -538,8 +625,32 @@ def apply_metadata_to_instance(instance):
             # the 122 generated stubs the two agree exactly; the fallback is
             # for hand-written classes such as CDataFile, which carry the
             # decorator but no annotations.
+            # A class may declare its fields with content(), which carries the
+            # field's class and its own qualifiers together. Where it does,
+            # that is the declaration; annotations and the decorator's
+            # attributes= are the two older spellings of the same thing.
+            # Both spellings are read, so a class may use either or both.
+            # content() wins for the names it declares, because it is the one
+            # that carries the field's qualifiers alongside its class.
             from_annotations = attributes_from_annotations(cls)
             merged_attributes.update(from_annotations or metadata.attributes)
+            for _name, _decl in contents_from_declarations(cls).items():
+                _cls = _decl.cls if isinstance(_decl.cls, str) else _decl.cls.__name__
+                # The fundamental types get their own AttributeType, exactly as
+                # attributes_from_annotations gives them. They are not merely a
+                # different spelling of CUSTOM: the two construction paths treat
+                # qualifiers differently, and routing a CString through CUSTOM
+                # puts the *class's* qualifiers onto the child --- CAnnotation's
+                # label and toolTip landed on its `text` field that way.
+                _kind = _ANNOTATION_KINDS.get(_cls)
+                merged_attributes[_name] = (
+                    attribute(_kind) if _kind is not None
+                    else attribute(AttributeType.CUSTOM, custom_class=_cls))
+                if _decl.qualifiers:
+                    # Replace, as a class-level content_qualifiers entry does:
+                    # the declaration here is this class's whole statement about
+                    # the field, not an overlay on an ancestor's.
+                    merged_content_qualifiers[_name] = dict(_decl.qualifiers)
             # Same for content_qualifiers (per-field qualifiers from CONTENTS)
             if metadata.content_qualifiers:
                 merged_content_qualifiers.update(metadata.content_qualifiers)

@@ -1,13 +1,17 @@
 """
-Implementation classes for CCP4CustomTaskManager.py
+CCP4CustomTaskManager.py --- CData classes.
 
-Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logic.
-This file is safe to edit - add your implementation code here.
+These were once two classes each: a generated stub carrying the data
+model, and an implementation carrying the methods. The generator is no
+longer run and the split cost more than it saved --- the two halves
+interleaved in the MRO, so an implementation could drop out of its own
+subclass's ancestry and `isinstance` would say no to a file that plainly
+was one. They are one class now.
 """
 
 from typing import Optional, Any
 from typing import TYPE_CHECKING, Optional, Any
-from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CContainer, CData
 from ccp4i2.core.base_object.fundamental_types import CBoolean, CList, CString
 from ccp4i2.core.CCP4Data import CI2DataType, COneWord
@@ -98,14 +102,11 @@ class CCustomTaskParamList(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "name": {'default': './com.txt'},
-    },
 )
 class CCustomComFile(CData):
 
-    text: Optional["CString"] = None
-    name: Optional["CString"] = None
+    text = content("CString")
+    name = content("CString", default='./com.txt')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -386,25 +387,19 @@ class CCustomComFileList(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "dataType": {'default': 'CPdbDataFile'},
-        "obligatory": {'default': True},
-        "saveDataToDb": {'default': False},
-        "function": {'default': 'input'},
-    },
 )
 class CCustomTaskParam(CData):
 
-    name: Optional["COneWord"] = None
-    dataType: Optional["CI2DataType"] = None
-    label: Optional["CString"] = None
-    obligatory: Optional["CBoolean"] = None
-    saveDataToDb: Optional["CBoolean"] = None
-    function: Optional["CCustomTaskFileFunction"] = None
-    mergeTo: Optional["CString"] = None
-    splitColumns: Optional["CString"] = None
-    requiredContentType: Optional["CList"] = None
-    outputFilePath: Optional["CString"] = None
+    name = content("COneWord")
+    dataType = content("CI2DataType", default='CPdbDataFile')
+    label = content("CString")
+    obligatory = content("CBoolean", default=True)
+    saveDataToDb = content("CBoolean", default=False)
+    function = content("CCustomTaskFileFunction", default='input')
+    mergeTo = content("CString")
+    splitColumns = content("CString")
+    requiredContentType = content("CList")
+    outputFilePath = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
