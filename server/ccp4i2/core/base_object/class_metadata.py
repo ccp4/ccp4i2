@@ -181,6 +181,13 @@ def cdata_class(
             merged.update(base.__dict__.get("ERROR_CODES", {}) or {})
         if error_codes:
             merged.update(error_codes)
+        # A class may also declare ERROR_CODES in its own body, by hand. The
+        # decorator runs after the body, so assigning here would discard it ---
+        # and silently, since the codes look present until one is looked up.
+        # CRangeSelection does exactly this: the decorator carries "201" as a
+        # string and the body carries 201 as an int, and validity() reads the
+        # int. Its own body wins.
+        merged.update(cls.__dict__.get("ERROR_CODES", {}) or {})
         if merged:
             cls.ERROR_CODES = merged
 
@@ -425,11 +432,11 @@ class MetadataAttributeFactory:
                 (f'ccp4i2.core.{impl_class_name}', impl_class_name),
 
                 # Then try stub classes
-                ('ccp4i2.core.cdata_stubs.CCP4Data', class_name),
-                ('ccp4i2.core.cdata_stubs.CCP4ModelData', class_name),
-                ('ccp4i2.core.cdata_stubs.CCP4File', class_name),
-                ('ccp4i2.core.cdata_stubs.CCP4XtalData', class_name),
-                (f'ccp4i2.core.cdata_stubs.{class_name}', class_name),
+                ('ccp4i2.core.CCP4Data', class_name),
+                ('ccp4i2.core.CCP4ModelData', class_name),
+                ('ccp4i2.core.CCP4File', class_name),
+                ('ccp4i2.core.CCP4XtalData', class_name),
+                (f'ccp4i2.core.{class_name}', class_name),
             ]
 
             for module_path, lookup_name in possible_modules:
@@ -446,7 +453,7 @@ class MetadataAttributeFactory:
 
 
 #: The annotation on a stub is already a complete declaration of its fields:
-#: `structure: Optional[CPdbDataFileStub] = None`. Measured across the 122
+#: `structure: Optional[CPdbDataFile] = None`. Measured across the 122
 #: stub classes, the annotation set and the decorator's `attributes=` agree
 #: exactly --- 621 fields, and for the 278 naming a custom class the annotation
 #: names the same one, while the other 343 map one-to-one
@@ -464,7 +471,7 @@ _ANNOTATION_KINDS = {
 
 
 def _class_named_in(annotation):
-    """The CData class an annotation names, e.g. Optional[CPdbDataFileStub].
+    """The CData class an annotation names, e.g. Optional[CPdbDataFile].
 
     `typing.Optional[X]` is not a class and its __name__ is 'Optional', so it
     has to be unwrapped rather than stringified. Forward references arrive as
