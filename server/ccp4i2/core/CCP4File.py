@@ -1,8 +1,12 @@
 """
-Implementation classes for CCP4File.py
+CCP4File.py --- CData classes.
 
-Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logic.
-This file is safe to edit - add your implementation code here.
+These were once two classes each: a generated stub carrying the data
+model, and an implementation carrying the methods. The generator is no
+longer run and the split cost more than it saved --- the two halves
+interleaved in the MRO, so an implementation could drop out of its own
+subclass's ancestry and `isinstance` would say no to a file that plainly
+was one. They are one class now.
 """
 
 import platform
@@ -14,7 +18,7 @@ import time
 # Many legacy files use "CCP4File.CDataFile" which is actually in base_object
 from ccp4i2.core.base_object.cdata_file import CDataFile
 from typing import TYPE_CHECKING, Optional, Any
-from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CData, CDataFile, CDataFileContent
 from ccp4i2.core.base_object.fundamental_types import CInt, CList, CString
 from ccp4i2.core.CCP4Annotation import CHostName, CTime, CUserId
@@ -160,15 +164,11 @@ specific to coordinates, reflections or geometry data.
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=['exeName', 'exePath'],
-    content_qualifiers={
-        "exePath": {'mustExist': True, 'allowUndefined': False},
-    },
 )
 class CExePath(CData):
 
-    exeName: Optional["CString"] = None
-    exePath: Optional["CDataFile"] = None
+    exeName = content("CString")
+    exePath = content("CDataFile", mustExist=True, allowUndefined=False)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -305,7 +305,7 @@ class CFileFunction(CString):
 )
 class CExportedFile(CData):
 
-    exportId: Optional["CUUID"] = None
+    exportId = content("CUUID")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -407,8 +407,8 @@ class CExePathList(CList):
 )
 class CSearchPath(CData):
 
-    name: Optional["CString"] = None
-    path: Optional["CDataFile"] = None
+    name = content("CString")
+    path = content("CDataFile")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -536,25 +536,22 @@ class CFilePath(CString):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "projectId": {'allowUnfound': True},
-    },
 )
 class CI2XmlHeader(CData):
 
-    function: Optional["CFileFunction"] = None
-    userId: Optional["CUserId"] = None
-    hostName: Optional["CHostName"] = None
-    creationTime: Optional["CTime"] = None
-    pluginName: Optional["CString"] = None
-    pluginVersion: Optional["CVersion"] = None
-    pluginTitle: Optional["CString"] = None
-    projectName: Optional["CProjectName"] = None
-    projectId: Optional["CProjectId"] = None
-    jobId: Optional["CUUID"] = None
-    jobNumber: Optional["CString"] = None
-    comment: Optional["CString"] = None
-    OS: Optional["CString"] = None
+    function = content("CFileFunction")
+    userId = content("CUserId")
+    hostName = content("CHostName")
+    creationTime = content("CTime")
+    pluginName = content("CString")
+    pluginVersion = content("CVersion")
+    pluginTitle = content("CString")
+    projectName = content("CProjectName")
+    projectId = content("CProjectId", allowUnfound=True)
+    jobId = content("CUUID")
+    jobNumber = content("CString")
+    comment = content("CString")
+    OS = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1141,7 +1138,7 @@ class CSceneDataFile(CDataFile):
 )
 class CI2XmlDataFile(CXmlDataFile):
 
-    header: Optional["CI2XmlHeader"] = None
+    header = content("CI2XmlHeader")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

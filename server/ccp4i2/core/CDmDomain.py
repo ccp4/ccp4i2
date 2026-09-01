@@ -10,9 +10,9 @@ each NCS copy lives in the task's ASSEMBLY parameter, not here.
 
 The segment string is parsed by the wrapper (dm_ncs_lib.parse_segments); core
 deliberately holds only the data, so it stays free of any wrapper/binary
-dependency. Following the codebase convention: the *Stub* class defines the data
-model (content fields, via the @cdata_class ``attributes=``), and the derived
-class carries methods.
+dependency. The class declares its own fields and carries its own methods; it
+was once split into a generated stub and a derived implementation, which is
+why the two halves were both in this file.
 
 Resolvable by the def.xml class-name lookup via ``ccp4i2.core.CDmDomain``.
 """

@@ -1,13 +1,17 @@
 """
-Implementation classes for CCP4ImportedJobManager.py
+CCP4ImportedJobManager.py --- CData classes.
 
-Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logic.
-This file is safe to edit - add your implementation code here.
+These were once two classes each: a generated stub carrying the data
+model, and an implementation carrying the methods. The generator is no
+longer run and the split cost more than it saved --- the two halves
+interleaved in the MRO, so an implementation could drop out of its own
+subclass's ancestry and `isinstance` would say no to a file that plainly
+was one. They are one class now.
 """
 
 from typing import Optional, Any
 from typing import TYPE_CHECKING, Optional, Any
-from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CContainer, CData, CDataFile
 from ccp4i2.core.base_object.fundamental_types import CList, CString
 from ccp4i2.core.CCP4Data import CI2DataType, COneWord
@@ -61,17 +65,13 @@ class CImportedJobDataList(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "dataType": {'default': 'CPdbDataFile'},
-        "fileName": {'mustExist': True, 'saveToDb': True, 'allowUndefined': False},
-    },
 )
 class CImportedJobData(CData):
 
-    name: Optional["COneWord"] = None
-    dataType: Optional["CI2DataType"] = None
-    label: Optional["CString"] = None
-    fileName: Optional["CDataFile"] = None
+    name = content("COneWord")
+    dataType = content("CI2DataType", default='CPdbDataFile')
+    label = content("CString")
+    fileName = content("CDataFile", mustExist=True, saveToDb=True, allowUndefined=False)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

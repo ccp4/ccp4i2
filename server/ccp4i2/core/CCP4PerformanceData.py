@@ -1,13 +1,17 @@
 """
-Implementation classes for CCP4PerformanceData.py
+CCP4PerformanceData.py --- CData classes.
 
-Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logic.
-This file is safe to edit - add your implementation code here.
+These were once two classes each: a generated stub carrying the data
+model, and an implementation carrying the methods. The generator is no
+longer run and the split cost more than it saved --- the two halves
+interleaved in the MRO, so an implementation could drop out of its own
+subclass's ancestry and `isinstance` would say no to a file that plainly
+was one. They are one class now.
 """
 
 from typing import Optional, Any
 from typing import TYPE_CHECKING, Optional, Any
-from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CData
 from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CString
 from ccp4i2.core.CCP4XtalData import CSpaceGroup
@@ -48,15 +52,11 @@ from ccp4i2.core.CCP4XtalData import CSpaceGroup
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=['value', 'annotation'],
-    content_qualifiers={
-        "value": {'min': 0.0},
-    },
 )
 class CPerformanceIndicator(CData):
 
-    value: Optional["CFloat"] = None
-    annotation: Optional["CString"] = None
+    value = content("CFloat", min=0.0)
+    annotation = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -136,15 +136,12 @@ class CPerformanceIndicator(CData):
         'helpFile',
         'saveToDb'],
     contents_order=['spaceGroup', 'highResLimit', 'rMeas'],
-    content_qualifiers={
-        "highResLimit": {'min': 0.0},
-    },
 )
 class CDataReductionPerformance(CPerformanceIndicator):
 
-    spaceGroup: Optional["CSpaceGroup"] = None
-    highResLimit: Optional["CFloat"] = None
-    rMeas: Optional["CFloat"] = None
+    spaceGroup = content("CSpaceGroup")
+    highResLimit = content("CFloat", min=0.0)
+    rMeas = content("CFloat")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -186,13 +183,10 @@ class CDataReductionPerformance(CPerformanceIndicator):
         'helpFile',
         'saveToDb'],
     contents_order=['cutoff'],
-    content_qualifiers={
-        "cutoff": {'min': 0.0},
-    },
 )
 class CPairefPerformance(CPerformanceIndicator):
 
-    cutoff: Optional["CFloat"] = None
+    cutoff = content("CFloat", min=0.0)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -234,15 +228,12 @@ class CPairefPerformance(CPerformanceIndicator):
         'helpFile',
         'saveToDb'],
     contents_order=['spaceGroup', 'highResLimit', 'ccHalf'],
-    content_qualifiers={
-        "highResLimit": {'min': 0.0},
-    },
 )
 class CDataReductionCCPerformance(CPerformanceIndicator):
 
-    spaceGroup: Optional["CSpaceGroup"] = None
-    highResLimit: Optional["CFloat"] = None
-    ccHalf: Optional["CFloat"] = None
+    spaceGroup = content("CSpaceGroup")
+    highResLimit = content("CFloat", min=0.0)
+    ccHalf = content("CFloat")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -283,46 +274,23 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'RFactor',
-        'RFree',
-        'R',
-        'R1Factor',
-        'R1Free',
-        'R1',
-        'FSCaverage',
-        'annotation'],
-    content_qualifiers={
-        "RFactor": {'min': 0.0},
-        "RFree": {'min': 0.0},
-        "R": {'min': 0.0},
-        "R1Factor": {'min': 0.0},
-        "R1Free": {'min': 0.0},
-        "R1": {'min': 0.0},
-        "CCFwork_avg": {'min': -1.0},
-        "CCFfree_avg": {'min': -1.0},
-        "CCF_avg": {'min': -1.0},
-        "CCIwork_avg": {'min': -1.0},
-        "CCIfree_avg": {'min': -1.0},
-        "CCI_avg": {'min': -1.0},
-        "FSCaverage": {'min': -1.0},
-    },
+    contents_order=['RFactor', 'RFree', 'R', 'R1Factor', 'R1Free', 'R1', 'FSCaverage', 'annotation'],
 )
 class CServalcatPerformance(CPerformanceIndicator):
 
-    RFactor: Optional["CFloat"] = None
-    RFree: Optional["CFloat"] = None
-    R: Optional["CFloat"] = None
-    R1Factor: Optional["CFloat"] = None
-    R1Free: Optional["CFloat"] = None
-    R1: Optional["CFloat"] = None
-    CCFwork_avg: Optional["CFloat"] = None
-    CCFfree_avg: Optional["CFloat"] = None
-    CCF_avg: Optional["CFloat"] = None
-    CCIwork_avg: Optional["CFloat"] = None
-    CCIfree_avg: Optional["CFloat"] = None
-    CCI_avg: Optional["CFloat"] = None
-    FSCaverage: Optional["CFloat"] = None
+    RFactor = content("CFloat", min=0.0)
+    RFree = content("CFloat", min=0.0)
+    R = content("CFloat", min=0.0)
+    R1Factor = content("CFloat", min=0.0)
+    R1Free = content("CFloat", min=0.0)
+    R1 = content("CFloat", min=0.0)
+    FSCaverage = content("CFloat", min=-1.0)
+    CCFwork_avg = content("CFloat", min=-1.0)
+    CCFfree_avg = content("CFloat", min=-1.0)
+    CCF_avg = content("CFloat", min=-1.0)
+    CCIwork_avg = content("CFloat", min=-1.0)
+    CCIfree_avg = content("CFloat", min=-1.0)
+    CCI_avg = content("CFloat", min=-1.0)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -363,32 +331,17 @@ class CServalcatPerformance(CPerformanceIndicator):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'FOM',
-        'CFOM',
-        'Hand1Score',
-        'Hand2Score',
-        'CC',
-        'RFactor',
-        'RFree',
-        'annotation'],
-    content_qualifiers={
-        "FOM": {'min': 0.0},
-        "CFOM": {'min': 0.0},
-        "CC": {'min': 0.0},
-        "RFactor": {'min': 0.0},
-        "RFree": {'min': 0.0},
-    },
+    contents_order=['FOM', 'CFOM', 'Hand1Score', 'Hand2Score', 'CC', 'RFactor', 'RFree', 'annotation'],
 )
 class CExpPhasPerformance(CPerformanceIndicator):
 
-    FOM: Optional["CFloat"] = None
-    CFOM: Optional["CFloat"] = None
-    Hand1Score: Optional["CFloat"] = None
-    Hand2Score: Optional["CFloat"] = None
-    CC: Optional["CFloat"] = None
-    RFactor: Optional["CFloat"] = None
-    RFree: Optional["CFloat"] = None
+    FOM = content("CFloat", min=0.0)
+    CFOM = content("CFloat", min=0.0)
+    Hand1Score = content("CFloat")
+    Hand2Score = content("CFloat")
+    CC = content("CFloat", min=0.0)
+    RFactor = content("CFloat", min=0.0)
+    RFree = content("CFloat", min=0.0)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -433,8 +386,8 @@ class CExpPhasPerformance(CPerformanceIndicator):
 )
 class CAtomCountPerformance(CPerformanceIndicator):
 
-    nAtoms: Optional["CInt"] = None
-    nResidues: Optional["CInt"] = None
+    nAtoms = content("CInt")
+    nResidues = content("CInt")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -516,15 +469,11 @@ class CAtomCountPerformance(CPerformanceIndicator):
         'helpFile',
         'saveToDb'],
     contents_order=['RFactor', 'completeness', 'annotation'],
-    content_qualifiers={
-        "RFactor": {'min': 0.0},
-        "completeness": {'min': 0.0},
-    },
 )
 class CModelBuildPerformance(CPerformanceIndicator):
 
-    RFactor: Optional["CFloat"] = None
-    completeness: Optional["CFloat"] = None
+    RFactor = content("CFloat", min=0.0)
+    completeness = content("CFloat", min=0.0)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -565,27 +514,15 @@ class CModelBuildPerformance(CPerformanceIndicator):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'RFactor',
-        'RFree',
-        'RMSBond',
-        'RMSAngle',
-        'weightUsed',
-        'annotation'],
-    content_qualifiers={
-        "RFactor": {'min': 0.0},
-        "RFree": {'min': 0.0},
-        "RMSBond": {'min': 0.0},
-        "RMSAngle": {'min': 0.0},
-    },
+    contents_order=['RFactor', 'RFree', 'RMSBond', 'RMSAngle', 'weightUsed', 'annotation'],
 )
 class CRefinementPerformance(CPerformanceIndicator):
 
-    RFactor: Optional["CFloat"] = None
-    RFree: Optional["CFloat"] = None
-    RMSBond: Optional["CFloat"] = None
-    RMSAngle: Optional["CFloat"] = None
-    weightUsed: Optional["CFloat"] = None
+    RFactor = content("CFloat", min=0.0)
+    RFree = content("CFloat", min=0.0)
+    RMSBond = content("CFloat", min=0.0)
+    RMSAngle = content("CFloat", min=0.0)
+    weightUsed = content("CFloat")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -630,8 +567,8 @@ class CRefinementPerformance(CPerformanceIndicator):
 )
 class CSuperposePerformance(CPerformanceIndicator):
 
-    RMSxyz: Optional["CFloat"] = None
-    nResidues: Optional["CInt"] = None
+    RMSxyz = content("CFloat")
+    nResidues = content("CInt")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -672,25 +609,15 @@ class CSuperposePerformance(CPerformanceIndicator):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'spaceGroup',
-        'highResLimit',
-        'rMeas',
-        'RFactor',
-        'RFree'],
-    content_qualifiers={
-        "highResLimit": {'min': 0.0},
-        "RFactor": {'min': 0.0},
-        "RFree": {'min': 0.0},
-    },
+    contents_order=['spaceGroup', 'highResLimit', 'rMeas', 'RFactor', 'RFree'],
 )
 class CDataReductionRefinementPerformance(CPerformanceIndicator):
 
-    spaceGroup: Optional["CSpaceGroup"] = None
-    highResLimit: Optional["CFloat"] = None
-    rMeas: Optional["CFloat"] = None
-    RFactor: Optional["CFloat"] = None
-    RFree: Optional["CFloat"] = None
+    spaceGroup = content("CSpaceGroup")
+    highResLimit = content("CFloat", min=0.0)
+    rMeas = content("CFloat")
+    RFactor = content("CFloat", min=0.0)
+    RFree = content("CFloat", min=0.0)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -730,21 +657,13 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'phaseError',
-        'weightedPhaseError',
-        'reflectionCorrelation'],
-    content_qualifiers={
-        "phaseError": {'min': 0.0},
-        "weightedPhaseError": {'min': 0.0},
-        "reflectionCorrelation": {'min': 0.0},
-    },
+    contents_order=['phaseError', 'weightedPhaseError', 'reflectionCorrelation'],
 )
 class CPhaseErrorPerformance(CPerformanceIndicator):
 
-    phaseError: Optional["CFloat"] = None
-    weightedPhaseError: Optional["CFloat"] = None
-    reflectionCorrelation: Optional["CFloat"] = None
+    phaseError = content("CFloat", min=0.0)
+    weightedPhaseError = content("CFloat", min=0.0)
+    reflectionCorrelation = content("CFloat", min=0.0)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -789,7 +708,7 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
 )
 class CTestObsConversionsPerformance(CPerformanceIndicator):
 
-    columnLabelsString: Optional["CString"] = None
+    columnLabelsString = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

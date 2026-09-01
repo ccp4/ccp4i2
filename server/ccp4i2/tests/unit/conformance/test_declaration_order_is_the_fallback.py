@@ -70,11 +70,29 @@ def test_declaration_order_is_not_alphabetical_order():
 
 
 def test_an_explicit_contents_order_still_wins():
-    """The override has to keep working, or the fallback is a regression."""
-    from ccp4i2.core.CCP4XtalData import CCell
+    """The override has to keep working, or the fallback is a regression.
 
-    assert CCell()._metadata.contents_order == ["a", "b", "c", "alpha", "beta", "gamma"]
-    assert list(CCell().dataOrder()) == CCell()._metadata.contents_order
+    This test has now been re-pointed twice, which is itself the lesson: it
+    used `CCell`, then `CImportUnmerged`, and both later stopped declaring a
+    `contents_order` because their declaration order says the same thing. A
+    test of an override must use a case where the override is *structurally*
+    required, not merely present.
+
+    `CAsuDataFile` is that case. It declares `selection` and inherits
+    `project`, `baseName` and the rest from `CDataFile`. Inherited fields come
+    first in MRO order, so no arrangement of its own declarations can put
+    `selection` in front --- only `contents_order` can.
+    """
+    from ccp4i2.core.CCP4ModelData import CAsuDataFile
+
+    obj = CAsuDataFile()
+    assert obj._metadata.contents_order, "this class no longer proves anything"
+
+    order = list(obj.dataOrder())
+    assert order[0] == "selection", order[:3]
+    assert "project" in order, "an inherited field was dropped, not reordered"
+    assert order.index("selection") < order.index("project"), \
+        "the override did not hoist the class's own field"
 
 
 def test_fields_absent_from_contents_order_are_still_rendered():

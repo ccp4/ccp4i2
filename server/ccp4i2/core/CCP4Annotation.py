@@ -1,5 +1,5 @@
 from typing import TYPE_CHECKING, Optional, Any
-from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CData, CDataFile
 from ccp4i2.core.base_object.fundamental_types import CBoolean, CFloat, CInt, CList, CString
 """
@@ -31,22 +31,15 @@ This file is safe to edit - add your implementation code here.
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'pmid',
-        'title',
-        'authorList',
-        'source',
-        'url',
-        'selected'],
 )
 class CBibReference(CData):
 
-    pmid: Optional["CInt"] = None
-    title: Optional["CString"] = None
-    authorList: Optional["CList"] = None
-    source: Optional["CString"] = None
-    url: Optional["CString"] = None
-    selected: Optional["CBoolean"] = None
+    pmid = content("CInt")
+    title = content("CString")
+    authorList = content("CList")
+    source = content("CString")
+    url = content("CString")
+    selected = content("CBoolean")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -94,14 +87,13 @@ class CBibReference(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=['taskName', 'version', 'title', 'references'],
 )
 class CBibReferenceGroup(CData):
 
-    taskName: Optional["CString"] = None
-    version: Optional["CString"] = None
-    title: Optional["CString"] = None
-    references: Optional["CList"] = None
+    taskName = content("CString")
+    version = content("CString")
+    title = content("CString")
+    references = content("CList")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -140,19 +132,23 @@ class CBibReferenceGroup(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "family": {'default': 'Helvetica'},
-        "style": {'onlyEnumerators': True, 'default': 0, 'enumerators': [0, 1, 2], 'menuText': ['normal', 'italic', 'oblique']},
-        "pointSize": {'min': 1, 'default': 12},
-        "weight": {'min': 0, 'max': 99, 'default': 50, 'allowUndefined': False, 'enumerators': [25, 50, 63, 75, 87], 'menuText': ['light', 'normal', 'demi-bold', 'bold', 'black']},
-    },
 )
 class CFont(CData):
 
-    family: Optional["CString"] = None
-    style: Optional["CInt"] = None
-    pointSize: Optional["CInt"] = None
-    weight: Optional["CInt"] = None
+    family = content("CString", default='Helvetica')
+    style = content("CInt",
+                    onlyEnumerators=True,
+                    default=0,
+                    enumerators=[0, 1, 2],
+                    menuText=['normal', 'italic', 'oblique'])
+    pointSize = content("CInt", min=1, default=12)
+    weight = content("CInt",
+                     min=0,
+                     max=99,
+                     default=50,
+                     allowUndefined=False,
+                     enumerators=[25, 50, 63, 75, 87],
+                     menuText=['light', 'normal', 'demi-bold', 'bold', 'black'])
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -286,11 +282,10 @@ class CAnnotationList(CList):
         "addEnumeratorFunction": None,
     },
     qualifiers_order=['enumeratorsFunction', 'addEnumeratorFunction'],
-    contents_order=['tag'],
 )
 class CMetaDataTag(CData):
 
-    tag: Optional["CString"] = None
+    tag = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -329,30 +324,18 @@ class CMetaDataTag(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'year',
-        'month',
-        'day',
-        'yearRange',
-        'monthRange',
-        'dayRange'],
-    content_qualifiers={
-        "year": {'enumerators': []},
-        "month": {'onlyEnumerators': True, 'enumerators': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 'default': 'January'},
-        "day": {'default': 1, 'min': 1, 'max': 31},
-        "yearRange": {'default': 0, 'min': 0, 'max': 100},
-        "monthRange": {'default': 0, 'min': 0, 'max': 12},
-        "dayRange": {'default': 0, 'min': 0, 'max': 30},
-    },
 )
 class CDateRange(CData):
 
-    year: Optional["CInt"] = None
-    month: Optional["CString"] = None
-    day: Optional["CInt"] = None
-    yearRange: Optional["CInt"] = None
-    monthRange: Optional["CInt"] = None
-    dayRange: Optional["CInt"] = None
+    year = content("CInt", enumerators=[])
+    month = content("CString",
+                    onlyEnumerators=True,
+                    enumerators=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    default='January')
+    day = content("CInt", default=1, min=1, max=31)
+    yearRange = content("CInt", default=0, min=0, max=100)
+    monthRange = content("CInt", default=0, min=0, max=12)
+    dayRange = content("CInt", default=0, min=0, max=30)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -503,47 +486,29 @@ class CMetaDataTagList(CList):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=[
-        'name',
-        'mechanism',
-        'serverList',
-        'userExtensible',
-        'ccp4Dir',
-        'tempDir',
-        'sge_root',
-        'keyFilename',
-        'validate',
-        'customCodeFile',
-        'queueOptionsFile'],
-    content_qualifiers={
-        "mechanism": {'enumerators': ['ssh', 'ssh_shared', 'qsub_local', 'qsub_remote', 'slurm_remote', 'custom'], 'menuText': ['ssh', 'ssh with shared filesystem', 'qsub queue', 'qsub on another machine', 'Slurm on another machine', 'custom'], 'onlyEnumerators': True, 'default': 'ssh'},
-        "serverList": {'minLength': 1},
-        "userExtensible": {'default': False},
-        "customCodeFile": {'allowUndefind': True, 'fileExtensions': ['py']},
-        "queueOptionsFile": {'allowUndefind': True},
-        "ccp4Dir": {'allowUndefind': True},
-        "tempDir": {'allowUndefind': True},
-        "sge_root": {'allowUndefind': True},
-        "keyFilename": {'allowUndefind': True},
-        "validate": {'onlyEnumerators': True, 'default': 'password', 'enumerators': ['password', 'key_filename', 'pass_key_filename']},
-        "maxTries": {'default': 2},
-    },
 )
 class CServerGroup(CData):
 
-    name: Optional["CString"] = None
-    mechanism: Optional["CString"] = None
-    serverList: Optional["CList"] = None
-    userExtensible: Optional["CBoolean"] = None
-    customCodeFile: Optional["CDataFile"] = None
-    queueOptionsFile: Optional["CDataFile"] = None
-    ccp4Dir: Optional["CString"] = None
-    tempDir: Optional["CString"] = None
-    sge_root: Optional["CString"] = None
-    keyFilename: Optional["CString"] = None
-    validate: Optional["CString"] = None
-    timeout: Optional["CFloat"] = None
-    maxTries: Optional["CInt"] = None
+    name = content("CString")
+    mechanism = content("CString",
+                        enumerators=['ssh', 'ssh_shared', 'qsub_local', 'qsub_remote', 'slurm_remote', 'custom'],
+                        menuText=['ssh', 'ssh with shared filesystem', 'qsub queue', 'qsub on another machine', 'Slurm on another machine', 'custom'],
+                        onlyEnumerators=True,
+                        default='ssh')
+    serverList = content("CList", minLength=1)
+    userExtensible = content("CBoolean", default=False)
+    ccp4Dir = content("CString", allowUndefind=True)
+    tempDir = content("CString", allowUndefind=True)
+    sge_root = content("CString", allowUndefind=True)
+    keyFilename = content("CString", allowUndefind=True)
+    validate = content("CString",
+                       onlyEnumerators=True,
+                       default='password',
+                       enumerators=['password', 'key_filename', 'pass_key_filename'])
+    customCodeFile = content("CDataFile", allowUndefind=True, fileExtensions=['py'])
+    queueOptionsFile = content("CDataFile", allowUndefind=True)
+    timeout = content("CFloat")
+    maxTries = content("CInt", default=2)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -579,12 +544,11 @@ class CServerGroup(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    contents_order=['platformNode', 'userId'],
 )
 class CUserAddress(CData):
 
-    platformNode: Optional["CString"] = None
-    userId: Optional["CUserId"] = None
+    platformNode = content("CString")
+    userId = content("CUserId")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -622,17 +586,12 @@ class CUserAddress(CData):
         'guiDefinition',
         'helpFile',
         'saveToDb'],
-    content_qualifiers={
-        "text": {'allowUndefined': True, 'charWidth': -1},
-        "time": {'allowUndefined': True, 'default': None},
-        "author": {'allowUndefined': True, 'default': None},
-    },
 )
 class CAnnotation(CData):
 
-    text: Optional["CString"] = None
-    time: Optional["CTime"] = None
-    author: Optional["CUserId"] = None
+    text = content("CString", allowUndefined=True, charWidth=-1)
+    time = content("CTime", allowUndefined=True, default=None)
+    author = content("CUserId", allowUndefined=True, default=None)
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
