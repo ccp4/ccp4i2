@@ -20,7 +20,7 @@ COLUMN_GROUP_TYPE_MAP = {
 
 # Human-readable type descriptors for annotations
 # Maps (group_type, subType) -> descriptor string
-# subType values from CMapCoeffsDataFileStub: 1=normal, 2=difference, 3=anomalous difference
+# subType values from CMapCoeffsDataFile: 1=normal, 2=difference, 3=anomalous difference
 TYPE_DESCRIPTORS = {
     ('Obs', 1): 'Anom I',       # Anomalous intensities
     ('Obs', 2): 'Anom SF',      # Anomalous SFs

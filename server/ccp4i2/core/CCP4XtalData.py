@@ -9,7 +9,13 @@ from typing import Optional, Any
 
 from ccp4i2.core.CCP4Data import CFloatRange
 from ccp4i2.core.base_object.error_reporting import CErrorReport
-from ccp4i2.core.cdata_stubs.CCP4XtalData import CAltSpaceGroupStub, CAltSpaceGroupListStub, CAnomalousColumnGroupStub, CAnomalousIntensityColumnGroupStub, CAnomalousScatteringElementStub, CAsuComponentStub, CAsuComponentListStub, CCellStub, CCellAngleStub, CCellLengthStub, CColumnGroupStub, CColumnGroupItemStub, CColumnGroupListStub, CColumnTypeStub, CColumnTypeListStub, CCrystalNameStub, CDatasetStub, CDatasetListStub, CDatasetNameStub, CDialsJsonFileStub, CDialsPickleFileStub, CExperimentalDataTypeStub, CFPairColumnGroupStub, CFSigFColumnGroupStub, CFormFactorStub, CFreeRColumnGroupStub, CFreeRDataFileStub, CGenericReflDataFileStub, CHLColumnGroupStub, CIPairColumnGroupStub, CISigIColumnGroupStub, CImageFileStub, CImageFileListStub, CImosflmXmlDataFileStub, CImportUnmergedStub, CImportUnmergedListStub, CMapCoeffsDataFileStub, CMapColumnGroupStub, CMapDataFileStub, CMergeMiniMtzStub, CMergeMiniMtzListStub, CMiniMtzDataFileStub, CMiniMtzDataFileListStub, CMmcifReflDataStub, CMmcifReflDataFileStub, CMtzColumnStub, CMtzColumnGroupStub, CMtzColumnGroupTypeStub, CMtzDataStub, CMtzDataFileStub, CMtzDatasetStub, CObsDataFileStub, CPhaserRFileDataFileStub, CPhaserSolDataFileStub, CPhiFomColumnGroupStub, CPhsDataFileStub, CPhaserTngDagFileStub, CProgramColumnGroupStub, CProgramColumnGroup0Stub, CRefmacKeywordFileStub, CReindexOperatorStub, CResolutionRangeStub, CRunBatchRangeStub, CRunBatchRangeListStub, CShelxFADataFileStub, CShelxLabelStub, CSpaceGroupStub, CSpaceGroupCellStub, CUnmergedDataContentStub, CUnmergedDataFileStub, CUnmergedDataFileListStub, CUnmergedMtzDataFileStub, CWavelengthStub, CXia2ImageSelectionStub, CXia2ImageSelectionListStub
+from typing import TYPE_CHECKING, Optional, Any
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.base_classes import CData, CDataFile, CDataFileContent
+from ccp4i2.core.base_object.fundamental_types import CBoolean, CFloat, CInt, CList, CString
+from ccp4i2.core.CCP4Data import COneWord, CRangeSelection, CUUID
+from ccp4i2.core.CCP4File import CFilePath, CMmcifData, CMmcifDataFile, CProjectId
+from ccp4i2.core.CCP4ModelData import CElement, CSeqDataFile
 
 
 def cells_are_compatible(params1, params2, tolerance=1.0):
@@ -178,172 +184,38 @@ def _compact_batch_ranges(numbers: list) -> str:
     return ", ".join(ranges)
 
 
-class CAltSpaceGroup(CAltSpaceGroupStub):
-    """
-    A string holding the space group
-    
-    Extends CAltSpaceGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "min": 0.0,
+        "default": None,
+        "allowUndefined": False,
+        "toolTip": 'Cell length in A',
+    },
+    qualifiers_order=[
+        'min',
+        'max',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText'],
+)
+class CCellLength(CFloat):
 
-    # Add your methods here
-    pass
-
-
-class CAltSpaceGroupList(CAltSpaceGroupListStub):
-    """
-    A list of alternative space-group symbols in the canonical ccp4i2
-    convention (CAltSpaceGroup / CSpaceGroup). Tasks that want plain
-    strings (e.g. their own native convention like "P212121") should use
-    a generic CList with a CString subItem rather than this class.
-    """
-
-    SUBITEM = {'class': CAltSpaceGroup}
-
-
-class CAnomalousColumnGroup(CAnomalousColumnGroupStub):
-    """
-    Selection of F/I and AnomF/I columns from MTZ.
-Expected to be part of ab initio phasing dataset ( CDataset)
-    
-    Extends CAnomalousColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CAnomalousIntensityColumnGroup(CAnomalousIntensityColumnGroupStub):
-    """
-    Selection of I and AnomI columns from MTZ.
-Expected to be part of ab initio phasing dataset ( CDataset)
-    
-    Extends CAnomalousIntensityColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CAnomalousScatteringElement(CAnomalousScatteringElementStub):
-    """
-    Definition of a anomalous scattering element
-    
-    Extends CAnomalousScatteringElementStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CAsuComponent(CAsuComponentStub):
-    """
-    A component of the asymmetric unit. This is for use in MR, defining
-what we are searching for. 
-    
-    Extends CAsuComponentStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CAsuComponentList(CAsuComponentListStub):
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CAsuComponentListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CCell(CCellStub):
-    """
-    A unit cell
-
-    Extends CCellStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def validity(self):
-        """Validate the cell parameters.
-
-        If the cell is optional (allowUndefined=True or not specified) and not set,
-        skip validation of child parameters (a, b, c, alpha, beta, gamma) entirely.
-        This prevents validation errors for unset optional cell parameters.
-
-        Returns:
-            CErrorReport containing any validation errors/warnings
+    def __init__(self, parent=None, name=None, **kwargs):
         """
-        from ccp4i2.core.base_object.error_reporting import CErrorReport
+        Initialize CCellLength.
 
-        # Check if this cell is optional
-        allow_undefined = self.get_qualifier('allowUndefined')
-        is_optional = allow_undefined is None or allow_undefined is True
-
-        # Check if the cell has any parameters set
-        has_any_set = any(
-            getattr(self, param) and getattr(self, param).isSet()
-            for param in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
-        )
-
-        # If optional and nothing is set, skip validation entirely
-        if is_optional and not has_any_set:
-            return CErrorReport()
-
-        # Otherwise, use the standard validation (which validates children)
-        return super().validity()
-
-    def guiLabel(self) -> str:
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
         """
-        Return a compact string representation of cell parameters.
-        Format: "a=XX.XX b=XX.XX c=XX.XX α=XX.XX β=XX.XX γ=XX.XX"
-        Used by legacy code for logging and display.
-
-        Returns:
-            Formatted string with cell parameters (2 decimal places)
-        """
-        parts = []
-        if self.a and self.a.isSet():
-            parts.append(f"a={self.a.value:.2f}")
-        if self.b and self.b.isSet():
-            parts.append(f"b={self.b.value:.2f}")
-        if self.c and self.c.isSet():
-            parts.append(f"c={self.c.value:.2f}")
-        if self.alpha and self.alpha.isSet():
-            parts.append(f"α={self.alpha.value:.2f}")
-        if self.beta and self.beta.isSet():
-            parts.append(f"β={self.beta.value:.2f}")
-        if self.gamma and self.gamma.isSet():
-            parts.append(f"γ={self.gamma.value:.2f}")
-
-        return " ".join(parts) if parts else "Cell parameters not set"
-
-
-class CCellAngle(CCellAngleStub):
-    """
-    A cell angle
-    
-    Extends CCellAngleStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CCellLength(CCellLengthStub):
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A cell length
     
-    Extends CCellLengthStub with implementation-specific methods.
+    Extends CCellLength with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -351,11 +223,260 @@ class CCellLength(CCellLengthStub):
     pass
 
 
-class CColumnGroup(CColumnGroupStub):
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/phaser-rfile',
+        "mimeTypeDescription": 'Phaser rotation solution file',
+        "fileExtensions": ['phaser_rlist.pkl'],
+        "fileContentClassName": None,
+        "fileLabel": 'phaser_rfile',
+        "guiLabel": 'Phaser rotation solution',
+        "toolTip": 'Phaser rfile solutions for rotation search',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CPhaserRFileDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPhaserRFileDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Phaser R-list data file (pickle format).
+
+    Extends CPhaserRFileDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "columnGroupType": {'onlyEnumerators': True, 'enumerators': ['Obs', 'Phs', 'MapCoeffs', 'FreeR']},
+    },
+)
+class CColumnGroup(CData):
+
+    columnGroupType: Optional["COneWord"] = None
+    contentFlag: Optional["CInt"] = None
+    dataset: Optional["CString"] = None
+    columnList: Optional["CList"] = None
+    selected: Optional["CBoolean"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     Groups of columns in MTZ - probably from analysis by hklfile
 
-    Extends CColumnGroupStub with implementation-specific methods.
+    Extends CColumnGroup with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -391,192 +512,1317 @@ class CColumnGroup(CColumnGroupStub):
         return splitter.join(parts)
 
 
-class CColumnGroupItem(CColumnGroupItemStub):
-    """
-    Definition of set of columns that form a 'group'
-    
-    Extends CColumnGroupItemStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CColumnGroupList(CList):
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CColumnGroupList.
 
-
-class CColumnGroupList(CColumnGroupListStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A list with all items of one CData sub-class
 
-    Extends CColumnGroupListStub with implementation-specific methods.
+    Extends CColumnGroupList with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
     SUBITEM = {'class': CColumnGroup}
 
 
-class CColumnType(CColumnTypeStub):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'mmCIF reflection data',
+        "mimeTypeName": 'chemical/x-cif',
+        "toolTip": 'A reflection file in mmCIF format',
+        "fileExtensions": ['cif'],
+        "fileContentClassName": 'CMmcifReflData',
+        "downloadModes": ['ebiSFs'],
+        "helpFile": 'data_files#mmCIF',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CMmcifReflDataFile(CMmcifDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMmcifReflDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    A list of recognised MTZ column types
-    
-    Extends CColumnTypeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    A reflection file in mmCIF format
 
-    # Add your methods here
-    pass
-
-
-class CColumnTypeList(CColumnTypeListStub):
-    """
-    A list of acceptable MTZ column types
-    
-    Extends CColumnTypeListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CCrystalName(CCrystalNameStub):
-    """
-    A string
-    
-    Extends CCrystalNameStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CDataset(CDatasetStub):
-    """
-    The experimental data model for ab initio phasing
-    
-    Extends CDatasetStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CDatasetList(CDatasetListStub):
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CDatasetListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CDatasetName(CDatasetNameStub):
-    """
-    A string
-    
-    Extends CDatasetNameStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CDialsJsonFile(CDialsJsonFileStub):
-    """
-    Extends CDialsJsonFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CDialsPickleFile(CDialsPickleFileStub):
-    """
-    Extends CDialsPickleFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CExperimentalDataType(CExperimentalDataTypeStub):
-    """
-    Experimental data type e.g. native or peak
-    
-    Extends CExperimentalDataTypeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CFPairColumnGroup(CFPairColumnGroupStub):
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFPairColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CFSigFColumnGroup(CFSigFColumnGroupStub):
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFSigFColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CFormFactor(CFormFactorStub):
-    """
-    The for factor (Fp and Fpp) for a giving element and wavelength
-    
-    Extends CFormFactorStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CFreeRColumnGroup(CFreeRColumnGroupStub):
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFreeRColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CMiniMtzDataFile(CMiniMtzDataFileStub):
-    """
-    An MTZ experimental data file
-
-    Extends CMiniMtzDataFileStub with implementation-specific methods.
+    Extends CMmcifReflDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CMtzData' is already set in CMiniMtzDataFileStub decorator
+
+
+@cdata_class(
+    error_codes={
+        "151": {
+            "description": "Failed converting MTZ file to alternative format"
+        },
+        "152": {
+            "description": "Failed merging MTZ file - invalid input"
+        },
+        "153": {
+            "description": "Failed merging MTZ files - error running cmtzjoin - see log"
+        },
+        "154": {
+            "description": "Failed merging MTZ files - error running cad - see log"
+        },
+        "401": {
+            "description": "MTZ file header data differs"
+        },
+        "402": {
+            "description": "MTZ file columns differ"
+        },
+        "403": {
+            "description": "Error trying to access number of reflections",
+            "severity": 2
+        },
+        "404": {
+            "description": "MTZ files have different number of reflections"
+        },
+        "405": {
+            "description": "MTZ column mean value differs"
+        },
+        "406": {
+            "description": "MTZ file header data differs - may be autogenerated names",
+            "severity": 2
+        },
+        "407": {
+            "description": "Error splitting MTZ file - failed creating input command to cmtzsplit"
+        },
+        "408": {
+            "description": "Error splitting MTZ file - output file missing"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-mtz',
+        "mimeTypeDescription": 'MTZ experimental data',
+        "fileExtensions": ['mtz'],
+        "fileContentClassName": 'CMtzData',
+        "guiLabel": 'Experimental data',
+        "toolTip": "Experimental data in CCP4's MTZ format",
+        "helpFile": 'data_files#MTZ',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CMtzDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMtzDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    An MTZ experimental data file
+
+    Extends CMtzDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
+        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
+        # Note: fileContentClassName='CMtzData' is already set in CMtzDataFile decorator
+        # Note: MIME type now comes from ccp4i2_static_data.py via get_file_type_from_class()
+        self.set_qualifier('guiLabel', 'Experimental data')
+        self.set_qualifier('toolTip', 'MTZ format reflection data file')
+        self.set_qualifier('fileExtensions', ['mtz'])
+
+    def fileExtensions(self):
+        """
+        Return file extension for MTZ files.
+
+        All MTZ files (CMtzDataFile and derivatives) use the .mtz extension.
+
+        Returns:
+            list: ['mtz']
+        """
+        return ['mtz']
+
+    def columnNames(self, asString=False, ifString=None):
+        """
+        Get column names from the file content, or expected names based on contentFlag.
+
+        Legacy compatibility method that inspects fileContent to return column names.
+        If fileContent is not available, falls back to CONTENT_SIGNATURE_LIST based
+        on the contentFlag.
+
+        Args:
+            asString: If True, return comma-separated string. If False, return list.
+            ifString: Legacy parameter name for asString (for backwards compatibility)
+
+        Returns:
+            list or str: Column names as list or comma-separated string
+
+        Example:
+            >>> mtz_file.columnNames(False)
+            ['H', 'K', 'L', 'F', 'SIGF']
+            >>> mtz_file.columnNames(True)
+            'H,K,L,F,SIGF'
+        """
+        # Support legacy ifString parameter
+        if ifString is not None:
+            asString = ifString
+
+        col_names = []
+
+        # Try to get from fileContent.listOfColumns
+        content = self.getFileContent()
+        if content and hasattr(content, 'listOfColumns') and content.listOfColumns:
+            # Extract column labels from CMtzColumn objects
+            for col in content.listOfColumns:
+                if hasattr(col, 'columnLabel'):
+                    label = col.columnLabel
+                    # Handle both CString with .value and plain strings
+                    if hasattr(label, 'value'):
+                        col_names.append(str(label.value))
+                    else:
+                        col_names.append(str(label))
+
+        # Fall back to CONTENT_SIGNATURE_LIST if no fileContent columns
+        if not col_names and hasattr(self.__class__, 'CONTENT_SIGNATURE_LIST'):
+            content_flag = None
+            if hasattr(self, 'contentFlag') and self.contentFlag:
+                cf = self.contentFlag
+                # Extract plain int - handle nested .value or CInt objects
+                while hasattr(cf, 'value'):
+                    cf = cf.value
+                content_flag = int(cf) if cf else None
+
+            signature_list = self.__class__.CONTENT_SIGNATURE_LIST
+            if content_flag is not None and 1 <= content_flag <= len(signature_list):
+                # contentFlag is 1-indexed
+                col_names = list(signature_list[content_flag - 1])
+
+        if asString:
+            return ','.join(col_names)
+        else:
+            return col_names
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "onlyEnumerators": True,
+        "enumerators": ['native', 'derivative', 'SAD', 'peak', 'inflection', 'high_remote', 'low_remote', ''],
+        "default": 'SAD',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CExperimentalDataType(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CExperimentalDataType.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Experimental data type e.g. native or peak
+    
+    Extends CExperimentalDataType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "moleculeType": {'onlyEnumerators': True, 'enumerators': ['PROTEIN', 'NUCLEIC'], 'menuText': ['protein', 'nucleic acid'], 'default': 'PROTEIN', 'toolTip': 'Molecule type'},
+        "seqFile": {'jobCombo': False, 'mustExist': True, 'allowUndefined': False},
+        "numberOfCopies": {'allowUndefined': False, 'toolTip': 'Number of copies of sequence', 'min': 0, 'max': 999, 'default': 1, 'enumerators': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]},
+    },
+)
+class CAsuComponent(CData):
+
+    moleculeType: Optional["CString"] = None
+    seqFile: Optional["CSeqDataFile"] = None
+    numberOfCopies: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAsuComponent.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A component of the asymmetric unit. This is for use in MR, defining
+what we are searching for. 
+    
+    Extends CAsuComponent with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/dials-pfile',
+        "mimeTypeDescription": 'Dials pickle data file',
+        "fileExtensions": ['pickle', 'refl'],
+        "fileContentClassName": None,
+        "fileLabel": 'dials_pdata',
+        "guiLabel": 'Xia2/Dials pickle data',
+        "toolTip": 'Xia2/Dials pickle data files',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CDialsPickleFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDialsPickleFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CDialsPickleFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "min": 0.0,
+        "max": 180.0,
+        "default": None,
+        "allowUndefined": True,
+        "toolTip": 'Cell angle in degrees',
+    },
+    qualifiers_order=[
+        'min',
+        'max',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText'],
+)
+class CCellAngle(CFloat):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CCellAngle.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A cell angle
+    
+    Extends CCellAngle with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Selected file is not a suitable 'mini' MTZ containing experimental data object"
+        },
+        "202": {
+            "description": "Output column name list does not have correct number of names"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['fileName', 'columnTag', 'columnNames'],
+    content_qualifiers={
+        "fileName": {'fromPreviousJob': False},
+    },
+)
+class CMergeMiniMtz(CData):
+
+    fileName: Optional["CMiniMtzDataFile"] = None
+    columnTag: Optional["CString"] = None
+    columnNames: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMergeMiniMtz.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CMergeMiniMtz with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 2,
+        "saveToDb": True,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CMergeMiniMtzList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMergeMiniMtzList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """A list of CMergeMiniMtz items."""
+
+    SUBITEM = {'class': CMergeMiniMtz}
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-unmerged-experimental',
+        "mimeTypeDescription": 'Unmerged experimental data',
+        "fileExtensions": ['mtz', 'hkl', 'HKL', 'sca', 'SCA', 'ent', 'cif'],
+        "fileContentClassName": 'CUnmergedDataContent',
+        "guiLabel": 'Unmerged reflections',
+        "toolTip": 'Unmerged experimental data in any format',
+        "downloadModes": ['ebiSFs'],
+        "helpFile": 'data_files#unmerged_data',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CUnmergedDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CUnmergedDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Handle MTZ, XDS and scalepack files. Allow wildcard filename
+
+    Extends CUnmergedDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
+        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/dials-jfile',
+        "mimeTypeDescription": 'Dials json data file',
+        "fileExtensions": ['json', 'expt', 'jsn'],
+        "fileContentClassName": None,
+        "fileLabel": 'dials_jdata',
+        "guiLabel": 'json data',
+        "toolTip": 'json data files',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CDialsJsonFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDialsJsonFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CDialsJsonFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "onlyEnumerators": True,
+        "default": 'UNDEFINED',
+        "enumerators": ['UNDEFINED', 'HREM', 'LREM', 'PEAK', 'INFL', 'NAT', 'DERI'],
+        "menuText": ['undefined', 'high remote', 'low remote', 'peak', 'inflection', 'native', 'derivative'],
+        "toolTip": 'Hint to Shelx for the use of the dataset',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CShelxLabel(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CShelxLabel.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string
+    
+    Extends CShelxLabel with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Operator has bad syntax (needs three comma-separated fields)"
+        },
+        "202": {
+            "description": "Operator contains invalid characters"
+        },
+        "203": {
+            "description": "Operator is not set"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['h', 'k', 'l'],
+    content_qualifiers={
+        "h": {'default': 'h'},
+        "k": {'default': 'k'},
+        "l": {'default': 'l'},
+    },
+)
+class CReindexOperator(CData):
+
+    h: Optional["CString"] = None
+    k: Optional["CString"] = None
+    l: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CReindexOperator.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CReindexOperator with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "min": 0.0,
+        "toolTip": 'Data collection wavelength in Angstrom',
+    },
+    qualifiers_order=[
+        'min',
+        'max',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText'],
+)
+class CWavelength(CFloat):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CWavelength.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Wavelength in Angstrom
+    
+    Extends CWavelength with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "End of batch range less than start"
+        },
+        "102": {
+            "description": "All items must be set"
+        }
+    },
+    qualifiers={
+        "toolTip": 'Specify range of reflections to treat as one run',
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "runNumber": {'allowUndefined': True, 'min': 1},
+        "batchRange0": {'allowUndefined': True, 'min': 1},
+        "batchRange1": {'allowUndefined': True, 'min': 1},
+        "resolution": {'min': 0.0, 'allowUndefined': True},
+        "fileNumber": {'allowUndefined': True, 'min': 1},
+    },
+)
+class CRunBatchRange(CData):
+
+    runNumber: Optional["CInt"] = None
+    batchRange0: Optional["CInt"] = None
+    batchRange1: Optional["CInt"] = None
+    resolution: Optional["CFloat"] = None
+    fileNumber: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CRunBatchRange.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CRunBatchRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Invalid space group"
+        },
+        "102": {
+            "description": "Space group is not chiral",
+            "severity": 2
+        },
+        "103": {
+            "description": "Space group is not Hermann-Mauguin standard"
+        },
+        "104": {
+            "description": "Space group is not a chiral Hermann-Mauguin standard. Full syminfo.lib information not loaded."
+        },
+        "105": {
+            "description": "Space group is not Hermann-Mauguin standard - has wrong number of spaces?"
+        },
+        "106": {
+            "description": "Space group is undefined",
+            "severity": 1
+        },
+        "107": {
+            "description": "Space group is undefined"
+        },
+        "108": {
+            "description": "Space group is incomplete",
+            "severity": 2
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "toolTip": 'Hermann-Mauguin space group name',
+        "helpFile": 'crystal_data#space_group',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CSpaceGroup(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSpaceGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string holding the space group
+
+    Extends CSpaceGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def fix(self, value: str) -> str:
+        """
+        Normalize a space group string.
+
+        Takes a space group string (e.g., from program output) and returns
+        a normalized version suitable for storage.
+
+        Args:
+            value: Space group string to normalize
+
+        Returns:
+            Normalized space group string
+        """
+        if value is None:
+            return ""
+        # Strip whitespace and return
+        # More sophisticated normalization (e.g., P 21 21 21 -> P212121)
+        # can be added here if needed
+        return str(value).strip()
+
+    def number(self) -> int:
+        """Return the ITC space group number for the stored space group name.
+
+        Uses gemmi to look up the number from the Hermann-Mauguin symbol.
+        """
+        import gemmi
+        sg = gemmi.find_spacegroup_by_name(str(self))
+        if sg is None:
+            raise ValueError(f"Unknown space group: '{self}'")
+        return sg.number
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": False,
+        "allowedChars": 1,
+        "minLength": 1,
+        "toolTip": 'Unique identifier for dataset (one word)',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CDatasetName(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDatasetName.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string
+    
+    Extends CDatasetName with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Wrong number of columns"
+        },
+        "202": {
+            "description": "Wrong column types"
+        },
+        "203": {
+            "description": "No correct column types found in file"
+        },
+        "204": {
+            "description": "Duplicate or additional column types found in file"
+        },
+        "205": {
+            "description": "Columns in file have non-standard labels"
+        },
+        "206": {
+            "description": "File contains unmerged data"
+        },
+        "210": {
+            "description": "Failed creating mini-MTZ"
+        },
+        "211": {
+            "description": "Insufficient columns selected from imported MTZ"
+        },
+        "212": {
+            "description": "Data already imported as",
+            "severity": 2
+        },
+        "220": {
+            "description": "Can not convert file content, file does not exist"
+        },
+        "221": {
+            "description": "Can not convert file content, existing content insufficiently rich"
+        },
+        "222": {
+            "description": "Can not convert file content, bad input for target content"
+        },
+        "223": {
+            "description": "Can not recognise file content"
+        },
+        "224": {
+            "description": "Not possible to convert to required content - no mechanism implemented"
+        },
+        "225": {
+            "description": "Failed importing from an mmcif file - failed running cif2mtz"
+        },
+        "226": {
+            "description": "Failed importing from an mmcif file - no output from cif2mtz"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-mtz-mini',
+        "fileExtensions": ['mtz', 'cif', 'ent'],
+        "fileContentClassName": 'CMtzData',
+        "saveToDb": True,
+        "correctColumns": ['FQ', 'JQ', 'GLGL', 'KMKM', 'AAAA', 'PW', 'FP', 'I'],
+        "toolTip": 'Mini-MTZ file containing reflection,phases,FreeR set or map coefficients',
+        "helpFile": 'data_files#MTZ',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag',
+        'correctColumns',
+        'columnGroupClassList',
+        'sameCrystalAs'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CMiniMtzDataFile(CMtzDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMiniMtzDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    An MTZ experimental data file
+
+    Extends CMiniMtzDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
+        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
+        # Note: fileContentClassName='CMtzData' is already set in CMiniMtzDataFile decorator
 
     # Note: _get_conversion_output_path() is now in CDataFile base class
 
@@ -785,32 +2031,758 @@ class CMiniMtzDataFile(CMiniMtzDataFileStub):
         """
         return ['mtz']
 
-class CFreeRDataFile(CFreeRDataFileStub, CMiniMtzDataFile):
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CMiniMtzDataFileList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMiniMtzDataFileList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """A list of CMiniMtzDataFile items."""
+
+    SUBITEM = {'class': CMiniMtzDataFile}
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CUnmergedDataFileList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CUnmergedDataFileList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    An MTZ experimental data file for free-R flags.
+    A list with all items of one CData sub-class
 
-    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
-    - columnNames(): Get column names from file content
-    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
-    - datasetName(): Get dataset name from MTZ
-    - fileExtensions(): Return ['mtz']
-
-    Extends CFreeRDataFileStub with implementation-specific methods.
+    Extends CUnmergedDataFileList with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Standard column signature for FreeR files
-    # splitHklout() will automatically relabel non-standard names (e.g., 'FreeR_flag') to 'FREER'
-    CONTENT_SIGNATURE_LIST = [['FREER']]
-
-    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
-        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CMtzData' is already set in CFreeRDataFileStub decorator
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+        # Set the subItem qualifier to specify CUnmergedDataFile as item type
+        # This allows aimless_pipe to use list items as CUnmergedDataFile objects
+        self.set_qualifier('subItem', {'class': CUnmergedDataFile, 'qualifiers': {}})
 
 
-class CGenericReflDataFile(CGenericReflDataFileStub):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
+        "onlyEnumerators": True,
+        "default": 'F',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CColumnType(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CColumnType.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Extends CGenericReflDataFileStub with implementation-specific methods.
+    A list of recognised MTZ column types
+    
+    Extends CColumnType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CColumnTypeList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CColumnTypeList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list of acceptable MTZ column types
+    
+    Extends CColumnTypeList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/phaser-sol',
+        "mimeTypeDescription": 'Phaser solution file',
+        "fileExtensions": ['phaser_sol.pkl'],
+        "fileContentClassName": None,
+        "fileLabel": 'phaser_sol',
+        "guiLabel": 'Phaser solutions',
+        "toolTip": 'Possible solutions passed between runs of the Phaser program',
+        "helpFile": 'data_files#phasersol',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CPhaserSolDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPhaserSolDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Phaser solution data file (pickle format).
+
+    Extends CPhaserSolDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 1,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CImportUnmergedList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CImportUnmergedList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+
+    Extends CImportUnmergedList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+        # Set the subItem qualifier that makeItem() expects
+        # This allows i2run to create CImportUnmerged items when parsing arguments
+        self.set_qualifier('subItem', {'class': CImportUnmerged, 'qualifiers': {}})
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-shelx-FA',
+        "mimeTypeDescription": 'Shelx FA',
+        "fileExtensions": ['hkl'],
+        "fileContentClassName": None,
+        "fileLabel": 'shelx_FA',
+        "guiLabel": 'Shelx FA',
+        "toolTip": 'Data used by Shelx programs',
+        "helpFile": 'data_files#shelxfa',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CShelxFADataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CShelxFADataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CShelxFADataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+        # Note: fileContentClassName='CMtzData' is already set in CFreeRDataFile decorator
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "toolTip": 'Hermann-Mauguin space group name',
+        "helpFile": 'crystal_data#space_group',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CAltSpaceGroup(CSpaceGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAltSpaceGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string holding the space group
+    
+    Extends CAltSpaceGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CAltSpaceGroupList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAltSpaceGroupList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list of alternative space-group symbols in the canonical ccp4i2
+    convention (CAltSpaceGroup / CSpaceGroup). Tasks that want plain
+    strings (e.g. their own native convention like "P212121") should use
+    a generic CList with a CString subItem rather than this class.
+    """
+
+    SUBITEM = {'class': CAltSpaceGroup}
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CMtzDataset(CData):
+
+    name: Optional["CString"] = None
+    columnGroups: Optional["CList"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMtzDataset.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CMtzDataset with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CImageFileList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CImageFileList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CImageFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 1,
+        "guiLabel": 'Contents of asymmetric unit',
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CAsuComponentList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAsuComponentList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CAsuComponentList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "guiLabel": 'Reflection data',
+        "mimeTypeName": 'application/CCP4-generic-reflections',
+        "toolTip": 'A reflection data file in MTZ or a non-CCP4 format',
+        "fileContentClassName": 'CUnmergedDataContent',
+        "fileExtensions": ['mtz', 'hkl', 'HKL', 'sca', 'SCA', 'mmcif', 'cif', 'ent'],
+        "downloadModes": ['ebiSFs'],
+        "helpFile": 'import_merged#file_formats',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CGenericReflDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CGenericReflDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CGenericReflDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -857,173 +2829,2070 @@ class CGenericReflDataFile(CGenericReflDataFileStub):
         return True
 
 
-class CHLColumnGroup(CHLColumnGroupStub):
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CHLColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CXia2ImageSelectionList(CList):
 
-    # Add your methods here
-    pass
-
-
-class CIPairColumnGroup(CIPairColumnGroupStub):
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CIPairColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CISigIColumnGroup(CISigIColumnGroupStub):
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CISigIColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CImageFile(CImageFileStub):
-    """
-    Extends CImageFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CImageFileList(CImageFileListStub):
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CImageFileListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CImosflmXmlDataFile(CImosflmXmlDataFileStub):
-    """
-    An iMosflm data file
-    
-    Extends CImosflmXmlDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CImportUnmerged(CImportUnmergedStub):
-    """
-    Extends CImportUnmergedStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def populateFromFile(self):
+    def __init__(self, parent=None, name=None, **kwargs):
         """
-        Auto-populate dataset, crystalName, cell, and wavelength from MTZ file metadata.
+        Initialize CXia2ImageSelectionList.
 
-        This should be called after the file is set to populate required fields
-        that can be derived from the MTZ header.
-
-        Returns:
-            bool: True if fields were populated successfully, False otherwise
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
         """
-        if not hasattr(self, 'file') or self.file is None or not self.file.isSet():
-            return False
-
-        file_path = self.file.getFullPath()
-        if not file_path:
-            return False
-
-        try:
-            import gemmi
-            from pathlib import Path
-
-            if not Path(file_path).exists():
-                return False
-
-            mtz = gemmi.read_mtz_file(file_path)
-
-            # Find the first non-HKL_base dataset
-            for dataset in mtz.datasets:
-                if dataset.dataset_name and dataset.dataset_name != 'HKL_base':
-                    # Set dataset name if not already set
-                    if hasattr(self, 'dataset') and self.dataset is not None:
-                        if not self.dataset.isSet():
-                            self.dataset.set(dataset.dataset_name)
-
-                    # Set crystal name if not already set
-                    if hasattr(self, 'crystalName') and self.crystalName is not None:
-                        if not self.crystalName.isSet():
-                            crystal_name = dataset.crystal_name or dataset.dataset_name
-                            self.crystalName.set(crystal_name)
-
-                    # Set cell parameters if not already set
-                    if hasattr(self, 'cell') and self.cell is not None:
-                        if not self.cell.isSet():
-                            self.cell.a.set(mtz.cell.a)
-                            self.cell.b.set(mtz.cell.b)
-                            self.cell.c.set(mtz.cell.c)
-                            self.cell.alpha.set(mtz.cell.alpha)
-                            self.cell.beta.set(mtz.cell.beta)
-                            self.cell.gamma.set(mtz.cell.gamma)
-
-                    # Set wavelength if available and not already set
-                    if hasattr(self, 'wavelength') and self.wavelength is not None:
-                        if not self.wavelength.isSet() and dataset.wavelength > 0:
-                            self.wavelength.set(dataset.wavelength)
-
-                    return True
-
-            # Fallback: use cell from MTZ even if no named dataset found
-            if hasattr(self, 'cell') and self.cell is not None and not self.cell.isSet():
-                self.cell.a.set(mtz.cell.a)
-                self.cell.b.set(mtz.cell.b)
-                self.cell.c.set(mtz.cell.c)
-                self.cell.alpha.set(mtz.cell.alpha)
-                self.cell.beta.set(mtz.cell.beta)
-                self.cell.gamma.set(mtz.cell.gamma)
-
-            return False
-
-        except Exception as e:
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.debug(f"Failed to populate CImportUnmerged from file: {e}")
-            return False
-
-
-class CImportUnmergedList(CImportUnmergedListStub):
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A list with all items of one CData sub-class
 
-    Extends CImportUnmergedListStub with implementation-specific methods.
+    Extends CXia2ImageSelectionList with implementation-specific methods.
     Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['Fp', 'Fpp'],
+    content_qualifiers={
+        "Fp": {'toolTip': "Form factor F' for element at given wavelength"},
+        "Fpp": {'toolTip': "Form factor F'' for element at given wavelength"},
+    },
+)
+class CFormFactor(CData):
+
+    Fp: Optional["CFloat"] = None
+    Fpp: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CFormFactor.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    The for factor (Fp and Fpp) for a giving element and wavelength
+    
+    Extends CFormFactor with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "onlyEnumerators": False,
+        "enumerators": ['Br', 'Fe', 'Pt', 'Se'],
+        "charWidth": 4,
+        "default": 'Se',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CAnomalousScatteringElement(CElement):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAnomalousScatteringElement.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Definition of a anomalous scattering element
+    
+    Extends CAnomalousScatteringElement with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-image',
+        "mimeTypeDescription": 'Image file',
+        "fileExtensions": ['img', 'cbf', 'mccd', 'mar1600', 'h5', 'nxs'],
+        "fileContentClassName": None,
+        "guiLabel": 'Image file',
+        "toolTip": 'First image file in a directory',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CImageFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CImageFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CImageFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Column not in MTZ file"
+        },
+        "102": {
+            "description": "Column wrong type"
+        },
+        "103": {
+            "description": "Error setting columnGroup qualifier"
+        },
+        "104": {
+            "description": "Missing column selection"
+        },
+        "105": {
+            "description": "Specified column not found in MTZ file"
+        },
+        "106": {
+            "description": "Specified column has wrong type in MTZ file"
+        },
+        "107": {
+            "description": "Error reading columnGroup qualifier from XML file"
+        },
+        "108": {
+            "description": "No columnGroup qualifier"
+        }
+    },
+    qualifiers={
+        "mustExist": False,
+        "mtzFileKey": '',
+        "toolTipList": [],
+        "default": [],
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CProgramColumnGroup(CData):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CProgramColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input.
+
+    This class maps between generic column names (e.g., 'Ip', 'SIGIp') and
+    actual MTZ column labels (e.g., 'Iplus', 'SIGIplus'). It behaves like
+    a dictionary that can be accessed via attributes.
+
+    Example:
+        >>> colgroup = CProgramColumnGroup()
+        >>> colgroup.set({'Ip': 'Iplus', 'SIGIp': 'SIGIplus'})
+        >>> print(colgroup.Ip)  # Returns 'Iplus'
+        >>> print(colgroup.isSet())  # Returns True
+
+    This provides compatibility with ccp4i2 wrapper code that expects
+    attribute access to column mappings.
     """
 
     def __init__(self, parent=None, name=None, **kwargs):
+        """Initialize with an internal column mapping dict."""
         super().__init__(parent=parent, name=name, **kwargs)
-        # Set the subItem qualifier that makeItem() expects
-        # This allows i2run to create CImportUnmerged items when parsing arguments
-        self.set_qualifier('subItem', {'class': CImportUnmerged, 'qualifiers': {}})
+        # Internal storage for column name mappings
+        self._column_mapping = {}
+        self._is_set = False
+
+    def set(self, mapping: dict):
+        """
+        Set the column name mappings.
+
+        Args:
+            mapping: Dict mapping generic column names to actual MTZ column labels
+                    e.g., {'Ip': 'Iplus', 'SIGIp': 'SIGIplus', 'Im': 'Iminus', 'SIGIm': 'SIGIminus'}
+        """
+        if isinstance(mapping, dict):
+            self._column_mapping = mapping.copy()
+            self._is_set = True
+        else:
+            # If it's a CData object, try to extract its value
+            if hasattr(mapping, '__dict__') and '_column_mapping' in mapping.__dict__:
+                self._column_mapping = mapping._column_mapping.copy()
+                self._is_set = mapping._is_set
+            else:
+                raise TypeError(f"Expected dict, got {type(mapping)}")
+
+    def isSet(self, field_name: str = None, allowUndefined: bool = False,
+              allowDefault: bool = False, allSet: bool = True):
+        """
+        Check if column mappings have been set.
+
+        Args:
+            field_name: Ignored for CProgramColumnGroup (provided for API compatibility)
+            allowUndefined: Ignored for CProgramColumnGroup (provided for API compatibility)
+            allowDefault: Ignored for CProgramColumnGroup (provided for API compatibility)
+            allSet: Ignored for CProgramColumnGroup (provided for API compatibility)
+
+        Returns:
+            bool: True if set() has been called with mappings AND mappings contain actual column data
+        """
+        # Check both the flag AND that we have actual column mappings
+        # This prevents reporting True for empty/uninitialized column groups
+        # Ignore 'name' key as it's just metadata, not a column mapping
+        if not self._is_set:
+            return False
+
+        # Check if we have any column mappings besides 'name'
+        actual_columns = {k: v for k, v in self._column_mapping.items() if k != 'name'}
+        return len(actual_columns) > 0
+
+    def __getattr__(self, name):
+        """
+        Allow attribute access to column mappings.
+
+        Args:
+            name: Generic column name (e.g., 'Ip', 'SIGIp')
+
+        Returns:
+            The mapped MTZ column label, or None if not found
+        """
+        # Avoid recursion for internal attributes
+        if name.startswith('_'):
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+
+        # Check if we have this column mapping
+        if '_column_mapping' in self.__dict__ and name in self._column_mapping:
+            return self._column_mapping[name]
+
+        # For missing column names, return None (matches ccp4i2 behavior)
+        # This allows wrapper code to check `if inp.ISIGI.I:` without errors
+        return None
+
+    def __setattr__(self, name, value):
+        """
+        Allow attribute assignment to update column mappings.
+
+        Args:
+            name: Generic column name
+            value: Actual MTZ column label
+        """
+        # Internal attributes go through normal path
+        if name.startswith('_'):
+            super().__setattr__(name, value)
+        else:
+            # For column names, store in mapping
+            if '_column_mapping' not in self.__dict__:
+                self.__dict__['_column_mapping'] = {}
+            if '_is_set' not in self.__dict__:
+                self.__dict__['_is_set'] = False
+
+            self._column_mapping[name] = value
+            self._is_set = True
+
+    def get(self, name, default=None):
+        """
+        Get a mapped column name with optional default.
+
+        Args:
+            name: Generic column name
+            default: Value to return if name not found
+
+        Returns:
+            Mapped column label or default
+        """
+        return self._column_mapping.get(name, default)
+
+    def keys(self):
+        """Return all generic column names."""
+        return self._column_mapping.keys()
+
+    def values(self):
+        """Return all mapped column labels."""
+        return self._column_mapping.values()
+
+    def items(self):
+        """Return all (generic_name, mapped_label) pairs."""
+        return self._column_mapping.items()
 
 
-class CMapCoeffsDataFile(CMapCoeffsDataFileStub, CMiniMtzDataFile):
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/refmac-keywords',
+        "mimeTypeDescription": 'Refmac keyword file',
+        "fileExtensions": ['txt'],
+        "fileContentClassName": None,
+        "fileLabel": 'refmac_keywords',
+        "guiLabel": 'Refmac keyword file',
+        "toolTip": 'A file containing keywords as they are meant to be read by refmac5',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CRefmacKeywordFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CRefmacKeywordFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CRefmacKeywordFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "High/low resolution wrong way round?"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "low": {'min': 0.0, 'allowUndefined': True},
+        "high": {'min': 0.0, 'allowUndefined': True},
+    },
+)
+class CResolutionRange(CFloatRange):
+
+    low: Optional["CFloat"] = None
+    high: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CResolutionRange.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Resolution range for crystallographic data.
+
+    Resolution range convention:
+    - low: larger d-spacing number (lower resolution, e.g., 50.0 Å)
+    - high: smaller d-spacing number (higher resolution, e.g., 2.0 Å)
+
+    Properties:
+    - .start and .end: Actual CFloat attributes (inherited from CFloatRange)
+    - .low and .high: Properties that map to .start and .end respectively
+
+    The .low/.high properties return CFloat objects (not primitive values)
+    so that code can call .isSet() on them.
+
+    When only .high (or .end) is set, aimless will use data from infinite
+    resolution down to the high resolution cutoff. This is the desired behavior
+    for workflows like SubstituteLigand.
+
+    NOTE: The __init__ and _smart_assign_from_cdata methods are inherited from
+    CFloatRange, which ensures that .start and .end are NOT_SET by default and
+    that smart assignment only copies explicitly set fields.
+    """
+
+    @property
+    def low(self):
+        """
+        Low resolution limit (larger d-spacing, e.g., 50.0 Å).
+
+        Returns CFloat object (not primitive value) so .isSet() can be called.
+        Maps to .start attribute.
+        """
+        return self.start
+
+    @low.setter
+    def low(self, value):
+        """Set low resolution limit via .low property."""
+        if isinstance(value, CFloat):
+            self.start = value
+        else:
+            self.start.value = value
+
+    @property
+    def high(self):
+        """
+        High resolution limit (smaller d-spacing, e.g., 2.0 Å).
+
+        Returns CFloat object (not primitive value) so .isSet() can be called.
+        Maps to .end attribute.
+        """
+        return self.end
+
+    @high.setter
+    def high(self, value):
+        """Set high resolution limit via .high property."""
+        if isinstance(value, CFloat):
+            self.end = value
+        else:
+            self.end.value = value
+
+    # Legacy methods for backward compatibility
+    def setHigh(self, value: Optional[float]) -> None:
+        """Set the high resolution limit (smaller d-spacing value)."""
+        self.high = value
+
+    def setLow(self, value: Optional[float]) -> None:
+        """Set the low resolution limit (larger d-spacing value)."""
+        self.low = value
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-map',
+        "mimeTypeDescription": 'Map',
+        "fileExtensions": ['map', 'mrc'],
+        "fileContentClassName": None,
+        "guiLabel": 'Map',
+        "toolTip": 'A map in CCP4/MRC format',
+        "helpFile": 'data_files#map_files',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CMapDataFile(CDataFile):
+
+    # Subtype constants -- what kind of real-space map this CCP4-map file holds.
+    # Persisted to File.sub_type by the gleaner and read by the Moorhen viewers
+    # and the scene format to render each kind appropriately. MASK lets a mask
+    # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
+    # an ordinary density map, which is otherwise the same FileType.
+    SUBTYPE_NORMAL = 1           # normal (electron density) map
+    SUBTYPE_DIFFERENCE = 2       # difference map (Fo-Fc)
+    SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
+    SUBTYPE_MASK = 4             # real-space mask (mode-0 region map)
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMapDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A CCP4 Map file
+    
+    Extends CMapDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CRunBatchRangeList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CRunBatchRangeList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CRunBatchRangeList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CDatasetList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDatasetList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CDatasetList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'imosflm',
+        "mimeTypeName": 'application/iMosflm-xml',
+        "mimeTypeDescription": 'iMosflm data',
+        "guiLabel": 'iMosflm data',
+        "fileExtensions": ['imosflm.xml'],
+        "fileContentClassName": None,
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CImosflmXmlDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CImosflmXmlDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    An iMosflm data file
+    
+    Extends CImosflmXmlDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": False,
+        "minLength": 1,
+        "allowedChars": 1,
+        "toolTip": 'Unique identifier for crystal (one word)',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CCrystalName(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CCrystalName.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string
+    
+    Extends CCrystalName with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+        # Note: fileContentClassName='CMmcifReflData' is already set in CMmcifReflDataFile decorator
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-mtz-unmerged',
+        "mimeTypeDescription": 'MTZ unmerged experimental data',
+        "fileExtensions": ['mtz'],
+        "fileContentClassName": None,
+        "guiLabel": 'Unmerged MTZ reflections',
+        "toolTip": "Unmerged experimental data in CCP4's MTZ format",
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CUnmergedMtzDataFile(CMtzDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CUnmergedMtzDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    
+    Inherits from:
+    - CUnmergedMtzDataFile: Metadata and structure
+    - CMtzDataFile: Shared full-fat methods
+    An MTZ experimental data file
+    
+    Extends CUnmergedMtzDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "toolTip": 'Cell lengths and angles',
+        "helpFile": 'crystal_data#cell',
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['a', 'b', 'c', 'alpha', 'beta', 'gamma'],
+    content_qualifiers={
+        "a": {'toolTip': 'Cell length a in A', 'guiLabel': 'a'},
+        "b": {'toolTip': 'Cell length b in A', 'guiLabel': 'b'},
+        "c": {'toolTip': 'Cell length c in A', 'guiLabel': 'c'},
+        "alpha": {'toolTip': 'Cell angle alpha in degrees', 'guiLabel': 'alpha'},
+        "beta": {'toolTip': 'Cell angle beta in degrees', 'guiLabel': 'beta'},
+        "gamma": {'toolTip': 'Cell angle gamma in degrees', 'guiLabel': 'gamma'},
+    },
+)
+class CCell(CData):
+
+    a: Optional["CCellLength"] = None
+    b: Optional["CCellLength"] = None
+    c: Optional["CCellLength"] = None
+    alpha: Optional["CCellAngle"] = None
+    beta: Optional["CCellAngle"] = None
+    gamma: Optional["CCellAngle"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CCell.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A unit cell
+
+    Extends CCell with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def validity(self):
+        """Validate the cell parameters.
+
+        If the cell is optional (allowUndefined=True or not specified) and not set,
+        skip validation of child parameters (a, b, c, alpha, beta, gamma) entirely.
+        This prevents validation errors for unset optional cell parameters.
+
+        Returns:
+            CErrorReport containing any validation errors/warnings
+        """
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
+
+        # Check if this cell is optional
+        allow_undefined = self.get_qualifier('allowUndefined')
+        is_optional = allow_undefined is None or allow_undefined is True
+
+        # Check if the cell has any parameters set
+        has_any_set = any(
+            getattr(self, param) and getattr(self, param).isSet()
+            for param in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
+        )
+
+        # If optional and nothing is set, skip validation entirely
+        if is_optional and not has_any_set:
+            return CErrorReport()
+
+        # Otherwise, use the standard validation (which validates children)
+        return super().validity()
+
+    def guiLabel(self) -> str:
+        """
+        Return a compact string representation of cell parameters.
+        Format: "a=XX.XX b=XX.XX c=XX.XX α=XX.XX β=XX.XX γ=XX.XX"
+        Used by legacy code for logging and display.
+
+        Returns:
+            Formatted string with cell parameters (2 decimal places)
+        """
+        parts = []
+        if self.a and self.a.isSet():
+            parts.append(f"a={self.a.value:.2f}")
+        if self.b and self.b.isSet():
+            parts.append(f"b={self.b.value:.2f}")
+        if self.c and self.c.isSet():
+            parts.append(f"c={self.c.value:.2f}")
+        if self.alpha and self.alpha.isSet():
+            parts.append(f"α={self.alpha.value:.2f}")
+        if self.beta and self.beta.isSet():
+            parts.append(f"β={self.beta.value:.2f}")
+        if self.gamma and self.gamma.isSet():
+            parts.append(f"γ={self.gamma.value:.2f}")
+
+        return " ".join(parts) if parts else "Cell parameters not set"
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
+        "onlyEnumerators": True,
+        "default": 'F',
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CMtzColumnGroupType(CColumnType):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMtzColumnGroupType.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    
+    Inherits from:
+    - CMtzColumnGroupType: Metadata and structure
+    - CColumnType: Shared full-fat methods
+    A list of recognised MTZ column types
+    
+    Extends CMtzColumnGroupType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "columnLabel": {'allowUndefined': True},
+    },
+)
+class CMtzColumn(CData):
+
+    columnLabel: Optional["COneWord"] = None
+    columnType: Optional["CColumnType"] = None
+    dataset: Optional["COneWord"] = None
+    groupIndex: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMtzColumn.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    An MTZ column with column label and column type
+    
+    Extends CMtzColumn with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "1": {
+            "description": "Attempting to change immutable object"
+        },
+        "2": {
+            "description": "Attempting to access unknown attribute"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CColumnGroupItem(CData):
+
+    columnName: Optional["COneWord"] = None
+    defaultList: Optional["CString"] = None
+    columnType: Optional["CColumnTypeList"] = None
+    partnerTo: Optional["COneWord"] = None
+    partnerOffset: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CColumnGroupItem.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Definition of set of columns that form a 'group'
+    
+    Extends CColumnGroupItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "toolTip": 'select an image file and an optional range of files to define a dataset',
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['imageFile', 'imageStart', 'imageEnd'],
+    content_qualifiers={
+        "imageStart": {'allowUndefined': True, 'min': 0},
+        "imageEnd": {'allowUndefined': True, 'min': 0},
+    },
+)
+class CXia2ImageSelection(CData):
+
+    imageFile: Optional["CImageFile"] = None
+    imageStart: Optional["CInt"] = None
+    imageEnd: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CXia2ImageSelection.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CXia2ImageSelection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Anomalous structure factors and sigma',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CFPairColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CFPairColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CFPairColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Anomalous intensities and sigma',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CIPairColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CIPairColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CIPairColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Structure factor and phase to define a map',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CMapColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMapColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CMapColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Hendrickson-Lattmann coefficients',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CHLColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CHLColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CHLColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Set of FreeR flags',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CFreeRColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CFreeRColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CFreeRColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Structure factor and sigma',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CFSigFColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CFSigFColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CFSigFColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "toolTipList": ['The real part of the experimental intensity', 'The anomalous part of the experimental intensity'],
+        "guiLabel": 'Intensity and anomalous intensity',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CAnomalousIntensityColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAnomalousIntensityColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Selection of I and AnomI columns from MTZ.
+Expected to be part of ab initio phasing dataset ( CDataset)
+    
+    Extends CAnomalousIntensityColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Intensity and sigma',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CISigIColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CISigIColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CISigIColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "toolTipList": ['The real part of the experimental structure factors', 'The anomalous part of the experimental structure factors'],
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CAnomalousColumnGroup(CProgramColumnGroup):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAnomalousColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Selection of F/I and AnomF/I columns from MTZ.
+Expected to be part of ab initio phasing dataset ( CDataset)
+    
+    Extends CAnomalousColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-mtz-map',
+        "mimeTypeDescription": 'MTZ F-phi',
+        "fileExtensions": ['mtz', 'cif', 'ent'],
+        "fileContentClassName": 'CMtzData',
+        "fileLabel": 'map_coefficients',
+        "guiLabel": 'Map coefficients',
+        "toolTip": 'Electron density map coefficients: F,Phi',
+        "correctColumns": ['FP', 'FQP'],
+        "columnGroupClassList": [CMapColumnGroup],
+        "downloadModes": ['PDB-REDO'],
+        "helpFile": 'data_files#MapCoeffs',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag',
+        'correctColumns',
+        'columnGroupClassList',
+        'sameCrystalAs'],
+    content_qualifiers={
+        "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['normal map', 'difference map', 'anomalous difference map']},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CMapCoeffsDataFile(CMiniMtzDataFile):
+
+    # Subtype constants
+    SUBTYPE_NORMAL = 1  # normal map
+    SUBTYPE_DIFFERENCE = 2  # difference map
+    SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
+
+    # Content flag constants
+    CONTENT_FLAG_FPHI = 1  # FPhi
+
+    # Content annotations (indexed by contentFlag - 1)
+    CONTENT_ANNOTATION = ['FPhi']
+
+    # Column signatures for each content flag (indexed by contentFlag - 1)
+    CONTENT_SIGNATURE_LIST = [['F', 'PHI']]
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMapCoeffsDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     An MTZ map coefficients data file (FPHI format).
 
@@ -1033,7 +4902,7 @@ class CMapCoeffsDataFile(CMapCoeffsDataFileStub, CMiniMtzDataFile):
     - datasetName(): Get dataset name from MTZ
     - fileExtensions(): Return ['mtz']
 
-    Extends CMapCoeffsDataFileStub with implementation-specific methods.
+    Extends CMapCoeffsDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -1059,7 +4928,363 @@ class CMapCoeffsDataFile(CMapCoeffsDataFileStub, CMiniMtzDataFile):
         return PhaseDataConverter.to_fphi(self, work_directory=work_directory)
 
 
-class CPhsDataFile(CPhsDataFileStub, CMiniMtzDataFile):
+@cdata_class(
+    error_codes={
+        "301": {
+            "description": "Running ctruncate failed"
+        },
+        "302": {
+            "description": "Running cmtzsplit to convert observed data type failed"
+        },
+        "303": {
+            "description": "Running sftools failed"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-mtz-observed',
+        "mimeTypeDescription": 'MTZ observed',
+        "fileExtensions": ['mtz', 'cif', 'ent'],
+        "fileContentClassName": 'CMtzData',
+        "fileLabel": 'observed_data',
+        "guiLabel": 'Reflections',
+        "toolTip": 'Observed structure factors or intensities',
+        "correctColumns": ['KMKM', 'GLGL', 'JQ', 'FQ'],
+        "columnGroupClassList": [CIPairColumnGroup, CFPairColumnGroup, CISigIColumnGroup, CFSigFColumnGroup],
+        "downloadModes": ['ebiSFs'],
+        "helpFile": 'data_files#Obs',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag',
+        'correctColumns',
+        'columnGroupClassList',
+        'sameCrystalAs'],
+    content_qualifiers={
+        "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['observed data', 'derived data', 'reference data']},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CObsDataFile(CMiniMtzDataFile):
+
+    # Subtype constants
+    SUBTYPE_OBSERVED = 1  # observed data
+    SUBTYPE_DERIVED = 2  # derived data
+    SUBTYPE_REFERENCE = 3  # reference data
+
+    # Content flag constants
+    CONTENT_FLAG_IPAIR = 1  # Anomalous Is
+    CONTENT_FLAG_FPAIR = 2  # Anomalous SFs
+    CONTENT_FLAG_IMEAN = 3  # Mean Is
+    CONTENT_FLAG_FMEAN = 4  # Mean SFs
+
+    # Content annotations (indexed by contentFlag - 1)
+    CONTENT_ANNOTATION = [
+        'Anomalous Is',
+        'Anomalous SFs',
+        'Mean Is',
+        'Mean SFs']
+
+    # Column signatures for each content flag (indexed by contentFlag - 1)
+    CONTENT_SIGNATURE_LIST = [['Iplus', 'SIGIplus', 'Iminus', 'SIGIminus'], [
+        'Fplus', 'SIGFplus', 'Fminus', 'SIGFminus'], ['I', 'SIGI'], ['F', 'SIGF']]
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CObsDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    An MTZ experimental data file
+
+    Inherits from:
+    - CObsDataFile: Metadata and structure
+    - CMiniMtzDataFile: Shared full-fat methods
+
+    Extends CObsDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Conversion map: what each content flag can be converted to
+    # Based on obs_data_converter.py conversion matrix:
+    #   IPAIR → FPAIR, IMEAN, FMEAN (via French-Wilson)
+    #   FPAIR → FMEAN (via weighted mean)
+    #   IMEAN → FMEAN (via French-Wilson)
+    #   FMEAN → nothing (already simplest form)
+    CAN_CONVERT_TO = {
+        1: [1, 2, 3, 4],  # IPAIR can convert to IPAIR, FPAIR, IMEAN, FMEAN
+        2: [2, 4],        # FPAIR can convert to FPAIR, FMEAN
+        3: [3, 4],        # IMEAN can convert to IMEAN, FMEAN
+        4: [4],           # FMEAN can convert to FMEAN only
+    }
+
+    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
+        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
+        # Note: MIME type now comes from ccp4i2_static_data.py via get_file_type_from_class()
+        self.set_qualifier('guiLabel', 'Observed data')
+        self.set_qualifier('toolTip', 'MTZ format observed data file')
+        self.set_qualifier('fileExtensions', ['mtz'])
+
+    def canConvertTo(self, targetContentFlag: int) -> bool:
+        return targetContentFlag in self.CAN_CONVERT_TO.get(self.contentFlag, [])
+
+    def as_IPAIR(self, work_directory: Optional[Any] = None) -> str:
+        """
+        Convert this file to IPAIR format (Anomalous Intensities).
+
+        IPAIR format: Iplus, SIGIplus, Iminus, SIGIminus
+
+        Args:
+            work_directory: Directory for output if input dir not writable
+
+        Returns:
+            Full path to converted file
+
+        Raises:
+            NotImplementedError: Conversion logic not yet implemented
+        """
+        output_path = self._get_conversion_output_path('IPAIR', work_directory=work_directory)
+
+        # TODO: Implement actual conversion logic using gemmi
+        # This will involve:
+        # 1. Reading current MTZ file
+        # 2. Converting data to IPAIR format
+        # 3. Writing to output_path
+
+        raise NotImplementedError(
+            f"Conversion to IPAIR format not yet implemented. "
+            f"Would output to: {output_path}"
+        )
+
+    def _ensure_container_child(self, container, name: str, child_class):
+        """
+        Ensure a container has a child of specified type.
+
+        Helper method for conversion routines that need to initialize container children.
+
+        Args:
+            container: CContainer instance
+            name: Name of the child attribute
+            child_class: Class to instantiate if child doesn't exist
+
+        Returns:
+            The child instance (existing or newly created)
+        """
+        if not hasattr(container, name) or getattr(container, name) is None:
+            child = child_class(name=name)
+            setattr(container, name, child)
+        return getattr(container, name)
+
+    def as_FPAIR(self, work_directory: Optional[Any] = None) -> str:
+        """
+        Convert this file to FPAIR format (Anomalous Structure Factors).
+
+        FPAIR format: Fplus, SIGFplus, Fminus, SIGFminus
+
+        Uses ctruncate to convert IPAIR (anomalous intensities) to FPAIR
+        (anomalous structure factor amplitudes) via French-Wilson conversion.
+
+        This is a thin wrapper around ObsDataConverter.to_fpair().
+        See core.conversions.obs_data_converter for implementation details.
+
+        Args:
+            work_directory: Directory for ctruncate working files
+
+        Returns:
+            Full path to converted file
+
+        Raises:
+            ValueError: If contentFlag cannot be determined or conversion not possible
+            RuntimeError: If ctruncate plugin is not available or conversion fails
+        """
+        from ccp4i2.core.conversions import ObsDataConverter
+        return ObsDataConverter.to_fpair(self, work_directory=work_directory)
+
+
+    def as_IMEAN(self, work_directory: Optional[Any] = None) -> str:
+        """
+        Convert this file to IMEAN format (Mean Intensities).
+
+        IMEAN format: I, SIGI
+
+        Uses ctruncate to convert IPAIR (anomalous intensities) to IMEAN
+        (mean intensities) by averaging I+ and I-.
+
+        This is a thin wrapper around ObsDataConverter.to_imean().
+        See core.conversions.obs_data_converter for implementation details.
+
+        Args:
+            work_directory: Directory for ctruncate working files
+
+        Returns:
+            Full path to converted file
+
+        Raises:
+            ValueError: If contentFlag cannot be determined or conversion not possible
+            RuntimeError: If ctruncate plugin is not available or conversion fails
+        """
+        from ccp4i2.core.conversions import ObsDataConverter
+        return ObsDataConverter.to_imean(self, work_directory=work_directory)
+
+    def as_FPAIR(self, work_directory: Optional[Any] = None) -> str:
+        """
+        Convert this file to FPAIR format (Anomalous Structure Factors).
+
+        FPAIR format: F+, SIGF+, F-, SIGF-
+
+        Conversion path:
+        - IPAIR → FPAIR: French-Wilson via servalcat fw
+
+        This is a thin wrapper around ObsDataConverter.to_fpair().
+        See core.conversions.obs_data_converter for implementation details.
+
+        Args:
+            work_directory: Directory for working files
+
+        Returns:
+            Full path to converted file
+
+        Raises:
+            ValueError: If contentFlag cannot be determined
+            RuntimeError: If conversion fails
+        """
+        from ccp4i2.core.conversions import ObsDataConverter
+        return ObsDataConverter.to_fpair(self, work_directory=work_directory)
+
+    def as_FMEAN(self, work_directory: Optional[Any] = None) -> str:
+        """
+        Convert this file to FMEAN format (Mean Structure Factors).
+
+        FMEAN format: F, SIGF
+
+        Handles multiple input formats:
+        - IPAIR → FMEAN: French-Wilson via servalcat fw
+        - IMEAN → FMEAN: French-Wilson via servalcat fw
+        - FPAIR → FMEAN: Inverse-variance weighted mean via gemmi
+
+        This is a thin wrapper around ObsDataConverter.to_fmean().
+        See core.conversions.obs_data_converter for implementation details.
+
+        Args:
+            work_directory: Directory for working files
+
+        Returns:
+            Full path to converted file
+
+        Raises:
+            ValueError: If contentFlag cannot be determined
+            RuntimeError: If conversion fails
+        """
+        from ccp4i2.core.conversions import ObsDataConverter
+        return ObsDataConverter.to_fmean(self, work_directory=work_directory)
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "guiLabel": 'Phase and figure of merit',
+    },
+    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
+)
+class CPhiFomColumnGroup(CProgramColumnGroup):
+    """
+    A group of MTZ columns required for program input
+
+    This is a pure data class stub. Extend it in core/CPhiFomColumnGroup.py
+    to add methods and implementation-specific functionality.
+    """
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPhiFomColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-mtz-phases',
+        "mimeTypeDescription": 'MTZ phases',
+        "fileExtensions": ['mtz', 'cif', 'ent'],
+        "fileContentClassName": 'CMtzData',
+        "guiLabel": 'Phases',
+        "fileLabel": 'phases',
+        "toolTip": 'Phases in Hendrickson-Lattmann or Phi/FOM form',
+        "correctColumns": ['AAAA', 'PW'],
+        "columnGroupClassList": [CHLColumnGroup, CPhiFomColumnGroup],
+        "helpFile": 'data_files#Phs',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag',
+        'correctColumns',
+        'columnGroupClassList',
+        'sameCrystalAs'],
+    content_qualifiers={
+        "subType": {'default': 1, 'enumerators': [1, 2], 'onlyEnumerators': True, 'menuText': ['unbiased data', 'biased data']},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CPhsDataFile(CMiniMtzDataFile):
+
+    # Subtype constants
+    SUBTYPE_UNBIASED = 1  # unbiased data
+    SUBTYPE_BIASED = 2  # biased data
+
+    # Content flag constants
+    CONTENT_FLAG_HL = 1  # Hendrickson-Lattmann coeffs
+    CONTENT_FLAG_PHIFOM = 2  # Phi,FOM
+
+    # Content annotations (indexed by contentFlag - 1)
+    CONTENT_ANNOTATION = ['Hendrickson-Lattmann coeffs', 'Phi,FOM']
+
+    # Column signatures for each content flag (indexed by contentFlag - 1)
+    CONTENT_SIGNATURE_LIST = [['HLA', 'HLB', 'HLC', 'HLD'], ['PHI', 'FOM']]
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPhsDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     An MTZ phase data file.
 
@@ -1073,18 +5298,18 @@ class CPhsDataFile(CPhsDataFileStub, CMiniMtzDataFile):
     - datasetName(): Get dataset name from MTZ
     - fileExtensions(): Return ['mtz']
 
-    Extends CPhsDataFileStub with conversion methods for transforming
+    Extends CPhsDataFile with conversion methods for transforming
     between different phase data representations.
     """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CMtzData' is already set in CPhsDataFileStub decorator
+        # Note: fileContentClassName='CMtzData' is already set in CPhsDataFile decorator
 
     # Note: setContentFlag() inherited from CDataFile base class
     # It uses _introspect_content_flag() from CMiniMtzDataFile, which reads
     # CONTENT_SIGNATURE_LIST = [['HLA', 'HLB', 'HLC', 'HLD'], ['PHI', 'FOM']]
-    # defined in CPhsDataFileStub
+    # defined in CPhsDataFile
 
     def as_HL(self, work_directory: Optional[Any] = None) -> str:
         """
@@ -1129,11 +5354,146 @@ class CPhsDataFile(CPhsDataFileStub, CMiniMtzDataFile):
         return PhaseDataConverter.to_phifom(self, work_directory=work_directory)
 
 
-class CMapColumnGroup(CMapColumnGroupStub):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-mtz-freerflag',
+        "mimeTypeDescription": 'FreeR flag',
+        "fileExtensions": ['mtz', 'cif', 'ent'],
+        "fileContentClassName": 'CMtzData',
+        "fileLabel": 'freeRflag',
+        "guiLabel": 'Free R set',
+        "toolTip": 'Set of reflections used for FreeR calculation',
+        "correctColumns": ['I'],
+        "columnGroupClassList": [CFreeRColumnGroup],
+        "helpFile": 'data_files#FreeR',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag',
+        'correctColumns',
+        'columnGroupClassList',
+        'sameCrystalAs'],
+    content_qualifiers={
+        "subType": {'enumerators': [], 'onlyEnumerators': True},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CFreeRDataFile(CMiniMtzDataFile):
+
+    # Content flag constants
+    CONTENT_FLAG_FREER = 1  # FreeR
+
+    # Content annotations (indexed by contentFlag - 1)
+    CONTENT_ANNOTATION = ['FreeR']
+
+    # Column signatures for each content flag (indexed by contentFlag - 1)
+    CONTENT_SIGNATURE_LIST = [['FREER']]
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CFreeRDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    A group of MTZ columns required for program input
+    An MTZ experimental data file for free-R flags.
+
+    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
+    - columnNames(): Get column names from file content
+    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
+    - datasetName(): Get dataset name from MTZ
+    - fileExtensions(): Return ['mtz']
+
+    Extends CFreeRDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Standard column signature for FreeR files
+    # splitHklout() will automatically relabel non-standard names (e.g., 'FreeR_flag') to 'FREER'
+    CONTENT_SIGNATURE_LIST = [['FREER']]
+
+    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
+        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Cell lengths should NOT be identical"
+        },
+        "102": {
+            "description": "Cell angles should NOT be identical"
+        },
+        "103": {
+            "description": "Cell angle should be 90"
+        },
+        "104": {
+            "description": "Cell angle should NOT be 90"
+        },
+        "105": {
+            "description": "Cell lengths should be identical"
+        },
+        "106": {
+            "description": "Cell angle should be 120"
+        },
+        "107": {
+            "description": "Cell angle should be identical"
+        }
+    },
+    qualifiers={
+        "toolTip": 'Space group and cell length and angles',
+        "helpFile": 'crystal_data#cell_space_group',
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['spaceGroup', 'cell'],
+    content_qualifiers={
+        "spaceGroup": {'guilabel': 'space group'},
+        "cell": {'guilabel': 'cell'},
+    },
+)
+class CSpaceGroupCell(CData):
+
+    spaceGroup: Optional["CSpaceGroup"] = None
+    cell: Optional["CCell"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSpaceGroupCell.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Cell space group and parameters
     
-    Extends CMapColumnGroupStub with implementation-specific methods.
+    Extends CSpaceGroupCell with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -1141,47 +5501,56 @@ class CMapColumnGroup(CMapColumnGroupStub):
     pass
 
 
-class CMapDataFile(CMapDataFileStub):
-    """
-    A CCP4 Map file
-    
-    Extends CMapDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Attempting to load mmCIF data from non-existant/broken file"
+        },
+        "102": {
+            "description": "Error reading interpreting line in cif file"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CMmcifReflData(CMmcifData):
 
-    # Add your methods here
-    pass
+    cell: Optional["CCell"] = None
+    spaceGroup: Optional["CSpaceGroup"] = None
+    wavelength: Optional["CWavelength"] = None
+    haveFreeRColumn: Optional["CBoolean"] = None
+    haveFobsColumn: Optional["CBoolean"] = None
+    haveFpmObsColumn: Optional["CBoolean"] = None
+    haveIobsColumn: Optional["CBoolean"] = None
+    haveIpmObsColumn: Optional["CBoolean"] = None
 
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMmcifReflData.
 
-class CMergeMiniMtz(CMergeMiniMtzStub):
-    """
-    Extends CMergeMiniMtzStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CMergeMiniMtzList(CMergeMiniMtzListStub):
-    """A list of CMergeMiniMtz items."""
-
-    SUBITEM = {'class': CMergeMiniMtz}
-
-
-class CMiniMtzDataFileList(CMiniMtzDataFileListStub):
-    """A list of CMiniMtzDataFile items."""
-
-    SUBITEM = {'class': CMiniMtzDataFile}
-
-
-class CMmcifReflData(CMmcifReflDataStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     Generic mmCIF data.
 This is intended to be a base class for other classes
 specific to coordinates, reflections or geometry data.
 
-    Extends CMmcifReflDataStub with implementation-specific methods.
+    Extends CMmcifReflData with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -1348,64 +5717,318 @@ specific to coordinates, reflections or geometry data.
             )
 
         return error
+        # Note: fileContentClassName='CUnmergedDataContent' is already set in CUnmergedDataFile decorator
 
 
-class CMmcifReflDataFile(CMmcifReflDataFileStub):
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "toolTip": 'Imported data file, cell parameters and crystal/dataset identifiers',
+        "helpFile": 'import_merged#file_formats',
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['file', 'crystalName', 'dataset', 'excludeSelection'],
+    content_qualifiers={
+        "file": {'allowUndefined': False, 'mustExist': True, 'fromPreviousJob': True},
+        "crystalName": {'allowUndefined': True, 'minLength': 1, 'guiLabel': 'crystal name', 'allowedCharsCode': 1},
+        "dataset": {'allowUndefined': True, 'minLength': 1, 'guiLabel': 'dataset name', 'allowedCharsCode': 1},
+        "excludeSelection": {'allowUndefined': True},
+    },
+)
+class CImportUnmerged(CData):
+
+    file: Optional["CUnmergedDataFile"] = None
+    cell: Optional["CCell"] = None
+    wavelength: Optional["CWavelength"] = None
+    crystalName: Optional["CString"] = None
+    dataset: Optional["CString"] = None
+    excludeSelection: Optional["CRangeSelection"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CImportUnmerged.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    A reflection file in mmCIF format
-
-    Extends CMmcifReflDataFileStub with implementation-specific methods.
+    Extends CImportUnmerged with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
-        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CMmcifReflData' is already set in CMmcifReflDataFileStub decorator
+    def populateFromFile(self):
+        """
+        Auto-populate dataset, crystalName, cell, and wavelength from MTZ file metadata.
+
+        This should be called after the file is set to populate required fields
+        that can be derived from the MTZ header.
+
+        Returns:
+            bool: True if fields were populated successfully, False otherwise
+        """
+        if not hasattr(self, 'file') or self.file is None or not self.file.isSet():
+            return False
+
+        file_path = self.file.getFullPath()
+        if not file_path:
+            return False
+
+        try:
+            import gemmi
+            from pathlib import Path
+
+            if not Path(file_path).exists():
+                return False
+
+            mtz = gemmi.read_mtz_file(file_path)
+
+            # Find the first non-HKL_base dataset
+            for dataset in mtz.datasets:
+                if dataset.dataset_name and dataset.dataset_name != 'HKL_base':
+                    # Set dataset name if not already set
+                    if hasattr(self, 'dataset') and self.dataset is not None:
+                        if not self.dataset.isSet():
+                            self.dataset.set(dataset.dataset_name)
+
+                    # Set crystal name if not already set
+                    if hasattr(self, 'crystalName') and self.crystalName is not None:
+                        if not self.crystalName.isSet():
+                            crystal_name = dataset.crystal_name or dataset.dataset_name
+                            self.crystalName.set(crystal_name)
+
+                    # Set cell parameters if not already set
+                    if hasattr(self, 'cell') and self.cell is not None:
+                        if not self.cell.isSet():
+                            self.cell.a.set(mtz.cell.a)
+                            self.cell.b.set(mtz.cell.b)
+                            self.cell.c.set(mtz.cell.c)
+                            self.cell.alpha.set(mtz.cell.alpha)
+                            self.cell.beta.set(mtz.cell.beta)
+                            self.cell.gamma.set(mtz.cell.gamma)
+
+                    # Set wavelength if available and not already set
+                    if hasattr(self, 'wavelength') and self.wavelength is not None:
+                        if not self.wavelength.isSet() and dataset.wavelength > 0:
+                            self.wavelength.set(dataset.wavelength)
+
+                    return True
+
+            # Fallback: use cell from MTZ even if no named dataset found
+            if hasattr(self, 'cell') and self.cell is not None and not self.cell.isSet():
+                self.cell.a.set(mtz.cell.a)
+                self.cell.b.set(mtz.cell.b)
+                self.cell.c.set(mtz.cell.c)
+                self.cell.alpha.set(mtz.cell.alpha)
+                self.cell.beta.set(mtz.cell.beta)
+                self.cell.gamma.set(mtz.cell.gamma)
+
+            return False
+
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.debug(f"Failed to populate CImportUnmerged from file: {e}")
+            return False
 
 
-class CMtzColumn(CMtzColumnStub):
-    """
-    An MTZ column with column label and column type
-    
-    Extends CMtzColumnStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Attempting to load MTZ data from non-existant/broken file"
+        },
+        "102": {
+            "description": "Error creating command file for mtzdump"
+        },
+        "103": {
+            "description": "No log file found from mtzdump"
+        },
+        "104": {
+            "description": "Error reading log file from mtzdump"
+        },
+        "105": {
+            "severity": 2,
+            "description": "Different spacegroup"
+        },
+        "106": {
+            "severity": 2,
+            "description": "Different cell parameter"
+        },
+        "107": {
+            "severity": 2,
+            "description": "Different cell parameters"
+        },
+        "108": {
+            "severity": 4,
+            "description": "Different Laue group"
+        },
+        "109": {
+            "severity": 4,
+            "description": "Different point group"
+        },
+        "410": {
+            "description": "Invalid CSeqDataFile passed to matthewCoeff"
+        },
+        "411": {
+            "description": "Failed to run matthewCoeff"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CMtzData(CDataFileContent):
 
-    # Add your methods here
-    pass
+    cell: Optional["CCell"] = None
+    spaceGroup: Optional["CSpaceGroup"] = None
+    resolutionRange: Optional["CResolutionRange"] = None
+    listOfColumns: Optional["CList"] = None
+    datasets: Optional["CList"] = None
+    crystalNames: Optional["CList"] = None
+    wavelengths: Optional["CList"] = None
+    datasetCells: Optional["CList"] = None
+    merged: Optional["CBoolean"] = None
 
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMtzData.
 
-class CMtzColumnGroup(CMtzColumnGroupStub):
-    """
-    Extends CMtzColumnGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CMtzColumnGroupType(CMtzColumnGroupTypeStub, CColumnType):
-    """
-    
-    Inherits from:
-    - CMtzColumnGroupTypeStub: Metadata and structure
-    - CColumnType: Shared full-fat methods
-    A list of recognised MTZ column types
-    
-    Extends CMtzColumnGroupTypeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CMtzData(CMtzDataStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     Base class for classes holding file contents
 
-    Extends CMtzDataStub with implementation-specific methods.
+    Extends CMtzData with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -1413,14 +6036,11 @@ class CMtzData(CMtzDataStub):
         super().__init__(parent=parent, name=name, **kwargs)
         # Initialize sub-objects required for loadFile()
         if self.cell is None:
-            from ccp4i2.core.cdata_stubs.CCP4XtalData import CCellStub
-            self.cell = CCellStub(parent=self, name='cell')
+            self.cell = CCell(parent=self, name='cell')
         if self.spaceGroup is None:
-            from ccp4i2.core.cdata_stubs.CCP4XtalData import CSpaceGroupStub
-            self.spaceGroup = CSpaceGroupStub(parent=self, name='spaceGroup')
+            self.spaceGroup = CSpaceGroup(parent=self, name='spaceGroup')
         if self.resolutionRange is None:
-            from ccp4i2.core.cdata_stubs.CCP4XtalData import CResolutionRangeStub
-            self.resolutionRange = CResolutionRangeStub(parent=self, name='resolutionRange')
+            self.resolutionRange = CResolutionRange(parent=self, name='resolutionRange')
 
     def to_dict(self):
         """
@@ -2000,653 +6620,58 @@ class CMtzData(CMtzDataStub):
         return rv
 
 
-class CMtzDataFile(CMtzDataFileStub):
-    """
-    An MTZ experimental data file
-
-    Extends CMtzDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
-        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CMtzData' is already set in CMtzDataFileStub decorator
-        # Note: MIME type now comes from ccp4i2_static_data.py via get_file_type_from_class()
-        self.set_qualifier('guiLabel', 'Experimental data')
-        self.set_qualifier('toolTip', 'MTZ format reflection data file')
-        self.set_qualifier('fileExtensions', ['mtz'])
-
-    def fileExtensions(self):
-        """
-        Return file extension for MTZ files.
-
-        All MTZ files (CMtzDataFile and derivatives) use the .mtz extension.
-
-        Returns:
-            list: ['mtz']
-        """
-        return ['mtz']
-
-    def columnNames(self, asString=False, ifString=None):
-        """
-        Get column names from the file content, or expected names based on contentFlag.
-
-        Legacy compatibility method that inspects fileContent to return column names.
-        If fileContent is not available, falls back to CONTENT_SIGNATURE_LIST based
-        on the contentFlag.
-
-        Args:
-            asString: If True, return comma-separated string. If False, return list.
-            ifString: Legacy parameter name for asString (for backwards compatibility)
-
-        Returns:
-            list or str: Column names as list or comma-separated string
-
-        Example:
-            >>> mtz_file.columnNames(False)
-            ['H', 'K', 'L', 'F', 'SIGF']
-            >>> mtz_file.columnNames(True)
-            'H,K,L,F,SIGF'
-        """
-        # Support legacy ifString parameter
-        if ifString is not None:
-            asString = ifString
-
-        col_names = []
-
-        # Try to get from fileContent.listOfColumns
-        content = self.getFileContent()
-        if content and hasattr(content, 'listOfColumns') and content.listOfColumns:
-            # Extract column labels from CMtzColumn objects
-            for col in content.listOfColumns:
-                if hasattr(col, 'columnLabel'):
-                    label = col.columnLabel
-                    # Handle both CString with .value and plain strings
-                    if hasattr(label, 'value'):
-                        col_names.append(str(label.value))
-                    else:
-                        col_names.append(str(label))
-
-        # Fall back to CONTENT_SIGNATURE_LIST if no fileContent columns
-        if not col_names and hasattr(self.__class__, 'CONTENT_SIGNATURE_LIST'):
-            content_flag = None
-            if hasattr(self, 'contentFlag') and self.contentFlag:
-                cf = self.contentFlag
-                # Extract plain int - handle nested .value or CInt objects
-                while hasattr(cf, 'value'):
-                    cf = cf.value
-                content_flag = int(cf) if cf else None
-
-            signature_list = self.__class__.CONTENT_SIGNATURE_LIST
-            if content_flag is not None and 1 <= content_flag <= len(signature_list):
-                # contentFlag is 1-indexed
-                col_names = list(signature_list[content_flag - 1])
-
-        if asString:
-            return ','.join(col_names)
-        else:
-            return col_names
-
-
-class CMtzDataset(CMtzDatasetStub):
-    """
-    Extends CMtzDatasetStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CObsDataFile(CObsDataFileStub, CMiniMtzDataFile):
-    """
-    An MTZ experimental data file
-
-    Inherits from:
-    - CObsDataFileStub: Metadata and structure
-    - CMiniMtzDataFile: Shared full-fat methods
-
-    Extends CObsDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Conversion map: what each content flag can be converted to
-    # Based on obs_data_converter.py conversion matrix:
-    #   IPAIR → FPAIR, IMEAN, FMEAN (via French-Wilson)
-    #   FPAIR → FMEAN (via weighted mean)
-    #   IMEAN → FMEAN (via French-Wilson)
-    #   FMEAN → nothing (already simplest form)
-    CAN_CONVERT_TO = {
-        1: [1, 2, 3, 4],  # IPAIR can convert to IPAIR, FPAIR, IMEAN, FMEAN
-        2: [2, 4],        # FPAIR can convert to FPAIR, FMEAN
-        3: [3, 4],        # IMEAN can convert to IMEAN, FMEAN
-        4: [4],           # FMEAN can convert to FMEAN only
-    }
-
-    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
-        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: MIME type now comes from ccp4i2_static_data.py via get_file_type_from_class()
-        self.set_qualifier('guiLabel', 'Observed data')
-        self.set_qualifier('toolTip', 'MTZ format observed data file')
-        self.set_qualifier('fileExtensions', ['mtz'])
-
-    def canConvertTo(self, targetContentFlag: int) -> bool:
-        return targetContentFlag in self.CAN_CONVERT_TO.get(self.contentFlag, [])
-
-    def as_IPAIR(self, work_directory: Optional[Any] = None) -> str:
-        """
-        Convert this file to IPAIR format (Anomalous Intensities).
-
-        IPAIR format: Iplus, SIGIplus, Iminus, SIGIminus
-
-        Args:
-            work_directory: Directory for output if input dir not writable
-
-        Returns:
-            Full path to converted file
-
-        Raises:
-            NotImplementedError: Conversion logic not yet implemented
-        """
-        output_path = self._get_conversion_output_path('IPAIR', work_directory=work_directory)
-
-        # TODO: Implement actual conversion logic using gemmi
-        # This will involve:
-        # 1. Reading current MTZ file
-        # 2. Converting data to IPAIR format
-        # 3. Writing to output_path
-
-        raise NotImplementedError(
-            f"Conversion to IPAIR format not yet implemented. "
-            f"Would output to: {output_path}"
-        )
-
-    def _ensure_container_child(self, container, name: str, child_class):
-        """
-        Ensure a container has a child of specified type.
-
-        Helper method for conversion routines that need to initialize container children.
-
-        Args:
-            container: CContainer instance
-            name: Name of the child attribute
-            child_class: Class to instantiate if child doesn't exist
-
-        Returns:
-            The child instance (existing or newly created)
-        """
-        if not hasattr(container, name) or getattr(container, name) is None:
-            child = child_class(name=name)
-            setattr(container, name, child)
-        return getattr(container, name)
-
-    def as_FPAIR(self, work_directory: Optional[Any] = None) -> str:
-        """
-        Convert this file to FPAIR format (Anomalous Structure Factors).
-
-        FPAIR format: Fplus, SIGFplus, Fminus, SIGFminus
-
-        Uses ctruncate to convert IPAIR (anomalous intensities) to FPAIR
-        (anomalous structure factor amplitudes) via French-Wilson conversion.
-
-        This is a thin wrapper around ObsDataConverter.to_fpair().
-        See core.conversions.obs_data_converter for implementation details.
-
-        Args:
-            work_directory: Directory for ctruncate working files
-
-        Returns:
-            Full path to converted file
-
-        Raises:
-            ValueError: If contentFlag cannot be determined or conversion not possible
-            RuntimeError: If ctruncate plugin is not available or conversion fails
-        """
-        from ccp4i2.core.conversions import ObsDataConverter
-        return ObsDataConverter.to_fpair(self, work_directory=work_directory)
-
-
-    def as_IMEAN(self, work_directory: Optional[Any] = None) -> str:
-        """
-        Convert this file to IMEAN format (Mean Intensities).
-
-        IMEAN format: I, SIGI
-
-        Uses ctruncate to convert IPAIR (anomalous intensities) to IMEAN
-        (mean intensities) by averaging I+ and I-.
-
-        This is a thin wrapper around ObsDataConverter.to_imean().
-        See core.conversions.obs_data_converter for implementation details.
-
-        Args:
-            work_directory: Directory for ctruncate working files
-
-        Returns:
-            Full path to converted file
-
-        Raises:
-            ValueError: If contentFlag cannot be determined or conversion not possible
-            RuntimeError: If ctruncate plugin is not available or conversion fails
-        """
-        from ccp4i2.core.conversions import ObsDataConverter
-        return ObsDataConverter.to_imean(self, work_directory=work_directory)
-
-    def as_FPAIR(self, work_directory: Optional[Any] = None) -> str:
-        """
-        Convert this file to FPAIR format (Anomalous Structure Factors).
-
-        FPAIR format: F+, SIGF+, F-, SIGF-
-
-        Conversion path:
-        - IPAIR → FPAIR: French-Wilson via servalcat fw
-
-        This is a thin wrapper around ObsDataConverter.to_fpair().
-        See core.conversions.obs_data_converter for implementation details.
-
-        Args:
-            work_directory: Directory for working files
-
-        Returns:
-            Full path to converted file
-
-        Raises:
-            ValueError: If contentFlag cannot be determined
-            RuntimeError: If conversion fails
-        """
-        from ccp4i2.core.conversions import ObsDataConverter
-        return ObsDataConverter.to_fpair(self, work_directory=work_directory)
-
-    def as_FMEAN(self, work_directory: Optional[Any] = None) -> str:
-        """
-        Convert this file to FMEAN format (Mean Structure Factors).
-
-        FMEAN format: F, SIGF
-
-        Handles multiple input formats:
-        - IPAIR → FMEAN: French-Wilson via servalcat fw
-        - IMEAN → FMEAN: French-Wilson via servalcat fw
-        - FPAIR → FMEAN: Inverse-variance weighted mean via gemmi
-
-        This is a thin wrapper around ObsDataConverter.to_fmean().
-        See core.conversions.obs_data_converter for implementation details.
-
-        Args:
-            work_directory: Directory for working files
-
-        Returns:
-            Full path to converted file
-
-        Raises:
-            ValueError: If contentFlag cannot be determined
-            RuntimeError: If conversion fails
-        """
-        from ccp4i2.core.conversions import ObsDataConverter
-        return ObsDataConverter.to_fmean(self, work_directory=work_directory)
-
-
-class CPhaserSolDataFile(CPhaserSolDataFileStub):
-    """
-    Phaser solution data file (pickle format).
-
-    Extends CPhaserSolDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CPhaserRFileDataFile(CPhaserRFileDataFileStub):
-    """
-    Phaser R-list data file (pickle format).
-
-    Extends CPhaserRFileDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CProgramColumnGroup(CProgramColumnGroupStub):
-    """
-    A group of MTZ columns required for program input.
-
-    This class maps between generic column names (e.g., 'Ip', 'SIGIp') and
-    actual MTZ column labels (e.g., 'Iplus', 'SIGIplus'). It behaves like
-    a dictionary that can be accessed via attributes.
-
-    Example:
-        >>> colgroup = CProgramColumnGroup()
-        >>> colgroup.set({'Ip': 'Iplus', 'SIGIp': 'SIGIplus'})
-        >>> print(colgroup.Ip)  # Returns 'Iplus'
-        >>> print(colgroup.isSet())  # Returns True
-
-    This provides compatibility with ccp4i2 wrapper code that expects
-    attribute access to column mappings.
-    """
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "format": {'onlyEnumerators': True, 'enumerators': ['unk', 'mtz', 'xds', 'sca', 'saint', 'shelx', 'mmcif'], 'default': 'unk'},
+        "merged": {'onlyEnumerators': True, 'enumerators': ['unk', 'merged', 'unmerged'], 'default': 'unk'},
+    },
+)
+class CUnmergedDataContent(CDataFileContent):
+
+    format: Optional["CString"] = None
+    merged: Optional["CString"] = None
+    crystalName: Optional["CCrystalName"] = None
+    datasetName: Optional["CDatasetName"] = None
+    cell: Optional["CCell"] = None
+    spaceGroup: Optional["CSpaceGroup"] = None
+    batchs: Optional["CString"] = None
+    lowRes: Optional["CFloat"] = None
+    highRes: Optional["CFloat"] = None
+    knowncell: Optional["CBoolean"] = None
+    knownwavelength: Optional["CBoolean"] = None
+    numberLattices: Optional["CInt"] = None
+    wavelength: Optional["CWavelength"] = None
+    numberofdatasets: Optional["CInt"] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize with an internal column mapping dict."""
+        """
+        Initialize CUnmergedDataContent.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
         super().__init__(parent=parent, name=name, **kwargs)
-        # Internal storage for column name mappings
-        self._column_mapping = {}
-        self._is_set = False
-
-    def set(self, mapping: dict):
-        """
-        Set the column name mappings.
-
-        Args:
-            mapping: Dict mapping generic column names to actual MTZ column labels
-                    e.g., {'Ip': 'Iplus', 'SIGIp': 'SIGIplus', 'Im': 'Iminus', 'SIGIm': 'SIGIminus'}
-        """
-        if isinstance(mapping, dict):
-            self._column_mapping = mapping.copy()
-            self._is_set = True
-        else:
-            # If it's a CData object, try to extract its value
-            if hasattr(mapping, '__dict__') and '_column_mapping' in mapping.__dict__:
-                self._column_mapping = mapping._column_mapping.copy()
-                self._is_set = mapping._is_set
-            else:
-                raise TypeError(f"Expected dict, got {type(mapping)}")
-
-    def isSet(self, field_name: str = None, allowUndefined: bool = False,
-              allowDefault: bool = False, allSet: bool = True):
-        """
-        Check if column mappings have been set.
-
-        Args:
-            field_name: Ignored for CProgramColumnGroup (provided for API compatibility)
-            allowUndefined: Ignored for CProgramColumnGroup (provided for API compatibility)
-            allowDefault: Ignored for CProgramColumnGroup (provided for API compatibility)
-            allSet: Ignored for CProgramColumnGroup (provided for API compatibility)
-
-        Returns:
-            bool: True if set() has been called with mappings AND mappings contain actual column data
-        """
-        # Check both the flag AND that we have actual column mappings
-        # This prevents reporting True for empty/uninitialized column groups
-        # Ignore 'name' key as it's just metadata, not a column mapping
-        if not self._is_set:
-            return False
-
-        # Check if we have any column mappings besides 'name'
-        actual_columns = {k: v for k, v in self._column_mapping.items() if k != 'name'}
-        return len(actual_columns) > 0
-
-    def __getattr__(self, name):
-        """
-        Allow attribute access to column mappings.
-
-        Args:
-            name: Generic column name (e.g., 'Ip', 'SIGIp')
-
-        Returns:
-            The mapped MTZ column label, or None if not found
-        """
-        # Avoid recursion for internal attributes
-        if name.startswith('_'):
-            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
-
-        # Check if we have this column mapping
-        if '_column_mapping' in self.__dict__ and name in self._column_mapping:
-            return self._column_mapping[name]
-
-        # For missing column names, return None (matches ccp4i2 behavior)
-        # This allows wrapper code to check `if inp.ISIGI.I:` without errors
-        return None
-
-    def __setattr__(self, name, value):
-        """
-        Allow attribute assignment to update column mappings.
-
-        Args:
-            name: Generic column name
-            value: Actual MTZ column label
-        """
-        # Internal attributes go through normal path
-        if name.startswith('_'):
-            super().__setattr__(name, value)
-        else:
-            # For column names, store in mapping
-            if '_column_mapping' not in self.__dict__:
-                self.__dict__['_column_mapping'] = {}
-            if '_is_set' not in self.__dict__:
-                self.__dict__['_is_set'] = False
-
-            self._column_mapping[name] = value
-            self._is_set = True
-
-    def get(self, name, default=None):
-        """
-        Get a mapped column name with optional default.
-
-        Args:
-            name: Generic column name
-            default: Value to return if name not found
-
-        Returns:
-            Mapped column label or default
-        """
-        return self._column_mapping.get(name, default)
-
-    def keys(self):
-        """Return all generic column names."""
-        return self._column_mapping.keys()
-
-    def values(self):
-        """Return all mapped column labels."""
-        return self._column_mapping.values()
-
-    def items(self):
-        """Return all (generic_name, mapped_label) pairs."""
-        return self._column_mapping.items()
-
-
-class CProgramColumnGroup0(CProgramColumnGroup0Stub):
-    """
-    Extends CProgramColumnGroup0Stub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CRefmacKeywordFile(CRefmacKeywordFileStub):
-    """
-    Extends CRefmacKeywordFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CReindexOperator(CReindexOperatorStub):
-    """
-    Extends CReindexOperatorStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CResolutionRange(CFloatRange, CResolutionRangeStub):
-    """
-    Resolution range for crystallographic data.
-
-    Resolution range convention:
-    - low: larger d-spacing number (lower resolution, e.g., 50.0 Å)
-    - high: smaller d-spacing number (higher resolution, e.g., 2.0 Å)
-
-    Properties:
-    - .start and .end: Actual CFloat attributes (inherited from CFloatRange)
-    - .low and .high: Properties that map to .start and .end respectively
-
-    The .low/.high properties return CFloat objects (not primitive values)
-    so that code can call .isSet() on them.
-
-    When only .high (or .end) is set, aimless will use data from infinite
-    resolution down to the high resolution cutoff. This is the desired behavior
-    for workflows like SubstituteLigand.
-
-    NOTE: The __init__ and _smart_assign_from_cdata methods are inherited from
-    CFloatRange, which ensures that .start and .end are NOT_SET by default and
-    that smart assignment only copies explicitly set fields.
-    """
-
-    @property
-    def low(self):
-        """
-        Low resolution limit (larger d-spacing, e.g., 50.0 Å).
-
-        Returns CFloat object (not primitive value) so .isSet() can be called.
-        Maps to .start attribute.
-        """
-        return self.start
-
-    @low.setter
-    def low(self, value):
-        """Set low resolution limit via .low property."""
-        if isinstance(value, CFloat):
-            self.start = value
-        else:
-            self.start.value = value
-
-    @property
-    def high(self):
-        """
-        High resolution limit (smaller d-spacing, e.g., 2.0 Å).
-
-        Returns CFloat object (not primitive value) so .isSet() can be called.
-        Maps to .end attribute.
-        """
-        return self.end
-
-    @high.setter
-    def high(self, value):
-        """Set high resolution limit via .high property."""
-        if isinstance(value, CFloat):
-            self.end = value
-        else:
-            self.end.value = value
-
-    # Legacy methods for backward compatibility
-    def setHigh(self, value: Optional[float]) -> None:
-        """Set the high resolution limit (smaller d-spacing value)."""
-        self.high = value
-
-    def setLow(self, value: Optional[float]) -> None:
-        """Set the low resolution limit (larger d-spacing value)."""
-        self.low = value
-
-
-
-class CRunBatchRange(CRunBatchRangeStub):
-    """
-    Extends CRunBatchRangeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CRunBatchRangeList(CRunBatchRangeListStub):
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CRunBatchRangeListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CShelxFADataFile(CShelxFADataFileStub):
-    """
-    Extends CShelxFADataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CShelxLabel(CShelxLabelStub):
-    """
-    A string
-    
-    Extends CShelxLabelStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CSpaceGroup(CSpaceGroupStub):
-    """
-    A string holding the space group
-
-    Extends CSpaceGroupStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def fix(self, value: str) -> str:
-        """
-        Normalize a space group string.
-
-        Takes a space group string (e.g., from program output) and returns
-        a normalized version suitable for storage.
-
-        Args:
-            value: Space group string to normalize
-
-        Returns:
-            Normalized space group string
-        """
-        if value is None:
-            return ""
-        # Strip whitespace and return
-        # More sophisticated normalization (e.g., P 21 21 21 -> P212121)
-        # can be added here if needed
-        return str(value).strip()
-
-    def number(self) -> int:
-        """Return the ITC space group number for the stored space group name.
-
-        Uses gemmi to look up the number from the Hermann-Mauguin symbol.
-        """
-        import gemmi
-        sg = gemmi.find_spacegroup_by_name(str(self))
-        if sg is None:
-            raise ValueError(f"Unknown space group: '{self}'")
-        return sg.number
-
-
-class CSpaceGroupCell(CSpaceGroupCellStub):
-    """
-    Cell space group and parameters
-    
-    Extends CSpaceGroupCellStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CUnmergedDataContent(CUnmergedDataContentStub):
     """
     Base class for classes holding file contents
 
-    Extends CUnmergedDataContentStub with implementation-specific methods.
+    Extends CUnmergedDataContent with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -3296,43 +7321,302 @@ class CUnmergedDataContent(CUnmergedDataContentStub):
         }
 
 
-class CUnmergedDataFile(CUnmergedDataFileStub):
-    """
-    Handle MTZ, XDS and scalepack files. Allow wildcard filename
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CMtzColumnGroup(CData):
 
-    Extends CUnmergedDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
-        super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CUnmergedDataContent' is already set in CUnmergedDataFileStub decorator
-
-
-class CUnmergedDataFileList(CUnmergedDataFileListStub):
-    """
-    A list with all items of one CData sub-class
-
-    Extends CUnmergedDataFileListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    groupType: Optional["CMtzColumnGroupType"] = None
+    columns: Optional["CList"] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMtzColumnGroup.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
         super().__init__(parent=parent, name=name, **kwargs)
-        # Set the subItem qualifier to specify CUnmergedDataFile as item type
-        # This allows aimless_pipe to use list items as CUnmergedDataFile objects
-        self.set_qualifier('subItem', {'class': CUnmergedDataFile, 'qualifiers': {}})
-
-
-class CUnmergedMtzDataFile(CUnmergedMtzDataFileStub, CMtzDataFile):
     """
+    Extends CMtzColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "formFactorSource": {'onlyEnumerators': True, 'enumerators': ['no', 'composition', 'xia2'], 'menuText': ['user input', 'atomic composition', 'from XIA2'], 'default': 'no'},
+    },
+)
+class CDataset(CData):
+
+    selected: Optional["CBoolean"] = None
+    obsDataFile: Optional["CObsDataFile"] = None
+    crystalName: Optional["CCrystalName"] = None
+    datasetName: Optional["CDatasetName"] = None
+    formFactors: Optional["CFormFactor"] = None
+    formFactorSource: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDataset.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    The experimental data model for ab initio phasing
     
-    Inherits from:
-    - CUnmergedMtzDataFileStub: Metadata and structure
-    - CMtzDataFile: Shared full-fat methods
-    An MTZ experimental data file
-    
-    Extends CUnmergedMtzDataFileStub with implementation-specific methods.
+    Extends CDataset with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -3340,11 +7624,50 @@ class CUnmergedMtzDataFile(CUnmergedMtzDataFileStub, CMtzDataFile):
     pass
 
 
-class CWavelength(CWavelengthStub):
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Column not in MTZ file"
+        },
+        "102": {
+            "description": "Column wrong type"
+        },
+        "103": {
+            "description": "MTZ file is not defined",
+            "severity": 2
+        },
+        "104": {
+            "description": "No column group selected"
+        },
+        "105": {
+            "description": "No column group selected",
+            "severity": 2
+        }
+    },
+    qualifiers={
+        "mustExist": False,
+        "mtzFileKey": '',
+        "groupTypes": [],
+    },
+    qualifiers_order=['groupTypes', 'mtzFileKey', 'mustExist'],
+)
+class CProgramColumnGroup0(CData):
+
+    columnGroup: Optional["CMtzColumnGroup"] = None
+    datasetName: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CProgramColumnGroup0.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Wavelength in Angstrom
-    
-    Extends CWavelengthStub with implementation-specific methods.
+    Extends CProgramColumnGroup0 with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -3352,35 +7675,104 @@ class CWavelength(CWavelengthStub):
     pass
 
 
-class CXia2ImageSelection(CXia2ImageSelectionStub):
-    """
-    Extends CXia2ImageSelectionStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
-    # Add your methods here
-    pass
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "mimeTypeName": '"application/phasertng-dag"',
+        "mimeTypeDescription": 'PhaserTNG DAG file',
+        "fileLabel": None,
+        "fileExtensions": ['cards'],
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CPhaserTngDagFile(CDataFile):
 
 
-class CXia2ImageSelectionList(CXia2ImageSelectionListStub):
-    """
-    A list with all items of one CData sub-class
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPhaserTngDagFile.
 
-    Extends CXia2ImageSelectionListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CPhaserTngDagFile(CPhaserTngDagFileStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     PhaserTNG DAG file — directed acyclic graph of a picard MR pipeline.
 
-    Extends CPhaserTngDagFileStub with implementation-specific methods.
+    Extends CPhaserTngDagFile with implementation-specific methods.
     """
 
     # Add your methods here
     pass
-

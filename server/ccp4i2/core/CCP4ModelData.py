@@ -6,475 +6,98 @@ This file is safe to edit - add your implementation code here.
 """
 
 from typing import Optional
-
-from ccp4i2.core.cdata_stubs.CCP4ModelData import CAsuContentStub, CAsuContentSeqStub, CAsuContentSeqListStub, CAsuDataFileStub, CAtomRefmacSelectionStub, CAtomRefmacSelectionGroupsStub, CAtomRefmacSelectionListStub, CAtomRefmacSelectionOccupancyStub, CAtomSelectionStub, CBlastDataStub, CBlastDataFileStub, CBlastItemStub, CChemCompStub, CDictDataStub, CDictDataFileStub, CElementStub, CEnsembleStub, CEnsembleListStub, CEnsemblePdbDataFileStub, CHhpredDataStub, CHhpredDataFileStub, CHhpredItemStub, CMDLMolDataFileStub, CMol2DataFileStub, CMonomerStub, COccRefmacSelectionListStub, COccRelationRefmacListStub, CPdbDataStub, CPdbDataFileStub, CPdbDataFileListStub, CPdbEnsembleItemStub, CResidueRangeStub, CResidueRangeListStub, CSeqAlignDataFileStub, CSeqDataFileStub, CSeqDataFileListStub, CSequenceStub, CSequenceAlignmentStub, CSequenceMetaStub, CSequenceStringStub, CTLSDataFileStub, CTLSRangeStub, CTLSRangeListStub
-
-
-class CAsuContent(CAsuContentStub):
-    """
-    Base class for classes holding file contents
-
-    Extends CAsuContentStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def loadFile(self, file_path: str = None):
-        """
-        Load ASU XML file and populate seqList.
-
-        This method:
-        1. Reads ASU XML file using ElementTree
-        2. Extracts sequence information
-        3. Populates seqList attribute with CAsuContentSeq objects
-
-        Args:
-            file_path: Optional path to ASU XML file. If None, gets path from parent CDataFile.
-
-        Returns:
-            CErrorReport with any errors encountered
-
-        Example:
-            # Load from parent file's path
-            >>> asu_file = CAsuDataFile()
-            >>> asu_file.setFullPath('/path/to/sequences.asu.xml')
-            >>> asu_file.loadFile()  # Base CDataFile.loadFile() calls content.loadFile()
-        """
-        from ccp4i2.core.base_object.error_reporting import CErrorReport
-        from pathlib import Path
-
-        error = CErrorReport()
-
-        # If no path provided, get from parent CDataFile
-        if file_path is None:
-            parent = self.get_parent()
-            if parent is not None and hasattr(parent, 'getFullPath'):
-                file_path = parent.getFullPath()
-
-        # Validate file path
-        if not file_path:
-            return error
-
-        path_obj = Path(file_path)
-        if not path_obj.exists() or not path_obj.is_file():
-            error.append(
-                klass=self.__class__.__name__,
-                code=101,
-                details=f"ASU XML file does not exist or is not a file: '{file_path}'",
-                name=self.object_name() if hasattr(self, 'object_name') else ''
-            )
-            return error
-
-        try:
-            import xml.etree.ElementTree as ET
-
-            tree = ET.parse(file_path)
-            root = tree.getroot()
-
-            # Parse sequences from XML
-            # Handle namespace
-            ns = {'ccp4': 'http://www.ccp4.ac.uk/ccp4ns'}
-            # Check if root IS ccp4i2_body (common case), otherwise search for it
-            if root.tag == 'ccp4i2_body':
-                body = root
-            else:
-                body = root.find('.//ccp4i2_body', ns) or root.find('.//ccp4i2_body')
-
-            if body is not None:
-                seqList_elem = body.find('seqList')
-                if seqList_elem is not None:
-                    # Clear existing sequences before loading to avoid duplicates
-                    self.seqList.clear()
-
-                    for seq_elem in seqList_elem.findall('CAsuContentSeq'):
-                        seq_obj = CAsuContentSeq(parent=self.seqList, name=None)
-
-                        # Parse sequence fields using smart assignment
-                        if seq_elem.find('sequence') is not None:
-                            seq_obj.sequence = seq_elem.find('sequence').text or ''
-                        if seq_elem.find('nCopies') is not None:
-                            seq_obj.nCopies = int(seq_elem.find('nCopies').text or '1')
-                        if seq_elem.find('polymerType') is not None:
-                            seq_obj.polymerType = seq_elem.find('polymerType').text or ''
-                        if seq_elem.find('name') is not None:
-                            seq_obj.name = seq_elem.find('name').text or ''
-                        if seq_elem.find('description') is not None:
-                            seq_obj.description = seq_elem.find('description').text or ''
-
-                        # Add to seqList
-                        self.seqList.append(seq_obj)
-
-        except ET.ParseError as e:
-            error.append(
-                klass=self.__class__.__name__,
-                code=102,
-                details=f"Error parsing ASU XML file '{file_path}': {e}",
-                name=self.object_name() if hasattr(self, 'object_name') else ''
-            )
-        except Exception as e:
-            error.append(
-                klass=self.__class__.__name__,
-                code=103,
-                details=f"Error reading ASU XML file '{file_path}': {e}",
-                name=self.object_name() if hasattr(self, 'object_name') else ''
-            )
-
-        return error
-
-
-class CAsuContentSeq(CAsuContentSeqStub):
-    """
-    Extends CAsuContentSeqStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def formattedSequence(self):
-        """
-        Format the sequence for display with line wrapping and spacing.
-
-        Formats sequence with:
-        - 60 characters per line (6 blocks of 10)
-        - Space every 10 characters for readability
-
-        Returns:
-            str: Formatted sequence string
-        """
-        GROUP_SIZE = 10
-        GROUPS_PER_LINE = 6
-
-        # Get sequence value - handle both CString and plain string
-        sequence = self.sequence
-        if hasattr(sequence, 'value'):
-            seq = str(sequence.value)
-        else:
-            seq = str(sequence)
-
-        # Clean whitespace from sequence
-        seq = seq.replace(' ', '').replace('\n', '').replace('\t', '')
-
-        if not seq:
-            return ''
-
-        # Split into groups of 10
-        groups = [seq[i:i + GROUP_SIZE] for i in range(0, len(seq), GROUP_SIZE)]
-
-        # Build lines with 6 groups each
-        lines = []
-        for i in range(0, len(groups), GROUPS_PER_LINE):
-            line_groups = groups[i:i + GROUPS_PER_LINE]
-            lines.append(' '.join(line_groups))
-
-        return '\n'.join(lines)
-
-    def autoSetPolymerType(self):
-        """
-        Infer polymer type (PROTEIN, DNA, or RNA) from the sequence content
-        and set the polymerType attribute accordingly.
-        """
-        sequence = self.sequence
-        if hasattr(sequence, 'value'):
-            seq = str(sequence.value)
-        else:
-            seq = str(sequence)
-
-        seq = seq.replace(' ', '').replace('\n', '').replace('\t', '').replace('-', '').replace('.', '').upper()
-
-        if not seq:
-            self.polymerType.set('PROTEIN')
-            return
-
-        # Check if it looks like a nucleic acid (>80% ACGTU characters)
-        na_chars = set('ACGTUN')
-        na_count = sum(1 for c in seq if c in na_chars)
-        if na_count / len(seq) > 0.8:
-            if 'U' in seq and 'T' not in seq:
-                self.polymerType.set('RNA')
-            else:
-                self.polymerType.set('DNA')
-        else:
-            self.polymerType.set('PROTEIN')
-
-    def numberOfResidues(self, countMulti=False):
-        """
-        Calculate the number of residues in the sequence.
-
-        Args:
-            countMulti: If True, multiply by nCopies
-
-        Returns:
-            int: Number of residues (sequence length), optionally multiplied by nCopies
-        """
-        # Get sequence value - handle both CString and plain string
-        sequence = self.sequence
-        if hasattr(sequence, 'value'):
-            seq_str = str(sequence.value)
-        else:
-            seq_str = str(sequence)
-
-        # Count non-whitespace characters
-        num_residues = len(seq_str.replace(' ', '').replace('\n', '').replace('\t', ''))
-
-        # Multiply by nCopies if requested
-        if countMulti and hasattr(self, 'nCopies') and self.nCopies.isSet():
-            num_residues *= int(self.nCopies.value)
-
-        return num_residues
-
-    def validity(self):
-        """
-        Validate this ASU content sequence entry.
-
-        Checks:
-        - nCopies is defined and >= 1
-        - polymerType is defined and valid (PROTEIN, DNA, or RNA)
-        - name is not null or zero length
-        - sequence can be parsed by BioPython given the polymer type
-
-        Returns:
-            CErrorReport containing validation errors/warnings
-        """
-        import re
-        from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
-
-        report = CErrorReport()
-        valid_polymer_types = {'PROTEIN', 'DNA', 'RNA'}
-
-        # Get full object path for error reporting (matches frontend _objectPath)
-        base_path = self.object_path() if hasattr(self, 'object_path') else ''
-
-        # Check nCopies >= 1
-        n_copies = getattr(self, 'nCopies', None)
-        if n_copies is not None and hasattr(n_copies, 'value') and hasattr(n_copies, 'isSet'):
-            n_copies_val = int(n_copies.value) if n_copies.isSet() else 0
-        elif n_copies is not None:
-            try:
-                n_copies_val = int(n_copies)
-            except (ValueError, TypeError):
-                n_copies_val = 0
-        else:
-            n_copies_val = 0
-
-        if n_copies_val < 1:
-            # Use field path for cell-level highlighting
-            field_path = f"{base_path}.nCopies" if base_path else 'nCopies'
-            report.append(
-                klass=self.__class__.__name__,
-                code=101,
-                details='nCopies must be >= 1',
-                name=field_path,
-                severity=SEVERITY_ERROR
-            )
-
-        # Check polymerType is valid
-        polymer_type = getattr(self, 'polymerType', None)
-        if polymer_type is not None and hasattr(polymer_type, 'value'):
-            pt_str = str(polymer_type.value).strip().upper()
-        elif polymer_type is not None:
-            pt_str = str(polymer_type).strip().upper()
-        else:
-            pt_str = ''
-
-        if not pt_str or pt_str not in valid_polymer_types:
-            field_path = f"{base_path}.polymerType" if base_path else 'polymerType'
-            report.append(
-                klass=self.__class__.__name__,
-                code=102,
-                details=f'Invalid or missing polymer type (must be PROTEIN, DNA, or RNA, got "{pt_str}")',
-                name=field_path,
-                severity=SEVERITY_ERROR
-            )
-
-        # Check name is not null or empty
-        name = getattr(self, 'name', None)
-        if name is not None and hasattr(name, 'value'):
-            name_str = str(name.value).strip()
-        elif name is not None:
-            name_str = str(name).strip()
-        else:
-            name_str = ''
-
-        if not name_str:
-            field_path = f"{base_path}.name" if base_path else 'name'
-            report.append(
-                klass=self.__class__.__name__,
-                code=103,
-                details='Name is required',
-                name=field_path,
-                severity=SEVERITY_ERROR
-            )
-
-        # Check sequence can be parsed by BioPython
-        sequence = getattr(self, 'sequence', None)
-        if sequence is not None and hasattr(sequence, 'value'):
-            seq_str = str(sequence.value).replace(' ', '').replace('\n', '').replace('\t', '').upper()
-        elif sequence is not None:
-            seq_str = str(sequence).replace(' ', '').replace('\n', '').replace('\t', '').upper()
-        else:
-            seq_str = ''
-
-        if len(seq_str) <= 1:
-            field_path = f"{base_path}.sequence" if base_path else 'sequence'
-            report.append(
-                klass=self.__class__.__name__,
-                code=104,
-                details='Sequence must have more than 1 residue',
-                name=field_path,
-                severity=SEVERITY_ERROR
-            )
-        elif pt_str in valid_polymer_types:
-            # Validate sequence characters based on polymer type
-            field_path = f"{base_path}.sequence" if base_path else 'sequence'
-            if pt_str == 'PROTEIN':
-                # Standard amino acid one-letter codes
-                valid_chars = set('GALMFWKQESPVICYHRNDT')
-                invalid_chars = set(seq_str) - valid_chars
-                if invalid_chars:
-                    report.append(
-                        klass=self.__class__.__name__,
-                        code=105,
-                        details=f'Sequence contains invalid amino acid characters: {", ".join(sorted(invalid_chars))}',
-                        name=field_path,
-                        severity=SEVERITY_ERROR
-                    )
-            else:
-                # DNA or RNA - valid nucleotide codes
-                valid_chars = set('CAUGT')
-                invalid_chars = set(seq_str) - valid_chars
-                if invalid_chars:
-                    report.append(
-                        klass=self.__class__.__name__,
-                        code=106,
-                        details=f'Sequence contains invalid nucleotide characters: {", ".join(sorted(invalid_chars))}',
-                        name=field_path,
-                        severity=SEVERITY_ERROR
-                    )
-
-        return report
-
-    def molecularWeight(self, polymerType="PROTEIN"):
-        """
-        Calculate molecular weight of the sequence.
-
-        Args:
-            polymerType: Type of polymer ("PROTEIN", "RNA", or "DNA")
-
-        Returns:
-            float: Molecular weight in Daltons, multiplied by nCopies
-
-        Note:
-            Uses BioPython's SeqUtils.molecular_weight() function.
-            Filters out non-standard residues before calculation.
-        """
-        import re
-        import Bio.SeqUtils
-
-        # Get sequence value - handle both CString and plain string
-        sequence = self.sequence
-        if hasattr(sequence, 'value'):
-            seq_str = str(sequence.value)
-        else:
-            seq_str = str(sequence)
-
-        # Get nCopies value - handle both CInt and plain int
-        n_copies = self.nCopies
-        if hasattr(n_copies, 'value'):
-            n_copies_val = float(n_copies.value)
-        else:
-            n_copies_val = float(n_copies)
-
-        # Normalize polymerType - handle CString, plain string, and empty values
-        if hasattr(polymerType, 'value'):
-            polymer_type_str = str(polymerType.value)
-        elif hasattr(polymerType, '__str__'):
-            polymer_type_str = str(polymerType)
-        else:
-            polymer_type_str = polymerType
-
-        # Default to PROTEIN if empty
-        if not polymer_type_str or polymer_type_str.strip() == '':
-            polymer_type_str = "PROTEIN"
-
-        # BioPython is not robust to bad sequences - filter to valid residues only
-        if polymer_type_str == "PROTEIN":
-            # Standard amino acid codes
-            seq = re.sub('[^GALMFWKQESPVICYHRNDT]', '', seq_str)
-            wt = Bio.SeqUtils.molecular_weight(seq, seq_type='protein')
-        else:
-            # Nucleic acid codes
-            seq = re.sub('[^CAUGT]', '', seq_str)
-            wt = Bio.SeqUtils.molecular_weight(seq, seq_type=polymer_type_str)
-
-        return wt * n_copies_val
-
-
-class CAsuContentSeqList(CAsuContentSeqListStub):
-    """A list of CAsuContentSeq items; requires at least one entry."""
-
-    SUBITEM = {'class': CAsuContentSeq, 'qualifiers': {}}
+from typing import TYPE_CHECKING, Optional, Any
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.base_classes import CData, CDataFile, CDataFileContent
+from ccp4i2.core.base_object.fundamental_types import CBoolean, CFloat, CInt, CList, CString
+from ccp4i2.core.CCP4Data import CDict, COneWord, CUUID
+from ccp4i2.core.CCP4File import CFilePath, CI2XmlDataFile, CProjectId
+
+
+
+@cdata_class(
+    error_codes={
+        "150": {
+            "description": "No file content information"
+        },
+        "151": {
+            "description": "Two sequences have the same identifier"
+        },
+        "152": {
+            "description": "Failed in merging sequence files to read sequence file"
+        },
+        "153": {
+            "description": "Failed in merging sequence files to write merged file"
+        }
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CSeqDataFileList(CList):
 
     def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSeqDataFileList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
         super().__init__(parent=parent, name=name, **kwargs)
-        self.set_qualifier('listMinLength', 1)
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CSeqDataFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
 
-    # Note: validity() is inherited from CList which handles:
-    # - listMinLength/listMaxLength checks
-    # - Aggregating child validity errors
+    # Add your methods here
+    pass
 
-    def validityAsDict(self):
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "mimeTypeName": 'application/CCP4-asu-content',
+        "mimeTypeDescription": 'AU content',
+        "fileExtensions": ['asu.xml'],
+        "fileContentClassName": 'CAsuContent',
+        "fileLabel": 'AU contents',
+        "guiLabel": 'AU contents',
+        "toolTip": 'A CCP4i2 file specifying AU contents',
+        "helpFile": 'model_data#sequences',
+        "saveToDb": True,
+        "selectionMode": 0,
+    },
+    qualifiers_order=['autoLoadHeader'],
+    contents_order=['selection'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CAsuDataFile(CI2XmlDataFile):
+
+    selection: Optional["CDict"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
         """
-        Validate the ASU content list and return result as a dict.
+        Initialize CAsuDataFile.
 
-        This is a convenience method for the frontend that returns a dict format
-        suitable for displaying validation status messages.
-
-        Returns:
-            dict: Validation result with keys:
-                - valid (bool): True if all checks pass
-                - message (str): Description of validation status
-                - errors (list): List of specific validation errors
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
         """
-        report = self.validity()
-
-        if report.maxSeverity() >= 4:  # SEVERITY_ERROR = 4
-            errors = [err.get('details', str(err)) for err in report._errors]
-            return {
-                'valid': False,
-                'message': f'{len(errors)} validation error(s)',
-                'errors': errors
-            }
-
-        return {
-            'valid': True,
-            'message': f'{len(self)} valid sequence(s)',
-            'errors': []
-        }
-
-    def molecularWeight(self):
-        """
-        Calculate total molecular weight of all sequences in the list.
-
-        Sums the molecular weight of each CAsuContentSeq item, using its
-        polymerType to determine the calculation method.
-
-        Returns:
-            float: Total molecular weight in Daltons
-        """
-        total_weight = 0.0
-        for seq_obj in self:
-            # Get polymerType - handle CString wrapper
-            polymer_type = seq_obj.polymerType
-            if hasattr(polymer_type, 'value'):
-                polymer_type = str(polymer_type.value)
-            else:
-                polymer_type = str(polymer_type) if polymer_type else "PROTEIN"
-            total_weight += seq_obj.molecularWeight(polymer_type)
-        return total_weight
-
-
-class CAsuDataFile(CAsuDataFileStub):
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A reference to an XML file with CCP4i2 Header
 
-    Extends CAsuDataFileStub with implementation-specific methods.
+    Extends CAsuDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
     # No custom overrides needed - base CDataFile.loadFile() handles everything!
@@ -695,11 +318,151 @@ class CAsuDataFile(CAsuDataFileStub):
         return self.writeFasta(fileName, indx=-1, format='pir', writeMulti=writeMulti, polymerTypes=polymerTypes)
 
 
-class CAtomRefmacSelection(CAtomRefmacSelectionStub):
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['groupId', 'chainId', 'firstRes', 'lastRes'],
+)
+class CAtomRefmacSelection(CData):
+
+    groupId: Optional["CInt"] = None
+    chainId: Optional["COneWord"] = None
+    firstRes: Optional["CInt"] = None
+    lastRes: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAtomRefmacSelection.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A residue range selection for rigid body groups.
 
-    Extends CAtomRefmacSelectionStub with validation that all four fields
+    Extends CAtomRefmacSelection with validation that all four fields
     (groupId, chainId, firstRes, lastRes) are meaningfully defined.
     """
 
@@ -732,29 +495,184 @@ class CAtomRefmacSelection(CAtomRefmacSelectionStub):
         return report
 
 
-class CAtomRefmacSelectionGroups(CAtomRefmacSelectionGroupsStub):
-    """
-    A group selection for occupancy groups
-    
-    Extends CAtomRefmacSelectionGroupsStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CAtomRefmacSelectionList(CList):
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAtomRefmacSelectionList.
 
-
-class CAtomRefmacSelectionList(CAtomRefmacSelectionListStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """A list of CAtomRefmacSelection items."""
 
     SUBITEM = {'class': CAtomRefmacSelection, 'qualifiers': {}}
 
 
-class CAtomRefmacSelectionOccupancy(CAtomRefmacSelectionOccupancyStub):
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=[
+        'groupId',
+        'chainIds',
+        'firstRes',
+        'lastRes',
+        'atoms',
+        'alt'],
+)
+class CAtomRefmacSelectionOccupancy(CData):
+
+    groupId: Optional["CInt"] = None
+    chainIds: Optional["CString"] = None
+    firstRes: Optional["CInt"] = None
+    lastRes: Optional["CInt"] = None
+    atoms: Optional["CString"] = None
+    alt: Optional["COneWord"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAtomRefmacSelectionOccupancy.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A residue range selection for occupancy groups
     
-    Extends CAtomRefmacSelectionOccupancyStub with implementation-specific methods.
+    Extends CAtomRefmacSelectionOccupancy with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -762,21 +680,30 @@ class CAtomRefmacSelectionOccupancy(CAtomRefmacSelectionOccupancyStub):
     pass
 
 
-class CAtomSelection(CAtomSelectionStub):
-    """
-    Extends CAtomSelectionStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CResidueRangeList(CList):
 
-    def __str__(self):
-        return str(self.text)
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CResidueRangeList.
 
-
-class CBlastData(CBlastDataStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Base class for classes holding file contents
+    A list of residue range selections
     
-    Extends CBlastDataStub with implementation-specific methods.
+    Extends CResidueRangeList with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -784,9 +711,106 @@ class CBlastData(CBlastDataStub):
     pass
 
 
-class CBlastDataFile(CBlastDataFileStub):
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'tls',
+        "mimeTypeName": 'application/refmac-TLS',
+        "mimeTypeDescription": 'Refmac TLS file',
+        "guiLabel": 'TLS coefficients',
+        "toolTip": 'Definition of model domains for TLS refinement',
+        "fileExtensions": ['tls'],
+        "fileContentClassName": None,
+        "helpFile": 'model_data#tls_file',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CTLSDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CTLSDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Extends CBlastDataFileStub with implementation-specific methods.
+    A refmac TLS file
+
+    Extends CTLSDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -794,21 +818,127 @@ class CBlastDataFile(CBlastDataFileStub):
     pass
 
 
-class CBlastItem(CBlastItemStub):
-    """
-    Extends CBlastItemStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['groupId', 'chainId', 'firstRes', 'lastRes', 'selection'],
+    content_qualifiers={
+        "selection": {'default': 'ALL'},
+    },
+)
+class CTLSRange(CData):
 
-    # Add your methods here
+    groupId: Optional["CInt"] = None
+    chainId: Optional["COneWord"] = None
+    firstRes: Optional["CInt"] = None
+    lastRes: Optional["CInt"] = None
+    selection: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+    """A single TLS range definition with groupId, chain, residue range, and selection."""
     pass
 
 
-class CChemComp(CChemCompStub):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CTLSRangeList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+    """A list of CTLSRange items defining TLS groups."""
+
+    SUBITEM = {'class': CTLSRange, 'qualifiers': {}}
+
+
+@cdata_class(
+    error_codes={
+        "401": {
+            "description": "Non-alphabet character removed from sequence",
+            "severity": 2
+        },
+        "402": {
+            "description": "Invalid characters (BJOXZ) in sequence"
+        },
+        "403": {
+            "description": "Sequence undefined",
+            "severity": 2
+        }
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CSequenceString(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSequenceString.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Component of CDictDataFile contents
+    A string
     
-    Extends CChemCompStub with implementation-specific methods.
+    Extends CSequenceString with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -816,9 +946,104 @@ class CChemComp(CChemCompStub):
     pass
 
 
-class CDictData(CDictDataStub):
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'HHPred sequence search',
+        "mimeTypeName": 'application/HHPred-alignments',
+        "mimeTypeDescription": 'HHPred sequence search results',
+        "guiLabel": 'HHPred results',
+        "tooltip": 'Output from HHPred search',
+        "fileExtensions": ['hhr'],
+        "fileContentClassName": 'CHhpredData',
+        "helpFile": 'model_data#ali',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CHhpredDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CHhpredDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Extends CDictDataStub with implementation-specific methods.
+    Extends CHhpredDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -826,221 +1051,45 @@ class CDictData(CDictDataStub):
     pass
 
 
-class CDictDataFile(CDictDataFileStub):
-    """
-    A refmac dictionary file
-    
-    Extends CDictDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Word contains white space item"
+        }
+    },
+    qualifiers={
+        "onlyEnumerators": True,
+        "enumerators": ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'],
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CElement(COneWord):
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CElement.
 
-
-class CElement(CElementStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     Chemical element 
     
-    Extends CElementStub with implementation-specific methods.
+    Extends CElement with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
     # Add your methods here
     pass
-
-
-class CEnsemble(CEnsembleStub):
-    """
-    An ensemble of models. Typically, this would be a set of related
-PDB files, but models could also be xtal or EM maps. This should
-be indicated by the types entry.
-A single ensemble is a CList of structures.
-
-    Extends CEnsembleStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, *args, **kwargs):
-        """Initialize CEnsemble with a default pdbItemList containing one item."""
-        super().__init__(*args, **kwargs)
-
-        # Set the subItem qualifier for pdbItemList to specify that it contains CPdbEnsembleItem objects
-        if self.pdbItemList is not None:
-            self.pdbItemList.set_qualifier('subItem', {
-                'class': CPdbEnsembleItem,  # Use implementation class, not stub
-                'qualifiers': {}
-            })
-
-        # Set default number of copies to 1 (not 0, which means "no search")
-        if hasattr(self, 'number') and self.number is not None:
-            # Check if number is unset OR explicitly set to 0
-            if not self.number.isSet() or self.number.value == 0:
-                self.number.value = 1
-
-            # NOTE: Temporarily disabled default item creation to fix i2run nested path parsing
-            # Legacy code expects pdbItemList to have at least one item by default
-            # phaser_simple.py line 33-35 assumes: elements = ensemble.pdbItemList; pdbItem = elements[-1]
-            # However, this causes issues with i2run argument parsing creating duplicate items
-            # The default item gets created, i2run sets attributes on it, but then XML shows both
-            # the original empty state AND the modified state as separate items
-            # TODO: Investigate why XML serialization duplicates the item
-            # if len(self.pdbItemList) == 0:
-            #     # Add one default item to the pdbItemList
-            #     self.pdbItemList.append(self.pdbItemList.makeItem())
-
-
-class CEnsembleList(CEnsembleListStub):
-    """
-    A list with all items of one CData sub-class
-
-    Extends CEnsembleListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    SUBITEM = {'class': CEnsemble, 'qualifiers': {}}
-
-    def makeItem(self, *args, **kwargs):
-        """
-        Create a new CEnsemble item with auto-generated label.
-
-        Legacy expectation: When a CEnsemble is created via makeItem(),
-        it should automatically get a label "Ensemble_{index}" where
-        index is the current length of the list.
-
-        Returns:
-            CEnsemble: A new ensemble with auto-generated label
-        """
-        # Create the item using parent's makeItem
-        item = super().makeItem(*args, **kwargs)
-
-        # Auto-generate label based on current list length
-        if hasattr(item, 'label') and item.label is not None:
-            if not item.label.isSet():
-                index = len(self)  # Current length before appending
-                item.label.value = f"Ensemble_{index}"
-
-        return item
-
-
-class CEnsemblePdbDataFile(CEnsemblePdbDataFileStub):
-    """
-    A PDB coordinate file containing ensemble of structures as 'NMR' models
-    
-    Extends CEnsemblePdbDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CHhpredData(CHhpredDataStub):
-    """
-    Base class for classes holding file contents
-    
-    Extends CHhpredDataStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CHhpredDataFile(CHhpredDataFileStub):
-    """
-    Extends CHhpredDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CHhpredItem(CHhpredItemStub):
-    """
-    Extends CHhpredItemStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CMDLMolDataFile(CMDLMolDataFileStub):
-    """
-    A molecule definition file (MDL)
-
-    Extends CMDLMolDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set default file extension for MDL MOL files
-        self.set_qualifier('fileExtensions', ['mol'])
-        self.set_qualifier('mimeTypeName', 'chemical/x-mdl-molfile')
-
-
-class CMol2DataFile(CMol2DataFileStub):
-    """
-    A molecule definition file (MOL2)
-
-    Extends CMol2DataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set default file extension for MOL2 files
-        self.set_qualifier('fileExtensions', ['mol2'])
-        self.set_qualifier('mimeTypeName', 'chemical/x-mol2')
-
-
-class CMonomer(CMonomerStub):
-    """
-    A monomer compound. ?smiles
-    
-    Extends CMonomerStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class COccRefmacSelectionList(COccRefmacSelectionListStub):
-    """A list of CAtomRefmacSelectionOccupancy items."""
-
-    SUBITEM = {'class': CAtomRefmacSelectionOccupancy, 'qualifiers': {}}
-
-
-class COccRelationRefmacList(COccRelationRefmacListStub):
-    """A list of CAtomRefmacSelectionGroups items."""
-
-    SUBITEM = {'class': CAtomRefmacSelectionGroups, 'qualifiers': {}}
-
-
-# Try to import BioPython - it's optional but provides enhanced functionality
-try:
-    import Bio.SeqIO
-    import Bio.AlignIO
-    BIOPYTHON_AVAILABLE = True
-except ImportError:
-    BIOPYTHON_AVAILABLE = False
-
-# BioPython format mappings
-SEQFORMATLIST = ['fasta', 'pir', 'swiss', 'tab', 'ig']
-ALIGNFORMATLIST = ['fasta', 'clustal', 'phylip', 'stockholm', 'nexus', 'emboss', 'msf']
-EXTLIST = {
-    'fasta': 'fasta', 'fa': 'fasta', 'faa': 'fasta', 'fas': 'fasta',
-    'pir': 'pir',
-    'aln': 'clustal', 'clw': 'clustal', 'clustal': 'clustal',
-    'phy': 'phylip', 'phylip': 'phylip',
-    'stockholm': 'stockholm', 'stk': 'stockholm',
-    'nexus': 'nexus', 'nex': 'nexus',
-    'msf': 'msf'
-}
 
 
 class CBioPythonSeqInterface:
@@ -1331,6 +1380,1896 @@ class CBioPythonSeqInterface:
         return None
 
 
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Sequence undefined",
+            "severity": 1
+        },
+        "202": {
+            "description": "error reading from file"
+        },
+        "203": {
+            "description": "Comparing sequences: Sequence item different"
+        },
+        "204": {
+            "description": "Comparing sequences: One item set - the other is unset"
+        },
+        "401": {
+            "description": "Attempting to load from non-existent file"
+        },
+        "402": {
+            "description": "Error reading from file"
+        },
+        "403": {
+            "description": "Unknown sequence file format"
+        },
+        "405": {
+            "description": "Error reading identifiers from multi-record file"
+        },
+        "406": {
+            "description": "Error opening file"
+        },
+        "407": {
+            "description": "The 'PIR' file did not have the correct format"
+        },
+        "408": {
+            "severity": 2,
+            "description": "The 'PIR' file format was corrected"
+        },
+        "409": {
+            "description": "Error opening file to write"
+        },
+        "410": {
+            "description": "Error attempting to write out sequence file"
+        },
+        "411": {
+            "description": "Error attempting to create a temporary sequence file"
+        },
+        "412": {
+            "description": "Sequence file is empty"
+        },
+        "413": {
+            "description": "Unable to read BLAST format file"
+        },
+        "414": {
+            "description": "Unable to read hhpred format file"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=[
+        'identifier',
+        'name',
+        'description',
+        'referenceDb',
+        'reference',
+        'moleculeType',
+        'sequence'],
+    content_qualifiers={
+        "identifier": {'toolTip': 'Description of sequence', 'minlength': 4},
+        "referenceDb": {'onlyEnumerators': False, 'default': 'unk', 'enumerators': ['unk', 'sp', 'tr', 'pdb'], 'menuText': ['Unknown', 'UniProt/Swiss-Prot', 'UniProt/TrEMBL', 'ProteinDatabank']},
+        "reference": {'toolTip': 'Optional reference for sequence'},
+        "name": {'toolTip': 'User friendly name of sequence'},
+        "description": {'toolTip': 'User friendly description of sequence'},
+        "sequence": {'toolTip': 'Single letter sequence (white space and dash ignored)'},
+        "moleculeType": {'onlyEnumerators': True, 'enumerators': ['PROTEIN', 'NUCLEIC'], 'menuText': ['protein', 'nucleic acid'], 'default': 'PROTEIN', 'toolTip': 'Molecule type'},
+    },
+)
+class CSequence(CData, CBioPythonSeqInterface):
+
+    identifier: Optional["CString"] = None
+    referenceDb: Optional["CString"] = None
+    reference: Optional["CString"] = None
+    name: Optional["CString"] = None
+    description: Optional["CString"] = None
+    sequence: Optional["CString"] = None
+    moleculeType: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSequence.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string of sequence one-letter codes with BioPython loading support.
+
+    This class represents a single biological sequence (protein or nucleic acid)
+    with support for loading from various file formats using BioPython.
+
+    Key features:
+    - Load from FASTA, PIR, UniProt, and other formats
+    - Automatic format detection
+    - Molecular weight calculation using BioPython ProtParam
+    - Save to FASTA format
+    """
+
+    def loadFile(self, fileName: str = None, format: str = 'unknown'):
+        """
+        Load sequence from file.
+
+        Args:
+            fileName: Path to sequence file. If None, gets path from parent CDataFile.
+            format: Format hint ('internal', 'uniprot', 'fasta', 'pir', 'unknown')
+        """
+        from pathlib import Path
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
+
+        # If no path provided, get from parent CDataFile
+        if fileName is None:
+            parent = self.get_parent()
+            if parent is not None and hasattr(parent, 'getFullPath'):
+                fileName = parent.getFullPath()
+
+        # Return early if still no file path
+        if not fileName:
+            return
+
+        if format == 'internal':
+            # Internal format: simple FASTA-like with pipe-separated metadata
+            self._loadInternalFile(fileName)
+        elif format == 'uniprot':
+            # UniProt XML format - not implemented in modern version
+            err = CErrorReport()
+            err.append(klass='CSequence', code=402,
+                      details='UniProt XML format not yet supported in modern implementation')
+            return err
+        else:
+            # Use BioPython interface
+            data = self.loadExternalFile(fileName, format=format, record=0)
+            if data is not None:
+                # Populate CData attributes from loaded data
+                if 'identifier' in data:
+                    self.identifier = data['identifier']
+                if 'sequence' in data:
+                    self.sequence = data['sequence']
+                    # Detect and set moleculeType based on sequence content
+                    self.moleculeType = self._detect_molecule_type(data['sequence'])
+                if 'name' in data:
+                    self.name = data['name']
+                if 'description' in data:
+                    self.description = data['description']
+                if 'referenceDb' in data:
+                    self.referenceDb = data['referenceDb']
+                if 'reference' in data:
+                    self.reference = data['reference']
+
+    def _detect_molecule_type(self, sequence: str) -> str:
+        """
+        Detect whether a sequence is PROTEIN, DNA, or RNA.
+
+        Args:
+            sequence: The sequence string (single-letter codes)
+
+        Returns:
+            "PROTEIN", "DNA", or "RNA"
+
+        Notes:
+            - Checks for presence of U (uracil) to identify RNA
+            - Checks for T (thymine) to identify DNA
+            - Defaults to PROTEIN for amino acid sequences
+        """
+        seq_upper = str(sequence).upper().replace('*', '').strip()
+
+        # Remove common modifications and gaps
+        seq_clean = seq_upper.replace('-', '').replace('.', '').replace(' ', '')
+
+        if not seq_clean:
+            return "PROTEIN"
+
+        # Count nucleotide-specific characters
+        has_u = 'U' in seq_clean
+        has_t = 'T' in seq_clean
+
+        # DNA/RNA detection
+        dna_bases = set('ACGT')
+        rna_bases = set('ACGU')
+
+        # If majority are DNA/RNA bases, classify as nucleic acid
+        base_count = sum(1 for c in seq_clean if c in dna_bases.union(rna_bases))
+        base_fraction = base_count / len(seq_clean) if seq_clean else 0
+
+        if base_fraction > 0.7:  # >70% nucleotide bases
+            if has_u and not has_t:
+                return "RNA"
+            elif has_t and not has_u:
+                return "DNA"
+            elif has_u:  # Both U and T present - prefer RNA
+                return "RNA"
+            else:
+                return "DNA"
+
+        # Default to protein
+        return "PROTEIN"
+
+    def _loadInternalFile(self, fileName: str):
+        """
+        Load internal format sequence file.
+
+        Internal format is simple FASTA with pipe-separated metadata:
+        >referenceDb|reference|identifier
+        sequence...
+        """
+        from pathlib import Path
+
+        try:
+            text = Path(fileName).read_text()
+        except Exception as e:
+            print(f'ERROR loading sequence file: {e}')
+            return
+
+        lines = text.split('\n')
+        try:
+            # Parse header line
+            if len(lines[0]) > 0 and lines[0][0] == '>':
+                header = lines[0][1:]
+                splitList = header.split('|')
+
+                if len(splitList) == 3:
+                    self.referenceDb = splitList[0]
+                    if len(splitList[1].strip()) > 0:
+                        self.reference = splitList[1]
+                    self.identifier = splitList[2]
+                else:
+                    self.identifier = header
+
+                # Parse sequence (concatenate all remaining lines)
+                seq = ''.join(lines[1:])
+                self.sequence = seq
+                # Detect and set moleculeType based on sequence content
+                self.moleculeType = self._detect_molecule_type(seq)
+        except Exception as e:
+            print(f'ERROR parsing sequence file: {e}')
+
+    def saveFile(self, fileName: str):
+        """
+        Save sequence to FASTA format file.
+
+        Args:
+            fileName: Output file path
+        """
+        from pathlib import Path
+
+        # Build FASTA format
+        text = '>' + str(self.identifier) + '\n' + str(self.sequence)
+
+        # Write to file
+        Path(fileName).write_text(text)
+
+    def getAnalysis(self, mode: str = 'molecularWeight'):
+        """
+        Perform sequence analysis using BioPython.
+
+        Args:
+            mode: Analysis type ('molecularWeight' supported)
+
+        Returns:
+            Molecular weight in Daltons, or 0 if sequence not set or analysis fails
+        """
+        import re
+
+        if mode == 'molecularWeight':
+            if not self.sequence.isSet():
+                return 0
+
+            if not BIOPYTHON_AVAILABLE:
+                print('BioPython not available for molecular weight calculation')
+                return 0
+
+            try:
+                from Bio.SeqUtils.ProtParam import ProteinAnalysis
+
+                # Remove non-standard amino acids for BioPython compatibility
+                seq_str = str(self.sequence)
+                seq_clean = re.sub('[^GALMFWKQESPVICYHRNDT]', '', seq_str)
+
+                if len(seq_clean) == 0:
+                    return 0
+
+                pa = ProteinAnalysis(seq_clean)
+                return pa.molecular_weight()
+            except Exception as e:
+                print(f'Error calculating molecular weight: {e}')
+                return 0
+
+        return 0
+
+    def guiLabel(self) -> str:
+        """
+        Get display label for GUI.
+
+        Returns:
+            Identifier, or first 20 chars of sequence, or object name
+        """
+        if self.identifier.isSet():
+            return str(self.identifier)
+        elif self.sequence.isSet():
+            seq_str = str(self.sequence)
+            return seq_str[0:20] if len(seq_str) > 20 else seq_str
+        else:
+            return self.object_name() if hasattr(self, 'object_name') else 'CSequence'
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['identifier', 'moleculeType'],
+    content_qualifiers={
+        "identifier": {'toolTip': 'Optional convenient name for sequence alignment'},
+        "moleculeType": {'onlyEnumerators': True, 'enumerators': ['PROTEIN', 'NUCLEIC'], 'menuText': ['protein', 'nucleic acid'], 'default': 'PROTEIN', 'toolTip': 'Molecule type'},
+    },
+)
+class CSequenceAlignment(CData, CBioPythonSeqInterface):
+
+    identifier: Optional["CString"] = None
+    moleculeType: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSequenceAlignment.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    An alignment of two or more sequences with BioPython AlignIO support.
+
+    This class represents a multiple sequence alignment with support for
+    loading from various alignment file formats using BioPython.
+
+    Key features:
+    - Load from CLUSTAL, FASTA, PHYLIP, Stockholm, Nexus, MSF formats
+    - Automatic format detection
+    - Handles both consecutive and interleaved alignment formats
+    - Preserves gap characters for alignment information
+
+    The alignment contains gaps ("-" characters) that are relevant to the alignment.
+    Each aligned sequence is similar to CSequence but includes gap positions.
+    """
+
+    def loadFile(self, fileName: str, format: str = 'unknown'):
+        """
+        Load sequence alignment from file using BioPython AlignIO.
+
+        Args:
+            fileName: Path to alignment file
+            format: Format hint ('clustal', 'fasta', 'phylip', 'stockholm', 'nexus', 'msf', 'unknown')
+        """
+        from pathlib import Path
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
+
+        if not Path(fileName).exists():
+            err = CErrorReport()
+            err.append(klass='CSequenceAlignment', code=401,
+                      details=f'Alignment file does not exist: {fileName}')
+            return err
+
+        if not BIOPYTHON_AVAILABLE:
+            err = CErrorReport()
+            err.append(klass='CSequenceAlignment', code=402,
+                      details='BioPython not available - cannot load alignment file')
+            return err
+
+        # Use BioPython interface to load alignment
+        data = self.loadExternalFile(fileName, format=format, record=0)
+
+        if data is not None:
+            # Populate CData attributes from loaded data
+            if 'identifier' in data:
+                self.identifier = data['identifier']
+
+            # Store format information if available
+            if 'format' in data:
+                # Store in a private attribute for later use
+                object.__setattr__(self, '_loaded_format', data['format'])
+
+        return CErrorReport()  # Return empty error report on success
+
+    def getSequenceCount(self) -> int:
+        """
+        Get the number of sequences in the alignment.
+
+        Returns:
+            Number of sequences, or 0 if not loaded
+        """
+        # This would require storing the full alignment data
+        # For now, return 0 as a placeholder
+        return 0
+
+    def getAlignmentLength(self) -> int:
+        """
+        Get the length of the alignment (including gaps).
+
+        Returns:
+            Alignment length, or 0 if not loaded
+        """
+        # This would require storing the full alignment data
+        # For now, return 0 as a placeholder
+        return 0
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'Blast sequence search',
+        "mimeTypeName": 'application/Blast-alignments',
+        "mimeTypeDescription": 'Blast sequence search results',
+        "guiLabel": 'Blast results',
+        "tooltip": 'Output from Blast search',
+        "fileExtensions": ['bla', 'blast', 'xml'],
+        "fileContentClassName": 'CBlastData',
+        "helpFile": 'model_data#ali',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CBlastDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CBlastDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CBlastDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Error opening MMCIF format file"
+        },
+        "102": {
+            "description": "Error merging data - monomer already in geometry file"
+        },
+        "103": {
+            "severity": 2,
+            "description": "Warning merging data - overwriting geometry for monomer with same id"
+        },
+        "104": {
+            "description": "Error reading geometry cif file - does not contain expected data"
+        },
+        "105": {
+            "description": "Unknown error reading geometry file"
+        },
+        "106": {
+            "description": "_chem_comp section not found in geometry file"
+        },
+        "110": {
+            "description": "Attemting to delete unrecognised chem_comp.id"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CDictData(CData):
+
+    monomerList: Optional["CList"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDictData.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CDictData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+            # NOTE: Temporarily disabled default item creation to fix i2run nested path parsing
+            # Legacy code expects pdbItemList to have at least one item by default
+            # phaser_simple.py line 33-35 assumes: elements = ensemble.pdbItemList; pdbItem = elements[-1]
+            # However, this causes issues with i2run argument parsing creating duplicate items
+            # The default item gets created, i2run sets attributes on it, but then XML shows both
+            # the original empty state AND the modified state as separate items
+            # TODO: Investigate why XML serialization duplicates the item
+            # if len(self.pdbItemList) == 0:
+            #     # Add one default item to the pdbItemList
+            #     self.pdbItemList.append(self.pdbItemList.makeItem())
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['identifier', 'formula', 'dictionaryName', 'smiles'],
+    content_qualifiers={
+        "identifier": {'toolTip': 'The name you use for the monomer'},
+        "formula": {'toolTip': 'The formula for the monomer'},
+        "dictionaryName": {'toolTip': 'The REFMAC dictionary name if not the same as the name'},
+        "smiles": {'toolTip': 'The smiles string for the monomer'},
+    },
+)
+class CMonomer(CData):
+
+    identifier: Optional["CString"] = None
+    formula: Optional["CString"] = None
+    dictionaryName: Optional["CString"] = None
+    smiles: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMonomer.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A monomer compound. ?smiles
+    
+    Extends CMonomer with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CBlastItem(CData):
+
+    hitId: Optional["CString"] = None
+    querySequence: Optional["CString"] = None
+    hitSequence: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CBlastItem.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CBlastItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['groupIds'],
+)
+class CAtomRefmacSelectionGroups(CData):
+
+    groupIds: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAtomRefmacSelectionGroups.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A group selection for occupancy groups
+    
+    Extends CAtomRefmacSelectionGroups with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class COccRelationRefmacList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize COccRelationRefmacList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """A list of CAtomRefmacSelectionGroups items."""
+
+    SUBITEM = {'class': CAtomRefmacSelectionGroups, 'qualifiers': {}}
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Error attempting to merge geometry files - no libcheck script"
+        },
+        "202": {
+            "description": "Error attempting to merge geometry files - failed creating working directory"
+        },
+        "203": {
+            "description": "Error attempting to merge geometry files - setting libcheck parameters"
+        },
+        "204": {
+            "description": "Error attempting to merge geometry files - running libcheck"
+        },
+        "205": {
+            "description": "Error attempting to merge geometry files - failed to run libcheck"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'dictionary',
+        "mimeTypeName": 'application/refmac-dictionary',
+        "mimeTypeDescription": 'Geometry file',
+        "guiLabel": 'Geometry dictionary',
+        "toolTip": 'Idealised geometry of ligands for refinement',
+        "fileExtensions": ['cif'],
+        "fileContentClassName": 'CDictData',
+        "helpFile": 'model_data#ligand_geometry',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CDictDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDictDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A refmac dictionary file
+    
+    Extends CDictDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "guiLabel": 'Ensemble',
+        "allowUndefined": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "number": {'min': 0, 'default': 1, 'enumerators': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'menuText': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']},
+        "use": {'default': True},
+        "pdbItemList": {'listMinLength': 1},
+    },
+)
+class CEnsemble(CData):
+
+    label: Optional["COneWord"] = None
+    number: Optional["CInt"] = None
+    use: Optional["CBoolean"] = None
+    pdbItemList: Optional["CList"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CEnsemble.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    An ensemble of models. Typically, this would be a set of related
+PDB files, but models could also be xtal or EM maps. This should
+be indicated by the types entry.
+A single ensemble is a CList of structures.
+
+    Extends CEnsemble with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, *args, **kwargs):
+        """Initialize CEnsemble with a default pdbItemList containing one item."""
+        super().__init__(*args, **kwargs)
+
+        # Set the subItem qualifier for pdbItemList to specify that it contains CPdbEnsembleItem objects
+        if self.pdbItemList is not None:
+            self.pdbItemList.set_qualifier('subItem', {
+                'class': CPdbEnsembleItem,  # Use implementation class, not stub
+                'qualifiers': {}
+            })
+
+        # Set default number of copies to 1 (not 0, which means "no search")
+        if hasattr(self, 'number') and self.number is not None:
+            # Check if number is unset OR explicitly set to 0
+            if not self.number.isSet() or self.number.value == 0:
+                self.number.value = 1
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "pdbFileKey": None,
+    },
+    qualifiers_order=['pdbFileKey'],
+    contents_order=['chainId', 'firstRes', 'lastRes'],
+    content_qualifiers={
+        "chainId": {'default': ''},
+    },
+)
+class CResidueRange(CData):
+
+    chainId: Optional["COneWord"] = None
+    firstRes: Optional["COneWord"] = None
+    lastRes: Optional["COneWord"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CResidueRange.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A residue range selection
+    
+    Extends CResidueRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "pdbFileKey": '',
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CAtomSelection(CData):
+
+    text: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAtomSelection.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CAtomSelection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __str__(self):
+        return str(self.text)
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Failed reading blast file"
+        },
+        "202": {
+            "description": "Blast file contains results of more than one query - only the first is read",
+            "severity": 2
+        },
+        "203": {
+            "description": "Failed parsing Blast file"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CBlastData(CDataFileContent):
+
+    queryId: Optional["CString"] = None
+    alignmentList: Optional["CList"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CBlastData.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Base class for classes holding file contents
+    
+    Extends CBlastData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Failed to read HHPred file"
+        },
+        "202": {
+            "description": "Failed to load iotbx software to read HHPred file"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CHhpredData(CDataFileContent):
+
+    alignmentList: Optional["CList"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CHhpredData.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Base class for classes holding file contents
+    
+    Extends CHhpredData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+# Try to import BioPython - it's optional but provides enhanced functionality
+try:
+    import Bio.SeqIO
+    import Bio.AlignIO
+    BIOPYTHON_AVAILABLE = True
+except ImportError:
+    BIOPYTHON_AVAILABLE = False
+
+# BioPython format mappings
+SEQFORMATLIST = ['fasta', 'pir', 'swiss', 'tab', 'ig']
+ALIGNFORMATLIST = ['fasta', 'clustal', 'phylip', 'stockholm', 'nexus', 'emboss', 'msf']
+EXTLIST = {
+    'fasta': 'fasta', 'fa': 'fasta', 'faa': 'fasta', 'fas': 'fasta',
+    'pir': 'pir',
+    'aln': 'clustal', 'clw': 'clustal', 'clustal': 'clustal',
+    'phy': 'phylip', 'phylip': 'phylip',
+    'stockholm': 'stockholm', 'stk': 'stockholm',
+    'nexus': 'nexus', 'nex': 'nexus',
+    'msf': 'msf'
+}
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CPdbDataFileList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPdbDataFileList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CPdbDataFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
 COORDINATE_FORMAT_PDB = 'pdb'
 COORDINATE_FORMAT_MMCIF = 'mmcif'
 
@@ -1399,6 +3338,116 @@ def detect_coordinate_format(path, sniff_lines: int = 200):
     if suffix in ('.pdb', '.ent'):
         return COORDINATE_FORMAT_PDB
     return None
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'mol2',
+        "mimeTypeName": 'chemical/x-mol2',
+        "mimeTypeDescription": 'MOL2 file',
+        "guiLabel": 'MOL2 file',
+        "toolTip": 'Structure geometry of ligands for refinement in MOL2 format',
+        "fileExtensions": ['mol2'],
+        "fileContentClassName": None,
+        "helpFile": 'model_data#mol2_file',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CMol2DataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMol2DataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A molecule definition file (MOL2)
+
+    Extends CMol2DataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set default file extension for MOL2 files
+        self.set_qualifier('fileExtensions', ['mol2'])
+        self.set_qualifier('mimeTypeName', 'chemical/x-mol2')
 
 
 class CPdbDataComposition:
@@ -1615,11 +3664,616 @@ class CPdbDataComposition:
         self.residueNameCounts = residue_name_counts
 
 
-class CPdbData(CPdbDataStub):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class COccRefmacSelectionList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize COccRefmacSelectionList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """A list of CAtomRefmacSelectionOccupancy items."""
+
+    SUBITEM = {'class': CAtomRefmacSelectionOccupancy, 'qualifiers': {}}
+
+
+@cdata_class(
+    error_codes={
+        "401": {
+            "description": "No uniprot id available"
+        },
+        "402": {
+            "description": "No uniprot xml file available to read"
+        },
+        "403": {
+            "description": "No project id provided to determine uniprot xml filename"
+        },
+        "404": {
+            "description": "Reading uniprot xml file failed"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CSequenceMeta(CData):
+
+    uniprotId: Optional["CString"] = None
+    organism: Optional["CString"] = None
+    expressionSystem: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSequenceMeta.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CSequenceMeta with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Error reading sequence file"
+        },
+        "202": {
+            "description": "Error in BioPython attempting to identify file type"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'sequence',
+        "mimeTypeName": 'application/CCP4-seq',
+        "mimeTypeDescription": 'Sequence file',
+        "guiLabel": 'Sequence',
+        "tooltip": 'Sequence in any of the common formats (pir,fasta..)',
+        "fileExtensions": ['seq', 'pir', 'fasta'],
+        "fileContentClassName": 'CSequence',
+        "downloadModes": ['uniprotFasta', 'ebiPdb', 'rcsbPdb'],
+        "helpFile": 'model_data#sequences',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CSeqDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSeqDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A sequence file
+    
+    Extends CSeqDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "202": {
+            "description": "Error reading from file"
+        },
+        "203": {
+            "description": "Unknown alignment file format"
+        },
+        "204": {
+            "description": "Can not read Blast or HHPred file format"
+        },
+        "205": {
+            "description": "Error reading identifiers from multi-record file"
+        },
+        "206": {
+            "description": "Error attempting to identify file format"
+        },
+        "250": {
+            "description": "Alignment file format not recognised - can not convert"
+        },
+        "251": {
+            "description": "Alignment file conversion failed to overwrite existing file"
+        },
+        "252": {
+            "description": "Alignment file conversion failed writing file"
+        },
+        "260": {
+            "description": "Alignment file does not contain required number of sequences"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "mustExist": False,
+        "fromPreviousJob": False,
+        "jobCombo": True,
+        "mimeTypeName": 'application/CCP4-seqalign',
+        "mimeTypeDescription": 'Sequence alignment file',
+        "fileLabel": None,
+        "fileExtensions": ['aln', 'pir', 'fasta', 'msf', 'phy'],
+        "fileContentClassName": 'CSequenceAlignment',
+        "isDirectory": False,
+        "saveToDb": True,
+        "requiredSubType": None,
+        "requiredContentFlag": None,
+        "guiLabel": 'Aligned sequences',
+        "toolTip": 'Multiple sequence alignment in any of the common formats (pir,fasta..)',
+        "helpFile": 'model_data#alignments',
+    },
+    qualifiers_order=['requiredSequences'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CSeqAlignDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSeqAlignDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A (multiple) sequence alignment file
+
+    Extends CSeqAlignDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def identifyFile(self):
+        """
+        Identify the format of an alignment file using BioPython.
+
+        Returns:
+            tuple: (format_name, id_list) where format_name is the detected format
+                   string (e.g. 'clustal', 'fasta') and id_list is list of
+                   sequence IDs in the alignment.
+        """
+        import os
+
+        idList = []
+
+        fileName = self.__str__()
+        if not os.path.exists(fileName):
+            object.__setattr__(self, 'format', 'unknown')
+            return 'unknown', idList
+
+        # Try common alignment formats with BioPython
+        formats_to_try = ['clustal', 'fasta', 'phylip', 'stockholm']
+
+        for fmt in formats_to_try:
+            try:
+                import Bio.AlignIO
+                alignments = Bio.AlignIO.read(fileName, fmt)
+                # Success - store format and extract IDs
+                object.__setattr__(self, 'format', fmt)
+                for record in alignments:
+                    try:
+                        idList.append(record.id)
+                    except Exception:
+                        pass
+                return fmt, idList
+            except Exception:
+                continue
+
+        # If no format worked, mark as unknown
+        object.__setattr__(self, 'format', 'unknown')
+        return 'unknown', idList
+
+    def convertFormat(self, toFormat, fileName, reorder=None):
+        """
+        Convert alignment file to specified format and write to fileName.
+
+        Legacy compatibility method for wrappers that call convertFormat.
+        Uses BioPython for alignment format conversion.
+
+        Args:
+            toFormat: Target format ('clustal', 'fasta', 'phylip', 'stockholm', etc.)
+            fileName: Output file path
+            reorder: Optional reordering specification:
+                    - None: Keep original order
+                    - 'reverse': Reverse sequence order
+                    - list: Reorder to specified indices
+
+        Returns:
+            CErrorReport with any errors encountered
+        """
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
+        import os
+
+        # Identify source format if not already done
+        if not hasattr(self, 'format') or self.format is None or self.format == 'unknown':
+            self.identifyFile()
+
+        if not hasattr(self, 'format') or self.format == 'unknown':
+            err = CErrorReport()
+            err.append(self.__class__, 250, self.__str__() + ' to ' + str(fileName))
+            return err
+
+        # Try reading the input file
+        try:
+            import Bio.AlignIO
+            alignments = Bio.AlignIO.read(self.__str__(), self.format)
+        except Exception as e:
+            err = CErrorReport()
+            err.append(self.__class__, 202, f"{self.__str__()}: {str(e)}")
+            return err
+
+        # Apply reordering if specified
+        if reorder == 'reverse':
+            from Bio.Align import MultipleSeqAlignment
+            aliout = MultipleSeqAlignment([])
+            for ii in range(len(alignments) - 1, -1, -1):
+                aliout.append(alignments[ii])
+            alignments = aliout
+        elif isinstance(reorder, list):
+            # Custom reordering by index list
+            from Bio.Align import MultipleSeqAlignment
+            aliout = MultipleSeqAlignment([])
+            for idx in reorder:
+                if 0 <= idx < len(alignments):
+                    aliout.append(alignments[idx])
+            alignments = aliout
+
+        # Remove existing output file if present
+        try:
+            if os.path.exists(fileName):
+                os.remove(fileName)
+        except Exception:
+            err = CErrorReport()
+            err.append(self.__class__, 251, fileName)
+            return err
+
+        # Write output in requested format
+        try:
+            with open(fileName, "w") as out:
+                Bio.AlignIO.write(alignments, out, toFormat)
+        except Exception as e:
+            err = CErrorReport()
+            err.append(self.__class__, 252, f"{fileName}: {str(e)}")
+            return err
+
+        return CErrorReport()
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CHhpredItem(CData):
+
+    annotation: Optional["CString"] = None
+    identifier: Optional["CString"] = None
+    chain: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CHhpredItem.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CHhpredItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 1,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CEnsembleList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CEnsembleList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+
+    Extends CEnsembleList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    SUBITEM = {'class': CEnsemble, 'qualifiers': {}}
+
+    def makeItem(self, *args, **kwargs):
+        """
+        Create a new CEnsemble item with auto-generated label.
+
+        Legacy expectation: When a CEnsemble is created via makeItem(),
+        it should automatically get a label "Ensemble_{index}" where
+        index is the current length of the list.
+
+        Returns:
+            CEnsemble: A new ensemble with auto-generated label
+        """
+        # Create the item using parent's makeItem
+        item = super().makeItem(*args, **kwargs)
+
+        # Auto-generate label based on current list length
+        if hasattr(item, 'label') and item.label is not None:
+            if not item.label.isSet():
+                index = len(self)  # Current length before appending
+                item.label.value = f"Ensemble_{index}"
+
+        return item
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Unable to load mmdb - ensure LD_LIBRARY_PATH is set"
+        },
+        "102": {
+            "description": "Error reading PDB file into MMDB object"
+        },
+        "103": {
+            "description": "Residue range selection does not specify chain"
+        },
+        "104": {
+            "description": "Residue range selection specifies non-existant chain id"
+        },
+        "105": {
+            "description": "Residue range selection - no residues selected"
+        },
+        "106": {
+            "description": "Residue range selection - residue number is not an integer"
+        },
+        "112": {
+            "description": "Atom selection failed. Failed creating CMMDBManager object"
+        },
+        "113": {
+            "description": "Atom selection failed. Faied reading coordinate file."
+        },
+        "114": {
+            "description": "Atom selection failed. Failed parsing command"
+        },
+        "115": {
+            "description": "Atom selection failed. Error creating PPCAtom"
+        },
+        "116": {
+            "description": "Atom selection failed. Error in GetSelIndex"
+        },
+        "117": {
+            "description": "Atom selection failed. Error loading selection tree"
+        },
+        "118": {
+            "description": "Atom selection failed. Error applying selection tree"
+        },
+        "119": {
+            "description": "Creating new PDB file failed on writing file"
+        },
+        "120": {
+            "description": "Creating new PDB file failed converting from fractional coordinates"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CPdbData(CDataFileContent):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPdbData.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     Contents of a PDB file - a subset with functionality for GUI
 
-    Extends CPdbDataStub with implementation-specific methods.
+    Extends CPdbData with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -1914,15 +4568,807 @@ class CPdbData(CPdbDataStub):
             return 1
 
 
-class CPdbDataFile(CPdbDataFileStub):
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Error reading monomer id and name"
+        },
+        "202": {
+            "description": "Error writing monomer id and name"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CChemComp(CData):
+
+    id: Optional["COneWord"] = None
+    three_letter_code: Optional["COneWord"] = None
+    name: Optional["CString"] = None
+    group: Optional["CString"] = None
+    number_atoms_all: Optional["CInt"] = None
+    number_atoms_nh: Optional["CInt"] = None
+    desc_level: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CChemComp.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Extends CPdbDataFileStub with implementation-specific methods.
+    Component of CDictDataFile contents
+    
+    Extends CChemComp with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "File does not exist"
+        },
+        "102": {
+            "description": "No mime type for data file"
+        },
+        "103": {
+            "description": "Attempting to set file content with inappropriate data"
+        },
+        "104": {
+            "description": "There is no file content class specified for this type of file"
+        },
+        "105": {
+            "description": "The file content class specified for this type of file can not be found"
+        },
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "305": {
+            "description": "Neither original nor test file exists",
+            "severity": 0
+        },
+        "306": {
+            "description": "Original file does not exists"
+        },
+        "307": {
+            "description": "Test file does not exist "
+        },
+        "308": {
+            "description": "Files failed checksum comparison"
+        },
+        "309": {
+            "description": "Files failed size comparison"
+        },
+        "310": {
+            "description": "No comparison testing implemented for this file type",
+            "severity": 2
+        },
+        "311": {
+            "description": "Failed loading original file for comparison"
+        },
+        "312": {
+            "description": "Failed loading test file for comparison"
+        },
+        "313": {
+            "description": "Files failed simple text diff comparison"
+        },
+        "320": {
+            "description": "Unrecognised error attempting to load file"
+        }
+    },
+    qualifiers={
+        "fileLabel": 'mol',
+        "mimeTypeName": 'chemical/x-mdl-molfile',
+        "mimeTypeDescription": 'MDL Molfile',
+        "guiLabel": 'Mol file',
+        "toolTip": 'Structure geometry of ligands for refinement in MDL mol format',
+        "fileExtensions": ['mol', 'sdf'],
+        "fileContentClassName": None,
+        "helpFile": 'model_data#mol_file',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': None},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CMDLMolDataFile(CDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CMDLMolDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A molecule definition file (MDL)
+
+    Extends CMDLMolDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set default file extension for MDL MOL files
+        self.set_qualifier('fileExtensions', ['mol'])
+        self.set_qualifier('mimeTypeName', 'chemical/x-mdl-molfile')
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    content_qualifiers={
+        "sequence": {'allowUndefined': False, 'minLength': 1},
+        "nCopies": {'enumerators': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'default': 1, 'min': 0},
+        "polymerType": {'onlyEnumerators': True, 'enumerators': ['PROTEIN', 'RNA', 'DNA'], 'default': 'PROTEIN'},
+        "name": {'allowUndefined': False, 'minLength': 1, 'allowedCharsCode': 1},
+        "description": {'allowUndefined': True},
+    },
+)
+class CAsuContentSeq(CData):
+
+    sequence: Optional["CSequenceString"] = None
+    nCopies: Optional["CInt"] = None
+    polymerType: Optional["CString"] = None
+    name: Optional["CString"] = None
+    description: Optional["CString"] = None
+    source: Optional["CSeqDataFile"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAsuContentSeq.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CAsuContentSeq with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def formattedSequence(self):
+        """
+        Format the sequence for display with line wrapping and spacing.
+
+        Formats sequence with:
+        - 60 characters per line (6 blocks of 10)
+        - Space every 10 characters for readability
+
+        Returns:
+            str: Formatted sequence string
+        """
+        GROUP_SIZE = 10
+        GROUPS_PER_LINE = 6
+
+        # Get sequence value - handle both CString and plain string
+        sequence = self.sequence
+        if hasattr(sequence, 'value'):
+            seq = str(sequence.value)
+        else:
+            seq = str(sequence)
+
+        # Clean whitespace from sequence
+        seq = seq.replace(' ', '').replace('\n', '').replace('\t', '')
+
+        if not seq:
+            return ''
+
+        # Split into groups of 10
+        groups = [seq[i:i + GROUP_SIZE] for i in range(0, len(seq), GROUP_SIZE)]
+
+        # Build lines with 6 groups each
+        lines = []
+        for i in range(0, len(groups), GROUPS_PER_LINE):
+            line_groups = groups[i:i + GROUPS_PER_LINE]
+            lines.append(' '.join(line_groups))
+
+        return '\n'.join(lines)
+
+    def autoSetPolymerType(self):
+        """
+        Infer polymer type (PROTEIN, DNA, or RNA) from the sequence content
+        and set the polymerType attribute accordingly.
+        """
+        sequence = self.sequence
+        if hasattr(sequence, 'value'):
+            seq = str(sequence.value)
+        else:
+            seq = str(sequence)
+
+        seq = seq.replace(' ', '').replace('\n', '').replace('\t', '').replace('-', '').replace('.', '').upper()
+
+        if not seq:
+            self.polymerType.set('PROTEIN')
+            return
+
+        # Check if it looks like a nucleic acid (>80% ACGTU characters)
+        na_chars = set('ACGTUN')
+        na_count = sum(1 for c in seq if c in na_chars)
+        if na_count / len(seq) > 0.8:
+            if 'U' in seq and 'T' not in seq:
+                self.polymerType.set('RNA')
+            else:
+                self.polymerType.set('DNA')
+        else:
+            self.polymerType.set('PROTEIN')
+
+    def numberOfResidues(self, countMulti=False):
+        """
+        Calculate the number of residues in the sequence.
+
+        Args:
+            countMulti: If True, multiply by nCopies
+
+        Returns:
+            int: Number of residues (sequence length), optionally multiplied by nCopies
+        """
+        # Get sequence value - handle both CString and plain string
+        sequence = self.sequence
+        if hasattr(sequence, 'value'):
+            seq_str = str(sequence.value)
+        else:
+            seq_str = str(sequence)
+
+        # Count non-whitespace characters
+        num_residues = len(seq_str.replace(' ', '').replace('\n', '').replace('\t', ''))
+
+        # Multiply by nCopies if requested
+        if countMulti and hasattr(self, 'nCopies') and self.nCopies.isSet():
+            num_residues *= int(self.nCopies.value)
+
+        return num_residues
+
+    def validity(self):
+        """
+        Validate this ASU content sequence entry.
+
+        Checks:
+        - nCopies is defined and >= 1
+        - polymerType is defined and valid (PROTEIN, DNA, or RNA)
+        - name is not null or zero length
+        - sequence can be parsed by BioPython given the polymer type
+
+        Returns:
+            CErrorReport containing validation errors/warnings
+        """
+        import re
+        from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
+
+        report = CErrorReport()
+        valid_polymer_types = {'PROTEIN', 'DNA', 'RNA'}
+
+        # Get full object path for error reporting (matches frontend _objectPath)
+        base_path = self.object_path() if hasattr(self, 'object_path') else ''
+
+        # Check nCopies >= 1
+        n_copies = getattr(self, 'nCopies', None)
+        if n_copies is not None and hasattr(n_copies, 'value') and hasattr(n_copies, 'isSet'):
+            n_copies_val = int(n_copies.value) if n_copies.isSet() else 0
+        elif n_copies is not None:
+            try:
+                n_copies_val = int(n_copies)
+            except (ValueError, TypeError):
+                n_copies_val = 0
+        else:
+            n_copies_val = 0
+
+        if n_copies_val < 1:
+            # Use field path for cell-level highlighting
+            field_path = f"{base_path}.nCopies" if base_path else 'nCopies'
+            report.append(
+                klass=self.__class__.__name__,
+                code=101,
+                details='nCopies must be >= 1',
+                name=field_path,
+                severity=SEVERITY_ERROR
+            )
+
+        # Check polymerType is valid
+        polymer_type = getattr(self, 'polymerType', None)
+        if polymer_type is not None and hasattr(polymer_type, 'value'):
+            pt_str = str(polymer_type.value).strip().upper()
+        elif polymer_type is not None:
+            pt_str = str(polymer_type).strip().upper()
+        else:
+            pt_str = ''
+
+        if not pt_str or pt_str not in valid_polymer_types:
+            field_path = f"{base_path}.polymerType" if base_path else 'polymerType'
+            report.append(
+                klass=self.__class__.__name__,
+                code=102,
+                details=f'Invalid or missing polymer type (must be PROTEIN, DNA, or RNA, got "{pt_str}")',
+                name=field_path,
+                severity=SEVERITY_ERROR
+            )
+
+        # Check name is not null or empty
+        name = getattr(self, 'name', None)
+        if name is not None and hasattr(name, 'value'):
+            name_str = str(name.value).strip()
+        elif name is not None:
+            name_str = str(name).strip()
+        else:
+            name_str = ''
+
+        if not name_str:
+            field_path = f"{base_path}.name" if base_path else 'name'
+            report.append(
+                klass=self.__class__.__name__,
+                code=103,
+                details='Name is required',
+                name=field_path,
+                severity=SEVERITY_ERROR
+            )
+
+        # Check sequence can be parsed by BioPython
+        sequence = getattr(self, 'sequence', None)
+        if sequence is not None and hasattr(sequence, 'value'):
+            seq_str = str(sequence.value).replace(' ', '').replace('\n', '').replace('\t', '').upper()
+        elif sequence is not None:
+            seq_str = str(sequence).replace(' ', '').replace('\n', '').replace('\t', '').upper()
+        else:
+            seq_str = ''
+
+        if len(seq_str) <= 1:
+            field_path = f"{base_path}.sequence" if base_path else 'sequence'
+            report.append(
+                klass=self.__class__.__name__,
+                code=104,
+                details='Sequence must have more than 1 residue',
+                name=field_path,
+                severity=SEVERITY_ERROR
+            )
+        elif pt_str in valid_polymer_types:
+            # Validate sequence characters based on polymer type
+            field_path = f"{base_path}.sequence" if base_path else 'sequence'
+            if pt_str == 'PROTEIN':
+                # Standard amino acid one-letter codes
+                valid_chars = set('GALMFWKQESPVICYHRNDT')
+                invalid_chars = set(seq_str) - valid_chars
+                if invalid_chars:
+                    report.append(
+                        klass=self.__class__.__name__,
+                        code=105,
+                        details=f'Sequence contains invalid amino acid characters: {", ".join(sorted(invalid_chars))}',
+                        name=field_path,
+                        severity=SEVERITY_ERROR
+                    )
+            else:
+                # DNA or RNA - valid nucleotide codes
+                valid_chars = set('CAUGT')
+                invalid_chars = set(seq_str) - valid_chars
+                if invalid_chars:
+                    report.append(
+                        klass=self.__class__.__name__,
+                        code=106,
+                        details=f'Sequence contains invalid nucleotide characters: {", ".join(sorted(invalid_chars))}',
+                        name=field_path,
+                        severity=SEVERITY_ERROR
+                    )
+
+        return report
+
+    def molecularWeight(self, polymerType="PROTEIN"):
+        """
+        Calculate molecular weight of the sequence.
+
+        Args:
+            polymerType: Type of polymer ("PROTEIN", "RNA", or "DNA")
+
+        Returns:
+            float: Molecular weight in Daltons, multiplied by nCopies
+
+        Note:
+            Uses BioPython's SeqUtils.molecular_weight() function.
+            Filters out non-standard residues before calculation.
+        """
+        import re
+        import Bio.SeqUtils
+
+        # Get sequence value - handle both CString and plain string
+        sequence = self.sequence
+        if hasattr(sequence, 'value'):
+            seq_str = str(sequence.value)
+        else:
+            seq_str = str(sequence)
+
+        # Get nCopies value - handle both CInt and plain int
+        n_copies = self.nCopies
+        if hasattr(n_copies, 'value'):
+            n_copies_val = float(n_copies.value)
+        else:
+            n_copies_val = float(n_copies)
+
+        # Normalize polymerType - handle CString, plain string, and empty values
+        if hasattr(polymerType, 'value'):
+            polymer_type_str = str(polymerType.value)
+        elif hasattr(polymerType, '__str__'):
+            polymer_type_str = str(polymerType)
+        else:
+            polymer_type_str = polymerType
+
+        # Default to PROTEIN if empty
+        if not polymer_type_str or polymer_type_str.strip() == '':
+            polymer_type_str = "PROTEIN"
+
+        # BioPython is not robust to bad sequences - filter to valid residues only
+        if polymer_type_str == "PROTEIN":
+            # Standard amino acid codes
+            seq = re.sub('[^GALMFWKQESPVICYHRNDT]', '', seq_str)
+            wt = Bio.SeqUtils.molecular_weight(seq, seq_type='protein')
+        else:
+            # Nucleic acid codes
+            seq = re.sub('[^CAUGT]', '', seq_str)
+            wt = Bio.SeqUtils.molecular_weight(seq, seq_type=polymer_type_str)
+
+        return wt * n_copies_val
+
+
+@cdata_class(
+    error_codes={
+        "401": {
+            "description": "Sequence the same as a sequence that is already loaded"
+        },
+        "402": {
+            "description": "Sequence names are not unique: "
+        }
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+)
+class CAsuContentSeqList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAsuContentSeqList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """A list of CAsuContentSeq items; requires at least one entry."""
+
+    SUBITEM = {'class': CAsuContentSeq, 'qualifiers': {}}
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+        self.set_qualifier('listMinLength', 1)
+
+    # Note: validity() is inherited from CList which handles:
+    # - listMinLength/listMaxLength checks
+    # - Aggregating child validity errors
+
+    def validityAsDict(self):
+        """
+        Validate the ASU content list and return result as a dict.
+
+        This is a convenience method for the frontend that returns a dict format
+        suitable for displaying validation status messages.
+
+        Returns:
+            dict: Validation result with keys:
+                - valid (bool): True if all checks pass
+                - message (str): Description of validation status
+                - errors (list): List of specific validation errors
+        """
+        report = self.validity()
+
+        if report.maxSeverity() >= 4:  # SEVERITY_ERROR = 4
+            errors = [err.get('details', str(err)) for err in report._errors]
+            return {
+                'valid': False,
+                'message': f'{len(errors)} validation error(s)',
+                'errors': errors
+            }
+
+        return {
+            'valid': True,
+            'message': f'{len(self)} valid sequence(s)',
+            'errors': []
+        }
+
+    def molecularWeight(self):
+        """
+        Calculate total molecular weight of all sequences in the list.
+
+        Sums the molecular weight of each CAsuContentSeq item, using its
+        polymerType to determine the calculation method.
+
+        Returns:
+            float: Total molecular weight in Daltons
+        """
+        total_weight = 0.0
+        for seq_obj in self:
+            # Get polymerType - handle CString wrapper
+            polymer_type = seq_obj.polymerType
+            if hasattr(polymer_type, 'value'):
+                polymer_type = str(polymer_type.value)
+            else:
+                polymer_type = str(polymer_type) if polymer_type else "PROTEIN"
+            total_weight += seq_obj.molecularWeight(polymer_type)
+        return total_weight
+
+
+@cdata_class(
+    error_codes={
+        "401": {
+            "description": "Failed running coord_format to fix coordinate file - is it a PDB file?"
+        },
+        "402": {
+            "severity": 2,
+            "description": "Badly formated PDB file fixed"
+        },
+        "403": {
+            "severity": 2,
+            "description": "Fixed by removing text"
+        },
+        "404": {
+            "severity": 2,
+            "description": "Fixed by adding text"
+        },
+        "405": {
+            "description": "There are no ATOM or HETATM lines in the PDB file"
+        },
+        "410": {
+            "description": "No file loaded - can not convert coordinate file format"
+        },
+        "411": {
+            "description": "Failed loading file - can not convert coordinate file format"
+        },
+        "412": {
+            "description": "Can not overwrite existing file - can not convert coordinate file format"
+        },
+        "413": {
+            "description": "Failed writing coordinate file"
+        },
+        "414": {
+            "description": "Failed to identify coordinate file format"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "mustExist": False,
+        "fromPreviousJob": False,
+        "jobCombo": True,
+        "mimeTypeName": 'chemical/x-pdb',
+        "mimeTypeDescription": 'Model coordinates',
+        "fileLabel": 'coordinates',
+        "fileExtensions": ['pdb', 'cif', 'mmcif', 'ent'],
+        "fileContentClassName": 'CPdbData',
+        "isDirectory": False,
+        "saveToDb": True,
+        "requiredSubType": None,
+        "requiredContentFlag": None,
+        "guiLabel": 'Atomic model',
+        "toolTip": 'A model coordinate file in PDB or mmCIF format',
+        "ifInfo": True,
+        "ifAtomSelection": False,
+        "downloadModes": ['ebiPdb', 'rcsbPdb', 'uniprotAFPdb'],
+        "helpFile": 'model_data#coordinate_files',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CPdbDataFile(CDataFile):
+
+    # Subtype constants
+    SUBTYPE_UNKNOWN = 0  # unknown
+    SUBTYPE_MODEL = 1  # model
+    SUBTYPE_HOMOLOG = 2  # homolog
+    SUBTYPE_FRAGMENT = 3  # fragment
+    SUBTYPE_HEAVY_ATOMS = 4  # heavy atoms
+
+    # Content flag constants
+    CONTENT_FLAG_PDB = 1  # PDB format
+    CONTENT_FLAG_MMCIF = 2  # mmCIF format
+
+    # Content annotations (indexed by contentFlag - 1)
+    CONTENT_ANNOTATION = ['PDB format', 'mmCIF format']
+
+    # Column signatures for each content flag (indexed by contentFlag - 1)
+    CONTENT_SIGNATURE_LIST = [None, None]
+
+    selection: Optional["CAtomSelection"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPdbDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CPdbDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CPdbData' is already set in CPdbDataFileStub decorator
+        # Note: fileContentClassName='CPdbData' is already set in CPdbDataFile decorator
 
     def isSelectionSet(self) -> bool:
         """Check if an atom selection is defined for this PDB file.
@@ -2418,11 +5864,213 @@ class CPdbDataFile(CPdbDataFileStub):
             raise CException(self.__class__, 413, f"Output file was not created: {output_path}")
 
 
-class CPdbDataFileList(CPdbDataFileListStub):
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Failed reading file - is it correct file type?"
+        },
+        "102": {
+            "description": "Failed reading file - it is not AU contents file"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CAsuContent(CDataFileContent):
+
+    seqList: Optional["CAsuContentSeqList"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAsuContent.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    A list with all items of one CData sub-class
+    Base class for classes holding file contents
+
+    Extends CAsuContent with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def loadFile(self, file_path: str = None):
+        """
+        Load ASU XML file and populate seqList.
+
+        This method:
+        1. Reads ASU XML file using ElementTree
+        2. Extracts sequence information
+        3. Populates seqList attribute with CAsuContentSeq objects
+
+        Args:
+            file_path: Optional path to ASU XML file. If None, gets path from parent CDataFile.
+
+        Returns:
+            CErrorReport with any errors encountered
+
+        Example:
+            # Load from parent file's path
+            >>> asu_file = CAsuDataFile()
+            >>> asu_file.setFullPath('/path/to/sequences.asu.xml')
+            >>> asu_file.loadFile()  # Base CDataFile.loadFile() calls content.loadFile()
+        """
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
+        from pathlib import Path
+
+        error = CErrorReport()
+
+        # If no path provided, get from parent CDataFile
+        if file_path is None:
+            parent = self.get_parent()
+            if parent is not None and hasattr(parent, 'getFullPath'):
+                file_path = parent.getFullPath()
+
+        # Validate file path
+        if not file_path:
+            return error
+
+        path_obj = Path(file_path)
+        if not path_obj.exists() or not path_obj.is_file():
+            error.append(
+                klass=self.__class__.__name__,
+                code=101,
+                details=f"ASU XML file does not exist or is not a file: '{file_path}'",
+                name=self.object_name() if hasattr(self, 'object_name') else ''
+            )
+            return error
+
+        try:
+            import xml.etree.ElementTree as ET
+
+            tree = ET.parse(file_path)
+            root = tree.getroot()
+
+            # Parse sequences from XML
+            # Handle namespace
+            ns = {'ccp4': 'http://www.ccp4.ac.uk/ccp4ns'}
+            # Check if root IS ccp4i2_body (common case), otherwise search for it
+            if root.tag == 'ccp4i2_body':
+                body = root
+            else:
+                body = root.find('.//ccp4i2_body', ns) or root.find('.//ccp4i2_body')
+
+            if body is not None:
+                seqList_elem = body.find('seqList')
+                if seqList_elem is not None:
+                    # Clear existing sequences before loading to avoid duplicates
+                    self.seqList.clear()
+
+                    for seq_elem in seqList_elem.findall('CAsuContentSeq'):
+                        seq_obj = CAsuContentSeq(parent=self.seqList, name=None)
+
+                        # Parse sequence fields using smart assignment
+                        if seq_elem.find('sequence') is not None:
+                            seq_obj.sequence = seq_elem.find('sequence').text or ''
+                        if seq_elem.find('nCopies') is not None:
+                            seq_obj.nCopies = int(seq_elem.find('nCopies').text or '1')
+                        if seq_elem.find('polymerType') is not None:
+                            seq_obj.polymerType = seq_elem.find('polymerType').text or ''
+                        if seq_elem.find('name') is not None:
+                            seq_obj.name = seq_elem.find('name').text or ''
+                        if seq_elem.find('description') is not None:
+                            seq_obj.description = seq_elem.find('description').text or ''
+
+                        # Add to seqList
+                        self.seqList.append(seq_obj)
+
+        except ET.ParseError as e:
+            error.append(
+                klass=self.__class__.__name__,
+                code=102,
+                details=f"Error parsing ASU XML file '{file_path}': {e}",
+                name=self.object_name() if hasattr(self, 'object_name') else ''
+            )
+        except Exception as e:
+            error.append(
+                klass=self.__class__.__name__,
+                code=103,
+                details=f"Error reading ASU XML file '{file_path}': {e}",
+                name=self.object_name() if hasattr(self, 'object_name') else ''
+            )
+
+        return error
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "mustExist": False,
+        "fromPreviousJob": False,
+        "jobCombo": True,
+        "mimeTypeName": 'chemical/x-pdb',
+        "mimeTypeDescription": 'Model coordinates',
+        "fileLabel": 'ensemble coordinates',
+        "fileExtensions": ['pdb', 'cif', 'mmcif', 'ent'],
+        "fileContentClassName": 'CPdbData',
+        "isDirectory": False,
+        "saveToDb": True,
+        "requiredSubType": None,
+        "requiredContentFlag": None,
+        "guiLabel": 'Model ensemble',
+        "toolTip": 'An ensemble of model coordinates in PDB or mmCIF format',
+        "ifInfo": True,
+        "ifAtomSelection": False,
+        "downloadModes": [],
+        "helpFile": 'model_data#ensemble_coordinate_files',
+    },
+    qualifiers_order=[
+        'fileExtensions',
+        'mimeTypeName',
+        'mimeTypeDescription',
+        'fileLabel',
+        'allowUndefined',
+        'mustExist',
+        'fromPreviousJob',
+        'jobCombo',
+        'fileContentClassName',
+        'isDirectory',
+        'saveToDb',
+        'requiredSubType',
+        'requiredContentFlag'],
+    content_qualifiers={
+        "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
+        "contentFlag": {'min': 0, 'default': None},
+    },
+)
+class CEnsemblePdbDataFile(CPdbDataFile):
+
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CEnsemblePdbDataFile.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A PDB coordinate file containing ensemble of structures as 'NMR' models
     
-    Extends CPdbDataFileListStub with implementation-specific methods.
+    Extends CEnsemblePdbDataFile with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -2430,9 +6078,50 @@ class CPdbDataFileList(CPdbDataFileListStub):
     pass
 
 
-class CPdbEnsembleItem(CPdbEnsembleItemStub):
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "No sequence identity or structure RMS to target set"
+        }
+    },
+    qualifiers={
+        "guiLabel": 'Structure in ensemble',
+        "toolTip": 'Homologous model and its similarity to the target structure',
+        "allowUndefined": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['structure', 'identity_to_target', 'rms_to_target'],
+    content_qualifiers={
+        "structure": {'allowUndefined': False, 'mustExist': True, 'fromPreviousJob': True, 'ifAtomSelection': True},
+        "identity_to_target": {'min': 0.0, 'max': 1.0},
+        "rms_to_target": {'min': 0.0, 'max': 100.0},
+    },
+)
+class CPdbEnsembleItem(CData):
+
+    structure: Optional["CPdbDataFile"] = None
+    identity_to_target: Optional["CFloat"] = None
+    rms_to_target: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPdbEnsembleItem.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Extends CPdbEnsembleItemStub with implementation-specific methods.
+    Extends CPdbEnsembleItem with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -2548,519 +6237,4 @@ class CPdbEnsembleItem(CPdbEnsembleItemStub):
             )
 
         return report
-
-
-class CResidueRange(CResidueRangeStub):
-    """
-    A residue range selection
-    
-    Extends CResidueRangeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CResidueRangeList(CResidueRangeListStub):
-    """
-    A list of residue range selections
-    
-    Extends CResidueRangeListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CSeqAlignDataFile(CSeqAlignDataFileStub):
-    """
-    A (multiple) sequence alignment file
-
-    Extends CSeqAlignDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def identifyFile(self):
-        """
-        Identify the format of an alignment file using BioPython.
-
-        Returns:
-            tuple: (format_name, id_list) where format_name is the detected format
-                   string (e.g. 'clustal', 'fasta') and id_list is list of
-                   sequence IDs in the alignment.
-        """
-        import os
-
-        idList = []
-
-        fileName = self.__str__()
-        if not os.path.exists(fileName):
-            object.__setattr__(self, 'format', 'unknown')
-            return 'unknown', idList
-
-        # Try common alignment formats with BioPython
-        formats_to_try = ['clustal', 'fasta', 'phylip', 'stockholm']
-
-        for fmt in formats_to_try:
-            try:
-                import Bio.AlignIO
-                alignments = Bio.AlignIO.read(fileName, fmt)
-                # Success - store format and extract IDs
-                object.__setattr__(self, 'format', fmt)
-                for record in alignments:
-                    try:
-                        idList.append(record.id)
-                    except Exception:
-                        pass
-                return fmt, idList
-            except Exception:
-                continue
-
-        # If no format worked, mark as unknown
-        object.__setattr__(self, 'format', 'unknown')
-        return 'unknown', idList
-
-    def convertFormat(self, toFormat, fileName, reorder=None):
-        """
-        Convert alignment file to specified format and write to fileName.
-
-        Legacy compatibility method for wrappers that call convertFormat.
-        Uses BioPython for alignment format conversion.
-
-        Args:
-            toFormat: Target format ('clustal', 'fasta', 'phylip', 'stockholm', etc.)
-            fileName: Output file path
-            reorder: Optional reordering specification:
-                    - None: Keep original order
-                    - 'reverse': Reverse sequence order
-                    - list: Reorder to specified indices
-
-        Returns:
-            CErrorReport with any errors encountered
-        """
-        from ccp4i2.core.base_object.error_reporting import CErrorReport
-        import os
-
-        # Identify source format if not already done
-        if not hasattr(self, 'format') or self.format is None or self.format == 'unknown':
-            self.identifyFile()
-
-        if not hasattr(self, 'format') or self.format == 'unknown':
-            err = CErrorReport()
-            err.append(self.__class__, 250, self.__str__() + ' to ' + str(fileName))
-            return err
-
-        # Try reading the input file
-        try:
-            import Bio.AlignIO
-            alignments = Bio.AlignIO.read(self.__str__(), self.format)
-        except Exception as e:
-            err = CErrorReport()
-            err.append(self.__class__, 202, f"{self.__str__()}: {str(e)}")
-            return err
-
-        # Apply reordering if specified
-        if reorder == 'reverse':
-            from Bio.Align import MultipleSeqAlignment
-            aliout = MultipleSeqAlignment([])
-            for ii in range(len(alignments) - 1, -1, -1):
-                aliout.append(alignments[ii])
-            alignments = aliout
-        elif isinstance(reorder, list):
-            # Custom reordering by index list
-            from Bio.Align import MultipleSeqAlignment
-            aliout = MultipleSeqAlignment([])
-            for idx in reorder:
-                if 0 <= idx < len(alignments):
-                    aliout.append(alignments[idx])
-            alignments = aliout
-
-        # Remove existing output file if present
-        try:
-            if os.path.exists(fileName):
-                os.remove(fileName)
-        except Exception:
-            err = CErrorReport()
-            err.append(self.__class__, 251, fileName)
-            return err
-
-        # Write output in requested format
-        try:
-            with open(fileName, "w") as out:
-                Bio.AlignIO.write(alignments, out, toFormat)
-        except Exception as e:
-            err = CErrorReport()
-            err.append(self.__class__, 252, f"{fileName}: {str(e)}")
-            return err
-
-        return CErrorReport()
-
-
-class CSeqDataFile(CSeqDataFileStub):
-    """
-    A sequence file
-    
-    Extends CSeqDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CSeqDataFileList(CSeqDataFileListStub):
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CSeqDataFileListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CSequence(CSequenceStub, CBioPythonSeqInterface):
-    """
-    A string of sequence one-letter codes with BioPython loading support.
-
-    This class represents a single biological sequence (protein or nucleic acid)
-    with support for loading from various file formats using BioPython.
-
-    Key features:
-    - Load from FASTA, PIR, UniProt, and other formats
-    - Automatic format detection
-    - Molecular weight calculation using BioPython ProtParam
-    - Save to FASTA format
-    """
-
-    def loadFile(self, fileName: str = None, format: str = 'unknown'):
-        """
-        Load sequence from file.
-
-        Args:
-            fileName: Path to sequence file. If None, gets path from parent CDataFile.
-            format: Format hint ('internal', 'uniprot', 'fasta', 'pir', 'unknown')
-        """
-        from pathlib import Path
-        from ccp4i2.core.base_object.error_reporting import CErrorReport
-
-        # If no path provided, get from parent CDataFile
-        if fileName is None:
-            parent = self.get_parent()
-            if parent is not None and hasattr(parent, 'getFullPath'):
-                fileName = parent.getFullPath()
-
-        # Return early if still no file path
-        if not fileName:
-            return
-
-        if format == 'internal':
-            # Internal format: simple FASTA-like with pipe-separated metadata
-            self._loadInternalFile(fileName)
-        elif format == 'uniprot':
-            # UniProt XML format - not implemented in modern version
-            err = CErrorReport()
-            err.append(klass='CSequence', code=402,
-                      details='UniProt XML format not yet supported in modern implementation')
-            return err
-        else:
-            # Use BioPython interface
-            data = self.loadExternalFile(fileName, format=format, record=0)
-            if data is not None:
-                # Populate CData attributes from loaded data
-                if 'identifier' in data:
-                    self.identifier = data['identifier']
-                if 'sequence' in data:
-                    self.sequence = data['sequence']
-                    # Detect and set moleculeType based on sequence content
-                    self.moleculeType = self._detect_molecule_type(data['sequence'])
-                if 'name' in data:
-                    self.name = data['name']
-                if 'description' in data:
-                    self.description = data['description']
-                if 'referenceDb' in data:
-                    self.referenceDb = data['referenceDb']
-                if 'reference' in data:
-                    self.reference = data['reference']
-
-    def _detect_molecule_type(self, sequence: str) -> str:
-        """
-        Detect whether a sequence is PROTEIN, DNA, or RNA.
-
-        Args:
-            sequence: The sequence string (single-letter codes)
-
-        Returns:
-            "PROTEIN", "DNA", or "RNA"
-
-        Notes:
-            - Checks for presence of U (uracil) to identify RNA
-            - Checks for T (thymine) to identify DNA
-            - Defaults to PROTEIN for amino acid sequences
-        """
-        seq_upper = str(sequence).upper().replace('*', '').strip()
-
-        # Remove common modifications and gaps
-        seq_clean = seq_upper.replace('-', '').replace('.', '').replace(' ', '')
-
-        if not seq_clean:
-            return "PROTEIN"
-
-        # Count nucleotide-specific characters
-        has_u = 'U' in seq_clean
-        has_t = 'T' in seq_clean
-
-        # DNA/RNA detection
-        dna_bases = set('ACGT')
-        rna_bases = set('ACGU')
-
-        # If majority are DNA/RNA bases, classify as nucleic acid
-        base_count = sum(1 for c in seq_clean if c in dna_bases.union(rna_bases))
-        base_fraction = base_count / len(seq_clean) if seq_clean else 0
-
-        if base_fraction > 0.7:  # >70% nucleotide bases
-            if has_u and not has_t:
-                return "RNA"
-            elif has_t and not has_u:
-                return "DNA"
-            elif has_u:  # Both U and T present - prefer RNA
-                return "RNA"
-            else:
-                return "DNA"
-
-        # Default to protein
-        return "PROTEIN"
-
-    def _loadInternalFile(self, fileName: str):
-        """
-        Load internal format sequence file.
-
-        Internal format is simple FASTA with pipe-separated metadata:
-        >referenceDb|reference|identifier
-        sequence...
-        """
-        from pathlib import Path
-
-        try:
-            text = Path(fileName).read_text()
-        except Exception as e:
-            print(f'ERROR loading sequence file: {e}')
-            return
-
-        lines = text.split('\n')
-        try:
-            # Parse header line
-            if len(lines[0]) > 0 and lines[0][0] == '>':
-                header = lines[0][1:]
-                splitList = header.split('|')
-
-                if len(splitList) == 3:
-                    self.referenceDb = splitList[0]
-                    if len(splitList[1].strip()) > 0:
-                        self.reference = splitList[1]
-                    self.identifier = splitList[2]
-                else:
-                    self.identifier = header
-
-                # Parse sequence (concatenate all remaining lines)
-                seq = ''.join(lines[1:])
-                self.sequence = seq
-                # Detect and set moleculeType based on sequence content
-                self.moleculeType = self._detect_molecule_type(seq)
-        except Exception as e:
-            print(f'ERROR parsing sequence file: {e}')
-
-    def saveFile(self, fileName: str):
-        """
-        Save sequence to FASTA format file.
-
-        Args:
-            fileName: Output file path
-        """
-        from pathlib import Path
-
-        # Build FASTA format
-        text = '>' + str(self.identifier) + '\n' + str(self.sequence)
-
-        # Write to file
-        Path(fileName).write_text(text)
-
-    def getAnalysis(self, mode: str = 'molecularWeight'):
-        """
-        Perform sequence analysis using BioPython.
-
-        Args:
-            mode: Analysis type ('molecularWeight' supported)
-
-        Returns:
-            Molecular weight in Daltons, or 0 if sequence not set or analysis fails
-        """
-        import re
-
-        if mode == 'molecularWeight':
-            if not self.sequence.isSet():
-                return 0
-
-            if not BIOPYTHON_AVAILABLE:
-                print('BioPython not available for molecular weight calculation')
-                return 0
-
-            try:
-                from Bio.SeqUtils.ProtParam import ProteinAnalysis
-
-                # Remove non-standard amino acids for BioPython compatibility
-                seq_str = str(self.sequence)
-                seq_clean = re.sub('[^GALMFWKQESPVICYHRNDT]', '', seq_str)
-
-                if len(seq_clean) == 0:
-                    return 0
-
-                pa = ProteinAnalysis(seq_clean)
-                return pa.molecular_weight()
-            except Exception as e:
-                print(f'Error calculating molecular weight: {e}')
-                return 0
-
-        return 0
-
-    def guiLabel(self) -> str:
-        """
-        Get display label for GUI.
-
-        Returns:
-            Identifier, or first 20 chars of sequence, or object name
-        """
-        if self.identifier.isSet():
-            return str(self.identifier)
-        elif self.sequence.isSet():
-            seq_str = str(self.sequence)
-            return seq_str[0:20] if len(seq_str) > 20 else seq_str
-        else:
-            return self.object_name() if hasattr(self, 'object_name') else 'CSequence'
-
-
-class CSequenceAlignment(CSequenceAlignmentStub, CBioPythonSeqInterface):
-    """
-    An alignment of two or more sequences with BioPython AlignIO support.
-
-    This class represents a multiple sequence alignment with support for
-    loading from various alignment file formats using BioPython.
-
-    Key features:
-    - Load from CLUSTAL, FASTA, PHYLIP, Stockholm, Nexus, MSF formats
-    - Automatic format detection
-    - Handles both consecutive and interleaved alignment formats
-    - Preserves gap characters for alignment information
-
-    The alignment contains gaps ("-" characters) that are relevant to the alignment.
-    Each aligned sequence is similar to CSequence but includes gap positions.
-    """
-
-    def loadFile(self, fileName: str, format: str = 'unknown'):
-        """
-        Load sequence alignment from file using BioPython AlignIO.
-
-        Args:
-            fileName: Path to alignment file
-            format: Format hint ('clustal', 'fasta', 'phylip', 'stockholm', 'nexus', 'msf', 'unknown')
-        """
-        from pathlib import Path
-        from ccp4i2.core.base_object.error_reporting import CErrorReport
-
-        if not Path(fileName).exists():
-            err = CErrorReport()
-            err.append(klass='CSequenceAlignment', code=401,
-                      details=f'Alignment file does not exist: {fileName}')
-            return err
-
-        if not BIOPYTHON_AVAILABLE:
-            err = CErrorReport()
-            err.append(klass='CSequenceAlignment', code=402,
-                      details='BioPython not available - cannot load alignment file')
-            return err
-
-        # Use BioPython interface to load alignment
-        data = self.loadExternalFile(fileName, format=format, record=0)
-
-        if data is not None:
-            # Populate CData attributes from loaded data
-            if 'identifier' in data:
-                self.identifier = data['identifier']
-
-            # Store format information if available
-            if 'format' in data:
-                # Store in a private attribute for later use
-                object.__setattr__(self, '_loaded_format', data['format'])
-
-        return CErrorReport()  # Return empty error report on success
-
-    def getSequenceCount(self) -> int:
-        """
-        Get the number of sequences in the alignment.
-
-        Returns:
-            Number of sequences, or 0 if not loaded
-        """
-        # This would require storing the full alignment data
-        # For now, return 0 as a placeholder
-        return 0
-
-    def getAlignmentLength(self) -> int:
-        """
-        Get the length of the alignment (including gaps).
-
-        Returns:
-            Alignment length, or 0 if not loaded
-        """
-        # This would require storing the full alignment data
-        # For now, return 0 as a placeholder
-        return 0
-
-
-class CSequenceMeta(CSequenceMetaStub):
-    """
-    Extends CSequenceMetaStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CSequenceString(CSequenceStringStub):
-    """
-    A string
-    
-    Extends CSequenceStringStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CTLSDataFile(CTLSDataFileStub):
-    """
-    A refmac TLS file
-
-    Extends CTLSDataFileStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CTLSRange(CTLSRangeStub):
-    """A single TLS range definition with groupId, chain, residue range, and selection."""
-    pass
-
-
-class CTLSRangeList(CTLSRangeListStub):
-    """A list of CTLSRange items defining TLS groups."""
-
-    SUBITEM = {'class': CTLSRange, 'qualifiers': {}}
 

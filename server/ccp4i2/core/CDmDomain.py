@@ -18,7 +18,9 @@ Resolvable by the def.xml class-name lookup via ``ccp4i2.core.CDmDomain``.
 """
 from ccp4i2.core.base_object.class_metadata import (
     cdata_class, attribute, AttributeType)
-from ccp4i2.core.cdata_stubs.CCP4Data import CData
+from ccp4i2.core.CCP4Data import CData
+
+
 
 
 @cdata_class(
@@ -48,12 +50,8 @@ from ccp4i2.core.cdata_stubs.CCP4Data import CData
         },
     },
 )
-class CDmDomainStub(CData):
-    """Data model: a rigid body's segment string plus an NCS averaging mode."""
+class CDmDomain(CData):
     pass
-
-
-class CDmDomain(CDmDomainStub):
     """A rigid body for multi-domain NCS averaging: one or more residue-range
     segments (possibly spanning several chains via roles) plus how it should be
     averaged (average / refine / exclude).

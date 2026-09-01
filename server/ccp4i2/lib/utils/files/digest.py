@@ -13,8 +13,8 @@ from ccp4i2.core.base_object.cdata import CData
 from ccp4i2.core.CCP4XtalData import CGenericReflDataFile, CMapDataFile, CMtzDataFile
 from ccp4i2.core.CCP4ModelData import CPdbDataFile, CDictDataFile, CAsuDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
-# stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
-from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub, CUnmergedDataFileStub
+# stubs (CMtzDataFile) not implementations (CMtzDataFile)
+from ccp4i2.core.CCP4XtalData import CMtzDataFile, CUnmergedDataFile
 # mmcifutils imported lazily in digest_cgenericrefldatafile_file_object to avoid
 # numpy dependency at module load time (numpy in py-packages may be incompatible)
 from ..containers.find_objects import find_objects
@@ -268,8 +268,8 @@ def digest_file_object(file_object: CDataFile):
     if isinstance(file_object, CCP4XtalData.CGenericReflDataFile):
         return digest_cgenericrefldatafile_file_object(file_object)
     # CMtzDataFile inherits from CDataFile, not CGenericReflDataFile, so check separately
-    # Use CMtzDataFileStub for isinstance check because subclasses inherit from stubs
-    if isinstance(file_object, CMtzDataFileStub):
+    # Use CMtzDataFile for isinstance check because subclasses inherit from stubs
+    if isinstance(file_object, CMtzDataFile):
         return digest_cmtzdatafile_file_object(file_object)
     if isinstance(file_object, CCP4ModelData.CSeqAlignDataFile):
         return digest_cseqaligndata_file_object(file_object)
@@ -282,7 +282,7 @@ def digest_file_object(file_object: CDataFile):
     # CUnmergedDataFile can hold MTZ, mmCIF, SCA, XDS etc.  For mmCIF
     # files, route through the generic refl digest to get rblock_infos.
     # For MTZ, delegate to the MTZ digest.  Others fall through.
-    if isinstance(file_object, CUnmergedDataFileStub):
+    if isinstance(file_object, CUnmergedDataFile):
         path = str(file_object.fullPath) if file_object.fullPath else ""
         ext = path.rsplit(".", 1)[-1].lower() if path else ""
         if ext in ("cif", "mmcif", "ent"):

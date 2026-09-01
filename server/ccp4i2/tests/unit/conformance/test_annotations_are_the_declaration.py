@@ -3,9 +3,9 @@
 Generated stubs used to declare their fields twice, once as an annotation and
 once in the decorator:
 
-    @cdata_class(attributes={"structure": attribute(CUSTOM, "CPdbDataFileStub")})
-    class CPdbEnsembleItemStub(CData):
-        structure: Optional[CPdbDataFileStub] = None
+    @cdata_class(attributes={"structure": attribute(CUSTOM, "CPdbDataFile")})
+    class CPdbEnsembleItem(CData):
+        structure: Optional[CPdbDataFile] = None
 
 Only the decorator was load-bearing; the annotation was decoration. That was
 inverted first --- the runtime reads the annotations --- and then the duplicate
