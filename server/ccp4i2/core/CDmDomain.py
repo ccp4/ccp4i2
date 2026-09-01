@@ -23,31 +23,31 @@ from ccp4i2.core.CCP4Data import CData
 
 
 
-@cdata_class(
-    contents_order=['segments', 'mode'],
-    content_qualifiers={
-        "segments": {
-            'default': '',
-            'toolTip': ("Comma-separated role:first-last residue ranges that "
-                        "move as one rigid body, e.g. '340-485' or "
-                        "'cyclin:10-95,CDK:45-60'"),
-        },
-        "mode": {
-            # enumerators/menuText must be LISTS at runtime (the def.xml parser
-            # splits "<enumerators>a,b,c</enumerators>" into a list; the
-            # frontend autocomplete calls .map on them). Passing comma-strings
-            # here reaches the UI as a string -> "enumerators.map is not a
-            # function".
-            'onlyEnumerators': True,
-            'enumerators': ['average', 'refine', 'exclude'],
-            'menuText': ['average', 'refine', 'exclude'],
-            'default': 'average',
-            'toolTip': 'NCS averaging treatment for this rigid body',
-        },
-    },
-)
 class CDmDomain(CData):
 
+
+    class Meta:
+        contents_order = ['segments', 'mode']
+        content_qualifiers = {
+            "segments": {
+                'default': '',
+                'toolTip': ("Comma-separated role:first-last residue ranges that "
+                            "move as one rigid body, e.g. '340-485' or "
+                            "'cyclin:10-95,CDK:45-60'"),
+            },
+            "mode": {
+                # enumerators/menuText must be LISTS at runtime (the def.xml parser
+                # splits "<enumerators>a,b,c</enumerators>" into a list; the
+                # frontend autocomplete calls .map on them). Passing comma-strings
+                # here reaches the UI as a string -> "enumerators.map is not a
+                # function".
+                'onlyEnumerators': True,
+                'enumerators': ['average', 'refine', 'exclude'],
+                'menuText': ['average', 'refine', 'exclude'],
+                'default': 'average',
+                'toolTip': 'NCS averaging treatment for this rigid body',
+            },
+        }
     segments = content("CString")
     mode = content("CString")
     pass

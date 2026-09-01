@@ -26,23 +26,23 @@ if TYPE_CHECKING:
     import xml.etree.ElementTree as ET
 
 
-@cdata_class(
-    error_codes={
-        "101": {"description": "below minimum"},
-        "102": {"description": "above maximum"},
-        "103": {"description": "not one of limited allowed values"}
-    },
-    qualifiers={
-        "max": None,
-        "min": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False
-    },
-    gui_label="CInt",
-)
 class CInt(CData):
     """Integer value type."""
+
+    class Meta:
+        error_codes = {
+            "101": {"description": "below minimum"},
+            "102": {"description": "above maximum"},
+            "103": {"description": "not one of limited allowed values"}
+        }
+        qualifiers = {
+            "max": None,
+            "min": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False
+        }
+        gui_label = "CInt"
 
     def __hash__(self):
         """Make CInt hashable by object identity for use in sets and as dict keys."""
@@ -419,23 +419,23 @@ class CInt(CData):
         return report
 
 
-@cdata_class(
-    error_codes={
-        "101": {"description": "below minimum"},
-        "102": {"description": "above maximum"},
-        "103": {"description": "not one of limited allowed values"}
-    },
-    qualifiers={
-        "max": None,
-        "min": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False
-    },
-    gui_label="CFloat",
-)
 class CFloat(CData):
     """Float value type."""
+
+    class Meta:
+        error_codes = {
+            "101": {"description": "below minimum"},
+            "102": {"description": "above maximum"},
+            "103": {"description": "not one of limited allowed values"}
+        }
+        qualifiers = {
+            "max": None,
+            "min": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False
+        }
+        gui_label = "CFloat"
 
     def __hash__(self):
         """Make CFloat hashable by object identity for use in sets and as dict keys."""
@@ -832,27 +832,27 @@ class CFloat(CData):
         return report
 
 
-@cdata_class(
-    error_codes={
-        "101": {"description": "String too short"},
-        "102": {"description": "String too long"},
-        "103": {"description": "not one of limited allowed values"},
-        "104": {"description": "Contains disallowed characters"},
-        "105": {"description": "Value does not match required pattern"}
-    },
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0
-    },
-    gui_label="CString",
-)
 class CString(CData):
     """String value type with Python string dunder methods."""
+
+    class Meta:
+        error_codes = {
+            "101": {"description": "String too short"},
+            "102": {"description": "String too long"},
+            "103": {"description": "not one of limited allowed values"},
+            "104": {"description": "Contains disallowed characters"},
+            "105": {"description": "Value does not match required pattern"}
+        }
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0
+        }
+        gui_label = "CString"
     def __init__(self, value: str = "", parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
         if value != "":
@@ -1255,17 +1255,17 @@ class CString(CData):
         return self.value.rindex(sub, start, end)
 
 
-@cdata_class(
-    error_codes={
-        "101": {"description": "not allowed value"}
-    },
-    qualifiers={
-        "menuText": ['NotImplemented', 'NotImplemented']
-    },
-    gui_label="CBoolean",
-)
 class CBoolean(CData):
     """Boolean value type."""
+
+    class Meta:
+        error_codes = {
+            "101": {"description": "not allowed value"}
+        }
+        qualifiers = {
+            "menuText": ['NotImplemented', 'NotImplemented']
+        }
+        gui_label = "CBoolean"
 
     def __init__(self, value: bool = None, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -1437,27 +1437,27 @@ class CBoolean(CData):
         return report
 
 
-@cdata_class(
-    error_codes={
-        "101": {"description": "List shorter than required minimum length"},
-        "102": {"description": "List longer than required maximum length"},
-        "103": {"description": "Consecutive values in list fail comparison test"},
-        "104": {"description": "Attempting to add object of wrong type"},
-        "105": {"description": "Attempting to add object of correct type but wrong qualifiers"},
-        "106": {"description": "Attempting to add data which does not satisfy the qualifiers for a list item"},
-        "107": {"description": "Deleting item will reduce list below minimum length"},
-        "108": {"description": "Adding item will extend list beyond maximum length"},
-        "109": {"description": "Invalid item class"},
-        "110": {"description": "etree (XML) list item of wrong type"},
-        "112": {"description": "No list item object set for list"}
-    },
-    qualifiers={
-        "listMinLength": 0
-    },
-    gui_label="CList",
-)
 class CList(CData):
     """List container type for collections of CData objects."""
+
+    class Meta:
+        error_codes = {
+            "101": {"description": "List shorter than required minimum length"},
+            "102": {"description": "List longer than required maximum length"},
+            "103": {"description": "Consecutive values in list fail comparison test"},
+            "104": {"description": "Attempting to add object of wrong type"},
+            "105": {"description": "Attempting to add object of correct type but wrong qualifiers"},
+            "106": {"description": "Attempting to add data which does not satisfy the qualifiers for a list item"},
+            "107": {"description": "Deleting item will reduce list below minimum length"},
+            "108": {"description": "Adding item will extend list beyond maximum length"},
+            "109": {"description": "Invalid item class"},
+            "110": {"description": "etree (XML) list item of wrong type"},
+            "112": {"description": "No list item object set for list"}
+        }
+        qualifiers = {
+            "listMinLength": 0
+        }
+        gui_label = "CList"
 
     def __init__(
         self, items: Optional[List[Any]] = None, parent=None, name=None, **kwargs

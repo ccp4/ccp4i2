@@ -188,16 +188,16 @@ def _compact_batch_ranges(numbers: list) -> str:
     return ", ".join(ranges)
 
 
-@cdata_class(
-    qualifiers={
-        "min": 0.0,
-        "default": None,
-        "allowUndefined": False,
-        "toolTip": 'Cell length in A',
-    },
-)
 class CCellLength(CFloat):
 
+
+    class Meta:
+        qualifiers = {
+            "min": 0.0,
+            "default": None,
+            "allowUndefined": False,
+            "toolTip": 'Cell length in A',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CCellLength.
@@ -219,24 +219,24 @@ class CCellLength(CFloat):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/phaser-rfile',
-        "mimeTypeDescription": 'Phaser rotation solution file',
-        "fileExtensions": ['phaser_rlist.pkl'],
-        "fileContentClassName": None,
-        "fileLabel": 'phaser_rfile',
-        "guiLabel": 'Phaser rotation solution',
-        "toolTip": 'Phaser rfile solutions for rotation search',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CPhaserRFileDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/phaser-rfile',
+            "mimeTypeDescription": 'Phaser rotation solution file',
+            "fileExtensions": ['phaser_rlist.pkl'],
+            "fileContentClassName": None,
+            "fileLabel": 'phaser_rfile',
+            "guiLabel": 'Phaser rotation solution',
+            "toolTip": 'Phaser rfile solutions for rotation search',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CPhaserRFileDataFile.
@@ -258,15 +258,15 @@ class CPhaserRFileDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CColumnGroup(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     columnGroupType = content("COneWord",
                               onlyEnumerators=True,
                               enumerators=['Obs', 'Phs', 'MapCoeffs', 'FreeR'])
@@ -324,13 +324,13 @@ class CColumnGroup(CData):
         return splitter.join(parts)
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CColumnGroupList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CColumnGroupList.
@@ -351,24 +351,24 @@ class CColumnGroupList(CList):
     SUBITEM = {'class': CColumnGroup}
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'mmCIF reflection data',
-        "mimeTypeName": 'chemical/x-cif',
-        "toolTip": 'A reflection file in mmCIF format',
-        "fileExtensions": ['cif'],
-        "fileContentClassName": 'CMmcifReflData',
-        "downloadModes": ['ebiSFs'],
-        "helpFile": 'data_files#mmCIF',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMmcifReflDataFile(CMmcifDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'mmCIF reflection data',
+            "mimeTypeName": 'chemical/x-cif',
+            "toolTip": 'A reflection file in mmCIF format',
+            "fileExtensions": ['cif'],
+            "fileContentClassName": 'CMmcifReflData',
+            "downloadModes": ['ebiSFs'],
+            "helpFile": 'data_files#mmCIF',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMmcifReflDataFile.
@@ -390,64 +390,64 @@ class CMmcifReflDataFile(CMmcifDataFile):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
 
 
-@cdata_class(
-    error_codes={
-        "151": {
-            "description": "Failed converting MTZ file to alternative format"
-        },
-        "152": {
-            "description": "Failed merging MTZ file - invalid input"
-        },
-        "153": {
-            "description": "Failed merging MTZ files - error running cmtzjoin - see log"
-        },
-        "154": {
-            "description": "Failed merging MTZ files - error running cad - see log"
-        },
-        "401": {
-            "description": "MTZ file header data differs"
-        },
-        "402": {
-            "description": "MTZ file columns differ"
-        },
-        "403": {
-            "description": "Error trying to access number of reflections",
-            "severity": 2
-        },
-        "404": {
-            "description": "MTZ files have different number of reflections"
-        },
-        "405": {
-            "description": "MTZ column mean value differs"
-        },
-        "406": {
-            "description": "MTZ file header data differs - may be autogenerated names",
-            "severity": 2
-        },
-        "407": {
-            "description": "Error splitting MTZ file - failed creating input command to cmtzsplit"
-        },
-        "408": {
-            "description": "Error splitting MTZ file - output file missing"
-        }
-    },
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-mtz',
-        "mimeTypeDescription": 'MTZ experimental data',
-        "fileExtensions": ['mtz'],
-        "fileContentClassName": 'CMtzData',
-        "guiLabel": 'Experimental data',
-        "toolTip": "Experimental data in CCP4's MTZ format",
-        "helpFile": 'data_files#MTZ',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMtzDataFile(CDataFile):
 
 
+
+    class Meta:
+        error_codes = {
+            "151": {
+                "description": "Failed converting MTZ file to alternative format"
+            },
+            "152": {
+                "description": "Failed merging MTZ file - invalid input"
+            },
+            "153": {
+                "description": "Failed merging MTZ files - error running cmtzjoin - see log"
+            },
+            "154": {
+                "description": "Failed merging MTZ files - error running cad - see log"
+            },
+            "401": {
+                "description": "MTZ file header data differs"
+            },
+            "402": {
+                "description": "MTZ file columns differ"
+            },
+            "403": {
+                "description": "Error trying to access number of reflections",
+                "severity": 2
+            },
+            "404": {
+                "description": "MTZ files have different number of reflections"
+            },
+            "405": {
+                "description": "MTZ column mean value differs"
+            },
+            "406": {
+                "description": "MTZ file header data differs - may be autogenerated names",
+                "severity": 2
+            },
+            "407": {
+                "description": "Error splitting MTZ file - failed creating input command to cmtzsplit"
+            },
+            "408": {
+                "description": "Error splitting MTZ file - output file missing"
+            }
+        }
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-mtz',
+            "mimeTypeDescription": 'MTZ experimental data',
+            "fileExtensions": ['mtz'],
+            "fileContentClassName": 'CMtzData',
+            "guiLabel": 'Experimental data',
+            "toolTip": "Experimental data in CCP4's MTZ format",
+            "helpFile": 'data_files#MTZ',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMtzDataFile.
@@ -545,15 +545,15 @@ class CMtzDataFile(CDataFile):
             return col_names
 
 
-@cdata_class(
-    qualifiers={
-        "onlyEnumerators": True,
-        "enumerators": ['native', 'derivative', 'SAD', 'peak', 'inflection', 'high_remote', 'low_remote', ''],
-        "default": 'SAD',
-    },
-)
 class CExperimentalDataType(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "onlyEnumerators": True,
+            "enumerators": ['native', 'derivative', 'SAD', 'peak', 'inflection', 'high_remote', 'low_remote', ''],
+            "default": 'SAD',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CExperimentalDataType.
@@ -575,15 +575,15 @@ class CExperimentalDataType(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CAsuComponent(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     moleculeType = content("CString",
                            onlyEnumerators=True,
                            enumerators=['PROTEIN', 'NUCLEIC'],
@@ -621,24 +621,24 @@ what we are searching for.
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/dials-pfile',
-        "mimeTypeDescription": 'Dials pickle data file',
-        "fileExtensions": ['pickle', 'refl'],
-        "fileContentClassName": None,
-        "fileLabel": 'dials_pdata',
-        "guiLabel": 'Xia2/Dials pickle data',
-        "toolTip": 'Xia2/Dials pickle data files',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CDialsPickleFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/dials-pfile',
+            "mimeTypeDescription": 'Dials pickle data file',
+            "fileExtensions": ['pickle', 'refl'],
+            "fileContentClassName": None,
+            "fileLabel": 'dials_pdata',
+            "guiLabel": 'Xia2/Dials pickle data',
+            "toolTip": 'Xia2/Dials pickle data files',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CDialsPickleFile.
@@ -658,17 +658,17 @@ class CDialsPickleFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "min": 0.0,
-        "max": 180.0,
-        "default": None,
-        "allowUndefined": True,
-        "toolTip": 'Cell angle in degrees',
-    },
-)
 class CCellAngle(CFloat):
 
+
+    class Meta:
+        qualifiers = {
+            "min": 0.0,
+            "max": 180.0,
+            "default": None,
+            "allowUndefined": True,
+            "toolTip": 'Cell angle in degrees',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CCellAngle.
@@ -690,23 +690,23 @@ class CCellAngle(CFloat):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Selected file is not a suitable 'mini' MTZ containing experimental data object"
-        },
-        "202": {
-            "description": "Output column name list does not have correct number of names"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMergeMiniMtz(CData):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Selected file is not a suitable 'mini' MTZ containing experimental data object"
+            },
+            "202": {
+                "description": "Output column name list does not have correct number of names"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     fileName = content("CMiniMtzDataFile", fromPreviousJob=False)
     columnTag = content("CString")
     columnNames = content("CString")
@@ -730,14 +730,14 @@ class CMergeMiniMtz(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 2,
-        "saveToDb": True,
-    },
-)
 class CMergeMiniMtzList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 2,
+            "saveToDb": True,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMergeMiniMtzList.
@@ -753,25 +753,25 @@ class CMergeMiniMtzList(CList):
     SUBITEM = {'class': CMergeMiniMtz}
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-unmerged-experimental',
-        "mimeTypeDescription": 'Unmerged experimental data',
-        "fileExtensions": ['mtz', 'hkl', 'HKL', 'sca', 'SCA', 'ent', 'cif'],
-        "fileContentClassName": 'CUnmergedDataContent',
-        "guiLabel": 'Unmerged reflections',
-        "toolTip": 'Unmerged experimental data in any format',
-        "downloadModes": ['ebiSFs'],
-        "helpFile": 'data_files#unmerged_data',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CUnmergedDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-unmerged-experimental',
+            "mimeTypeDescription": 'Unmerged experimental data',
+            "fileExtensions": ['mtz', 'hkl', 'HKL', 'sca', 'SCA', 'ent', 'cif'],
+            "fileContentClassName": 'CUnmergedDataContent',
+            "guiLabel": 'Unmerged reflections',
+            "toolTip": 'Unmerged experimental data in any format',
+            "downloadModes": ['ebiSFs'],
+            "helpFile": 'data_files#unmerged_data',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CUnmergedDataFile.
@@ -793,24 +793,24 @@ class CUnmergedDataFile(CDataFile):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/dials-jfile',
-        "mimeTypeDescription": 'Dials json data file',
-        "fileExtensions": ['json', 'expt', 'jsn'],
-        "fileContentClassName": None,
-        "fileLabel": 'dials_jdata',
-        "guiLabel": 'json data',
-        "toolTip": 'json data files',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CDialsJsonFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/dials-jfile',
+            "mimeTypeDescription": 'Dials json data file',
+            "fileExtensions": ['json', 'expt', 'jsn'],
+            "fileContentClassName": None,
+            "fileLabel": 'dials_jdata',
+            "guiLabel": 'json data',
+            "toolTip": 'json data files',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CDialsJsonFile.
@@ -830,17 +830,17 @@ class CDialsJsonFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "onlyEnumerators": True,
-        "default": 'UNDEFINED',
-        "enumerators": ['UNDEFINED', 'HREM', 'LREM', 'PEAK', 'INFL', 'NAT', 'DERI'],
-        "menuText": ['undefined', 'high remote', 'low remote', 'peak', 'inflection', 'native', 'derivative'],
-        "toolTip": 'Hint to Shelx for the use of the dataset',
-    },
-)
 class CShelxLabel(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "onlyEnumerators": True,
+            "default": 'UNDEFINED',
+            "enumerators": ['UNDEFINED', 'HREM', 'LREM', 'PEAK', 'INFL', 'NAT', 'DERI'],
+            "menuText": ['undefined', 'high remote', 'low remote', 'peak', 'inflection', 'native', 'derivative'],
+            "toolTip": 'Hint to Shelx for the use of the dataset',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CShelxLabel.
@@ -862,26 +862,26 @@ class CShelxLabel(CString):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Operator has bad syntax (needs three comma-separated fields)"
-        },
-        "202": {
-            "description": "Operator contains invalid characters"
-        },
-        "203": {
-            "description": "Operator is not set"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CReindexOperator(CData):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Operator has bad syntax (needs three comma-separated fields)"
+            },
+            "202": {
+                "description": "Operator contains invalid characters"
+            },
+            "203": {
+                "description": "Operator is not set"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     h = content("CString", default='h')
     k = content("CString", default='k')
     l = content("CString", default='l')
@@ -905,14 +905,14 @@ class CReindexOperator(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "min": 0.0,
-        "toolTip": 'Data collection wavelength in Angstrom',
-    },
-)
 class CWavelength(CFloat):
 
+
+    class Meta:
+        qualifiers = {
+            "min": 0.0,
+            "toolTip": 'Data collection wavelength in Angstrom',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CWavelength.
@@ -934,21 +934,21 @@ class CWavelength(CFloat):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "End of batch range less than start"
-        },
-        "102": {
-            "description": "All items must be set"
-        }
-    },
-    qualifiers={
-        "toolTip": 'Specify range of reflections to treat as one run',
-    },
-)
 class CRunBatchRange(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "End of batch range less than start"
+            },
+            "102": {
+                "description": "All items must be set"
+            }
+        }
+        qualifiers = {
+            "toolTip": 'Specify range of reflections to treat as one run',
+        }
     runNumber = content("CInt", allowUndefined=True, min=1)
     batchRange0 = content("CInt", allowUndefined=True, min=1)
     batchRange1 = content("CInt", allowUndefined=True, min=1)
@@ -974,44 +974,44 @@ class CRunBatchRange(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Invalid space group"
-        },
-        "102": {
-            "description": "Space group is not chiral",
-            "severity": 2
-        },
-        "103": {
-            "description": "Space group is not Hermann-Mauguin standard"
-        },
-        "104": {
-            "description": "Space group is not a chiral Hermann-Mauguin standard. Full syminfo.lib information not loaded."
-        },
-        "105": {
-            "description": "Space group is not Hermann-Mauguin standard - has wrong number of spaces?"
-        },
-        "106": {
-            "description": "Space group is undefined",
-            "severity": 1
-        },
-        "107": {
-            "description": "Space group is undefined"
-        },
-        "108": {
-            "description": "Space group is incomplete",
-            "severity": 2
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "toolTip": 'Hermann-Mauguin space group name',
-        "helpFile": 'crystal_data#space_group',
-    },
-)
 class CSpaceGroup(CString):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Invalid space group"
+            },
+            "102": {
+                "description": "Space group is not chiral",
+                "severity": 2
+            },
+            "103": {
+                "description": "Space group is not Hermann-Mauguin standard"
+            },
+            "104": {
+                "description": "Space group is not a chiral Hermann-Mauguin standard. Full syminfo.lib information not loaded."
+            },
+            "105": {
+                "description": "Space group is not Hermann-Mauguin standard - has wrong number of spaces?"
+            },
+            "106": {
+                "description": "Space group is undefined",
+                "severity": 1
+            },
+            "107": {
+                "description": "Space group is undefined"
+            },
+            "108": {
+                "description": "Space group is incomplete",
+                "severity": 2
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "toolTip": 'Hermann-Mauguin space group name',
+            "helpFile": 'crystal_data#space_group',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSpaceGroup.
@@ -1061,16 +1061,16 @@ class CSpaceGroup(CString):
         return sg.number
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": False,
-        "allowedChars": 1,
-        "minLength": 1,
-        "toolTip": 'Unique identifier for dataset (one word)',
-    },
-)
 class CDatasetName(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": False,
+            "allowedChars": 1,
+            "minLength": 1,
+            "toolTip": 'Unique identifier for dataset (one word)',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CDatasetName.
@@ -1092,75 +1092,75 @@ class CDatasetName(CString):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Wrong number of columns"
-        },
-        "202": {
-            "description": "Wrong column types"
-        },
-        "203": {
-            "description": "No correct column types found in file"
-        },
-        "204": {
-            "description": "Duplicate or additional column types found in file"
-        },
-        "205": {
-            "description": "Columns in file have non-standard labels"
-        },
-        "206": {
-            "description": "File contains unmerged data"
-        },
-        "210": {
-            "description": "Failed creating mini-MTZ"
-        },
-        "211": {
-            "description": "Insufficient columns selected from imported MTZ"
-        },
-        "212": {
-            "description": "Data already imported as",
-            "severity": 2
-        },
-        "220": {
-            "description": "Can not convert file content, file does not exist"
-        },
-        "221": {
-            "description": "Can not convert file content, existing content insufficiently rich"
-        },
-        "222": {
-            "description": "Can not convert file content, bad input for target content"
-        },
-        "223": {
-            "description": "Can not recognise file content"
-        },
-        "224": {
-            "description": "Not possible to convert to required content - no mechanism implemented"
-        },
-        "225": {
-            "description": "Failed importing from an mmcif file - failed running cif2mtz"
-        },
-        "226": {
-            "description": "Failed importing from an mmcif file - no output from cif2mtz"
-        }
-    },
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-mtz-mini',
-        "fileExtensions": ['mtz', 'cif', 'ent'],
-        "fileContentClassName": 'CMtzData',
-        "saveToDb": True,
-        "correctColumns": ['FQ', 'JQ', 'GLGL', 'KMKM', 'AAAA', 'PW', 'FP', 'I'],
-        "toolTip": 'Mini-MTZ file containing reflection,phases,FreeR set or map coefficients',
-        "helpFile": 'data_files#MTZ',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMiniMtzDataFile(CMtzDataFile):
 
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Wrong number of columns"
+            },
+            "202": {
+                "description": "Wrong column types"
+            },
+            "203": {
+                "description": "No correct column types found in file"
+            },
+            "204": {
+                "description": "Duplicate or additional column types found in file"
+            },
+            "205": {
+                "description": "Columns in file have non-standard labels"
+            },
+            "206": {
+                "description": "File contains unmerged data"
+            },
+            "210": {
+                "description": "Failed creating mini-MTZ"
+            },
+            "211": {
+                "description": "Insufficient columns selected from imported MTZ"
+            },
+            "212": {
+                "description": "Data already imported as",
+                "severity": 2
+            },
+            "220": {
+                "description": "Can not convert file content, file does not exist"
+            },
+            "221": {
+                "description": "Can not convert file content, existing content insufficiently rich"
+            },
+            "222": {
+                "description": "Can not convert file content, bad input for target content"
+            },
+            "223": {
+                "description": "Can not recognise file content"
+            },
+            "224": {
+                "description": "Not possible to convert to required content - no mechanism implemented"
+            },
+            "225": {
+                "description": "Failed importing from an mmcif file - failed running cif2mtz"
+            },
+            "226": {
+                "description": "Failed importing from an mmcif file - no output from cif2mtz"
+            }
+        }
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-mtz-mini',
+            "fileExtensions": ['mtz', 'cif', 'ent'],
+            "fileContentClassName": 'CMtzData',
+            "saveToDb": True,
+            "correctColumns": ['FQ', 'JQ', 'GLGL', 'KMKM', 'AAAA', 'PW', 'FP', 'I'],
+            "toolTip": 'Mini-MTZ file containing reflection,phases,FreeR set or map coefficients',
+            "helpFile": 'data_files#MTZ',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMiniMtzDataFile.
@@ -1390,13 +1390,13 @@ class CMiniMtzDataFile(CMtzDataFile):
         return ['mtz']
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CMiniMtzDataFileList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMiniMtzDataFileList.
@@ -1412,13 +1412,13 @@ class CMiniMtzDataFileList(CList):
     SUBITEM = {'class': CMiniMtzDataFile}
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CUnmergedDataFileList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CUnmergedDataFileList.
@@ -1443,15 +1443,15 @@ class CUnmergedDataFileList(CList):
         self.set_qualifier('subItem', {'class': CUnmergedDataFile, 'qualifiers': {}})
 
 
-@cdata_class(
-    qualifiers={
-        "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
-        "onlyEnumerators": True,
-        "default": 'F',
-    },
-)
 class CColumnType(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
+            "onlyEnumerators": True,
+            "default": 'F',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CColumnType.
@@ -1473,13 +1473,13 @@ class CColumnType(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CColumnTypeList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CColumnTypeList.
@@ -1501,25 +1501,25 @@ class CColumnTypeList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/phaser-sol',
-        "mimeTypeDescription": 'Phaser solution file',
-        "fileExtensions": ['phaser_sol.pkl'],
-        "fileContentClassName": None,
-        "fileLabel": 'phaser_sol',
-        "guiLabel": 'Phaser solutions',
-        "toolTip": 'Possible solutions passed between runs of the Phaser program',
-        "helpFile": 'data_files#phasersol',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CPhaserSolDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/phaser-sol',
+            "mimeTypeDescription": 'Phaser solution file',
+            "fileExtensions": ['phaser_sol.pkl'],
+            "fileContentClassName": None,
+            "fileLabel": 'phaser_sol',
+            "guiLabel": 'Phaser solutions',
+            "toolTip": 'Possible solutions passed between runs of the Phaser program',
+            "helpFile": 'data_files#phasersol',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CPhaserSolDataFile.
@@ -1541,13 +1541,13 @@ class CPhaserSolDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 1,
-    },
-)
 class CImportUnmergedList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 1,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CImportUnmergedList.
@@ -1571,25 +1571,25 @@ class CImportUnmergedList(CList):
         # This allows i2run to create CImportUnmerged items when parsing arguments
         self.set_qualifier('subItem', {'class': CImportUnmerged, 'qualifiers': {}})
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-shelx-FA',
-        "mimeTypeDescription": 'Shelx FA',
-        "fileExtensions": ['hkl'],
-        "fileContentClassName": None,
-        "fileLabel": 'shelx_FA',
-        "guiLabel": 'Shelx FA',
-        "toolTip": 'Data used by Shelx programs',
-        "helpFile": 'data_files#shelxfa',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CShelxFADataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-shelx-FA',
+            "mimeTypeDescription": 'Shelx FA',
+            "fileExtensions": ['hkl'],
+            "fileContentClassName": None,
+            "fileLabel": 'shelx_FA',
+            "guiLabel": 'Shelx FA',
+            "toolTip": 'Data used by Shelx programs',
+            "helpFile": 'data_files#shelxfa',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CShelxFADataFile.
@@ -1610,15 +1610,15 @@ class CShelxFADataFile(CDataFile):
         # Note: fileContentClassName='CMtzData' is already set in CFreeRDataFile decorator
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "toolTip": 'Hermann-Mauguin space group name',
-        "helpFile": 'crystal_data#space_group',
-    },
-)
 class CAltSpaceGroup(CSpaceGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "toolTip": 'Hermann-Mauguin space group name',
+            "helpFile": 'crystal_data#space_group',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAltSpaceGroup.
@@ -1640,13 +1640,13 @@ class CAltSpaceGroup(CSpaceGroup):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CAltSpaceGroupList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAltSpaceGroupList.
@@ -1667,15 +1667,15 @@ class CAltSpaceGroupList(CList):
     SUBITEM = {'class': CAltSpaceGroup}
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMtzDataset(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     name = content("CString")
     columnGroups = content("CList")
 
@@ -1698,13 +1698,13 @@ class CMtzDataset(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CImageFileList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CImageFileList.
@@ -1726,14 +1726,14 @@ class CImageFileList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 1,
-        "guiLabel": 'Contents of asymmetric unit',
-    },
-)
 class CAsuComponentList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 1,
+            "guiLabel": 'Contents of asymmetric unit',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAsuComponentList.
@@ -1755,24 +1755,24 @@ class CAsuComponentList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Reflection data',
-        "mimeTypeName": 'application/CCP4-generic-reflections',
-        "toolTip": 'A reflection data file in MTZ or a non-CCP4 format',
-        "fileContentClassName": 'CUnmergedDataContent',
-        "fileExtensions": ['mtz', 'hkl', 'HKL', 'sca', 'SCA', 'mmcif', 'cif', 'ent'],
-        "downloadModes": ['ebiSFs'],
-        "helpFile": 'import_merged#file_formats',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CGenericReflDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Reflection data',
+            "mimeTypeName": 'application/CCP4-generic-reflections',
+            "toolTip": 'A reflection data file in MTZ or a non-CCP4 format',
+            "fileContentClassName": 'CUnmergedDataContent',
+            "fileExtensions": ['mtz', 'hkl', 'HKL', 'sca', 'SCA', 'mmcif', 'cif', 'ent'],
+            "downloadModes": ['ebiSFs'],
+            "helpFile": 'import_merged#file_formats',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CGenericReflDataFile.
@@ -1831,13 +1831,13 @@ class CGenericReflDataFile(CDataFile):
         return True
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CXia2ImageSelectionList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CXia2ImageSelectionList.
@@ -1859,15 +1859,15 @@ class CXia2ImageSelectionList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CFormFactor(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     Fp = content("CFloat", toolTip="Form factor F' for element at given wavelength")
     Fpp = content("CFloat", toolTip="Form factor F'' for element at given wavelength")
 
@@ -1892,16 +1892,16 @@ class CFormFactor(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "onlyEnumerators": False,
-        "enumerators": ['Br', 'Fe', 'Pt', 'Se'],
-        "charWidth": 4,
-        "default": 'Se',
-    },
-)
 class CAnomalousScatteringElement(CElement):
 
+
+    class Meta:
+        qualifiers = {
+            "onlyEnumerators": False,
+            "enumerators": ['Br', 'Fe', 'Pt', 'Se'],
+            "charWidth": 4,
+            "default": 'Se',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAnomalousScatteringElement.
@@ -1923,23 +1923,23 @@ class CAnomalousScatteringElement(CElement):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-image',
-        "mimeTypeDescription": 'Image file',
-        "fileExtensions": ['img', 'cbf', 'mccd', 'mar1600', 'h5', 'nxs'],
-        "fileContentClassName": None,
-        "guiLabel": 'Image file',
-        "toolTip": 'First image file in a directory',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CImageFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-image',
+            "mimeTypeDescription": 'Image file',
+            "fileExtensions": ['img', 'cbf', 'mccd', 'mar1600', 'h5', 'nxs'],
+            "fileContentClassName": None,
+            "guiLabel": 'Image file',
+            "toolTip": 'First image file in a directory',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CImageFile.
@@ -1959,42 +1959,42 @@ class CImageFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "Error setting columnGroup qualifier"
-        },
-        "104": {
-            "description": "Missing column selection"
-        },
-        "105": {
-            "description": "Specified column not found in MTZ file"
-        },
-        "106": {
-            "description": "Specified column has wrong type in MTZ file"
-        },
-        "107": {
-            "description": "Error reading columnGroup qualifier from XML file"
-        },
-        "108": {
-            "description": "No columnGroup qualifier"
-        }
-    },
-    qualifiers={
-        "mustExist": False,
-        "mtzFileKey": '',
-        "toolTipList": [],
-        "default": [],
-    },
-)
 class CProgramColumnGroup(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Column not in MTZ file"
+            },
+            "102": {
+                "description": "Column wrong type"
+            },
+            "103": {
+                "description": "Error setting columnGroup qualifier"
+            },
+            "104": {
+                "description": "Missing column selection"
+            },
+            "105": {
+                "description": "Specified column not found in MTZ file"
+            },
+            "106": {
+                "description": "Specified column has wrong type in MTZ file"
+            },
+            "107": {
+                "description": "Error reading columnGroup qualifier from XML file"
+            },
+            "108": {
+                "description": "No columnGroup qualifier"
+            }
+        }
+        qualifiers = {
+            "mustExist": False,
+            "mtzFileKey": '',
+            "toolTipList": [],
+            "default": [],
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CProgramColumnGroup.
@@ -2141,24 +2141,24 @@ class CProgramColumnGroup(CData):
         return self._column_mapping.items()
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/refmac-keywords',
-        "mimeTypeDescription": 'Refmac keyword file',
-        "fileExtensions": ['txt'],
-        "fileContentClassName": None,
-        "fileLabel": 'refmac_keywords',
-        "guiLabel": 'Refmac keyword file',
-        "toolTip": 'A file containing keywords as they are meant to be read by refmac5',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CRefmacKeywordFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/refmac-keywords',
+            "mimeTypeDescription": 'Refmac keyword file',
+            "fileExtensions": ['txt'],
+            "fileContentClassName": None,
+            "fileLabel": 'refmac_keywords',
+            "guiLabel": 'Refmac keyword file',
+            "toolTip": 'A file containing keywords as they are meant to be read by refmac5',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CRefmacKeywordFile.
@@ -2178,18 +2178,6 @@ class CRefmacKeywordFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "High/low resolution wrong way round?"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CResolutionRange(CFloatRange):
 
     # No low/high fields: they are properties over start/end, defined below.
@@ -2197,6 +2185,18 @@ class CResolutionRange(CFloatRange):
     # nothing could reach --- the properties shadow them on read and write
     # straight through to start/end on assignment.
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "High/low resolution wrong way round?"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CResolutionRange.
@@ -2276,21 +2276,6 @@ class CResolutionRange(CFloatRange):
         self.low = value
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-map',
-        "mimeTypeDescription": 'Map',
-        "fileExtensions": ['map', 'mrc'],
-        "fileContentClassName": None,
-        "guiLabel": 'Map',
-        "toolTip": 'A map in CCP4/MRC format',
-        "helpFile": 'data_files#map_files',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMapDataFile(CDataFile):
 
     # Subtype constants -- what kind of real-space map this CCP4-map file holds.
@@ -2298,6 +2283,21 @@ class CMapDataFile(CDataFile):
     # and the scene format to render each kind appropriately. MASK lets a mask
     # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
     # an ordinary density map, which is otherwise the same FileType.
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-map',
+            "mimeTypeDescription": 'Map',
+            "fileExtensions": ['map', 'mrc'],
+            "fileContentClassName": None,
+            "guiLabel": 'Map',
+            "toolTip": 'A map in CCP4/MRC format',
+            "helpFile": 'data_files#map_files',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     SUBTYPE_NORMAL = 1           # normal (electron density) map
     SUBTYPE_DIFFERENCE = 2       # difference map (Fo-Fc)
     SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
@@ -2325,13 +2325,13 @@ class CMapDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CRunBatchRangeList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CRunBatchRangeList.
@@ -2353,13 +2353,13 @@ class CRunBatchRangeList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CDatasetList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CDatasetList.
@@ -2381,23 +2381,23 @@ class CDatasetList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'imosflm',
-        "mimeTypeName": 'application/iMosflm-xml',
-        "mimeTypeDescription": 'iMosflm data',
-        "guiLabel": 'iMosflm data',
-        "fileExtensions": ['imosflm.xml'],
-        "fileContentClassName": None,
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CImosflmXmlDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'imosflm',
+            "mimeTypeName": 'application/iMosflm-xml',
+            "mimeTypeDescription": 'iMosflm data',
+            "guiLabel": 'iMosflm data',
+            "fileExtensions": ['imosflm.xml'],
+            "fileContentClassName": None,
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CImosflmXmlDataFile.
@@ -2419,16 +2419,16 @@ class CImosflmXmlDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": False,
-        "minLength": 1,
-        "allowedChars": 1,
-        "toolTip": 'Unique identifier for crystal (one word)',
-    },
-)
 class CCrystalName(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": False,
+            "minLength": 1,
+            "allowedChars": 1,
+            "toolTip": 'Unique identifier for crystal (one word)',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CCrystalName.
@@ -2451,23 +2451,23 @@ class CCrystalName(CString):
         # Note: fileContentClassName='CMmcifReflData' is already set in CMmcifReflDataFile decorator
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-mtz-unmerged',
-        "mimeTypeDescription": 'MTZ unmerged experimental data',
-        "fileExtensions": ['mtz'],
-        "fileContentClassName": None,
-        "guiLabel": 'Unmerged MTZ reflections',
-        "toolTip": "Unmerged experimental data in CCP4's MTZ format",
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CUnmergedMtzDataFile(CMtzDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-mtz-unmerged',
+            "mimeTypeDescription": 'MTZ unmerged experimental data',
+            "fileExtensions": ['mtz'],
+            "fileContentClassName": None,
+            "guiLabel": 'Unmerged MTZ reflections',
+            "toolTip": "Unmerged experimental data in CCP4's MTZ format",
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CUnmergedMtzDataFile.
@@ -2493,14 +2493,14 @@ class CUnmergedMtzDataFile(CMtzDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "toolTip": 'Cell lengths and angles',
-        "helpFile": 'crystal_data#cell',
-    },
-)
 class CCell(CData):
     """A unit cell"""
+
+    class Meta:
+        qualifiers = {
+            "toolTip": 'Cell lengths and angles',
+            "helpFile": 'crystal_data#cell',
+        }
 
     a = content(CCellLength, toolTip='Cell length a in A', guiLabel='a')
     b = content(CCellLength, toolTip='Cell length b in A', guiLabel='b')
@@ -2581,15 +2581,15 @@ class CCell(CData):
         return " ".join(parts) if parts else "Cell parameters not set"
 
 
-@cdata_class(
-    qualifiers={
-        "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
-        "onlyEnumerators": True,
-        "default": 'F',
-    },
-)
 class CMtzColumnGroupType(CColumnType):
 
+
+    class Meta:
+        qualifiers = {
+            "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
+            "onlyEnumerators": True,
+            "default": 'F',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMtzColumnGroupType.
@@ -2615,15 +2615,15 @@ class CMtzColumnGroupType(CColumnType):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMtzColumn(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     columnLabel = content("COneWord", allowUndefined=True)
     columnType = content("CColumnType")
     dataset = content("COneWord")
@@ -2650,23 +2650,23 @@ class CMtzColumn(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "1": {
-            "description": "Attempting to change immutable object"
-        },
-        "2": {
-            "description": "Attempting to access unknown attribute"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CColumnGroupItem(CData):
 
+
+    class Meta:
+        error_codes = {
+            "1": {
+                "description": "Attempting to change immutable object"
+            },
+            "2": {
+                "description": "Attempting to access unknown attribute"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     columnName = content("COneWord")
     defaultList = content("CString")
     columnType = content("CColumnTypeList")
@@ -2694,13 +2694,13 @@ class CColumnGroupItem(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "toolTip": 'select an image file and an optional range of files to define a dataset',
-    },
-)
 class CXia2ImageSelection(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "toolTip": 'select an image file and an optional range of files to define a dataset',
+        }
     imageFile = content("CImageFile")
     imageStart = content("CInt", allowUndefined=True, min=0)
     imageEnd = content("CInt", allowUndefined=True, min=0)
@@ -2724,13 +2724,13 @@ class CXia2ImageSelection(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Anomalous structure factors and sigma',
-    },
-)
 class CFPairColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Anomalous structure factors and sigma',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CFPairColumnGroup.
@@ -2752,13 +2752,13 @@ class CFPairColumnGroup(CProgramColumnGroup):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Anomalous intensities and sigma',
-    },
-)
 class CIPairColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Anomalous intensities and sigma',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CIPairColumnGroup.
@@ -2780,13 +2780,13 @@ class CIPairColumnGroup(CProgramColumnGroup):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Structure factor and phase to define a map',
-    },
-)
 class CMapColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Structure factor and phase to define a map',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMapColumnGroup.
@@ -2808,13 +2808,13 @@ class CMapColumnGroup(CProgramColumnGroup):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Hendrickson-Lattmann coefficients',
-    },
-)
 class CHLColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Hendrickson-Lattmann coefficients',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CHLColumnGroup.
@@ -2836,13 +2836,13 @@ class CHLColumnGroup(CProgramColumnGroup):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Set of FreeR flags',
-    },
-)
 class CFreeRColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Set of FreeR flags',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CFreeRColumnGroup.
@@ -2864,13 +2864,13 @@ class CFreeRColumnGroup(CProgramColumnGroup):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Structure factor and sigma',
-    },
-)
 class CFSigFColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Structure factor and sigma',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CFSigFColumnGroup.
@@ -2892,14 +2892,14 @@ class CFSigFColumnGroup(CProgramColumnGroup):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "toolTipList": ['The real part of the experimental intensity', 'The anomalous part of the experimental intensity'],
-        "guiLabel": 'Intensity and anomalous intensity',
-    },
-)
 class CAnomalousIntensityColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "toolTipList": ['The real part of the experimental intensity', 'The anomalous part of the experimental intensity'],
+            "guiLabel": 'Intensity and anomalous intensity',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAnomalousIntensityColumnGroup.
@@ -2922,13 +2922,13 @@ Expected to be part of ab initio phasing dataset ( CDataset)
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Intensity and sigma',
-    },
-)
 class CISigIColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Intensity and sigma',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CISigIColumnGroup.
@@ -2951,13 +2951,13 @@ class CISigIColumnGroup(CProgramColumnGroup):
 
 
 
-@cdata_class(
-    qualifiers={
-        "toolTipList": ['The real part of the experimental structure factors', 'The anomalous part of the experimental structure factors'],
-    },
-)
 class CAnomalousColumnGroup(CProgramColumnGroup):
 
+
+    class Meta:
+        qualifiers = {
+            "toolTipList": ['The real part of the experimental structure factors', 'The anomalous part of the experimental structure factors'],
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAnomalousColumnGroup.
@@ -2980,28 +2980,28 @@ Expected to be part of ab initio phasing dataset ( CDataset)
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-mtz-map',
-        "mimeTypeDescription": 'MTZ F-phi',
-        "fileExtensions": ['mtz', 'cif', 'ent'],
-        "fileContentClassName": 'CMtzData',
-        "fileLabel": 'map_coefficients',
-        "guiLabel": 'Map coefficients',
-        "toolTip": 'Electron density map coefficients: F,Phi',
-        "correctColumns": ['FP', 'FQP'],
-        "columnGroupClassList": [CMapColumnGroup],
-        "downloadModes": ['PDB-REDO'],
-        "helpFile": 'data_files#MapCoeffs',
-    },
-    content_qualifiers={
-        "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['normal map', 'difference map', 'anomalous difference map']},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMapCoeffsDataFile(CMiniMtzDataFile):
 
     # Subtype constants
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-mtz-map',
+            "mimeTypeDescription": 'MTZ F-phi',
+            "fileExtensions": ['mtz', 'cif', 'ent'],
+            "fileContentClassName": 'CMtzData',
+            "fileLabel": 'map_coefficients',
+            "guiLabel": 'Map coefficients',
+            "toolTip": 'Electron density map coefficients: F,Phi',
+            "correctColumns": ['FP', 'FQP'],
+            "columnGroupClassList": [CMapColumnGroup],
+            "downloadModes": ['PDB-REDO'],
+            "helpFile": 'data_files#MapCoeffs',
+        }
+        content_qualifiers = {
+            "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['normal map', 'difference map', 'anomalous difference map']},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     SUBTYPE_NORMAL = 1  # normal map
     SUBTYPE_DIFFERENCE = 2  # difference map
     SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
@@ -3061,39 +3061,39 @@ class CMapCoeffsDataFile(CMiniMtzDataFile):
         return PhaseDataConverter.to_fphi(self, work_directory=work_directory)
 
 
-@cdata_class(
-    error_codes={
-        "301": {
-            "description": "Running ctruncate failed"
-        },
-        "302": {
-            "description": "Running cmtzsplit to convert observed data type failed"
-        },
-        "303": {
-            "description": "Running sftools failed"
-        }
-    },
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-mtz-observed',
-        "mimeTypeDescription": 'MTZ observed',
-        "fileExtensions": ['mtz', 'cif', 'ent'],
-        "fileContentClassName": 'CMtzData',
-        "fileLabel": 'observed_data',
-        "guiLabel": 'Reflections',
-        "toolTip": 'Observed structure factors or intensities',
-        "correctColumns": ['KMKM', 'GLGL', 'JQ', 'FQ'],
-        "columnGroupClassList": [CIPairColumnGroup, CFPairColumnGroup, CISigIColumnGroup, CFSigFColumnGroup],
-        "downloadModes": ['ebiSFs'],
-        "helpFile": 'data_files#Obs',
-    },
-    content_qualifiers={
-        "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['observed data', 'derived data', 'reference data']},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CObsDataFile(CMiniMtzDataFile):
 
     # Subtype constants
+
+    class Meta:
+        error_codes = {
+            "301": {
+                "description": "Running ctruncate failed"
+            },
+            "302": {
+                "description": "Running cmtzsplit to convert observed data type failed"
+            },
+            "303": {
+                "description": "Running sftools failed"
+            }
+        }
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-mtz-observed',
+            "mimeTypeDescription": 'MTZ observed',
+            "fileExtensions": ['mtz', 'cif', 'ent'],
+            "fileContentClassName": 'CMtzData',
+            "fileLabel": 'observed_data',
+            "guiLabel": 'Reflections',
+            "toolTip": 'Observed structure factors or intensities',
+            "correctColumns": ['KMKM', 'GLGL', 'JQ', 'FQ'],
+            "columnGroupClassList": [CIPairColumnGroup, CFPairColumnGroup, CISigIColumnGroup, CFSigFColumnGroup],
+            "downloadModes": ['ebiSFs'],
+            "helpFile": 'data_files#Obs',
+        }
+        content_qualifiers = {
+            "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['observed data', 'derived data', 'reference data']},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     SUBTYPE_OBSERVED = 1  # observed data
     SUBTYPE_DERIVED = 2  # derived data
     SUBTYPE_REFERENCE = 3  # reference data
@@ -3311,11 +3311,6 @@ class CObsDataFile(CMiniMtzDataFile):
         return ObsDataConverter.to_fmean(self, work_directory=work_directory)
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Phase and figure of merit',
-    },
-)
 class CPhiFomColumnGroup(CProgramColumnGroup):
     """
     A group of MTZ columns required for program input
@@ -3323,6 +3318,11 @@ class CPhiFomColumnGroup(CProgramColumnGroup):
     This is a pure data class stub. Extend it in core/CPhiFomColumnGroup.py
     to add methods and implementation-specific functionality.
     """
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Phase and figure of merit',
+        }
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3336,27 +3336,27 @@ class CPhiFomColumnGroup(CProgramColumnGroup):
         super().__init__(parent=parent, name=name, **kwargs)
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-mtz-phases',
-        "mimeTypeDescription": 'MTZ phases',
-        "fileExtensions": ['mtz', 'cif', 'ent'],
-        "fileContentClassName": 'CMtzData',
-        "guiLabel": 'Phases',
-        "fileLabel": 'phases',
-        "toolTip": 'Phases in Hendrickson-Lattmann or Phi/FOM form',
-        "correctColumns": ['AAAA', 'PW'],
-        "columnGroupClassList": [CHLColumnGroup, CPhiFomColumnGroup],
-        "helpFile": 'data_files#Phs',
-    },
-    content_qualifiers={
-        "subType": {'default': 1, 'enumerators': [1, 2], 'onlyEnumerators': True, 'menuText': ['unbiased data', 'biased data']},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CPhsDataFile(CMiniMtzDataFile):
 
     # Subtype constants
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-mtz-phases',
+            "mimeTypeDescription": 'MTZ phases',
+            "fileExtensions": ['mtz', 'cif', 'ent'],
+            "fileContentClassName": 'CMtzData',
+            "guiLabel": 'Phases',
+            "fileLabel": 'phases',
+            "toolTip": 'Phases in Hendrickson-Lattmann or Phi/FOM form',
+            "correctColumns": ['AAAA', 'PW'],
+            "columnGroupClassList": [CHLColumnGroup, CPhiFomColumnGroup],
+            "helpFile": 'data_files#Phs',
+        }
+        content_qualifiers = {
+            "subType": {'default': 1, 'enumerators': [1, 2], 'onlyEnumerators': True, 'menuText': ['unbiased data', 'biased data']},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     SUBTYPE_UNBIASED = 1  # unbiased data
     SUBTYPE_BIASED = 2  # biased data
 
@@ -3450,27 +3450,27 @@ class CPhsDataFile(CMiniMtzDataFile):
         return PhaseDataConverter.to_phifom(self, work_directory=work_directory)
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-mtz-freerflag',
-        "mimeTypeDescription": 'FreeR flag',
-        "fileExtensions": ['mtz', 'cif', 'ent'],
-        "fileContentClassName": 'CMtzData',
-        "fileLabel": 'freeRflag',
-        "guiLabel": 'Free R set',
-        "toolTip": 'Set of reflections used for FreeR calculation',
-        "correctColumns": ['I'],
-        "columnGroupClassList": [CFreeRColumnGroup],
-        "helpFile": 'data_files#FreeR',
-    },
-    content_qualifiers={
-        "subType": {'enumerators': [], 'onlyEnumerators': True},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CFreeRDataFile(CMiniMtzDataFile):
 
     # Content flag constants
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-mtz-freerflag',
+            "mimeTypeDescription": 'FreeR flag',
+            "fileExtensions": ['mtz', 'cif', 'ent'],
+            "fileContentClassName": 'CMtzData',
+            "fileLabel": 'freeRflag',
+            "guiLabel": 'Free R set',
+            "toolTip": 'Set of reflections used for FreeR calculation',
+            "correctColumns": ['I'],
+            "columnGroupClassList": [CFreeRColumnGroup],
+            "helpFile": 'data_files#FreeR',
+        }
+        content_qualifiers = {
+            "subType": {'enumerators': [], 'onlyEnumerators': True},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     CONTENT_FLAG_FREER = 1  # FreeR
 
     # Content annotations (indexed by contentFlag - 1)
@@ -3511,37 +3511,37 @@ class CFreeRDataFile(CMiniMtzDataFile):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Cell lengths should NOT be identical"
-        },
-        "102": {
-            "description": "Cell angles should NOT be identical"
-        },
-        "103": {
-            "description": "Cell angle should be 90"
-        },
-        "104": {
-            "description": "Cell angle should NOT be 90"
-        },
-        "105": {
-            "description": "Cell lengths should be identical"
-        },
-        "106": {
-            "description": "Cell angle should be 120"
-        },
-        "107": {
-            "description": "Cell angle should be identical"
-        }
-    },
-    qualifiers={
-        "toolTip": 'Space group and cell length and angles',
-        "helpFile": 'crystal_data#cell_space_group',
-    },
-)
 class CSpaceGroupCell(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Cell lengths should NOT be identical"
+            },
+            "102": {
+                "description": "Cell angles should NOT be identical"
+            },
+            "103": {
+                "description": "Cell angle should be 90"
+            },
+            "104": {
+                "description": "Cell angle should NOT be 90"
+            },
+            "105": {
+                "description": "Cell lengths should be identical"
+            },
+            "106": {
+                "description": "Cell angle should be 120"
+            },
+            "107": {
+                "description": "Cell angle should be identical"
+            }
+        }
+        qualifiers = {
+            "toolTip": 'Space group and cell length and angles',
+            "helpFile": 'crystal_data#cell_space_group',
+        }
     spaceGroup = content("CSpaceGroup", guilabel='space group')
     cell = content("CCell", guilabel='cell')
 
@@ -3566,23 +3566,23 @@ class CSpaceGroupCell(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Attempting to load mmCIF data from non-existant/broken file"
-        },
-        "102": {
-            "description": "Error reading interpreting line in cif file"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMmcifReflData(CMmcifData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Attempting to load mmCIF data from non-existant/broken file"
+            },
+            "102": {
+                "description": "Error reading interpreting line in cif file"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     cell = content("CCell")
     spaceGroup = content("CSpaceGroup")
     wavelength = content("CWavelength")
@@ -3777,14 +3777,14 @@ specific to coordinates, reflections or geometry data.
         # Note: fileContentClassName='CUnmergedDataContent' is already set in CUnmergedDataFile decorator
 
 
-@cdata_class(
-    qualifiers={
-        "toolTip": 'Imported data file, cell parameters and crystal/dataset identifiers',
-        "helpFile": 'import_merged#file_formats',
-    },
-)
 class CImportUnmerged(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "toolTip": 'Imported data file, cell parameters and crystal/dataset identifiers',
+            "helpFile": 'import_merged#file_formats',
+        }
     file = content("CUnmergedDataFile",
                    allowUndefined=False,
                    mustExist=True,
@@ -3893,55 +3893,55 @@ class CImportUnmerged(CData):
             return False
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Attempting to load MTZ data from non-existant/broken file"
-        },
-        "102": {
-            "description": "Error creating command file for mtzdump"
-        },
-        "103": {
-            "description": "No log file found from mtzdump"
-        },
-        "104": {
-            "description": "Error reading log file from mtzdump"
-        },
-        "105": {
-            "severity": 2,
-            "description": "Different spacegroup"
-        },
-        "106": {
-            "severity": 2,
-            "description": "Different cell parameter"
-        },
-        "107": {
-            "severity": 2,
-            "description": "Different cell parameters"
-        },
-        "108": {
-            "severity": 4,
-            "description": "Different Laue group"
-        },
-        "109": {
-            "severity": 4,
-            "description": "Different point group"
-        },
-        "410": {
-            "description": "Invalid CSeqDataFile passed to matthewCoeff"
-        },
-        "411": {
-            "description": "Failed to run matthewCoeff"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMtzData(CDataFileContent):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Attempting to load MTZ data from non-existant/broken file"
+            },
+            "102": {
+                "description": "Error creating command file for mtzdump"
+            },
+            "103": {
+                "description": "No log file found from mtzdump"
+            },
+            "104": {
+                "description": "Error reading log file from mtzdump"
+            },
+            "105": {
+                "severity": 2,
+                "description": "Different spacegroup"
+            },
+            "106": {
+                "severity": 2,
+                "description": "Different cell parameter"
+            },
+            "107": {
+                "severity": 2,
+                "description": "Different cell parameters"
+            },
+            "108": {
+                "severity": 4,
+                "description": "Different Laue group"
+            },
+            "109": {
+                "severity": 4,
+                "description": "Different point group"
+            },
+            "410": {
+                "description": "Invalid CSeqDataFile passed to matthewCoeff"
+            },
+            "411": {
+                "description": "Failed to run matthewCoeff"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     cell = content("CCell")
     spaceGroup = content("CSpaceGroup")
     resolutionRange = content("CResolutionRange")
@@ -4557,15 +4557,15 @@ class CMtzData(CDataFileContent):
         return rv
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CUnmergedDataContent(CDataFileContent):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     format = content("CString",
                      onlyEnumerators=True,
                      enumerators=['unk', 'mtz', 'xds', 'sca', 'saint', 'shelx', 'mmcif'],
@@ -5250,15 +5250,15 @@ class CUnmergedDataContent(CDataFileContent):
         }
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMtzColumnGroup(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     groupType = content("CMtzColumnGroupType")
     columns = content("CList")
 
@@ -5281,15 +5281,15 @@ class CMtzColumnGroup(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CDataset(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     selected = content("CBoolean")
     obsDataFile = content("CObsDataFile")
     crystalName = content("CCrystalName")
@@ -5322,34 +5322,34 @@ class CDataset(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Column not in MTZ file"
-        },
-        "102": {
-            "description": "Column wrong type"
-        },
-        "103": {
-            "description": "MTZ file is not defined",
-            "severity": 2
-        },
-        "104": {
-            "description": "No column group selected"
-        },
-        "105": {
-            "description": "No column group selected",
-            "severity": 2
-        }
-    },
-    qualifiers={
-        "mustExist": False,
-        "mtzFileKey": '',
-        "groupTypes": [],
-    },
-)
 class CProgramColumnGroup0(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Column not in MTZ file"
+            },
+            "102": {
+                "description": "Column wrong type"
+            },
+            "103": {
+                "description": "MTZ file is not defined",
+                "severity": 2
+            },
+            "104": {
+                "description": "No column group selected"
+            },
+            "105": {
+                "description": "No column group selected",
+                "severity": 2
+            }
+        }
+        qualifiers = {
+            "mustExist": False,
+            "mtzFileKey": '',
+            "groupTypes": [],
+        }
     columnGroup = content("CMtzColumnGroup")
     datasetName = content("CString")
 
@@ -5373,21 +5373,21 @@ class CProgramColumnGroup0(CData):
 
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": '"application/phasertng-dag"',
-        "mimeTypeDescription": 'PhaserTNG DAG file',
-        "fileLabel": None,
-        "fileExtensions": ['cards'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CPhaserTngDagFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": '"application/phasertng-dag"',
+            "mimeTypeDescription": 'PhaserTNG DAG file',
+            "fileLabel": None,
+            "fileExtensions": ['cards'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CPhaserTngDagFile.

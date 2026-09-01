@@ -226,27 +226,6 @@ def describe_signal_exit(returncode):
     return None
 
 
-@cdata_class(
-    error_codes={
-        '200': {'description': 'Error merging MTZ files'},
-        '201': {'description': 'Invalid miniMtzsIn specification'},
-        '202': {'description': 'File object has no CONTENT_SIGNATURE_LIST'},
-        '203': {'description': 'File object has no path set'},
-        '204': {'description': 'MTZ file not found'},
-        '205': {'description': 'File object not found in inputData or outputData'},
-        '206': {'description': 'Invalid contentFlag for file type'},
-        '207': {'description': 'Invalid item format in miniMtzsIn'},
-        '208': {'description': 'Conversion method not found on file object'},
-        '209': {'description': 'Conversion to requested format not yet implemented'},
-        '210': {'description': 'Error during MTZ file conversion'},
-        '300': {'description': 'Input MTZ file not found for split operation'},
-        '301': {'description': 'miniMtzsOut and programColumnNames length mismatch'},
-        '302': {'description': 'Output object not found in container.outputData'},
-        '303': {'description': 'Output object has no path set'},
-        '304': {'description': 'Error splitting MTZ file'},
-        '350': {'description': 'Monomer dictionary does not cover all residues in coordinate file'},
-    }
-)
 class CPluginScript(CData):
     """
     Base class for CCP4i2 wrappers and pipelines.
@@ -264,6 +243,27 @@ class CPluginScript(CData):
         AUXILIARY_PROGRAMS: Other executables the task shells out to
         OPTIONAL_PROGRAMS: Executables the task may run but does not require
     """
+
+    class Meta:
+        error_codes = {
+            '200': {'description': 'Error merging MTZ files'},
+            '201': {'description': 'Invalid miniMtzsIn specification'},
+            '202': {'description': 'File object has no CONTENT_SIGNATURE_LIST'},
+            '203': {'description': 'File object has no path set'},
+            '204': {'description': 'MTZ file not found'},
+            '205': {'description': 'File object not found in inputData or outputData'},
+            '206': {'description': 'Invalid contentFlag for file type'},
+            '207': {'description': 'Invalid item format in miniMtzsIn'},
+            '208': {'description': 'Conversion method not found on file object'},
+            '209': {'description': 'Conversion to requested format not yet implemented'},
+            '210': {'description': 'Error during MTZ file conversion'},
+            '300': {'description': 'Input MTZ file not found for split operation'},
+            '301': {'description': 'miniMtzsOut and programColumnNames length mismatch'},
+            '302': {'description': 'Output object not found in container.outputData'},
+            '303': {'description': 'Output object has no path set'},
+            '304': {'description': 'Error splitting MTZ file'},
+            '350': {'description': 'Monomer dictionary does not cover all residues in coordinate file'},
+        }
 
     # Class attributes to be defined in subclasses
     TASKNAME = None

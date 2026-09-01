@@ -19,27 +19,27 @@ from ccp4i2.core.CCP4File import CFilePath, CI2XmlDataFile, CProjectId
 
 
 
-@cdata_class(
-    error_codes={
-        "150": {
-            "description": "No file content information"
-        },
-        "151": {
-            "description": "Two sequences have the same identifier"
-        },
-        "152": {
-            "description": "Failed in merging sequence files to read sequence file"
-        },
-        "153": {
-            "description": "Failed in merging sequence files to write merged file"
-        }
-    },
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CSeqDataFileList(CList):
 
+
+    class Meta:
+        error_codes = {
+            "150": {
+                "description": "No file content information"
+            },
+            "151": {
+                "description": "Two sequences have the same identifier"
+            },
+            "152": {
+                "description": "Failed in merging sequence files to read sequence file"
+            },
+            "153": {
+                "description": "Failed in merging sequence files to write merged file"
+            }
+        }
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSeqDataFileList.
@@ -61,27 +61,27 @@ class CSeqDataFileList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/CCP4-asu-content',
-        "mimeTypeDescription": 'AU content',
-        "fileExtensions": ['asu.xml'],
-        "fileContentClassName": 'CAsuContent',
-        "fileLabel": 'AU contents',
-        "guiLabel": 'AU contents',
-        "toolTip": 'A CCP4i2 file specifying AU contents',
-        "helpFile": 'model_data#sequences',
-        "saveToDb": True,
-        "selectionMode": 0,
-    },
-    content_qualifiers={
-        'subType': {'default': None},
-        'contentFlag': {'min': 0, 'default': None},
-    },
-    contents_order=['selection'],
-)
 class CAsuDataFile(CI2XmlDataFile):
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/CCP4-asu-content',
+            "mimeTypeDescription": 'AU content',
+            "fileExtensions": ['asu.xml'],
+            "fileContentClassName": 'CAsuContent',
+            "fileLabel": 'AU contents',
+            "guiLabel": 'AU contents',
+            "toolTip": 'A CCP4i2 file specifying AU contents',
+            "helpFile": 'model_data#sequences',
+            "saveToDb": True,
+            "selectionMode": 0,
+        }
+        content_qualifiers = {
+            'subType': {'default': None},
+            'contentFlag': {'min': 0, 'default': None},
+        }
+        contents_order = ['selection']
     selection = content("CDict")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -318,15 +318,15 @@ class CAsuDataFile(CI2XmlDataFile):
         return self.writeFasta(fileName, indx=-1, format='pir', writeMulti=writeMulti, polymerTypes=polymerTypes)
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CAtomRefmacSelection(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     groupId = content("CInt")
     chainId = content("COneWord")
     firstRes = content("CInt")
@@ -378,13 +378,13 @@ class CAtomRefmacSelection(CData):
         return report
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CAtomRefmacSelectionList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAtomRefmacSelectionList.
@@ -400,15 +400,15 @@ class CAtomRefmacSelectionList(CList):
     SUBITEM = {'class': CAtomRefmacSelection, 'qualifiers': {}}
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CAtomRefmacSelectionOccupancy(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     groupId = content("CInt")
     chainIds = content("CString")
     firstRes = content("CInt")
@@ -437,13 +437,13 @@ class CAtomRefmacSelectionOccupancy(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CResidueRangeList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CResidueRangeList.
@@ -465,25 +465,25 @@ class CResidueRangeList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'tls',
-        "mimeTypeName": 'application/refmac-TLS',
-        "mimeTypeDescription": 'Refmac TLS file',
-        "guiLabel": 'TLS coefficients',
-        "toolTip": 'Definition of model domains for TLS refinement',
-        "fileExtensions": ['tls'],
-        "fileContentClassName": None,
-        "helpFile": 'model_data#tls_file',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CTLSDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'tls',
+            "mimeTypeName": 'application/refmac-TLS',
+            "mimeTypeDescription": 'Refmac TLS file',
+            "guiLabel": 'TLS coefficients',
+            "toolTip": 'Definition of model domains for TLS refinement',
+            "fileExtensions": ['tls'],
+            "fileContentClassName": None,
+            "helpFile": 'model_data#tls_file',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CTLSDataFile.
@@ -505,15 +505,15 @@ class CTLSDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CTLSRange(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     groupId = content("CInt")
     chainId = content("COneWord")
     firstRes = content("CInt")
@@ -526,13 +526,13 @@ class CTLSRange(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CTLSRangeList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
     """A list of CTLSRange items defining TLS groups."""
@@ -540,32 +540,32 @@ class CTLSRangeList(CList):
     SUBITEM = {'class': CTLSRange, 'qualifiers': {}}
 
 
-@cdata_class(
-    error_codes={
-        "401": {
-            "description": "Non-alphabet character removed from sequence",
-            "severity": 2
-        },
-        "402": {
-            "description": "Invalid characters (BJOXZ) in sequence"
-        },
-        "403": {
-            "description": "Sequence undefined",
-            "severity": 2
-        }
-    },
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-    },
-)
 class CSequenceString(CString):
 
+
+    class Meta:
+        error_codes = {
+            "401": {
+                "description": "Non-alphabet character removed from sequence",
+                "severity": 2
+            },
+            "402": {
+                "description": "Invalid characters (BJOXZ) in sequence"
+            },
+            "403": {
+                "description": "Sequence undefined",
+                "severity": 2
+            }
+        }
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSequenceString.
@@ -587,25 +587,25 @@ class CSequenceString(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'HHPred sequence search',
-        "mimeTypeName": 'application/HHPred-alignments',
-        "mimeTypeDescription": 'HHPred sequence search results',
-        "guiLabel": 'HHPred results',
-        "tooltip": 'Output from HHPred search',
-        "fileExtensions": ['hhr'],
-        "fileContentClassName": 'CHhpredData',
-        "helpFile": 'model_data#ali',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CHhpredDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'HHPred sequence search',
+            "mimeTypeName": 'application/HHPred-alignments',
+            "mimeTypeDescription": 'HHPred sequence search results',
+            "guiLabel": 'HHPred results',
+            "tooltip": 'Output from HHPred search',
+            "fileExtensions": ['hhr'],
+            "fileContentClassName": 'CHhpredData',
+            "helpFile": 'model_data#ali',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CHhpredDataFile.
@@ -625,19 +625,19 @@ class CHhpredDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Word contains white space item"
-        }
-    },
-    qualifiers={
-        "onlyEnumerators": True,
-        "enumerators": ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'],
-    },
-)
 class CElement(COneWord):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Word contains white space item"
+            }
+        }
+        qualifiers = {
+            "onlyEnumerators": True,
+            "enumerators": ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'],
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CElement.
@@ -947,70 +947,70 @@ class CBioPythonSeqInterface:
         return None
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Sequence undefined",
-            "severity": 1
-        },
-        "202": {
-            "description": "error reading from file"
-        },
-        "203": {
-            "description": "Comparing sequences: Sequence item different"
-        },
-        "204": {
-            "description": "Comparing sequences: One item set - the other is unset"
-        },
-        "401": {
-            "description": "Attempting to load from non-existent file"
-        },
-        "402": {
-            "description": "Error reading from file"
-        },
-        "403": {
-            "description": "Unknown sequence file format"
-        },
-        "405": {
-            "description": "Error reading identifiers from multi-record file"
-        },
-        "406": {
-            "description": "Error opening file"
-        },
-        "407": {
-            "description": "The 'PIR' file did not have the correct format"
-        },
-        "408": {
-            "severity": 2,
-            "description": "The 'PIR' file format was corrected"
-        },
-        "409": {
-            "description": "Error opening file to write"
-        },
-        "410": {
-            "description": "Error attempting to write out sequence file"
-        },
-        "411": {
-            "description": "Error attempting to create a temporary sequence file"
-        },
-        "412": {
-            "description": "Sequence file is empty"
-        },
-        "413": {
-            "description": "Unable to read BLAST format file"
-        },
-        "414": {
-            "description": "Unable to read hhpred format file"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CSequence(CData, CBioPythonSeqInterface):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Sequence undefined",
+                "severity": 1
+            },
+            "202": {
+                "description": "error reading from file"
+            },
+            "203": {
+                "description": "Comparing sequences: Sequence item different"
+            },
+            "204": {
+                "description": "Comparing sequences: One item set - the other is unset"
+            },
+            "401": {
+                "description": "Attempting to load from non-existent file"
+            },
+            "402": {
+                "description": "Error reading from file"
+            },
+            "403": {
+                "description": "Unknown sequence file format"
+            },
+            "405": {
+                "description": "Error reading identifiers from multi-record file"
+            },
+            "406": {
+                "description": "Error opening file"
+            },
+            "407": {
+                "description": "The 'PIR' file did not have the correct format"
+            },
+            "408": {
+                "severity": 2,
+                "description": "The 'PIR' file format was corrected"
+            },
+            "409": {
+                "description": "Error opening file to write"
+            },
+            "410": {
+                "description": "Error attempting to write out sequence file"
+            },
+            "411": {
+                "description": "Error attempting to create a temporary sequence file"
+            },
+            "412": {
+                "description": "Sequence file is empty"
+            },
+            "413": {
+                "description": "Unable to read BLAST format file"
+            },
+            "414": {
+                "description": "Unable to read hhpred format file"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     identifier = content("CString", toolTip='Description of sequence', minlength=4)
     name = content("CString", toolTip='User friendly name of sequence')
     description = content("CString", toolTip='User friendly description of sequence')
@@ -1258,15 +1258,15 @@ class CSequence(CData, CBioPythonSeqInterface):
             return self.object_name() if hasattr(self, 'object_name') else 'CSequence'
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CSequenceAlignment(CData, CBioPythonSeqInterface):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     identifier = content("CString", toolTip='Optional convenient name for sequence alignment')
     moleculeType = content("CString",
                            onlyEnumerators=True,
@@ -1362,25 +1362,25 @@ class CSequenceAlignment(CData, CBioPythonSeqInterface):
         return 0
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'Blast sequence search',
-        "mimeTypeName": 'application/Blast-alignments',
-        "mimeTypeDescription": 'Blast sequence search results',
-        "guiLabel": 'Blast results',
-        "tooltip": 'Output from Blast search',
-        "fileExtensions": ['bla', 'blast', 'xml'],
-        "fileContentClassName": 'CBlastData',
-        "helpFile": 'model_data#ali',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CBlastDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'Blast sequence search',
+            "mimeTypeName": 'application/Blast-alignments',
+            "mimeTypeDescription": 'Blast sequence search results',
+            "guiLabel": 'Blast results',
+            "tooltip": 'Output from Blast search',
+            "fileExtensions": ['bla', 'blast', 'xml'],
+            "fileContentClassName": 'CBlastData',
+            "helpFile": 'model_data#ali',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CBlastDataFile.
@@ -1400,39 +1400,39 @@ class CBlastDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Error opening MMCIF format file"
-        },
-        "102": {
-            "description": "Error merging data - monomer already in geometry file"
-        },
-        "103": {
-            "severity": 2,
-            "description": "Warning merging data - overwriting geometry for monomer with same id"
-        },
-        "104": {
-            "description": "Error reading geometry cif file - does not contain expected data"
-        },
-        "105": {
-            "description": "Unknown error reading geometry file"
-        },
-        "106": {
-            "description": "_chem_comp section not found in geometry file"
-        },
-        "110": {
-            "description": "Attemting to delete unrecognised chem_comp.id"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CDictData(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Error opening MMCIF format file"
+            },
+            "102": {
+                "description": "Error merging data - monomer already in geometry file"
+            },
+            "103": {
+                "severity": 2,
+                "description": "Warning merging data - overwriting geometry for monomer with same id"
+            },
+            "104": {
+                "description": "Error reading geometry cif file - does not contain expected data"
+            },
+            "105": {
+                "description": "Unknown error reading geometry file"
+            },
+            "106": {
+                "description": "_chem_comp section not found in geometry file"
+            },
+            "110": {
+                "description": "Attemting to delete unrecognised chem_comp.id"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     monomerList = content("CList")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -1465,15 +1465,15 @@ class CDictData(CData):
             #     self.pdbItemList.append(self.pdbItemList.makeItem())
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMonomer(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     identifier = content("CString", toolTip='The name you use for the monomer')
     formula = content("CString", toolTip='The formula for the monomer')
     dictionaryName = content("CString",
@@ -1501,15 +1501,15 @@ class CMonomer(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CBlastItem(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     hitId = content("CString")
     querySequence = content("CString")
     hitSequence = content("CString")
@@ -1533,15 +1533,15 @@ class CBlastItem(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CAtomRefmacSelectionGroups(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     groupIds = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -1565,13 +1565,13 @@ class CAtomRefmacSelectionGroups(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class COccRelationRefmacList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize COccRelationRefmacList.
@@ -1587,42 +1587,42 @@ class COccRelationRefmacList(CList):
     SUBITEM = {'class': CAtomRefmacSelectionGroups, 'qualifiers': {}}
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Error attempting to merge geometry files - no libcheck script"
-        },
-        "202": {
-            "description": "Error attempting to merge geometry files - failed creating working directory"
-        },
-        "203": {
-            "description": "Error attempting to merge geometry files - setting libcheck parameters"
-        },
-        "204": {
-            "description": "Error attempting to merge geometry files - running libcheck"
-        },
-        "205": {
-            "description": "Error attempting to merge geometry files - failed to run libcheck"
-        }
-    },
-    qualifiers={
-        "fileLabel": 'dictionary',
-        "mimeTypeName": 'application/refmac-dictionary',
-        "mimeTypeDescription": 'Geometry file',
-        "guiLabel": 'Geometry dictionary',
-        "toolTip": 'Idealised geometry of ligands for refinement',
-        "fileExtensions": ['cif'],
-        "fileContentClassName": 'CDictData',
-        "helpFile": 'model_data#ligand_geometry',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CDictDataFile(CDataFile):
 
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Error attempting to merge geometry files - no libcheck script"
+            },
+            "202": {
+                "description": "Error attempting to merge geometry files - failed creating working directory"
+            },
+            "203": {
+                "description": "Error attempting to merge geometry files - setting libcheck parameters"
+            },
+            "204": {
+                "description": "Error attempting to merge geometry files - running libcheck"
+            },
+            "205": {
+                "description": "Error attempting to merge geometry files - failed to run libcheck"
+            }
+        }
+        qualifiers = {
+            "fileLabel": 'dictionary',
+            "mimeTypeName": 'application/refmac-dictionary',
+            "mimeTypeDescription": 'Geometry file',
+            "guiLabel": 'Geometry dictionary',
+            "toolTip": 'Idealised geometry of ligands for refinement',
+            "fileExtensions": ['cif'],
+            "fileContentClassName": 'CDictData',
+            "helpFile": 'model_data#ligand_geometry',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CDictDataFile.
@@ -1644,14 +1644,14 @@ class CDictDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Ensemble',
-        "allowUndefined": False,
-    },
-)
 class CEnsemble(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Ensemble',
+            "allowUndefined": False,
+        }
     label = content("COneWord")
     number = content("CInt",
                      min=0,
@@ -1699,13 +1699,13 @@ A single ensemble is a CList of structures.
                 self.number.value = 1
 
 
-@cdata_class(
-    qualifiers={
-        "pdbFileKey": None,
-    },
-)
 class CResidueRange(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "pdbFileKey": None,
+        }
     chainId = content("COneWord", default='')
     firstRes = content("COneWord")
     lastRes = content("COneWord")
@@ -1731,13 +1731,13 @@ class CResidueRange(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "pdbFileKey": '',
-    },
-)
 class CAtomSelection(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "pdbFileKey": '',
+        }
     text = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -1759,27 +1759,27 @@ class CAtomSelection(CData):
         return str(self.text)
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Failed reading blast file"
-        },
-        "202": {
-            "description": "Blast file contains results of more than one query - only the first is read",
-            "severity": 2
-        },
-        "203": {
-            "description": "Failed parsing Blast file"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CBlastData(CDataFileContent):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Failed reading blast file"
+            },
+            "202": {
+                "description": "Blast file contains results of more than one query - only the first is read",
+                "severity": 2
+            },
+            "203": {
+                "description": "Failed parsing Blast file"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     queryId = content("CString")
     alignmentList = content("CList")
 
@@ -1804,23 +1804,23 @@ class CBlastData(CDataFileContent):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Failed to read HHPred file"
-        },
-        "202": {
-            "description": "Failed to load iotbx software to read HHPred file"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CHhpredData(CDataFileContent):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Failed to read HHPred file"
+            },
+            "202": {
+                "description": "Failed to load iotbx software to read HHPred file"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     alignmentList = content("CList")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -1866,13 +1866,13 @@ EXTLIST = {
 }
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CPdbDataFileList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CPdbDataFileList.
@@ -1964,25 +1964,25 @@ def detect_coordinate_format(path, sniff_lines: int = 200):
     return None
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'mol2',
-        "mimeTypeName": 'chemical/x-mol2',
-        "mimeTypeDescription": 'MOL2 file',
-        "guiLabel": 'MOL2 file',
-        "toolTip": 'Structure geometry of ligands for refinement in MOL2 format',
-        "fileExtensions": ['mol2'],
-        "fileContentClassName": None,
-        "helpFile": 'model_data#mol2_file',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMol2DataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'mol2',
+            "mimeTypeName": 'chemical/x-mol2',
+            "mimeTypeDescription": 'MOL2 file',
+            "guiLabel": 'MOL2 file',
+            "toolTip": 'Structure geometry of ligands for refinement in MOL2 format',
+            "fileExtensions": ['mol2'],
+            "fileContentClassName": None,
+            "helpFile": 'model_data#mol2_file',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMol2DataFile.
@@ -2221,13 +2221,13 @@ class CPdbDataComposition:
         self.residueNameCounts = residue_name_counts
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class COccRefmacSelectionList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize COccRefmacSelectionList.
@@ -2243,29 +2243,29 @@ class COccRefmacSelectionList(CList):
     SUBITEM = {'class': CAtomRefmacSelectionOccupancy, 'qualifiers': {}}
 
 
-@cdata_class(
-    error_codes={
-        "401": {
-            "description": "No uniprot id available"
-        },
-        "402": {
-            "description": "No uniprot xml file available to read"
-        },
-        "403": {
-            "description": "No project id provided to determine uniprot xml filename"
-        },
-        "404": {
-            "description": "Reading uniprot xml file failed"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CSequenceMeta(CData):
 
+
+    class Meta:
+        error_codes = {
+            "401": {
+                "description": "No uniprot id available"
+            },
+            "402": {
+                "description": "No uniprot xml file available to read"
+            },
+            "403": {
+                "description": "No project id provided to determine uniprot xml filename"
+            },
+            "404": {
+                "description": "Reading uniprot xml file failed"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     uniprotId = content("CString")
     organism = content("CString")
     expressionSystem = content("CString")
@@ -2289,34 +2289,34 @@ class CSequenceMeta(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Error reading sequence file"
-        },
-        "202": {
-            "description": "Error in BioPython attempting to identify file type"
-        }
-    },
-    qualifiers={
-        "fileLabel": 'sequence',
-        "mimeTypeName": 'application/CCP4-seq',
-        "mimeTypeDescription": 'Sequence file',
-        "guiLabel": 'Sequence',
-        "tooltip": 'Sequence in any of the common formats (pir,fasta..)',
-        "fileExtensions": ['seq', 'pir', 'fasta'],
-        "fileContentClassName": 'CSequence',
-        "downloadModes": ['uniprotFasta', 'ebiPdb', 'rcsbPdb'],
-        "helpFile": 'model_data#sequences',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CSeqDataFile(CDataFile):
 
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Error reading sequence file"
+            },
+            "202": {
+                "description": "Error in BioPython attempting to identify file type"
+            }
+        }
+        qualifiers = {
+            "fileLabel": 'sequence',
+            "mimeTypeName": 'application/CCP4-seq',
+            "mimeTypeDescription": 'Sequence file',
+            "guiLabel": 'Sequence',
+            "tooltip": 'Sequence in any of the common formats (pir,fasta..)',
+            "fileExtensions": ['seq', 'pir', 'fasta'],
+            "fileContentClassName": 'CSequence',
+            "downloadModes": ['uniprotFasta', 'ebiPdb', 'rcsbPdb'],
+            "helpFile": 'model_data#sequences',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSeqDataFile.
@@ -2338,62 +2338,62 @@ class CSeqDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "202": {
-            "description": "Error reading from file"
-        },
-        "203": {
-            "description": "Unknown alignment file format"
-        },
-        "204": {
-            "description": "Can not read Blast or HHPred file format"
-        },
-        "205": {
-            "description": "Error reading identifiers from multi-record file"
-        },
-        "206": {
-            "description": "Error attempting to identify file format"
-        },
-        "250": {
-            "description": "Alignment file format not recognised - can not convert"
-        },
-        "251": {
-            "description": "Alignment file conversion failed to overwrite existing file"
-        },
-        "252": {
-            "description": "Alignment file conversion failed writing file"
-        },
-        "260": {
-            "description": "Alignment file does not contain required number of sequences"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "mustExist": False,
-        "fromPreviousJob": False,
-        "jobCombo": True,
-        "mimeTypeName": 'application/CCP4-seqalign',
-        "mimeTypeDescription": 'Sequence alignment file',
-        "fileLabel": None,
-        "fileExtensions": ['aln', 'pir', 'fasta', 'msf', 'phy'],
-        "fileContentClassName": 'CSequenceAlignment',
-        "isDirectory": False,
-        "saveToDb": True,
-        "requiredSubType": None,
-        "requiredContentFlag": None,
-        "guiLabel": 'Aligned sequences',
-        "toolTip": 'Multiple sequence alignment in any of the common formats (pir,fasta..)',
-        "helpFile": 'model_data#alignments',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CSeqAlignDataFile(CDataFile):
 
 
+
+    class Meta:
+        error_codes = {
+            "202": {
+                "description": "Error reading from file"
+            },
+            "203": {
+                "description": "Unknown alignment file format"
+            },
+            "204": {
+                "description": "Can not read Blast or HHPred file format"
+            },
+            "205": {
+                "description": "Error reading identifiers from multi-record file"
+            },
+            "206": {
+                "description": "Error attempting to identify file format"
+            },
+            "250": {
+                "description": "Alignment file format not recognised - can not convert"
+            },
+            "251": {
+                "description": "Alignment file conversion failed to overwrite existing file"
+            },
+            "252": {
+                "description": "Alignment file conversion failed writing file"
+            },
+            "260": {
+                "description": "Alignment file does not contain required number of sequences"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "mustExist": False,
+            "fromPreviousJob": False,
+            "jobCombo": True,
+            "mimeTypeName": 'application/CCP4-seqalign',
+            "mimeTypeDescription": 'Sequence alignment file',
+            "fileLabel": None,
+            "fileExtensions": ['aln', 'pir', 'fasta', 'msf', 'phy'],
+            "fileContentClassName": 'CSequenceAlignment',
+            "isDirectory": False,
+            "saveToDb": True,
+            "requiredSubType": None,
+            "requiredContentFlag": None,
+            "guiLabel": 'Aligned sequences',
+            "toolTip": 'Multiple sequence alignment in any of the common formats (pir,fasta..)',
+            "helpFile": 'model_data#alignments',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSeqAlignDataFile.
@@ -2527,15 +2527,15 @@ class CSeqAlignDataFile(CDataFile):
         return CErrorReport()
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CHhpredItem(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     annotation = content("CString")
     identifier = content("CString")
     chain = content("CString")
@@ -2559,13 +2559,13 @@ class CHhpredItem(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 1,
-    },
-)
 class CEnsembleList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 1,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CEnsembleList.
@@ -2608,62 +2608,62 @@ class CEnsembleList(CList):
         return item
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Unable to load mmdb - ensure LD_LIBRARY_PATH is set"
-        },
-        "102": {
-            "description": "Error reading PDB file into MMDB object"
-        },
-        "103": {
-            "description": "Residue range selection does not specify chain"
-        },
-        "104": {
-            "description": "Residue range selection specifies non-existant chain id"
-        },
-        "105": {
-            "description": "Residue range selection - no residues selected"
-        },
-        "106": {
-            "description": "Residue range selection - residue number is not an integer"
-        },
-        "112": {
-            "description": "Atom selection failed. Failed creating CMMDBManager object"
-        },
-        "113": {
-            "description": "Atom selection failed. Faied reading coordinate file."
-        },
-        "114": {
-            "description": "Atom selection failed. Failed parsing command"
-        },
-        "115": {
-            "description": "Atom selection failed. Error creating PPCAtom"
-        },
-        "116": {
-            "description": "Atom selection failed. Error in GetSelIndex"
-        },
-        "117": {
-            "description": "Atom selection failed. Error loading selection tree"
-        },
-        "118": {
-            "description": "Atom selection failed. Error applying selection tree"
-        },
-        "119": {
-            "description": "Creating new PDB file failed on writing file"
-        },
-        "120": {
-            "description": "Creating new PDB file failed converting from fractional coordinates"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CPdbData(CDataFileContent):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Unable to load mmdb - ensure LD_LIBRARY_PATH is set"
+            },
+            "102": {
+                "description": "Error reading PDB file into MMDB object"
+            },
+            "103": {
+                "description": "Residue range selection does not specify chain"
+            },
+            "104": {
+                "description": "Residue range selection specifies non-existant chain id"
+            },
+            "105": {
+                "description": "Residue range selection - no residues selected"
+            },
+            "106": {
+                "description": "Residue range selection - residue number is not an integer"
+            },
+            "112": {
+                "description": "Atom selection failed. Failed creating CMMDBManager object"
+            },
+            "113": {
+                "description": "Atom selection failed. Faied reading coordinate file."
+            },
+            "114": {
+                "description": "Atom selection failed. Failed parsing command"
+            },
+            "115": {
+                "description": "Atom selection failed. Error creating PPCAtom"
+            },
+            "116": {
+                "description": "Atom selection failed. Error in GetSelIndex"
+            },
+            "117": {
+                "description": "Atom selection failed. Error loading selection tree"
+            },
+            "118": {
+                "description": "Atom selection failed. Error applying selection tree"
+            },
+            "119": {
+                "description": "Creating new PDB file failed on writing file"
+            },
+            "120": {
+                "description": "Creating new PDB file failed converting from fractional coordinates"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CPdbData.
@@ -2972,23 +2972,23 @@ class CPdbData(CDataFileContent):
             return 1
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Error reading monomer id and name"
-        },
-        "202": {
-            "description": "Error writing monomer id and name"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CChemComp(CData):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Error reading monomer id and name"
+            },
+            "202": {
+                "description": "Error writing monomer id and name"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     id = content("COneWord")
     three_letter_code = content("COneWord")
     name = content("CString")
@@ -3018,25 +3018,25 @@ class CChemComp(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'mol',
-        "mimeTypeName": 'chemical/x-mdl-molfile',
-        "mimeTypeDescription": 'MDL Molfile',
-        "guiLabel": 'Mol file',
-        "toolTip": 'Structure geometry of ligands for refinement in MDL mol format',
-        "fileExtensions": ['mol', 'sdf'],
-        "fileContentClassName": None,
-        "helpFile": 'model_data#mol_file',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMDLMolDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'mol',
+            "mimeTypeName": 'chemical/x-mdl-molfile',
+            "mimeTypeDescription": 'MDL Molfile',
+            "guiLabel": 'Mol file',
+            "toolTip": 'Structure geometry of ligands for refinement in MDL mol format',
+            "fileExtensions": ['mol', 'sdf'],
+            "fileContentClassName": None,
+            "helpFile": 'model_data#mol_file',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMDLMolDataFile.
@@ -3061,15 +3061,15 @@ class CMDLMolDataFile(CDataFile):
         self.set_qualifier('mimeTypeName', 'chemical/x-mdl-molfile')
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CAsuContentSeq(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     sequence = content("CSequenceString", allowUndefined=False, minLength=1)
     nCopies = content("CInt",
                       enumerators=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -3377,21 +3377,21 @@ class CAsuContentSeq(CData):
         return wt * n_copies_val
 
 
-@cdata_class(
-    error_codes={
-        "401": {
-            "description": "Sequence the same as a sequence that is already loaded"
-        },
-        "402": {
-            "description": "Sequence names are not unique: "
-        }
-    },
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CAsuContentSeqList(CList):
 
+
+    class Meta:
+        error_codes = {
+            "401": {
+                "description": "Sequence the same as a sequence that is already loaded"
+            },
+            "402": {
+                "description": "Sequence names are not unique: "
+            }
+        }
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAsuContentSeqList.
@@ -3465,71 +3465,71 @@ class CAsuContentSeqList(CList):
         return total_weight
 
 
-@cdata_class(
-    error_codes={
-        "401": {
-            "description": "Failed running coord_format to fix coordinate file - is it a PDB file?"
-        },
-        "402": {
-            "severity": 2,
-            "description": "Badly formated PDB file fixed"
-        },
-        "403": {
-            "severity": 2,
-            "description": "Fixed by removing text"
-        },
-        "404": {
-            "severity": 2,
-            "description": "Fixed by adding text"
-        },
-        "405": {
-            "description": "There are no ATOM or HETATM lines in the PDB file"
-        },
-        "410": {
-            "description": "No file loaded - can not convert coordinate file format"
-        },
-        "411": {
-            "description": "Failed loading file - can not convert coordinate file format"
-        },
-        "412": {
-            "description": "Can not overwrite existing file - can not convert coordinate file format"
-        },
-        "413": {
-            "description": "Failed writing coordinate file"
-        },
-        "414": {
-            "description": "Failed to identify coordinate file format"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "mustExist": False,
-        "fromPreviousJob": False,
-        "jobCombo": True,
-        "mimeTypeName": 'chemical/x-pdb',
-        "mimeTypeDescription": 'Model coordinates',
-        "fileLabel": 'coordinates',
-        "fileExtensions": ['pdb', 'cif', 'mmcif', 'ent'],
-        "fileContentClassName": 'CPdbData',
-        "isDirectory": False,
-        "saveToDb": True,
-        "requiredSubType": None,
-        "requiredContentFlag": None,
-        "guiLabel": 'Atomic model',
-        "toolTip": 'A model coordinate file in PDB or mmCIF format',
-        "ifInfo": True,
-        "ifAtomSelection": False,
-        "downloadModes": ['ebiPdb', 'rcsbPdb', 'uniprotAFPdb'],
-        "helpFile": 'model_data#coordinate_files',
-    },
-    content_qualifiers={
-        'subType': {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
-        'contentFlag': {'min': 0, 'default': None},
-    },
-)
 class CPdbDataFile(CDataFile):
 
     # Subtype constants
+
+    class Meta:
+        error_codes = {
+            "401": {
+                "description": "Failed running coord_format to fix coordinate file - is it a PDB file?"
+            },
+            "402": {
+                "severity": 2,
+                "description": "Badly formated PDB file fixed"
+            },
+            "403": {
+                "severity": 2,
+                "description": "Fixed by removing text"
+            },
+            "404": {
+                "severity": 2,
+                "description": "Fixed by adding text"
+            },
+            "405": {
+                "description": "There are no ATOM or HETATM lines in the PDB file"
+            },
+            "410": {
+                "description": "No file loaded - can not convert coordinate file format"
+            },
+            "411": {
+                "description": "Failed loading file - can not convert coordinate file format"
+            },
+            "412": {
+                "description": "Can not overwrite existing file - can not convert coordinate file format"
+            },
+            "413": {
+                "description": "Failed writing coordinate file"
+            },
+            "414": {
+                "description": "Failed to identify coordinate file format"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "mustExist": False,
+            "fromPreviousJob": False,
+            "jobCombo": True,
+            "mimeTypeName": 'chemical/x-pdb',
+            "mimeTypeDescription": 'Model coordinates',
+            "fileLabel": 'coordinates',
+            "fileExtensions": ['pdb', 'cif', 'mmcif', 'ent'],
+            "fileContentClassName": 'CPdbData',
+            "isDirectory": False,
+            "saveToDb": True,
+            "requiredSubType": None,
+            "requiredContentFlag": None,
+            "guiLabel": 'Atomic model',
+            "toolTip": 'A model coordinate file in PDB or mmCIF format',
+            "ifInfo": True,
+            "ifAtomSelection": False,
+            "downloadModes": ['ebiPdb', 'rcsbPdb', 'uniprotAFPdb'],
+            "helpFile": 'model_data#coordinate_files',
+        }
+        content_qualifiers = {
+            'subType': {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
+            'contentFlag': {'min': 0, 'default': None},
+        }
     SUBTYPE_UNKNOWN = 0  # unknown
     SUBTYPE_MODEL = 1  # model
     SUBTYPE_HOMOLOG = 2  # homolog
@@ -4061,23 +4061,23 @@ class CPdbDataFile(CDataFile):
             raise CException(self.__class__, 413, f"Output file was not created: {output_path}")
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Failed reading file - is it correct file type?"
-        },
-        "102": {
-            "description": "Failed reading file - it is not AU contents file"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CAsuContent(CDataFileContent):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Failed reading file - is it correct file type?"
+            },
+            "102": {
+                "description": "Failed reading file - it is not AU contents file"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     seqList = content("CAsuContentSeqList")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -4200,36 +4200,36 @@ class CAsuContent(CDataFileContent):
         return error
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "mustExist": False,
-        "fromPreviousJob": False,
-        "jobCombo": True,
-        "mimeTypeName": 'chemical/x-pdb',
-        "mimeTypeDescription": 'Model coordinates',
-        "fileLabel": 'ensemble coordinates',
-        "fileExtensions": ['pdb', 'cif', 'mmcif', 'ent'],
-        "fileContentClassName": 'CPdbData',
-        "isDirectory": False,
-        "saveToDb": True,
-        "requiredSubType": None,
-        "requiredContentFlag": None,
-        "guiLabel": 'Model ensemble',
-        "toolTip": 'An ensemble of model coordinates in PDB or mmCIF format',
-        "ifInfo": True,
-        "ifAtomSelection": False,
-        "downloadModes": [],
-        "helpFile": 'model_data#ensemble_coordinate_files',
-    },
-    content_qualifiers={
-        "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CEnsemblePdbDataFile(CPdbDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "mustExist": False,
+            "fromPreviousJob": False,
+            "jobCombo": True,
+            "mimeTypeName": 'chemical/x-pdb',
+            "mimeTypeDescription": 'Model coordinates',
+            "fileLabel": 'ensemble coordinates',
+            "fileExtensions": ['pdb', 'cif', 'mmcif', 'ent'],
+            "fileContentClassName": 'CPdbData',
+            "isDirectory": False,
+            "saveToDb": True,
+            "requiredSubType": None,
+            "requiredContentFlag": None,
+            "guiLabel": 'Model ensemble',
+            "toolTip": 'An ensemble of model coordinates in PDB or mmCIF format',
+            "ifInfo": True,
+            "ifAtomSelection": False,
+            "downloadModes": [],
+            "helpFile": 'model_data#ensemble_coordinate_files',
+        }
+        content_qualifiers = {
+            "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CEnsemblePdbDataFile.
@@ -4251,20 +4251,20 @@ class CEnsemblePdbDataFile(CPdbDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "No sequence identity or structure RMS to target set"
-        }
-    },
-    qualifiers={
-        "guiLabel": 'Structure in ensemble',
-        "toolTip": 'Homologous model and its similarity to the target structure',
-        "allowUndefined": False,
-    },
-)
 class CPdbEnsembleItem(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "No sequence identity or structure RMS to target set"
+            }
+        }
+        qualifiers = {
+            "guiLabel": 'Structure in ensemble',
+            "toolTip": 'Homologous model and its similarity to the target structure',
+            "allowUndefined": False,
+        }
     structure = content("CPdbDataFile",
                         allowUndefined=False,
                         mustExist=True,

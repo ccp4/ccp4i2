@@ -19,22 +19,22 @@ from ccp4i2.core.CCP4File import CFilePath, CProjectId
 
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'restraints',
-        "mimeTypeName": 'application/refmac-external-restraints',
-        "mimeTypeDescription": 'Refmac external restraints',
-        "guiLabel": 'Additional restraints',
-        "fileExtensions": ['txt'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CRefmacRestraintsDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'restraints',
+            "mimeTypeName": 'application/refmac-external-restraints',
+            "mimeTypeDescription": 'Refmac external restraints',
+            "guiLabel": 'Additional restraints',
+            "fileExtensions": ['txt'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CRefmacRestraintsDataFile.
@@ -54,20 +54,20 @@ class CRefmacRestraintsDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "No sequence identity or structure RMS to target set"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CRefmacRigidGroupSegment(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "No sequence identity or structure RMS to target set"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     chain_id = content("CString", charWidth=1, allowUndefined=False, mustExist=True)
     residue_1 = content("CInt", mustExist=True, allowUndefined=False)
     residue_2 = content("CInt", mustExist=True, allowUndefined=False)
@@ -91,15 +91,15 @@ class CRefmacRigidGroupSegment(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CRefmacAnomalousAtom(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     atomType = content("CString", charWidth=5, toolTip='Element name as in PDB file')
     Fp = content("CFloat", toolTip="Form factor f' for element at given wavelength")
     Fpp = content("CFloat", toolTip="Form factor f'' for element at given wavelength")
@@ -123,13 +123,13 @@ class CRefmacAnomalousAtom(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CRefmacRigidGroupList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CRefmacRigidGroupList.
@@ -151,15 +151,15 @@ class CRefmacRigidGroupList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CRefmacRigidGroupItem(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     rigid_group_id = content("CString")
     segmentList = content("CList", listMinLength=1)
 

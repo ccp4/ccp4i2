@@ -140,6 +140,31 @@ class CData(HierarchicalObject):
         '320': {'description': 'Unrecognised error attempting to load file'},
     }
 
+    def __init_subclass__(cls, **kwargs):
+        """Read the class's `Meta` block, if it has one.
+
+        The same information @cdata_class carries, written inside the class it
+        describes rather than above it --- Django's convention, which this
+        codebase already speaks everywhere else:
+
+            class CCell(CData):
+                class Meta:
+                    qualifiers = {'toolTip': 'Cell lengths and angles'}
+                a = content(CCellLength, toolTip='Cell length a in A')
+
+        Python calls __set_name__ for every content() before
+        __init_subclass__, so the field declarations are in place by the time
+        this runs. A class with no Meta is untouched, so the decorator and this
+        coexist and classes convert one at a time.
+        """
+        super().__init_subclass__(**kwargs)
+        meta = cls.__dict__.get("Meta")
+        if meta is None:
+            return
+        from .class_metadata import cdata_class
+        cdata_class(**{k: v for k, v in vars(meta).items()
+                       if not k.startswith("_")})(cls)
+
     def __init__(self, parent=None, name=None, **kwargs):
         # Initialize hierarchical object first (it only takes parent and name)
         super().__init__(parent=parent, name=name)

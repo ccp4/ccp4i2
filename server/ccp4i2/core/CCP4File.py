@@ -25,34 +25,34 @@ from ccp4i2.core.CCP4Annotation import CHostName, CTime, CUserId
 from ccp4i2.core.CCP4Data import CUUID
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Unrecognised projectId"
-        },
-        "202": {
-            "description": "Project does not have directory set"
-        },
-        "203": {
-            "description": "Project directory does not exist"
-        },
-        "205": {
-            "severity": 2,
-            "description": "Warning - Project does not have directory set"
-        },
-        "206": {
-            "severity": 2,
-            "description": "Warning - Project directory does not exist"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "allowUnfound": True,
-        "default": None,
-    },
-)
 class CProjectId(CUUID):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Unrecognised projectId"
+            },
+            "202": {
+                "description": "Project does not have directory set"
+            },
+            "203": {
+                "description": "Project directory does not exist"
+            },
+            "205": {
+                "severity": 2,
+                "description": "Warning - Project does not have directory set"
+            },
+            "206": {
+                "severity": 2,
+                "description": "Warning - Project directory does not exist"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "allowUnfound": True,
+            "default": None,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CProjectId.
@@ -74,20 +74,20 @@ class CProjectId(CUUID):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Version is not of form n.m or n.m.i"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "default": None,
-        "charWidth": 10,
-    },
-)
 class CVersion(CString):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Version is not of form n.m or n.m.i"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "default": None,
+            "charWidth": 10,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CVersion.
@@ -109,15 +109,15 @@ class CVersion(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMmcifData(CDataFileContent):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMmcifData.
@@ -141,8 +141,6 @@ specific to coordinates, reflections or geometry data.
     pass
 
 
-@cdata_class(
-)
 class CExePath(CData):
 
     exeName = content("CString")
@@ -167,39 +165,39 @@ class CExePath(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Invalid project name"
-        },
-        "102": {
-            "description": "Project does not have directory set"
-        },
-        "103": {
-            "description": "Project directory does not exist"
-        },
-        "104": {
-            "severity": 2,
-            "description": "Warning - Project name is a directory alias"
-        },
-        "105": {
-            "severity": 2,
-            "description": "Warning - Project does not have directory set"
-        },
-        "106": {
-            "severity": 2,
-            "description": "Warning - Project directory does not exist"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "allowAlias": True,
-        "allowUnfound": True,
-        "default": None,
-    },
-)
 class CProjectName(CString):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Invalid project name"
+            },
+            "102": {
+                "description": "Project does not have directory set"
+            },
+            "103": {
+                "description": "Project directory does not exist"
+            },
+            "104": {
+                "severity": 2,
+                "description": "Warning - Project name is a directory alias"
+            },
+            "105": {
+                "severity": 2,
+                "description": "Warning - Project does not have directory set"
+            },
+            "106": {
+                "severity": 2,
+                "description": "Warning - Project directory does not exist"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "allowAlias": True,
+            "allowUnfound": True,
+            "default": None,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CProjectName.
@@ -221,14 +219,14 @@ class CProjectName(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "enumerators": ['DEF', 'PARAMS', 'LOG', 'PROJECTDIRECTORIES', 'COM', 'REFMAC', 'OUTPUT', 'STATUS', 'PROJECTDATABASE', 'MGSCENE', 'JOBSERVERSTATUS', 'WORKFLOW', 'COMFILEPATCH', 'CUSTOMTASK', 'IMPORTEDJOB', 'I1SUPPLEMENT', 'ASUCONTENT', 'UNKNOWN'],
-        "onlyEnumerators": True,
-    },
-)
 class CFileFunction(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "enumerators": ['DEF', 'PARAMS', 'LOG', 'PROJECTDIRECTORIES', 'COM', 'REFMAC', 'OUTPUT', 'STATUS', 'PROJECTDATABASE', 'MGSCENE', 'JOBSERVERSTATUS', 'WORKFLOW', 'COMFILEPATCH', 'CUSTOMTASK', 'IMPORTEDJOB', 'I1SUPPLEMENT', 'ASUCONTENT', 'UNKNOWN'],
+            "onlyEnumerators": True,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CFileFunction.
@@ -250,15 +248,15 @@ class CFileFunction(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CExportedFile(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     exportId = content("CUUID")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -280,13 +278,13 @@ class CExportedFile(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CExportedFileList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CExportedFileList.
@@ -308,13 +306,13 @@ class CExportedFileList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 1,
-    },
-)
 class CExePathList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 1,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CExePathList.
@@ -336,15 +334,15 @@ class CExePathList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CSearchPath(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     name = content("CString")
     path = content("CDataFile")
 
@@ -367,13 +365,13 @@ class CSearchPath(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CSearchPathList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSearchPathList.
@@ -395,25 +393,25 @@ class CSearchPathList(CList):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Invalid characters in file name"
-        },
-        "102": {
-            "severity": 2,
-            "description": "Invalid characters in file name"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "allowedCharacters": '',
-        "allowedCharactersMode": 1,
-        "default": None,
-    },
-)
 class CFilePath(CString):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Invalid characters in file name"
+            },
+            "102": {
+                "severity": 2,
+                "description": "Invalid characters in file name"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "allowedCharacters": '',
+            "allowedCharactersMode": 1,
+            "default": None,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CFilePath.
@@ -435,32 +433,32 @@ class CFilePath(CString):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Attempting to read header from non-existant Xml file"
-        },
-        "102": {
-            "description": "Error loading file to read header"
-        },
-        "103": {
-            "description": "Error finding <ccp4i2_header> in file"
-        },
-        "104": {
-            "description": "Error interpreting header from file"
-        },
-        "105": {
-            "description": "File does not have <ccp4i2> root node"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CI2XmlHeader(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Attempting to read header from non-existant Xml file"
+            },
+            "102": {
+                "description": "Error loading file to read header"
+            },
+            "103": {
+                "description": "Error finding <ccp4i2_header> in file"
+            },
+            "104": {
+                "description": "Error interpreting header from file"
+            },
+            "105": {
+                "description": "File does not have <ccp4i2> root node"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     function = content("CFileFunction")
     userId = content("CUserId")
     hostName = content("CHostName")
@@ -513,19 +511,19 @@ class CI2XmlHeader(CData):
             self.OS.set(f"{platform.system()} {platform.release()}")
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/grace',
-        "fileExtensions": ['xmgr'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CXmgrDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/grace',
+            "fileExtensions": ['xmgr'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CXmgrDataFile.
@@ -547,21 +545,21 @@ class CXmgrDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": '"text/plain"',
-        "mimeTypeDescription": 'Standard plain text',
-        "fileLabel": None,
-        "fileExtensions": ['txt', 'log'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CTextDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": '"text/plain"',
+            "mimeTypeDescription": 'Standard plain text',
+            "fileLabel": None,
+            "fileExtensions": ['txt', 'log'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CTextDataFile.
@@ -583,19 +581,19 @@ class CTextDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "guiLabel": 'Reflections from DIALS',
-        "fileExtensions": ['refl'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CDataReflFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "guiLabel": 'Reflections from DIALS',
+            "fileExtensions": ['refl'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CDataReflFile.
@@ -617,20 +615,20 @@ class CDataReflFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/postscript',
-        "fileExtensions": ['ps'],
-        "guiLabel": 'Postscript file',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CPostscriptDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/postscript',
+            "fileExtensions": ['ps'],
+            "guiLabel": 'Postscript file',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CPostscriptDataFile.
@@ -652,21 +650,21 @@ class CPostscriptDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": '"text/plain"',
-        "mimeTypeDescription": 'Standard plain text',
-        "guiLabel": 'yml file',
-        "fileExtensions": ['yml'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CYmlFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": '"text/plain"',
+            "mimeTypeDescription": 'Standard plain text',
+            "guiLabel": 'yml file',
+            "fileExtensions": ['yml'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CYmlFile.
@@ -688,52 +686,52 @@ class CYmlFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "1001": {
-            "description": "Unknown error reading XML file"
-        },
-        "1002": {
-            "description": "Error trying to find root node in XML"
-        },
-        "1006": {
-            "description": "Attempting to save XML file with incorrect body"
-        },
-        "1007": {
-            "description": "Error creating XML text"
-        },
-        "1008": {
-            "description": "Error saving XML text to file"
-        },
-        "1009": {
-            "description": "Error reading XML file"
-        },
-        "1010": {
-            "description": "XML file does not exist"
-        },
-        "1011": {
-            "description": "No file name given for making I2XMlDataFile"
-        },
-        "1012": {
-            "description": "Error creating I2XMlDataFile object"
-        },
-        "1013": {
-            "description": "Error creating I2XMlDataFile file"
-        }
-    },
-    qualifiers={
-        "fileExtensions": ['xml'],
-        "saveToDb": False,
-        "mimeTypeName": 'application/xml',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CXmlDataFile(CDataFile):
 
 
+
+    class Meta:
+        error_codes = {
+            "1001": {
+                "description": "Unknown error reading XML file"
+            },
+            "1002": {
+                "description": "Error trying to find root node in XML"
+            },
+            "1006": {
+                "description": "Attempting to save XML file with incorrect body"
+            },
+            "1007": {
+                "description": "Error creating XML text"
+            },
+            "1008": {
+                "description": "Error saving XML text to file"
+            },
+            "1009": {
+                "description": "Error reading XML file"
+            },
+            "1010": {
+                "description": "XML file does not exist"
+            },
+            "1011": {
+                "description": "No file name given for making I2XMlDataFile"
+            },
+            "1012": {
+                "description": "Error creating I2XMlDataFile object"
+            },
+            "1013": {
+                "description": "Error creating I2XMlDataFile file"
+            }
+        }
+        qualifiers = {
+            "fileExtensions": ['xml'],
+            "saveToDb": False,
+            "mimeTypeName": 'application/xml',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CXmlDataFile.
@@ -790,18 +788,18 @@ class CXmlDataFile(CDataFile):
             return True
 
 
-@cdata_class(
-    qualifiers={
-        "fileExtensions": ['cif', 'ent'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CMmcifDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileExtensions": ['cif', 'ent'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMmcifDataFile.
@@ -825,20 +823,20 @@ specific to coordinates, reflections or geometry data.
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/x-pdf',
-        "fileExtensions": ['pdf'],
-        "guiLabel": 'PDF file',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CPDFDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/x-pdf',
+            "fileExtensions": ['pdf'],
+            "guiLabel": 'PDF file',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CPDFDataFile.
@@ -860,22 +858,22 @@ class CPDFDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "fileLabel": 'scene',
-        "mimeTypeName": 'application/CCP4-scene',
-        "mimeTypeDescription": 'CCP4mg scene file',
-        "guiLabel": 'CCP4mg scene',
-        "fileExtensions": ['scene.xml'],
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CSceneDataFile(CDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "fileLabel": 'scene',
+            "mimeTypeName": 'application/CCP4-scene',
+            "mimeTypeDescription": 'CCP4mg scene file',
+            "guiLabel": 'CCP4mg scene',
+            "fileExtensions": ['scene.xml'],
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSceneDataFile.
@@ -897,26 +895,26 @@ class CSceneDataFile(CDataFile):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "1003": {
-            "description": "XML does not have <ccp4i2> root node"
-        },
-        "1004": {
-            "severity": 2,
-            "description": "XML does not have <ccp4i2_header> section"
-        },
-        "1005": {
-            "description": "XML does not have <ccp4i2_body> section"
-        }
-    },
-    qualifiers={
-        "fileExtensions": ['xml'],
-        "autoLoadHeader": True,
-    },
-)
 class CI2XmlDataFile(CXmlDataFile):
 
+
+    class Meta:
+        error_codes = {
+            "1003": {
+                "description": "XML does not have <ccp4i2> root node"
+            },
+            "1004": {
+                "severity": 2,
+                "description": "XML does not have <ccp4i2_header> section"
+            },
+            "1005": {
+                "description": "XML does not have <ccp4i2_body> section"
+            }
+        }
+        qualifiers = {
+            "fileExtensions": ['xml'],
+            "autoLoadHeader": True,
+        }
     header = content("CI2XmlHeader")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -1025,20 +1023,20 @@ class CI2XmlDataFile(CXmlDataFile):
         return True
 
 
-@cdata_class(
-    qualifiers={
-        "mimeTypeName": 'application/EBI-validation-xml',
-        "fileExtensions": ['xml'],
-        "guiLabel": 'EBI Validation XML',
-    },
-    content_qualifiers={
-        "subType": {'default': None},
-        "contentFlag": {'min': 0, 'default': None},
-    },
-)
 class CEBIValidationXMLDataFile(CXmlDataFile):
 
 
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/EBI-validation-xml',
+            "fileExtensions": ['xml'],
+            "guiLabel": 'EBI Validation XML',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CEBIValidationXMLDataFile.
