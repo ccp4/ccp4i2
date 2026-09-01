@@ -15,6 +15,12 @@ This file is safe to edit - add your implementation code here.
 class CBibReference(CData):
 
 
+    """
+    Bibliographic reference
+    
+    Extends CBibReference with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -43,12 +49,6 @@ class CBibReference(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Bibliographic reference
-    
-    Extends CBibReference with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -57,6 +57,12 @@ class CBibReference(CData):
 class CBibReferenceGroup(CData):
 
 
+    """
+    Set of bibliographic references for a task
+    
+    Extends CBibReferenceGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "100": {
@@ -89,12 +95,6 @@ class CBibReferenceGroup(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Set of bibliographic references for a task
-    
-    Extends CBibReferenceGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -103,6 +103,12 @@ class CBibReferenceGroup(CData):
 class CFont(CData):
 
 
+    """
+    Simplified Qt font options
+    
+    Extends CFont with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -134,12 +140,6 @@ class CFont(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Simplified Qt font options
-    
-    Extends CFont with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -148,6 +148,12 @@ class CFont(CData):
 class CUserId(CString):
 
 
+    """
+    A user ID
+    
+    Extends CUserId with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "label": 'User id',
@@ -163,12 +169,6 @@ class CUserId(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A user ID
-    
-    Extends CUserId with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -177,6 +177,12 @@ class CUserId(CString):
 class CTime(CInt):
 
 
+    """
+    The time. Uses Python time module
+    
+    Extends CTime with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "min": 0,
@@ -194,12 +200,6 @@ class CTime(CInt):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    The time. Uses Python time module
-    
-    Extends CTime with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -208,6 +208,12 @@ class CTime(CInt):
 class CAnnotationList(CList):
 
 
+    """
+    A list of annotation
+    
+    Extends CAnnotationList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -222,12 +228,6 @@ class CAnnotationList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list of annotation
-    
-    Extends CAnnotationList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -236,6 +236,12 @@ class CAnnotationList(CList):
 class CMetaDataTag(CData):
 
 
+    """
+    This class will extend list of enumerators if new value for string is entered
+    
+    Extends CMetaDataTag with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "enumeratorsFunction": None,
@@ -253,12 +259,6 @@ class CMetaDataTag(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    This class will extend list of enumerators if new value for string is entered
-    
-    Extends CMetaDataTag with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -267,6 +267,12 @@ class CMetaDataTag(CData):
 class CDateRange(CData):
 
 
+    """
+    A date range - may be on a scale of years,months or days
+    
+    Extends CDateRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -293,12 +299,6 @@ class CDateRange(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A date range - may be on a scale of years,months or days
-    
-    Extends CDateRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -307,6 +307,12 @@ class CDateRange(CData):
 class CAuthor(CString):
 
 
+    """
+    Placeholder for bibliographic author
+    
+    Extends CAuthor with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "minLength": None,
@@ -327,12 +333,6 @@ class CAuthor(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Placeholder for bibliographic author
-    
-    Extends CAuthor with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -341,6 +341,12 @@ class CAuthor(CString):
 class CHostName(CString):
 
 
+    """
+    Computer name
+    
+    Extends CHostName with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "label": 'Machine name',
@@ -356,12 +362,6 @@ class CHostName(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Computer name
-    
-    Extends CHostName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -370,6 +370,12 @@ class CHostName(CString):
 class CMetaDataTagList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CMetaDataTagList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -384,12 +390,6 @@ class CMetaDataTagList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CMetaDataTagList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -398,6 +398,10 @@ class CMetaDataTagList(CList):
 class CServerGroup(CData):
 
 
+    """
+    Extends CServerGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -435,10 +439,6 @@ class CServerGroup(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CServerGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -447,6 +447,12 @@ class CServerGroup(CData):
 class CUserAddress(CData):
 
 
+    """
+    User id and platform node
+    
+    Extends CUserAddress with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "label": 'User id and current machine',
@@ -465,12 +471,6 @@ class CUserAddress(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    User id and platform node
-    
-    Extends CUserAddress with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -479,6 +479,12 @@ class CUserAddress(CData):
 class CAnnotation(CData):
 
 
+    """
+    Annotation text with user id and time
+    
+    Extends CAnnotation with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "label": 'Annotation',
@@ -498,12 +504,6 @@ class CAnnotation(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Annotation text with user id and time
-    
-    Extends CAnnotation with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -512,6 +512,16 @@ class CAnnotation(CData):
 class CHostname(CHostName):
 
 
+    """
+    
+    Inherits from:
+    - CHostname: Metadata and structure
+    - CHostName: Shared full-fat methods
+    Computer name
+    
+    Extends CHostname with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "label": 'Machine name',
@@ -527,16 +537,6 @@ class CHostname(CHostName):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    
-    Inherits from:
-    - CHostname: Metadata and structure
-    - CHostName: Shared full-fat methods
-    Computer name
-    
-    Extends CHostname with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass

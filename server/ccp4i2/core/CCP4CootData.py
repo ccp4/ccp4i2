@@ -23,6 +23,10 @@ class CCootHistoryDataFile(CDataFile):
 
     # Subtype constants
 
+    """
+    Extends CCootHistoryDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/coot-script',
@@ -51,10 +55,6 @@ class CCootHistoryDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CCootHistoryDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass

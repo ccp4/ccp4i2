@@ -66,6 +66,10 @@ class CallbackObject(object):
 
 class phaser_MR(CPluginScript):
 
+    '''
+    def __init__(self,parent=None,name=None,workDirectory=''):
+      CPluginScript. __init__(self,parent=parent,name=name)
+    '''
     TASKNAME = 'phaser_MR'
 
     ERROR_CODES = {101 : { 'description' : 'Failed to run MR_DAT' },
@@ -77,10 +81,6 @@ class phaser_MR(CPluginScript):
                    107 : { 'description' : 'Failed to parse Solutions' },
                    108 : { 'description' : 'Failed to add Fixed solutions' },}
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
     excludedSections = ['macano', 'macmr', 'sgalternative', 'OUTP_LEVE']
     excludedKeywords = ['TITL', 'ROOT', 'HKLO', 'OUTP_LEVE', 'RESO_HIGH', 'RESO_LOW']
     

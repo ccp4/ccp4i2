@@ -23,6 +23,10 @@ class CRefmacRestraintsDataFile(CDataFile):
 
 
 
+    """
+    Extends CRefmacRestraintsDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'restraints',
@@ -45,10 +49,6 @@ class CRefmacRestraintsDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CRefmacRestraintsDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -57,6 +57,10 @@ class CRefmacRestraintsDataFile(CDataFile):
 class CRefmacRigidGroupSegment(CData):
 
 
+    """
+    Extends CRefmacRigidGroupSegment with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -82,10 +86,6 @@ class CRefmacRigidGroupSegment(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CRefmacRigidGroupSegment with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -94,6 +94,10 @@ class CRefmacRigidGroupSegment(CData):
 class CRefmacAnomalousAtom(CData):
 
 
+    """
+    Extends CRefmacAnomalousAtom with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -114,10 +118,6 @@ class CRefmacAnomalousAtom(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CRefmacAnomalousAtom with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -126,6 +126,12 @@ class CRefmacAnomalousAtom(CData):
 class CRefmacRigidGroupList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CRefmacRigidGroupList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -140,12 +146,6 @@ class CRefmacRigidGroupList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CRefmacRigidGroupList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -154,6 +154,10 @@ class CRefmacRigidGroupList(CList):
 class CRefmacRigidGroupItem(CData):
 
 
+    """
+    Extends CRefmacRigidGroupItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -173,10 +177,6 @@ class CRefmacRigidGroupItem(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CRefmacRigidGroupItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass

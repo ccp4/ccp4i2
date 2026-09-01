@@ -20,6 +20,10 @@ from ccp4i2.core.base_object.fundamental_types import CFloat
 class CMatrix33(CData):
 
 
+    """
+    Extends CMatrix33 with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -36,10 +40,6 @@ class CMatrix33(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CMatrix33 with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -48,6 +48,10 @@ class CMatrix33(CData):
 class CXyzBox(CData):
 
 
+    """
+    Extends CXyzBox with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -76,10 +80,6 @@ class CXyzBox(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CXyzBox with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -88,6 +88,12 @@ class CXyzBox(CData):
 class CAngle(CFloat):
 
 
+    """
+    An angle
+    
+    Extends CAngle with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "max": None,
@@ -106,12 +112,6 @@ class CAngle(CFloat):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An angle
-    
-    Extends CAngle with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -120,6 +120,10 @@ class CAngle(CFloat):
 class CXyz(CData):
 
 
+    """
+    Extends CXyz with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -151,10 +155,6 @@ class CXyz(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CXyz with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -163,6 +163,10 @@ class CXyz(CData):
 class CEulerRotation(CData):
 
 
+    """
+    Extends CEulerRotation with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -183,10 +187,6 @@ class CEulerRotation(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CEulerRotation with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -195,6 +195,13 @@ class CEulerRotation(CData):
 class CTransformation(CData):
 
 
+    """
+    Extends CTransformation with implementation-specific methods.
+
+    Provides flat access to rotation angles (alpha, beta, gamma) and
+    translation components (x, y, z) for backward compatibility with
+    wrappers that expect direct attribute access (e.g. gesamt).
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -214,13 +221,6 @@ class CTransformation(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CTransformation with implementation-specific methods.
-
-    Provides flat access to rotation angles (alpha, beta, gamma) and
-    translation components (x, y, z) for backward compatibility with
-    wrappers that expect direct attribute access (e.g. gesamt).
-    """
 
     @property
     def alpha(self):

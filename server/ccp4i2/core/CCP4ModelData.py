@@ -22,6 +22,12 @@ from ccp4i2.core.CCP4File import CFilePath, CI2XmlDataFile, CProjectId
 class CSeqDataFileList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CSeqDataFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "150": {
@@ -50,12 +56,6 @@ class CSeqDataFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CSeqDataFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -64,6 +64,12 @@ class CSeqDataFileList(CList):
 class CAsuDataFile(CI2XmlDataFile):
 
 
+    """
+    A reference to an XML file with CCP4i2 Header
+
+    Extends CAsuDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-asu-content',
@@ -94,12 +100,6 @@ class CAsuDataFile(CI2XmlDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A reference to an XML file with CCP4i2 Header
-
-    Extends CAsuDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
     # No custom overrides needed - base CDataFile.loadFile() handles everything!
     # Just need CAsuContent.loadFile() implementation below
 
@@ -321,6 +321,12 @@ class CAsuDataFile(CI2XmlDataFile):
 class CAtomRefmacSelection(CData):
 
 
+    """
+    A residue range selection for rigid body groups.
+
+    Extends CAtomRefmacSelection with validation that all four fields
+    (groupId, chainId, firstRes, lastRes) are meaningfully defined.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -342,12 +348,6 @@ class CAtomRefmacSelection(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A residue range selection for rigid body groups.
-
-    Extends CAtomRefmacSelection with validation that all four fields
-    (groupId, chainId, firstRes, lastRes) are meaningfully defined.
-    """
 
     def validity(self):
         """Validate that all rigid body group fields are defined."""
@@ -381,6 +381,7 @@ class CAtomRefmacSelection(CData):
 class CAtomRefmacSelectionList(CList):
 
 
+    """A list of CAtomRefmacSelection items."""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -395,7 +396,6 @@ class CAtomRefmacSelectionList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """A list of CAtomRefmacSelection items."""
 
     SUBITEM = {'class': CAtomRefmacSelection, 'qualifiers': {}}
 
@@ -403,6 +403,12 @@ class CAtomRefmacSelectionList(CList):
 class CAtomRefmacSelectionOccupancy(CData):
 
 
+    """
+    A residue range selection for occupancy groups
+    
+    Extends CAtomRefmacSelectionOccupancy with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -426,12 +432,6 @@ class CAtomRefmacSelectionOccupancy(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A residue range selection for occupancy groups
-    
-    Extends CAtomRefmacSelectionOccupancy with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -440,6 +440,12 @@ class CAtomRefmacSelectionOccupancy(CData):
 class CResidueRangeList(CList):
 
 
+    """
+    A list of residue range selections
+    
+    Extends CResidueRangeList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -454,12 +460,6 @@ class CResidueRangeList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list of residue range selections
-    
-    Extends CResidueRangeList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -469,6 +469,12 @@ class CTLSDataFile(CDataFile):
 
 
 
+    """
+    A refmac TLS file
+
+    Extends CTLSDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'tls',
@@ -494,12 +500,6 @@ class CTLSDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A refmac TLS file
-
-    Extends CTLSDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -508,6 +508,7 @@ class CTLSDataFile(CDataFile):
 class CTLSRange(CData):
 
 
+    """A single TLS range definition with groupId, chain, residue range, and selection."""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -522,20 +523,19 @@ class CTLSRange(CData):
 
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
-    """A single TLS range definition with groupId, chain, residue range, and selection."""
     pass
 
 
 class CTLSRangeList(CList):
 
 
+    """A list of CTLSRange items defining TLS groups."""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
         }
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
-    """A list of CTLSRange items defining TLS groups."""
 
     SUBITEM = {'class': CTLSRange, 'qualifiers': {}}
 
@@ -543,6 +543,12 @@ class CTLSRangeList(CList):
 class CSequenceString(CString):
 
 
+    """
+    A string
+    
+    Extends CSequenceString with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "401": {
@@ -576,12 +582,6 @@ class CSequenceString(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CSequenceString with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -591,6 +591,10 @@ class CHhpredDataFile(CDataFile):
 
 
 
+    """
+    Extends CHhpredDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'HHPred sequence search',
@@ -616,10 +620,6 @@ class CHhpredDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CHhpredDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -628,6 +628,12 @@ class CHhpredDataFile(CDataFile):
 class CElement(COneWord):
 
 
+    """
+    Chemical element 
+    
+    Extends CElement with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -648,12 +654,6 @@ class CElement(COneWord):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Chemical element 
-    
-    Extends CElement with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -950,6 +950,18 @@ class CBioPythonSeqInterface:
 class CSequence(CData, CBioPythonSeqInterface):
 
 
+    """
+    A string of sequence one-letter codes with BioPython loading support.
+
+    This class represents a single biological sequence (protein or nucleic acid)
+    with support for loading from various file formats using BioPython.
+
+    Key features:
+    - Load from FASTA, PIR, UniProt, and other formats
+    - Automatic format detection
+    - Molecular weight calculation using BioPython ProtParam
+    - Save to FASTA format
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -1039,18 +1051,6 @@ class CSequence(CData, CBioPythonSeqInterface):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string of sequence one-letter codes with BioPython loading support.
-
-    This class represents a single biological sequence (protein or nucleic acid)
-    with support for loading from various file formats using BioPython.
-
-    Key features:
-    - Load from FASTA, PIR, UniProt, and other formats
-    - Automatic format detection
-    - Molecular weight calculation using BioPython ProtParam
-    - Save to FASTA format
-    """
 
     def loadFile(self, fileName: str = None, format: str = 'unknown'):
         """
@@ -1261,6 +1261,21 @@ class CSequence(CData, CBioPythonSeqInterface):
 class CSequenceAlignment(CData, CBioPythonSeqInterface):
 
 
+    """
+    An alignment of two or more sequences with BioPython AlignIO support.
+
+    This class represents a multiple sequence alignment with support for
+    loading from various alignment file formats using BioPython.
+
+    Key features:
+    - Load from CLUSTAL, FASTA, PHYLIP, Stockholm, Nexus, MSF formats
+    - Automatic format detection
+    - Handles both consecutive and interleaved alignment formats
+    - Preserves gap characters for alignment information
+
+    The alignment contains gaps ("-" characters) that are relevant to the alignment.
+    Each aligned sequence is similar to CSequence but includes gap positions.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1285,21 +1300,6 @@ class CSequenceAlignment(CData, CBioPythonSeqInterface):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An alignment of two or more sequences with BioPython AlignIO support.
-
-    This class represents a multiple sequence alignment with support for
-    loading from various alignment file formats using BioPython.
-
-    Key features:
-    - Load from CLUSTAL, FASTA, PHYLIP, Stockholm, Nexus, MSF formats
-    - Automatic format detection
-    - Handles both consecutive and interleaved alignment formats
-    - Preserves gap characters for alignment information
-
-    The alignment contains gaps ("-" characters) that are relevant to the alignment.
-    Each aligned sequence is similar to CSequence but includes gap positions.
-    """
 
     def loadFile(self, fileName: str, format: str = 'unknown'):
         """
@@ -1366,6 +1366,10 @@ class CBlastDataFile(CDataFile):
 
 
 
+    """
+    Extends CBlastDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'Blast sequence search',
@@ -1391,10 +1395,6 @@ class CBlastDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CBlastDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1403,6 +1403,10 @@ class CBlastDataFile(CDataFile):
 class CDictData(CData):
 
 
+    """
+    Extends CDictData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -1445,10 +1449,6 @@ class CDictData(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CDictData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1468,6 +1468,12 @@ class CDictData(CData):
 class CMonomer(CData):
 
 
+    """
+    A monomer compound. ?smiles
+    
+    Extends CMonomer with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1490,12 +1496,6 @@ class CMonomer(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A monomer compound. ?smiles
-    
-    Extends CMonomer with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1504,6 +1504,10 @@ class CMonomer(CData):
 class CBlastItem(CData):
 
 
+    """
+    Extends CBlastItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1524,10 +1528,6 @@ class CBlastItem(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CBlastItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1536,6 +1536,12 @@ class CBlastItem(CData):
 class CAtomRefmacSelectionGroups(CData):
 
 
+    """
+    A group selection for occupancy groups
+    
+    Extends CAtomRefmacSelectionGroups with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1554,12 +1560,6 @@ class CAtomRefmacSelectionGroups(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group selection for occupancy groups
-    
-    Extends CAtomRefmacSelectionGroups with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1568,6 +1568,7 @@ class CAtomRefmacSelectionGroups(CData):
 class COccRelationRefmacList(CList):
 
 
+    """A list of CAtomRefmacSelectionGroups items."""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1582,7 +1583,6 @@ class COccRelationRefmacList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """A list of CAtomRefmacSelectionGroups items."""
 
     SUBITEM = {'class': CAtomRefmacSelectionGroups, 'qualifiers': {}}
 
@@ -1591,6 +1591,12 @@ class CDictDataFile(CDataFile):
 
 
 
+    """
+    A refmac dictionary file
+    
+    Extends CDictDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -1633,12 +1639,6 @@ class CDictDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A refmac dictionary file
-    
-    Extends CDictDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1647,6 +1647,15 @@ class CDictDataFile(CDataFile):
 class CEnsemble(CData):
 
 
+    """
+    An ensemble of models. Typically, this would be a set of related
+PDB files, but models could also be xtal or EM maps. This should
+be indicated by the types entry.
+A single ensemble is a CList of structures.
+
+    Extends CEnsemble with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Ensemble',
@@ -1671,15 +1680,6 @@ class CEnsemble(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An ensemble of models. Typically, this would be a set of related
-PDB files, but models could also be xtal or EM maps. This should
-be indicated by the types entry.
-A single ensemble is a CList of structures.
-
-    Extends CEnsemble with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, *args, **kwargs):
         """Initialize CEnsemble with a default pdbItemList containing one item."""
@@ -1702,6 +1702,12 @@ A single ensemble is a CList of structures.
 class CResidueRange(CData):
 
 
+    """
+    A residue range selection
+    
+    Extends CResidueRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "pdbFileKey": None,
@@ -1720,12 +1726,6 @@ class CResidueRange(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A residue range selection
-    
-    Extends CResidueRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1734,6 +1734,10 @@ class CResidueRange(CData):
 class CAtomSelection(CData):
 
 
+    """
+    Extends CAtomSelection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "pdbFileKey": '',
@@ -1750,10 +1754,6 @@ class CAtomSelection(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CAtomSelection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __str__(self):
         return str(self.text)
@@ -1762,6 +1762,12 @@ class CAtomSelection(CData):
 class CBlastData(CDataFileContent):
 
 
+    """
+    Base class for classes holding file contents
+    
+    Extends CBlastData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -1793,12 +1799,6 @@ class CBlastData(CDataFileContent):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Base class for classes holding file contents
-    
-    Extends CBlastData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1807,6 +1807,12 @@ class CBlastData(CDataFileContent):
 class CHhpredData(CDataFileContent):
 
 
+    """
+    Base class for classes holding file contents
+    
+    Extends CHhpredData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -1833,12 +1839,6 @@ class CHhpredData(CDataFileContent):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Base class for classes holding file contents
-    
-    Extends CHhpredData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1869,6 +1869,12 @@ EXTLIST = {
 class CPdbDataFileList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CPdbDataFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1883,12 +1889,6 @@ class CPdbDataFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CPdbDataFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1968,6 +1968,12 @@ class CMol2DataFile(CDataFile):
 
 
 
+    """
+    A molecule definition file (MOL2)
+
+    Extends CMol2DataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'mol2',
@@ -1993,12 +1999,6 @@ class CMol2DataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A molecule definition file (MOL2)
-
-    Extends CMol2DataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -2224,6 +2224,7 @@ class CPdbDataComposition:
 class COccRefmacSelectionList(CList):
 
 
+    """A list of CAtomRefmacSelectionOccupancy items."""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -2238,7 +2239,6 @@ class COccRefmacSelectionList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """A list of CAtomRefmacSelectionOccupancy items."""
 
     SUBITEM = {'class': CAtomRefmacSelectionOccupancy, 'qualifiers': {}}
 
@@ -2246,6 +2246,10 @@ class COccRefmacSelectionList(CList):
 class CSequenceMeta(CData):
 
 
+    """
+    Extends CSequenceMeta with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "401": {
@@ -2280,10 +2284,6 @@ class CSequenceMeta(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CSequenceMeta with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2293,6 +2293,12 @@ class CSeqDataFile(CDataFile):
 
 
 
+    """
+    A sequence file
+    
+    Extends CSeqDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -2327,12 +2333,6 @@ class CSeqDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A sequence file
-    
-    Extends CSeqDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2342,6 +2342,12 @@ class CSeqAlignDataFile(CDataFile):
 
 
 
+    """
+    A (multiple) sequence alignment file
+
+    Extends CSeqAlignDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "202": {
@@ -2404,12 +2410,6 @@ class CSeqAlignDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A (multiple) sequence alignment file
-
-    Extends CSeqAlignDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def identifyFile(self):
         """
@@ -2530,6 +2530,10 @@ class CSeqAlignDataFile(CDataFile):
 class CHhpredItem(CData):
 
 
+    """
+    Extends CHhpredItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -2550,10 +2554,6 @@ class CHhpredItem(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CHhpredItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2562,6 +2562,12 @@ class CHhpredItem(CData):
 class CEnsembleList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+
+    Extends CEnsembleList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -2576,12 +2582,6 @@ class CEnsembleList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-
-    Extends CEnsembleList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     SUBITEM = {'class': CEnsemble, 'qualifiers': {}}
 
@@ -2611,6 +2611,12 @@ class CEnsembleList(CList):
 class CPdbData(CDataFileContent):
 
 
+    """
+    Contents of a PDB file - a subset with functionality for GUI
+
+    Extends CPdbData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -2674,12 +2680,6 @@ class CPdbData(CDataFileContent):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Contents of a PDB file - a subset with functionality for GUI
-
-    Extends CPdbData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def loadFile(self, file_path: str = None):
         """
@@ -2975,6 +2975,12 @@ class CPdbData(CDataFileContent):
 class CChemComp(CData):
 
 
+    """
+    Component of CDictDataFile contents
+    
+    Extends CChemComp with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -3007,12 +3013,6 @@ class CChemComp(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Component of CDictDataFile contents
-    
-    Extends CChemComp with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -3022,6 +3022,12 @@ class CMDLMolDataFile(CDataFile):
 
 
 
+    """
+    A molecule definition file (MDL)
+
+    Extends CMDLMolDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'mol',
@@ -3047,12 +3053,6 @@ class CMDLMolDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A molecule definition file (MDL)
-
-    Extends CMDLMolDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -3064,6 +3064,10 @@ class CMDLMolDataFile(CDataFile):
 class CAsuContentSeq(CData):
 
 
+    """
+    Extends CAsuContentSeq with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -3093,10 +3097,6 @@ class CAsuContentSeq(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CAsuContentSeq with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def formattedSequence(self):
         """
@@ -3380,6 +3380,7 @@ class CAsuContentSeq(CData):
 class CAsuContentSeqList(CList):
 
 
+    """A list of CAsuContentSeq items; requires at least one entry."""
     class Meta:
         error_codes = {
             "401": {
@@ -3402,7 +3403,6 @@ class CAsuContentSeqList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """A list of CAsuContentSeq items; requires at least one entry."""
 
     SUBITEM = {'class': CAsuContentSeq, 'qualifiers': {}}
 
@@ -3469,6 +3469,10 @@ class CPdbDataFile(CDataFile):
 
     # Subtype constants
 
+    """
+    Extends CPdbDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "401": {
@@ -3558,10 +3562,6 @@ class CPdbDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CPdbDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
@@ -4064,6 +4064,12 @@ class CPdbDataFile(CDataFile):
 class CAsuContent(CDataFileContent):
 
 
+    """
+    Base class for classes holding file contents
+
+    Extends CAsuContent with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -4090,12 +4096,6 @@ class CAsuContent(CDataFileContent):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Base class for classes holding file contents
-
-    Extends CAsuContent with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def loadFile(self, file_path: str = None):
         """
@@ -4204,6 +4204,12 @@ class CEnsemblePdbDataFile(CPdbDataFile):
 
 
 
+    """
+    A PDB coordinate file containing ensemble of structures as 'NMR' models
+    
+    Extends CEnsemblePdbDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -4240,12 +4246,6 @@ class CEnsemblePdbDataFile(CPdbDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A PDB coordinate file containing ensemble of structures as 'NMR' models
-    
-    Extends CEnsemblePdbDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -4254,6 +4254,10 @@ class CEnsemblePdbDataFile(CPdbDataFile):
 class CPdbEnsembleItem(CData):
 
 
+    """
+    Extends CPdbEnsembleItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -4283,10 +4287,6 @@ class CPdbEnsembleItem(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CPdbEnsembleItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def isSet(self, attributeName=None, allowDefault=True):
         """
