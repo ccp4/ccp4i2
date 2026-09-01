@@ -65,7 +65,6 @@ class CDataFileContent(CData):
             'helpFile': 'NotImplemented',
             'saveToDb': False
         }
-        gui_label = 'CDataFileContent'
 
     def set_qualifier(self, key, value):
         """Set or override a qualifier value. Adds validation to prevent CData objects as values."""

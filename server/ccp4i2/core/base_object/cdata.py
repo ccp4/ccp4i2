@@ -82,7 +82,6 @@ def _merged_qualifier_template(cls: type) -> Dict[str, Any]:
     return merged
 
 
-@cdata_class(gui_label="CData")
 class CData(HierarchicalObject):
     """Base class for all CCP4i2 data objects with hierarchical relationships."""
 
