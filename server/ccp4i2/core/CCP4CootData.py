@@ -20,8 +20,6 @@ from ccp4i2.core.CCP4File import CFilePath, CProjectId
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/coot-script',
         "mimeTypeDescription": 'Coot history/script file',
@@ -31,20 +29,6 @@ from ccp4i2.core.CCP4File import CFilePath, CProjectId
         "fileLabel": 'coot_history',
         "toolTip": 'history.scm or 0-state.scm file from Coot',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': 2, 'enumerators': [1, 2], 'onlyEnumerators': True, 'menuText': ['Coot 0-state.scm', 'Coot history.scm']},
         "contentFlag": {'min': 0, 'default': None},

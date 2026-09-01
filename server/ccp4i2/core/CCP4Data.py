@@ -39,15 +39,6 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
         "patternRegex": r"^\S+$",
         "patternErrorMessage": "Word must not contain whitespace",
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode',
-        'patternRegex',
-        'patternErrorMessage'],
 )
 class COneWord(CString):
 
@@ -73,8 +64,6 @@ class COneWord(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "minLength": None,
         "maxLength": None,
@@ -84,13 +73,6 @@ class COneWord(CString):
         "charWidth": -1,
         "allowedCharsCode": 0,
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CJobTitle(CString):
 
@@ -116,8 +98,6 @@ class CJobTitle(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "max": None,
         "min": None,
@@ -125,12 +105,6 @@ class CJobTitle(CString):
         "menuText": [],
         "onlyEnumerators": False,
     },
-    qualifiers_order=[
-        'min',
-        'max',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText'],
 )
 class CJobStatus(CInt):
 
@@ -156,21 +130,11 @@ class CJobStatus(CInt):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CCollection(CData):
 
@@ -194,19 +158,10 @@ class CCollection(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "enumerators": ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile', 'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
         "menuText": [],
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CI2DataType(CString):
 
@@ -249,13 +204,6 @@ class CI2DataType(CString):
         "charWidth": -1,
         "allowedCharsCode": 0,
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CRangeSelection(CString):
 
@@ -397,15 +345,6 @@ class CRangeSelection(CString):
         "patternRegex": r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
         "patternErrorMessage": "Invalid UUID format (expected xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)",
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode',
-        'patternRegex',
-        'patternErrorMessage'],
 )
 class CUUID(CString):
 
@@ -449,15 +388,6 @@ class CUUID(CString):
         "patternRegex": r"^[A-Za-z0-9@+\-\[\]()=#/\\%.*:]+$",
         "patternErrorMessage": "Invalid characters in SMILES string",
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode',
-        'patternRegex',
-        'patternErrorMessage'],
 )
 class CSMILESString(CString):
 
@@ -593,21 +523,11 @@ class CSMILESString(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CPatchSelection(CData):
 
@@ -634,17 +554,10 @@ class CPatchSelection(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
         "listMaxLength": 250,
     },
-    qualifiers_order=[
-        'listMinLength',
-        'listMaxLength',
-        'listCompare',
-        'nameRoot'],
 )
 class COutputFileList(CList):
 
@@ -678,7 +591,6 @@ class COutputFileList(CList):
             "description": "End of range greater than start"
         }
     },
-    qualifiers_order=['compare'],
     contents_order=['start', 'end'],
 )
 class CRange(CData):
@@ -705,12 +617,9 @@ class CRange(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "charWidth": 10,
     },
-    qualifiers_order=['charWidth'],
 )
 class CBaseData(CData):
 
@@ -750,14 +659,6 @@ class CBaseData(CData):
     qualifiers={
         "default": {},
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CDict(CCollection):
 
@@ -860,8 +761,6 @@ class CDict(CCollection):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "minLength": None,
         "maxLength": None,
@@ -871,13 +770,6 @@ class CDict(CCollection):
         "charWidth": -1,
         "allowedCharsCode": 0,
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CFollowFromJob(CUUID):
 
@@ -903,9 +795,6 @@ class CFollowFromJob(CUUID):
 
 
 @cdata_class(
-    error_codes={
-    },
-    qualifiers_order=['compare'],
     contents_order=['start', 'end'],
 )
 class CFloatRange(CRange):
@@ -951,9 +840,6 @@ class CFloatRange(CRange):
 
 
 @cdata_class(
-    error_codes={
-    },
-    qualifiers_order=['compare'],
     contents_order=['start', 'end'],
 )
 class CIntRange(CRange):

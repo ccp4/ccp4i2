@@ -17,22 +17,13 @@ from pathlib import Path
 import logging
 
 from .cdata import CData
-from .class_metadata import cdata_class, attribute, AttributeType
+from .class_metadata import cdata_class, attribute, AttributeType, content
 
 # Configure logger
 logger = logging.getLogger(__name__)
 
 
 @cdata_class(
-    attributes={
-        "project": attribute(AttributeType.CUSTOM, custom_class="CProjectId"),
-        "baseName": attribute(AttributeType.CUSTOM, custom_class="CFilePath"),
-        "relPath": attribute(AttributeType.CUSTOM, custom_class="CFilePath"),
-        "dbFileId": attribute(AttributeType.CUSTOM, custom_class="CUUID"),
-        "annotation": attribute(AttributeType.CUSTOM, custom_class="CString"),
-        "subType": attribute(AttributeType.CUSTOM, custom_class="CInt"),
-        "contentFlag": attribute(AttributeType.CUSTOM, custom_class="CInt"),
-    },
     qualifiers={
         "allowUndefined": True,
         "mustExist": False,
@@ -71,13 +62,13 @@ class CDataFile(CData):
     # base_object/ in the layering: a real import here would invert it. A
     # forward reference needs no import, which is the same late binding the
     # decorator's custom_class string was doing.
-    project: Optional["CProjectId"] = None
-    baseName: Optional["CFilePath"] = None
-    relPath: Optional["CFilePath"] = None
-    dbFileId: Optional["CUUID"] = None
-    annotation: Optional["CString"] = None
-    subType: Optional["CInt"] = None
-    contentFlag: Optional["CInt"] = None
+    project = content("CProjectId")
+    baseName = content("CFilePath")
+    relPath = content("CFilePath")
+    dbFileId = content("CUUID")
+    annotation = content("CString")
+    subType = content("CInt")
+    contentFlag = content("CInt")
 
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):

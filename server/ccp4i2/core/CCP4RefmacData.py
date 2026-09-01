@@ -20,8 +20,6 @@ from ccp4i2.core.CCP4File import CFilePath, CProjectId
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'restraints',
         "mimeTypeName": 'application/refmac-external-restraints',
@@ -29,20 +27,6 @@ from ccp4i2.core.CCP4File import CFilePath, CProjectId
         "guiLabel": 'Additional restraints',
         "fileExtensions": ['txt'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -81,14 +65,6 @@ class CRefmacRestraintsDataFile(CDataFile):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CRefmacRigidGroupSegment(CData):
 
@@ -116,21 +92,11 @@ class CRefmacRigidGroupSegment(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CRefmacAnomalousAtom(CData):
 
@@ -158,12 +124,9 @@ class CRefmacAnomalousAtom(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CRefmacRigidGroupList(CList):
 
@@ -189,21 +152,11 @@ class CRefmacRigidGroupList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CRefmacRigidGroupItem(CData):
 

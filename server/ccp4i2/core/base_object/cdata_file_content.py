@@ -57,7 +57,6 @@ from .class_metadata import cdata_class
         'helpFile': 'NotImplemented',
         'saveToDb': False
     },
-    qualifiers_order=['allowUndefined', 'default', 'toolTip', 'guiLabel', 'guiDefinition', 'helpFile', 'saveToDb'],
     gui_label='CDataFileContent'
 )
 class CDataFileContent(CData):
