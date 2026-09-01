@@ -18,21 +18,11 @@ from ccp4i2.core.base_object.fundamental_types import CFloat
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMatrix33(CData):
 
@@ -66,14 +56,6 @@ class CMatrix33(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CXyzBox(CData):
 
@@ -104,8 +86,6 @@ class CXyzBox(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "max": None,
         "min": None,
@@ -113,12 +93,6 @@ class CXyzBox(CData):
         "menuText": [],
         "onlyEnumerators": False,
     },
-    qualifiers_order=[
-        'min',
-        'max',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText'],
 )
 class CAngle(CFloat):
 
@@ -160,14 +134,6 @@ class CAngle(CFloat):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CXyz(CData):
 
@@ -195,21 +161,11 @@ class CXyz(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CEulerRotation(CData):
 
@@ -237,21 +193,11 @@ class CEulerRotation(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CTransformation(CData):
 

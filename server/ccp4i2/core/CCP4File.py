@@ -50,7 +50,6 @@ from ccp4i2.core.CCP4Data import CUUID
         "allowUnfound": True,
         "default": None,
     },
-    qualifiers_order=['allowUndefined', 'allowUnfound', 'default'],
 )
 class CProjectId(CUUID):
 
@@ -86,7 +85,6 @@ class CProjectId(CUUID):
         "default": None,
         "charWidth": 10,
     },
-    qualifiers_order=['allowUndefined', 'default', 'charWidth'],
 )
 class CVersion(CString):
 
@@ -112,21 +110,11 @@ class CVersion(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMmcifData(CDataFileContent):
 
@@ -154,16 +142,6 @@ specific to coordinates, reflections or geometry data.
 
 
 @cdata_class(
-    error_codes={
-    },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CExePath(CData):
 
@@ -219,11 +197,6 @@ class CExePath(CData):
         "allowUnfound": True,
         "default": None,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'allowAlias',
-        'allowUnfound',
-        'default'],
 )
 class CProjectName(CString):
 
@@ -249,19 +222,10 @@ class CProjectName(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "enumerators": ['DEF', 'PARAMS', 'LOG', 'PROJECTDIRECTORIES', 'COM', 'REFMAC', 'OUTPUT', 'STATUS', 'PROJECTDATABASE', 'MGSCENE', 'JOBSERVERSTATUS', 'WORKFLOW', 'COMFILEPATCH', 'CUSTOMTASK', 'IMPORTEDJOB', 'I1SUPPLEMENT', 'ASUCONTENT', 'UNKNOWN'],
         "onlyEnumerators": True,
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CFileFunction(CString):
 
@@ -287,21 +251,11 @@ class CFileFunction(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CExportedFile(CData):
 
@@ -327,12 +281,9 @@ class CExportedFile(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CExportedFileList(CList):
 
@@ -358,12 +309,9 @@ class CExportedFileList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 1,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CExePathList(CList):
 
@@ -389,21 +337,11 @@ class CExePathList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CSearchPath(CData):
 
@@ -430,12 +368,9 @@ class CSearchPath(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CSearchPathList(CList):
 
@@ -476,11 +411,6 @@ class CSearchPathList(CList):
         "allowedCharactersMode": 1,
         "default": None,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'allowedCharacters',
-        'allowedCharactersMode',
-        'default'],
 )
 class CFilePath(CString):
 
@@ -528,14 +458,6 @@ class CFilePath(CString):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CI2XmlHeader(CData):
 
@@ -592,26 +514,10 @@ class CI2XmlHeader(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/grace',
         "fileExtensions": ['xmgr'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -642,28 +548,12 @@ class CXmgrDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": '"text/plain"',
         "mimeTypeDescription": 'Standard plain text',
         "fileLabel": None,
         "fileExtensions": ['txt', 'log'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -694,26 +584,10 @@ class CTextDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Reflections from DIALS',
         "fileExtensions": ['refl'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -744,27 +618,11 @@ class CDataReflFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/postscript',
         "fileExtensions": ['ps'],
         "guiLabel": 'Postscript file',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -795,28 +653,12 @@ class CPostscriptDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": '"text/plain"',
         "mimeTypeDescription": 'Standard plain text',
         "guiLabel": 'yml file',
         "fileExtensions": ['yml'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -884,20 +726,6 @@ class CYmlFile(CDataFile):
         "saveToDb": False,
         "mimeTypeName": 'application/xml',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -963,25 +791,9 @@ class CXmlDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileExtensions": ['cif', 'ent'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1014,27 +826,11 @@ specific to coordinates, reflections or geometry data.
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/x-pdf',
         "fileExtensions": ['pdf'],
         "guiLabel": 'PDF file',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1065,8 +861,6 @@ class CPDFDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'scene',
         "mimeTypeName": 'application/CCP4-scene',
@@ -1074,20 +868,6 @@ class CPDFDataFile(CDataFile):
         "guiLabel": 'CCP4mg scene',
         "fileExtensions": ['scene.xml'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1134,7 +914,6 @@ class CSceneDataFile(CDataFile):
         "fileExtensions": ['xml'],
         "autoLoadHeader": True,
     },
-    qualifiers_order=['autoLoadHeader'],
 )
 class CI2XmlDataFile(CXmlDataFile):
 
@@ -1247,27 +1026,11 @@ class CI2XmlDataFile(CXmlDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/EBI-validation-xml',
         "fileExtensions": ['xml'],
         "guiLabel": 'EBI Validation XML',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},

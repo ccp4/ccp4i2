@@ -19,12 +19,9 @@ from ccp4i2.core.CCP4Data import CI2DataType, COneWord
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 1,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CImportedJobDataList(CList):
 
@@ -50,21 +47,11 @@ class CImportedJobDataList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CImportedJobData(CData):
 
@@ -275,14 +262,6 @@ class CImportedJobData(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CImportedJobDefinition(CContainer):
 

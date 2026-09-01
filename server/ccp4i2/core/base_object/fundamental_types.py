@@ -39,13 +39,6 @@ if TYPE_CHECKING:
         "menuText": [],
         "onlyEnumerators": False
     },
-    qualifiers_order=[
-        'min',
-        'max',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText'
-    ],
     gui_label="CInt",
 )
 class CInt(CData):
@@ -439,13 +432,6 @@ class CInt(CData):
         "menuText": [],
         "onlyEnumerators": False
     },
-    qualifiers_order=[
-        'min',
-        'max',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText'
-    ],
     gui_label="CFloat",
 )
 class CFloat(CData):
@@ -863,14 +849,6 @@ class CFloat(CData):
         "charWidth": -1,
         "allowedCharsCode": 0
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'
-    ],
     gui_label="CString",
 )
 class CString(CData):
@@ -1284,9 +1262,6 @@ class CString(CData):
     qualifiers={
         "menuText": ['NotImplemented', 'NotImplemented']
     },
-    qualifiers_order=[
-        'charWidth'
-    ],
     gui_label="CBoolean",
 )
 class CBoolean(CData):
@@ -1479,11 +1454,6 @@ class CBoolean(CData):
     qualifiers={
         "listMinLength": 0
     },
-    qualifiers_order=[
-        'listMinLength',
-        'listMaxLength',
-        'listCompare'
-    ],
     gui_label="CList",
 )
 class CList(CData):

@@ -54,7 +54,6 @@ class ClassMetadata:
     mime_type: Optional[str] = None
     gui_label: Optional[str] = None
     contents_order: Optional[List[str]] = None
-    qualifiers_order: Optional[List[str]] = None
     content_qualifiers: Optional[Dict[str, Dict[str, Any]]] = None  # Per-field qualifiers
     _owner_class: Optional[Type] = field(default=None, repr=False)
 
@@ -99,7 +98,6 @@ def cdata_class(
     mime_type: Optional[str] = None,
     gui_label: Optional[str] = None,
     contents_order: Optional[List[str]] = None,
-    qualifiers_order: Optional[List[str]] = None,
     content_qualifiers: Optional[Dict[str, Dict[str, Any]]] = None,
 ):
     """Class decorator to add metadata to CData classes.
@@ -118,7 +116,6 @@ def cdata_class(
         mime_type: MIME type for file classes
         gui_label: Label for GUI display
         contents_order: List specifying display order of attributes in UI
-        qualifiers_order: List specifying display order of qualifiers
         content_qualifiers: Per-field qualifiers for child attributes (from CONTENTS)
 
     Example:
@@ -146,7 +143,6 @@ def cdata_class(
             mime_type=mime_type,
             gui_label=gui_label,
             contents_order=contents_order,
-            qualifiers_order=qualifiers_order,
             content_qualifiers=content_qualifiers,
         )
 
@@ -536,6 +532,23 @@ class Content:
         self.qualifiers = qualifiers
         Content._counter += 1
         self.order = Content._counter          # declaration order, for py<3.7 safety
+
+    def __get__(self, obj, owner=None):
+        """Read as None from an instance that has no child of this name.
+
+        A non-data descriptor: it defines no __set__, so an instance's own
+        __dict__ wins and ordinary field access reaches the child directly.
+        This only fires on the fallback --- when the child is absent, which
+        `CDataFile.set()` produces when it unsets an attribute the incoming
+        value does not mention.
+
+        Without it the class attribute is the Content marker itself, which is
+        truthy, so `if not f.dbFileId` flips. An annotation left `None` there
+        and code was written against that.
+        """
+        if obj is None:
+            return self
+        return None
 
     def __set_name__(self, owner, name):
         """Record the declaration on the class as the class body runs.

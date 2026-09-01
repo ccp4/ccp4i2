@@ -189,20 +189,12 @@ def _compact_batch_ranges(numbers: list) -> str:
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "min": 0.0,
         "default": None,
         "allowUndefined": False,
         "toolTip": 'Cell length in A',
     },
-    qualifiers_order=[
-        'min',
-        'max',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText'],
 )
 class CCellLength(CFloat):
 
@@ -228,8 +220,6 @@ class CCellLength(CFloat):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/phaser-rfile',
         "mimeTypeDescription": 'Phaser rotation solution file',
@@ -239,20 +229,6 @@ class CCellLength(CFloat):
         "guiLabel": 'Phaser rotation solution',
         "toolTip": 'Phaser rfile solutions for rotation search',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -283,21 +259,11 @@ class CPhaserRFileDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CColumnGroup(CData):
 
@@ -359,12 +325,9 @@ class CColumnGroup(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CColumnGroupList(CList):
 
@@ -389,8 +352,6 @@ class CColumnGroupList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'mmCIF reflection data',
         "mimeTypeName": 'chemical/x-cif',
@@ -400,20 +361,6 @@ class CColumnGroupList(CList):
         "downloadModes": ['ebiSFs'],
         "helpFile": 'data_files#mmCIF',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -493,20 +440,6 @@ class CMmcifReflDataFile(CMmcifDataFile):
         "toolTip": "Experimental data in CCP4's MTZ format",
         "helpFile": 'data_files#MTZ',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -613,20 +546,11 @@ class CMtzDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "onlyEnumerators": True,
         "enumerators": ['native', 'derivative', 'SAD', 'peak', 'inflection', 'high_remote', 'low_remote', ''],
         "default": 'SAD',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CExperimentalDataType(CString):
 
@@ -652,21 +576,11 @@ class CExperimentalDataType(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAsuComponent(CData):
 
@@ -708,8 +622,6 @@ what we are searching for.
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/dials-pfile',
         "mimeTypeDescription": 'Dials pickle data file',
@@ -719,20 +631,6 @@ what we are searching for.
         "guiLabel": 'Xia2/Dials pickle data',
         "toolTip": 'Xia2/Dials pickle data files',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -761,8 +659,6 @@ class CDialsPickleFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "min": 0.0,
         "max": 180.0,
@@ -770,12 +666,6 @@ class CDialsPickleFile(CDataFile):
         "allowUndefined": True,
         "toolTip": 'Cell angle in degrees',
     },
-    qualifiers_order=[
-        'min',
-        'max',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText'],
 )
 class CCellAngle(CFloat):
 
@@ -814,14 +704,6 @@ class CCellAngle(CFloat):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMergeMiniMtz(CData):
 
@@ -849,13 +731,10 @@ class CMergeMiniMtz(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 2,
         "saveToDb": True,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CMergeMiniMtzList(CList):
 
@@ -875,8 +754,6 @@ class CMergeMiniMtzList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-unmerged-experimental',
         "mimeTypeDescription": 'Unmerged experimental data',
@@ -887,20 +764,6 @@ class CMergeMiniMtzList(CList):
         "downloadModes": ['ebiSFs'],
         "helpFile": 'data_files#unmerged_data',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -931,8 +794,6 @@ class CUnmergedDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/dials-jfile',
         "mimeTypeDescription": 'Dials json data file',
@@ -942,20 +803,6 @@ class CUnmergedDataFile(CDataFile):
         "guiLabel": 'json data',
         "toolTip": 'json data files',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -984,8 +831,6 @@ class CDialsJsonFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "onlyEnumerators": True,
         "default": 'UNDEFINED',
@@ -993,13 +838,6 @@ class CDialsJsonFile(CDataFile):
         "menuText": ['undefined', 'high remote', 'low remote', 'peak', 'inflection', 'native', 'derivative'],
         "toolTip": 'Hint to Shelx for the use of the dataset',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CShelxLabel(CString):
 
@@ -1041,14 +879,6 @@ class CShelxLabel(CString):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CReindexOperator(CData):
 
@@ -1076,18 +906,10 @@ class CReindexOperator(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "min": 0.0,
         "toolTip": 'Data collection wavelength in Angstrom',
     },
-    qualifiers_order=[
-        'min',
-        'max',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText'],
 )
 class CWavelength(CFloat):
 
@@ -1124,14 +946,6 @@ class CWavelength(CFloat):
     qualifiers={
         "toolTip": 'Specify range of reflections to treat as one run',
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CRunBatchRange(CData):
 
@@ -1195,13 +1009,6 @@ class CRunBatchRange(CData):
         "toolTip": 'Hermann-Mauguin space group name',
         "helpFile": 'crystal_data#space_group',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CSpaceGroup(CString):
 
@@ -1255,21 +1062,12 @@ class CSpaceGroup(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": False,
         "allowedChars": 1,
         "minLength": 1,
         "toolTip": 'Unique identifier for dataset (one word)',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CDatasetName(CString):
 
@@ -1355,22 +1153,6 @@ class CDatasetName(CString):
         "toolTip": 'Mini-MTZ file containing reflection,phases,FreeR set or map coefficients',
         "helpFile": 'data_files#MTZ',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag',
-        'correctColumns',
-        'columnGroupClassList',
-        'sameCrystalAs'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1609,12 +1391,9 @@ class CMiniMtzDataFile(CMtzDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CMiniMtzDataFileList(CList):
 
@@ -1634,12 +1413,9 @@ class CMiniMtzDataFileList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CUnmergedDataFileList(CList):
 
@@ -1668,20 +1444,11 @@ class CUnmergedDataFileList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
         "onlyEnumerators": True,
         "default": 'F',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CColumnType(CString):
 
@@ -1707,12 +1474,9 @@ class CColumnType(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CColumnTypeList(CList):
 
@@ -1738,8 +1502,6 @@ class CColumnTypeList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/phaser-sol',
         "mimeTypeDescription": 'Phaser solution file',
@@ -1750,20 +1512,6 @@ class CColumnTypeList(CList):
         "toolTip": 'Possible solutions passed between runs of the Phaser program',
         "helpFile": 'data_files#phasersol',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1794,12 +1542,9 @@ class CPhaserSolDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 1,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CImportUnmergedList(CList):
 
@@ -1827,8 +1572,6 @@ class CImportUnmergedList(CList):
         self.set_qualifier('subItem', {'class': CImportUnmerged, 'qualifiers': {}})
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-shelx-FA',
         "mimeTypeDescription": 'Shelx FA',
@@ -1839,20 +1582,6 @@ class CImportUnmergedList(CList):
         "toolTip": 'Data used by Shelx programs',
         "helpFile": 'data_files#shelxfa',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1882,20 +1611,11 @@ class CShelxFADataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "toolTip": 'Hermann-Mauguin space group name',
         "helpFile": 'crystal_data#space_group',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CAltSpaceGroup(CSpaceGroup):
 
@@ -1921,12 +1641,9 @@ class CAltSpaceGroup(CSpaceGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CAltSpaceGroupList(CList):
 
@@ -1951,21 +1668,11 @@ class CAltSpaceGroupList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMtzDataset(CData):
 
@@ -1992,12 +1699,9 @@ class CMtzDataset(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CImageFileList(CList):
 
@@ -2023,13 +1727,10 @@ class CImageFileList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 1,
         "guiLabel": 'Contents of asymmetric unit',
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CAsuComponentList(CList):
 
@@ -2055,8 +1756,6 @@ class CAsuComponentList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Reflection data',
         "mimeTypeName": 'application/CCP4-generic-reflections',
@@ -2066,20 +1765,6 @@ class CAsuComponentList(CList):
         "downloadModes": ['ebiSFs'],
         "helpFile": 'import_merged#file_formats',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2147,12 +1832,9 @@ class CGenericReflDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CXia2ImageSelectionList(CList):
 
@@ -2178,21 +1860,11 @@ class CXia2ImageSelectionList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CFormFactor(CData):
 
@@ -2221,21 +1893,12 @@ class CFormFactor(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "onlyEnumerators": False,
         "enumerators": ['Br', 'Fe', 'Pt', 'Se'],
         "charWidth": 4,
         "default": 'Se',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CAnomalousScatteringElement(CElement):
 
@@ -2261,8 +1924,6 @@ class CAnomalousScatteringElement(CElement):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-image',
         "mimeTypeDescription": 'Image file',
@@ -2271,20 +1932,6 @@ class CAnomalousScatteringElement(CElement):
         "guiLabel": 'Image file',
         "toolTip": 'First image file in a directory',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2345,7 +1992,6 @@ class CImageFile(CDataFile):
         "toolTipList": [],
         "default": [],
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CProgramColumnGroup(CData):
 
@@ -2496,8 +2142,6 @@ class CProgramColumnGroup(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/refmac-keywords',
         "mimeTypeDescription": 'Refmac keyword file',
@@ -2507,20 +2151,6 @@ class CProgramColumnGroup(CData):
         "guiLabel": 'Refmac keyword file',
         "toolTip": 'A file containing keywords as they are meant to be read by refmac5',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2559,14 +2189,6 @@ class CRefmacKeywordFile(CDataFile):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CResolutionRange(CFloatRange):
 
@@ -2655,8 +2277,6 @@ class CResolutionRange(CFloatRange):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-map',
         "mimeTypeDescription": 'Map',
@@ -2666,20 +2286,6 @@ class CResolutionRange(CFloatRange):
         "toolTip": 'A map in CCP4/MRC format',
         "helpFile": 'data_files#map_files',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2720,12 +2326,9 @@ class CMapDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CRunBatchRangeList(CList):
 
@@ -2751,12 +2354,9 @@ class CRunBatchRangeList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CDatasetList(CList):
 
@@ -2782,8 +2382,6 @@ class CDatasetList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'imosflm',
         "mimeTypeName": 'application/iMosflm-xml',
@@ -2792,20 +2390,6 @@ class CDatasetList(CList):
         "fileExtensions": ['imosflm.xml'],
         "fileContentClassName": None,
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2836,21 +2420,12 @@ class CImosflmXmlDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": False,
         "minLength": 1,
         "allowedChars": 1,
         "toolTip": 'Unique identifier for crystal (one word)',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CCrystalName(CString):
 
@@ -2877,8 +2452,6 @@ class CCrystalName(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-unmerged',
         "mimeTypeDescription": 'MTZ unmerged experimental data',
@@ -2887,20 +2460,6 @@ class CCrystalName(CString):
         "guiLabel": 'Unmerged MTZ reflections',
         "toolTip": "Unmerged experimental data in CCP4's MTZ format",
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -3023,20 +2582,11 @@ class CCell(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
         "onlyEnumerators": True,
         "default": 'F',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CMtzColumnGroupType(CColumnType):
 
@@ -3066,21 +2616,11 @@ class CMtzColumnGroupType(CColumnType):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMtzColumn(CData):
 
@@ -3124,14 +2664,6 @@ class CMtzColumn(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CColumnGroupItem(CData):
 
@@ -3163,19 +2695,9 @@ class CColumnGroupItem(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "toolTip": 'select an image file and an optional range of files to define a dataset',
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CXia2ImageSelection(CData):
 
@@ -3203,12 +2725,9 @@ class CXia2ImageSelection(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Anomalous structure factors and sigma',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CFPairColumnGroup(CProgramColumnGroup):
 
@@ -3234,12 +2753,9 @@ class CFPairColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Anomalous intensities and sigma',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CIPairColumnGroup(CProgramColumnGroup):
 
@@ -3265,12 +2781,9 @@ class CIPairColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Structure factor and phase to define a map',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CMapColumnGroup(CProgramColumnGroup):
 
@@ -3296,12 +2809,9 @@ class CMapColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Hendrickson-Lattmann coefficients',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CHLColumnGroup(CProgramColumnGroup):
 
@@ -3327,12 +2837,9 @@ class CHLColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Set of FreeR flags',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CFreeRColumnGroup(CProgramColumnGroup):
 
@@ -3358,12 +2865,9 @@ class CFreeRColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Structure factor and sigma',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CFSigFColumnGroup(CProgramColumnGroup):
 
@@ -3389,13 +2893,10 @@ class CFSigFColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "toolTipList": ['The real part of the experimental intensity', 'The anomalous part of the experimental intensity'],
         "guiLabel": 'Intensity and anomalous intensity',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CAnomalousIntensityColumnGroup(CProgramColumnGroup):
 
@@ -3422,12 +2923,9 @@ Expected to be part of ab initio phasing dataset ( CDataset)
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Intensity and sigma',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CISigIColumnGroup(CProgramColumnGroup):
 
@@ -3454,12 +2952,9 @@ class CISigIColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "toolTipList": ['The real part of the experimental structure factors', 'The anomalous part of the experimental structure factors'],
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CAnomalousColumnGroup(CProgramColumnGroup):
 
@@ -3486,8 +2981,6 @@ Expected to be part of ab initio phasing dataset ( CDataset)
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-map',
         "mimeTypeDescription": 'MTZ F-phi',
@@ -3501,22 +2994,6 @@ Expected to be part of ab initio phasing dataset ( CDataset)
         "downloadModes": ['PDB-REDO'],
         "helpFile": 'data_files#MapCoeffs',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag',
-        'correctColumns',
-        'columnGroupClassList',
-        'sameCrystalAs'],
     content_qualifiers={
         "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['normal map', 'difference map', 'anomalous difference map']},
         "contentFlag": {'min': 0, 'default': None},
@@ -3609,22 +3086,6 @@ class CMapCoeffsDataFile(CMiniMtzDataFile):
         "downloadModes": ['ebiSFs'],
         "helpFile": 'data_files#Obs',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag',
-        'correctColumns',
-        'columnGroupClassList',
-        'sameCrystalAs'],
     content_qualifiers={
         "subType": {'default': 1, 'enumerators': [1, 2, 3], 'onlyEnumerators': True, 'menuText': ['observed data', 'derived data', 'reference data']},
         "contentFlag": {'min': 0, 'default': None},
@@ -3851,12 +3312,9 @@ class CObsDataFile(CMiniMtzDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Phase and figure of merit',
     },
-    qualifiers_order=['mtzFileKey', 'mustExist', 'toolTipList', 'default'],
 )
 class CPhiFomColumnGroup(CProgramColumnGroup):
     """
@@ -3879,8 +3337,6 @@ class CPhiFomColumnGroup(CProgramColumnGroup):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-phases',
         "mimeTypeDescription": 'MTZ phases',
@@ -3893,22 +3349,6 @@ class CPhiFomColumnGroup(CProgramColumnGroup):
         "columnGroupClassList": [CHLColumnGroup, CPhiFomColumnGroup],
         "helpFile": 'data_files#Phs',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag',
-        'correctColumns',
-        'columnGroupClassList',
-        'sameCrystalAs'],
     content_qualifiers={
         "subType": {'default': 1, 'enumerators': [1, 2], 'onlyEnumerators': True, 'menuText': ['unbiased data', 'biased data']},
         "contentFlag": {'min': 0, 'default': None},
@@ -4011,8 +3451,6 @@ class CPhsDataFile(CMiniMtzDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-mtz-freerflag',
         "mimeTypeDescription": 'FreeR flag',
@@ -4025,22 +3463,6 @@ class CPhsDataFile(CMiniMtzDataFile):
         "columnGroupClassList": [CFreeRColumnGroup],
         "helpFile": 'data_files#FreeR',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag',
-        'correctColumns',
-        'columnGroupClassList',
-        'sameCrystalAs'],
     content_qualifiers={
         "subType": {'enumerators': [], 'onlyEnumerators': True},
         "contentFlag": {'min': 0, 'default': None},
@@ -4117,14 +3539,6 @@ class CFreeRDataFile(CMiniMtzDataFile):
         "toolTip": 'Space group and cell length and angles',
         "helpFile": 'crystal_data#cell_space_group',
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CSpaceGroupCell(CData):
 
@@ -4166,14 +3580,6 @@ class CSpaceGroupCell(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMmcifReflData(CMmcifData):
 
@@ -4372,20 +3778,10 @@ specific to coordinates, reflections or geometry data.
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "toolTip": 'Imported data file, cell parameters and crystal/dataset identifiers',
         "helpFile": 'import_merged#file_formats',
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CImportUnmerged(CData):
 
@@ -4543,14 +3939,6 @@ class CImportUnmerged(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMtzData(CDataFileContent):
 
@@ -5170,21 +4558,11 @@ class CMtzData(CDataFileContent):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CUnmergedDataContent(CDataFileContent):
 
@@ -5873,21 +5251,11 @@ class CUnmergedDataContent(CDataFileContent):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMtzColumnGroup(CData):
 
@@ -5914,21 +5282,11 @@ class CMtzColumnGroup(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CDataset(CData):
 
@@ -5989,7 +5347,6 @@ class CDataset(CData):
         "mtzFileKey": '',
         "groupTypes": [],
     },
-    qualifiers_order=['groupTypes', 'mtzFileKey', 'mustExist'],
 )
 class CProgramColumnGroup0(CData):
 
@@ -6017,28 +5374,12 @@ class CProgramColumnGroup0(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": '"application/phasertng-dag"',
         "mimeTypeDescription": 'PhaserTNG DAG file',
         "fileLabel": None,
         "fileExtensions": ['cards'],
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},

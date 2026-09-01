@@ -23,14 +23,6 @@ This file is safe to edit - add your implementation code here.
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CBibReference(CData):
 
@@ -79,14 +71,6 @@ class CBibReference(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CBibReferenceGroup(CData):
 
@@ -117,21 +101,11 @@ class CBibReferenceGroup(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CFont(CData):
 
@@ -172,19 +146,10 @@ class CFont(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "label": 'User id',
         "toolTip": 'User id as me@myplace.ac.uk',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CUserId(CString):
 
@@ -210,15 +175,12 @@ class CUserId(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "min": 0,
         "label": 'Time',
         "toolTip": 'Time and date as hh:mm dd/mm/yyyy',
         "format": '%H:%M %d/%b/%y',
     },
-    qualifiers_order=['format'],
 )
 class CTime(CInt):
 
@@ -244,12 +206,9 @@ class CTime(CInt):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CAnnotationList(CList):
 
@@ -275,13 +234,10 @@ class CAnnotationList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "enumeratorsFunction": None,
         "addEnumeratorFunction": None,
     },
-    qualifiers_order=['enumeratorsFunction', 'addEnumeratorFunction'],
 )
 class CMetaDataTag(CData):
 
@@ -309,21 +265,11 @@ class CMetaDataTag(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CDateRange(CData):
 
@@ -359,8 +305,6 @@ class CDateRange(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "minLength": None,
         "maxLength": None,
@@ -370,13 +314,6 @@ class CDateRange(CData):
         "charWidth": -1,
         "allowedCharsCode": 0,
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CAuthor(CString):
 
@@ -402,19 +339,10 @@ class CAuthor(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "label": 'Machine name',
         "toolTip": 'Hostname as mycomputer.myplace.ac.uk',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CHostName(CString):
 
@@ -440,12 +368,9 @@ class CHostName(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 1,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CMetaDataTagList(CList):
 
@@ -471,21 +396,11 @@ class CMetaDataTagList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CServerGroup(CData):
 
@@ -530,20 +445,10 @@ class CServerGroup(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "label": 'User id and current machine',
         "toolTip": 'User id as me@myplace.ac.uk and machine name',
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CUserAddress(CData):
 
@@ -572,20 +477,10 @@ class CUserAddress(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "label": 'Annotation',
         "toolTip": 'Enter your comments',
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAnnotation(CData):
 
@@ -615,19 +510,10 @@ class CAnnotation(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "label": 'Machine name',
         "toolTip": 'Hostname as mycomputer.myplace.ac.uk',
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CHostname(CHostName):
 

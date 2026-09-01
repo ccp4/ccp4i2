@@ -19,18 +19,9 @@ from ccp4i2.core.CCP4Data import CI2DataType, COneWord
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "enumerators": ['unknown', 'input', 'output', 'control parameter', 'log'],
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CCustomTaskFileFunction(CString):
 
@@ -56,12 +47,9 @@ class CCustomTaskFileFunction(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CCustomTaskParamList(CList):
 
@@ -87,21 +75,11 @@ class CCustomTaskParamList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CCustomComFile(CData):
 
@@ -310,14 +288,6 @@ class CCustomComFile(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CCustomTaskDefinition(CContainer):
 
@@ -341,12 +311,9 @@ class CCustomTaskDefinition(CContainer):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CCustomComFileList(CList):
 
@@ -372,21 +339,11 @@ class CCustomComFileList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CCustomTaskParam(CData):
 

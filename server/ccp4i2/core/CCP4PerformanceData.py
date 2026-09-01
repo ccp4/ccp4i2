@@ -44,14 +44,6 @@ from ccp4i2.core.CCP4XtalData import CSpaceGroup
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CPerformanceIndicator(CData):
 
@@ -120,21 +112,11 @@ class CPerformanceIndicator(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['spaceGroup', 'highResLimit', 'rMeas'],
 )
 class CDataReductionPerformance(CPerformanceIndicator):
@@ -167,21 +149,11 @@ class CDataReductionPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['cutoff'],
 )
 class CPairefPerformance(CPerformanceIndicator):
@@ -212,21 +184,11 @@ class CPairefPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['spaceGroup', 'highResLimit', 'ccHalf'],
 )
 class CDataReductionCCPerformance(CPerformanceIndicator):
@@ -259,21 +221,11 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['RFactor', 'RFree', 'R', 'R1Factor', 'R1Free', 'R1', 'FSCaverage', 'annotation'],
 )
 class CServalcatPerformance(CPerformanceIndicator):
@@ -316,21 +268,11 @@ class CServalcatPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['FOM', 'CFOM', 'Hand1Score', 'Hand2Score', 'CC', 'RFactor', 'RFree', 'annotation'],
 )
 class CExpPhasPerformance(CPerformanceIndicator):
@@ -367,21 +309,11 @@ class CExpPhasPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['nAtoms', 'nResidues'],
 )
 class CAtomCountPerformance(CPerformanceIndicator):
@@ -453,21 +385,11 @@ class CAtomCountPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['RFactor', 'completeness', 'annotation'],
 )
 class CModelBuildPerformance(CPerformanceIndicator):
@@ -499,21 +421,11 @@ class CModelBuildPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['RFactor', 'RFree', 'RMSBond', 'RMSAngle', 'weightUsed', 'annotation'],
 )
 class CRefinementPerformance(CPerformanceIndicator):
@@ -548,21 +460,11 @@ class CRefinementPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['RMSxyz', 'nResidues'],
 )
 class CSuperposePerformance(CPerformanceIndicator):
@@ -594,21 +496,11 @@ class CSuperposePerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['spaceGroup', 'highResLimit', 'rMeas', 'RFactor', 'RFree'],
 )
 class CDataReductionRefinementPerformance(CPerformanceIndicator):
@@ -642,21 +534,11 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['phaseError', 'weightedPhaseError', 'reflectionCorrelation'],
 )
 class CPhaseErrorPerformance(CPerformanceIndicator):
@@ -689,21 +571,11 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
     contents_order=['columnLabelsString'],
 )
 class CTestObsConversionsPerformance(CPerformanceIndicator):

@@ -199,14 +199,6 @@ from ccp4i2.core.base_object.base_classes import CContainer
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CPreferences(CContainer):
 

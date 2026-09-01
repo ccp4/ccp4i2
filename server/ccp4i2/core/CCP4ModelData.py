@@ -37,7 +37,6 @@ from ccp4i2.core.CCP4File import CFilePath, CI2XmlDataFile, CProjectId
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CSeqDataFileList(CList):
 
@@ -63,8 +62,6 @@ class CSeqDataFileList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "mimeTypeName": 'application/CCP4-asu-content',
         "mimeTypeDescription": 'AU content',
@@ -77,7 +74,6 @@ class CSeqDataFileList(CList):
         "saveToDb": True,
         "selectionMode": 0,
     },
-    qualifiers_order=['autoLoadHeader'],
     content_qualifiers={
         'subType': {'default': None},
         'contentFlag': {'min': 0, 'default': None},
@@ -323,21 +319,11 @@ class CAsuDataFile(CI2XmlDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAtomRefmacSelection(CData):
 
@@ -393,12 +379,9 @@ class CAtomRefmacSelection(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CAtomRefmacSelectionList(CList):
 
@@ -418,21 +401,11 @@ class CAtomRefmacSelectionList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAtomRefmacSelectionOccupancy(CData):
 
@@ -465,12 +438,9 @@ class CAtomRefmacSelectionOccupancy(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CResidueRangeList(CList):
 
@@ -496,8 +466,6 @@ class CResidueRangeList(CList):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'tls',
         "mimeTypeName": 'application/refmac-TLS',
@@ -508,20 +476,6 @@ class CResidueRangeList(CList):
         "fileContentClassName": None,
         "helpFile": 'model_data#tls_file',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -552,21 +506,11 @@ class CTLSDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CTLSRange(CData):
 
@@ -583,12 +527,9 @@ class CTLSRange(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CTLSRangeList(CList):
 
@@ -622,13 +563,6 @@ class CTLSRangeList(CList):
         "charWidth": -1,
         "allowedCharsCode": 0,
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CSequenceString(CString):
 
@@ -654,8 +588,6 @@ class CSequenceString(CString):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'HHPred sequence search',
         "mimeTypeName": 'application/HHPred-alignments',
@@ -666,20 +598,6 @@ class CSequenceString(CString):
         "fileContentClassName": 'CHhpredData',
         "helpFile": 'model_data#ali',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -717,13 +635,6 @@ class CHhpredDataFile(CDataFile):
         "onlyEnumerators": True,
         "enumerators": ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn'],
     },
-    qualifiers_order=[
-        'minLength',
-        'maxLength',
-        'onlyEnumerators',
-        'enumerators',
-        'menuText',
-        'allowedCharsCode'],
 )
 class CElement(COneWord):
 
@@ -1097,14 +1008,6 @@ class CBioPythonSeqInterface:
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CSequence(CData, CBioPythonSeqInterface):
 
@@ -1356,21 +1259,11 @@ class CSequence(CData, CBioPythonSeqInterface):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CSequenceAlignment(CData, CBioPythonSeqInterface):
 
@@ -1470,8 +1363,6 @@ class CSequenceAlignment(CData, CBioPythonSeqInterface):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'Blast sequence search',
         "mimeTypeName": 'application/Blast-alignments',
@@ -1482,20 +1373,6 @@ class CSequenceAlignment(CData, CBioPythonSeqInterface):
         "fileContentClassName": 'CBlastData',
         "helpFile": 'model_data#ali',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1553,14 +1430,6 @@ class CBlastDataFile(CDataFile):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CDictData(CData):
 
@@ -1597,21 +1466,11 @@ class CDictData(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CMonomer(CData):
 
@@ -1643,21 +1502,11 @@ class CMonomer(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CBlastItem(CData):
 
@@ -1685,21 +1534,11 @@ class CBlastItem(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAtomRefmacSelectionGroups(CData):
 
@@ -1727,12 +1566,9 @@ class CAtomRefmacSelectionGroups(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class COccRelationRefmacList(CList):
 
@@ -1779,20 +1615,6 @@ class COccRelationRefmacList(CList):
         "fileContentClassName": 'CDictData',
         "helpFile": 'model_data#ligand_geometry',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -1823,20 +1645,10 @@ class CDictDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "guiLabel": 'Ensemble',
         "allowUndefined": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CEnsemble(CData):
 
@@ -1888,12 +1700,9 @@ A single ensemble is a CList of structures.
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "pdbFileKey": None,
     },
-    qualifiers_order=['pdbFileKey'],
 )
 class CResidueRange(CData):
 
@@ -1923,19 +1732,9 @@ class CResidueRange(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "pdbFileKey": '',
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAtomSelection(CData):
 
@@ -1978,14 +1777,6 @@ class CAtomSelection(CData):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CBlastData(CDataFileContent):
 
@@ -2027,14 +1818,6 @@ class CBlastData(CDataFileContent):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CHhpredData(CDataFileContent):
 
@@ -2084,12 +1867,9 @@ EXTLIST = {
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CPdbDataFileList(CList):
 
@@ -2185,8 +1965,6 @@ def detect_coordinate_format(path, sniff_lines: int = 200):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'mol2',
         "mimeTypeName": 'chemical/x-mol2',
@@ -2197,20 +1975,6 @@ def detect_coordinate_format(path, sniff_lines: int = 200):
         "fileContentClassName": None,
         "helpFile": 'model_data#mol2_file',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2458,12 +2222,9 @@ class CPdbDataComposition:
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class COccRefmacSelectionList(CList):
 
@@ -2502,14 +2263,6 @@ class COccRefmacSelectionList(CList):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CSequenceMeta(CData):
 
@@ -2556,20 +2309,6 @@ class CSequenceMeta(CData):
         "downloadModes": ['uniprotFasta', 'ebiPdb', 'rcsbPdb'],
         "helpFile": 'model_data#sequences',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2647,7 +2386,6 @@ class CSeqDataFile(CDataFile):
         "toolTip": 'Multiple sequence alignment in any of the common formats (pir,fasta..)',
         "helpFile": 'model_data#alignments',
     },
-    qualifiers_order=['requiredSequences'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -2790,21 +2528,11 @@ class CSeqAlignDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CHhpredItem(CData):
 
@@ -2832,12 +2560,9 @@ class CHhpredItem(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "listMinLength": 1,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CEnsembleList(CList):
 
@@ -2936,14 +2661,6 @@ class CEnsembleList(CList):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CPdbData(CDataFileContent):
 
@@ -3269,14 +2986,6 @@ class CPdbData(CDataFileContent):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CChemComp(CData):
 
@@ -3310,8 +3019,6 @@ class CChemComp(CData):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "fileLabel": 'mol',
         "mimeTypeName": 'chemical/x-mdl-molfile',
@@ -3322,20 +3029,6 @@ class CChemComp(CData):
         "fileContentClassName": None,
         "helpFile": 'model_data#mol_file',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': None},
         "contentFlag": {'min': 0, 'default': None},
@@ -3369,21 +3062,11 @@ class CMDLMolDataFile(CDataFile):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAsuContentSeq(CData):
 
@@ -3706,7 +3389,6 @@ class CAsuContentSeq(CData):
     qualifiers={
         "listMinLength": 0,
     },
-    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
 )
 class CAsuContentSeqList(CList):
 
@@ -3840,20 +3522,6 @@ class CAsuContentSeqList(CList):
         "downloadModes": ['ebiPdb', 'rcsbPdb', 'uniprotAFPdb'],
         "helpFile": 'model_data#coordinate_files',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         'subType': {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
         'contentFlag': {'min': 0, 'default': None},
@@ -4407,14 +4075,6 @@ class CPdbDataFile(CDataFile):
         "guiDefinition": {},
         "saveToDb": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CAsuContent(CDataFileContent):
 
@@ -4541,8 +4201,6 @@ class CAsuContent(CDataFileContent):
 
 
 @cdata_class(
-    error_codes={
-    },
     qualifiers={
         "allowUndefined": True,
         "mustExist": False,
@@ -4564,20 +4222,6 @@ class CAsuContent(CDataFileContent):
         "downloadModes": [],
         "helpFile": 'model_data#ensemble_coordinate_files',
     },
-    qualifiers_order=[
-        'fileExtensions',
-        'mimeTypeName',
-        'mimeTypeDescription',
-        'fileLabel',
-        'allowUndefined',
-        'mustExist',
-        'fromPreviousJob',
-        'jobCombo',
-        'fileContentClassName',
-        'isDirectory',
-        'saveToDb',
-        'requiredSubType',
-        'requiredContentFlag'],
     content_qualifiers={
         "subType": {'default': 0, 'enumerators': [0, 1, 2, 3, 4], 'onlyEnumerators': True, 'menuText': ['unknown', 'model', 'homolog', 'fragment', 'heavy atoms']},
         "contentFlag": {'min': 0, 'default': None},
@@ -4618,14 +4262,6 @@ class CEnsemblePdbDataFile(CPdbDataFile):
         "toolTip": 'Homologous model and its similarity to the target structure',
         "allowUndefined": False,
     },
-    qualifiers_order=[
-        'allowUndefined',
-        'default',
-        'toolTip',
-        'guiLabel',
-        'guiDefinition',
-        'helpFile',
-        'saveToDb'],
 )
 class CPdbEnsembleItem(CData):
 

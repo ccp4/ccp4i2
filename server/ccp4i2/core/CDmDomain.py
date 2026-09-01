@@ -17,17 +17,13 @@ why the two halves were both in this file.
 Resolvable by the def.xml class-name lookup via ``ccp4i2.core.CDmDomain``.
 """
 from ccp4i2.core.base_object.class_metadata import (
-    cdata_class, attribute, AttributeType)
+    cdata_class, attribute, AttributeType, content)
 from ccp4i2.core.CCP4Data import CData
 
 
 
 
 @cdata_class(
-    attributes={
-        "segments": attribute(AttributeType.STRING),
-        "mode": attribute(AttributeType.STRING),
-    },
     contents_order=['segments', 'mode'],
     content_qualifiers={
         "segments": {
@@ -51,6 +47,9 @@ from ccp4i2.core.CCP4Data import CData
     },
 )
 class CDmDomain(CData):
+
+    segments = content("CString")
+    mode = content("CString")
     pass
     """A rigid body for multi-domain NCS averaging: one or more residue-range
     segments (possibly spanning several chains via roles) plus how it should be
