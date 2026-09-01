@@ -8,8 +8,8 @@ from ccp4i2.core.base_object.cdata_file import CDataFile
 from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.core.CCP4XtalData import CMtzDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
-# stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
-from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
+# stubs (CMtzDataFile) not implementations (CMtzDataFile)
+from ccp4i2.core.CCP4XtalData import CMtzDataFile
 from django.utils.text import slugify
 from django.http import HttpRequest
 from ccp4i2.core import CCP4File
@@ -355,14 +355,14 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
     # Check MRO for debugging
     logger.info("param_object MRO: %s", [c.__name__ for c in type(param_object).__mro__])
-    logger.info("isinstance CMtzDataFileStub check: %s", isinstance(param_object, CMtzDataFileStub))
+    logger.info("isinstance CMtzDataFile check: %s", isinstance(param_object, CMtzDataFile))
 
     # Reached here and confirmed that the param to which we are associating the file is
-    # based on CDataFile. Use CMtzDataFileStub for isinstance check because subclasses
+    # based on CDataFile. Use CMtzDataFile for isinstance check because subclasses
     # like CObsDataFile inherit from stubs, not implementation classes.
     initial_download_project_folder = (
         "CCP4_DOWNLOADED_FILES"
-        if isinstance(param_object, CMtzDataFileStub)
+        if isinstance(param_object, CMtzDataFile)
         else "CCP4_IMPORTED_FILES"
     )
     logger.info("initial_download_project_folder: %s", initial_download_project_folder)
@@ -381,7 +381,7 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     # Track metadata from MTZ splitting for richer annotations
     mtz_metadata = None
 
-    if isinstance(param_object, CMtzDataFileStub):
+    if isinstance(param_object, CMtzDataFile):
         # Check for enhanced multi-selector format first (JSON array)
         column_selectors_json = request.POST.get("column_selectors", None)
         column_selector = request.POST.get("column_selector", None)

@@ -7,234 +7,60 @@ This file is safe to edit - add your implementation code here.
 
 from typing import Optional, Any
 
-from ccp4i2.core.cdata_stubs.CCP4Data import CBaseDataStub, CCollectionStub, CDictStub, CFloatRangeStub, CFollowFromJobStub, CI2DataTypeStub, CIntRangeStub, CJobStatusStub, CJobTitleStub, COneWordStub, COutputFileListStub, CPatchSelectionStub, CRangeStub, CRangeSelectionStub, CSMILESStringStub, CUUIDStub
 
 # Re-export fundamental types for legacy code compatibility
 # Many legacy files use "CCP4Data.CList", "CCP4Data.CString", etc.
 # which are actually in base_object.fundamental_types
 from ccp4i2.core.base_object.fundamental_types import CList, CString, CInt, CFloat, CBoolean
+from typing import TYPE_CHECKING, Optional, Any
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.base_classes import CData
+from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CString
 
 
-class CBaseData(CBaseDataStub):
-    """
-    Base class for simple classes
-    
-    Extends CBaseDataStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CCollection(CCollectionStub):
-    """
-    Extends CCollectionStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CDict(CDictStub, CCollection):
-    """
-    Dictionary-like CData type for key-value storage.
-
-    Inherits from:
-    - CDictStub: Metadata and structure
-    - CCollection: Shared full-fat methods
-
-    Used for selection dictionaries in ASU files and similar key-value data.
-    Behaves like a Python dict with __getitem__, __setitem__, etc.
-
-    For unset keys, returns True by default (all items selected).
-    """
+@cdata_class(
+    error_codes={
+        "105": {
+            "description": "Word contains white space"
+        }
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+        "patternRegex": r"^\S+$",
+        "patternErrorMessage": "Word must not contain whitespace",
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode',
+        'patternRegex',
+        'patternErrorMessage'],
+)
+class COneWord(CString):
 
     def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize CDict with an empty internal dictionary."""
-        super().__init__(parent=parent, name=name, **kwargs)
-        self._dict_data: dict = {}
-
-    def __getitem__(self, key: str) -> Any:
-        """Get value for key. Returns True if key not found (default selected)."""
-        return self._dict_data.get(key, True)
-
-    def __setitem__(self, key: str, value: Any) -> None:
-        """Set value for key."""
-        self._dict_data[key] = value
-
-    def __delitem__(self, key: str) -> None:
-        """Delete key from dictionary."""
-        del self._dict_data[key]
-
-    def __contains__(self, key: str) -> bool:
-        """Check if key exists in dictionary."""
-        return key in self._dict_data
-
-    def __len__(self) -> int:
-        """Return number of keys in dictionary."""
-        return len(self._dict_data)
-
-    def __iter__(self):
-        """Iterate over keys."""
-        return iter(self._dict_data)
-
-    def keys(self):
-        """Return dictionary keys."""
-        return self._dict_data.keys()
-
-    def values(self):
-        """Return dictionary values."""
-        return self._dict_data.values()
-
-    def items(self):
-        """Return dictionary items."""
-        return self._dict_data.items()
-
-    def get(self, key: str = None, default: Any = True) -> Any:
-        """Get value for key with default, or return all data if no key specified.
-
-        When called with no arguments (for CData serialization), returns the
-        internal dictionary data. When called with a key argument (dict-style
-        access), returns the value for that key with the given default.
+        """
+        Initialize COneWord.
 
         Args:
-            key: Optional key to look up. If None, returns all data.
-            default: Default value if key not found (default: True for "selected")
-
-        Returns:
-            Value for key, or dict of all data if no key specified.
-        """
-        if key is None:
-            # CData serialization - return all data
-            return self._dict_data.copy()
-        return self._dict_data.get(key, default)
-
-    def setdefault(self, key: str, default: Any = True) -> Any:
-        """Set default value for key if not present."""
-        return self._dict_data.setdefault(key, default)
-
-    def update(self, other: dict = None, **kwargs) -> None:
-        """Update dictionary with another dict or keyword args."""
-        if other:
-            self._dict_data.update(other)
-        self._dict_data.update(kwargs)
-
-    def clear(self) -> None:
-        """Clear all items from dictionary."""
-        self._dict_data.clear()
-
-
-class CFloatRange(CFloatRangeStub):
-    """
-    Two floats defining start and end of range
-
-    Extends CFloatRangeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize CFloatRange with .start and .end not set by default.
-
-        This ensures that range fields are only marked as EXPLICITLY_SET when
-        actually assigned by user code, preventing them from appearing in
-        serialized XML when using excludeUnset=True.
-
-        Note: Smart assignment is now handled by the base CData class, which
-        only copies CData fields that are explicitly set (isSet(allowDefault=False)).
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-
-        # Mark .start and .end as NOT_SET so they won't be serialized unless explicitly set
-        from ccp4i2.core.base_object.cdata import ValueState
-        if hasattr(self, 'start') and hasattr(self.start, '_value_states'):
-            self.start._value_states['value'] = ValueState.NOT_SET
-        if hasattr(self, 'end') and hasattr(self.end, '_value_states'):
-            self.end._value_states['value'] = ValueState.NOT_SET
-
-
-class CFollowFromJob(CFollowFromJobStub):
-    """
-    A string
-    
-    Extends CFollowFromJobStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CI2DataType(CI2DataTypeStub):
-    """
-    A string
-    
-    Extends CI2DataTypeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CIntRange(CIntRangeStub):
-    """
-    Two integers defining start and end of range
-
-    Extends CIntRangeStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize CIntRange with .start and .end not set by default.
-
-        This ensures that range fields are only marked as EXPLICITLY_SET when
-        actually assigned by user code, preventing them from appearing in
-        serialized XML when using excludeUnset=True.
-
-        Note: Smart assignment is handled by the base CData class, which
-        only copies CData fields that are explicitly set (isSet(allowDefault=False)).
-        """
-        super().__init__(parent=parent, name=name, **kwargs)
-
-        # Mark .start and .end as NOT_SET so they won't be serialized unless explicitly set
-        from ccp4i2.core.base_object.cdata import ValueState
-        if hasattr(self, 'start') and hasattr(self.start, '_value_states'):
-            self.start._value_states['value'] = ValueState.NOT_SET
-        if hasattr(self, 'end') and hasattr(self.end, '_value_states'):
-            self.end._value_states['value'] = ValueState.NOT_SET
-
-
-class CJobStatus(CJobStatusStub):
-    """
-    An integer
-    
-    Extends CJobStatusStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CJobTitle(CJobTitleStub):
-    """
-    A string
-    
-    Extends CJobTitleStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class COneWord(COneWordStub):
     """
     A single word string - no white space
     
-    Extends COneWordStub with implementation-specific methods.
+    Extends COneWord with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -242,11 +68,42 @@ class COneWord(COneWordStub):
     pass
 
 
-class COutputFileList(COutputFileListStub):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CJobTitle(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CJobTitle.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    A list with all items of one CData sub-class
+    A string
     
-    Extends COutputFileListStub with implementation-specific methods.
+    Extends CJobTitle with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -254,21 +111,39 @@ class COutputFileList(COutputFileListStub):
     pass
 
 
-class CPatchSelection(CPatchSelectionStub):
-    """
-    Extends CPatchSelectionStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "max": None,
+        "min": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+    },
+    qualifiers_order=[
+        'min',
+        'max',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText'],
+)
+class CJobStatus(CInt):
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CJobStatus.
 
-
-class CRange(CRangeStub):
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Base class for CIntRange and CFloatRange
+    An integer
     
-    Extends CRangeStub with implementation-specific methods.
+    Extends CJobStatus with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -276,11 +151,230 @@ class CRange(CRangeStub):
     pass
 
 
-class CRangeSelection(CRangeSelectionStub):
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CCollection(CData):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CCollection.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CCollection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "enumerators": ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile', 'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
+        "menuText": [],
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CI2DataType(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CI2DataType.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string
+    
+    Extends CI2DataType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Range selection contains invalid character"
+        },
+        "202": {
+            "description": "Range selection contains bad syntax"
+        }
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CRangeSelection(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CRangeSelection.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     Range selection string (e.g., "1-10,15,20-25").
 
-    Extends CRangeSelectionStub with validation for range selection syntax.
+    Extends CRangeSelection with validation for range selection syntax.
     Validates format like "1-10,15,20-25" where ranges are specified as
     comma-separated numbers or hyphen-separated ranges.
     """
@@ -388,11 +482,49 @@ class CRangeSelection(CRangeSelectionStub):
         return err
 
 
-class CUUID(CUUIDStub):
+@cdata_class(
+    error_codes={
+        "105": {
+            "description": "Invalid UUID format"
+        }
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+        "patternRegex": r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        "patternErrorMessage": "Invalid UUID format (expected xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)",
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode',
+        'patternRegex',
+        'patternErrorMessage'],
+)
+class CUUID(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CUUID.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A string
 
-    Extends CUUIDStub with implementation-specific methods.
+    Extends CUUID with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -400,7 +532,47 @@ class CUUID(CUUIDStub):
     pass
 
 
-class CSMILESString(CSMILESStringStub):
+@cdata_class(
+    error_codes={
+        "201": {
+            "description": "Invalid SMILES string"
+        }
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+        # Basic pattern for SMILES: letters, digits, and common SMILES characters
+        # Real validation is done via RDKit in the implementation class
+        "patternRegex": r"^[A-Za-z0-9@+\-\[\]()=#/\\%.*:]+$",
+        "patternErrorMessage": "Invalid characters in SMILES string",
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode',
+        'patternRegex',
+        'patternErrorMessage'],
+)
+class CSMILESString(CString):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSMILESString.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     A SMILES (Simplified Molecular Input Line Entry System) string.
 
@@ -520,4 +692,623 @@ class CSMILESString(CSMILESStringStub):
             return Chem.MolFromSmiles(self.value)
         except Exception:
             return None
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['taskName', 'patch'],
+)
+class CPatchSelection(CData):
+
+    taskName: Optional["CString"] = None
+    patch: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPatchSelection.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Extends CPatchSelection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "listMinLength": 0,
+        "listMaxLength": 250,
+    },
+    qualifiers_order=[
+        'listMinLength',
+        'listMaxLength',
+        'listCompare',
+        'nameRoot'],
+)
+class COutputFileList(CList):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize COutputFileList.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A list with all items of one CData sub-class
+    
+    Extends COutputFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "End of range less than start"
+        },
+        "102": {
+            "description": "End of range greater than start"
+        }
+    },
+    qualifiers_order=['compare'],
+    contents_order=['start', 'end'],
+)
+class CRange(CData):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CRange.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Base class for CIntRange and CFloatRange
+    
+    Extends CRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+        "6": {
+            "description": "Default value does not satisfy validity check"
+        },
+        "7": {
+            "severity": 2,
+            "description": "Unrecognised qualifier in data input"
+        },
+        "8": {
+            "severity": 2,
+            "description": "Attempting to get inaccessible attribute:"
+        },
+        "9": {
+            "description": "Failed to get property"
+        },
+        "10": {
+            "severity": 2,
+            "description": "Attempting to set inaccessible attribute:"
+        },
+        "11": {
+            "description": "Failed to set property:"
+        },
+        "12": {
+            "description": "Undetermined error setting value from XML"
+        },
+        "13": {
+            "description": "Unrecognised class name in qualifier"
+        },
+        "14": {
+            "severity": 2,
+            "description": "No object name when saving qualifiers to XML"
+        },
+        "15": {
+            "description": "Error saving qualifier to XML"
+        },
+        "16": {
+            "severity": 2,
+            "description": "Unrecognised item in XML data file"
+        },
+        "17": {
+            "description": "Attempting to set unrecognised qualifier"
+        },
+        "18": {
+            "description": "Attempting to set qualifier with wrong type"
+        },
+        "19": {
+            "description": "Attempting to set qualifier with wrong list item type"
+        },
+        "20": {
+            "description": "Error creating a list/dict item object"
+        },
+        "21": {
+            "description": "Unknown error setting qualifiers from Xml file"
+        },
+        "22": {
+            "description": "Unknown error testing validity"
+        },
+        "23": {
+            "description": "Error saving data object to XML"
+        },
+        "24": {
+            "description": "Unable to test validity of default",
+            "severity": 2
+        },
+        "300": {
+            "description": "Compared objects are the same",
+            "severity": 0
+        },
+        "315": {
+            "description": "Both compared objects are null",
+            "severity": 0
+        },
+        "301": {
+            "description": "Unable to compare this class of data",
+            "severity": 2
+        },
+        "302": {
+            "description": "Other data has null value"
+        },
+        "303": {
+            "description": "My data has null value"
+        },
+        "304": {
+            "description": "Data has different values"
+        }
+    },
+    qualifiers={
+        "charWidth": 10,
+    },
+    qualifiers_order=['charWidth'],
+)
+class CBaseData(CData):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CBaseData.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Base class for simple classes
+    
+    Extends CBaseData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "Attempting to access unknown item"
+        },
+        "102": {
+            "description": "Unknown error trying to create new item"
+        },
+        "103": {
+            "description": "Attempting to add item which is not appropriate class"
+        }
+    },
+    qualifiers={
+        "default": {},
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+)
+class CDict(CCollection):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDict.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Dictionary-like CData type for key-value storage.
+
+    Inherits from:
+    - CDict: Metadata and structure
+    - CCollection: Shared full-fat methods
+
+    Used for selection dictionaries in ASU files and similar key-value data.
+    Behaves like a Python dict with __getitem__, __setitem__, etc.
+
+    For unset keys, returns True by default (all items selected).
+    """
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """Initialize CDict with an empty internal dictionary."""
+        super().__init__(parent=parent, name=name, **kwargs)
+        self._dict_data: dict = {}
+
+    def __getitem__(self, key: str) -> Any:
+        """Get value for key. Returns True if key not found (default selected)."""
+        return self._dict_data.get(key, True)
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        """Set value for key."""
+        self._dict_data[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        """Delete key from dictionary."""
+        del self._dict_data[key]
+
+    def __contains__(self, key: str) -> bool:
+        """Check if key exists in dictionary."""
+        return key in self._dict_data
+
+    def __len__(self) -> int:
+        """Return number of keys in dictionary."""
+        return len(self._dict_data)
+
+    def __iter__(self):
+        """Iterate over keys."""
+        return iter(self._dict_data)
+
+    def keys(self):
+        """Return dictionary keys."""
+        return self._dict_data.keys()
+
+    def values(self):
+        """Return dictionary values."""
+        return self._dict_data.values()
+
+    def items(self):
+        """Return dictionary items."""
+        return self._dict_data.items()
+
+    def get(self, key: str = None, default: Any = True) -> Any:
+        """Get value for key with default, or return all data if no key specified.
+
+        When called with no arguments (for CData serialization), returns the
+        internal dictionary data. When called with a key argument (dict-style
+        access), returns the value for that key with the given default.
+
+        Args:
+            key: Optional key to look up. If None, returns all data.
+            default: Default value if key not found (default: True for "selected")
+
+        Returns:
+            Value for key, or dict of all data if no key specified.
+        """
+        if key is None:
+            # CData serialization - return all data
+            return self._dict_data.copy()
+        return self._dict_data.get(key, default)
+
+    def setdefault(self, key: str, default: Any = True) -> Any:
+        """Set default value for key if not present."""
+        return self._dict_data.setdefault(key, default)
+
+    def update(self, other: dict = None, **kwargs) -> None:
+        """Update dictionary with another dict or keyword args."""
+        if other:
+            self._dict_data.update(other)
+        self._dict_data.update(kwargs)
+
+    def clear(self) -> None:
+        """Clear all items from dictionary."""
+        self._dict_data.clear()
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode'],
+)
+class CFollowFromJob(CUUID):
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CFollowFromJob.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    A string
+    
+    Extends CFollowFromJob with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers_order=['compare'],
+    contents_order=['start', 'end'],
+)
+class CFloatRange(CRange):
+
+    start: Optional["CFloat"] = None
+    end: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CFloatRange.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Two floats defining start and end of range
+
+    Extends CFloatRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """Initialize CFloatRange with .start and .end not set by default.
+
+        This ensures that range fields are only marked as EXPLICITLY_SET when
+        actually assigned by user code, preventing them from appearing in
+        serialized XML when using excludeUnset=True.
+
+        Note: Smart assignment is now handled by the base CData class, which
+        only copies CData fields that are explicitly set (isSet(allowDefault=False)).
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+
+        # Mark .start and .end as NOT_SET so they won't be serialized unless explicitly set
+        from ccp4i2.core.base_object.cdata import ValueState
+        if hasattr(self, 'start') and hasattr(self.start, '_value_states'):
+            self.start._value_states['value'] = ValueState.NOT_SET
+        if hasattr(self, 'end') and hasattr(self.end, '_value_states'):
+            self.end._value_states['value'] = ValueState.NOT_SET
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers_order=['compare'],
+    contents_order=['start', 'end'],
+)
+class CIntRange(CRange):
+
+    start: Optional["CInt"] = None
+    end: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CIntRange.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+    Two integers defining start and end of range
+
+    Extends CIntRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """Initialize CIntRange with .start and .end not set by default.
+
+        This ensures that range fields are only marked as EXPLICITLY_SET when
+        actually assigned by user code, preventing them from appearing in
+        serialized XML when using excludeUnset=True.
+
+        Note: Smart assignment is handled by the base CData class, which
+        only copies CData fields that are explicitly set (isSet(allowDefault=False)).
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+
+        # Mark .start and .end as NOT_SET so they won't be serialized unless explicitly set
+        from ccp4i2.core.base_object.cdata import ValueState
+        if hasattr(self, 'start') and hasattr(self.start, '_value_states'):
+            self.start._value_states['value'] = ValueState.NOT_SET
+        if hasattr(self, 'end') and hasattr(self.end, '_value_states'):
+            self.end._value_states['value'] = ValueState.NOT_SET
 

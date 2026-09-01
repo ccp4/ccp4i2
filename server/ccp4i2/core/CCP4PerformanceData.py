@@ -6,14 +6,74 @@ This file is safe to edit - add your implementation code here.
 """
 
 from typing import Optional, Any
+from typing import TYPE_CHECKING, Optional, Any
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.base_classes import CData
+from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CString
+from ccp4i2.core.CCP4XtalData import CSpaceGroup
 
-from ccp4i2.core.cdata_stubs.CCP4PerformanceData import CAtomCountPerformanceStub, CDataReductionCCPerformanceStub, CDataReductionPerformanceStub, CDataReductionRefinementPerformanceStub, CExpPhasPerformanceStub, CModelBuildPerformanceStub, CPairefPerformanceStub, CPerformanceIndicatorStub, CPhaseErrorPerformanceStub, CRefinementPerformanceStub, CServalcatPerformanceStub, CSuperposePerformanceStub, CTestObsConversionsPerformanceStub
 
 
 # Define CPerformanceIndicator FIRST since other classes inherit from it
-class CPerformanceIndicator(CPerformanceIndicatorStub):
+@cdata_class(
+    error_codes={
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "301": {
+            "description": "Data value not set"
+        },
+        "302": {
+            "description": "Performance indicator value difference greater than tolereance"
+        },
+        "303": {
+            "description": "Performance indicator value different"
+        },
+        "304": {
+            "description": "Performance indicator value difference greater than tolereance - but improved",
+            "severity": 2
+        },
+        "305": {
+            "description": "Performance indicator not used",
+            "severity": 0
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['value', 'annotation'],
+    content_qualifiers={
+        "value": {'min': 0.0},
+    },
+)
+class CPerformanceIndicator(CData):
+
+    value: Optional["CFloat"] = None
+    annotation: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPerformanceIndicator.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
-    Extends CPerformanceIndicatorStub with implementation-specific methods.
+    Extends CPerformanceIndicator with implementation-specific methods.
 
     Overrides isSet() so that a performance indicator is considered "set"
     when any of its KPI children (beyond the inherited 'value' and
@@ -22,7 +82,7 @@ class CPerformanceIndicator(CPerformanceIndicatorStub):
     contain real metrics like highResLimit, rMeas, RFactor, etc.
     """
 
-    # Fields inherited from CPerformanceIndicatorStub that are structural,
+    # Fields inherited from CPerformanceIndicator that are structural,
     # not KPI values — skip these when deciding if the indicator is "set".
     _STRUCTURAL_FIELDS = frozenset(('value', 'annotation'))
 
@@ -63,11 +123,337 @@ class CPerformanceIndicator(CPerformanceIndicatorStub):
         return elem
 
 
-class CAtomCountPerformance(CAtomCountPerformanceStub, CPerformanceIndicator):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['spaceGroup', 'highResLimit', 'rMeas'],
+    content_qualifiers={
+        "highResLimit": {'min': 0.0},
+    },
+)
+class CDataReductionPerformance(CPerformanceIndicator):
+
+    spaceGroup: Optional["CSpaceGroup"] = None
+    highResLimit: Optional["CFloat"] = None
+    rMeas: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDataReductionPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+
+    Inherits from:
+    - CDataReductionPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CDataReductionPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['cutoff'],
+    content_qualifiers={
+        "cutoff": {'min': 0.0},
+    },
+)
+class CPairefPerformance(CPerformanceIndicator):
+
+    cutoff: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPairefPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+
+    Inherits from:
+    - CPairefPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CPairefPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['spaceGroup', 'highResLimit', 'ccHalf'],
+    content_qualifiers={
+        "highResLimit": {'min': 0.0},
+    },
+)
+class CDataReductionCCPerformance(CPerformanceIndicator):
+
+    spaceGroup: Optional["CSpaceGroup"] = None
+    highResLimit: Optional["CFloat"] = None
+    ccHalf: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDataReductionCCPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+
+    Inherits from:
+    - CDataReductionCCPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CDataReductionCCPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=[
+        'RFactor',
+        'RFree',
+        'R',
+        'R1Factor',
+        'R1Free',
+        'R1',
+        'FSCaverage',
+        'annotation'],
+    content_qualifiers={
+        "RFactor": {'min': 0.0},
+        "RFree": {'min': 0.0},
+        "R": {'min': 0.0},
+        "R1Factor": {'min': 0.0},
+        "R1Free": {'min': 0.0},
+        "R1": {'min': 0.0},
+        "CCFwork_avg": {'min': -1.0},
+        "CCFfree_avg": {'min': -1.0},
+        "CCF_avg": {'min': -1.0},
+        "CCIwork_avg": {'min': -1.0},
+        "CCIfree_avg": {'min': -1.0},
+        "CCI_avg": {'min': -1.0},
+        "FSCaverage": {'min': -1.0},
+    },
+)
+class CServalcatPerformance(CPerformanceIndicator):
+
+    RFactor: Optional["CFloat"] = None
+    RFree: Optional["CFloat"] = None
+    R: Optional["CFloat"] = None
+    R1Factor: Optional["CFloat"] = None
+    R1Free: Optional["CFloat"] = None
+    R1: Optional["CFloat"] = None
+    CCFwork_avg: Optional["CFloat"] = None
+    CCFfree_avg: Optional["CFloat"] = None
+    CCF_avg: Optional["CFloat"] = None
+    CCIwork_avg: Optional["CFloat"] = None
+    CCIfree_avg: Optional["CFloat"] = None
+    CCI_avg: Optional["CFloat"] = None
+    FSCaverage: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CServalcatPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+
+    Inherits from:
+    - CServalcatPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CServalcatPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=[
+        'FOM',
+        'CFOM',
+        'Hand1Score',
+        'Hand2Score',
+        'CC',
+        'RFactor',
+        'RFree',
+        'annotation'],
+    content_qualifiers={
+        "FOM": {'min': 0.0},
+        "CFOM": {'min': 0.0},
+        "CC": {'min': 0.0},
+        "RFactor": {'min': 0.0},
+        "RFree": {'min': 0.0},
+    },
+)
+class CExpPhasPerformance(CPerformanceIndicator):
+
+    FOM: Optional["CFloat"] = None
+    CFOM: Optional["CFloat"] = None
+    Hand1Score: Optional["CFloat"] = None
+    Hand2Score: Optional["CFloat"] = None
+    CC: Optional["CFloat"] = None
+    RFactor: Optional["CFloat"] = None
+    RFree: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CExpPhasPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+
+    Inherits from:
+    - CExpPhasPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CExpPhasPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['nAtoms', 'nResidues'],
+)
+class CAtomCountPerformance(CPerformanceIndicator):
+
+    nAtoms: Optional["CInt"] = None
+    nResidues: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CAtomCountPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """How much model a task produced: ``nAtoms`` and ``nResidues``.
 
     Inherits from:
-    - CAtomCountPerformanceStub: Metadata and structure
+    - CAtomCountPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
     """
 
@@ -117,13 +503,49 @@ class CAtomCountPerformance(CAtomCountPerformanceStub, CPerformanceIndicator):
         return self
 
 
-class CDataReductionCCPerformance(CDataReductionCCPerformanceStub, CPerformanceIndicator):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['RFactor', 'completeness', 'annotation'],
+    content_qualifiers={
+        "RFactor": {'min': 0.0},
+        "completeness": {'min': 0.0},
+    },
+)
+class CModelBuildPerformance(CPerformanceIndicator):
+
+    RFactor: Optional["CFloat"] = None
+    completeness: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CModelBuildPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
 
     Inherits from:
-    - CDataReductionCCPerformanceStub: Metadata and structure
+    - CModelBuildPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CDataReductionCCPerformanceStub with implementation-specific methods.
+    Extends CModelBuildPerformance with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -131,13 +553,60 @@ class CDataReductionCCPerformance(CDataReductionCCPerformanceStub, CPerformanceI
     pass
 
 
-class CDataReductionPerformance(CDataReductionPerformanceStub, CPerformanceIndicator):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=[
+        'RFactor',
+        'RFree',
+        'RMSBond',
+        'RMSAngle',
+        'weightUsed',
+        'annotation'],
+    content_qualifiers={
+        "RFactor": {'min': 0.0},
+        "RFree": {'min': 0.0},
+        "RMSBond": {'min': 0.0},
+        "RMSAngle": {'min': 0.0},
+    },
+)
+class CRefinementPerformance(CPerformanceIndicator):
+
+    RFactor: Optional["CFloat"] = None
+    RFree: Optional["CFloat"] = None
+    RMSBond: Optional["CFloat"] = None
+    RMSAngle: Optional["CFloat"] = None
+    weightUsed: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CRefinementPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
 
     Inherits from:
-    - CDataReductionPerformanceStub: Metadata and structure
+    - CRefinementPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CDataReductionPerformanceStub with implementation-specific methods.
+    Extends CRefinementPerformance with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -145,26 +614,158 @@ class CDataReductionPerformance(CDataReductionPerformanceStub, CPerformanceIndic
     pass
 
 
-class CDataReductionRefinementPerformance(CDataReductionRefinementPerformanceStub, CPerformanceIndicator):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['RMSxyz', 'nResidues'],
+)
+class CSuperposePerformance(CPerformanceIndicator):
+
+    RMSxyz: Optional["CFloat"] = None
+    nResidues: Optional["CInt"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSuperposePerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+    """
+
+    Inherits from:
+    - CSuperposePerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CSuperposePerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
+
+    # Add your methods here
+    pass
+
+
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=[
+        'spaceGroup',
+        'highResLimit',
+        'rMeas',
+        'RFactor',
+        'RFree'],
+    content_qualifiers={
+        "highResLimit": {'min': 0.0},
+        "RFactor": {'min': 0.0},
+        "RFree": {'min': 0.0},
+    },
+)
+class CDataReductionRefinementPerformance(CPerformanceIndicator):
+
+    spaceGroup: Optional["CSpaceGroup"] = None
+    highResLimit: Optional["CFloat"] = None
+    rMeas: Optional["CFloat"] = None
+    RFactor: Optional["CFloat"] = None
+    RFree: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDataReductionRefinementPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
     Composite performance indicator for pipelines spanning data reduction
     and refinement (e.g. dr_mr_modelbuild, substitute_ligand).
 
     Inherits from:
-    - CDataReductionRefinementPerformanceStub: Metadata and structure
+    - CDataReductionRefinementPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
     """
 
     pass
 
 
-class CExpPhasPerformance(CExpPhasPerformanceStub, CPerformanceIndicator):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=[
+        'phaseError',
+        'weightedPhaseError',
+        'reflectionCorrelation'],
+    content_qualifiers={
+        "phaseError": {'min': 0.0},
+        "weightedPhaseError": {'min': 0.0},
+        "reflectionCorrelation": {'min': 0.0},
+    },
+)
+class CPhaseErrorPerformance(CPerformanceIndicator):
+
+    phaseError: Optional["CFloat"] = None
+    weightedPhaseError: Optional["CFloat"] = None
+    reflectionCorrelation: Optional["CFloat"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CPhaseErrorPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
 
     Inherits from:
-    - CExpPhasPerformanceStub: Metadata and structure
+    - CPhaseErrorPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CExpPhasPerformanceStub with implementation-specific methods.
+    Extends CPhaseErrorPerformance with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
@@ -172,97 +773,44 @@ class CExpPhasPerformance(CExpPhasPerformanceStub, CPerformanceIndicator):
     pass
 
 
-class CModelBuildPerformance(CModelBuildPerformanceStub, CPerformanceIndicator):
+@cdata_class(
+    error_codes={
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    contents_order=['columnLabelsString'],
+)
+class CTestObsConversionsPerformance(CPerformanceIndicator):
+
+    columnLabelsString: Optional["CString"] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CTestObsConversionsPerformance.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
     """
 
     Inherits from:
-    - CModelBuildPerformanceStub: Metadata and structure
+    - CTestObsConversionsPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CModelBuildPerformanceStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CPairefPerformance(CPairefPerformanceStub, CPerformanceIndicator):
-    """
-
-    Inherits from:
-    - CPairefPerformanceStub: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CPairefPerformanceStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CPhaseErrorPerformance(CPhaseErrorPerformanceStub, CPerformanceIndicator):
-    """
-
-    Inherits from:
-    - CPhaseErrorPerformanceStub: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CPhaseErrorPerformanceStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CRefinementPerformance(CRefinementPerformanceStub, CPerformanceIndicator):
-    """
-
-    Inherits from:
-    - CRefinementPerformanceStub: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CRefinementPerformanceStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CServalcatPerformance(CServalcatPerformanceStub, CPerformanceIndicator):
-    """
-
-    Inherits from:
-    - CServalcatPerformanceStub: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CServalcatPerformanceStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CSuperposePerformance(CSuperposePerformanceStub, CPerformanceIndicator):
-    """
-
-    Inherits from:
-    - CSuperposePerformanceStub: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CSuperposePerformanceStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    # Add your methods here
-    pass
-
-
-class CTestObsConversionsPerformance(CTestObsConversionsPerformanceStub, CPerformanceIndicator):
-    """
-
-    Inherits from:
-    - CTestObsConversionsPerformanceStub: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CTestObsConversionsPerformanceStub with implementation-specific methods.
+    Extends CTestObsConversionsPerformance with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
