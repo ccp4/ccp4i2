@@ -24,6 +24,37 @@ from ..base_object.fundamental_types import *
 logger = logging.getLogger(__name__)
 
 
+def _is_bounds_violation(exc: Exception) -> bool:
+    """A range complaint, as opposed to "that is not a number"."""
+    text = str(exc)
+    return "above maximum" in text or "below minimum" in text
+
+
+def _store_past_bounds(param, text) -> bool:
+    """Store *text* on *param*, bypassing the assignment-time bounds check.
+
+    Returns False if it cannot be coerced at all --- in which case it was never
+    a bounds problem and the caller should fall through.
+    """
+    from ccp4i2.core.base_object.cdata import ValueState
+    if text is None:
+        return False
+    current = getattr(param, "value", None)
+    try:
+        if isinstance(current, bool):
+            return False
+        coerced = int(text) if isinstance(current, int) else (
+            float(text) if isinstance(current, float) else text.strip())
+    except (TypeError, ValueError):
+        return False
+    try:
+        object.__setattr__(param, "_value", coerced)
+        param._value_states["value"] = ValueState.EXPLICITLY_SET
+    except Exception:
+        return False
+    return True
+
+
 class ParamsXmlHandler:
     """Handler for CCP4i2 .params.xml files."""
 
@@ -542,6 +573,30 @@ class ParamsXmlHandler:
             elif len(list(xml_elem)) > 0:
                 return self._import_structured_data(xml_elem, param)
 
+            return False
+
+        except ValueError as exc:
+            # Two different failures raise ValueError here and only one is a
+            # conversion problem.
+            #
+            # "not a number" is a malformed file and returning False is right.
+            # A *bounds* violation is not: the file records a value somebody
+            # chose, and the assignment-time min/max check rejects it. Silently
+            # returning False left the parameter at its default --- loading a
+            # params.xml holding FRAC=1.5 gave FRAC=0.05 and said nothing, so a
+            # rerun used a value the file does not record.
+            #
+            # Keep what the file says and let validity() report it, which it
+            # does correctly ("Value 1.5 is above maximum 1.0") once the value
+            # is actually stored.
+            if _is_bounds_violation(exc) and _store_past_bounds(param, xml_elem.text):
+                logger.warning(
+                    "%s: params.xml holds %r, which is out of range (%s). "
+                    "Kept, so validity() reports it rather than the value "
+                    "being silently replaced by the default.",
+                    getattr(param, "_name", "?"), xml_elem.text.strip(), exc,
+                )
+                return True
             return False
 
         except Exception:
