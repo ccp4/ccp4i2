@@ -17,10 +17,6 @@ from ccp4i2.core.CCP4XtalData import CSpaceGroup
 # Define CPerformanceIndicator FIRST since other classes inherit from it
 @cdata_class(
     error_codes={
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
         "301": {
             "description": "Data value not set"
         },

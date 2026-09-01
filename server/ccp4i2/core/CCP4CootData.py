@@ -17,57 +17,6 @@ from ccp4i2.core.CCP4File import CFilePath, CProjectId
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "File does not exist"
-        },
-        "102": {
-            "description": "No mime type for data file"
-        },
-        "103": {
-            "description": "Attempting to set file content with inappropriate data"
-        },
-        "104": {
-            "description": "There is no file content class specified for this type of file"
-        },
-        "105": {
-            "description": "The file content class specified for this type of file can not be found"
-        },
-        "300": {
-            "description": "Passed",
-            "severity": 0
-        },
-        "305": {
-            "description": "Neither original nor test file exists",
-            "severity": 0
-        },
-        "306": {
-            "description": "Original file does not exists"
-        },
-        "307": {
-            "description": "Test file does not exist "
-        },
-        "308": {
-            "description": "Files failed checksum comparison"
-        },
-        "309": {
-            "description": "Files failed size comparison"
-        },
-        "310": {
-            "description": "No comparison testing implemented for this file type",
-            "severity": 2
-        },
-        "311": {
-            "description": "Failed loading original file for comparison"
-        },
-        "312": {
-            "description": "Failed loading test file for comparison"
-        },
-        "313": {
-            "description": "Files failed simple text diff comparison"
-        },
-        "320": {
-            "description": "Unrecognised error attempting to load file"
-        }
     },
     qualifiers={
         "mimeTypeName": 'application/coot-script',
