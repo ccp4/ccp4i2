@@ -19,34 +19,34 @@ from ccp4i2.core.CCP4XtalData import CSpaceGroup
 
 
 # Define CPerformanceIndicator FIRST since other classes inherit from it
-@cdata_class(
-    error_codes={
-        "301": {
-            "description": "Data value not set"
-        },
-        "302": {
-            "description": "Performance indicator value difference greater than tolereance"
-        },
-        "303": {
-            "description": "Performance indicator value different"
-        },
-        "304": {
-            "description": "Performance indicator value difference greater than tolereance - but improved",
-            "severity": 2
-        },
-        "305": {
-            "description": "Performance indicator not used",
-            "severity": 0
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CPerformanceIndicator(CData):
 
+
+    class Meta:
+        error_codes = {
+            "301": {
+                "description": "Data value not set"
+            },
+            "302": {
+                "description": "Performance indicator value difference greater than tolereance"
+            },
+            "303": {
+                "description": "Performance indicator value different"
+            },
+            "304": {
+                "description": "Performance indicator value difference greater than tolereance - but improved",
+                "severity": 2
+            },
+            "305": {
+                "description": "Performance indicator not used",
+                "severity": 0
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     value = content("CFloat", min=0.0)
     annotation = content("CString")
 
@@ -111,16 +111,16 @@ class CPerformanceIndicator(CData):
         return elem
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['spaceGroup', 'highResLimit', 'rMeas'],
-)
 class CDataReductionPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['spaceGroup', 'highResLimit', 'rMeas']
     spaceGroup = content("CSpaceGroup")
     highResLimit = content("CFloat", min=0.0)
     rMeas = content("CFloat")
@@ -148,16 +148,16 @@ class CDataReductionPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['cutoff'],
-)
 class CPairefPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['cutoff']
     cutoff = content("CFloat", min=0.0)
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -183,16 +183,16 @@ class CPairefPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['spaceGroup', 'highResLimit', 'ccHalf'],
-)
 class CDataReductionCCPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['spaceGroup', 'highResLimit', 'ccHalf']
     spaceGroup = content("CSpaceGroup")
     highResLimit = content("CFloat", min=0.0)
     ccHalf = content("CFloat")
@@ -220,16 +220,16 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['RFactor', 'RFree', 'R', 'R1Factor', 'R1Free', 'R1', 'FSCaverage', 'annotation'],
-)
 class CServalcatPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['RFactor', 'RFree', 'R', 'R1Factor', 'R1Free', 'R1', 'FSCaverage', 'annotation']
     RFactor = content("CFloat", min=0.0)
     RFree = content("CFloat", min=0.0)
     R = content("CFloat", min=0.0)
@@ -267,16 +267,16 @@ class CServalcatPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['FOM', 'CFOM', 'Hand1Score', 'Hand2Score', 'CC', 'RFactor', 'RFree', 'annotation'],
-)
 class CExpPhasPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['FOM', 'CFOM', 'Hand1Score', 'Hand2Score', 'CC', 'RFactor', 'RFree', 'annotation']
     FOM = content("CFloat", min=0.0)
     CFOM = content("CFloat", min=0.0)
     Hand1Score = content("CFloat")
@@ -308,16 +308,16 @@ class CExpPhasPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['nAtoms', 'nResidues'],
-)
 class CAtomCountPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['nAtoms', 'nResidues']
     nAtoms = content("CInt")
     nResidues = content("CInt")
 
@@ -384,16 +384,16 @@ class CAtomCountPerformance(CPerformanceIndicator):
         return self
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['RFactor', 'completeness', 'annotation'],
-)
 class CModelBuildPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['RFactor', 'completeness', 'annotation']
     RFactor = content("CFloat", min=0.0)
     completeness = content("CFloat", min=0.0)
 
@@ -420,16 +420,16 @@ class CModelBuildPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['RFactor', 'RFree', 'RMSBond', 'RMSAngle', 'weightUsed', 'annotation'],
-)
 class CRefinementPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['RFactor', 'RFree', 'RMSBond', 'RMSAngle', 'weightUsed', 'annotation']
     RFactor = content("CFloat", min=0.0)
     RFree = content("CFloat", min=0.0)
     RMSBond = content("CFloat", min=0.0)
@@ -459,16 +459,16 @@ class CRefinementPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['RMSxyz', 'nResidues'],
-)
 class CSuperposePerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['RMSxyz', 'nResidues']
     RMSxyz = content("CFloat")
     nResidues = content("CInt")
 
@@ -495,16 +495,16 @@ class CSuperposePerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['spaceGroup', 'highResLimit', 'rMeas', 'RFactor', 'RFree'],
-)
 class CDataReductionRefinementPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['spaceGroup', 'highResLimit', 'rMeas', 'RFactor', 'RFree']
     spaceGroup = content("CSpaceGroup")
     highResLimit = content("CFloat", min=0.0)
     rMeas = content("CFloat")
@@ -533,16 +533,16 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['phaseError', 'weightedPhaseError', 'reflectionCorrelation'],
-)
 class CPhaseErrorPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['phaseError', 'weightedPhaseError', 'reflectionCorrelation']
     phaseError = content("CFloat", min=0.0)
     weightedPhaseError = content("CFloat", min=0.0)
     reflectionCorrelation = content("CFloat", min=0.0)
@@ -570,16 +570,16 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-    contents_order=['columnLabelsString'],
-)
 class CTestObsConversionsPerformance(CPerformanceIndicator):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+        contents_order = ['columnLabelsString']
     columnLabelsString = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):

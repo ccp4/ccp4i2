@@ -12,20 +12,20 @@ This file is safe to edit - add your implementation code here.
 
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Failed to load Medline data"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CBibReference(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Failed to load Medline data"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     pmid = content("CInt")
     title = content("CString")
     authorList = content("CList")
@@ -54,26 +54,26 @@ class CBibReference(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "100": {
-            "description": "Failed attempting to load MedLine file - file not found"
-        },
-        "101": {
-            "description": "Failed attempting to find references file"
-        },
-        "102": {
-            "description": "Error copying file"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CBibReferenceGroup(CData):
 
+
+    class Meta:
+        error_codes = {
+            "100": {
+                "description": "Failed attempting to load MedLine file - file not found"
+            },
+            "101": {
+                "description": "Failed attempting to find references file"
+            },
+            "102": {
+                "description": "Error copying file"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     taskName = content("CString")
     version = content("CString")
     title = content("CString")
@@ -100,15 +100,15 @@ class CBibReferenceGroup(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CFont(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     family = content("CString", default='Helvetica')
     style = content("CInt",
                     onlyEnumerators=True,
@@ -145,14 +145,14 @@ class CFont(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "label": 'User id',
-        "toolTip": 'User id as me@myplace.ac.uk',
-    },
-)
 class CUserId(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "label": 'User id',
+            "toolTip": 'User id as me@myplace.ac.uk',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CUserId.
@@ -174,16 +174,16 @@ class CUserId(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "min": 0,
-        "label": 'Time',
-        "toolTip": 'Time and date as hh:mm dd/mm/yyyy',
-        "format": '%H:%M %d/%b/%y',
-    },
-)
 class CTime(CInt):
 
+
+    class Meta:
+        qualifiers = {
+            "min": 0,
+            "label": 'Time',
+            "toolTip": 'Time and date as hh:mm dd/mm/yyyy',
+            "format": '%H:%M %d/%b/%y',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CTime.
@@ -205,13 +205,13 @@ class CTime(CInt):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-    },
-)
 class CAnnotationList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAnnotationList.
@@ -233,14 +233,14 @@ class CAnnotationList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "enumeratorsFunction": None,
-        "addEnumeratorFunction": None,
-    },
-)
 class CMetaDataTag(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "enumeratorsFunction": None,
+            "addEnumeratorFunction": None,
+        }
     tag = content("CString")
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -264,15 +264,15 @@ class CMetaDataTag(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CDateRange(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     year = content("CInt", enumerators=[])
     month = content("CString",
                     onlyEnumerators=True,
@@ -304,19 +304,19 @@ class CDateRange(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-    },
-)
 class CAuthor(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAuthor.
@@ -338,14 +338,14 @@ class CAuthor(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "label": 'Machine name',
-        "toolTip": 'Hostname as mycomputer.myplace.ac.uk',
-    },
-)
 class CHostName(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "label": 'Machine name',
+            "toolTip": 'Hostname as mycomputer.myplace.ac.uk',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CHostName.
@@ -367,13 +367,13 @@ class CHostName(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 1,
-    },
-)
 class CMetaDataTagList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 1,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMetaDataTagList.
@@ -395,15 +395,15 @@ class CMetaDataTagList(CList):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CServerGroup(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     name = content("CString")
     mechanism = content("CString",
                         enumerators=['ssh', 'ssh_shared', 'qsub_local', 'qsub_remote', 'slurm_remote', 'custom'],
@@ -444,14 +444,14 @@ class CServerGroup(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "label": 'User id and current machine',
-        "toolTip": 'User id as me@myplace.ac.uk and machine name',
-    },
-)
 class CUserAddress(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "label": 'User id and current machine',
+            "toolTip": 'User id as me@myplace.ac.uk and machine name',
+        }
     platformNode = content("CString")
     userId = content("CUserId")
 
@@ -476,14 +476,14 @@ class CUserAddress(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "label": 'Annotation',
-        "toolTip": 'Enter your comments',
-    },
-)
 class CAnnotation(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "label": 'Annotation',
+            "toolTip": 'Enter your comments',
+        }
     text = content("CString", allowUndefined=True, charWidth=-1)
     time = content("CTime", allowUndefined=True, default=None)
     author = content("CUserId", allowUndefined=True, default=None)
@@ -509,14 +509,14 @@ class CAnnotation(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "label": 'Machine name',
-        "toolTip": 'Hostname as mycomputer.myplace.ac.uk',
-    },
-)
 class CHostname(CHostName):
 
+
+    class Meta:
+        qualifiers = {
+            "label": 'Machine name',
+            "toolTip": 'Hostname as mycomputer.myplace.ac.uk',
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CHostname.

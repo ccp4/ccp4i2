@@ -22,26 +22,26 @@ from ccp4i2.core.base_object.base_classes import CData
 from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CString
 
 
-@cdata_class(
-    error_codes={
-        "105": {
-            "description": "Word contains white space"
-        }
-    },
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-        "patternRegex": r"^\S+$",
-        "patternErrorMessage": "Word must not contain whitespace",
-    },
-)
 class COneWord(CString):
 
+
+    class Meta:
+        error_codes = {
+            "105": {
+                "description": "Word contains white space"
+            }
+        }
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+            "patternRegex": r"^\S+$",
+            "patternErrorMessage": "Word must not contain whitespace",
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize COneWord.
@@ -63,19 +63,19 @@ class COneWord(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-    },
-)
 class CJobTitle(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CJobTitle.
@@ -97,17 +97,17 @@ class CJobTitle(CString):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "max": None,
-        "min": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-    },
-)
 class CJobStatus(CInt):
 
+
+    class Meta:
+        qualifiers = {
+            "max": None,
+            "min": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CJobStatus.
@@ -129,15 +129,15 @@ class CJobStatus(CInt):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CCollection(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CCollection.
@@ -157,14 +157,14 @@ class CCollection(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "enumerators": ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile', 'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
-        "menuText": [],
-    },
-)
 class CI2DataType(CString):
 
+
+    class Meta:
+        qualifiers = {
+            "enumerators": ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile', 'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
+            "menuText": [],
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CI2DataType.
@@ -186,27 +186,27 @@ class CI2DataType(CString):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Range selection contains invalid character"
-        },
-        "202": {
-            "description": "Range selection contains bad syntax"
-        }
-    },
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-    },
-)
 class CRangeSelection(CString):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Range selection contains invalid character"
+            },
+            "202": {
+                "description": "Range selection contains bad syntax"
+            }
+        }
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CRangeSelection.
@@ -328,26 +328,26 @@ class CRangeSelection(CString):
         return err
 
 
-@cdata_class(
-    error_codes={
-        "105": {
-            "description": "Invalid UUID format"
-        }
-    },
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-        "patternRegex": r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-        "patternErrorMessage": "Invalid UUID format (expected xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)",
-    },
-)
 class CUUID(CString):
 
+
+    class Meta:
+        error_codes = {
+            "105": {
+                "description": "Invalid UUID format"
+            }
+        }
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+            "patternRegex": r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "patternErrorMessage": "Invalid UUID format (expected xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)",
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CUUID.
@@ -369,28 +369,28 @@ class CUUID(CString):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Invalid SMILES string"
-        }
-    },
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-        # Basic pattern for SMILES: letters, digits, and common SMILES characters
-        # Real validation is done via RDKit in the implementation class
-        "patternRegex": r"^[A-Za-z0-9@+\-\[\]()=#/\\%.*:]+$",
-        "patternErrorMessage": "Invalid characters in SMILES string",
-    },
-)
 class CSMILESString(CString):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Invalid SMILES string"
+            }
+        }
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+            # Basic pattern for SMILES: letters, digits, and common SMILES characters
+            # Real validation is done via RDKit in the implementation class
+            "patternRegex": r"^[A-Za-z0-9@+\-\[\]()=#/\\%.*:]+$",
+            "patternErrorMessage": "Invalid characters in SMILES string",
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CSMILESString.
@@ -522,15 +522,15 @@ class CSMILESString(CString):
             return None
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CPatchSelection(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     taskName = content("CString")
     patch = content("CString")
 
@@ -553,14 +553,14 @@ class CPatchSelection(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "listMinLength": 0,
-        "listMaxLength": 250,
-    },
-)
 class COutputFileList(CList):
 
+
+    class Meta:
+        qualifiers = {
+            "listMinLength": 0,
+            "listMaxLength": 250,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize COutputFileList.
@@ -582,19 +582,19 @@ class COutputFileList(CList):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "End of range less than start"
-        },
-        "102": {
-            "description": "End of range greater than start"
-        }
-    },
-    contents_order=['start', 'end'],
-)
 class CRange(CData):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "End of range less than start"
+            },
+            "102": {
+                "description": "End of range greater than start"
+            }
+        }
+        contents_order = ['start', 'end']
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CRange.
@@ -616,13 +616,13 @@ class CRange(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "charWidth": 10,
-    },
-)
 class CBaseData(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "charWidth": 10,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CBaseData.
@@ -644,24 +644,24 @@ class CBaseData(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "101": {
-            "description": "Attempting to access unknown item"
-        },
-        "102": {
-            "description": "Unknown error trying to create new item"
-        },
-        "103": {
-            "description": "Attempting to add item which is not appropriate class"
-        }
-    },
-    qualifiers={
-        "default": {},
-    },
-)
 class CDict(CCollection):
 
+
+    class Meta:
+        error_codes = {
+            "101": {
+                "description": "Attempting to access unknown item"
+            },
+            "102": {
+                "description": "Unknown error trying to create new item"
+            },
+            "103": {
+                "description": "Attempting to add item which is not appropriate class"
+            }
+        }
+        qualifiers = {
+            "default": {},
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CDict.
@@ -760,19 +760,19 @@ class CDict(CCollection):
         self._dict_data.clear()
 
 
-@cdata_class(
-    qualifiers={
-        "minLength": None,
-        "maxLength": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-        "charWidth": -1,
-        "allowedCharsCode": 0,
-    },
-)
 class CFollowFromJob(CUUID):
 
+
+    class Meta:
+        qualifiers = {
+            "minLength": None,
+            "maxLength": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+            "charWidth": -1,
+            "allowedCharsCode": 0,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CFollowFromJob.
@@ -794,11 +794,11 @@ class CFollowFromJob(CUUID):
     pass
 
 
-@cdata_class(
-    contents_order=['start', 'end'],
-)
 class CFloatRange(CRange):
 
+
+    class Meta:
+        contents_order = ['start', 'end']
     start = content("CFloat")
     end = content("CFloat")
 
@@ -839,11 +839,11 @@ class CFloatRange(CRange):
             self.end._value_states['value'] = ValueState.NOT_SET
 
 
-@cdata_class(
-    contents_order=['start', 'end'],
-)
 class CIntRange(CRange):
 
+
+    class Meta:
+        contents_order = ['start', 'end']
     start = content("CInt")
     end = content("CInt")
 

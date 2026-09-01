@@ -23,23 +23,6 @@ from .class_metadata import cdata_class, attribute, AttributeType, content
 logger = logging.getLogger(__name__)
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "mustExist": False,
-        "fromPreviousJob": False,
-        "jobCombo": True,
-        "mimeTypeName": "",
-        "mimeTypeDescription": "",
-        "fileLabel": None,
-        "fileExtensions": [],
-        "fileContentClassName": None,
-        "isDirectory": False,
-        "saveToDb": True,
-        "requiredSubType": None,
-        "requiredContentFlag": None
-    }
-)
 class CDataFile(CData):
     """Base class for file-related CData classes.
 
@@ -55,6 +38,23 @@ class CDataFile(CData):
     - __str__() returns the file path (baseName when not database-connected)
     - fullPath property and getFullPath() method return the full path
     """
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "mustExist": False,
+            "fromPreviousJob": False,
+            "jobCombo": True,
+            "mimeTypeName": "",
+            "mimeTypeDescription": "",
+            "fileLabel": None,
+            "fileExtensions": [],
+            "fileContentClassName": None,
+            "isDirectory": False,
+            "saveToDb": True,
+            "requiredSubType": None,
+            "requiredContentFlag": None
+        }
 
     # The declaration, as annotations --- the form a dataclass uses, and the
     # form apply_metadata_to_instance now reads. Quoted, because CUUID lives in

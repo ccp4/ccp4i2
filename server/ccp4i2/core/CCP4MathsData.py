@@ -17,15 +17,15 @@ from ccp4i2.core.base_object.fundamental_types import CFloat
 
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CMatrix33(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CMatrix33.
@@ -45,20 +45,20 @@ class CMatrix33(CData):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Maximum x,y or z value less than minimum"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CXyzBox(CData):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Maximum x,y or z value less than minimum"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     xMin = content("CFloat")
     yMin = content("CFloat")
     zMin = content("CFloat")
@@ -85,17 +85,17 @@ class CXyzBox(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "max": None,
-        "min": None,
-        "enumerators": [],
-        "menuText": [],
-        "onlyEnumerators": False,
-    },
-)
 class CAngle(CFloat):
 
+
+    class Meta:
+        qualifiers = {
+            "max": None,
+            "min": None,
+            "enumerators": [],
+            "menuText": [],
+            "onlyEnumerators": False,
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CAngle.
@@ -117,26 +117,26 @@ class CAngle(CFloat):
     pass
 
 
-@cdata_class(
-    error_codes={
-        "201": {
-            "description": "Attempting arithmetic with inappropriate data type"
-        },
-        "202": {
-            "description": "Attempting arithmetic in unset data object"
-        },
-        "203": {
-            "description": "Attempting arithmetic with unset data object as argument"
-        }
-    },
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CXyz(CData):
 
+
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "Attempting arithmetic with inappropriate data type"
+            },
+            "202": {
+                "description": "Attempting arithmetic in unset data object"
+            },
+            "203": {
+                "description": "Attempting arithmetic with unset data object as argument"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     x = content("CFloat")
     y = content("CFloat")
     z = content("CFloat")
@@ -160,15 +160,15 @@ class CXyz(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CEulerRotation(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     alpha = content("CAngle")
     beta = content("CAngle")
     gamma = content("CAngle")
@@ -192,15 +192,15 @@ class CEulerRotation(CData):
     pass
 
 
-@cdata_class(
-    qualifiers={
-        "allowUndefined": True,
-        "guiDefinition": {},
-        "saveToDb": False,
-    },
-)
 class CTransformation(CData):
 
+
+    class Meta:
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
     translation = content("CXyz")
     rotation = content("CEulerRotation")
 
