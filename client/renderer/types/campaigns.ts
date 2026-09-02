@@ -154,6 +154,12 @@ export interface BatchFileItem {
   status: BatchFileStatus;
   /** Error message if status is 'error' */
   error?: string;
+  /**
+   * Bytes sent so far for the upload currently in flight, if any.
+   * Unmerged reflection files run to hundreds of megabytes, so an upload
+   * with no visible progress is indistinguishable from a hang.
+   */
+  progress?: { loaded: number; total: number };
   /** SMILES string if compound was found */
   smiles?: string;
   /** Created project ID after successful import */
