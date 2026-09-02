@@ -52,12 +52,27 @@ class SubstituteLigand(CPluginScript):
         212: {'description': 'Invalid input configuration'},
         213: {'description': 'A ligand in the starting coordinates has no dictionary'},
         214: {'description': 'The fitted ligand\'s code is already used in the starting coordinates'},
+        215: {'description': 'The starting coordinates contain no atoms to refine'},
+        216: {'description': 'The observed data are not supplied in the form the pipeline was told to expect'},
+        217: {'description': 'The ligand chemistry is not supplied in the form the pipeline was told to expect'},
+        218: {'description': 'An input has been supplied that the chosen mode will ignore'},
+        219: {'description': 'No free-R set supplied with merged data'},
     }
 
     # The code a fitted ligand is given if the user does not choose one. It
     # used to be hard-coded, which is how a model from an earlier run --- full
     # of DRG --- collided with the DRG this run was about to make.
     DEFAULT_LIGAND_CODE = 'DRG'
+
+    # What each way of providing the ligand's chemistry actually reads: the
+    # input field, the menu entry naming it, and a phrase for the thing itself.
+    # SKETCH is deliberately absent --- it draws a molecule rather than reading
+    # one, so there is no file whose absence means anything. NONE likewise.
+    LIGAND_INPUT_FOR_MODE = {
+        'MOL': ('MOLIN', 'MDL Mol file', 'an MDL Mol file'),
+        'DICT': ('DICTIN', 'REFMAC Dict', 'a REFMAC dictionary'),
+        'SMILES': ('SMILESIN', 'SMILES String', 'a SMILES string'),
+    }
 
     def __init__(self, *args, **kws):
         super(SubstituteLigand, self).__init__(*args, **kws)
@@ -592,10 +607,27 @@ class SubstituteLigand(CPluginScript):
         return error
 
     def runTimeValidity(self):
-        """Refuse at the Run dialog what refinement would refuse four steps in.
+        """Refuse at the Run dialog what the pipeline would refuse steps in.
 
-        Two things are checked, and they are independent --- fixing one does
-        not fix the other:
+        Four things are checked, and they are independent --- fixing one does
+        not fix the others.
+
+        *Agreement between the mode menus and the inputs.* Two menus say what
+        form the job's inputs take: observed data merged or unmerged, and the
+        ligand's chemistry as a Mol file, a dictionary or a SMILES string.
+        Neither menu carries the input it names, and neither input is
+        individually required, so the pair could disagree freely: 'unmerged'
+        with no unmerged file, 'SMILES String' with no string. That got as far
+        as aimless being handed an empty file list, or acedrg being asked to
+        build a molecule from nothing, and the campaign that found this had
+        fifty such jobs fail one at a time. It is now refused here, where the
+        menu and the empty field are both on screen.
+
+        *Something to refine.* Coordinates that cannot be read, or that hold no
+        atoms once the atom selection has been applied, give molecular
+        replacement nothing to place. (Coordinates that are simply not set, or
+        name a file that is not there, are already refused by the container's
+        own checks, which run first.)
 
         *Coverage.* Every residue in the starting coordinates that the monomer
         library does not describe needs a dictionary, or servalcat's monomer
@@ -613,7 +645,19 @@ class SubstituteLigand(CPluginScript):
         ligand with the atom selection is a real answer and clears the error.
         """
         error = super(SubstituteLigand, self).runTimeValidity()
-        if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+
+        # Whether to go on to the checks that read files is decided by the
+        # container's own verdict alone, and decided *before* the mode checks
+        # add to the report. The mode checks cost nothing and are independent
+        # of the model, so a disagreeing menu must neither be hidden by a
+        # missing model nor hide one: the user should see everything they have
+        # to fix in one pass, not one thing per attempt.
+        containerBlocked = error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR
+
+        self._checkObservedDataMatchesMode(error)
+        self._checkLigandChemistryMatchesMode(error)
+
+        if containerBlocked:
             return error
 
         xyzin = self.container.inputData.XYZIN
@@ -623,11 +667,200 @@ class SubstituteLigand(CPluginScript):
         workDirectory = tempfile.mkdtemp(prefix='ccp4i2_substituteligand_check_')
         try:
             model = self._selectedStartingModel(workDirectory)
+            if not self._checkThereAreAtomsToRefine(model, error):
+                # Coverage and code-clash both ask what is in the model. With
+                # nothing in it they would pass, and read as approval.
+                return error
             self._checkStartingLigandsAreDescribed(model, error)
             self._checkNoCodeClash(model, error)
         finally:
             shutil.rmtree(workDirectory, ignore_errors=True)
         return error
+
+    def _checkObservedDataMatchesMode(self, error) -> None:
+        """The observed data must arrive in the form the menu promises.
+
+        The two branches are not symmetrical. Unmerged data go to aimless,
+        which needs at least one file; merged data go straight to refinement,
+        which needs the reflections but only wants the free-R set --- the
+        pipeline runs without one, it just cannot report R-free, so that is an
+        advisory rather than a refusal.
+        """
+        mode = str(self.container.controlParameters.OBSAS)
+        inp = self.container.inputData
+
+        if mode == 'UNMERGED':
+            if len(inp.UNMERGEDFILES) == 0:
+                error.append(
+                    klass=self.TASKNAME,
+                    code=216,
+                    details=(
+                        "'Observed data provided as' is set to unmerged, but no "
+                        "unmerged file has been given, so there is nothing for "
+                        "aimless to merge.\n\n"
+                        "Either add the unmerged reflections, or set that menu to "
+                        "merged and supply merged reflections instead."
+                    ),
+                    name=f'{self.TASKNAME}.container.inputData.UNMERGEDFILES',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR,
+                )
+            return
+
+        if not inp.F_SIGF_IN.isSet():
+            error.append(
+                klass=self.TASKNAME,
+                code=216,
+                details=(
+                    "'Observed data provided as' is set to merged, but no merged "
+                    "reflection file has been given.\n\n"
+                    "Either supply the merged reflections, or set that menu to "
+                    "unmerged and supply the unmerged files, which the pipeline "
+                    "will merge with aimless for you."
+                ),
+                name=f'{self.TASKNAME}.container.inputData.F_SIGF_IN',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
+            )
+            return
+
+        if not inp.FREERFLAG_IN.isSet():
+            error.append(
+                klass=self.TASKNAME,
+                code=219,
+                details=(
+                    "No free-R set has been given with the merged data. Nothing "
+                    "generates one on this route --- it is aimless that would, and "
+                    "aimless only runs on unmerged data --- so refinement will "
+                    "proceed with no cross-validation and the job will report no "
+                    "R-free.\n\n"
+                    "Supply the free-R set that goes with these reflections where "
+                    "there is one; a set made now would not be independent of a "
+                    "model already refined against this data."
+                ),
+                name=f'{self.TASKNAME}.container.inputData.FREERFLAG_IN',
+                severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+
+    def _checkLigandChemistryMatchesMode(self, error) -> None:
+        """The ligand's chemistry must arrive in the form the menu promises.
+
+        Both directions matter. The input the mode reads has to be there, or
+        acedrg is asked to build a molecule from nothing; and an input some
+        *other* mode would have read is not an error but is worth saying,
+        because it is silently ignored and looks for all the world like it was
+        used.
+        """
+        mode = str(self.container.controlParameters.LIGANDAS)
+        inp = self.container.inputData
+        expected = self.LIGAND_INPUT_FOR_MODE.get(mode)
+
+        if expected is not None:
+            field, menuEntry, description = expected
+            supplied = getattr(inp, field, None)
+            if supplied is None or not supplied.isSet():
+                error.append(
+                    klass=self.TASKNAME,
+                    code=217,
+                    details=(
+                        f"The ligand's chemistry is set to come from '{menuEntry}', "
+                        f"but {description} has not been given.\n\n"
+                        "Either supply it, or change how the chemistry is provided "
+                        "-- to 'NONE' if no ligand is to be fitted, which runs the "
+                        "refinement and leaves the site empty."
+                    ),
+                    name=f'{self.TASKNAME}.container.inputData.{field}',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR,
+                )
+
+        for otherMode, (field, menuEntry, description) in sorted(self.LIGAND_INPUT_FOR_MODE.items()):
+            if otherMode == mode:
+                continue
+            supplied = getattr(inp, field, None)
+            if supplied is None or not supplied.isSet():
+                continue
+            chosen = ("no ligand is to be fitted" if mode == 'NONE'
+                      else f"the chemistry is set to come from '{self._ligandMenuEntry(mode)}'")
+            error.append(
+                klass=self.TASKNAME,
+                code=218,
+                details=(
+                    f"{description[:1].upper()}{description[1:]} has been given, "
+                    f"but {chosen}, so it will be ignored.\n\n"
+                    f"Set 'Chemistry of the ligand' to '{menuEntry}' to use it, or "
+                    "clear the field so the job does not appear to read something "
+                    "it does not."
+                ),
+                name=f'{self.TASKNAME}.container.inputData.{field}',
+                severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+
+    def _ligandMenuEntry(self, mode) -> str:
+        """The menu wording for a ligand mode, for use in messages."""
+        if mode in self.LIGAND_INPUT_FOR_MODE:
+            return self.LIGAND_INPUT_FOR_MODE[mode][1]
+        return 'LIDIA Sketch' if mode == 'SKETCH' else str(mode)
+
+    def _checkThereAreAtomsToRefine(self, model, error) -> bool:
+        """Whether the model to be refined holds any atoms.
+
+        Returns False --- and reports --- when it holds none, or cannot be read
+        at all. An unreadable file is refused rather than waved through: it is
+        exactly the file a half-finished download leaves behind, and the whole
+        pipeline is built on placing these coordinates.
+        """
+        atoms = self._atomCountIn(model)
+        if atoms is None:
+            error.append(
+                klass=self.TASKNAME,
+                code=215,
+                details=(
+                    "The starting coordinates could not be read, so there is no "
+                    "model for molecular replacement to place.\n\n"
+                    "Check that the file is complete and really is a coordinate "
+                    "file."
+                ),
+                name=f'{self.TASKNAME}.container.inputData.XYZIN',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
+            )
+            return False
+
+        if atoms == 0:
+            selected = self.container.inputData.XYZIN.isSelectionSet()
+            details = (
+                (
+                    "The atom selection on the starting coordinates leaves no "
+                    "atoms, so there is nothing to refine. The selection is "
+                    f"'{self.container.inputData.XYZIN.selection}'.\n\n"
+                    "Widen it, or clear it to refine the model as supplied."
+                ) if selected else (
+                    "The starting coordinates contain no atoms, so there is "
+                    "nothing for molecular replacement to place.\n\n"
+                    "The file was read, so it is not corrupt --- it simply holds "
+                    "no coordinates. An interrupted download and an error page "
+                    "saved under a .pdb name both look like this."
+                )
+            )
+            error.append(
+                klass=self.TASKNAME,
+                code=215,
+                details=details,
+                name=f'{self.TASKNAME}.container.inputData.XYZIN',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
+            )
+            return False
+
+        return True
+
+    @staticmethod
+    def _atomCountIn(path):
+        """How many atoms a coordinate file holds, or None if it cannot be read."""
+        try:
+            import gemmi
+            structure = gemmi.read_structure(str(path))
+            return sum(len(residue) for model in structure
+                       for chain in model for residue in chain)
+        except Exception as err:
+            logger.warning(f"[SubstituteLigand] Could not count atoms in {path}: {err}")
+            return None
 
     def _selectedStartingModel(self, workDirectory) -> str:
         """The starting coordinates as they will be refined.
