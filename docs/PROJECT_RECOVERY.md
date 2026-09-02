@@ -175,6 +175,31 @@ project's files are rebased to match, reusing the machinery from
 recovered without touching anything; `POST /projects/restore/` does it. The
 desktop app exposes both through a Recover button on the projects toolbar.
 
+### The same machinery imports a folder
+
+A project that is already unpacked on disk — one a colleague sent, unpacked by
+the browser on the way in — needs exactly what a restore does: adopt it where
+it lies, keeping its job numbers, re-rooting its recorded path. So the import
+page's *project folder* option is this endpoint with `source: "directory"`,
+not a second implementation. It dry-runs each candidate first, so a name or
+UUID already taken is reported before anything is written rather than arriving
+afterwards as a skip.
+
+The distinction in this section still holds, and is now the user-visible
+difference between the two halves of the import page: a **zip** is copied into
+the project store and may be renumbered to fit; a **folder** is adopted in
+place and never is.
+
+### Paths are desktop-only
+
+`?scan=` and `source: "directory"`/`"scan"` name a path on the *server's*
+filesystem. On the desktop that is the user's own machine and their own files,
+which is the point. In a served deployment it is someone else's disk, and every
+logged-in user shares it — so those routes return 409 off the desktop, gated on
+the same `is_desktop()` signal that gates writing `preferences.json`. The
+registry route is unaffected: it reads only directories this installation
+already recorded, so recovery still works everywhere.
+
 ## What this does not do
 
 Inferring a project from its directory when there is **no** snapshot at all is

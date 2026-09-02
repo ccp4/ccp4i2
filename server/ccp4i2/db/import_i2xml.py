@@ -50,6 +50,7 @@ Functions:
         Imports a project tag from an XML node, creating or updating the project tag in the database.
 """
 import datetime
+import shutil
 import zipfile
 
 from collections import defaultdict
@@ -79,6 +80,7 @@ from .models import (
     JobCharValue,
 )
 from .ccp4i2_static_data import FILETYPELIST, KEYTYPELIST
+from .project_snapshot import SNAPSHOT_NAME
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -93,6 +95,100 @@ def job_number_hash(dotted_number: str):
     return "".join(job_elements).ljust(32 * 8, "0")
 
 
+class ProjectArchiveError(Exception):
+    """Raised when a zip file does not hold an importable CCP4i2 project."""
+
+
+def archive_prefix(names) -> str:
+    """Where the project root sits inside the archive.
+
+    ``export_project_to_zip`` writes ``DATABASE.db.xml`` at the top, so the
+    prefix is normally empty. Zipping a project by hand gives the other shape:
+    ``zip -r proj.zip ./PROJ`` wraps the lot in a ``PROJ/`` directory. That
+    archive holds exactly the same project, and rejecting it teaches nobody
+    anything -- the failure lands as a bare ``KeyError`` on a missing
+    ``DATABASE.db.xml``, which does not hint at the cause. So accept it.
+
+    Returns:
+        The prefix to strip from member names: ``""``, ``"PROJ/"``, ...
+
+    Raises:
+        ProjectArchiveError: there is no ``DATABASE.db.xml`` anywhere in it.
+    """
+    candidates = [
+        name
+        for name in names
+        if name == SNAPSHOT_NAME or name.endswith(f"/{SNAPSHOT_NAME}")
+    ]
+    if not candidates:
+        raise ProjectArchiveError(
+            f"No {SNAPSHOT_NAME} in this archive, so it does not hold a CCP4i2 "
+            "project. An exported project has the project's own contents at the "
+            "top level of the zip."
+        )
+    # Shallowest wins: a project directory can itself contain an old zipped-up
+    # project, and the outer one is the one being imported.
+    shallowest = min(candidates, key=lambda name: (name.count("/"), len(name)))
+    return shallowest[: -len(SNAPSHOT_NAME)]
+
+
+def inspect_ccp4_project_zip(zip_path: Path) -> dict:
+    """Report what a project zip holds, without importing any of it.
+
+    Cheap, and that is the point: the import proper runs detached, so whatever
+    is not checked here fails in a subprocess with nobody watching.
+    """
+    try:
+        with zipfile.ZipFile(zip_path, "r") as zip_archive:
+            prefix = archive_prefix(zip_archive.namelist())
+            with zip_archive.open(f"{prefix}{SNAPSHOT_NAME}", "r") as database_file:
+                try:
+                    root_node = ET.parse(database_file).getroot()
+                except ET.ParseError as err:
+                    raise ProjectArchiveError(
+                        f"{SNAPSHOT_NAME} in this archive is not readable: {err}"
+                    ) from err
+    except zipfile.BadZipFile as err:
+        raise ProjectArchiveError(f"Not a readable zip file: {err}") from err
+
+    node = root_node.find("ccp4i2_body/projectTable/project")
+    if node is None:
+        raise ProjectArchiveError(f"{SNAPSHOT_NAME} in this archive names no project")
+
+    return {
+        "prefix": prefix,
+        "project_name": node.attrib.get("projectname"),
+        "project_uuid": node.attrib.get("projectid"),
+        "recorded_directory": node.attrib.get("projectdirectory"),
+        "jobs": len(root_node.findall("ccp4i2_body/jobTable/job")),
+        "files": len(root_node.findall("ccp4i2_body/fileTable/file")),
+    }
+
+
+def _extract_member(
+    zip_archive: zipfile.ZipFile, source: str, destination: Path, project_root: Path
+) -> None:
+    """Extract one member to ``destination``, refusing to escape the project.
+
+    ``ZipFile.extractall`` sanitises member names itself, but it cannot strip a
+    path prefix -- and stripping one by hand is exactly how a ``../`` in an
+    archive gets its chance. So the check has to be made here instead.
+    """
+    resolved = destination.resolve()
+    if not resolved.is_relative_to(project_root):
+        raise ProjectArchiveError(
+            f"Archive entry '{source}' would be written outside the project directory"
+        )
+    if zip_archive.getinfo(source).is_dir():
+        resolved.mkdir(parents=True, exist_ok=True)
+        return
+    resolved.parent.mkdir(parents=True, exist_ok=True)
+    with zip_archive.open(source, "r") as source_file:
+        with open(resolved, "wb") as destination_file:
+            # Streamed rather than read() in one go: these run to hundreds of MB.
+            shutil.copyfileobj(source_file, destination_file)
+
+
 def import_ccp4_project_zip(zip_path: Path, relocate_path: Path = None):
     """
     Imports a CCP4 project from a zip archive.
@@ -102,11 +198,21 @@ def import_ccp4_project_zip(zip_path: Path, relocate_path: Path = None):
         zip_path (Path): The path to the zip file containing the CCP4 project.
         relocate_path (Path, optional): The path to relocate the project files. Defaults to None.
     Raises:
+        ProjectArchiveError: If the zip holds no importable CCP4i2 project.
         Project.DoesNotExist: If the project specified in the XML does not exist in the database.
     """
 
     with zipfile.ZipFile(zip_path, "r") as zip_archive:
-        with zip_archive.open("DATABASE.db.xml", "r") as database_file:
+        all_archive_files = zip_archive.namelist()
+        # Normally "", but a hand-rolled `zip -r proj.zip ./PROJ` wraps
+        # everything in a PROJ/ directory and is just as importable.
+        prefix = archive_prefix(all_archive_files)
+        if prefix:
+            logger.info(
+                "Project contents sit under '%s' in this archive; stripping it",
+                prefix,
+            )
+        with zip_archive.open(f"{prefix}{SNAPSHOT_NAME}", "r") as database_file:
             root_node = ET.parse(database_file).getroot()
             # An import creates hundreds of rows; snapshotting after each one
             # would be pointless churn, and the project directory does not even
@@ -116,9 +222,10 @@ def import_ccp4_project_zip(zip_path: Path, relocate_path: Path = None):
                     root_node, relocate_path=relocate_path
                 )
             # print(import_i2xml_result)
-            all_archive_files = zip_archive.namelist()
             this_project_node = root_node.findall("ccp4i2_header/projectId")
             this_project = Project.objects.get(uuid=this_project_node[0].text.strip())
+            project_root = Path(this_project.directory).resolve()
+            project_root.mkdir(parents=True, exist_ok=True)
             for subdir in [
                 "CCP4_COOT",
                 "CCP4_DOWNLOADED_FILES",
@@ -126,14 +233,15 @@ def import_ccp4_project_zip(zip_path: Path, relocate_path: Path = None):
                 "CCP4_IMPORTED_FILES",
                 "CCP4_TMP",
             ]:
-                subdir_files = [
-                    filename
-                    for filename in all_archive_files
-                    if filename.startswith(f"{subdir}/")
-                ]
-                zip_archive.extractall(
-                    str(Path(this_project.directory)), subdir_files, None
-                )
+                for src in all_archive_files:
+                    if not src.startswith(f"{prefix}{subdir}/"):
+                        continue
+                    _extract_member(
+                        zip_archive,
+                        src,
+                        project_root / src[len(prefix) :],
+                        project_root,
+                    )
 
             # Special handling for JOBS, since there may have been job remapping on import
             # Same could apply to imported files...
@@ -142,28 +250,20 @@ def import_ccp4_project_zip(zip_path: Path, relocate_path: Path = None):
                 for job_number in import_i2xml_result["job_map"]
                 if "." not in job_number
             ]
-            (Path(this_project.directory) / "CCP4_JOBS").mkdir(exist_ok=True)
+            (project_root / "CCP4_JOBS").mkdir(exist_ok=True)
             for top_level_job_number in top_level_job_numbers:
-                job_files = [
-                    zip_entry
-                    for zip_entry in all_archive_files
-                    if zip_entry.startswith(f"CCP4_JOBS/job_{top_level_job_number}/")
-                ]
-                for src in job_files:
-                    new_job_number = import_i2xml_result["job_map"][
-                        top_level_job_number
-                    ]
-                    destination = Path(this_project.directory) / src.replace(
-                        f"CCP4_JOBS/job_{top_level_job_number}/",
-                        f"CCP4_JOBS/job_{new_job_number}/",
-                        1,
+                old_root = f"{prefix}CCP4_JOBS/job_{top_level_job_number}/"
+                new_job_number = import_i2xml_result["job_map"][top_level_job_number]
+                new_root = f"CCP4_JOBS/job_{new_job_number}/"
+                for src in all_archive_files:
+                    if not src.startswith(old_root):
+                        continue
+                    _extract_member(
+                        zip_archive,
+                        src,
+                        project_root / (new_root + src[len(old_root) :]),
+                        project_root,
                     )
-                    if zip_archive.getinfo(src).is_dir():
-                        destination.mkdir(exist_ok=True)
-                    else:
-                        with zip_archive.open(src, "r") as src_file:
-                            with open(destination, "wb") as destination_file:
-                                destination_file.write(src_file.read())
 
             # Now the files are on disk, record the project so a lost database
             # can be rebuilt from what was just imported.
