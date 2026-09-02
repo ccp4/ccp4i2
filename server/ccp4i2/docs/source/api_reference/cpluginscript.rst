@@ -1,7 +1,7 @@
 CPluginScript
 =============
 
-.. automodule:: core.CCP4PluginScript
+.. automodule:: ccp4i2.core.CCP4PluginScript
    :members:
    :undoc-members:
    :show-inheritance:

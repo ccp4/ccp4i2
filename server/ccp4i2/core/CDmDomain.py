@@ -52,8 +52,14 @@ class CDmDomain(CData):
                 'toolTip': 'NCS averaging treatment for this rigid body',
             },
         }
-    segments = content("CString")
-    mode = content("CString")
+    segments = content(
+        "CString",
+        guiLabel='Segments',
+        toolTip='Residue ranges making up the domain, as chain:first-last')
+    mode = content(
+        "CString",
+        guiLabel='Mode',
+        toolTip='How the domain is used in averaging')
     pass
 
     def averaging_mode(self):

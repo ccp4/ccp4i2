@@ -1,3 +1,5 @@
+import os
+import sys
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -10,7 +12,17 @@ author = 'CCP4 Development Team'
 release = '2.0'
 
 # -- General configuration ---------------------------------------------------
+sys.path.insert(0, os.path.abspath('_ext'))
+sys.path.insert(0, os.path.abspath('../../..'))   # the server/ directory
+
+# The documented classes are Django models' neighbours: importing ccp4i2.core
+# requires the settings module to be configured first.
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.settings')
+django.setup()
+
 extensions = [
+    'cdata_fields',   # .. cdata-fields:: renders a class's fields from the class
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.napoleon',  # Support Google/NumPy style docstrings

@@ -535,8 +535,8 @@ class CPatchSelection(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    taskName = content("CString")
-    patch = content("CString")
+    taskName = content("CString", guiLabel='Task', toolTip='Task the patch applies to')
+    patch = content("CString", guiLabel='Patch', toolTip='Name of the patch to apply')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -805,8 +805,8 @@ class CFloatRange(CRange):
     """
     class Meta:
         contents_order = ['start', 'end']
-    start = content("CFloat")
-    end = content("CFloat")
+    start = content("CFloat", guiLabel='From', toolTip='Lower end of the range')
+    end = content("CFloat", guiLabel='To', toolTip='Upper end of the range')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -850,8 +850,8 @@ class CIntRange(CRange):
     """
     class Meta:
         contents_order = ['start', 'end']
-    start = content("CInt")
-    end = content("CInt")
+    start = content("CInt", guiLabel='From', toolTip='Lower end of the range')
+    end = content("CInt", guiLabel='To', toolTip='Upper end of the range')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

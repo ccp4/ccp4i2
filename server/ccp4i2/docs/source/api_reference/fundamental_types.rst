@@ -1,7 +1,7 @@
 Fundamental Types
 =================
 
-.. automodule:: core.base_object.fundamental_types
+.. automodule:: ccp4i2.core.base_object.fundamental_types
    :members:
    :undoc-members:
    :show-inheritance:

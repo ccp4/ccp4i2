@@ -273,13 +273,28 @@ class CColumnGroup(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    columnGroupType = content("COneWord",
-                              onlyEnumerators=True,
-                              enumerators=['Obs', 'Phs', 'MapCoeffs', 'FreeR'])
-    contentFlag = content("CInt")
-    dataset = content("CString")
-    columnList = content("CList")
-    selected = content("CBoolean")
+    columnGroupType = content(
+        "COneWord",
+        onlyEnumerators=True,
+        enumerators=['Obs', 'Phs', 'MapCoeffs', 'FreeR'],
+        guiLabel='Group type',
+        toolTip='What the group of columns represents, e.g. observations or phases')
+    contentFlag = content(
+        "CInt",
+        guiLabel='Content',
+        toolTip='Which representation the columns hold, e.g. I/sigI or F/sigF')
+    dataset = content(
+        "CString",
+        guiLabel='Dataset',
+        toolTip='Dataset the columns belong to')
+    columnList = content(
+        "CList",
+        guiLabel='Columns',
+        toolTip='The MTZ columns making up the group')
+    selected = content(
+        "CBoolean",
+        guiLabel='Selected',
+        toolTip='Whether this group is the one to use')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -591,20 +606,30 @@ what we are searching for.
             "guiDefinition": {},
             "saveToDb": False,
         }
-    moleculeType = content("CString",
-                           onlyEnumerators=True,
-                           enumerators=['PROTEIN', 'NUCLEIC'],
-                           menuText=['protein', 'nucleic acid'],
-                           default='PROTEIN',
-                           toolTip='Molecule type')
-    seqFile = content("CSeqDataFile", jobCombo=False, mustExist=True, allowUndefined=False)
-    numberOfCopies = content("CInt",
-                             allowUndefined=False,
-                             toolTip='Number of copies of sequence',
-                             min=0,
-                             max=999,
-                             default=1,
-                             enumerators=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    moleculeType = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['PROTEIN', 'NUCLEIC'],
+        menuText=['protein', 'nucleic acid'],
+        default='PROTEIN',
+        toolTip='Molecule type',
+        guiLabel='Molecule type')
+    seqFile = content(
+        "CSeqDataFile",
+        jobCombo=False,
+        mustExist=True,
+        allowUndefined=False,
+        guiLabel='Sequence',
+        toolTip='Sequence file for this component of the asymmetric unit')
+    numberOfCopies = content(
+        "CInt",
+        allowUndefined=False,
+        toolTip='Number of copies of sequence',
+        min=0,
+        max=999,
+        default=1,
+        enumerators=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        guiLabel='Copies')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -711,9 +736,19 @@ class CMergeMiniMtz(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    fileName = content("CMiniMtzDataFile", fromPreviousJob=False)
-    columnTag = content("CString")
-    columnNames = content("CString")
+    fileName = content(
+        "CMiniMtzDataFile",
+        fromPreviousJob=False,
+        guiLabel='File',
+        toolTip='Mini-MTZ whose columns are to be merged in')
+    columnTag = content(
+        "CString",
+        guiLabel='Tag',
+        toolTip='Prefix distinguishing these columns in the merged file')
+    columnNames = content(
+        "CString",
+        guiLabel='Columns',
+        toolTip='Columns to take from that file')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -886,9 +921,21 @@ class CReindexOperator(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    h = content("CString", default='h')
-    k = content("CString", default='k')
-    l = content("CString", default='l')
+    h = content(
+        "CString",
+        default='h',
+        guiLabel='h',
+        toolTip='Expression giving the new h in terms of the old indices')
+    k = content(
+        "CString",
+        default='k',
+        guiLabel='k',
+        toolTip='Expression giving the new k in terms of the old indices')
+    l = content(
+        "CString",
+        default='l',
+        guiLabel='l',
+        toolTip='Expression giving the new l in terms of the old indices')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -953,11 +1000,36 @@ class CRunBatchRange(CData):
         qualifiers = {
             "toolTip": 'Specify range of reflections to treat as one run',
         }
-    runNumber = content("CInt", allowUndefined=True, min=1)
-    batchRange0 = content("CInt", allowUndefined=True, min=1)
-    batchRange1 = content("CInt", allowUndefined=True, min=1)
-    resolution = content("CFloat", min=0.0, allowUndefined=True)
-    fileNumber = content("CInt", allowUndefined=True, min=1)
+    runNumber = content(
+        "CInt",
+        allowUndefined=True,
+        min=1,
+        guiLabel='Run',
+        toolTip='Number identifying the run')
+    batchRange0 = content(
+        "CInt",
+        allowUndefined=True,
+        min=1,
+        guiLabel='First batch',
+        toolTip='First image batch in the run')
+    batchRange1 = content(
+        "CInt",
+        allowUndefined=True,
+        min=1,
+        guiLabel='Last batch',
+        toolTip='Last image batch in the run')
+    resolution = content(
+        "CFloat",
+        min=0.0,
+        allowUndefined=True,
+        guiLabel='Resolution',
+        toolTip='Resolution limit, in Angstroms')
+    fileNumber = content(
+        "CInt",
+        allowUndefined=True,
+        min=1,
+        guiLabel='File',
+        toolTip='Which input file the batches came from')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1680,8 +1752,11 @@ class CMtzDataset(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    name = content("CString")
-    columnGroups = content("CList")
+    name = content("CString", guiLabel='Name', toolTip='Name of this item')
+    columnGroups = content(
+        "CList",
+        guiLabel='Column groups',
+        toolTip='The column groups belonging to this dataset')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1874,8 +1949,14 @@ class CFormFactor(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    Fp = content("CFloat", toolTip="Form factor F' for element at given wavelength")
-    Fpp = content("CFloat", toolTip="Form factor F'' for element at given wavelength")
+    Fp = content(
+        "CFloat",
+        toolTip="Form factor F' for element at given wavelength",
+        guiLabel="f'")
+    Fpp = content(
+        "CFloat",
+        toolTip="Form factor F'' for element at given wavelength",
+        guiLabel="f''")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2630,10 +2711,23 @@ class CMtzColumn(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    columnLabel = content("COneWord", allowUndefined=True)
-    columnType = content("CColumnType")
-    dataset = content("COneWord")
-    groupIndex = content("CInt")
+    columnLabel = content(
+        "COneWord",
+        allowUndefined=True,
+        guiLabel='Label',
+        toolTip='Label of the column in the MTZ file')
+    columnType = content(
+        "CColumnType",
+        guiLabel='Type',
+        toolTip='MTZ column type code, e.g. F, Q, J or P')
+    dataset = content(
+        "COneWord",
+        guiLabel='Dataset',
+        toolTip='Dataset the column belongs to')
+    groupIndex = content(
+        "CInt",
+        guiLabel='Group',
+        toolTip='Which column group the column falls in')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2673,11 +2767,26 @@ class CColumnGroupItem(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    columnName = content("COneWord")
-    defaultList = content("CString")
-    columnType = content("CColumnTypeList")
-    partnerTo = content("COneWord")
-    partnerOffset = content("CInt")
+    columnName = content(
+        "COneWord",
+        guiLabel='Column',
+        toolTip='Label of the MTZ column')
+    defaultList = content(
+        "CString",
+        guiLabel='Default names',
+        toolTip='Column labels conventionally used for this role')
+    columnType = content(
+        "CColumnTypeList",
+        guiLabel='Column type',
+        toolTip='MTZ column type code, e.g. F, Q, J or P')
+    partnerTo = content(
+        "COneWord",
+        guiLabel='Partner to',
+        toolTip='Column this one is paired with, such as a sigma to its measurement')
+    partnerOffset = content(
+        "CInt",
+        guiLabel='Partner offset',
+        toolTip='Position of the partner column relative to this one')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2705,9 +2814,22 @@ class CXia2ImageSelection(CData):
         qualifiers = {
             "toolTip": 'select an image file and an optional range of files to define a dataset',
         }
-    imageFile = content("CImageFile")
-    imageStart = content("CInt", allowUndefined=True, min=0)
-    imageEnd = content("CInt", allowUndefined=True, min=0)
+    imageFile = content(
+        "CImageFile",
+        guiLabel='Images',
+        toolTip='One image of the sweep, identifying the directory and template')
+    imageStart = content(
+        "CInt",
+        allowUndefined=True,
+        min=0,
+        guiLabel='First image',
+        toolTip='Number of the first image to process')
+    imageEnd = content(
+        "CInt",
+        allowUndefined=True,
+        min=0,
+        guiLabel='Last image',
+        toolTip='Number of the last image to process')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3548,8 +3670,16 @@ class CSpaceGroupCell(CData):
             "toolTip": 'Space group and cell length and angles',
             "helpFile": 'crystal_data#cell_space_group',
         }
-    spaceGroup = content("CSpaceGroup", guilabel='space group')
-    cell = content("CCell", guilabel='cell')
+    spaceGroup = content(
+        "CSpaceGroup",
+        guilabel='space group',
+        guiLabel='Space group',
+        toolTip='Space group of the crystal')
+    cell = content(
+        "CCell",
+        guilabel='cell',
+        guiLabel='Cell',
+        toolTip='Unit cell of the crystal')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3591,14 +3721,35 @@ specific to coordinates, reflections or geometry data.
             "guiDefinition": {},
             "saveToDb": False,
         }
-    cell = content("CCell")
-    spaceGroup = content("CSpaceGroup")
-    wavelength = content("CWavelength")
-    haveFreeRColumn = content("CBoolean")
-    haveFobsColumn = content("CBoolean")
-    haveFpmObsColumn = content("CBoolean")
-    haveIobsColumn = content("CBoolean")
-    haveIpmObsColumn = content("CBoolean")
+    cell = content("CCell", guiLabel='Cell', toolTip='Unit cell of the crystal')
+    spaceGroup = content(
+        "CSpaceGroup",
+        guiLabel='Space group',
+        toolTip='Space group of the crystal')
+    wavelength = content(
+        "CWavelength",
+        guiLabel='Wavelength',
+        toolTip='Wavelength of the incident radiation, in Angstroms')
+    haveFreeRColumn = content(
+        "CBoolean",
+        guiLabel='Has free R',
+        toolTip='Whether the file contains a free R set')
+    haveFobsColumn = content(
+        "CBoolean",
+        guiLabel='Has Fobs',
+        toolTip='Whether the file contains observed amplitudes')
+    haveFpmObsColumn = content(
+        "CBoolean",
+        guiLabel='Has anomalous F',
+        toolTip='Whether the file contains Friedel pairs as amplitudes')
+    haveIobsColumn = content(
+        "CBoolean",
+        guiLabel='Has Iobs',
+        toolTip='Whether the file contains observed intensities')
+    haveIpmObsColumn = content(
+        "CBoolean",
+        guiLabel='Has anomalous I',
+        toolTip='Whether the file contains Friedel pairs as intensities')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3789,23 +3940,37 @@ class CImportUnmerged(CData):
             "toolTip": 'Imported data file, cell parameters and crystal/dataset identifiers',
             "helpFile": 'import_merged#file_formats',
         }
-    file = content("CUnmergedDataFile",
-                   allowUndefined=False,
-                   mustExist=True,
-                   fromPreviousJob=True)
-    crystalName = content("CString",
-                          allowUndefined=True,
-                          minLength=1,
-                          guiLabel='crystal name',
-                          allowedCharsCode=1)
-    dataset = content("CString",
-                      allowUndefined=True,
-                      minLength=1,
-                      guiLabel='dataset name',
-                      allowedCharsCode=1)
-    excludeSelection = content("CRangeSelection", allowUndefined=True)
-    cell = content("CCell")
-    wavelength = content("CWavelength")
+    file = content(
+        "CUnmergedDataFile",
+        allowUndefined=False,
+        mustExist=True,
+        fromPreviousJob=True,
+        guiLabel='File',
+        toolTip='Unmerged reflection file to import')
+    crystalName = content(
+        "CString",
+        allowUndefined=True,
+        minLength=1,
+        guiLabel='crystal name',
+        allowedCharsCode=1,
+        toolTip='Name to give the crystal')
+    dataset = content(
+        "CString",
+        allowUndefined=True,
+        minLength=1,
+        guiLabel='dataset name',
+        allowedCharsCode=1,
+        toolTip='Name to give the dataset')
+    excludeSelection = content(
+        "CRangeSelection",
+        allowUndefined=True,
+        guiLabel='Exclude batches',
+        toolTip='Image batches to leave out, for example a damaged wedge')
+    cell = content("CCell", guiLabel='Cell', toolTip='Unit cell of the crystal')
+    wavelength = content(
+        "CWavelength",
+        guiLabel='Wavelength',
+        toolTip='Wavelength of the incident radiation, in Angstroms')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3948,15 +4113,39 @@ class CMtzData(CDataFileContent):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    cell = content("CCell")
-    spaceGroup = content("CSpaceGroup")
-    resolutionRange = content("CResolutionRange")
-    listOfColumns = content("CList")
-    datasets = content("CList")
-    crystalNames = content("CList")
-    wavelengths = content("CList")
-    datasetCells = content("CList")
-    merged = content("CBoolean")
+    cell = content("CCell", guiLabel='Cell', toolTip='Unit cell of the crystal')
+    spaceGroup = content(
+        "CSpaceGroup",
+        guiLabel='Space group',
+        toolTip='Space group of the crystal')
+    resolutionRange = content(
+        "CResolutionRange",
+        guiLabel='Resolution range',
+        toolTip='Low and high resolution limits of the data, in Angstroms')
+    listOfColumns = content(
+        "CList",
+        guiLabel='Columns',
+        toolTip='The MTZ columns, each with its label and type')
+    datasets = content(
+        "CList",
+        guiLabel='Datasets',
+        toolTip='Names of the datasets the file contains')
+    crystalNames = content(
+        "CList",
+        guiLabel='Crystals',
+        toolTip='Crystal name for each dataset')
+    wavelengths = content(
+        "CList",
+        guiLabel='Wavelengths',
+        toolTip='Wavelength recorded for each dataset, in Angstroms')
+    datasetCells = content(
+        "CList",
+        guiLabel='Dataset cells',
+        toolTip='Unit cell recorded for each dataset')
+    merged = content(
+        "CBoolean",
+        guiLabel='Merged',
+        toolTip='Whether the reflections have been merged')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -4572,26 +4761,65 @@ class CUnmergedDataContent(CDataFileContent):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    format = content("CString",
-                     onlyEnumerators=True,
-                     enumerators=['unk', 'mtz', 'xds', 'sca', 'saint', 'shelx', 'mmcif'],
-                     default='unk')
-    merged = content("CString",
-                     onlyEnumerators=True,
-                     enumerators=['unk', 'merged', 'unmerged'],
-                     default='unk')
-    crystalName = content("CCrystalName")
-    datasetName = content("CDatasetName")
-    cell = content("CCell")
-    spaceGroup = content("CSpaceGroup")
-    batchs = content("CString")
-    lowRes = content("CFloat")
-    highRes = content("CFloat")
-    knowncell = content("CBoolean")
-    knownwavelength = content("CBoolean")
-    numberLattices = content("CInt")
-    wavelength = content("CWavelength")
-    numberofdatasets = content("CInt")
+    format = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['unk', 'mtz', 'xds', 'sca', 'saint', 'shelx', 'mmcif'],
+        default='unk',
+        guiLabel='Format',
+        toolTip='File format of the unmerged data, e.g. MTZ or XDS')
+    merged = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['unk', 'merged', 'unmerged'],
+        default='unk',
+        guiLabel='Merged',
+        toolTip='Whether the reflections have been merged')
+    crystalName = content(
+        "CCrystalName",
+        guiLabel='Crystal',
+        toolTip='Name of the crystal')
+    datasetName = content(
+        "CDatasetName",
+        guiLabel='Dataset',
+        toolTip='Name of the dataset')
+    cell = content("CCell", guiLabel='Cell', toolTip='Unit cell of the crystal')
+    spaceGroup = content(
+        "CSpaceGroup",
+        guiLabel='Space group',
+        toolTip='Space group of the crystal, where it is known')
+    batchs = content(
+        "CString",
+        guiLabel='Batches',
+        toolTip='Range of image batches the file covers')
+    lowRes = content(
+        "CFloat",
+        guiLabel='Low resolution',
+        toolTip='Low resolution limit of the data, in Angstroms')
+    highRes = content(
+        "CFloat",
+        guiLabel='High resolution',
+        toolTip='High resolution limit of the data, in Angstroms')
+    knowncell = content(
+        "CBoolean",
+        guiLabel='Cell known',
+        toolTip='Whether the unit cell has been determined')
+    knownwavelength = content(
+        "CBoolean",
+        guiLabel='Wavelength known',
+        toolTip='Whether the wavelength is recorded in the file')
+    numberLattices = content(
+        "CInt",
+        guiLabel='Lattices',
+        toolTip='Number of lattices present, more than one indicating a multiple crystal')
+    wavelength = content(
+        "CWavelength",
+        guiLabel='Wavelength',
+        toolTip='Wavelength of the incident radiation, in Angstroms')
+    numberofdatasets = content(
+        "CInt",
+        guiLabel='Datasets',
+        toolTip='Number of datasets in the file')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -5263,8 +5491,14 @@ class CMtzColumnGroup(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    groupType = content("CMtzColumnGroupType")
-    columns = content("CList")
+    groupType = content(
+        "CMtzColumnGroupType",
+        guiLabel='Group type',
+        toolTip='What the group represents, e.g. observations, phases or a free R set')
+    columns = content(
+        "CList",
+        guiLabel='Columns',
+        toolTip='The columns making up the group')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -5296,16 +5530,34 @@ class CDataset(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    selected = content("CBoolean")
-    obsDataFile = content("CObsDataFile")
-    crystalName = content("CCrystalName")
-    datasetName = content("CDatasetName")
-    formFactors = content("CFormFactor")
-    formFactorSource = content("CString",
-                               onlyEnumerators=True,
-                               enumerators=['no', 'composition', 'xia2'],
-                               menuText=['user input', 'atomic composition', 'from XIA2'],
-                               default='no')
+    selected = content(
+        "CBoolean",
+        guiLabel='Selected',
+        toolTip='Whether to use this dataset')
+    obsDataFile = content(
+        "CObsDataFile",
+        guiLabel='Observations',
+        toolTip="Reflection file holding this dataset's measurements")
+    crystalName = content(
+        "CCrystalName",
+        guiLabel='Crystal',
+        toolTip='Name of the crystal the data came from')
+    datasetName = content(
+        "CDatasetName",
+        guiLabel='Dataset',
+        toolTip='Name of the dataset')
+    formFactors = content(
+        "CFormFactor",
+        guiLabel='Form factors',
+        toolTip="Anomalous scattering factors f' and f'' for this dataset")
+    formFactorSource = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['no', 'composition', 'xia2'],
+        menuText=['user input', 'atomic composition', 'from XIA2'],
+        default='no',
+        guiLabel='Form factor source',
+        toolTip='Where the scattering factors came from, e.g. a table or a fluorescence scan')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -5354,8 +5606,14 @@ class CProgramColumnGroup0(CData):
             "mtzFileKey": '',
             "groupTypes": [],
         }
-    columnGroup = content("CMtzColumnGroup")
-    datasetName = content("CString")
+    columnGroup = content(
+        "CMtzColumnGroup",
+        guiLabel='Columns',
+        toolTip='Columns supplied to the program for this role')
+    datasetName = content(
+        "CString",
+        guiLabel='Dataset',
+        toolTip='Dataset the columns are taken from')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

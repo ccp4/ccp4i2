@@ -32,12 +32,21 @@ class CBibReference(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    pmid = content("CInt")
-    title = content("CString")
-    authorList = content("CList")
-    source = content("CString")
-    url = content("CString")
-    selected = content("CBoolean")
+    pmid = content("CInt", guiLabel='PMID', toolTip='Pubmed ID')
+    title = content("CString", guiLabel='Title', toolTip='Title of the referenced work')
+    authorList = content("CList", guiLabel='Author list', toolTip='List of authors')
+    source = content(
+        "CString",
+        guiLabel='Source',
+        toolTip='Journal or other publication the work appeared in')
+    url = content(
+        "CString",
+        guiLabel='URL',
+        toolTip='Web address of the referenced work')
+    selected = content(
+        "CBoolean",
+        guiLabel='Selected',
+        toolTip='Whether this reference is cited in the job report')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -80,10 +89,22 @@ class CBibReferenceGroup(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    taskName = content("CString")
-    version = content("CString")
-    title = content("CString")
-    references = content("CList")
+    taskName = content(
+        "CString",
+        guiLabel='Task',
+        toolTip='Task these references should be cited for')
+    version = content(
+        "CString",
+        guiLabel='Version',
+        toolTip='Version of the task the references apply to')
+    title = content(
+        "CString",
+        guiLabel='Title',
+        toolTip='Heading for this group of references')
+    references = content(
+        "CList",
+        guiLabel='References',
+        toolTip='The bibliographic references in this group')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -115,20 +136,35 @@ class CFont(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    family = content("CString", default='Helvetica')
-    style = content("CInt",
-                    onlyEnumerators=True,
-                    default=0,
-                    enumerators=[0, 1, 2],
-                    menuText=['normal', 'italic', 'oblique'])
-    pointSize = content("CInt", min=1, default=12)
-    weight = content("CInt",
-                     min=0,
-                     max=99,
-                     default=50,
-                     allowUndefined=False,
-                     enumerators=[25, 50, 63, 75, 87],
-                     menuText=['light', 'normal', 'demi-bold', 'bold', 'black'])
+    family = content(
+        "CString",
+        default='Helvetica',
+        guiLabel='Font',
+        toolTip='Name of the font family, e.g. Helvetica')
+    style = content(
+        "CInt",
+        onlyEnumerators=True,
+        default=0,
+        enumerators=[0, 1, 2],
+        menuText=['normal', 'italic', 'oblique'],
+        guiLabel='Style',
+        toolTip='Normal, italic or oblique')
+    pointSize = content(
+        "CInt",
+        min=1,
+        default=12,
+        guiLabel='Size',
+        toolTip='Font size in points')
+    weight = content(
+        "CInt",
+        min=0,
+        max=99,
+        default=50,
+        allowUndefined=False,
+        enumerators=[25, 50, 63, 75, 87],
+        menuText=['light', 'normal', 'demi-bold', 'bold', 'black'],
+        guiLabel='Weight',
+        toolTip='Stroke weight, from light through normal to bold')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -247,7 +283,10 @@ class CMetaDataTag(CData):
             "enumeratorsFunction": None,
             "addEnumeratorFunction": None,
         }
-    tag = content("CString")
+    tag = content(
+        "CString",
+        guiLabel='Tag',
+        toolTip='Metadata keyword recorded against the item')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -279,15 +318,42 @@ class CDateRange(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    year = content("CInt", enumerators=[])
-    month = content("CString",
-                    onlyEnumerators=True,
-                    enumerators=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                    default='January')
-    day = content("CInt", default=1, min=1, max=31)
-    yearRange = content("CInt", default=0, min=0, max=100)
-    monthRange = content("CInt", default=0, min=0, max=12)
-    dayRange = content("CInt", default=0, min=0, max=30)
+    year = content("CInt", enumerators=[], guiLabel='Year', toolTip='The year')
+    month = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        default='January',
+        guiLabel='Month',
+        toolTip='Month of the year')
+    day = content(
+        "CInt",
+        default=1,
+        min=1,
+        max=31,
+        guiLabel='Day',
+        toolTip='Day of the month')
+    yearRange = content(
+        "CInt",
+        default=0,
+        min=0,
+        max=100,
+        guiLabel='Years',
+        toolTip='Number of years the range spans')
+    monthRange = content(
+        "CInt",
+        default=0,
+        min=0,
+        max=12,
+        guiLabel='Months',
+        toolTip='Number of months the range spans')
+    dayRange = content(
+        "CInt",
+        default=0,
+        min=0,
+        max=30,
+        guiLabel='Days',
+        toolTip='Number of days the range spans')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -408,26 +474,75 @@ class CServerGroup(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    name = content("CString")
-    mechanism = content("CString",
-                        enumerators=['ssh', 'ssh_shared', 'qsub_local', 'qsub_remote', 'slurm_remote', 'custom'],
-                        menuText=['ssh', 'ssh with shared filesystem', 'qsub queue', 'qsub on another machine', 'Slurm on another machine', 'custom'],
-                        onlyEnumerators=True,
-                        default='ssh')
-    serverList = content("CList", minLength=1)
-    userExtensible = content("CBoolean", default=False)
-    ccp4Dir = content("CString", allowUndefind=True)
-    tempDir = content("CString", allowUndefind=True)
-    sge_root = content("CString", allowUndefind=True)
-    keyFilename = content("CString", allowUndefind=True)
-    validate = content("CString",
-                       onlyEnumerators=True,
-                       default='password',
-                       enumerators=['password', 'key_filename', 'pass_key_filename'])
-    customCodeFile = content("CDataFile", allowUndefind=True, fileExtensions=['py'])
-    queueOptionsFile = content("CDataFile", allowUndefind=True)
-    timeout = content("CFloat")
-    maxTries = content("CInt", default=2)
+    name = content(
+        "CString",
+        guiLabel='Name',
+        toolTip='Name of this server configuration')
+    mechanism = content(
+        "CString",
+        enumerators=['ssh', 'ssh_shared', 'qsub_local', 'qsub_remote', 'slurm_remote', 'custom'],
+        menuText=['ssh', 'ssh with shared filesystem', 'qsub queue', 'qsub on another machine', 'Slurm on another machine', 'custom'],
+        onlyEnumerators=True,
+        default='ssh',
+        guiLabel='Mechanism',
+        toolTip='How jobs are submitted, e.g. by ssh or to a queue')
+    serverList = content(
+        "CList",
+        minLength=1,
+        guiLabel='Servers',
+        toolTip='Machines jobs may be sent to')
+    userExtensible = content(
+        "CBoolean",
+        default=False,
+        guiLabel='User extensible',
+        toolTip='Whether a user may add servers to this group')
+    ccp4Dir = content(
+        "CString",
+        allowUndefind=True,
+        guiLabel='CCP4 directory',
+        toolTip='Location of the CCP4 installation on the remote machine')
+    tempDir = content(
+        "CString",
+        allowUndefind=True,
+        guiLabel='Temporary directory',
+        toolTip="Directory for a job's scratch files on the remote machine")
+    sge_root = content(
+        "CString",
+        allowUndefind=True,
+        guiLabel='SGE root',
+        toolTip='Root of the Grid Engine installation, for queue submission')
+    keyFilename = content(
+        "CString",
+        allowUndefind=True,
+        guiLabel='Key file',
+        toolTip='Private key used to authenticate to the remote machine')
+    validate = content(
+        "CString",
+        onlyEnumerators=True,
+        default='password',
+        enumerators=['password', 'key_filename', 'pass_key_filename'],
+        guiLabel='Validate',
+        toolTip='Command used to check the remote machine is usable')
+    customCodeFile = content(
+        "CDataFile",
+        allowUndefind=True,
+        fileExtensions=['py'],
+        guiLabel='Custom code',
+        toolTip='Script supplying site-specific submission logic')
+    queueOptionsFile = content(
+        "CDataFile",
+        allowUndefind=True,
+        guiLabel='Queue options',
+        toolTip='File of options passed to the queueing system')
+    timeout = content(
+        "CFloat",
+        guiLabel='Timeout',
+        toolTip='How long to wait for the remote machine before giving up, in seconds')
+    maxTries = content(
+        "CInt",
+        default=2,
+        guiLabel='Max. tries',
+        toolTip='How many times to retry a failed submission')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -458,8 +573,11 @@ class CUserAddress(CData):
             "label": 'User id and current machine',
             "toolTip": 'User id as me@myplace.ac.uk and machine name',
         }
-    platformNode = content("CString")
-    userId = content("CUserId")
+    platformNode = content(
+        "CString",
+        guiLabel='Machine',
+        toolTip='Network name of the machine')
+    userId = content("CUserId", guiLabel='User', toolTip='Login name of the user')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -490,9 +608,24 @@ class CAnnotation(CData):
             "label": 'Annotation',
             "toolTip": 'Enter your comments',
         }
-    text = content("CString", allowUndefined=True, charWidth=-1)
-    time = content("CTime", allowUndefined=True, default=None)
-    author = content("CUserId", allowUndefined=True, default=None)
+    text = content(
+        "CString",
+        allowUndefined=True,
+        charWidth=-1,
+        guiLabel='Text',
+        toolTip='Text of annotation')
+    time = content(
+        "CTime",
+        allowUndefined=True,
+        default=None,
+        guiLabel='Timestamp',
+        toolTip='Time of annotation')
+    author = content(
+        "CUserId",
+        allowUndefined=True,
+        default=None,
+        guiLabel='Author',
+        toolTip='Annotation author')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

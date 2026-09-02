@@ -1,7 +1,7 @@
 CDataFile
 =========
 
-.. automodule:: core.CCP4File
+.. automodule:: ccp4i2.core.CCP4File
    :members:
    :undoc-members:
    :show-inheritance:
@@ -14,11 +14,13 @@ Key Classes
 CDataFile
 ~~~~~~~~~
 
-Base class for all file data types. Provides:
+Base class for all file data types. Its fields, read from the class itself:
 
-- ``fullPath`` - Full filesystem path
-- ``annotation`` - Human-readable description
-- ``mustExist`` - Whether file must exist for validation
+.. cdata-fields:: ccp4i2.core.base_object.cdata_file.CDataFile
+
+The ``fullPath`` property composes ``project``, ``relPath`` and ``baseName``
+into a filesystem path; ``mustExist`` is a qualifier rather than a field, and
+governs whether validation requires the file to be present.
 
 Specialized File Types
 ~~~~~~~~~~~~~~~~~~~~~~

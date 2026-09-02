@@ -56,8 +56,15 @@ class CPerformanceIndicator(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    value = content("CFloat", min=0.0)
-    annotation = content("CString")
+    value = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='Value',
+        toolTip='The indicator itself, where a single number suffices; typed subclasses declare named metrics instead')
+    annotation = content(
+        "CString",
+        guiLabel='Annotation',
+        toolTip='Human-readable description')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -129,9 +136,19 @@ class CDataReductionPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['spaceGroup', 'highResLimit', 'rMeas']
-    spaceGroup = content("CSpaceGroup")
-    highResLimit = content("CFloat", min=0.0)
-    rMeas = content("CFloat")
+    spaceGroup = content(
+        "CSpaceGroup",
+        guiLabel='Space group',
+        toolTip='Space group of the crystal')
+    highResLimit = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='High resolution',
+        toolTip='High resolution limit of the reduced data, in Angstroms')
+    rMeas = content(
+        "CFloat",
+        guiLabel='Rmeas',
+        toolTip='Redundancy-independent merging R factor')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -166,7 +183,11 @@ class CPairefPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['cutoff']
-    cutoff = content("CFloat", min=0.0)
+    cutoff = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='Resolution cutoff',
+        toolTip='Resolution at which paired refinement stopped improving, in Angstroms')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -201,9 +222,19 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['spaceGroup', 'highResLimit', 'ccHalf']
-    spaceGroup = content("CSpaceGroup")
-    highResLimit = content("CFloat", min=0.0)
-    ccHalf = content("CFloat")
+    spaceGroup = content(
+        "CSpaceGroup",
+        guiLabel='Space group',
+        toolTip='Space group of the crystal')
+    highResLimit = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='High resolution',
+        toolTip='High resolution limit of the reduced data, in Angstroms')
+    ccHalf = content(
+        "CFloat",
+        guiLabel='CC half',
+        toolTip='Correlation between two half-datasets, the usual resolution criterion')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -238,19 +269,71 @@ class CServalcatPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['RFactor', 'RFree', 'R', 'R1Factor', 'R1Free', 'R1', 'FSCaverage', 'annotation']
-    RFactor = content("CFloat", min=0.0)
-    RFree = content("CFloat", min=0.0)
-    R = content("CFloat", min=0.0)
-    R1Factor = content("CFloat", min=0.0)
-    R1Free = content("CFloat", min=0.0)
-    R1 = content("CFloat", min=0.0)
-    FSCaverage = content("CFloat", min=-1.0)
-    CCFwork_avg = content("CFloat", min=-1.0)
-    CCFfree_avg = content("CFloat", min=-1.0)
-    CCF_avg = content("CFloat", min=-1.0)
-    CCIwork_avg = content("CFloat", min=-1.0)
-    CCIfree_avg = content("CFloat", min=-1.0)
-    CCI_avg = content("CFloat", min=-1.0)
+    RFactor = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R factor',
+        toolTip='R factor against the working set')
+    RFree = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R free',
+        toolTip='R factor against the free set, the unbiased measure of fit')
+    R = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R',
+        toolTip='R factor over all reflections')
+    R1Factor = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R1 factor',
+        toolTip='R1 factor against the working set')
+    R1Free = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R1 free',
+        toolTip='R1 factor against the free set')
+    R1 = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R1',
+        toolTip='R1 factor over all reflections')
+    FSCaverage = content(
+        "CFloat",
+        min=-1.0,
+        guiLabel='FSC average',
+        toolTip='Mean Fourier shell correlation between model and map')
+    CCFwork_avg = content(
+        "CFloat",
+        min=-1.0,
+        guiLabel='CCF work',
+        toolTip='Mean correlation of amplitudes for the working set')
+    CCFfree_avg = content(
+        "CFloat",
+        min=-1.0,
+        guiLabel='CCF free',
+        toolTip='Mean correlation of amplitudes for the free set')
+    CCF_avg = content(
+        "CFloat",
+        min=-1.0,
+        guiLabel='CCF',
+        toolTip='Mean correlation of amplitudes over all reflections')
+    CCIwork_avg = content(
+        "CFloat",
+        min=-1.0,
+        guiLabel='CCI work',
+        toolTip='Mean correlation of intensities for the working set')
+    CCIfree_avg = content(
+        "CFloat",
+        min=-1.0,
+        guiLabel='CCI free',
+        toolTip='Mean correlation of intensities for the free set')
+    CCI_avg = content(
+        "CFloat",
+        min=-1.0,
+        guiLabel='CCI',
+        toolTip='Mean correlation of intensities over all reflections')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -285,13 +368,39 @@ class CExpPhasPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['FOM', 'CFOM', 'Hand1Score', 'Hand2Score', 'CC', 'RFactor', 'RFree', 'annotation']
-    FOM = content("CFloat", min=0.0)
-    CFOM = content("CFloat", min=0.0)
-    Hand1Score = content("CFloat")
-    Hand2Score = content("CFloat")
-    CC = content("CFloat", min=0.0)
-    RFactor = content("CFloat", min=0.0)
-    RFree = content("CFloat", min=0.0)
+    FOM = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='FOM',
+        toolTip='Mean figure of merit of the phases')
+    CFOM = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='Combined FOM',
+        toolTip='Combined figure of merit over both hands')
+    Hand1Score = content(
+        "CFloat",
+        guiLabel='Hand 1 score',
+        toolTip='Score for the first of the two possible hands')
+    Hand2Score = content(
+        "CFloat",
+        guiLabel='Hand 2 score',
+        toolTip='Score for the second of the two possible hands')
+    CC = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='CC',
+        toolTip='Correlation coefficient of the experimental phasing')
+    RFactor = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R factor',
+        toolTip='R factor of the phasing model against the data')
+    RFree = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R free',
+        toolTip='R factor against the free set')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -324,8 +433,14 @@ class CAtomCountPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['nAtoms', 'nResidues']
-    nAtoms = content("CInt")
-    nResidues = content("CInt")
+    nAtoms = content(
+        "CInt",
+        guiLabel='Atoms',
+        toolTip='Number of atoms in the model produced')
+    nResidues = content(
+        "CInt",
+        guiLabel='Residues',
+        toolTip='Number of residues in the model produced')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -402,8 +517,16 @@ class CModelBuildPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['RFactor', 'completeness', 'annotation']
-    RFactor = content("CFloat", min=0.0)
-    completeness = content("CFloat", min=0.0)
+    RFactor = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R factor',
+        toolTip='R factor of the built model against the data')
+    completeness = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='Completeness',
+        toolTip='Fraction of the expected model that was built')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -438,11 +561,30 @@ class CRefinementPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['RFactor', 'RFree', 'RMSBond', 'RMSAngle', 'weightUsed', 'annotation']
-    RFactor = content("CFloat", min=0.0)
-    RFree = content("CFloat", min=0.0)
-    RMSBond = content("CFloat", min=0.0)
-    RMSAngle = content("CFloat", min=0.0)
-    weightUsed = content("CFloat")
+    RFactor = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R factor',
+        toolTip='R factor against the working set')
+    RFree = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R free',
+        toolTip='R factor against the free set, the unbiased measure of fit')
+    RMSBond = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='RMS bond',
+        toolTip='Root-mean-square deviation of bond lengths from ideal, in Angstroms')
+    RMSAngle = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='RMS angle',
+        toolTip='Root-mean-square deviation of bond angles from ideal, in degrees')
+    weightUsed = content(
+        "CFloat",
+        guiLabel='Weight',
+        toolTip='Weight applied between the X-ray and geometry terms')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -477,8 +619,14 @@ class CSuperposePerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['RMSxyz', 'nResidues']
-    RMSxyz = content("CFloat")
-    nResidues = content("CInt")
+    RMSxyz = content(
+        "CFloat",
+        guiLabel='RMS deviation',
+        toolTip='Root-mean-square distance between superposed atoms, in Angstroms')
+    nResidues = content(
+        "CInt",
+        guiLabel='Residues',
+        toolTip='Number of residues matched in the superposition')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -513,11 +661,29 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['spaceGroup', 'highResLimit', 'rMeas', 'RFactor', 'RFree']
-    spaceGroup = content("CSpaceGroup")
-    highResLimit = content("CFloat", min=0.0)
-    rMeas = content("CFloat")
-    RFactor = content("CFloat", min=0.0)
-    RFree = content("CFloat", min=0.0)
+    spaceGroup = content(
+        "CSpaceGroup",
+        guiLabel='Space group',
+        toolTip='Space group of the crystal')
+    highResLimit = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='High resolution',
+        toolTip='High resolution limit of the data, in Angstroms')
+    rMeas = content(
+        "CFloat",
+        guiLabel='Rmeas',
+        toolTip='Redundancy-independent merging R factor')
+    RFactor = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R factor',
+        toolTip='R factor against the working set after refinement')
+    RFree = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='R free',
+        toolTip='R factor against the free set after refinement')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -551,9 +717,21 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['phaseError', 'weightedPhaseError', 'reflectionCorrelation']
-    phaseError = content("CFloat", min=0.0)
-    weightedPhaseError = content("CFloat", min=0.0)
-    reflectionCorrelation = content("CFloat", min=0.0)
+    phaseError = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='Phase error',
+        toolTip='Mean difference between calculated and reference phases, in degrees')
+    weightedPhaseError = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='Weighted phase error',
+        toolTip='Phase error weighted by structure factor amplitude, in degrees')
+    reflectionCorrelation = content(
+        "CFloat",
+        min=0.0,
+        guiLabel='Reflection correlation',
+        toolTip='Correlation between calculated and reference structure factors')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -588,7 +766,10 @@ class CTestObsConversionsPerformance(CPerformanceIndicator):
             "saveToDb": False,
         }
         contents_order = ['columnLabelsString']
-    columnLabelsString = content("CString")
+    columnLabelsString = content(
+        "CString",
+        guiLabel='Columns',
+        toolTip='Column labels produced by the conversion')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

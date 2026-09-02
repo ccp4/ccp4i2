@@ -1,7 +1,7 @@
 Base Classes
 ============
 
-.. automodule:: core.base_object.base_classes
+.. automodule:: ccp4i2.core.base_object.base_classes
    :members:
    :undoc-members:
    :show-inheritance:
