@@ -357,9 +357,16 @@ class MockChain:
 
 
 class MockModel:
-    """Mock gemmi Model for testing."""
-    def __init__(self, name="1", chains=None):
-        self.name = name
+    """Mock gemmi Model for testing.
+
+    ``num``, an int, is how gemmi identifies a model. This mock used to
+    offer ``name``, which gemmi dropped, and so went on describing an API
+    the evaluator could no longer use --- which is how a crash on every
+    model-qualified selection lived here untested. Real structures cover
+    the same ground in test_coordinate_selection_models.py.
+    """
+    def __init__(self, num=1, chains=None):
+        self.num = num
         self._chains = chains or []
 
     def __iter__(self):
@@ -388,7 +395,7 @@ def create_simple_protein_structure():
         MockResidue("ALA", 3, atoms_ala3),
     ]
     chain_a = MockChain("A", residues_a)
-    model = MockModel("1", [chain_a])
+    model = MockModel(1, [chain_a])
     return MockStructure([model])
 
 
@@ -412,7 +419,7 @@ def create_mixed_structure():
     ]
 
     chain_a = MockChain("A", residues_a)
-    model = MockModel("1", [chain_a])
+    model = MockModel(1, [chain_a])
     return MockStructure([model])
 
 
@@ -429,7 +436,7 @@ def create_nucleic_structure():
     ]
 
     chain = MockChain("A", residues)
-    model = MockModel("1", [chain])
+    model = MockModel(1, [chain])
     return MockStructure([model])
 
 

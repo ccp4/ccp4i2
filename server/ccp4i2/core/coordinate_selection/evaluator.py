@@ -210,24 +210,18 @@ class SelectionEvaluator:
         return selected_atoms
 
     def _matches_model(self, model, cid: CIDSelector) -> bool:
-        """Check if model matches CID criteria."""
+        """Check if model matches CID criteria.
+
+        A model is identified by ``Model.num`` --- the PDB MODEL serial
+        number, an int --- and gemmi preserves what it read, so a file whose
+        models are numbered 3 and 7 has no model 1 or 2. Matching on position
+        in the structure would call them 1 and 2 and quietly select the wrong
+        one; it is only on the common 1..N file that the two agree.
+        """
         if cid.model is None:
             return True
 
-        model_name = str(model.name) if hasattr(model, 'name') and model.name else str(model.get_subchain(0).subchain_id()[0]) if model else "1"
-
-        # Try to get model number - gemmi models don't have a direct number attribute
-        # but we can use the model's position in the structure
-        model_num = None
-        for idx, m in enumerate(self.structure, start=1):
-            if m == model:
-                model_num = str(idx)
-                break
-
-        if model_num is None:
-            model_num = "1"
-
-        return self._matches_value(model_num, cid.model)
+        return self._matches_value(str(model.num), cid.model)
 
     def _matches_chain(self, chain, cid: CIDSelector) -> bool:
         """Check if chain matches CID criteria."""
