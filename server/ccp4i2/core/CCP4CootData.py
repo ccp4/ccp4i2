@@ -23,10 +23,8 @@ class CCootHistoryDataFile(CDataFile):
 
     # Subtype constants
 
-    """
-    Extends CCootHistoryDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A record of a Coot session, so the edits can be replayed."""
+
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/coot-script',

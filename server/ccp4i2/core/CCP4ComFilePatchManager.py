@@ -19,10 +19,8 @@ from ccp4i2.core.base_object.base_classes import CContainer
 class CPatchDefinition(CContainer):
 
 
-    """
-    Extends CPatchDefinition with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A patch to a task's command file, applied at run time."""
+
     class Meta:
         error_codes = {
             "101": {

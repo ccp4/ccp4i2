@@ -15,12 +15,7 @@ This file is safe to edit - add your implementation code here.
 class CBibReference(CData):
 
 
-    """
-    Bibliographic reference
-    
-    Extends CBibReference with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Bibliographic reference"""
     class Meta:
         error_codes = {
             "101": {
@@ -66,12 +61,7 @@ class CBibReference(CData):
 class CBibReferenceGroup(CData):
 
 
-    """
-    Set of bibliographic references for a task
-    
-    Extends CBibReferenceGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Set of bibliographic references for a task"""
     class Meta:
         error_codes = {
             "100": {
@@ -124,12 +114,7 @@ class CBibReferenceGroup(CData):
 class CFont(CData):
 
 
-    """
-    Simplified Qt font options
-    
-    Extends CFont with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Simplified Qt font options"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -184,12 +169,7 @@ class CFont(CData):
 class CUserId(CString):
 
 
-    """
-    A user ID
-    
-    Extends CUserId with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A user ID"""
     class Meta:
         qualifiers = {
             "label": 'User id',
@@ -213,12 +193,7 @@ class CUserId(CString):
 class CTime(CInt):
 
 
-    """
-    The time. Uses Python time module
-    
-    Extends CTime with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The time. Uses Python time module"""
     class Meta:
         qualifiers = {
             "min": 0,
@@ -244,12 +219,7 @@ class CTime(CInt):
 class CAnnotationList(CList):
 
 
-    """
-    A list of annotation
-    
-    Extends CAnnotationList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list of annotation"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -272,12 +242,7 @@ class CAnnotationList(CList):
 class CMetaDataTag(CData):
 
 
-    """
-    This class will extend list of enumerators if new value for string is entered
-    
-    Extends CMetaDataTag with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """This class will extend list of enumerators if new value for string is entered"""
     class Meta:
         qualifiers = {
             "enumeratorsFunction": None,
@@ -306,12 +271,7 @@ class CMetaDataTag(CData):
 class CDateRange(CData):
 
 
-    """
-    A date range - may be on a scale of years,months or days
-    
-    Extends CDateRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A date range - may be on a scale of years,months or days"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -373,12 +333,7 @@ class CDateRange(CData):
 class CAuthor(CString):
 
 
-    """
-    Placeholder for bibliographic author
-    
-    Extends CAuthor with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Placeholder for bibliographic author"""
     class Meta:
         qualifiers = {
             "minLength": None,
@@ -407,12 +362,7 @@ class CAuthor(CString):
 class CHostName(CString):
 
 
-    """
-    Computer name
-    
-    Extends CHostName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Computer name"""
     class Meta:
         qualifiers = {
             "label": 'Machine name',
@@ -436,12 +386,7 @@ class CHostName(CString):
 class CMetaDataTagList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CMetaDataTagList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -464,10 +409,8 @@ class CMetaDataTagList(CList):
 class CServerGroup(CData):
 
 
-    """
-    Extends CServerGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of machines jobs may be submitted to, and how to reach them."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -562,12 +505,7 @@ class CServerGroup(CData):
 class CUserAddress(CData):
 
 
-    """
-    User id and platform node
-    
-    Extends CUserAddress with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """User id and platform node"""
     class Meta:
         qualifiers = {
             "label": 'User id and current machine',
@@ -597,12 +535,7 @@ class CUserAddress(CData):
 class CAnnotation(CData):
 
 
-    """
-    Annotation text with user id and time
-    
-    Extends CAnnotation with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Annotation text with user id and time"""
     class Meta:
         qualifiers = {
             "label": 'Annotation',
@@ -646,14 +579,10 @@ class CHostname(CHostName):
 
 
     """
-    
     Inherits from:
     - CHostname: Metadata and structure
     - CHostName: Shared full-fat methods
     Computer name
-    
-    Extends CHostname with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {

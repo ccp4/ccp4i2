@@ -20,10 +20,8 @@ from ccp4i2.core.base_object.fundamental_types import CFloat
 class CMatrix33(CData):
 
 
-    """
-    Extends CMatrix33 with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A three-by-three matrix, as used for a rotation."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -48,10 +46,8 @@ class CMatrix33(CData):
 class CXyzBox(CData):
 
 
-    """
-    Extends CXyzBox with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An axis-aligned box, given by its minimum and maximum coordinates."""
+
     class Meta:
         error_codes = {
             "201": {
@@ -106,12 +102,7 @@ class CXyzBox(CData):
 class CAngle(CFloat):
 
 
-    """
-    An angle
-    
-    Extends CAngle with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An angle"""
     class Meta:
         qualifiers = {
             "max": None,
@@ -138,10 +129,8 @@ class CAngle(CFloat):
 class CXyz(CData):
 
 
-    """
-    Extends CXyz with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A point or vector in orthogonal coordinates, in Angstroms."""
+
     class Meta:
         error_codes = {
             "201": {
@@ -181,10 +170,8 @@ class CXyz(CData):
 class CEulerRotation(CData):
 
 
-    """
-    Extends CEulerRotation with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A rotation expressed as three Euler angles."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -213,13 +200,8 @@ class CEulerRotation(CData):
 class CTransformation(CData):
 
 
-    """
-    Extends CTransformation with implementation-specific methods.
+    """A rotation and a translation applied together."""
 
-    Provides flat access to rotation angles (alpha, beta, gamma) and
-    translation components (x, y, z) for backward compatibility with
-    wrappers that expect direct attribute access (e.g. gesamt).
-    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,

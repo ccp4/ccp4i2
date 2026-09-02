@@ -19,10 +19,8 @@ from ccp4i2.core.base_object.base_classes import CContainer
 class CPreferences(CContainer):
 
 
-    """
-    Extends CPreferences with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The user's preferences, as stored between sessions."""
+
     class Meta:
         error_codes = {
             "101": {

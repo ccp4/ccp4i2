@@ -47,3 +47,8 @@ Common Methods
 
     # Get file content info
     content = file_obj.getFileContent()
+
+Error codes
+-----------
+
+.. cdata-errors:: ccp4i2.core.base_object.cdata_file.CDataFile

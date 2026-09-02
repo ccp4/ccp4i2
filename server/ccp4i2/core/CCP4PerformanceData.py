@@ -23,14 +23,11 @@ class CPerformanceIndicator(CData):
 
 
     """
-    Extends CPerformanceIndicator with implementation-specific methods.
-
-    Overrides isSet() so that a performance indicator is considered "set"
-    when any of its KPI children (beyond the inherited 'value' and
-    'annotation' fields) have been explicitly set.  This ensures
-    exclude_unset serialization preserves PERFORMANCE elements that
-    contain real metrics like highResLimit, rMeas, RFactor, etc.
+    A key performance indicator harvested from a job into the project
+    database. The base case is a single float with a label; subclasses
+    declare named metrics instead.
     """
+
     class Meta:
         error_codes = {
             "301": {
@@ -122,12 +119,9 @@ class CDataReductionPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CDataReductionPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CDataReductionPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -169,12 +163,9 @@ class CPairefPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CPairefPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CPairefPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -208,12 +199,9 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CDataReductionCCPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CDataReductionCCPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -255,12 +243,9 @@ class CServalcatPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CServalcatPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CServalcatPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -354,12 +339,9 @@ class CExpPhasPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CExpPhasPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CExpPhasPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -503,12 +485,9 @@ class CModelBuildPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CModelBuildPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CModelBuildPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -547,12 +526,9 @@ class CRefinementPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CRefinementPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CRefinementPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -605,12 +581,9 @@ class CSuperposePerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CSuperposePerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CSuperposePerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -703,12 +676,9 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CPhaseErrorPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CPhaseErrorPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -752,12 +722,9 @@ class CTestObsConversionsPerformance(CPerformanceIndicator):
 
 
     """
-
     Inherits from:
     - CTestObsConversionsPerformance: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    Extends CTestObsConversionsPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
