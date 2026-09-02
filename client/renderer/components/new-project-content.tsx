@@ -10,6 +10,7 @@ import {
   TextField,
   ToggleButton,
   ToggleButtonGroup,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { Folder } from "@mui/icons-material";
@@ -36,9 +37,19 @@ export const NewProjectContent: React.FC = () => {
   // screen while the request actually said __default__ — the dialog showing one
   // location and creating the project in another. Held separately, the toggle
   // itself is the way back, with nothing to reset.
-  const [defaultParent, setDefaultParent] = useState<string>("");
+  const [proposedParent, setProposedParent] = useState<string>("");
+  const [configuredParent, setConfiguredParent] = useState<string>("");
+  // Set when the user overrides the proposal from this page — either by
+  // browsing, or by asking for the configured root back. null means "whatever
+  // the server proposes", which is what lets the request stay __default__.
+  const [proposedOverride, setProposedOverride] = useState<string | null>(null);
   const [customParent, setCustomParent] = useState<string>("");
-  const parentDirectory = customDirectory ? customParent : defaultParent;
+
+  const effectiveProposal = proposedOverride ?? proposedParent;
+  const parentDirectory = customDirectory ? customParent : effectiveProposal;
+  // Only worth offering when it would actually change something.
+  const canUseConfiguredRoot =
+    configuredParent.length > 0 && effectiveProposal !== configuredParent;
   const [directoryExists, setDirectoryExists] = useState(true);
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
@@ -53,10 +64,13 @@ export const NewProjectContent: React.FC = () => {
   // that rule here would give two answers to one question.
   useEffect(() => {
     let cancelled = false;
-    apiGet<{ data?: { directory?: string } }>("config/default-project-parent/")
+    apiGet<{ data?: { directory?: string; configured?: string } }>(
+      "config/default-project-parent/"
+    )
       .then((resp) => {
-        const directory = resp?.data?.directory;
-        if (!cancelled && directory) setDefaultParent(directory);
+        if (cancelled) return;
+        if (resp?.data?.directory) setProposedParent(resp.data.directory);
+        if (resp?.data?.configured) setConfiguredParent(resp.data.configured);
       })
       .catch(() => {
         /* older backend: the Electron config value below still applies */
@@ -78,7 +92,7 @@ export const NewProjectContent: React.FC = () => {
           if (data.message === "get-config") {
             // Only a fallback for the split second before the server answers,
             // and for a desktop build talking to an older backend.
-            setDefaultParent((current) =>
+            setProposedParent((current) =>
               current || data.config.CCP4I2_PROJECTS_DIR
             );
           }
@@ -111,7 +125,13 @@ export const NewProjectContent: React.FC = () => {
       const formData = new FormData();
       formData.append("name", name);
       formData.append("description", description);
-      formData.append("directory", customDirectory ? directory : "__default__");
+      // __default__ only while the server's proposal stands untouched; once the
+      // user has overridden it, say so explicitly rather than letting the server
+      // re-derive something different.
+      formData.append(
+        "directory",
+        customDirectory || proposedOverride !== null ? directory : "__default__"
+      );
       const project = await api.post<Project>("projects", formData);
 
       // Apply tags to the new project
@@ -234,6 +254,13 @@ export const NewProjectContent: React.FC = () => {
     }
   }
 
+  function handleUseConfiguredRoot() {
+    // Overrides the proposal for this project only. Nothing is persisted: the
+    // configured root is already the preference, and a project created here
+    // should not rewrite anyone's settings.
+    setProposedOverride(configuredParent);
+  }
+
   function handleDirectoryChange() {
     if (typeof window !== "undefined") {
       if (window.electronAPI) {
@@ -291,9 +318,37 @@ export const NewProjectContent: React.FC = () => {
           onChange={handleCustomDirectoryChange}
           fullWidth
         >
-          <ToggleButton value={false}>Default Directory</ToggleButton>
+          {/* "Proposed", not "Default": this is where your last project went,
+              which is not necessarily the configured projects directory. */}
+          <ToggleButton value={false}>Proposed Directory</ToggleButton>
           <ToggleButton value={true}>Custom Directory</ToggleButton>
         </ToggleButtonGroup>
+        {!customDirectory && effectiveProposal.length > 0 && (
+          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+            <TextField
+              label="Parent directory where the project directory will be created"
+              value={effectiveProposal}
+              disabled
+              sx={{ flexGrow: 1 }}
+              helperText={
+                canUseConfiguredRoot
+                  ? `Where your most recent project was created. Configured directory: ${configuredParent}`
+                  : "Your configured projects directory."
+              }
+            />
+            {canUseConfiguredRoot && (
+              <Tooltip title={`Use ${configuredParent} instead`}>
+                <Button
+                  variant="outlined"
+                  onClick={handleUseConfiguredRoot}
+                  sx={{ whiteSpace: "nowrap" }}
+                >
+                  Use configured
+                </Button>
+              </Tooltip>
+            )}
+          </Stack>
+        )}
         {customDirectory && electronAPIAvailable && (
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <TextField

@@ -226,12 +226,32 @@ def default_project_parent_view(request):
     would give two resolvers for one question, which is how the dialog came to
     display one location while the server used another.
 
-    Response: {"success": true, "data": {"directory": "/..."}}
+    Returns the configured root alongside it, and which of the two the proposal
+    came from, so the dialog can say "this is where your last project went" and
+    offer the configured root instead — a choice it can only present if it knows
+    the two differ.
+
+    Response: {"success": true, "data": {
+        "directory":  "/where a new project would go",
+        "configured": "/the projects directory from preferences",
+        "source":     "last_project" | "configured"
+    }}
     """
+    from django.conf import settings
+
     from .serializers import default_project_parent
 
+    proposed = str(default_project_parent())
+    configured = str(settings.CCP4I2_PROJECTS_DIR)
     return JsonResponse(
-        {"success": True, "data": {"directory": str(default_project_parent())}}
+        {
+            "success": True,
+            "data": {
+                "directory": proposed,
+                "configured": configured,
+                "source": "configured" if proposed == configured else "last_project",
+            },
+        }
     )
 
 @api_view(["GET"])
