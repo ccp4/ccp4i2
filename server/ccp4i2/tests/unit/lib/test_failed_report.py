@@ -6,8 +6,11 @@ files, which were gleaned long before the report class ran and are the reason
 anyone opened the job. `phaser_MR_PAK_report` rendered exactly that for every
 job it ever ran on.
 
-Now the panel names the line that raised, carries the traceback, and keeps the
-ordinary input/output file sections.
+The failure is now carried as an ``errorReportList``, the same shape a job's
+``diagnostic.xml`` has, so the Diagnostics panel's own renderer draws it and
+there is one such renderer rather than two. The tags themselves are pinned
+against that panel in ``tests/unit/validation/test_diagnostic_xml_contract.py``;
+what is asserted here is that the failure path produces them at all.
 """
 
 import xml.etree.ElementTree as ET
@@ -30,12 +33,12 @@ def raising(kind=AttributeError, message="no attribute 'xpath'"):
         return err
 
 
-def diagnostic(root):
-    return root.find("CCP4i2ReportDiagnostics/CCP4i2ReportDiagnostic")
+def error_reports(root):
+    return root.findall("CCP4i2ReportErrorReports/errorReportList/errorReport")
 
 
-def traceback_text(root):
-    node = root.find("CCP4i2ReportFold/CCP4i2ReportPre")
+def field(report, tag):
+    node = report.find(tag)
     return node.text if node is not None else None
 
 
@@ -56,17 +59,18 @@ class TestTheFailureIsMarked:
         assert report_is_failure(innocent) is False
 
 
-class TestTheDiagnosticCard:
+class TestTheErrorReport:
+    def test_there_is_exactly_one_when_the_job_left_none(self):
+        assert len(error_reports(failed_report("boom", "acorn"))) == 1
+
     def test_it_names_the_error(self):
-        card = diagnostic(failed_report("Report generation failed", "acorn",
-                                        exception=raising()))
-        assert card is not None
-        assert card.get("level") == "error"
-        assert "no attribute 'xpath'" in card.get("message")
+        report = error_reports(failed_report("boom", "acorn", exception=raising()))[0]
+        assert field(report, "severityName") == "ERROR"
+        assert "no attribute 'xpath'" in field(report, "stack")
 
     def test_it_names_the_line_that_raised(self):
-        card = diagnostic(failed_report("boom", "acorn", exception=raising()))
-        location = card.get("location")
+        report = error_reports(failed_report("boom", "acorn", exception=raising()))[0]
+        location = field(report, "name")
         assert "test_failed_report.py" in location
         assert " in raising()" in location, "the deepest frame, not the shallowest"
 
@@ -82,9 +86,8 @@ class TestTheDiagnosticCard:
         try:
             element_tree.fromstring("")
         except element_tree.ParseError as err:
-            location = diagnostic(
-                failed_report("boom", "acorn", exception=err)
-            ).get("location")
+            reports = error_reports(failed_report("b", "acorn", exception=err))
+            location = field(reports[0], "name")
 
         assert "ElementTree.py" not in location
         assert "test_failed_report.py" in location
@@ -92,51 +95,92 @@ class TestTheDiagnosticCard:
         # itself called ccp4i2 contains the marker twice.
         assert location.startswith("ccp4i2/tests/"), location
 
-    def test_a_stack_with_nothing_of_ours_still_gets_a_location(self):
-        card = diagnostic(
-            failed_report("boom", "acorn", exception=ValueError("no traceback"))
-        )
-        assert card.get("location") is None
+    def test_the_code_is_machine_readable_and_explained(self):
+        report = error_reports(
+            failed_report("boom", "acorn", code="PROGRAM_XML_NOT_FOUND")
+        )[0]
+        assert field(report, "code") == "PROGRAM_XML_NOT_FOUND"
+        assert "wrote no program.xml" in field(report, "description")
 
-    def test_the_code_is_machine_readable(self):
-        card = diagnostic(failed_report("boom", "acorn", code="PROGRAM_XML_NOT_FOUND"))
-        assert card.get("code") == "PROGRAM_XML_NOT_FOUND"
+    def test_an_unknown_code_falls_back_to_the_reason(self):
+        report = error_reports(failed_report("Something odd", "acorn", code="XYZ"))[0]
+        assert field(report, "description") == "Something odd"
 
-    def test_there_is_still_a_card_with_no_exception(self):
-        card = diagnostic(failed_report("No program XML found", "acorn"))
-        assert card.get("message") == "No program XML found"
-        assert card.get("location") is None
-
-
-class TestTheTraceback:
-    def test_it_is_in_the_panel_not_the_server_log(self):
-        text = traceback_text(failed_report("boom", "acorn", exception=raising()))
-        assert "Traceback (most recent call last)" in text
-        assert "AttributeError" in text
-
-    def test_details_come_through_too(self):
-        text = traceback_text(
+    def test_details_come_through(self):
+        report = error_reports(
             failed_report("boom", "acorn", details="Task: acorn\nJob: 12")
-        )
-        assert "Job: 12" in text
+        )[0]
+        assert "Job: 12" in field(report, "details")
+
+    def test_the_traceback_is_in_the_panel_not_the_server_log(self):
+        report = error_reports(failed_report("boom", "acorn", exception=raising()))[0]
+        assert "Traceback (most recent call last)" in field(report, "stack")
+
+    def test_no_stack_when_there_was_no_exception(self):
+        """CErrorReport omits an empty stack, and the panel reads that as none.
+
+        "No program XML found" has no traceback to show: there was no
+        exception, only an absence.
+        """
+        assert not field(error_reports(failed_report("boom", "acorn"))[0], "stack")
 
     def test_markup_in_the_traceback_survives_serialisation(self):
-        """The Pre element renders innerHTML, so `<module>` must be escaped."""
         report = failed_report("boom", "acorn", exception=raising(message="<module>"))
-        serialised = ET.tostring(report, encoding="unicode")
-        assert "&lt;module&gt;" in serialised
+        assert "&lt;module&gt;" in ET.tostring(report, encoding="unicode")
 
-    def test_no_fold_when_there_is_nothing_to_put_in_it(self):
-        assert traceback_text(failed_report("boom", "acorn")) is None
+
+class TestTheJobsOwnDiagnostics:
+    """A failing report and a failing job are different events."""
+
+    @pytest.fixture
+    def job(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(i2_report, "get_report_job_info", lambda _uuid: {})
+
+        class FakeJob:
+            uuid = "1234"
+            directory = tmp_path
+
+        return FakeJob()
+
+    def test_they_are_folded_in_beside_the_rendering_failure(self, job):
+        (job.directory / "diagnostic.xml").write_text(
+            "<errorReportList><errorReport>"
+            "<class>cmapcoeff</class><code>45</code>"
+            "<details>Error in processing output files</details>"
+            "</errorReport></errorReportList>"
+        )
+
+        reports = error_reports(
+            failed_report("boom", "acorn", exception=raising(), job=job)
+        )
+
+        assert len(reports) == 2
+        assert field(reports[0], "code") != "45", "the rendering failure comes first"
+        assert field(reports[1], "code") == "45"
+
+    def test_a_job_that_left_none_adds_none(self, job):
+        (job.directory / "diagnostic.xml").write_text("<errorReportList />")
+        assert len(error_reports(failed_report("boom", "acorn", job=job))) == 1
+
+    def test_no_diagnostic_file_at_all_is_fine(self, job):
+        assert len(error_reports(failed_report("boom", "acorn", job=job))) == 1
+
+    def test_an_unreadable_diagnostic_xml_is_not_the_end_of_it(self, job):
+        (job.directory / "diagnostic.xml").write_text("<not-xml")
+
+        reports = error_reports(failed_report("boom", "acorn", job=job))
+
+        assert len(reports) == 1, "the rendering failure still reported"
 
 
 class TestTheFileSections:
     """The outputs were gleaned before the report class ran."""
 
     @pytest.fixture
-    def job(self):
+    def job(self, tmp_path):
         class FakeJob:
             uuid = "1234"
+            directory = tmp_path
 
         return FakeJob()
 
@@ -179,7 +223,7 @@ class TestTheFileSections:
         report = failed_report("boom", "acorn", exception=raising(), job=job)
 
         assert report_is_failure(report)
-        assert diagnostic(report) is not None, "the original failure still reported"
+        assert error_reports(report), "the original failure still reported"
 
     def test_no_job_means_no_sections(self):
         report = failed_report("boom", "acorn")
@@ -189,4 +233,4 @@ class TestTheFileSections:
 def test_the_deprecated_entry_point_still_works():
     report = simple_failed_report("boom", "acorn", details="context")
     assert report_is_failure(report)
-    assert "context" in traceback_text(report)
+    assert "context" in field(error_reports(report)[0], "details")

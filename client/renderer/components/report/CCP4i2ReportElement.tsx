@@ -21,6 +21,7 @@ import { CCP4i2ReportJobDetails } from "./CCP4i2ReportJobDetails";
 import { CCP4i2ReportVerdict } from "./CCP4i2ReportVerdict";
 import { CCP4i2ReportProgressBar } from "./CCP4i2ReportProgressBar";
 import { CCP4i2ReportFileLink } from "./CCP4i2ReportFileLink";
+import { CCP4i2ReportErrorReports } from "./CCP4i2ReportErrorReports";
 import {
   CCP4i2ReportGridContainer,
   CCP4i2ReportGridItem,
@@ -246,6 +247,17 @@ export const CCP4i2ReportElement: React.FC<CCP4i2ReportElementProps> = ({
         // Grid row (semantic alias for container)
         return (
           <CCP4i2ReportGridRow
+            key={`${iItem}`}
+            iItem={iItem}
+            item={item}
+            job={job}
+          />
+        );
+      } else if (["CCP4i2ReportErrorReports"].includes(tagName)) {
+        // A report that could not be rendered, drawn by the Diagnostics
+        // panel's renderer rather than a second one.
+        return (
+          <CCP4i2ReportErrorReports
             key={`${iItem}`}
             iItem={iItem}
             item={item}

@@ -29,6 +29,13 @@ import { JobLogViewer } from "../components/job-log-viewer";
 import { TaskProvider } from "../providers/task-provider";
 import { ValidationViewer } from "../components/validation-viewer";
 import { useJobTab } from "../providers/job-tab-provider";
+import { JobStatus } from "../types/models";
+import {
+  TAB,
+  REPORT_STATUSES,
+  landingTab,
+  visibleTabs,
+} from "./job-view-tabs";
 import { useTheme } from "../theme/theme-provider";
 import { useIsJobEffectivelyActive } from "../providers/recently-started-jobs-context";
 
@@ -165,13 +172,14 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
       if (job && setProjectId && job.project !== projectId) {
         setProjectId(job.project);
       }
-      // Use currentStatus (from job_tree) for tab selection to be consistent with UI
-      // Status mapping: 1=Pending, 2=Queued, 3=Running, 4=Failed, 5=Unsatisfactory, 6=Finished, 7=Running remotely
-      // - Pending (1) → Task interface (tab 0)
-      // - Queued/Running/Finished/Running remotely (2,3,6,7) → Report (tab 3) with polling
-      // - Failed/Unsatisfactory (4,5) → Diagnostics (tab 4)
+      // Land on the tab that answers the question this job raises. Written
+      // against JobStatus rather than bare numbers: the comment here used to
+      // read "4=Failed, 5=Unsatisfactory", which is 4=Interrupted, 5=Failed,
+      // 10=Unsatisfactory, and Interrupted and Unsatisfactory jobs were sent
+      // to a Diagnostics tab that is shown only for Failed --- so the clamp
+      // above bounced them to the task interface.
       if (job && job != previousJob && currentStatus !== undefined) {
-        setTabValue(currentStatus == 1 ? 0 : [2, 3, 6, 7].includes(currentStatus) ? 3 : 4);
+        setTabValue(landingTab(currentStatus));
       }
     };
     asyncFunc();
@@ -191,12 +199,8 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   // Clamp synchronously so MUI never receives a value for a hidden tab
   const status = jobWithCurrentStatus?.status;
   const tabValue = useMemo(() => {
-    const visible = new Set([0, 8, 9, 10]);
-    if (devMode) [1, 2, 5, 7].forEach((v) => visible.add(v));
-    if (devMode || [3, 4, 6, 7, 9, 10].includes(status ?? -1)) visible.add(3);
-    if (devMode || status === 5) visible.add(4);
-    if (devMode || status === 1) visible.add(6);
-    return visible.has(rawTabValue) ? rawTabValue : 0;
+    const visible = visibleTabs(status, devMode);
+    return visible.has(rawTabValue) ? rawTabValue : TAB.TASK_INTERFACE;
   }, [devMode, status, rawTabValue]);
 
   return !project || !jobs || !jobWithCurrentStatus ? (
@@ -206,24 +210,28 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
       <Stack sx={{ height: "100%" }}>
         <ToolBar />
         <JobHeader job={jobWithCurrentStatus} mutateJobs={mutateJobs} />
+        {/* Kept in step with the `visible` set above: a tab rendered here and
+            missing there (or the reverse) is how a job lands on a tab that is
+            not on screen. */}
         <Tabs value={tabValue} onChange={handleTabChange} variant="fullWidth">
-          <Tab value={0} label="Task interface" />
-          {devMode && <Tab value={1} label="Params as xml" />}
-          {devMode && <Tab value={2} label="Report as xml" />}
-          {(devMode || [3, 4, 6, 7, 9, 10].includes(jobWithCurrentStatus.status)) && (
-            <Tab value={3} label="Report" />
+          <Tab value={TAB.TASK_INTERFACE} label="Task interface" />
+          {devMode && <Tab value={TAB.PARAMS_XML} label="Params as xml" />}
+          {devMode && <Tab value={TAB.REPORT_XML} label="Report as xml" />}
+          {(devMode ||
+            REPORT_STATUSES.includes(jobWithCurrentStatus.status)) && (
+            <Tab value={TAB.REPORT} label="Report" />
           )}
-          {(devMode || jobWithCurrentStatus.status === 5) && (
-            <Tab value={4} label="Diagnostics" />
+          {(devMode || jobWithCurrentStatus.status === JobStatus.FAILED) && (
+            <Tab value={TAB.DIAGNOSTICS} label="Diagnostics" />
           )}
-          {devMode && <Tab value={5} label="Def xml" />}
-          {(devMode || jobWithCurrentStatus.status === 1) && (
-            <Tab value={6} label="Validation" />
+          {devMode && <Tab value={TAB.DEF_XML} label="Def xml" />}
+          {(devMode || jobWithCurrentStatus.status === JobStatus.PENDING) && (
+            <Tab value={TAB.VALIDATION} label="Validation" />
           )}
-          {devMode && <Tab value={7} label="Job container" />}
-          <Tab value={8} label="Comments" />
-          <Tab value={9} label="Directory" />
-          <Tab value={10} label="Logs" />
+          {devMode && <Tab value={TAB.JOB_CONTAINER} label="Job container" />}
+          <Tab value={TAB.COMMENTS} label="Comments" />
+          <Tab value={TAB.DIRECTORY} label="Directory" />
+          <Tab value={TAB.LOGS} label="Logs" />
         </Tabs>
         <Box
           sx={{

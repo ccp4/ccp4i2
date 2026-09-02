@@ -31,9 +31,17 @@ import {
 
 interface DiagnosticProps {
   xmlDocument: string;
+  /**
+   * Rendered inside a report rather than as the Diagnostics tab.
+   *
+   * The tab fills the viewport and scrolls itself; a failure panel embedded in
+   * a report is one section among several and must scroll with the page, or it
+   * puts a fixed-height scroll box in the middle of the report.
+   */
+  embedded?: boolean;
 }
 
-const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
+const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
   const [expandedCard, setExpandedCard] = useState<number>(-1); // Initially nothing expanded
   const [expandedStacks, setExpandedStacks] = useState<Set<number>>(new Set()); // Track which stack traces are open
 
@@ -94,8 +102,7 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
     return (
       <Box
         sx={{
-          height: "calc(100vh - 19rem)",
-          overflowY: "auto",
+          ...(embedded ? {} : { height: "calc(100vh - 19rem)", overflowY: "auto" }),
           p: 2,
         }}
       >
@@ -109,8 +116,7 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
   return (
     <Box
       sx={{
-        height: "calc(100vh - 21rem)",
-        overflowY: "auto",
+        ...(embedded ? {} : { height: "calc(100vh - 21rem)", overflowY: "auto" }),
         width: "100%",
         p: 2,
       }}

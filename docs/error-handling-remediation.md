@@ -1498,12 +1498,17 @@ missing half was putting it where a person would see it.
 said "See server logs for full traceback". In place of the report content it
 renders:
 
-- **a diagnostic card** — the vocabulary `report/errors.py` already defined and
-  the frontend already rendered, and which nothing had ever emitted: level,
-  code, message, and the location, taken from the *deepest* traceback frame,
-  because the point is to name the line a maintainer has to open;
-- **the traceback itself**, in a fold. `phaser_MR_PAK_report` failed on every
-  job it ever ran on, and the panel could not say where;
+- **the failure as an `errorReportList`** — the same payload a job's
+  `diagnostic.xml` carries, built with `CErrorReport` so the tags are the ones
+  C6's contract test already pins. The Diagnostics panel's own renderer draws
+  it: severity icon, a heading naming the task and the line, and the traceback
+  folded away. There is one such renderer rather than two, and the location is
+  the deepest traceback frame *within ccp4i2*, since the deepest frame outright
+  is inside the standard library whenever the exception comes from one;
+- **the job's own diagnostics beside it**, when it left any. A failing report
+  and a failing job are different events and either happens without the other —
+  `phaser_MR_PAK` raised on jobs that ran perfectly — but when both have gone
+  wrong the reader wants them in one place;
 - **the ordinary input and output file sections.** A report class failing says
   nothing about the job's outputs: they were gleaned long before it ran, and
   they are why the user opened the job. Without them a broken report is
@@ -1520,6 +1525,10 @@ previously-cached rendering was decided by searching the markup for the phrase
 "No report because" — which a working report is free to contain, and was then
 refused a cache entry for saying. The failure path marks its own root with
 `reportFailed="true"` and `report_is_failure()` reads it.
+
+The Report tab is now shown for Failed jobs too. Hiding it was reasonable while
+a failed job's report said nothing; now it carries the failure and the files the
+job did glean, so that is exactly the status that needs it.
 
 What is still open is M5 proper: a report class that fails *in one section*
 still takes the whole rendering with it. This change improves what the user sees
