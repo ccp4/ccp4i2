@@ -147,8 +147,13 @@ class CExePath(CData):
     Extends CExePath with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
-    exeName = content("CString")
-    exePath = content("CDataFile", mustExist=True, allowUndefined=False)
+    exeName = content("CString", guiLabel='Program', toolTip='Name of the executable')
+    exePath = content(
+        "CDataFile",
+        mustExist=True,
+        allowUndefined=False,
+        guiLabel='Path',
+        toolTip='Where the executable is, when it is not on PATH')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -261,7 +266,10 @@ class CExportedFile(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    exportId = content("CUUID")
+    exportId = content(
+        "CUUID",
+        guiLabel='Export id',
+        toolTip='Identifier of the export this file was written for')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -347,8 +355,8 @@ class CSearchPath(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    name = content("CString")
-    path = content("CDataFile")
+    name = content("CString", guiLabel='Name', toolTip='Name of this item')
+    path = content("CDataFile", guiLabel='Path', toolTip='Directory searched for files')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -465,19 +473,56 @@ class CI2XmlHeader(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    function = content("CFileFunction")
-    userId = content("CUserId")
-    hostName = content("CHostName")
-    creationTime = content("CTime")
-    pluginName = content("CString")
-    pluginVersion = content("CVersion")
-    pluginTitle = content("CString")
-    projectName = content("CProjectName")
-    projectId = content("CProjectId", allowUnfound=True)
-    jobId = content("CUUID")
-    jobNumber = content("CString")
-    comment = content("CString")
-    OS = content("CString")
+    function = content(
+        "CFileFunction",
+        guiLabel='Function',
+        toolTip='What the file is for, e.g. the parameters of a job or its report')
+    userId = content(
+        "CUserId",
+        guiLabel='User',
+        toolTip='Login name of the user who created the file')
+    hostName = content(
+        "CHostName",
+        guiLabel='Host',
+        toolTip='Machine on which the file was created')
+    creationTime = content(
+        "CTime",
+        guiLabel='Created',
+        toolTip='When the file was written')
+    pluginName = content(
+        "CString",
+        guiLabel='Task',
+        toolTip='Name of the task that wrote the file')
+    pluginVersion = content(
+        "CVersion",
+        guiLabel='Task version',
+        toolTip='Version of that task, so a file can be read by the code that wrote it')
+    pluginTitle = content(
+        "CString",
+        guiLabel='Task title',
+        toolTip='Human-readable title of the task')
+    projectName = content(
+        "CProjectName",
+        guiLabel='Project',
+        toolTip='Name of the project the file belongs to')
+    projectId = content(
+        "CProjectId",
+        allowUnfound=True,
+        guiLabel='Project id',
+        toolTip='Identifier of that project')
+    jobId = content(
+        "CUUID",
+        guiLabel='Job id',
+        toolTip='Identifier of the job that produced the file')
+    jobNumber = content(
+        "CString",
+        guiLabel='Job number',
+        toolTip="The job's number within its project, as shown in the job list")
+    comment = content(
+        "CString",
+        guiLabel='Comment',
+        toolTip='Free text recorded with the file')
+    OS = content("CString", guiLabel='OS', toolTip='Platform the file was created on')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -921,7 +966,10 @@ class CI2XmlDataFile(CXmlDataFile):
             "fileExtensions": ['xml'],
             "autoLoadHeader": True,
         }
-    header = content("CI2XmlHeader")
+    header = content(
+        "CI2XmlHeader",
+        guiLabel='Header',
+        toolTip='Provenance recorded at the top of a CCP4i2 XML file')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

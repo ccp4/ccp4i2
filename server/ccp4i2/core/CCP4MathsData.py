@@ -63,12 +63,30 @@ class CXyzBox(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    xMin = content("CFloat")
-    yMin = content("CFloat")
-    zMin = content("CFloat")
-    xMax = content("CFloat")
-    yMax = content("CFloat")
-    zMax = content("CFloat")
+    xMin = content(
+        "CFloat",
+        guiLabel='x min',
+        toolTip='Lower x bound of the box, in Angstroms')
+    yMin = content(
+        "CFloat",
+        guiLabel='y min',
+        toolTip='Lower y bound of the box, in Angstroms')
+    zMin = content(
+        "CFloat",
+        guiLabel='z min',
+        toolTip='Lower z bound of the box, in Angstroms')
+    xMax = content(
+        "CFloat",
+        guiLabel='x max',
+        toolTip='Upper x bound of the box, in Angstroms')
+    yMax = content(
+        "CFloat",
+        guiLabel='y max',
+        toolTip='Upper y bound of the box, in Angstroms')
+    zMax = content(
+        "CFloat",
+        guiLabel='z max',
+        toolTip='Upper z bound of the box, in Angstroms')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -141,9 +159,9 @@ class CXyz(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    x = content("CFloat")
-    y = content("CFloat")
-    z = content("CFloat")
+    x = content("CFloat", guiLabel='x', toolTip='x coordinate, in Angstroms')
+    y = content("CFloat", guiLabel='y', toolTip='y coordinate, in Angstroms')
+    z = content("CFloat", guiLabel='z', toolTip='z coordinate, in Angstroms')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -173,9 +191,9 @@ class CEulerRotation(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    alpha = content("CAngle")
-    beta = content("CAngle")
-    gamma = content("CAngle")
+    alpha = content("CAngle", guiLabel='Alpha', toolTip='First Euler angle, in degrees')
+    beta = content("CAngle", guiLabel='Beta', toolTip='Second Euler angle, in degrees')
+    gamma = content("CAngle", guiLabel='Gamma', toolTip='Third Euler angle, in degrees')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -208,8 +226,14 @@ class CTransformation(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    translation = content("CXyz")
-    rotation = content("CEulerRotation")
+    translation = content(
+        "CXyz",
+        guiLabel='Translation',
+        toolTip='Translation part of the transformation, in Angstroms')
+    rotation = content(
+        "CEulerRotation",
+        guiLabel='Rotation',
+        toolTip='Rotation part of the transformation, as Euler angles')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

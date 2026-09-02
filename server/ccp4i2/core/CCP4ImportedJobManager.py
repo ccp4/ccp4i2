@@ -59,10 +59,20 @@ class CImportedJobData(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    name = content("COneWord")
-    dataType = content("CI2DataType", default='CPdbDataFile')
-    label = content("CString")
-    fileName = content("CDataFile", mustExist=True, saveToDb=True, allowUndefined=False)
+    name = content("COneWord", guiLabel='Name', toolTip='Name of this item')
+    dataType = content(
+        "CI2DataType",
+        default='CPdbDataFile',
+        guiLabel='Data type',
+        toolTip='CCP4i2 type of the imported data')
+    label = content("CString", guiLabel='Label', toolTip='Text shown in the interface')
+    fileName = content(
+        "CDataFile",
+        mustExist=True,
+        saveToDb=True,
+        allowUndefined=False,
+        guiLabel='File',
+        toolTip='File the data was imported from')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

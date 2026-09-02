@@ -1,7 +1,7 @@
 Error Reporting Module
 ======================
 
-.. automodule:: core.base_object.error_reporting
+.. automodule:: ccp4i2.core.base_object.error_reporting
    :members:
    :undoc-members:
    :show-inheritance:

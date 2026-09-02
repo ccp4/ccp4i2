@@ -72,9 +72,25 @@ class CRefmacRigidGroupSegment(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    chain_id = content("CString", charWidth=1, allowUndefined=False, mustExist=True)
-    residue_1 = content("CInt", mustExist=True, allowUndefined=False)
-    residue_2 = content("CInt", mustExist=True, allowUndefined=False)
+    chain_id = content(
+        "CString",
+        charWidth=1,
+        allowUndefined=False,
+        mustExist=True,
+        guiLabel='Chain',
+        toolTip='Chain identifier of the segment')
+    residue_1 = content(
+        "CInt",
+        mustExist=True,
+        allowUndefined=False,
+        guiLabel='First residue',
+        toolTip='Number of the first residue in the segment')
+    residue_2 = content(
+        "CInt",
+        mustExist=True,
+        allowUndefined=False,
+        guiLabel='Last residue',
+        toolTip='Number of the last residue in the segment')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -104,9 +120,19 @@ class CRefmacAnomalousAtom(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    atomType = content("CString", charWidth=5, toolTip='Element name as in PDB file')
-    Fp = content("CFloat", toolTip="Form factor f' for element at given wavelength")
-    Fpp = content("CFloat", toolTip="Form factor f'' for element at given wavelength")
+    atomType = content(
+        "CString",
+        charWidth=5,
+        toolTip='Element name as in PDB file',
+        guiLabel='Element')
+    Fp = content(
+        "CFloat",
+        toolTip="Form factor f' for element at given wavelength",
+        guiLabel="f'")
+    Fpp = content(
+        "CFloat",
+        toolTip="Form factor f'' for element at given wavelength",
+        guiLabel="f''")
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -164,8 +190,15 @@ class CRefmacRigidGroupItem(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    rigid_group_id = content("CString")
-    segmentList = content("CList", listMinLength=1)
+    rigid_group_id = content(
+        "CString",
+        guiLabel='Group',
+        toolTip='Identifier for this rigid body group')
+    segmentList = content(
+        "CList",
+        listMinLength=1,
+        guiLabel='Segments',
+        toolTip='The chain segments that move together as one rigid body')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

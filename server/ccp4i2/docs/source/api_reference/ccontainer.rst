@@ -1,7 +1,7 @@
 CContainer
 ==========
 
-.. automodule:: core.CCP4Container
+.. automodule:: ccp4i2.core.CCP4Container
    :members:
    :undoc-members:
    :show-inheritance:

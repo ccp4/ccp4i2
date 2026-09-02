@@ -1,7 +1,7 @@
 Signal System
 =============
 
-.. automodule:: core.base_object.signal_system
+.. automodule:: ccp4i2.core.base_object.signal_system
    :members:
    :undoc-members:
    :show-inheritance:

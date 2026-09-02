@@ -88,7 +88,10 @@ class CAsuDataFile(CI2XmlDataFile):
             'contentFlag': {'min': 0, 'default': None},
         }
         contents_order = ['selection']
-    selection = content("CDict")
+    selection = content(
+        "CDict",
+        guiLabel='Selection',
+        toolTip='Which part of the data to use')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -333,10 +336,22 @@ class CAtomRefmacSelection(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    groupId = content("CInt")
-    chainId = content("COneWord")
-    firstRes = content("CInt")
-    lastRes = content("CInt")
+    groupId = content(
+        "CInt",
+        guiLabel='Group',
+        toolTip='Rigid body group this range belongs to')
+    chainId = content(
+        "COneWord",
+        guiLabel='Chain',
+        toolTip='Chain identifier of the residue range')
+    firstRes = content(
+        "CInt",
+        guiLabel='First residue',
+        toolTip='Number of the first residue in the range')
+    lastRes = content(
+        "CInt",
+        guiLabel='Last residue',
+        toolTip='Number of the last residue in the range')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -415,12 +430,30 @@ class CAtomRefmacSelectionOccupancy(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    groupId = content("CInt")
-    chainIds = content("CString")
-    firstRes = content("CInt")
-    lastRes = content("CInt")
-    atoms = content("CString")
-    alt = content("COneWord")
+    groupId = content(
+        "CInt",
+        guiLabel='Group',
+        toolTip='Occupancy group this selection belongs to')
+    chainIds = content(
+        "CString",
+        guiLabel='Chains',
+        toolTip='Chain identifiers covered by the selection')
+    firstRes = content(
+        "CInt",
+        guiLabel='First residue',
+        toolTip='Number of the first residue in the range')
+    lastRes = content(
+        "CInt",
+        guiLabel='Last residue',
+        toolTip='Number of the last residue in the range')
+    atoms = content(
+        "CString",
+        guiLabel='Atoms',
+        toolTip='Atom names the selection is restricted to')
+    alt = content(
+        "COneWord",
+        guiLabel='Alternate',
+        toolTip='Alternate conformation identifier, where there is more than one')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -515,11 +548,24 @@ class CTLSRange(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    groupId = content("CInt")
-    chainId = content("COneWord")
-    firstRes = content("CInt")
-    lastRes = content("CInt")
-    selection = content("CString", default='ALL')
+    groupId = content("CInt", guiLabel='Group', toolTip='Identifier for this TLS group')
+    chainId = content(
+        "COneWord",
+        guiLabel='Chain',
+        toolTip='Chain identifier of the TLS group')
+    firstRes = content(
+        "CInt",
+        guiLabel='First residue',
+        toolTip='Number of the first residue in the group')
+    lastRes = content(
+        "CInt",
+        guiLabel='Last residue',
+        toolTip='Number of the last residue in the group')
+    selection = content(
+        "CString",
+        default='ALL',
+        guiLabel='Selection',
+        toolTip='Which part of the data to use')
 
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -1023,23 +1069,40 @@ class CSequence(CData, CBioPythonSeqInterface):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    identifier = content("CString", toolTip='Description of sequence', minlength=4)
-    name = content("CString", toolTip='User friendly name of sequence')
-    description = content("CString", toolTip='User friendly description of sequence')
-    referenceDb = content("CString",
-                          onlyEnumerators=False,
-                          default='unk',
-                          enumerators=['unk', 'sp', 'tr', 'pdb'],
-                          menuText=['Unknown', 'UniProt/Swiss-Prot', 'UniProt/TrEMBL', 'ProteinDatabank'])
-    reference = content("CString", toolTip='Optional reference for sequence')
-    moleculeType = content("CString",
-                           onlyEnumerators=True,
-                           enumerators=['PROTEIN', 'NUCLEIC'],
-                           menuText=['protein', 'nucleic acid'],
-                           default='PROTEIN',
-                           toolTip='Molecule type')
-    sequence = content("CString",
-                       toolTip='Single letter sequence (white space and dash ignored)')
+    identifier = content(
+        "CString",
+        toolTip='Description of sequence',
+        minlength=4,
+        guiLabel='Identifier')
+    name = content("CString", toolTip='User friendly name of sequence', guiLabel='Name')
+    description = content(
+        "CString",
+        toolTip='User friendly description of sequence',
+        guiLabel='Description')
+    referenceDb = content(
+        "CString",
+        onlyEnumerators=False,
+        default='unk',
+        enumerators=['unk', 'sp', 'tr', 'pdb'],
+        menuText=['Unknown', 'UniProt/Swiss-Prot', 'UniProt/TrEMBL', 'ProteinDatabank'],
+        guiLabel='Database',
+        toolTip='Reference database the sequence came from, e.g. UniProt')
+    reference = content(
+        "CString",
+        toolTip='Optional reference for sequence',
+        guiLabel='Reference')
+    moleculeType = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['PROTEIN', 'NUCLEIC'],
+        menuText=['protein', 'nucleic acid'],
+        default='PROTEIN',
+        toolTip='Molecule type',
+        guiLabel='Molecule type')
+    sequence = content(
+        "CString",
+        toolTip='Single letter sequence (white space and dash ignored)',
+        guiLabel='Sequence')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1282,13 +1345,18 @@ class CSequenceAlignment(CData, CBioPythonSeqInterface):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    identifier = content("CString", toolTip='Optional convenient name for sequence alignment')
-    moleculeType = content("CString",
-                           onlyEnumerators=True,
-                           enumerators=['PROTEIN', 'NUCLEIC'],
-                           menuText=['protein', 'nucleic acid'],
-                           default='PROTEIN',
-                           toolTip='Molecule type')
+    identifier = content(
+        "CString",
+        toolTip='Optional convenient name for sequence alignment',
+        guiLabel='Identifier')
+    moleculeType = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['PROTEIN', 'NUCLEIC'],
+        menuText=['protein', 'nucleic acid'],
+        default='PROTEIN',
+        toolTip='Molecule type',
+        guiLabel='Molecule type')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1437,7 +1505,10 @@ class CDictData(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    monomerList = content("CList")
+    monomerList = content(
+        "CList",
+        guiLabel='Monomers',
+        toolTip='The monomers described in the dictionary')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1480,11 +1551,22 @@ class CMonomer(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    identifier = content("CString", toolTip='The name you use for the monomer')
-    formula = content("CString", toolTip='The formula for the monomer')
-    dictionaryName = content("CString",
-                             toolTip='The REFMAC dictionary name if not the same as the name')
-    smiles = content("CString", toolTip='The smiles string for the monomer')
+    identifier = content(
+        "CString",
+        toolTip='The name you use for the monomer',
+        guiLabel='Identifier')
+    formula = content(
+        "CString",
+        toolTip='The formula for the monomer',
+        guiLabel='Formula')
+    dictionaryName = content(
+        "CString",
+        toolTip='The REFMAC dictionary name if not the same as the name',
+        guiLabel='Dictionary')
+    smiles = content(
+        "CString",
+        toolTip='The smiles string for the monomer',
+        guiLabel='SMILES')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1514,9 +1596,18 @@ class CBlastItem(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    hitId = content("CString")
-    querySequence = content("CString")
-    hitSequence = content("CString")
+    hitId = content(
+        "CString",
+        guiLabel='Hit',
+        toolTip='Identifier of the matched sequence')
+    querySequence = content(
+        "CString",
+        guiLabel='Query sequence',
+        toolTip='The query sequence, aligned to the hit')
+    hitSequence = content(
+        "CString",
+        guiLabel='Hit sequence',
+        toolTip='The matched sequence, aligned to the query')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1548,7 +1639,10 @@ class CAtomRefmacSelectionGroups(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    groupIds = content("CString")
+    groupIds = content(
+        "CString",
+        guiLabel='Groups',
+        toolTip='Occupancy groups whose occupancies sum to one')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1661,14 +1755,25 @@ A single ensemble is a CList of structures.
             "guiLabel": 'Ensemble',
             "allowUndefined": False,
         }
-    label = content("COneWord")
-    number = content("CInt",
-                     min=0,
-                     default=1,
-                     enumerators=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                     menuText=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
-    use = content("CBoolean", default=True)
-    pdbItemList = content("CList", listMinLength=1)
+    label = content("COneWord", guiLabel='Label', toolTip='Text shown in the interface')
+    number = content(
+        "CInt",
+        min=0,
+        default=1,
+        enumerators=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        menuText=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        guiLabel='Copies',
+        toolTip='How many copies of this ensemble to place')
+    use = content(
+        "CBoolean",
+        default=True,
+        guiLabel='Use',
+        toolTip='Whether to include this ensemble in the search')
+    pdbItemList = content(
+        "CList",
+        listMinLength=1,
+        guiLabel='Models',
+        toolTip='The coordinate files making up the ensemble')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1712,9 +1817,19 @@ class CResidueRange(CData):
         qualifiers = {
             "pdbFileKey": None,
         }
-    chainId = content("COneWord", default='')
-    firstRes = content("COneWord")
-    lastRes = content("COneWord")
+    chainId = content(
+        "COneWord",
+        default='',
+        guiLabel='Chain',
+        toolTip='Chain identifier of the range')
+    firstRes = content(
+        "COneWord",
+        guiLabel='First residue',
+        toolTip='First residue in the range')
+    lastRes = content(
+        "COneWord",
+        guiLabel='Last residue',
+        toolTip='Last residue in the range')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1742,7 +1857,10 @@ class CAtomSelection(CData):
         qualifiers = {
             "pdbFileKey": '',
         }
-    text = content("CString")
+    text = content(
+        "CString",
+        guiLabel='Selection',
+        toolTip='Atoms to use, in CCP4 selection syntax')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1786,8 +1904,14 @@ class CBlastData(CDataFileContent):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    queryId = content("CString")
-    alignmentList = content("CList")
+    queryId = content(
+        "CString",
+        guiLabel='Query',
+        toolTip='Identifier of the sequence that was searched with')
+    alignmentList = content(
+        "CList",
+        guiLabel='Hits',
+        toolTip='Alignments returned by the search')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -1827,7 +1951,10 @@ class CHhpredData(CDataFileContent):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    alignmentList = content("CList")
+    alignmentList = content(
+        "CList",
+        guiLabel='Hits',
+        toolTip='Alignments returned by the HHpred search')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2270,9 +2397,18 @@ class CSequenceMeta(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    uniprotId = content("CString")
-    organism = content("CString")
-    expressionSystem = content("CString")
+    uniprotId = content(
+        "CString",
+        guiLabel='UniProt',
+        toolTip='UniProt accession for the sequence')
+    organism = content(
+        "CString",
+        guiLabel='Organism',
+        toolTip='Source organism of the sequence')
+    expressionSystem = content(
+        "CString",
+        guiLabel='Expression system',
+        toolTip='Organism the protein was expressed in')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2540,9 +2676,18 @@ class CHhpredItem(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    annotation = content("CString")
-    identifier = content("CString")
-    chain = content("CString")
+    annotation = content(
+        "CString",
+        guiLabel='Annotation',
+        toolTip='Human-readable description')
+    identifier = content(
+        "CString",
+        guiLabel='Identifier',
+        toolTip='Identifier for this item')
+    chain = content(
+        "CString",
+        guiLabel='Chain',
+        toolTip='Chain of the matched structure')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -2995,13 +3140,31 @@ class CChemComp(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    id = content("COneWord")
-    three_letter_code = content("COneWord")
-    name = content("CString")
-    group = content("CString")
-    number_atoms_all = content("CInt")
-    number_atoms_nh = content("CInt")
-    desc_level = content("CInt")
+    id = content(
+        "COneWord",
+        guiLabel='Code',
+        toolTip='Identifier for the monomer within the dictionary')
+    three_letter_code = content(
+        "COneWord",
+        guiLabel='Three-letter code',
+        toolTip='Three-letter code identifying the monomer')
+    name = content("CString", guiLabel='Name', toolTip='Name of this item')
+    group = content(
+        "CString",
+        guiLabel='Group',
+        toolTip='Chemical group of the monomer, e.g. L-peptide or non-polymer')
+    number_atoms_all = content(
+        "CInt",
+        guiLabel='Atoms',
+        toolTip='Number of atoms in the monomer, hydrogens included')
+    number_atoms_nh = content(
+        "CInt",
+        guiLabel='Non-hydrogen atoms',
+        toolTip='Number of atoms excluding hydrogens')
+    desc_level = content(
+        "CInt",
+        guiLabel='Description level',
+        toolTip='How completely the monomer is described in the dictionary')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3074,18 +3237,42 @@ class CAsuContentSeq(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    sequence = content("CSequenceString", allowUndefined=False, minLength=1)
-    nCopies = content("CInt",
-                      enumerators=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                      default=1,
-                      min=0)
-    polymerType = content("CString",
-                          onlyEnumerators=True,
-                          enumerators=['PROTEIN', 'RNA', 'DNA'],
-                          default='PROTEIN')
-    name = content("CString", allowUndefined=False, minLength=1, allowedCharsCode=1)
-    description = content("CString", allowUndefined=True)
-    source = content("CSeqDataFile")
+    sequence = content(
+        "CSequenceString",
+        allowUndefined=False,
+        minLength=1,
+        guiLabel='Sequence',
+        toolTip='The residue sequence, in one-letter code')
+    nCopies = content(
+        "CInt",
+        enumerators=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        default=1,
+        min=0,
+        guiLabel='Copies',
+        toolTip='How many copies of this sequence are in the asymmetric unit')
+    polymerType = content(
+        "CString",
+        onlyEnumerators=True,
+        enumerators=['PROTEIN', 'RNA', 'DNA'],
+        default='PROTEIN',
+        guiLabel='Polymer type',
+        toolTip='Whether the entity is protein, DNA or RNA')
+    name = content(
+        "CString",
+        allowUndefined=False,
+        minLength=1,
+        allowedCharsCode=1,
+        guiLabel='Name',
+        toolTip='Name of this item')
+    description = content(
+        "CString",
+        allowUndefined=True,
+        guiLabel='Description',
+        toolTip='Free-text description')
+    source = content(
+        "CSeqDataFile",
+        guiLabel='Sequence file',
+        toolTip='File the sequence was read from')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -3550,7 +3737,10 @@ class CPdbDataFile(CDataFile):
     # Column signatures for each content flag (indexed by contentFlag - 1)
     CONTENT_SIGNATURE_LIST = [None, None]
 
-    selection = content("CAtomSelection")
+    selection = content(
+        "CAtomSelection",
+        guiLabel='Selection',
+        toolTip='Which part of the data to use')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -4084,7 +4274,10 @@ class CAsuContent(CDataFileContent):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    seqList = content("CAsuContentSeqList")
+    seqList = content(
+        "CAsuContentSeqList",
+        guiLabel='Sequences',
+        toolTip='The sequences expected in the asymmetric unit')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -4269,13 +4462,26 @@ class CPdbEnsembleItem(CData):
             "toolTip": 'Homologous model and its similarity to the target structure',
             "allowUndefined": False,
         }
-    structure = content("CPdbDataFile",
-                        allowUndefined=False,
-                        mustExist=True,
-                        fromPreviousJob=True,
-                        ifAtomSelection=True)
-    identity_to_target = content("CFloat", min=0.0, max=1.0)
-    rms_to_target = content("CFloat", min=0.0, max=100.0)
+    structure = content(
+        "CPdbDataFile",
+        allowUndefined=False,
+        mustExist=True,
+        fromPreviousJob=True,
+        ifAtomSelection=True,
+        guiLabel='Model',
+        toolTip='Coordinate file for this member of the ensemble')
+    identity_to_target = content(
+        "CFloat",
+        min=0.0,
+        max=1.0,
+        guiLabel='Sequence identity',
+        toolTip="Fraction identity between this model's sequence and the target, used to estimate how far the model will differ")
+    rms_to_target = content(
+        "CFloat",
+        min=0.0,
+        max=100.0,
+        guiLabel='RMS to target',
+        toolTip='Expected coordinate deviation from the target, in Angstroms, given instead of a sequence identity')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """

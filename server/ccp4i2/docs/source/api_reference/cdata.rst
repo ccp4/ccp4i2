@@ -1,7 +1,7 @@
 CData
 =====
 
-.. automodule:: core.CCP4Data
+.. automodule:: ccp4i2.core.CCP4Data
    :members:
    :undoc-members:
    :show-inheritance:
@@ -54,3 +54,14 @@ Serialization
 
 - ``getEtree()`` - Convert to XML ElementTree
 - ``setEtree(element)`` - Load from XML ElementTree
+
+Worked examples
+---------------
+
+A unit cell, whose fields carry their own labels and descriptions:
+
+.. cdata-fields:: ccp4i2.core.CCP4XtalData.CCell
+
+A refinement's key performance indicators, harvested into the project database:
+
+.. cdata-fields:: ccp4i2.core.CCP4PerformanceData.CRefinementPerformance

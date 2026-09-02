@@ -62,13 +62,47 @@ class CDataFile(CData):
     # base_object/ in the layering: a real import here would invert it. A
     # forward reference needs no import, which is the same late binding the
     # decorator's custom_class string was doing.
-    project = content("CProjectId")
-    baseName = content("CFilePath")
-    relPath = content("CFilePath")
-    dbFileId = content("CUUID")
-    annotation = content("CString")
-    subType = content("CInt")
-    contentFlag = content("CInt")
+    project = content(
+        "CProjectId",
+        guiLabel='Project',
+        toolTip='Identifier of the project this file belongs to. With relPath '
+                'and baseName it locates the file without storing an absolute '
+                'path, so a project can be moved or copied')
+    baseName = content(
+        "CFilePath",
+        guiLabel='File name',
+        toolTip='The file name alone, without any directory part')
+    relPath = content(
+        "CFilePath",
+        guiLabel='Directory',
+        toolTip="The directory holding the file, relative to the project "
+                "directory. Unset for a file outside any project, where "
+                "baseName then carries the absolute path")
+    dbFileId = content(
+        "CUUID",
+        guiLabel='File id',
+        toolTip='Database identifier for this file, assigned when a job output '
+                'is gleaned into the project. It is what lets a later job refer '
+                'to this exact file rather than to a path')
+    annotation = content(
+        "CString",
+        guiLabel='Annotation',
+        toolTip='Human-readable description of the file, shown in the job list '
+                'and the file chooser')
+    subType = content(
+        "CInt",
+        guiLabel='Sub-type',
+        toolTip='Which variety of this file type it is, where a type has '
+                'several. A coordinate file distinguishes a model from a '
+                'homolog or a fragment this way; subclasses give the values '
+                'names through the enumerators qualifier')
+    contentFlag = content(
+        "CInt",
+        guiLabel='Content',
+        toolTip='Which representation of the data the file holds, for types '
+                'that admit more than one. A reflection file uses it to say '
+                'whether it carries I/sigI or F/sigF; the value is a 1-based '
+                'index into the class CONTENT_SIGNATURE_LIST')
 
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):

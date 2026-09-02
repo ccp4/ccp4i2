@@ -87,8 +87,15 @@ class CCustomComFile(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    text = content("CString")
-    name = content("CString", default='./com.txt')
+    text = content(
+        "CString",
+        guiLabel='Command file',
+        toolTip='Contents of the command file fed to the program')
+    name = content(
+        "CString",
+        default='./com.txt',
+        guiLabel='Name',
+        toolTip='Name of this item')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
@@ -351,16 +358,50 @@ class CCustomTaskParam(CData):
             "guiDefinition": {},
             "saveToDb": False,
         }
-    name = content("COneWord")
-    dataType = content("CI2DataType", default='CPdbDataFile')
-    label = content("CString")
-    obligatory = content("CBoolean", default=True)
-    saveDataToDb = content("CBoolean", default=False)
-    function = content("CCustomTaskFileFunction", default='input')
-    mergeTo = content("CString")
-    splitColumns = content("CString")
-    requiredContentType = content("CList")
-    outputFilePath = content("CString")
+    name = content(
+        "COneWord",
+        guiLabel='Name',
+        toolTip='Identifier for the parameter, used in the command line')
+    dataType = content(
+        "CI2DataType",
+        default='CPdbDataFile',
+        guiLabel='Data type',
+        toolTip='The CCP4i2 data type the parameter holds')
+    label = content(
+        "CString",
+        guiLabel='Label',
+        toolTip='Text shown beside the parameter in the interface')
+    obligatory = content(
+        "CBoolean",
+        default=True,
+        guiLabel='Required',
+        toolTip='Whether the task cannot run without it')
+    saveDataToDb = content(
+        "CBoolean",
+        default=False,
+        guiLabel='Save to database',
+        toolTip='Whether an output of this parameter is gleaned into the project')
+    function = content(
+        "CCustomTaskFileFunction",
+        default='input',
+        guiLabel='Function',
+        toolTip='Whether the parameter is an input or an output file')
+    mergeTo = content(
+        "CString",
+        guiLabel='Merge to',
+        toolTip="Reflection file this parameter's columns should be merged into")
+    splitColumns = content(
+        "CString",
+        guiLabel='Split columns',
+        toolTip='Columns to extract when splitting a reflection file')
+    requiredContentType = content(
+        "CList",
+        guiLabel='Required content',
+        toolTip='Content types the parameter will accept')
+    outputFilePath = content(
+        "CString",
+        guiLabel='Output path',
+        toolTip='Where the task writes this output')
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
