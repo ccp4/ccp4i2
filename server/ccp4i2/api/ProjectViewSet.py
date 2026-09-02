@@ -35,6 +35,18 @@ from . import serializers
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
+# Reading a project out of a directory means reading a path on the *server's*
+# filesystem. On the desktop that is the user's own machine and their own files,
+# which is the whole point. In a served deployment it is someone else's disk, so
+# these routes are desktop-only -- the same boundary, and the same signal, that
+# gates writing preferences.json (see api/views.py).
+_SERVER_PATH_REFUSAL = (
+    "Importing or restoring a project from a directory is available only in the "
+    "desktop app, where the folder you pick is on your own machine. In a server "
+    "deployment, upload the project as a zip instead."
+)
+
+
 class ProjectViewSet(ModelViewSet):
     """
     ProjectViewSet
@@ -221,7 +233,10 @@ class ProjectViewSet(ModelViewSet):
         secure_storage_dir = pathlib.Path(settings.MEDIA_ROOT) / "uploaded_files"
         secure_storage_dir.mkdir(parents=True, exist_ok=True)
 
+        from ..db.import_i2xml import ProjectArchiveError, inspect_ccp4_project_zip
+
         # Save the file to the secure storage directory
+        imported = []
         for uploaded_file in uploaded_files:
             if not uploaded_file.name.endswith(".zip"):
                 return api_error("Invalid file type", status=400)
@@ -235,6 +250,17 @@ class ProjectViewSet(ModelViewSet):
             with open(file_path, "wb") as destination:
                 for chunk in uploaded_file.chunks():
                     destination.write(chunk)
+
+            # Look inside before dispatching. The import itself runs detached,
+            # so anything not caught here fails in a subprocess with nobody
+            # watching and the upload still reports success -- which is exactly
+            # how a wrongly-rolled zip came to look like a working import.
+            try:
+                summary = inspect_ccp4_project_zip(file_path)
+            except ProjectArchiveError as err:
+                logger.warning("Rejected %s: %s", uploaded_file.name, err)
+                return api_error(f"{uploaded_file.name}: {err}", status=400)
+
             try:
                 call_command("import_ccp4_project_zip", str(file_path), "--detach")
             except Exception as e:
@@ -243,8 +269,15 @@ class ProjectViewSet(ModelViewSet):
                 )
                 return api_error(str(e), status=500)
             logger.warning("File uploaded and saved to %s", file_path)
+            imported.append(
+                {
+                    "file": uploaded_file.name,
+                    "project_name": summary["project_name"],
+                    "jobs": summary["jobs"],
+                }
+            )
 
-        return api_success({"imported": True})
+        return api_success({"imported": True, "projects": imported})
 
     # files() @action removed — consumers should hit /files/?project={id} instead.
     # The FileViewSet supports the project filter natively; consolidating on the
@@ -948,10 +981,13 @@ class ProjectViewSet(ModelViewSet):
         to look through a folder directly, for when the registry has been lost
         as well.
         """
+        from ..config.preferences import is_desktop
         from ..db.project_snapshot import read_registry, registry_path
         from ..db.restore_project import discover_restorable, inspect
 
         scan = request.query_params.get("scan")
+        if scan and not is_desktop():
+            return api_error(_SERVER_PATH_REFUSAL, status=409)
         try:
             if scan:
                 directories = discover_restorable(pathlib.Path(scan))
@@ -1015,8 +1051,15 @@ class ProjectViewSet(ModelViewSet):
         replace = str(request.data.get("replace", "")).lower() in ("1", "true", "yes")
         dry_run = str(request.data.get("dry_run", "")).lower() in ("1", "true", "yes")
 
-        if source in ("scan", "directory") and not path:
-            return api_error(f"A path is required when source is '{source}'", status=400)
+        if source in ("scan", "directory"):
+            if not path:
+                return api_error(
+                    f"A path is required when source is '{source}'", status=400
+                )
+            from ..config.preferences import is_desktop
+
+            if not is_desktop():
+                return api_error(_SERVER_PATH_REFUSAL, status=409)
 
         try:
             if source == "registry":

@@ -7,6 +7,7 @@ every job directory reference pointing at nothing. So these tests check the
 disk, not just the rows.
 """
 
+import os
 from pathlib import Path
 from shutil import rmtree
 from unittest.mock import patch
@@ -361,7 +362,15 @@ class RestoreEverythingTest(RestoreTestBase):
         self.assertEqual(Project.objects.count(), 3)
 
 
+# Reading a project out of a path means reading the *server's* filesystem, so
+# the routes that take one are desktop-only. is_desktop() keys on the token the
+# desktop launcher installs; a test exercising those routes has to say it is the
+# desktop, and RefusedOffTheDesktopTest below covers the other side.
+DESKTOP_ENV = {"CCP4I2_LOCAL_SESSION_TOKEN": "test-session-token"}
+
+
 @override_settings(CCP4I2_PROJECTS_DIR=PROJECTS_DIR)
+@patch.dict(os.environ, DESKTOP_ENV)
 class RestoreEndpointTest(RestoreTestBase):
     """The REST surface the desktop app drives."""
 
@@ -447,3 +456,50 @@ class RestoreEndpointTest(RestoreTestBase):
             "/api/ccp4i2/projects/restore/", {"source": "telepathy"}, format="json"
         )
         self.assertEqual(response.status_code, 400)
+
+
+@override_settings(CCP4I2_PROJECTS_DIR=PROJECTS_DIR)
+@patch.dict(os.environ, {"CCP4I2_LOCAL_SESSION_TOKEN": ""}, clear=False)
+class RefusedOffTheDesktopTest(RestoreTestBase):
+    """A served deployment must not read projects off the server's disk.
+
+    Registry-driven recovery still has to work everywhere -- it reads only the
+    directories this installation already recorded -- but a caller-supplied
+    path is a different thing: in a browser the folder the user picked is not
+    the folder the server would open, and every other logged-in user shares
+    that filesystem.
+    """
+
+    def setUp(self):
+        super().setUp()
+        from django.contrib.auth import get_user_model
+        from rest_framework.test import APIClient
+
+        os.environ.pop("CCP4I2_LOCAL_SESSION_TOKEN", None)
+        self.project = build_project_on_disk("Alpha")
+        project_snapshot.update_registry()
+
+        self.client = APIClient()
+        self.client.force_authenticate(
+            get_user_model().objects.create(username="tester")
+        )
+
+    def test_scanning_a_path_is_refused(self):
+        response = self.client.get(
+            "/api/ccp4i2/projects/restorable/", {"scan": str(PROJECTS_DIR)}
+        )
+        self.assertEqual(response.status_code, 409, response.data)
+
+    def test_restoring_a_directory_is_refused(self):
+        response = self.client.post(
+            "/api/ccp4i2/projects/restore/",
+            {"source": "directory", "path": str(self.project.directory)},
+            format="json",
+        )
+        self.assertEqual(response.status_code, 409, response.data)
+        self.assertEqual(Project.objects.count(), 1)
+
+    def test_the_registry_route_still_works(self):
+        response = self.client.get("/api/ccp4i2/projects/restorable/")
+        self.assertEqual(response.status_code, 200, response.data)
+        self.assertEqual(response.data["data"]["source"]["kind"], "registry")

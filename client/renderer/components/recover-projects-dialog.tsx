@@ -89,11 +89,17 @@ interface RecoverProjectsDialogProps {
 /**
  * Rebuild the database from the snapshots CCP4i2 leaves in project directories.
  *
- * For a database that has been lost or corrupted. Each project directory holds
- * a `DATABASE.db.xml` describing everything the database knew about it, and a
- * registry outside the database records where the projects are — so recovery
- * normally needs nothing but a confirmation. If the registry has gone too,
- * pointing this at the folder the projects live in finds them directly.
+ * Chiefly for a database that has been lost or corrupted: each project
+ * directory holds a `DATABASE.db.xml` describing everything the database knew
+ * about it, and a registry outside the database records where the projects
+ * are — so recovery normally needs nothing but a confirmation. If the registry
+ * has gone too, pointing this at the folder the projects live in finds them
+ * directly.
+ *
+ * This is the bulk route, over a whole store at once. To bring in a single
+ * project folder deliberately — one from a colleague, say — the import page
+ * does the same thing one project at a time, with the clash reported before
+ * anything is written.
  *
  * Nothing is moved and nothing already in the database is touched unless the
  * user explicitly asks: restoring over a live project would lose work rather
@@ -203,7 +209,8 @@ export function RecoverProjectsDialog({
         <Typography variant="body2" color="text.secondary">
           CCP4i2 keeps a record of each project inside its own folder, so a lost
           or damaged database can be rebuilt from what is still on disk. Nothing
-          is moved, and projects already in the database are left alone.
+          is moved, and projects already in the database are left alone. To bring
+          in one project folder rather than a whole store, use Import instead.
         </Typography>
 
         <Stack

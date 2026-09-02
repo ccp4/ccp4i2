@@ -1,39 +1,38 @@
 "use client";
-import React, { PropsWithChildren, useContext, useState, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
+  Alert,
   Button,
   Container,
+  LinearProgress,
   Paper,
   Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
   Typography,
 } from "@mui/material";
+import { Archive, Upload } from "@mui/icons-material";
 import { useApi } from "../api";
-import { Cancel, Check, Folder, Upload } from "@mui/icons-material";
+import { apiUploadWithProgress, UploadProgress } from "../api-fetch";
 import { VisuallyHiddenInput } from "./task/task-elements/input-file-upload";
 import { useRouter } from "next/navigation";
 import { Project } from "../types/models";
 import { useTheme } from "../theme/theme-provider";
+import { ImportProjectDirectory } from "./import-project-directory";
 
 export const ImportProjectContent: React.FC = () => {
   const { customColors } = useTheme();
   const api = useApi();
   const router = useRouter();
-  const [files, setFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState<UploadProgress | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { mutate: mutateProjects } = api.get<Project[]>("projects");
 
   // Create a ref for the hidden file input
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = (selectedFiles: FileList | null) => {
-    if (selectedFiles) {
-      const filesArray = Array.from(selectedFiles);
-      setFiles(filesArray);
+  const handleFileUpload = useCallback(
+    async (selectedFiles: FileList | null) => {
+      if (!selectedFiles || selectedFiles.length === 0) return;
 
       const formData = new FormData();
       for (let i = 0; i < selectedFiles.length; i++) {
@@ -41,22 +40,36 @@ export const ImportProjectContent: React.FC = () => {
       }
 
       setUploading(true);
-      api
-        .post<any>("/projects/import_project/", formData)
-        .then((response) => {
-          setUploading(false);
-          mutateProjects();
-          router.push("/ccp4i2");
-        })
-        .catch((error) => {
-          console.error("Error uploading files:", error);
-          setUploading(false);
-        });
-    }
-  };
+      setProgress(null);
+      setError(null);
+      try {
+        // apiUploadWithProgress, not api.post: the ordinary JSON path puts a
+        // 30 s AbortController around the request, and a project zip is
+        // routinely far bigger than 30 s of uplink. This one bounds on a
+        // stall instead, and can say how far it got.
+        const response: any = await apiUploadWithProgress(
+          "projects/import_project/",
+          formData,
+          { onProgress: setProgress }
+        );
+        if (response?.success === false) {
+          setError(response?.error ?? "The project could not be imported");
+          return;
+        }
+        mutateProjects();
+        router.push("/ccp4i2");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : String(err));
+      } finally {
+        setUploading(false);
+        setProgress(null);
+      }
+    },
+    [mutateProjects, router]
+  );
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleFileUpload(event.target.files);
+    void handleFileUpload(event.target.files);
   };
 
   const handlePaperClick = () => {
@@ -69,79 +82,97 @@ export const ImportProjectContent: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "calc(100vh - 5rem)", // Full viewport height
-        margin: 0, // Remove default margin
+        minHeight: "calc(100vh - 5rem)",
+        margin: 0,
+        paddingY: 4,
       }}
     >
       <Paper sx={{ padding: 2, minWidth: "50rem" }}>
-        <Stack spacing={2}>
-          <Typography variant="h4" gutterBottom>
-            Import Project(s)
-          </Typography>
-          <Stack spacing={2} direction="row">
-            <Paper
-              sx={{
-                border: "2px dashed #ccc",
-                padding: 4,
-                textAlign: "center",
-                cursor: "pointer",
-                backgroundColor: customColors.ui.lightGray,
-                "&:hover": {
-                  backgroundColor: "#f1f1f1",
-                },
-              }}
-              onClick={handlePaperClick}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => {
-                e.preventDefault();
-                const droppedFiles = e.dataTransfer.files;
-                setFiles(droppedFiles ? Array.from(droppedFiles) : []);
-                handleFileUpload(droppedFiles);
-              }}
-            >
-              <Typography variant="body1" color="textSecondary">
-                Drag and drop files here, or click here to upload
-              </Typography>
-            </Paper>
-            <Button
-              component="label"
-              variant="contained"
-              startIcon={<Upload />}
-            >
-              <VisuallyHiddenInput
-                ref={fileInputRef}
-                type="file"
-                multiple
-                onChange={onChange}
-              />
-            </Button>
+        <Stack spacing={3}>
+          <Stack spacing={0.5}>
+            <Typography variant="h4">Import Project(s)</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Bring in a project from elsewhere — as a zip, or as a folder that
+              is already on this machine.
+            </Typography>
           </Stack>
-          {files?.length > 0 && (
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>File</TableCell>
-                  <TableCell>Processing</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {files.map((aFile, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      <Folder /> {aFile.name}
-                    </TableCell>
-                    <TableCell>
-                      {!uploading ? (
-                        <Check color="success" />
-                      ) : (
-                        <Cancel color="error" />
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
+
+          {error && <Alert severity="error">{error}</Alert>}
+
+          <Paper variant="outlined" sx={{ padding: 2 }}>
+            <Stack spacing={2}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Archive color="primary" />
+                <Typography variant="h6">A project zip</Typography>
+              </Stack>
+              <Typography variant="body2" color="text.secondary">
+                An exported <code>.ccp4_project.zip</code>. Its contents are
+                copied into your project store.
+              </Typography>
+              <Stack spacing={2} direction="row" alignItems="center">
+                <Paper
+                  sx={{
+                    border: "2px dashed #ccc",
+                    padding: 4,
+                    textAlign: "center",
+                    cursor: uploading ? "default" : "pointer",
+                    flexGrow: 1,
+                    backgroundColor: customColors.ui.lightGray,
+                    "&:hover": {
+                      backgroundColor: uploading ? undefined : "#f1f1f1",
+                    },
+                  }}
+                  onClick={uploading ? undefined : handlePaperClick}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    if (uploading) return;
+                    void handleFileUpload(e.dataTransfer.files);
+                  }}
+                >
+                  <Typography variant="body1" color="textSecondary">
+                    Drag and drop files here, or click here to upload
+                  </Typography>
+                </Paper>
+                <Button
+                  component="label"
+                  variant="contained"
+                  startIcon={<Upload />}
+                  disabled={uploading}
+                >
+                  <VisuallyHiddenInput
+                    ref={fileInputRef}
+                    type="file"
+                    multiple
+                    accept=".zip"
+                    onChange={onChange}
+                  />
+                </Button>
+              </Stack>
+
+              {uploading && (
+                <Stack spacing={0.5}>
+                  <LinearProgress
+                    variant={
+                      progress?.fraction != null ? "determinate" : "indeterminate"
+                    }
+                    value={
+                      progress?.fraction != null ? progress.fraction * 100 : undefined
+                    }
+                  />
+                  <Typography variant="caption" color="text.secondary">
+                    {progress?.fraction != null
+                      ? `Uploading — ${Math.round(progress.fraction * 100)}%`
+                      : "Uploading…"}
+                  </Typography>
+                </Stack>
+              )}
+            </Stack>
+          </Paper>
+
+          {/* Desktop only — renders nothing in a browser, where a folder the
+              user picks is not on the server's disk. */}
+          <ImportProjectDirectory onImported={() => mutateProjects()} />
         </Stack>
       </Paper>
     </Container>
