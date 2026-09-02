@@ -213,6 +213,27 @@ _DISCOVERY_EXCLUDE = frozenset({
 })
 
 
+
+@api_view(["GET"])
+def default_project_parent_view(request):
+    """Where a project created with no explicit directory will actually land.
+
+    GET /api/ccp4i2/config/default-project-parent/
+
+    The New Project dialog needs to show this, and it cannot compute it: the
+    answer is the parent of the most recently created project, falling back to
+    the configured projects directory. Reimplementing that rule in the client
+    would give two resolvers for one question, which is how the dialog came to
+    display one location while the server used another.
+
+    Response: {"success": true, "data": {"directory": "/..."}}
+    """
+    from .serializers import default_project_parent
+
+    return JsonResponse(
+        {"success": True, "data": {"directory": str(default_project_parent())}}
+    )
+
 @api_view(["GET"])
 def discover_programs_view(request):
     """Report where each task program resolves (read-only probe).

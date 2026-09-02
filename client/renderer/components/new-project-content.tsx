@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Folder } from "@mui/icons-material";
 import { useApi } from "../api";
-import { apiPost } from "../api-fetch";
+import { apiGet, apiPost } from "../api-fetch";
 import { Project } from "../types/models";
 import EditTags from "./edit-tags";
 import {
@@ -31,9 +31,14 @@ export const NewProjectContent: React.FC = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [customDirectory, setCustomDirectory] = useState(false);
-  const [ccp4i2ProjectDirectory, setCcp4i2ProjectDirectory] = useState<string>(
-    "/home/user/CCP4X_PROJECTS"
-  );
+  // Kept apart deliberately. One variable serving both meant that picking a
+  // custom parent and then switching back to "default" left the custom path on
+  // screen while the request actually said __default__ — the dialog showing one
+  // location and creating the project in another. Held separately, the toggle
+  // itself is the way back, with nothing to reset.
+  const [defaultParent, setDefaultParent] = useState<string>("");
+  const [customParent, setCustomParent] = useState<string>("");
+  const parentDirectory = customDirectory ? customParent : defaultParent;
   const [directoryExists, setDirectoryExists] = useState(true);
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
@@ -41,6 +46,25 @@ export const NewProjectContent: React.FC = () => {
   const [droppedFiles, setDroppedFiles] = useState<DroppedFile[]>([]);
   const [isCreating, setIsCreating] = useState(false);
   const { data: projects } = api.get<Project[]>("projects");
+
+  // Where the server will actually put a project created with no explicit
+  // directory: the parent of the most recently created project, else the
+  // configured projects directory. Asked rather than computed — reimplementing
+  // that rule here would give two answers to one question.
+  useEffect(() => {
+    let cancelled = false;
+    apiGet<{ data?: { directory?: string } }>("config/default-project-parent/")
+      .then((resp) => {
+        const directory = resp?.data?.directory;
+        if (!cancelled && directory) setDefaultParent(directory);
+      })
+      .catch(() => {
+        /* older backend: the Electron config value below still applies */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     // Send a message to the main process to get the config
@@ -52,14 +76,19 @@ export const NewProjectContent: React.FC = () => {
         "message-from-main",
         (event: any, data: any) => {
           if (data.message === "get-config") {
-            setCcp4i2ProjectDirectory(data.config.CCP4I2_PROJECTS_DIR);
+            // Only a fallback for the split second before the server answers,
+            // and for a desktop build talking to an older backend.
+            setDefaultParent((current) =>
+              current || data.config.CCP4I2_PROJECTS_DIR
+            );
           }
           if (data.message === "check-file-exists") {
             setDirectoryExists(data.exists);
           }
           if (data.message === "choose-project-parent-directory") {
-            // Local to this page only — nothing is persisted.
-            setCcp4i2ProjectDirectory(data.directory);
+            // Local to this page only — nothing is persisted, and the default
+            // above is left untouched so the toggle still reverts to it.
+            setCustomParent(data.directory);
           }
         }
       );
@@ -69,15 +98,12 @@ export const NewProjectContent: React.FC = () => {
   }, []);
 
   const directory = useMemo(() => {
-    const result = path.join(
-      ccp4i2ProjectDirectory || "",
-      name.toLocaleLowerCase()
-    );
+    const result = path.join(parentDirectory || "", name.toLocaleLowerCase());
     if (typeof window !== "undefined" && window.electronAPI) {
       window.electronAPI.sendMessage("check-file-exists", { path: result });
     }
     return result;
-  }, [ccp4i2ProjectDirectory, name]);
+  }, [parentDirectory, name]);
 
   async function createProject() {
     setIsCreating(true);
@@ -272,7 +298,7 @@ export const NewProjectContent: React.FC = () => {
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <TextField
               label="Parent directory where the project directory will be created"
-              value={ccp4i2ProjectDirectory}
+              value={customParent}
               disabled={true}
               sx={{ flexGrow: 1 }}
               required

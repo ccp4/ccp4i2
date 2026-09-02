@@ -47,6 +47,11 @@ _api_patterns = [
     path("monomer-info/<str:code>/", views.monomer_info, name="monomer_info"),
     path("image_sweep/", views.image_sweep, name="image_sweep"),
     path(
+        "config/default-project-parent/",
+        views.default_project_parent_view,
+        name="default_project_parent",
+    ),
+    path(
         "config/discover-programs/",
         views.discover_programs_view,
         name="discover_programs",

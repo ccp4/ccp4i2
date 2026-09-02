@@ -99,7 +99,7 @@ class ProjectListSerializer(ModelSerializer):
         ]
 
 
-def _default_project_parent() -> Path:
+def default_project_parent() -> Path:
     """Where a project with no explicit directory should go.
 
     The parent of the most recently created project, falling back to the
@@ -150,7 +150,7 @@ class ProjectSerializer(ModelSerializer):
                 or attrs["directory"] == "__default__"
             ):
                 attrs["directory"] = str(
-                    _default_project_parent() / slugify(attrs["name"])
+                    default_project_parent() / slugify(attrs["name"])
                 )
         elif "directory" in attrs and attrs["directory"] != instance.directory:
             # Changing this field alone would leave the record pointing at a
