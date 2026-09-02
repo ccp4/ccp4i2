@@ -17,6 +17,7 @@ import pytest
 
 from ccp4i2.db import models
 from ccp4i2.lib.utils.jobs import reports
+from ccp4i2.lib.utils.reporting.i2_report import failed_report
 
 GOOD_REPORT = b"<report><CCP4i2ReportFold label='xia2 report'/></report>"
 
@@ -38,11 +39,11 @@ def test_cached_report_survives_a_regeneration_that_fails(
     cached.write_bytes(GOOD_REPORT)
 
     def failing_report(_job):
-        import xml.etree.ElementTree as ET
-
-        root = ET.Element("report")
-        ET.SubElement(root, "error").text = "Report generation failed"
-        return root
+        # A real failure panel, so this test tracks how a failure is actually
+        # signalled rather than restating it. It used to build one whose error
+        # text said "Report generation failed", which is what the predicate
+        # searched the markup for.
+        return failed_report("Report generation failed", "xia2")
 
     monkeypatch.setattr(reports, "generate_job_report", failing_report)
 
@@ -79,16 +80,44 @@ def test_failed_regeneration_with_no_cache_returns_the_error(
     """With nothing to fall back on, the error must still reach the caller."""
 
     def failing_report(_job):
-        import xml.etree.ElementTree as ET
-
-        root = ET.Element("report")
-        ET.SubElement(root, "error").text = "No report because of missing data"
-        return root
+        return failed_report(
+            "No program XML found", "xia2", details="of missing data"
+        )
 
     monkeypatch.setattr(reports, "generate_job_report", failing_report)
 
     result = reports.get_job_report_xml(finished_job, regenerate=True)
 
     assert result.success
-    assert b"No report because" in result.data
+    assert b"No program XML found" in result.data
+    assert b"of missing data" in result.data, "the panel still says why"
     assert not (finished_job.directory / "report_xml.xml").exists()
+
+
+def test_a_report_whose_own_text_mentions_failure_is_still_cached(
+    finished_job, monkeypatch
+):
+    """The predicate is an attribute now, not a substring of the prose.
+
+    A working report is entitled to contain the words the old check looked
+    for -- "no report because", say, in a fold explaining a skipped step --
+    and was previously refused a cache entry for saying so.
+    """
+
+    def wordy_report(_job):
+        import xml.etree.ElementTree as ET
+
+        root = ET.Element("report")
+        ET.SubElement(root, "CCP4i2ReportPre").text = (
+            "No report because the anomalous step was skipped"
+        )
+        return root
+
+    monkeypatch.setattr(reports, "generate_job_report", wordy_report)
+
+    result = reports.get_job_report_xml(finished_job, regenerate=True)
+
+    assert result.success
+    assert (finished_job.directory / "report_xml.xml").exists(), (
+        "a good report was refused a cache entry for its choice of words"
+    )

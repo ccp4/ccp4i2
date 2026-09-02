@@ -84,6 +84,14 @@ jobs:
           fi
           echo "no CCP4 on the runner, as intended"
 
+      # A grep, but the only check available for this family: CData and the
+      # report nodes define __getattr__, so a type checker must assume any
+      # attribute exists. cmapcoeff called lxml's pretty_print on the standard
+      # library for years and no cmapcoeff job ever wrote a program.xml.
+      # Stdlib only and instant, so it runs before the suites.
+      - name: Missing-API check (lxml-only APIs off lxml)
+        run: python3 scripts/check_lxml_api.py
+
       - name: Unit tests
         working-directory: server
         run: python -m pytest ccp4i2/tests/unit/ -q

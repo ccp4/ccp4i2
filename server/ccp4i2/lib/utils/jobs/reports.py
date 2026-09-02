@@ -9,7 +9,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 from ccp4i2.db import models
 from ccp4i2.lib.response import Result
-from ..reporting.i2_report import generate_job_report
+from ..reporting.i2_report import generate_job_report, report_is_failure
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -117,10 +117,11 @@ def get_job_report_xml(job: models.Job, regenerate: bool = False) -> Result[byte
             ET.indent(report_xml, space="\t", level=0)
             xml_bytes = ET.tostring(report_xml)
 
-            # Only cache successful reports (not error/placeholder reports)
-            # Check if this is a failed report by looking for error indicators
-            xml_str = xml_bytes.decode('utf-8', errors='ignore')
-            is_error_report = 'No report because' in xml_str or 'Report generation failed' in xml_str
+            # Only cache successful reports (not error/placeholder reports).
+            # The failure path marks its own root rather than being recognised
+            # by its prose: this used to grep the markup for "No report
+            # because", which a task's own report is free to contain.
+            is_error_report = report_is_failure(report_xml)
 
             if not is_error_report:
                 with open(report_xml_path, "wb") as f:
@@ -139,6 +140,8 @@ def get_job_report_xml(job: models.Job, regenerate: bool = False) -> Result[byte
                 )
                 with open(report_xml_path, "rb") as f:
                     return Result.ok(f.read())
+            # Not cached and not cacheable: serve the failure panel itself. It
+            # names the line that raised and still lists the job's files.
 
             return Result.ok(xml_bytes)
 

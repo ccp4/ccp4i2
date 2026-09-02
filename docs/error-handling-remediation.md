@@ -1396,25 +1396,26 @@ combination that works is `ET.tostring(lxml_element)`. Nothing is silently
 corrupted. That is cold comfort while the exceptions are being discarded, but
 it does mean the search is for *API* mismatches, not for mixed trees.
 
-Searching for lxml-only APIs in modules that do not import lxml finds four more
-live instances, none of them ever reported:
+Searching for lxml-only APIs in modules that do not import lxml found four more
+live instances, none of them ever reported. **All four are fixed, and the search
+is now `scripts/check_lxml_api.py`, run as a CI step** (see [The lint, as
+built](#the-lint-as-built) below):
 
 | Module | Call | Effect |
 |---|---|---|
-| `pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK_report.py` | `self.xmlnode.xpath(...)` ×4 | **The report cannot render at all.** It imports no XML module; `xmlnode` comes from the framework as a stdlib Element, which has no `.xpath`. The task is registered with this `reportPath`. |
-| `wrappers/qtpisa/script/qtpisa_report.py` | `etree.tostring(et, pretty_print=True)`, `et.write(path, pretty_print=True)` | `TypeError`; the scene file is never written |
-| `pipelines/MakeProjectsAndDoLigandPipeline/script/MakeProjectsAndDoLigandPipeline_report.py` | `etree.tostring(svg, pretty_print=True)` | `TypeError` |
-| `wrappers/SIMBAD/script/SIMBAD_report.py` | `self.xmlnode.xpath(...)` | commented out — and `SIMBAD`'s plugin class does not load anyway (see [G1](#g1--a-conformance-test-over-the-task-registry)) |
+| `pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK_report.py` | `self.xmlnode.xpath(...)` ×15, `.xpath0(...)` ×1 | **The report could not render at all.** It imports no XML module; `xmlnode` comes from the framework as `ET.parse(...).getroot()`, a stdlib Element with no `.xpath`. The task is registered with this `reportPath`. **Fixed**: ported to `findall()`, `//` to `.//`, `xpath0()` to `find()` with a `None` guard. `tests/unit/lib/test_report_lxml_ports.py` renders it and asserts each ported query still finds its node. |
+| `wrappers/qtpisa/script/qtpisa_report.py` | `etree.tostring(et, pretty_print=True)`, `et.write(path, pretty_print=True)` | `TypeError`; the scene file was never written. **Fixed**: the debug `print` deleted, `etree.indent()` before `write()`, and `openFileToEtree(..., useLXML=False)` — it defaults to lxml, so this stdlib module was being handed an lxml element. |
+| `pipelines/MakeProjectsAndDoLigandPipeline/script/MakeProjectsAndDoLigandPipeline_report.py` | `etree.tostring(svg, pretty_print=True)` | `TypeError`, inside a bare `except:` that set `useSVG=False` — so it failed silently on every run. **Fixed**: `ET.tostring(lxml_element)` is the one cross-library call that works, so only `pretty_print` had to go; the `except` now logs. Two further defects in the same block: `findall("ProjectName/text()")` is XPath, which ElementPath rejects, and the `.replace()` chain ran on `bytes`. |
+| `wrappers/SIMBAD/script/SIMBAD_report.py` | `self.xmlnode.xpath(...)` | commented out — and `SIMBAD`'s plugin class does not load anyway (see [G1](#g1--a-conformance-test-over-the-task-registry)). The check reports it as inert rather than failing on it. |
 
 Two things make this family invisible.
 
-**The report path has no C1.** These live in report classes, which render
-separately from the job. A report class that raises produces an error report,
-and since 2026-08-25 a job with a previously-cached rendering has that stale
-rendering served in its place with only a `logger.warning` — which is exactly
-what [M5](#m5--report-classes-that-degrade-section-by-section) was amended to
-address. The report path needs its own version of the C1 treatment: record what
-the report class said, where a person will see it.
+**The report path had no C1.** These live in report classes, which render
+separately from the job. A report class that raised produced an error report
+saying "Report generation failed ... See server logs for full traceback" — the
+same "printed to a console nobody reads" that C1 was about, one layer out. It
+now has its own version of the treatment; see [What a failed report says
+now](#what-a-failed-report-says-now).
 
 **The naming invites it.** `report/elements.py`, `report/core.py` and most
 report modules say `import xml.etree.ElementTree as etree`. A reader who knows
@@ -1423,14 +1424,20 @@ Writing `pretty_print=True` under that assumption is the natural mistake, and
 nothing in the module contradicts it.
 
 **One more, dated rather than broken:** `prosmart_refmac_report.py:263` imports
-`lxml.html.clean`, which was **removed in lxml 5.x**. This build ships 4.9.4, so
-it works today and breaks whenever CCP4 updates lxml — inside a bare
-`except: pass`, so it will break silently.
+`lxml.html.clean`, which **moved out of lxml in 5.x**. This build ships 4.9.4, so
+it works today and breaks whenever CCP4 updates lxml. It is *not* inside the
+bare `except: pass` above it, as first recorded here — that block closes at the
+`linkNodes` line — so the failure would take the whole prosmart_refmac report
+down rather than passing quietly. **Fixed**: `lxml_html_clean` first, falling
+back to the old path, so the bump lands softly whichever way it goes.
 
-These are not fixed here: they belong to the report path rather than to C1, and
-they want the M5 work alongside them. They are recorded because they are the
-best available evidence for the lint proposed below — five hits from one grep,
-in a family static typing cannot see.
+These were not fixed with C1 — they belong to the report path rather than to
+C1 — but they are fixed now, together with the lint that found them. What
+remains open is the M5 half: **the report path still has no C1.** A report
+class that raises produces an error report, and a job with a previously-cached
+rendering has that stale rendering served in its place with only a
+`logger.warning`. Fixing five instances does not fix the mechanism that hid
+them.
 
 ## Two things worth building
 
@@ -1451,8 +1458,73 @@ properly: **an lxml-only API in a module that does not import lxml is an
 error.** The identifiers are `pretty_print=`, `.xpath(`, `.getparent()`,
 `.iterancestors(`, `.sourceline`, `CDATA(`, and `lxml.html.clean`. That check,
 which is a grep, would have found the cmapcoeff defect and the four report
-defects above — nine lines of CI standing in for a family that static typing
-cannot see at all, because `CData` and the report nodes are dynamic.
+defects above — a CI step standing in for a family that static typing cannot
+see at all, because `CData` and the report nodes are dynamic.
+
+### The lint, as built
+
+`scripts/check_lxml_api.py`. Standard library only, no CCP4, instant, and a CI
+step ahead of the suites. `tests/unit/lib/test_lxml_api_lint.py` tests the check
+itself and ends with a ratchet over the shipped package, so somebody running
+pytest hears about a new one too.
+
+Three details earned their keep while writing it:
+
+- **The lxml import is parsed, not grepped.** A file whose only mention of lxml
+  is a comment saying it was ported away from lxml must not exempt itself. That
+  is the difference between a real finding and a missed one.
+- **Commented-out calls are reported, not failed.** `SIMBAD_report.py` carries
+  two. They cannot raise, but they are where the next copy-paste starts.
+- **A second list is banned outright**, whatever a module imports, for APIs no
+  library provides any more: `lxml.html.clean` and `.xpath0(` — the latter a
+  Qt-era `CCP4ReportParser` helper that nothing in the tree defines, found in
+  `phaser_MR_PAK_report.py` only because the lint made me read the file. This
+  list is where port residue goes; the mmdb2 names the gemmi port removed belong
+  here too, once someone enumerates them.
+
+Its limitation is worth stating: one deliberate `from lxml import etree`
+anywhere in a file exempts that whole file. Refining that means tracking which
+name holds which library, which is a type checker, which is the thing that
+cannot see this family. So prefer the narrowest fix that keeps a module
+standard-library throughout, and use `# lxml-ok: why` for a genuinely lxml
+object arriving from elsewhere.
+
+## What a failed report says now
+
+C1's lesson applied to the report path: the information existed, and the only
+missing half was putting it where a person would see it.
+
+`failed_report()` in `lib/utils/reporting/i2_report.py` replaces the panel that
+said "See server logs for full traceback". In place of the report content it
+renders:
+
+- **a diagnostic card** — the vocabulary `report/errors.py` already defined and
+  the frontend already rendered, and which nothing had ever emitted: level,
+  code, message, and the location, taken from the *deepest* traceback frame,
+  because the point is to name the line a maintainer has to open;
+- **the traceback itself**, in a fold. `phaser_MR_PAK_report` failed on every
+  job it ever ran on, and the panel could not say where;
+- **the ordinary input and output file sections.** A report class failing says
+  nothing about the job's outputs: they were gleaned long before it ran, and
+  they are why the user opened the job. Without them a broken report is
+  indistinguishable from a job that produced nothing. Building them is wrapped
+  in its own `try` — this runs on the failure path and must not become the
+  failure.
+
+All four failure returns in `generate_job_report` go through it, so a missing
+`program.xml`, an unparseable one, a `jobInfo` failure and a report class raising
+all now say which and why.
+
+**And the cache predicate is an attribute.** Whether to keep a
+previously-cached rendering was decided by searching the markup for the phrase
+"No report because" — which a working report is free to contain, and was then
+refused a cache entry for saying. The failure path marks its own root with
+`reportFailed="true"` and `report_is_failure()` reads it.
+
+What is still open is M5 proper: a report class that fails *in one section*
+still takes the whole rendering with it. This change improves what the user sees
+when that happens; it does not yet let the other sections through.
+
 
 ---
 
