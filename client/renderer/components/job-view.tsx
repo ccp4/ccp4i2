@@ -193,7 +193,11 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   const tabValue = useMemo(() => {
     const visible = new Set([0, 8, 9, 10]);
     if (devMode) [1, 2, 5, 7].forEach((v) => visible.add(v));
-    if (devMode || [3, 4, 6, 7, 9, 10].includes(status ?? -1)) visible.add(3);
+    // 5 is Failed. The Report tab used to be hidden for it, which was
+    // reasonable when a failed job's report said nothing: now it carries the
+    // failure itself and the files the job did glean, so it is exactly the
+    // status that needs it.
+    if (devMode || [3, 4, 5, 6, 7, 9, 10].includes(status ?? -1)) visible.add(3);
     if (devMode || status === 5) visible.add(4);
     if (devMode || status === 1) visible.add(6);
     return visible.has(rawTabValue) ? rawTabValue : 0;
@@ -210,7 +214,8 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           <Tab value={0} label="Task interface" />
           {devMode && <Tab value={1} label="Params as xml" />}
           {devMode && <Tab value={2} label="Report as xml" />}
-          {(devMode || [3, 4, 6, 7, 9, 10].includes(jobWithCurrentStatus.status)) && (
+          {(devMode ||
+            [3, 4, 5, 6, 7, 9, 10].includes(jobWithCurrentStatus.status)) && (
             <Tab value={3} label="Report" />
           )}
           {(devMode || jobWithCurrentStatus.status === 5) && (

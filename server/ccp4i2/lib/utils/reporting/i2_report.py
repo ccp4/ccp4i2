@@ -113,6 +113,93 @@ def _file_sections(job, task_name: str) -> List[ET.Element]:
         return []
 
 
+DIAGNOSTIC_DESCRIPTIONS = {
+    "REPORT_GENERATION_FAILED": "The report class for this task raised while "
+    "rendering. The job itself is unaffected; its files are listed below.",
+    "PROGRAM_XML_NOT_FOUND": "The task wrote no program.xml, so there is "
+    "nothing for its report class to render.",
+    "PROGRAM_XML_PARSE_ERROR": "The task's program.xml is not well-formed XML, "
+    "so its report class cannot read it.",
+    "JOB_INFO_ERROR": "The job's own record could not be read, so neither the "
+    "report nor its file lists could be built.",
+}
+
+
+def _job_error_reports(job) -> List[ET.Element]:
+    """The job's own diagnostic.xml entries, if it left any.
+
+    A failing report and a failing job are different events, and either can
+    happen without the other -- a report class can raise on a job that ran
+    perfectly, which is how `phaser_MR_PAK` spent its whole life. But when both
+    have gone wrong the reader wants them together and in one place, so the
+    run's own record is folded in beside the rendering failure rather than
+    left for the Diagnostics tab to hold alone.
+    """
+    if job is None:
+        return []
+    try:
+        path = pathlib.Path(job.directory) / "diagnostic.xml"
+        if not path.is_file():
+            return []
+        return list(ET.parse(path).getroot().iter("errorReport"))
+    except Exception:
+        logger.warning("Could not read diagnostic.xml for the failure report",
+                       exc_info=True)
+        return []
+
+
+def _error_reports_element(
+    reason: str,
+    task_name: str,
+    details: Optional[str],
+    exception: Optional[BaseException],
+    job,
+    code: str,
+) -> ET.Element:
+    """The failure, in the shape the Diagnostics panel already parses.
+
+    Built with ``CErrorReport`` rather than by hand: that is the producer the
+    panel's contract is pinned against, in
+    ``tests/unit/validation/test_diagnostic_xml_contract.py`` and its
+    TypeScript counterpart, so a tag renamed on either side fails a test rather
+    than quietly drawing an empty heading.
+    """
+    from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
+
+    report = CErrorReport()
+    report.append(
+        klass=f"{task_name} report",
+        code=code,
+        description=DIAGNOSTIC_DESCRIPTIONS.get(code, reason),
+        details=details or reason,
+        # `name` is "which thing this is about". For a report failure the
+        # nearest thing to a parameter is the line that raised, and it reads
+        # well in the panel's heading: "acorn report - ccp4i2/...:566 - CODE".
+        name=_failure_location(exception) or "",
+        severity=SEVERITY_ERROR,
+        stack=(
+            "".join(
+                traceback.format_exception(
+                    type(exception), exception, exception.__traceback__
+                )
+            )
+            if exception is not None
+            else ""
+        ),
+    )
+
+    error_reports = report.getEtree()
+    for entry in _job_error_reports(job):
+        error_reports.append(entry)
+
+    element = ET.Element("CCP4i2ReportErrorReports")
+    element.set("key", "Failure_1")
+    element.set("class", "")
+    element.set("style", "")
+    element.append(error_reports)
+    return element
+
+
 def failed_report(
     reason: str,
     task_name: str,
@@ -123,14 +210,13 @@ def failed_report(
 ) -> ET.Element:
     """A report saying why there is no report, and still offering the files.
 
-    Three things go in, in place of the content the report class could not
+    Two things go in, in place of the content the report class could not
     produce:
 
-    * a diagnostic card, in the vocabulary ``report/errors.py`` already defines
-      and the frontend already renders, naming the error and the line it came
-      from;
-    * the traceback, so "where and how" is answerable without server logs --
-      which is what the previous version of this told the user to go and read;
+    * the failure as an ``errorReportList``, the same shape a job's
+      ``diagnostic.xml`` carries, so the Diagnostics panel's own renderer draws
+      it: severity icon, the line it came from, and the traceback folded away.
+      If the job left diagnostics of its own they are folded in beside it.
     * the job's input and output file lists, because the outputs were gleaned
       long before the report class ran and are the reason the user opened the
       job at all.
@@ -144,11 +230,10 @@ def failed_report(
         task_name: Task whose report failed.
         details: Optional context (paths searched, job number, ...).
         exception: The exception, if there was one. Supplies the traceback.
-        job: The Job, if available, for the file sections.
-        code: Machine-readable code for the diagnostic card.
+        job: The Job, if available, for the file sections and its own
+            diagnostics.
+        code: Machine-readable code, keyed into DIAGNOSTIC_DESCRIPTIONS.
     """
-    from ccp4i2.report.errors import DiagnosticCollector, DiagnosticLevel
-
     root = ET.Element(f"CCP4i2Report{task_name}_report")
     root.set("key", f"{task_name}_report_0")
     root.set("class", "")
@@ -162,48 +247,9 @@ def failed_report(
     title.set("title1", reason)
     title.set("title2", reason)
 
-    collector = DiagnosticCollector()
-    collector.add(
-        level=DiagnosticLevel.ERROR,
-        code=code,
-        message=str(exception) if exception is not None else reason,
-        location=_failure_location(exception),
-        # Already logged where it was caught; logging again here would double
-        # every report failure in the server log.
-        log=False,
+    root.append(
+        _error_reports_element(reason, task_name, details, exception, job, code)
     )
-    root.append(collector.as_data_etree())
-
-    body = "\n\n".join(
-        part
-        for part in (
-            details,
-            (
-                "".join(
-                    traceback.format_exception(
-                        type(exception), exception, exception.__traceback__
-                    )
-                )
-                if exception is not None
-                else None
-            ),
-        )
-        if part
-    )
-    if body:
-        fold = ET.SubElement(root, "CCP4i2ReportFold")
-        fold.set("key", "Failure_1")
-        fold.set("class", "")
-        fold.set("style", "")
-        fold.set("label", "What went wrong")
-        fold.set("initiallyOpen", "True")
-        pre = ET.SubElement(fold, "CCP4i2ReportPre")
-        pre.set("key", "Failure_2")
-        pre.set("class", "")
-        pre.set("style", "font-size: 11px; white-space: pre-wrap;")
-        # ElementTree escapes this on serialisation, which is what the Pre
-        # element wants: it renders its innerHTML.
-        pre.text = body
 
     for section in _file_sections(job, task_name):
         root.append(section)
