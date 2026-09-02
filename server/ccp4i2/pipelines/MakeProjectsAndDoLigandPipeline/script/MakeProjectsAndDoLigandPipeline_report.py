@@ -1,7 +1,10 @@
+import logging
 import xml.etree.ElementTree as etree
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.report.CCP4ReportParser import Report
+
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class MakeProjectsAndDoLigandPipeline_report(Report):
@@ -30,18 +33,29 @@ class MakeProjectsAndDoLigandPipeline_report(Report):
             useSVG=True
             try:
                 for datasetNode in self.xmlnode.findall(".//Dataset"):
-                    projectName = datasetNode.findall("ProjectName/text()")[-1]
-                    smilesString = datasetNode.findall("SMILES/text()")[-1]
+                    # findall("X/text()") is XPath, which ElementPath does not
+                    # accept -- it raises SyntaxError rather than returning the
+                    # text. findtext() is the standard-library spelling.
+                    projectName = datasetNode.findtext("ProjectName")
+                    smilesString = datasetNode.findtext("SMILES")
                     svgFilename = os.path.join(self.jobInfo['fileroot'], projectName+".svg")
                     from ccp4i2.wrappers.acedrg.script import acedrg
                     mol = Chem.MolFromSmiles(smilesString)
                     confId2D = AllChem.Compute2DCoords(mol)
                     svgStructure = acedrg.svgFromMol(mol)
-                    svgText = etree.tostring(svgStructure,pretty_print=True)
+                    # svgFromMol returns an lxml element, and ET.tostring() of
+                    # one is the single cross-library operation that works. It
+                    # takes no pretty_print; the replacements below need str,
+                    # not the bytes tostring() defaults to.
+                    svgText = etree.tostring(svgStructure, encoding="unicode")
                     svgText = svgText.replace("<svg>","<svg:svg>").replace("</svg>","</svg:svg>").replace("<line>","<svg:line>").replace("</line>","</svg:line>").replace("<text>","<svg:text>").replace("</text>","</svg:text>").replace("<polygon>","<svg:polygon>").replace("</polygon>","</svg:polygon>").replace('xmlns="http://www.w3.org/2000/svg"','xmlns:svg="http://www.w3.org/2000/svg"')
                     with open(svgFilename,"w") as svgFile:
                         CCP4Utils.writeXML(svgFile,svgText)
-            except:
+            except Exception:
+                # Kept non-fatal -- the summary table below is the substance of
+                # this report and renders without the pictures -- but no longer
+                # silent: this branch hid a TypeError on every single run.
+                logger.warning("Could not draw ligand SVGs for this report", exc_info=True)
                 useSVG=False
             
             #Add a summary table

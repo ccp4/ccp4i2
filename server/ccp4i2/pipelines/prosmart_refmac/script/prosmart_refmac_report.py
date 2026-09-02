@@ -260,7 +260,14 @@ class prosmart_refmac_report(Report):
 
         verdictNodes = xmlnode.findall('.//Verdict')
         if len(verdictNodes)>0:
-            from lxml.html.clean import Cleaner
+            # lxml 5 moved html.clean out into its own distribution. This build
+            # ships 4.9.4, so the old path is the one that works today and the
+            # new one is what a CCP4 lxml bump will need; without both, that
+            # bump takes the whole prosmart_refmac report down with it.
+            try:
+                from lxml_html_clean import Cleaner
+            except ImportError:
+                from lxml.html.clean import Cleaner  # lxml-ok: the <5 fallback, guarded above
 
             cleaner = Cleaner(page_structure=True,
                    meta=True,
