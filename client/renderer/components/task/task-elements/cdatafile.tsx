@@ -40,7 +40,7 @@ import {
 import { useDndContext, useDroppable } from "@dnd-kit/core";
 
 import { doDownload, useApi } from "../../../api";
-import { useJob, useProject, useProjectFiles } from "../../../utils";
+import { ACTIVE_JOB_STATUSES, useJob, useProject, useProjectFiles } from "../../../utils";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { File as CCP4i2File, nullFile, Project } from "../../../types/models";
 import { FileMenuExtraItem, useFileMenu } from "../../../providers/file-context-menu";
@@ -177,8 +177,12 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const { setFileMenuAnchorEl, setFile, setExtraMenuItems } = useFileMenu();
 
   // Data and state
-  // Use polling for files so task widgets see newly created output files
-  const { files: projectFiles } = useProjectFiles(job.project, true);
+  // Poll for files only while the job is active, so task widgets see newly
+  // created output files without polling forever once the job is done.
+  const { files: projectFiles } = useProjectFiles(
+    job.project,
+    ACTIVE_JOB_STATUSES.includes(job.status)
+  );
   const { jobs: projectJobs } = useProject(job.project);
   const { data: projects } = api.get<Project[]>("projects");
   const { mutate: mutateDigest } = useFileDigest(`${item?._objectPath}`);

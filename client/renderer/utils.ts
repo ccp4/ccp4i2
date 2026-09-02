@@ -783,7 +783,7 @@ export const useProjectFiles = (
 /** Polling interval when active job is running */
 const DIRECTORY_ACTIVE_POLL_INTERVAL = 5000;
 /** Job statuses that indicate active work: Queued (2), Running (3), Running remotely (7) */
-const ACTIVE_JOB_STATUSES = [2, 3, 7];
+export const ACTIVE_JOB_STATUSES = [2, 3, 7];
 
 /**
  * Hook for fetching directory data with job-aware polling.
@@ -917,14 +917,39 @@ const parameterQueue = new ParameterQueue();
 export const useJob = (jobId: number | null | undefined): JobData => {
   const api = useApi();
 
+  // Poll only while the job is active — a finished/failed job can't change,
+  // so there's nothing to poll for. Tracked via state (not the `job` data
+  // itself) so the interval used for the *next* fetch is available before
+  // that fetch is issued.
+  const [lastKnownStatus, setLastKnownStatus] = useState<number | undefined>(
+    undefined
+  );
+  const isJobActive = useIsJobEffectivelyActive(
+    jobId ?? undefined,
+    lastKnownStatus
+  );
+  const jobPollInterval = isJobActive ? 10000 : 0;
+
   const { data: job, mutate: mutateJob } = api.get_endpoint<Job>(
     {
       type: "jobs",
       id: jobId,
       endpoint: "",
     },
-    10000
+    jobPollInterval
   );
+
+  useEffect(() => {
+    if (job?.status !== undefined && job.status !== lastKnownStatus) {
+      setLastKnownStatus(job.status);
+    }
+  }, [job?.status, lastKnownStatus]);
+
+  // Reset when switching to a different job, so a finished job's status
+  // doesn't briefly disable polling for a newly-selected active job.
+  useEffect(() => {
+    setLastKnownStatus(undefined);
+  }, [jobId]);
 
   const { data: container, mutate: mutateContainer } =
     api.get_wrapped_endpoint_json<any>({
