@@ -191,12 +191,7 @@ def _compact_batch_ranges(numbers: list) -> str:
 class CCellLength(CFloat):
 
 
-    """
-    A cell length
-    
-    Extends CCellLength with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A cell length"""
     class Meta:
         qualifiers = {
             "min": 0.0,
@@ -223,12 +218,7 @@ class CPhaserRFileDataFile(CDataFile):
 
 
 
-    """
-    Phaser R-list data file (pickle format).
-
-    Extends CPhaserRFileDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Phaser R-list data file (pickle format)."""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/phaser-rfile',
@@ -261,12 +251,7 @@ class CPhaserRFileDataFile(CDataFile):
 class CColumnGroup(CData):
 
 
-    """
-    Groups of columns in MTZ - probably from analysis by hklfile
-
-    Extends CColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Groups of columns in MTZ - probably from analysis by hklfile"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -342,12 +327,7 @@ class CColumnGroup(CData):
 class CColumnGroupList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-
-    Extends CColumnGroupList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -370,12 +350,7 @@ class CMmcifReflDataFile(CMmcifDataFile):
 
 
 
-    """
-    A reflection file in mmCIF format
-
-    Extends CMmcifReflDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A reflection file in mmCIF format"""
     class Meta:
         qualifiers = {
             "guiLabel": 'mmCIF reflection data',
@@ -409,12 +384,7 @@ class CMtzDataFile(CDataFile):
 
 
 
-    """
-    An MTZ experimental data file
-
-    Extends CMtzDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An MTZ experimental data file"""
     class Meta:
         error_codes = {
             "151": {
@@ -563,12 +533,7 @@ class CMtzDataFile(CDataFile):
 class CExperimentalDataType(CString):
 
 
-    """
-    Experimental data type e.g. native or peak
-    
-    Extends CExperimentalDataType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Experimental data type e.g. native or peak"""
     class Meta:
         qualifiers = {
             "onlyEnumerators": True,
@@ -595,10 +560,7 @@ class CAsuComponent(CData):
 
     """
     A component of the asymmetric unit. This is for use in MR, defining
-what we are searching for. 
-    
-    Extends CAsuComponent with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    what we are searching for.
     """
     class Meta:
         qualifiers = {
@@ -650,10 +612,8 @@ class CDialsPickleFile(CDataFile):
 
 
 
-    """
-    Extends CDialsPickleFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A DIALS pickle file, as passed between steps of a DIALS pipeline."""
+
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/dials-pfile',
@@ -686,12 +646,7 @@ class CDialsPickleFile(CDataFile):
 class CCellAngle(CFloat):
 
 
-    """
-    A cell angle
-    
-    Extends CCellAngle with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A cell angle"""
     class Meta:
         qualifiers = {
             "min": 0.0,
@@ -719,9 +674,10 @@ class CMergeMiniMtz(CData):
 
 
     """
-    Extends CMergeMiniMtz with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    One mini-MTZ to be merged into a combined reflection file, and the
+    columns to take from it.
     """
+
     class Meta:
         error_codes = {
             "201": {
@@ -792,12 +748,7 @@ class CUnmergedDataFile(CDataFile):
 
 
 
-    """
-    Handle MTZ, XDS and scalepack files. Allow wildcard filename
-
-    Extends CUnmergedDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Handle MTZ, XDS and scalepack files. Allow wildcard filename"""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-unmerged-experimental',
@@ -832,10 +783,8 @@ class CDialsJsonFile(CDataFile):
 
 
 
-    """
-    Extends CDialsJsonFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A DIALS JSON file, as passed between steps of a DIALS pipeline."""
+
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/dials-jfile',
@@ -868,12 +817,7 @@ class CDialsJsonFile(CDataFile):
 class CShelxLabel(CString):
 
 
-    """
-    A string
-    
-    Extends CShelxLabel with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         qualifiers = {
             "onlyEnumerators": True,
@@ -900,10 +844,8 @@ class CShelxLabel(CString):
 class CReindexOperator(CData):
 
 
-    """
-    Extends CReindexOperator with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A reindexing operator, giving the new indices in terms of the old."""
+
     class Meta:
         error_codes = {
             "201": {
@@ -955,12 +897,7 @@ class CReindexOperator(CData):
 class CWavelength(CFloat):
 
 
-    """
-    Wavelength in Angstrom
-    
-    Extends CWavelength with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Wavelength in Angstrom"""
     class Meta:
         qualifiers = {
             "min": 0.0,
@@ -984,10 +921,8 @@ class CWavelength(CFloat):
 class CRunBatchRange(CData):
 
 
-    """
-    Extends CRunBatchRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The range of image batches belonging to one run."""
+
     class Meta:
         error_codes = {
             "101": {
@@ -1049,12 +984,7 @@ class CRunBatchRange(CData):
 class CSpaceGroup(CString):
 
 
-    """
-    A string holding the space group
-
-    Extends CSpaceGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string holding the space group"""
     class Meta:
         error_codes = {
             "101": {
@@ -1136,12 +1066,7 @@ class CSpaceGroup(CString):
 class CDatasetName(CString):
 
 
-    """
-    A string
-    
-    Extends CDatasetName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         qualifiers = {
             "allowUndefined": False,
@@ -1168,12 +1093,7 @@ class CMiniMtzDataFile(CMtzDataFile):
 
 
 
-    """
-    An MTZ experimental data file
-
-    Extends CMiniMtzDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An MTZ experimental data file"""
     class Meta:
         error_codes = {
             "201": {
@@ -1487,12 +1407,7 @@ class CMiniMtzDataFileList(CList):
 class CUnmergedDataFileList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-
-    Extends CUnmergedDataFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1518,12 +1433,7 @@ class CUnmergedDataFileList(CList):
 class CColumnType(CString):
 
 
-    """
-    A list of recognised MTZ column types
-    
-    Extends CColumnType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list of recognised MTZ column types"""
     class Meta:
         qualifiers = {
             "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
@@ -1548,12 +1458,7 @@ class CColumnType(CString):
 class CColumnTypeList(CList):
 
 
-    """
-    A list of acceptable MTZ column types
-    
-    Extends CColumnTypeList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list of acceptable MTZ column types"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1577,12 +1482,7 @@ class CPhaserSolDataFile(CDataFile):
 
 
 
-    """
-    Phaser solution data file (pickle format).
-
-    Extends CPhaserSolDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Phaser solution data file (pickle format)."""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/phaser-sol',
@@ -1616,12 +1516,7 @@ class CPhaserSolDataFile(CDataFile):
 class CImportUnmergedList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-
-    Extends CImportUnmergedList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -1648,9 +1543,10 @@ class CShelxFADataFile(CDataFile):
 
 
     """
-    Extends CShelxFADataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    SHELX FA reflection data, as produced by SHELXC for substructure
+    solution.
     """
+
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-shelx-FA',
@@ -1685,12 +1581,7 @@ class CShelxFADataFile(CDataFile):
 class CAltSpaceGroup(CSpaceGroup):
 
 
-    """
-    A string holding the space group
-    
-    Extends CAltSpaceGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string holding the space group"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1742,10 +1633,8 @@ class CAltSpaceGroupList(CList):
 class CMtzDataset(CData):
 
 
-    """
-    Extends CMtzDataset with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """One dataset within an MTZ file, and the column groups it holds."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1776,12 +1665,7 @@ class CMtzDataset(CData):
 class CImageFileList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CImageFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1804,12 +1688,7 @@ class CImageFileList(CList):
 class CAsuComponentList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CAsuComponentList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -1835,9 +1714,10 @@ class CGenericReflDataFile(CDataFile):
 
 
     """
-    Extends CGenericReflDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    A reflection file in any supported format, before it has been
+    identified and converted.
     """
+
     class Meta:
         qualifiers = {
             "guiLabel": 'Reflection data',
@@ -1909,12 +1789,7 @@ class CGenericReflDataFile(CDataFile):
 class CXia2ImageSelectionList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-
-    Extends CXia2ImageSelectionList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1937,12 +1812,7 @@ class CXia2ImageSelectionList(CList):
 class CFormFactor(CData):
 
 
-    """
-    The for factor (Fp and Fpp) for a giving element and wavelength
-    
-    Extends CFormFactor with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The for factor (Fp and Fpp) for a giving element and wavelength"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1976,12 +1846,7 @@ class CFormFactor(CData):
 class CAnomalousScatteringElement(CElement):
 
 
-    """
-    Definition of a anomalous scattering element
-    
-    Extends CAnomalousScatteringElement with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Definition of a anomalous scattering element"""
     class Meta:
         qualifiers = {
             "onlyEnumerators": False,
@@ -2009,9 +1874,10 @@ class CImageFile(CDataFile):
 
 
     """
-    Extends CImageFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    One diffraction image, identifying a sweep by its directory and
+    filename template.
     """
+
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-image',
@@ -2226,10 +2092,8 @@ class CRefmacKeywordFile(CDataFile):
 
 
 
-    """
-    Extends CRefmacKeywordFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A file of Refmac keywords supplied verbatim to the program."""
+
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/refmac-keywords',
@@ -2365,12 +2229,7 @@ class CMapDataFile(CDataFile):
     # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
     # an ordinary density map, which is otherwise the same FileType.
 
-    """
-    A CCP4 Map file
-    
-    Extends CMapDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A CCP4 Map file"""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-map',
@@ -2409,12 +2268,7 @@ class CMapDataFile(CDataFile):
 class CRunBatchRangeList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CRunBatchRangeList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -2437,12 +2291,7 @@ class CRunBatchRangeList(CList):
 class CDatasetList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CDatasetList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -2466,12 +2315,7 @@ class CImosflmXmlDataFile(CDataFile):
 
 
 
-    """
-    An iMosflm data file
-    
-    Extends CImosflmXmlDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An iMosflm data file"""
     class Meta:
         qualifiers = {
             "fileLabel": 'imosflm',
@@ -2503,12 +2347,7 @@ class CImosflmXmlDataFile(CDataFile):
 class CCrystalName(CString):
 
 
-    """
-    A string
-    
-    Extends CCrystalName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         qualifiers = {
             "allowUndefined": False,
@@ -2537,14 +2376,10 @@ class CUnmergedMtzDataFile(CMtzDataFile):
 
 
     """
-    
     Inherits from:
     - CUnmergedMtzDataFile: Metadata and structure
     - CMtzDataFile: Shared full-fat methods
     An MTZ experimental data file
-    
-    Extends CUnmergedMtzDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -2666,14 +2501,10 @@ class CMtzColumnGroupType(CColumnType):
 
 
     """
-    
     Inherits from:
     - CMtzColumnGroupType: Metadata and structure
     - CColumnType: Shared full-fat methods
     A list of recognised MTZ column types
-    
-    Extends CMtzColumnGroupType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -2699,12 +2530,7 @@ class CMtzColumnGroupType(CColumnType):
 class CMtzColumn(CData):
 
 
-    """
-    An MTZ column with column label and column type
-    
-    Extends CMtzColumn with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An MTZ column with column label and column type"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -2747,12 +2573,7 @@ class CMtzColumn(CData):
 class CColumnGroupItem(CData):
 
 
-    """
-    Definition of set of columns that form a 'group'
-    
-    Extends CColumnGroupItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Definition of set of columns that form a 'group'"""
     class Meta:
         error_codes = {
             "1": {
@@ -2806,10 +2627,8 @@ class CColumnGroupItem(CData):
 class CXia2ImageSelection(CData):
 
 
-    """
-    Extends CXia2ImageSelection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The images to process from one sweep."""
+
     class Meta:
         qualifiers = {
             "toolTip": 'select an image file and an optional range of files to define a dataset',
@@ -2849,12 +2668,7 @@ class CXia2ImageSelection(CData):
 class CFPairColumnGroup(CProgramColumnGroup):
 
 
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFPairColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of MTZ columns required for program input"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Anomalous structure factors and sigma',
@@ -2877,12 +2691,7 @@ class CFPairColumnGroup(CProgramColumnGroup):
 class CIPairColumnGroup(CProgramColumnGroup):
 
 
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CIPairColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of MTZ columns required for program input"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Anomalous intensities and sigma',
@@ -2905,12 +2714,7 @@ class CIPairColumnGroup(CProgramColumnGroup):
 class CMapColumnGroup(CProgramColumnGroup):
 
 
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CMapColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of MTZ columns required for program input"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Structure factor and phase to define a map',
@@ -2933,12 +2737,7 @@ class CMapColumnGroup(CProgramColumnGroup):
 class CHLColumnGroup(CProgramColumnGroup):
 
 
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CHLColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of MTZ columns required for program input"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Hendrickson-Lattmann coefficients',
@@ -2961,12 +2760,7 @@ class CHLColumnGroup(CProgramColumnGroup):
 class CFreeRColumnGroup(CProgramColumnGroup):
 
 
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFreeRColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of MTZ columns required for program input"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Set of FreeR flags',
@@ -2989,12 +2783,7 @@ class CFreeRColumnGroup(CProgramColumnGroup):
 class CFSigFColumnGroup(CProgramColumnGroup):
 
 
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFSigFColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of MTZ columns required for program input"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Structure factor and sigma',
@@ -3019,10 +2808,7 @@ class CAnomalousIntensityColumnGroup(CProgramColumnGroup):
 
     """
     Selection of I and AnomI columns from MTZ.
-Expected to be part of ab initio phasing dataset ( CDataset)
-    
-    Extends CAnomalousIntensityColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    Expected to be part of ab initio phasing dataset ( CDataset)
     """
     class Meta:
         qualifiers = {
@@ -3047,12 +2833,7 @@ Expected to be part of ab initio phasing dataset ( CDataset)
 class CISigIColumnGroup(CProgramColumnGroup):
 
 
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CISigIColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group of MTZ columns required for program input"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Intensity and sigma',
@@ -3078,10 +2859,7 @@ class CAnomalousColumnGroup(CProgramColumnGroup):
 
     """
     Selection of F/I and AnomF/I columns from MTZ.
-Expected to be part of ab initio phasing dataset ( CDataset)
-    
-    Extends CAnomalousColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    Expected to be part of ab initio phasing dataset ( CDataset)
     """
     class Meta:
         qualifiers = {
@@ -3114,9 +2892,6 @@ class CMapCoeffsDataFile(CMiniMtzDataFile):
     - _introspect_content_flag(): Auto-detect content flag from MTZ columns
     - datasetName(): Get dataset name from MTZ
     - fileExtensions(): Return ['mtz']
-
-    Extends CMapCoeffsDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -3193,9 +2968,6 @@ class CObsDataFile(CMiniMtzDataFile):
     Inherits from:
     - CObsDataFile: Metadata and structure
     - CMiniMtzDataFile: Shared full-fat methods
-
-    Extends CObsDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         error_codes = {
@@ -3584,9 +3356,6 @@ class CFreeRDataFile(CMiniMtzDataFile):
     - _introspect_content_flag(): Auto-detect content flag from MTZ columns
     - datasetName(): Get dataset name from MTZ
     - fileExtensions(): Return ['mtz']
-
-    Extends CFreeRDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
     """
     class Meta:
         qualifiers = {
@@ -3636,12 +3405,7 @@ class CFreeRDataFile(CMiniMtzDataFile):
 class CSpaceGroupCell(CData):
 
 
-    """
-    Cell space group and parameters
-    
-    Extends CSpaceGroupCell with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Cell space group and parameters"""
     class Meta:
         error_codes = {
             "101": {
@@ -3701,11 +3465,8 @@ class CMmcifReflData(CMmcifData):
 
     """
     Generic mmCIF data.
-This is intended to be a base class for other classes
-specific to coordinates, reflections or geometry data.
-
-    Extends CMmcifReflData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    This is intended to be a base class for other classes
+    specific to coordinates, reflections or geometry data.
     """
     class Meta:
         error_codes = {
@@ -3932,9 +3693,10 @@ class CImportUnmerged(CData):
 
 
     """
-    Extends CImportUnmerged with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    An unmerged reflection file being brought into a project, with the
+    names to give its crystal and dataset.
     """
+
     class Meta:
         qualifiers = {
             "toolTip": 'Imported data file, cell parameters and crystal/dataset identifiers',
@@ -4061,12 +3823,7 @@ class CImportUnmerged(CData):
 class CMtzData(CDataFileContent):
 
 
-    """
-    Base class for classes holding file contents
-
-    Extends CMtzData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Base class for classes holding file contents"""
     class Meta:
         error_codes = {
             "101": {
@@ -4749,12 +4506,7 @@ class CMtzData(CDataFileContent):
 class CUnmergedDataContent(CDataFileContent):
 
 
-    """
-    Base class for classes holding file contents
-
-    Extends CUnmergedDataContent with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Base class for classes holding file contents"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -5482,9 +5234,10 @@ class CMtzColumnGroup(CData):
 
 
     """
-    Extends CMtzColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    A set of MTZ columns that belong together, such as an amplitude and
+    its sigma.
     """
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -5518,12 +5271,7 @@ class CMtzColumnGroup(CData):
 class CDataset(CData):
 
 
-    """
-    The experimental data model for ab initio phasing
-    
-    Extends CDataset with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The experimental data model for ab initio phasing"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -5577,10 +5325,8 @@ class CDataset(CData):
 class CProgramColumnGroup0(CData):
 
 
-    """
-    Extends CProgramColumnGroup0 with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The columns supplied to a program for one particular role."""
+
     class Meta:
         error_codes = {
             "101": {
@@ -5635,11 +5381,7 @@ class CPhaserTngDagFile(CDataFile):
 
 
 
-    """
-    PhaserTNG DAG file — directed acyclic graph of a picard MR pipeline.
-
-    Extends CPhaserTngDagFile with implementation-specific methods.
-    """
+    """PhaserTNG DAG file — directed acyclic graph of a picard MR pipeline."""
     class Meta:
         qualifiers = {
             "mimeTypeName": '"application/phasertng-dag"',

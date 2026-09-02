@@ -23,6 +23,7 @@ Qt-free architecture using Django for persistence and Electron/React for the GUI
    :caption: API Reference
 
    api_reference/index
+   error_codes
 
 
 Indices and tables

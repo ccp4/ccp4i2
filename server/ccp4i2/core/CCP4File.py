@@ -28,12 +28,7 @@ from ccp4i2.core.CCP4Data import CUUID
 class CProjectId(CUUID):
 
 
-    """
-    The CCP4i2 database project id - a global unique id
-    
-    Extends CProjectId with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The CCP4i2 database project id - a global unique id"""
     class Meta:
         error_codes = {
             "201": {
@@ -77,12 +72,7 @@ class CProjectId(CUUID):
 class CVersion(CString):
 
 
-    """
-    A (string) version number of the form n.m.i
-    
-    Extends CVersion with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A (string) version number of the form n.m.i"""
     class Meta:
         error_codes = {
             "101": {
@@ -114,11 +104,8 @@ class CMmcifData(CDataFileContent):
 
     """
     Generic mmCIF data.
-This is intended to be a base class for other classes
-specific to coordinates, reflections or geometry data.
-    
-    Extends CMmcifData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    This is intended to be a base class for other classes
+    specific to coordinates, reflections or geometry data.
     """
     class Meta:
         qualifiers = {
@@ -143,10 +130,8 @@ specific to coordinates, reflections or geometry data.
 
 class CExePath(CData):
 
-    """
-    Extends CExePath with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A program and where to find it, when it is not on PATH."""
+
     exeName = content("CString", guiLabel='Program', toolTip='Name of the executable')
     exePath = content(
         "CDataFile",
@@ -173,12 +158,7 @@ class CExePath(CData):
 class CProjectName(CString):
 
 
-    """
-    The name of a CCP4i project or directory alias
-    
-    Extends CProjectName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The name of a CCP4i project or directory alias"""
     class Meta:
         error_codes = {
             "101": {
@@ -227,12 +207,7 @@ class CProjectName(CString):
 class CFileFunction(CString):
 
 
-    """
-    List of recognised XML file functions
-    
-    Extends CFileFunction with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """List of recognised XML file functions"""
     class Meta:
         qualifiers = {
             "enumerators": ['DEF', 'PARAMS', 'LOG', 'PROJECTDIRECTORIES', 'COM', 'REFMAC', 'OUTPUT', 'STATUS', 'PROJECTDATABASE', 'MGSCENE', 'JOBSERVERSTATUS', 'WORKFLOW', 'COMFILEPATCH', 'CUSTOMTASK', 'IMPORTEDJOB', 'I1SUPPLEMENT', 'ASUCONTENT', 'UNKNOWN'],
@@ -256,10 +231,8 @@ class CFileFunction(CString):
 class CExportedFile(CData):
 
 
-    """
-    Extends CExportedFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A file written out of a project by an export."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -289,12 +262,7 @@ class CExportedFile(CData):
 class CExportedFileList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CExportedFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -317,12 +285,7 @@ class CExportedFileList(CList):
 class CExePathList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CExePathList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -345,10 +308,8 @@ class CExePathList(CList):
 class CSearchPath(CData):
 
 
-    """
-    Extends CSearchPath with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A directory searched for files."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -376,12 +337,7 @@ class CSearchPath(CData):
 class CSearchPathList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CSearchPathList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -404,12 +360,7 @@ class CSearchPathList(CList):
 class CFilePath(CString):
 
 
-    """
-    A file path
-    
-    Extends CFilePath with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A file path"""
     class Meta:
         error_codes = {
             "101": {
@@ -444,12 +395,7 @@ class CFilePath(CString):
 class CI2XmlHeader(CData):
 
 
-    """
-    Container for header info from XML file
-
-    Extends CI2XmlHeader with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Container for header info from XML file"""
     class Meta:
         error_codes = {
             "101": {
@@ -560,12 +506,7 @@ class CXmgrDataFile(CDataFile):
 
 
 
-    """
-    An xmgr format file. This is the input format for xmgrace, as output by scala or aimless
-    
-    Extends CXmgrDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An xmgr format file. This is the input format for xmgrace, as output by scala or aimless"""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/grace',
@@ -594,12 +535,7 @@ class CTextDataFile(CDataFile):
 
 
 
-    """
-    A text data file
-    
-    Extends CTextDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A text data file"""
     class Meta:
         qualifiers = {
             "mimeTypeName": '"text/plain"',
@@ -630,12 +566,7 @@ class CDataReflFile(CDataFile):
 
 
 
-    """
-    Reflection file from DIALS
-    
-    Extends CDataReflFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Reflection file from DIALS"""
     class Meta:
         qualifiers = {
             "guiLabel": 'Reflections from DIALS',
@@ -664,12 +595,7 @@ class CPostscriptDataFile(CDataFile):
 
 
 
-    """
-    A postscript format file
-    
-    Extends CPostscriptDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A postscript format file"""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/postscript',
@@ -699,12 +625,7 @@ class CYmlFile(CDataFile):
 
 
 
-    """
-    A yml data file
-    
-    Extends CYmlFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A yml data file"""
     class Meta:
         qualifiers = {
             "mimeTypeName": '"text/plain"',
@@ -735,12 +656,7 @@ class CXmlDataFile(CDataFile):
 
 
 
-    """
-    A reference to an XML file
-
-    Extends CXmlDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A reference to an XML file"""
     class Meta:
         error_codes = {
             "1001": {
@@ -839,11 +755,8 @@ class CMmcifDataFile(CDataFile):
 
     """
     A generic mmCIF format file.
-This is intended to be a base class for other classes
-specific to coordinates, reflections or geometry data.
-    
-    Extends CMmcifDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    This is intended to be a base class for other classes
+    specific to coordinates, reflections or geometry data.
     """
     class Meta:
         qualifiers = {
@@ -872,12 +785,7 @@ class CPDFDataFile(CDataFile):
 
 
 
-    """
-    An PDF format file
-    
-    Extends CPDFDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An PDF format file"""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/x-pdf',
@@ -907,12 +815,7 @@ class CSceneDataFile(CDataFile):
 
 
 
-    """
-    An xml format file for defining scene in CCP4mg.
-    
-    Extends CSceneDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An xml format file for defining scene in CCP4mg."""
     class Meta:
         qualifiers = {
             "fileLabel": 'scene',
@@ -943,12 +846,7 @@ class CSceneDataFile(CDataFile):
 class CI2XmlDataFile(CXmlDataFile):
 
 
-    """
-    A reference to an XML file with CCP4i2 Header
-
-    Extends CI2XmlDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A reference to an XML file with CCP4i2 Header"""
     class Meta:
         error_codes = {
             "1003": {
@@ -1075,12 +973,7 @@ class CEBIValidationXMLDataFile(CXmlDataFile):
 
 
 
-    """
-    An XLM file returned from the EBI validation server 
-    
-    Extends CEBIValidationXMLDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An XLM file returned from the EBI validation server"""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/EBI-validation-xml',

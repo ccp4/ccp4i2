@@ -21,12 +21,7 @@ from ccp4i2.core.CCP4Data import CI2DataType, COneWord
 class CImportedJobDataList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CImportedJobDataList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -49,10 +44,8 @@ class CImportedJobDataList(CList):
 class CImportedJobData(CData):
 
 
-    """
-    Extends CImportedJobData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """One data item brought in with an imported job."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -92,10 +85,8 @@ class CImportedJobData(CData):
 class CImportedJobDefinition(CContainer):
 
 
-    """
-    Extends CImportedJobDefinition with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A job imported from another project, and what came with it."""
+
     class Meta:
         error_codes = {
             "101": {

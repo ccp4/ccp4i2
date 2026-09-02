@@ -22,12 +22,7 @@ from ccp4i2.core.CCP4File import CFilePath, CI2XmlDataFile, CProjectId
 class CSeqDataFileList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CSeqDataFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         error_codes = {
             "150": {
@@ -64,12 +59,7 @@ class CSeqDataFileList(CList):
 class CAsuDataFile(CI2XmlDataFile):
 
 
-    """
-    A reference to an XML file with CCP4i2 Header
-
-    Extends CAsuDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A reference to an XML file with CCP4i2 Header"""
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-asu-content',
@@ -418,12 +408,7 @@ class CAtomRefmacSelectionList(CList):
 class CAtomRefmacSelectionOccupancy(CData):
 
 
-    """
-    A residue range selection for occupancy groups
-    
-    Extends CAtomRefmacSelectionOccupancy with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A residue range selection for occupancy groups"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -473,12 +458,7 @@ class CAtomRefmacSelectionOccupancy(CData):
 class CResidueRangeList(CList):
 
 
-    """
-    A list of residue range selections
-    
-    Extends CResidueRangeList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list of residue range selections"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -502,12 +482,7 @@ class CTLSDataFile(CDataFile):
 
 
 
-    """
-    A refmac TLS file
-
-    Extends CTLSDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A refmac TLS file"""
     class Meta:
         qualifiers = {
             "fileLabel": 'tls',
@@ -589,12 +564,7 @@ class CTLSRangeList(CList):
 class CSequenceString(CString):
 
 
-    """
-    A string
-    
-    Extends CSequenceString with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         error_codes = {
             "401": {
@@ -637,10 +607,8 @@ class CHhpredDataFile(CDataFile):
 
 
 
-    """
-    Extends CHhpredDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Results of an HHpred search for related structures."""
+
     class Meta:
         qualifiers = {
             "fileLabel": 'HHPred sequence search',
@@ -674,12 +642,7 @@ class CHhpredDataFile(CDataFile):
 class CElement(COneWord):
 
 
-    """
-    Chemical element 
-    
-    Extends CElement with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Chemical element"""
     class Meta:
         error_codes = {
             "201": {
@@ -1434,10 +1397,8 @@ class CBlastDataFile(CDataFile):
 
 
 
-    """
-    Extends CBlastDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Results of a BLAST search for related sequences."""
+
     class Meta:
         qualifiers = {
             "fileLabel": 'Blast sequence search',
@@ -1471,10 +1432,8 @@ class CBlastDataFile(CDataFile):
 class CDictData(CData):
 
 
-    """
-    Extends CDictData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The contents of a monomer dictionary."""
+
     class Meta:
         error_codes = {
             "101": {
@@ -1539,12 +1498,7 @@ class CDictData(CData):
 class CMonomer(CData):
 
 
-    """
-    A monomer compound. ?smiles
-    
-    Extends CMonomer with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A monomer compound. ?smiles"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1586,10 +1540,8 @@ class CMonomer(CData):
 class CBlastItem(CData):
 
 
-    """
-    Extends CBlastItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """One hit from a BLAST search, aligned to the query."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1627,12 +1579,7 @@ class CBlastItem(CData):
 class CAtomRefmacSelectionGroups(CData):
 
 
-    """
-    A group selection for occupancy groups
-    
-    Extends CAtomRefmacSelectionGroups with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A group selection for occupancy groups"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1685,12 +1632,7 @@ class CDictDataFile(CDataFile):
 
 
 
-    """
-    A refmac dictionary file
-    
-    Extends CDictDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A refmac dictionary file"""
     class Meta:
         error_codes = {
             "201": {
@@ -1743,12 +1685,9 @@ class CEnsemble(CData):
 
     """
     An ensemble of models. Typically, this would be a set of related
-PDB files, but models could also be xtal or EM maps. This should
-be indicated by the types entry.
-A single ensemble is a CList of structures.
-
-    Extends CEnsemble with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    PDB files, but models could also be xtal or EM maps. This should
+    be indicated by the types entry.
+    A single ensemble is a CList of structures.
     """
     class Meta:
         qualifiers = {
@@ -1807,12 +1746,7 @@ A single ensemble is a CList of structures.
 class CResidueRange(CData):
 
 
-    """
-    A residue range selection
-    
-    Extends CResidueRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A residue range selection"""
     class Meta:
         qualifiers = {
             "pdbFileKey": None,
@@ -1849,10 +1783,8 @@ class CResidueRange(CData):
 class CAtomSelection(CData):
 
 
-    """
-    Extends CAtomSelection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A set of atoms, given in CCP4 selection syntax."""
+
     class Meta:
         qualifiers = {
             "pdbFileKey": '',
@@ -1880,12 +1812,7 @@ class CAtomSelection(CData):
 class CBlastData(CDataFileContent):
 
 
-    """
-    Base class for classes holding file contents
-    
-    Extends CBlastData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Base class for classes holding file contents"""
     class Meta:
         error_codes = {
             "201": {
@@ -1931,12 +1858,7 @@ class CBlastData(CDataFileContent):
 class CHhpredData(CDataFileContent):
 
 
-    """
-    Base class for classes holding file contents
-    
-    Extends CHhpredData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Base class for classes holding file contents"""
     class Meta:
         error_codes = {
             "201": {
@@ -1996,12 +1918,7 @@ EXTLIST = {
 class CPdbDataFileList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CPdbDataFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -2095,12 +2012,7 @@ class CMol2DataFile(CDataFile):
 
 
 
-    """
-    A molecule definition file (MOL2)
-
-    Extends CMol2DataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A molecule definition file (MOL2)"""
     class Meta:
         qualifiers = {
             "fileLabel": 'mol2',
@@ -2373,10 +2285,8 @@ class COccRefmacSelectionList(CList):
 class CSequenceMeta(CData):
 
 
-    """
-    Extends CSequenceMeta with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Provenance for a sequence: where it came from and what expressed it."""
+
     class Meta:
         error_codes = {
             "401": {
@@ -2429,12 +2339,7 @@ class CSeqDataFile(CDataFile):
 
 
 
-    """
-    A sequence file
-    
-    Extends CSeqDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A sequence file"""
     class Meta:
         error_codes = {
             "201": {
@@ -2478,12 +2383,7 @@ class CSeqAlignDataFile(CDataFile):
 
 
 
-    """
-    A (multiple) sequence alignment file
-
-    Extends CSeqAlignDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A (multiple) sequence alignment file"""
     class Meta:
         error_codes = {
             "202": {
@@ -2666,10 +2566,8 @@ class CSeqAlignDataFile(CDataFile):
 class CHhpredItem(CData):
 
 
-    """
-    Extends CHhpredItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """One hit from an HHpred search."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -2707,12 +2605,7 @@ class CHhpredItem(CData):
 class CEnsembleList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-
-    Extends CEnsembleList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -2756,12 +2649,7 @@ class CEnsembleList(CList):
 class CPdbData(CDataFileContent):
 
 
-    """
-    Contents of a PDB file - a subset with functionality for GUI
-
-    Extends CPdbData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Contents of a PDB file - a subset with functionality for GUI"""
     class Meta:
         error_codes = {
             "101": {
@@ -3120,12 +3008,7 @@ class CPdbData(CDataFileContent):
 class CChemComp(CData):
 
 
-    """
-    Component of CDictDataFile contents
-    
-    Extends CChemComp with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Component of CDictDataFile contents"""
     class Meta:
         error_codes = {
             "201": {
@@ -3185,12 +3068,7 @@ class CMDLMolDataFile(CDataFile):
 
 
 
-    """
-    A molecule definition file (MDL)
-
-    Extends CMDLMolDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A molecule definition file (MDL)"""
     class Meta:
         qualifiers = {
             "fileLabel": 'mol',
@@ -3228,9 +3106,10 @@ class CAsuContentSeq(CData):
 
 
     """
-    Extends CAsuContentSeq with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    One sequence expected in the asymmetric unit, and how many copies
+    of it there are.
     """
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -3656,10 +3535,8 @@ class CPdbDataFile(CDataFile):
 
     # Subtype constants
 
-    """
-    Extends CPdbDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A model coordinate file, in PDB or mmCIF format."""
+
     class Meta:
         error_codes = {
             "401": {
@@ -4254,12 +4131,7 @@ class CPdbDataFile(CDataFile):
 class CAsuContent(CDataFileContent):
 
 
-    """
-    Base class for classes holding file contents
-
-    Extends CAsuContent with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Base class for classes holding file contents"""
     class Meta:
         error_codes = {
             "101": {
@@ -4397,12 +4269,7 @@ class CEnsemblePdbDataFile(CPdbDataFile):
 
 
 
-    """
-    A PDB coordinate file containing ensemble of structures as 'NMR' models
-    
-    Extends CEnsemblePdbDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A PDB coordinate file containing ensemble of structures as 'NMR' models"""
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -4448,9 +4315,10 @@ class CPdbEnsembleItem(CData):
 
 
     """
-    Extends CPdbEnsembleItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    One model of a molecular replacement ensemble, with how far it is
+    expected to differ from the target.
     """
+
     class Meta:
         error_codes = {
             "101": {

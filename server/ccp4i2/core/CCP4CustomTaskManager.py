@@ -21,12 +21,7 @@ from ccp4i2.core.CCP4Data import CI2DataType, COneWord
 class CCustomTaskFileFunction(CString):
 
 
-    """
-    A string
-    
-    Extends CCustomTaskFileFunction with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         qualifiers = {
             "enumerators": ['unknown', 'input', 'output', 'control parameter', 'log'],
@@ -49,12 +44,7 @@ class CCustomTaskFileFunction(CString):
 class CCustomTaskParamList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CCustomTaskParamList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -77,10 +67,8 @@ class CCustomTaskParamList(CList):
 class CCustomComFile(CData):
 
 
-    """
-    Extends CCustomComFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """The command file template for a user-defined task."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -115,10 +103,8 @@ class CCustomComFile(CData):
 class CCustomTaskDefinition(CContainer):
 
 
-    """
-    Extends CCustomTaskDefinition with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A task defined by a user rather than shipped with CCP4i2."""
+
     class Meta:
         error_codes = {
             "101": {
@@ -320,12 +306,7 @@ class CCustomTaskDefinition(CContainer):
 class CCustomComFileList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CCustomComFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -348,10 +329,8 @@ class CCustomComFileList(CList):
 class CCustomTaskParam(CData):
 
 
-    """
-    Extends CCustomTaskParam with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """One parameter of a user-defined task."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,

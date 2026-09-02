@@ -23,10 +23,8 @@ class CRefmacRestraintsDataFile(CDataFile):
 
 
 
-    """
-    Extends CRefmacRestraintsDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """External restraints supplied to Refmac."""
+
     class Meta:
         qualifiers = {
             "fileLabel": 'restraints',
@@ -57,10 +55,8 @@ class CRefmacRestraintsDataFile(CDataFile):
 class CRefmacRigidGroupSegment(CData):
 
 
-    """
-    Extends CRefmacRigidGroupSegment with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """One chain segment of a Refmac rigid body group."""
+
     class Meta:
         error_codes = {
             "101": {
@@ -111,9 +107,10 @@ class CRefmacAnomalousAtom(CData):
 
 
     """
-    Extends CRefmacAnomalousAtom with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    An anomalous scatterer and its scattering factors at the wavelength
+    in use.
     """
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -152,12 +149,7 @@ class CRefmacAnomalousAtom(CData):
 class CRefmacRigidGroupList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CRefmacRigidGroupList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -180,10 +172,8 @@ class CRefmacRigidGroupList(CList):
 class CRefmacRigidGroupItem(CData):
 
 
-    """
-    Extends CRefmacRigidGroupItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """One Refmac rigid body group: the chain segments that move together."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,

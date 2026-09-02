@@ -25,12 +25,7 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
 class COneWord(CString):
 
 
-    """
-    A single word string - no white space
-    
-    Extends COneWord with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A single word string - no white space"""
     class Meta:
         error_codes = {
             "105": {
@@ -66,12 +61,7 @@ class COneWord(CString):
 class CJobTitle(CString):
 
 
-    """
-    A string
-    
-    Extends CJobTitle with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         qualifiers = {
             "minLength": None,
@@ -100,12 +90,7 @@ class CJobTitle(CString):
 class CJobStatus(CInt):
 
 
-    """
-    An integer
-    
-    Extends CJobStatus with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """An integer"""
     class Meta:
         qualifiers = {
             "max": None,
@@ -132,10 +117,8 @@ class CJobStatus(CInt):
 class CCollection(CData):
 
 
-    """
-    Extends CCollection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A named collection of data objects."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -160,12 +143,7 @@ class CCollection(CData):
 class CI2DataType(CString):
 
 
-    """
-    A string
-    
-    Extends CI2DataType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         qualifiers = {
             "enumerators": ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile', 'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
@@ -331,12 +309,7 @@ class CRangeSelection(CString):
 class CUUID(CString):
 
 
-    """
-    A string
-
-    Extends CUUID with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         error_codes = {
             "105": {
@@ -525,10 +498,8 @@ class CSMILESString(CString):
 class CPatchSelection(CData):
 
 
-    """
-    Extends CPatchSelection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Which patch to apply, and to which task."""
+
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -556,12 +527,7 @@ class CPatchSelection(CData):
 class COutputFileList(CList):
 
 
-    """
-    A list with all items of one CData sub-class
-    
-    Extends COutputFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list with all items of one CData sub-class"""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -585,12 +551,7 @@ class COutputFileList(CList):
 class CRange(CData):
 
 
-    """
-    Base class for CIntRange and CFloatRange
-    
-    Extends CRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Base class for CIntRange and CFloatRange"""
     class Meta:
         error_codes = {
             "101": {
@@ -619,12 +580,7 @@ class CRange(CData):
 class CBaseData(CData):
 
 
-    """
-    Base class for simple classes
-    
-    Extends CBaseData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Base class for simple classes"""
     class Meta:
         qualifiers = {
             "charWidth": 10,
@@ -763,12 +719,7 @@ class CDict(CCollection):
 class CFollowFromJob(CUUID):
 
 
-    """
-    A string
-    
-    Extends CFollowFromJob with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A string"""
     class Meta:
         qualifiers = {
             "minLength": None,
@@ -797,12 +748,7 @@ class CFollowFromJob(CUUID):
 class CFloatRange(CRange):
 
 
-    """
-    Two floats defining start and end of range
-
-    Extends CFloatRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Two floats defining start and end of range"""
     class Meta:
         contents_order = ['start', 'end']
     start = content("CFloat", guiLabel='From', toolTip='Lower end of the range')
@@ -842,12 +788,7 @@ class CFloatRange(CRange):
 class CIntRange(CRange):
 
 
-    """
-    Two integers defining start and end of range
-
-    Extends CIntRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """Two integers defining start and end of range"""
     class Meta:
         contents_order = ['start', 'end']
     start = content("CInt", guiLabel='From', toolTip='Lower end of the range')
