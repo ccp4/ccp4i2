@@ -1410,13 +1410,12 @@ built](#the-lint-as-built) below):
 
 Two things make this family invisible.
 
-**The report path has no C1.** These live in report classes, which render
-separately from the job. A report class that raises produces an error report,
-and since 2026-08-25 a job with a previously-cached rendering has that stale
-rendering served in its place with only a `logger.warning` — which is exactly
-what [M5](#m5--report-classes-that-degrade-section-by-section) was amended to
-address. The report path needs its own version of the C1 treatment: record what
-the report class said, where a person will see it.
+**The report path had no C1.** These live in report classes, which render
+separately from the job. A report class that raised produced an error report
+saying "Report generation failed ... See server logs for full traceback" — the
+same "printed to a console nobody reads" that C1 was about, one layer out. It
+now has its own version of the treatment; see [What a failed report says
+now](#what-a-failed-report-says-now).
 
 **The naming invites it.** `report/elements.py`, `report/core.py` and most
 report modules say `import xml.etree.ElementTree as etree`. A reader who knows
@@ -1489,6 +1488,43 @@ name holds which library, which is a type checker, which is the thing that
 cannot see this family. So prefer the narrowest fix that keeps a module
 standard-library throughout, and use `# lxml-ok: why` for a genuinely lxml
 object arriving from elsewhere.
+
+## What a failed report says now
+
+C1's lesson applied to the report path: the information existed, and the only
+missing half was putting it where a person would see it.
+
+`failed_report()` in `lib/utils/reporting/i2_report.py` replaces the panel that
+said "See server logs for full traceback". In place of the report content it
+renders:
+
+- **a diagnostic card** — the vocabulary `report/errors.py` already defined and
+  the frontend already rendered, and which nothing had ever emitted: level,
+  code, message, and the location, taken from the *deepest* traceback frame,
+  because the point is to name the line a maintainer has to open;
+- **the traceback itself**, in a fold. `phaser_MR_PAK_report` failed on every
+  job it ever ran on, and the panel could not say where;
+- **the ordinary input and output file sections.** A report class failing says
+  nothing about the job's outputs: they were gleaned long before it ran, and
+  they are why the user opened the job. Without them a broken report is
+  indistinguishable from a job that produced nothing. Building them is wrapped
+  in its own `try` — this runs on the failure path and must not become the
+  failure.
+
+All four failure returns in `generate_job_report` go through it, so a missing
+`program.xml`, an unparseable one, a `jobInfo` failure and a report class raising
+all now say which and why.
+
+**And the cache predicate is an attribute.** Whether to keep a
+previously-cached rendering was decided by searching the markup for the phrase
+"No report because" — which a working report is free to contain, and was then
+refused a cache entry for saying. The failure path marks its own root with
+`reportFailed="true"` and `report_is_failure()` reads it.
+
+What is still open is M5 proper: a report class that fails *in one section*
+still takes the whole rendering with it. This change improves what the user sees
+when that happens; it does not yet let the other sections through.
+
 
 ---
 

@@ -49,42 +49,174 @@ logger = logging.getLogger(f"ccp4i2:{__name__}")
 XML_FILE_SEARCH_ORDER = ["program.xml", "XMLOUT.xml", "i2.xml"]
 
 
+REPORT_FAILED_ATTRIBUTE = "reportFailed"
+
+
+def _failure_location(exception: Optional[BaseException]) -> Optional[str]:
+    """Where the report actually raised: the deepest frame, as file:line.
+
+    The deepest frame rather than the shallowest, because the point of the
+    panel is to name the line a maintainer has to open. Paths are trimmed to
+    the ccp4i2 package so the string is readable in a UI.
+    """
+    if exception is None or exception.__traceback__ is None:
+        return None
+    frames = traceback.extract_tb(exception.__traceback__)
+    if not frames:
+        return None
+    frame = frames[-1]
+    filename = frame.filename
+    marker = os.sep + "ccp4i2" + os.sep
+    if marker in filename:
+        filename = "ccp4i2" + os.sep + filename.split(marker, 1)[1]
+    return f"{filename}:{frame.lineno} in {frame.name}()"
+
+
+def _file_sections(job, task_name: str) -> List[ET.Element]:
+    """The report's ordinary input/output file lists, built without a report class.
+
+    A report class failing says nothing about the job's outputs: they were
+    gleaned before any of this ran, and they are what the user actually came
+    for. So the failure panel carries the same file sections a working report
+    would have, which is the difference between a broken report and a job that
+    looks like it produced nothing.
+    """
+    if job is None:
+        return []
+    try:
+        from ccp4i2.report.io_data import InputData, OutputData
+
+        job_info = get_report_job_info(job.uuid)
+        sections = []
+        for element_class in (OutputData, InputData):
+            element = element_class(jobInfo=job_info).as_data_etree()
+            # An empty list renders as a heading over nothing; skip it.
+            if element.find(".//div") is not None:
+                sections.append(element)
+        return sections
+    except Exception:
+        # This runs on the failure path. It must not become the failure.
+        logger.warning(
+            "Could not add file sections to the failure report for %s",
+            task_name,
+            exc_info=True,
+        )
+        return []
+
+
+def failed_report(
+    reason: str,
+    task_name: str,
+    details: Optional[str] = None,
+    exception: Optional[BaseException] = None,
+    job=None,
+    code: str = "REPORT_GENERATION_FAILED",
+) -> ET.Element:
+    """A report saying why there is no report, and still offering the files.
+
+    Three things go in, in place of the content the report class could not
+    produce:
+
+    * a diagnostic card, in the vocabulary ``report/errors.py`` already defines
+      and the frontend already renders, naming the error and the line it came
+      from;
+    * the traceback, so "where and how" is answerable without server logs --
+      which is what the previous version of this told the user to go and read;
+    * the job's input and output file lists, because the outputs were gleaned
+      long before the report class ran and are the reason the user opened the
+      job at all.
+
+    The root carries ``reportFailed="true"``. Callers deciding whether to cache
+    a rendering used to grep the markup for the phrase "No report because",
+    which a task could produce legitimately.
+
+    Args:
+        reason: Human-readable reason, shown as the panel title.
+        task_name: Task whose report failed.
+        details: Optional context (paths searched, job number, ...).
+        exception: The exception, if there was one. Supplies the traceback.
+        job: The Job, if available, for the file sections.
+        code: Machine-readable code for the diagnostic card.
+    """
+    from ccp4i2.report.errors import DiagnosticCollector, DiagnosticLevel
+
+    root = ET.Element(f"CCP4i2Report{task_name}_report")
+    root.set("key", f"{task_name}_report_0")
+    root.set("class", "")
+    root.set("style", "overflow:auto;")
+    root.set(REPORT_FAILED_ATTRIBUTE, "true")
+
+    title = ET.SubElement(root, "CCP4i2ReportTitle")
+    title.set("key", "Title_0")
+    title.set("class", "")
+    title.set("style", "")
+    title.set("title1", reason)
+    title.set("title2", reason)
+
+    collector = DiagnosticCollector()
+    collector.add(
+        level=DiagnosticLevel.ERROR,
+        code=code,
+        message=str(exception) if exception is not None else reason,
+        location=_failure_location(exception),
+        # Already logged where it was caught; logging again here would double
+        # every report failure in the server log.
+        log=False,
+    )
+    root.append(collector.as_data_etree())
+
+    body = "\n\n".join(
+        part
+        for part in (
+            details,
+            (
+                "".join(
+                    traceback.format_exception(
+                        type(exception), exception, exception.__traceback__
+                    )
+                )
+                if exception is not None
+                else None
+            ),
+        )
+        if part
+    )
+    if body:
+        fold = ET.SubElement(root, "CCP4i2ReportFold")
+        fold.set("key", "Failure_1")
+        fold.set("class", "")
+        fold.set("style", "")
+        fold.set("label", "What went wrong")
+        fold.set("initiallyOpen", "True")
+        pre = ET.SubElement(fold, "CCP4i2ReportPre")
+        pre.set("key", "Failure_2")
+        pre.set("class", "")
+        pre.set("style", "font-size: 11px; white-space: pre-wrap;")
+        # ElementTree escapes this on serialisation, which is what the Pre
+        # element wants: it renders its innerHTML.
+        pre.text = body
+
+    for section in _file_sections(job, task_name):
+        root.append(section)
+
+    return root
+
+
+def report_is_failure(report_xml: ET.Element) -> bool:
+    """True if this rendering is a failure panel rather than a report.
+
+    Asked before caching a rendering, so it has to be exact: the previous
+    version of this searched the markup for the phrase "No report because",
+    which any task's report is free to contain.
+    """
+    return report_xml.get(REPORT_FAILED_ATTRIBUTE) == "true"
+
+
 def simple_failed_report(
     reason: str, task_name: str, details: Optional[str] = None
 ) -> ET.Element:
-    """
-    Generate a minimal report indicating failure.
-
-    Args:
-        reason: Human-readable reason for failure
-        task_name: Name of the task that failed
-        details: Optional technical details (shown in smaller text)
-
-    Returns:
-        ET.Element: XML element tree for the failed report
-    """
-    details_html = ""
-    if details:
-        # Escape HTML entities in details
-        escaped_details = (
-            details.replace("&", "&amp;")
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
-            .replace('"', "&quot;")
-        )
-        details_html = f'<pre style="font-size: 11px; color: #666; margin-top: 10px; white-space: pre-wrap;">{escaped_details}</pre>'
-
-    return ET.fromstring(
-        f"""<CCP4i2Report{task_name}_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" key="{task_name}_report_0" class="" style="overflow:auto;">
-  <CCP4i2ReportTitle key="Title_112" class="" style="" title1="{reason}" title2="{reason}"/>
-  <CCP4i2ReportDiv key="Div_0" class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
-      <CCP4i2ReportGeneric key="Generic_1" class="" style="">
-        <p style="font-size: 14">No report because: <em>{reason}</em></p>
-        {details_html}
-      </CCP4i2ReportGeneric>
-  </CCP4i2ReportDiv>
-</CCP4i2Report{task_name}_report>"""
-    )
+    """Deprecated: call :func:`failed_report`, which also takes the exception."""
+    return failed_report(reason, task_name, details=details)
 
 
 def get_report_job_info(job_id: str) -> Dict[str, Any]:
@@ -401,12 +533,14 @@ def generate_job_report(job: Job) -> ET.Element:
             log_level,
             "No program XML found in %s. Searched: %s", job_directory, searched_files
         )
-        return simple_failed_report(
+        return failed_report(
             "No program XML found",
             task_name,
             details=f"Job directory: {job_directory}\n"
             f"Searched for: {searched_files}\n"
             f"Job status: {Job.Status(job.status).label}",
+            job=job,
+            code="PROGRAM_XML_NOT_FOUND",
         )
 
     # Step 4: Parse XML if we have one
@@ -434,10 +568,13 @@ def generate_job_report(job: Job) -> ET.Element:
                 else:
                     logger.error("Failed to parse XML file %s after %d attempts: %s",
                                  xml_path, max_retries, err)
-                    return simple_failed_report(
+                    return failed_report(
                         "Failed to parse program XML",
                         task_name,
-                        details=f"File: {xml_path}\nError: {err}",
+                        details=f"File: {xml_path}",
+                        exception=last_error,
+                        job=job,
+                        code="PROGRAM_XML_PARSE_ERROR",
                     )
 
     # Step 5: Collect job info from database
@@ -445,10 +582,12 @@ def generate_job_report(job: Job) -> ET.Element:
         report_job_info = get_report_job_info(job.uuid)
     except Exception as err:
         logger.error("Failed to get job info for %s: %s", job.uuid, err)
-        return simple_failed_report(
+        return failed_report(
             "Failed to collect job information",
             task_name,
-            details=f"Job UUID: {job.uuid}\nError: {err}",
+            details=f"Job UUID: {job.uuid}",
+            exception=err,
+            code="JOB_INFO_ERROR",
         )
 
     # Step 6: Determine if report should be standardised
@@ -490,11 +629,10 @@ def generate_job_report(job: Job) -> ET.Element:
             err,
             traceback.format_exc(),
         )
-        return simple_failed_report(
+        return failed_report(
             "Report generation failed",
             task_name,
-            details=f"Task: {task_name}\n"
-            f"Job: {job.number}\n"
-            f"Error: {err}\n\n"
-            f"See server logs for full traceback.",
+            details=f"Task: {task_name}\nJob: {job.number}\nError: {err}",
+            exception=err,
+            job=job,
         )
