@@ -66,8 +66,6 @@
             "parrot"
         ],
         "deprecated": [
-            "coot_rebuild",
-            "coot_script_lines",
             "buccaneer_build_refine_mr",
             "nautilus_build_refine"
         ],
@@ -113,6 +111,8 @@
             "arp_warp_classic",
             "shelxeMR",
             "dr_mr_modelbuild_pipeline",
+            "coot_rebuild",
+            "coot_script_lines",
             "ccp4mg_general",
             "nucleofind"
         ],
@@ -2494,6 +2494,19 @@
                 "subTasks": []
             }
         },
+        "coot_rebuild": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "martin.noble@newcastle.ac.uk",
+                "TASKTITLE": "Rebuild model with coot",
+                "class": "wrappers.coot_rebuild.script.coot_rebuildcoot_rebuild",
+                "clsModule": "wrappers.coot_rebuild.script.coot_rebuild",
+                "clsName": "coot_rebuild",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "coot_rsr_morph": {
             "202110261437": {
                 "DESCRIPTION": null,
@@ -2503,6 +2516,19 @@
                 "class": "wrappers.coot_rsr_morph.script.coot_rsr_morphcoot_rsr_morph",
                 "clsModule": "wrappers.coot_rsr_morph.script.coot_rsr_morph",
                 "clsName": "coot_rsr_morph",
+                "internal": false,
+                "subTasks": []
+            }
+        },
+        "coot_script_lines": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "Nobody",
+                "TASKTITLE": "Execute arbitrary script code within Coot",
+                "class": "wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines",
+                "clsName": "coot_script_lines",
                 "internal": false,
                 "subTasks": []
             }
@@ -4609,7 +4635,7 @@
         },
         "LidiaAcedrgNew": {
             "0.0.0": {
-                "DESCRIPTION": "Generate a PDB file and dictionary (acedrg) from MOL file, SMILES string/file, or sketch (lidia).<br>Optionally match atom names to known structures.",
+                "DESCRIPTION": "Generate a PDB file and dictionary (acedrg) from MOL file, SMILES string/file, or sketch.<br>Optionally match atom names to known structures.",
                 "MAINTAINER": "Nobody",
                 "RANK": 1,
                 "TASKTITLE": "Make Ligand - AceDRG",
