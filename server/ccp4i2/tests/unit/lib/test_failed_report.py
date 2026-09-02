@@ -70,6 +70,34 @@ class TestTheDiagnosticCard:
         assert "test_failed_report.py" in location
         assert " in raising()" in location, "the deepest frame, not the shallowest"
 
+    def test_it_prefers_the_deepest_ccp4i2_frame_to_the_deepest_frame(self):
+        """An exception raised inside a library must still name our line.
+
+        A zero-length program.xml reports `ElementTree.py:573 in parse()`,
+        which is true and of no use to anyone; the caller in i2_report.py is
+        the line to go and read.
+        """
+        import xml.etree.ElementTree as element_tree
+
+        try:
+            element_tree.fromstring("")
+        except element_tree.ParseError as err:
+            location = diagnostic(
+                failed_report("boom", "acorn", exception=err)
+            ).get("location")
+
+        assert "ElementTree.py" not in location
+        assert "test_failed_report.py" in location
+        # The checkout path is not part of the answer, and a checkout that is
+        # itself called ccp4i2 contains the marker twice.
+        assert location.startswith("ccp4i2/tests/"), location
+
+    def test_a_stack_with_nothing_of_ours_still_gets_a_location(self):
+        card = diagnostic(
+            failed_report("boom", "acorn", exception=ValueError("no traceback"))
+        )
+        assert card.get("location") is None
+
     def test_the_code_is_machine_readable(self):
         card = diagnostic(failed_report("boom", "acorn", code="PROGRAM_XML_NOT_FOUND"))
         assert card.get("code") == "PROGRAM_XML_NOT_FOUND"

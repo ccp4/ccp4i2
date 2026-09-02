@@ -52,23 +52,32 @@ XML_FILE_SEARCH_ORDER = ["program.xml", "XMLOUT.xml", "i2.xml"]
 REPORT_FAILED_ATTRIBUTE = "reportFailed"
 
 
-def _failure_location(exception: Optional[BaseException]) -> Optional[str]:
-    """Where the report actually raised: the deepest frame, as file:line.
+_PACKAGE_MARKER = os.sep + "ccp4i2" + os.sep
 
-    The deepest frame rather than the shallowest, because the point of the
-    panel is to name the line a maintainer has to open. Paths are trimmed to
-    the ccp4i2 package so the string is readable in a UI.
+
+def _failure_location(exception: Optional[BaseException]) -> Optional[str]:
+    """Where the report raised, as the line a maintainer can open.
+
+    The deepest frame *within ccp4i2*, not the deepest frame outright. Those
+    differ whenever the exception comes from inside a library: an unparseable
+    program.xml reports ``ElementTree.py:573 in parse()``, which is true and
+    useless, where the caller in ``i2_report.py`` is the line to go and read.
+    Falls back to the deepest frame when nothing in the stack is ours, since a
+    location outside the package still beats none.
     """
     if exception is None or exception.__traceback__ is None:
         return None
     frames = traceback.extract_tb(exception.__traceback__)
     if not frames:
         return None
-    frame = frames[-1]
+    ours = [frame for frame in frames if _PACKAGE_MARKER in frame.filename]
+    frame = ours[-1] if ours else frames[-1]
     filename = frame.filename
-    marker = os.sep + "ccp4i2" + os.sep
-    if marker in filename:
-        filename = "ccp4i2" + os.sep + filename.split(marker, 1)[1]
+    if _PACKAGE_MARKER in filename:
+        # rsplit, not split: a checkout at /home/me/ccp4i2/server/ccp4i2/...
+        # contains the marker twice, and the first match keeps the checkout
+        # path in the string.
+        filename = "ccp4i2" + os.sep + filename.rsplit(_PACKAGE_MARKER, 1)[1]
     return f"{filename}:{frame.lineno} in {frame.name}()"
 
 
