@@ -953,18 +953,11 @@ class AsyncDatabaseHandler:
                 logger.warning(f"Job {job_uuid}: plugin.get_status() returned None, assuming SUCCEEDED")
                 plugin_status = CPluginScript.SUCCEEDED
 
-            # UNSATISFACTORY is reachable now that processOutputFiles()'s return
-            # is honoured (C1); without it here the job would be left RUNNING.
-            status_map = {
-                CPluginScript.SUCCEEDED: models.Job.Status.FINISHED,
-                CPluginScript.FAILED: models.Job.Status.FAILED,
-                CPluginScript.UNSATISFACTORY: models.Job.Status.UNSATISFACTORY,
-            }
-
-            if plugin_status in status_map:
-                db_status = status_map[plugin_status]
-                await self.update_job_status(job_uuid, db_status)
-                logger.info(f"Job {job_uuid} status updated to {db_status}")
+            # plugin_status_to_job_status() defaults unrecognised codes to FAILED,
+            # so a job is never silently left stuck at RUNNING.
+            db_status = plugin_status_to_job_status(plugin_status)
+            await self.update_job_status(job_uuid, db_status)
+            logger.info(f"Job {job_uuid} status updated to {db_status}")
 
             # After execution, glean output files and KPIs if finished successfully
             logger.debug(f"[DEBUG track_job] plugin_status = {plugin_status}, SUCCEEDED = {CPluginScript.SUCCEEDED}")
@@ -1058,13 +1051,7 @@ class AsyncDatabaseHandler:
                 status = plugin.process()
 
                 # Update job status based on result
-                status_map = {
-                    CPluginScript.SUCCEEDED: models.Job.Status.FINISHED,
-                    CPluginScript.FAILED: models.Job.Status.FAILED,
-                    CPluginScript.UNSATISFACTORY: models.Job.Status.UNSATISFACTORY,
-                }
-                if status in status_map:
-                    await self.update_job_status(job.uuid, status_map[status])
+                await self.update_job_status(job.uuid, plugin_status_to_job_status(status))
 
                 # Glean output files and KPIs if succeeded
                 if status == CPluginScript.SUCCEEDED:

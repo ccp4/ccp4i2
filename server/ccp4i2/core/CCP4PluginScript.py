@@ -313,6 +313,8 @@ class CPluginScript(CData):
     FAILED = 1
     RUNNING = 2
     UNSATISFACTORY = 3  # Job completed but with warnings/issues
+    INTERRUPTED = 4  # Job was deliberately stopped (Cancel), not an error
+    MARK_TO_DELETE = 5  # No useful output was produced; job should be discarded
 
     def __init__(self,
                  parent=None,
