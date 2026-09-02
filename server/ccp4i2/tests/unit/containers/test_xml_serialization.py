@@ -295,3 +295,21 @@ def test_load_save_params_file(temp_xml_file):
 
     # Cleanup
     Path(params_file).unlink(missing_ok=True)
+
+
+def test_a_file_path_can_be_used_as_a_path():
+    """CFilePath satisfies os.PathLike.
+
+    A class called "a file path" that cannot be handed to open() or
+    os.path.join() is a gap on its own terms. It is also what forced
+    CDataFile.fullPath to return a str subclass rather than one of these.
+    """
+    import os
+    import pathlib
+    from ccp4i2.core.CCP4File import CFilePath
+
+    path = CFilePath(value="/tmp/example.pdb")
+    assert os.fspath(path) == "/tmp/example.pdb"
+    assert os.path.basename(path) == "example.pdb"
+    assert os.path.splitext(path)[1] == ".pdb"
+    assert pathlib.Path(path).name == "example.pdb"
