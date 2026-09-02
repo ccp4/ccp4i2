@@ -28,6 +28,12 @@ from ccp4i2.core.CCP4Data import CUUID
 class CProjectId(CUUID):
 
 
+    """
+    The CCP4i2 database project id - a global unique id
+    
+    Extends CProjectId with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -63,12 +69,6 @@ class CProjectId(CUUID):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    The CCP4i2 database project id - a global unique id
-    
-    Extends CProjectId with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -77,6 +77,12 @@ class CProjectId(CUUID):
 class CVersion(CString):
 
 
+    """
+    A (string) version number of the form n.m.i
+    
+    Extends CVersion with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -98,12 +104,6 @@ class CVersion(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A (string) version number of the form n.m.i
-    
-    Extends CVersion with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -112,6 +112,14 @@ class CVersion(CString):
 class CMmcifData(CDataFileContent):
 
 
+    """
+    Generic mmCIF data.
+This is intended to be a base class for other classes
+specific to coordinates, reflections or geometry data.
+    
+    Extends CMmcifData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -128,14 +136,6 @@ class CMmcifData(CDataFileContent):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Generic mmCIF data.
-This is intended to be a base class for other classes
-specific to coordinates, reflections or geometry data.
-    
-    Extends CMmcifData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -143,6 +143,10 @@ specific to coordinates, reflections or geometry data.
 
 class CExePath(CData):
 
+    """
+    Extends CExePath with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     exeName = content("CString")
     exePath = content("CDataFile", mustExist=True, allowUndefined=False)
 
@@ -156,10 +160,6 @@ class CExePath(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CExePath with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -168,6 +168,12 @@ class CExePath(CData):
 class CProjectName(CString):
 
 
+    """
+    The name of a CCP4i project or directory alias
+    
+    Extends CProjectName with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -208,12 +214,6 @@ class CProjectName(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    The name of a CCP4i project or directory alias
-    
-    Extends CProjectName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -222,6 +222,12 @@ class CProjectName(CString):
 class CFileFunction(CString):
 
 
+    """
+    List of recognised XML file functions
+    
+    Extends CFileFunction with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "enumerators": ['DEF', 'PARAMS', 'LOG', 'PROJECTDIRECTORIES', 'COM', 'REFMAC', 'OUTPUT', 'STATUS', 'PROJECTDATABASE', 'MGSCENE', 'JOBSERVERSTATUS', 'WORKFLOW', 'COMFILEPATCH', 'CUSTOMTASK', 'IMPORTEDJOB', 'I1SUPPLEMENT', 'ASUCONTENT', 'UNKNOWN'],
@@ -237,12 +243,6 @@ class CFileFunction(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    List of recognised XML file functions
-    
-    Extends CFileFunction with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -251,6 +251,10 @@ class CFileFunction(CString):
 class CExportedFile(CData):
 
 
+    """
+    Extends CExportedFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -269,10 +273,6 @@ class CExportedFile(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CExportedFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -281,6 +281,12 @@ class CExportedFile(CData):
 class CExportedFileList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CExportedFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -295,12 +301,6 @@ class CExportedFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CExportedFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -309,6 +309,12 @@ class CExportedFileList(CList):
 class CExePathList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CExePathList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -323,12 +329,6 @@ class CExePathList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CExePathList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -337,6 +337,10 @@ class CExePathList(CList):
 class CSearchPath(CData):
 
 
+    """
+    Extends CSearchPath with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -356,10 +360,6 @@ class CSearchPath(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CSearchPath with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -368,6 +368,12 @@ class CSearchPath(CData):
 class CSearchPathList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CSearchPathList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -382,12 +388,6 @@ class CSearchPathList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CSearchPathList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -396,6 +396,12 @@ class CSearchPathList(CList):
 class CFilePath(CString):
 
 
+    """
+    A file path
+    
+    Extends CFilePath with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -422,12 +428,6 @@ class CFilePath(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A file path
-    
-    Extends CFilePath with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -436,6 +436,12 @@ class CFilePath(CString):
 class CI2XmlHeader(CData):
 
 
+    """
+    Container for header info from XML file
+
+    Extends CI2XmlHeader with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -483,12 +489,6 @@ class CI2XmlHeader(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Container for header info from XML file
-
-    Extends CI2XmlHeader with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def setCurrent(self):
         """
@@ -515,6 +515,12 @@ class CXmgrDataFile(CDataFile):
 
 
 
+    """
+    An xmgr format file. This is the input format for xmgrace, as output by scala or aimless
+    
+    Extends CXmgrDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/grace',
@@ -534,12 +540,6 @@ class CXmgrDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An xmgr format file. This is the input format for xmgrace, as output by scala or aimless
-    
-    Extends CXmgrDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -549,6 +549,12 @@ class CTextDataFile(CDataFile):
 
 
 
+    """
+    A text data file
+    
+    Extends CTextDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": '"text/plain"',
@@ -570,12 +576,6 @@ class CTextDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A text data file
-    
-    Extends CTextDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -585,6 +585,12 @@ class CDataReflFile(CDataFile):
 
 
 
+    """
+    Reflection file from DIALS
+    
+    Extends CDataReflFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Reflections from DIALS',
@@ -604,12 +610,6 @@ class CDataReflFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Reflection file from DIALS
-    
-    Extends CDataReflFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -619,6 +619,12 @@ class CPostscriptDataFile(CDataFile):
 
 
 
+    """
+    A postscript format file
+    
+    Extends CPostscriptDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/postscript',
@@ -639,12 +645,6 @@ class CPostscriptDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A postscript format file
-    
-    Extends CPostscriptDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -654,6 +654,12 @@ class CYmlFile(CDataFile):
 
 
 
+    """
+    A yml data file
+    
+    Extends CYmlFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": '"text/plain"',
@@ -675,12 +681,6 @@ class CYmlFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A yml data file
-    
-    Extends CYmlFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -690,6 +690,12 @@ class CXmlDataFile(CDataFile):
 
 
 
+    """
+    A reference to an XML file
+
+    Extends CXmlDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "1001": {
@@ -742,12 +748,6 @@ class CXmlDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A reference to an XML file
-
-    Extends CXmlDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def saveFile(self, bodyEtree=None):
         """
@@ -792,6 +792,14 @@ class CMmcifDataFile(CDataFile):
 
 
 
+    """
+    A generic mmCIF format file.
+This is intended to be a base class for other classes
+specific to coordinates, reflections or geometry data.
+    
+    Extends CMmcifDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileExtensions": ['cif', 'ent'],
@@ -810,14 +818,6 @@ class CMmcifDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A generic mmCIF format file.
-This is intended to be a base class for other classes
-specific to coordinates, reflections or geometry data.
-    
-    Extends CMmcifDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -827,6 +827,12 @@ class CPDFDataFile(CDataFile):
 
 
 
+    """
+    An PDF format file
+    
+    Extends CPDFDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/x-pdf',
@@ -847,12 +853,6 @@ class CPDFDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An PDF format file
-    
-    Extends CPDFDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -862,6 +862,12 @@ class CSceneDataFile(CDataFile):
 
 
 
+    """
+    An xml format file for defining scene in CCP4mg.
+    
+    Extends CSceneDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'scene',
@@ -884,12 +890,6 @@ class CSceneDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An xml format file for defining scene in CCP4mg.
-    
-    Extends CSceneDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -898,6 +898,12 @@ class CSceneDataFile(CDataFile):
 class CI2XmlDataFile(CXmlDataFile):
 
 
+    """
+    A reference to an XML file with CCP4i2 Header
+
+    Extends CI2XmlDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "1003": {
@@ -927,12 +933,6 @@ class CI2XmlDataFile(CXmlDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A reference to an XML file with CCP4i2 Header
-
-    Extends CI2XmlDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def saveFile(self, bodyEtree=None, useLXML=None):
         """
@@ -1027,6 +1027,12 @@ class CEBIValidationXMLDataFile(CXmlDataFile):
 
 
 
+    """
+    An XLM file returned from the EBI validation server 
+    
+    Extends CEBIValidationXMLDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/EBI-validation-xml',
@@ -1047,12 +1053,6 @@ class CEBIValidationXMLDataFile(CXmlDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An XLM file returned from the EBI validation server 
-    
-    Extends CEBIValidationXMLDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass

@@ -19,6 +19,10 @@ from ccp4i2.core.base_object.base_classes import CContainer
 class CPatchDefinition(CContainer):
 
 
+    """
+    Extends CPatchDefinition with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -212,10 +216,6 @@ class CPatchDefinition(CContainer):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CPatchDefinition with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass

@@ -26,6 +26,10 @@ from ccp4i2.core.CCP4Data import CData
 class CDmDomain(CData):
 
 
+    """A rigid body for multi-domain NCS averaging: one or more residue-range
+    segments (possibly spanning several chains via roles) plus how it should be
+    averaged (average / refine / exclude).
+    """
     class Meta:
         contents_order = ['segments', 'mode']
         content_qualifiers = {
@@ -51,10 +55,6 @@ class CDmDomain(CData):
     segments = content("CString")
     mode = content("CString")
     pass
-    """A rigid body for multi-domain NCS averaging: one or more residue-range
-    segments (possibly spanning several chains via roles) plus how it should be
-    averaged (average / refine / exclude).
-    """
 
     def averaging_mode(self):
         m = str(self.mode) if self.mode.isSet() else 'average'

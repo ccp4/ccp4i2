@@ -25,6 +25,12 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
 class COneWord(CString):
 
 
+    """
+    A single word string - no white space
+    
+    Extends COneWord with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "105": {
@@ -52,12 +58,6 @@ class COneWord(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A single word string - no white space
-    
-    Extends COneWord with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -66,6 +66,12 @@ class COneWord(CString):
 class CJobTitle(CString):
 
 
+    """
+    A string
+    
+    Extends CJobTitle with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "minLength": None,
@@ -86,12 +92,6 @@ class CJobTitle(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CJobTitle with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -100,6 +100,12 @@ class CJobTitle(CString):
 class CJobStatus(CInt):
 
 
+    """
+    An integer
+    
+    Extends CJobStatus with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "max": None,
@@ -118,12 +124,6 @@ class CJobStatus(CInt):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An integer
-    
-    Extends CJobStatus with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -132,6 +132,10 @@ class CJobStatus(CInt):
 class CCollection(CData):
 
 
+    """
+    Extends CCollection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -148,10 +152,6 @@ class CCollection(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CCollection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -160,6 +160,12 @@ class CCollection(CData):
 class CI2DataType(CString):
 
 
+    """
+    A string
+    
+    Extends CI2DataType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "enumerators": ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile', 'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
@@ -175,12 +181,6 @@ class CI2DataType(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CI2DataType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -189,6 +189,13 @@ class CI2DataType(CString):
 class CRangeSelection(CString):
 
 
+    """
+    Range selection string (e.g., "1-10,15,20-25").
+
+    Extends CRangeSelection with validation for range selection syntax.
+    Validates format like "1-10,15,20-25" where ranges are specified as
+    comma-separated numbers or hyphen-separated ranges.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -217,13 +224,6 @@ class CRangeSelection(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Range selection string (e.g., "1-10,15,20-25").
-
-    Extends CRangeSelection with validation for range selection syntax.
-    Validates format like "1-10,15,20-25" where ranges are specified as
-    comma-separated numbers or hyphen-separated ranges.
-    """
 
     ERROR_CODES = {
         201: {'description': 'Range selection contains invalid character'},
@@ -331,6 +331,12 @@ class CRangeSelection(CString):
 class CUUID(CString):
 
 
+    """
+    A string
+
+    Extends CUUID with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "105": {
@@ -358,12 +364,6 @@ class CUUID(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-
-    Extends CUUID with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -372,6 +372,18 @@ class CUUID(CString):
 class CSMILESString(CString):
 
 
+    """
+    A SMILES (Simplified Molecular Input Line Entry System) string.
+
+    SMILES is a line notation for representing chemical structures.
+    Validation uses RDKit to parse and verify the SMILES string.
+
+    Examples:
+        - "CCO" (ethanol)
+        - "c1ccccc1" (benzene)
+        - "CC(=O)O" (acetic acid)
+        - "CC(C)Cc1ccc(cc1)[C@@H](C)C(=O)O" (ibuprofen)
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -401,18 +413,6 @@ class CSMILESString(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A SMILES (Simplified Molecular Input Line Entry System) string.
-
-    SMILES is a line notation for representing chemical structures.
-    Validation uses RDKit to parse and verify the SMILES string.
-
-    Examples:
-        - "CCO" (ethanol)
-        - "c1ccccc1" (benzene)
-        - "CC(=O)O" (acetic acid)
-        - "CC(C)Cc1ccc(cc1)[C@@H](C)C(=O)O" (ibuprofen)
-    """
 
     # Cache for RDKit availability check
     _rdkit_available = None
@@ -525,6 +525,10 @@ class CSMILESString(CString):
 class CPatchSelection(CData):
 
 
+    """
+    Extends CPatchSelection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -544,10 +548,6 @@ class CPatchSelection(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CPatchSelection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -556,6 +556,12 @@ class CPatchSelection(CData):
 class COutputFileList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends COutputFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -571,12 +577,6 @@ class COutputFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends COutputFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -585,6 +585,12 @@ class COutputFileList(CList):
 class CRange(CData):
 
 
+    """
+    Base class for CIntRange and CFloatRange
+    
+    Extends CRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -605,12 +611,6 @@ class CRange(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Base class for CIntRange and CFloatRange
-    
-    Extends CRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -619,6 +619,12 @@ class CRange(CData):
 class CBaseData(CData):
 
 
+    """
+    Base class for simple classes
+    
+    Extends CBaseData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "charWidth": 10,
@@ -633,12 +639,6 @@ class CBaseData(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Base class for simple classes
-    
-    Extends CBaseData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -647,6 +647,18 @@ class CBaseData(CData):
 class CDict(CCollection):
 
 
+    """
+    Dictionary-like CData type for key-value storage.
+
+    Inherits from:
+    - CDict: Metadata and structure
+    - CCollection: Shared full-fat methods
+
+    Used for selection dictionaries in ASU files and similar key-value data.
+    Behaves like a Python dict with __getitem__, __setitem__, etc.
+
+    For unset keys, returns True by default (all items selected).
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -672,18 +684,6 @@ class CDict(CCollection):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Dictionary-like CData type for key-value storage.
-
-    Inherits from:
-    - CDict: Metadata and structure
-    - CCollection: Shared full-fat methods
-
-    Used for selection dictionaries in ASU files and similar key-value data.
-    Behaves like a Python dict with __getitem__, __setitem__, etc.
-
-    For unset keys, returns True by default (all items selected).
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         """Initialize CDict with an empty internal dictionary."""
@@ -763,6 +763,12 @@ class CDict(CCollection):
 class CFollowFromJob(CUUID):
 
 
+    """
+    A string
+    
+    Extends CFollowFromJob with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "minLength": None,
@@ -783,12 +789,6 @@ class CFollowFromJob(CUUID):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CFollowFromJob with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -797,6 +797,12 @@ class CFollowFromJob(CUUID):
 class CFloatRange(CRange):
 
 
+    """
+    Two floats defining start and end of range
+
+    Extends CFloatRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         contents_order = ['start', 'end']
     start = content("CFloat")
@@ -812,12 +818,6 @@ class CFloatRange(CRange):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Two floats defining start and end of range
-
-    Extends CFloatRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         """Initialize CFloatRange with .start and .end not set by default.
@@ -842,6 +842,12 @@ class CFloatRange(CRange):
 class CIntRange(CRange):
 
 
+    """
+    Two integers defining start and end of range
+
+    Extends CIntRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         contents_order = ['start', 'end']
     start = content("CInt")
@@ -857,12 +863,6 @@ class CIntRange(CRange):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Two integers defining start and end of range
-
-    Extends CIntRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         """Initialize CIntRange with .start and .end not set by default.

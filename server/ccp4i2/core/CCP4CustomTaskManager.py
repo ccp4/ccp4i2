@@ -21,6 +21,12 @@ from ccp4i2.core.CCP4Data import CI2DataType, COneWord
 class CCustomTaskFileFunction(CString):
 
 
+    """
+    A string
+    
+    Extends CCustomTaskFileFunction with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "enumerators": ['unknown', 'input', 'output', 'control parameter', 'log'],
@@ -35,12 +41,6 @@ class CCustomTaskFileFunction(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CCustomTaskFileFunction with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -49,6 +49,12 @@ class CCustomTaskFileFunction(CString):
 class CCustomTaskParamList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CCustomTaskParamList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -63,12 +69,6 @@ class CCustomTaskParamList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CCustomTaskParamList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -77,6 +77,10 @@ class CCustomTaskParamList(CList):
 class CCustomComFile(CData):
 
 
+    """
+    Extends CCustomComFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -96,10 +100,6 @@ class CCustomComFile(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CCustomComFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -108,6 +108,10 @@ class CCustomComFile(CData):
 class CCustomTaskDefinition(CContainer):
 
 
+    """
+    Extends CCustomTaskDefinition with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -301,10 +305,6 @@ class CCustomTaskDefinition(CContainer):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CCustomTaskDefinition with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -313,6 +313,12 @@ class CCustomTaskDefinition(CContainer):
 class CCustomComFileList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CCustomComFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -327,12 +333,6 @@ class CCustomComFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CCustomComFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -341,6 +341,10 @@ class CCustomComFileList(CList):
 class CCustomTaskParam(CData):
 
 
+    """
+    Extends CCustomTaskParam with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -368,10 +372,6 @@ class CCustomTaskParam(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CCustomTaskParam with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass

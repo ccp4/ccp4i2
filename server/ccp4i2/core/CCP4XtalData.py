@@ -191,6 +191,12 @@ def _compact_batch_ranges(numbers: list) -> str:
 class CCellLength(CFloat):
 
 
+    """
+    A cell length
+    
+    Extends CCellLength with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "min": 0.0,
@@ -208,12 +214,6 @@ class CCellLength(CFloat):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A cell length
-    
-    Extends CCellLength with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -223,6 +223,12 @@ class CPhaserRFileDataFile(CDataFile):
 
 
 
+    """
+    Phaser R-list data file (pickle format).
+
+    Extends CPhaserRFileDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/phaser-rfile',
@@ -247,12 +253,6 @@ class CPhaserRFileDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Phaser R-list data file (pickle format).
-
-    Extends CPhaserRFileDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -261,6 +261,12 @@ class CPhaserRFileDataFile(CDataFile):
 class CColumnGroup(CData):
 
 
+    """
+    Groups of columns in MTZ - probably from analysis by hklfile
+
+    Extends CColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -285,12 +291,6 @@ class CColumnGroup(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Groups of columns in MTZ - probably from analysis by hklfile
-
-    Extends CColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -327,6 +327,12 @@ class CColumnGroup(CData):
 class CColumnGroupList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+
+    Extends CColumnGroupList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -341,12 +347,6 @@ class CColumnGroupList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-
-    Extends CColumnGroupList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     SUBITEM = {'class': CColumnGroup}
 
@@ -355,6 +355,12 @@ class CMmcifReflDataFile(CMmcifDataFile):
 
 
 
+    """
+    A reflection file in mmCIF format
+
+    Extends CMmcifReflDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'mmCIF reflection data',
@@ -379,12 +385,6 @@ class CMmcifReflDataFile(CMmcifDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A reflection file in mmCIF format
-
-    Extends CMmcifReflDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
@@ -394,6 +394,12 @@ class CMtzDataFile(CDataFile):
 
 
 
+    """
+    An MTZ experimental data file
+
+    Extends CMtzDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "151": {
@@ -458,12 +464,6 @@ class CMtzDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An MTZ experimental data file
-
-    Extends CMtzDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
@@ -548,6 +548,12 @@ class CMtzDataFile(CDataFile):
 class CExperimentalDataType(CString):
 
 
+    """
+    Experimental data type e.g. native or peak
+    
+    Extends CExperimentalDataType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "onlyEnumerators": True,
@@ -564,12 +570,6 @@ class CExperimentalDataType(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Experimental data type e.g. native or peak
-    
-    Extends CExperimentalDataType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -578,6 +578,13 @@ class CExperimentalDataType(CString):
 class CAsuComponent(CData):
 
 
+    """
+    A component of the asymmetric unit. This is for use in MR, defining
+what we are searching for. 
+    
+    Extends CAsuComponent with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -609,13 +616,6 @@ class CAsuComponent(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A component of the asymmetric unit. This is for use in MR, defining
-what we are searching for. 
-    
-    Extends CAsuComponent with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -625,6 +625,10 @@ class CDialsPickleFile(CDataFile):
 
 
 
+    """
+    Extends CDialsPickleFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/dials-pfile',
@@ -649,10 +653,6 @@ class CDialsPickleFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CDialsPickleFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -661,6 +661,12 @@ class CDialsPickleFile(CDataFile):
 class CCellAngle(CFloat):
 
 
+    """
+    A cell angle
+    
+    Extends CCellAngle with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "min": 0.0,
@@ -679,12 +685,6 @@ class CCellAngle(CFloat):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A cell angle
-    
-    Extends CCellAngle with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -693,6 +693,10 @@ class CCellAngle(CFloat):
 class CMergeMiniMtz(CData):
 
 
+    """
+    Extends CMergeMiniMtz with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -721,10 +725,6 @@ class CMergeMiniMtz(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CMergeMiniMtz with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -733,6 +733,7 @@ class CMergeMiniMtz(CData):
 class CMergeMiniMtzList(CList):
 
 
+    """A list of CMergeMiniMtz items."""
     class Meta:
         qualifiers = {
             "listMinLength": 2,
@@ -748,7 +749,6 @@ class CMergeMiniMtzList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """A list of CMergeMiniMtz items."""
 
     SUBITEM = {'class': CMergeMiniMtz}
 
@@ -757,6 +757,12 @@ class CUnmergedDataFile(CDataFile):
 
 
 
+    """
+    Handle MTZ, XDS and scalepack files. Allow wildcard filename
+
+    Extends CUnmergedDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-unmerged-experimental',
@@ -782,12 +788,6 @@ class CUnmergedDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Handle MTZ, XDS and scalepack files. Allow wildcard filename
-
-    Extends CUnmergedDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
@@ -797,6 +797,10 @@ class CDialsJsonFile(CDataFile):
 
 
 
+    """
+    Extends CDialsJsonFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/dials-jfile',
@@ -821,10 +825,6 @@ class CDialsJsonFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CDialsJsonFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -833,6 +833,12 @@ class CDialsJsonFile(CDataFile):
 class CShelxLabel(CString):
 
 
+    """
+    A string
+    
+    Extends CShelxLabel with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "onlyEnumerators": True,
@@ -851,12 +857,6 @@ class CShelxLabel(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CShelxLabel with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -865,6 +865,10 @@ class CShelxLabel(CString):
 class CReindexOperator(CData):
 
 
+    """
+    Extends CReindexOperator with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -896,10 +900,6 @@ class CReindexOperator(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CReindexOperator with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -908,6 +908,12 @@ class CReindexOperator(CData):
 class CWavelength(CFloat):
 
 
+    """
+    Wavelength in Angstrom
+    
+    Extends CWavelength with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "min": 0.0,
@@ -923,12 +929,6 @@ class CWavelength(CFloat):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Wavelength in Angstrom
-    
-    Extends CWavelength with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -937,6 +937,10 @@ class CWavelength(CFloat):
 class CRunBatchRange(CData):
 
 
+    """
+    Extends CRunBatchRange with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -965,10 +969,6 @@ class CRunBatchRange(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CRunBatchRange with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -977,6 +977,12 @@ class CRunBatchRange(CData):
 class CSpaceGroup(CString):
 
 
+    """
+    A string holding the space group
+
+    Extends CSpaceGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -1022,12 +1028,6 @@ class CSpaceGroup(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string holding the space group
-
-    Extends CSpaceGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def fix(self, value: str) -> str:
         """
@@ -1064,6 +1064,12 @@ class CSpaceGroup(CString):
 class CDatasetName(CString):
 
 
+    """
+    A string
+    
+    Extends CDatasetName with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": False,
@@ -1081,12 +1087,6 @@ class CDatasetName(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CDatasetName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1096,6 +1096,12 @@ class CMiniMtzDataFile(CMtzDataFile):
 
 
 
+    """
+    An MTZ experimental data file
+
+    Extends CMiniMtzDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "201": {
@@ -1171,12 +1177,6 @@ class CMiniMtzDataFile(CMtzDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An MTZ experimental data file
-
-    Extends CMiniMtzDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
@@ -1393,6 +1393,7 @@ class CMiniMtzDataFile(CMtzDataFile):
 class CMiniMtzDataFileList(CList):
 
 
+    """A list of CMiniMtzDataFile items."""
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1407,7 +1408,6 @@ class CMiniMtzDataFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """A list of CMiniMtzDataFile items."""
 
     SUBITEM = {'class': CMiniMtzDataFile}
 
@@ -1415,6 +1415,12 @@ class CMiniMtzDataFileList(CList):
 class CUnmergedDataFileList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+
+    Extends CUnmergedDataFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1429,12 +1435,6 @@ class CUnmergedDataFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-
-    Extends CUnmergedDataFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -1446,6 +1446,12 @@ class CUnmergedDataFileList(CList):
 class CColumnType(CString):
 
 
+    """
+    A list of recognised MTZ column types
+    
+    Extends CColumnType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
@@ -1462,12 +1468,6 @@ class CColumnType(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list of recognised MTZ column types
-    
-    Extends CColumnType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1476,6 +1476,12 @@ class CColumnType(CString):
 class CColumnTypeList(CList):
 
 
+    """
+    A list of acceptable MTZ column types
+    
+    Extends CColumnTypeList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1490,12 +1496,6 @@ class CColumnTypeList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list of acceptable MTZ column types
-    
-    Extends CColumnTypeList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1505,6 +1505,12 @@ class CPhaserSolDataFile(CDataFile):
 
 
 
+    """
+    Phaser solution data file (pickle format).
+
+    Extends CPhaserSolDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/phaser-sol',
@@ -1530,12 +1536,6 @@ class CPhaserSolDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Phaser solution data file (pickle format).
-
-    Extends CPhaserSolDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1544,6 +1544,12 @@ class CPhaserSolDataFile(CDataFile):
 class CImportUnmergedList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+
+    Extends CImportUnmergedList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -1558,12 +1564,6 @@ class CImportUnmergedList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-
-    Extends CImportUnmergedList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -1575,6 +1575,10 @@ class CShelxFADataFile(CDataFile):
 
 
 
+    """
+    Extends CShelxFADataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-shelx-FA',
@@ -1600,10 +1604,6 @@ class CShelxFADataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CShelxFADataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1613,6 +1613,12 @@ class CShelxFADataFile(CDataFile):
 class CAltSpaceGroup(CSpaceGroup):
 
 
+    """
+    A string holding the space group
+    
+    Extends CAltSpaceGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1629,12 +1635,6 @@ class CAltSpaceGroup(CSpaceGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string holding the space group
-    
-    Extends CAltSpaceGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1643,6 +1643,12 @@ class CAltSpaceGroup(CSpaceGroup):
 class CAltSpaceGroupList(CList):
 
 
+    """
+    A list of alternative space-group symbols in the canonical ccp4i2
+    convention (CAltSpaceGroup / CSpaceGroup). Tasks that want plain
+    strings (e.g. their own native convention like "P212121") should use
+    a generic CList with a CString subItem rather than this class.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1657,12 +1663,6 @@ class CAltSpaceGroupList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list of alternative space-group symbols in the canonical ccp4i2
-    convention (CAltSpaceGroup / CSpaceGroup). Tasks that want plain
-    strings (e.g. their own native convention like "P212121") should use
-    a generic CList with a CString subItem rather than this class.
-    """
 
     SUBITEM = {'class': CAltSpaceGroup}
 
@@ -1670,6 +1670,10 @@ class CAltSpaceGroupList(CList):
 class CMtzDataset(CData):
 
 
+    """
+    Extends CMtzDataset with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1689,10 +1693,6 @@ class CMtzDataset(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CMtzDataset with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1701,6 +1701,12 @@ class CMtzDataset(CData):
 class CImageFileList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CImageFileList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1715,12 +1721,6 @@ class CImageFileList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CImageFileList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1729,6 +1729,12 @@ class CImageFileList(CList):
 class CAsuComponentList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CAsuComponentList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -1744,12 +1750,6 @@ class CAsuComponentList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CAsuComponentList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1759,6 +1759,10 @@ class CGenericReflDataFile(CDataFile):
 
 
 
+    """
+    Extends CGenericReflDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Reflection data',
@@ -1783,10 +1787,6 @@ class CGenericReflDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CGenericReflDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def getFormat(self):
         """
@@ -1834,6 +1834,12 @@ class CGenericReflDataFile(CDataFile):
 class CXia2ImageSelectionList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+
+    Extends CXia2ImageSelectionList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -1848,12 +1854,6 @@ class CXia2ImageSelectionList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-
-    Extends CXia2ImageSelectionList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1862,6 +1862,12 @@ class CXia2ImageSelectionList(CList):
 class CFormFactor(CData):
 
 
+    """
+    The for factor (Fp and Fpp) for a giving element and wavelength
+    
+    Extends CFormFactor with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -1881,12 +1887,6 @@ class CFormFactor(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    The for factor (Fp and Fpp) for a giving element and wavelength
-    
-    Extends CFormFactor with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1895,6 +1895,12 @@ class CFormFactor(CData):
 class CAnomalousScatteringElement(CElement):
 
 
+    """
+    Definition of a anomalous scattering element
+    
+    Extends CAnomalousScatteringElement with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "onlyEnumerators": False,
@@ -1912,12 +1918,6 @@ class CAnomalousScatteringElement(CElement):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Definition of a anomalous scattering element
-    
-    Extends CAnomalousScatteringElement with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1927,6 +1927,10 @@ class CImageFile(CDataFile):
 
 
 
+    """
+    Extends CImageFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-image',
@@ -1950,10 +1954,6 @@ class CImageFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CImageFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -1962,6 +1962,22 @@ class CImageFile(CDataFile):
 class CProgramColumnGroup(CData):
 
 
+    """
+    A group of MTZ columns required for program input.
+
+    This class maps between generic column names (e.g., 'Ip', 'SIGIp') and
+    actual MTZ column labels (e.g., 'Iplus', 'SIGIplus'). It behaves like
+    a dictionary that can be accessed via attributes.
+
+    Example:
+        >>> colgroup = CProgramColumnGroup()
+        >>> colgroup.set({'Ip': 'Iplus', 'SIGIp': 'SIGIplus'})
+        >>> print(colgroup.Ip)  # Returns 'Iplus'
+        >>> print(colgroup.isSet())  # Returns True
+
+    This provides compatibility with ccp4i2 wrapper code that expects
+    attribute access to column mappings.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -2005,22 +2021,6 @@ class CProgramColumnGroup(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input.
-
-    This class maps between generic column names (e.g., 'Ip', 'SIGIp') and
-    actual MTZ column labels (e.g., 'Iplus', 'SIGIplus'). It behaves like
-    a dictionary that can be accessed via attributes.
-
-    Example:
-        >>> colgroup = CProgramColumnGroup()
-        >>> colgroup.set({'Ip': 'Iplus', 'SIGIp': 'SIGIplus'})
-        >>> print(colgroup.Ip)  # Returns 'Iplus'
-        >>> print(colgroup.isSet())  # Returns True
-
-    This provides compatibility with ccp4i2 wrapper code that expects
-    attribute access to column mappings.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         """Initialize with an internal column mapping dict."""
@@ -2145,6 +2145,10 @@ class CRefmacKeywordFile(CDataFile):
 
 
 
+    """
+    Extends CRefmacKeywordFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/refmac-keywords',
@@ -2169,10 +2173,6 @@ class CRefmacKeywordFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CRefmacKeywordFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2186,27 +2186,6 @@ class CResolutionRange(CFloatRange):
     # straight through to start/end on assignment.
 
 
-    class Meta:
-        error_codes = {
-            "201": {
-                "description": "High/low resolution wrong way round?"
-            }
-        }
-        qualifiers = {
-            "allowUndefined": True,
-            "guiDefinition": {},
-            "saveToDb": False,
-        }
-    def __init__(self, parent=None, name=None, **kwargs):
-        """
-        Initialize CResolutionRange.
-
-        Args:
-            parent: Parent object in hierarchy
-            name: Object name
-            **kwargs: Additional keyword arguments
-        """
-        super().__init__(parent=parent, name=name, **kwargs)
     """
     Resolution range for crystallographic data.
 
@@ -2229,6 +2208,27 @@ class CResolutionRange(CFloatRange):
     CFloatRange, which ensures that .start and .end are NOT_SET by default and
     that smart assignment only copies explicitly set fields.
     """
+    class Meta:
+        error_codes = {
+            "201": {
+                "description": "High/low resolution wrong way round?"
+            }
+        }
+        qualifiers = {
+            "allowUndefined": True,
+            "guiDefinition": {},
+            "saveToDb": False,
+        }
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CResolutionRange.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
 
     @property
     def low(self):
@@ -2284,6 +2284,12 @@ class CMapDataFile(CDataFile):
     # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
     # an ordinary density map, which is otherwise the same FileType.
 
+    """
+    A CCP4 Map file
+    
+    Extends CMapDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-map',
@@ -2314,12 +2320,6 @@ class CMapDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A CCP4 Map file
-    
-    Extends CMapDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2328,6 +2328,12 @@ class CMapDataFile(CDataFile):
 class CRunBatchRangeList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CRunBatchRangeList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -2342,12 +2348,6 @@ class CRunBatchRangeList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CRunBatchRangeList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2356,6 +2356,12 @@ class CRunBatchRangeList(CList):
 class CDatasetList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CDatasetList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 0,
@@ -2370,12 +2376,6 @@ class CDatasetList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CDatasetList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2385,6 +2385,12 @@ class CImosflmXmlDataFile(CDataFile):
 
 
 
+    """
+    An iMosflm data file
+    
+    Extends CImosflmXmlDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "fileLabel": 'imosflm',
@@ -2408,12 +2414,6 @@ class CImosflmXmlDataFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An iMosflm data file
-    
-    Extends CImosflmXmlDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2422,6 +2422,12 @@ class CImosflmXmlDataFile(CDataFile):
 class CCrystalName(CString):
 
 
+    """
+    A string
+    
+    Extends CCrystalName with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": False,
@@ -2439,12 +2445,6 @@ class CCrystalName(CString):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A string
-    
-    Extends CCrystalName with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2455,6 +2455,16 @@ class CUnmergedMtzDataFile(CMtzDataFile):
 
 
 
+    """
+    
+    Inherits from:
+    - CUnmergedMtzDataFile: Metadata and structure
+    - CMtzDataFile: Shared full-fat methods
+    An MTZ experimental data file
+    
+    Extends CUnmergedMtzDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-mtz-unmerged',
@@ -2478,16 +2488,6 @@ class CUnmergedMtzDataFile(CMtzDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    
-    Inherits from:
-    - CUnmergedMtzDataFile: Metadata and structure
-    - CMtzDataFile: Shared full-fat methods
-    An MTZ experimental data file
-    
-    Extends CUnmergedMtzDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2584,6 +2584,16 @@ class CCell(CData):
 class CMtzColumnGroupType(CColumnType):
 
 
+    """
+    
+    Inherits from:
+    - CMtzColumnGroupType: Metadata and structure
+    - CColumnType: Shared full-fat methods
+    A list of recognised MTZ column types
+    
+    Extends CMtzColumnGroupType with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "enumerators": ['H', 'J', 'F', 'D', 'Q', 'G', 'L', 'K', 'M', 'E', 'P', 'W', 'A', 'B', 'Y', 'I', 'R'],
@@ -2600,16 +2610,6 @@ class CMtzColumnGroupType(CColumnType):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    
-    Inherits from:
-    - CMtzColumnGroupType: Metadata and structure
-    - CColumnType: Shared full-fat methods
-    A list of recognised MTZ column types
-    
-    Extends CMtzColumnGroupType with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2618,6 +2618,12 @@ class CMtzColumnGroupType(CColumnType):
 class CMtzColumn(CData):
 
 
+    """
+    An MTZ column with column label and column type
+    
+    Extends CMtzColumn with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -2639,12 +2645,6 @@ class CMtzColumn(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An MTZ column with column label and column type
-    
-    Extends CMtzColumn with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2653,6 +2653,12 @@ class CMtzColumn(CData):
 class CColumnGroupItem(CData):
 
 
+    """
+    Definition of set of columns that form a 'group'
+    
+    Extends CColumnGroupItem with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "1": {
@@ -2683,12 +2689,6 @@ class CColumnGroupItem(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Definition of set of columns that form a 'group'
-    
-    Extends CColumnGroupItem with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2697,6 +2697,10 @@ class CColumnGroupItem(CData):
 class CXia2ImageSelection(CData):
 
 
+    """
+    Extends CXia2ImageSelection with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "toolTip": 'select an image file and an optional range of files to define a dataset',
@@ -2715,10 +2719,6 @@ class CXia2ImageSelection(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CXia2ImageSelection with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2727,6 +2727,12 @@ class CXia2ImageSelection(CData):
 class CFPairColumnGroup(CProgramColumnGroup):
 
 
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CFPairColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Anomalous structure factors and sigma',
@@ -2741,12 +2747,6 @@ class CFPairColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFPairColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2755,6 +2755,12 @@ class CFPairColumnGroup(CProgramColumnGroup):
 class CIPairColumnGroup(CProgramColumnGroup):
 
 
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CIPairColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Anomalous intensities and sigma',
@@ -2769,12 +2775,6 @@ class CIPairColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CIPairColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2783,6 +2783,12 @@ class CIPairColumnGroup(CProgramColumnGroup):
 class CMapColumnGroup(CProgramColumnGroup):
 
 
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CMapColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Structure factor and phase to define a map',
@@ -2797,12 +2803,6 @@ class CMapColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CMapColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2811,6 +2811,12 @@ class CMapColumnGroup(CProgramColumnGroup):
 class CHLColumnGroup(CProgramColumnGroup):
 
 
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CHLColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Hendrickson-Lattmann coefficients',
@@ -2825,12 +2831,6 @@ class CHLColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CHLColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2839,6 +2839,12 @@ class CHLColumnGroup(CProgramColumnGroup):
 class CFreeRColumnGroup(CProgramColumnGroup):
 
 
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CFreeRColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Set of FreeR flags',
@@ -2853,12 +2859,6 @@ class CFreeRColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFreeRColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2867,6 +2867,12 @@ class CFreeRColumnGroup(CProgramColumnGroup):
 class CFSigFColumnGroup(CProgramColumnGroup):
 
 
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CFSigFColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Structure factor and sigma',
@@ -2881,12 +2887,6 @@ class CFSigFColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CFSigFColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2895,6 +2895,13 @@ class CFSigFColumnGroup(CProgramColumnGroup):
 class CAnomalousIntensityColumnGroup(CProgramColumnGroup):
 
 
+    """
+    Selection of I and AnomI columns from MTZ.
+Expected to be part of ab initio phasing dataset ( CDataset)
+    
+    Extends CAnomalousIntensityColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "toolTipList": ['The real part of the experimental intensity', 'The anomalous part of the experimental intensity'],
@@ -2910,13 +2917,6 @@ class CAnomalousIntensityColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Selection of I and AnomI columns from MTZ.
-Expected to be part of ab initio phasing dataset ( CDataset)
-    
-    Extends CAnomalousIntensityColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2925,6 +2925,12 @@ Expected to be part of ab initio phasing dataset ( CDataset)
 class CISigIColumnGroup(CProgramColumnGroup):
 
 
+    """
+    A group of MTZ columns required for program input
+    
+    Extends CISigIColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "guiLabel": 'Intensity and sigma',
@@ -2939,12 +2945,6 @@ class CISigIColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A group of MTZ columns required for program input
-    
-    Extends CISigIColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2954,6 +2954,13 @@ class CISigIColumnGroup(CProgramColumnGroup):
 class CAnomalousColumnGroup(CProgramColumnGroup):
 
 
+    """
+    Selection of F/I and AnomF/I columns from MTZ.
+Expected to be part of ab initio phasing dataset ( CDataset)
+    
+    Extends CAnomalousColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "toolTipList": ['The real part of the experimental structure factors', 'The anomalous part of the experimental structure factors'],
@@ -2968,13 +2975,6 @@ class CAnomalousColumnGroup(CProgramColumnGroup):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Selection of F/I and AnomF/I columns from MTZ.
-Expected to be part of ab initio phasing dataset ( CDataset)
-    
-    Extends CAnomalousColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -2984,6 +2984,18 @@ class CMapCoeffsDataFile(CMiniMtzDataFile):
 
     # Subtype constants
 
+    """
+    An MTZ map coefficients data file (FPHI format).
+
+    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
+    - columnNames(): Get column names from file content
+    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
+    - datasetName(): Get dataset name from MTZ
+    - fileExtensions(): Return ['mtz']
+
+    Extends CMapCoeffsDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-mtz-map',
@@ -3026,18 +3038,6 @@ class CMapCoeffsDataFile(CMiniMtzDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An MTZ map coefficients data file (FPHI format).
-
-    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
-    - columnNames(): Get column names from file content
-    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
-    - datasetName(): Get dataset name from MTZ
-    - fileExtensions(): Return ['mtz']
-
-    Extends CMapCoeffsDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def as_FPHI(self, work_directory: Optional[Any] = None) -> str:
         """
@@ -3065,6 +3065,16 @@ class CObsDataFile(CMiniMtzDataFile):
 
     # Subtype constants
 
+    """
+    An MTZ experimental data file
+
+    Inherits from:
+    - CObsDataFile: Metadata and structure
+    - CMiniMtzDataFile: Shared full-fat methods
+
+    Extends CObsDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "301": {
@@ -3126,16 +3136,6 @@ class CObsDataFile(CMiniMtzDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An MTZ experimental data file
-
-    Inherits from:
-    - CObsDataFile: Metadata and structure
-    - CMiniMtzDataFile: Shared full-fat methods
-
-    Extends CObsDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Conversion map: what each content flag can be converted to
     # Based on obs_data_converter.py conversion matrix:
@@ -3340,6 +3340,22 @@ class CPhsDataFile(CMiniMtzDataFile):
 
     # Subtype constants
 
+    """
+    An MTZ phase data file.
+
+    Handles phase data in different formats:
+    - HL (1): Hendrickson-Lattman coefficients (HLA, HLB, HLC, HLD)
+    - PHIFOM (2): Phase + Figure of Merit (PHI, FOM)
+
+    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
+    - columnNames(): Get column names from file content
+    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
+    - datasetName(): Get dataset name from MTZ
+    - fileExtensions(): Return ['mtz']
+
+    Extends CPhsDataFile with conversion methods for transforming
+    between different phase data representations.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-mtz-phases',
@@ -3381,22 +3397,6 @@ class CPhsDataFile(CMiniMtzDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An MTZ phase data file.
-
-    Handles phase data in different formats:
-    - HL (1): Hendrickson-Lattman coefficients (HLA, HLB, HLC, HLD)
-    - PHIFOM (2): Phase + Figure of Merit (PHI, FOM)
-
-    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
-    - columnNames(): Get column names from file content
-    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
-    - datasetName(): Get dataset name from MTZ
-    - fileExtensions(): Return ['mtz']
-
-    Extends CPhsDataFile with conversion methods for transforming
-    between different phase data representations.
-    """
 
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
@@ -3454,6 +3454,18 @@ class CFreeRDataFile(CMiniMtzDataFile):
 
     # Content flag constants
 
+    """
+    An MTZ experimental data file for free-R flags.
+
+    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
+    - columnNames(): Get column names from file content
+    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
+    - datasetName(): Get dataset name from MTZ
+    - fileExtensions(): Return ['mtz']
+
+    Extends CFreeRDataFile with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": 'application/CCP4-mtz-freerflag',
@@ -3490,18 +3502,6 @@ class CFreeRDataFile(CMiniMtzDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    An MTZ experimental data file for free-R flags.
-
-    Inherits from CMiniMtzDataFile to gain MTZ-specific methods:
-    - columnNames(): Get column names from file content
-    - _introspect_content_flag(): Auto-detect content flag from MTZ columns
-    - datasetName(): Get dataset name from MTZ
-    - fileExtensions(): Return ['mtz']
-
-    Extends CFreeRDataFile with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Standard column signature for FreeR files
     # splitHklout() will automatically relabel non-standard names (e.g., 'FreeR_flag') to 'FREER'
@@ -3514,6 +3514,12 @@ class CFreeRDataFile(CMiniMtzDataFile):
 class CSpaceGroupCell(CData):
 
 
+    """
+    Cell space group and parameters
+    
+    Extends CSpaceGroupCell with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -3555,12 +3561,6 @@ class CSpaceGroupCell(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Cell space group and parameters
-    
-    Extends CSpaceGroupCell with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -3569,6 +3569,14 @@ class CSpaceGroupCell(CData):
 class CMmcifReflData(CMmcifData):
 
 
+    """
+    Generic mmCIF data.
+This is intended to be a base class for other classes
+specific to coordinates, reflections or geometry data.
+
+    Extends CMmcifReflData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -3602,14 +3610,6 @@ class CMmcifReflData(CMmcifData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Generic mmCIF data.
-This is intended to be a base class for other classes
-specific to coordinates, reflections or geometry data.
-
-    Extends CMmcifReflData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def loadFile(self, file_path: str = None):
         """
@@ -3780,6 +3780,10 @@ specific to coordinates, reflections or geometry data.
 class CImportUnmerged(CData):
 
 
+    """
+    Extends CImportUnmerged with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "toolTip": 'Imported data file, cell parameters and crystal/dataset identifiers',
@@ -3813,10 +3817,6 @@ class CImportUnmerged(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CImportUnmerged with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def populateFromFile(self):
         """
@@ -3896,6 +3896,12 @@ class CImportUnmerged(CData):
 class CMtzData(CDataFileContent):
 
 
+    """
+    Base class for classes holding file contents
+
+    Extends CMtzData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -3962,12 +3968,6 @@ class CMtzData(CDataFileContent):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Base class for classes holding file contents
-
-    Extends CMtzData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -4560,6 +4560,12 @@ class CMtzData(CDataFileContent):
 class CUnmergedDataContent(CDataFileContent):
 
 
+    """
+    Base class for classes holding file contents
+
+    Extends CUnmergedDataContent with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -4597,12 +4603,6 @@ class CUnmergedDataContent(CDataFileContent):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Base class for classes holding file contents
-
-    Extends CUnmergedDataContent with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     def __init__(self, parent=None, name=None, **kwargs):
         super().__init__(parent=parent, name=name, **kwargs)
@@ -5253,6 +5253,10 @@ class CUnmergedDataContent(CDataFileContent):
 class CMtzColumnGroup(CData):
 
 
+    """
+    Extends CMtzColumnGroup with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -5272,10 +5276,6 @@ class CMtzColumnGroup(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CMtzColumnGroup with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -5284,6 +5284,12 @@ class CMtzColumnGroup(CData):
 class CDataset(CData):
 
 
+    """
+    The experimental data model for ab initio phasing
+    
+    Extends CDataset with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -5311,12 +5317,6 @@ class CDataset(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    The experimental data model for ab initio phasing
-    
-    Extends CDataset with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -5325,6 +5325,10 @@ class CDataset(CData):
 class CProgramColumnGroup0(CData):
 
 
+    """
+    Extends CProgramColumnGroup0 with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -5363,10 +5367,6 @@ class CProgramColumnGroup0(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CProgramColumnGroup0 with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -5377,6 +5377,11 @@ class CPhaserTngDagFile(CDataFile):
 
 
 
+    """
+    PhaserTNG DAG file — directed acyclic graph of a picard MR pipeline.
+
+    Extends CPhaserTngDagFile with implementation-specific methods.
+    """
     class Meta:
         qualifiers = {
             "mimeTypeName": '"application/phasertng-dag"',
@@ -5398,11 +5403,6 @@ class CPhaserTngDagFile(CDataFile):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    PhaserTNG DAG file — directed acyclic graph of a picard MR pipeline.
-
-    Extends CPhaserTngDagFile with implementation-specific methods.
-    """
 
     # Add your methods here
     pass

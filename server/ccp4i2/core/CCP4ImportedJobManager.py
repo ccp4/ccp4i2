@@ -21,6 +21,12 @@ from ccp4i2.core.CCP4Data import CI2DataType, COneWord
 class CImportedJobDataList(CList):
 
 
+    """
+    A list with all items of one CData sub-class
+    
+    Extends CImportedJobDataList with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "listMinLength": 1,
@@ -35,12 +41,6 @@ class CImportedJobDataList(CList):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CImportedJobDataList with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -49,6 +49,10 @@ class CImportedJobDataList(CList):
 class CImportedJobData(CData):
 
 
+    """
+    Extends CImportedJobData with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -70,10 +74,6 @@ class CImportedJobData(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CImportedJobData with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -82,6 +82,10 @@ class CImportedJobData(CData):
 class CImportedJobDefinition(CContainer):
 
 
+    """
+    Extends CImportedJobDefinition with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         error_codes = {
             "101": {
@@ -275,10 +279,6 @@ class CImportedJobDefinition(CContainer):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CImportedJobDefinition with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass

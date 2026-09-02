@@ -22,6 +22,15 @@ from ccp4i2.core.CCP4XtalData import CSpaceGroup
 class CPerformanceIndicator(CData):
 
 
+    """
+    Extends CPerformanceIndicator with implementation-specific methods.
+
+    Overrides isSet() so that a performance indicator is considered "set"
+    when any of its KPI children (beyond the inherited 'value' and
+    'annotation' fields) have been explicitly set.  This ensures
+    exclude_unset serialization preserves PERFORMANCE elements that
+    contain real metrics like highResLimit, rMeas, RFactor, etc.
+    """
     class Meta:
         error_codes = {
             "301": {
@@ -60,15 +69,6 @@ class CPerformanceIndicator(CData):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Extends CPerformanceIndicator with implementation-specific methods.
-
-    Overrides isSet() so that a performance indicator is considered "set"
-    when any of its KPI children (beyond the inherited 'value' and
-    'annotation' fields) have been explicitly set.  This ensures
-    exclude_unset serialization preserves PERFORMANCE elements that
-    contain real metrics like highResLimit, rMeas, RFactor, etc.
-    """
 
     # Fields inherited from CPerformanceIndicator that are structural,
     # not KPI values — skip these when deciding if the indicator is "set".
@@ -114,6 +114,14 @@ class CPerformanceIndicator(CData):
 class CDataReductionPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CDataReductionPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CDataReductionPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -135,14 +143,6 @@ class CDataReductionPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CDataReductionPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CDataReductionPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -151,6 +151,14 @@ class CDataReductionPerformance(CPerformanceIndicator):
 class CPairefPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CPairefPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CPairefPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -170,14 +178,6 @@ class CPairefPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CPairefPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CPairefPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -186,6 +186,14 @@ class CPairefPerformance(CPerformanceIndicator):
 class CDataReductionCCPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CDataReductionCCPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CDataReductionCCPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -207,14 +215,6 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CDataReductionCCPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CDataReductionCCPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -223,6 +223,14 @@ class CDataReductionCCPerformance(CPerformanceIndicator):
 class CServalcatPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CServalcatPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CServalcatPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -254,14 +262,6 @@ class CServalcatPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CServalcatPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CServalcatPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -270,6 +270,14 @@ class CServalcatPerformance(CPerformanceIndicator):
 class CExpPhasPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CExpPhasPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CExpPhasPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -295,14 +303,6 @@ class CExpPhasPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CExpPhasPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CExpPhasPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -311,6 +311,12 @@ class CExpPhasPerformance(CPerformanceIndicator):
 class CAtomCountPerformance(CPerformanceIndicator):
 
 
+    """How much model a task produced: ``nAtoms`` and ``nResidues``.
+
+    Inherits from:
+    - CAtomCountPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -331,12 +337,6 @@ class CAtomCountPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """How much model a task produced: ``nAtoms`` and ``nResidues``.
-
-    Inherits from:
-    - CAtomCountPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    """
 
     def setFromPdbDataFile(self, pdbDataFile):
         """Count the atoms and residues in *pdbDataFile* into this indicator.
@@ -387,6 +387,14 @@ class CAtomCountPerformance(CPerformanceIndicator):
 class CModelBuildPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CModelBuildPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CModelBuildPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -407,14 +415,6 @@ class CModelBuildPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CModelBuildPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CModelBuildPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -423,6 +423,14 @@ class CModelBuildPerformance(CPerformanceIndicator):
 class CRefinementPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CRefinementPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CRefinementPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -446,14 +454,6 @@ class CRefinementPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CRefinementPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CRefinementPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -462,6 +462,14 @@ class CRefinementPerformance(CPerformanceIndicator):
 class CSuperposePerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CSuperposePerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CSuperposePerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -482,14 +490,6 @@ class CSuperposePerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CSuperposePerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CSuperposePerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -498,6 +498,14 @@ class CSuperposePerformance(CPerformanceIndicator):
 class CDataReductionRefinementPerformance(CPerformanceIndicator):
 
 
+    """
+    Composite performance indicator for pipelines spanning data reduction
+    and refinement (e.g. dr_mr_modelbuild, substitute_ligand).
+
+    Inherits from:
+    - CDataReductionRefinementPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -521,14 +529,6 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-    Composite performance indicator for pipelines spanning data reduction
-    and refinement (e.g. dr_mr_modelbuild, substitute_ligand).
-
-    Inherits from:
-    - CDataReductionRefinementPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    """
 
     pass
 
@@ -536,6 +536,14 @@ class CDataReductionRefinementPerformance(CPerformanceIndicator):
 class CPhaseErrorPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CPhaseErrorPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CPhaseErrorPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -557,14 +565,6 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CPhaseErrorPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CPhaseErrorPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
@@ -573,6 +573,14 @@ class CPhaseErrorPerformance(CPerformanceIndicator):
 class CTestObsConversionsPerformance(CPerformanceIndicator):
 
 
+    """
+
+    Inherits from:
+    - CTestObsConversionsPerformance: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    Extends CTestObsConversionsPerformance with implementation-specific methods.
+    Add file I/O, validation, and business logic here.
+    """
     class Meta:
         qualifiers = {
             "allowUndefined": True,
@@ -592,14 +600,6 @@ class CTestObsConversionsPerformance(CPerformanceIndicator):
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-    """
-
-    Inherits from:
-    - CTestObsConversionsPerformance: Metadata and structure
-    - CPerformanceIndicator: Shared full-fat methods
-    Extends CTestObsConversionsPerformance with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
 
     # Add your methods here
     pass
