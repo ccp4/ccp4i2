@@ -19,7 +19,6 @@
 
 import os
 import unittest
-import xml.etree.ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
@@ -134,11 +133,6 @@ class cmapcoeff(CPluginScript):
             else :
                 self.container.outputData.MAPOUT = self.cfftPlugin.container.outputData.MAPOUT
                 self.container.outputData.MAPOUT.annotation.set ( 'Calculated using ' + str ( self.container.outputData.FPHIOUT.annotation ) )
-
-        with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-            xmlRoot = ET.Element('cmapcoeff')
-            xmlString = ET.tostring ( xmlRoot, pretty_print=True )
-            CCP4Utils.writeXML(xmlFile,xmlString)
 
         return CPluginScript.SUCCEEDED
 
