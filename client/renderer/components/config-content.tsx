@@ -18,6 +18,7 @@ import {
 import {
   Cancel,
   Check,
+  RadioButtonUnchecked,
   ExpandMore,
   RocketLaunch,
 } from "@mui/icons-material";
@@ -419,8 +420,17 @@ export const ConfigContent: React.FC = () => {
               />
               <SetupRow
                 ok={existingFiles?.CCP4I2_PROJECTS_DIR}
+                // Not yet created is the normal first-run state, not a fault:
+                // the server creates this directory when it starts. A red cross
+                // here told first-time users something was wrong and that they
+                // had to go and fix it.
+                pendingCreation
                 label="Projects"
-                value={config.CCP4I2_PROJECTS_DIR}
+                value={
+                  existingFiles?.CCP4I2_PROJECTS_DIR
+                    ? config.CCP4I2_PROJECTS_DIR
+                    : `${config.CCP4I2_PROJECTS_DIR} — will be created`
+                }
                 action={
                   hasElectron
                     ? { label: "Change", onClick: onSelectProjectsDir }
@@ -594,16 +604,21 @@ const SetupRow: React.FC<{
   ok: boolean | undefined;
   label: string;
   value: string;
+  /** Absent is normal — the item is created on demand, so show it as pending
+   *  rather than as a fault the user has to go and fix. */
+  pendingCreation?: boolean;
   action?: {
     label: string;
     onClick: () => void;
     variant?: "text" | "contained" | "outlined";
     disabled?: boolean;
   };
-}> = ({ ok, label, value, action }) => (
+}> = ({ ok, label, value, action, pendingCreation }) => (
   <Stack direction="row" alignItems="center" spacing={1}>
     {ok ? (
       <Check color="success" fontSize="small" />
+    ) : pendingCreation ? (
+      <RadioButtonUnchecked color="disabled" fontSize="small" />
     ) : (
       <Cancel color="error" fontSize="small" />
     )}

@@ -13,7 +13,6 @@ import {
 import {
   Add,
   Upload,
-  SettingsBackupRestore,
   ChevronRight,
 } from "@mui/icons-material";
 import { useAuth } from "@/lib/compounds/auth-context";
@@ -55,14 +54,10 @@ const PATHS: Path[] = [
     icon: <Upload />,
     route: "/ccp4i2/import-project",
   },
-  {
-    key: "migrate",
-    title: "Migrate a legacy CCP4i2",
-    detail: "Bring in projects from an existing ~/.CCP4I2 database.",
-    icon: <SettingsBackupRestore />,
-    route: "/ccp4i2/admin/migrate-legacy",
-    adminOnly: true,
-  },
+  // "Migrate a legacy CCP4i2" is deliberately absent during the alpha: adopting
+  // a legacy installation's projects where they lie risks damaging the
+  // installation the user still depends on. "Import a project" above is the
+  // supported route, and it copies rather than adopts.
 ];
 
 export const WelcomeChooser: React.FC = () => {

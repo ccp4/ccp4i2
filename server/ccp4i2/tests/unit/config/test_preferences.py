@@ -143,7 +143,11 @@ def test_settings_reads_preferences(tmp_path):
 def test_settings_default_when_no_preferences(tmp_path):
     home = tmp_path / "home"
     out = _probe_settings(home, {})  # empty preferences.json
-    assert out["projects"] == str(home.resolve() / "CCP4X_PROJECTS")
+    # "projects", not the old "CCP4X_PROJECTS": the store sits under the one
+    # user home and is named for what it holds rather than for a product
+    # generation. A home that already contains CCP4X_PROJECTS keeps it -- see
+    # tests/unit/config/test_user_home.py -- but a fresh one does not create it.
+    assert out["projects"] == str(home.resolve() / "projects")
     assert out["engine"] == "django.db.backends.sqlite3"
 
 

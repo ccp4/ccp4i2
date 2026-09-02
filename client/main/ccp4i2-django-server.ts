@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
+import { ccp4i2Home } from "./ccp4i2-preferences";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -196,11 +197,10 @@ export async function startDjangoServer(
   // Setup logging for production
   let logStream: fs.WriteStream | null = null;
   if (!isDev) {
-    const homeDir = os.homedir();
-    let logDir = path.join(homeDir, ".ccp4i2");
-    if (!fs.existsSync(logDir)) {
-      logDir = path.join(homeDir, "ccp4i2");
-    }
+    // Under the one user home, not a ~/.ccp4i2 of its own: server logs are
+    // per-user state like everything else, and a tester asked to "send me your
+    // log" should not have to be told which of several directories to look in.
+    const logDir = path.join(ccp4i2Home(), "logs");
 
     const runNumber = getNextRunNumber(logDir);
     const logFile = path.join(logDir, `uvicorn-${runNumber}.log`);

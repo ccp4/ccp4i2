@@ -15,9 +15,9 @@ import { installIpcHandlers } from "./ccp4i2-ipc";
 import { Server } from "node:http";
 import { installWillDownloadHandler } from "./ccp4i2-session";
 import { StoreSchema } from "../types/store";
+import { ccp4i2Home, defaultProjectsDir } from "./ccp4i2-preferences";
 import { createWindow } from "./ccp4i2-create-window";
 import { setupZoomLevel } from "./ccp4i2-zoom";
-import os from "os";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
@@ -42,13 +42,12 @@ if (!isDev) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getProjectsDir = () => {
-  const homeDir = os.homedir();
-  const isWindows = process.platform === "win32";
-  return isWindows
-    ? path.join(homeDir, "ccp4i2", "CCP4X_PROJECTS")
-    : path.join(homeDir, ".ccp4i2", "CCP4X_PROJECTS");
-};
+// Where new projects go. Delegated to the shared resolver rather than computed
+// here: this function used to return ~/.ccp4i2/CCP4X_PROJECTS while the Django
+// settings said ~/.ccp4i2-django/CCP4X_PROJECTS, so the desktop app and the
+// server it launched disagreed about the project store — which is why testers
+// reported seeing several directories where they expected one.
+const getProjectsDir = () => defaultProjectsDir();
 
 // Compute projectRoot based on dev vs packaged mode
 // This is NOT user-configurable - it's always derived from the app location
@@ -131,7 +130,13 @@ const getDefaultCCP4Dir = () => {
   return isMac ? "/Applications/ccp4-9x" : isWindows ? "C:\\CCP4\\ccp4-9" : "/opt/ccp4";
 };
 
+// Config lives under the CCP4i2 home rather than Electron's userData. userData
+// also holds Chromium's cache, GPU state and cookies, which have no business in
+// a directory we tell users is their CCP4i2 configuration — and unpackaged runs
+// put it in ~/.config/Electron, which is not namespaced to this app at all.
 export const store = new Store<StoreSchema>({
+  cwd: ccp4i2Home(),
+  name: "electron",
   defaults: {
     CCP4Dir: getDefaultCCP4Dir(),
     projectRoot: getProjectRoot(), // Computed, not user-configurable

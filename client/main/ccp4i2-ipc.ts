@@ -347,6 +347,35 @@ export const installIpcHandlers = (
 
   // IPC communication to trigger file dialog to select parent directory for new projects
   // and set the CCP4I2_PROJECTS_DIR in the store
+  // Pick a parent directory for ONE project, without touching any preference.
+  //
+  // Distinct from locate-ccp4i2-project-directory below, which deliberately
+  // changes the default projects directory (and with it the database location).
+  // The New Project page used that one, so choosing a custom parent for a single
+  // project silently moved everybody's default -- and pointed the database at
+  // <chosen dir>/db.sqlite3, which is how a user ends up with several databases
+  // scattered around the disk without ever asking for one.
+  ipcMain.on("choose-project-parent-directory", (event, _data) => {
+    const mainWindow: BrowserWindow | null = getMainWindow();
+    if (!mainWindow) {
+      console.error("Main window is not available");
+      return;
+    }
+    dialog
+      .showOpenDialog(mainWindow, {
+        properties: ["openDirectory", "createDirectory"],
+      })
+      .then((result) => {
+        if (result.canceled || result.filePaths.length === 0) return;
+        event.reply("message-from-main", {
+          message: "choose-project-parent-directory",
+          directory: result.filePaths[0],
+        });
+      });
+  });
+
+  // Changes the DEFAULT projects directory. Used by the Config page, where that
+  // is exactly what the user asked for.
   ipcMain.on("locate-ccp4i2-project-directory", (event, data) => {
     const mainWindow: BrowserWindow | null = getMainWindow();
     if (!mainWindow) {

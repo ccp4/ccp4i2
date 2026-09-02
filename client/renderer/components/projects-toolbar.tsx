@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, Toolbar, Tooltip } from "@mui/material";
-import { Add, Upload, SettingsBackupRestore, Restore } from "@mui/icons-material";
+import { Add, Upload, Restore } from "@mui/icons-material";
 import { useAuth } from "@/lib/compounds/auth-context";
 import { isElectron } from "../utils/platform";
 import { RecoverProjectsDialog } from "./recover-projects-dialog";
@@ -53,17 +53,9 @@ export default function ProjectsToolbar() {
           </Button>
         </Tooltip>
       )}
-      {canAdminister && (
-        <Tooltip title="Migrate a legacy CCP4i2 database into this installation">
-          <Button
-            variant="outlined"
-            startIcon={<SettingsBackupRestore />}
-            onClick={() => router.push("/ccp4i2/admin/migrate-legacy")}
-          >
-            Migrate legacy
-          </Button>
-        </Tooltip>
-      )}
+      {/* "Migrate legacy" is withdrawn for the alpha - see welcome-chooser.tsx.
+          Import (which copies) covers the same need without touching the
+          user's existing CCP4i2 installation. */}
       {canRecover && (
         <RecoverProjectsDialog
           open={recoverOpen}

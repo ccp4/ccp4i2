@@ -57,6 +57,10 @@ export const NewProjectContent: React.FC = () => {
           if (data.message === "check-file-exists") {
             setDirectoryExists(data.exists);
           }
+          if (data.message === "choose-project-parent-directory") {
+            // Local to this page only — nothing is persisted.
+            setCcp4i2ProjectDirectory(data.directory);
+          }
         }
       );
     } else {
@@ -207,7 +211,10 @@ export const NewProjectContent: React.FC = () => {
   function handleDirectoryChange() {
     if (typeof window !== "undefined") {
       if (window.electronAPI) {
-        window.electronAPI.sendMessage("locate-ccp4i2-project-directory");
+        // Deliberately NOT locate-ccp4i2-project-directory: that changes the
+        // default projects directory for every future project. Choosing where
+        // to put this one project must not move everyone else's default.
+        window.electronAPI.sendMessage("choose-project-parent-directory");
       } else {
         console.error("Electron API is not available");
       }

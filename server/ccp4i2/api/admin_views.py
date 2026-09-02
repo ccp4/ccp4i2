@@ -13,6 +13,7 @@ from pathlib import Path
 
 from django.core.management import call_command
 from django.db import transaction
+from django.conf import settings
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAdminUser
@@ -47,6 +48,44 @@ def _resolve_sqlite_source(request):
     return Path(db_path).expanduser(), None
 
 
+def _inplace_migration_disabled_response():
+    """403 for adopting a legacy installation's projects WHERE THEY LIE.
+
+    The distinction that matters is the mode, not the endpoint. Copying a legacy
+    project to a new root reads the old installation and writes somewhere else,
+    so it cannot damage what the user is still working with; adopting in place
+    makes the old directories live under the new app while the old app may still
+    be using them. Agreed with Paul Bond and Stuart McNicholas, 2026-09-02: the
+    second is withdrawn for the alpha, the first is not.
+
+    Callers read the flag with ``getattr(..., False)`` deliberately: a settings
+    module that has never heard of it (test_settings, a bespoke deployment) must
+    get the SAFE answer, not an AttributeError and a 500.
+    """
+    return Response(
+        {
+            "success": False,
+            "error": "in_place_migration_disabled",
+            "message": (
+                "Adopting a legacy CCP4i2 installation's projects where they sit "
+                "is disabled in this alpha, because it operates on projects your "
+                "existing CCP4i2 may still be using. Copy them instead: pass "
+                "copy_files with a dest_root, or use Projects -> Import, which "
+                "accepts a project directory or a project zip and never writes "
+                "to the original."
+            ),
+        },
+        status=status.HTTP_403_FORBIDDEN,
+    )
+
+
+def _in_place_migration_refused(request):
+    """True when this request asks to adopt projects in place, and may not."""
+    if getattr(settings, "CCP4I2_ALLOW_INPLACE_MIGRATION", False):
+        return False
+    return str(request.data.get("copy_files", "false")).lower() != "true"
+
+
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def import_legacy_ccp4i2(request):
@@ -61,6 +100,11 @@ def import_legacy_ccp4i2(request):
 
     Returns summary of imported records or validation results.
     """
+    # Loading a dumpdata fixture has no copy mode: it adopts whatever directories
+    # the fixture names, so there is no safe variant to let through.
+    if not getattr(settings, "CCP4I2_ALLOW_INPLACE_MIGRATION", False):
+        return _inplace_migration_disabled_response()
+
     fixture_file = request.FILES.get('ccp4i2_fixture')
     dry_run = request.data.get('dry_run', 'false').lower() == 'true'
     remap_from = request.data.get('remap_from', '').strip()
@@ -165,6 +209,9 @@ def import_sqlite(request):
     - db_path: Server-side path to SQLite database (e.g. ~/.CCP4I2/db/database.sqlite)
     - dry_run, remap_from, remap_to as above
     """
+    if _in_place_migration_refused(request):
+        return _inplace_migration_disabled_response()
+
     from ccp4i2.db.import_sqlite import SQLiteImporter, StructuralIssuesError
 
     src = _resolve_sqlite_source(request)
