@@ -115,7 +115,13 @@ def _model(tmp_path, name="start.pdb", residue=None):
             encoding="utf-8",
         )
     else:
-        path.write_text("END\n", encoding="utf-8")
+        # One real atom, not an empty file: a model with nothing in it is now
+        # refused in its own right, and would stop these checks before they ran.
+        path.write_text(
+            "ATOM      1  CA  ALA A   1       0.000   0.000   0.000  1.00 20.00           C  \n"
+            "END\n",
+            encoding="utf-8",
+        )
     return path
 
 
