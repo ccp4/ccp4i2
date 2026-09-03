@@ -179,9 +179,9 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     def processInputFiles(self):
         from ccp4i2.core import CCP4XtalData
 
-        # Changed Mtz merging to included phases. Due to issues with makeHkln() (column names), I used cad to manually merge files.
-        cnMtz = ['F_SIGF']
-        if self.container.inputData.F_OR_I.isSet() and self.container.inputData.F_OR_I.__str__() == 'I':
+        # F_OR_I is settled against the data first: a default of I on a file
+        # of amplitudes would ask for a conversion that cannot be done.
+        if phaser_MR.resolve_f_or_i(self.container.inputData) == 'I':
             self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN]])
         else:
             self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])

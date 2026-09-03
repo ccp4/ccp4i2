@@ -5,7 +5,7 @@ import pytest
 from .utils import demoData, i2run
 
 
-def _beta_blip_args():
+def _beta_blip_args(f_or_i="F"):
     args = ["phaser_pipeline"]
     args += [
         "--F_SIGF",
@@ -24,7 +24,8 @@ def _beta_blip_args():
         "pdbItemList/identity_to_target=0.9",
         f"pdbItemList/structure={demoData('beta_blip', 'blip.pdb')}",
     ]
-    args += ["--F_OR_I", "F"]
+    if f_or_i is not None:
+        args += ["--F_OR_I", f_or_i]
     return args
 
 
@@ -67,3 +68,21 @@ def test_beta_blip_asu():
     args += ["--RUNREFMAC", "False"]
     with i2run(args) as job:
         _check_output(job, include_refinement=False)
+
+
+@pytest.mark.order("first")
+def test_beta_blip_amplitudes_with_f_or_i_untouched():
+    """beta_blip holds amplitudes only, and F_OR_I defaults to I.
+
+    Every other test here passes --F_OR_I F by hand. A user does not: the
+    file is picked, or autopopulated from an earlier job, and the default
+    stands. The pipeline must settle the flag against the data itself, and
+    the params file must say what was used.
+    """
+    args = _beta_blip_args(f_or_i=None)
+    args += ["--RUNSHEETBEND", "False"]
+    args += ["--RUNREFMAC", "False"]
+    with i2run(args) as job:
+        _check_output(job, include_refinement=False)
+        params = ET.parse(job / "params.xml")
+        assert params.find(".//inputData/F_OR_I").text == "F"

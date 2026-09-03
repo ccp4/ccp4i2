@@ -786,17 +786,43 @@ export interface ParseMtzOptions {
  * across all environments (including Azure where SharedArrayBuffer isn't
  * available for WASM threading).
  */
+/**
+ * The file could not be read as an MTZ with columns. Distinct from the user
+ * cancelling the column dialog, which is not an error and is reported as
+ * ``null`` -- a caller that treats the two alike shows nothing for a file it
+ * silently failed to read, which is how a pre-dataset MTZ (four-field COLUMN
+ * records) went unimportable without a word.
+ */
+export class MtzColumnsUnreadableError extends Error {
+  constructor(fileName: string, reason: string) {
+    super(`Could not read the columns of ${fileName}: ${reason}`);
+    this.name = "MtzColumnsUnreadableError";
+  }
+}
+
+async function parseMtzColumnsOrThrow(file: File): Promise<ColumnNames> {
+  const { parseMtzFile, getColumnNamesByType } = await import("../../../lib/mtz-parser");
+  let columns: ColumnNames;
+  try {
+    columns = getColumnNamesByType(await parseMtzFile(file));
+  } catch (error) {
+    throw new MtzColumnsUnreadableError(
+      file.name,
+      error instanceof Error ? error.message : String(error)
+    );
+  }
+  if (Object.keys(columns).length === 0) {
+    throw new MtzColumnsUnreadableError(
+      file.name,
+      "the header declares no columns"
+    );
+  }
+  return columns;
+}
+
 async function parseMtzColumnsNative(file: File): Promise<ColumnNames | null> {
   try {
-    const { parseMtzFile, getColumnNamesByType } = await import("../../../lib/mtz-parser");
-    const header = await parseMtzFile(file);
-    const columns = getColumnNamesByType(header);
-
-    if (Object.keys(columns).length === 0) {
-      return null;
-    }
-
-    return columns;
+    return await parseMtzColumnsOrThrow(file);
   } catch (error) {
     console.error("Failed to parse MTZ file:", error);
     return null;
@@ -981,6 +1007,7 @@ export function showMtzColumnDialogEnhanced(
  * - siblingInputs: If a CFreeRDataFile sibling exists, shows FreeR column selection
  *
  * Returns MtzColumnResult with potentially multiple selections, or null if cancelled.
+ * Throws MtzColumnsUnreadableError if the file's columns cannot be read.
  */
 export async function selectMtzColumnsEnhanced(
   options: ParseMtzOptionsEnhanced
@@ -1020,12 +1047,9 @@ export async function selectMtzColumnsEnhanced(
     };
   }
 
-  // Parse the MTZ file
-  const columnNames = await parseMtzColumns(file, cootModule);
-
-  if (!columnNames) {
-    return null;
-  }
+  // Parse the MTZ file. An unreadable file throws; only a cancelled dialog
+  // resolves to null.
+  const columnNames = await parseMtzColumnsOrThrow(file);
 
   // Determine if we should show FreeR section
   // Show FreeR if there's a sibling CFreeRDataFile input

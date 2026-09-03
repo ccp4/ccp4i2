@@ -280,15 +280,20 @@ function parseHeaderRecords(headerText: string): MtzHeader {
         break;
 
       case "COLUMN":
-        // COLUMN label type min max dataset_id
-        const colMatch = args.match(/^(\S+)\s+(\S)\s+([\d.eE+-]+)\s+([\d.eE+-]+)\s+(\d+)/);
+        // COLUMN label type min max [dataset_id]
+        // The dataset id arrived with MTZ datasets (CCP4 4.0); a file written
+        // before that, or by a program that never adopted them, has four
+        // fields and belongs to the base dataset 0. gemmi reads such files
+        // without complaint, and so must this, or the column dialog never
+        // opens for them.
+        const colMatch = args.match(/^(\S+)\s+(\S)\s+([\d.eE+-]+)\s+([\d.eE+-]+)(?:\s+(\d+))?/);
         if (colMatch) {
           header.columns.push({
             label: colMatch[1],
             type: colMatch[2],
             minValue: parseFloat(colMatch[3]),
             maxValue: parseFloat(colMatch[4]),
-            datasetId: parseInt(colMatch[5], 10),
+            datasetId: colMatch[5] !== undefined ? parseInt(colMatch[5], 10) : 0,
           });
         }
         break;

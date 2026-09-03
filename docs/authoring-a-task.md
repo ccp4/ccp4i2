@@ -94,6 +94,19 @@ References:
 > `CDataFile` that is set and exists on disk after the job — there is no
 > `saveToDb` gate.
 
+> **A mini-MTZ carries canonical column labels.** Every `CObsDataFile`,
+> `CFreeRDataFile`, `CPhsDataFile` and `CMapCoeffsDataFile` your task writes
+> must name its columns as the class's `CONTENT_SIGNATURE_LIST` does —
+> `F,SIGF` for mean SFs, `I,SIGI`, `Iplus,SIGIplus,Iminus,SIGIminus`, `FREER`,
+> `HLA,HLB,HLC,HLD`, `PHI,FOM`, `F,PHI`. That is how a consumer decides what a
+> file holds; the `contentFlag` you set on the object is not consulted, so a
+> file that kept its source labels (`Fobs,Sigma`) is unreadable downstream
+> however it is flagged. `splitHklout()` and the `Import*` bases relabel for
+> you; if you split or write an MTZ yourself, map the labels through
+> `<OutputClass>.canonical_column_mapping(contentFlag, labels)`. The base class
+> checks every mini-MTZ in `outputData` after `processOutputFiles()` and fails
+> the job (error 990) rather than glean a file the next task cannot read.
+
 ### Declaring the programs your task needs
 
 `TASKCOMMAND` names the one program the base class launches. Two class
@@ -268,6 +281,8 @@ ccp4-python -m pytest ccp4i2/tests/i2run/test_mytask.py -v
 - [ ] (if it wraps a published program) citation registered in
       `core/citations.py` — `TASK_CITES`, or `NON_CITABLE` if there is nothing
       to cite
+- [ ] (if it writes a mini-MTZ itself) columns relabelled through
+      `canonical_column_mapping()` — `splitHklout()` does this for you
 - [ ] An i2run test
 
 ## See also

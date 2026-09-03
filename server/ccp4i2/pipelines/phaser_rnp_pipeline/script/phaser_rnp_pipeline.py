@@ -201,11 +201,8 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             phaserPlugin.container.inputData.RESOLUTION_HIGH.set(3.0)
             if F_SIGF is not None: phaserPlugin.container.inputData.F_SIGF=F_SIGF
 
-            phaserPlugin.container.inputData.F_SIGF.loadFile()
-            columns = phaserPlugin.container.inputData.F_SIGF.fileContent.getListOfColumns()
-            columnStrings = [str(column) for column in columns]
-            print(columnStrings)
-            if 'F' in columnStrings: phaserPlugin.container.inputData.F_OR_I.set('F')
+            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+            phaser_MR.resolve_f_or_i(phaserPlugin.container.inputData)
 
             rv = phaserPlugin.process()
             if rv != CPluginScript.SUCCEEDED:

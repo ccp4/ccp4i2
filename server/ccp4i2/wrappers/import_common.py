@@ -154,16 +154,11 @@ def infer_map_subtype(column_labels):
 def canonical_mapping(output_class, content_flag, labels):
     """Map source labels to the canonical mini-MTZ labels for this content flag.
 
-    Produces a clean mini-MTZ whose columns are named per the class's
-    CONTENT_SIGNATURE_LIST (e.g. F,SIGF for mean SFs; FREER for free flags).
-    Falls back to identity if the column count doesn't match.
+    The one definition lives on CMiniMtzDataFile so that every producer of a
+    mini-MTZ relabels the same way; this is kept as the name the Import* tasks
+    use.
     """
-    signature_list = getattr(output_class, 'CONTENT_SIGNATURE_LIST', None)
-    if content_flag and signature_list and 1 <= content_flag <= len(signature_list):
-        signature = signature_list[content_flag - 1]
-        if signature and len(signature) == len(labels):
-            return {src: canon for src, canon in zip(labels, signature)}
-    return {lbl: lbl for lbl in labels}
+    return output_class.canonical_column_mapping(content_flag, labels)
 
 
 # ---------------------------------------------------------------------------

@@ -4,6 +4,7 @@ from lxml import etree
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 
 
 class phaser_pipeline(CPluginScript):
@@ -26,6 +27,10 @@ class phaser_pipeline(CPluginScript):
         211: {'description': 'Exception in harvestFile'},
     }
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
+
+    def validity(self):
+        error = super().validity()
+        return phaser_MR.f_or_i_validity(self.TASKNAME, self.container.inputData, error)
 
     def process(self):
         invalidFiles = self.checkInputData()
@@ -54,6 +59,9 @@ class phaser_pipeline(CPluginScript):
                     print("Setting",attrName,attr)
                     #setattr(self.phaserPlugin.container.keywords,attrName,attr)
                     getattr(self.phaserPlugin.container.keywords,attrName).set(attr)
+        # Settle F_OR_I against the data at the pipeline level too, so the
+        # pipeline's own params file records what was actually used.
+        phaser_MR.resolve_f_or_i(self.container.inputData)
         self.phaserPlugin.container.inputData.set(self.container.inputData)
         # KILLFILEPATH is deliberately left unset: each phaser wrapper defaults to
         # <its own work directory>/INTERRUPT, matching CPluginScript.isInterrupted().

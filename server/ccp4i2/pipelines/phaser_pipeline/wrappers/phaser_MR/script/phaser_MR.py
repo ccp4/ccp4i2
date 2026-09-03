@@ -6,6 +6,70 @@ from lxml import etree
 from ccp4i2.core import CCP4Data
 from ccp4i2.core.base_object.cdata import CData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+
+
+def observed_content_flag(obs_file):
+    """The contentFlag of an observed-data file, introspected if not recorded."""
+    if not obs_file.isSet():
+        return 0
+    if obs_file.contentFlag.isSet():
+        return int(obs_file.contentFlag)
+    obs_file.setContentFlag()
+    return int(obs_file.contentFlag) if obs_file.contentFlag.isSet() else 0
+
+
+def amplitudes_only(obs_file):
+    """True when the file holds structure factors and intensities cannot be
+    made from them (FPAIR or FMEAN). IPAIR and IMEAN can go either way."""
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
+
+    return observed_content_flag(obs_file) in (
+        CObsDataFile.CONTENT_FLAG_FPAIR, CObsDataFile.CONTENT_FLAG_FMEAN)
+
+
+def resolve_f_or_i(inputData):
+    """Settle F_OR_I against what F_SIGF actually holds, and return it.
+
+    F_OR_I defaults to I. That is the right default for intensities, and a
+    wrong one for a file of amplitudes, from which no intensities can be
+    made --- the wrapper asks makeHklin for IMEAN and the job fails. Whether
+    the file was chosen by hand or populated from an earlier job, nothing in
+    the GUI is obliged to have run, so this is decided here, once, where the
+    data is: if the file is amplitudes-only, F_OR_I is set to F and recorded
+    in the params file. A choice of I for a file that has intensities is
+    left alone.
+    """
+    f_or_i = inputData.F_OR_I
+    if not inputData.F_SIGF.isSet():
+        return str(f_or_i)
+    if str(f_or_i) == 'I' and amplitudes_only(inputData.F_SIGF):
+        print('F_OR_I: the reflection file holds amplitudes only; using F/SIGF')
+        f_or_i.set('F')
+    return str(f_or_i)
+
+
+def f_or_i_validity(taskName, inputData, error):
+    """Warn when F_OR_I reads I against an amplitudes-only file.
+
+    Reported on the F_OR_I field, whether the I is the default or a choice:
+    the field sits beside the reflections in the GUI, so the user sees why
+    and can set F themselves. Advisory, not blocking --- resolve_f_or_i()
+    will use F either way, and this says so.
+    """
+    f_or_i = inputData.F_OR_I
+    if str(f_or_i) != 'I':
+        return error
+    if not inputData.F_SIGF.isSet() or not amplitudes_only(inputData.F_SIGF):
+        return error
+    error.append(
+        klass=taskName, code=110,
+        details='The reflection file holds amplitudes only, and intensities '
+                'cannot be made from them. F/SIGF will be used; set '
+                '"Use Fs or Is" to F to record that.',
+        name=f'{taskName}.container.inputData.F_OR_I',
+        severity=CCP4ErrorHandling.SEVERITY_WARNING)
+    return error
 
 
 class CallbackObject(object):
@@ -79,7 +143,12 @@ class phaser_MR(CPluginScript):
                    105 : { 'description' : 'Phaser error' },
                    106 : { 'description' : 'Failed to parse Solutions' },
                    107 : { 'description' : 'Failed to parse Solutions' },
-                   108 : { 'description' : 'Failed to add Fixed solutions' },}
+                   108 : { 'description' : 'Failed to add Fixed solutions' },
+                   110 : { 'description' : 'Intensities requested but the reflection file holds amplitudes only' },}
+
+    def validity(self):
+        error = super().validity()
+        return f_or_i_validity(self.TASKNAME, self.container.inputData, error)
 
     excludedSections = ['macano', 'macmr', 'sgalternative', 'OUTP_LEVE']
     excludedKeywords = ['TITL', 'ROOT', 'HKLO', 'OUTP_LEVE', 'RESO_HIGH', 'RESO_LOW']
