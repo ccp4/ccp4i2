@@ -12,7 +12,7 @@ def save_params_for_job(
     the_job_plugin: CCP4PluginScript.CPluginScript,
     the_job: models.Job,
     mode="JOB_INPUT",
-    exclude_unset=False,
+    exclude_unset=True,
 ):
     """
     Save parameters for a given job to an XML file.
@@ -24,7 +24,26 @@ def save_params_for_job(
         the_job_plugin: The job plugin script instance.
         the_job: The job instance containing job details.
         mode: The mode for generating the file name. Defaults to "JOB_INPUT".
-        exclude_unset: Flag to exclude unset parameters. Defaults to False.
+        exclude_unset: Write only parameters that were actually set. Defaults
+            to True, because that is what every caller wants: a parameter the
+            user never touched should not appear in the file as though they
+            had chosen its zero.
+
+            It used to default to False, and only job creation overrode it. So
+            a freshly created aimless_pipe job had no NPROC in its
+            input_params.xml --- and then uploading a file rewrote the file
+            through this function, writing every untouched parameter at its
+            zero value:
+
+                <NPROC>0</NPROC>  <SCALES_NTILEX>0</SCALES_NTILEX>  ...
+
+            On reload those read as explicitly set, and NPROC declares min=1,
+            so run-time validation blocked the job with "Value 0 is below
+            minimum 1". The validation was right; the file was wrong. Seven
+            parameters were written that way and NPROC was simply the only one
+            with a lower bound to trip over.
+
+            Pass False deliberately where a complete record is wanted.
     """
     fileName = the_job_plugin.makeFileName(mode)
     # Rework to the directory of "the_job"
