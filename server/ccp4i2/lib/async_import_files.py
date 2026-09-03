@@ -92,7 +92,12 @@ async def import_input_files_async(job, plugin, db_handler):
             logger.exception(f"Error importing file {file_obj.objectName()}: {e}")
 
     # Save updated parameters to input_params.xml
-    # This preserves the dbFileId, relPath, baseName changes made during import
+    # This preserves the dbFileId, relPath, baseName changes made during import.
+    # exclude_unset stays True: the importer only touches file objects that are
+    # already set, so everything it changed is written --- while an unset
+    # NPROC (min=1) written as 0 marks the job invalid on any later reload.
+    # This function runs at the start of EVERY job, so it was the last writer
+    # standing after PR #348 cleaned up the parameter-editing paths.
     if files_imported > 0:
         input_params_file = job.directory / "input_params.xml"
 
@@ -106,7 +111,7 @@ async def import_input_files_async(job, plugin, db_handler):
             logger.info(f"[DEBUG import_input_files_async] inputData children: {input_data_children}")
 
         logger.info(f"Saving updated parameters to {input_params_file}")
-        error = await sync_to_async(plugin.saveDataToXml)(str(input_params_file), exclude_unset=False)
+        error = await sync_to_async(plugin.saveDataToXml)(str(input_params_file))
         if error and hasattr(error, 'hasError') and error.hasError():
             logger.error(f"Failed to save parameters: {error}")
         else:
