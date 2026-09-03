@@ -85,6 +85,21 @@ def test_auto_detect_gamma_phases():
         assert "Phs" in found_types, f"Expected phase data, found: {found_types}"
 
 
+def test_auto_detect_beta_blip_relabels_obs_to_canonical():
+    """
+    beta_blip_P3221.mtz names its observations Fobs/Sigma. The mini-MTZ must
+    come out as F/SIGF, or every consumer that infers contentFlag from the
+    columns (phaser_MR_AUTO via ObsDataConverter, for one) rejects it.
+    """
+    args = ["splitMtz", "--HKLIN", demoData("beta_blip", "beta_blip_P3221.mtz")]
+    with i2run(args) as job:
+        found_types = check_auto_detect_output(job)
+        assert found_types == {"Obs"}, f"Expected only Obs data, found: {found_types}"
+        (obs_mtz,) = [f for f in job.iterdir()
+                      if f.suffix == ".mtz" and f.name != "HKLIN.mtz"]
+        checkMtz(obs_mtz, ["F", "SIGF"])
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------

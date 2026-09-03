@@ -1330,6 +1330,72 @@ class CMiniMtzDataFile(CMtzDataFile):
             # File reading error or gemmi not available
             return None
 
+    @classmethod
+    def canonical_column_mapping(cls, content_flag, labels):
+        """Map source column labels to this class's canonical labels.
+
+        A mini-MTZ's columns are named by ``CONTENT_SIGNATURE_LIST`` --- ``F,SIGF``
+        for mean SFs, ``FREER``, ``F,PHI``, ``HLA..HLD`` --- and that is how every
+        consumer decides what a file holds, whatever contentFlag the producer
+        stamped on it. Every producer of a mini-MTZ (splitMtz, the Import*
+        tasks, splitHklout, uploads) relabels through this, so a file that
+        arrived as ``Fobs,Sigma`` leaves as ``F,SIGF``.
+
+        Returns:
+            dict: ``{source label: canonical label}``, in order. The identity
+            mapping when the signature cannot be determined or its length
+            does not match ``labels``.
+        """
+        identity = {lbl: lbl for lbl in labels}
+        signatures = getattr(cls, 'CONTENT_SIGNATURE_LIST', None) or []
+        if not signatures:
+            return identity
+        try:
+            flag = int(content_flag) if content_flag is not None else 0
+        except (TypeError, ValueError):
+            flag = 0
+        # A type with one signature (FreeR, map coefficients) needs no flag
+        if len(signatures) == 1:
+            signature = signatures[0]
+        elif 1 <= flag <= len(signatures):
+            signature = signatures[flag - 1]
+        else:
+            return identity
+        if len(signature) != len(labels):
+            return identity
+        return {src: canon for src, canon in zip(labels, signature)}
+
+    def column_contract_violation(self) -> Optional[str]:
+        """Why this file breaks the mini-MTZ column contract, or ``None``.
+
+        The contract: the columns ``CONTENT_SIGNATURE_LIST`` names for the
+        file's contentFlag are present under exactly those labels. With no
+        contentFlag set, any of the class's signatures will do. This is the
+        check ``setContentFlag()`` performs implicitly when it introspects
+        the file; here it is explicit, with the mismatch spelled out, so that
+        a producer is caught rather than the next consumer.
+        """
+        from pathlib import Path
+
+        signatures = getattr(self.__class__, 'CONTENT_SIGNATURE_LIST', None) or []
+        if not signatures:
+            return None
+        path = self.getFullPath()
+        try:
+            import gemmi
+            labels = [c.label for c in gemmi.read_mtz_file(str(path)).columns]
+        except Exception as e:
+            return f'{path} could not be read as an MTZ file: {e}'
+
+        flag = int(self.contentFlag) if self.contentFlag.isSet() else 0
+        wanted = [signatures[flag - 1]] if 1 <= flag <= len(signatures) else signatures
+        if any(set(sig).issubset(labels) for sig in wanted):
+            return None
+        expected = ' or '.join(','.join(sig) for sig in wanted)
+        what = self.__class__.__name__ + (f' with contentFlag {flag}' if flag else '')
+        return (f'{Path(str(path)).name} has columns {",".join(labels)}; '
+                f'a {what} must carry {expected}')
+
     def datasetName(self) -> str:
         """
         Get the first dataset name from the MTZ file (excluding 'HKL_base').

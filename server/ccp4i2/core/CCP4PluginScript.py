@@ -40,6 +40,7 @@ logger = logging.getLogger(__name__)
 SHARED_ERROR_CODES = {
     108: {'description': 'The task could not be loaded'},
     299: {'description': 'A program this task needs was not found'},
+    990: {'description': 'The task wrote a mini-MTZ without the canonical column labels'},
     991: {'description': 'The job failed'},
     109: {'description': 'The task could not be started'},
     110: {'description': 'The task could not be started'},
@@ -2474,6 +2475,43 @@ class CPluginScript(CData):
 
         return status
 
+    def checkMiniMtzOutputs(self) -> int:
+        """Every mini-MTZ this task wrote must carry canonical column labels.
+
+        A mini-MTZ is read by its columns: a consumer matches them against the
+        class's ``CONTENT_SIGNATURE_LIST`` to decide what the file holds,
+        whatever contentFlag the producer stamped on it. A file that kept its
+        source labels (``Fobs,Sigma``) passes every check its producer makes
+        and fails in the next job's ``makeHklin`` --- which is where splitMtz's
+        output was failing. Checked here, once, for every producer, before the
+        file can be gleaned into the project.
+        """
+        from ccp4i2.core.CCP4XtalData import CMiniMtzDataFile
+
+        container = getattr(self, 'container', None)
+        output_data = getattr(container, 'outputData', None)
+        if output_data is None:
+            return self.SUCCEEDED
+
+        status = self.SUCCEEDED
+        for name, file_obj in self._find_datafile_descendants(output_data):
+            if not isinstance(file_obj, CMiniMtzDataFile):
+                continue
+            if not file_obj.isSet() or not file_obj.exists():
+                continue
+            problem = file_obj.column_contract_violation()
+            if problem is None:
+                continue
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=990,
+                details=f'{name}: {problem}',
+                name=name,
+                severity=SEVERITY_ERROR,
+            )
+            status = self.FAILED
+        return status
+
     def postProcess(self) -> int:
         """
         Everything that happens after the program exits.
@@ -2485,8 +2523,9 @@ class CPluginScript(CData):
 
         1. ``postProcessCheck()`` - did the program itself succeed
         2. ``processOutputFiles()`` - are its outputs usable
-        3. glean the outputs, if both said yes
-        4. ``reportStatus()`` - save params, tell the database, emit finished
+        3. ``checkMiniMtzOutputs()`` - do its mini-MTZs keep the column contract
+        4. glean the outputs, if all said yes
+        5. ``reportStatus()`` - save params, tell the database, emit finished
 
         Returns:
             Status code (SUCCEEDED, FAILED or UNSATISFACTORY)
@@ -2500,6 +2539,9 @@ class CPluginScript(CData):
 
         if status == self.SUCCEEDED:
             status = self.runProcessOutputFiles()
+
+        if status == self.SUCCEEDED:
+            status = self.checkMiniMtzOutputs()
 
         if status == self.SUCCEEDED:
             # Glean output files to database if in database-connected mode.
