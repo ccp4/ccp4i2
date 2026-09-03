@@ -25,6 +25,7 @@ import gemmi
 import json
 
 
+# TODO: test with PDB file input and custom mmCIF input
 class dnatco_report(Report):
     TASKNAME= 'dnatco'
     RUNNING = True
@@ -124,6 +125,36 @@ class dnatco_report(Report):
                     _ = tier1.pop('cumulativeCount', None)
                     _ = tier1.pop('cumulativePercentage', None)
                     table.addData(title=tier_title, data=tier1.values())
+
+        # Add tables for lengths and angles with concerns
+        for entry_name, dataset_key, label_name, value_label in [
+            ("Bond lengths", "lengths", "Bond", "Value (&#197;)"),
+            ("Bond angles", "angles", "Angle", "Value (°)"),
+        ]:
+            if compare_two_jsons:
+                entries = json_naval_data2.get(dataset_key, []) if json_naval_data2 else []
+            else:
+                entries = json_naval_data1.get(dataset_key, []) if json_naval_data1 else []
+            if entries:
+                concernsFold = indentDiv.addFold(label=f"{entry_name} with concerns", initiallyOpen=True)
+                concerned = self._get_concerned_items(entries)
+                if concerned:
+                    concernsFold.append(
+                        f"{len(concerned)} {entry_name.lower()} of concern found."
+                        " Up to one hundred are listed below sorted by the ProSco.<br />"
+                        "<i>pGroup denotes the probability percentile score group</i>."
+                    )
+                    if len(concerned) > 100:
+                        concerned = concerned[:100]
+                    table = concernsFold.addTable(title=f"{entry_name} with concerns")
+                    table.addData(title="Residue", data=[item['residue'] for item in concerned])
+                    table.addData(title=label_name, data=[item['name'] for item in concerned])
+                    table.addData(title=value_label, data=[f"{item['value']:.2f}" for item in concerned])
+                    table.addData(title="NAVAL", data=[item['naval_tier'] for item in concerned])
+                    table.addData(title="ProSco", data=[f"{item['prosco']:.2f}" for item in concerned])
+                    table.addData(title="pGroup", data=[item['pGroup'] for item in concerned])
+                else:
+                    concernsFold.append(f"No {entry_name.lower()} of concern found.")
 
         self.addDiv(style="clear:both;")
 
@@ -423,3 +454,78 @@ class dnatco_report(Report):
         with open(jsonfilePath, 'r') as f:
             naval_data = json.load(f)
         return naval_data
+
+    def _format_geometry_name(self, name):
+        if name is None:
+            return ''
+        parts = [part.strip() for part in str(name).split('-') if part and part.strip()]
+        formatted = []
+        for part in parts:
+            formatted.append(part.replace('r2', '<sup>(-1)</sup>'))
+        return '-'.join(formatted)
+
+    def _format_geometry_location(self, item):
+        residue = f"{item['authChain']}/{item['compound']} {item['authSeqId']}"
+        ins_code = (
+            f".{item['insCode']}"
+            if item.get('insCode') and item['insCode'] != '.' and item['insCode'].strip() != ''
+            else ''
+        )
+        alt_id = (
+            f".{item['altId']}"
+            if item.get('altId') and item['altId'] != '.' and item['altId'].strip() != ''
+            else ''
+        )
+        return residue + ins_code + " " + alt_id
+
+    def _get_concerned_items(self, items):
+        """
+        Flatten NAVAL geometry entries (lengths or angles), keep only entries with
+        naval_tier == "Of Concern" or pGroup in ["Rare", "Unique", "Ambiguous", "Outlier"],
+        normalize the displayed residue and bond/angle names, and sort them by ProSco
+        in ascending order so the most concerning values appear first.
+
+        If pGroup is None, set it to "Unique". If ProSco is None or not a number, set it to 0.0.
+
+        Format bond/angle names to replace "r2" with superscript (-1).
+        Create `residue` field in the format "authChain/compound authSeqId.insCode altId" for display.
+
+        """
+        concerned = []
+        for item in items:
+            for detail in item.get('details', []):
+                if detail.get('naval_tier') == 'Of Concern' or detail.get('pGroup') in ['Rare', 'Unique', 'Ambiguous', 'Outlier', None]:
+                    concerned.append({
+                        'model': item.get('model'),
+                        'chain': item.get('chain'),
+                        'seqId': item.get('seqId'),
+                        'insCode': item.get('insCode'),
+                        'altId': item.get('altId'),
+                        'authChain': item.get('authChain'),
+                        'authSeqId': item.get('authSeqId'),
+                        'compound': item.get('compound'),
+                        'residue': self._format_geometry_location({
+                            'authChain': item.get('authChain'),
+                            'compound': item.get('compound'),
+                            'authSeqId': item.get('authSeqId'),
+                            'insCode': item.get('insCode'),
+                            'altId': item.get('altId'),
+                        }),
+                        'name': self._format_geometry_name(detail.get('name')),
+                        'value': detail.get('value'),
+                        'pGroup': (
+                            detail.get('pGroup')
+                            if detail.get('pGroup') is not None
+                            else 'Unique'
+                        ),
+                        'prosco': (
+                            detail.get('prosco')
+                            if detail.get('prosco') is not None and isinstance(detail.get('prosco'), (int, float))
+                            else 0.0
+                        ),
+                        'naval_tier': detail.get('naval_tier')
+                    })
+        if not concerned:
+            return []
+        concerned.sort(key=lambda x: x.get('prosco', 0), reverse=False)
+        return concerned
