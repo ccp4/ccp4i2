@@ -527,7 +527,16 @@ class CData(HierarchicalObject):
         if isinstance(self, CContainer):
             return list(self.get_children())
 
-        # For other CData types, return list of CData attribute names
+        # For other CData types, the declaration is the answer where there is
+        # one: apply_metadata_to_instance records the merged content() field
+        # names of the whole MRO. Runtime children that are not declared
+        # fields (CDataFile's loaded fileContent, for example) are hierarchy
+        # members but not data-attributes, and must not appear here --- this
+        # list feeds CONTENTS_ORDER, dataOrder() and so every serialisation.
+        declared = getattr(self, '_declared_fields', None)
+        if declared:
+            return list(declared)
+
         cdata_attributes = []
 
         # Fallback: use hierarchical children
@@ -960,13 +969,31 @@ class CData(HierarchicalObject):
                 result.append(name)
                 seen.add(name)
 
-        # Add remaining children not in preferred_order
-        for child in self.children():
-            if hasattr(child, 'objectName'):
-                name = child.objectName()
-                if name and name not in seen:
+        # Append what preferred_order left out. An explicit contents_order
+        # REORDERS the fields, it does not restrict them (CAsuDataFile lists
+        # only 'selection' and relies on the rest following), so the remaining
+        # DECLARED fields always follow. What never follows, for a composition
+        # class, is an undeclared runtime child: a CDataFile that has loaded
+        # its content holds a hierarchy child named 'fileContent', and the
+        # old unconditional children() walk swept that runtime object into
+        # params.xml alongside the real attributes. Only CONTAINMENT
+        # (CContainer trees built from def.xml, whose children are not class
+        # attributes) and classes with no declaration at all still take their
+        # names from the hierarchy.
+        from .ccontainer import CContainer
+        declared = getattr(self, '_declared_fields', None)
+        if not isinstance(self, CContainer) and declared:
+            for name in declared:
+                if name in all_children and name not in seen:
                     result.append(name)
                     seen.add(name)
+        else:
+            for child in self.children():
+                if hasattr(child, 'objectName'):
+                    name = child.objectName()
+                    if name and name not in seen:
+                        result.append(name)
+                        seen.add(name)
 
         return result
 
