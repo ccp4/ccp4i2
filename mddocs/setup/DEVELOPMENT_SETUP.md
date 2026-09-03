@@ -18,8 +18,8 @@ CCP4i2 is installed as a pip package into `ccp4-python`, which already includes 
 Download a development build from https://ccp4serv6.rc-harwell.ac.uk/10/downloads/packages/
 
 Common installation locations:
-- **macOS**: `/Applications/ccp4-20251105` or `~/Developer/ccp4-20251105`
-- **Linux**: `/opt/ccp4-20251105` or `~/ccp4-20251105`
+- **macOS**: `/Applications/ccp4-<build>` or `~/Developer/ccp4-<build>`
+- **Linux**: `/opt/ccp4-<build>` or `~/ccp4-<build>`
 
 ### Step 2: Clone the Repository
 
@@ -32,7 +32,7 @@ cd ccp4i2
 
 ```bash
 # macOS/Linux
-source /path/to/ccp4-20251105/bin/ccp4.setup-sh
+source /path/to/ccp4-<build>/bin/ccp4.setup-sh
 
 # Verify ccp4-python is available
 which ccp4-python
@@ -161,7 +161,7 @@ The Electron app:
 ### CCP4 Detection
 
 In development mode, the client searches:
-1. **Sibling directories** - Scans `../` for `ccp4-*` folders (e.g., `../ccp4-20251105`)
+1. **Sibling directories** - Scans `../` for `ccp4-*` folders (e.g., `../ccp4-<build>`)
 2. **Standard locations** - `/Applications/ccp4-9` (macOS), `C:\CCP4\ccp4-9` (Windows), `/opt/ccp4` (Linux)
 
 The first directory containing `bin/ccp4-python` is used. Newer versions are preferred.
@@ -235,7 +235,7 @@ The test runner (`run_test.sh`) and the Electron app set these automatically.
 Create a `.env` file in the project root for local CCP4 configuration:
 
 ```bash
-CCP4_ROOT=/path/to/ccp4-20251105
+CCP4_ROOT=/path/to/ccp4-<build>
 ```
 
 This is used by `run_test.sh` to find CCP4 if not already in the environment.
@@ -306,7 +306,7 @@ For development requiring packages not in CCP4, you can create a Python virtual 
 
 1. **Create virtual environment using CCP4's Python**:
    ```bash
-   CCP4_PYTHON="/path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+   CCP4_PYTHON="/path/to/ccp4-<build>/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
    $CCP4_PYTHON -m venv .venv
    source .venv/bin/activate
    ```
@@ -321,7 +321,7 @@ For development requiring packages not in CCP4, you can create a Python virtual 
 
 3. **Symlink CCP4 modules**:
    ```bash
-   CCP4_SITE="/path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
+   CCP4_SITE="/path/to/ccp4-<build>/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
    VENV_SITE=".venv/lib/python3.11/site-packages"
 
    # Core modules
@@ -335,7 +335,7 @@ For development requiring packages not in CCP4, you can create a Python virtual 
 
    # CCTBX build environment
    mkdir -p .venv/share
-   ln -sf /path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/
+   ln -sf /path/to/ccp4-<build>/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/
    ```
 
 4. **Verify**:
@@ -377,7 +377,7 @@ If CCP4 is elsewhere, you can configure the path in the client's config page on 
 
 Ensure ccp4i2 is pip-installed into the CCP4 installation that Electron detects:
 ```bash
-source /path/to/ccp4-20251105/bin/ccp4.setup-sh
+source /path/to/ccp4-<build>/bin/ccp4.setup-sh
 cd server
 ccp4-python -m pip install -e .
 ```
@@ -409,10 +409,10 @@ You need to symlink `coot_py2` from an older CCP4 installation (e.g., CCP4 9):
 
 ```bash
 # macOS example
-ln -s /Applications/ccp4-9/coot_py2 /path/to/ccp4-20251105/coot_py2
+ln -s /Applications/ccp4-9/coot_py2 /path/to/ccp4-<build>/coot_py2
 
 # Linux example
-ln -s /opt/ccp4-9/coot_py2 /path/to/ccp4-20251105/coot_py2
+ln -s /opt/ccp4-9/coot_py2 /path/to/ccp4-<build>/coot_py2
 ```
 
 ### Segmentation Fault on Import

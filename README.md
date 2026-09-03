@@ -10,7 +10,7 @@ CCP4i2 provides:
 - **Pipelines** that chain multiple programs together
 - **Data management** for crystallographic projects
 - **Report generation** with interactive visualizations
-- **Desktop application** (Electron + React) and **web deployment** (Docker/Azure)
+- **Desktop application** (Electron + React); the Django server also runs standalone for development
 
 ## Architecture
 
@@ -62,8 +62,8 @@ ccp4-python -c "import django; print(f'Django {django.__version__}')"
 
 # 6. Run tests (from server/, paths are relative to the ccp4i2 package)
 cd server
-ccp4-python -m pytest ccp4i2/tests/unit/ -v          # fast, no CCP4 binaries
-./run_test.sh ccp4i2/tests/i2run/test_parrot.py -v   # end-to-end task test
+ccp4-python -m pytest ccp4i2/tests/unit/ -v               # fast, no CCP4 binaries
+ccp4-python -m pytest ccp4i2/tests/i2run/test_parrot.py -v  # end-to-end task test
 cd ..
 
 # 7. Run the Electron client (optional)
@@ -82,12 +82,15 @@ cd server
 # Fast unit tests (no CCP4 binaries)
 ccp4-python -m pytest ccp4i2/tests/unit/ -v
 
-# A single end-to-end task test
-./run_test.sh ccp4i2/tests/i2run/test_parrot.py -v
+# A single end-to-end task test (needs CCP4 environment sourced)
+ccp4-python -m pytest ccp4i2/tests/i2run/test_parrot.py -v
 
 # Multiple tests in parallel
-./run_test.sh ccp4i2/tests/i2run/ -n 4
+ccp4-python -m pytest ccp4i2/tests/i2run/ -n 4
 ```
+
+(`./run_test.sh` remains as a mac/linux convenience wrapper that sources the
+environment for you; the cross-platform way is `ccp4-python -m pytest`.)
 
 Test results are stored in `~/.cache/ccp4i2-tests/`. See cleanup instructions printed after each test run.
 
@@ -116,7 +119,7 @@ Test results are stored in `~/.cache/ccp4i2-tests/`. See cleanup instructions pr
 
 - [Quick Reference](mddocs/QUICK_REFERENCE.md) - Common operations and examples
 - [Task Registry](server/ccp4i2/core/tasks.py) - tasks are registered in the `TASKS` dict (one entry per task)
-- [API Reference](mddocs/api/) - REST API endpoints and data models
+- [API Overview](mddocs/api/API_OVERVIEW.md) - REST API endpoints and data models
 - [Architecture Overview](mddocs/architecture/) - System design documentation
 
 ## Directory Structure
@@ -145,7 +148,7 @@ ccp4i2/
 │   ├── main/               # Electron main process
 │   ├── renderer/           # Next.js application
 │   └── preload/            # Electron preload scripts
-├── apps/                   # Namespace for optional apps (compounds app extracted to newcastleuniversity/materia)
+├── packages/               # Shared API contract (npm @ccp4/ccp4i2-api, PyPI ccp4i2-api)
 ├── docs/                   # Developer & user documentation (see docs/README.md)
 ├── mddocs/                 # Setup, testing, architecture, API reference
 └── deploy/                 # Deployment tooling (test VMs, infra scripts)
@@ -155,11 +158,15 @@ ccp4i2/
 
 | Mode | Description |
 |------|-------------|
-| **Electron (Desktop)** | Packaged app finds CCP4 installation, launches Django via `ccp4-python` |
-| **Docker Compose** | Server + web containers for local/dev deployment |
-| **Azure** | Container Apps with auto-scaling workers for production |
+| **Electron (Desktop)** | The first-class route: the packaged app finds your CCP4 installation and launches Django via `ccp4-python` |
+| **Development server** | `cd server && ccp4-python manage.py runserver` plus `cd client && npm run dev` |
 
-In all modes, `ccp4i2` is installed as a Python package within `ccp4-python`. The Electron app does not bundle any Python code.
+In both modes, `ccp4i2` is installed as a Python package within `ccp4-python`. The Electron app does not bundle any Python code.
+
+> The Docker/Azure deployment tooling that used to live here moved to the
+> `newcastleuniversity/materia` repository with the compounds-app extraction; a
+> self-contained lab-wide Docker deployment for CCP4i2 itself is a planned
+> future addition (see CLAUDE.md).
 
 ## Contributing
 

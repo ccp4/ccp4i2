@@ -1,94 +1,83 @@
 # Testing Guide
 
-## Running i2run Tests
+All tests run from the `server/` directory with `ccp4-python -m pytest`
+(cross-platform: mac, Linux, Windows). Test paths are relative to the
+`ccp4i2` package. `./run_test.sh` remains as a mac/linux convenience wrapper
+that sources the environment first.
 
-### Using the Test Runner
+The authoritative description of the test tiers — what each layer tests, how
+fast it is, and whether it needs CCP4 — is the **Tests** section of
+[CLAUDE.md](../../CLAUDE.md). The short version:
 
-The `run_test.sh` script sets up the environment and runs pytest with proper configuration.
-
-#### Run all tests in a file:
-```bash
-./run_test.sh tests/i2run/test_parrot.py -v
+```
+ccp4i2/tests/
+├── unit/          # fast, no CCP4 binaries (containers, mtz, pdb, phil, ...)
+├── async/         # async execution infrastructure
+├── db/            # database, project import/export
+├── api/unit/      # REST endpoints via the Django test client (no CCP4)
+├── api/e2e/       # full pipelines via the REST API (slow, needs CCP4)
+├── parity/        # native gemmi/numpy ports vs the CCP4 binary they replaced
+└── i2run/         # full task execution via CLI (slow, needs CCP4)
 ```
 
-#### Run a specific test:
-```bash
-./run_test.sh tests/i2run/test_refmac.py::test_8xfm_basic -v
-```
-
-#### Run tests in parallel:
-```bash
-./run_test.sh tests/i2run/ -n 4
-```
-
-### Manual pytest Invocation
-
-If you prefer to run pytest directly, set up the environment first:
+## Running tests
 
 ```bash
-source /path/to/ccp4-20251105/bin/ccp4.setup-sh
-export CCP4I2_ROOT=$(pwd)
-export DJANGO_SETTINGS_MODULE=ccp4i2.config.test_settings
+cd server
+source /path/to/ccp4-<build>/bin/ccp4.setup-sh
 
-# Then run pytest
-ccp4-python -m pytest tests/i2run/test_parrot.py -v -s
+# Fast unit tests (no CCP4 binaries needed)
+ccp4-python -m pytest ccp4i2/tests/unit/ -v
+
+# One end-to-end task test / one test function
+ccp4-python -m pytest ccp4i2/tests/i2run/test_parrot.py -v
+ccp4-python -m pytest ccp4i2/tests/i2run/test_servalcat.py::test_servalcat_basic -v
+
+# In parallel
+ccp4-python -m pytest ccp4i2/tests/i2run/ -n 4
 ```
 
-### Test Output Location
+## Reproducing CI locally (no CCP4)
 
-Test projects are created in `~/.cache/ccp4i2-tests/` with timestamped names:
+CI runs `tests/unit/` and `tests/api/unit/` on stock Python with **no CCP4**,
+as two separate pytest invocations:
+
+```bash
+cd server
+python3 -m venv .venv
+.venv/bin/pip install -e ".[dev]"
+.venv/bin/python -m pytest ccp4i2/tests/unit/ -q
+.venv/bin/python -m pytest ccp4i2/tests/api/unit/ -q
 ```
-~/.cache/ccp4i2-tests/
-├── 20251204_113645_968f_refmac_test_8xfm_basic/   # Failed test (preserved)
-├── 20251204_114012_a2b3_parrot_test_parrot/       # Passed test (cleaned up)
-└── ...
-```
 
-- **Passed tests**: Automatically cleaned up
-- **Failed tests**: Preserved for debugging
-- **Cleanup**: `rm -rf ~/.cache/ccp4i2-tests/*`
+Running these suites under `ccp4-python` gives strictly *more* coverage, so it
+cannot prove they are CCP4-free — use the venv for that.
 
-### Available Test Suites
+## Test output
 
-- **i2run tests**: `tests/i2run/` - Integration tests that run crystallographic tasks
-- **Inheritance tests**: `tests/test_prosmart_refmac_inheritance.py`
-- **Hash collision fix**: `tests/test_hash_collision_fix.py`
+Failed-test projects are preserved in `~/.cache/ccp4i2-tests/` (never pruned —
+delete old ones when disk gets tight). Downloaded fixtures are cached in
+`~/.cache/ccp4i2-tests/downloads/`; files over 100 MB are not cached unless
+`CCP4I2_TEST_CACHE_MAX_MB` is raised.
 
-### Test Categories
+## Environment variables
 
-| Test | Description | Duration |
-|------|-------------|----------|
-| `test_parrot.py` | Density modification | ~3s |
-| `test_sheetbend.py` | Model rebuilding | ~3s |
-| `test_coordinate_selector.py` | Coordinate selection | ~1s |
-| `test_servalcat.py` | Refinement pipeline | ~7s |
-| `test_refmac.py` | Refmac refinement | ~10s |
-| Full suite | All i2run tests | ~40min |
+- `DJANGO_SETTINGS_MODULE`: set by pytest.ini to `ccp4i2.config.test_settings`
+- `CCP4I2_TEST_CACHE_MAX_MB` / `CCP4I2_TEST_REFETCH`: fixture-cache controls
+- `DEBUG_MERGE=1`: debug output for container merging
 
-### Environment Variables
+## Compounds app tests
 
-- `CCP4I2_ROOT`: Project root directory (set by `run_test.sh`)
-- `DJANGO_SETTINGS_MODULE`: Django settings (set by `run_test.sh` to `ccp4i2.config.test_settings`)
-- `DEBUG_MERGE`: Set to `1` to enable debug output for container merging
+The compounds app was extracted to the `newcastleuniversity/materia`
+repository (2026-04-29 cut); run its tests from a Materia checkout.
 
-### Compounds App Tests
+## Troubleshooting
 
-The compounds app was extracted to the `newcastleuniversity/materia` repository
-(2026-04-29 cut) and its tests no longer live here — run them from a Materia
-checkout instead.
+Import errors: source the CCP4 environment
+(`source /path/to/ccp4-<build>/bin/ccp4.setup-sh`) and install editable
+(`cd server && ccp4-python -m pip install -e .`).
 
-### Troubleshooting
-
-If tests fail with import errors:
-1. Ensure CCP4 environment is sourced: `source /path/to/ccp4-20251105/bin/ccp4.setup-sh`
-2. Ensure ccp4i2 is pip-installed: `cd server && ccp4-python -m pip install -e .`
-3. Check CCP4I2_ROOT is set: `echo $CCP4I2_ROOT`
-
-If Django tests fail:
-1. Ensure DJANGO_SETTINGS_MODULE is set
-2. Check database migrations are up to date
-
-If `fixture 'django_db_blocker' not found`:
+`fixture 'django_db_blocker' not found`:
 ```bash
 ccp4-python -m pip install pytest-django pytest-xdist
 ```
