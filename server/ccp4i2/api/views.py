@@ -214,6 +214,50 @@ _DISCOVERY_EXCLUDE = frozenset({
 
 
 
+
+@api_view(["GET"])
+def import_policy_view(request):
+    """What kinds of project import this installation permits.
+
+    GET /api/ccp4i2/config/import-policy/
+
+    The import page shows both intents — copy the project in, or adopt the
+    directory where it lies — and needs to know which are permitted so it can
+    disable the other with a reason rather than silently omitting it. A hidden
+    control teaches nothing; a disabled one with an explanation does.
+
+    Driven by CCP4I2_ALLOW_INPLACE_MIGRATION so that lifting the alpha
+    restriction is a setting, not a frontend change.
+
+    Response: {"success": true, "data": {
+        "copy_allowed": true,
+        "in_place_allowed": <bool>,
+        "in_place_reason": "<why not, when not>"
+    }}
+    """
+    from django.conf import settings
+
+    allowed = bool(getattr(settings, "CCP4I2_ALLOW_INPLACE_MIGRATION", False))
+    return JsonResponse(
+        {
+            "success": True,
+            "data": {
+                "copy_allowed": True,
+                "in_place_allowed": allowed,
+                "in_place_reason": (
+                    ""
+                    if allowed
+                    else (
+                        "Disabled during the alpha. Adopting a directory where "
+                        "it lies rewrites the absolute paths inside it, which "
+                        "would alter work your existing CCP4i2 may still be "
+                        "using. Copying leaves the original untouched."
+                    )
+                ),
+            },
+        }
+    )
+
 @api_view(["GET"])
 def default_project_parent_view(request):
     """Where a project created with no explicit directory will actually land.

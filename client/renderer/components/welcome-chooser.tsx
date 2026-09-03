@@ -50,7 +50,9 @@ const PATHS: Path[] = [
   {
     key: "import",
     title: "Import a project",
-    detail: "Load a project shared as a CCP4i2 project zip.",
+    detail:
+      "From a CCP4i2 project zip, or a project folder already on this " +
+      "machine. Imported by copy, so the original is left untouched.",
     icon: <Upload />,
     route: "/ccp4i2/import-project",
   },

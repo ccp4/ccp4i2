@@ -226,6 +226,48 @@ def restore_from_directory(
     return report
 
 
+
+def copy_project_directory(source: Path, destination_root: Path) -> Path:
+    """Copy a project directory under ``destination_root`` and return the copy.
+
+    Importing a project must not touch the original. Restoring from a directory
+    re-roots the snapshot onto wherever the directory actually is and, when
+    asked to repair paths, rewrites the absolute paths inside the project's own
+    files — appropriate when recovering your own database from your own
+    projects, and quite wrong when adopting a folder someone handed you, or one
+    your existing CCP4i2 is still using.
+
+    Copying first turns that in-place edit into an edit of our copy.
+
+    Raises FileExistsError if the destination is taken, rather than merging into
+    it: two projects of the same name would otherwise interleave job
+    directories, and the failure would surface much later as missing jobs.
+    """
+    import shutil
+
+    source = Path(source).expanduser().resolve()
+    if not source.is_dir():
+        raise FileNotFoundError(f"No such project directory: {source}")
+
+    destination_root = Path(destination_root).expanduser().resolve()
+    destination = destination_root / source.name
+    if destination.exists():
+        raise FileExistsError(
+            f"{destination} already exists. Rename or move it first, or rename "
+            f"the directory being imported."
+        )
+    if destination_root == source or destination_root.is_relative_to(source):
+        raise ValueError(
+            f"Cannot import {source} into {destination_root}: the destination "
+            f"is inside the directory being copied."
+        )
+
+    destination_root.mkdir(parents=True, exist_ok=True)
+    # symlinks=True: a project may hold links to large data files, and following
+    # them would silently inflate the copy (or loop).
+    shutil.copytree(source, destination, symlinks=True)
+    return destination
+
 def _import_rerooted(directory: Path) -> None:
     """Import the snapshot with ``directory`` substituted as the project root.
 
