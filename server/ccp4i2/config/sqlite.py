@@ -4,11 +4,7 @@ Kept apart from settings.py so that the choice is testable without importing
 the settings module, and so that the reason for it is written once.
 """
 
-SQLITE_INIT_COMMAND = (
-    "PRAGMA journal_mode=WAL;"
-    "PRAGMA synchronous=NORMAL;"
-    "PRAGMA busy_timeout=30000;"
-)
+SQLITE_INIT_COMMAND = "PRAGMA busy_timeout=30000;"
 
 
 def sqlite_database(name):
@@ -26,8 +22,13 @@ def sqlite_database(name):
     - transaction_mode IMMEDIATE takes the write lock at BEGIN, so a
       contended transaction waits for its turn instead of failing.
     - busy_timeout / timeout give it 30 s to wait.
-    - WAL lets readers and the one writer proceed together, and persists in
-      the file once set.
+
+    The journal mode is deliberately left alone. WAL would let readers run
+    beside the writer, but it needs shared memory between every process
+    that opens the file and does not work over NFS or SMB -- and a user's
+    home, where this database lives, is often a network share. The
+    rollback journal works everywhere, and the two settings above are the
+    ones that fix the failure.
     """
     return {
         "ENGINE": "django.db.backends.sqlite3",

@@ -26,9 +26,11 @@ def test_the_settings_say_so():
     opts = db["OPTIONS"]
     assert opts["transaction_mode"] == "IMMEDIATE"
     assert opts["timeout"] >= 30
-    assert "journal_mode=WAL" in opts["init_command"]
     assert "busy_timeout=30000" in opts["init_command"]
     assert opts["init_command"] == SQLITE_INIT_COMMAND
+    # Not WAL: it needs shared memory across processes and does not work over
+    # NFS or SMB, where a user's home may well be.
+    assert "journal_mode" not in opts["init_command"]
 
 
 def _contended_write(path, begin):
