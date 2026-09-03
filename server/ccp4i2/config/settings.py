@@ -7,6 +7,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+
+from ccp4i2.config.sqlite import sqlite_database
 from urllib.parse import urlparse, unquote
 
 # BASE_DIR is the directory where your Django project is located (containing manage.py)
@@ -168,12 +170,7 @@ if DATABASE_URL:
         # ("/data/...") have no drive letter and are left unchanged.
         if len(db_path) >= 3 and db_path[0] == "/" and db_path[1].isalpha() and db_path[2] == ":":
             db_path = db_path[1:]
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-                "NAME": db_path,
-            }
-        }
+        DATABASES = {"default": sqlite_database(db_path)}
     else:
         # PostgreSQL configuration
         # Parse query parameters from the URL
@@ -230,10 +227,9 @@ if DATABASE_URL:
 else:
     # Default SQLite configuration
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.environ.get("CCP4I2_DB_FILE", USER_DIR / "db.sqlite3"),
-        }
+        "default": sqlite_database(
+            os.environ.get("CCP4I2_DB_FILE", USER_DIR / "db.sqlite3")
+        )
     }
 
 TIME_ZONE = "UTC"
