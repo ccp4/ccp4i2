@@ -143,12 +143,22 @@ export const NewProjectContent: React.FC = () => {
         }
       }
 
-      // If files were dropped, create import jobs sequentially
+      // If files were dropped, create import jobs sequentially.
+      // Sequence files are handled collectively: most consumers want a
+      // CAsuDataFile rather than loose CSeqDataFiles, so every dropped
+      // sequence accumulates into ONE "Define AU contents" job instead of a
+      // ProvideSequence job each.
       const importableFiles = droppedFiles.filter(
         (df) => TASK_FOR_TYPE[df.detectedType] !== null
       );
+      const sequenceFiles = importableFiles.filter(
+        (df) => df.detectedType === "sequence"
+      );
+      const otherFiles = importableFiles.filter(
+        (df) => df.detectedType !== "sequence"
+      );
 
-      for (const df of importableFiles) {
+      for (const df of otherFiles) {
         try {
           await createImportJob(project.id, df);
           // Small delay between jobs to avoid DB contention (SQLite)
@@ -157,6 +167,19 @@ export const NewProjectContent: React.FC = () => {
           }
         } catch (err) {
           console.error(`Error importing ${df.file.name}:`, err);
+        }
+      }
+
+      if (sequenceFiles.length > 0) {
+        try {
+          await createAsuContentJob(project.id, sequenceFiles);
+        } catch (err) {
+          console.error("Error building the AU-contents job:", err);
+          alert(
+            "Could not build a 'Define AU contents' job from the dropped " +
+              "sequence file(s): " +
+              err
+          );
         }
       }
 
@@ -232,6 +255,114 @@ export const NewProjectContent: React.FC = () => {
     //    for the user to review parameters before running
     if (AUTO_RUN_FOR_TYPE[df.detectedType]) {
       await apiPost(`jobs/${jobId}/run/`, {});
+    }
+  }
+
+  /**
+   * One ProvideAsuContents job accumulating every dropped sequence file.
+   *
+   * Each file becomes a CAsuContentSeq entry: the file itself lands on the
+   * entry's `source`, and the server-side digest of that upload supplies the
+   * sequence, name and polymer type. Stoichiometry is nobody's decision yet,
+   * so every entry gets one copy - the job is a starting point for editing,
+   * not a claim about the crystal.
+   *
+   * Robustness: a file the digest cannot read is reported by name and the
+   * job is left PENDING (not run) so the user can fix or remove the entry;
+   * files that did parse keep their entries either way.
+   */
+  async function createAsuContentJob(
+    projectId: number,
+    seqFiles: DroppedFile[]
+  ) {
+    const taskName = "ProvideAsuContents";
+    const result = await apiPost<any>(`projects/${projectId}/create_task/`, {
+      task_name: taskName,
+      title:
+        seqFiles.length === 1
+          ? `Define AU contents (${seqFiles[0].file.name})`
+          : `Define AU contents (${seqFiles.length} sequences)`,
+    });
+    if (!result?.success || !result.data?.new_job) {
+      throw new Error(`Failed to create ${taskName} job`);
+    }
+    const jobId = result.data.new_job.id;
+    const listPath = `${taskName}.container.inputData.ASU_CONTENT`;
+
+    // One empty entry per dropped file
+    await apiPost(`jobs/${jobId}/set_parameter/`, {
+      object_path: listPath,
+      value: seqFiles.map(() => ({})),
+    });
+
+    const problems: string[] = [];
+    for (let i = 0; i < seqFiles.length; i++) {
+      const df = seqFiles[i];
+      try {
+        // Upload the file onto this entry's `source` slot...
+        const uploadForm = new FormData();
+        uploadForm.append("file", df.file, df.file.name);
+        uploadForm.append("objectPath", `${listPath}[${i}].source`);
+        const up = await apiPost<any>(
+          `jobs/${jobId}/upload_file_param/`,
+          uploadForm
+        );
+        if (!up?.success) {
+          throw new Error(up?.error || "upload failed");
+        }
+
+        // ...then let the server parse it
+        const digestResp = await apiGet<any>(
+          `jobs/${jobId}/digest?object_path=${listPath}[${i}].source`
+        );
+        const digest = digestResp?.data ?? digestResp;
+        const sequence =
+          typeof digest?.sequence === "string" ? digest.sequence.trim() : "";
+        if (!sequence) {
+          throw new Error(
+            digest?.reason || "no sequence could be read from the file"
+          );
+        }
+
+        const stem = df.file.name.replace(/\.[^.]+$/, "");
+        const name =
+          String(digest.name || digest.identifier || stem)
+            .replace(/[^A-Za-z0-9_-]+/g, "_")
+            .replace(/^_+|_+$/g, "") || `sequence_${i + 1}`;
+        const polymerType = ["PROTEIN", "RNA", "DNA"].includes(
+          digest.moleculeType
+        )
+          ? digest.moleculeType
+          : "PROTEIN";
+        const fields: Record<string, any> = {
+          sequence,
+          name,
+          polymerType,
+          nCopies: 1,
+        };
+        if (digest.description) fields.description = digest.description;
+        for (const [key, value] of Object.entries(fields)) {
+          await apiPost(`jobs/${jobId}/set_parameter/`, {
+            object_path: `${listPath}[${i}].${key}`,
+            value,
+          });
+        }
+      } catch (err: any) {
+        console.error(`Could not read a sequence from ${df.file.name}:`, err);
+        problems.push(`${df.file.name}: ${err?.message ?? err}`);
+      }
+    }
+
+    if (problems.length === 0) {
+      await apiPost(`jobs/${jobId}/run/`, {});
+    } else {
+      alert(
+        `A 'Define AU contents' job was created but NOT run - ` +
+          `${problems.length} of ${seqFiles.length} sequence file(s) could not be read:\n\n` +
+          problems.join("\n") +
+          `\n\nOpen the job to fix or remove the entries, then run it. ` +
+          `Copy numbers default to 1 - review the stoichiometry too.`
+      );
     }
   }
 
