@@ -313,3 +313,31 @@ def test_a_file_path_can_be_used_as_a_path():
     assert os.path.basename(path) == "example.pdb"
     assert os.path.splitext(path)[1] == ".pdb"
     assert pathlib.Path(path).name == "example.pdb"
+
+
+def test_a_file_can_be_set_from_a_path_that_is_not_a_str():
+    """`aFile.set(x)` accepts every shape of path, not only str.
+
+    set() dispatched on isinstance(value, str), so a CFilePath --- which is what
+    baseName and relPath *are* --- fell past both branches into the dict
+    handling and died with "'str' object has no attribute 'items'". A
+    pathlib.Path failed the same way.
+
+    That is also why CDataFile.fullPath returned a QtStringCompat: the str
+    subclass was satisfying this type check, not merely faking .get() and
+    .isSet().
+    """
+    import pathlib
+    import tempfile
+    import os
+    from ccp4i2.core.CCP4ModelData import CPdbDataFile
+    from ccp4i2.core.CCP4File import CFilePath
+
+    directory = tempfile.mkdtemp()
+    path = os.path.join(directory, "model.pdb")
+    open(path, "w").write("REMARK\n")
+
+    for value in (path, CFilePath(value=path), pathlib.Path(path)):
+        obj = CPdbDataFile()
+        obj.set(value)
+        assert str(obj.baseName).endswith("model.pdb"), (type(value).__name__, str(obj.baseName))
