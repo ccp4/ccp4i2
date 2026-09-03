@@ -170,7 +170,8 @@ async def import_external_file_async(job, file_obj, db_handler):
     if checksum and hasattr(db_handler, 'find_imported_file_by_checksum'):
         existing_file = await db_handler.find_imported_file_by_checksum(
             checksum=checksum,
-            file_type=metadata['file_type']
+            file_type=metadata['file_type'],
+            project=job.project,
         )
 
     if existing_file:

@@ -1677,8 +1677,15 @@ class JobViewSet(ModelViewSet):
                     "parameter_name": "XYZIN",
                     "file_path": "/uploaded/file/path",
                     "file_size": 12345
-                }
+                },
+                "duplicate_of": [
+                    {"uuid": "...", "baseName": "gamma.mtz", "jobNumber": "3", ...}
+                ]
             }
+
+            duplicate_of lists files already imported into this project from
+            byte-identical source bytes. It is advisory --- the upload has been
+            done either way --- and lets the client offer the earlier file.
 
         Example:
             POST /api/jobs/123/upload_file_param/
@@ -1690,7 +1697,9 @@ class JobViewSet(ModelViewSet):
         job = models.Job.objects.get(id=pk)
         try:
             result = upload_file_param(job, request)
-            return api_success({"updated_item": result})
+            # result carries updated_item plus duplicate_of (advisory: earlier
+            # imports of the same source bytes in this project).
+            return api_success(result)
         except CCP4ErrorHandling.CException as err:
             error_tree = getEtree(err)
             ET.indent(error_tree, " ")

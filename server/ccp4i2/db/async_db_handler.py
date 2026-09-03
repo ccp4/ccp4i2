@@ -454,6 +454,7 @@ class AsyncDatabaseHandler:
         self,
         checksum: str,
         file_type: str,
+        project: "models.Project",
     ) -> Optional[models.File]:
         """
         Find an existing imported file with matching checksum and type.
@@ -464,9 +465,16 @@ class AsyncDatabaseHandler:
         IMPORTANT: This ONLY applies to imported files (FileImport records).
         Generated output files are never deduplicated, even if checksums match.
 
+        The search is scoped to a single project, and must stay that way.
+        File.path resolves through file.job.project.directory, so reusing a
+        match from another project would leave this job pointing at bytes
+        that live under a project it does not own --- and that reference
+        dangles the moment the other project is exported, moved or deleted.
+
         Args:
             checksum: MD5 checksum of the file
             file_type: File type name (e.g., "application/CCP4-mtz")
+            project: Project to search within. Required, not optional.
 
         Returns:
             Existing File instance if found, None otherwise
@@ -479,6 +487,7 @@ class AsyncDatabaseHandler:
                     checksum=checksum,
                     file__type__name=file_type,
                     file__directory=models.File.Directory.IMPORT_DIR,
+                    file__job__project=project,
                 ).select_related('file', 'file__type', 'file__job__project').first()
 
                 if file_import:

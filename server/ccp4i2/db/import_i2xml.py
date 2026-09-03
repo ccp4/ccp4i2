@@ -578,6 +578,10 @@ def import_file_import(node: ET.Element):
     )
     create_dict["name"] = node.attrib["sourcefilename"]
     create_dict["checksum"] = node.attrib["checksum"]
+    # Absent from archives written before source_checksum existed, and from
+    # anything exported by legacy CCP4i2. Blank simply means the file takes no
+    # part in duplicate detection.
+    create_dict["source_checksum"] = node.attrib.get("sourcechecksum", "")
 
     try:
         instance = FileImport.objects.get(file=create_dict["file"])
@@ -592,7 +596,7 @@ def import_file_import(node: ET.Element):
         logging.info(f"Created new FileImport {new_file_import}")
         return new_file_import
     else:
-        logging.error("Issues creating new FileImport {item_form.errors}")
+        logging.error(f"Issues creating new FileImport {item_form.errors}")
         return item_form.errors
 
 

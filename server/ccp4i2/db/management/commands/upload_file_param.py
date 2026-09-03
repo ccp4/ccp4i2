@@ -11,6 +11,7 @@ import json
 import pathlib
 from django.core.management.base import BaseCommand, CommandError
 from django.http import QueryDict
+from django.utils.datastructures import MultiValueDict
 from django.core.files.uploadedfile import SimpleUploadedFile
 from ccp4i2.db.models import Job, Project
 from ccp4i2.lib.utils.files.upload_param import upload_file_param
@@ -29,9 +30,13 @@ class MockRequest:
         with open(file_path, "rb") as f:
             file_content = f.read()
 
-        self.FILES = {
-            "file": [SimpleUploadedFile(file_path.name, file_content)]
-        }
+        # MultiValueDict, not a plain dict: upload_file_param reads
+        # FILES.getlist("file") so that one parameter can take several files,
+        # and a plain dict has no getlist --- this command failed on every
+        # upload with "'dict' object has no attribute 'getlist'".
+        self.FILES = MultiValueDict(
+            {"file": [SimpleUploadedFile(file_path.name, file_content)]}
+        )
 
 
 class Command(BaseCommand):
@@ -96,7 +101,9 @@ class Command(BaseCommand):
         request = MockRequest(file_path, object_path, column_selector)
 
         try:
-            result = upload_file_param(the_job, request)
+            upload_result = upload_file_param(the_job, request)
+            result = upload_result["updated_item"]
+            duplicate_of = upload_result.get("duplicate_of") or []
 
             if json_output:
                 self.stdout.write(json.dumps({
@@ -104,7 +111,8 @@ class Command(BaseCommand):
                     "job_uuid": str(the_job.uuid),
                     "job_number": the_job.number,
                     "parameter_path": object_path,
-                    "updated_item": result
+                    "updated_item": result,
+                    "duplicate_of": duplicate_of,
                 }, indent=2))
             else:
                 self.stdout.write(self.style.SUCCESS("Upload successful:"))
@@ -112,6 +120,17 @@ class Command(BaseCommand):
                 self.stdout.write(f"  Annotation: {result.get('annotation', 'N/A')}")
                 if result.get('dbFileId'):
                     self.stdout.write(f"  DB ID: {result.get('dbFileId')}")
+                # Only the ones that could actually serve this parameter. The
+                # same source imported for a different representation --- one
+                # reflection file for F/SIGF and again for the free-R set --- is
+                # the only way to get both, and is not something to report.
+                for earlier in duplicate_of:
+                    if not earlier["interchangeable"]:
+                        continue
+                    self.stdout.write(self.style.WARNING(
+                        f"  NOTE: identical to {earlier['baseName']} "
+                        f"(job {earlier['jobNumber']}), already in this project"
+                    ))
 
         except Exception as e:
             if json_output:

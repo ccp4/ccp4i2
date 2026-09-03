@@ -1,5 +1,7 @@
+import hashlib
 import logging
 import pathlib
+import shutil
 import uuid
 import json
 import gemmi
@@ -257,8 +259,199 @@ def _is_referenced_elsewhere(container, file_id, param_object) -> bool:
     return False
 
 
-def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
+def _checksum_of(path: pathlib.Path) -> str:
+    """MD5 of a file, matching CDataFile.checksum(), or "" if unreadable.
 
+    Empty on failure rather than raising: a checksum we could not take must
+    degrade to "this file takes no part in duplicate detection", never to a
+    failed upload.
+    """
+    try:
+        md5_hash = hashlib.md5()
+        with open(path, "rb") as handle:
+            for chunk in iter(lambda: handle.read(65536), b""):
+                md5_hash.update(chunk)
+        return md5_hash.hexdigest()
+    except OSError as err:
+        logger.warning("Could not checksum %s: %s", path, err)
+        return ""
+
+
+def _existing_imports_of_same_source(job, source_checksum: str, exclude_file=None):
+    """Files in this project already derived from these exact uploaded bytes.
+
+    Scoped to the project deliberately. File.path resolves through
+    file.job.project.directory, so offering a match from another project would
+    invite the user to point this job at bytes living under a project it does
+    not own --- a reference that dangles as soon as that project is exported,
+    moved or deleted.
+
+    Advisory only: nothing here reuses or deletes anything. The caller reports
+    what it found and the user decides.
+    """
+    if not source_checksum:
+        return []
+    try:
+        matches = (
+            models.FileImport.objects.filter(
+                source_checksum=source_checksum,
+                file__job__project=job.project,
+            )
+            .select_related("file", "file__type", "file__job")
+            .order_by("time")
+        )
+        if exclude_file is not None:
+            matches = matches.exclude(file=exclude_file)
+        return [
+            {
+                "uuid": str(each.file.uuid),
+                "baseName": each.file.name,
+                "annotation": each.file.annotation,
+                "type": each.file.type.name if each.file.type_id else None,
+                "contentFlag": each.file.content,
+                "subType": each.file.sub_type,
+                "jobNumber": each.file.job.number if each.file.job_id else None,
+                "jobParamName": each.file.job_param_name,
+                "sourceName": each.name,
+            }
+            for each in matches
+            if each.file.job_id and each.file.path and each.file.path.exists()
+        ]
+    except Exception as err:
+        logger.warning("Could not look for earlier imports of the same file: %s", err)
+        return []
+
+
+# Jobs that have not run yet hold their file references only in params XML, so
+# the guard below has to read them. If a site somehow has more pending jobs than
+# this, reading them all on every upload is not worth it --- treat the question
+# as unanswerable and keep the file.
+_MAX_PENDING_JOBS_TO_SCAN = 500
+
+
+def _is_referenced_outside_this_job(file_record, job) -> bool:
+    """Whether any *other job* still depends on this file's bytes.
+
+    `_is_referenced_elsewhere` only sees the container being edited, so it
+    cannot see a second job pointing at the same file. That happens routinely:
+    the frontend's "Browse the project hierarchy" dialog sets dbFileId to a
+    file owned by another job, in this project or another one. Replacing the
+    owning job's upload then unlinked bytes that job was still using.
+
+    Two sources, because neither is complete on its own:
+
+      - FileUse rows, written when a job runs. Authoritative for jobs that
+        have run, and what the rest of the codebase already uses to answer
+        "what depends on this" (see lib/utils/navigation/dependencies.py).
+      - the params XML of jobs that have *not* run, which have no FileUse row
+        yet. Few in practice, and not restricted to this project --- a
+        cross-project reference is exactly the case FileUse cannot cover yet.
+
+    Errs towards True. False here means "go ahead and unlink", which is the
+    wrong way for an unanswerable question about a destructive act to fail.
+    """
+    try:
+        if models.FileUse.objects.filter(file=file_record).exclude(job=job).exists():
+            logger.info("%s is used by another job (FileUse)", file_record)
+            return True
+    except Exception as err:
+        logger.warning("Could not check FileUse for %s: %s", file_record, err)
+        return True
+
+    file_uuid = str(file_record.uuid)
+    needles = (file_uuid, file_uuid.replace("-", ""))
+
+    try:
+        not_yet_run = (
+            models.Job.objects.filter(
+                status__in=(
+                    models.Job.Status.UNKNOWN,
+                    models.Job.Status.PENDING,
+                    models.Job.Status.QUEUED,
+                )
+            )
+            .exclude(uuid=job.uuid)
+            .select_related("project")
+        )
+        if not_yet_run.count() > _MAX_PENDING_JOBS_TO_SCAN:
+            logger.warning(
+                "Too many pending jobs to check references for %s; keeping it",
+                file_record,
+            )
+            return True
+        for other_job in not_yet_run:
+            try:
+                job_dir = other_job.directory
+            except Exception:
+                return True
+            if not job_dir.is_dir():
+                continue
+            for params_file in job_dir.glob("*params*.xml"):
+                try:
+                    text = params_file.read_text(errors="ignore")
+                except OSError:
+                    return True
+                if any(needle in text for needle in needles):
+                    logger.info(
+                        "%s is referenced by pending job %s", file_record, other_job
+                    )
+                    return True
+    except Exception as err:
+        logger.warning(
+            "Could not check pending jobs for references to %s: %s", file_record, err
+        )
+        return True
+
+    return False
+
+
+def _discard_staged_upload(job, staged_path) -> None:
+    """Remove an upload's staged bytes after the import failed. Never raises.
+
+    Only the file `download_file` wrote. Conversion intermediates --- the MTZ
+    that gemmi_convert_to_mtz writes beside a staged CIF --- are deliberately
+    not chased here: this cannot name them, and guessing at neighbouring files
+    by prefix risks deleting a concurrent upload's staging. They are also
+    exactly what a source store would want to keep, so they are a question for
+    that change rather than for this one.
+
+    Refuses if any File row names the file, which is how a failure *after* the
+    row was written is prevented from deleting a file the database still
+    points at.
+    """
+    try:
+        staged_path = pathlib.Path(staged_path)
+        if not staged_path.is_file():
+            return
+        referenced = models.File.objects.filter(
+            name=staged_path.name, job__project=job.project
+        ).exists()
+        if referenced:
+            logger.info(
+                "Leaving staged upload %s: a File record names it", staged_path
+            )
+            return
+        staged_path.unlink()
+        logger.info("Removed staged upload %s after a failed import", staged_path)
+    except Exception as err:
+        # A failed cleanup must never replace the error that caused it.
+        logger.warning("Could not remove staged upload %s: %s", staged_path, err)
+
+
+def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
+    """Import an uploaded file and point a job parameter at it.
+
+    Returns a dict with two keys:
+
+      updated_item   the parameter as it now stands, for the caller to patch
+                     into its container
+      duplicate_of   files already imported into this project from byte-identical
+                     source bytes, earliest first; empty when there are none.
+                     Each carries `interchangeable`: whether it could actually
+                     serve this parameter, as against being a different
+                     representation derived from the same source. Advisory ---
+                     see the note where it is built.
+    """
     logger.info("=== upload_file_param START ===")
     logger.info("job: %s (task: %s)", job.uuid, job.task_name)
 
@@ -307,23 +500,31 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
             logger.warning(
                 "Upload will replace existing imported file [%s]", previous_file
             )
-            try:
-                file_import = models.FileImport.objects.get(file=previous_file)
-                file_import.delete()
-            except models.FileImport.DoesNotExist:
-                logger.warning(
-                    "No file import for job %s job_param_name %s",
-                    job.uuid,
-                    job_param_name,
-                )
+            # Ask every "is anyone still using this" question *before*
+            # destroying anything. Deleting the FileImport first --- as this
+            # did --- throws away the provenance of a file that may turn out
+            # to be one we must keep.
             if _is_referenced_elsewhere(container, previous_file.uuid, param_object):
                 logger.warning(
                     "Not deleting %s: another parameter in this job still "
                     "refers to it", previous_file,
                 )
                 continue
+            if _is_referenced_outside_this_job(previous_file, job):
+                # Keep the bytes *and* the row. Dropping the row would leave
+                # the other job's dbFileId pointing at a record that no longer
+                # exists, which is the same dangling reference by a different
+                # route.
+                logger.warning(
+                    "Not deleting %s: another job still refers to it",
+                    previous_file,
+                )
+                continue
             try:
-                previous_file.path.unlink()
+                models.FileImport.objects.filter(file=previous_file).delete()
+                # missing_ok: a file already gone off disk must still take its
+                # row with it, rather than leaving an orphan record behind.
+                previous_file.path.unlink(missing_ok=True)
                 previous_file.delete()
             except Exception as err:
                 logger.exception(
@@ -369,179 +570,244 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
     downloaded_file_path = download_file(job, files[0], initial_download_project_folder)
     assert downloaded_file_path.exists(), f"Downloaded file not found: {downloaded_file_path}"
-    file_type = detect_file_type(downloaded_file_path)
 
-    logger.info(
-        "param_object: %s, class: %s, file_type: %s",
-        param_object,
-        param_object.__class__.__name__,
-        file_type,
-    )
+    # Everything past this point can fail --- an unmerged file offered to a
+    # parameter that needs merged data, an MTZ with no column group matching
+    # the requested type. The staged upload had no owner until a File row was
+    # written, so a failure left its bytes in the project with nothing
+    # referencing them and nothing that would ever collect them. Two failed
+    # uploads of one 5.9 MB unmerged file left 11.8 MB behind.
+    try:
 
-    # Track metadata from MTZ splitting for richer annotations
-    mtz_metadata = None
+        # Hash the bytes as uploaded, before any splitting or CIF conversion. What
+        # lands in CCP4_IMPORTED_FILES may be a derivative --- the columns one
+        # parameter asked for --- and the checksum of a derivative cannot answer
+        # "have I seen this file before?". A hash not taken here cannot be
+        # recovered later, so take it even though nothing yet acts on it
+        # automatically.
+        source_checksum = _checksum_of(downloaded_file_path)
+        logger.info("source checksum: %s", source_checksum or "(unavailable)")
+        duplicate_of = _existing_imports_of_same_source(job, source_checksum)
+        if duplicate_of:
+            logger.info(
+                "This upload matches %d file(s) already imported into project %s",
+                len(duplicate_of), job.project.name,
+            )
 
-    if isinstance(param_object, CMtzDataFile):
-        # Check for enhanced multi-selector format first (JSON array)
-        column_selectors_json = request.POST.get("column_selectors", None)
-        column_selector = request.POST.get("column_selector", None)
+        file_type = detect_file_type(downloaded_file_path)
 
-        if column_selectors_json:
-            # Enhanced multi-selector mode
-            try:
-                column_selectors = json.loads(column_selectors_json)
-                logger.info("MTZ path - multi-selector mode: %s", column_selectors)
-                multi_result = handle_reflections_multi(
-                    job, param_object, files[0].name, column_selectors, downloaded_file_path
-                )
-                imported_file_path = multi_result["primaryPath"]
-                additional_paths = multi_result.get("additionalPaths", [])
-                mtz_metadata = multi_result.get("metadata")
-                logger.info(
-                    "handle_reflections_multi returned: primary=%s, additional=%s, metadata=%s",
-                    imported_file_path, additional_paths, mtz_metadata
-                )
-                # Note: additional_paths contains alternate representations
-                # These could be stored or returned to frontend in future enhancement
-            except json.JSONDecodeError as e:
-                logger.error("Failed to parse column_selectors JSON: %s", e)
-                # Fall back to single selector mode
+        logger.info(
+            "param_object: %s, class: %s, file_type: %s",
+            param_object,
+            param_object.__class__.__name__,
+            file_type,
+        )
+
+        # Track metadata from MTZ splitting for richer annotations
+        mtz_metadata = None
+
+        if isinstance(param_object, CMtzDataFile):
+            # Check for enhanced multi-selector format first (JSON array)
+            column_selectors_json = request.POST.get("column_selectors", None)
+            column_selector = request.POST.get("column_selector", None)
+
+            if column_selectors_json:
+                # Enhanced multi-selector mode
+                try:
+                    column_selectors = json.loads(column_selectors_json)
+                    logger.info("MTZ path - multi-selector mode: %s", column_selectors)
+                    multi_result = handle_reflections_multi(
+                        job, param_object, files[0].name, column_selectors, downloaded_file_path
+                    )
+                    imported_file_path = multi_result["primaryPath"]
+                    additional_paths = multi_result.get("additionalPaths", [])
+                    mtz_metadata = multi_result.get("metadata")
+                    logger.info(
+                        "handle_reflections_multi returned: primary=%s, additional=%s, metadata=%s",
+                        imported_file_path, additional_paths, mtz_metadata
+                    )
+                    # Note: additional_paths contains alternate representations
+                    # These could be stored or returned to frontend in future enhancement
+                except json.JSONDecodeError as e:
+                    logger.error("Failed to parse column_selectors JSON: %s", e)
+                    # Fall back to single selector mode
+                    result = handle_reflections(
+                        job, param_object, files[0].name, column_selector, downloaded_file_path
+                    )
+                    imported_file_path = result["path"]
+                    mtz_metadata = result.get("metadata")
+            else:
+                # Legacy single-selector mode
+                logger.info("MTZ path - column_selector: %s", column_selector)
                 result = handle_reflections(
                     job, param_object, files[0].name, column_selector, downloaded_file_path
                 )
                 imported_file_path = result["path"]
                 mtz_metadata = result.get("metadata")
+                logger.info("handle_reflections returned: %s, metadata=%s", imported_file_path, mtz_metadata)
         else:
-            # Legacy single-selector mode
-            logger.info("MTZ path - column_selector: %s", column_selector)
-            result = handle_reflections(
-                job, param_object, files[0].name, column_selector, downloaded_file_path
+            logger.info("Non-MTZ path - using downloaded file directly")
+            imported_file_path = downloaded_file_path
+
+        logger.error(
+            "Final imported file destination is %s %s",
+            imported_file_path,
+            imported_file_path.name,
+        )
+
+        logger.info("Setting full path on param_object: %s", imported_file_path)
+        param_object.setFullPath(str(imported_file_path))
+        logger.info("Loading file...")
+        param_object.loadFile()
+        # Modern CDataFile.setContentFlag() auto-detects content, no reset parameter needed
+        logger.info("Setting content flag...")
+        param_object.setContentFlag()
+
+        # Note deliberate explicit for != None instead of is not None
+        try:
+            subType = int(param_object.subType)
+        except Exception:
+            subType = 1
+        try:
+            contentFlag = int(param_object.contentFlag)
+        except Exception:
+            contentFlag = 0
+
+        logger.info("subType: %s, contentFlag: %s", subType, contentFlag)
+
+        # Map detected file types to MIME types for fallback when mimeTypeName is empty
+        DETECTED_TYPE_TO_MIME = {
+            "FASTA file": "application/CCP4-seq",
+            "PIR file": "application/CCP4-seq",
+            "MTZ file": "application/CCP4-mtz",
+            "mmCIF coordinate file": "chemical/x-pdb",
+            "mmCIF reflection file": "application/CCP4-generic-reflections",
+            "mmCIF ligand/geometry file": "application/refmac-dictionary",
+            "PDB file": "chemical/x-pdb",
+        }
+
+        try:
+            # Use modern CData API: get_qualifier() instead of QUALIFIERS dict
+            mime_type_name = param_object.get_qualifier("mimeTypeName")
+
+            # If mimeTypeName is empty or not set, try to infer from detected file type
+            if not mime_type_name and file_type in DETECTED_TYPE_TO_MIME:
+                mime_type_name = DETECTED_TYPE_TO_MIME[file_type]
+                logger.info("Inferred mimeTypeName '%s' from detected file type '%s'", mime_type_name, file_type)
+
+            if not mime_type_name:
+                raise ValueError("No mimeTypeName available")
+
+            file_type_obj, created = models.FileType.objects.get_or_create(
+                name=mime_type_name,
+                defaults={"description": f"MIME type: {mime_type_name}"}
             )
-            imported_file_path = result["path"]
-            mtz_metadata = result.get("metadata")
-            logger.info("handle_reflections returned: %s, metadata=%s", imported_file_path, mtz_metadata)
-    else:
-        logger.info("Non-MTZ path - using downloaded file directly")
-        imported_file_path = downloaded_file_path
+            if created:
+                logger.info("Created FileType '%s'", mime_type_name)
+            else:
+                logger.info("FileType from mimeTypeName '%s': %s", mime_type_name, file_type_obj)
+        except Exception as e:
+            # Fallback to Unknown if mimeTypeName not available
+            file_type_obj, _ = models.FileType.objects.get_or_create(
+                name="Unknown",
+                defaults={"description": "Unknown file type"}
+            )
+            logger.info("FileType not found (error: %s), using Unknown", e)
 
-    logger.error(
-        "Final imported file destination is %s %s",
-        imported_file_path,
-        imported_file_path.name,
-    )
+        # Okay, so here is a thing. I do not think that the apropriate value for "job_param_name" is param_object.object_name()
+        # Consider the "source" file in a CAsuContentSeq object. The object name is "source" but the relevant parameter name is
+        # ASU_CONTENT[i].source , where i is the number of the asu content in the CAsuContentSeqLIst list. This is gernally true for items that
+        # are children of lists (Don't even get me started on CEnsembles, where files are children of a list of lists)
+        # So, we need to get the parameter name from the object path. I propose to look at the objects "path" and adopt the
+        # value from just before the first array-indirection brackets.  hence coot_rebuild.outputData.XYZOUT[0] becomes
+        # job_param_name XYZOUT[0]. This is a bit of a hack, but it works.
 
-    logger.info("Setting full path on param_object: %s", imported_file_path)
-    param_object.setFullPath(str(imported_file_path))
-    logger.info("Loading file...")
-    param_object.loadFile()
-    # Modern CDataFile.setContentFlag() auto-detects content, no reset parameter needed
-    logger.info("Setting content flag...")
-    param_object.setContentFlag()
+        # Build annotation - include MTZ metadata if available
+        annotation = build_file_annotation(files[0].name, mtz_metadata)
 
-    # Note deliberate explicit for != None instead of is not None
-    try:
-        subType = int(param_object.subType)
-    except Exception:
-        subType = 1
-    try:
-        contentFlag = int(param_object.contentFlag)
-    except Exception:
-        contentFlag = 0
-
-    logger.info("subType: %s, contentFlag: %s", subType, contentFlag)
-
-    # Map detected file types to MIME types for fallback when mimeTypeName is empty
-    DETECTED_TYPE_TO_MIME = {
-        "FASTA file": "application/CCP4-seq",
-        "PIR file": "application/CCP4-seq",
-        "MTZ file": "application/CCP4-mtz",
-        "mmCIF coordinate file": "chemical/x-pdb",
-        "mmCIF reflection file": "application/CCP4-generic-reflections",
-        "mmCIF ligand/geometry file": "application/refmac-dictionary",
-        "PDB file": "chemical/x-pdb",
-    }
-
-    try:
-        # Use modern CData API: get_qualifier() instead of QUALIFIERS dict
-        mime_type_name = param_object.get_qualifier("mimeTypeName")
-
-        # If mimeTypeName is empty or not set, try to infer from detected file type
-        if not mime_type_name and file_type in DETECTED_TYPE_TO_MIME:
-            mime_type_name = DETECTED_TYPE_TO_MIME[file_type]
-            logger.info("Inferred mimeTypeName '%s' from detected file type '%s'", mime_type_name, file_type)
-
-        if not mime_type_name:
-            raise ValueError("No mimeTypeName available")
-
-        file_type_obj, created = models.FileType.objects.get_or_create(
-            name=mime_type_name,
-            defaults={"description": f"MIME type: {mime_type_name}"}
+        new_file = models.File(
+            job=job,
+            name=str(imported_file_path.name),
+            directory=models.File.Directory.IMPORT_DIR,
+            type=file_type_obj,
+            annotation=annotation,
+            job_param_name=job_param_name,
+            sub_type=subType,
+            content=contentFlag,
         )
-        if created:
-            logger.info("Created FileType '%s'", mime_type_name)
-        else:
-            logger.info("FileType from mimeTypeName '%s': %s", mime_type_name, file_type_obj)
-    except Exception as e:
-        # Fallback to Unknown if mimeTypeName not available
-        file_type_obj, _ = models.FileType.objects.get_or_create(
-            name="Unknown",
-            defaults={"description": "Unknown file type"}
+        new_file.save()
+
+        new_file_import = models.FileImport(
+            file=new_file,
+            name=files[0].name,
+            checksum=param_object.checksum(),
+            source_checksum=source_checksum,
         )
-        logger.info("FileType not found (error: %s), using Unknown", e)
+        new_file_import.save()
+        # Note: calling set_parameter here would invalidate "param_object" (since it takes job argument and constructs a new container),
+        # replacing it with updated
+        updated_object_dict = {
+            "project": str(job.project.uuid).replace("-", ""),
+            "baseName": new_file.name,
+            "relPath": pathlib.Path(imported_file_path)
+            .relative_to(job.project.directory)
+            .parent,
+            "annotation": new_file.annotation,
+            "dbFileId": str(new_file.uuid).replace("-", ""),
+            "subType": new_file.sub_type,
+            "contentFlag": new_file.content,
+        }
+        logger.info("Calling set_parameter_container with path: %s", final_path_with_index)
+        logger.info("updated_object_dict: %s", updated_object_dict)
+        updated_object = set_parameter_container(
+            container,
+            final_path_with_index,
+            updated_object_dict,
+        )
+        logger.info("set_parameter_container returned: %s", updated_object)
+        save_params_for_job(the_job_plugin=plugin, the_job=job)
 
-    # Okay, so here is a thing. I do not think that the apropriate value for "job_param_name" is param_object.object_name()
-    # Consider the "source" file in a CAsuContentSeq object. The object name is "source" but the relevant parameter name is
-    # ASU_CONTENT[i].source , where i is the number of the asu content in the CAsuContentSeqLIst list. This is gernally true for items that
-    # are children of lists (Don't even get me started on CEnsembles, where files are children of a list of lists)
-    # So, we need to get the parameter name from the object path. I propose to look at the objects "path" and adopt the
-    # value from just before the first array-indirection brackets.  hence coot_rebuild.outputData.XYZOUT[0] becomes
-    # job_param_name XYZOUT[0]. This is a bit of a hack, but it works.
-
-    # Build annotation - include MTZ metadata if available
-    annotation = build_file_annotation(files[0].name, mtz_metadata)
-
-    new_file = models.File(
-        job=job,
-        name=str(imported_file_path.name),
-        directory=models.File.Directory.IMPORT_DIR,
-        type=file_type_obj,
-        annotation=annotation,
-        job_param_name=job_param_name,
-        sub_type=subType,
-        content=contentFlag,
-    )
-    new_file.save()
-
-    new_file_import = models.FileImport(
-        file=new_file, name=files[0].name, checksum=param_object.checksum()
-    )
-    new_file_import.save()
-    # Note: calling set_parameter here would invalidate "param_object" (since it takes job argument and constructs a new container),
-    # replacing it with updated
-    updated_object_dict = {
-        "project": str(job.project.uuid).replace("-", ""),
-        "baseName": new_file.name,
-        "relPath": pathlib.Path(imported_file_path)
-        .relative_to(job.project.directory)
-        .parent,
-        "annotation": new_file.annotation,
-        "dbFileId": str(new_file.uuid).replace("-", ""),
-        "subType": new_file.sub_type,
-        "contentFlag": new_file.content,
-    }
-    logger.info("Calling set_parameter_container with path: %s", final_path_with_index)
-    logger.info("updated_object_dict: %s", updated_object_dict)
-    updated_object = set_parameter_container(
-        container,
-        final_path_with_index,
-        updated_object_dict,
-    )
-    logger.info("set_parameter_container returned: %s", updated_object)
-    save_params_for_job(the_job_plugin=plugin, the_job=job)
-
-    result = json.loads(json.dumps(updated_object, cls=CCP4i2JsonEncoder))
-    logger.info("=== upload_file_param END - returning: %s ===", result)
-    return result
+        result = json.loads(json.dumps(updated_object, cls=CCP4i2JsonEncoder))
+        logger.info("=== upload_file_param END - returning: %s ===", result)
+        # `duplicate_of` is advisory. The upload has already been done in full and
+        # the parameter is set; this only tells the caller that the same bytes were
+        # imported into this project before, so it can offer the earlier file. The
+        # earlier match is deliberately reported rather than acted on --- reusing a
+        # file silently would mean two jobs sharing one record, and neither the
+        # delete path nor the export path is ready for that.
+        # Same source bytes does not mean interchangeable. Fetching one PDB
+        # reflection file for F/SIGF and again for the free-R set is not a mistake
+        # --- under the current design it is the *only* way to get both, because
+        # each import derives one representation and the source is not kept as
+        # something a second derivation could be taken from. Telling the user to
+        # "pick the existing file instead" there would be wrong: the earlier import
+        # holds different columns and the picker, which filters on type and content
+        # flag, would not even offer it.
+        #
+        # Exact agreement on both is a sufficient condition, not a necessary one:
+        # the picker also offers files whose content can be *converted* to what is
+        # required. Missing those means under-advising, which is the safe direction
+        # for a message whose whole value is that it is trustworthy.
+        for each in duplicate_of:
+            each["interchangeable"] = (
+                each["type"] == file_type_obj.name
+                and each["contentFlag"] == new_file.content
+            )
+        duplicate_of = [
+            each for each in duplicate_of if each["uuid"] != str(new_file.uuid)
+        ]
+        if duplicate_of:
+            logger.info(
+                "Upload duplicates %d earlier import(s) in project %s, %d of them "
+                "interchangeable with this parameter",
+                len(duplicate_of),
+                job.project.name,
+                sum(1 for each in duplicate_of if each["interchangeable"]),
+            )
+        return {"updated_item": result, "duplicate_of": duplicate_of}
+    except Exception:
+        _discard_staged_upload(job, downloaded_file_path)
+        raise
 
 
 def download_file(job: models.Job, the_file, initial_download_project_folder: str):
@@ -592,20 +858,25 @@ def handle_reflections(
     # the intact reflection file without column extraction.
     # CUnmergedMtzDataFile also stores the intact file — unmerged data doesn't
     # support column splitting (getFileContent() returns None).
-    # If column_selector is empty/None, just copy the file as-is.
+    # If column_selector is empty/None, the imported file *is* the uploaded file.
     is_general_container = type(param_object).__name__ in ("CMtzDataFile", "CUnmergedMtzDataFile")
     skip_column_split = is_general_container and not column_selector
 
     if skip_column_split:
-        logger.info("CMtzDataFile with no column selector - copying file as-is")
+        # Move, do not copy. Nothing is derived here, so the staged upload in
+        # CCP4_DOWNLOADED_FILES and the imported file would be byte-identical
+        # twins, and the staged one is never cleaned up --- every unmerged or
+        # unsplit MTZ cost twice its size on disk, forever. Both directories
+        # are inside the project, so this is a rename on one filesystem.
+        logger.info("CMtzDataFile with no column selector - moving file as-is")
         dest = (
             pathlib.Path(job.project.directory)
             / "CCP4_IMPORTED_FILES"
             / slugify(pathlib.Path(file_name).stem)
         ).with_suffix(pathlib.Path(downloaded_file_path).suffix)
+        dest.parent.mkdir(parents=True, exist_ok=True)
         dest = available_file_name_based_on(dest)
-        import shutil
-        shutil.copy2(downloaded_file_path, dest)
+        shutil.move(str(downloaded_file_path), str(dest))
         return {"path": dest, "metadata": None}
 
     # For specific reflection types (CObsDataFile, etc.) or when column_selector
@@ -695,9 +966,9 @@ def handle_reflections_multi(
             / "CCP4_IMPORTED_FILES"
             / slugify(pathlib.Path(file_name).stem)
         ).with_suffix(pathlib.Path(downloaded_file_path).suffix)
+        dest.parent.mkdir(parents=True, exist_ok=True)
         dest = available_file_name_based_on(dest)
-        import shutil
-        shutil.copy2(downloaded_file_path, dest)
+        shutil.move(str(downloaded_file_path), str(dest))
         return {"primaryPath": dest, "additionalPaths": [], "metadata": None}
 
     # Ensure the MTZ file is readable

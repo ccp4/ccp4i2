@@ -13,6 +13,7 @@ import {
 import { apiJson, apiPost, apiText } from "./api-fetch";
 import { useIsJobEffectivelyActive } from "./providers/recently-started-jobs-context";
 import { patchContainer } from "./utils/container-patch";
+import { usePopcorn } from "./providers/popcorn-provider";
 
 // ============================================================================
 // Types and Interfaces
@@ -120,11 +121,41 @@ export interface ProjectData {
 /**
  * API response format for upload_file_param endpoint.
  */
+/**
+ * A file already imported into this project from byte-identical source bytes.
+ * Advisory only -- the upload has been done either way.
+ */
+export interface DuplicateImport {
+  uuid: string;
+  baseName: string;
+  annotation: string;
+  type: string | null;
+  contentFlag: number | null;
+  subType: number | null;
+  jobNumber: string | null;
+  jobParamName: string;
+  sourceName: string;
+  /**
+   * Whether this earlier import could actually serve the parameter being
+   * uploaded to. False when it was derived from the same source but holds a
+   * different representation -- fetching one reflection file for F/SIGF and
+   * again for the free-R set is not a mistake, and must not be reported as one.
+   */
+  interchangeable: boolean;
+}
+
 export type UploadFileParamResponse =
   | {
       success: true;
       data: {
         updated_item: any;
+        /**
+         * Earlier imports of the same uploaded bytes, earliest first. Empty
+         * when there are none. The server reports rather than acts: reusing a
+         * file silently would mean two jobs sharing one record, which neither
+         * the delete path nor the export path is ready for.
+         */
+        duplicate_of?: DuplicateImport[];
       };
     }
   | {
@@ -916,6 +947,7 @@ const parameterQueue = new ParameterQueue();
 
 export const useJob = (jobId: number | null | undefined): JobData => {
   const api = useApi();
+  const { setMessage } = usePopcorn();
 
   // Poll only while the job is active — a finished/failed job can't change,
   // so there's nothing to poll for. Tracked via state (not the `job` data
@@ -1129,6 +1161,35 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             );
           }
 
+          // The same bytes may already be in this project. Say so, and leave
+          // it there -- the upload has been done, and the parameter is set.
+          // Deciding to use the earlier file instead is the user's, from the
+          // file picker, which already lists it.
+          //
+          // Only when the earlier import could actually serve this parameter.
+          // A second import of one source for a different representation --
+          // the same reflection file for F/SIGF and then for the free-R set --
+          // is the only way to get both, and reporting it as redundant would
+          // be both wrong and the fastest way to teach people to ignore this
+          // message.
+          const interchangeable =
+            result.success
+              ? (result.data?.duplicate_of ?? []).filter((d) => d.interchangeable)
+              : [];
+          if (interchangeable.length) {
+            const [earlier] = interchangeable;
+            const others = interchangeable.length - 1;
+            setMessage(
+              `${fileName} is identical to ${earlier.baseName}` +
+                (earlier.jobNumber ? ` (job ${earlier.jobNumber})` : "") +
+                `, already in this project` +
+                (others > 0 ? ` — and to ${others} more` : "") +
+                `. It has been imported again; you can pick the existing file ` +
+                `from the list instead.`,
+              "warning"
+            );
+          }
+
           // Still update validation and params_xml
           await Promise.all([mutateValidation(), mutateParams_xml()]);
 
@@ -1145,7 +1206,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       }) as Promise<UploadFileParamResponse | undefined>;
     },
-    [job, mutateValidation, mutateParams_xml, api, mutateContainer]
+    [job, mutateValidation, mutateParams_xml, api, mutateContainer, setMessage]
   );
 
   const useTaskItem = useMemo(() => {

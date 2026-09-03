@@ -419,7 +419,16 @@ class FileImport(Model):
     file = OneToOneField(File, on_delete=CASCADE, primary_key=True)
     time = DateTimeField(default=timezone.now)
     name = TextField()
+    # `checksum` is the checksum of `file` as it ended up in the project. For
+    # anything derived --- an MTZ split down to the columns one parameter
+    # wanted --- that is the checksum of the derivative, not of what the user
+    # uploaded, so it cannot answer "have I seen this file before?".
     checksum = CharField(max_length=32)
+    # `source_checksum` is the checksum of the bytes as uploaded, taken before
+    # any splitting or conversion. Blank on rows written before this field
+    # existed, and on rows whose source could not be hashed; blank never
+    # matches, so those rows simply take no part in duplicate detection.
+    source_checksum = CharField(max_length=32, blank=True, default="", db_index=True)
     last_modified = DateTimeField(blank=True, null=True)
 
     def __str__(self):

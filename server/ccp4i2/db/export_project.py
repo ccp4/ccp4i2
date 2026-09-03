@@ -427,6 +427,11 @@ def _export_file_import_table(
         import_elem.set("creationtime", str(int(file_import.time.timestamp())))
         import_elem.set("sourcefilename", file_import.name or "")
         import_elem.set("checksum", str(file_import.checksum) or "")
+        # Not in the legacy schema. Older readers ignore unknown attributes,
+        # and without it a project that has been through an export/import
+        # round trip quietly loses the ability to spot re-uploads of files it
+        # already holds.
+        import_elem.set("sourcechecksum", str(file_import.source_checksum) or "")
 
 
 def _export_job_key_value_tables(
