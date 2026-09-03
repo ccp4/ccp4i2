@@ -410,8 +410,17 @@ export const ConfigContent: React.FC = () => {
               <SetupRow
                 ok={existingFiles?.CCP4Dir}
                 label="CCP4"
-                value={config.CCP4Dir}
-                action={hasElectron ? { label: "Change", onClick: onLocateCcp4 } : undefined}
+                // Empty means we looked and did not find one, so ask rather
+                // than showing a blank field or a path that is not there.
+                value={config.CCP4Dir || "Not found — choose your CCP4 installation"}
+                action={
+                  hasElectron
+                    ? {
+                        label: config.CCP4Dir ? "Change" : "Locate",
+                        onClick: onLocateCcp4,
+                      }
+                    : undefined
+                }
               />
               <SetupRow
                 ok={existingFiles?.venv_python}

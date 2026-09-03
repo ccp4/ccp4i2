@@ -126,8 +126,16 @@ const getDefaultCCP4Dir = () => {
     }
   }
 
-  // Fallback to first standard location (user will need to configure)
-  return isMac ? "/Applications/ccp4-9x" : isWindows ? "C:\\CCP4\\ccp4-9" : "/opt/ccp4";
+  // Nothing found: say so, rather than naming a location we have just checked
+  // and know is not there. Every path above is returned only after confirming it
+  // holds bin/ccp4-python, so a returned value always means a real install.
+  //
+  // The previous fallback returned /Applications/ccp4-9 (macOS) or the platform
+  // equivalent regardless, which put a confident, wrong, and on macOS actively
+  // unsuitable path in front of every first-time user — it reads as "this is
+  // where CCP4 should go" rather than "we could not find CCP4". Empty makes the
+  // setup page ask, which is the honest thing on a machine we know nothing about.
+  return "";
 };
 
 // Config lives under the CCP4i2 home rather than Electron's userData. userData
