@@ -7,6 +7,7 @@ These endpoints require platform admin permissions.
 
 import json
 import logging
+import os
 import tempfile
 from io import StringIO
 from pathlib import Path
@@ -76,6 +77,36 @@ def _inplace_migration_disabled_response():
             ),
         },
         status=status.HTTP_403_FORBIDDEN,
+    )
+
+
+def _wrong_database_kind_response(db_path):
+    """403/400 when the file is not a legacy CCP4i2 database.
+
+    Without this, pointing the legacy importer at a database written by THIS
+    application fails one query at a time on missing tables, and the user sees a
+    stack of OperationalErrors rather than "you have picked the wrong file, and
+    here is the right route for it".
+    """
+    from ccp4i2.db.import_sqlite import describe_sqlite_database
+
+    described = describe_sqlite_database(db_path)
+    if described["kind"] == "legacy":
+        return None
+    if not Path(db_path).expanduser().is_file():
+        # "You gave me a path that isn't there" is a different complaint, and
+        # the endpoints already answer it with 404. Don't shadow it with a
+        # 400 about the file's contents.
+        return None
+    return Response(
+        {
+            "success": False,
+            "error": f"not_a_legacy_database:{described['kind']}",
+            "message": described["message"]
+            or "That file is not a legacy CCP4i2 database.",
+            "detected": described,
+        },
+        status=status.HTTP_400_BAD_REQUEST,
     )
 
 
@@ -223,6 +254,12 @@ def import_sqlite(request):
         )
     actual_path, temp_path = src
 
+    wrong_kind = _wrong_database_kind_response(actual_path)
+    if wrong_kind is not None:
+        if temp_path:
+            os.unlink(temp_path)
+        return wrong_kind
+
     dry_run = str(request.data.get('dry_run', 'false')).lower() == 'true'
     copy_files = str(request.data.get('copy_files', 'false')).lower() == 'true'
     allow_structural = str(
@@ -311,6 +348,12 @@ def validate_sqlite(request):
             status=status.HTTP_400_BAD_REQUEST,
         )
     actual_path, temp_path = src
+
+    wrong_kind = _wrong_database_kind_response(actual_path)
+    if wrong_kind is not None:
+        if temp_path:
+            os.unlink(temp_path)
+        return wrong_kind
 
     copy_files = str(request.data.get('copy_files', 'false')).lower() == 'true'
     dest_root = request.data.get('dest_root', '').strip() or None

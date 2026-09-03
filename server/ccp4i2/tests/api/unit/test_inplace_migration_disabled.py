@@ -92,3 +92,23 @@ def test_copy_mode_is_still_allowed(client):
     assert resp.status_code != 403 or resp.json().get("error") != (
         "in_place_migration_disabled"
     )
+
+
+def test_a_django_database_is_refused_with_a_route_to_take_instead(client, tmp_path):
+    """Pointing the legacy importer at this application's own database used to
+    fail one query at a time on missing tables. It now says what the file is,
+    and where those projects should go instead."""
+    import sqlite3
+
+    db = tmp_path / "alpha.sqlite3"
+    connection = sqlite3.connect(db)
+    for table in ("ccp4i2_project", "ccp4i2_job"):
+        connection.execute(f"CREATE TABLE [{table}] (id INTEGER PRIMARY KEY)")
+    connection.commit()
+    connection.close()
+
+    resp = _post(client, "/api/ccp4i2/admin/validate-sqlite/", {"db_path": str(db)})
+    assert resp.status_code == 400
+    body = resp.json()
+    assert body["error"] == "not_a_legacy_database:django"
+    assert "folder" in body["message"].lower()

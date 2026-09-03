@@ -281,12 +281,18 @@ export const ImportProjectDirectory: React.FC<ImportProjectDirectoryProps> = ({
                 </Typography>
               }
             />
+            {/* Indented under the option it explains, rather than sitting below
+                the whole group where it reads as a note about both. */}
+            {!inPlaceAllowed && inPlaceReason && (
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ ml: 4, mt: -0.5, mb: 0.5, display: "block", maxWidth: "42rem" }}
+              >
+                {inPlaceReason}
+              </Typography>
+            )}
           </RadioGroup>
-          {!inPlaceAllowed && inPlaceReason && (
-            <Alert severity="info" sx={{ mt: 1 }}>
-              {inPlaceReason}
-            </Alert>
-          )}
         </FormControl>
 
         <Stack direction="row" spacing={2} alignItems="center">

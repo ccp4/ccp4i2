@@ -104,6 +104,97 @@ class _DryRunRollback(Exception):
     """Internal sentinel used to unwind a dry-run's atomic block."""
 
 
+
+# ---------------------------------------------------------------------------
+# Telling the two kinds of CCP4i2 database apart
+# ---------------------------------------------------------------------------
+
+# The Qt-era database names its tables in CamelCase; the Django one prefixes
+# everything with the app label. They share no table name at all, so a single
+# lookup settles which is which -- no version numbers, no guessing from paths.
+LEGACY_MARKER_TABLES = ("Projects", "Jobs", "Files")
+DJANGO_MARKER_TABLES = ("ccp4i2_project", "ccp4i2_job")
+
+
+def describe_sqlite_database(db_path) -> dict:
+    """Identify a CCP4i2 SQLite database: ``legacy``, ``django`` or neither.
+
+    The legacy importer reads the Qt schema. Pointed at a *Django* database --
+    one written by a previous alpha of this application -- every one of its
+    queries would fail on a missing table, and the user would get a stack of
+    OperationalErrors instead of being told they had picked the wrong file.
+    Worse, those projects have their own snapshots on disk and should come in
+    through the folder route, which handles them properly.
+
+    Returns ``{"kind", "projects", "message"}`` where kind is "legacy",
+    "django", "empty" or "unknown", and projects is the count where it can be
+    determined.
+    """
+    path = Path(db_path).expanduser()
+    if not path.is_file():
+        return {"kind": "unknown", "projects": None,
+                "message": f"No such file: {path}"}
+
+    try:
+        connection = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    except sqlite3.Error as err:
+        return {"kind": "unknown", "projects": None,
+                "message": f"Could not open {path}: {err}"}
+
+    try:
+        cur = connection.cursor()
+        try:
+            cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            tables = {row[0] for row in cur.fetchall()}
+        except sqlite3.DatabaseError as err:
+            # sqlite3.connect() opens lazily, so a file that is not a database
+            # at all only fails here, on the first read.
+            return {
+                "kind": "unknown",
+                "projects": None,
+                "message": f"{path} is not an SQLite database ({err}).",
+            }
+
+        if all(name in tables for name in LEGACY_MARKER_TABLES):
+            cur.execute("SELECT COUNT(*) FROM Projects")
+            return {
+                "kind": "legacy",
+                "projects": cur.fetchone()[0],
+                "message": "",
+            }
+
+        if any(name in tables for name in DJANGO_MARKER_TABLES):
+            count = None
+            if "ccp4i2_project" in tables:
+                cur.execute("SELECT COUNT(*) FROM ccp4i2_project")
+                count = cur.fetchone()[0]
+            return {
+                "kind": "django",
+                "projects": count,
+                "message": (
+                    "This is a CCP4i2 database from this application, not a "
+                    "legacy (Qt) one. Import those projects by folder instead: "
+                    "each project directory carries its own record and comes in "
+                    "without needing the database it came from."
+                ),
+            }
+
+        if not tables:
+            return {"kind": "empty", "projects": 0,
+                    "message": f"{path} contains no tables."}
+
+        return {
+            "kind": "unknown",
+            "projects": None,
+            "message": (
+                f"{path} does not look like a CCP4i2 database: it has neither "
+                f"the legacy tables nor this application's."
+            ),
+        }
+    finally:
+        connection.close()
+
+
 class SQLiteValidator:
     """Validate a legacy CCP4i2 SQLite database against the filesystem.
 
