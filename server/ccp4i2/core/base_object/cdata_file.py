@@ -1114,6 +1114,17 @@ class CDataFile(CData):
             self._clear_metadata()
             return
 
+        # A path that is not a str: CFilePath, CString, pathlib.Path. These
+        # fall past both branches below and land in the dict handling, which
+        # then fails with "'str' object has no attribute 'items'". That makes
+        # `aFile.set(anotherFile.baseName)` broken today, since baseName *is* a
+        # CFilePath --- and it is why CDataFile.fullPath still has to return a
+        # str subclass rather than the CFilePath it is composed from.
+        if not isinstance(value, (str, CDataFile)):
+            from .fundamental_types import CString
+            if isinstance(value, CString) or hasattr(value, "__fspath__"):
+                value = str(value)
+
         if isinstance(value, str):
             # String argument: set as file path
             self.setFullPath(value)

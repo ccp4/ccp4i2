@@ -361,6 +361,14 @@ class CFilePath(CString):
 
 
     """A file path"""
+
+    def __fspath__(self) -> str:
+        """Let a path be used where the standard library expects one.
+
+        A class called "a file path" that cannot be handed to open() or
+        os.path.join() is a gap on its own terms.
+        """
+        return str(self)
     class Meta:
         error_codes = {
             "101": {
