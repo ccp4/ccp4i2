@@ -133,8 +133,25 @@ export async function startDjangoServer(
 
   if (CCP4I2_PROJECTS_DIR.length > 0) {
     process.env.CCP4I2_PROJECTS_DIR = CCP4I2_PROJECTS_DIR;
-    process.env.CCP4I2_DB_FILE = path.join(CCP4I2_PROJECTS_DIR, "db.sqlite3");
   }
+  // Deliberately NOT setting CCP4I2_DB_FILE from the projects directory.
+  //
+  // Doing so tied the database to wherever projects happened to live, so
+  // choosing a new projects folder silently produced a NEW, EMPTY database and
+  // the previous one simply stopped being consulted — projects appearing to
+  // vanish, with nothing lost but nothing visible either. Qt-era CCP4i2 kept
+  // one database in the user's CCP4i2 directory regardless of where projects
+  // sat, and for alpha and beta we match that: the server default is
+  // <ccp4i2 home>/db.sqlite3.
+  //
+  // An installation that already has an explicit "database" in preferences.json
+  // keeps it — that file is honoured ahead of the default, so existing testers
+  // carry on using the database they have rather than being switched to an
+  // empty one.
+  //
+  // The longer-term intent is different again: self-contained SETS of projects,
+  // each with its own database alongside them, chosen explicitly rather than as
+  // a side effect of picking a folder.
 
   console.log(`🚀 Next.js running on http://localhost:${NEXT_PORT}`);
   console.log(`🐍 Using Python: ${PYTHON_PATH}`);

@@ -9,7 +9,7 @@ import { spawn, execSync, ChildProcessWithoutNullStreams } from "node:child_proc
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
-import { loadPreferences, updatePreferences, sqliteUrl } from "./ccp4i2-preferences";
+import { loadPreferences, updatePreferences } from "./ccp4i2-preferences";
 import {
   CCP4I2_REQUIRED_SERVER_VERSION,
   meetsServerVersionRequirement,
@@ -391,13 +391,12 @@ export const installIpcHandlers = (
           console.log("Selected directory:", result.filePaths);
           const projectsDir = result.filePaths[0];
           store.set("CCP4I2_PROJECTS_DIR", projectsDir);
-          // Write the shared keys so the server and the i2/i2run CLI agree —
-          // including the database location, so all three open the SAME
-          // db.sqlite3 inside the projects dir (not a divergent default).
-          updatePreferences({
-            projectsDir,
-            database: sqliteUrl(path.join(projectsDir, "db.sqlite3")),
-          });
+          // Only the projects directory. The database is NOT written here any
+          // more: pairing the two meant that changing where projects live also
+          // changed which database was open, so a user who pointed CCP4i2 at a
+          // new folder was quietly given an empty one and concluded their work
+          // had gone. One database, in the CCP4i2 home, as Qt-era CCP4i2 had.
+          updatePreferences({ projectsDir });
           event.reply("message-from-main", getConfigResponse());
         }
       });
