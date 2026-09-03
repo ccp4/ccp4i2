@@ -89,8 +89,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // Visibility conditions (stable references)
   const visibility = {
-    showF_OR_I: () =>
-      F_SIGFItem?.contentFlag && [1, 3].includes(F_SIGFItem.contentFlag),
     // Four more predicates lived here, on INPUT_FIXED, SGALT_SELECT and
     // ID_RMS. None of those names is in this task's container -- they belong
     // to phaser_simple and phaser_mr -- so each read undefined, and nothing
@@ -115,23 +113,22 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           >
             <CCP4i2TaskElement
               {...props}
-              itemName="F_OR_I"
-              qualifiers={{
-                guiLabel: "Use Fs or Is",
-                toolTip:
-                  "Choose between structure factors (F) or intensities (I)",
-              }}
-              visibility={visibility.showF_OR_I}
-            />
-
-            <CCP4i2TaskElement
-              {...props}
               itemName="F_SIGF"
               qualifiers={{
                 guiLabel: "Reflections",
                 toolTip: "Reflection data file",
               }}
               onChange={handleF_SIGFChange} // Event-driven updates
+            />
+
+            <CCP4i2TaskElement
+              {...props}
+              itemName="F_OR_I"
+              qualifiers={{
+                guiLabel: "Use Fs or Is",
+                toolTip:
+                  "Give Phaser intensities (I) or structure factors (F). Intensities cannot be made from a file of amplitudes: for such a file this must be F, and the run uses F either way.",
+              }}
             />
 
             <CCP4i2TaskElement

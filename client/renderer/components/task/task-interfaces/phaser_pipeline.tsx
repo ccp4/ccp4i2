@@ -90,8 +90,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // Visibility conditions (stable references)
   const visibility = {
-    showF_OR_I: () =>
-      F_SIGFItem?.contentFlag && [1, 3].includes(F_SIGFItem.contentFlag),
     showASUFile: () => COMP_BY_value === "ASU",
     showMolecularWeights: () => COMP_BY_value === "MW",
     showSpacegroupList: () => SGALT_SELECT_value === "LIST",
@@ -112,17 +110,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           >
             <CCP4i2TaskElement
               {...props}
-              itemName="F_OR_I"
-              qualifiers={{
-                guiLabel: "Use Fs or Is",
-                toolTip:
-                  "Choose between structure factors (F) or intensities (I)",
-              }}
-              visibility={visibility.showF_OR_I}
-            />
-
-            <CCP4i2TaskElement
-              {...props}
               itemName="F_SIGF"
               qualifiers={{
                 guiLabel: "Reflections",
@@ -130,6 +117,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   "Reflection data file containing observed structure factors or intensities",
               }}
               onChange={handleF_SIGFChange}
+            />
+
+            <CCP4i2TaskElement
+              {...props}
+              itemName="F_OR_I"
+              qualifiers={{
+                guiLabel: "Use Fs or Is",
+                toolTip:
+                  "Give Phaser intensities (I) or structure factors (F). Intensities cannot be made from a file of amplitudes: for such a file this must be F, and the run uses F either way.",
+              }}
             />
 
             <CCP4i2TaskElement
