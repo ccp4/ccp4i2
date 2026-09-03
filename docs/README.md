@@ -83,6 +83,13 @@ Supporting references:
 - [Task Interface Implementation Guide](../client/renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md)
 - Moorhen 3D viewer: `client/renderer/MOORHEN_SCENES_SCHEMA_V1_DESIGN.md`
 
+### …understand how files get into a project
+- [File Import and Duplication](file-import-and-duplication.md) — what an upload
+  does, why `CCP4_DOWNLOADED_FILES` grows and is never collected, why the
+  checksum on a `FileImport` cannot answer "have I seen this file before?", and
+  the source-store model that would let one uploaded file yield several
+  representations. Read before changing anything on the upload path.
+
 ### …organise projects (tags, groups, campaigns)
 - [Organising Projects](organising-projects.md) — `ProjectTag` vs `ProjectGroup`:
   which to reach for, why hierarchy lives on tags, and where legacy Qt-i2
@@ -97,7 +104,7 @@ Supporting references:
 
 ### …handle configuration and secrets
 - [Preferences Handling](preferences-proposal.md) — where non-secret config lives
-  (`~/.ccp4i2-django/preferences.json`, env-first precedence)
+  (`~/.ccp4i2x/preferences.json`, env-first precedence)
 - [Handling Secrets](CREDENTIALS_DESIGN.md) — API tokens, ssh passwords and key
   passphrases: the credential store, its REST surface, and why a credential is
   never a task parameter

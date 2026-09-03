@@ -66,6 +66,19 @@ STATIC_URL = "/static/"
 USER_DIR = Path.home().resolve() / ".ccp4i2_test"
 USER_DIR.mkdir(exist_ok=True)
 
+# Isolate the CCP4i2 user home for the whole test session.
+#
+# Overriding CCP4I2_PROJECTS_DIR is not enough. Several modules resolve paths
+# through preferences.ccp4i2_home() rather than through Django settings ---
+# project_snapshot's project_directories.json registry above all --- so a test
+# run wrote into the developer's real ~/.ccp4i2x. Observed there: a registry
+# entry naming a directory under ~/.cache/ccp4i2-tests, left by the API suite.
+#
+# setdefault, so an explicit CCP4I2_HOME still wins: pointing a run at a
+# particular home is a deliberate act, and tests that exercise the resolver
+# clear the variable themselves (tests/unit/config/test_user_home.py).
+os.environ.setdefault("CCP4I2_HOME", str(USER_DIR))
+
 CCP4I2_PROJECTS_DIR = USER_DIR / "test_projects"
 CCP4I2_PROJECTS_DIR.mkdir(exist_ok=True)
 

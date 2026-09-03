@@ -297,13 +297,24 @@ def isolated_test_db(request, django_db_blocker, monkeypatch, test_project_path)
     # Only remove the project directory if the test passed
     test_failed = request.node.rep_call.failed if hasattr(request.node, 'rep_call') else False
 
-    if not test_failed:
+    # A passing test's project directory is the only realistic sample of what
+    # the app actually writes -- job directories, CCP4_IMPORTED_FILES,
+    # CCP4_DOWNLOADED_FILES -- produced by the real endpoints rather than by
+    # hand. Deleting it is right by default (these accumulate), but there is
+    # otherwise no way to look at one without making a test fail on purpose.
+    keep = os.environ.get("CCP4I2_TEST_KEEP_PROJECTS", "").strip().lower() not in (
+        "", "0", "false", "no",
+    )
+
+    if test_failed:
+        print(f"Test failed - preserving project directory: {test_project_dir}")
+    elif keep:
+        print(f"CCP4I2_TEST_KEEP_PROJECTS set - preserving: {test_project_dir}")
+    else:
         try:
             shutil.rmtree(test_project_dir, ignore_errors=True)
         except Exception as e:
             print(f"Warning: Failed to clean up test project directory {test_project_dir}: {e}")
-    else:
-        print(f"Test failed - preserving project directory: {test_project_dir}")
 
 
 # === Fixture: file_based_db (backwards compatibility) ===
