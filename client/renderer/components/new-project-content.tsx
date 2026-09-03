@@ -10,11 +10,12 @@ import {
   TextField,
   ToggleButton,
   ToggleButtonGroup,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { Folder } from "@mui/icons-material";
 import { useApi } from "../api";
-import { apiPost } from "../api-fetch";
+import { apiGet, apiPost } from "../api-fetch";
 import { Project } from "../types/models";
 import EditTags from "./edit-tags";
 import {
@@ -31,9 +32,24 @@ export const NewProjectContent: React.FC = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [customDirectory, setCustomDirectory] = useState(false);
-  const [ccp4i2ProjectDirectory, setCcp4i2ProjectDirectory] = useState<string>(
-    "/home/user/CCP4X_PROJECTS"
-  );
+  // Kept apart deliberately. One variable serving both meant that picking a
+  // custom parent and then switching back to "default" left the custom path on
+  // screen while the request actually said __default__ — the dialog showing one
+  // location and creating the project in another. Held separately, the toggle
+  // itself is the way back, with nothing to reset.
+  const [proposedParent, setProposedParent] = useState<string>("");
+  const [configuredParent, setConfiguredParent] = useState<string>("");
+  // Set when the user overrides the proposal from this page — either by
+  // browsing, or by asking for the configured root back. null means "whatever
+  // the server proposes", which is what lets the request stay __default__.
+  const [proposedOverride, setProposedOverride] = useState<string | null>(null);
+  const [customParent, setCustomParent] = useState<string>("");
+
+  const effectiveProposal = proposedOverride ?? proposedParent;
+  const parentDirectory = customDirectory ? customParent : effectiveProposal;
+  // Only worth offering when it would actually change something.
+  const canUseConfiguredRoot =
+    configuredParent.length > 0 && effectiveProposal !== configuredParent;
   const [directoryExists, setDirectoryExists] = useState(true);
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
@@ -41,6 +57,28 @@ export const NewProjectContent: React.FC = () => {
   const [droppedFiles, setDroppedFiles] = useState<DroppedFile[]>([]);
   const [isCreating, setIsCreating] = useState(false);
   const { data: projects } = api.get<Project[]>("projects");
+
+  // Where the server will actually put a project created with no explicit
+  // directory: the parent of the most recently created project, else the
+  // configured projects directory. Asked rather than computed — reimplementing
+  // that rule here would give two answers to one question.
+  useEffect(() => {
+    let cancelled = false;
+    apiGet<{ data?: { directory?: string; configured?: string } }>(
+      "config/default-project-parent/"
+    )
+      .then((resp) => {
+        if (cancelled) return;
+        if (resp?.data?.directory) setProposedParent(resp.data.directory);
+        if (resp?.data?.configured) setConfiguredParent(resp.data.configured);
+      })
+      .catch(() => {
+        /* older backend: the Electron config value below still applies */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     // Send a message to the main process to get the config
@@ -52,10 +90,19 @@ export const NewProjectContent: React.FC = () => {
         "message-from-main",
         (event: any, data: any) => {
           if (data.message === "get-config") {
-            setCcp4i2ProjectDirectory(data.config.CCP4I2_PROJECTS_DIR);
+            // Only a fallback for the split second before the server answers,
+            // and for a desktop build talking to an older backend.
+            setProposedParent((current) =>
+              current || data.config.CCP4I2_PROJECTS_DIR
+            );
           }
           if (data.message === "check-file-exists") {
             setDirectoryExists(data.exists);
+          }
+          if (data.message === "choose-project-parent-directory") {
+            // Local to this page only — nothing is persisted, and the default
+            // above is left untouched so the toggle still reverts to it.
+            setCustomParent(data.directory);
           }
         }
       );
@@ -65,15 +112,12 @@ export const NewProjectContent: React.FC = () => {
   }, []);
 
   const directory = useMemo(() => {
-    const result = path.join(
-      ccp4i2ProjectDirectory || "",
-      name.toLocaleLowerCase()
-    );
+    const result = path.join(parentDirectory || "", name.toLocaleLowerCase());
     if (typeof window !== "undefined" && window.electronAPI) {
       window.electronAPI.sendMessage("check-file-exists", { path: result });
     }
     return result;
-  }, [ccp4i2ProjectDirectory, name]);
+  }, [parentDirectory, name]);
 
   async function createProject() {
     setIsCreating(true);
@@ -81,7 +125,13 @@ export const NewProjectContent: React.FC = () => {
       const formData = new FormData();
       formData.append("name", name);
       formData.append("description", description);
-      formData.append("directory", customDirectory ? directory : "__default__");
+      // __default__ only while the server's proposal stands untouched; once the
+      // user has overridden it, say so explicitly rather than letting the server
+      // re-derive something different.
+      formData.append(
+        "directory",
+        customDirectory || proposedOverride !== null ? directory : "__default__"
+      );
       const project = await api.post<Project>("projects", formData);
 
       // Apply tags to the new project
@@ -204,10 +254,20 @@ export const NewProjectContent: React.FC = () => {
     }
   }
 
+  function handleUseConfiguredRoot() {
+    // Overrides the proposal for this project only. Nothing is persisted: the
+    // configured root is already the preference, and a project created here
+    // should not rewrite anyone's settings.
+    setProposedOverride(configuredParent);
+  }
+
   function handleDirectoryChange() {
     if (typeof window !== "undefined") {
       if (window.electronAPI) {
-        window.electronAPI.sendMessage("locate-ccp4i2-project-directory");
+        // Deliberately NOT locate-ccp4i2-project-directory: that changes the
+        // default projects directory for every future project. Choosing where
+        // to put this one project must not move everyone else's default.
+        window.electronAPI.sendMessage("choose-project-parent-directory");
       } else {
         console.error("Electron API is not available");
       }
@@ -258,14 +318,42 @@ export const NewProjectContent: React.FC = () => {
           onChange={handleCustomDirectoryChange}
           fullWidth
         >
-          <ToggleButton value={false}>Default Directory</ToggleButton>
+          {/* "Proposed", not "Default": this is where your last project went,
+              which is not necessarily the configured projects directory. */}
+          <ToggleButton value={false}>Proposed Directory</ToggleButton>
           <ToggleButton value={true}>Custom Directory</ToggleButton>
         </ToggleButtonGroup>
+        {!customDirectory && effectiveProposal.length > 0 && (
+          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+            <TextField
+              label="Parent directory where the project directory will be created"
+              value={effectiveProposal}
+              disabled
+              sx={{ flexGrow: 1 }}
+              helperText={
+                canUseConfiguredRoot
+                  ? `Where your most recent project was created. Configured directory: ${configuredParent}`
+                  : "Your configured projects directory."
+              }
+            />
+            {canUseConfiguredRoot && (
+              <Tooltip title={`Use ${configuredParent} instead`}>
+                <Button
+                  variant="outlined"
+                  onClick={handleUseConfiguredRoot}
+                  sx={{ whiteSpace: "nowrap" }}
+                >
+                  Use configured
+                </Button>
+              </Tooltip>
+            )}
+          </Stack>
+        )}
         {customDirectory && electronAPIAvailable && (
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <TextField
               label="Parent directory where the project directory will be created"
-              value={ccp4i2ProjectDirectory}
+              value={customParent}
               disabled={true}
               sx={{ flexGrow: 1 }}
               required

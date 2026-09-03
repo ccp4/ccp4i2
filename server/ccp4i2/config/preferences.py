@@ -5,13 +5,13 @@ plane.
 
 Location
 --------
-``~/.ccp4i2-django/preferences.json`` (override the home with the ``CCP4I2_HOME``
-environment variable). This sits next to the default SQLite database and project
-store, so one home directory holds all per-user state. The home is
-``~/.ccp4i2-django`` — deliberately distinct from classic (Qt) CCP4i2's
-``~/.CCP4I2``, which ``~/.ccp4i2`` would collide with on case-insensitive
-filesystems (see ``ccp4i2_home``). JSON (vs the classic XML prefs) so the
-Electron/JS side can read and write it as easily as Python.
+``~/.ccp4i2x/preferences.json`` (override the home with the ``CCP4I2_HOME``
+environment variable). This sits next to the SQLite database, the project store,
+credentials and the project registry, so ONE directory holds all per-user state.
+``~/.ccp4i2x`` and not ``~/.ccp4i2``: the latter collides with the legacy Qt home
+``~/.CCP4I2`` on case-insensitive filesystems (see ``ccp4i2_home``). An install
+predating the rename keeps its ``~/.ccp4i2-django`` home, adopted in place. JSON
+(vs the classic XML prefs) so the Electron/JS side reads it as easily as Python.
 
 Resolution precedence (for every setting)
 -----------------------------------------
@@ -53,20 +53,59 @@ PREFERENCES_VERSION = 1
 PATH_KEYS = ("ccp4Dir", "projectsDir", "ccp4i2Root")
 
 
-def ccp4i2_home() -> Path:
-    """The CCP4i2 user home (``CCP4I2_HOME`` env var, else ``~/.ccp4i2-django``).
+# The user home, and the one it superseded. ``~/.ccp4i2x`` rather than
+# ``~/.ccp4i2``: the latter differs from the legacy Qt-era home ``~/.CCP4I2``
+# only by case, and on a case-insensitive filesystem (the macOS default) they
+# are the SAME directory — the new app would write its db and preferences into
+# the tree it is migrating FROM. ``x`` rather than ``-django`` because the home
+# should not name an implementation detail the user never chose.
+HOME_DIR_NAME = ".ccp4i2x"
+LEGACY_HOME_DIR_NAME = ".ccp4i2-django"
 
-    Deliberately ``~/.ccp4i2-django``, NOT ``~/.ccp4i2``: the latter differs from
-    the legacy Qt-era CCP4i2 home ``~/.CCP4I2`` only by case, and on a
-    case-insensitive filesystem (the macOS default) they are the SAME directory.
-    Sharing a home with the app being migrated FROM would let the new app write
-    its db/prefs into the legacy tree and read a database it is simultaneously
-    writing — so the new app keeps a home that cannot collide with legacy.
-    Kept in sync with the Electron side (client/main/ccp4i2-preferences.ts).
+
+def ccp4i2_home() -> Path:
+    """The CCP4i2 user home: everything per-user lives under one root.
+
+    Resolution, in order:
+
+    1. ``CCP4I2_HOME`` — wins outright (cloud, tests, deliberate relocation).
+    2. An existing ``~/.ccp4i2x``.
+    3. An existing ``~/.ccp4i2-django`` — **adopted in place.** Installs from
+       3.1.0a26 and earlier keep working exactly where they are; nothing is
+       moved, so no project directory is ever relocated behind the user's back.
+    4. ``~/.ccp4i2x`` — a fresh install.
+
+    Kept in sync with the Electron side (client/main/ccp4i2-preferences.ts);
+    the two MUST agree or the desktop app and the server disagree about where
+    the database and projects live, which is exactly the drift this replaced.
     """
     override = os.environ.get("CCP4I2_HOME")
-    base = Path(override) if override else (Path.home() / ".ccp4i2-django")
-    return base.expanduser().resolve()
+    if override:
+        return Path(override).expanduser().resolve()
+
+    home = Path.home()
+    current = home / HOME_DIR_NAME
+    if current.is_dir():
+        return current.expanduser().resolve()
+
+    legacy = home / LEGACY_HOME_DIR_NAME
+    if legacy.is_dir():
+        return legacy.expanduser().resolve()
+
+    return current.expanduser().resolve()
+
+
+def default_projects_dir() -> Path:
+    """Where new projects go unless the user says otherwise: ``<home>/projects``.
+
+    An adopted pre-a27 home keeps its existing ``CCP4X_PROJECTS`` directory —
+    renaming it would strand every absolute path recorded in those projects.
+    """
+    home = ccp4i2_home()
+    legacy = home / "CCP4X_PROJECTS"
+    if legacy.is_dir() and not (home / "projects").is_dir():
+        return legacy
+    return home / "projects"
 
 
 def preferences_path() -> Path:

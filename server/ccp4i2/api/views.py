@@ -213,6 +213,91 @@ _DISCOVERY_EXCLUDE = frozenset({
 })
 
 
+
+
+@api_view(["GET"])
+def import_policy_view(request):
+    """What kinds of project import this installation permits.
+
+    GET /api/ccp4i2/config/import-policy/
+
+    The import page shows both intents — copy the project in, or adopt the
+    directory where it lies — and needs to know which are permitted so it can
+    disable the other with a reason rather than silently omitting it. A hidden
+    control teaches nothing; a disabled one with an explanation does.
+
+    Driven by CCP4I2_ALLOW_INPLACE_MIGRATION so that lifting the alpha
+    restriction is a setting, not a frontend change.
+
+    Response: {"success": true, "data": {
+        "copy_allowed": true,
+        "in_place_allowed": <bool>,
+        "in_place_reason": "<why not, when not>"
+    }}
+    """
+    from django.conf import settings
+
+    allowed = bool(getattr(settings, "CCP4I2_ALLOW_INPLACE_MIGRATION", False))
+    return JsonResponse(
+        {
+            "success": True,
+            "data": {
+                "copy_allowed": True,
+                "in_place_allowed": allowed,
+                "in_place_reason": (
+                    ""
+                    if allowed
+                    else (
+                        "Disabled during the alpha. Adopting a directory where "
+                        "it lies rewrites the absolute paths inside it, which "
+                        "would alter work your existing CCP4i2 may still be "
+                        "using. Copying leaves the original untouched."
+                    )
+                ),
+            },
+        }
+    )
+
+@api_view(["GET"])
+def default_project_parent_view(request):
+    """Where a project created with no explicit directory will actually land.
+
+    GET /api/ccp4i2/config/default-project-parent/
+
+    The New Project dialog needs to show this, and it cannot compute it: the
+    answer is the parent of the most recently created project, falling back to
+    the configured projects directory. Reimplementing that rule in the client
+    would give two resolvers for one question, which is how the dialog came to
+    display one location while the server used another.
+
+    Returns the configured root alongside it, and which of the two the proposal
+    came from, so the dialog can say "this is where your last project went" and
+    offer the configured root instead — a choice it can only present if it knows
+    the two differ.
+
+    Response: {"success": true, "data": {
+        "directory":  "/where a new project would go",
+        "configured": "/the projects directory from preferences",
+        "source":     "last_project" | "configured"
+    }}
+    """
+    from django.conf import settings
+
+    from .serializers import default_project_parent
+
+    proposed = str(default_project_parent())
+    configured = str(settings.CCP4I2_PROJECTS_DIR)
+    return JsonResponse(
+        {
+            "success": True,
+            "data": {
+                "directory": proposed,
+                "configured": configured,
+                "source": "configured" if proposed == configured else "last_project",
+            },
+        }
+    )
+
 @api_view(["GET"])
 def discover_programs_view(request):
     """Report where each task program resolves (read-only probe).

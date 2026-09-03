@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
+import { ccp4i2Home } from "./ccp4i2-preferences";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -44,11 +45,17 @@ function getNextRunNumber(logDir: string): number {
 export function findPython(CCP4Dir: string, projectRoot: string): string | null {
   const isWindows = process.platform === "win32";
 
-  // Prefer ccp4-python from CCP4 installation
-  const ccp4PythonBin = isWindows ? "ccp4-python.bat" : "ccp4-python";
-  const ccp4PythonPath = path.join(CCP4Dir, "bin", ccp4PythonBin);
-  if (fs.existsSync(ccp4PythonPath)) {
-    return ccp4PythonPath;
+  // Prefer ccp4-python from CCP4 installation. Skipped when no CCP4 has been
+  // chosen: path.join("", "bin", ...) yields the RELATIVE "bin/ccp4-python",
+  // which existsSync resolves against the current working directory — so an
+  // unconfigured app could "find" an unrelated interpreter under wherever it
+  // happened to be launched from.
+  if (CCP4Dir && CCP4Dir.length > 0) {
+    const ccp4PythonBin = isWindows ? "ccp4-python.bat" : "ccp4-python";
+    const ccp4PythonPath = path.join(CCP4Dir, "bin", ccp4PythonBin);
+    if (fs.existsSync(ccp4PythonPath)) {
+      return ccp4PythonPath;
+    }
   }
 
   // Fallback to project's virtual environment (dev mode only)
@@ -98,26 +105,53 @@ export async function startDjangoServer(
   isDev: boolean = false,
   CCP4I2_PROJECTS_DIR: string = ""
 ) {
-  // Set up CCP4 environment variables (still needed for $CLIBD, $CBIN, etc.)
-  if (process.platform === "win32") {
-    ccp4_setup_windows(CCP4Dir);
-  } else {
-    ccp4_setup_sh(CCP4Dir);
+  // Set up CCP4 environment variables (still needed for $CLIBD, $CBIN, etc.).
+  // Guarded: with no CCP4 located, CCP4Dir is "" and the setup helpers would
+  // derive $CCP4="" and $CCP4I_TCLTK="/bin" from it, i.e. point the environment
+  // at the filesystem root. Better to leave the environment alone and fail on
+  // the interpreter below, which can say something useful.
+  if (CCP4Dir && CCP4Dir.length > 0) {
+    if (process.platform === "win32") {
+      ccp4_setup_windows(CCP4Dir);
+    } else {
+      ccp4_setup_sh(CCP4Dir);
+    }
   }
 
   // Find Python interpreter (prefers ccp4-python, falls back to .venv)
   const PYTHON_PATH = findPython(CCP4Dir, projectRoot);
   if (!PYTHON_PATH) {
     throw new Error(
-      `Could not find Python interpreter. ` +
-        `Please ensure CCP4 is installed with ccp4-python in ${CCP4Dir}/bin.`
+      CCP4Dir && CCP4Dir.length > 0
+        ? `Could not find ccp4-python in ${CCP4Dir}/bin. Check that this is a ` +
+          `CCP4 installation root, and choose a different one on the setup page ` +
+          `if not.`
+        : `No CCP4 installation has been chosen yet. Use "Locate" on the setup ` +
+          `page to point CCP4i2 at your CCP4 directory (the one containing bin/).`
     );
   }
 
   if (CCP4I2_PROJECTS_DIR.length > 0) {
     process.env.CCP4I2_PROJECTS_DIR = CCP4I2_PROJECTS_DIR;
-    process.env.CCP4I2_DB_FILE = path.join(CCP4I2_PROJECTS_DIR, "db.sqlite3");
   }
+  // Deliberately NOT setting CCP4I2_DB_FILE from the projects directory.
+  //
+  // Doing so tied the database to wherever projects happened to live, so
+  // choosing a new projects folder silently produced a NEW, EMPTY database and
+  // the previous one simply stopped being consulted — projects appearing to
+  // vanish, with nothing lost but nothing visible either. Qt-era CCP4i2 kept
+  // one database in the user's CCP4i2 directory regardless of where projects
+  // sat, and for alpha and beta we match that: the server default is
+  // <ccp4i2 home>/db.sqlite3.
+  //
+  // An installation that already has an explicit "database" in preferences.json
+  // keeps it — that file is honoured ahead of the default, so existing testers
+  // carry on using the database they have rather than being switched to an
+  // empty one.
+  //
+  // The longer-term intent is different again: self-contained SETS of projects,
+  // each with its own database alongside them, chosen explicitly rather than as
+  // a side effect of picking a folder.
 
   console.log(`🚀 Next.js running on http://localhost:${NEXT_PORT}`);
   console.log(`🐍 Using Python: ${PYTHON_PATH}`);
@@ -127,7 +161,12 @@ export async function startDjangoServer(
     ? path.join(process.cwd(), "..", "server")
     : undefined;
 
-  const pythonEnv: Record<string, string | undefined> = {
+  // Typed as ProcessEnv, not Record<string, string | undefined>: Next's global
+  // augmentation makes NODE_ENV a required member of ProcessEnv, so the looser
+  // type does not satisfy the env option of spawn/execSync. That mismatch made
+  // four call overloads fail and their results widen to `never`, producing
+  // seven type errors in this file — invisible until something typechecked it.
+  const pythonEnv: NodeJS.ProcessEnv = {
     ...process.env,
     DJANGO_SETTINGS_MODULE: "ccp4i2.config.settings",
     UVICORN_PORT: `${UVICORN_PORT}`,
@@ -196,11 +235,10 @@ export async function startDjangoServer(
   // Setup logging for production
   let logStream: fs.WriteStream | null = null;
   if (!isDev) {
-    const homeDir = os.homedir();
-    let logDir = path.join(homeDir, ".ccp4i2");
-    if (!fs.existsSync(logDir)) {
-      logDir = path.join(homeDir, "ccp4i2");
-    }
+    // Under the one user home, not a ~/.ccp4i2 of its own: server logs are
+    // per-user state like everything else, and a tester asked to "send me your
+    // log" should not have to be told which of several directories to look in.
+    const logDir = path.join(ccp4i2Home(), "logs");
 
     const runNumber = getNextRunNumber(logDir);
     const logFile = path.join(logDir, `uvicorn-${runNumber}.log`);

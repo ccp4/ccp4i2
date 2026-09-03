@@ -242,11 +242,32 @@ CCP4I2_PROJECTS_DIR = Path(
     _preferences.resolve(
         "projectsDir",
         env="CCP4I2_PROJECTS_DIR",
-        default=str(USER_DIR / "CCP4X_PROJECTS"),
+        # <home>/projects, or an adopted pre-a27 CCP4X_PROJECTS. Shared with
+        # the Electron side so the two cannot drift (they used to: the desktop
+        # app defaulted to ~/.ccp4i2/CCP4X_PROJECTS while this said
+        # ~/.ccp4i2-django/CCP4X_PROJECTS, which is why testers saw both).
+        default=str(_preferences.default_projects_dir()),
         prefs=_PREFS,
     )
 )
 CCP4I2_PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
+
+# In-place migration of a legacy (Qt) CCP4i2 installation is OFF during the
+# alpha. Agreed with Paul Bond and Stuart McNicholas, 2026-09-02: reading a
+# legacy database and adopting the project directories where they lie carries a
+# risk of damaging the very installation the user is still relying on, and that
+# risk is not yet understood well enough to expose to testers.
+#
+# Copy-import is unaffected and remains the supported route: importing a project
+# directory or a project zip copies what it needs and never writes to the
+# original. Read-only validation of a legacy database also stays available,
+# since inspecting cannot corrupt.
+#
+# Set CCP4I2_ALLOW_INPLACE_MIGRATION=1 to re-enable (developers, and whoever is
+# working on making it safe).
+CCP4I2_ALLOW_INPLACE_MIGRATION = os.environ.get(
+    "CCP4I2_ALLOW_INPLACE_MIGRATION", ""
+).lower() in ("1", "true", "yes", "on")
 
 REST_FRAMEWORK = {
     "DEFAULT_PARSER_CLASSES": (

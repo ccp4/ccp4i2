@@ -99,6 +99,34 @@ class ProjectListSerializer(ModelSerializer):
         ]
 
 
+def default_project_parent() -> Path:
+    """Where a project with no explicit directory should go.
+
+    The parent of the most recently created project, falling back to the
+    configured projects directory. So a user who put their last project
+    somewhere particular gets offered the same place again, WITHOUT that choice
+    being written into a preference: the "default" is derived on demand rather
+    than stored and mutated. A stored-and-mutated default is how a one-off
+    choice silently became everybody's default, and how a second database could
+    appear somewhere unexpected.
+
+    A project whose recorded directory no longer exists is skipped -- an
+    unplugged external disk should not send the next project somewhere
+    unwritable.
+    """
+    from ..db.models import Project
+
+    for directory in (
+        Project.objects.exclude(directory="")
+        .order_by("-creation_time")
+        .values_list("directory", flat=True)[:10]
+    ):
+        parent = Path(directory).parent
+        if parent.is_dir():
+            return parent
+    return Path(settings.CCP4I2_PROJECTS_DIR)
+
+
 class ProjectSerializer(ModelSerializer):
     # Include tag details in project serialization
     tags = ProjectTagSerializer(many=True, read_only=True)
@@ -122,7 +150,7 @@ class ProjectSerializer(ModelSerializer):
                 or attrs["directory"] == "__default__"
             ):
                 attrs["directory"] = str(
-                    Path(settings.CCP4I2_PROJECTS_DIR) / slugify(attrs["name"])
+                    default_project_parent() / slugify(attrs["name"])
                 )
         elif "directory" in attrs and attrs["directory"] != instance.directory:
             # Changing this field alone would leave the record pointing at a

@@ -143,7 +143,11 @@ def test_settings_reads_preferences(tmp_path):
 def test_settings_default_when_no_preferences(tmp_path):
     home = tmp_path / "home"
     out = _probe_settings(home, {})  # empty preferences.json
-    assert out["projects"] == str(home.resolve() / "CCP4X_PROJECTS")
+    # "projects", not the old "CCP4X_PROJECTS": the store sits under the one
+    # user home and is named for what it holds rather than for a product
+    # generation. A home that already contains CCP4X_PROJECTS keeps it -- see
+    # tests/unit/config/test_user_home.py -- but a fresh one does not create it.
+    assert out["projects"] == str(home.resolve() / "projects")
     assert out["engine"] == "django.db.backends.sqlite3"
 
 
@@ -220,3 +224,40 @@ def test_settings_sqlite_url_windows_drive(tmp_path):
     out = _probe_settings(home, {"database": "sqlite:///C:/proj/db.sqlite3"})
     assert out["engine"] == "django.db.backends.sqlite3"
     assert out["name"] == "C:/proj/db.sqlite3"
+
+
+# ---------------------------------------------------------------------------
+# the database lives in the CCP4i2 home, not with the projects
+# ---------------------------------------------------------------------------
+
+def test_database_defaults_into_the_ccp4i2_home_not_the_projects_dir(tmp_path):
+    """One database, wherever the projects happen to be — as Qt-era CCP4i2 had.
+
+    The desktop app used to set CCP4I2_DB_FILE to <projectsDir>/db.sqlite3, so
+    choosing a new projects folder silently opened a NEW, EMPTY database and
+    stopped consulting the old one. Nothing was lost, but a user's projects
+    appeared to vanish. Agreed for alpha and beta: match legacy. (The longer-term
+    intent is self-contained sets of projects, each with its own database, chosen
+    deliberately rather than as a side effect of picking a folder.)
+    """
+    home = tmp_path / "home"
+    out = _probe_settings(home, {"projectsDir": str(tmp_path / "somewhere_else")})
+
+    assert out["name"] == str(home.resolve() / "db.sqlite3")
+    # ...and specifically NOT alongside the projects
+    assert out["projects"] == str(tmp_path / "somewhere_else")
+    assert not out["name"].startswith(str(tmp_path / "somewhere_else"))
+
+
+def test_an_existing_database_preference_is_still_honoured(tmp_path):
+    """Existing alpha installations keep the database they already have, rather
+    than being switched to an empty one in the home. Same principle as adopting
+    an existing ~/.ccp4i2-django: never relocate a user's data behind them."""
+    home = tmp_path / "home"
+    theirs = tmp_path / "downloads" / "experiment" / "db.sqlite3"
+    theirs.parent.mkdir(parents=True)
+
+    out = _probe_settings(home, {"database": f"sqlite:///{theirs}"})
+
+    assert out["engine"] == "django.db.backends.sqlite3"
+    assert str(theirs) in out["name"]

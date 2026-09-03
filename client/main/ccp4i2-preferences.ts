@@ -30,19 +30,61 @@ export interface CCP4i2Preferences {
   userPreferences?: Record<string, unknown>;
 }
 
+export const HOME_DIR_NAME = ".ccp4i2x";
+export const LEGACY_HOME_DIR_NAME = ".ccp4i2-django";
+
 /**
- * The CCP4i2 user home (`CCP4I2_HOME` env var, else `~/.ccp4i2-django`).
+ * The CCP4i2 user home: everything per-user lives under one root.
  *
- * Deliberately `~/.ccp4i2-django`, NOT `~/.ccp4i2`: the latter differs from the
- * legacy Qt-era home `~/.CCP4I2` only by case, so on a case-insensitive
- * filesystem (macOS default) they collide — the new app would plant its db/prefs
- * in the legacy tree. Must match the Python side (server/ccp4i2/config/preferences.py).
+ * 1. `CCP4I2_HOME` wins outright.
+ * 2. An existing `~/.ccp4i2x`.
+ * 3. An existing `~/.ccp4i2-django` — adopted in place, so installs from
+ *    3.1.0a26 and earlier keep working exactly where they are.
+ * 4. `~/.ccp4i2x` for a fresh install.
+ *
+ * `~/.ccp4i2x` and not `~/.ccp4i2`: the latter differs from the legacy Qt-era
+ * home `~/.CCP4I2` only by case, so on a case-insensitive filesystem (the macOS
+ * default) they collide and the new app would plant its db and preferences in
+ * the tree it is migrating from.
+ *
+ * MUST match the Python side (server/ccp4i2/config/preferences.py). When these
+ * two disagree the app and the server use different databases and different
+ * project stores — which is exactly what happened before this was shared.
  */
 export function ccp4i2Home(): string {
   const override = process.env.CCP4I2_HOME;
-  return override
-    ? path.resolve(override)
-    : path.join(os.homedir(), ".ccp4i2-django");
+  if (override) return path.resolve(override);
+
+  const home = os.homedir();
+  const current = path.join(home, HOME_DIR_NAME);
+  if (isDirectory(current)) return current;
+
+  const legacy = path.join(home, LEGACY_HOME_DIR_NAME);
+  if (isDirectory(legacy)) return legacy;
+
+  return current;
+}
+
+function isDirectory(candidate: string): boolean {
+  try {
+    return fs.statSync(candidate).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Where new projects go unless the user says otherwise: `<home>/projects`.
+ * An adopted pre-a27 home keeps its existing `CCP4X_PROJECTS`, because renaming
+ * it would strand every absolute path recorded inside those projects.
+ */
+export function defaultProjectsDir(): string {
+  const home = ccp4i2Home();
+  const legacy = path.join(home, "CCP4X_PROJECTS");
+  if (isDirectory(legacy) && !isDirectory(path.join(home, "projects"))) {
+    return legacy;
+  }
+  return path.join(home, "projects");
 }
 
 /** Full path to `preferences.json` inside the CCP4i2 user home. */

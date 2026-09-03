@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Alert,
   Box,
@@ -12,6 +12,10 @@ import {
   ListItemText,
   Paper,
   Stack,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
   Typography,
 } from "@mui/material";
 import { DriveFolderUpload, FolderOpen } from "@mui/icons-material";
@@ -37,6 +41,7 @@ function canBrowse(): boolean {
 
 async function browseDirectory(message: string): Promise<string | null> {
   const api = typeof window !== "undefined" ? window.electronAPI : undefined;
+
   if (!api?.invoke) return null;
   try {
     return (
@@ -80,6 +85,36 @@ export const ImportProjectDirectory: React.FC<ImportProjectDirectoryProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [looking, setLooking] = useState(false);
   const [importing, setImporting] = useState(false);
+  // Two genuinely different intents. Copy takes a duplicate into the project
+  // store and leaves the original alone; in place adopts the folder where it
+  // sits, which re-roots the snapshot onto it and rewrites the absolute paths
+  // inside its files. Both are legitimate -- the second is how you re-adopt
+  // your own projects after losing a database -- but the second edits work that
+  // may not be ours to edit, so it is off during the alpha.
+  const [mode, setMode] = useState<"copy" | "in_place">("copy");
+  const [inPlaceAllowed, setInPlaceAllowed] = useState(false);
+  const [inPlaceReason, setInPlaceReason] = useState("");
+
+  // Asked of the server rather than hard-coded, so lifting the restriction is a
+  // setting (CCP4I2_ALLOW_INPLACE_MIGRATION) and not a frontend change.
+  useEffect(() => {
+    let cancelled = false;
+    apiGet<{ data?: { in_place_allowed?: boolean; in_place_reason?: string } }>(
+      "config/import-policy/"
+    )
+      .then((resp) => {
+        if (cancelled) return;
+        setInPlaceAllowed(Boolean(resp?.data?.in_place_allowed));
+        setInPlaceReason(resp?.data?.in_place_reason || "");
+      })
+      .catch(() => {
+        /* leave in place disabled: the safe assumption */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const [done, setDone] = useState<string | null>(null);
 
   /**
@@ -112,6 +147,7 @@ export const ImportProjectDirectory: React.FC<ImportProjectDirectoryProps> = ({
             try {
               const response: any = await api.post("projects/restore/", {
                 source: "directory",
+                copy: mode === "copy",
                 path: one.directory,
                 dry_run: true,
               });
@@ -167,6 +203,7 @@ export const ImportProjectDirectory: React.FC<ImportProjectDirectoryProps> = ({
         if (!chosen.has(one.directory)) continue;
         const response: any = await api.post("projects/restore/", {
           source: "directory",
+          copy: mode === "copy",
           path: one.directory,
         });
         const result = response?.data ?? response;
@@ -212,9 +249,51 @@ export const ImportProjectDirectory: React.FC<ImportProjectDirectoryProps> = ({
         </Stack>
         <Typography variant="body2" color="text.secondary">
           If the project is already unpacked on this machine, import the folder
-          directly — there is no need to zip it up first. It is adopted where it
-          lies: nothing is copied and nothing is renumbered.
+          directly — there is no need to zip it up first. Nothing is renumbered:
+          every job keeps the number its directory already has.
         </Typography>
+
+        <FormControl>
+          <RadioGroup
+            value={mode}
+            onChange={(event) =>
+              setMode(event.target.value as "copy" | "in_place")
+            }
+          >
+            <FormControlLabel
+              value="copy"
+              control={<Radio size="small" />}
+              label={
+                <Typography variant="body2">
+                  <strong>Copy it in</strong> — a duplicate goes into your
+                  project store and the original folder is left untouched.
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              value="in_place"
+              disabled={!inPlaceAllowed}
+              control={<Radio size="small" />}
+              label={
+                <Typography variant="body2">
+                  <strong>Use it where it is</strong> — adopt the folder in
+                  place, without duplicating it.
+                </Typography>
+              }
+            />
+            {/* Indented under the option it explains, rather than sitting below
+                the whole group where it reads as a note about both. */}
+            {!inPlaceAllowed && inPlaceReason && (
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ ml: 4, mt: -0.5, mb: 0.5, display: "block", maxWidth: "42rem" }}
+              >
+                {inPlaceReason}
+              </Typography>
+            )}
+          </RadioGroup>
+        </FormControl>
 
         <Stack direction="row" spacing={2} alignItems="center">
           <Button

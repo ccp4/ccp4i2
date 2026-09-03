@@ -9,7 +9,7 @@ import { spawn, execSync, ChildProcessWithoutNullStreams } from "node:child_proc
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
-import { loadPreferences, updatePreferences, sqliteUrl } from "./ccp4i2-preferences";
+import { loadPreferences, updatePreferences } from "./ccp4i2-preferences";
 import {
   CCP4I2_REQUIRED_SERVER_VERSION,
   meetsServerVersionRequirement,
@@ -347,6 +347,35 @@ export const installIpcHandlers = (
 
   // IPC communication to trigger file dialog to select parent directory for new projects
   // and set the CCP4I2_PROJECTS_DIR in the store
+  // Pick a parent directory for ONE project, without touching any preference.
+  //
+  // Distinct from locate-ccp4i2-project-directory below, which deliberately
+  // changes the default projects directory (and with it the database location).
+  // The New Project page used that one, so choosing a custom parent for a single
+  // project silently moved everybody's default -- and pointed the database at
+  // <chosen dir>/db.sqlite3, which is how a user ends up with several databases
+  // scattered around the disk without ever asking for one.
+  ipcMain.on("choose-project-parent-directory", (event, _data) => {
+    const mainWindow: BrowserWindow | null = getMainWindow();
+    if (!mainWindow) {
+      console.error("Main window is not available");
+      return;
+    }
+    dialog
+      .showOpenDialog(mainWindow, {
+        properties: ["openDirectory", "createDirectory"],
+      })
+      .then((result) => {
+        if (result.canceled || result.filePaths.length === 0) return;
+        event.reply("message-from-main", {
+          message: "choose-project-parent-directory",
+          directory: result.filePaths[0],
+        });
+      });
+  });
+
+  // Changes the DEFAULT projects directory. Used by the Config page, where that
+  // is exactly what the user asked for.
   ipcMain.on("locate-ccp4i2-project-directory", (event, data) => {
     const mainWindow: BrowserWindow | null = getMainWindow();
     if (!mainWindow) {
@@ -362,13 +391,12 @@ export const installIpcHandlers = (
           console.log("Selected directory:", result.filePaths);
           const projectsDir = result.filePaths[0];
           store.set("CCP4I2_PROJECTS_DIR", projectsDir);
-          // Write the shared keys so the server and the i2/i2run CLI agree —
-          // including the database location, so all three open the SAME
-          // db.sqlite3 inside the projects dir (not a divergent default).
-          updatePreferences({
-            projectsDir,
-            database: sqliteUrl(path.join(projectsDir, "db.sqlite3")),
-          });
+          // Only the projects directory. The database is NOT written here any
+          // more: pairing the two meant that changing where projects live also
+          // changed which database was open, so a user who pointed CCP4i2 at a
+          // new folder was quietly given an empty one and concluded their work
+          // had gone. One database, in the CCP4i2 home, as Qt-era CCP4i2 had.
+          updatePreferences({ projectsDir });
           event.reply("message-from-main", getConfigResponse());
         }
       });

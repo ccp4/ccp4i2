@@ -1039,8 +1039,23 @@ class ProjectViewSet(ModelViewSet):
                 it they are left alone, since overwriting a live project with
                 an older snapshot loses work rather than recovering it.
             dry_run (bool): report what would be restored and change nothing.
+            copy (bool): for source "directory" only, and true by default —
+                copy the directory into the projects store and adopt the copy,
+                leaving the original untouched.
+
+        On copying, and why the sources differ. "registry" and "scan" are
+        RECOVERY: your own projects, rebuilding your own database after losing
+        it, where adopting the directories where they lie is the entire point.
+        "directory" is IMPORT: a folder handed to you, or one your existing
+        CCP4i2 is still using. Adopting that in place re-roots the snapshot onto
+        it and rewrites the absolute paths inside its files — editing work that
+        is not ours to edit. So import copies, and only an explicit copy=false
+        with CCP4I2_ALLOW_INPLACE_MIGRATION set will adopt in place.
         """
+        from django.conf import settings
+
         from ..db.restore_project import (
+            copy_project_directory,
             discover_restorable,
             restore_all,
             restore_from_registry,
@@ -1068,9 +1083,34 @@ class ProjectViewSet(ModelViewSet):
                 directories = discover_restorable(pathlib.Path(path))
                 result = restore_all(directories, replace=replace, dry_run=dry_run)
             elif source == "directory":
-                result = restore_all(
-                    [pathlib.Path(path)], replace=replace, dry_run=dry_run
+                target = pathlib.Path(path)
+                copy = str(request.data.get("copy", "true")).lower() in (
+                    "1",
+                    "true",
+                    "yes",
                 )
+                if not copy and not getattr(
+                    settings, "CCP4I2_ALLOW_INPLACE_MIGRATION", False
+                ):
+                    return api_error(
+                        "Importing a project in place is disabled in this alpha, "
+                        "because adopting a directory rewrites the paths inside "
+                        "it. Import a copy instead (the default), which leaves "
+                        "the original untouched.",
+                        status=403,
+                    )
+                # A dry run copies nothing: it only reports, and reporting on
+                # the original is what the user asked about.
+                if copy and not dry_run:
+                    try:
+                        target = copy_project_directory(
+                            target, pathlib.Path(settings.CCP4I2_PROJECTS_DIR)
+                        )
+                    except FileExistsError as err:
+                        return api_error(str(err), status=409)
+                    except (FileNotFoundError, ValueError) as err:
+                        return api_error(str(err), status=400)
+                result = restore_all([target], replace=replace, dry_run=dry_run)
             else:
                 return api_error(f"Unknown source '{source}'", status=400)
             return api_success(result)
