@@ -352,7 +352,7 @@ async def _save_job_parameters(
     plugin: CPluginScript,
     job: models.Job,
     mode: str = "JOB_INPUT",
-    exclude_unset: bool = False,
+    exclude_unset: bool = True,
 ):
     """
     Save plugin parameters to XML file in job directory.
@@ -361,7 +361,8 @@ async def _save_job_parameters(
         plugin: Plugin instance
         job: Job model instance
         mode: Parameter file mode (default: "JOB_INPUT")
-        exclude_unset: Whether to exclude unset parameters
+        exclude_unset: Write only parameters that were actually set (default True;
+            see save_params_for_job for why the zero-value alternative bites)
     """
     @sync_to_async
     def _save():
