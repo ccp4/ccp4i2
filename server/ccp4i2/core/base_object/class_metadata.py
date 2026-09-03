@@ -662,6 +662,13 @@ def apply_metadata_to_instance(instance):
             if metadata.content_qualifiers:
                 merged_content_qualifiers.update(metadata.content_qualifiers)
 
+    # Persist the merged declaration on the instance: this is the definitive
+    # answer to "what are this object's data-attributes", and CONTENTS /
+    # dataOrder consult it so that serialisation covers exactly the declared
+    # fields --- not whatever runtime children (a loaded fileContent, say)
+    # happen to be attached when params.xml is written.
+    object.__setattr__(instance, '_declared_fields', list(merged_attributes))
+
     # Create attributes from merged metadata
     for attr_name, attr_def in merged_attributes.items():
         # Check if attribute exists in hierarchy (via _children_by_name cache)
