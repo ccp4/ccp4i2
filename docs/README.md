@@ -26,6 +26,9 @@ places by convention:
 **Start here → [Authoring a Task](authoring-a-task.md)** — the end-to-end path.
 Supporting references:
 - [def.xml Reference](def-xml-reference.md) — declare the data model
+- [CData](cdata.md) — the data model behind those declarations: class syntax
+  (`content()`, `Meta`), semantics (states, coercion, the two qualifier
+  layers), and how to write a new CData class without hitting the known traps
 - [PHIL Task Guide](../server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md) — the PHIL
   alternative for Phenix/PhaserTNG/DIALS-style tools
 - [Task Registry: `core/tasks.py`](../server/ccp4i2/core/tasks.py) — the one-line

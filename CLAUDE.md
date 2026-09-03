@@ -6,7 +6,7 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 
 ### Backend
 - **Django REST API** (`server/`) - Database interactions via ORM, REST API with Django REST Framework
-- **Core Modules** (`core/`) - Business logic, data containers, task management
+- **Core Modules** (`server/ccp4i2/core/`) - Business logic, data containers, task management
 
 ### Frontend
 - **Electron/React App** (`client/`) - Next.js 15, React 19, Moorhen structure viewer
@@ -21,20 +21,32 @@ contexts), and the shared API contract it consumes lives in
 
 ## Key Directories
 
+The Python package lives at `server/ccp4i2/`; paths below are given in full,
+because most of these directories were top-level in earlier layouts and moved
+under the package when `core/` was relocated (commit `e92d6b7bf`).
+
 | Directory | Purpose |
 |-----------|---------|
-| `server/` | Django backend (models, REST API, job execution) |
+| `server/` | Django project root (`manage.py`, settings) |
+| `server/ccp4i2/core/` | Core Python modules and business logic |
+| `server/ccp4i2/api/` | REST API views and serializers |
+| `server/ccp4i2/db/` | Models, migrations, job execution, gleaner |
+| `server/ccp4i2/lib/` | Shared utilities (containers, jobs, parameters, reporting) |
+| `server/ccp4i2/cli/` | Command-line tools (i2run, utilities) |
+| `server/ccp4i2/wrappers/` | Task wrappers for crystallographic programs |
+| `server/ccp4i2/pipelines/` | Multi-step crystallographic pipelines |
+| `server/ccp4i2/pimple/` | Matplotlib-based graph generation |
+| `server/ccp4i2/smartie/` | Log parsing utilities |
+| `server/ccp4i2/report/` | Report generation and parsing |
+| `server/ccp4i2/tests/` | Test suite |
+| `server/ccp4i2/demo_data/` | Small datasets used by tests and demos |
 | `client/` | Electron/React frontend for desktop |
-| `apps/` | Namespace for optional apps (the compounds registry/assays app was extracted to the `newcastleuniversity/materia` repo) |
-| `core/` | Core Python modules and business logic |
-| `cli/` | Command-line tools (i2run, utilities) |
-| `wrappers/` | Task wrappers for crystallographic programs |
-| `pipelines/` | Multi-step crystallographic pipelines |
-| `pimple/` | Matplotlib-based graph generation |
-| `smartie/` | Log parsing utilities |
-| `report/` | Report generation and parsing |
-| `tests/` | Test suite |
+| `packages/ccp4i2-api/` | Shared API contract (npm `@ccp4/ccp4i2-api`, PyPI `ccp4i2-api`) |
+| `docs/` | Developer and user documentation |
 | `deploy/` | Deployment tooling (test VMs, infra scripts) |
+
+There is no longer a top-level `apps/` directory: it was emptied by the Materia
+cut and removed in commit `1f8673cca`.
 
 ## Windows Compatibility: No Unicode in print()
 
@@ -58,7 +70,7 @@ The system automatically detects which backend to use:
 
 ```bash
 # Source the CCP4 setup script (adjust path as needed)
-source ../ccp4-20251105/bin/ccp4.setup-sh
+source ../ccp4-20260702/bin/ccp4.setup-sh
 
 # This sets up:
 # - ccp4-python interpreter with all dependencies (gemmi, clipper, etc.)
@@ -73,7 +85,7 @@ All Python commands below should use `ccp4-python` instead of `python`.
 When wrapping a PHIL-based tool (Phenix, PhaserTNG, DIALS, etc.), inspect its `master_phil` to understand parameter names, types, and multiplicity:
 
 ```bash
-source ../ccp4-20251105/bin/ccp4.setup-sh
+source ../ccp4-20260702/bin/ccp4.setup-sh
 
 # Dump the full PHIL tree
 ccp4-python -c "from my_tool import master_phil; master_phil.show()"
@@ -104,7 +116,7 @@ scope.show(attributes_level=2)
 "
 ```
 
-Parameters with `.multiple = True` need `CList` + `PdbFileListShim` in the wrapper, not a single file type. See `wrappers/PHIL_TASK_GUIDE.md` for the full guide.
+Parameters with `.multiple = True` need `CList` + `PdbFileListShim` in the wrapper, not a single file type. See `server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md` for the full guide.
 
 ## Running
 
@@ -189,7 +201,7 @@ runs everywhere.
 
 ```bash
 cd server
-source ../../ccp4-20251105/bin/ccp4.setup-sh
+source ../../ccp4-20260702/bin/ccp4.setup-sh
 
 # ── Fast unit tests (no CCP4 binaries, good for CI on all platforms) ──
 ccp4-python -m pytest ccp4i2/tests/unit/ -v
@@ -316,6 +328,17 @@ def runTimeValidity(self):
 
 Must be `{taskName}.container.{section}.{fieldName}` (e.g. `servalcat_pipe.container.inputData.FREERFLAG`) to enable field-level error display in the frontend. Check the def.xml to confirm which section (`inputData` or `controlParameters`) the field is in.
 
+## Core Data Model (CData)
+
+Every task parameter is a `CData` object — Django-shaped declarative classes
+(`content()` fields, `class Meta:`) with a per-instance qualifier override
+layer. Before adding or changing a CData class, read
+[docs/cdata.md](docs/cdata.md): it covers the syntax, the semantics
+(set/unset/default states, assignment coercion, the two qualifier layers), the
+class-construction machinery, and a how-to for new classes with the known
+traps (`__setattr__` coercion, `CBoolean.__bool__`, the CString hash mismatch,
+the def.xml CString fallback for unresolvable class names).
+
 ## Task Registry
 
 Tasks are registered in a single static module, `server/ccp4i2/core/tasks.py`. It
@@ -350,10 +373,11 @@ def_xml = locate_def_xml('acorn')         # path to its .def.xml
 
 ### Adding a new task
 
-1. Create `wrappers/<Name>/script/<Name>.py` (a `CPluginScript` subclass) and
-   `<Name>.def.xml`, plus empty `__init__.py` in the task dir and its `script/`.
-2. Add one entry to the `TASKS` dict in `core/tasks.py` (`pluginPath` +
-   `defXmlPath`; `reportPath` only if you wrote a report class).
+1. Create `server/ccp4i2/wrappers/<Name>/script/<Name>.py` (a `CPluginScript`
+   subclass) and `<Name>.def.xml`, plus empty `__init__.py` in the task dir and
+   its `script/`.
+2. Add one entry to the `TASKS` dict in `server/ccp4i2/core/tasks.py`
+   (`pluginPath` + `defXmlPath`; `reportPath` only if you wrote a report class).
 3. (Optional) Register a frontend interface in
    `client/renderer/components/task/task-interfaces/task-container.tsx` and add
    the task name to a category in
@@ -365,8 +389,8 @@ There is **no registry-regeneration step** — adding the `TASKS` entry is the
 whole registration. (The historical `plugin_registry.py` / `plugin_lookup.json`
 scan and the `CCP4Modules.TASKMANAGER()` accessor were removed when task data was
 consolidated into `tasks.py`.) Output files are persisted to the project by the
-gleaner (`db/async_db_handler.py: glean_job_files`) for any `outputData`
-`CDataFile` that is set and exists on disk — there is no `saveToDb` gate.
+gleaner (`server/ccp4i2/db/async_db_handler.py: glean_job_files`) for any
+`outputData` `CDataFile` that is set and exists on disk — there is no `saveToDb` gate.
 
 ### Making a task's data files exportable
 
@@ -375,15 +399,16 @@ file, either declare a tracked `outputData` `CMtzDataFile` (preferred — the
 generic fallback then offers it automatically) or implement the module-level
 `exportJobFileMenu` / `exportJobFile` contract (for pipelines needing subjob
 lookup or reconstruction). Never shell out to `cad` — use
-`lib/utils/jobs/export.py: combine_mtz_files` for gemmi-based joins. Full guide:
-`wrappers/EXPORT_TASK_GUIDE.md`.
+`server/ccp4i2/lib/utils/jobs/export.py: combine_mtz_files` for gemmi-based
+joins. Full guide: `server/ccp4i2/wrappers/EXPORT_TASK_GUIDE.md`.
 
 ## Files Preserved from Legacy
 
-- `wrappers/`, `pipelines/` - Crystallographic logic
-- `pimple/`, `smartie/` - Utility modules
-- `qticons/`, `svgicons/` - Task icons
-- `tipsOfTheDay/` - User tips
+- `server/ccp4i2/wrappers/`, `server/ccp4i2/pipelines/` - Crystallographic logic
+- `server/ccp4i2/pimple/`, `server/ccp4i2/smartie/` - Utility modules
+- `client/assets/qticons/`, `client/assets/svgicons/` - Task icons (served from
+  `client/renderer/public/` by the `copy-qticons` / `copy-svgicons` npm scripts)
+- `server/ccp4i2/tipsOfTheDay/` - User tips
 - `docs/` - Documentation
 
 ## Deployment (Docker / Azure)

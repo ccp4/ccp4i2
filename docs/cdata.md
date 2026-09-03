@@ -190,6 +190,64 @@ Everything is merged along the MRO with the most-derived class winning, and a
 class's own hand-written values winning over both. Error codes merge rather
 than shadow, so a class declares only what it adds.
 
+## Writing a new CData class
+
+### Choose the base
+
+| you are describing | subclass | declare |
+|---|---|---|
+| a constrained scalar | `CFloat`, `CInt`, `CString`, `CBoolean` | `Meta.qualifiers` (`min`, `max`, `enumerators`, `default`, `allowUndefined`) |
+| a composite of named fields | `CData` | `content(...)` fields |
+| a kind of file | `CDataFile` | `Meta.qualifiers` (`mimeTypeName`, `fileExtensions`, `fileContentClassName`) |
+| an ordered collection | `CList` | `SUBITEM = {'class': CItemClass, 'qualifiers': {}}` as a class attribute |
+
+Real examples of each, in the order above: `CCellLength` (a `CFloat` with
+`min=0.0`), `CCell` (the composite at the top of this document),
+`CMapDataFile` (a `CDataFile` with extensions `map`/`mrc`), and
+`CTLSRangeList` (a `CList` of `CTLSRange`).
+
+### Put it where def.xml can find it
+
+A def.xml names classes by bare name (`<className>CCell</className>`), and the
+handler resolves that name by scanning a fixed list of `ccp4i2.core` modules —
+`CCP4XtalData`, `CCP4ModelData`, `CCP4File`, `CCP4Annotation`,
+`CCP4MathsData`, and friends (`implementation_modules` in
+`core/task_manager/def_xml_handler.py`).
+
+So either add the class to the themed module it belongs in, or give it its own
+`core/<ClassName>.py` **and add that module to the list**. Know the failure
+mode: an unresolvable class name falls back to `CString` with only a printed
+warning, so a typo does not raise — it renders as a text box and round-trips
+as a string. If a new type behaves that way, check the name resolved at all.
+
+### Give it behaviour
+
+Error codes go in `Meta.error_codes` and merge with the ancestors' — declare
+only what the class adds, numbered from where the base classes stop (the
+shared block on `CData` runs 0–320; the error-code index in the Sphinx docs
+shows what is taken). Validation goes in a `validity()` override returning a `CErrorReport`;
+the base implementation already checks `allowUndefined`, bounds and
+enumerators for every field, so override only for cross-field logic —
+`CCell.validity()`, which skips the child checks entirely when an optional
+cell is wholly unset, is the shape to copy.
+
+### The traps, in one place
+
+- **`__setattr__` coerces.** `self.helper = {}` on a CData does not store a
+  dict — assignment routes through the coercion machinery. Plain Python state
+  needs a `_`-prefixed name or `object.__setattr__` (see `CList.__init__`).
+- **`CBoolean(False)` is falsy.** `if container.FLAG:` skips a
+  deliberately-false value; ask `is not None` or `isSet()`.
+- **`CString` equals a `str` but does not hash like one**, so it silently
+  misses as a dict key. Convert at the call site.
+- **Never mutate class-level qualifiers at runtime** — that is what
+  per-instance `setQualifiers()` is for; class declarations are shared by
+  every container built for every request.
+
+New types get a unit test under `tests/unit/containers/`, and the conformance
+suite (`tests/unit/conformance/`) picks the class up automatically once a
+registered task's def.xml uses it.
+
 ## What it deliberately is not
 
 CData is **not** a dataclass, and `is_dataclass()` on a CData class is `False`
