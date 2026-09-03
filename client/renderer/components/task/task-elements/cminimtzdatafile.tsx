@@ -6,6 +6,7 @@ import { useCallback, useMemo } from "react";
 import { BaseSpacegroupCellElement } from "./base-spacegroup-cell-element";
 import { readFilePromise, useJob, useProject } from "../../../utils";
 import { selectMtzColumnsEnhanced, SiblingInput } from "./mtz-column-dialog";
+import { usePopcorn } from "../../../providers/popcorn-provider";
 
 /** MTZ-related class names that are siblings of interest */
 const MTZ_SIBLING_CLASSES = [
@@ -22,6 +23,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
   const { job, itemName, onChange, visibility, children } = props;
   const { useTaskItem, useFileDigest, uploadFileParam, container } = useJob(job.id);
   const { mutateJobs, mutateFiles } = useProject(job.project);
+  const { setMessage } = usePopcorn();
   const { item, value } = useTaskItem(itemName);
 
   // Only fetch digest when a file has been uploaded (has dbFileId)
@@ -154,11 +156,18 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
           mutateDigest(),
         ]);
       } catch (error) {
+        // Say so. A file the dialog could not read used to end here in
+        // silence, indistinguishable from a cancel.
         console.error("File upload failed:", error);
-        // Could show an error toast/snackbar here
+        setMessage(
+          error instanceof Error
+            ? error.message
+            : `Could not import ${file.name}: ${String(error)}`,
+          "error"
+        );
       }
     },
-    [item, getSiblingInputs, onChange, uploadFileParam, mutateJobs, mutateFiles, mutateDigest]
+    [item, getSiblingInputs, onChange, uploadFileParam, mutateJobs, mutateFiles, mutateDigest, setMessage]
   );
 
   const isVisible = useMemo(
