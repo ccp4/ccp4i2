@@ -196,6 +196,7 @@ export interface CDateRange {
   dayRange: CInt;
 }
 type CDialsJsonFile = CDataFile;
+type CDnatcoNavalJsonFile = CDataFile;
 type CDialsPickleFile = CDataFile;
 export interface CDictData {
   monomerList: CChemComp[];
