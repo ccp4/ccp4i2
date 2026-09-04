@@ -15,11 +15,10 @@ import { apiUploadWithProgress, UploadProgress } from "../api-fetch";
 import { VisuallyHiddenInput } from "./task/task-elements/input-file-upload";
 import { useRouter } from "next/navigation";
 import { Project } from "../types/models";
-import { useTheme } from "../theme/theme-provider";
 import { ImportProjectDirectory } from "./import-project-directory";
+import { DropZone } from "./common/drop-zone";
 
 export const ImportProjectContent: React.FC = () => {
-  const { customColors } = useTheme();
   const api = useApi();
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
@@ -72,10 +71,6 @@ export const ImportProjectContent: React.FC = () => {
     void handleFileUpload(event.target.files);
   };
 
-  const handlePaperClick = () => {
-    fileInputRef.current?.click();
-  };
-
   return (
     <Container
       sx={{
@@ -109,30 +104,17 @@ export const ImportProjectContent: React.FC = () => {
               copied into your project store.
             </Typography>
             <Stack spacing={2} direction="row" alignItems="center">
-              <Paper
-                sx={{
-                  border: "2px dashed #ccc",
-                  padding: 4,
-                  textAlign: "center",
-                  cursor: uploading ? "default" : "pointer",
-                  flexGrow: 1,
-                  backgroundColor: customColors.ui.lightGray,
-                  "&:hover": {
-                    backgroundColor: uploading ? undefined : "#f1f1f1",
-                  },
-                }}
-                onClick={uploading ? undefined : handlePaperClick}
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  if (uploading) return;
-                  void handleFileUpload(e.dataTransfer.files);
-                }}
+              <DropZone
+                onFilesSelected={(files) => void handleFileUpload(files)}
+                accept=".zip"
+                multiple
+                disabled={uploading}
+                sx={{ p: 4, flexGrow: 1 }}
               >
                 <Typography variant="body1" color="textSecondary">
                   Drag and drop files here, or click here to upload
                 </Typography>
-              </Paper>
+              </DropZone>
               <Button
                 component="label"
                 variant="contained"

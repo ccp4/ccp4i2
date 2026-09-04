@@ -10,13 +10,13 @@ import {
   DialogContent,
   DialogTitle,
   LinearProgress,
-  Paper,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { CloudUpload as UploadIcon } from "@mui/icons-material";
 import { apiPost, apiUpload } from "../../api-fetch";
+import { DropZone } from "../common/drop-zone";
+import { CloudUpload as UploadIcon } from "@mui/icons-material";
 
 interface CoordsImportDialogProps {
   open: boolean;
@@ -36,12 +36,6 @@ export function CoordsImportDialog({
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-
-  const handleFileSelect = useCallback((files: FileList | null) => {
-    if (files && files.length > 0) {
-      setCoordFile(files[0]);
-    }
-  }, []);
 
   const handleImport = useCallback(async () => {
     if (!coordFile) return;
@@ -132,50 +126,24 @@ export function CoordsImportDialog({
           )}
 
           {/* Drop zone */}
-          <Paper
-            sx={{
-              p: 4,
-              border: "2px dashed",
-              borderColor: coordFile ? "success.main" : "divider",
-              textAlign: "center",
-              cursor: loading ? "default" : "pointer",
-              opacity: loading ? 0.5 : 1,
-              "&:hover": loading ? {} : { borderColor: "primary.main" },
-            }}
-            onClick={() => {
-              if (loading) return;
-              const input = document.createElement("input");
-              input.type = "file";
-              input.accept = ".pdb,.cif,.ent,.mmcif";
-              input.onchange = (e) => {
-                handleFileSelect((e.target as HTMLInputElement).files);
-              };
-              input.click();
-            }}
-            onDragOver={(e) => {
-              e.preventDefault();
-              if (!loading) e.currentTarget.style.borderColor = "#1976d2";
-            }}
-            onDragLeave={(e) => {
-              e.currentTarget.style.borderColor = coordFile ? "#2e7d32" : "";
-            }}
-            onDrop={(e) => {
-              e.preventDefault();
-              if (!loading) handleFileSelect(e.dataTransfer.files);
-            }}
+          <DropZone
+            onFilesSelected={(files) => setCoordFile(files[0])}
+            accept=".pdb,.cif,.ent,.mmcif"
+            disabled={loading}
+            accent={coordFile ? "success" : "default"}
+            sx={{ p: 2 }}
           >
-            <UploadIcon sx={{ fontSize: 48, color: "text.secondary", mb: 1 }} />
             {coordFile ? (
               <Typography color="success.main">{coordFile.name}</Typography>
             ) : (
               <>
-                <Typography>Drop PDB/CIF file here or click to select</Typography>
-                <Typography variant="caption" color="text.secondary">
-                  Supported formats: .pdb, .cif, .ent, .mmcif
+                <UploadIcon sx={{ fontSize: 32, color: "text.secondary", mb: 1 }} />
+                <Typography color="text.secondary">
+                  Drop PDB/CIF file here or click to select
                 </Typography>
               </>
             )}
-          </Paper>
+          </DropZone>
 
           {/* Atom selection field */}
           <TextField

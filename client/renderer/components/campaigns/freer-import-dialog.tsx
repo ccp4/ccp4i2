@@ -10,13 +10,13 @@ import {
   DialogContent,
   DialogTitle,
   LinearProgress,
-  Paper,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { CloudUpload as UploadIcon } from "@mui/icons-material";
 import { apiPost, apiUpload } from "../../api-fetch";
+import { DropZone } from "../common/drop-zone";
+import { CloudUpload as UploadIcon } from "@mui/icons-material";
 
 interface FreeRImportDialogProps {
   open: boolean;
@@ -152,12 +152,23 @@ export function FreeRImportDialog({
               Exemplar observed data (F/SigF) *
             </Typography>
             <DropZone
-              file={fSigFFile}
-              onFileSelect={setFSigFFile}
+              onFilesSelected={(files) => setFSigFFile(files[0])}
               accept=".mtz"
               disabled={loading}
-              placeholder="Drop MTZ file with F/SigF columns"
-            />
+              accent={fSigFFile ? "success" : "default"}
+              sx={{ p: 2 }}
+            >
+              {fSigFFile ? (
+                <Typography color="success.main">{fSigFFile.name}</Typography>
+              ) : (
+                <>
+                  <UploadIcon sx={{ fontSize: 32, color: "text.secondary", mb: 1 }} />
+                  <Typography color="text.secondary">
+                    Drop MTZ file with F/SigF columns
+                  </Typography>
+                </>
+              )}
+            </DropZone>
           </Box>
 
           {/* FreeR drop zone (optional) */}
@@ -166,12 +177,23 @@ export function FreeRImportDialog({
               Starting FreeR set (optional)
             </Typography>
             <DropZone
-              file={freeRFile}
-              onFileSelect={setFreeRFile}
+              onFilesSelected={(files) => setFreeRFile(files[0])}
               accept=".mtz"
               disabled={loading}
-              placeholder="Drop MTZ file with existing FreeR flags"
-            />
+              accent={freeRFile ? "success" : "default"}
+              sx={{ p: 2 }}
+            >
+              {freeRFile ? (
+                <Typography color="success.main">{freeRFile.name}</Typography>
+              ) : (
+                <>
+                  <UploadIcon sx={{ fontSize: 32, color: "text.secondary", mb: 1 }} />
+                  <Typography color="text.secondary">
+                    Drop MTZ file with existing FreeR flags
+                  </Typography>
+                </>
+              )}
+            </DropZone>
             <Typography variant="caption" color="text.secondary">
               If not provided, a new FreeR set will be generated
             </Typography>
@@ -205,66 +227,5 @@ export function FreeRImportDialog({
         </Button>
       </DialogActions>
     </Dialog>
-  );
-}
-
-// Reusable drop zone component
-function DropZone({
-  file,
-  onFileSelect,
-  accept,
-  disabled,
-  placeholder,
-}: {
-  file: File | null;
-  onFileSelect: (file: File | null) => void;
-  accept: string;
-  disabled: boolean;
-  placeholder: string;
-}) {
-  return (
-    <Paper
-      sx={{
-        p: 2,
-        border: "2px dashed",
-        borderColor: file ? "success.main" : "divider",
-        textAlign: "center",
-        cursor: disabled ? "default" : "pointer",
-        opacity: disabled ? 0.5 : 1,
-        "&:hover": disabled ? {} : { borderColor: "primary.main" },
-      }}
-      onClick={() => {
-        if (disabled) return;
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = accept;
-        input.onchange = (e) => {
-          const files = (e.target as HTMLInputElement).files;
-          if (files && files.length > 0) {
-            onFileSelect(files[0]);
-          }
-        };
-        input.click();
-      }}
-      onDragOver={(e) => {
-        e.preventDefault();
-        if (!disabled) e.currentTarget.style.borderColor = "#1976d2";
-      }}
-      onDragLeave={(e) => {
-        e.currentTarget.style.borderColor = file ? "#2e7d32" : "";
-      }}
-      onDrop={(e) => {
-        e.preventDefault();
-        if (!disabled && e.dataTransfer.files.length > 0) {
-          onFileSelect(e.dataTransfer.files[0]);
-        }
-      }}
-    >
-      {file ? (
-        <Typography color="success.main">{file.name}</Typography>
-      ) : (
-        <Typography color="text.secondary">{placeholder}</Typography>
-      )}
-    </Paper>
   );
 }

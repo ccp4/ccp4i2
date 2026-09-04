@@ -6,7 +6,6 @@ import {
   Chip,
   CircularProgress,
   IconButton,
-  Paper,
   Stack,
   Typography,
 } from "@mui/material";
@@ -15,6 +14,7 @@ import {
   Clear as ClearIcon,
 } from "@mui/icons-material";
 import { parseMtzFile } from "../lib/mtz-parser";
+import { DropZone } from "./common/drop-zone";
 
 /**
  * Detected file types and their import handling.
@@ -171,7 +171,6 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
   files,
   onChange,
 }) => {
-  const [isDragOver, setIsDragOver] = useState(false);
   const [isSniffing, setIsSniffing] = useState(false);
 
   const addFiles = useCallback(
@@ -211,23 +210,6 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
     [files, onChange]
   );
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      setIsDragOver(false);
-      if (e.dataTransfer.files) addFiles(e.dataTransfer.files);
-    },
-    [addFiles]
-  );
-
-  const handleFileInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files) addFiles(e.target.files);
-      e.target.value = "";
-    },
-    [addFiles]
-  );
-
   const removeFile = useCallback(
     (index: number) => {
       onChange(files.filter((_, i) => i !== index));
@@ -235,39 +217,16 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
     [files, onChange]
   );
 
-  const openFilePicker = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.multiple = true;
-    input.accept = ACCEPTED_EXTENSIONS;
-    input.onchange = (e) =>
-      handleFileInput(e as unknown as React.ChangeEvent<HTMLInputElement>);
-    input.click();
-  };
-
   return (
     <Stack spacing={1}>
       <Typography variant="subtitle2" color="text.secondary">
         Starting data (optional)
       </Typography>
-      <Paper
-        variant="outlined"
-        sx={{
-          p: files.length > 0 ? 1.5 : 4,
-          border: "2px dashed",
-          borderColor: isDragOver ? "primary.main" : "divider",
-          backgroundColor: isDragOver ? "action.hover" : "transparent",
-          textAlign: "center",
-          cursor: "pointer",
-          transition: "all 0.2s ease",
-        }}
-        onDragOver={(e) => {
-          e.preventDefault();
-          setIsDragOver(true);
-        }}
-        onDragLeave={() => setIsDragOver(false)}
-        onDrop={handleDrop}
-        onClick={openFilePicker}
+      <DropZone
+        onFilesSelected={addFiles}
+        accept={ACCEPTED_EXTENSIONS}
+        multiple
+        sx={{ p: files.length > 0 ? 1.5 : 4 }}
       >
         {files.length === 0 ? (
           <Stack spacing={1} alignItems="center">
@@ -280,7 +239,7 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
             </Typography>
           </Stack>
         ) : (
-          <Stack spacing={0.5} onClick={(e) => e.stopPropagation()}>
+          <Stack spacing={0.5}>
             {files.map((df, idx) => (
               <Box
                 key={idx}
@@ -316,17 +275,12 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
                 </IconButton>
               </Box>
             ))}
-            <Typography
-              variant="caption"
-              color="text.secondary"
-              sx={{ cursor: "pointer", mt: 0.5 }}
-              onClick={openFilePicker}
-            >
+            <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5 }}>
               + Drop or click to add more files
             </Typography>
           </Stack>
         )}
-      </Paper>
+      </DropZone>
     </Stack>
   );
 };

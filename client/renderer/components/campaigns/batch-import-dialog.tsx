@@ -29,6 +29,7 @@ import {
   Clear as ClearIcon,
 } from "@mui/icons-material";
 import { useCampaignsApi, useSmilesLookup } from "../../lib/campaigns-api";
+import { DropZone } from "../common/drop-zone";
 import {
   apiPost,
   apiFetch,
@@ -424,30 +425,11 @@ export function BatchImportDialog({
           </Alert>
 
           {/* Drop zone */}
-          <Paper
-            sx={{
-              p: 4,
-              border: "2px dashed",
-              borderColor: "divider",
-              textAlign: "center",
-              cursor: "pointer",
-              "&:hover": { borderColor: "primary.main" },
-            }}
-            onClick={() => {
-              const input = document.createElement("input");
-              input.type = "file";
-              input.multiple = true;
-              input.accept = ".mtz,.sca,.cif";
-              input.onchange = (e) => {
-                handleFilesSelected((e.target as HTMLInputElement).files);
-              };
-              input.click();
-            }}
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => {
-              e.preventDefault();
-              handleFilesSelected(e.dataTransfer.files);
-            }}
+          <DropZone
+            onFilesSelected={handleFilesSelected}
+            accept=".mtz,.sca,.cif"
+            multiple
+            sx={{ p: 4 }}
           >
             <UploadIcon sx={{ fontSize: 48, color: "text.secondary", mb: 1 }} />
             <Typography>
@@ -456,7 +438,7 @@ export function BatchImportDialog({
             <Typography variant="caption" color="text.secondary">
               MTZ, SCA, or CIF files
             </Typography>
-          </Paper>
+          </DropZone>
 
           {/* Files table */}
           {files.length > 0 && (
