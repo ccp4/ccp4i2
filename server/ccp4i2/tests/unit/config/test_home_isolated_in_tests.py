@@ -34,3 +34,26 @@ def test_the_registry_would_be_written_inside_it():
 
     assert registry_path().parent == preferences.ccp4i2_home()
     assert Path.home().resolve() != registry_path().parent
+
+
+def test_the_settings_module_is_the_test_one():
+    """The lock that would have held on 2026-09-04.
+
+    An exported DJANGO_SETTINGS_MODULE=ccp4i2.config.settings (the i2run
+    setting) outranks the pytest.ini line, so the API suite ran against the
+    production settings and its transactional teardown flushed the live user
+    database. ``--ds`` in addopts outranks the variable; this checks it did.
+    """
+    assert settings.SETTINGS_MODULE == "ccp4i2.config.test_settings"
+
+
+def test_the_database_is_not_the_users():
+    name = str(settings.DATABASES["default"]["NAME"])
+    if name == ":memory:" or name.startswith("file:"):
+        return
+    resolved = Path(name).expanduser().resolve()
+    for real in (".ccp4i2x", ".ccp4i2-django", ".ccp4i2"):
+        root = Path.home().resolve() / real
+        assert resolved != root and root not in resolved.parents, (
+            f"tests would run against the live database {resolved}"
+        )

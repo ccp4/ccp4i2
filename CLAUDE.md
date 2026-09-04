@@ -129,6 +129,19 @@ export DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
 ccp4-python manage.py i2run <task> --project_name <proj> [--PARAM value ...]
 ```
 
+**Never run pytest from a shell that has that export.** On 2026-09-04 the API
+unit suite was run with `DJANGO_SETTINGS_MODULE=ccp4i2.config.settings` still
+exported. pytest-django ranks the environment variable above the setting in
+`pytest.ini`, so the suite ran on the production settings, and its transactional
+teardown flushed the developer's live `~/.ccp4i2-django/db.sqlite3` — every
+project and job — while the desktop app was running on it. Recovery was
+`manage.py restore_projects --scan <projects dir>` from the per-project
+`DATABASE.db.xml` snapshots. The suite now defends itself (`--ds` in
+`pytest.ini` outranks the variable, and `ccp4i2/tests/conftest.py` refuses any
+other settings module or a database under a real user home), but keep the
+habit: set the variable per command, `env DJANGO_SETTINGS_MODULE=... ccp4-python
+manage.py i2run ...`, rather than exporting it.
+
 ### Development Server
 ```bash
 cd server
@@ -244,6 +257,11 @@ ccp4-python -m pytest ccp4i2/tests/ -v
 | `i2run/` | Full task execution via CLI | Slow | Yes | Before release, after wrapper changes |
 
 **Key principles:**
+- The suite runs on `ccp4i2.config.test_settings` and nothing else. `pytest.ini`
+  forces it with `--ds`, and `ccp4i2/tests/conftest.py` aborts the session if
+  the settings module is any other or the database path lies under
+  `~/.ccp4i2x`, `~/.ccp4i2-django` or `~/.ccp4i2`. Do not weaken either: the
+  API suite flushes whatever database it runs on (see the i2run section above)
 - Unit tests must not depend on CCP4 binaries — only `ccp4-python` (for gemmi etc.)
 - Unit tests must not depend on external data (test101, ProjectZips). Use `demo_data/` from the repo or `I2_TOP` for paths
 - E2e tests (i2run, api/e2e) download test data via session-scoped fixtures from PDBe/RCSB/PDB-REDO

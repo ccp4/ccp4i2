@@ -197,6 +197,36 @@ class RestoreOneProjectTest(RestoreTestBase):
             File.objects.get(job=job).annotation, "Model from job 1"
         )
 
+    def test_a_long_parameter_name_survives_the_round_trip(self):
+        """The New Project flow files sequences under a 44-character path.
+
+        The model said 32 (a Qt-era limit SQLite never enforced), so the live
+        database held these names and the restore, which validates through the
+        serializer, silently dropped the files -- and with them every file use
+        that referred to them (2026-09-04, restoring the real user database).
+        """
+        name = "ASUCONTENTFILE.fileContent.seqList[0].source"
+        assert len(name) > 32
+        project = build_project_on_disk("Longname", job_numbers=("1",))
+        job = project.jobs.get(number="1")
+        File.objects.create(
+            name="beta.seq",
+            directory=File.Directory.IMPORT_DIR,
+            type=FileType.objects.get(name="chemical/x-pdb"),
+            job=job,
+            job_param_name=name,
+        )
+        write_snapshot(project)
+        self.lose_the_database()
+
+        report = restore_from_directory(Path(project.directory))
+
+        self.assertTrue(report.restored)
+        self.assertEqual(report.files, 2)
+        self.assertEqual(
+            File.objects.filter(job__project__uuid=project.uuid, job_param_name=name).count(), 1
+        )
+
     def test_an_existing_project_is_left_alone(self):
         """Overwriting a live project with an older snapshot would lose work."""
         report = restore_from_directory(self.directory)
