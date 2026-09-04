@@ -87,94 +87,92 @@ export const ImportProjectContent: React.FC = () => {
         paddingY: 4,
       }}
     >
-      <Paper sx={{ padding: 2, minWidth: "50rem" }}>
-        <Stack spacing={3}>
-          <Stack spacing={0.5}>
-            <Typography variant="h4">Import Project(s)</Typography>
-            <Typography variant="body2" color="text.secondary">
-              Bring in a project from elsewhere — as a zip, or as a folder that
-              is already on this machine.
-            </Typography>
-          </Stack>
-
-          {error && <Alert severity="error">{error}</Alert>}
-
-          <Paper variant="outlined" sx={{ padding: 2 }}>
-            <Stack spacing={2}>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Archive color="primary" />
-                <Typography variant="h6">A project zip</Typography>
-              </Stack>
-              <Typography variant="body2" color="text.secondary">
-                An exported <code>.ccp4_project.zip</code>. Its contents are
-                copied into your project store.
-              </Typography>
-              <Stack spacing={2} direction="row" alignItems="center">
-                <Paper
-                  sx={{
-                    border: "2px dashed #ccc",
-                    padding: 4,
-                    textAlign: "center",
-                    cursor: uploading ? "default" : "pointer",
-                    flexGrow: 1,
-                    backgroundColor: customColors.ui.lightGray,
-                    "&:hover": {
-                      backgroundColor: uploading ? undefined : "#f1f1f1",
-                    },
-                  }}
-                  onClick={uploading ? undefined : handlePaperClick}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    if (uploading) return;
-                    void handleFileUpload(e.dataTransfer.files);
-                  }}
-                >
-                  <Typography variant="body1" color="textSecondary">
-                    Drag and drop files here, or click here to upload
-                  </Typography>
-                </Paper>
-                <Button
-                  component="label"
-                  variant="contained"
-                  startIcon={<Upload />}
-                  disabled={uploading}
-                >
-                  <VisuallyHiddenInput
-                    ref={fileInputRef}
-                    type="file"
-                    multiple
-                    accept=".zip"
-                    onChange={onChange}
-                  />
-                </Button>
-              </Stack>
-
-              {uploading && (
-                <Stack spacing={0.5}>
-                  <LinearProgress
-                    variant={
-                      progress?.fraction != null ? "determinate" : "indeterminate"
-                    }
-                    value={
-                      progress?.fraction != null ? progress.fraction * 100 : undefined
-                    }
-                  />
-                  <Typography variant="caption" color="text.secondary">
-                    {progress?.fraction != null
-                      ? `Uploading — ${Math.round(progress.fraction * 100)}%`
-                      : "Uploading…"}
-                  </Typography>
-                </Stack>
-              )}
-            </Stack>
-          </Paper>
-
-          {/* Desktop only — renders nothing in a browser, where a folder the
-              user picks is not on the server's disk. */}
-          <ImportProjectDirectory onImported={() => mutateProjects()} />
+      <Stack spacing={3} sx={{ padding: 2, minWidth: "50rem" }}>
+        <Stack spacing={0.5}>
+          <Typography variant="h4">Import Project(s)</Typography>
+          <Typography variant="body2" color="text.secondary">
+            Bring in a project from elsewhere — as a zip, or as a folder that
+            is already on this machine.
+          </Typography>
         </Stack>
-      </Paper>
+
+        {error && <Alert severity="error">{error}</Alert>}
+
+        <Paper variant="outlined" sx={{ padding: 2 }}>
+          <Stack spacing={2}>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Archive color="primary" />
+              <Typography variant="h6">A project zip</Typography>
+            </Stack>
+            <Typography variant="body2" color="text.secondary">
+              An exported <code>.ccp4_project.zip</code>. Its contents are
+              copied into your project store.
+            </Typography>
+            <Stack spacing={2} direction="row" alignItems="center">
+              <Paper
+                sx={{
+                  border: "2px dashed #ccc",
+                  padding: 4,
+                  textAlign: "center",
+                  cursor: uploading ? "default" : "pointer",
+                  flexGrow: 1,
+                  backgroundColor: customColors.ui.lightGray,
+                  "&:hover": {
+                    backgroundColor: uploading ? undefined : "#f1f1f1",
+                  },
+                }}
+                onClick={uploading ? undefined : handlePaperClick}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  if (uploading) return;
+                  void handleFileUpload(e.dataTransfer.files);
+                }}
+              >
+                <Typography variant="body1" color="textSecondary">
+                  Drag and drop files here, or click here to upload
+                </Typography>
+              </Paper>
+              <Button
+                component="label"
+                variant="contained"
+                startIcon={<Upload />}
+                disabled={uploading}
+              >
+                <VisuallyHiddenInput
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept=".zip"
+                  onChange={onChange}
+                />
+              </Button>
+            </Stack>
+
+            {uploading && (
+              <Stack spacing={0.5}>
+                <LinearProgress
+                  variant={
+                    progress?.fraction != null ? "determinate" : "indeterminate"
+                  }
+                  value={
+                    progress?.fraction != null ? progress.fraction * 100 : undefined
+                  }
+                />
+                <Typography variant="caption" color="text.secondary">
+                  {progress?.fraction != null
+                    ? `Uploading — ${Math.round(progress.fraction * 100)}%`
+                    : "Uploading…"}
+                </Typography>
+              </Stack>
+            )}
+          </Stack>
+        </Paper>
+
+        {/* Desktop only — renders nothing in a browser, where a folder the
+            user picks is not on the server's disk. */}
+        <ImportProjectDirectory onImported={() => mutateProjects()} />
+      </Stack>
     </Container>
   );
 };
