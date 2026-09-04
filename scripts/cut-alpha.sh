@@ -30,7 +30,9 @@ CLIENT_VER="client/main/ccp4i2-server-version.ts"
 LOCK="server/ccp4i2/requirements-runtime.txt"
 PYPROJECT="server/pyproject.toml"
 BRANCH="django"
-REMOTE="ccp4"
+# The upstream remote is found by URL, not by name: it has been called both
+# `ccp4` and `origin`, and a rename must not break the release.
+REMOTE="$(git remote -v | awk '/github.com[:\/]ccp4\/ccp4i2(\.git)? \(push\)/ {print $1; exit}')"
 
 DRY_RUN=0
 NO_PUSH=0
@@ -52,6 +54,7 @@ die() { printf '\033[1;31mERROR:\033[0m %s\n' "$*" >&2; exit 1; }
 
 # --- Preconditions --------------------------------------------------------
 command -v gh >/dev/null || die "gh CLI not found"
+[ -n "$REMOTE" ] || die "no git remote points at github.com/ccp4/ccp4i2; add one"
 [ -f "$INIT" ] || die "run from repo root ($INIT missing)"
 
 CUR_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
