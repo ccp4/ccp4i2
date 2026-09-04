@@ -24,7 +24,11 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Bio-Informatics",
     "Topic :: Scientific/Engineering :: Chemistry",
 ]
-requires-python = ">=3.9"
+# Django 5.2 needs 3.10; CI tests 3.11 and 3.13; CCP4 2026 ships 3.11. CCP4 9
+# ships 3.9 and cannot host this package, and saying so here makes pip refuse
+# cleanly instead of failing later on a dependency. Mirrored by
+# CCP4I2_MIN_PYTHON in the desktop app.
+requires-python = ">=3.11"
 # Runtime dependencies for the CCP4-free control plane (API, container/validation,
 # digest). These are pip wheels that the package imports at module scope, so they
 # must be declared for `pip install ccp4i2` to import cleanly on a stock Python

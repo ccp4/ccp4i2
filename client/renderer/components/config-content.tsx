@@ -51,6 +51,13 @@ export const ConfigContent: React.FC = () => {
   const [existingFiles, setExistingFiles] = useState<any | null>(null);
   const [requirementsExist, setRequirementsExist] = useState<boolean>(false);
   const [serverVersion, setServerVersion] = useState<string | null>(null);
+  // The chosen CCP4 cannot host the backend at all (Python below the floor):
+  // the only remedy is a different CCP4, so Install is not offered.
+  const [unsupported, setUnsupported] = useState<string | null>(null);
+  // Backend missing AND this CCP4 cannot take an install (read-only
+  // site-packages): say why instead of offering a button that will fail.
+  const [installable, setInstallable] = useState<boolean>(true);
+  const [installHint, setInstallHint] = useState<string | null>(null);
   const { setMessage } = usePopcorn();
   const [launching, setLaunching] = useState(false);
   const [setupOpen, setSetupOpen] = useState(false);
@@ -111,10 +118,23 @@ export const ConfigContent: React.FC = () => {
       } else if (data.message === "requirements-exist") {
         setRequirementsExist(true);
         setServerVersion(data.version || null);
+        setUnsupported(null);
+        setInstallable(true);
+        setInstallHint(null);
       } else if (data.message === "requirements-missing") {
         setRequirementsExist(false);
         setServerVersion(null);
+        setUnsupported(null);
+        setInstallable(data.installable !== false);
+        setInstallHint(data.installHint || null);
         setMessage(data.error || "Requirements are missing");
+      } else if (data.message === "requirements-unsupported") {
+        setRequirementsExist(false);
+        setServerVersion(null);
+        setUnsupported(data.error || "This CCP4 cannot host CCP4i2");
+        setInstallable(false);
+        setInstallHint(null);
+        setMessage(data.error || "This CCP4 cannot host CCP4i2");
       } else if (data.message === "install-requirements-progress") {
         setInstallProgress((prev) => {
           const newOutput = data.output
@@ -259,12 +279,15 @@ export const ConfigContent: React.FC = () => {
   const blockers: string[] = [];
   if (config && hasElectron) {
     if (!existingFiles?.CCP4Dir) blockers.push("Locate your CCP4 installation");
+    else if (unsupported) blockers.push("Choose a CCP4 installation that can host CCP4i2 (CCP4 2026 or later)");
     if (!existingFiles?.venv_python) blockers.push("A Python environment is missing");
-    if (!requirementsExist)
+    if (!requirementsExist && !unsupported)
       blockers.push(
-        serverIsDev
-          ? "Install the CCP4i2 backend as an editable install of your server directory"
-          : "Install the CCP4i2 backend into your CCP4 environment"
+        !installable
+          ? "Choose a CCP4 installation you can install into, or ask its administrator to install CCP4i2"
+          : serverIsDev
+            ? "Install the CCP4i2 backend as an editable install of your server directory"
+            : "Install the CCP4i2 backend into your CCP4 environment"
       );
   }
 
@@ -452,8 +475,12 @@ export const ConfigContent: React.FC = () => {
                 ok={requirementsExist && !versionMismatch}
                 label="ccp4i2 backend"
                 value={
-                  !requirementsExist
-                    ? serverIsDev
+                  unsupported
+                    ? unsupported
+                    : !requirementsExist
+                    ? !installable && installHint
+                      ? installHint
+                      : serverIsDev
                       ? "Not installed — needs an editable install of server/"
                       : requiredVersion
                         ? `Not installed — needs ${requiredVersion}`
@@ -467,7 +494,10 @@ export const ConfigContent: React.FC = () => {
                         : "Installed"
                 }
                 action={
-                  hasElectron
+                  // No Install button where an install cannot succeed: below
+                  // the Python floor, or into a site-packages the user cannot
+                  // write. The status text above says what to do instead.
+                  hasElectron && !unsupported && installable
                     ? {
                         // Name what the button will install so the action is
                         // unambiguous: the exact version in production

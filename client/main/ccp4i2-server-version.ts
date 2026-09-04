@@ -28,6 +28,16 @@ export const CCP4I2_REQUIRED_SERVER_VERSION =
   process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a43";
 
 /**
+ * The oldest Python the backend runs on. Django 5.2 needs 3.10; CI tests 3.11
+ * and 3.13; CCP4 2026 ships 3.11. CCP4 9 and earlier ship 3.9 and cannot host
+ * this backend at all, whatever pip says: an install attempt there fails on
+ * permissions (root-owned site-packages) or, if it gets past that, on Django.
+ * Kept beside the version pin because both describe what the app requires of
+ * the environment it is pointed at. Mirrored by requires-python in pyproject.
+ */
+export const CCP4I2_MIN_PYTHON: readonly [number, number] = [3, 11];
+
+/**
  * Compare two dotted numeric version strings (e.g. "3.0.10" vs "3.0.2").
  * Returns a negative number if a < b, 0 if equal, positive if a > b.
  * Non-numeric / missing components are treated as 0.

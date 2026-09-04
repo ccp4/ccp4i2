@@ -18,6 +18,7 @@ import { StoreSchema } from "../types/store";
 import { ccp4i2Home, defaultProjectsDir } from "./ccp4i2-preferences";
 import { createWindow } from "./ccp4i2-create-window";
 import { setupZoomLevel } from "./ccp4i2-zoom";
+import { assessPython, listCcp4Dirs } from "./ccp4i2-python-suitability";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
@@ -63,6 +64,7 @@ export const getProjectRoot = () => {
 };
 
 // Get a sensible default for CCP4Dir by checking common locations
+
 const getDefaultCCP4Dir = () => {
   const isWindows = process.platform === "win32";
   const isMac = process.platform === "darwin";
@@ -88,42 +90,47 @@ const getDefaultCCP4Dir = () => {
 
   if (isDev) {
     // In dev mode, check sibling directory (../ccp4-* patterns)
+    // Newest first by number: a plain string sort put ccp4-9 ahead of
+    // ccp4-20260702, since "9" > "2".
     const parentDir = path.resolve(process.cwd(), "../..");
-    try {
-      const siblings = fs.readdirSync(parentDir);
-      // Sort descending to prefer newer versions (ccp4-20251105 > ccp4-9)
-      const ccp4Dirs = siblings
-        .filter((name) => name.startsWith("ccp4"))
-        .sort()
-        .reverse();
-      for (const dir of ccp4Dirs) {
-        possiblePaths.push(path.join(parentDir, dir));
-      }
-    } catch {
-      // Ignore errors reading directory
+    for (const dir of listCcp4Dirs(parentDir)) {
+      possiblePaths.push(path.join(parentDir, dir));
     }
   }
 
-  // Standard installation locations
-  if (isMac) {
-    possiblePaths.push("/Applications/ccp4-9");
-    possiblePaths.push("/Applications/ccp4-8");
-  } else if (isWindows) {
-    possiblePaths.push("C:\\CCP4\\ccp4-9");
-    possiblePaths.push("C:\\CCP4\\ccp4-8");
-  } else {
-    // Linux
+  // Standard installation roots. Every ccp4-* directory under each root is a
+  // candidate, newest first — "ccp4-20260702" before "ccp4-9" — so the
+  // numbering scheme decides the order, not a hard-coded name. The old list
+  // named /Applications/ccp4-9 outright, which on 2026-09-04 put a CCP4 9 in
+  // front of a user who had just cleared their settings for a demo: its
+  // Python 3.9 cannot host this backend and its site-packages is root-owned,
+  // so "Install" could only fail.
+  const roots = isMac
+    ? ["/Applications"]
+    : isWindows
+      ? ["C:\\CCP4"]
+      : ["/opt", "/usr/local"];
+  for (const root of roots) {
+    for (const name of listCcp4Dirs(root)) possiblePaths.push(path.join(root, name));
+  }
+  if (!isMac && !isWindows) {
     possiblePaths.push("/opt/ccp4");
     possiblePaths.push("/usr/local/ccp4");
   }
 
-  // Return first path that exists with ccp4-python
+  // Return the first path that exists with a ccp4-python this backend can run
+  // on. A CCP4 whose Python is below the floor is skipped, never offered: the
+  // setup page asking for a location is better than confidently naming one
+  // that cannot work.
+  const seen = new Set<string>();
   for (const ccp4Path of possiblePaths) {
-    const pythonBin = isWindows ? "ccp4-python.bat" : "ccp4-python";
-    const pythonPath = path.join(ccp4Path, "bin", pythonBin);
-    if (fs.existsSync(pythonPath)) {
-      return ccp4Path;
-    }
+    if (seen.has(ccp4Path)) continue;
+    seen.add(ccp4Path);
+    const pythonPath = path.join(ccp4Path, "bin", pythonBinName);
+    if (!fs.existsSync(pythonPath)) continue;
+    const verdict = assessPython(pythonPath);
+    if (verdict.supported) return ccp4Path;
+    console.log(`Skipping ${ccp4Path} as the default CCP4: ${verdict.reason}`);
   }
 
   // Nothing found: say so, rather than naming a location we have just checked
