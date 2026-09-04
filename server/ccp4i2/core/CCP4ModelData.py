@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING, Optional, Any
 from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
 from ccp4i2.core.base_object.base_classes import CData, CDataFile, CDataFileContent
 from ccp4i2.core.base_object.fundamental_types import CBoolean, CFloat, CInt, CList, CString
+from ccp4i2.core.base_object.error_reporting import SEVERITY_WARNING
 from ccp4i2.core.CCP4Data import CDict, COneWord, CUUID
 from ccp4i2.core.CCP4File import CFilePath, CI2XmlDataFile, CProjectId
 
@@ -1689,10 +1690,22 @@ class CEnsemble(CData):
     be indicated by the types entry.
     A single ensemble is a CList of structures.
     """
+    # Bounds on a plausible copy count. Below MIN_COPIES the ensemble is
+    # not searched for at all (phaser_MR_AUTO.addSearches skips it); above
+    # MAX_COPIES is almost certainly a slip of the mouse in the copies menu.
+    MIN_COPIES = 1
+    MAX_COPIES = 12
+
     class Meta:
         qualifiers = {
             "guiLabel": 'Ensemble',
             "allowUndefined": False,
+        }
+        error_codes = {
+            "101": {
+                "description": "Implausible number of copies to place",
+                "severity": SEVERITY_WARNING,
+            },
         }
     label = content("COneWord", guiLabel='Label', toolTip='Text shown in the interface')
     number = content(
@@ -1718,16 +1731,16 @@ class CEnsemble(CData):
         """
         Initialize CEnsemble.
 
+        The number of copies defaults to 1 through the declaration above: a
+        new ensemble is something to search for, and 0 (meaning "do not
+        search for this one") has to be chosen deliberately.
+
         Args:
             parent: Parent object in hierarchy
             name: Object name
             **kwargs: Additional keyword arguments
         """
         super().__init__(parent=parent, name=name, **kwargs)
-
-    def __init__(self, *args, **kwargs):
-        """Initialize CEnsemble with a default pdbItemList containing one item."""
-        super().__init__(*args, **kwargs)
 
         # Set the subItem qualifier for pdbItemList to specify that it contains CPdbEnsembleItem objects
         if self.pdbItemList is not None:
@@ -1736,11 +1749,59 @@ class CEnsemble(CData):
                 'qualifiers': {}
             })
 
-        # Set default number of copies to 1 (not 0, which means "no search")
-        if hasattr(self, 'number') and self.number is not None:
-            # Check if number is unset OR explicitly set to 0
-            if not self.number.isSet() or self.number.value == 0:
-                self.number.value = 1
+    def isUsed(self):
+        """Whether this ensemble takes part in the search.
+
+        ``use`` defaults to True, so only an explicit False excludes it; an
+        unset flag (an ensemble built by hand in a script) counts as used.
+        """
+        use = getattr(self, 'use', None)
+        if use is None or not use.isSet():
+            return True
+        return bool(use)
+
+    def copiesToPlace(self):
+        """How many copies of this ensemble the search should place.
+
+        0 if it is not in use, or the count is unset.
+        """
+        if not self.isUsed():
+            return 0
+        number = getattr(self, 'number', None)
+        if number is None or not number.isSet():
+            return 0
+        return int(number)
+
+    def validity(self):
+        """Warn when the copy count of an ensemble in use is implausible.
+
+        0 copies is legal --- it is how a fixed, already-placed ensemble is
+        carried alongside the search models --- but it is also what a sloppy
+        edit leaves behind, so it is flagged rather than refused. An
+        ensemble with ``use`` off is not searched for, so its count is not
+        remarked on. Whether a whole list of zeros is fatal is the list's
+        (and the task's) call.
+        """
+        report = super().validity()
+        if not self.isUsed():
+            return report
+        number = getattr(self, 'number', None)
+        if number is None or not number.isSet():
+            return report
+        copies = int(number)
+        if copies < self.MIN_COPIES or copies > self.MAX_COPIES:
+            report.append(
+                klass=self.__class__.__name__,
+                code=101,
+                details=(f'{copies} copies of this ensemble is implausible: '
+                         f'expected between {self.MIN_COPIES} and '
+                         f'{self.MAX_COPIES}'
+                         + (' (0 means it will not be searched for)'
+                            if copies < self.MIN_COPIES else '')),
+                name=number.object_path(),
+                severity=SEVERITY_WARNING,
+            )
+        return report
 
 
 class CResidueRange(CData):
@@ -2610,6 +2671,12 @@ class CEnsembleList(CList):
         qualifiers = {
             "listMinLength": 1,
         }
+        error_codes = {
+            "103": {
+                "description": "No ensemble in the list asks for any copies to be placed",
+                "severity": SEVERITY_WARNING,
+            },
+        }
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CEnsembleList.
@@ -2644,6 +2711,34 @@ class CEnsembleList(CList):
                 item.label.value = f"Ensemble_{index}"
 
         return item
+
+    def copiesToPlace(self):
+        """Total copies the search would place across the ensembles in use."""
+        return sum(item.copiesToPlace() for item in self
+                   if hasattr(item, 'copiesToPlace'))
+
+    def validity(self):
+        """Warn when the list, though populated, would search for nothing.
+
+        Each ensemble in use already warns about its own 0; this is the case
+        where every entry is 0 or switched off, so the search has no models
+        at all. It is a
+        warning here because the list does not know how the task uses it
+        (phaser's packing and refinement modes place nothing). The tasks
+        that do search escalate it to a blocking error at run time.
+        """
+        report = super().validity()
+        if len(self) > 0 and self.copiesToPlace() == 0:
+            report.append(
+                klass=self.__class__.__name__,
+                code=103,
+                details=(f'None of the {len(self)} ensemble(s) is in use and '
+                         'asks for copies to be placed, so there is nothing '
+                         'to search for'),
+                name=self.object_path() if hasattr(self, 'object_path') else '',
+                severity=SEVERITY_WARNING,
+            )
+        return report
 
 
 class CPdbData(CDataFileContent):

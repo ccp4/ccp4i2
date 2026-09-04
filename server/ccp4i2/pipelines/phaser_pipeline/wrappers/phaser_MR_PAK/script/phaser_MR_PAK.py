@@ -13,6 +13,7 @@ class phaser_MR_PAK(phaser_MR_AUTO.phaser_MR_AUTO):
     WHATNEXT = ['phaser_expert']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}
+    SEARCHES_ENSEMBLES = False  # works on solutions already placed
 
     def startProcess(self):
         import phaser

@@ -64,6 +64,18 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }, 202 : { 'description' : 'Failed to interpret searches from Ensemble list' },}
 
+    # Whether this mode places ensembles (addSearches). Subclasses that only
+    # pack or refine an existing solution set this False so an ensemble list
+    # asking for no copies is not refused at run time.
+    SEARCHES_ENSEMBLES = True
+
+    def runTimeValidity(self):
+        error = super().runTimeValidity()
+        if self.SEARCHES_ENSEMBLES:
+            phaser_MR.ensembles_run_time_validity(
+                self.TASKNAME, self.container.inputData, error)
+        return error
+
     def __init__(self, *args, **kw):
         super(phaser_MR_AUTO, self).__init__(*args, **kw)
         #Create a callback Object that will respond to callbacks from Phaser, principally by putting information
@@ -196,9 +208,12 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     def addSearches(self, inputObject):
         inputData = self.container.inputData
         try:
-            for i in range(len(inputData.ENSEMBLES)):
-                if int(inputData.ENSEMBLES[i].number)>0:
-                    inputObject.addSEAR_ENSE_NUM(str(inputData.ENSEMBLES[i].label), int(inputData.ENSEMBLES[i].number))
+            # An ensemble with "use" off is defined to phaser (parseEnsembles)
+            # so a fixed solution can still refer to it, but not searched for.
+            for ensemble in inputData.ENSEMBLES:
+                copies = ensemble.copiesToPlace()
+                if copies > 0:
+                    inputObject.addSEAR_ENSE_NUM(str(ensemble.label), copies)
         except:
             self.appendErrorReport(202)
             return CPluginScript.FAILED

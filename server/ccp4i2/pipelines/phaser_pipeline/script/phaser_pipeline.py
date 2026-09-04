@@ -25,12 +25,22 @@ class phaser_pipeline(CPluginScript):
         209: {'description': 'Exception in sheetbend'},
         210: {'description': 'Exception in refmac'},
         211: {'description': 'Exception in harvestFile'},
+        111: {'description': 'No ensemble asks for any copies to be placed'},
     }
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
 
     def validity(self):
         error = super().validity()
         return phaser_MR.f_or_i_validity(self.TASKNAME, self.container.inputData, error)
+
+    def runTimeValidity(self):
+        error = super().runTimeValidity()
+        # The pipeline hands its ensembles to whichever phaser mode MODE_TY
+        # names; only the searching modes need copies asked for.
+        if str(self.container.inputData.MODE_TY) in phaser_MR.SEARCHING_MODES:
+            phaser_MR.ensembles_run_time_validity(
+                self.TASKNAME, self.container.inputData, error)
+        return error
 
     def process(self):
         invalidFiles = self.checkInputData()

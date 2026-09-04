@@ -72,6 +72,39 @@ def f_or_i_validity(taskName, inputData, error):
     return error
 
 
+# The phaser modes that place ensembles, and so need at least one copy asked
+# for. PAK (packing) and RNP (rigid-body refinement) work on solutions that
+# are already placed: an ensemble list of zeros is fine there.
+SEARCHING_MODES = ('MR_AUTO', 'MR_FRF', 'MR_FTF')
+
+
+def ensembles_run_time_validity(taskName, inputData, error):
+    """Block a search that would place nothing.
+
+    CEnsembleList.validity() already *warns* when every ensemble asks for 0
+    copies --- it cannot know whether the task searches. This is the
+    run-time escalation for tasks that do: phaser would run to completion
+    and report no solution, with the cause buried in the copies menu.
+
+    An empty list is not this check's business: listMinLength reports that,
+    and the simple/rnp pipelines fill their list in process().
+    """
+    ensembles = getattr(inputData, 'ENSEMBLES', None)
+    if ensembles is None or len(ensembles) == 0:
+        return error
+    if ensembles.copiesToPlace() > 0:
+        return error
+    error.append(
+        klass=taskName, code=111,
+        details=(f'None of the {len(ensembles)} ensemble(s) is in use and '
+                 'asks for copies to be placed, so phaser has nothing to '
+                 'search for. Tick "use" and set the number of copies on at '
+                 'least one ensemble.'),
+        name=f'{taskName}.container.inputData.ENSEMBLES',
+        severity=CCP4ErrorHandling.SEVERITY_ERROR)
+    return error
+
+
 class CallbackObject(object):
     def __init__(self, xmlroot=None, xmlResponders = []):
         super(CallbackObject,self).__init__()
@@ -144,7 +177,8 @@ class phaser_MR(CPluginScript):
                    106 : { 'description' : 'Failed to parse Solutions' },
                    107 : { 'description' : 'Failed to parse Solutions' },
                    108 : { 'description' : 'Failed to add Fixed solutions' },
-                   110 : { 'description' : 'Intensities requested but the reflection file holds amplitudes only' },}
+                   110 : { 'description' : 'Intensities requested but the reflection file holds amplitudes only' },
+                   111 : { 'description' : 'No ensemble asks for any copies to be placed' },}
 
     def validity(self):
         error = super().validity()
