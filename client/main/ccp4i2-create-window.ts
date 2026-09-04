@@ -71,6 +71,12 @@ export const createWindow = async (
       matches: result.matches,
     });
   });
-  setTimeout(() => newWindow?.loadURL(url), 1500);
+  // The window can be closed before this fires -- a quick quit, or a report
+  // pop-up dismissed at once -- and loadURL on a destroyed window throws
+  // "Object has been destroyed" from inside a timer, where nothing catches
+  // it: the uncaughtException a tester saw in the terminal.
+  setTimeout(() => {
+    if (!newWindow.isDestroyed()) newWindow.loadURL(url);
+  }, 1500);
   return newWindow;
 };

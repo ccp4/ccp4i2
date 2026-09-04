@@ -4,6 +4,7 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
+import { parentPidEnvironment, processGroupOptions } from "./ccp4i2-process-tree";
 import fs from "node:fs";
 import os from "node:os";
 import { ccp4i2Home } from "./ccp4i2-preferences";
@@ -173,6 +174,9 @@ export async function startDjangoServer(
     NEXT_ADDRESS: `http://localhost:${NEXT_PORT}`,
     // Force local execution mode for Electron app
     EXECUTION_MODE: "local",
+    // Our pid: the server's parent watchdog exits the uvicorn tree if we die
+    // without a chance to kill it (crash, SIGKILL, debugger stop).
+    ...parentPidEnvironment(),
     MPLBACKEND: "Agg", // Force matplotlib to use non-GUI backend
     // Windows-specific DLL path fixes
     ...(process.platform === "win32" && {
@@ -270,10 +274,18 @@ export async function startDjangoServer(
   // install path contains whitespace — matching the quoted `migrate` execSync
   // above, which would otherwise succeed while this launch broke. uvicornArgs are
   // all space-free literals and need no quoting.
-  const launcher = /\s/.test(PYTHON_PATH) ? `"${PYTHON_PATH}"` : PYTHON_PATH;
+  // A shell only where the launcher needs one (the .bat). Elsewhere spawn
+  // directly, in a process group of its own (detached), so quitting can
+  // signal the supervisor and both workers at once -- see
+  // ccp4i2-process-tree.ts. Quoting is for cmd.exe; a direct spawn takes the
+  // path as one argv entry, whitespace and all.
+  const useShell = process.platform === "win32";
+  const launcher =
+    useShell && /\s/.test(PYTHON_PATH) ? `"${PYTHON_PATH}"` : PYTHON_PATH;
   const pythonProcess = spawn(launcher, uvicornArgs, {
     env: pythonEnv,
-    shell: true,
+    shell: useShell,
+    ...processGroupOptions(),
     ...(serverCwd && { cwd: serverCwd }),
   });
 
