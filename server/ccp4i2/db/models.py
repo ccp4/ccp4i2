@@ -384,7 +384,7 @@ class File(Model):
     content = IntegerField(blank=True, null=True)
     annotation = TextField(blank=True)
     job = ForeignKey(Job, CASCADE, blank=True, null=True, related_name="files")
-    job_param_name = CharField(max_length=32, blank=True)
+    job_param_name = CharField(max_length=255, blank=True)
 
     def __str__(self):
         return self.name
@@ -443,7 +443,7 @@ class FileUse(Model):
     file = ForeignKey(File, CASCADE, related_name="file_uses")
     job = ForeignKey(Job, CASCADE, related_name="file_uses")
     role = IntegerField(choices=Role.choices)
-    job_param_name = CharField(max_length=32, blank=True)
+    job_param_name = CharField(max_length=255, blank=True)
 
     class Meta:
         unique_together = ["file", "job", "role", "job_param_name"]
