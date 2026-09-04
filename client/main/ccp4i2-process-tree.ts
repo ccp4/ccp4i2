@@ -46,7 +46,29 @@ const signalGroup = (pid: number, signal: NodeJS.Signals): boolean => {
   }
 };
 
-const groupIsAlive = (pid: number): boolean => signalGroup(pid, 0 as unknown as NodeJS.Signals);
+/**
+ * Members of the child's process group that are still running -- not
+ * zombies. Signal 0 to the group would count the leader while it sits
+ * unreaped (we cannot reap during a synchronous wait), so a quit would
+ * always sit out the whole grace period for a tree that was already dead.
+ */
+const liveGroupMembers = (pgid: number): number => {
+  try {
+    const out = execFileSync("ps", ["-ax", "-o", "pgid=,stat="], {
+      encoding: "utf8",
+      timeout: 2000,
+    });
+    let n = 0;
+    for (const line of out.split("\n")) {
+      const [g, stat] = line.trim().split(/\s+/);
+      if (Number(g) === pgid && stat && !stat.startsWith("Z")) n += 1;
+    }
+    return n;
+  } catch {
+    // ps unavailable: fall back to "is anything answering signals".
+    return signalGroup(pgid, 0 as unknown as NodeJS.Signals) ? 1 : 0;
+  }
+};
 
 /**
  * Terminate `child` and its descendants. Synchronous by design: the callers
@@ -76,10 +98,10 @@ export function terminateProcessTree(
   // inside exit handlers where timers will not fire.
   const deadline = Date.now() + graceMs;
   while (Date.now() < deadline) {
-    if (!groupIsAlive(pid)) return;
-    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50);
+    if (liveGroupMembers(pid) === 0) return;
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 100);
   }
-  if (groupIsAlive(pid)) signalGroup(pid, "SIGKILL");
+  if (liveGroupMembers(pid) > 0) signalGroup(pid, "SIGKILL");
 }
 
 /**

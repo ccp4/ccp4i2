@@ -4,7 +4,7 @@
  * the app now spawns uvicorn (its own process group).
  */
 import { describe, expect, it } from "vitest";
-import { spawn, execSync } from "node:child_process";
+import { spawn, execFileSync } from "node:child_process";
 import {
   parentPidEnvironment,
   processGroupOptions,
@@ -14,11 +14,14 @@ import {
 const posix = process.platform !== "win32";
 const marker = `ccp4i2-tree-test-${process.pid}`;
 
+// pgrep called directly, not through a shell: a `sh -c "pgrep -f <marker>"`
+// wrapper carries the marker in its own command line and pgrep reports it,
+// which made this read "alive" on Linux after the tree was dead.
 const treeAlive = () => {
   try {
-    return execSync(`pgrep -f ${marker} || true`).toString().trim().length > 0;
+    return execFileSync("pgrep", ["-f", marker], { encoding: "utf8" }).trim().length > 0;
   } catch {
-    return false;
+    return false; // pgrep exits 1 when nothing matches
   }
 };
 
