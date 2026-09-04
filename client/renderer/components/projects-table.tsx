@@ -646,7 +646,8 @@ export default function ProjectsTable() {
           const isMember = campaign?.membership_type === "member";
           return (
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-              <Box
+              {/* Campaign icon box hidden for now */}
+              {/* <Box
                 sx={{
                   width: 32,
                   height: 32,
@@ -665,7 +666,7 @@ export default function ProjectsTable() {
                 ) : (
                   <Science sx={{ color: "primary.main", fontSize: 16 }} />
                 )}
-              </Box>
+              </Box> */}
               <Box sx={{ minWidth: 0 }}>
                 <Stack direction="row" spacing={0.5} alignItems="center">
                   <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
