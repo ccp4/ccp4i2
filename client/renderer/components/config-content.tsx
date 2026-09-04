@@ -235,10 +235,14 @@ export const ConfigContent: React.FC = () => {
     }
   };
 
+  // Send the state the user chose, not a toggle, and let the config reply
+  // settle the context. (preventDefault on a controlled checkbox's change
+  // event makes React leave the control showing the OLD state -- the switch
+  // that could not be turned off.)
   const onToggleDevMode = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    window.electronAPI?.sendMessage("toggle-dev-mode", {});
-    ev.preventDefault();
-    ev.stopPropagation();
+    const enabled = ev.target.checked;
+    setDevMode(enabled);
+    window.electronAPI?.sendMessage("set-dev-mode", { enabled });
   };
 
   const onCloseProgressDialog = () =>

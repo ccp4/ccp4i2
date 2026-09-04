@@ -19,6 +19,7 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  Box,
 } from "@mui/material";
 import SearchField from "./search-field";
 import {
@@ -33,7 +34,8 @@ import {
   TreeItem2Root,
   useTreeItem2,
 } from "@mui/x-tree-view";
-import { CheckBoxOutlined, Clear, Delete, MoreVert } from "@mui/icons-material";
+import { CheckBoxOutlined, Clear, Delete, DragIndicator, MoreVert } from "@mui/icons-material";
+import { useUiPreference } from "../lib/ui-preferences";
 import { useDraggable } from "@dnd-kit/core";
 import { useRouter } from "next/navigation";
 
@@ -636,6 +638,8 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
 
     const { setJobMenuAnchorEl, setJob } = useJobMenu();
     const { setFileMenuAnchorEl, setFile } = useFileMenu();
+    // A per-browser preference (View menu): icons off gains the row their width.
+    const [showJobIcons] = useUiPreference("showJobIcons");
 
     // @dnd-kit drag — used for jobs only (context setting)
     const { attributes, listeners, setNodeRef } = useDraggable({
@@ -767,6 +771,21 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
 
     const renderAvatar = () => {
       if (job) {
+        // The avatar is also the drag handle. With icons hidden (a user
+        // preference, View menu) a narrow grip keeps dragging possible while
+        // giving the row the width the icon took.
+        if (!showJobIcons) {
+          return (
+            <Box
+              ref={setNodeRef}
+              {...listeners}
+              {...attributes}
+              sx={{ display: "inline-flex", cursor: "grab", color: "text.disabled", mr: 0.5 }}
+            >
+              <DragIndicator fontSize="small" />
+            </Box>
+          );
+        }
         return (
           <CCP4i2JobAvatar
             job={job as unknown as Job}
