@@ -49,6 +49,7 @@ export const fileTypeMapping: any = {
   "chemical/x-pdb-ensemble": "EnsemblePdbDataFile",
   "application/CCP4-asu-content": "AsuDataFile",
   "application/dials-jfile": "DialsJsonFile",
+  "application/dnatco-naval-json": "DnatcoNavalJsonFile",
   "application/dials-pfile": "DialsPickleFile",
   "application/phaser-rfile": "PhaserRFileDataFile",
   "application/refmac-keywords": "RefmacKeywordFile",

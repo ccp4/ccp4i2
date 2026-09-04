@@ -108,6 +108,7 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   CUnmergedDataFile: { component: CSimpleDataFileElement },
   CCootHistoryDataFile: { component: CSimpleDataFileElement },
   CDialsJsonFile: { component: CSimpleDataFileElement },
+  CDnatcoNavalJsonFile: { component: CSimpleDataFileElement },
   CDialsPickleFile: { component: CSimpleDataFileElement },
   CMDLMolDataFile: { component: CSimpleDataFileElement },
   CRefmacKeywordFile: { component: CSimpleDataFileElement },

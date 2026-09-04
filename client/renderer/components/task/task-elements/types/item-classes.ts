@@ -46,6 +46,7 @@ export type FileItemClass =
   | "CCootHistoryDataFile"
   | "CGenericReflDataFile"
   | "CDialsJsonFile"
+  | "CDnatcoNavalJsonFile"
   | "CDialsPickleFile"
   | "CMDLMolDataFile"
   | "CRefmacKeywordFile"
@@ -162,6 +163,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CCootHistoryDataFile",
     "CGenericReflDataFile",
     "CDialsJsonFile",
+    "CDnatcoNavalJsonFile",
     "CDialsPickleFile",
     "CMDLMolDataFile",
     "CRefmacKeywordFile",

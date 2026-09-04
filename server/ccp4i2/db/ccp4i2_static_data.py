@@ -86,6 +86,7 @@ FILETYPES_TEXT = [
     "chemical/x-cif",
     "text/plain",
     "application/phasertng-dag",
+    "application/dnatco-naval-json",
 ]
 FILETYPES_CLASS = [
     "DataFile",
@@ -128,6 +129,7 @@ FILETYPES_CLASS = [
     "MmcifReflDataFile",
     "TextDataFile",
     "PhaserTngDagFile",
+    "DnatcoNavalJsonFile",
 ]
 MINIMTZFILETYPES = [10, 11, 12, 13]
 FILE_ROLE_OUT = 0
@@ -186,6 +188,7 @@ FILETYPELIST = [
     (37, "chemical/x-cif", "mmCif reflection data"),
     (38, "text/plain", "Plain text file"),
     (39, "application/phasertng-dag", "PhaserTNG DAG file"),
+    (40, "application/dnatco-naval-json", "DNATCO NAVAL nucleic acid geometry validation"),
 ]
 
 KEYTYPELIST = [

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>martinmaly</userId>
+    <creationTime>13:15 27/Jun/25</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.1</ccp4iVersion>
+    <pluginName>dnatco_pipe</pluginName>
+    <pluginTitle>DNATCO - Restrain and validate nucleic acid structures</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="dnatco_pipe">
+
+    <container id="inputData">
+      <content id="XYZIN1">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <guiLabel>Nucleic acid structure model</guiLabel>
+          <toolTip>Structure model (PDB or mmCIF) containing DNA and/or RNA</toolTip>
+        </qualifiers>
+      </content>
+      <content id="XYZIN2">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <guiLabel>Second structure model to compare with</guiLabel>
+          <toolTip>Typically the same structure after refinement or rebuilding; restraints are generated from this model</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="CIFOUT1">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>2</contentFlag>
+          </default>
+          <guiLabel>Model 1 with NtC assignments (mmCIF)</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="CIFOUT2">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>2</contentFlag>
+          </default>
+          <guiLabel>Model 2 with NtC assignments (mmCIF)</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="JSONOUT1">
+        <className>CDnatcoNavalJsonFile</className>
+        <qualifiers>
+          <guiLabel>NAVAL validation of model 1</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="JSONOUT2">
+        <className>CDnatcoNavalJsonFile</className>
+        <qualifiers>
+          <guiLabel>NAVAL validation of model 2</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RESTRAINTS">
+        <className>CRefmacRestraintsDataFile</className>
+        <qualifiers>
+          <guiLabel>DNATCO NtC restraints</guiLabel>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="controlParameters">
+      <content id="TOGGLE_XYZIN2">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>Compare with another structure model</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="GENERATE_RESTRAINTS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>Generate NtC restraints for refinement</guiLabel>
+          <toolTip>Write Refmac/Servalcat external restraints pulling each dinucleotide step towards its closest NtC conformer</toolTip>
+        </qualifiers>
+      </content>
+      <content id="MAX_RMSD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+          <min>0.0</min>
+          <guiLabel>Maximum allowed NtC RMSD (in angstroem)</guiLabel>
+          <toolTip>Steps further than this RMSD from every NtC representative get no restraints</toolTip>
+        </qualifiers>
+      </content>
+      <content id="RESTRAINTS_SIGMA">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+          <min>0.0</min>
+          <guiLabel>Restraints sigma factor</guiLabel>
+          <toolTip>Multiplies the sigma of every restraint; larger is weaker</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4i2>

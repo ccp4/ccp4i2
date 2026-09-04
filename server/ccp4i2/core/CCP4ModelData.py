@@ -4570,3 +4570,35 @@ class CPdbEnsembleItem(CData):
 
         return report
 
+
+
+class CDnatcoNavalJsonFile(CDataFile):
+    """Per-residue bond-length and bond-angle validation of a nucleic acid
+    model, as written by the NAVAL module of DNATCO
+    (``dnatco --anglesLengthsByResidueJson``).
+
+    Top-level keys: ``navalLengthsStats`` / ``navalAnglesStats`` (counts per
+    NAVAL tier: Preferred, Allowed, Of Concern), ``proScoLengthsStats`` /
+    ``proScoAnglesStats`` (counts per probability-score group) and
+    ``lengths`` / ``angles`` (one entry per nucleotide, each carrying a
+    ``details`` list of named geometry terms with value, ProSco, pGroup and
+    NAVAL tier).
+    """
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": 'application/dnatco-naval-json',
+            "mimeTypeDescription": 'DNATCO NAVAL nucleic acid geometry validation',
+            "fileExtensions": ['json'],
+            "fileContentClassName": None,
+            "fileLabel": 'naval_validation',
+            "guiLabel": 'NAVAL validation data',
+            "toolTip": 'Bond lengths and angles of a nucleic acid model validated by DNATCO/NAVAL (JSON)',
+        }
+        content_qualifiers = {
+            "subType": {'default': None},
+            "contentFlag": {'min': 0, 'default': None},
+        }
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)

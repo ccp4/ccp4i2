@@ -112,6 +112,8 @@ TASK_CITES: Dict[str, List[str]] = {
     # --- dials image/lattice tools cite DIALS.
     "dials_image": ["dials"],
     "dials_rlattice": ["dials"],
+    "dnatco": ["dnatco"],
+    "dnatco_pipe": ["dnatco"],
     "dui": ["dials"],
     # --- mosflm variants.
     "imosflm": ["mosflm"],

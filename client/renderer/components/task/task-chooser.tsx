@@ -174,7 +174,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
   {
     icon: "validation",
     title: "Validation and analysis",
-    tasks: ["validate_protein", "edstats", "privateer", "qtpisa"],
+    tasks: ["validate_protein", "dnatco_pipe", "edstats", "privateer", "qtpisa"],
   },
   {
     icon: "export",

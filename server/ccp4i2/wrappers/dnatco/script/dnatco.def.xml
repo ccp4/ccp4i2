@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>martinmaly</userId>
+    <creationTime>13:15 27/Jun/25</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.1</ccp4iVersion>
+    <pluginName>dnatco</pluginName>
+    <pluginTitle>DNATCO - Restrain and validate nucleic acid structures</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="dnatco">
+
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <guiLabel>Nucleic acid structure model</guiLabel>
+          <toolTip>Structure model (PDB or mmCIF) containing DNA and/or RNA</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="CIFOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>2</contentFlag>
+          </default>
+          <guiLabel>Model with NtC assignments (mmCIF)</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="JSONOUT">
+        <className>CDnatcoNavalJsonFile</className>
+        <qualifiers>
+          <guiLabel>NAVAL bond length and angle validation</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RESTRAINTS">
+        <className>CRefmacRestraintsDataFile</className>
+        <qualifiers>
+          <guiLabel>DNATCO NtC restraints</guiLabel>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="controlParameters">
+      <content id="GENERATE_RESTRAINTS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>Generate NtC restraints for refinement</guiLabel>
+          <toolTip>Write Refmac/Servalcat external restraints pulling each dinucleotide step towards its closest NtC conformer</toolTip>
+        </qualifiers>
+      </content>
+      <content id="MAX_RMSD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+          <min>0.0</min>
+          <guiLabel>Maximum allowed NtC RMSD (in angstroem)</guiLabel>
+          <toolTip>Steps further than this RMSD from every NtC representative get no restraints</toolTip>
+        </qualifiers>
+      </content>
+      <content id="RESTRAINTS_SIGMA">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+          <min>0.0</min>
+          <guiLabel>Restraints sigma factor</guiLabel>
+          <toolTip>Multiplies the sigma of every restraint; larger is weaker</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4i2>
