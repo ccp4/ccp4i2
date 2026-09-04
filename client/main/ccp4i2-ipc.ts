@@ -6,6 +6,7 @@ import { dialog } from "electron";
 import path from "node:path";
 import fs from "node:fs";
 import { spawn, execSync, ChildProcessWithoutNullStreams } from "node:child_process";
+import { assessPython } from "./ccp4i2-python-suitability";
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
@@ -581,6 +582,26 @@ export const installIpcHandlers = (
       return;
     }
 
+    // Before asking whether ccp4i2 is installed, ask whether this Python could
+    // host it at all. A CCP4 9 (Python 3.9, root-owned site-packages, the
+    // Qt-era ccp4i2 package) fails the probe below like any missing install
+    // and was offered Install, which could only fail. Below the floor the
+    // environment is unsupported, full stop; a read-only site-packages still
+    // runs a backend an administrator installed, so that only withdraws
+    // Install (see requirements-missing below).
+    const suitability = assessPython(pythonPath);
+    if (!suitability.supported) {
+      send({
+        message: "requirements-unsupported",
+        error: suitability.reason,
+        pythonVersion: suitability.facts.version?.slice(0, 2).join("."),
+        ccp4Dir: CCP4Dir,
+      });
+      return;
+    }
+    const installable = suitability.installable;
+    const installHint = suitability.reason;
+
     // Probe the *actual* server entrypoint rather than a transitive dependency.
     // `import rest_framework` only proves some DRF is installed somewhere; it
     // says nothing about whether ccp4i2 is present, importable, or which
@@ -674,6 +695,8 @@ export const installIpcHandlers = (
           send({
             message: "requirements-missing",
             error: errorOutput.trim() || `Process exited with code ${code}`,
+            installable,
+            installHint,
           });
           return;
         }
@@ -716,6 +739,8 @@ export const installIpcHandlers = (
           if (!editable || !expected || !got || got !== expected) {
             send({
               message: "requirements-missing",
+              installable,
+              installHint,
               version,
               error: !editable
                 ? `ccp4i2 is not an editable install of the server directory. ` +
@@ -738,6 +763,8 @@ export const installIpcHandlers = (
         if (editable) {
           send({
             message: "requirements-missing",
+            installable,
+            installHint,
             version,
             error:
               `ccp4i2 is a development (editable) install; this build needs the ` +
@@ -749,6 +776,8 @@ export const installIpcHandlers = (
         if (!meetsServerVersionRequirement(version)) {
           send({
             message: "requirements-missing",
+            installable,
+            installHint,
             version,
             error:
               `Installed ccp4i2 ${version || "(unknown)"} does not match the ` +
@@ -806,6 +835,15 @@ export const installIpcHandlers = (
         status,
         ...(output !== undefined && { output }),
       });
+
+    // Refuse rather than let pip discover it: an install into a CCP4 below
+    // the Python floor, or into a site-packages the user cannot write, ends
+    // in a pip traceback that says nothing about the actual problem.
+    const suitability = assessPython(pythonPath);
+    if (!suitability.installable) {
+      sendProgress("failed", `${suitability.reason}\n`);
+      return;
+    }
 
     // Run one pip step, streaming stdout+stderr to the progress dialog. Resolves
     // with the exit code (never rejects) so the caller can sequence steps and
