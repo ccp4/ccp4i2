@@ -20,10 +20,10 @@ PATCH = 0
 # version (see client/main/ccp4i2-server-version.ts) — an alpha app and its
 # backend are strictly bound and cannot mix with the un-suffixed 3.0.x wheels
 # published before this discipline.
-PRERELEASE = "a40"
+PRERELEASE = "a41"
 
 __version__ = f"{MAJOR}.{MINOR}.{PATCH}{PRERELEASE}"
-__version_date__ = datetime(2026, 9, 3)
+__version_date__ = datetime(2026, 9, 4)
 __version_info__ = (MAJOR, MINOR, PATCH)
 
 I2_TOP = Path(__file__).resolve().parent
