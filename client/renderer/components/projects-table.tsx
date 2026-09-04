@@ -11,6 +11,7 @@ import {
   CardContent,
   Checkbox,
   Chip,
+  FormControlLabel,
   IconButton,
   LinearProgress,
   Paper,
@@ -119,10 +120,6 @@ const ProjectCard = React.memo(
     onMove?: () => void;
     onDelete: () => void;
   }) => {
-    const isRecent =
-      new Date(project.last_access).getTime() >
-      Date.now() - 7 * 24 * 60 * 60 * 1000;
-
     return (
       <Card
         sx={isSelected ? sxSelectedCard : sxProjectCard}
@@ -149,14 +146,6 @@ const ProjectCard = React.memo(
                 onChange={onToggleSelection}
                 sx={{ p: 0.5 }}
               />
-              {isRecent && (
-                <Chip
-                  label="Recent"
-                  size="small"
-                  color="success"
-                  sx={{ height: 20, fontSize: "0.7rem" }}
-                />
-              )}
             </Box>
             <IconButton
               className="action-button"
@@ -701,15 +690,6 @@ export default function ProjectsTable() {
                   </Tooltip>
                 )}
                 <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
-                  {new Date(project.last_access).getTime() >
-                    Date.now() - 7 * 24 * 60 * 60 * 1000 && (
-                    <Chip
-                      label="Recent"
-                      size="small"
-                      color="success"
-                      sx={{ height: 16, fontSize: "0.65rem", mt: 0.5 }}
-                    />
-                  )}
                   {isParent && (
                     <Tooltip title={`Campaign parent: ${campaign.campaign_name} (${campaign.member_count} datasets)`}>
                       <Chip
@@ -952,8 +932,13 @@ export default function ProjectsTable() {
                       : "Select all projects"
                   }
                 >
-                  <Chip
-                    icon={
+                  {/* One control, one handler. The checkbox used to sit
+                      inside a clickable chip that ALSO toggled, so a click
+                      on the box toggled twice and did nothing, and only a
+                      click on the surrounding chip worked (Paul). */}
+                  <FormControlLabel
+                    sx={{ ml: 0, mr: 0 }}
+                    control={
                       <Checkbox
                         size="small"
                         checked={
@@ -964,14 +949,14 @@ export default function ProjectsTable() {
                           selectedIds.size > 0 &&
                           selectedIds.size < filteredProjects.length
                         }
-                        onClick={toggleAll}
+                        onChange={toggleAll}
                       />
                     }
-                    label={`${filteredProjects.length} projects`}
-                    variant="outlined"
-                    clickable
-                    onClick={toggleAll}
-                    sx={{ "& .MuiChip-icon": { mr: 0.5 }, borderRadius: 2 }}
+                    label={
+                      <Typography variant="body2" color="text.secondary">
+                        {filteredProjects.length} projects
+                      </Typography>
+                    }
                   />
                 </Tooltip>
               </Box>

@@ -14,7 +14,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { Button } from "@mui/material";
+import { Backdrop, Button, CircularProgress, Typography } from "@mui/material";
 import { useCCP4i2Window } from "../app-context";
 import { useApi } from "../api";
 import { useJob, useProject } from "../utils";
@@ -261,9 +261,12 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
       jobId !== null &&
       jobId === runTaskRequested
     ) {
+      // Nothing to confirm: go. (This used to wait 200 ms with the dialog
+      // already open, so every clean Run showed a "Confirm Task Execution"
+      // box that vanished before it could be read -- Paul.)
       autoSubmitTimer.current = setTimeout(() => {
         handleConfirm();
-      }, 200);
+      }, 0);
     }
     return () => {
       if (autoSubmitTimer.current) {
@@ -275,8 +278,23 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
 
   return (
     <>
+    {/* While the run-time checks are still coming back there is nothing
+        to confirm yet; say so quietly instead of flashing the dialog. */}
+    <Backdrop
+      open={runTaskRequested !== null && !runTimeValidationLoaded && !inlineTask && !credentialDialog}
+      sx={{ zIndex: (theme) => theme.zIndex.modal + 1, color: "#fff", flexDirection: "column", gap: 1.5 }}
+    >
+      <CircularProgress color="inherit" size={36} />
+      <Typography variant="body2">Checking the job before it runs…</Typography>
+    </Backdrop>
     <Dialog
-      open={runTaskRequested !== null && !inlineTask && !credentialDialog}
+      open={
+        runTaskRequested !== null &&
+        runTimeValidationLoaded &&
+        hasSeriousIssues &&
+        !inlineTask &&
+        !credentialDialog
+      }
       onClose={() => handleCancel()}
       maxWidth="md"
       fullWidth

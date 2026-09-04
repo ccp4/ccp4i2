@@ -1,20 +1,20 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { Button, Menu } from "@mui/material";
 import {
-  Button,
-  ListItemText,
-  Menu,
-  MenuItem,
-} from "@mui/material";
-import {
+  Brightness4,
+  Brightness7,
+  DeveloperMode,
+  Refresh,
+  SyncAlt,
+  Visibility,
+  VisibilityOff,
   YoutubeSearchedFor,
   ZoomIn,
   ZoomOut,
-  Refresh,
-  SyncAlt,
 } from "@mui/icons-material";
-import { ThemeToggle } from "./theme-toggle";
-import { DevModeToggle } from "./dev-mode-toggle";
+import { useTheme } from "../theme/theme-provider";
+import { useUiPreference } from "../lib/ui-preferences";
 import { useCCP4i2Window } from "../app-context";
 import { useApi } from "../api";
 import { Project } from "../types/models";
@@ -23,13 +23,14 @@ import LanIcon from "@mui/icons-material/Lan";
 import { CCP4i2MenuItem } from "./menu-item";
 
 export default function ViewMenu() {
-  const { projectId } = useCCP4i2Window();
+  const { projectId, devMode, setDevMode } = useCCP4i2Window();
+  const { mode, setTheme } = useTheme();
+  const [showJobIcons, setShowJobIcons] = useUiPreference("showJobIcons");
   const api = useApi();
   const { data: project } = api.get<Project>(`projects/${projectId}`);
   const router = useRouter();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const themeToggleRef = useRef<HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -77,10 +78,24 @@ export default function ViewMenu() {
     handleClose();
   };
 
-  const handleThemeToggle = () => {
-    if (themeToggleRef.current) {
-      themeToggleRef.current.click();
+  const handleSwitchTheme = () => {
+    const next = mode === "light" ? "dark" : "light";
+    if (typeof window !== "undefined" && window?.electronAPI) {
+      window.electronAPI.sendMessage("set-theme-mode", { theme: next });
     }
+    setTheme(next);
+    handleClose();
+  };
+  const handleSwitchDevMode = () => {
+    const enabled = !devMode;
+    setDevMode(enabled);
+    if (typeof window !== "undefined" && window?.electronAPI) {
+      window.electronAPI.sendMessage("set-dev-mode", { enabled });
+    }
+    handleClose();
+  };
+  const handleSwitchJobIcons = () => {
+    setShowJobIcons(!showJobIcons);
     handleClose();
   };
 
@@ -120,13 +135,24 @@ export default function ViewMenu() {
           onClick={handleZoomReset}
           secondary="Ctrl+0"
         />
-        <MenuItem onClick={handleThemeToggle}>
-          <ThemeToggle ref={themeToggleRef} />
-          <ListItemText>Toggle Theme</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <DevModeToggle />
-        </MenuItem>
+        {/* Plain items whose text says what a click will do, rather than
+            controls embedded in a menu row (where the hover of the inner
+            switch made it unclear what to click -- Paul). */}
+        <CCP4i2MenuItem
+          text={mode === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+          icon={mode === "light" ? Brightness4 : Brightness7}
+          onClick={handleSwitchTheme}
+        />
+        <CCP4i2MenuItem
+          text={devMode ? "Turn Dev Mode Off" : "Turn Dev Mode On"}
+          icon={DeveloperMode}
+          onClick={handleSwitchDevMode}
+        />
+        <CCP4i2MenuItem
+          text={showJobIcons ? "Hide Job Icons" : "Show Job Icons"}
+          icon={showJobIcons ? VisibilityOff : Visibility}
+          onClick={handleSwitchJobIcons}
+        />
         {project && (
           <CCP4i2MenuItem
             text="Project Network"
