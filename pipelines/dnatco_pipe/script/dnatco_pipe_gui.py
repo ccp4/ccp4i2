@@ -46,12 +46,6 @@ class dnatco_pipe_gui(CTaskWidget):
            self.container.inputData,
            selection={"includeParameters": ["XYZIN1"]},
         )
-        self.openSubFrame(frame=[True], toggle=['controlParameters.TOGGLE_XYZIN2', 'open', [False]])
-        self.autoGenerate(
-            self.container.controlParameters,
-            selection={"includeParameters": ["GENERATE_RESTRAINTS"]},
-        )
-        self.closeSubFrame()
         self.closeSubFrame()
 
         self.createLine(['widget', 'TOGGLE_XYZIN2', 'label', 'Compare with another structure model'])
@@ -60,11 +54,12 @@ class dnatco_pipe_gui(CTaskWidget):
            self.container.inputData,
            selection={"includeParameters": ["XYZIN2"]},
         )
+        self.closeSubFrame()
+
         self.autoGenerate(
             self.container.controlParameters,
             selection={"includeParameters": ["GENERATE_RESTRAINTS"]},
         )
-        self.closeSubFrame()
 
         self.openSubFrame(frame=[True], title="Parameters for restraints generation", toggle=['controlParameters.GENERATE_RESTRAINTS', 'open', [True]])
         self.autoGenerate(
@@ -72,5 +67,6 @@ class dnatco_pipe_gui(CTaskWidget):
             selection={"includeParameters": ["MAX_RMSD", "RESTRAINTS_SIGMA"]},
         )
         self.closeSubFrame()
+
         self.closeFolder()
 
