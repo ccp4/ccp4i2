@@ -301,8 +301,12 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     }
     return fileResponse;
   } catch (error: any) {
-    // Only log unexpected errors, not connection-refused during startup
-    if (error.code !== "ECONNREFUSED") {
+    // Only log unexpected errors, not connection-refused during startup.
+    // fetch (undici) reports that as a bare "fetch failed" with the refusal
+    // in .cause, which is why the launcher's health polls were logged as
+    // errors on every start-up.
+    const code = error.code ?? error.cause?.code;
+    if (code !== "ECONNREFUSED") {
       console.error("[CCP4I2 PROXY] Error:", error.message, "→", targetUrl);
     }
     return NextResponse.json(

@@ -19,6 +19,7 @@ import { ccp4i2Home, defaultProjectsDir } from "./ccp4i2-preferences";
 import { createWindow } from "./ccp4i2-create-window";
 import { setupZoomLevel } from "./ccp4i2-zoom";
 import { assessPython, listCcp4Dirs } from "./ccp4i2-python-suitability";
+import { registerExitHandlers, terminateProcessTree } from "./ccp4i2-process-tree";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
@@ -174,10 +175,26 @@ let djangoServer: any | null = null;
 
 const setDjangoServer = (server) => {
   if (djangoServer) {
-    djangoServer.kill();
+    terminateProcessTree(djangoServer);
   }
   djangoServer = server;
 };
+
+// The one teardown, reached from every exit: before-quit for a normal quit,
+// and the process-level hooks for the exits Electron's own events never
+// see -- a terminal's SIGINT, a debugger's SIGTERM, an uncaught exception.
+// (A SIGKILL or a hard crash runs nothing here; the server's parent watchdog
+// covers that from its side.)
+const shutdownServers = () => {
+  try {
+    nextServer?.close();
+  } catch {
+    /* already closed */
+  }
+  terminateProcessTree(djangoServer);
+  djangoServer = null;
+};
+registerExitHandlers(shutdownServers);
 
 const getMainWindow = () => {
   if (mainWindow) {
@@ -226,8 +243,7 @@ app.on("window-all-closed", () => {
 });
 
 app.on("before-quit", () => {
-  nextServer?.close();
-  djangoServer?.kill();
+  shutdownServers();
 });
 
 app.on("activate", async () => {

@@ -808,7 +808,11 @@ export const installIpcHandlers = (
   };
 
   ipcMain.on("check-requirements", (event, _data) => {
-    runRequirementsProbe((payload) => event.reply("message-from-main", payload));
+    // The probe answers later; the window that asked may be gone by then, and
+    // sending to a destroyed webContents throws "Object has been destroyed".
+    runRequirementsProbe((payload) => {
+      if (!event.sender.isDestroyed()) event.reply("message-from-main", payload);
+    });
   });
 
   ipcMain.on("install-requirements", (event, _config) => {
@@ -829,12 +833,16 @@ export const installIpcHandlers = (
       return;
     }
 
-    const sendProgress = (status: string, output?: string) =>
+    const sendProgress = (status: string, output?: string) => {
+      // pip runs for minutes and its watchdog timer fires later still; the
+      // window may have closed. A destroyed webContents throws on send.
+      if (event.sender.isDestroyed()) return;
       event.sender.send("message-from-main", {
         message: "install-requirements-progress",
         status,
         ...(output !== undefined && { output }),
       });
+    };
 
     // Refuse rather than let pip discover it: an install into a CCP4 below
     // the Python floor, or into a site-packages the user cannot write, ends
