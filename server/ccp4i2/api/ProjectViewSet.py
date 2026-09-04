@@ -1041,7 +1041,9 @@ class ProjectViewSet(ModelViewSet):
             dry_run (bool): report what would be restored and change nothing.
             copy (bool): for source "directory" only, and true by default —
                 copy the directory into the projects store and adopt the copy,
-                leaving the original untouched.
+                leaving the original untouched. Ignored for a directory that
+                is already in the projects store: that is one of ours, and it
+                is adopted where it lies, as "scan" would.
 
         On copying, and why the sources differ. "registry" and "scan" are
         RECOVERY: your own projects, rebuilding your own database after losing
@@ -1089,7 +1091,17 @@ class ProjectViewSet(ModelViewSet):
                     "true",
                     "yes",
                 )
-                if not copy and not getattr(
+                # A directory already in this installation's projects store is
+                # one of our own, and rebuilding its rows is RECOVERY, exactly
+                # what "scan" over the store would do for it. Copying it into
+                # the store it is already in can only fail ("already exists"),
+                # which is the 409 the recovery route returned for the one case
+                # it exists for. Adopt it where it lies, gate or no gate.
+                store = pathlib.Path(settings.CCP4I2_PROJECTS_DIR).expanduser().resolve()
+                in_store = target.expanduser().resolve().parent == store
+                if in_store:
+                    copy = False
+                if not in_store and not copy and not getattr(
                     settings, "CCP4I2_ALLOW_INPLACE_MIGRATION", False
                 ):
                     return api_error(
