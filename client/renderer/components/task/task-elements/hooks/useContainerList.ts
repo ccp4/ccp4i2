@@ -66,8 +66,11 @@ const respectMin = (val: any, item: any): any => {
 
 /**
  * Build the default value for a new list row from the list's `_subItem`
- * template, mirroring server-side default construction.  Compound types
- * build child-by-child respecting min qualifiers; CDataFile rows get
+ * template.  The template is a freshly made server-side item, so a child
+ * that carries a value there carries the server's default (a CEnsemble's
+ * copies count is 1, not 0); it is kept.  Only a child with no value at
+ * all falls back to the per-class zero/empty in DEFAULT_VALUES.  Compound
+ * types build child-by-child respecting min qualifiers; CDataFile rows get
  * stamped with the current project UUID.
  */
 const createNewItemValue = (
@@ -97,11 +100,16 @@ const createNewItemValue = (
         result[key] = null;
         continue;
       }
+      const templateValue = valueOfItem(child);
       const childDefault =
         DEFAULT_VALUES[(child as any)._class] ??
         DEFAULT_VALUES[(child as any)._baseClass];
       const val =
-        childDefault !== undefined ? childDefault : valueOfItem(child);
+        templateValue !== null && templateValue !== undefined
+          ? templateValue
+          : childDefault !== undefined
+            ? childDefault
+            : templateValue;
       result[key] = respectMin(val, child);
     }
     return result;

@@ -8,6 +8,7 @@ class phaser_MR_RNP(phaser_MR_AUTO.phaser_MR_AUTO):
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}
+    SEARCHES_ENSEMBLES = False  # works on solutions already placed
 
     def startProcess(self):
         import phaser
