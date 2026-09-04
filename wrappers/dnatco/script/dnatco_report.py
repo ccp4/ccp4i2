@@ -100,12 +100,12 @@ class dnatco_report(Report):
                 compare_two_jsons = False
 
             table = indentDiv.addTable(title="NAVAL overall validation", transpose=True)
-            header = list(json_naval_data1['navalLengthsStats'][0].keys())
+            header = [h.replace('exclusive', '') for h in list(json_naval_data1['navalLengthsStats'][0].keys())]
             header.remove('navalTier') if 'navalTier' in header else header
             header.remove('cumulativeCount') if 'cumulativeCount' in header else header
             header.remove('cumulativePercentage') if 'cumulativePercentage' in header else header
             if compare_two_jsons:
-                header_two = [f"{h} model 1" for h in header] + [f"{h} model 2" for h in header]
+                header_two = [f"{h} (model 1)" for h in header] + [f"{h} (model 2)" for h in header]
                 header = header_two
             table.addData(title="", data=header)
 
@@ -136,12 +136,12 @@ class dnatco_report(Report):
             else:
                 entries = json_naval_data1.get(dataset_key, []) if json_naval_data1 else []
             if entries:
-                concernsFold = indentDiv.addFold(label=f"{entry_name} with concerns", initiallyOpen=True)
+                concernsFold = indentDiv.addFold(label=f"{entry_name} of concern", initiallyOpen=True)
                 concerned = self._get_concerned_items(entries)
                 if concerned:
                     concernsFold.append(
-                        f"{len(concerned)} {entry_name.lower()} of concern found."
-                        " Up to one hundred are listed below sorted by the ProSco.<br />"
+                        f"{len(concerned)} questionable {entry_name.lower()} found."
+                        " Up to one hundred are listed below sorted by the NAVAL category and ProSco.<br />"
                         "<i>pGroup denotes the probability percentile score group</i>."
                     )
                     if len(concerned) > 100:
@@ -494,7 +494,7 @@ class dnatco_report(Report):
         concerned = []
         for item in items:
             for detail in item.get('details', []):
-                if detail.get('naval_tier') == 'Of Concern' or detail.get('pGroup') in ['Rare', 'Unique', 'Ambiguous', 'Outlier', None]:
+                if detail.get('naval_tier') in ['Of Concern', 'Allowed'] or detail.get('pGroup') in ['Rare', 'Unique', 'Ambiguous', 'Outlier', None]:
                     concerned.append({
                         'model': item.get('model'),
                         'chain': item.get('chain'),
@@ -527,5 +527,9 @@ class dnatco_report(Report):
                     })
         if not concerned:
             return []
-        concerned.sort(key=lambda x: x.get('prosco', 0), reverse=False)
+        # Group by naval_tier (Of Concern -> Allowed -> others), then by prosco
+        tier_order = {'Of Concern': 0, 'Allowed': 1}
+        def _sort_key(x):
+            return (tier_order.get(x.get('naval_tier'), 2), x.get('prosco', 0))
+        concerned.sort(key=_sort_key)
         return concerned
