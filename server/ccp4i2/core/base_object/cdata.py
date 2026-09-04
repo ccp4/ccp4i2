@@ -258,6 +258,18 @@ class CData(HierarchicalObject):
                 type(self).__name__, exc, exc_info=True,
             )
 
+    @classmethod
+    def class_qualifier(cls, key, default=None):
+        """A qualifier as the class declares it, without making an instance.
+
+        The declaration is ``Meta.qualifiers``, merged down the MRO. Before the
+        declarative rewrite it sat in a class attribute called QUALIFIERS, and
+        code that still reads that attribute gets nothing: that is how every
+        file list with fromPreviousJob stopped being populated on follow-on
+        (Coot, ccp4mg, gesamt, the refmac and servalcat dictionary lists).
+        """
+        return _merged_qualifier_template(cls).get(key, default)
+
     def get_qualifier(self, key, default=None):
         """Get a qualifier value for this instance."""
         if hasattr(self, '_qualifiers') and self._qualifiers is not None:
