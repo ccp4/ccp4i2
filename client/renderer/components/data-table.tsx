@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, ReactNode } from "react";
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -9,15 +10,9 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  Paper,
-  Box,
   Typography,
-  LinearProgress,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import SearchField from "./search-field";
 
 export interface Column<T> {
   key: string;
@@ -26,40 +21,14 @@ export interface Column<T> {
   searchable?: boolean;
   render?: (value: any, row: T) => ReactNode;
   width?: string | number;
-  /** Hide this column on mobile devices (screen width < 600px) */
-  hiddenOnMobile?: boolean;
 }
 
-// Row height constants
-const DENSE_ROW_HEIGHT = 53;
-const COMFORTABLE_ROW_HEIGHT = 64;
-
 interface DataTableProps<T> {
-  data: T[] | undefined;
+  data: T[];
   columns: Column<T>[];
-  loading?: boolean;
   onRowClick?: (row: T) => void;
   getRowKey: (row: T) => string | number;
-  title?: string;
-  emptyMessage?: string;
-  /** Additional field names to include in search (fields not displayed as columns) */
-  additionalSearchFields?: string[];
-  /** Estimated row height for virtualization (auto-calculated based on comfortable setting if not specified) */
-  estimateRowHeight?: number;
-  /** Maximum height of the table container (default: 600). Ignored if fillHeight is true. */
-  maxHeight?: number;
-  /** Fill available parent height instead of using maxHeight */
-  fillHeight?: boolean;
-  /** Hide the built-in header (title, search, count) */
-  hideHeader?: boolean;
-  /** External search query (controlled mode) */
-  searchQuery?: string;
-  /** Callback when search changes (controlled mode) */
-  onSearchChange?: (query: string) => void;
-  /** Optional action element to display in the header (e.g., an "Add" button) */
-  headerAction?: ReactNode;
-  /** Use comfortable padding for better mobile/touch experience (default: false) */
-  comfortable?: boolean;
+  emptyMessage: string;
 }
 
 type Order = "asc" | "desc";
@@ -67,76 +36,20 @@ type Order = "asc" | "desc";
 export function DataTable<T extends Record<string, any>>({
   data,
   columns,
-  loading,
   onRowClick,
   getRowKey,
-  title,
-  emptyMessage = "No data found",
-  additionalSearchFields = [],
-  estimateRowHeight,
-  maxHeight = 600,
-  fillHeight = false,
-  hideHeader = false,
-  searchQuery: externalSearchQuery,
-  onSearchChange,
-  headerAction,
-  comfortable = false,
+  emptyMessage,
 }: DataTableProps<T>) {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  // Filter columns based on mobile visibility
-  const visibleColumns = useMemo(() => {
-    if (!isMobile) return columns;
-    return columns.filter((col) => !col.hiddenOnMobile);
-  }, [columns, isMobile]);
-
-  // Calculate row height based on comfortable setting if not explicitly provided
-  const effectiveRowHeight =
-    estimateRowHeight ?? (comfortable ? COMFORTABLE_ROW_HEIGHT : DENSE_ROW_HEIGHT);
-  const cellPadding = comfortable ? 2 : undefined; // MUI spacing units
-
   const [orderBy, setOrderBy] = useState<string | null>(null);
   const [order, setOrder] = useState<Order>("asc");
-  const [internalSearchQuery, setInternalSearchQuery] = useState("");
-
-  // Use external search query if provided, otherwise use internal state
-  const searchQuery = externalSearchQuery ?? internalSearchQuery;
-  const setSearchQuery = onSearchChange ?? setInternalSearchQuery;
 
   const parentRef = useRef<HTMLDivElement>(null);
 
-  // Filter data by search query
-  const filteredData = useMemo(() => {
-    if (!data) return [];
-    if (!searchQuery) return data;
-
-    const query = searchQuery.toLowerCase();
-    return data.filter((row) => {
-      // Search in columns marked as searchable
-      const matchesColumn = columns.some((col) => {
-        if (!col.searchable) return false;
-        const value = row[col.key];
-        if (value == null) return false;
-        return String(value).toLowerCase().includes(query);
-      });
-
-      if (matchesColumn) return true;
-
-      // Search in additional fields not displayed as columns
-      return additionalSearchFields.some((field) => {
-        const value = row[field];
-        if (value == null) return false;
-        return String(value).toLowerCase().includes(query);
-      });
-    });
-  }, [data, searchQuery, columns, additionalSearchFields]);
-
   // Sort data
   const sortedData = useMemo(() => {
-    if (!orderBy) return filteredData;
+    if (!orderBy) return data;
 
-    return [...filteredData].sort((a, b) => {
+    return [...data].sort((a, b) => {
       const aVal = a[orderBy];
       const bVal = b[orderBy];
 
@@ -155,13 +68,13 @@ export function DataTable<T extends Record<string, any>>({
 
       return order === "asc" ? comparison : -comparison;
     });
-  }, [filteredData, orderBy, order]);
+  }, [data, orderBy, order]);
 
   // Set up virtualizer for windowed rendering
   const rowVirtualizer = useVirtualizer({
     count: sortedData.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => effectiveRowHeight,
+    estimateSize: () => 60,
     overscan: 5, // Render 5 extra rows above/below viewport for smoother scrolling
   });
 
@@ -171,63 +84,30 @@ export function DataTable<T extends Record<string, any>>({
     setOrderBy(column);
   };
 
-  const hasSearchableColumns =
-    columns.some((col) => col.searchable) || additionalSearchFields.length > 0;
-
   const virtualItems = rowVirtualizer.getVirtualItems();
 
   return (
-    <Paper
+    <Box
       sx={{
         width: "100%",
         overflow: "hidden",
-        ...(fillHeight && {
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }),
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      {/* Header with title and search */}
-      {!hideHeader && (
-        <Box sx={{ p: 2, display: "flex", alignItems: "center", gap: 2 }}>
-          {title && (
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              {title}
-            </Typography>
-          )}
-          {!title && <Box sx={{ flexGrow: 1 }} />}
-          {headerAction}
-          {hasSearchableColumns && (
-            <SearchField
-              size="small"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={setSearchQuery}
-              sx={{ minWidth: 200 }}
-            />
-          )}
-          <Typography variant="body2" color="text.secondary">
-            {sortedData.length} {sortedData.length === 1 ? "row" : "rows"}
-          </Typography>
-        </Box>
-      )}
-
-      {/* Loading indicator */}
-      {loading && <LinearProgress />}
-
       {/* Table with virtualized scrolling */}
       <TableContainer
         ref={parentRef}
         sx={{
-          ...(fillHeight ? { flex: 1 } : { maxHeight }),
+          flex: 1,
           overflow: "auto",
         }}
       >
         <Table stickyHeader size="small" sx={{ tableLayout: "fixed" }}>
           <TableHead>
             <TableRow>
-              {visibleColumns.map((column) => (
+              {columns.map((column) => (
                 <TableCell
                   key={column.key}
                   sx={{ fontWeight: 600, width: column.width }}
@@ -251,13 +131,11 @@ export function DataTable<T extends Record<string, any>>({
             {sortedData.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={visibleColumns.length}
+                  colSpan={columns.length}
                   align="center"
                   sx={{ py: 4 }}
                 >
-                  <Typography color="text.secondary">
-                    {loading ? "Loading..." : emptyMessage}
-                  </Typography>
+                  <Typography color="text.secondary">{emptyMessage}</Typography>
                 </TableCell>
               </TableRow>
             ) : (
@@ -266,7 +144,7 @@ export function DataTable<T extends Record<string, any>>({
                 {virtualItems.length > 0 && virtualItems[0].start > 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={visibleColumns.length}
+                      colSpan={columns.length}
                       sx={{
                         height: virtualItems[0].start,
                         padding: 0,
@@ -293,14 +171,11 @@ export function DataTable<T extends Record<string, any>>({
                           : undefined,
                       }}
                     >
-                      {visibleColumns.map((column) => (
-                        <TableCell
-                          key={column.key}
-                          sx={cellPadding ? { py: cellPadding } : undefined}
-                        >
+                      {columns.map((column) => (
+                        <TableCell key={column.key}>
                           {column.render
                             ? column.render(row[column.key], row)
-                            : row[column.key] ?? "-"}
+                            : (row[column.key] ?? "-")}
                         </TableCell>
                       ))}
                     </TableRow>
@@ -311,7 +186,7 @@ export function DataTable<T extends Record<string, any>>({
                 {virtualItems.length > 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={visibleColumns.length}
+                      colSpan={columns.length}
                       sx={{
                         height:
                           rowVirtualizer.getTotalSize() -
@@ -327,6 +202,6 @@ export function DataTable<T extends Record<string, any>>({
           </TableBody>
         </Table>
       </TableContainer>
-    </Paper>
+    </Box>
   );
 }

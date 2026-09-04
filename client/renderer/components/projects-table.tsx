@@ -1077,9 +1077,6 @@ export default function ProjectsTable() {
             columns={tableColumns}
             getRowKey={(project) => project.id}
             onRowClick={(project) => router.push(`/ccp4i2/project/${project.id}`)}
-            hideHeader
-            fillHeight
-            estimateRowHeight={60}
             emptyMessage="No projects found"
           />
         )}
