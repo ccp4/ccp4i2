@@ -24,6 +24,23 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
+def materialise_recorded_files():
+    """Create, empty, every file the imported database records.
+
+    The context lookup skips a file that is not on disk (get_by_context.py),
+    which is right for a live project and fatal for this fixture: the XML
+    import records the files and writes none of them, so every lookup here
+    returned nothing and six of the eight tests in this module had been
+    failing for want of files nobody needs the contents of.
+    """
+    for the_file in File.objects.all():
+        path = the_file.path
+        if path is None:
+            continue
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.touch()
+
+
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent.parent.parent.parent
     / "CCP4I2_TEST_PROJECT_DIRECTORY"
@@ -38,6 +55,7 @@ class SetInputByContextTestCase(TestCase):
             Path(__file__).parent.parent / "db" / "DATABASE.db.xml",
             relocate_path=settings.CCP4I2_PROJECTS_DIR,
         )
+        materialise_recorded_files()
         return super().setUp()
 
     def tearDown(self):
@@ -280,3 +298,70 @@ class SetInputByContextTestCase(TestCase):
 
         logger.info(f"Before context: {set_before} set, After context: {set_after} set")
         self.assertGreater(set_after, set_before, "Context should set more files")
+
+
+@override_settings(
+    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent.parent.parent.parent
+    / "CCP4I2_TEST_PROJECT_DIRECTORY"
+)
+class ListPopulationFromContextTestCase(TestCase):
+    """File *lists* with fromPreviousJob are filled from the context job.
+
+    Paul Bond's report: a follow-on Coot job from a refinement arrived with
+    nothing in it. Every list input in coot1 and coot_rebuild is a CList of
+    files with fromPreviousJob on the subItem, and the same holds for 23 list
+    inputs across 14 tasks (ccp4mg, gesamt, clustalw, the refmac and servalcat
+    dictionary lists). The population code found the item class's MIME type
+    through a QUALIFIERS class attribute that the declarative CData rewrite
+    removed, so it found none and skipped every list without a word.
+    """
+
+    def setUp(self):
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
+        import_i2xml_from_file(
+            Path(__file__).parent.parent / "db" / "DATABASE.db.xml",
+            relocate_path=settings.CCP4I2_PROJECTS_DIR,
+        )
+        materialise_recorded_files()
+
+    def tearDown(self):
+        rmtree(settings.CCP4I2_PROJECTS_DIR, ignore_errors=True)
+
+    def _coot_lists_after_follow_on(self, task_name):
+        project = Project.objects.first()
+        refmac_job = Job.objects.get(task_name="prosmart_refmac")
+        result = async_to_sync(create_job_async)(
+            project_uuid=project.uuid,
+            task_name=task_name,
+            title=f"Follow-on {task_name}",
+            context_job_uuid=None,
+            auto_context=False,
+            save_params=False,
+        )
+        new_job = Job.objects.get(uuid=result["job_uuid"])
+        plugin = result["plugin"]
+        set_input_by_context_job(
+            job_id=str(new_job.uuid),
+            context_job_id=str(refmac_job.uuid),
+            plugin=plugin,
+            save_params=False,
+        )
+        inputs = plugin.container.inputData
+        return {
+            name: [Path(str(item.getFullPath())).name for item in getattr(inputs, name)]
+            for name in ("XYZIN_LIST", "FPHIIN_LIST", "DELFPHIIN_LIST")
+        }
+
+    def test_coot1_follow_on_from_refinement_gets_model_and_maps(self):
+        lists = self._coot_lists_after_follow_on("coot1")
+
+        self.assertIn("2_mdm2ccp4i2_xyzout_prosmart_refmac.pdb", lists["XYZIN_LIST"])
+        self.assertEqual(lists["FPHIIN_LIST"], ["2_mdm2ccp4i2_fphiout_prosmart_refmac.mtz"])
+        self.assertEqual(lists["DELFPHIIN_LIST"], ["2_mdm2ccp4i2_diffphiout_prosmart_refmac.mtz"])
+
+    def test_coot_rebuild_follow_on_from_refinement_gets_model_and_maps(self):
+        lists = self._coot_lists_after_follow_on("coot_rebuild")
+
+        self.assertIn("2_mdm2ccp4i2_xyzout_prosmart_refmac.pdb", lists["XYZIN_LIST"])
+        self.assertEqual(lists["FPHIIN_LIST"], ["2_mdm2ccp4i2_fphiout_prosmart_refmac.mtz"])
+        self.assertEqual(lists["DELFPHIIN_LIST"], ["2_mdm2ccp4i2_diffphiout_prosmart_refmac.mtz"])

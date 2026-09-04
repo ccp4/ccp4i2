@@ -122,13 +122,20 @@ def _populate_file_lists_from_context(input_data, context_job_id: str, the_job):
         if not has_from_previous:
             continue
 
-        # Get mimeTypeName from subItem qualifiers, or fall back to the
-        # class-level QUALIFIERS (e.g. CPdbDataFile has 'chemical/x-pdb')
-        mime_type = item_qualifiers.get('mimeTypeName')
+        # The subItem's own qualifiers rarely name a MIME type; the item class
+        # declares it (CPdbDataFile: chemical/x-pdb). Read the declaration
+        # through the class, not through a QUALIFIERS attribute -- that
+        # attribute went with the declarative rewrite, and reading it returned
+        # nothing, so every list here was skipped and no follow-on Coot job
+        # ever received its model or maps.
+        mime_type = item_qualifiers.get('mimeTypeName') or item_class.class_qualifier(
+            'mimeTypeName'
+        )
         if not mime_type:
-            class_quals = getattr(item_class, 'QUALIFIERS', {})
-            mime_type = class_quals.get('mimeTypeName')
-        if not mime_type:
+            logger.warning(
+                "List %s: item class %s declares no mimeTypeName; cannot populate",
+                child.objectName(), item_class.__name__,
+            )
             continue
 
         sub_type = _normalize_int_qualifier(

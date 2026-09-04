@@ -340,8 +340,9 @@ def molFromDict(cifFilePath):
 
     from ccp4i2.core import CCP4ModelData
     elMap = {}
-    for iElement in range (len(CCP4ModelData.CElement.QUALIFIERS['enumerators'])):
-        elMap[CCP4ModelData.CElement.QUALIFIERS['enumerators'][iElement].upper()] = iElement+1
+    elements = CCP4ModelData.CElement.class_qualifier('enumerators')
+    for iElement, element in enumerate(elements):
+        elMap[element.upper()] = iElement+1
     bondTypeMap = {'aromatic':Chem.rdchem.BondType.AROMATIC,'single':Chem.rdchem.BondType.SINGLE,'double':Chem.rdchem.BondType.DOUBLE,'triple':Chem.rdchem.BondType.TRIPLE,'1.5':Chem.rdchem.BondType.ONEANDAHALF,'deloc':Chem.rdchem.BondType.ONEANDAHALF}
     atomIdMap = {}
 
