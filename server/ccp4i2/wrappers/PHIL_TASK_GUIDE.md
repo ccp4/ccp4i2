@@ -577,7 +577,17 @@ from the `mr_solution` object (typed fields; only the annotation is
 tokenised, against the grammar Phaser documents), and the search-strategy
 narrative from the fixed control sentences in Phaser's summary blocks, with
 a count of any block that matched none of them. Nothing in the report is
-inferred from prose.
+inferred from prose. `phaser_ep_auto_phil` is EP_AUTO the same way: an
+`EpCrystalShim` writes the one crystal block (anomalous pairs, labels read
+back from the file with iotbx, substructure as `crystal.pdb_file`), the
+hands, sites and figures of merit come from `ResultEP`, and the
+substructure-completion cycles from the SAD summary block. The sections the
+two reports share live in `phaser_report_base.py`.
+
+One trap: the base constructor asks a task for its shims -- to keep their
+targets out of the parameter tree -- before the subclass `__init__` runs, so
+a shim that needs the plugin must be created lazily (a property), not in
+`__init__`.
 
 ### Shims write blocks too, and own their targets
 

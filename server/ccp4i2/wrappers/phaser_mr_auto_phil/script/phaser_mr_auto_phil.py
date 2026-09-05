@@ -34,8 +34,8 @@ class phaser_mr_auto_phil(phaser_phil):
     #: and the "simple" shortcut inputs the ensemble list supersedes.
     PHIL_EXCLUDE_SCOPES = [
         "phaser.sad_mode", "phaser.run_control", "phaser.output_dir",
-        "phaser.dry_run", "phaser.show_script", "phaser.show_defaults",
-        "phaser.test_mode", "phaser.verbose",
+        # The driver's own switches sit at the top level of its PHIL
+        "dry_run", "show_script", "show_defaults", "test_mode", "verbose",
         "phaser.model", "phaser.seq_file", "phaser.mol_weight",
         "phaser.model_rmsd", "phaser.model_identity", "phaser.model_idhi",
         "phaser.model_idlo", "phaser.component_copies", "phaser.search_copies",
@@ -52,9 +52,21 @@ class phaser_mr_auto_phil(phaser_phil):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.xmlroot = etree.Element("PhaserMrResults")
-        self._obs_shim = ObsDataShim(self, "F_SIGF", "phaser.hklin", "phaser.labin")
-        self._model_paths = {}
         self.resultObject = None
+
+    @property
+    def _obs_shim(self):
+        # Made on first use: the base constructor asks for the shims (to keep
+        # their targets out of the parameter tree) before __init__ here runs
+        if getattr(self, "_obs_shim_instance", None) is None:
+            self._obs_shim_instance = ObsDataShim(self, "F_SIGF", "phaser.hklin", "phaser.labin")
+        return self._obs_shim_instance
+
+    @property
+    def _model_paths(self):
+        if getattr(self, "_model_paths_map", None) is None:
+            self._model_paths_map = {}
+        return self._model_paths_map
 
     # -- validation ----------------------------------------------------------
     def validity(self):

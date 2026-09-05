@@ -141,3 +141,77 @@ class TestFixedPhilShim:
         shim = FixedPhilShim({"phaser.keywords.general.root": "{work_directory}/PHASER", "a.b": 3})
         assert shim.convert(None, "/job") == [("phaser.keywords.general.root", "/job/PHASER"), ("a.b", 3)]
         assert shim.phil_targets() == ["phaser.keywords.general.root", "a.b"]
+
+
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.base_object.fundamental_types import CInt, CBoolean, CList
+from ccp4i2.wrappers.phaser_phil.script.phaser_shims import (
+    EpCrystalShim, LlgCompletionShim, PartialModelShim)
+
+
+@pytest.fixture(name="ep_plugin")
+def ep_plugin_fixture():
+    script = CPluginScript(name="ep_shim_test")
+    inp = script.container.inputData
+    inp.addContent(CPdbDataFile, "XYZIN_HA")
+    inp.addContent(CPdbDataFile, "XYZIN_PARTIAL")
+    inp.addContent(CString, "PARTIAL_BY")
+    inp.addContent(CList, "ELEMENTS")
+    inp.addContent(CInt, "LLGC_CYCLES")
+    inp.addContent(CBoolean, "PURE_ANOMALOUS")
+    inp.addContent(CFloat, "WAVELENGTH")
+    return script
+
+
+class TestLlgCompletionShim:
+
+    def test_elements_cycles_and_method(self, ep_plugin):
+        inp = ep_plugin.container.inputData
+        inp.ELEMENTS.append("Xe"); inp.ELEMENTS.append("Se")
+        inp.LLGC_CYCLES.set(20); inp.PURE_ANOMALOUS.set(True)
+        assert LlgCompletionShim().convert(ep_plugin.container, "/tmp") == [
+            ("phaser.keywords.llgcompletion", [("complete", True), ("scatterer", "Xe Se"),
+                                               ("ncycle", 20), ("method", "imaginary")])]
+
+    def test_nothing_without_elements(self, ep_plugin):
+        assert LlgCompletionShim().convert(ep_plugin.container, "/tmp") == []
+
+
+class TestPartialModelShim:
+
+    def test_model(self, ep_plugin):
+        inp = ep_plugin.container.inputData
+        inp.PARTIAL_BY.set("MODEL"); inp.XYZIN_PARTIAL.setFullPath("/x/partial.pdb")
+        assert PartialModelShim().convert(ep_plugin.container, "/tmp") == [
+            ("phaser.keywords.partial", [("mode", "model"), ("pdb", "/x/partial.pdb")])]
+
+    def test_none(self, ep_plugin):
+        ep_plugin.container.inputData.PARTIAL_BY.set("NONE")
+        assert PartialModelShim().convert(ep_plugin.container, "/tmp") == []
+
+
+class TestEpCrystalShim:
+
+    def test_crystal_block(self):
+        pytest.importorskip("iotbx", reason="needs iotbx (CCP4/cctbx)")
+        import shutil
+        if shutil.which("servalcat") is None:
+            pytest.skip("the IPAIR -> FPAIR conversion runs servalcat (CCP4)")
+        with tempfile.TemporaryDirectory() as tmp:
+            plugin = CPluginScript(name="ep_crystal_test", workDirectory=tmp)
+            inp = plugin.container.inputData
+            inp.addContent(CObsDataFile, "F_SIGF"); inp.addContent(CPdbDataFile, "XYZIN_HA")
+            inp.addContent(CFloat, "WAVELENGTH")
+            inp.F_SIGF.setFullPath(demo("gamma", "merged_intensities_Xe.mtz"))
+            inp.F_SIGF.contentFlag.set(CObsDataFile.CONTENT_FLAG_IPAIR)
+            inp.XYZIN_HA.setFullPath(demo("gamma", "heavy_atoms.pdb")); inp.WAVELENGTH.set(1.542)
+            shim = EpCrystalShim(plugin)
+            assert shim.prepare().maxSeverity() <= 2
+            (path, fields), = shim.convert(plugin.container, tmp)
+            assert path == "phaser.crystal"
+            fields = dict(fields)
+            assert fields["pdb_file"].endswith("heavy_atoms.pdb")
+            dataset = dict(fields["dataset"])
+            assert dataset["labin"] == "Fplus,SIGFplus,Fminus,SIGFminus,merged"
+            assert dataset["wavelength"] == 1.542 and os.path.exists(dataset["hklin"])
+            assert shim.phil_targets() == ["phaser.crystal"]
