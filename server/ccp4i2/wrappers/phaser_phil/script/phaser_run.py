@@ -417,4 +417,154 @@ def run_mode(master_phil, working_phil_path, mode, work_directory, recorder, log
         run = getattr(phaser, f"run{mode}")
         result = run(interpreter.input, output)
     recorder.finish()
+    # Phaser's C++ output goes to the process's stdout, which the job runner
+    # captures elsewhere; the log the user expects in log.txt is the
+    # Result's own copy, as the classic wrapper wrote it
+    try:
+        with open(log_path, "a") as log:
+            log.write(result.logfile())
+    except Exception:
+        pass
     return result
+
+
+# ---------------------------------------------------------------------------
+# Experimental phasing
+# ---------------------------------------------------------------------------
+
+SAD = "SINGLE-WAVELENGTH ANOMALOUS DISPERSION"
+_EP_LLG = re.compile(r"^\s*(?:Final )?Log-Likelihood\s*=\s*([-\d.]+)")
+_EP_NEW_ATOMS = re.compile(r"Number of new atoms identified this cycle\s*=\s*(\d+)")
+_EP_DELETED = re.compile(r"Deleted Atom #'s:\s*(.*)$")
+_EP_FOM_ALL = re.compile(r"^\s*ALL\s+[\d.]+-\s*[\d.]+(?:\s+\d+\s+[\d.]+){3}\s+(\d+)\s+([\d.]+)")
+_EP_COMPLETION = re.compile(r"SUB-STRUCTURE COMPLETION #(\d+)")
+_EP_ANALYSIS = re.compile(r"SUB-STRUCTURE ANALYSIS #(\d+)")
+
+
+def ep_cycles(blocks):
+    """The substructure-completion cycles Phaser narrates in its SAD block.
+
+    Each cycle: the LLG after refinement, the atoms found and deleted, the
+    overall FOM, and whether completion converged. The block's vocabulary
+    is small and fixed; anything else is left alone.
+    """
+    cycles = []
+    final = {"llg": None, "fom": None, "converged": None}
+    for name, text in blocks:
+        if name != SAD:
+            continue
+        current = None
+        for line in text.splitlines():
+            m = _EP_ANALYSIS.search(line)
+            if m:
+                # "ANALYSIS #n: LLG MAPS" then "ANALYSIS #n: WEAK SITES" --
+                # one cycle, two headings
+                number = int(m.group(1))
+                if current is None or current["cycle"] != number:
+                    current = {"cycle": number, "llg": None, "added": 0,
+                               "deleted": [], "fom": None, "converged": None}
+                    cycles.append(current)
+                continue
+            m = _EP_NEW_ATOMS.search(line)
+            if m and current is not None:
+                current["added"] = int(m.group(1))
+                continue
+            m = _EP_DELETED.search(line)
+            if m and current is not None:
+                current["deleted"] = [int(x) for x in m.group(1).split() if x.isdigit()]
+                continue
+            if "Substructure completion has NOT converged" in line and current is not None:
+                current["converged"] = False
+            elif "Substructure completion has converged" in line and current is not None:
+                current["converged"] = True
+            m = _EP_LLG.match(line)
+            if m:
+                value = float(m.group(1))
+                if line.strip().startswith("Final"):
+                    final["llg"] = value
+                elif current is not None:
+                    current["llg"] = value
+                continue
+            m = _EP_FOM_ALL.match(line)
+            if m:
+                fom = float(m.group(2))
+                if current is not None:
+                    current["fom"] = fom
+                final["fom"] = fom
+    final["converged"] = cycles[-1]["converged"] if cycles else None
+    return cycles, final
+
+
+def ep_results_xml(result, parent):
+    """The hands, sites and figures of merit, from the ResultEP object."""
+    hands = etree.SubElement(parent, "Hands")
+    count = 2 if getattr(result, "second_hand", False) else 1
+    for i in range(count):
+        hand = result.getHand(i)
+        node = etree.SubElement(hands, "Hand")
+        etree.SubElement(node, "Number").text = str(i + 1)
+        etree.SubElement(node, "PDB").text = str(hand.PDBfile)
+        etree.SubElement(node, "MTZ").text = str(hand.MTZfile)
+        etree.SubElement(node, "LLG").text = f"{hand.getLogLikelihood():.1f}"
+        stats = hand.allStats
+        try:
+            fom = list(stats.FOM_bin)
+            num = list(stats.NUM_bin)
+            hires = list(stats.HiRes_bin)
+            lores = list(stats.LoRes_bin)
+            total_num = sum(num)
+            etree.SubElement(node, "FOM").text = f"{sum(fom) / total_num:.3f}" if total_num else ""
+            bins = etree.SubElement(node, "FOMByResolution")
+            for f, n, hi, lo in zip(fom, num, hires, lores):
+                b = etree.SubElement(bins, "Bin")
+                etree.SubElement(b, "LoRes").text = f"{lo:.2f}"
+                etree.SubElement(b, "HiRes").text = f"{hi:.2f}"
+                etree.SubElement(b, "Number").text = str(int(n))
+                etree.SubElement(b, "FOM").text = f"{f / n:.3f}" if n else ""
+        except Exception:
+            pass
+    overall = etree.SubElement(parent, "Overall")
+    for name in ("stats_fom", "stats_acentric_fom", "stats_centric_fom", "stats_num",
+                 "stats_hires", "stats_lores"):
+        fn = getattr(result, name, None)
+        if fn is None:
+            continue
+        try:
+            value = fn()
+            etree.SubElement(overall, name.replace("stats_", "")).text = (
+                f"{value:.3f}" if isinstance(value, float) else str(value))
+        except Exception:
+            pass
+    sites = etree.SubElement(parent, "Sites")
+    try:
+        atoms = list(result.getTopAtoms())
+    except Exception:
+        atoms = []
+    for i, atom in enumerate(atoms):
+        s = etree.SubElement(sites, "Site")
+        etree.SubElement(s, "Number").text = str(i + 1)
+        etree.SubElement(s, "Element").text = str(atom.scattering_type)
+        x, y, z = atom.site
+        etree.SubElement(s, "Frac").text = f"{x:.3f} {y:.3f} {z:.3f}"
+        etree.SubElement(s, "Occupancy").text = f"{atom.occupancy:.2f}"
+        b_iso = atom.b_iso() if callable(getattr(atom, "b_iso", None)) else getattr(atom, "b_iso", None)
+        if b_iso is not None and atom.u_iso >= 0:
+            etree.SubElement(s, "B").text = f"{b_iso:.1f}"
+        else:
+            etree.SubElement(s, "B").text = "aniso"
+        etree.SubElement(s, "History").text = str(atom.label).strip()
+    return hands
+
+
+def ep_cycles_xml(cycles, final, parent):
+    node = etree.SubElement(parent, "Completion")
+    for key, value in final.items():
+        if value is not None:
+            node.set(key, str(value))
+    for cycle in cycles:
+        c = etree.SubElement(node, "Cycle")
+        for key, value in cycle.items():
+            if value is None:
+                continue
+            c.set(key, " ".join(str(v) for v in value) if isinstance(value, list) else str(value))
+    return node

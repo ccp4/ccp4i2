@@ -137,3 +137,18 @@ class TestRecorder:
             ("1", "1", "placed"), ("2", "1", "ended"), ("2", "2", "ended")]
         assert attempts[1].findtext("Warning") == "No Signal in Translation Function"
         assert root.findtext("PhaserCurrentBestSolution").startswith("SOLU SET")
+
+
+class TestEpCycles:
+
+    def test_the_gamma_sad_block(self):
+        cycles, final = __import__("ccp4i2.wrappers.phaser_phil.script.phaser_run", fromlist=["ep_cycles"]).ep_cycles(
+            blocks("summary_gamma_ep.txt"))
+        assert [c["cycle"] for c in cycles] == list(range(1, len(cycles) + 1))
+        assert len(cycles) >= 5
+        assert cycles[0]["cycle"] == 1 and cycles[0]["added"] == 1
+        assert cycles[0]["llg"] == 968 and cycles[0]["deleted"] == [3, 4]
+        assert cycles[0]["converged"] is False
+        assert cycles[1]["added"] == 2 and cycles[2]["deleted"] == [6]
+        # Phaser prints a figure-of-merit table at the start and the end only
+        assert final["llg"] == 1060.85 and final["fom"] == 0.401

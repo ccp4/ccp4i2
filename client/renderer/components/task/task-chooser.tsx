@@ -91,7 +91,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
   {
     icon: "expt_phasing",
     title: "Experimental phasing",
-    tasks: ["crank2", "shelx", "phaser_EP"],
+    tasks: ["crank2", "shelx", "phaser_EP", "phaser_ep_auto_phil"],
   },
   {
     icon: "bioinformatics",

@@ -181,3 +181,101 @@ def _text(obj):
         return ""
     value = getattr(obj, "value", obj)
     return "" if value is None else str(value)
+
+
+class EpCrystalShim(PhilShim):
+    """The one crystal EP_AUTO takes: anomalous data, wavelength, and the
+    substructure -> one phaser.crystal block.
+
+    The mini-MTZ is rewritten as anomalous amplitude pairs (FPAIR) by the
+    plugin's makeHklin() from prepare(), as the classic wrapper did, and the
+    labels are read back from that file with iotbx: the driver matches its
+    own label_string() exactly ("Fplus,SIGFplus,Fminus,SIGFminus,merged"),
+    which is not something to compose by hand. The substructure goes to
+    crystal.pdb_file, which the driver passes to setATOM_PDB -- ha_file is
+    Phaser's own heavy-atom format, not a PDB.
+    """
+
+    def __init__(self, plugin, obs_name="F_SIGF", sites_name="XYZIN_HA",
+                 wavelength_name="WAVELENGTH", crystal_path="phaser.crystal"):
+        self.plugin = plugin
+        self.obs_name = obs_name
+        self.sites_name = sites_name
+        self.wavelength_name = wavelength_name
+        self.phil_crystal_path = crystal_path
+        self.hklin = None
+        self.labin = None
+
+    def prepare(self):
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
+        hklin, error = self.plugin.makeHklin(
+            [[self.obs_name, CObsDataFile.CONTENT_FLAG_FPAIR]], hklin="hklin")
+        if hklin:
+            from iotbx import file_reader
+            arrays = file_reader.any_file(hklin, force_type="hkl").file_server.miller_arrays
+            anomalous = [a.info().label_string() for a in arrays if a.anomalous_flag()]
+            self.hklin = hklin
+            self.labin = anomalous[0] if anomalous else None
+        return error
+
+    def convert(self, container, work_directory):
+        if not self.hklin or not self.labin:
+            return []
+        inp = container.inputData
+        fields = [("xtal_id", "crystal1")]
+        sites = getattr(inp, self.sites_name, None)
+        if sites is not None and sites.isSet():
+            fields.append(("pdb_file", str(sites.getFullPath())))
+        dataset = [("wave_id", "wave1"), ("hklin", self.hklin), ("labin", self.labin)]
+        wavelength = getattr(inp, self.wavelength_name, None)
+        if wavelength is not None and wavelength.isSet():
+            dataset.append(("wavelength", float(wavelength)))
+        fields.append(("dataset", dataset))
+        return [(self.phil_crystal_path, fields)]
+
+
+class PartialModelShim(PhilShim):
+    """A partial model to phase from, when there is one."""
+
+    def __init__(self, partial_by="PARTIAL_BY", model_name="XYZIN_PARTIAL",
+                 path="phaser.keywords.partial"):
+        self.partial_by = partial_by
+        self.model_name = model_name
+        self.phil_partial_path = path
+
+    def convert(self, container, work_directory):
+        inp = container.inputData
+        if str(getattr(inp, self.partial_by, "NONE")) != "MODEL":
+            return []
+        model = getattr(inp, self.model_name, None)
+        if model is None or not model.isSet():
+            return []
+        return [(self.phil_partial_path, [("mode", "model"), ("pdb", str(model.getFullPath()))])]
+
+
+class LlgCompletionShim(PhilShim):
+    """Log-likelihood-gradient completion of the substructure: which
+    elements to look for, how many cycles, and whether they are pure
+    anomalous scatterers (Phaser's IMAGINARY method)."""
+
+    def __init__(self, elements_name="ELEMENTS", cycles_name="LLGC_CYCLES",
+                 pure_name="PURE_ANOMALOUS", path="phaser.keywords.llgcompletion"):
+        self.elements_name = elements_name
+        self.cycles_name = cycles_name
+        self.pure_name = pure_name
+        self.phil_llgc_path = path
+
+    def convert(self, container, work_directory):
+        inp = container.inputData
+        elements = [str(e).strip() for e in getattr(inp, self.elements_name, []) or []]
+        elements = [e for e in elements if e]
+        if not elements:
+            return []
+        fields = [("complete", True), ("scatterer", " ".join(elements))]
+        cycles = getattr(inp, self.cycles_name, None)
+        if cycles is not None and cycles.isSet():
+            fields.append(("ncycle", int(cycles)))
+        pure = getattr(inp, self.pure_name, None)
+        if pure is not None and pure.isSet() and bool(pure):
+            fields.append(("method", "imaginary"))
+        return [(self.phil_llgc_path, fields)]

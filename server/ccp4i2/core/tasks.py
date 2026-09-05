@@ -1148,6 +1148,15 @@ TASKS = {
         reportPath="ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil_report:phaser_mr_auto_phil_report",
         runningReport=True,
     ),
+    "phaser_ep_auto_phil": Task(
+        title="SAD Experimental Phasing - Phaser (PHIL)",
+        shortTitle="Phaser EP (PHIL)",
+        description="Single-wavelength anomalous phasing with Phaser, driven from its PHIL interface",
+        pluginPath="ccp4i2.wrappers.phaser_ep_auto_phil.script.phaser_ep_auto_phil:phaser_ep_auto_phil",
+        defXmlPath="wrappers/phaser_ep_auto_phil/script/phaser_ep_auto_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_ep_auto_phil.script.phaser_ep_auto_phil_report:phaser_ep_auto_phil_report",
+        runningReport=True,
+    ),
     "phasertng_picard": Task(
         title="PhaserTNG Picard - Molecular Replacement",
         description="Automated molecular replacement using PhaserTNG Picard. "
