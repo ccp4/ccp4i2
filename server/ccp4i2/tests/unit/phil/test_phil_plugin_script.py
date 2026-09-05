@@ -527,3 +527,62 @@ class TestShimEntries:
         fetched = _fetched(plugin)
         assert [(c.nres, c.num) for c in fetched.composition.chain] == [(120, 2), (50, 1)]
         assert fetched.composition.solvent == 0.5
+
+
+# ---------------------------------------------------------------------------
+# A fixed mode
+# ---------------------------------------------------------------------------
+
+MODED_PHIL = parse("""
+    tool {
+      mode = *MR_AUTO EP_AUTO
+        .type = choice
+      hklin = None
+        .type = path
+        .style = "phaser:mode:MR*"
+      crystal
+        .style = "phaser:mode:EP_AUTO"
+      {
+        wavelength = None
+          .type = float
+      }
+      title = None
+        .type = str
+    }
+""")
+
+
+class MockEpPlugin(PhilPluginScript):
+    TASKNAME = "mock_ep_plugin"
+    TASKCOMMAND = "echo"
+    PHIL_MODE = "EP_AUTO"
+    PHIL_MODE_PATH = "tool.mode"
+
+    def get_master_phil(self):
+        return MODED_PHIL
+
+    def get_phil_exclude_scopes(self):
+        return []
+
+    def get_command_target(self):
+        return "echo"
+
+
+class TestFixedMode:
+
+    def test_only_the_modes_parameters_are_offered(self):
+        plugin = MockEpPlugin()   # held: a collected plugin destroys its tree
+        cp = plugin.container.controlParameters.tool
+        assert hasattr(cp, "tool__crystal") and hasattr(cp, "tool__title")
+        assert not hasattr(cp, "tool__hklin")
+        assert not hasattr(cp, "tool__mode")
+
+    def test_the_mode_is_written_first(self):
+        plugin = MockEpPlugin()
+        plugin.container.controlParameters.tool.tool__title.value = "x"
+        with tempfile.TemporaryDirectory() as tmpdir:
+            plugin.workDirectory = tmpdir
+            phil_path = plugin.build_working_phil()
+            fetched = MODED_PHIL.fetch(sources=[parse(file_name=phil_path)]).extract()
+        assert fetched.tool.mode == "EP_AUTO"
+        assert fetched.tool.title == "x"
