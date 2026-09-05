@@ -230,11 +230,19 @@ export const NewProjectContent: React.FC = () => {
       );
       await apiPost(`jobs/${jobId}/upload_file_param/`, uploadForm);
     } else if (df.detectedType === "ligand") {
-      // Ligands: upload file and set the mode selector
+      // Ligands: the input parameter and the mode selector both depend on
+      // the flavour of file. MOL mode covers .mol and .sdf alike (the task's
+      // own menu calls it "a MOL or SDF file"); .smi is a SMILES *file*,
+      // which is a different parameter from a typed-in SMILES string.
       const ext = df.file.name.toLowerCase().split(".").pop();
-      const mode = ext === "mol2" ? "MOL2" : "MOL";
+      const mode =
+        ext === "mol2" ? "MOL2" : ext === "smi" ? "SMILESFILE" : "MOL";
       const actualParam =
-        ext === "mol2" ? "inputData.MOL2IN" : "inputData.MOLIN";
+        ext === "mol2"
+          ? "inputData.MOL2IN"
+          : ext === "smi"
+            ? "inputData.SMILESFILEIN"
+            : "inputData.MOLIN";
       await apiPost(`jobs/${jobId}/set_parameter/`, {
         object_path: `${taskName}.container.inputData.MOLSMILESORSKETCH`,
         value: mode,

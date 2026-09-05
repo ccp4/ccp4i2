@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import {
+  Alert,
   Box,
   Chip,
   CircularProgress,
@@ -14,6 +15,7 @@ import {
   Clear as ClearIcon,
 } from "@mui/icons-material";
 import { parseMtzFile } from "../lib/mtz-parser";
+import { sniffCifFile, sniffXmlFile } from "../lib/text-file-sniffer";
 import { DropZone } from "./common/drop-zone";
 
 /**
@@ -30,7 +32,12 @@ export type DetectedFileType =
   | "mmcif_coords"      // .cif (coordinates) -> coordinate_selector (auto-run)
   | "sequence"          // .fasta, .fa, .seq, .pir -> ProvideSequence (auto-run)
   | "alignment"         // .aln, .clw, .sto -> ProvideAlignment (auto-run)
-  | "ligand"            // .smi, .mol, .mol2 -> LidiaAcedrgNew (auto-run)
+  | "ligand"            // .smi, .mol, .mol2, .sdf -> LidiaAcedrgNew (auto-run)
+  | "dictionary"        // restraint/monomer .cif -> ImportDictionary (auto-run)
+  | "mmcif_reflections" // structure-factor .cif -> cif2mtz (no auto-run)
+  | "asu_contents"      // .asu.xml -> ImportAsuContent (auto-run)
+  | "map"               // .map, .mrc -> ImportMap (auto-run)
+  | "tls"               // .tls -> ProvideTLS (auto-run)
   | "unknown";
 
 export interface DroppedFile {
@@ -47,6 +54,11 @@ export const TASK_FOR_TYPE: Record<DetectedFileType, string | null> = {
   sequence: "ProvideSequence",
   alignment: "ProvideAlignment",
   ligand: "LidiaAcedrgNew",
+  dictionary: "ImportDictionary",
+  mmcif_reflections: "cif2mtz",
+  asu_contents: "ImportAsuContent",
+  map: "ImportMap",
+  tls: "ProvideTLS",
   unknown: null,
 };
 
@@ -59,6 +71,11 @@ export const PARAM_FOR_TYPE: Record<DetectedFileType, string | null> = {
   sequence: "controlParameters.SEQUENCETEXT",
   alignment: "inputData.ALIGNIN",
   ligand: "inputData.MOLIN",
+  dictionary: "inputData.DICTIN",
+  mmcif_reflections: "inputData.HKLIN",
+  asu_contents: "inputData.ASUIN",
+  map: "inputData.MAPIN",
+  tls: "inputData.TLSIN",
   unknown: null,
 };
 
@@ -71,6 +88,11 @@ export const AUTO_RUN_FOR_TYPE: Record<DetectedFileType, boolean> = {
   sequence: true,
   alignment: true,
   ligand: true,
+  dictionary: true,
+  mmcif_reflections: false, // User picks which data block / columns to convert
+  asu_contents: true,
+  map: true,
+  tls: true,
   unknown: false,
 };
 
@@ -82,7 +104,12 @@ const TYPE_LABELS: Record<DetectedFileType, string> = {
   sequence: "Sequence",
   alignment: "Alignment",
   ligand: "Ligand",
-  unknown: "Unknown",
+  dictionary: "Restraint dictionary",
+  mmcif_reflections: "Reflections (mmCIF)",
+  asu_contents: "ASU contents",
+  map: "Map",
+  tls: "TLS definitions",
+  unknown: "Unrecognised",
 };
 
 const TYPE_COLORS: Record<
@@ -96,7 +123,12 @@ const TYPE_COLORS: Record<
   sequence: "info",
   alignment: "secondary",
   ligand: "secondary",
-  unknown: "default",
+  dictionary: "secondary",
+  mmcif_reflections: "primary",
+  asu_contents: "info",
+  map: "primary",
+  tls: "default",
+  unknown: "error",
 };
 
 /** Extensions that are unambiguously unmerged data */
@@ -119,30 +151,61 @@ const EXTENSION_MAP: Record<string, DetectedFileType> = {
   ".stk": "alignment",
   ".phylip": "alignment",
   ".phy": "alignment",
+  ".msf": "alignment",
   ".smi": "ligand",
   ".mol": "ligand",
   ".mol2": "ligand",
+  ".sdf": "ligand",
+  ".map": "map",
+  ".mrc": "map",
+  ".tls": "tls",
 };
 
 /**
- * Detect file type from extension alone (synchronous, for non-MTZ files).
- * MTZ files need async sniffing — see detectFileTypeAsync.
+ * Detect file type from the name alone.
+ *
+ * This is the provisional answer shown the instant a file is dropped. For
+ * the ambiguous extensions it is only a guess; `sniffFile` reads the file
+ * and corrects it. See `needsSniffing` for which those are.
  */
 function detectFileTypeSync(file: File): DetectedFileType {
   const name = file.name.toLowerCase();
   const ext = "." + name.split(".").pop();
 
+  // Compound extensions must be tested before the single-suffix ones:
+  // splitting on "." would otherwise reduce "gamma.asu.xml" to ".xml".
+  if (name.endsWith(".asu.xml")) return "asu_contents";
+
   if (ext in UNMERGED_EXTENSIONS) return "unmerged";
   if (ext in EXTENSION_MAP) return EXTENSION_MAP[ext];
 
-  // .cif is ambiguous — default to coordinates
+  // .cif covers coordinates, structure factors and restraint dictionaries.
+  // Guess coordinates now and correct it in sniffFile below.
   if (ext === ".cif" || ext === ".mmcif") return "mmcif_coords";
+
+  // A bare .xml may still be ASU contents written under another name;
+  // sniffFile decides. Anything else stays unrecognised.
+  if (ext === ".xml") return "unknown";
 
   // .mtz needs header sniffing — mark as reflections initially,
   // will be refined asynchronously
   if (ext === ".mtz") return "reflections";
 
   return "unknown";
+}
+
+/** Extensions whose true type can only be settled by reading the file. */
+function needsSniffing(file: File): boolean {
+  const name = file.name.toLowerCase();
+  // ".asu.xml" already names its type unambiguously; only a bare ".xml"
+  // has to be opened to find out whether it is ASU contents.
+  if (name.endsWith(".asu.xml")) return false;
+  return (
+    name.endsWith(".mtz") ||
+    name.endsWith(".cif") ||
+    name.endsWith(".mmcif") ||
+    name.endsWith(".xml")
+  );
 }
 
 /**
@@ -159,8 +222,44 @@ async function sniffMtzFile(file: File): Promise<DetectedFileType> {
   }
 }
 
+/**
+ * Refine a provisional classification by reading the file's contents.
+ * Returns the given fallback when the content is not recognised, so a
+ * sniff that tells us nothing never downgrades a confident guess.
+ */
+async function sniffFile(
+  file: File,
+  provisional: DetectedFileType
+): Promise<DetectedFileType> {
+  const name = file.name.toLowerCase();
+
+  if (name.endsWith(".mtz")) return sniffMtzFile(file);
+
+  if (name.endsWith(".cif") || name.endsWith(".mmcif")) {
+    switch (await sniffCifFile(file)) {
+      case "coordinates":
+        return "mmcif_coords";
+      case "reflections":
+        return "mmcif_reflections";
+      case "dictionary":
+        return "dictionary";
+      default:
+        return provisional;
+    }
+  }
+
+  if (name.endsWith(".xml")) {
+    return (await sniffXmlFile(file)) === "asu_contents"
+      ? "asu_contents"
+      : provisional;
+  }
+
+  return provisional;
+}
+
 const ACCEPTED_EXTENSIONS =
-  ".mtz,.pdb,.ent,.cif,.mmcif,.fasta,.fa,.seq,.pir,.aln,.clw,.sto,.sca,.hkl,.refl,.smi,.mol,.mol2";
+  ".mtz,.pdb,.ent,.cif,.mmcif,.xml,.fasta,.fa,.seq,.pir,.aln,.clw,.sto,.stk," +
+  ".phylip,.phy,.msf,.sca,.hkl,.refl,.smi,.mol,.mol2,.sdf,.map,.mrc,.tls";
 
 interface FileDropZoneProps {
   files: DroppedFile[];
@@ -172,6 +271,10 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
   onChange,
 }) => {
   const [isSniffing, setIsSniffing] = useState(false);
+
+  const unrecognisedCount = files.filter(
+    (df) => TASK_FOR_TYPE[df.detectedType] === null
+  ).length;
 
   const addFiles = useCallback(
     async (fileList: FileList | File[]) => {
@@ -187,20 +290,21 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
       const updatedFiles = [...files, ...newFiles];
       onChange(updatedFiles);
 
-      // Async sniff MTZ files to distinguish merged/unmerged
-      const mtzIndices = newFiles
-        .map((df, i) => (df.file.name.toLowerCase().endsWith(".mtz") ? i : -1))
+      // Read the ambiguous ones (MTZ merged/unmerged, .cif flavour,
+      // .xml ASU contents) to settle their type.
+      const sniffIndices = newFiles
+        .map((df, i) => (needsSniffing(df.file) ? i : -1))
         .filter((i) => i >= 0);
 
-      if (mtzIndices.length > 0) {
+      if (sniffIndices.length > 0) {
         setIsSniffing(true);
         const refined = [...updatedFiles];
-        for (const localIdx of mtzIndices) {
+        for (const localIdx of sniffIndices) {
           const globalIdx = files.length + localIdx;
-          const refinedType = await sniffMtzFile(refined[globalIdx].file);
+          const current = refined[globalIdx];
           refined[globalIdx] = {
-            ...refined[globalIdx],
-            detectedType: refinedType,
+            ...current,
+            detectedType: await sniffFile(current.file, current.detectedType),
           };
         }
         onChange(refined);
@@ -235,7 +339,8 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
               Drop files here to import after project creation
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              MTZ, PDB, CIF, FASTA, alignments, SCA, ligands (SMI/MOL)
+              MTZ, PDB, CIF, ASU contents, maps, TLS, FASTA, alignments,
+              SCA, ligands (SMI/MOL/SDF)
             </Typography>
           </Stack>
         ) : (
@@ -259,10 +364,9 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
                   <Typography variant="body2" noWrap sx={{ maxWidth: 300 }}>
                     {df.file.name}
                   </Typography>
-                  {isSniffing &&
-                    df.file.name.toLowerCase().endsWith(".mtz") && (
-                      <CircularProgress size={12} />
-                    )}
+                  {isSniffing && needsSniffing(df.file) && (
+                    <CircularProgress size={12} />
+                  )}
                 </Box>
                 <IconButton
                   size="small"
@@ -278,6 +382,22 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
             <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5 }}>
               + Drop or click to add more files
             </Typography>
+            {unrecognisedCount > 0 && !isSniffing && (
+              // The enclosing DropZone opens a file picker on click, which
+              // is unhelpful while reading a warning: keep the click here.
+              <Alert
+                severity="warning"
+                sx={{ mt: 1, textAlign: "left" }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {unrecognisedCount === 1
+                  ? "1 file was not recognised and will not be imported."
+                  : `${unrecognisedCount} files were not recognised and ` +
+                    "will not be imported."}{" "}
+                Remove them, or create the project and import them by hand
+                afterwards.
+              </Alert>
+            )}
           </Stack>
         )}
       </DropZone>
