@@ -88,7 +88,7 @@ class phaser_ep_auto_phil(phaser_phil):
     def processInputFiles(self):
         error = self._crystal_shim.prepare()
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-            self.appendErrorReport(204, str(error, severity=CCP4ErrorHandling.SEVERITY_ERROR))
+            self.appendErrorReport(204, str(error), severity=CCP4ErrorHandling.SEVERITY_ERROR)
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 

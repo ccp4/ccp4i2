@@ -62,3 +62,14 @@ class TestFailures:
             assert code == 202 and severity == SEVERITY_ERROR
             assert details == "Couldn't find array F,SIGF in file x.mtz."
             assert "Traceback" not in details
+
+
+@pytest.mark.parametrize("task", ["phaser_mr_auto_phil", "phaser_ep_auto_phil"])
+def test_unpreparable_reflections_are_an_error(task):
+    """F_SIGF that cannot be rewritten (here: not set at all) fails the job
+    with code 204 at ERROR severity -- and does not raise on the way."""
+    with tempfile.TemporaryDirectory() as tmp:
+        plugin = get_plugin_class(task)(workDirectory=tmp, name=task)
+        assert plugin.processInputFiles() == CPluginScript.FAILED
+        codes = [(r["code"], r["severity"]) for r in plugin.errorReport._reports]
+        assert (204, SEVERITY_ERROR) in codes
