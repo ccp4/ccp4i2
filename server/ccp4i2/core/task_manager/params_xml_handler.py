@@ -496,6 +496,26 @@ class ParamsXmlHandler:
             # when the saved items are appended below.
             cdata_container.clear()
 
+            from ccp4i2.core.base_object.fundamental_types import CString, CInt, CFloat, CBoolean
+            children = list(xml_container)
+            # A job saved when this list was a single scope or a single leaf
+            # (a PHIL .multiple scope or definition became a CList) carries
+            # the fields of ONE item, or one value, rather than item elements.
+            # Read it as that one item instead of losing it or misreading
+            # each field as an item.
+            template = cdata_container.makeItem()
+            if isinstance(template, (CString, CInt, CFloat, CBoolean)):
+                if not children and xml_container.text and xml_container.text.strip():
+                    self._import_parameter_value(xml_container, template)
+                    cdata_container.append(template)
+                    return imported_count
+            else:
+                field_names = set(template.dataOrder()) if hasattr(template, "dataOrder") else set()
+                if children and field_names and all(c.tag in field_names for c in children):
+                    self._import_container_values(xml_container, template)
+                    cdata_container.append(template)
+                    return imported_count
+
             # For CList, child elements are tagged with the item's class name (CCP4i2 convention)
             # e.g., <CImportUnmerged> for items in CImportUnmergedList
             # We create new items and populate them from the XML
