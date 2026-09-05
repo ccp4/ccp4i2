@@ -98,7 +98,10 @@ class PhilPluginScript(CPluginScript):
             excluded = list(self.get_phil_exclude_scopes())
             for shim in self.get_shim_definitions():
                 excluded.extend(t for t in shim.phil_targets() if t not in excluded)
-            converter = Phil2CData(master_phil, exclude_scopes=excluded)
+            if self.PHIL_MODE_PATH and self.PHIL_MODE_PATH not in excluded:
+                excluded.append(self.PHIL_MODE_PATH)
+            converter = Phil2CData(master_phil, exclude_scopes=excluded,
+                                   mode=self.PHIL_MODE)
             phil_container = converter.convert(root_name="controlParameters")
 
             existing_cp = self.container.controlParameters
@@ -159,6 +162,14 @@ class PhilPluginScript(CPluginScript):
     #: "package:relative/path.params" — a PHIL file shipped inside a package,
     #: e.g. "phaser:phenix_interface/__init__.params".
     PHIL_PARAMS_FILE = None
+
+    #: A tool that runs in one of several modes, with parameters tagged by
+    #: mode in .style (Phaser's `phaser:mode:`, phasertng's `tng:input:`),
+    #: can fix the mode per task: only the parameters that apply are
+    #: offered, the mode parameter itself leaves the tree, and the working
+    #: phil carries `PHIL_MODE_PATH = PHIL_MODE`.
+    PHIL_MODE = None
+    PHIL_MODE_PATH = None
 
     #: "module.path:ClassName" — a CCTBX Program template whose master_phil is
     #: assembled by CCTBXParser, e.g. "phasertng.programs.picard:Program".
@@ -409,8 +420,10 @@ class PhilPluginScript(CPluginScript):
         master_phil = self.get_master_phil()
 
         # Collect user-set PHIL parameters from controlParameters, repeated
-        # scopes rendered as blocks
+        # scopes rendered as blocks; a fixed mode comes first
         user_lines = self.extract_phil_lines()
+        if self.PHIL_MODE and self.PHIL_MODE_PATH:
+            user_lines.insert(0, f"{self.PHIL_MODE_PATH} = {self.PHIL_MODE}")
 
         # Run shims to convert rich CCP4i2 types to PHIL values; a shim may
         # hand back blocks for a repeated scope as well as pairs

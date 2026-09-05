@@ -7,7 +7,7 @@ import pytest
 # See test_phil_plugin_script.py: libtbx is CCP4/cctbx-only, no pip wheel.
 parse = pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)").parse
 
-from ccp4i2.utils.phil_to_cdata import Phil2CData, parse_phil_style
+from ccp4i2.utils.phil_to_cdata import Phil2CData, parse_phil_style, match_modes
 from ccp4i2.core.base_object.base_classes import CContainer, ValueState
 from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString, CList
 
@@ -567,3 +567,125 @@ class TestStyleQualifiers:
 
     def test_raw_style_is_kept(self):
         assert "OnChange:update" in self.top.top__mode.get_qualifier("style")
+
+
+# ---------------------------------------------------------------------------
+# Mode filtering
+# ---------------------------------------------------------------------------
+
+MODE_PHIL = parse("""
+    tool {
+      mode = *MR_AUTO EP_AUTO
+        .type = choice
+      title = None
+        .type = str
+      hklin = None
+        .type = path
+        .style = "phaser:mode:ANO,MR*"
+      ensemble
+        .multiple = True
+        .style = "phaser:mode:MR*"
+      {
+        pdb = None
+          .type = path
+        rms = None
+          .type = float
+          .style = "phaser:mode:MR_AUTO"
+      }
+      crystal
+        .style = "phaser:mode:EP_AUTO"
+      {
+        wavelength = None
+          .type = float
+      }
+      keywords {
+        resolution = None
+          .type = float
+        macmr
+          .style = "phaser:mode:MR_AUTO,MR_RNP"
+        {
+          cycles = 50
+            .type = int
+        }
+        xyzout = None
+          .type = bool
+          .style = "phaser:mode:*"
+      }
+    }
+""")
+
+
+class TestMatchModes:
+
+    def test_untagged_applies_everywhere(self):
+        assert match_modes("EP_AUTO", None) and match_modes("EP_AUTO", [])
+
+    def test_exact_star_and_prefix(self):
+        assert match_modes("MR_AUTO", ["ANO", "MR_AUTO"])
+        assert match_modes("MR_FRF", ["*"])
+        assert match_modes("MR_FRF", ["MR*"])
+        assert not match_modes("EP_AUTO", ["MR*"])
+        assert not match_modes("MR_AUTO", ["EP_AUTO"])
+
+
+class TestModeFiltering:
+
+    def names(self, mode):
+        self.root = Phil2CData(MODE_PHIL, mode=mode).convert()
+        found = []
+        def walk(c):
+            for n in c.dataOrder():
+                o = getattr(c, n)
+                found.append(n)
+                if isinstance(o, CList):
+                    walk(o.makeItem())
+                elif hasattr(o, "dataOrder"):
+                    walk(o)
+        walk(self.root)
+        return found
+
+    def test_no_mode_keeps_everything(self):
+        assert "tool__crystal" in self.names(None) and "tool__ensemble" in self.names(None)
+
+    def test_mr_auto_sees_mr_things_and_shared_things(self):
+        names = self.names("MR_AUTO")
+        assert "tool__hklin" in names and "tool__ensemble" in names
+        assert "tool__ensemble__rms" in names
+        assert "tool__keywords__macmr" in names
+        assert "tool__crystal" not in names
+        assert "tool__title" in names and "tool__keywords__resolution" in names
+        assert "tool__keywords__xyzout" in names
+
+    def test_ep_auto_sees_ep_things_and_shared_things(self):
+        names = self.names("EP_AUTO")
+        assert "tool__crystal" in names and "tool__crystal__wavelength" in names
+        assert "tool__hklin" not in names and "tool__ensemble" not in names
+        assert "tool__keywords__macmr" not in names
+        assert "tool__title" in names and "tool__keywords__xyzout" in names
+
+    def test_an_untagged_child_inherits_the_scope_tag(self):
+        # ensemble.pdb has no tag: MR* from its scope; ensemble.rms narrows to MR_AUTO
+        names = self.names("MR_FRF")
+        assert "tool__ensemble__pdb" in names
+        assert "tool__ensemble__rms" not in names
+
+
+def test_real_phaser_modes_partition_the_tree():
+    pi = pytest.importorskip("phaser.phenix_interface", reason="needs phaser")
+    def paths(mode):
+        root = Phil2CData(pi.master_phil(), mode=mode).convert()
+        out = set()
+        def walk(c):
+            for n in c.dataOrder():
+                o = getattr(c, n)
+                out.add(o.get_qualifier("philPath") or n.replace("__", "."))
+                if hasattr(o, "dataOrder") and not isinstance(o, CList):
+                    walk(o)
+        walk(root)
+        return out
+    mr, ep = paths("MR_AUTO"), paths("EP_AUTO")
+    assert {"phaser.ensemble", "phaser.search", "phaser.keywords.macmr"} <= mr
+    assert {"phaser.crystal", "phaser.keywords.macsad", "phaser.keywords.llgcompletion"} <= ep
+    assert not {"phaser.crystal", "phaser.keywords.macsad"} & mr
+    assert not {"phaser.ensemble", "phaser.search", "phaser.keywords.macmr"} & ep
+    assert {"phaser.composition", "phaser.keywords.resolution", "phaser.keywords.general.root"} <= mr & ep

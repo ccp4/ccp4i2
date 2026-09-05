@@ -551,6 +551,17 @@ stay in the raw `style` qualifier and are ignored:
 | `phaser:mode:A,B*` or `tng:input:+a+b` | `philModes: [...]` |
 | `phaser:ignore` | `philIgnored: True` (recorded, not hidden — these are the GUI's own control-flow choices) |
 
+### One task per mode
+
+A tool that runs in one of several modes and tags its parameters by mode
+(`phaser:mode:`, `tng:input:`) becomes one CCP4i2 task per mode: set
+`PHIL_MODE = "EP_AUTO"` and `PHIL_MODE_PATH = "phaser.mode"` on the
+wrapper. Only the parameters whose tags match are offered — an untagged
+parameter takes the tag of its nearest tagged scope, `*` and `MR*` are
+wildcards (`match_modes` in `phil_to_cdata.py`, Phaser's own rule) — the
+mode parameter leaves the tree, and the working phil opens with
+`phaser.mode = EP_AUTO`.
+
 ### Shims write blocks too, and own their targets
 
 A shim's `convert()` may return `(path, [entries])` for one instance of a

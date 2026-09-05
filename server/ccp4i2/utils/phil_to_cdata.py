@@ -67,6 +67,23 @@ def parse_phil_style(style):
     return result
 
 
+def match_modes(current_mode, keyword_modes):
+    """Phaser's rule for whether a parameter tagged `keyword_modes` applies
+    in `current_mode`: an exact name, `*` for every mode, or a trailing
+    wildcard (`MR*`). An untagged parameter (None or empty) is decided by
+    its nearest tagged ancestor, which the converter passes down; at the
+    top it applies everywhere.
+    """
+    if not keyword_modes:
+        return True
+    for mode in keyword_modes:
+        if mode == current_mode or mode == "*":
+            return True
+        if mode.endswith("*") and current_mode.startswith(mode[:-1]):
+            return True
+    return False
+
+
 class Phil2CData:
     """Convert a libtbx.phil scope directly to a CData object hierarchy.
 
@@ -142,7 +159,8 @@ class Phil2CData:
         "uuid": CString,         # UUID string
     }
 
-    def __init__(self, phil_scope, exclude_scopes=None, max_expert_level=None):
+    def __init__(self, phil_scope, exclude_scopes=None, max_expert_level=None,
+                 mode=None):
         """
         Args:
             phil_scope: A libtbx.phil scope object (the master_phil).
@@ -152,10 +170,15 @@ class Phil2CData:
                 expert_level > this value. PHIL convention:
                 0 = user-facing, 1+ = increasingly expert/internal.
                 None means include all levels (no filtering).
+            mode: If set, keep only the definitions and scopes whose mode
+                tags (`phaser:mode:` / `tng:input:` in .style, own or
+                inherited from the nearest tagged ancestor) match it --
+                see match_modes(). None means no mode filtering.
         """
         self.phil_scope = phil_scope
         self.exclude_scopes = set(exclude_scopes or [])
         self.max_expert_level = max_expert_level
+        self.mode = mode
         # One generated item class per multiple scope, keyed by PHIL path
         self._item_classes = {}
 
@@ -179,12 +202,20 @@ class Phil2CData:
                 return True
         return False
 
-    def _convert_scope(self, scope, container):
-        """Recursively convert scope children to CData children."""
+    def _convert_scope(self, scope, container, inherited_modes=None):
+        """Recursively convert scope children to CData children.
+
+        `inherited_modes` are the mode tags of the nearest tagged ancestor,
+        which an untagged child takes as its own.
+        """
         for obj in scope.objects:
             full_path = obj.full_path()
 
             if self._is_excluded(full_path):
+                continue
+
+            modes = parse_phil_style(obj.style)["modes"] or inherited_modes
+            if self.mode is not None and not match_modes(self.mode, modes):
                 continue
 
             if obj.is_definition:
@@ -194,7 +225,7 @@ class Phil2CData:
                     self._convert_definition(obj, container)
             elif obj.is_scope:
                 if obj.multiple:
-                    self._convert_multiple_scope(obj, container)
+                    self._convert_multiple_scope(obj, container, modes)
                     continue
                 sub = CContainer()
                 sub._name = full_path.replace(".", "__")
@@ -202,9 +233,9 @@ class Phil2CData:
                 setattr(container, sub._name, sub)
                 if hasattr(container, 'declare_content'):
                     container.declare_content(sub._name)
-                self._convert_scope(obj, sub)
+                self._convert_scope(obj, sub, modes)
 
-    def _convert_multiple_scope(self, scope, container):
+    def _convert_multiple_scope(self, scope, container, modes=None):
         """A `.multiple` scope: a CList of containers shaped like the scope."""
         lst = CList()
         lst._name = scope.full_path().replace(".", "__")
@@ -213,21 +244,22 @@ class Phil2CData:
         lst.set_qualifier("multiple", True)
         lst.set_qualifier("listMinLength", 0)
         lst.set_qualifier("subItem", {
-            "class": self._item_class_for_scope(scope),
+            "class": self._item_class_for_scope(scope, modes),
             "qualifiers": {},
         })
         setattr(container, lst._name, lst)
         if hasattr(container, 'declare_content'):
             container.declare_content(lst._name)
 
-    def _item_class_for_scope(self, scope):
+    def _item_class_for_scope(self, scope, modes=None):
         """A CContainer subclass whose every instance is one repetition of
         `scope`, children converted exactly as a single scope's would be.
 
         Generated rather than declared with content(), because the defaults
         and qualifiers of the children come from the PHIL at runtime and
         _convert_definition already knows how to apply them; the class only
-        has to reproduce that for each makeItem().
+        has to reproduce that for each makeItem(). `modes` are the scope's
+        effective mode tags, inherited by its untagged children.
         """
         path = scope.full_path()
         cls = self._item_classes.get(path)
@@ -236,7 +268,7 @@ class Phil2CData:
 
             def __init__(self, parent=None, name=None, **kwargs):
                 CContainer.__init__(self, parent=parent, name=name, **kwargs)
-                converter._convert_scope(scope, self)
+                converter._convert_scope(scope, self, modes)
                 converter._reenable_validation(self)
 
             cls = type(path.replace(".", "__"), (CContainer,), {
