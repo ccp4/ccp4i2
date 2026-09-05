@@ -417,6 +417,14 @@ def run_mode(master_phil, working_phil_path, mode, work_directory, recorder, log
         run = getattr(phaser, f"run{mode}")
         result = run(interpreter.input, output)
     recorder.finish()
+    # Phaser's C++ output goes to the process's stdout, which the job runner
+    # captures elsewhere; the log the user expects in log.txt is the
+    # Result's own copy, as the classic wrapper wrote it
+    try:
+        with open(log_path, "a") as log:
+            log.write(result.logfile())
+    except Exception:
+        pass
     return result
 
 

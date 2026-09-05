@@ -215,3 +215,21 @@ class TestEpCrystalShim:
             assert dataset["labin"] == "Fplus,SIGFplus,Fminus,SIGFminus,merged"
             assert dataset["wavelength"] == 1.542 and os.path.exists(dataset["hklin"])
             assert shim.phil_targets() == ["phaser.crystal"]
+
+
+class TestMrValidity:
+    """The task warns before Phaser refuses."""
+
+    def test_two_molecules_in_one_ensemble_is_advised_against(self):
+        pytest.importorskip("lxml")
+        from ccp4i2.core.tasks import get_plugin_class
+        with tempfile.TemporaryDirectory() as tmp:
+            plugin = get_plugin_class("phaser_mr_auto_phil")(workDirectory=tmp, name="t")
+            inp = plugin.container.inputData
+            e = inp.ENSEMBLES.makeItem(); inp.ENSEMBLES.append(e); e.label.set("both"); e.number.set(1); e.use.set(True)
+            for name in ("beta.pdb", "blip.pdb"):
+                item = e.pdbItemList.makeItem(); e.pdbItemList.append(item)
+                item.structure.setFullPath(f"/x/{name}"); item.identity_to_target.set(0.9)
+            codes = [r["code"] for r in plugin.validity()._reports]
+            assert 115 in codes
+            assert 112 not in codes

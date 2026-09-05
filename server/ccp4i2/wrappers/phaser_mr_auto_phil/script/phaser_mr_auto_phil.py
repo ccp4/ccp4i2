@@ -47,6 +47,7 @@ class phaser_mr_auto_phil(phaser_phil):
         202: {"description": "Phaser reported an error"},
         203: {"description": "Failed to prepare a search model"},
         204: {"description": "Failed to prepare the reflection data"},
+        115: {"description": "An ensemble holds more than one model"},
     }
 
     def __init__(self, *args, **kwargs):
@@ -82,6 +83,19 @@ class phaser_mr_auto_phil(phaser_phil):
                          "Tick 'use' and set the number of copies on at least one."),
                 name=f"{name}.ENSEMBLES", severity=CCP4ErrorHandling.SEVERITY_ERROR)
         for i, ensemble in enumerate(ensembles or []):
+            models = [item for item in ensemble.pdbItemList if item.structure.isSet()]
+            if len(models) > 1:
+                # Phaser checks the models agree in scattering within 20% and
+                # refuses otherwise ("Molecular scattering of beta.pdb deviates
+                # more than 20% from the mean"); say so before it does
+                error.append(
+                    klass=self.TASKNAME, code=115,
+                    details=(f"Search model {i + 1} holds {len(models)} coordinate files. "
+                             "An ensemble is a set of alternative models of the same "
+                             "molecule, superposed; Phaser rejects it if their scattering "
+                             "differs by more than 20%. Different molecules go in "
+                             "separate search models."),
+                    name=f"{name}.ENSEMBLES", severity=CCP4ErrorHandling.SEVERITY_WARNING)
             for item in ensemble.pdbItemList:
                 if item.identity_to_target.isSet() and item.rms_to_target.isSet():
                     error.append(
