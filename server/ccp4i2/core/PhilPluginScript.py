@@ -94,10 +94,11 @@ class PhilPluginScript(CPluginScript):
                 return
 
             from ccp4i2.utils.phil_to_cdata import Phil2CData
-            converter = Phil2CData(
-                master_phil,
-                exclude_scopes=self.get_phil_exclude_scopes(),
-            )
+            # What a shim writes is not offered in the tree as well
+            excluded = list(self.get_phil_exclude_scopes())
+            for shim in self.get_shim_definitions():
+                excluded.extend(t for t in shim.phil_targets() if t not in excluded)
+            converter = Phil2CData(master_phil, exclude_scopes=excluded)
             phil_container = converter.convert(root_name="controlParameters")
 
             existing_cp = self.container.controlParameters
@@ -366,6 +367,21 @@ class PhilPluginScript(CPluginScript):
         return " ".join([v[:-1] if v.endswith(",") else v for v in val])
 
     @classmethod
+    def _entries_from_pairs(cls, pairs):
+        """Shim output -- (path, value) pairs, or (path, [pairs]) for one
+        instance of a repeated scope -- as collected entries."""
+        entries = []
+        for path, payload in pairs:
+            if isinstance(payload, (list, tuple)) and payload and all(
+                    isinstance(e, tuple) for e in payload):
+                entries.append(("block", path, cls._entries_from_pairs(payload)))
+            elif isinstance(payload, (list, tuple)):
+                entries.append(("leaf", path, " ".join(str(v) for v in payload)))
+            else:
+                entries.append(("leaf", path, str(payload)))
+        return entries
+
+    @classmethod
     def _render_phil_entries(cls, entries, indent=0):
         pad = "  " * indent
         lines = []
@@ -396,11 +412,12 @@ class PhilPluginScript(CPluginScript):
         # scopes rendered as blocks
         user_lines = self.extract_phil_lines()
 
-        # Run shims to convert rich CCP4i2 types to PHIL values
+        # Run shims to convert rich CCP4i2 types to PHIL values; a shim may
+        # hand back blocks for a repeated scope as well as pairs
         work_dir = str(self.getWorkDirectory())
         for shim in self.get_shim_definitions():
-            user_lines.extend(f"{name}={val}" for name, val
-                              in shim.convert(self.container, work_dir))
+            user_lines.extend(self._render_phil_entries(
+                self._entries_from_pairs(shim.convert(self.container, work_dir))))
 
         # Build user PHIL string from all sources
         if user_lines:

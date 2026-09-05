@@ -535,6 +535,31 @@ for obj in parser.master_phil.all_definitions():
 
 Output like `picard.xyzin  type=path  multiple=True` tells you to use `CList` + `PdbFileListShim` rather than a single `CPdbDataFile` + `PdbFileShim` for an *input file* you want typed on the CCP4i2 side.
 
+### Style tokens
+
+`.style` is free text the Phenix GUI interprets. The tokens a CCP4i2 GUI can
+act on become qualifiers (`parse_phil_style` in `phil_to_cdata.py`); the rest
+stay in the raw `style` qualifier and are ignored:
+
+| token | qualifier |
+|---|---|
+| `spinner min=N max=M` | `min`/`max`, only where the `.type` declared none |
+| `hidden` | `hidden: True` — the container element does not draw it |
+| `height:N` | `guiMode: multiLine` (str only) |
+| `input_file`, `file_type:X` | `philInputFile`, `philFileType` — a tag, not a file object: files belong in `inputData` via a shim, and the tag is the list of shims to write |
+| `directory` | `isDirectory` |
+| `phaser:mode:A,B*` or `tng:input:+a+b` | `philModes: [...]` |
+| `phaser:ignore` | `philIgnored: True` (recorded, not hidden — these are the GUI's own control-flow choices) |
+
+### Shims write blocks too, and own their targets
+
+A shim's `convert()` may return `(path, [entries])` for one instance of a
+repeated scope, inner paths relative to the scope, alongside plain
+`(path, value)` pairs. And every path a shim writes (its `phil_*`
+attributes, see `PhilShim.phil_targets()`) is excluded from the generic tree
+automatically, so a file chosen as a typed input is not also offered as a
+bare path string under the parameters.
+
 ### Repeated scopes and definitions in controlParameters
 
 Nothing needs doing for `.multiple` parameters that stay in `controlParameters`:
