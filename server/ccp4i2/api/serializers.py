@@ -143,12 +143,7 @@ class ProjectSerializer(ModelSerializer):
         )  # This is the instance being updated (or None if creating)
 
         if instance is None:
-            if (
-                "directory" not in attrs
-                or not attrs["directory"]
-                or len(attrs["directory"]) == 0
-                or attrs["directory"] == "__default__"
-            ):
+            if "directory" not in attrs or not attrs["directory"]:
                 attrs["directory"] = str(
                     default_project_parent() / slugify(attrs["name"])
                 )
