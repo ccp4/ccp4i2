@@ -20,6 +20,7 @@ export interface Column<T> {
   sortable?: boolean;
   searchable?: boolean;
   render?: (value: any, row: T) => ReactNode;
+  header?: ReactNode;
   width?: string | number;
 }
 
@@ -112,7 +113,9 @@ export function DataTable<T extends Record<string, any>>({
                   key={column.key}
                   sx={{ fontWeight: 600, width: column.width }}
                 >
-                  {column.sortable ? (
+                  {column.header ? (
+                    column.header
+                  ) : column.sortable ? (
                     <TableSortLabel
                       active={orderBy === column.key}
                       direction={orderBy === column.key ? order : "asc"}

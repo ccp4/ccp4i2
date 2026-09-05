@@ -11,7 +11,6 @@ import {
   CardContent,
   Checkbox,
   Chip,
-  FormControlLabel,
   IconButton,
   LinearProgress,
   Paper,
@@ -387,117 +386,80 @@ export default function ProjectsTable() {
   );
 
   // Get campaign info for all projects
-  const projectIds = useMemo(
-    () => (projects || []).map((p) => p.id),
-    [projects]
-  );
+  const projectIds = (projects || []).map((p) => p.id);
   const campaignInfo = useProjectCampaigns(projectIds);
 
-  // Does a project sit at or below the selected node of the tag tree? The
-  // ancestry comparison uses the materialised path the server maintains, so a
-  // node answers for everything filed anywhere beneath it — clicking
-  // "SARS-CoV-2" finds projects tagged only "SARS-CoV-2/Mpro/soaks".
-  const matchesTagFilter = useCallback(
-    (project: Project) => {
-      if (tagFilter.kind === "all") return true;
-      const tags = Array.isArray(project.tags) ? project.tags : [];
-      const paths = tags
-        .map((tag) => (typeof tag === "object" ? tag.path : undefined))
-        .filter((path): path is string => Boolean(path));
-      if (tagFilter.kind === "untagged") return tags.length === 0;
-      return paths.some(
-        (path) =>
-          path === tagFilter.path || path.startsWith(`${tagFilter.path}\x1f`)
-      );
-    },
-    [tagFilter]
-  );
+  // Does a project sit at or below the selected node of the tag tree?
+  const matchesTagFilter = (project: Project) => {
+    if (tagFilter.kind === "all") return true;
+    const tags = Array.isArray(project.tags) ? project.tags : [];
+    const paths = tags
+      .map((tag) => (typeof tag === "object" ? tag.path : undefined))
+      .filter((path): path is string => Boolean(path));
+    if (tagFilter.kind === "untagged") return tags.length === 0;
+    return paths.some(
+      (path) =>
+        path === tagFilter.path || path.startsWith(`${tagFilter.path}\x1f`)
+    );
+  };
 
   // Filter and sort projects
   const filteredProjects = useMemo(() => {
     if (!Array.isArray(projects)) return [];
+    const term = query.toLowerCase();
+
     return projects
-      ?.filter(matchesTagFilter)
-      ?.filter((project) => {
-        const searchTerm = query.toLowerCase();
-
-        // Search in project name
-        if (project.name.toLowerCase().includes(searchTerm)) {
-          return true;
+      .filter(matchesTagFilter)
+      .filter((p) => {
+        if (!term) return true;
+        if (p.name.toLowerCase().includes(term)) return true;
+        if (p.description?.toLowerCase().includes(term)) return true;
+        if (Array.isArray(p.tags)) {
+          return p.tags.some(
+            (tag) => typeof tag === "object" && tag.text?.toLowerCase().includes(term)
+          );
         }
-
-        // Search in project description
-        if (project.description?.toLowerCase().includes(searchTerm)) {
-          return true;
-        }
-
-        // Search in project tags
-        if (Array.isArray(project.tags)) {
-          const tagMatches = project.tags.some((tag) => {
-            if (typeof tag === "object" && tag.text) {
-              return tag.text.toLowerCase().includes(searchTerm);
-            }
-            return false;
-          });
-          if (tagMatches) {
-            return true;
-          }
-        }
-
         return false;
       })
       .sort(
         (a, b) =>
           new Date(b.last_access).getTime() - new Date(a.last_access).getTime()
       );
-  }, [projects, query, matchesTagFilter]);
+  }, [projects, query, tagFilter]);
 
   // Handlers
-  const selectedProjectIds = useCallback(
-    () => Array.from(selectedIds.values()),
-    [selectedIds]
-  );
+  async function afterTagging(label: string, count: number) {
+    await Promise.all([mutate(), mutateTagTree()]);
+    selectedIds.clear();
+    setMessage(
+      `Tagged ${count} project${count === 1 ? "" : "s"} with "${label}"`,
+      "success"
+    );
+  }
 
-  const afterTagging = useCallback(
-    async (label: string, count: number) => {
-      await Promise.all([mutate(), mutateTagTree()]);
-      selectedIds.clear();
+  // Dropping the selection onto a node of the tree files projects under that tag.
+  async function dropSelectionOnTag(tagId: number, tagLabel: string) {
+    const ids = Array.from(selectedIds.values());
+    if (ids.length === 0) return;
+    try {
+      await api.post(`projecttags/${tagId}/add_projects/`, {
+        project_ids: ids,
+      });
+      await afterTagging(tagLabel, ids.length);
+    } catch (error) {
       setMessage(
-        `Tagged ${count} project${count === 1 ? "" : "s"} with "${label}"`,
-        "success"
+        `Failed to tag projects: ${error instanceof Error ? error.message : String(error)}`,
+        "error"
       );
-    },
-    [mutate, mutateTagTree, selectedIds, setMessage]
-  );
+    }
+  }
 
-  // Dropping the selection onto a node of the tree is the quickest way to file
-  // several projects at once; it goes through the same bulk action the dialog
-  // uses.
-  const dropSelectionOnTag = useCallback(
-    async (tagId: number, tagLabel: string) => {
-      const ids = Array.from(selectedIds.values());
-      if (ids.length === 0) return;
-      try {
-        await api.post(`projecttags/${tagId}/add_projects/`, {
-          project_ids: ids,
-        });
-        await afterTagging(tagLabel, ids.length);
-      } catch (error) {
-        setMessage(
-          `Failed to tag projects: ${error instanceof Error ? error.message : String(error)}`,
-          "error"
-        );
-      }
-    },
-    [afterTagging, api, selectedIds, setMessage]
-  );
-
-  const deleteSelected = useCallback(() => {
+  function deleteSelected() {
     const selectedProjects = projects?.filter((project) =>
       selectedIds.has(project.id)
     );
     if (selectedProjects) deleteProjects(selectedProjects);
-  }, [projects, selectedIds]);
+  }
 
   function deleteProjects(projectsToDelete: Project[]) {
     if (deleteDialog)
@@ -616,202 +578,200 @@ export default function ProjectsTable() {
   }
 
   // Table columns definition
-  const tableColumns: Column<Project>[] = useMemo(
-    () => [
-      {
-        key: "checkbox",
-        label: "",
-        width: 50,
-        render: (_, project) => (
+  const tableColumns: Column<Project>[] = [
+    {
+      key: "checkbox",
+      label: "",
+      width: 50,
+      header: (
+        <Tooltip
+          title={
+            selectedIds.size === filteredProjects.length
+              ? "Deselect all projects"
+              : "Select all projects"
+          }
+        >
           <Checkbox
-            checked={selectedIds.has(project.id)}
-            onChange={(event) => {
-              event.stopPropagation();
-              selectedIds.has(project.id)
-                ? selectedIds.delete(project.id)
-                : selectedIds.add(project.id);
-            }}
-            onClick={(e) => e.stopPropagation()}
+            size="small"
+            checked={
+              selectedIds.size > 0 &&
+              selectedIds.size === filteredProjects.length
+            }
+            indeterminate={
+              selectedIds.size > 0 &&
+              selectedIds.size < filteredProjects.length
+            }
+            onChange={toggleAll}
           />
-        ),
-      },
-      {
-        key: "name",
-        label: "Project Name",
-        sortable: true,
-        searchable: true,
-        render: (_, project) => {
-          const campaign = campaignInfo[String(project.id)];
-          const isParent = campaign?.membership_type === "parent";
-          const isMember = campaign?.membership_type === "member";
-          return (
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-              {/* Campaign icon box hidden for now */}
-              {/* <Box
-                sx={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 1,
-                  bgcolor: campaign ? "secondary.50" : "primary.50",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "1px solid",
-                  borderColor: campaign ? "secondary.200" : "primary.200",
-                  flexShrink: 0,
-                }}
-              >
-                {campaign ? (
-                  <CampaignIcon sx={{ color: "secondary.main", fontSize: 16 }} />
-                ) : (
-                  <Science sx={{ color: "primary.main", fontSize: 16 }} />
-                )}
-              </Box> */}
-              <Box sx={{ minWidth: 0 }}>
-                <Stack direction="row" spacing={0.5} alignItems="center">
-                  <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
-                    {project.name}
-                  </Typography>
-                  {brokenIds.has(project.id) && (
-                    <Tooltip title="This project's folder cannot be found on disk">
-                      <LinkOff sx={{ fontSize: 16, color: "warning.main" }} />
-                    </Tooltip>
-                  )}
-                </Stack>
-                {project.description && (
-                  <Tooltip title={project.description}>
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      noWrap
-                      sx={{ display: "block" }}
-                    >
-                      {project.description}
-                    </Typography>
+        </Tooltip>
+      ),
+      render: (_, project) => (
+        <Checkbox
+          checked={selectedIds.has(project.id)}
+          onChange={(event) => {
+            event.stopPropagation();
+            selectedIds.has(project.id)
+              ? selectedIds.delete(project.id)
+              : selectedIds.add(project.id);
+          }}
+          onClick={(e) => e.stopPropagation()}
+        />
+      ),
+    },
+    {
+      key: "name",
+      label: "Project Name",
+      sortable: true,
+      searchable: true,
+      render: (_, project) => {
+        const campaign = campaignInfo[String(project.id)];
+        const isParent = campaign?.membership_type === "parent";
+        const isMember = campaign?.membership_type === "member";
+        return (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+            <Box sx={{ minWidth: 0 }}>
+              <Stack direction="row" spacing={0.5} alignItems="center">
+                <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
+                  {project.name}
+                </Typography>
+                {brokenIds.has(project.id) && (
+                  <Tooltip title="This project's folder cannot be found on disk">
+                    <LinkOff sx={{ fontSize: 16, color: "warning.main" }} />
                   </Tooltip>
                 )}
-                <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
-                  {isParent && (
-                    <Tooltip title={`Campaign parent: ${campaign.campaign_name} (${campaign.member_count} datasets)`}>
-                      <Chip
-                        icon={<CampaignIcon sx={{ fontSize: "12px !important" }} />}
-                        label={`${campaign.member_count} datasets`}
-                        size="small"
-                        color="secondary"
-                        sx={{ height: 16, fontSize: "0.65rem", mt: 0.5, cursor: "pointer" }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          router.push(`/ccp4i2/campaigns/${campaign.campaign_id}`);
-                        }}
-                      />
-                    </Tooltip>
-                  )}
-                  {isMember && (
-                    <Tooltip title={`Member of campaign: ${campaign.campaign_name}`}>
-                      <Chip
-                        icon={<CampaignIcon sx={{ fontSize: "12px !important" }} />}
-                        label={campaign.campaign_name}
-                        size="small"
-                        color="secondary"
-                        variant="outlined"
-                        sx={{ height: 16, fontSize: "0.65rem", mt: 0.5, cursor: "pointer" }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          router.push(`/ccp4i2/campaigns/${campaign.campaign_id}`);
-                        }}
-                      />
-                    </Tooltip>
-                  )}
-                </Stack>
-              </Box>
+              </Stack>
+              {project.description && (
+                <Tooltip title={project.description}>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    noWrap
+                    sx={{ display: "block" }}
+                  >
+                    {project.description}
+                  </Typography>
+                </Tooltip>
+              )}
+              <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
+                {isParent && (
+                  <Tooltip title={`Campaign parent: ${campaign.campaign_name} (${campaign.member_count} datasets)`}>
+                    <Chip
+                      icon={<CampaignIcon sx={{ fontSize: "12px !important" }} />}
+                      label={`${campaign.member_count} datasets`}
+                      size="small"
+                      color="secondary"
+                      sx={{ height: 16, fontSize: "0.65rem", mt: 0.5, cursor: "pointer" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/ccp4i2/campaigns/${campaign.campaign_id}`);
+                      }}
+                    />
+                  </Tooltip>
+                )}
+                {isMember && (
+                  <Tooltip title={`Member of campaign: ${campaign.campaign_name}`}>
+                    <Chip
+                      icon={<CampaignIcon sx={{ fontSize: "12px !important" }} />}
+                      label={campaign.campaign_name}
+                      size="small"
+                      color="secondary"
+                      variant="outlined"
+                      sx={{ height: 16, fontSize: "0.65rem", mt: 0.5, cursor: "pointer" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/ccp4i2/campaigns/${campaign.campaign_id}`);
+                      }}
+                    />
+                  </Tooltip>
+                )}
+              </Stack>
             </Box>
-          );
-        },
+          </Box>
+        );
       },
-      {
-        key: "tags",
-        label: "Tags",
-        render: (_, project) => (
-          <ProjectTagChips tags={project.tags} maxVisible={3} size="small" />
-        ),
-      },
-      {
-        key: "creation_time",
-        label: "Created",
-        sortable: true,
-        width: 120,
-        render: (value) => (
-          <Typography variant="body2" color="text.secondary">
-            {shortDate(value)}
-          </Typography>
-        ),
-      },
-      {
-        key: "last_access",
-        label: "Last Accessed",
-        sortable: true,
-        width: 120,
-        render: (value) => (
-          <Typography variant="body2" color="text.secondary">
-            {shortDate(value)}
-          </Typography>
-        ),
-      },
-      {
-        key: "actions",
-        label: "",
-        width: canMoveProjects ? 180 : 140,
-        render: (_, project) => (
-          <Stack
-            direction="row"
-            spacing={0.5}
-            justifyContent="flex-end"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Tooltip title="Edit project name, description and tags">
+    },
+    {
+      key: "tags",
+      label: "Tags",
+      render: (_, project) => (
+        <ProjectTagChips tags={project.tags} maxVisible={3} size="small" />
+      ),
+    },
+    {
+      key: "creation_time",
+      label: "Created",
+      sortable: true,
+      width: 120,
+      render: (value) => (
+        <Typography variant="body2" color="text.secondary">
+          {shortDate(value)}
+        </Typography>
+      ),
+    },
+    {
+      key: "last_access",
+      label: "Last Accessed",
+      sortable: true,
+      width: 120,
+      render: (value) => (
+        <Typography variant="body2" color="text.secondary">
+          {shortDate(value)}
+        </Typography>
+      ),
+    },
+    {
+      key: "actions",
+      label: "",
+      width: canMoveProjects ? 180 : 140,
+      render: (_, project) => (
+        <Stack
+          direction="row"
+          spacing={0.5}
+          justifyContent="flex-end"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Tooltip title="Edit project name, description and tags">
+            <IconButton
+              size="small"
+              onClick={() => router.push(`/ccp4i2/edit-project/${project.id}`)}
+              sx={{ color: "primary.main" }}
+            >
+              <Edit fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Export project">
+            <IconButton
+              size="small"
+              onClick={() => exportProject(project)}
+              sx={{ color: "primary.main" }}
+            >
+              <Download fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          {canMoveProjects && !brokenIds.has(project.id) && (
+            <Tooltip title="Move project on disk">
               <IconButton
                 size="small"
-                onClick={() => router.push(`/ccp4i2/edit-project/${project.id}`)}
+                onClick={() => setProjectToMove(project)}
                 sx={{ color: "primary.main" }}
               >
-                <Edit fontSize="small" />
+                <DriveFileMove fontSize="small" />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Export project">
-              <IconButton
-                size="small"
-                onClick={() => exportProject(project)}
-                sx={{ color: "primary.main" }}
-              >
-                <Download fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            {canMoveProjects && !brokenIds.has(project.id) && (
-              <Tooltip title="Move project on disk">
-                <IconButton
-                  size="small"
-                  onClick={() => setProjectToMove(project)}
-                  sx={{ color: "primary.main" }}
-                >
-                  <DriveFileMove fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            )}
-            <Tooltip title="Delete project">
-              <IconButton
-                size="small"
-                onClick={() => deleteProjects([project])}
-                sx={{ color: "error.main" }}
-              >
-                <Delete fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          </Stack>
-        ),
-      },
-    ],
-    [selectedIds, campaignInfo, router, canMoveProjects, brokenIds]
-  );
+          )}
+          <Tooltip title="Delete project">
+            <IconButton
+              size="small"
+              onClick={() => deleteProjects([project])}
+              sx={{ color: "error.main" }}
+            >
+              <Delete fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      ),
+    },
+  ];
 
   // Card renderer for virtualized grid
   const renderProjectCard = useCallback(
@@ -888,16 +848,37 @@ export default function ProjectsTable() {
       {/* Header with search, view toggle, and selection actions */}
       <Box sx={{ mb: 2, flexShrink: 0 }}>
         {selectedIds.size === 0 ? (
-          <Box>
-            {/* Title and Controls Row */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                mb: 2,
-              }}
-            >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 2,
+            }}
+          >
+            <Stack direction="row" spacing={2} alignItems="center">
+              {viewMode === "cards" && (
+                <Tooltip
+                  title={
+                    selectedIds.size === filteredProjects.length
+                      ? "Deselect all projects"
+                      : "Select all projects"
+                  }
+                >
+                  <Checkbox
+                    size="small"
+                    checked={
+                      selectedIds.size > 0 &&
+                      selectedIds.size === filteredProjects.length
+                    }
+                    indeterminate={
+                      selectedIds.size > 0 &&
+                      selectedIds.size < filteredProjects.length
+                    }
+                    onChange={toggleAll}
+                  />
+                </Tooltip>
+              )}
               <Typography
                 variant="h5"
                 component="h2"
@@ -905,63 +886,16 @@ export default function ProjectsTable() {
               >
                 Your Projects
               </Typography>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <SearchField
-                  value={query}
-                  onChange={setQuery}
-                  placeholder="Search projects..."
-                  size="small"
-                />
-                <ViewModeToggle mode={viewMode} onChange={setViewMode} />
-              </Stack>
-            </Box>
-
-            {/* Project count and select all */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                mb: 2,
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                <Tooltip
-                  title={
-                    selectedIds.size == filteredProjects.length
-                      ? "Deselect all projects"
-                      : "Select all projects"
-                  }
-                >
-                  {/* One control, one handler. The checkbox used to sit
-                      inside a clickable chip that ALSO toggled, so a click
-                      on the box toggled twice and did nothing, and only a
-                      click on the surrounding chip worked (Paul). */}
-                  <FormControlLabel
-                    sx={{ ml: 0, mr: 0 }}
-                    control={
-                      <Checkbox
-                        size="small"
-                        checked={
-                          selectedIds.size == filteredProjects.length &&
-                          filteredProjects.length > 0
-                        }
-                        indeterminate={
-                          selectedIds.size > 0 &&
-                          selectedIds.size < filteredProjects.length
-                        }
-                        onChange={toggleAll}
-                      />
-                    }
-                    label={
-                      <Typography variant="body2" color="text.secondary">
-                        {filteredProjects.length} projects
-                      </Typography>
-                    }
-                  />
-                </Tooltip>
-              </Box>
-            </Box>
+            </Stack>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <SearchField
+                value={query}
+                onChange={setQuery}
+                placeholder="Search projects..."
+                size="small"
+              />
+              <ViewModeToggle mode={viewMode} onChange={setViewMode} />
+            </Stack>
           </Box>
         ) : (
           <Paper
@@ -1120,7 +1054,7 @@ export default function ProjectsTable() {
 
       <TagSelectionDialog
         open={tagDialogOpen}
-        projectIds={selectedProjectIds()}
+        projectIds={Array.from(selectedIds.values())}
         onClose={() => setTagDialogOpen(false)}
         onApplied={afterTagging}
       />
