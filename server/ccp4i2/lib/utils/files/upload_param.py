@@ -20,7 +20,7 @@ from ccp4i2.core import CCP4Data
 from ccp4i2.core.CCP4XtalData import CMtzDataFile
 
 # Use core method for find_by_path - no import needed
-from .available_name import available_file_name_based_on
+from .available_name import available_file_name_based_on, split_compound_suffix
 from ..plugins.plugin_context import get_plugin_with_context
 from ..formats.gemmi_split_mtz import gemmi_split_mtz
 from ..parameters.save_params import save_params_for_job
@@ -812,14 +812,15 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
 def download_file(job: models.Job, the_file, initial_download_project_folder: str):
     logger.debug("the_file is %s", the_file.name)
-    file_stem = pathlib.Path(the_file.name).stem
-    file_suffix = pathlib.Path(the_file.name).suffix
+    # Compound extensions such as ".asu.xml" identify the datatype, so they
+    # must survive slugification of the stem intact.
+    file_stem, file_suffix = split_compound_suffix(the_file.name)
     destination_dir = (
         pathlib.Path(job.project.directory) / initial_download_project_folder
     )
     if not destination_dir.is_dir():
         destination_dir.mkdir()
-    dest = (destination_dir / slugify(file_stem)).with_suffix(file_suffix)
+    dest = destination_dir / f"{slugify(file_stem)}{file_suffix}"
     dest = available_file_name_based_on(dest)
 
     assert dest.is_relative_to(destination_dir)
