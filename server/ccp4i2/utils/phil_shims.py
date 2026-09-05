@@ -65,6 +65,19 @@ class PhilShim:
         return targets
 
 
+class FixedPhilShim(PhilShim):
+    """Values the wrapper decides rather than the user: an output root, a
+    working directory. Their paths leave the tree like any shim target's."""
+
+    def __init__(self, values):
+        self.phil_paths = list(values)
+        self._values = dict(values)
+
+    def convert(self, container, work_directory):
+        return [(path, value.format(work_directory=work_directory) if isinstance(value, str) else value)
+                for path, value in self._values.items()]
+
+
 class MtzFileShim(PhilShim):
     """Convert CMtzDataFile to a PHIL hklin file path parameter."""
 

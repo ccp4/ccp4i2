@@ -562,6 +562,23 @@ wildcards (`match_modes` in `phil_to_cdata.py`, Phaser's own rule) — the
 mode parameter leaves the tree, and the working phil opens with
 `phaser.mode = EP_AUTO`.
 
+### A worked example: `phaser_mr_auto_phil`
+
+`wrappers/phaser_mr_auto_phil` is Phaser's MR_AUTO as a mode task: `PHIL_MODE`
+fixes the mode, the def.xml declares only typed inputs (reflections, search
+models, a composition source), and the shims in
+`wrappers/phaser_phil/script/phaser_shims.py` write `phaser.hklin`/`labin`,
+`phaser.ensemble`/`search` blocks and `phaser.composition` from them. Phaser
+runs in-process (`phaser_run.run_mode`): Phaser's own driver builds the
+`phaser.Input` object from the working phil, and a `PhaserRecorder` is the
+callback that writes `program.xml` as the run proceeds -- module timeline,
+progress, warnings, graphs, the verdict. After the run the solutions come
+from the `mr_solution` object (typed fields; only the annotation is
+tokenised, against the grammar Phaser documents), and the search-strategy
+narrative from the fixed control sentences in Phaser's summary blocks, with
+a count of any block that matched none of them. Nothing in the report is
+inferred from prose.
+
 ### Shims write blocks too, and own their targets
 
 A shim's `convert()` may return `(path, [entries])` for one instance of a

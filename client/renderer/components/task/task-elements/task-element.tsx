@@ -170,6 +170,8 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   // Container / composite types (use lazy getter to break circular dependency)
   CSpaceGroupCell: { get component() { return getLazyContainerElement(); } },
   CContainer: { get component() { return getLazyContainerElement(); } },
+  // A composite with no element of its own renders its fields, as a container does
+  CData: { get component() { return getLazyContainerElement(); } },
   CCell: { component: CCellElement },
   CEnsemble: { component: CEnsembleElement },
   CFloatRange: { component: CRangeElement },

@@ -91,6 +91,7 @@ export type ListItemClass =
  */
 export type ContainerItemClass =
   | "CContainer"
+  | "CData"
   | "CSpaceGroupCell"
   | "CCell"
   | "CEnsemble"
