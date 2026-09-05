@@ -41,6 +41,7 @@ from pathlib import Path
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.base_object.base_classes import CContainer
+from ccp4i2.core.base_object.fundamental_types import CList
 
 logger = logging.getLogger(__name__)
 
@@ -104,7 +105,7 @@ class PhilPluginScript(CPluginScript):
             # Add expert level meta-parameter for controlling visibility
             # and serialization filtering. Matches PHIL convention:
             # 0 = basic user-facing, higher = increasingly expert.
-            from ccp4i2.core.base_object.fundamental_types import CInt
+            from ccp4i2.core.base_object.fundamental_types import CInt, CList
             from ccp4i2.core.base_object.base_classes import ValueState
             expert_level = CInt()
             expert_level._skip_validation = True
@@ -264,69 +265,118 @@ class PhilPluginScript(CPluginScript):
     # --- PHIL parameter extraction and working_phil assembly ---
 
     def extract_phil_parameters(self):
-        """Walk controlParameters extracting user-set values with their PHIL paths.
+        """The user-set scalar parameters as (phil_dotted_path, value_string).
 
         Respects PHIL_EXPERT_LEVEL: only parameters whose expertLevel
-        qualifier is at or below the selected level are serialized.
-        This prevents high-level internal/expert defaults from leaking
-        into working.phil when the user hasn't intentionally set them.
+        qualifier is at or below the selected level are serialized, so
+        expert defaults do not leak into working.phil unasked.
+
+        Items of a repeated *scope* cannot be expressed as flat pairs and are
+        left out here; extract_phil_lines() renders everything, blocks
+        included, and is what build_working_phil() uses.
 
         Returns:
             list of (phil_dotted_path, value_string) tuples
         """
-        # Read the user-selected expert level
+        return [(path, value) for kind, path, value
+                in self._collect_phil_entries(self.container.controlParameters,
+                                              self._phil_max_level(), "")
+                if kind == "leaf"]
+
+    def extract_phil_lines(self):
+        """The user-set parameters rendered as PHIL text lines: `path = value`
+        for scalars, one line per item for a repeated definition, and one
+        `path { ... }` block per item of a repeated scope."""
+        entries = self._collect_phil_entries(self.container.controlParameters,
+                                             self._phil_max_level(), "")
+        return self._render_phil_entries(entries)
+
+    def _phil_max_level(self):
         try:
             max_level = self.container.controlParameters.PHIL_EXPERT_LEVEL.get()
             if max_level is None:
                 max_level = 0
         except (AttributeError, Exception):
             max_level = 0
+        return max_level
 
-        result = []
-        self._extract_from_container(self.container.controlParameters, result,
-                                     max_level)
-        return result
+    def _collect_phil_entries(self, container, max_level, prefix):
+        """Walk `container` collecting ("leaf", path, value) and
+        ("block", path, [entries]) in dataOrder.
 
-    def _extract_from_container(self, container, result, max_level=0):
-        """Recursively extract set parameters from a container.
-
-        Args:
-            container: CContainer to walk.
-            result: List to append (phil_path, value_str) tuples to.
-            max_level: Maximum expert level to serialize. Parameters with
-                expertLevel > max_level are skipped.
+        Paths are relative to `prefix` (a scope path plus a dot, or "") so
+        that entries inside a block read as PHIL requires. Only user-set
+        values are written, inside blocks as at the top level: libtbx treats
+        a repeated-scope instance identical to the master's template as the
+        template, not an instance, so writing an item's defaults out could
+        not make it count anyway.
         """
+        entries = []
         for name in container.dataOrder():
-            # Skip the meta-parameter itself — not a PHIL parameter
+            # Skip the meta-parameter itself -- not a PHIL parameter
             if name == "PHIL_EXPERT_LEVEL":
                 continue
-
             obj = getattr(container, name)
-            if isinstance(obj, CContainer):
-                # Check scope-level expert level
-                scope_level = (obj.get_qualifier("expertLevel")
-                               if hasattr(obj, "get_qualifier") else None)
-                if scope_level is not None and scope_level > max_level:
-                    continue
-                self._extract_from_container(obj, result, max_level)
-            elif obj.isSet(allowDefault=False):
-                # Check definition-level expert level
-                param_level = (obj.get_qualifier("expertLevel")
-                               if hasattr(obj, "get_qualifier") else None)
-                if param_level is not None and param_level > max_level:
-                    continue
+            level = (obj.get_qualifier("expertLevel")
+                     if hasattr(obj, "get_qualifier") else None)
+            if level is not None and level > max_level:
+                continue
+            full_path, path = self._phil_path_of(obj, name, prefix)
 
-                # Only extract parameters the user explicitly changed (not defaults)
-                # Use stored philPath qualifier if available, else reverse the __ mapping
-                phil_path = obj.get_qualifier("philPath")
-                if phil_path is None:
-                    phil_path = name.replace("__", ".")
+            if isinstance(obj, CList):
+                for item in obj:
+                    if isinstance(item, CContainer):
+                        # Children carry absolute philPaths, so the prefix
+                        # to strip is the absolute scope path however deep
+                        # this block is nested
+                        inner = self._collect_phil_entries(
+                            item, max_level, full_path + ".")
+                        entries.append(("block", path, inner))
+                    elif not hasattr(item, "isSet"):
+                        # CList.append() keeps a plain str/int as it is
+                        entries.append(("leaf", path, self._phil_value(item)))
+                    elif item.isSet(allowUndefined=False, allowDefault=True):
+                        # Membership is the explicit act; a default-valued
+                        # item is still an item
+                        entries.append(("leaf", path, self._phil_value(item)))
+            elif isinstance(obj, CContainer):
+                entries.extend(self._collect_phil_entries(
+                    obj, max_level, prefix))
+            elif obj.isSet(allowUndefined=False, allowDefault=False):
+                entries.append(("leaf", path, self._phil_value(obj)))
+        return entries
 
-                # Convert value to string, handling comma-separated lists
-                # (PHIL uses whitespace-separated values)
-                val = str(obj.get()).split()
-                val = " ".join([v[:-1] if v.endswith(",") else v for v in val])
-                result.append((phil_path, val))
+    @staticmethod
+    def _phil_path_of(obj, name, prefix):
+        """The PHIL path of `obj`: (absolute, relative to `prefix`)."""
+        phil_path = (obj.get_qualifier("philPath")
+                     if hasattr(obj, "get_qualifier") else None)
+        if phil_path is None:
+            phil_path = name.replace("__", ".")
+        relative = phil_path
+        if prefix and phil_path.startswith(prefix):
+            relative = phil_path[len(prefix):]
+        return phil_path, relative
+
+    @staticmethod
+    def _phil_value(obj):
+        """The value as PHIL text: whitespace-separated, commas stripped."""
+        raw = obj.get() if hasattr(obj, "get") else obj
+        val = str(raw).split()
+        return " ".join([v[:-1] if v.endswith(",") else v for v in val])
+
+    @classmethod
+    def _render_phil_entries(cls, entries, indent=0):
+        pad = "  " * indent
+        lines = []
+        for kind, path, payload in entries:
+            if kind == "leaf":
+                lines.append(f"{pad}{path} = {payload}")
+            else:
+                lines.append(f"{pad}{path} {{")
+                lines.extend(cls._render_phil_entries(payload, indent + 1))
+                lines.append(f"{pad}}}")
+        return lines
 
     def build_working_phil(self):
         """Assemble a complete working_phil file using master_phil.fetch().
@@ -342,19 +392,18 @@ class PhilPluginScript(CPluginScript):
 
         master_phil = self.get_master_phil()
 
-        # Collect user-set PHIL parameters from controlParameters
-        user_params = self.extract_phil_parameters()
+        # Collect user-set PHIL parameters from controlParameters, repeated
+        # scopes rendered as blocks
+        user_lines = self.extract_phil_lines()
 
         # Run shims to convert rich CCP4i2 types to PHIL values
-        shim_params = []
         work_dir = str(self.getWorkDirectory())
         for shim in self.get_shim_definitions():
-            shim_params.extend(shim.convert(self.container, work_dir))
+            user_lines.extend(f"{name}={val}" for name, val
+                              in shim.convert(self.container, work_dir))
 
         # Build user PHIL string from all sources
-        all_params = user_params + shim_params
-        if all_params:
-            user_lines = [f"{name}={val}" for name, val in all_params]
+        if user_lines:
             user_phil = parse("\n".join(user_lines))
             working_phil = master_phil.fetch(sources=[user_phil])
         else:

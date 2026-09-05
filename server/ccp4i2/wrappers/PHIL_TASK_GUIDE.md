@@ -533,7 +533,25 @@ for obj in parser.master_phil.all_definitions():
 "
 ```
 
-Output like `picard.xyzin  type=path  multiple=True` tells you to use `CList` + `PdbFileListShim` rather than a single `CPdbDataFile` + `PdbFileShim`.
+Output like `picard.xyzin  type=path  multiple=True` tells you to use `CList` + `PdbFileListShim` rather than a single `CPdbDataFile` + `PdbFileShim` for an *input file* you want typed on the CCP4i2 side.
+
+### Repeated scopes and definitions in controlParameters
+
+Nothing needs doing for `.multiple` parameters that stay in `controlParameters`:
+`Phil2CData` turns a `.multiple = True` **scope** into a `CList` whose items are
+containers shaped like the scope (Phaser's `composition.chain`, `ensemble`,
+`crystal.dataset` — nested repeats included), and a `.multiple = True`
+**definition** into a `CList` of the leaf type. Both start empty, which is
+what libtbx's `fetch()` gives the tool unless the working phil supplies
+instances; each `makeItem()` carries the scope's defaults. `build_working_phil()`
+writes one `path { ... }` block per item, and one `path = value` line per item
+of a repeated definition.
+
+Two libtbx facts shape this. A block with no assignments in it is dropped by
+`fetch()`, and so is an instance whose values all equal the master template —
+PHIL cannot express "a repeat that is all defaults", so an item the user adds
+and leaves untouched is not an instance as far as the tool is concerned. Only
+user-set values are written inside a block, exactly as at the top level.
 
 ### Inspecting scopes and their attributes
 

@@ -9,7 +9,7 @@ parse = pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)").p
 
 from ccp4i2.utils.phil_to_cdata import Phil2CData
 from ccp4i2.core.base_object.base_classes import CContainer, ValueState
-from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString, CList
 
 
 # ---------------------------------------------------------------------------
@@ -348,3 +348,118 @@ def _all_leaves(container):
             yield from _all_leaves(child)
         else:
             yield child
+
+
+# ---------------------------------------------------------------------------
+# .multiple scopes and definitions
+# ---------------------------------------------------------------------------
+
+MULTIPLE_PHIL = parse("""
+    composition {
+      solvent = None
+        .type = float
+      chain
+        .short_caption = "Macromolecular chain"
+        .optional = True
+        .multiple = True
+      {
+        chain_type = *protein na
+          .type = choice
+        nres = None
+          .short_caption = "Number of residues"
+          .type = int
+        num = 1
+          .type = int(value_min=1)
+        dataset
+          .multiple = True
+        {
+          label = None
+            .type = str
+        }
+      }
+    }
+    model = None
+      .short_caption = "Model file"
+      .type = path
+      .multiple = True
+""")
+
+
+class TestMultiple:
+    """A .multiple scope is a list of scope-shaped containers, and a .multiple
+    definition a list of leaves. Both start empty, as libtbx's fetch() leaves
+    them unless the working phil supplies instances."""
+
+    def setup_method(self):
+        self.root = Phil2CData(MULTIPLE_PHIL).convert()
+
+    def test_multiple_scope_is_an_empty_clist(self):
+        chain = self.root.composition.composition__chain
+        assert isinstance(chain, CList)
+        assert len(chain) == 0
+        assert chain.get_qualifier("multiple") is True
+        assert chain.get_qualifier("philPath") == "composition.chain"
+        assert chain.get_qualifier("guiLabel") == "Macromolecular chain"
+        assert chain.get_qualifier("listMinLength") == 0
+
+    def test_item_is_a_container_shaped_like_the_scope(self):
+        chain = self.root.composition.composition__chain
+        item = chain.makeItem()
+        assert isinstance(item, CContainer)
+        assert item.dataOrder() == [
+            "composition__chain__chain_type", "composition__chain__nres",
+            "composition__chain__num", "composition__chain__dataset"]
+        assert item.composition__chain__num.get_qualifier("philPath") == "composition.chain.num"
+
+    def test_item_carries_the_scope_defaults(self):
+        item = self.root.composition.composition__chain.makeItem()
+        assert item.composition__chain__num.value == 1
+        assert item.composition__chain__num.getValueState() == ValueState.DEFAULT
+        assert item.composition__chain__chain_type.value == "protein"
+        assert item.composition__chain__nres.getValueState() == ValueState.NOT_SET
+        assert item.composition__chain__num.get_qualifier("min") == 1
+
+    def test_items_are_independent(self):
+        chain = self.root.composition.composition__chain
+        chain.append(chain.makeItem())
+        chain.append(chain.makeItem())
+        chain[0].composition__chain__nres.value = 120
+        assert chain[1].composition__chain__nres.getValueState() == ValueState.NOT_SET
+        assert chain[0].objectPath().endswith("composition__chain[0]")
+
+    def test_nested_multiple_scope_inside_an_item(self):
+        item = self.root.composition.composition__chain.makeItem()
+        dataset = item.composition__chain__dataset
+        assert isinstance(dataset, CList)
+        assert len(dataset) == 0
+        inner = dataset.makeItem()
+        assert inner.dataOrder() == ["composition__chain__dataset__label"]
+
+    def test_set_from_dicts_builds_items(self):
+        # The client adds an item by sending the list with a new dict in it
+        chain = self.root.composition.composition__chain
+        chain.set([{"composition__chain__nres": 120, "composition__chain__num": 2},
+                   {"composition__chain__nres": 50}])
+        assert len(chain) == 2
+        assert chain[0].composition__chain__num.value == 2
+        assert chain[1].composition__chain__nres.value == 50
+        assert chain[1].composition__chain__num.value == 1   # default kept
+
+    def test_item_class_is_reused(self):
+        chain = self.root.composition.composition__chain
+        assert type(chain.makeItem()) is type(chain.makeItem())
+        assert type(chain.makeItem()).PHIL_SCOPE_PATH == "composition.chain"
+
+    def test_multiple_definition_is_a_clist_of_the_leaf_type(self):
+        model = self.root.model
+        assert isinstance(model, CList)
+        assert len(model) == 0
+        assert model.get_qualifier("philPath") == "model"
+        assert model.get_qualifier("multiple") is True
+        item = model.makeItem()
+        assert isinstance(item, CString)
+        assert item.get_qualifier("guiLabel") == "Model file"
+
+    def test_single_scope_is_still_a_container(self):
+        assert isinstance(self.root.composition, CContainer)
+        assert isinstance(self.root.composition.composition__solvent, CFloat)

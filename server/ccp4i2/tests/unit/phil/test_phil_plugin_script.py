@@ -318,3 +318,164 @@ class TestSubclassContract:
 
         plugin = ExcludePlugin()
         assert plugin.get_phil_exclude_scopes() == ["output", "debug"]
+
+
+# ---------------------------------------------------------------------------
+# Repeated scopes and definitions in the working phil
+# ---------------------------------------------------------------------------
+
+MULTI_PHIL = parse("""
+    composition {
+      solvent = None
+        .type = float
+      chain
+        .optional = True
+        .multiple = True
+      {
+        chain_type = *protein na
+          .type = choice
+        nres = None
+          .type = int
+        num = 1
+          .type = int
+        dataset
+          .multiple = True
+        {
+          label = None
+            .type = str
+        }
+      }
+    }
+    model = None
+      .type = path
+      .multiple = True
+""")
+
+
+class MockMultiPlugin(PhilPluginScript):
+    TASKNAME = "mock_multi_plugin"
+    TASKCOMMAND = "echo"
+
+    def get_master_phil(self):
+        return MULTI_PHIL
+
+    def get_phil_exclude_scopes(self):
+        return []
+
+    def get_command_target(self):
+        return "echo"
+
+
+def _fetched(plugin):
+    """What the tool would see: working.phil fetched against the master.
+
+    A bare parse of the file carries no .multiple attributes, so it must be
+    fetched against the master to read as the tool reads it."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        plugin.workDirectory = tmpdir
+        phil_path = plugin.build_working_phil()
+        return MULTI_PHIL.fetch(sources=[parse(file_name=phil_path)]).extract()
+
+
+class TestRepeatedScopes:
+
+    def test_no_items_means_no_instances(self):
+        plugin = MockMultiPlugin()
+        assert plugin.extract_phil_lines() == []
+        assert len(_fetched(plugin).composition.chain) == 0
+        assert _fetched(plugin).model == []
+
+    def test_two_items_become_two_blocks(self):
+        plugin = MockMultiPlugin()
+        chain = plugin.container.controlParameters.composition.composition__chain
+        chain.append(chain.makeItem())
+        chain.append(chain.makeItem())
+        chain[0].composition__chain__nres.value = 120
+        chain[0].composition__chain__num.value = 2
+        chain[1].composition__chain__chain_type.value = "na"
+
+        lines = plugin.extract_phil_lines()
+        assert lines[0] == "composition.chain {"
+        assert "  nres = 120" in lines and "  num = 2" in lines
+        assert lines.count("composition.chain {") == 2
+
+        chains = _fetched(plugin).composition.chain
+        assert [(c.nres, c.num, c.chain_type) for c in chains] == [
+            (120, 2, "protein"), (None, 1, "na")]
+
+    def test_an_item_identical_to_the_defaults_is_not_an_instance(self):
+        # libtbx semantics, not ours: fetch() folds a repeated-scope instance
+        # that equals the master template back into the template, so PHIL
+        # cannot express "a repeat with all the defaults". The block is
+        # written (membership is explicit on our side) and the tool sees none.
+        plugin = MockMultiPlugin()
+        chain = plugin.container.controlParameters.composition.composition__chain
+        chain.append(chain.makeItem())
+        assert plugin.extract_phil_lines() == ["composition.chain {", "}"]
+        assert len(_fetched(plugin).composition.chain) == 0
+
+    def test_nested_repeated_scope_renders_nested_blocks(self):
+        plugin = MockMultiPlugin()
+        chain = plugin.container.controlParameters.composition.composition__chain
+        chain.append(chain.makeItem())
+        chain[0].composition__chain__nres.value = 120
+        datasets = chain[0].composition__chain__dataset
+        datasets.append(datasets.makeItem())
+        datasets.append(datasets.makeItem())
+        datasets[0].composition__chain__dataset__label.value = "peak"
+        datasets[1].composition__chain__dataset__label.value = "remote"
+        assert plugin.extract_phil_lines() == [
+            "composition.chain {", "  nres = 120",
+            "  dataset {", "    label = peak", "  }",
+            "  dataset {", "    label = remote", "  }",
+            "}"]
+        chains = _fetched(plugin).composition.chain
+        assert [d.label for d in chains[0].dataset] == ["peak", "remote"]
+
+    def test_repeated_definition_is_repeated_lines(self):
+        plugin = MockMultiPlugin()
+        model = plugin.container.controlParameters.model
+        model.append("a.pdb")
+        model.append("b.pdb")
+        assert plugin.extract_phil_lines() == ["model = a.pdb", "model = b.pdb"]
+        assert _fetched(plugin).model == ["a.pdb", "b.pdb"]
+
+    def test_flat_extraction_keeps_its_contract(self):
+        plugin = MockMultiPlugin()
+        cp = plugin.container.controlParameters
+        cp.composition.composition__solvent.value = 0.5
+        chain = cp.composition.composition__chain
+        chain.append(chain.makeItem())
+        cp.model.append("a.pdb")
+        # scalars and repeated leaves as pairs; blocks are for the lines API
+        assert plugin.extract_phil_parameters() == [
+            ("composition.solvent", "0.5"), ("model", "a.pdb")]
+
+    def test_items_round_trip_through_params_xml(self):
+        plugin = MockMultiPlugin()
+        chain = plugin.container.controlParameters.composition.composition__chain
+        chain.append(chain.makeItem())
+        chain.append(chain.makeItem())
+        chain[1].composition__chain__nres.value = 77
+        with tempfile.TemporaryDirectory() as tmpdir:
+            xml_path = os.path.join(tmpdir, "input_params.xml")
+            plugin.saveDataToXml(xml_path)
+            again = MockMultiPlugin()
+            again.loadDataFromXml(xml_path)
+        chain2 = again.container.controlParameters.composition.composition__chain
+        assert len(chain2) == 2
+        assert chain2[1].composition__chain__nres.value == 77
+        assert chain2[0].composition__chain__nres.getValueState() == ValueState.NOT_SET
+
+    def test_json_offers_a_container_shaped_template(self):
+        import json
+        from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
+        plugin = MockMultiPlugin()
+        chain = plugin.container.controlParameters.composition.composition__chain
+        encoded = json.loads(json.dumps(chain, cls=CCP4i2JsonEncoder))
+        assert encoded["_baseClass"] == "CList"
+        template = encoded["_subItem"]
+        assert template["_baseClass"] == "CContainer"
+        assert "composition__chain__num" in template["_value"]
+        assert template["_value"]["composition__chain__num"]["_value"] == 1
+        assert "[?]" in template["_objectPath"]
