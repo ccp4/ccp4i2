@@ -405,9 +405,15 @@ class PhaserInputError(RuntimeError):
     rather than as a Python exception with a traceback."""
 
 
-def run_mode(master_phil, working_phil_path, mode, work_directory, recorder, log_path):
+def run_mode(master_phil, working_phil_path, mode, work_directory, recorder, log_path,
+             input_hooks=()):
     """Run phaser.run<MODE> on the Input object Phaser's driver builds from
     the working phil, with `recorder` as the callback. Returns the Result.
+
+    `input_hooks` are called with the built phaser.Input before the run,
+    for what the PHIL cannot carry: a set of solutions to start from
+    (setSOLU takes the mr_solution object; the driver's own `solution`
+    keyword wants a pickled Result instead).
 
     Raises PhaserInputError where the driver raises Sorry.
     """
@@ -422,6 +428,8 @@ def run_mode(master_phil, working_phil_path, mode, work_directory, recorder, log
         index = phil_interface.index(master_phil, working, parse=iotbx.phil.parse)
         with open(log_path, "a") as log:
             interpreter = driver.phaser_parameter_interpreter(index, work_directory, out=log)
+            for hook in input_hooks:
+                hook(interpreter.input)
             output = phaser.Output()
             output.setPackagePhenix(log)
             output.setPhenixCallback(recorder)
