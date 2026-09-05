@@ -116,7 +116,7 @@ scope.show(attributes_level=2)
 "
 ```
 
-Parameters with `.multiple = True` need `CList` + `PdbFileListShim` in the wrapper, not a single file type. See `server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md` for the full guide.
+A `.multiple = True` scope or definition left in `controlParameters` becomes a `CList` automatically (items shaped like the scope, written out as repeated blocks); an *input file* with `.multiple = True` that you want typed on the CCP4i2 side needs `CList` + `PdbFileListShim` in the wrapper, not a single file type. See `server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md` for the full guide.
 
 ## Running
 

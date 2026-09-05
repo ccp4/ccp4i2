@@ -19,7 +19,7 @@ import logging
 from typing import Optional
 
 from ccp4i2.core.base_object.base_classes import CData, CContainer, ValueState
-from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString, CList
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +55,15 @@ class Phil2CData:
         multiple       -> multiple
         value_min      -> min
         value_max      -> max
+
+    A `.multiple = True` scope becomes a CList whose items are containers
+    shaped like the scope (one generated CContainer subclass per scope, so
+    makeItem(), params.xml import and the JSON _subItem all work unchanged);
+    a `.multiple = True` definition becomes a CList of the leaf type. Both
+    start empty: libtbx's fetch() yields no instance of a multiple scope
+    unless the working phil supplies one, so an empty list is what the tool
+    itself sees, and the master's single instance is a template of defaults
+    rather than data. Each new item carries those defaults.
     """
 
     # Standard PHIL types
@@ -97,6 +106,8 @@ class Phil2CData:
         self.phil_scope = phil_scope
         self.exclude_scopes = set(exclude_scopes or [])
         self.max_expert_level = max_expert_level
+        # One generated item class per multiple scope, keyed by PHIL path
+        self._item_classes = {}
 
     def convert(self, root_name="controlParameters"):
         """Convert the full PHIL scope to a CContainer hierarchy.
@@ -127,8 +138,14 @@ class Phil2CData:
                 continue
 
             if obj.is_definition:
-                self._convert_definition(obj, container)
+                if obj.multiple:
+                    self._convert_multiple_definition(obj, container)
+                else:
+                    self._convert_definition(obj, container)
             elif obj.is_scope:
+                if obj.multiple:
+                    self._convert_multiple_scope(obj, container)
+                    continue
                 sub = CContainer()
                 sub._name = full_path.replace(".", "__")
                 self._apply_scope_qualifiers(obj, sub)
@@ -136,6 +153,81 @@ class Phil2CData:
                 if hasattr(container, 'declare_content'):
                     container.declare_content(sub._name)
                 self._convert_scope(obj, sub)
+
+    def _convert_multiple_scope(self, scope, container):
+        """A `.multiple` scope: a CList of containers shaped like the scope."""
+        lst = CList()
+        lst._name = scope.full_path().replace(".", "__")
+        self._apply_scope_qualifiers(scope, lst)
+        lst.set_qualifier("philPath", scope.full_path())
+        lst.set_qualifier("multiple", True)
+        lst.set_qualifier("listMinLength", 0)
+        lst.set_qualifier("subItem", {
+            "class": self._item_class_for_scope(scope),
+            "qualifiers": {},
+        })
+        setattr(container, lst._name, lst)
+        if hasattr(container, 'declare_content'):
+            container.declare_content(lst._name)
+
+    def _item_class_for_scope(self, scope):
+        """A CContainer subclass whose every instance is one repetition of
+        `scope`, children converted exactly as a single scope's would be.
+
+        Generated rather than declared with content(), because the defaults
+        and qualifiers of the children come from the PHIL at runtime and
+        _convert_definition already knows how to apply them; the class only
+        has to reproduce that for each makeItem().
+        """
+        path = scope.full_path()
+        cls = self._item_classes.get(path)
+        if cls is None:
+            converter = self
+
+            def __init__(self, parent=None, name=None, **kwargs):
+                CContainer.__init__(self, parent=parent, name=name, **kwargs)
+                converter._convert_scope(scope, self)
+                converter._reenable_validation(self)
+
+            cls = type(path.replace(".", "__"), (CContainer,), {
+                "__init__": __init__,
+                "__module__": __name__,
+                "__doc__": f"One repetition of the PHIL scope {path}.",
+                "PHIL_SCOPE_PATH": path,
+            })
+            self._item_classes[path] = cls
+        return cls
+
+    def _convert_multiple_definition(self, keyword, container):
+        """A `.multiple` definition: a CList of the leaf type, each item
+        carrying the definition's qualifiers."""
+        phil_type = keyword.type.phil_type
+        value = keyword.extract()
+        if phil_type == "bool" and str(value) not in ("True", "False"):
+            phil_type = "ternary"
+        cls = self.PHIL_TYPE_MAP.get(phil_type)
+        if cls is None:
+            cls = self.PHIL_CUSTOM_TYPE_MAP.get(phil_type, CString)
+
+        # Let the ordinary path work out the item qualifiers on a template
+        template = cls()
+        template._skip_validation = True
+        self._apply_definition_qualifiers(keyword, template, phil_type, value)
+        item_qualifiers = {k: v for k, v in template._qualifiers.items()
+                           if k != "multiple"}
+
+        lst = CList()
+        lst._name = keyword.full_path().replace(".", "__")
+        for key in ("guiLabel", "toolTip", "expertLevel"):
+            if key in item_qualifiers:
+                lst.set_qualifier(key, item_qualifiers[key])
+        lst.set_qualifier("philPath", keyword.full_path())
+        lst.set_qualifier("multiple", True)
+        lst.set_qualifier("listMinLength", 0)
+        lst.set_qualifier("subItem", {"class": cls, "qualifiers": item_qualifiers})
+        setattr(container, lst._name, lst)
+        if hasattr(container, 'declare_content'):
+            container.declare_content(lst._name)
 
     def _convert_definition(self, keyword, container):
         """Convert a single PHIL definition to a CData leaf node."""
