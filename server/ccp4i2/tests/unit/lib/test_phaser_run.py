@@ -49,6 +49,14 @@ class TestStrategyAttempts:
         assert outcomes[2] == ("full", "no definite solution")
         assert attempts[0]["llg"] > 3000
 
+    def test_two_components_are_two_placed_attempts(self):
+        # beta then blip, each at its own search resolution; the second is
+        # announced as "New best solution LLG = ... (resolution = ...)"
+        attempts, unparsed = strategy_attempts(blocks("summary_beta_blip_2components.txt"))
+        assert unparsed == 0
+        assert [(a["component"], a["resolution"], a["outcome"], a["llg"]) for a in attempts] == [
+            ("beta", 4.99, "placed", 188.5), ("blip", 3.71, "placed", 758.8)]
+
     def test_unknown_wording_is_counted_not_guessed(self):
         made_up = [("AUTOMATED MOLECULAR REPLACEMENT", "** Something new and different")]
         attempts, unparsed = strategy_attempts(made_up)

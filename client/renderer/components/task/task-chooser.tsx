@@ -115,6 +115,8 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "mrbump_basic",
       "phaser_simple",
       "phaser_pipeline",
+      "phaser_simple_phil",
+      "phaser_pipeline_phil",
       "phaser_mr_auto_phil",
       "phaser_mr_rnp_phil",
       "molrep_pipe",

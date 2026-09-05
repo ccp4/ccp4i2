@@ -129,6 +129,17 @@ class phaser_mr_auto_phil(phaser_phil):
         return error
 
     # -- shims ----------------------------------------------------------------
+    @classmethod
+    def phil_shim_targets(cls):
+        """The PHIL paths this task's shims write: a pipeline hosting the same
+        PHIL leaves them out too, so the two trees have the same shape."""
+        return [t for shim in (
+            ObsDataShim(None, "F_SIGF", "phaser.hklin", "phaser.labin"),
+            EnsembleListShim("ENSEMBLES", "phaser.ensemble", "phaser.search"),
+            CompositionShim(),
+            FixedPhilShim({"phaser.keywords.general.root": ""}),
+        ) for t in shim.phil_targets()]
+
     def get_shim_definitions(self):
         root = os.path.join(str(self.getWorkDirectory()), "PHASER")
         return [
