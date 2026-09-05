@@ -76,7 +76,20 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
   const isMultiLine = qualifiers?.guiMode === "multiLine";
   const tooltipText = qualifiers?.toolTip || objectPath || "";
 
-  const [value, setValue] = useSyncedLocalValue<InputValue>(serverValue ?? "");
+  // An unset primitive arrives with a sentinel _value (0 for numbers), so it
+  // renders blank rather than as a typed 0; the qualifier default, when there
+  // is one, is shown as placeholder text so the user can see what blank means.
+  const isUnset = item?._valueState === "NOT_SET";
+  const displayedServerValue: InputValue = isUnset ? "" : serverValue ?? "";
+  const defaultQualifier = qualifiers?.default;
+  const placeholder =
+    defaultQualifier !== undefined && defaultQualifier !== null
+      ? String(defaultQualifier)
+      : undefined;
+
+  const [value, setValue] = useSyncedLocalValue<InputValue>(
+    displayedServerValue
+  );
 
   useEffect(() => {
     return () => {
@@ -103,22 +116,27 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
 
   const handleCommit = useCallback(
     async (newValue: InputValue) => {
-      let parsed: InputValue = newValue;
-      if (type === "int" && typeof newValue === "string") {
-        if (newValue.trim() === "") return;
-        if (/^\d+$/.test(newValue)) parsed = parseInt(newValue, 10);
-      }
-      if (type === "float" && typeof newValue === "string") {
-        if (newValue.trim() === "") return;
-        if (/^-?\d*\.?\d+$/.test(newValue)) parsed = parseFloat(newValue);
+      let parsed: InputValue | null = newValue;
+      if ((type === "int" || type === "float") && typeof newValue === "string") {
+        const trimmed = newValue.trim();
+        if (trimmed === "") {
+          // Clearing a numeric field returns the parameter to unset (the
+          // server maps null to unSet()), so the wrapper's default applies.
+          if (isUnset) return;
+          parsed = null;
+        } else if (type === "int" && /^\d+$/.test(trimmed)) {
+          parsed = parseInt(trimmed, 10);
+        } else if (type === "float" && /^-?\d*\.?\d+$/.test(trimmed)) {
+          parsed = parseFloat(trimmed);
+        }
       }
 
       const result = await commit(parsed);
       if (result && !result.success) {
-        setValue(serverValue ?? "");
+        setValue(displayedServerValue);
       }
     },
-    [commit, type, serverValue, setValue]
+    [commit, type, isUnset, displayedServerValue, setValue]
   );
 
   const handleChange = useCallback(
@@ -144,16 +162,16 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "Enter" && value !== serverValue) {
+      if (event.key === "Enter" && value !== displayedServerValue) {
         handleCommit(value);
       }
     },
-    [value, serverValue, handleCommit]
+    [value, displayedServerValue, handleCommit]
   );
 
   const handleBlur = useCallback(() => {
-    if (value !== serverValue) handleCommit(value);
-  }, [value, serverValue, handleCommit]);
+    if (value !== displayedServerValue) handleCommit(value);
+  }, [value, displayedServerValue, handleCommit]);
 
   if (!isVisible) return null;
 
@@ -189,6 +207,7 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
         slotProps={slotProps}
         type="text"
         value={value}
+        placeholder={placeholder}
         label={guiLabel}
         title={tooltipText}
         onChange={handleChange}
