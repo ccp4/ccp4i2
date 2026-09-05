@@ -399,23 +399,37 @@ def solutions_xml(result, parent):
     return solutions
 
 
+class PhaserInputError(RuntimeError):
+    """Phaser's driver refused the input (a libtbx Sorry): the message is
+    Phaser's own sentence, complete in itself, and is reported as such
+    rather than as a Python exception with a traceback."""
+
+
 def run_mode(master_phil, working_phil_path, mode, work_directory, recorder, log_path):
     """Run phaser.run<MODE> on the Input object Phaser's driver builds from
-    the working phil, with `recorder` as the callback. Returns the Result."""
+    the working phil, with `recorder` as the callback. Returns the Result.
+
+    Raises PhaserInputError where the driver raises Sorry.
+    """
     import iotbx.phil
     import phaser
     from libtbx.phil import interface as phil_interface
+    from libtbx.utils import Sorry
     from phaser.phenix_interface import driver
 
-    working = master_phil.fetch(sources=[iotbx.phil.parse(file_name=working_phil_path)])
-    index = phil_interface.index(master_phil, working, parse=iotbx.phil.parse)
-    with open(log_path, "a") as log:
-        interpreter = driver.phaser_parameter_interpreter(index, work_directory, out=log)
-        output = phaser.Output()
-        output.setPackagePhenix(log)
-        output.setPhenixCallback(recorder)
-        run = getattr(phaser, f"run{mode}")
-        result = run(interpreter.input, output)
+    try:
+        working = master_phil.fetch(sources=[iotbx.phil.parse(file_name=working_phil_path)])
+        index = phil_interface.index(master_phil, working, parse=iotbx.phil.parse)
+        with open(log_path, "a") as log:
+            interpreter = driver.phaser_parameter_interpreter(index, work_directory, out=log)
+            output = phaser.Output()
+            output.setPackagePhenix(log)
+            output.setPhenixCallback(recorder)
+            run = getattr(phaser, f"run{mode}")
+            result = run(interpreter.input, output)
+    except Sorry as err:
+        recorder.finish()
+        raise PhaserInputError(str(err).strip()) from None
     recorder.finish()
     # Phaser's C++ output goes to the process's stdout, which the job runner
     # captures elsewhere; the log the user expects in log.txt is the
