@@ -276,6 +276,91 @@ class PhilPluginScript(CPluginScript):
 
     # --- PHIL parameter extraction and working_phil assembly ---
 
+    # --- Handing parameters between PHIL-hosted tasks ---------------------
+    #
+    # A pipeline that hosts a tool's PHIL hands the tree to the sub-job that
+    # runs the tool. Two containers converted from the same master by the
+    # same mode have the same shape, so the copy walks them in parallel.
+
+    @staticmethod
+    def compose_master_phil(base_master_phil, extra_phil_text):
+        """A master phil that is `base_master_phil` with the scopes of
+        `extra_phil_text` adopted -- a pipeline's own parameters beside the
+        tool's. libtbx's adopt_scope() mutates in place, so the base is
+        copied first and the caller's object is left as it was."""
+        import copy
+        from libtbx.phil import parse
+        # customized_copy() is shallow: adopt_scope() on it reaches the base
+        composed = copy.deepcopy(base_master_phil)
+        composed.adopt_scope(parse(extra_phil_text))
+        return composed
+
+    def find_phil(self, phil_path, container=None):
+        """The CData object in controlParameters whose philPath is
+        `phil_path`, or None."""
+        container = self.container.controlParameters if container is None else container
+        for name in container.dataOrder():
+            obj = getattr(container, name)
+            if hasattr(obj, "get_qualifier") and obj.get_qualifier("philPath") == phil_path:
+                return obj
+            if isinstance(obj, CContainer) and not isinstance(obj, CList):
+                found = self.find_phil(phil_path, obj)
+                if found is not None:
+                    return found
+        return None
+
+    def set_phil(self, phil_path, value):
+        """Set one PHIL parameter by its dotted path: a scalar, or for a
+        repeated definition a list of scalars."""
+        obj = self.find_phil(phil_path)
+        if obj is None:
+            raise AttributeError(f"{self.TASKNAME}: no PHIL parameter {phil_path!r}")
+        if isinstance(obj, CList):
+            obj.set(list(value) if isinstance(value, (list, tuple)) else [value])
+        else:
+            obj.set(value)
+        return obj
+
+    @classmethod
+    def copy_phil_tree(cls, source, target):
+        """Copy every user-set value from `source` into `target`, two
+        containers of the same shape. Defaults are left as the target has
+        them; lists are rebuilt item by item."""
+        for name in source.dataOrder():
+            if name == "PHIL_EXPERT_LEVEL":
+                continue
+            src = getattr(source, name)
+            try:
+                dst = getattr(target, name)
+            except AttributeError:
+                continue
+            if isinstance(src, CList):
+                if not isinstance(dst, CList):
+                    continue
+                dst.clear()
+                for item in src:
+                    if isinstance(item, CContainer):
+                        new = dst.makeItem()
+                        cls.copy_phil_tree(item, new)
+                        dst.append(new)
+                    else:
+                        dst.append(item.get() if hasattr(item, "get") else item)
+            elif isinstance(src, CContainer):
+                if isinstance(dst, CContainer):
+                    cls.copy_phil_tree(src, dst)
+            elif hasattr(src, "isSet") and src.isSet(allowUndefined=False, allowDefault=False):
+                dst.set(src.get())
+
+    def hand_phil_to(self, other):
+        """Give `other`, a PhilPluginScript over the same master, this
+        task's PHIL parameters and expert level."""
+        self.copy_phil_tree(self.container.controlParameters, other.container.controlParameters)
+        try:
+            other.container.controlParameters.PHIL_EXPERT_LEVEL.set(
+                self.container.controlParameters.PHIL_EXPERT_LEVEL.get())
+        except AttributeError:
+            pass
+
     def extract_phil_parameters(self):
         """The user-set scalar parameters as (phil_dotted_path, value_string).
 
