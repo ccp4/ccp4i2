@@ -7,7 +7,7 @@ import pytest
 # See test_phil_plugin_script.py: libtbx is CCP4/cctbx-only, no pip wheel.
 parse = pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)").parse
 
-from ccp4i2.utils.phil_to_cdata import Phil2CData
+from ccp4i2.utils.phil_to_cdata import Phil2CData, parse_phil_style
 from ccp4i2.core.base_object.base_classes import CContainer, ValueState
 from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString, CList
 
@@ -463,3 +463,107 @@ class TestMultiple:
     def test_single_scope_is_still_a_container(self):
         assert isinstance(self.root.composition, CContainer)
         assert isinstance(self.root.composition.composition__solvent, CFloat)
+
+
+# ---------------------------------------------------------------------------
+# .style: the libtbx GUI conventions become qualifiers
+# ---------------------------------------------------------------------------
+
+STYLE_PHIL = parse("""
+    top
+      .style = "phaser:mode:EP_AUTO box"
+    {
+      copies = 1
+        .type = int
+        .style = "spinner max=1000 min=1 bold"
+      bounded = 5
+        .type = int(value_min=2)
+        .style = "spinner min=1"
+      mute = None
+        .type = bool
+        .style = "hidden tribool"
+      sequence = None
+        .type = str
+        .style = "height:48"
+      seq_file = None
+        .type = path
+        .style = "input_file file_type:seq phaser:mode:MR*"
+      out_dir = None
+        .type = path
+        .style = "directory"
+      mode = *a b
+        .type = choice
+        .style = "bold phaser:ignore OnChange:update"
+      resolution = None
+        .type = float
+        .style = "tng:input:+brf+frf+ftf"
+      occupancy = None
+        .type = float
+        .style = "phaser:mode:MR_AUTO,MR_OCC,box auto_align"
+    }
+""")
+
+
+class TestParsePhilStyle:
+
+    def test_reads_every_convention(self):
+        parsed = parse_phil_style("spinner max=1000 min=1 hidden height:48 "
+                                  "input_file file_type:seq directory phaser:ignore")
+        assert parsed["min"] == 1 and parsed["max"] == 1000
+        assert parsed["hidden"] and parsed["multiLine"] and parsed["directory"]
+        assert parsed["inputFile"] and parsed["fileType"] == "seq"
+        assert parsed["ignored"]
+
+    def test_both_mode_spellings(self):
+        assert parse_phil_style("phaser:mode:MR*,EP_AUTO")["modes"] == ["MR*", "EP_AUTO"]
+        assert parse_phil_style("tng:input:+brf+frf")["modes"] == ["brf", "frf"]
+
+    def test_layout_word_after_a_comma_is_not_a_mode(self):
+        assert parse_phil_style("phaser:mode:MR_AUTO,MR_OCC,box auto_align")["modes"] == [
+            "MR_AUTO", "MR_OCC"]
+
+    def test_ignores_what_it_does_not_know(self):
+        parsed = parse_phil_style("bold box noauto OnChange:x renderer:y")
+        assert parsed == parse_phil_style("")
+
+
+class TestStyleQualifiers:
+
+    def setup_method(self):
+        # Hold the root: a container garbage-collected destroys its children
+        self.root = Phil2CData(STYLE_PHIL).convert()
+        self.top = self.root.top
+
+    def test_spinner_bounds_where_the_type_gave_none(self):
+        assert self.top.top__copies.get_qualifier("min") == 1
+        assert self.top.top__copies.get_qualifier("max") == 1000
+
+    def test_the_type_bound_wins_over_the_spinner(self):
+        assert self.top.top__bounded.get_qualifier("min") == 2
+
+    def test_hidden(self):
+        assert self.top.top__mute.get_qualifier("hidden") is True
+        assert self.top.top__copies.get_qualifier("hidden") is None
+
+    def test_height_is_multiline_for_strings(self):
+        assert self.top.top__sequence.get_qualifier("guiMode") == "multiLine"
+
+    def test_input_files_are_tagged_not_converted(self):
+        f = self.top.top__seq_file
+        assert isinstance(f, CString)
+        assert f.get_qualifier("philInputFile") is True
+        assert f.get_qualifier("philFileType") == "seq"
+        assert self.top.top__out_dir.get_qualifier("isDirectory") is True
+
+    def test_modes_on_definitions_and_scopes(self):
+        assert self.top.top__seq_file.get_qualifier("philModes") == ["MR*"]
+        assert self.top.top__resolution.get_qualifier("philModes") == ["brf", "frf", "ftf"]
+        assert self.top.top__occupancy.get_qualifier("philModes") == ["MR_AUTO", "MR_OCC"]
+        assert self.top.get_qualifier("philModes") == ["EP_AUTO"]
+
+    def test_ignored_is_recorded_not_hidden(self):
+        assert self.top.top__mode.get_qualifier("philIgnored") is True
+        assert self.top.top__mode.get_qualifier("hidden") is None
+
+    def test_raw_style_is_kept(self):
+        assert "OnChange:update" in self.top.top__mode.get_qualifier("style")

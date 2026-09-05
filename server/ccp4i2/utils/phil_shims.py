@@ -31,16 +31,38 @@ class PhilShim:
     """Base class for converting CCP4i2 data objects to PHIL parameter values."""
 
     def convert(self, container, work_directory):
-        """Convert CCP4i2 data to PHIL parameter name=value pairs.
+        """Convert CCP4i2 data to PHIL entries.
 
         Args:
             container: The plugin's container (with inputData, outputData, etc.)
             work_directory: The job's working directory (for writing intermediate files)
 
         Returns:
-            list of (phil_path, value) tuples
+            list of entries, each either a (phil_path, value) pair or, for
+            one instance of a repeated scope, (phil_path, [entries]) with the
+            inner paths relative to the scope:
+                ("phaser.composition.chain",
+                 [("sequence_file", "/x/a.seq"), ("num", 2)])
         """
         raise NotImplementedError
+
+    def phil_targets(self):
+        """The PHIL paths this shim writes.
+
+        The generic parameter tree leaves them out, so a file the user chose
+        as a typed input is not also offered as a bare path string. Read from
+        the `phil_*` attributes the constructors store, so a shim needs no
+        further declaration.
+        """
+        targets = []
+        for name, value in sorted(vars(self).items()):
+            if not name.startswith("phil_"):
+                continue
+            if isinstance(value, str):
+                targets.append(value)
+            elif isinstance(value, (list, tuple)):
+                targets.extend(v for v in value if isinstance(v, str))
+        return targets
 
 
 class MtzFileShim(PhilShim):

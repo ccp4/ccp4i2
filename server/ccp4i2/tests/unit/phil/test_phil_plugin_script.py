@@ -479,3 +479,51 @@ class TestRepeatedScopes:
         assert "composition__chain__num" in template["_value"]
         assert template["_value"]["composition__chain__num"]["_value"] == 1
         assert "[?]" in template["_objectPath"]
+
+
+# ---------------------------------------------------------------------------
+# Shims: block entries, and their targets leave the generic tree
+# ---------------------------------------------------------------------------
+
+from ccp4i2.utils.phil_shims import PhilShim, MtzFileShim, PdbFileShim
+
+
+class ChainShim(PhilShim):
+    """Pretends to map ASU contents to composition.chain blocks."""
+
+    def __init__(self):
+        self.phil_chain_path = "composition.chain"
+
+    def convert(self, container, work_directory):
+        return [
+            ("composition.chain", [("nres", 120), ("num", 2)]),
+            ("composition.chain", [("nres", 50)]),
+            ("composition.solvent", 0.5),
+        ]
+
+
+class MockShimmedPlugin(MockMultiPlugin):
+    TASKNAME = "mock_shimmed_plugin"
+
+    def get_shim_definitions(self):
+        return [ChainShim()]
+
+
+class TestShimEntries:
+
+    def test_phil_targets_read_from_the_phil_attributes(self):
+        assert MtzFileShim("HKLIN", "picard.hklin").phil_targets() == ["picard.hklin"]
+        assert PdbFileShim("XYZIN", ["a.model", "b.model"]).phil_targets() == ["a.model", "b.model"]
+        assert ChainShim().phil_targets() == ["composition.chain"]
+
+    def test_a_shim_target_is_not_offered_in_the_tree(self):
+        assert hasattr(MockMultiPlugin().container.controlParameters.composition,
+                       "composition__chain")
+        assert not hasattr(MockShimmedPlugin().container.controlParameters.composition,
+                           "composition__chain")
+
+    def test_shim_blocks_reach_the_tool(self):
+        plugin = MockShimmedPlugin()
+        fetched = _fetched(plugin)
+        assert [(c.nres, c.num) for c in fetched.composition.chain] == [(120, 2), (50, 1)]
+        assert fetched.composition.solvent == 0.5

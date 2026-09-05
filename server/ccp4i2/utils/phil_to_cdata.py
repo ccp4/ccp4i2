@@ -24,6 +24,49 @@ from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CS
 logger = logging.getLogger(__name__)
 
 
+def parse_phil_style(style):
+    """Read the libtbx GUI conventions out of a `.style` string.
+
+    `.style` is free text the Phenix GUI interprets; the tokens that say
+    something a CCP4i2 GUI can act on are translated to qualifiers and the
+    rest (bold, box, auto_align, noauto, OnChange:, renderer:) are left in
+    the raw `style` qualifier. Mode tags come in two spellings: Phaser's
+    `phaser:mode:MR_AUTO,EP*` and phasertng's `tng:input:+frf+ftf`.
+    """
+    result = {"min": None, "max": None, "hidden": False, "multiLine": False,
+              "inputFile": False, "fileType": None, "directory": False,
+              "modes": [], "ignored": False}
+    for tok in (style or "").split():
+        if tok == "hidden":
+            result["hidden"] = True
+        elif tok == "input_file":
+            result["inputFile"] = True
+        elif tok == "directory":
+            result["directory"] = True
+        elif tok == "phaser:ignore":
+            result["ignored"] = True
+        elif tok.startswith("file_type:"):
+            result["fileType"] = tok.partition(":")[2]
+        elif tok.startswith("height:"):
+            result["multiLine"] = True
+        elif tok.startswith(("min=", "max=")):
+            key, _, number = tok.partition("=")
+            try:
+                result[key] = float(number) if "." in number else int(number)
+            except ValueError:
+                pass
+        elif tok.startswith("phaser:mode:"):
+            # A layout word can ride along after a comma ("MR_OCC,box"):
+            # a mode is upper case, underscores and a trailing wildcard
+            result["modes"].extend(
+                m for m in tok[len("phaser:mode:"):].split(",")
+                if re.fullmatch(r"[A-Z][A-Z0-9_]*\*?|\*", m))
+        elif tok.startswith("tng:input:"):
+            result["modes"].extend(
+                m for m in tok[len("tng:input:"):].split("+") if m)
+    return result
+
+
 class Phil2CData:
     """Convert a libtbx.phil scope directly to a CData object hierarchy.
 
@@ -55,6 +98,13 @@ class Phil2CData:
         multiple       -> multiple
         value_min      -> min
         value_max      -> max
+
+    Within `.style`, the libtbx GUI conventions are read too (see
+    parse_phil_style): `spinner min= max=` -> min/max where the type gave
+    none; `hidden` -> hidden; `height:` -> guiMode multiLine; `input_file`
+    and `file_type:` -> philInputFile/philFileType (tagged for shims, not
+    turned into file objects); `directory` -> isDirectory; mode tags ->
+    philModes; `phaser:ignore` -> philIgnored.
 
     A `.multiple = True` scope becomes a CList whose items are containers
     shaped like the scope (one generated CContainer subclass per scope, so
@@ -309,6 +359,33 @@ class Phil2CData:
             if keyword.type.value_max is not None:
                 obj.set_qualifier("max", keyword.type.value_max)
 
+        # After the type: a bound the type declares wins over a spinner's
+        self._apply_style_qualifiers(keyword.style, obj, phil_type)
+
+    def _apply_style_qualifiers(self, style, obj, phil_type):
+        """Qualifiers from the GUI conventions in `.style`."""
+        if not style:
+            return
+        parsed = parse_phil_style(style)
+        if phil_type in ("int", "float"):
+            for key in ("min", "max"):
+                if parsed[key] is not None and obj.get_qualifier(key) is None:
+                    obj.set_qualifier(key, parsed[key])
+        if parsed["hidden"]:
+            obj.set_qualifier("hidden", True)
+        if parsed["multiLine"] and phil_type == "str":
+            obj.set_qualifier("guiMode", "multiLine")
+        if parsed["inputFile"]:
+            obj.set_qualifier("philInputFile", True)
+        if parsed["fileType"]:
+            obj.set_qualifier("philFileType", parsed["fileType"])
+        if parsed["directory"]:
+            obj.set_qualifier("isDirectory", True)
+        if parsed["modes"]:
+            obj.set_qualifier("philModes", parsed["modes"])
+        if parsed["ignored"]:
+            obj.set_qualifier("philIgnored", True)
+
     def _apply_default_value(self, obj, phil_type, value, keyword):
         """Set the default value on a CData object with DEFAULT state."""
         if value is None:
@@ -373,6 +450,9 @@ class Phil2CData:
             container.set_qualifier("toolTip", _sanitize(scope.help))
         if scope.expert_level is not None:
             container.set_qualifier("expertLevel", scope.expert_level)
+        if scope.style is not None:
+            container.set_qualifier("style", _sanitize(str(scope.style)))
+            self._apply_style_qualifiers(scope.style, container, None)
 
     def _reenable_validation(self, obj):
         """Recursively re-enable validation after construction."""
