@@ -1148,6 +1148,15 @@ TASKS = {
         reportPath="ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil_report:phaser_mr_auto_phil_report",
         runningReport=True,
     ),
+    "phaser_mr_rnp_phil": Task(
+        title="Rigid-body refinement of MR solutions - Phaser (PHIL)",
+        shortTitle="Phaser RNP (PHIL)",
+        description="Rigid-body refinement of placed solutions with Phaser, driven from its PHIL interface",
+        pluginPath="ccp4i2.wrappers.phaser_mr_rnp_phil.script.phaser_mr_rnp_phil:phaser_mr_rnp_phil",
+        defXmlPath="wrappers/phaser_mr_rnp_phil/script/phaser_mr_rnp_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_mr_rnp_phil.script.phaser_mr_rnp_phil_report:phaser_mr_rnp_phil_report",
+        runningReport=True,
+    ),
     "phaser_ep_auto_phil": Task(
         title="SAD Experimental Phasing - Phaser (PHIL)",
         shortTitle="Phaser EP (PHIL)",

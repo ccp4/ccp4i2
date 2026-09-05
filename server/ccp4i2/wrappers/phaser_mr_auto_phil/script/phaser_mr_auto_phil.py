@@ -18,7 +18,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.utils.phil_shims import FixedPhilShim
 from ccp4i2.wrappers.phaser_phil.script.phaser_phil import phaser_phil
 from ccp4i2.wrappers.phaser_phil.script.phaser_shims import (
-    CompositionShim, EnsembleListShim, ObsDataShim)
+    CompositionShim, EnsembleListShim, ObsDataShim, SolutionHook)
 from ccp4i2.wrappers.phaser_phil.script import phaser_run
 
 
@@ -27,6 +27,9 @@ class phaser_mr_auto_phil(phaser_phil):
     TASKNAME = "phaser_mr_auto_phil"
     TASKCOMMAND = None          # Phaser runs in-process
     PHIL_MODE = "MR_AUTO"
+    #: Whether the mode searches for the ensembles' copies; a mode that works
+    #: on placed solutions (RNP) does not, and need not be asked for copies
+    SEARCHES_ENSEMBLES = True
     PHIL_MODE_PATH = "phaser.mode"
     WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild"]
 
@@ -54,6 +57,10 @@ class phaser_mr_auto_phil(phaser_phil):
         super().__init__(*args, **kwargs)
         self.xmlroot = etree.Element("PhaserMrResults")
         self.resultObject = None
+        #: Callables given the XML root whenever program.xml is written; a
+        #: pipeline embeds the live record in its own this way
+        self.xml_responders = []
+        self._input_space_group = None
 
     @property
     def _obs_shim(self):
@@ -75,7 +82,8 @@ class phaser_mr_auto_phil(phaser_phil):
         inp = self.container.inputData
         name = f"{self.TASKNAME}.container.inputData"
         ensembles = getattr(inp, "ENSEMBLES", None)
-        if ensembles is not None and len(ensembles) > 0 and ensembles.copiesToPlace() == 0:
+        if (self.SEARCHES_ENSEMBLES and ensembles is not None and len(ensembles) > 0
+                and ensembles.copiesToPlace() == 0):
             error.append(
                 klass=self.TASKNAME, code=111,
                 details=(f"None of the {len(ensembles)} search model(s) is in use and asks "
@@ -108,6 +116,11 @@ class phaser_mr_auto_phil(phaser_phil):
             error.append(klass=self.TASKNAME, code=113,
                          details="Composition by AsuContent file: choose the file.",
                          name=f"{name}.ASUFILE", severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        if comp_by == "MW" and not (inp.ASU_PROTEIN_MW.isSet() or inp.ASU_NUCLEICACID_MW.isSet()):
+            error.append(klass=self.TASKNAME, code=113,
+                         details="Composition by molecular weight: give the protein and/or "
+                                 "nucleic-acid weight in the asymmetric unit.",
+                         name=f"{name}.ASU_PROTEIN_MW", severity=CCP4ErrorHandling.SEVERITY_ERROR)
         if comp_by == "SEQUENCES" and not any(
                 item.seqFile.isSet() for item in inp.SEQUENCES):
             error.append(klass=self.TASKNAME, code=113,
@@ -132,6 +145,11 @@ class phaser_mr_auto_phil(phaser_phil):
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             self.appendErrorReport(204, str(error), severity=CCP4ErrorHandling.SEVERITY_ERROR)
             return CPluginScript.FAILED
+        try:
+            import gemmi
+            self._input_space_group = gemmi.read_mtz_file(self._obs_shim.hklin).spacegroup.hm
+        except Exception:
+            self._input_space_group = None
         # Phaser reads PDB; a model given as mmCIF is converted alongside
         for ensemble in self.container.inputData.ENSEMBLES:
             for item in ensemble.pdbItemList:
@@ -174,7 +192,8 @@ class phaser_mr_auto_phil(phaser_phil):
     def _run(self, recorder):
         return phaser_run.run_mode(
             self.get_master_phil(), self._phil_path, self.PHIL_MODE,
-            str(self.getWorkDirectory()), recorder, self.makeFileName("LOG"))
+            str(self.getWorkDirectory()), recorder, self.makeFileName("LOG"),
+            input_hooks=[SolutionHook(self.container)])
 
     # -- what came out ---------------------------------------------------------
     def processOutputFiles(self):
@@ -214,6 +233,19 @@ class phaser_mr_auto_phil(phaser_phil):
             with open(str(out.SOLOUT.fullPath), "wb") as handle:
                 pickle.dump(solutions, handle)
             out.SOLOUT.annotation.set("Solutions from Phaser")
+            # Phaser may have solved in another setting of the space group:
+            # a pipeline then reindexes the data to match
+            solved = str(solutions[0].getSpaceGroupName()).strip()
+            given = (self._input_space_group or "").strip()
+            reindexed = bool(given) and _same_symbol(solved) != _same_symbol(given)
+            out.dataReindexed.set(reindexed)
+            if reindexed:
+                warnings = self.xmlroot.find("PhaserWarnings")
+                if warnings is None:
+                    warnings = etree.SubElement(self.xmlroot, "PhaserWarnings")
+                etree.SubElement(warnings, "Warning").text = (
+                    f"Space group of the best solution ({solved}) differs from the "
+                    f"input data ({given})")
 
         # The record of the run, from the Result object and Phaser's summary
         phaser_run.solutions_xml(result, self.xmlroot)
@@ -248,3 +280,10 @@ class phaser_mr_auto_phil(phaser_phil):
         etree.ElementTree(xmlroot).write(tmp, pretty_print=True, xml_declaration=True,
                                          encoding="utf-8")
         os.replace(tmp, target)
+        for responder in getattr(self, "xml_responders", ()):
+            responder(xmlroot)
+
+
+def _same_symbol(symbol):
+    """Space-group symbols compared without spaces or case."""
+    return "".join(str(symbol).split()).upper()

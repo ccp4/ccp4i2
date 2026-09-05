@@ -47,6 +47,7 @@ class phaser_ep_auto_phil(phaser_phil):
         super().__init__(*args, **kwargs)
         self.xmlroot = etree.Element("PhaserEpResults")
         self.resultObject = None
+        self.xml_responders = []
 
     @property
     def _crystal_shim(self):
@@ -176,3 +177,5 @@ class phaser_ep_auto_phil(phaser_phil):
         etree.ElementTree(xmlroot).write(tmp, pretty_print=True, xml_declaration=True,
                                          encoding="utf-8")
         os.replace(tmp, target)
+        for responder in getattr(self, "xml_responders", ()):
+            responder(xmlroot)
