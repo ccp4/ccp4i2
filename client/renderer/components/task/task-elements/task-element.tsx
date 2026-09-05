@@ -11,6 +11,7 @@ import { CFreeRDataFileElement } from "./cfreerfile";
 import { CMiniMtzDataFileElement } from "./cminimtzdatafile";
 import { CBooleanElement } from "./cboolean";
 import { CListElement } from "./clist";
+import { resolveComponentEntry } from "./component-dispatch";
 // Lazy import to break circular dependency: ccontainer.tsx imports task-element.tsx
 let _CCP4i2ContainerElement: React.FC<any> | null = null;
 const getLazyContainerElement = (): React.FC<any> => {
@@ -236,7 +237,7 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       );
     }
 
-    const entry = itemClass ? COMPONENT_REGISTRY[itemClass] : undefined;
+    const entry = resolveComponentEntry(COMPONENT_REGISTRY, item);
 
     if (!entry) {
       return (
