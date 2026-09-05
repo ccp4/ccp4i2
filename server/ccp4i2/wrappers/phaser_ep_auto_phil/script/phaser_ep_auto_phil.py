@@ -88,7 +88,7 @@ class phaser_ep_auto_phil(phaser_phil):
     def processInputFiles(self):
         error = self._crystal_shim.prepare()
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-            self.appendErrorReport(204, str(error))
+            self.appendErrorReport(204, str(error), severity=CCP4ErrorHandling.SEVERITY_ERROR)
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
@@ -98,15 +98,25 @@ class phaser_ep_auto_phil(phaser_phil):
 
     def startProcess(self):
         recorder = phaser_run.PhaserRecorder(self.xmlroot, flush=self.flushXML)
-        self.resultObject = phaser_run.run_mode(
-            self.get_master_phil(), self._phil_path, self.PHIL_MODE,
-            str(self.getWorkDirectory()), recorder, self.makeFileName("LOG"))
+        try:
+            self.resultObject = self._run(recorder)
+        except phaser_run.PhaserInputError as err:
+            # Phaser refused the input; its sentence is the whole story
+            self.appendErrorReport(202, str(err), severity=CCP4ErrorHandling.SEVERITY_ERROR)
+            self.flushXML(self.xmlroot)
+            return CPluginScript.FAILED
         if not self.resultObject.Success():
             self.appendErrorReport(
-                202, f"{self.resultObject.ErrorName()}: {self.resultObject.ErrorMessage()}")
+                202, f"{self.resultObject.ErrorName()}: {self.resultObject.ErrorMessage()}",
+                severity=CCP4ErrorHandling.SEVERITY_ERROR)
             self.flushXML(self.xmlroot)
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
+
+    def _run(self, recorder):
+        return phaser_run.run_mode(
+            self.get_master_phil(), self._phil_path, self.PHIL_MODE,
+            str(self.getWorkDirectory()), recorder, self.makeFileName("LOG"))
 
     def processOutputFiles(self):
         result = self.resultObject
@@ -118,7 +128,7 @@ class phaser_ep_auto_phil(phaser_phil):
             hkl = os.path.join(work_dir, f"PHASER.1{hand}.mtz")
             for path in (xyz, hkl):
                 if not os.path.exists(path):
-                    self.appendErrorReport(201, path)
+                    self.appendErrorReport(201, path, severity=CCP4ErrorHandling.SEVERITY_ERROR)
                     return CPluginScript.FAILED
             label = "original hand" if i == 0 else "reversed hand"
             out.XYZOUT.append(out.XYZOUT.makeItem())
