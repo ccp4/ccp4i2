@@ -52,7 +52,15 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
         self.xmlroot = etree.Element('PhaserEpResults')
         self.callbackObject = EPAUTOCallbackObject(self.xmlroot, [self.flushXML])
-    
+
+    def validity(self):
+        # phaser_MR.validity() adds the F_OR_I advisory, and EP declares no
+        # F_OR_I: SAD phasing runs on F+/F- pairs, which processInputFiles
+        # builds with makeHklin(CONTENT_FLAG_FPAIR) whatever the file holds,
+        # so the intensities-or-amplitudes choice never arises here. Skip
+        # straight to the base checks.
+        return CPluginScript.validity(self)
+
     def startProcess(self):
         
         import phaser
