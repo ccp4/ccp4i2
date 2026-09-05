@@ -141,15 +141,6 @@
           <min>0</min>
         </qualifiers>
       </content>
-      <content id="SOLIN">
-        <className>CPhaserSolDataFile</className>
-        <qualifiers>
-          <guiLabel>Solutions from a previous Phaser job</guiLabel>
-          <mustExist>True</mustExist>
-          <fromPreviousJob>True</fromPreviousJob>
-          <allowUndefined>True</allowUndefined>
-        </qualifiers>
-      </content>
       <content id="SOLVENT_FRACTION">
         <className>CFloat</className>
         <qualifiers>

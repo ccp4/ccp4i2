@@ -1166,6 +1166,15 @@ TASKS = {
         reportPath="ccp4i2.pipelines.phaser_simple_phil.script.phaser_simple_phil_report:phaser_simple_phil_report",
         runningReport=True,
     ),
+    "phaser_ep_phil": Task(
+        title="SAD Experimental Phasing pipeline - Phaser (PHIL)",
+        shortTitle="Phaser EP pipeline (PHIL)",
+        description="SAD phasing with Phaser over its PHIL, then density modification and optional model building",
+        pluginPath="ccp4i2.pipelines.phaser_ep_phil.script.phaser_ep_phil:phaser_ep_phil",
+        defXmlPath="pipelines/phaser_ep_phil/script/phaser_ep_phil.def.xml",
+        reportPath="ccp4i2.pipelines.phaser_ep_phil.script.phaser_ep_phil_report:phaser_ep_phil_report",
+        runningReport=True,
+    ),
     "phaser_mr_rnp_phil": Task(
         title="Rigid-body refinement of MR solutions - Phaser (PHIL)",
         shortTitle="Phaser RNP (PHIL)",

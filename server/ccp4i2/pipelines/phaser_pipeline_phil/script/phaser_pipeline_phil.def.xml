@@ -83,9 +83,9 @@
       <content id="SOLIN">
         <className>CPhaserSolDataFile</className>
         <qualifiers>
-          <guiLabel>Solutions from a previous Phaser job</guiLabel>
+          <guiLabel>Solutions from a previous Phaser job (optional; their ensembles must match the search models)</guiLabel>
           <mustExist>True</mustExist>
-          <fromPreviousJob>True</fromPreviousJob>
+          <fromPreviousJob>False</fromPreviousJob>
           <allowUndefined>True</allowUndefined>
         </qualifiers>
       </content>

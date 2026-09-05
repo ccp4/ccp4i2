@@ -73,3 +73,38 @@ def test_unpreparable_reflections_are_an_error(task):
         assert plugin.processInputFiles() == CPluginScript.FAILED
         codes = [(r["code"], r["severity"]) for r in plugin.errorReport._reports]
         assert (204, SEVERITY_ERROR) in codes
+
+
+class _Known:
+    def __init__(self, modlid):
+        self.MODLID = modlid
+
+
+class _Set:
+    def __init__(self, *modlids):
+        self.KNOWN = [_Known(m) for m in modlids]
+
+
+def test_solutions_must_name_the_search_models():
+    """A classic Phaser job names its ensembles Ensemble_0...; solutions from
+    it given to a job whose search model is called SearchModel fail in Phaser
+    with "No model for ensemble Ensemble_0". runTimeValidity says so first."""
+    import pickle
+    with tempfile.TemporaryDirectory() as tmp:
+        plugin = get_plugin_class("phaser_mr_auto_phil")(workDirectory=tmp, name="t")
+        inp = plugin.container.inputData
+        inp.F_SIGF.setFullPath(os.path.join(tmp, "x.mtz")); open(os.path.join(tmp, "x.mtz"), "w").close()
+        e = inp.ENSEMBLES.makeItem(); inp.ENSEMBLES.append(e); e.label.set("SearchModel"); e.number.set(1); e.use.set(True)
+        item = e.pdbItemList.makeItem(); e.pdbItemList.append(item)
+        item.structure.setFullPath(os.path.join(tmp, "m.pdb")); open(os.path.join(tmp, "m.pdb"), "w").close()
+        item.identity_to_target.set(0.9)
+        path = os.path.join(tmp, "SOLOUT.phaser_sol.pkl")
+        with open(path, "wb") as f:
+            pickle.dump([_Set("Ensemble_0")], f)
+        inp.SOLIN.setFullPath(path)
+        reports = [(r["code"], r["severity"], str(r["details"])) for r in plugin.runTimeValidity()._reports]
+        assert any(code == 117 and sev == SEVERITY_ERROR and "Ensemble_0" in d and "SearchModel" in d
+                   for code, sev, d in reports), reports
+        with open(path, "wb") as f:
+            pickle.dump([_Set("SearchModel")], f)
+        assert not any(r["code"] == 117 for r in plugin.runTimeValidity()._reports)
