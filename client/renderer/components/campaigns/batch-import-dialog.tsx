@@ -247,7 +247,6 @@ export function BatchImportDialog({
         const projectName = file.name.replace(/\.[^.]+$/, "").replace(/\s/g, "_");
         const projectResponse = await apiPost<{ id: number }>("projects/", {
           name: projectName,
-          directory: "__default__",
         });
         newProjectId = projectResponse.id;
         dispatch({ type: "SET_PROJECT_ID", file, projectId: newProjectId });

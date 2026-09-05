@@ -63,7 +63,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "--directory",
             type=str,
-            default="__default__",
+            default=None,
             help="Custom project directory path (optional, defaults to CCP4I2_PROJECTS_DIR/name)",
         )
 
@@ -108,8 +108,9 @@ class Command(BaseCommand):
         data = {
             "name": project_name,
             "description": description,
-            "directory": directory,
         }
+        if directory:
+            data["directory"] = directory
 
         # Create project using serializer
         serializer = ProjectSerializer(data=data)

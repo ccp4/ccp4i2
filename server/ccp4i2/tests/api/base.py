@@ -158,11 +158,14 @@ class APITestBase:
 
     # --- Project & Job Creation ---
 
-    def create_project(self, name: str, directory: str = "__default__") -> dict:
+    def create_project(self, name: str, directory: str | None = None) -> dict:
         """Create a new project via API."""
+        data = {'name': name}
+        if directory:
+            data['directory'] = directory
         response = self.client.post(
             f'{self.API_PREFIX}/projects/',
-            data=json.dumps({'name': name, 'directory': directory}),
+            data=json.dumps(data),
             content_type='application/json'
         )
         assert response.status_code == 201, f"Failed to create project: {response.content}"

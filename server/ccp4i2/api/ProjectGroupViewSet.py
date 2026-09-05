@@ -369,7 +369,6 @@ class ProjectGroupViewSet(ModelViewSet):
             project_serializer = serializers.ProjectSerializer(data={
                 "name": name,
                 "description": f"Parent project for {name} campaign",
-                "directory": "__default__",  # Serializer will generate proper path
             })
             project_serializer.is_valid(raise_exception=True)
             project = project_serializer.save()
