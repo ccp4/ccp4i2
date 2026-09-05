@@ -3197,6 +3197,25 @@ class CMDLMolDataFile(CDataFile):
         self.set_qualifier('mimeTypeName', 'chemical/x-mdl-molfile')
 
 
+class CSequenceWithCopies(CData):
+    """A sequence file and how many copies of it the asymmetric unit holds:
+    one component of a composition given as sequence files rather than as
+    an ASU file."""
+
+    seqFile = content("CSeqDataFile", guiLabel="Sequence file", mustExist=True,
+                      fromPreviousJob=True, allowUndefined=True)
+    nCopies = content(CInt, guiLabel="Copies", default=1, min=1)
+
+
+class CSequenceWithCopiesList(CList):
+    """The sequence files with copies that make up a composition."""
+
+    SUBITEM = {"class": CSequenceWithCopies, "qualifiers": {}}
+
+    class Meta:
+        qualifiers = {"listMinLength": 0}
+
+
 class CAsuContentSeq(CData):
 
 

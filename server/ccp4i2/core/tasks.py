@@ -1139,6 +1139,15 @@ TASKS = {
         defXmlPath="wrappers/phaser_phil/script/phaser_phil.def.xml",
         reportPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil_report:phaser_phil_report",
     ),
+    "phaser_mr_auto_phil": Task(
+        title="Molecular Replacement - Phaser (PHIL)",
+        shortTitle="Phaser MR (PHIL)",
+        description="Automated molecular replacement with Phaser, driven from its PHIL interface",
+        pluginPath="ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil:phaser_mr_auto_phil",
+        defXmlPath="wrappers/phaser_mr_auto_phil/script/phaser_mr_auto_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil_report:phaser_mr_auto_phil_report",
+        runningReport=True,
+    ),
     "phasertng_picard": Task(
         title="PhaserTNG Picard - Molecular Replacement",
         description="Automated molecular replacement using PhaserTNG Picard. "

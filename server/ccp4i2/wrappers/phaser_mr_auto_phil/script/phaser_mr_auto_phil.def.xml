@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  Inputs and outputs only: the parameters are Phaser's own PHIL, read at
+  run time and filtered to MR_AUTO by PhilPluginScript. What lives here is
+  what PHIL cannot express: CCP4i2's typed files, with their browsers,
+  validation and database provenance. The shims in phaser_mr_auto_phil.py
+  write them into the working phil.
+-->
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>phaser_mr_auto_phil</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="phaser_mr_auto_phil">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <guiLabel>Reflections</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredContentFlag>1,2,3,4</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="ENSEMBLES">
+        <className>CEnsembleList</className>
+        <qualifiers>
+          <guiLabel>Search models</guiLabel>
+          <listMinLength>1</listMinLength>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="COMP_BY">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Composition of the asymmetric unit</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,ASU,SEQUENCES,SOLVENT</enumerators>
+          <menuText>Average solvent content (50%),AsuContent file,Sequence files with copies,Solvent fraction</menuText>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="ASUFILE">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <guiLabel>AsuContent file</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="SEQUENCES">
+        <className>CSequenceWithCopiesList</className>
+        <qualifiers>
+          <guiLabel>Sequence files with copies</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="SOLVENT_FRACTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Solvent fraction</guiLabel>
+          <min>0.05</min>
+          <max>0.95</max>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="SOLOUT">
+        <className>CPhaserSolDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="HKLOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMtzDataFile</className>
+          <qualifiers>
+            <saveToDb>False</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="MAPOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+            <default>
+              <contentFlag>1</contentFlag>
+              <subType>1</subType>
+            </default>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="DIFMAPOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+            <default>
+              <contentFlag>1</contentFlag>
+              <subType>2</subType>
+            </default>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="PHASEOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPhsDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <contentFlag>
+              <default>2</default>
+            </contentFlag>
+          </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <!-- controlParameters is filled from Phaser's master PHIL at run time. -->
+    <container id="controlParameters">
+      <qualifiers/>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>
