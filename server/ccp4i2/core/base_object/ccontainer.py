@@ -840,7 +840,12 @@ class CContainer(CData):
         )
 
         # Set the value based on object type
-        if hasattr(target_obj, 'value'):
+        if value is None and hasattr(target_obj, 'value') and hasattr(target_obj, 'set'):
+            # A cleared field: return the primitive to unset so the wrapper
+            # applies its own default, rather than seeing 0 or "".
+            logger.debug("Clearing via .set(None)")
+            target_obj.set(None)
+        elif hasattr(target_obj, 'value'):
             # It's a fundamental type (CInt, CFloat, CString, CBoolean)
             logger.debug("Setting via .value attribute")
             target_obj.value = value
