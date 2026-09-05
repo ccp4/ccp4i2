@@ -249,6 +249,7 @@ const TASK_INTERFACES: Record<
   phaser_mr: PhaserMrInterface,
   phaser_phil: PhaserPhilInterface,
   phaser_mr_auto_phil: PhaserMrAutoPhilInterface,
+  phaser_mr_rnp_phil: PhaserMrAutoPhilInterface,
   phaser_ep_auto_phil: PhaserEpAutoPhilInterface,
   phaser_pipeline: PhaserPipelineInterface,
   phaser_rnp_pipeline: PhaserRNPPipeline,
