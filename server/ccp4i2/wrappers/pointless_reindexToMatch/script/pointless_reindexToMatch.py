@@ -84,6 +84,9 @@ class pointless_reindexToMatch(CPluginScript):
                 fileList += [(str(self.container.inputData.FREERFLAG.fullPath), self.freeRFlagLabelsString, self.freeRFlagLabelsString)]
             mergedFilename = os.path.join(self.workDirectory,'MergedToReindex.mtz')
             rv = self.joinMtz(mergedFilename, fileList)
+            if rv != CPluginScript.SUCCEEDED:
+                self.appendErrorReport(201, 'Pointless_reindexToMatch: could not join the reflection files to reindex: '
+                                       + ', '.join(str(f[0]) for f in fileList))
             return rv
         except Exception:
             import traceback
