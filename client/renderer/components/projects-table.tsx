@@ -50,6 +50,7 @@ import { usePopcorn } from "../providers/popcorn-provider";
 import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
 import { ProjectTagChips } from "./project-tag-chips";
+import { DeleteProjectFilesOption } from "./delete-project-files-option";
 import ProjectTagTreePane, { PROJECT_DRAG_TYPE } from "./project-tag-tree";
 import TagSelectionDialog from "./tag-selection-dialog";
 import { ViewMode, ViewModeToggle } from "./view-mode-toggle";
@@ -462,6 +463,10 @@ export default function ProjectsTable() {
   }
 
   function deleteProjects(projectsToDelete: Project[]) {
+    // The server leaves a deleted project's directory on disk unless told
+    // otherwise (the Qt-era default); the checkbox in the dialog is how the
+    // user tells it. The choice is read when Delete is pressed.
+    const deleteFiles = { current: false };
     if (deleteDialog)
       deleteDialog({
         type: "show",
@@ -469,10 +474,21 @@ export default function ProjectsTable() {
           projectsToDelete.length === 1
             ? projectsToDelete[0].name
             : `${projectsToDelete.length} projects`,
+        children: [
+          <DeleteProjectFilesOption
+            key="delete-files"
+            count={projectsToDelete.length}
+            onChange={(value) => {
+              deleteFiles.current = value;
+            }}
+          />,
+        ],
         onDelete: () => {
           const promises = projectsToDelete.map((project) => {
             selectedIds.delete(project.id);
-            return api.delete(`projects/${project.id}`);
+            return api.delete(
+              `projects/${project.id}?delete_files=${deleteFiles.current}`
+            );
           });
           Promise.all(promises).then(() => mutate());
         },
