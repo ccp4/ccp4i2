@@ -34,6 +34,9 @@ class phaser_mr_auto_phil(phaser_phil):
     #: The typed input carrying the solutions to start from, handed to Phaser
     #: through setSOLU (the translation function takes a rotation list instead)
     SOLUTION_INPUT = "SOLIN"
+    #: A step after another Phaser step shares its search models and
+    #: composition; the solutions come as a file, the models do not
+    INHERITS_FROM_CONTEXT = ("ENSEMBLES", "FIXENSEMBLES", "COMP_BY", "ASUFILE", "SEQUENCES", "ASU_PROTEIN_MW", "ASU_NUCLEICACID_MW", "SOLVENT_FRACTION")
     PHIL_MODE_PATH = "phaser.mode"
     WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild"]
 

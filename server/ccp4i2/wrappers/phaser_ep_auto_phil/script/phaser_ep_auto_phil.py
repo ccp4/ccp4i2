@@ -30,6 +30,7 @@ class phaser_ep_auto_phil(phaser_phil):
     #: The classic task chose a partial model or map under another name
     #: (and offered a map, which this task does not: MAP is left behind)
     LEGACY_INPUT_RENAMES = {"PARTIAL_BY": "PARTIALMODELORMAP"}
+    INHERITS_FROM_CONTEXT = ("COMP_BY", "ASUFILE", "SEQUENCES", "ASU_PROTEIN_MW", "ASU_NUCLEICACID_MW", "SOLVENT_FRACTION")
     PHIL_MODE_PATH = "phaser.mode"
     WHATNEXT = ["parrot", "modelcraft", "coot_rebuild"]
 

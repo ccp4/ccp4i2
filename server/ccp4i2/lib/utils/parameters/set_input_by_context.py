@@ -169,6 +169,44 @@ def _populate_file_lists_from_context(input_data, context_job_id: str, the_job):
             _set_file_from_db(new_item, file_uuid, the_job)
 
 
+def _is_set(obj):
+    """Set by someone, not merely carrying a default: a choice at its
+    default is still free to inherit."""
+    if isinstance(obj, CList):
+        return len(obj) > 0
+    if not hasattr(obj, "isSet"):
+        return obj is not None
+    try:
+        return bool(obj.isSet(allowUndefined=False, allowDefault=False))
+    except TypeError:
+        return bool(obj.isSet())
+
+
+def inherit_inputs_from_context(plugin, context_plugin):
+    """Copy the inputs the plugin's task declares in INHERITS_FROM_CONTEXT
+    from the context job's inputData, where they are set there and unset
+    here. Returns the names copied."""
+    from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
+    names = getattr(plugin, "INHERITS_FROM_CONTEXT", ()) or ()
+    if not names or context_plugin is None:
+        return []
+    source = getattr(context_plugin.container, "inputData", None)
+    target = plugin.container.inputData
+    copied = []
+    for name in names:
+        src = getattr(source, name, None) if source is not None else None
+        dst = getattr(target, name, None)
+        if src is None or dst is None or not _is_set(src) or _is_set(dst):
+            continue
+        try:
+            dst.set(src.get() if isinstance(src, (CInt, CFloat, CString, CBoolean)) else src)
+        except Exception as err:
+            logger.warning("Could not inherit %s from the context job: %s", name, err)
+            continue
+        copied.append(name)
+    return copied
+
+
 def set_input_by_context_job(
     job_id: Optional[str] = None,
     context_job_id: Optional[str] = None,
@@ -242,6 +280,17 @@ def set_input_by_context_job(
     # query for matching files from the context job, and populate them.
     if context_job_id is not None:
         _populate_file_lists_from_context(input_data, context_job_id, the_job)
+
+    # What the task declares it shares with the job before it, beyond files
+    if context_job_id is not None and getattr(the_job_plugin, "INHERITS_FROM_CONTEXT", ()):
+        try:
+            context_plugin = get_job_plugin(models.Job.objects.get(uuid=uuid.UUID(context_job_id)))
+        except Exception as err:
+            logger.warning("Context job %s could not be loaded to inherit from: %s", context_job_id, err)
+            context_plugin = None
+        copied = inherit_inputs_from_context(the_job_plugin, context_plugin)
+        if copied:
+            logger.info("Inherited %s from context job %s", copied, context_job_id)
 
     # Only save params if requested (caller may handle saving themselves)
     if save_params:
