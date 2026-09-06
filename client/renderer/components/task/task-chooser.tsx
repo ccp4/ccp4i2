@@ -167,6 +167,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "pdb_redo_api",
       "sheetbend",
       "zanuda",
+      "phaser_rnp_pipeline_phil",
       "phaser_rnp_pipeline",
     ],
   },

@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-  Inputs and outputs only: the parameters are Phaser's own PHIL, read at
-  run time and filtered to MR_RNP by PhilPluginScript. What lives here is
-  what PHIL cannot express: CCP4i2's typed files, with their browsers,
-  validation and database provenance. The shims in phaser_mr_rnp_phil.py
-  write them into the working phil.
+  A pipeline that hosts Phaser's PHIL: its parameters are the MR_RNP
+  task's, handed whole to the sub-job that runs Phaser. The typed inputs
+  are a parent model and the selections that cut it into rigid bodies (the
+  task's ensembles are built from them at run time), the composition, a
+  Free-R set, and whether to run sheetbend and refmac afterwards.
 -->
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <pluginName>phaser_mr_rnp_phil</pluginName>
+    <pluginName>phaser_rnp_pipeline_phil</pluginName>
   </ccp4i2_header>
-  <ccp4i2_body id="phaser_mr_rnp_phil">
+  <ccp4i2_body id="phaser_rnp_pipeline_phil">
     <container id="inputData">
       <content id="F_SIGF">
         <className>CObsDataFile</className>
@@ -23,22 +23,28 @@
           <requiredContentFlag>1,2,3,4</requiredContentFlag>
         </qualifiers>
       </content>
-      <content id="ENSEMBLES">
-        <className>CEnsembleList</className>
+      <content id="XYZIN_PARENT">
+        <className>CPdbDataFile</className>
         <qualifiers>
-          <guiLabel>Models of the placed components</guiLabel>
-          <listMinLength>1</listMinLength>
+          <guiLabel>Model to cut into rigid bodies</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
           <saveToDb>True</saveToDb>
         </qualifiers>
       </content>
-      <content id="FIXENSEMBLES">
+      <content id="SELECTIONS">
         <className>CList</className>
         <qualifiers>
-          <guiLabel>Search models already placed (at the origin of their coordinates)</guiLabel>
+          <guiLabel>Rigid bodies, one selection each (none: the whole model)</guiLabel>
           <listMinLength>0</listMinLength>
+          <listMaxLength>1024</listMaxLength>
         </qualifiers>
         <subItem>
-          <className>CString</className>
+          <className>CAtomSelection</className>
+          <qualifiers>
+            <pdbFileKey>XYZIN_PARENT</pdbFileKey>
+          </qualifiers>
         </subItem>
       </content>
       <content id="COMP_BY">
@@ -81,15 +87,6 @@
           <min>0</min>
         </qualifiers>
       </content>
-      <content id="SOLIN">
-        <className>CPhaserSolDataFile</className>
-        <qualifiers>
-          <guiLabel>Solutions to refine (or place the search models at their origin above)</guiLabel>
-          <mustExist>True</mustExist>
-          <fromPreviousJob>True</fromPreviousJob>
-          <allowUndefined>True</allowUndefined>
-        </qualifiers>
-      </content>
       <content id="SOLVENT_FRACTION">
         <className>CFloat</className>
         <qualifiers>
@@ -97,6 +94,29 @@
           <min>0.05</min>
           <max>0.95</max>
           <default>0.5</default>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="RUNSHEETBEND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>Run shift-field refinement (sheetbend) on the solution</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RUNREFMAC">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>Run refmac on the solution</guiLabel>
         </qualifiers>
       </content>
     </container>
@@ -166,8 +186,46 @@
           </qualifiers>
         </subItem>
       </content>
+      <content id="F_SIGF_OUT">
+        <className>CObsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FREERFLAG_OUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XYZOUT_SHEETBEND">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XYZOUT_REFMAC">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="DIFMAPOUT_REFMAC">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <contentFlag>1</contentFlag>
+            <subType>2</subType>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="MAPOUT_REFMAC">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <contentFlag>1</contentFlag>
+            <subType>1</subType>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCEINDICATOR">
+        <className>CRefinementPerformance</className>
+      </content>
     </container>
-    <!-- controlParameters is filled from Phaser's master PHIL at run time. -->
     <container id="controlParameters">
       <qualifiers/>
     </container>
