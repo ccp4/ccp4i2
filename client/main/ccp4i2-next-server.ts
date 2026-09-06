@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { Server } from "node:http";
 import fs from "node:fs";
+import { applyBuildTimeNextConfig } from "./ccp4i2-next-config";
 
 // Use createRequire for CJS modules to avoid ESM/CJS interop issues in Electron
 const require = createRequire(import.meta.url);
@@ -88,9 +89,21 @@ export const startNextServer = async (
   nextServerPort: number,
   djangoServerPort: number
 ): Promise<Server> => {
+  const rendererDir = path.join(__dirname, "../renderer"); // the Next app root
+
+  // Packaged builds have no next.config.ts on disk; give Next the config it
+  // was built with, or uploads over 10 MB are truncated (see the module).
+  if (!isDev) {
+    if (!applyBuildTimeNextConfig(rendererDir)) {
+      console.warn(
+        "[CCP4I2] No .next/required-server-files.json found; Next.js runs on default settings"
+      );
+    }
+  }
+
   const nextApp = next({
     dev: isDev,
-    dir: path.join(__dirname, "../renderer"), // this is your Next app root
+    dir: rendererDir,
   });
 
   const handle = nextApp.getRequestHandler();
