@@ -76,9 +76,10 @@ export const ImportProjectContent: React.FC = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        minHeight: "calc(100vh - 5rem)",
-        margin: 0,
+        // The page supplies a scrolling flex content area beneath the top
+        // bar; auto margins centre this card in it and shrink to nothing
+        // when the card is taller than the area, so nothing is clipped.
+        margin: "auto",
         paddingY: 4,
       }}
     >

@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useRouter } from "next/navigation";
-import { NavigationShortcutsProvider } from "@/providers/navigation-shortcuts-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   MoorhenBreadcrumbProvider,
@@ -68,12 +67,10 @@ function MoorhenAppBar() {
 export default function MoorhenPageLayout(props: PropsWithChildren) {
   return (
     <CootProvider>
-      <NavigationShortcutsProvider>
-        <MoorhenBreadcrumbProvider>
-          <MoorhenAppBar />
-          {props.children}
-        </MoorhenBreadcrumbProvider>
-      </NavigationShortcutsProvider>
+      <MoorhenBreadcrumbProvider>
+        <MoorhenAppBar />
+        {props.children}
+      </MoorhenBreadcrumbProvider>
     </CootProvider>
   );
 }
