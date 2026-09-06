@@ -308,6 +308,12 @@ class CPluginScript(CData):
     LOG_FAILURES = ()
 
     ASYNCHRONOUS = False  # Set to True for async execution
+    #: Input names to take from the context job's own inputs when a job of
+    #: this task is created from it (or given it as context later): what a
+    #: follow-on step shares with the step before it and cannot get from a
+    #: file -- a Phaser search's ensembles and composition, say. Only what
+    #: is set there and unset here is copied; the user's entries stand.
+    INHERITS_FROM_CONTEXT = ()
 
     # Status codes
     SUCCEEDED = 0
