@@ -1,9 +1,20 @@
-import { BrowserWindow } from "electron";
+import { app, BrowserWindow } from "electron";
 import path from "path";
 import { fileURLToPath } from "node:url";
 import ElectronStore from "electron-store";
 import { StoreSchema } from "../types/store";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// On Linux a window carries its own icon: the dock, the switcher and the title
+// bar take it from the window, not from the package. Without one the AppImage
+// (which installs no .desktop file) showed the stock Electron icon. macOS and
+// Windows take the icon from the app bundle and ignore this option.
+const windowIcon = (): string | undefined => {
+  if (process.platform !== "linux") return undefined;
+  return app.isPackaged
+    ? path.join(process.resourcesPath, "ccp4i2.png") // build.extraResources
+    : path.join(__dirname, "../assets/ccp4i2.png");
+};
 
 export const createWindow = async (
   url: string,
@@ -12,6 +23,7 @@ export const createWindow = async (
   const newWindow = new BrowserWindow({
     width: 1000,
     height: 700,
+    icon: windowIcon(),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
