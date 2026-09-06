@@ -188,6 +188,80 @@ class TestExtractParameters:
 
 
 # ---------------------------------------------------------------------------
+# Expert level is a display choice, not a filter
+# ---------------------------------------------------------------------------
+
+EXPERT_PHIL = parse("""
+    refinement {
+      resolution = 2.0
+        .type = float
+      fudge = 1.0
+        .type = float
+        .expert_level = 3
+    }
+    deep
+      .expert_level = 3
+    {
+      weight = 0.5
+        .type = float
+    }
+""")
+
+
+class MockExpertPlugin(PhilPluginScript):
+    TASKNAME = "mock_expert"
+
+    def get_master_phil(self):
+        return EXPERT_PHIL
+
+    def get_phil_exclude_scopes(self):
+        return []
+
+    def get_command_target(self):
+        return "mock"
+
+
+class TestExpertLevelKeepsValues:
+    """A value set while viewing a deeper expert level survives when the
+    user returns to Basic. The level chooses what the client shows; the
+    server writes every set value."""
+
+    def _set_deep_values(self, plugin):
+        cp = plugin.container.controlParameters
+        cp.PHIL_EXPERT_LEVEL.set(10)
+        cp.refinement.refinement__fudge.set(2.5)
+        cp.deep.deep__weight.set(0.9)
+        cp.PHIL_EXPERT_LEVEL.set(0)
+        return cp
+
+    def test_leaf_above_level_is_still_extracted(self):
+        plugin = MockExpertPlugin()
+        self._set_deep_values(plugin)
+        paths = dict(plugin.extract_phil_parameters())
+        assert "refinement.fudge" in paths
+        assert "2.5" in paths["refinement.fudge"]
+
+    def test_scope_above_level_is_still_extracted(self):
+        plugin = MockExpertPlugin()
+        self._set_deep_values(plugin)
+        paths = dict(plugin.extract_phil_parameters())
+        assert "deep.weight" in paths
+
+    def test_working_phil_carries_them(self):
+        plugin = MockExpertPlugin()
+        self._set_deep_values(plugin)
+        working = plugin.get_master_phil().fetch(
+            sources=[parse("\n".join(plugin.extract_phil_lines()))]).extract()
+        assert working.refinement.fudge == 2.5
+        assert working.deep.weight == 0.9
+
+    def test_expert_level_itself_is_not_a_phil_parameter(self):
+        plugin = MockExpertPlugin()
+        plugin.container.controlParameters.PHIL_EXPERT_LEVEL.set(10)
+        assert plugin.extract_phil_parameters() == []
+
+
+# ---------------------------------------------------------------------------
 # build_working_phil
 # ---------------------------------------------------------------------------
 

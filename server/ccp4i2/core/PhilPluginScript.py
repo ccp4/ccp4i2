@@ -376,28 +376,17 @@ class PhilPluginScript(CPluginScript):
             list of (phil_dotted_path, value_string) tuples
         """
         return [(path, value) for kind, path, value
-                in self._collect_phil_entries(self.container.controlParameters,
-                                              self._phil_max_level(), "")
+                in self._collect_phil_entries(self.container.controlParameters, "")
                 if kind == "leaf"]
 
     def extract_phil_lines(self):
         """The user-set parameters rendered as PHIL text lines: `path = value`
         for scalars, one line per item for a repeated definition, and one
         `path { ... }` block per item of a repeated scope."""
-        entries = self._collect_phil_entries(self.container.controlParameters,
-                                             self._phil_max_level(), "")
+        entries = self._collect_phil_entries(self.container.controlParameters, "")
         return self._render_phil_entries(entries)
 
-    def _phil_max_level(self):
-        try:
-            max_level = self.container.controlParameters.PHIL_EXPERT_LEVEL.get()
-            if max_level is None:
-                max_level = 0
-        except (AttributeError, Exception):
-            max_level = 0
-        return max_level
-
-    def _collect_phil_entries(self, container, max_level, prefix):
+    def _collect_phil_entries(self, container, prefix):
         """Walk `container` collecting ("leaf", path, value) and
         ("block", path, [entries]) in dataOrder.
 
@@ -407,6 +396,12 @@ class PhilPluginScript(CPluginScript):
         a repeated-scope instance identical to the master's template as the
         template, not an instance, so writing an item's defaults out could
         not make it count anyway.
+
+        PHIL_EXPERT_LEVEL plays no part here. It is a display choice -- the
+        client hides parameters above it -- and a value the user set while
+        looking at a deeper level is still theirs after they come back up.
+        Filtering on it could only ever drop explicitly set values, since
+        defaults are not written anyway.
         """
         entries = []
         for name in container.dataOrder():
@@ -414,10 +409,6 @@ class PhilPluginScript(CPluginScript):
             if name == "PHIL_EXPERT_LEVEL":
                 continue
             obj = getattr(container, name)
-            level = (obj.get_qualifier("expertLevel")
-                     if hasattr(obj, "get_qualifier") else None)
-            if level is not None and level > max_level:
-                continue
             full_path, path = self._phil_path_of(obj, name, prefix)
 
             if isinstance(obj, CList):
@@ -427,7 +418,7 @@ class PhilPluginScript(CPluginScript):
                         # to strip is the absolute scope path however deep
                         # this block is nested
                         inner = self._collect_phil_entries(
-                            item, max_level, full_path + ".")
+                            item, full_path + ".")
                         entries.append(("block", path, inner))
                     elif not hasattr(item, "isSet"):
                         # CList.append() keeps a plain str/int as it is
@@ -437,8 +428,7 @@ class PhilPluginScript(CPluginScript):
                         # item is still an item
                         entries.append(("leaf", path, self._phil_value(item)))
             elif isinstance(obj, CContainer):
-                entries.extend(self._collect_phil_entries(
-                    obj, max_level, prefix))
+                entries.extend(self._collect_phil_entries(obj, prefix))
             elif obj.isSet(allowUndefined=False, allowDefault=False):
                 entries.append(("leaf", path, self._phil_value(obj)))
         return entries
