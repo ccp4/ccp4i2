@@ -72,15 +72,12 @@ export const ProjectTagChips = React.memo(
         }}
       >
         {visibleTags.map((tag) => (
-          // The chip shows the leaf name to stay compact; the tooltip carries
-          // the ancestry, without which two nested tags called "soaks" would
-          // be indistinguishable here.
-          <Tooltip
-            key={tag.id}
-            title={tag.display_path && tag.display_path !== tag.text ? tag.display_path : ""}
-          >
+          // The chip shows the full path, not just the leaf: it is the same
+          // string the tree's filter label and the tag pickers use, and it is
+          // what tells two nested tags called "soaks" apart.
           <Chip
-            label={tag.text}
+            key={tag.id}
+            label={tag.display_path ?? tag.text}
             size={size}
             variant="outlined"
             sx={{
@@ -96,7 +93,6 @@ export const ProjectTagChips = React.memo(
               },
             }}
           />
-          </Tooltip>
         ))}
         {hiddenCount > 0 && (
           <Tooltip

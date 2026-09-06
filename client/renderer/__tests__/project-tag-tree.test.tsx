@@ -20,6 +20,13 @@ const patch = vi.fn(() => Promise.resolve({}));
 const del = vi.fn(() => Promise.resolve());
 const mutate = vi.fn(() => Promise.resolve());
 
+const SEP = "\u001f";
+
+// A root with one nested child, plus a second root to move things onto:
+//
+//   Nutlin site
+//     soaks
+//   Mpro
 const TREE = {
   tags: [
     {
@@ -31,11 +38,66 @@ const TREE = {
       depth: 0,
       project_count: 2,
       total_project_count: 2,
+      children: [
+        {
+          id: 2,
+          text: "soaks",
+          parent: 1,
+          path: `Nutlin site${SEP}soaks`,
+          display_path: "Nutlin site/soaks",
+          depth: 1,
+          project_count: 0,
+          total_project_count: 0,
+          children: [],
+        },
+      ],
+    },
+    {
+      id: 3,
+      text: "Mpro",
+      parent: null,
+      path: "Mpro",
+      display_path: "Mpro",
+      depth: 0,
+      project_count: 0,
+      total_project_count: 0,
       children: [],
     },
   ],
   untagged_project_count: 3,
 };
+
+const TAG_TYPE = "application/x-ccp4i2-tag";
+
+/**
+ * A stand-in for the browser's DataTransfer: `types` is what dragover can
+ * read, and setData/getData carry the payload between dragstart and drop.
+ */
+function fakeDataTransfer(types: string[] = []) {
+  const store: Record<string, string> = {};
+  return {
+    types,
+    effectAllowed: "uninitialized",
+    dropEffect: "none",
+    setData: (type: string, value: string) => {
+      store[type] = value;
+      if (!types.includes(type)) types.push(type);
+    },
+    getData: (type: string) => store[type] ?? "",
+  };
+}
+
+/** Drag the row labelled `from` and drop it on the row labelled `onto`. */
+function dragTag(from: string, onto: string) {
+  const dataTransfer = fakeDataTransfer();
+  const source = screen.getByText(from);
+  fireEvent.dragStart(source, { dataTransfer });
+  const target = screen.getByText(onto);
+  fireEvent.dragOver(target, { dataTransfer });
+  fireEvent.drop(target, { dataTransfer });
+  fireEvent.dragEnd(source, { dataTransfer });
+  return dataTransfer;
+}
 
 vi.mock("../api", () => ({
   useApi: () => ({
@@ -46,8 +108,9 @@ vi.mock("../api", () => ({
   }),
 }));
 
+const setMessage = vi.fn();
 vi.mock("../providers/popcorn-provider", () => ({
-  usePopcorn: () => ({ setMessage: vi.fn() }),
+  usePopcorn: () => ({ setMessage }),
 }));
 
 vi.mock("../providers/delete-dialog", () => ({
@@ -70,6 +133,8 @@ describe("ProjectTagTreePane editing", () => {
   beforeEach(() => {
     post.mockClear();
     patch.mockClear();
+    mutate.mockClear();
+    setMessage.mockClear();
   });
 
   it("renders the forest with rolled-up counts", () => {
@@ -153,6 +218,85 @@ describe("ProjectTagTreePane editing", () => {
     fireEvent.drop(node, { dataTransfer });
 
     expect(onDropProjects).not.toHaveBeenCalled();
+  });
+
+  it("re-parents a tag dropped onto another tag", async () => {
+    renderPane();
+
+    const dataTransfer = dragTag("Nutlin site", "Mpro");
+
+    expect(dataTransfer.types).toContain(TAG_TYPE);
+    expect(JSON.parse(dataTransfer.getData(TAG_TYPE))).toEqual({
+      id: 1,
+      label: "Nutlin site",
+    });
+    await waitFor(() =>
+      expect(patch).toHaveBeenCalledWith("projecttags/1/", { parent: 3 })
+    );
+    expect(mutate).toHaveBeenCalled();
+  });
+
+  it("makes a nested tag a root when it is dropped on All projects", async () => {
+    renderPane();
+
+    dragTag("soaks", "All projects");
+
+    await waitFor(() =>
+      expect(patch).toHaveBeenCalledWith("projecttags/2/", { parent: null })
+    );
+  });
+
+  it("does nothing when a root tag is dropped on All projects (it already is one)", async () => {
+    renderPane();
+    dragTag("Nutlin site", "All projects");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(patch).not.toHaveBeenCalled();
+  });
+
+  it("refuses to drop a tag on its own descendant", async () => {
+    renderPane();
+    dragTag("Nutlin site", "soaks");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(patch).not.toHaveBeenCalled();
+  });
+
+  it("refuses to drop a tag on itself", async () => {
+    renderPane();
+    dragTag("Mpro", "Mpro");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(patch).not.toHaveBeenCalled();
+  });
+
+  it("cleans up the drag ghost when the drag ends", () => {
+    renderPane();
+    const dataTransfer = { ...fakeDataTransfer(), setDragImage: vi.fn() };
+    const source = screen.getByText("Mpro");
+
+    fireEvent.dragStart(source, { dataTransfer });
+    expect(dataTransfer.setDragImage).toHaveBeenCalledTimes(1);
+    const ghost = dataTransfer.setDragImage.mock.calls[0][0] as HTMLElement;
+    // The ghost is just the tag's name, not a snapshot of the list.
+    expect(ghost.textContent).toBe("Mpro");
+    expect(document.body.contains(ghost)).toBe(true);
+
+    fireEvent.dragEnd(source, { dataTransfer });
+    expect(document.body.contains(ghost)).toBe(false);
+  });
+
+  it("reports the server's reason when a move is rejected", async () => {
+    patch.mockImplementationOnce(() =>
+      Promise.reject(new Error("A tag with this text and parent already exists."))
+    );
+    renderPane();
+
+    dragTag("soaks", "Mpro");
+
+    await waitFor(() =>
+      expect(setMessage).toHaveBeenCalledWith(
+        "Could not move that tag: A tag with this text and parent already exists.",
+        "error"
+      )
+    );
   });
 
   it("opens a rename field from the context menu, prefilled and surviving the close", async () => {

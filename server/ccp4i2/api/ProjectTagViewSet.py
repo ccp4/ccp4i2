@@ -1,6 +1,7 @@
 import logging
 
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -18,6 +19,24 @@ class ProjectTagViewSet(ModelViewSet):
     serializer_class = serializers.ProjectTagSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
     permission_classes = [IsAuthenticated]
+
+    def handle_exception(self, exc):
+        """Give a serializer rejection a single ``error`` string as well.
+
+        DRF reports a ``ValidationError`` per field — ``{"parent": ["..."]}`` —
+        and the renderer's fetch wrapper only surfaces a body's ``error`` key,
+        so "a tag cannot be moved beneath itself" reached the user as
+        "HTTP 400: Bad Request". The per-field shape is kept for anything that
+        wants to attribute the message to a field.
+        """
+        response = super().handle_exception(exc)
+        if isinstance(exc, ValidationError) and isinstance(response.data, dict):
+            messages = []
+            for value in response.data.values():
+                for message in value if isinstance(value, list) else [value]:
+                    messages.append(str(message))
+            response.data.setdefault("error", " ".join(messages))
+        return response
 
     @action(detail=False, methods=["get"])
     def tree(self, request):
