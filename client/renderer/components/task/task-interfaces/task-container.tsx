@@ -101,6 +101,7 @@ import PhaserMrAutoPhilInterface from "./phaser_mr_auto_phil";
 import PhaserEpAutoPhilInterface from "./phaser_ep_auto_phil";
 import PhaserPipelinePhilInterface from "./phaser_pipeline_phil";
 import PhaserSimplePhilInterface from "./phaser_simple_phil";
+import PhaserRnpPipelinePhilInterface from "./phaser_rnp_pipeline_phil";
 import PhaserEpPhilInterface from "./phaser_ep_phil";
 import PhaserPipelineInterface from "./phaser_pipeline";
 import PhaserRNPPipeline from "./phaser_rnp_pipeline";
@@ -255,6 +256,7 @@ const TASK_INTERFACES: Record<
   phaser_mr_rnp_phil: PhaserMrAutoPhilInterface,
   phaser_pipeline_phil: PhaserPipelinePhilInterface,
   phaser_simple_phil: PhaserSimplePhilInterface,
+  phaser_rnp_pipeline_phil: PhaserRnpPipelinePhilInterface,
   phaser_ep_phil: PhaserEpPhilInterface,
   phaser_ep_auto_phil: PhaserEpAutoPhilInterface,
   phaser_pipeline: PhaserPipelineInterface,

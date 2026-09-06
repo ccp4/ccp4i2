@@ -1175,6 +1175,15 @@ TASKS = {
         reportPath="ccp4i2.pipelines.phaser_ep_phil.script.phaser_ep_phil_report:phaser_ep_phil_report",
         runningReport=True,
     ),
+    "phaser_rnp_pipeline_phil": Task(
+        title="Rigid-body refinement - Phaser (PHIL)",
+        shortTitle="Rigid body Phaser (PHIL)",
+        description="Cut a model into rigid bodies and refine them with Phaser over its PHIL, then optional sheetbend and refmac",
+        pluginPath="ccp4i2.pipelines.phaser_rnp_pipeline_phil.script.phaser_rnp_pipeline_phil:phaser_rnp_pipeline_phil",
+        defXmlPath="pipelines/phaser_rnp_pipeline_phil/script/phaser_rnp_pipeline_phil.def.xml",
+        reportPath="ccp4i2.pipelines.phaser_rnp_pipeline_phil.script.phaser_rnp_pipeline_phil_report:phaser_rnp_pipeline_phil_report",
+        runningReport=True,
+    ),
     "phaser_mr_rnp_phil": Task(
         title="Rigid-body refinement of MR solutions - Phaser (PHIL)",
         shortTitle="Phaser RNP (PHIL)",
