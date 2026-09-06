@@ -364,6 +364,28 @@ def _num(text):
         return text
 
 
+def rotations_xml(result, parent):
+    """The rotation list from a rotation-function Result, as
+    <Rotations><Rotation/>: one per peak, with its ensemble, Euler angles,
+    RF and RFZ."""
+    rotations = etree.SubElement(parent, "Rotations")
+    number = 0
+    for rlist in result.getDotRlist():
+        for peak in rlist.RLIST:
+            number += 1
+            node = etree.SubElement(rotations, "Rotation")
+            etree.SubElement(node, "Number").text = str(number)
+            etree.SubElement(node, "Name").text = str(peak.MODLID)
+            euler = getattr(peak, "EULER", None)
+            if euler is not None:
+                etree.SubElement(node, "Euler").text = " ".join(f"{float(x):.3f}" for x in euler)
+            for field in ("RF", "RFZ"):
+                value = getattr(peak, field, None)
+                if value is not None:
+                    etree.SubElement(node, field).text = f"{float(value):.2f}"
+    return rotations
+
+
 def solutions_xml(result, parent):
     """The solutions from the mr_solution object, as <Solutions><Solution/>.
 

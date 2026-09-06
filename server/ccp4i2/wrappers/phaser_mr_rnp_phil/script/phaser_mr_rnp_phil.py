@@ -15,6 +15,8 @@ class phaser_mr_rnp_phil(phaser_mr_auto_phil):
     TASKNAME = "phaser_mr_rnp_phil"
     PHIL_MODE = "MR_RNP"
     SEARCHES_ENSEMBLES = False   # refines what SOLIN places
+    ERROR_CODES = {**phaser_mr_auto_phil.ERROR_CODES,
+                   116: {"description": "Nothing to refine or test"}}
 
     def validity(self):
         error = super().validity()

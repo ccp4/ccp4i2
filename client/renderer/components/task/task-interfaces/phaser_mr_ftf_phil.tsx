@@ -12,8 +12,8 @@ import {
 import { useJob } from "../../../utils";
 
 /**
- * Phaser MR_AUTO (and, registered under the same interface, MR_RNP, MR_FRF
- * and MR_PAK) over its own PHIL. The typed inputs are laid out by hand;
+ * Phaser MR_FTF over its own PHIL: the MR_AUTO layout with a rotation list
+ * in place of a set of solutions. The typed inputs are laid out by hand;
  * the composition source shows only the input it needs; the parameters are
  * rendered from the container tree, filtered by expert level.
  */
@@ -44,7 +44,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             containerHint="FolderLevel"
           >
             <CCP4i2TaskElement itemName="ENSEMBLES" {...props} />
-            <CCP4i2TaskElement itemName="SOLIN" {...props} />
+            <CCP4i2TaskElement itemName="RFILEIN" {...props} />
           </CCP4i2ContainerElement>
 
           <CCP4i2ContainerElement
