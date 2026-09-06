@@ -281,6 +281,50 @@ for attr in self.container.controlParameters.dataOrder():
                 getattr(self.container.controlParameters, attr))
 ```
 
+### 4.2 Pipelines over a PHIL-hosted task
+
+The name-copy loop above is what a pipeline needs when its parameters are a
+def.xml copy of its sub-job's. A pipeline whose sub-job is a `PhilPluginScript`
+task does not copy names at all: it **hosts the same PHIL**, and hands the tree
+down. The pipeline is itself a `PhilPluginScript`:
+
+```python
+class phaser_pipeline_phil(PhilPluginScript):
+    PHIL_PARAMS_FILE = phaser_mr_auto_phil.PHIL_PARAMS_FILE   # the same master
+    PHIL_MODE = phaser_mr_auto_phil.PHIL_MODE                 # the same mode
+    PHIL_MODE_PATH = phaser_mr_auto_phil.PHIL_MODE_PATH
+
+    def get_phil_exclude_scopes(self):
+        # the same tree: the task's exclusions plus what its shims write
+        return list(phaser_mr_auto_phil.PHIL_EXCLUDE_SCOPES) + phaser_mr_auto_phil.phil_shim_targets()
+
+    def process(self):
+        sub = self.makePluginObject("phaser_mr_auto_phil")
+        self._copy_inputs(sub)              # typed inputs, by name
+        self.hand_phil_to(sub)              # every set PHIL value, and the expert level
+        sub.set_phil("phaser.keywords.hand", str(self.container.inputData.HAND))  # what the pipeline decides
+        sub.xml_responders.append(self.phaserXMLUpdated)   # its live record, embedded in ours
+        rv = sub.process()
+```
+
+Two containers converted from the same master by the same mode have the same
+shape, so `hand_phil_to()` (`PhilPluginScript.copy_phil_tree`) walks them in
+parallel: scalars that are set, lists item by item, defaults left alone. The
+pipeline keeps **no keyword snapshot of its own**; what the user sees is what
+the sub-job runs with, and the tree tracks the installed tool. The pipeline's
+own inputs (a Free-R set, switches for the steps afterwards) stay in its
+def.xml; `compose_master_phil()` exists for the case where they should live
+inside the PHIL tree instead.
+
+Worked examples: `pipelines/phaser_pipeline_phil`, `phaser_simple_phil`,
+`phaser_ep_phil`; the machinery is described in
+[PHIL_TASK_GUIDE.md](../server/ccp4i2/wrappers/PHIL_TASK_GUIDE.md) under
+"A pipeline that hosts the tool's PHIL". Two traps met while writing them:
+the base constructor asks a task for its shims before the subclass
+`__init__` runs (make a shim that needs the plugin lazily), and
+`self.parrot = {}` on a plugin is coerced to a `CData` -- plain state needs
+an underscore name.
+
 ## 5. Error Handling
 
 ### 5.1 Dual Error Reporting
@@ -630,6 +674,12 @@ def handleJsonChanged(self, jsonFilePath):
 The handler runs in a daemon thread, so it must be thread-safe. The `xmlroot.clear()`
 + full rebuild pattern is safe because each JSON snapshot is cumulative (contains all
 cycles completed so far).
+
+> **A sub-plugin that records its own run needs no file watching.** The
+> Phaser PHIL tasks write `program.xml` from a recorder as Phaser reports,
+> and expose `xml_responders`: a pipeline appends a callable and is given the
+> XML root on every write (see §4.2). The polling thread below is for
+> sub-plugins that only write their XML at the end.
 
 ### 10.4 Pipeline: Monitoring Sub-Plugin XML
 

@@ -443,7 +443,9 @@ def run_mode(master_phil, working_phil_path, mode, work_directory, recorder, log
             output.setPhenixCallback(recorder)
             run = getattr(phaser, f"run{mode}")
             result = run(interpreter.input, output)
-    except Sorry as err:
+    except (Sorry, RuntimeError) as err:
+        # Sorry from the driver; RuntimeError from Phaser's own input setters
+        # ("INPUT: No model for ensemble ...") -- both are Phaser's sentence
         recorder.finish()
         raise PhaserInputError(str(err).strip()) from None
     recorder.finish()

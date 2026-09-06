@@ -51,6 +51,7 @@ class phaser_mr_auto_phil(phaser_phil):
         203: {"description": "Failed to prepare a search model"},
         204: {"description": "Failed to prepare the reflection data"},
         115: {"description": "An ensemble holds more than one model"},
+        117: {"description": "The solutions do not match the search models"},
     }
 
     def __init__(self, *args, **kwargs):
@@ -126,6 +127,38 @@ class phaser_mr_auto_phil(phaser_phil):
             error.append(klass=self.TASKNAME, code=113,
                          details="Composition by sequence files: add at least one.",
                          name=f"{name}.SEQUENCES", severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        return error
+
+    def runTimeValidity(self):
+        error = super().runTimeValidity()
+        if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+            return error
+        inp = self.container.inputData
+        if inp.SOLIN.isSet():
+            # Phaser refuses solutions naming an ensemble it was not given
+            # ("No model for ensemble Ensemble_0"); a classic Phaser job names
+            # its ensembles Ensemble_0, Ensemble_1... Say so first.
+            try:
+                import pickle
+                with open(str(inp.SOLIN.getFullPath()), "rb") as handle:
+                    solutions = pickle.load(handle)
+                named = {str(k.MODLID) for s in solutions for k in s.KNOWN}
+            except Exception as err:
+                error.append(klass=self.TASKNAME, code=117,
+                             details=f"The solutions file could not be read: {err}",
+                             name=f"{self.TASKNAME}.container.inputData.SOLIN",
+                             severity=CCP4ErrorHandling.SEVERITY_ERROR)
+                return error
+            labels = {str(e.label) for e in inp.ENSEMBLES if e.label.isSet()}
+            missing = sorted(named - labels)
+            if missing:
+                error.append(klass=self.TASKNAME, code=117,
+                             details=(f"The solutions name ensemble(s) {', '.join(missing)}, which are "
+                                      f"not among this job's search models ({', '.join(sorted(labels)) or 'none'}). "
+                                      "Label the search models to match the job the solutions came from, "
+                                      "or leave the solutions out."),
+                             name=f"{self.TASKNAME}.container.inputData.SOLIN",
+                             severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
 
     # -- shims ----------------------------------------------------------------
