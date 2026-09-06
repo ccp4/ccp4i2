@@ -25,7 +25,7 @@
  * not a floor.
  */
 export const CCP4I2_REQUIRED_SERVER_VERSION =
-  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a45";
+  process.env.CCP4I2_SERVER_VERSION_FLOOR || "3.1.0a46";
 
 /**
  * The oldest Python the backend runs on. Django 5.2 needs 3.10; CI tests 3.11
