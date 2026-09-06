@@ -32,14 +32,24 @@ class SubstituteLigand_report(Report):
     
         pmaNodes = self.xmlnode.findall('.//PhaserMrResults')
         if len(pmaNodes) > 0:
-            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import (
-                phaser_MR_AUTO_report,
-            )
             pmaNode = pmaNodes[0]
-            phaser_MRAReport = phaser_MR_AUTO_report(xmlnode=pmaNode, jobStatus='nooutput')
-            if len(self.xmlnode.findall('.//PhaserMrSolutions/Solutions')) > 0:
-                compareSolutionsFold = parent.addFold(label='Phaser results',initiallyOpen=True)
-                phaser_MRAReport.addResults(parent=compareSolutionsFold)
+            if pmaNode.find('Verdict') is not None or pmaNode.find('Modules') is not None:
+                # The record of phaser_rnp_pipeline_phil's Phaser task
+                from ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil_report import (
+                    phaser_mr_auto_phil_report,
+                )
+                phaserFold = parent.addFold(label='Phaser results', initiallyOpen=True)
+                phaser_mr_auto_phil_report(xmlnode=pmaNode, jobStatus='nooutput').drawContent(
+                    jobStatus=self.jobStatus, parent=phaserFold)
+            else:
+                # The classic wrapper's, in jobs run before the PHIL pipeline
+                from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import (
+                    phaser_MR_AUTO_report,
+                )
+                phaser_MRAReport = phaser_MR_AUTO_report(xmlnode=pmaNode, jobStatus='nooutput')
+                if len(self.xmlnode.findall('.//PhaserMrSolutions/Solutions')) > 0:
+                    compareSolutionsFold = parent.addFold(label='Phaser results',initiallyOpen=True)
+                    phaser_MRAReport.addResults(parent=compareSolutionsFold)
 
         # Report here if Dimple's pointless run identified need for a reindexing
         reindexNodes = self.xmlnode.findall(".//REINDEX")
