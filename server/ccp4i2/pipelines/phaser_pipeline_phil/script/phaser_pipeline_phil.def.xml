@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-  Inputs and outputs only: the parameters are Phaser's own PHIL, read at
-  run time and filtered to MR_AUTO by PhilPluginScript. What lives here is
-  what PHIL cannot express: CCP4i2's typed files, with their browsers,
-  validation and database provenance. The shims in phaser_mr_auto_phil.py
-  write them into the working phil.
+  A pipeline that hosts Phaser's PHIL: its parameters are the MR_AUTO
+  task's, handed whole to the sub-job that runs Phaser. The typed inputs
+  are the task's plus the pipeline's own (a Free-R set, a reference
+  structure, and whether to run sheetbend and refmac afterwards).
 -->
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <pluginName>phaser_mr_auto_phil</pluginName>
+    <pluginName>phaser_pipeline_phil</pluginName>
   </ccp4i2_header>
-  <ccp4i2_body id="phaser_mr_auto_phil">
+  <ccp4i2_body id="phaser_pipeline_phil">
     <container id="inputData">
       <content id="F_SIGF">
         <className>CObsDataFile</className>
@@ -99,6 +98,39 @@
           <default>0.5</default>
         </qualifiers>
       </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_TARGET">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Reference structure to match the solution to</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <ifAtomSelection>False</ifAtomSelection>
+        </qualifiers>
+      </content>
+      <content id="RUNSHEETBEND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>Run shift-field refinement (sheetbend) on the solution</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RUNREFMAC">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>Run refmac on the solution</guiLabel>
+        </qualifiers>
+      </content>
     </container>
     <container id="outputData">
       <content id="dataReindexed">
@@ -166,8 +198,50 @@
           </qualifiers>
         </subItem>
       </content>
+      <content id="F_SIGF_OUT">
+        <className>CObsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FREERFLAG_OUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XYZOUT_CSYMMATCH">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XYZOUT_SHEETBEND">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XYZOUT_REFMAC">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="DIFMAPOUT_REFMAC">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <contentFlag>1</contentFlag>
+            <subType>2</subType>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="MAPOUT_REFMAC">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <contentFlag>1</contentFlag>
+            <subType>1</subType>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCEINDICATOR">
+        <className>CRefinementPerformance</className>
+      </content>
     </container>
-    <!-- controlParameters is filled from Phaser's master PHIL at run time. -->
     <container id="controlParameters">
       <qualifiers/>
     </container>

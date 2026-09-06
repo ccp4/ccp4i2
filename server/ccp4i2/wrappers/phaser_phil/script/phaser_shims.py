@@ -62,20 +62,28 @@ class EnsembleListShim(PhilShim):
     a prepared copy (a CIF converted to PDB, say).
     """
 
-    def __init__(self, input_name, ensemble_path, search_path, path_map=None):
+    def __init__(self, input_name, ensemble_path, search_path, path_map=None,
+                 fixed_name="FIXENSEMBLES"):
         self.input_name = input_name
         self.phil_ensemble_path = ensemble_path
         self.phil_search_path = search_path
         self.path_map = path_map if path_map is not None else {}
+        #: An optional list of ensemble labels already placed, at the origin
+        #: of their own coordinates: Phaser's solution_at_origin
+        self.fixed_name = fixed_name
 
     def convert(self, container, work_directory):
         entries = []
         ensembles = getattr(container.inputData, self.input_name, None)
         if ensembles is None:
             return entries
+        fixed = getattr(container.inputData, self.fixed_name, None)
+        fixed = {str(x) for x in fixed} if fixed is not None else set()
         for i, ensemble in enumerate(ensembles):
             label = str(ensemble.label) if ensemble.label.isSet() else f"ensemble_{i + 1}"
             fields = [("model_id", label)]
+            if label in fixed:
+                fields.append(("solution_at_origin", True))
             for item in ensemble.pdbItemList:
                 if not item.structure.isSet():
                     continue

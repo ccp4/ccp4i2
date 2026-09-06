@@ -584,6 +584,20 @@ hands, sites and figures of merit come from `ResultEP`, and the
 substructure-completion cycles from the SAD summary block. The sections the
 two reports share live in `phaser_report_base.py`.
 
+### A pipeline that hosts the tool's PHIL
+
+`pipelines/phaser_pipeline_phil` runs `phaser_mr_auto_phil` as a sub-job and
+then sheetbend and refmac. Its parameters *are* the task's: the same
+`PHIL_PARAMS_FILE` and `PHIL_MODE`, and `get_phil_exclude_scopes()` returns
+the task's exclusions plus `phaser_mr_auto_phil.phil_shim_targets()`, so the
+two trees have the same shape and `hand_phil_to(sub_job)` copies every set
+value across. The pipeline keeps no keyword snapshot of its own; its typed
+inputs are the task's plus what it adds (a Free-R set, a reference structure,
+two switches), copied by name. The sub-job's `xml_responders` let the pipeline
+embed the live record in its own `program.xml`. `phaser_simple_phil` is the
+one-model case, building the ensemble list from `XYZIN` before validation and
+before the run.
+
 One trap: the base constructor asks a task for its shims -- to keep their
 targets out of the parameter tree -- before the subclass `__init__` runs, so
 a shim that needs the plugin must be created lazily (a property), not in

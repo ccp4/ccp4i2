@@ -31,6 +31,16 @@
           <saveToDb>True</saveToDb>
         </qualifiers>
       </content>
+      <content id="FIXENSEMBLES">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>Search models already placed (at the origin of their coordinates)</guiLabel>
+          <listMinLength>0</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CString</className>
+        </subItem>
+      </content>
       <content id="COMP_BY">
         <className>CString</className>
         <qualifiers>

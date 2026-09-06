@@ -184,6 +184,8 @@ def summary_blocks(text):
 # block is counted as unparsed, never guessed at.
 _SEARCH_ORDER = "Search Order (next search *)"
 _NEW_BEST = re.compile(r"New Best LLG\s*=\s*([-\d.]+)\s*\(resolution\s*=\s*([\d.]+)\)")
+# The second and later components are announced in other words
+_NEW_BEST_LATER = re.compile(r"New best solution LLG\s*=\s*([-\d.]+)\s*\(resolution\s*=\s*([\d.]+)\)")
 _LOWERED = re.compile(r"High resolution limit lowered by expected LLG\s*=\s*([\d.]+)")
 _UNALTERED = "High resolution limit unaltered by expected LLG"
 _NO_LOWER = "No solutions found at lower resolution"
@@ -199,6 +201,9 @@ _INFORMATIONAL = (
     "Refinement may have introduced clashes", "$TEXT:MR Result", "Search: Next component",
     "Current is Best Solution", "No more components", "End with solutions",
     "There was only 1 possible ensemble", "Increase resolution",
+    "Search: Only parameters of last component", "Definite solutions found",
+    "New best solution overall", "New best solution has", "New best solution TFZ",
+    "New best solution component",
 )
 
 
@@ -219,7 +224,7 @@ def strategy_attempts(blocks):
                 current = {"component": _next_component(text), "resolution": None,
                            "outcome": "searching", "llg": None}
                 attempts.append(current)
-            m = _NEW_BEST.search(text)
+            m = _NEW_BEST.search(text) or _NEW_BEST_LATER.search(text)
             if m and current is not None:
                 recognised = True
                 current["outcome"] = "placed"
@@ -258,11 +263,14 @@ def strategy_attempts(blocks):
 
 
 def _next_component(text):
-    """The '*' line under 'Search Order (next search *)': '#2  model *'."""
+    """The line marked '*' under 'Search Order (next search *)': '#2  blip *'.
+
+    Every summary line opens with '**', so the marker is the trailing one."""
     for line in text.splitlines():
-        if "*" in line and "#" in line and "Search Order" not in line:
-            words = [w for w in line.replace("*", " ").split() if not w.startswith("#")]
-            return words[0] if words else None
+        body = line.strip().lstrip("*").strip()
+        if body.startswith("#") and body.endswith("*"):
+            words = body.rstrip("*").split()
+            return words[1] if len(words) > 1 else None
     return None
 
 

@@ -77,6 +77,8 @@ TASK_CITES: Dict[str, List[str]] = {
     "phaser_mr_auto_phil": ["phaser"],
     "phaser_ep_auto_phil": ["phaser"],
     "phaser_mr_rnp_phil": ["phaser"],
+    "phaser_pipeline_phil": ["phaser", "sheetbend", "refmac"],
+    "phaser_simple_phil": ["phaser", "sheetbend", "refmac"],
     "phaser_MR_RNP": ["phaser"],
     "phaser_MR_FRF": ["phaser"],
     "phaser_MR_FTF": ["phaser"],
