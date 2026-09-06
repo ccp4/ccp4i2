@@ -24,6 +24,12 @@ class Task:
     # otherwise (and verified by the CCP4-free behavioural guard). See
     # lib/utils/jobs/context_run.can_run_local().
     ccp4_free: bool = False
+    # The task that replaces this one. A superseded task stays registered
+    # (its jobs still open and report) but is hidden from the chooser, and
+    # cloning one of its jobs makes a job of the successor instead, which
+    # adopts the front page: typed inputs of the same name and the few
+    # values that became PHIL parameters (PhilPluginScript.adopt_legacy_container).
+    successor: str = None
 
 
 TASKS = {
@@ -1051,6 +1057,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_ep/script/phaser_EP.def.xml",
         reportPath="ccp4i2.pipelines.phaser_ep.script.phaser_EP_report:phaser_EP_report",
         runningReport=True,
+        successor="phaser_ep_phil",
     ),
     "phaser_EP_AUTO": Task(
         title="SAD phasing from heavy atom sites - PHASER",
@@ -1060,6 +1067,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_EP_AUTO/script/phaser_EP_AUTO.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report:phaser_EP_AUTO_report",
         runningReport=True,
+        successor="phaser_ep_auto_phil",
     ),
     "phaser_EP_LLG": Task(
         title="Anomalous map from coordinates - PHASER",
@@ -1083,6 +1091,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_AUTO/script/phaser_MR_AUTO.def.xml",
         reportPath="ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:phaser_MR_AUTO_report",
         runningReport=True,
+        successor="phaser_mr_auto_phil",
     ),
     "phaser_MR_FRF": Task(
         title="Rotation function - PHASER",
@@ -1091,6 +1100,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_FRF/script/phaser_MR_FRF.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report:phaser_MR_FRF_report",
         runningReport=True,
+        successor="phaser_mr_frf_phil",
     ),
     "phaser_MR_FTF": Task(
         title="Translation function - PHASER",
@@ -1099,6 +1109,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_FTF/script/phaser_MR_FTF.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report:phaser_MR_FTF_report",
         runningReport=True,
+        successor="phaser_mr_ftf_phil",
     ),
     "phaser_MR_PAK": Task(
         title="Packing function - PHASER",
@@ -1106,6 +1117,7 @@ TASKS = {
         pluginPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK:phaser_MR_PAK",
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report:phaser_MR_PAK_report",
+        successor="phaser_mr_pak_phil",
     ),
     "phaser_MR_RNP": Task(
         title="Run rigid body refinement - PHASER",
@@ -1115,6 +1127,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_RNP/script/phaser_MR_RNP.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP_report:phaser_MR_RNP_report",
         runningReport=True,
+        successor="phaser_mr_rnp_phil",
     ),
     "phaser_analysis": Task(
         shortTitle="Phaser Analysis",
@@ -1261,6 +1274,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/script/phaser_pipeline.def.xml",
         reportPath="ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_pipeline_report",
         runningReport=True,
+        successor="phaser_pipeline_phil",
     ),
     "phaser_rnp_pipeline": Task(
         title="Rigid body refinement - PHASER",
@@ -1270,6 +1284,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_rnp_pipeline/script/phaser_rnp_pipeline.def.xml",
         reportPath="ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:phaser_rnp_pipeline_report",
         runningReport=True,
+        successor="phaser_rnp_pipeline_phil",
     ),
     "phaser_simple": Task(
         title="Basic Molecular Replacement - PHASER",
@@ -1279,6 +1294,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_simple/script/phaser_simple.def.xml",
         reportPath="ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_simple_report",
         runningReport=True,
+        successor="phaser_simple_phil",
     ),
     "phaser_singleMR": Task(
         title="Single Atom Molecular Replacement",
@@ -1639,6 +1655,12 @@ def get_plugin_module(task_name: str):
 
 
 @cache
+def get_successor(task_name):
+    """The task that replaces `task_name`, or None."""
+    task = TASKS.get(task_name)
+    return task.successor if task is not None else None
+
+
 def get_plugin_class(task_name: str):
     return _get_task_class(task_name, "plugin")
 

@@ -19,6 +19,11 @@ class phaser_phil(PhilPluginScript):
 
     #: Phaser ships its parameters as a file inside the package.
     PHIL_PARAMS_FILE = "phaser:phenix_interface/__init__.params"
+    #: The classic tasks' front-page parameters that are PHIL here
+    LEGACY_PHIL_VALUES = {
+        "RESOLUTION_HIGH": "phaser.keywords.resolution.high",
+        "RESOLUTION_LOW": "phaser.keywords.resolution.low",
+    }
 
     def get_command_target(self):
         """Phaser's entry point, which ccp4-python runs with the phil file."""
