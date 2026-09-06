@@ -18,7 +18,8 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.utils.phil_shims import FixedPhilShim
 from ccp4i2.wrappers.phaser_phil.script.phaser_phil import phaser_phil
 from ccp4i2.wrappers.phaser_phil.script.phaser_shims import (
-    CompositionShim, EnsembleListShim, ObsDataShim, SolutionHook)
+    CompositionShim, EnsembleListShim, ObsDataShim, SolutionHook,
+    is_rotation_list, read_solutions, solution_model_ids)
 from ccp4i2.wrappers.phaser_phil.script import phaser_run
 
 
@@ -28,8 +29,11 @@ class phaser_mr_auto_phil(phaser_phil):
     TASKCOMMAND = None          # Phaser runs in-process
     PHIL_MODE = "MR_AUTO"
     #: Whether the mode searches for the ensembles' copies; a mode that works
-    #: on placed solutions (RNP) does not, and need not be asked for copies
+    #: on placed solutions (RNP, FTF, PAK) does not, and need not be asked for copies
     SEARCHES_ENSEMBLES = True
+    #: The typed input carrying the solutions to start from, handed to Phaser
+    #: through setSOLU (the translation function takes a rotation list instead)
+    SOLUTION_INPUT = "SOLIN"
     PHIL_MODE_PATH = "phaser.mode"
     WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild"]
 
@@ -52,6 +56,7 @@ class phaser_mr_auto_phil(phaser_phil):
         204: {"description": "Failed to prepare the reflection data"},
         115: {"description": "An ensemble holds more than one model"},
         117: {"description": "The solutions do not match the search models"},
+        118: {"description": "The solutions file is of the wrong kind for this mode"},
     }
 
     def __init__(self, *args, **kwargs):
@@ -134,19 +139,23 @@ class phaser_mr_auto_phil(phaser_phil):
         if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
             return error
         inp = self.container.inputData
-        if inp.SOLIN.isSet():
+        solin = getattr(inp, self.SOLUTION_INPUT, None)
+        if solin is not None and solin.isSet():
+            name = f"{self.TASKNAME}.container.inputData.{self.SOLUTION_INPUT}"
             # Phaser refuses solutions naming an ensemble it was not given
             # ("No model for ensemble Ensemble_0"); a classic Phaser job names
             # its ensembles Ensemble_0, Ensemble_1... Say so first.
             try:
-                import pickle
-                with open(str(inp.SOLIN.getFullPath()), "rb") as handle:
-                    solutions = pickle.load(handle)
-                named = {str(k.MODLID) for s in solutions for k in s.KNOWN}
+                solutions = read_solutions(str(solin.getFullPath()))
+                named = solution_model_ids(solutions)
             except Exception as err:
                 error.append(klass=self.TASKNAME, code=117,
                              details=f"The solutions file could not be read: {err}",
-                             name=f"{self.TASKNAME}.container.inputData.SOLIN",
+                             name=name, severity=CCP4ErrorHandling.SEVERITY_ERROR)
+                return error
+            kind = self.solutions_kind_check(solutions)
+            if kind:
+                error.append(klass=self.TASKNAME, code=118, details=kind, name=name,
                              severity=CCP4ErrorHandling.SEVERITY_ERROR)
                 return error
             labels = {str(e.label) for e in inp.ENSEMBLES if e.label.isSet()}
@@ -157,9 +166,17 @@ class phaser_mr_auto_phil(phaser_phil):
                                       f"not among this job's search models ({', '.join(sorted(labels)) or 'none'}). "
                                       "Label the search models to match the job the solutions came from, "
                                       "or leave the solutions out."),
-                             name=f"{self.TASKNAME}.container.inputData.SOLIN",
-                             severity=CCP4ErrorHandling.SEVERITY_ERROR)
+                             name=name, severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
+
+    def solutions_kind_check(self, solutions):
+        """What is wrong with the kind of solutions given, or None. Phaser's
+        rule: the translation function wants a rotation list, every other
+        mode a full solution."""
+        if is_rotation_list(solutions):
+            return ("This is a rotation list (from a rotation-function run); this mode needs "
+                    "solutions with rotation and translation both.")
+        return None
 
     # -- shims ----------------------------------------------------------------
     @classmethod
@@ -237,10 +254,18 @@ class phaser_mr_auto_phil(phaser_phil):
         return phaser_run.run_mode(
             self.get_master_phil(), self._phil_path, self.PHIL_MODE,
             str(self.getWorkDirectory()), recorder, self.makeFileName("LOG"),
-            input_hooks=[SolutionHook(self.container)])
+            input_hooks=[SolutionHook(self.container, self.SOLUTION_INPUT)])
 
     # -- what came out ---------------------------------------------------------
     def processOutputFiles(self):
+        if self.harvestCoordinates() != CPluginScript.SUCCEEDED:
+            return CPluginScript.FAILED
+        self.writeSolutions()
+        self.recordRun()
+        return CPluginScript.SUCCEEDED
+
+    def harvestCoordinates(self):
+        """The placed models and their maps, one set per solution."""
         result = self.resultObject
         out = self.container.outputData
         work_dir = str(self.getWorkDirectory())
@@ -272,6 +297,13 @@ class phaser_mr_auto_phil(phaser_phil):
                 out.DIFMAPOUT[i].contentFlag.set(1)
                 out.DIFMAPOUT[i].subType.set(2)
                 out.PHASEOUT[i].annotation.set(f"Calculated phases for solution {i + 1}")
+        return CPluginScript.SUCCEEDED
+
+    def writeSolutions(self):
+        """The solutions, pickled for a later job, and whether Phaser solved
+        in another setting of the space group."""
+        result = self.resultObject
+        out = self.container.outputData
         solutions = result.getDotSol()
         if len(solutions) > 0:
             with open(str(out.SOLOUT.fullPath), "wb") as handle:
@@ -291,22 +323,25 @@ class phaser_mr_auto_phil(phaser_phil):
                     f"Space group of the best solution ({solved}) differs from the "
                     f"input data ({given})")
 
-        # The record of the run, from the Result object and Phaser's summary
-        phaser_run.solutions_xml(result, self.xmlroot)
+    def recordRun(self, with_strategy=True):
+        """The record of the run, from the Result object and Phaser's summary."""
+        result = self.resultObject
+        self.recordSolutions(result)
         blocks = phaser_run.summary_blocks(result.summary())
         summaries = etree.SubElement(self.xmlroot, "Summaries")
         for name, text in blocks:
             node = etree.SubElement(summaries, "Summary")
             node.set("module", name)
             node.text = text
-        attempts, unparsed = phaser_run.strategy_attempts(blocks)
-        strategy = etree.SubElement(self.xmlroot, "Strategy")
-        strategy.set("unparsed", str(unparsed))
-        for attempt in attempts:
-            node = etree.SubElement(strategy, "Attempt")
-            for key, value in attempt.items():
-                if value is not None:
-                    node.set(key, str(value))
+        if with_strategy:
+            attempts, unparsed = phaser_run.strategy_attempts(blocks)
+            strategy = etree.SubElement(self.xmlroot, "Strategy")
+            strategy.set("unparsed", str(unparsed))
+            for attempt in attempts:
+                node = etree.SubElement(strategy, "Attempt")
+                for key, value in attempt.items():
+                    if value is not None:
+                        node.set(key, str(value))
         warnings = self.xmlroot.find("PhaserWarnings")
         if warnings is None:
             warnings = etree.SubElement(self.xmlroot, "PhaserWarnings")
@@ -315,7 +350,9 @@ class phaser_mr_auto_phil(phaser_phil):
             if text not in seen:
                 etree.SubElement(warnings, "Warning").text = text
         self.flushXML(self.xmlroot)
-        return CPluginScript.SUCCEEDED
+
+    def recordSolutions(self, result):
+        phaser_run.solutions_xml(result, self.xmlroot)
 
     def flushXML(self, xmlroot):
         """program.xml, written whole then renamed, so a reader never sees half."""

@@ -306,21 +306,42 @@ class LlgCompletionShim(PhilShim):
         return [(self.phil_llgc_path, fields)]
 
 
+def read_solutions(path):
+    """The mr_solution object pickled by an earlier job: a set of solutions,
+    or a rotation list (is_rlist()) from a rotation-function run."""
+    import pickle
+    with open(path, "rb") as handle:
+        return pickle.load(handle)
+
+
+def is_rotation_list(solutions):
+    """Whether these are a rotation list rather than solutions with
+    translations. A plain sequence of sets (a test double, an old pickle)
+    is taken to be the latter."""
+    check = getattr(solutions, "is_rlist", None)
+    return bool(check()) if callable(check) else False
+
+
+def solution_model_ids(solutions):
+    """The ensemble labels the solutions name, of either kind."""
+    if is_rotation_list(solutions):
+        return {str(r.MODLID) for s in solutions for r in s.RLIST}
+    return {str(k.MODLID) for s in solutions for k in s.KNOWN}
+
+
 class SolutionHook:
     """SOLIN, a pickled mr_solution from an earlier job, handed to Phaser as
-    the solutions to start from. Not a shim: the PHIL's own `solution`
-    keyword wants a pickled Result, so this goes in through setSOLU on the
-    built phaser.Input (run_mode's input_hooks)."""
+    the solutions to start from -- or, for the translation function, the
+    rotation list to try. Not a shim: the PHIL's own `solution` keyword
+    wants a pickled Result, so this goes in through setSOLU on the built
+    phaser.Input (run_mode's input_hooks)."""
 
     def __init__(self, container, input_name="SOLIN"):
         self.container = container
         self.input_name = input_name
 
     def __call__(self, phaser_input):
-        import pickle
         solin = getattr(self.container.inputData, self.input_name, None)
         if solin is None or not solin.isSet():
             return
-        with open(str(solin.getFullPath()), "rb") as handle:
-            solutions = pickle.load(handle)
-        phaser_input.setSOLU(solutions)
+        phaser_input.setSOLU(read_solutions(str(solin.getFullPath())))
