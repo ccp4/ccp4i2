@@ -138,6 +138,10 @@
     ],
     "extraResources": [
       {
+        "from": "assets/ccp4i2.png",
+        "to": "ccp4i2.png"
+      },
+      {
         "from": "node_modules/react",
         "to": "node_modules/react",
         "filter": [
@@ -207,7 +211,13 @@
           ]
         }
       ],
-      "category": "Science"
+      "category": "Science",
+      "desktop": {
+        "entry": {
+          "Name": "CCP4i2",
+          "Comment": "CCP4i2 crystallographic computing environment"
+        }
+      }
     }
   },
   "overrides": {
