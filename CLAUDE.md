@@ -402,6 +402,11 @@ def_xml = locate_def_xml('acorn')         # path to its .def.xml
    `client/renderer/components/task/task-chooser.tsx` so it appears in the task
    chooser. Tasks with no registered interface fall back to `GenericInterface`,
    which renders the def.xml automatically.
+4. (If it replaces an existing task) name the new task as the old one's
+   `successor` in its `TASKS` entry. The old task stays registered so its
+   jobs still open, but the chooser hides it and cloning one of its jobs
+   makes a job of the successor; a `PhilPluginScript` successor adopts the
+   old job's front page (see `PHIL_TASK_GUIDE.md`, "Replacing a classic task").
 
 There is **no registry-regeneration step** — adding the `TASKS` entry is the
 whole registration. (The historical `plugin_registry.py` / `plugin_lookup.json`
