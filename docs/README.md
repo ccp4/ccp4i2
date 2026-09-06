@@ -42,7 +42,9 @@ Supporting references:
 - [Writing API tests](writing-api-tests.md) · [Writing i2run tests](writing-i2run-tests.md)
 
 ### …work on a pipeline
-- [Pipeline Best Practices](pipeline_best_practices.md)
+- [Pipeline Best Practices](pipeline_best_practices.md) — including
+  [pipelines over a PHIL-hosted task](pipeline_best_practices.md#42-pipelines-over-a-phil-hosted-task)
+  (`phaser_pipeline_phil`, `phaser_ep_phil`)
 - [Error Handling Remediation](error-handling-remediation.md) — the tracked
   backlog of core-machinery and per-pipeline error-handling defects, with a
   `scripts/scan_error_handling.py` burn-down. **Read before touching a pipeline's
