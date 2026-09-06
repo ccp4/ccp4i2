@@ -2,7 +2,6 @@
 import { Alert, AlertTitle, Button, Paper, Stack, Typography } from "@mui/material";
 import { Upload } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
-import { NavigationShortcutsProvider } from "@/providers/navigation-shortcuts-provider";
 import CCP4i2TopBar from "@/components/ccp4i2-topbar";
 
 /**
@@ -18,13 +17,19 @@ export default function MigrateLegacyPage() {
   const router = useRouter();
 
   return (
-    <NavigationShortcutsProvider>
+    <Stack
+      sx={{
+        height: "100vh",
+        "@supports (height: 100dvh)": { height: "100dvh" },
+        overflow: "hidden",
+      }}
+    >
       <CCP4i2TopBar
         title="Migrate legacy CCP4i2"
         showBackButton
         backPath="/ccp4i2"
       />
-      <Paper sx={{ height: "calc(100vh - 80px)", overflow: "auto", p: 3 }}>
+      <Paper sx={{ flex: 1, minHeight: 0, overflow: "auto", p: 3 }}>
         <Stack spacing={3} sx={{ maxWidth: "48rem" }}>
           <Alert severity="info">
             <AlertTitle>Not available in this alpha</AlertTitle>
@@ -63,6 +68,6 @@ export default function MigrateLegacyPage() {
           </Stack>
         </Stack>
       </Paper>
-    </NavigationShortcutsProvider>
+    </Stack>
   );
 }
