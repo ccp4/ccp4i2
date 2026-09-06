@@ -46,6 +46,26 @@ from ccp4i2.core.base_object.fundamental_types import CList
 logger = logging.getLogger(__name__)
 
 
+def _legacy_field(container, name):
+    """`name` in any of a classic container's sections (inputData,
+    controlParameters, keywords...), or None."""
+    for section in container.children():
+        if isinstance(section, CContainer) and not isinstance(section, CList):
+            try:
+                found = getattr(section, name)
+            except AttributeError:
+                continue
+            if found is not None and not callable(found):
+                return found
+    return None
+
+
+def _legacy_is_set(obj):
+    if isinstance(obj, CList):
+        return len(obj) > 0
+    return bool(obj.isSet()) if hasattr(obj, "isSet") else obj is not None
+
+
 class PhilPluginScript(CPluginScript):
     """Base class for CCP4i2 wrappers around PHIL-based tools."""
 
@@ -294,6 +314,48 @@ class PhilPluginScript(CPluginScript):
         composed = copy.deepcopy(base_master_phil)
         composed.adopt_scope(parse(extra_phil_text))
         return composed
+
+    #: A classic task's values that are PHIL parameters here: old field name
+    #: -> PHIL path. Adopted from a legacy job on clone.
+    LEGACY_PHIL_VALUES = {}
+    #: Typed inputs that changed name: this task's name -> the classic name.
+    LEGACY_INPUT_RENAMES = {}
+
+    def adopt_legacy_container(self, old):
+        """Take the front page of a classic task's container: typed inputs
+        of the same name (or a declared rename), and the few values that
+        were parameters there and are PHIL here. Everything else is left to
+        the PHIL defaults. Returns the names adopted."""
+        from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
+        adopted = []
+        inp = self.container.inputData
+        for name in inp.dataOrder():
+            src = _legacy_field(old, self.LEGACY_INPUT_RENAMES.get(name, name))
+            if src is None or not _legacy_is_set(src):
+                continue
+            dst = getattr(inp, name)
+            enumerators = dst.get_qualifier("enumerators") if hasattr(dst, "get_qualifier") else None
+            if isinstance(enumerators, str):
+                enumerators = [e.strip() for e in enumerators.split(",")]
+            if enumerators and str(src) not in [str(e) for e in enumerators]:
+                continue
+            try:
+                dst.set(src.get() if isinstance(src, (CInt, CFloat, CString, CBoolean)) else src)
+            except Exception as err:
+                logger.warning("%s: could not adopt %s from the legacy job: %s", self.TASKNAME, name, err)
+                continue
+            adopted.append(name)
+        for old_name, phil_path in self.LEGACY_PHIL_VALUES.items():
+            src = _legacy_field(old, old_name)
+            if src is None or not _legacy_is_set(src):
+                continue
+            try:
+                self.set_phil(phil_path, src.get() if hasattr(src, "get") else src)
+            except Exception as err:
+                logger.warning("%s: could not adopt %s as %s: %s", self.TASKNAME, old_name, phil_path, err)
+                continue
+            adopted.append(f"{old_name} -> {phil_path}")
+        return adopted
 
     def find_phil(self, phil_path, container=None):
         """The CData object in controlParameters whose philPath is

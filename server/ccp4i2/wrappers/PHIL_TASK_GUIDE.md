@@ -584,6 +584,24 @@ hands, sites and figures of merit come from `ResultEP`, and the
 substructure-completion cycles from the SAD summary block. The sections the
 two reports share live in `phaser_report_base.py`.
 
+The other MR modes are thin subclasses of `phaser_mr_auto_phil`, each setting
+`PHIL_MODE` and composing the base class's harvest steps (`harvestCoordinates`,
+`writeSolutions`, `recordRun`) as the mode's Result allows:
+
+| task | mode | takes | writes |
+|---|---|---|---|
+| `phaser_mr_frf_phil` | MR_FRF | search models | a rotation list (`RFILEOUT`) |
+| `phaser_mr_ftf_phil` | MR_FTF | a rotation list (`RFILEIN`) | solutions (`SOLOUT`) |
+| `phaser_mr_pak_phil` | MR_PAK | solutions (`SOLIN`) | the ones that pack |
+| `phaser_mr_rnp_phil` | MR_RNP | solutions, or ensembles placed at origin | refined solutions, models, maps |
+
+A mode that works on placed solutions sets `SEARCHES_ENSEMBLES = False` so
+the ensembles need not ask for copies, and `SOLUTION_INPUT` names the typed
+input the `SolutionHook` hands to `setSOLU`. Phaser's rule on the kind of
+file -- the translation function wants a rotation list, every other mode
+solutions with translations -- is checked before the run (`solutions_kind_check`,
+code 118), as is that the solutions name this job's ensembles (code 117).
+
 ### A pipeline that hosts the tool's PHIL
 
 `pipelines/phaser_pipeline_phil` runs `phaser_mr_auto_phil` as a sub-job and
@@ -596,12 +614,29 @@ inputs are the task's plus what it adds (a Free-R set, a reference structure,
 two switches), copied by name. The sub-job's `xml_responders` let the pipeline
 embed the live record in its own `program.xml`. `phaser_simple_phil` is the
 one-model case, building the ensemble list from `XYZIN` before validation and
-before the run.
+before the run. `phaser_rnp_pipeline_phil` hosts MR_RNP: a parent model cut
+into rigid bodies by atom selections, each an ensemble placed at the origin of
+its own coordinates (`FIXENSEMBLES`, Phaser's `solution_at_origin`), so no
+solution file changes hands.
 
 One trap: the base constructor asks a task for its shims -- to keep their
 targets out of the parameter tree -- before the subclass `__init__` runs, so
 a shim that needs the plugin must be created lazily (a property), not in
 `__init__`.
+
+### Replacing a classic task
+
+A PHIL task that replaces a def.xml one is named as its `successor` in
+`tasks.py`. The classic task stays registered -- its jobs still open and
+their reports render -- but the chooser no longer offers it (the task lookup
+reports `supersededBy`), and cloning one of its jobs makes a job of the
+successor, which adopts the old job's front page through
+`PhilPluginScript.adopt_legacy_container(old_container)`: typed inputs of
+the same name, inputs renamed in `LEGACY_INPUT_RENAMES` (new name -> old),
+and values that were parameters there and are PHIL here, listed in
+`LEGACY_PHIL_VALUES` (old name -> PHIL path; the Phaser tasks map the
+resolution limits). Everything else takes the PHIL defaults: the old job's
+keyword snapshot is not carried over, by design.
 
 ### Shims write blocks too, and own their targets
 

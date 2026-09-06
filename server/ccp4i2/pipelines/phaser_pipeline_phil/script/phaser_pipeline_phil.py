@@ -19,6 +19,7 @@ from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
 from ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil import phaser_mr_auto_phil
+from ccp4i2.wrappers.phaser_phil.script.phaser_phil import phaser_phil
 
 MR_INPUTS = ("F_SIGF", "ENSEMBLES", "FIXENSEMBLES", "COMP_BY", "ASUFILE", "SEQUENCES",
              "ASU_PROTEIN_MW", "ASU_NUCLEICACID_MW", "SOLVENT_FRACTION", "SOLIN")
@@ -34,6 +35,7 @@ class phaser_pipeline_phil(PhilPluginScript):
     PHIL_MODE_PATH = phaser_mr_auto_phil.PHIL_MODE_PATH
     WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild"]
     ASYNCHRONOUS = False
+    LEGACY_PHIL_VALUES = phaser_phil.LEGACY_PHIL_VALUES
 
     ERROR_CODES = {
         200: {"description": "Phaser failed"},

@@ -3,7 +3,7 @@ from pathlib import Path
 import datetime
 from pytz import timezone
 from ccp4i2.core.CCP4Container import CContainer
-from ccp4i2.core.tasks import get_plugin_class, get_task_title
+from ccp4i2.core.tasks import get_plugin_class, get_successor, get_task_title
 from ccp4i2.db import models
 from ccp4i2.lib.utils.parameters.save_params import save_params_for_job
 from ccp4i2.lib.utils.files.patch_paths import patch_output_file_paths
@@ -80,9 +80,22 @@ def clone_job(jobId: str = None) -> Result[models.Job]:
                 details={"params_file": str(params_file), "error": str(error)}
             )
 
+        # A superseded task is cloned as its successor, which adopts the old
+        # job's front page (typed inputs by name, and the values that are
+        # PHIL parameters now); the rest takes the new task's defaults
+        successor = get_successor(task_name)
+        if successor:
+            successor_plugin = get_plugin_class(successor)(workDirectory=str(new_job_dir))
+            adopted = successor_plugin.adopt_legacy_container(the_job_plugin.container)
+            logger.info("Cloning %s job %s as %s; adopted %s", task_name, jobId, successor, adopted)
+            the_job_plugin = successor_plugin
+            task_name = successor
+            title = get_task_title(task_name) or task_name
+        else:
+            # Use title from old job, or get from task manager, or fall back to task name
+            title = old_job.title or get_task_title(task_name) or task_name
+
         # Create new job record
-        # Use title from old job, or get from task manager, or fall back to task name
-        title = old_job.title or get_task_title(task_name) or task_name
         new_job = models.Job(
             number=str(next_job_number),
             finish_time=datetime.datetime.fromtimestamp(0, tz=timezone("UTC")),
