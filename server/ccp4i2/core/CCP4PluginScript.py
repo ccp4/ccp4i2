@@ -4381,27 +4381,18 @@ class CPluginScript(CData):
 
         Returns:
             CPluginScript.SUCCEEDED on success, CPluginScript.FAILED on error.
+
+        The inputs need not list the same reflections: like cmtzjoin, this
+        matches by HKL onto one complete reflection list, and a reflection a
+        file lacks is missing in its columns. (A first port stacked the
+        columns as arrays and so needed every file to hold exactly the
+        reference's reflections -- observations and a Free-R set written by
+        the same aimless run differ by one, and the join fell over.)
         """
-        import gemmi
-        import numpy as np
+        from ccp4i2.core.CCP4Utils import merge_mtz_files
 
         try:
-            # Read the first input to establish cell and spacegroup
-            first_path = infiles[0][0]
-            ref_mtz = gemmi.read_mtz_file(str(first_path))
-
-            mtz_out = gemmi.Mtz()
-            mtz_out.spacegroup = ref_mtz.spacegroup
-            mtz_out.cell = ref_mtz.cell
-            mtz_out.add_dataset('merged')
-            mtz_out.add_column('H', 'H')
-            mtz_out.add_column('K', 'H')
-            mtz_out.add_column('L', 'H')
-
-            # Collect HKL from reference and all data columns
-            hkl_array = ref_mtz.make_miller_array()
-            data_columns = []
-
+            input_specs = []
             for entry in infiles:
                 if len(entry) == 2:
                     filepath, colout = entry
@@ -4410,24 +4401,13 @@ class CPluginScript(CData):
                     filepath, colin, colout = entry
                 else:
                     continue
-
-                mtz_in = gemmi.read_mtz_file(str(filepath))
                 in_labels = [l.strip() for l in colin.split(',')]
                 out_labels = [l.strip() for l in colout.split(',')]
-
-                for in_label, out_label in zip(in_labels, out_labels):
-                    col = mtz_in.column_with_label(in_label)
-                    if col is None:
-                        print(f"[joinMtz] Warning: column '{in_label}' not found in {filepath}")
-                        continue
-                    mtz_out.add_column(out_label, col.type)
-                    data_columns.append(np.array(col))
-
-            # Build output data array: [H, K, L, ...columns...]
-            data = np.column_stack([hkl_array] + data_columns)
-            mtz_out.set_data(data.astype(np.float32))
-            mtz_out.write_to_file(str(outfile))
-
+                # A caller's label string may carry an empty entry (a
+                # trailing comma); there is no column to take for it
+                mapping = {i: o for i, o in zip(in_labels, out_labels) if i and o}
+                input_specs.append({"path": str(filepath), "column_mapping": mapping})
+            merge_mtz_files(input_specs, str(outfile), merge_strategy="first")
             return self.SUCCEEDED
 
         except Exception as e:
