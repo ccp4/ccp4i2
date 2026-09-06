@@ -1,4 +1,4 @@
-import { BrowserWindow } from "electron";
+import { BrowserWindow, Menu, MenuItemConstructorOptions, clipboard } from "electron";
 import path from "path";
 import { fileURLToPath } from "node:url";
 import ElectronStore from "electron-store";
@@ -48,6 +48,66 @@ export const createWindow = async (
       }
       event.preventDefault();
     }
+  });
+
+  // The app clears the native application menu, and with it went the only
+  // context menu a Chromium window gets for free. Right-clicking selected
+  // text in a report, or in a text field, showed nothing, so copy and paste
+  // were reachable only through the in-app Edit menu. Build a menu from what
+  // was clicked: cut/copy/paste/select-all in editable fields, copy for a
+  // selection anywhere, copy-link on a link, spelling suggestions on a
+  // misspelt word, and Inspect Element when developer mode is on. Chromium
+  // does not fire this event when the page handled the right-click itself
+  // (preventDefault), so the app's own file and job menus are unaffected.
+  newWindow.webContents.on("context-menu", (_event, params) => {
+    const template: MenuItemConstructorOptions[] = [];
+    const contents = newWindow.webContents;
+
+    if (params.misspelledWord) {
+      for (const suggestion of params.dictionarySuggestions) {
+        template.push({
+          label: suggestion,
+          click: () => contents.replaceMisspelling(suggestion),
+        });
+      }
+      template.push({
+        label: "Add to Dictionary",
+        click: () =>
+          contents.session.addWordToSpellCheckerDictionary(params.misspelledWord),
+      });
+      template.push({ type: "separator" });
+    }
+
+    if (params.isEditable) {
+      template.push(
+        { role: "cut", enabled: params.editFlags.canCut },
+        { role: "copy", enabled: params.editFlags.canCopy },
+        { role: "paste", enabled: params.editFlags.canPaste },
+        { type: "separator" },
+        { role: "selectAll", enabled: params.editFlags.canSelectAll }
+      );
+    } else if (params.selectionText.trim().length > 0) {
+      template.push({ role: "copy", enabled: params.editFlags.canCopy });
+    }
+
+    if (params.linkURL) {
+      if (template.length > 0) template.push({ type: "separator" });
+      template.push({
+        label: "Copy Link Address",
+        click: () => clipboard.writeText(params.linkURL),
+      });
+    }
+
+    if (store.get("devMode")) {
+      if (template.length > 0) template.push({ type: "separator" });
+      template.push({
+        label: "Inspect Element",
+        click: () => contents.inspectElement(params.x, params.y),
+      });
+    }
+
+    if (template.length === 0) return;
+    Menu.buildFromTemplate(template).popup({ window: newWindow });
   });
 
   newWindow.webContents.on("did-finish-load", () => {
