@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
   Inputs and outputs only: the parameters are Phaser's own PHIL, read at
-  run time and filtered to MR_AUTO by PhilPluginScript. What lives here is
+  run time and filtered to MR_RNP by PhilPluginScript. What lives here is
   what PHIL cannot express: CCP4i2's typed files, with their browsers,
-  validation and database provenance. The shims in phaser_mr_auto_phil.py
+  validation and database provenance. The shims in phaser_mr_rnp_phil.py
   write them into the working phil.
 -->
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <pluginName>phaser_mr_auto_phil</pluginName>
+    <pluginName>phaser_mr_rnp_phil</pluginName>
   </ccp4i2_header>
-  <ccp4i2_body id="phaser_mr_auto_phil">
+  <ccp4i2_body id="phaser_mr_rnp_phil">
     <container id="inputData">
       <content id="F_SIGF">
         <className>CObsDataFile</className>
@@ -26,7 +26,7 @@
       <content id="ENSEMBLES">
         <className>CEnsembleList</className>
         <qualifiers>
-          <guiLabel>Search models</guiLabel>
+          <guiLabel>Models of the placed components</guiLabel>
           <listMinLength>1</listMinLength>
           <saveToDb>True</saveToDb>
         </qualifiers>
@@ -74,10 +74,10 @@
       <content id="SOLIN">
         <className>CPhaserSolDataFile</className>
         <qualifiers>
-          <guiLabel>Solutions from a previous Phaser job</guiLabel>
+          <guiLabel>Solutions to refine</guiLabel>
           <mustExist>True</mustExist>
           <fromPreviousJob>True</fromPreviousJob>
-          <allowUndefined>True</allowUndefined>
+          <allowUndefined>False</allowUndefined>
         </qualifiers>
       </content>
       <content id="SOLVENT_FRACTION">

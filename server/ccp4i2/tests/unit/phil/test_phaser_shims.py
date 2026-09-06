@@ -233,3 +233,48 @@ class TestMrValidity:
             codes = [r["code"] for r in plugin.validity()._reports]
             assert 115 in codes
             assert 112 not in codes
+
+
+class TestCompositionByWeightAndSelection:
+
+    def test_molecular_weights(self, plugin):
+        inp = plugin.container.inputData
+        inp.addContent(CFloat, "ASU_PROTEIN_MW"); inp.addContent(CFloat, "ASU_NUCLEICACID_MW")
+        inp.COMP_BY.set("MW"); inp.ASU_PROTEIN_MW.set(25000.0); inp.ASU_NUCLEICACID_MW.set(8000.0)
+        assert CompositionShim().convert(plugin.container, "/tmp") == [
+            ("phaser.composition.chain", [("mw", 25000.0), ("num", 1)]),
+            ("phaser.composition.chain", [("mw", 8000.0), ("num", 1), ("chain_type", "na")])]
+
+    def test_asu_selection_is_honoured(self, plugin):
+        inp = plugin.container.inputData
+        inp.COMP_BY.set("ASU")
+        inp.ASUFILE.setFullPath(demo("gamma", "gamma.asu.xml"))
+        inp.ASUFILE.loadFile()
+        names = [str(s.name) for s in inp.ASUFILE.fileContent.seqList]
+        with tempfile.TemporaryDirectory() as tmp:
+            assert len(CompositionShim().convert(plugin.container, tmp)) == len(names)
+            # the file's per-sequence tick boxes, as CAsuDataFile.isSelected reports them
+            inp.ASUFILE.isSelected = lambda seq: str(seq.name) != names[0]
+            assert len(CompositionShim().convert(plugin.container, tmp)) == len(names) - 1
+
+
+class TestSolutionHook:
+
+    def test_unpickles_and_calls_setsolu(self, plugin):
+        import pickle
+        from ccp4i2.core.CCP4XtalData import CPhaserSolDataFile
+        inp = plugin.container.inputData
+        inp.addContent(CPhaserSolDataFile, "SOLIN")
+        calls = []
+        class FakeInput:
+            def setSOLU(self, solutions): calls.append(solutions)
+        from ccp4i2.wrappers.phaser_phil.script.phaser_shims import SolutionHook
+        SolutionHook(plugin.container)(FakeInput())
+        assert calls == []                      # nothing set: nothing done
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "SOLOUT.phaser_sol.pkl")
+            with open(path, "wb") as f:
+                pickle.dump(["a solution"], f)
+            inp.SOLIN.setFullPath(path)
+            SolutionHook(plugin.container)(FakeInput())
+            assert calls == [["a solution"]]
