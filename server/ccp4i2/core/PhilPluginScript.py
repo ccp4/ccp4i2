@@ -41,8 +41,29 @@ from pathlib import Path
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.base_object.base_classes import CContainer
+from ccp4i2.core.base_object.fundamental_types import CList
 
 logger = logging.getLogger(__name__)
+
+
+def _legacy_field(container, name):
+    """`name` in any of a classic container's sections (inputData,
+    controlParameters, keywords...), or None."""
+    for section in container.children():
+        if isinstance(section, CContainer) and not isinstance(section, CList):
+            try:
+                found = getattr(section, name)
+            except AttributeError:
+                continue
+            if found is not None and not callable(found):
+                return found
+    return None
+
+
+def _legacy_is_set(obj):
+    if isinstance(obj, CList):
+        return len(obj) > 0
+    return bool(obj.isSet()) if hasattr(obj, "isSet") else obj is not None
 
 
 class PhilPluginScript(CPluginScript):
@@ -93,10 +114,14 @@ class PhilPluginScript(CPluginScript):
                 return
 
             from ccp4i2.utils.phil_to_cdata import Phil2CData
-            converter = Phil2CData(
-                master_phil,
-                exclude_scopes=self.get_phil_exclude_scopes(),
-            )
+            # What a shim writes is not offered in the tree as well
+            excluded = list(self.get_phil_exclude_scopes())
+            for shim in self.get_shim_definitions():
+                excluded.extend(t for t in shim.phil_targets() if t not in excluded)
+            if self.PHIL_MODE_PATH and self.PHIL_MODE_PATH not in excluded:
+                excluded.append(self.PHIL_MODE_PATH)
+            converter = Phil2CData(master_phil, exclude_scopes=excluded,
+                                   mode=self.PHIL_MODE)
             phil_container = converter.convert(root_name="controlParameters")
 
             existing_cp = self.container.controlParameters
@@ -104,7 +129,7 @@ class PhilPluginScript(CPluginScript):
             # Add expert level meta-parameter for controlling visibility
             # and serialization filtering. Matches PHIL convention:
             # 0 = basic user-facing, higher = increasingly expert.
-            from ccp4i2.core.base_object.fundamental_types import CInt
+            from ccp4i2.core.base_object.fundamental_types import CInt, CList
             from ccp4i2.core.base_object.base_classes import ValueState
             expert_level = CInt()
             expert_level._skip_validation = True
@@ -157,6 +182,14 @@ class PhilPluginScript(CPluginScript):
     #: "package:relative/path.params" — a PHIL file shipped inside a package,
     #: e.g. "phaser:phenix_interface/__init__.params".
     PHIL_PARAMS_FILE = None
+
+    #: A tool that runs in one of several modes, with parameters tagged by
+    #: mode in .style (Phaser's `phaser:mode:`, phasertng's `tng:input:`),
+    #: can fix the mode per task: only the parameters that apply are
+    #: offered, the mode parameter itself leaves the tree, and the working
+    #: phil carries `PHIL_MODE_PATH = PHIL_MODE`.
+    PHIL_MODE = None
+    PHIL_MODE_PATH = None
 
     #: "module.path:ClassName" — a CCTBX Program template whose master_phil is
     #: assembled by CCTBXParser, e.g. "phasertng.programs.picard:Program".
@@ -263,70 +296,251 @@ class PhilPluginScript(CPluginScript):
 
     # --- PHIL parameter extraction and working_phil assembly ---
 
+    # --- Handing parameters between PHIL-hosted tasks ---------------------
+    #
+    # A pipeline that hosts a tool's PHIL hands the tree to the sub-job that
+    # runs the tool. Two containers converted from the same master by the
+    # same mode have the same shape, so the copy walks them in parallel.
+
+    @staticmethod
+    def compose_master_phil(base_master_phil, extra_phil_text):
+        """A master phil that is `base_master_phil` with the scopes of
+        `extra_phil_text` adopted -- a pipeline's own parameters beside the
+        tool's. libtbx's adopt_scope() mutates in place, so the base is
+        copied first and the caller's object is left as it was."""
+        import copy
+        from libtbx.phil import parse
+        # customized_copy() is shallow: adopt_scope() on it reaches the base
+        composed = copy.deepcopy(base_master_phil)
+        composed.adopt_scope(parse(extra_phil_text))
+        return composed
+
+    #: A classic task's values that are PHIL parameters here: old field name
+    #: -> PHIL path. Adopted from a legacy job on clone.
+    LEGACY_PHIL_VALUES = {}
+    #: Typed inputs that changed name: this task's name -> the classic name.
+    LEGACY_INPUT_RENAMES = {}
+
+    def adopt_legacy_container(self, old):
+        """Take the front page of a classic task's container: typed inputs
+        of the same name (or a declared rename), and the few values that
+        were parameters there and are PHIL here. Everything else is left to
+        the PHIL defaults. Returns the names adopted."""
+        from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
+        adopted = []
+        inp = self.container.inputData
+        for name in inp.dataOrder():
+            src = _legacy_field(old, self.LEGACY_INPUT_RENAMES.get(name, name))
+            if src is None or not _legacy_is_set(src):
+                continue
+            dst = getattr(inp, name)
+            enumerators = dst.get_qualifier("enumerators") if hasattr(dst, "get_qualifier") else None
+            if isinstance(enumerators, str):
+                enumerators = [e.strip() for e in enumerators.split(",")]
+            if enumerators and str(src) not in [str(e) for e in enumerators]:
+                continue
+            try:
+                dst.set(src.get() if isinstance(src, (CInt, CFloat, CString, CBoolean)) else src)
+            except Exception as err:
+                logger.warning("%s: could not adopt %s from the legacy job: %s", self.TASKNAME, name, err)
+                continue
+            adopted.append(name)
+        for old_name, phil_path in self.LEGACY_PHIL_VALUES.items():
+            src = _legacy_field(old, old_name)
+            if src is None or not _legacy_is_set(src):
+                continue
+            try:
+                self.set_phil(phil_path, src.get() if hasattr(src, "get") else src)
+            except Exception as err:
+                logger.warning("%s: could not adopt %s as %s: %s", self.TASKNAME, old_name, phil_path, err)
+                continue
+            adopted.append(f"{old_name} -> {phil_path}")
+        return adopted
+
+    def find_phil(self, phil_path, container=None):
+        """The CData object in controlParameters whose philPath is
+        `phil_path`, or None."""
+        container = self.container.controlParameters if container is None else container
+        for name in container.dataOrder():
+            obj = getattr(container, name)
+            if hasattr(obj, "get_qualifier") and obj.get_qualifier("philPath") == phil_path:
+                return obj
+            if isinstance(obj, CContainer) and not isinstance(obj, CList):
+                found = self.find_phil(phil_path, obj)
+                if found is not None:
+                    return found
+        return None
+
+    def set_phil(self, phil_path, value):
+        """Set one PHIL parameter by its dotted path: a scalar, or for a
+        repeated definition a list of scalars."""
+        obj = self.find_phil(phil_path)
+        if obj is None:
+            raise AttributeError(f"{self.TASKNAME}: no PHIL parameter {phil_path!r}")
+        if isinstance(obj, CList):
+            obj.set(list(value) if isinstance(value, (list, tuple)) else [value])
+        else:
+            obj.set(value)
+        return obj
+
+    @classmethod
+    def copy_phil_tree(cls, source, target):
+        """Copy every user-set value from `source` into `target`, two
+        containers of the same shape. Defaults are left as the target has
+        them; lists are rebuilt item by item."""
+        for name in source.dataOrder():
+            if name == "PHIL_EXPERT_LEVEL":
+                continue
+            src = getattr(source, name)
+            try:
+                dst = getattr(target, name)
+            except AttributeError:
+                continue
+            if isinstance(src, CList):
+                if not isinstance(dst, CList):
+                    continue
+                dst.clear()
+                for item in src:
+                    if isinstance(item, CContainer):
+                        new = dst.makeItem()
+                        cls.copy_phil_tree(item, new)
+                        dst.append(new)
+                    else:
+                        dst.append(item.get() if hasattr(item, "get") else item)
+            elif isinstance(src, CContainer):
+                if isinstance(dst, CContainer):
+                    cls.copy_phil_tree(src, dst)
+            elif hasattr(src, "isSet") and src.isSet(allowUndefined=False, allowDefault=False):
+                dst.set(src.get())
+
+    def hand_phil_to(self, other):
+        """Give `other`, a PhilPluginScript over the same master, this
+        task's PHIL parameters and expert level."""
+        self.copy_phil_tree(self.container.controlParameters, other.container.controlParameters)
+        try:
+            other.container.controlParameters.PHIL_EXPERT_LEVEL.set(
+                self.container.controlParameters.PHIL_EXPERT_LEVEL.get())
+        except AttributeError:
+            pass
+
     def extract_phil_parameters(self):
-        """Walk controlParameters extracting user-set values with their PHIL paths.
+        """The user-set scalar parameters as (phil_dotted_path, value_string).
 
         Respects PHIL_EXPERT_LEVEL: only parameters whose expertLevel
-        qualifier is at or below the selected level are serialized.
-        This prevents high-level internal/expert defaults from leaking
-        into working.phil when the user hasn't intentionally set them.
+        qualifier is at or below the selected level are serialized, so
+        expert defaults do not leak into working.phil unasked.
+
+        Items of a repeated *scope* cannot be expressed as flat pairs and are
+        left out here; extract_phil_lines() renders everything, blocks
+        included, and is what build_working_phil() uses.
 
         Returns:
             list of (phil_dotted_path, value_string) tuples
         """
-        # Read the user-selected expert level
-        try:
-            max_level = self.container.controlParameters.PHIL_EXPERT_LEVEL.get()
-            if max_level is None:
-                max_level = 0
-        except (AttributeError, Exception):
-            max_level = 0
+        return [(path, value) for kind, path, value
+                in self._collect_phil_entries(self.container.controlParameters, "")
+                if kind == "leaf"]
 
-        result = []
-        self._extract_from_container(self.container.controlParameters, result,
-                                     max_level)
-        return result
+    def extract_phil_lines(self):
+        """The user-set parameters rendered as PHIL text lines: `path = value`
+        for scalars, one line per item for a repeated definition, and one
+        `path { ... }` block per item of a repeated scope."""
+        entries = self._collect_phil_entries(self.container.controlParameters, "")
+        return self._render_phil_entries(entries)
 
-    def _extract_from_container(self, container, result, max_level=0):
-        """Recursively extract set parameters from a container.
+    def _collect_phil_entries(self, container, prefix):
+        """Walk `container` collecting ("leaf", path, value) and
+        ("block", path, [entries]) in dataOrder.
 
-        Args:
-            container: CContainer to walk.
-            result: List to append (phil_path, value_str) tuples to.
-            max_level: Maximum expert level to serialize. Parameters with
-                expertLevel > max_level are skipped.
+        Paths are relative to `prefix` (a scope path plus a dot, or "") so
+        that entries inside a block read as PHIL requires. Only user-set
+        values are written, inside blocks as at the top level: libtbx treats
+        a repeated-scope instance identical to the master's template as the
+        template, not an instance, so writing an item's defaults out could
+        not make it count anyway.
+
+        PHIL_EXPERT_LEVEL plays no part here. It is a display choice -- the
+        client hides parameters above it -- and a value the user set while
+        looking at a deeper level is still theirs after they come back up.
+        Filtering on it could only ever drop explicitly set values, since
+        defaults are not written anyway.
         """
+        entries = []
         for name in container.dataOrder():
-            # Skip the meta-parameter itself — not a PHIL parameter
+            # Skip the meta-parameter itself -- not a PHIL parameter
             if name == "PHIL_EXPERT_LEVEL":
                 continue
-
             obj = getattr(container, name)
-            if isinstance(obj, CContainer):
-                # Check scope-level expert level
-                scope_level = (obj.get_qualifier("expertLevel")
-                               if hasattr(obj, "get_qualifier") else None)
-                if scope_level is not None and scope_level > max_level:
-                    continue
-                self._extract_from_container(obj, result, max_level)
-            elif obj.isSet(allowDefault=False):
-                # Check definition-level expert level
-                param_level = (obj.get_qualifier("expertLevel")
-                               if hasattr(obj, "get_qualifier") else None)
-                if param_level is not None and param_level > max_level:
-                    continue
+            full_path, path = self._phil_path_of(obj, name, prefix)
 
-                # Only extract parameters the user explicitly changed (not defaults)
-                # Use stored philPath qualifier if available, else reverse the __ mapping
-                phil_path = obj.get_qualifier("philPath")
-                if phil_path is None:
-                    phil_path = name.replace("__", ".")
+            if isinstance(obj, CList):
+                for item in obj:
+                    if isinstance(item, CContainer):
+                        # Children carry absolute philPaths, so the prefix
+                        # to strip is the absolute scope path however deep
+                        # this block is nested
+                        inner = self._collect_phil_entries(
+                            item, full_path + ".")
+                        entries.append(("block", path, inner))
+                    elif not hasattr(item, "isSet"):
+                        # CList.append() keeps a plain str/int as it is
+                        entries.append(("leaf", path, self._phil_value(item)))
+                    elif item.isSet(allowUndefined=False, allowDefault=True):
+                        # Membership is the explicit act; a default-valued
+                        # item is still an item
+                        entries.append(("leaf", path, self._phil_value(item)))
+            elif isinstance(obj, CContainer):
+                entries.extend(self._collect_phil_entries(obj, prefix))
+            elif obj.isSet(allowUndefined=False, allowDefault=False):
+                entries.append(("leaf", path, self._phil_value(obj)))
+        return entries
 
-                # Convert value to string, handling comma-separated lists
-                # (PHIL uses whitespace-separated values)
-                val = str(obj.get()).split()
-                val = " ".join([v[:-1] if v.endswith(",") else v for v in val])
-                result.append((phil_path, val))
+    @staticmethod
+    def _phil_path_of(obj, name, prefix):
+        """The PHIL path of `obj`: (absolute, relative to `prefix`)."""
+        phil_path = (obj.get_qualifier("philPath")
+                     if hasattr(obj, "get_qualifier") else None)
+        if phil_path is None:
+            phil_path = name.replace("__", ".")
+        relative = phil_path
+        if prefix and phil_path.startswith(prefix):
+            relative = phil_path[len(prefix):]
+        return phil_path, relative
+
+    @staticmethod
+    def _phil_value(obj):
+        """The value as PHIL text: whitespace-separated, commas stripped."""
+        raw = obj.get() if hasattr(obj, "get") else obj
+        val = str(raw).split()
+        return " ".join([v[:-1] if v.endswith(",") else v for v in val])
+
+    @classmethod
+    def _entries_from_pairs(cls, pairs):
+        """Shim output -- (path, value) pairs, or (path, [pairs]) for one
+        instance of a repeated scope -- as collected entries."""
+        entries = []
+        for path, payload in pairs:
+            if isinstance(payload, (list, tuple)) and payload and all(
+                    isinstance(e, tuple) for e in payload):
+                entries.append(("block", path, cls._entries_from_pairs(payload)))
+            elif isinstance(payload, (list, tuple)):
+                entries.append(("leaf", path, " ".join(str(v) for v in payload)))
+            else:
+                entries.append(("leaf", path, str(payload)))
+        return entries
+
+    @classmethod
+    def _render_phil_entries(cls, entries, indent=0):
+        pad = "  " * indent
+        lines = []
+        for kind, path, payload in entries:
+            if kind == "leaf":
+                lines.append(f"{pad}{path} = {payload}")
+            else:
+                lines.append(f"{pad}{path} {{")
+                lines.extend(cls._render_phil_entries(payload, indent + 1))
+                lines.append(f"{pad}}}")
+        return lines
 
     def build_working_phil(self):
         """Assemble a complete working_phil file using master_phil.fetch().
@@ -342,19 +556,21 @@ class PhilPluginScript(CPluginScript):
 
         master_phil = self.get_master_phil()
 
-        # Collect user-set PHIL parameters from controlParameters
-        user_params = self.extract_phil_parameters()
+        # Collect user-set PHIL parameters from controlParameters, repeated
+        # scopes rendered as blocks; a fixed mode comes first
+        user_lines = self.extract_phil_lines()
+        if self.PHIL_MODE and self.PHIL_MODE_PATH:
+            user_lines.insert(0, f"{self.PHIL_MODE_PATH} = {self.PHIL_MODE}")
 
-        # Run shims to convert rich CCP4i2 types to PHIL values
-        shim_params = []
+        # Run shims to convert rich CCP4i2 types to PHIL values; a shim may
+        # hand back blocks for a repeated scope as well as pairs
         work_dir = str(self.getWorkDirectory())
         for shim in self.get_shim_definitions():
-            shim_params.extend(shim.convert(self.container, work_dir))
+            user_lines.extend(self._render_phil_entries(
+                self._entries_from_pairs(shim.convert(self.container, work_dir))))
 
         # Build user PHIL string from all sources
-        all_params = user_params + shim_params
-        if all_params:
-            user_lines = [f"{name}={val}" for name, val in all_params]
+        if user_lines:
             user_phil = parse("\n".join(user_lines))
             working_phil = master_phil.fetch(sources=[user_phil])
         else:

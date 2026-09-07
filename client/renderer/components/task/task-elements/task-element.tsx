@@ -11,6 +11,7 @@ import { CFreeRDataFileElement } from "./cfreerfile";
 import { CMiniMtzDataFileElement } from "./cminimtzdatafile";
 import { CBooleanElement } from "./cboolean";
 import { CListElement } from "./clist";
+import { resolveComponentEntry } from "./component-dispatch";
 // Lazy import to break circular dependency: ccontainer.tsx imports task-element.tsx
 let _CCP4i2ContainerElement: React.FC<any> | null = null;
 const getLazyContainerElement = (): React.FC<any> => {
@@ -169,6 +170,8 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   // Container / composite types (use lazy getter to break circular dependency)
   CSpaceGroupCell: { get component() { return getLazyContainerElement(); } },
   CContainer: { get component() { return getLazyContainerElement(); } },
+  // A composite with no element of its own renders its fields, as a container does
+  CData: { get component() { return getLazyContainerElement(); } },
   CCell: { component: CCellElement },
   CEnsemble: { component: CEnsembleElement },
   CFloatRange: { component: CRangeElement },
@@ -236,7 +239,7 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       );
     }
 
-    const entry = itemClass ? COMPONENT_REGISTRY[itemClass] : undefined;
+    const entry = resolveComponentEntry(COMPONENT_REGISTRY, item);
 
     if (!entry) {
       return (

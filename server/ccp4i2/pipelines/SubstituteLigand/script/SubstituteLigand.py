@@ -27,7 +27,7 @@ class SubstituteLigand(CPluginScript):
     This pipeline runs synchronously through these phases:
     1. Ligand dictionary generation (LidiaAcedrg) - if ligand provided
     2. Data merging (aimless_pipe) - if unmerged data provided
-    3. Rigid body refinement (phaser_rnp_pipeline or i2Dimple)
+    3. Rigid body refinement (phaser_rnp_pipeline_phil or i2Dimple)
     4. Servalcat refinement - produces superior maps (normal, difference,
        and anomalous if applicable) for use by coot and as final output
     5. Ligand fitting (coot_headless_api) - if ligand provided
@@ -42,7 +42,7 @@ class SubstituteLigand(CPluginScript):
         202: {'description': 'Failed in harvest operation'},
         203: {'description': 'Failed in LidiaAcedrg ligand generation'},
         204: {'description': 'Failed in aimless pipeline'},
-        205: {'description': 'Failed in phaser_rnp_pipeline'},
+        205: {'description': 'Failed in phaser_rnp_pipeline_phil'},
         206: {'description': 'Failed in i2Dimple'},
         207: {'description': 'Failed in coot ligand fitting'},
         208: {'description': 'Failed in coot postprocessing'},
@@ -183,7 +183,7 @@ class SubstituteLigand(CPluginScript):
         This runs all sub-plugins in sequence:
         1. LidiaAcedrg (if ligand needed)
         2. aimless_pipe (if unmerged data)
-        3. phaser_rnp_pipeline or i2Dimple
+        3. phaser_rnp_pipeline_phil or i2Dimple
         4. servalcat_pipe (always - produces final maps)
         5. coot ligand fitting (if ligand)
 
@@ -370,34 +370,36 @@ class SubstituteLigand(CPluginScript):
         return error
 
     def _runPhaserRnp(self):
-        """Run phaser_rnp_pipeline for rigid body refinement."""
+        """Run phaser_rnp_pipeline_phil: the whole selected model as one rigid
+        body, refined by Phaser over its PHIL, then refmac."""
         error = CErrorReport()
 
         try:
-            self.refinementPlugin = self.makePluginObject('phaser_rnp_pipeline')
+            self.refinementPlugin = self.makePluginObject('phaser_rnp_pipeline_phil')
         except Exception as e:
-            self.appendErrorReport(209, f'Failed to create phaser_rnp_pipeline plugin: {e}\n{traceback.format_exc()}')
+            self.appendErrorReport(209, f'Failed to create phaser_rnp_pipeline_phil plugin: {e}\n{traceback.format_exc()}')
             error.append(self.__class__.__name__, 209,
-                        f'Failed to create phaser_rnp_pipeline plugin: {e}', 'phaser_rnp', 4)
+                        f'Failed to create phaser_rnp_pipeline_phil plugin: {e}', 'phaser_rnp', 4)
             return error
 
         try:
             plugin = self.refinementPlugin
-            plugin.container.inputData.XYZIN_PARENT = self.selAtomsFile
-            plugin.container.inputData.F_SIGF = self.obsToUse
-            plugin.container.inputData.FREERFLAG = self.freerToUse
-            plugin.container.inputData.SELECTIONS.append({
-                'text': '/*/*/*/*',
-                'pdbFileKey': 'XYZIN_PARENT'
-            })
+            inp = plugin.container.inputData
+            inp.XYZIN_PARENT.set(self.selAtomsFile)
+            inp.F_SIGF.set(self.obsToUse)
+            if self.freerToUse is not None and self.freerToUse.isSet():
+                inp.FREERFLAG.set(self.freerToUse)
+            # No selection: the whole model is the one rigid body
+            inp.RUNSHEETBEND.set(False)
+            inp.RUNREFMAC.set(True)
 
-            print(f"[SubstituteLigand] Running phaser_rnp_pipeline...")
+            print(f"[SubstituteLigand] Running phaser_rnp_pipeline_phil...")
             status = plugin.process()
 
             if status != CPluginScript.SUCCEEDED:
-                self.appendErrorReport(205, 'phaser_rnp_pipeline failed')
+                self.appendErrorReport(205, 'phaser_rnp_pipeline_phil failed')
                 error.append(self.__class__.__name__, 205,
-                            'phaser_rnp_pipeline failed', 'phaser_rnp', 4)
+                            'phaser_rnp_pipeline_phil failed', 'phaser_rnp', 4)
                 return error
 
             # Store results for harvest
@@ -417,13 +419,13 @@ class SubstituteLigand(CPluginScript):
                 # Need coordinates for coot
                 self.coordinatesForCoot = out.XYZOUT_REFMAC
 
-            # Update obsToUse/freerToUse if plugin produced them
-            if os.path.isfile(str(out.F_SIGF_OUT)):
+            # The data as reindexed to match the model
+            if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
                 self.obsToUse = out.F_SIGF_OUT
-            if os.path.isfile(str(out.FREERFLAG_OUT)):
+            if os.path.isfile(str(out.FREERFLAG_OUT.fullPath)):
                 self.freerToUse = out.FREERFLAG_OUT
 
-            print(f"[SubstituteLigand] phaser_rnp_pipeline completed")
+            print(f"[SubstituteLigand] phaser_rnp_pipeline_phil completed")
 
             # Append XML
             self._appendPluginXml(plugin)
@@ -1229,20 +1231,14 @@ class SubstituteLigand(CPluginScript):
                 if len(aimlessOut.HKLOUT) > 0 and os.path.isfile(str(aimlessOut.HKLOUT[0].fullPath)):
                     self._harvestFile(aimlessOut.HKLOUT[0], self.container.outputData.F_SIGF_OUT)
 
-            # Harvest F_SIGF_OUT and FREERFLAG_OUT from refinement plugin
-            # (these may have been reindexed by dimple/phaser_rnp)
+            # Harvest F_SIGF_OUT and FREERFLAG_OUT from the refinement plugin
+            # (reindexed by dimple or phaser_rnp_pipeline_phil to match the model)
             if self.refinementPlugin is not None:
                 out = self.refinementPlugin.container.outputData
-                if self._pipelineMode == 'DIMPLE':
-                    if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
-                        self._harvestFile(out.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
-                    if os.path.isfile(str(out.FREERFLAG_OUT.fullPath)):
-                        self._harvestFile(out.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
-                else:
-                    if os.path.isfile(str(out.F_SIGF_OUT)):
-                        self._harvestFile(out.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
-                    if os.path.isfile(str(out.FREERFLAG_OUT)):
-                        self._harvestFile(out.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
+                if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
+                    self._harvestFile(out.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
+                if os.path.isfile(str(out.FREERFLAG_OUT.fullPath)):
+                    self._harvestFile(out.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
 
             # Harvest maps and coordinates from servalcat
             if self.servalcatPlugin is not None:

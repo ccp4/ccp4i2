@@ -14,6 +14,7 @@ import {
   Chip,
   Button,
 } from "@mui/material";
+import { alpha, Theme } from "@mui/material/styles";
 import {
   ExpandMore as ExpandMoreIcon,
   Error as ErrorIcon,
@@ -28,6 +29,37 @@ import {
   describeReport,
   parseDiagnosticXml,
 } from "../lib/diagnostic-parse";
+import { darkCustomColors, lightCustomColors } from "../theme/palette";
+
+/**
+ * Surface colours for the diagnostic panel, resolved against the active theme.
+ *
+ * Every colour here has to be derived from the theme rather than named as a
+ * fixed palette shade: `grey.100` behind `text.primary` is dark-on-light in
+ * light mode and white-on-light in dark mode (the reported bug), and MUI's
+ * `error.light` is a saturated red that swallows white text. The error rows
+ * are therefore tinted with a translucent `error.main` over whatever the paper
+ * colour is, and the preformatted blocks take the palette's own mode-aware
+ * grey pair with the text colour stated explicitly.
+ */
+export function diagnosticSurfaceColors(theme: Theme) {
+  const dark = theme.palette.mode === "dark";
+  const ui = (dark ? darkCustomColors : lightCustomColors).ui;
+  const error = theme.palette.error.main;
+  return {
+    /** Details and stack-trace <pre> blocks. */
+    pre: {
+      backgroundColor: ui.veryLightGray,
+      color: theme.palette.text.primary,
+    },
+    /** AccordionSummary of an ERROR report: collapsed, expanded, hovered. */
+    errorSummary: {
+      idle: alpha(error, dark ? 0.16 : 0.08),
+      expanded: alpha(error, dark ? 0.28 : 0.16),
+      hover: alpha(error, dark ? 0.32 : 0.2),
+    },
+  };
+}
 
 interface DiagnosticProps {
   xmlDocument: string;
@@ -195,17 +227,23 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              sx={{
-                backgroundColor: isError
-                  ? expandedCard === index
-                    ? "error.light"
-                    : "error.lighter"
-                  : expandedCard === index
-                  ? "action.selected"
-                  : "background.paper",
-                "&:hover": {
-                  backgroundColor: isError ? "error.light" : "action.hover",
-                },
+              sx={(theme) => {
+                const { errorSummary } = diagnosticSurfaceColors(theme);
+                const expanded = expandedCard === index;
+                return {
+                  backgroundColor: isError
+                    ? expanded
+                      ? errorSummary.expanded
+                      : errorSummary.idle
+                    : expanded
+                    ? theme.palette.action.selected
+                    : theme.palette.background.paper,
+                  "&:hover": {
+                    backgroundColor: isError
+                      ? errorSummary.hover
+                      : theme.palette.action.hover,
+                  },
+                };
               }}
             >
             <Box
@@ -256,8 +294,8 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
                   </Typography>
                   <Box
                     component="pre"
-                    sx={{
-                      backgroundColor: "grey.100",
+                    sx={(theme) => ({
+                      ...diagnosticSurfaceColors(theme).pre,
                       p: 2,
                       borderRadius: 1,
                       fontSize: "0.875rem",
@@ -266,7 +304,7 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
                       wordBreak: "break-word",
                       maxHeight: "200px",
                       overflow: "auto",
-                    }}
+                    })}
                   >
                     {report.details}
                   </Box>
@@ -302,8 +340,8 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
                   <Collapse in={expandedStacks.has(index)}>
                     <Box
                       component="pre"
-                      sx={{
-                        backgroundColor: "grey.100",
+                      sx={(theme) => ({
+                        ...diagnosticSurfaceColors(theme).pre,
                         p: 2,
                         borderRadius: 1,
                         fontSize: "0.75rem",
@@ -313,7 +351,7 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument, embedded }) => {
                         maxHeight: "300px",
                         overflow: "auto",
                         mt: 1,
-                      }}
+                      })}
                     >
                       {report.stack}
                     </Box>

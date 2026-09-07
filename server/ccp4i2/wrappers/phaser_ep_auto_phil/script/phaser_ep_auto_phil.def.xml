@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  Inputs and outputs only: the parameters are Phaser's own PHIL, read at
+  run time and filtered to EP_AUTO. What lives here is what PHIL cannot
+  express: CCP4i2's typed files. The shims in phaser_ep_auto_phil.py write
+  them into the working phil.
+-->
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>phaser_ep_auto_phil</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="phaser_ep_auto_phil">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <guiLabel>Anomalous reflections</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Wavelength (A)</guiLabel>
+          <min>0.1</min>
+          <max>10.0</max>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_HA">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Heavy-atom sites</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="PARTIAL_BY">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Partial model</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>NONE,MODEL</enumerators>
+          <menuText>None,Coordinates</menuText>
+          <default>NONE</default>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_PARTIAL">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Partial model coordinates</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="ELEMENTS">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>Anomalous scatterers to look for</guiLabel>
+          <listMinLength>1</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CString</className>
+        </subItem>
+      </content>
+      <content id="LLGC_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Cycles of log-likelihood-gradient completion</guiLabel>
+          <default>1</default>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="PURE_ANOMALOUS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Look for pure anomalous scatterers (imaginary method)</guiLabel>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="COMP_BY">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Composition of the asymmetric unit</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,ASU,SEQUENCES,SOLVENT</enumerators>
+          <menuText>Average solvent content (50%),AsuContent file,Sequence files with copies,Solvent fraction</menuText>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="ASUFILE">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <guiLabel>AsuContent file</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="SEQUENCES">
+        <className>CSequenceWithCopiesList</className>
+        <qualifiers>
+          <guiLabel>Sequence files with copies</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="SOLVENT_FRACTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Solvent fraction</guiLabel>
+          <min>0.05</min>
+          <max>0.95</max>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <default>
+              <subType>4</subType>
+            </default>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="HKLOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMtzDataFile</className>
+          <qualifiers>
+            <saveToDb>False</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="ABCDOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPhsDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="MAPOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+            <default>
+              <contentFlag>1</contentFlag>
+              <subType>1</subType>
+            </default>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <qualifiers/>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

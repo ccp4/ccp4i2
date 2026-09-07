@@ -25,7 +25,7 @@ import {
   Layers,
   MoreVert,
 } from "@mui/icons-material";
-import { alpha, Theme } from "@mui/material/styles";
+import { alpha, Theme, useTheme } from "@mui/material/styles";
 
 import { useApi } from "../api";
 import { useDeleteDialog } from "../providers/delete-dialog";
@@ -56,6 +56,41 @@ interface DraggedTag {
   id: number;
   path: string;
 }
+
+/**
+ * What a tag drag carries in its `TAG_DRAG_TYPE` payload. The label is
+ * included so a drop target elsewhere (a project row) can name the tag in
+ * its confirmation without having the tree to hand.
+ */
+export interface TagDragPayload {
+  id: number;
+  label: string;
+}
+
+/** Decode a `TAG_DRAG_TYPE` payload, or null if the drag is not a tag. */
+export function readTagDragPayload(
+  dataTransfer: DataTransfer
+): TagDragPayload | null {
+  if (!Array.from(dataTransfer.types).includes(TAG_DRAG_TYPE)) return null;
+  try {
+    const parsed = JSON.parse(dataTransfer.getData(TAG_DRAG_TYPE));
+    if (typeof parsed?.id !== "number") return null;
+    return { id: parsed.id, label: String(parsed.label ?? "") };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * How a hovered drop target announces itself — shared by the tree's nodes and
+ * by the project rows and cards a tag can be dropped onto, so the affordance
+ * reads the same wherever a drag happens to be.
+ */
+export const dropTargetSx = {
+  bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.16),
+  outline: "1px dashed",
+  outlineColor: "primary.main",
+};
 
 interface ProjectTagTreeProps {
   selected: TagFilter;
@@ -120,6 +155,11 @@ export default function ProjectTagTreePane({
   // payload — and refusing a drop onto the dragged node's own subtree has to
   // happen while hovering, not after the drop.
   const draggedTag = useRef<DraggedTag | null>(null);
+  // The element the browser paints under the cursor during a tag drag. Made
+  // on dragstart and removed on dragend; without it the default ghost is a
+  // snapshot of the whole row, which on a wide list reads as "the list".
+  const dragGhost = useRef<HTMLElement | null>(null);
+  const theme = useTheme();
   const confirmDeleteRef = useRef<((node: ProjectTagNode) => void) | null>(null);
 
   const toggle = useCallback((id: number) => {
@@ -254,7 +294,7 @@ export default function ProjectTagTreePane({
         children: notes,
         onDelete: async () => {
           try {
-            await api.delete(`projecttags/${node.id}`);
+            await api.delete(`projecttags/${node.id}/`);
           } catch (error) {
             // Deleting something already deleted is not a failure to report:
             // the tree can lag the database (a second click, another window),
@@ -283,21 +323,34 @@ export default function ProjectTagTreePane({
 
   // -- drag and drop ---------------------------------------------------
 
-  const canAcceptTagDrop = useCallback((node: ProjectTagNode | null) => {
-    const dragged = draggedTag.current;
-    if (!dragged) return false;
-    if (node === null) return dragged.path.includes(PATH_SEPARATOR); // already a root
-    if (node.id === dragged.id) return false;
-    // Refuse the node's own subtree: the server rejects it too, but a
-    // highlighted target that then fails is a worse answer than no highlight.
-    return !node.path.startsWith(dragged.path + PATH_SEPARATOR);
-  }, []);
+  /**
+   * May `dragged` be filed under `node` (null meaning "make it a root")?
+   *
+   * The dragged descriptor is a parameter rather than read from the ref here:
+   * the drop handler has to clear that ref, and an earlier version cleared it
+   * *before* asking this question, so the answer was always "no" and a drop
+   * that had been highlighted as acceptable then did nothing.
+   */
+  const canAcceptTagDrop = useCallback(
+    (dragged: DraggedTag | null, node: ProjectTagNode | null) => {
+      if (!dragged) return false;
+      if (node === null) return dragged.path.includes(PATH_SEPARATOR); // already a root
+      if (node.id === dragged.id) return false;
+      // Refuse the node's own subtree: the server rejects it too, but a
+      // highlighted target that then fails is a worse answer than no highlight.
+      return !node.path.startsWith(dragged.path + PATH_SEPARATOR);
+    },
+    []
+  );
 
   const handleDragOver = useCallback(
     (event: React.DragEvent, node: ProjectTagNode | null) => {
       const types = event.dataTransfer.types;
       if (types.includes(TAG_DRAG_TYPE)) {
-        if (!canAcceptTagDrop(node)) return;
+        if (!canAcceptTagDrop(draggedTag.current, node)) return;
+        // A tag drag allows copy (onto a project) as well as move (here);
+        // say which this is so the cursor matches the outcome.
+        event.dataTransfer.dropEffect = "move";
       } else if (types.includes(PROJECT_DRAG_TYPE)) {
         if (!onDropProjects || node === null) return;
       } else {
@@ -316,7 +369,7 @@ export default function ProjectTagTreePane({
       if (types.includes(TAG_DRAG_TYPE)) {
         const dragged = draggedTag.current;
         draggedTag.current = null;
-        if (!dragged || !canAcceptTagDrop(node)) return;
+        if (!dragged || !canAcceptTagDrop(dragged, node)) return;
         event.preventDefault();
         reparentTag(dragged, node);
         return;
@@ -328,6 +381,47 @@ export default function ProjectTagTreePane({
     },
     [canAcceptTagDrop, onDropProjects, reparentTag]
   );
+
+  const startTagDrag = useCallback(
+    (event: React.DragEvent, node: ProjectTagNode) => {
+      draggedTag.current = { id: node.id, path: node.path };
+      const payload: TagDragPayload = { id: node.id, label: node.display_path };
+      event.dataTransfer.setData(TAG_DRAG_TYPE, JSON.stringify(payload));
+      // Move within the tree, copy onto a project — the drop target picks.
+      event.dataTransfer.effectAllowed = "copyMove";
+
+      // The ghost must be a rendered element, so it goes into the document
+      // (off screen) rather than being built detached.
+      if (typeof event.dataTransfer.setDragImage === "function") {
+        const ghost = document.createElement("span");
+        ghost.textContent = node.text;
+        Object.assign(ghost.style, {
+          position: "fixed",
+          top: "-1000px",
+          left: "-1000px",
+          padding: "2px 10px",
+          borderRadius: "4px",
+          whiteSpace: "nowrap",
+          font: `${theme.typography.body2.fontSize} ${theme.typography.fontFamily}`,
+          color: theme.palette.text.primary,
+          background: theme.palette.background.paper,
+          border: `1px solid ${theme.palette.primary.main}`,
+          boxShadow: theme.shadows[2],
+        } as Partial<CSSStyleDeclaration>);
+        document.body.appendChild(ghost);
+        dragGhost.current = ghost;
+        event.dataTransfer.setDragImage(ghost, 0, 0);
+      }
+    },
+    [theme]
+  );
+
+  const endTagDrag = useCallback(() => {
+    draggedTag.current = null;
+    dragGhost.current?.remove();
+    dragGhost.current = null;
+    setDropTarget(null);
+  }, []);
 
   // -- rendering -------------------------------------------------------
 
@@ -384,18 +478,8 @@ export default function ProjectTagTreePane({
             dense
             selected={isSelected}
             draggable={!isRenaming}
-            onDragStart={(event) => {
-              draggedTag.current = { id: node.id, path: node.path };
-              event.dataTransfer.setData(
-                TAG_DRAG_TYPE,
-                JSON.stringify({ id: node.id })
-              );
-              event.dataTransfer.effectAllowed = "move";
-            }}
-            onDragEnd={() => {
-              draggedTag.current = null;
-              setDropTarget(null);
-            }}
+            onDragStart={(event) => startTagDrag(event, node)}
+            onDragEnd={endTagDrag}
             onClick={() =>
               onSelect({
                 kind: "tag",
@@ -413,12 +497,7 @@ export default function ProjectTagTreePane({
               pl: 1 + node.depth * 1.5,
               borderRadius: 1,
               "&:hover .tag-node-actions": { opacity: 1 },
-              ...(isDropTarget && {
-                bgcolor: (theme: Theme) =>
-                  alpha(theme.palette.primary.main, 0.16),
-                outline: "1px dashed",
-                outlineColor: "primary.main",
-              }),
+              ...(isDropTarget && dropTargetSx),
             }}
           >
             {node.children.length > 0 ? (
@@ -605,12 +684,7 @@ export default function ProjectTagTreePane({
           onDrop={(event) => handleDrop(event, null)}
           sx={{
             borderRadius: 1,
-            ...(dropTarget === "root" && {
-              bgcolor: (theme: Theme) =>
-                alpha(theme.palette.primary.main, 0.16),
-              outline: "1px dashed",
-              outlineColor: "primary.main",
-            }),
+            ...(dropTarget === "root" && dropTargetSx),
           }}
         >
           <Layers sx={{ mr: 0.5, fontSize: 16, color: "text.disabled" }} />

@@ -24,6 +24,12 @@ class Task:
     # otherwise (and verified by the CCP4-free behavioural guard). See
     # lib/utils/jobs/context_run.can_run_local().
     ccp4_free: bool = False
+    # The task that replaces this one. A superseded task stays registered
+    # (its jobs still open and report) but is hidden from the chooser, and
+    # cloning one of its jobs makes a job of the successor instead, which
+    # adopts the front page: typed inputs of the same name and the few
+    # values that became PHIL parameters (PhilPluginScript.adopt_legacy_container).
+    successor: str = None
 
 
 TASKS = {
@@ -1051,6 +1057,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_ep/script/phaser_EP.def.xml",
         reportPath="ccp4i2.pipelines.phaser_ep.script.phaser_EP_report:phaser_EP_report",
         runningReport=True,
+        successor="phaser_ep_phil",
     ),
     "phaser_EP_AUTO": Task(
         title="SAD phasing from heavy atom sites - PHASER",
@@ -1060,6 +1067,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_EP_AUTO/script/phaser_EP_AUTO.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report:phaser_EP_AUTO_report",
         runningReport=True,
+        successor="phaser_ep_auto_phil",
     ),
     "phaser_EP_LLG": Task(
         title="Anomalous map from coordinates - PHASER",
@@ -1083,6 +1091,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_AUTO/script/phaser_MR_AUTO.def.xml",
         reportPath="ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:phaser_MR_AUTO_report",
         runningReport=True,
+        successor="phaser_mr_auto_phil",
     ),
     "phaser_MR_FRF": Task(
         title="Rotation function - PHASER",
@@ -1091,6 +1100,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_FRF/script/phaser_MR_FRF.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report:phaser_MR_FRF_report",
         runningReport=True,
+        successor="phaser_mr_frf_phil",
     ),
     "phaser_MR_FTF": Task(
         title="Translation function - PHASER",
@@ -1099,6 +1109,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_FTF/script/phaser_MR_FTF.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report:phaser_MR_FTF_report",
         runningReport=True,
+        successor="phaser_mr_ftf_phil",
     ),
     "phaser_MR_PAK": Task(
         title="Packing function - PHASER",
@@ -1106,6 +1117,7 @@ TASKS = {
         pluginPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK:phaser_MR_PAK",
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report:phaser_MR_PAK_report",
+        successor="phaser_mr_pak_phil",
     ),
     "phaser_MR_RNP": Task(
         title="Run rigid body refinement - PHASER",
@@ -1115,6 +1127,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_MR_RNP/script/phaser_MR_RNP.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP_report:phaser_MR_RNP_report",
         runningReport=True,
+        successor="phaser_mr_rnp_phil",
     ),
     "phaser_analysis": Task(
         shortTitle="Phaser Analysis",
@@ -1138,6 +1151,96 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil:phaser_phil",
         defXmlPath="wrappers/phaser_phil/script/phaser_phil.def.xml",
         reportPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil_report:phaser_phil_report",
+    ),
+    "phaser_mr_auto_phil": Task(
+        title="Molecular Replacement - Phaser (PHIL)",
+        shortTitle="Phaser MR (PHIL)",
+        description="Automated molecular replacement with Phaser, driven from its PHIL interface",
+        pluginPath="ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil:phaser_mr_auto_phil",
+        defXmlPath="wrappers/phaser_mr_auto_phil/script/phaser_mr_auto_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_mr_auto_phil.script.phaser_mr_auto_phil_report:phaser_mr_auto_phil_report",
+        runningReport=True,
+    ),
+    "phaser_pipeline_phil": Task(
+        title="Expert Molecular Replacement - Phaser (PHIL)",
+        shortTitle="Phaser expert (PHIL)",
+        description="Molecular replacement with Phaser over its PHIL, then optional sheetbend and refmac",
+        pluginPath="ccp4i2.pipelines.phaser_pipeline_phil.script.phaser_pipeline_phil:phaser_pipeline_phil",
+        defXmlPath="pipelines/phaser_pipeline_phil/script/phaser_pipeline_phil.def.xml",
+        reportPath="ccp4i2.pipelines.phaser_pipeline_phil.script.phaser_pipeline_phil_report:phaser_pipeline_phil_report",
+        runningReport=True,
+    ),
+    "phaser_simple_phil": Task(
+        title="Basic Molecular Replacement - Phaser (PHIL)",
+        shortTitle="Phaser basic (PHIL)",
+        description="Molecular replacement with one search model, Phaser over its PHIL, then optional sheetbend and refmac",
+        pluginPath="ccp4i2.pipelines.phaser_simple_phil.script.phaser_simple_phil:phaser_simple_phil",
+        defXmlPath="pipelines/phaser_simple_phil/script/phaser_simple_phil.def.xml",
+        reportPath="ccp4i2.pipelines.phaser_simple_phil.script.phaser_simple_phil_report:phaser_simple_phil_report",
+        runningReport=True,
+    ),
+    "phaser_ep_phil": Task(
+        title="SAD Experimental Phasing pipeline - Phaser (PHIL)",
+        shortTitle="Phaser EP pipeline (PHIL)",
+        description="SAD phasing with Phaser over its PHIL, then density modification and optional model building",
+        pluginPath="ccp4i2.pipelines.phaser_ep_phil.script.phaser_ep_phil:phaser_ep_phil",
+        defXmlPath="pipelines/phaser_ep_phil/script/phaser_ep_phil.def.xml",
+        reportPath="ccp4i2.pipelines.phaser_ep_phil.script.phaser_ep_phil_report:phaser_ep_phil_report",
+        runningReport=True,
+    ),
+    "phaser_rnp_pipeline_phil": Task(
+        title="Rigid-body refinement - Phaser (PHIL)",
+        shortTitle="Rigid body Phaser (PHIL)",
+        description="Cut a model into rigid bodies and refine them with Phaser over its PHIL, then optional sheetbend and refmac",
+        pluginPath="ccp4i2.pipelines.phaser_rnp_pipeline_phil.script.phaser_rnp_pipeline_phil:phaser_rnp_pipeline_phil",
+        defXmlPath="pipelines/phaser_rnp_pipeline_phil/script/phaser_rnp_pipeline_phil.def.xml",
+        reportPath="ccp4i2.pipelines.phaser_rnp_pipeline_phil.script.phaser_rnp_pipeline_phil_report:phaser_rnp_pipeline_phil_report",
+        runningReport=True,
+    ),
+    "phaser_mr_frf_phil": Task(
+        title="Rotation function - Phaser (PHIL)",
+        shortTitle="Phaser FRF (PHIL)",
+        description="The rotation function alone, for the search models' copies, giving a rotation list for a translation function",
+        pluginPath="ccp4i2.wrappers.phaser_mr_frf_phil.script.phaser_mr_frf_phil:phaser_mr_frf_phil",
+        defXmlPath="wrappers/phaser_mr_frf_phil/script/phaser_mr_frf_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_mr_frf_phil.script.phaser_mr_frf_phil_report:phaser_mr_frf_phil_report",
+        runningReport=True,
+    ),
+    "phaser_mr_ftf_phil": Task(
+        title="Translation function - Phaser (PHIL)",
+        shortTitle="Phaser FTF (PHIL)",
+        description="The translation function for the peaks of a rotation list, giving solutions for packing and refinement",
+        pluginPath="ccp4i2.wrappers.phaser_mr_ftf_phil.script.phaser_mr_ftf_phil:phaser_mr_ftf_phil",
+        defXmlPath="wrappers/phaser_mr_ftf_phil/script/phaser_mr_ftf_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_mr_ftf_phil.script.phaser_mr_ftf_phil_report:phaser_mr_ftf_phil_report",
+        runningReport=True,
+    ),
+    "phaser_mr_pak_phil": Task(
+        title="Packing test - Phaser (PHIL)",
+        shortTitle="Phaser PAK (PHIL)",
+        description="Test the solutions of a translation function for clashes, keeping those that pack",
+        pluginPath="ccp4i2.wrappers.phaser_mr_pak_phil.script.phaser_mr_pak_phil:phaser_mr_pak_phil",
+        defXmlPath="wrappers/phaser_mr_pak_phil/script/phaser_mr_pak_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_mr_pak_phil.script.phaser_mr_pak_phil_report:phaser_mr_pak_phil_report",
+        runningReport=True,
+    ),
+    "phaser_mr_rnp_phil": Task(
+        title="Rigid-body refinement of MR solutions - Phaser (PHIL)",
+        shortTitle="Phaser RNP (PHIL)",
+        description="Rigid-body refinement of placed solutions with Phaser, driven from its PHIL interface",
+        pluginPath="ccp4i2.wrappers.phaser_mr_rnp_phil.script.phaser_mr_rnp_phil:phaser_mr_rnp_phil",
+        defXmlPath="wrappers/phaser_mr_rnp_phil/script/phaser_mr_rnp_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_mr_rnp_phil.script.phaser_mr_rnp_phil_report:phaser_mr_rnp_phil_report",
+        runningReport=True,
+    ),
+    "phaser_ep_auto_phil": Task(
+        title="SAD Experimental Phasing - Phaser (PHIL)",
+        shortTitle="Phaser EP (PHIL)",
+        description="Single-wavelength anomalous phasing with Phaser, driven from its PHIL interface",
+        pluginPath="ccp4i2.wrappers.phaser_ep_auto_phil.script.phaser_ep_auto_phil:phaser_ep_auto_phil",
+        defXmlPath="wrappers/phaser_ep_auto_phil/script/phaser_ep_auto_phil.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_ep_auto_phil.script.phaser_ep_auto_phil_report:phaser_ep_auto_phil_report",
+        runningReport=True,
     ),
     "phasertng_picard": Task(
         title="PhaserTNG Picard - Molecular Replacement",
@@ -1171,6 +1274,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/script/phaser_pipeline.def.xml",
         reportPath="ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_pipeline_report",
         runningReport=True,
+        successor="phaser_pipeline_phil",
     ),
     "phaser_rnp_pipeline": Task(
         title="Rigid body refinement - PHASER",
@@ -1180,6 +1284,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_rnp_pipeline/script/phaser_rnp_pipeline.def.xml",
         reportPath="ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:phaser_rnp_pipeline_report",
         runningReport=True,
+        successor="phaser_rnp_pipeline_phil",
     ),
     "phaser_simple": Task(
         title="Basic Molecular Replacement - PHASER",
@@ -1189,6 +1294,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_simple/script/phaser_simple.def.xml",
         reportPath="ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_simple_report",
         runningReport=True,
+        successor="phaser_simple_phil",
     ),
     "phaser_singleMR": Task(
         title="Single Atom Molecular Replacement",
@@ -1549,6 +1655,12 @@ def get_plugin_module(task_name: str):
 
 
 @cache
+def get_successor(task_name):
+    """The task that replaces `task_name`, or None."""
+    task = TASKS.get(task_name)
+    return task.successor if task is not None else None
+
+
 def get_plugin_class(task_name: str):
     return _get_task_class(task_name, "plugin")
 

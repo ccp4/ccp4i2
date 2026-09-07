@@ -1,0 +1,520 @@
+******************************************************************************************
+*** Phaser Module: AUTOMATED EXPERIMENTAL PHASING                                2.8.4 ***
+******************************************************************************************
+
+** Steps:
+**    Anisotropy correction
+**    Experimental Phasing
+**       SAD Phasing
+
+CPU Time: 0 days 0 hrs 0 mins 0.00 secs (      0.00 secs)
+Finished: Sat Sep  5 18:20:01 2026
+
+******************************************************************************************
+*** Phaser Module: SINGLE-WAVELENGTH ANOMALOUS DISPERSION                        2.8.4 ***
+******************************************************************************************
+
+** There is 1 SAD atom refinement set
+
+   Refined Anisotropy Parameters
+   -----------------------------
+   Principal components of anisotropic part of B affecting observed amplitudes:
+     eigenB (A^2)     direction cosines (orthogonal coordinates)
+         1.875              1.0000   0.0000   0.0000
+         0.014             -0.0000  -0.0000   1.0000
+        -1.888             -0.0000   1.0000   0.0000
+   Anisotropic deltaB (i.e. range of principal components):   3.763
+
+   Scattering edges
+   ----------------
+   Wavelength = 1.542
+   Atomtype "XE" is not near an edge
+      Atomtype "XE" fdp is fixed
+
+------------
+ENANTIOMORPH
+------------
+
+** Requested refinement in original enantiomorph only
+
+----------------
+ATOM SET #1 OF 1
+----------------
+
+   Space Group Name (Number): P 21 21 21 (19)
+
+   INITIAL PHASING STATISTICS
+   --------------------------
+   Atom Parameters: 4 atoms in list
+          X       Y       Z       O         B    (AnisoB) M Atomtype
+   #1     0.252   0.537   0.052   1.000    16.0 (  ---- ) 1 XE
+   #2     0.499   0.683  -0.047   0.410    16.0 (  ---- ) 1 XE
+   #3     0.258   0.541  -0.156   0.100    16.0 (  ---- ) 1 XE
+   #4     0.504   0.818   0.052   0.090    16.0 (  ---- ) 1 XE
+
+   Scattering Parameters:
+    Atom             f"           (f')
+      XE         7.3585        -0.7870
+
+   Figures of Merit
+   ----------------
+   Bin Resolution   Acentric     Centric      Single       Total       
+                    Number FOM   Number FOM   Number FOM   Number FOM  
+   ALL  34.00- 1.79   9670 0.465   1758 0.200    731 0.246  12159 0.414
+
+   Log-Likelihood = 258
+   R-factor =  75.4
+
+   REFINEMENT #1
+   -------------
+   Log-Likelihood = 806
+   R-factor =  79.5
+
+   SUB-STRUCTURE ANALYSIS #1: LLG MAPS
+   -----------------------------------
+** 1 gradient map will be calculated
+**    for atom type: XE
+
+   Identify New Atoms for Addition (XE)
+   ------------------------------------
+
+   Peaks over Z-score cutoff
+   #        X      Y      Z Z-scr  M
+   1    0.252  0.142  0.537   9.8  1
+
+   Identify Old Atoms for Editing (XE)
+   -----------------------------------
+   Old atoms edited if:
+      peak < 1.28A from a previously deleted atom will resurrect the old atom
+      peak or hole < 1.28A from an old atom will turn it anisotropic
+
+   Edited atoms list:
+   #        X      Y      Z    occupancy     Atom
+   1    0.256  0.536  0.052       0.7137       XE  Anisotropic
+
+   Summary (XE)
+   ------------
+   Number of new atoms identified this cycle = 1
+   Number of old isotropic atoms identified as anisotropic = 1
+   Number of old atoms previously identified for restoration = 0
+
+   SUB-STRUCTURE ANALYSIS #1: WEAK SITES
+   -------------------------------------
+
+   Identify Old Atoms for Deletion
+   -------------------------------
+   Low occupancy sites identified for deletion.
+   Minimum occupancy depends on scattering type f"
+   Atoms previously restored are not deleted, to prevent cycling
+
+    Atom           f"      max occ      min occ   cutoff occ
+      XE       7.3585       0.7137       0.0010       0.0714
+
+   Deleted atoms list:
+   #        X      Y      Z    occupancy     Atom
+   3    0.258  0.541 -0.152       0.0010       XE  Rejected
+   4    0.526  0.824  0.051       0.0255       XE  Rejected
+
+   Number of old atoms with occupancy less than cut-off = 2
+      Number of these previously restored (therefore not deleted) = 0
+   Number of old atoms identified for deletion = 2
+
+   SUB-STRUCTURE COMPLETION #1
+   ---------------------------
+** Substructure completion requested
+
+   Make Sites Anisotropic
+   ----------------------
+   Making 1 atoms in current atom list of 4 anisotropic
+   Anisotropic Atom #'s: 1 
+
+   Delete Low Occupancy Sites
+   --------------------------
+   Deleting 2 atoms in current atom list of 4
+   Deleted Atom #'s: 3 4 
+
+   Add Sites Identified from Log-Likelihood Gradient Map(s)
+   --------------------------------------------------------
+   1 atom after pruning
+   #        X      Y      Z    occupancy Atom Z-score
+   5    0.252  0.142  0.537       0.2651   XE     9.8
+
+** Substructure completion has NOT converged
+
+   REFINEMENT #2
+   -------------
+   Log-Likelihood = 968
+   R-factor =  78.6
+
+   SUB-STRUCTURE ANALYSIS #2: LLG MAPS
+   -----------------------------------
+** 1 gradient map will be calculated
+**    for atom type: XE
+
+   Identify New Atoms for Addition (XE)
+   ------------------------------------
+
+   Peaks over Z-score cutoff
+   #        X      Y      Z Z-scr  M
+   1    0.205  0.540  0.052   8.3  1
+   2    0.215  0.653  0.175   6.6  1
+
+   Identify Old Atoms for Editing (XE)
+   -----------------------------------
+   Old atoms edited if:
+      peak < 1.28A from a previously deleted atom will resurrect the old atom
+      peak or hole < 1.28A from an old atom will turn it anisotropic
+
+   No atoms for editing
+
+   Summary (XE)
+   ------------
+   Number of new atoms identified this cycle = 2
+   Number of old isotropic atoms identified as anisotropic = 0
+   Number of old atoms previously identified for restoration = 0
+
+   SUB-STRUCTURE ANALYSIS #2: WEAK SITES
+   -------------------------------------
+
+   Identify Old Atoms for Deletion
+   -------------------------------
+   Low occupancy sites identified for deletion.
+   Minimum occupancy depends on scattering type f"
+   Atoms previously restored are not deleted, to prevent cycling
+
+    Atom           f"      max occ      min occ   cutoff occ
+      XE       7.3585       0.6882       0.1188       0.0688
+
+   Number of old atoms with occupancy less than cut-off = 0
+      Number of these previously restored (therefore not deleted) = 0
+   Number of old atoms identified for deletion = 0
+
+   SUB-STRUCTURE COMPLETION #2
+   ---------------------------
+** Substructure completion requested
+
+   Add Sites Identified from Log-Likelihood Gradient Map(s)
+   --------------------------------------------------------
+   2 atoms after pruning
+   #        X      Y      Z    occupancy Atom Z-score
+   6    0.205  0.540  0.052       0.3810   XE     8.3
+   7    0.215  0.653  0.175       0.3810   XE     6.6
+
+** Substructure completion has NOT converged
+
+   REFINEMENT #3
+   -------------
+   Log-Likelihood = 1025
+   R-factor =  78.8
+
+   SUB-STRUCTURE ANALYSIS #3: LLG MAPS
+   -----------------------------------
+** 1 gradient map will be calculated
+**    for atom type: XE
+
+   Identify New Atoms for Addition (XE)
+   ------------------------------------
+
+   Peaks over Z-score cutoff
+   #        X      Y      Z Z-scr  M
+   1    0.246  0.195  0.662   6.2  1
+   2    0.040  0.960  0.014   6.0  1
+
+   Identify Old Atoms for Editing (XE)
+   -----------------------------------
+   Old atoms edited if:
+      peak < 1.28A from a previously deleted atom will resurrect the old atom
+      peak or hole < 1.28A from an old atom will turn it anisotropic
+
+   No atoms for editing
+
+   Summary (XE)
+   ------------
+   Number of new atoms identified this cycle = 2
+   Number of old isotropic atoms identified as anisotropic = 0
+   Number of old atoms previously identified for restoration = 0
+
+   SUB-STRUCTURE ANALYSIS #3: WEAK SITES
+   -------------------------------------
+
+   Identify Old Atoms for Deletion
+   -------------------------------
+   Low occupancy sites identified for deletion.
+   Minimum occupancy depends on scattering type f"
+   Atoms previously restored are not deleted, to prevent cycling
+
+    Atom           f"      max occ      min occ   cutoff occ
+      XE       7.3585       0.6782       0.0678       0.0678
+
+   Deleted atoms list:
+   #        X      Y      Z    occupancy     Atom
+   6    0.206  0.542  0.053       0.0678       XE  Rejected
+
+   Number of old atoms with occupancy less than cut-off = 1
+      Number of these previously restored (therefore not deleted) = 0
+   Number of old atoms identified for deletion = 1
+
+   SUB-STRUCTURE COMPLETION #3
+   ---------------------------
+** Substructure completion requested
+
+   Delete Low Occupancy Sites
+   --------------------------
+   Deleting 1 atoms in current atom list of 7
+   Deleted Atom #'s: 6 
+
+   Add Sites Identified from Log-Likelihood Gradient Map(s)
+   --------------------------------------------------------
+   2 atoms after pruning
+   #        X      Y      Z    occupancy Atom Z-score
+   8    0.246  0.195  0.662       0.2547   XE     6.2
+   9    0.040  0.960  0.014       0.2547   XE     6.0
+
+** Substructure completion has NOT converged
+
+   REFINEMENT #4
+   -------------
+   Log-Likelihood = 1024
+   R-factor =  78.3
+
+   SUB-STRUCTURE ANALYSIS #4: LLG MAPS
+   -----------------------------------
+** 1 gradient map will be calculated
+**    for atom type: XE
+
+   Identify New Atoms for Addition (XE)
+   ------------------------------------
+
+   No new atoms identified
+
+   Identify Old Atoms for Editing (XE)
+   -----------------------------------
+   Old atoms edited if:
+      peak < 1.28A from a previously deleted atom will resurrect the old atom
+      peak or hole < 1.28A from an old atom will turn it anisotropic
+
+   Edited atoms list:
+   #        X      Y      Z    occupancy     Atom
+   6    0.206  0.542  0.053       0.2221       XE  Restored 
+
+   Summary (XE)
+   ------------
+   Number of new atoms identified this cycle = 0
+   Number of old isotropic atoms identified as anisotropic = 0
+   Number of old atoms previously identified for restoration = 1
+
+   SUB-STRUCTURE ANALYSIS #4: WEAK SITES
+   -------------------------------------
+
+   Identify Old Atoms for Deletion
+   -------------------------------
+   Low occupancy sites identified for deletion.
+   Minimum occupancy depends on scattering type f"
+   Atoms previously restored are not deleted, to prevent cycling
+
+    Atom           f"      max occ      min occ   cutoff occ
+      XE       7.3585       0.6834       0.0544       0.0683
+
+   Deleted atoms list:
+   #        X      Y      Z    occupancy     Atom
+   8    0.244  0.195  0.662       0.0544       XE  Rejected
+   9    0.045  0.959  0.013       0.0647       XE  Rejected
+
+   Number of old atoms with occupancy less than cut-off = 2
+      Number of these previously restored (therefore not deleted) = 0
+   Number of old atoms identified for deletion = 2
+
+   SUB-STRUCTURE COMPLETION #4
+   ---------------------------
+** Substructure completion requested
+
+   Restore Sites
+   -------------
+   Restoring 1 atoms in current atom list of 9
+   Restored Atoms Atomtype/Z-score (*=best)
+   #   6         XE/8.92*  
+
+   Delete Low Occupancy Sites
+   --------------------------
+   Deleting 2 atoms in current atom list of 9
+   Deleted Atom #'s: 8 9 
+
+** Substructure completion has NOT converged
+
+   REFINEMENT #5
+   -------------
+   Log-Likelihood = 1026
+   R-factor =  78.7
+
+   SUB-STRUCTURE ANALYSIS #5: LLG MAPS
+   -----------------------------------
+** 1 gradient map will be calculated
+**    for atom type: XE
+
+   Identify New Atoms for Addition (XE)
+   ------------------------------------
+
+   No new atoms identified
+
+   Identify Old Atoms for Editing (XE)
+   -----------------------------------
+   Old atoms edited if:
+      peak < 1.28A from a previously deleted atom will resurrect the old atom
+      peak or hole < 1.28A from an old atom will turn it anisotropic
+
+   Edited atoms list:
+   #        X      Y      Z    occupancy     Atom
+   8    0.244  0.195  0.662       0.2554       XE  Restored 
+   9    0.045  0.959  0.013       0.2554       XE  Restored 
+
+   Summary (XE)
+   ------------
+   Number of new atoms identified this cycle = 0
+   Number of old isotropic atoms identified as anisotropic = 0
+   Number of old atoms previously identified for restoration = 2
+
+   SUB-STRUCTURE ANALYSIS #5: WEAK SITES
+   -------------------------------------
+
+   Identify Old Atoms for Deletion
+   -------------------------------
+   Low occupancy sites identified for deletion.
+   Minimum occupancy depends on scattering type f"
+   Atoms previously restored are not deleted, to prevent cycling
+
+    Atom           f"      max occ      min occ   cutoff occ
+      XE       7.3585       0.6774       0.0656       0.0677
+
+   Deleted atoms list:
+   #        X      Y      Z    occupancy     Atom
+   6    0.205  0.542  0.053       0.0656       XE  (Previously restored)
+
+   Number of old atoms with occupancy less than cut-off = 1
+      Number of these previously restored (therefore not deleted) = 1
+   Number of old atoms identified for deletion = 0
+
+   SUB-STRUCTURE COMPLETION #5
+   ---------------------------
+** Substructure completion requested
+
+   Restore Sites
+   -------------
+   Restoring 2 atoms in current atom list of 9
+   Restored Atoms Atomtype/Z-score (*=best)
+   #   8         XE/6.26*  
+   #   9         XE/6.04*  
+
+** Substructure completion has NOT converged
+
+   REFINEMENT #6
+   -------------
+   Log-Likelihood = 1060
+   R-factor =  78.6
+
+   SUB-STRUCTURE ANALYSIS #6: LLG MAPS
+   -----------------------------------
+** 1 gradient map will be calculated
+**    for atom type: XE
+
+   Identify New Atoms for Addition (XE)
+   ------------------------------------
+
+   No new atoms identified
+
+   Identify Old Atoms for Editing (XE)
+   -----------------------------------
+   Old atoms edited if:
+      peak < 1.28A from a previously deleted atom will resurrect the old atom
+      peak or hole < 1.28A from an old atom will turn it anisotropic
+
+   No atoms for editing
+
+   Summary (XE)
+   ------------
+   Number of new atoms identified this cycle = 0
+   Number of old isotropic atoms identified as anisotropic = 0
+   Number of old atoms previously identified for restoration = 0
+
+   SUB-STRUCTURE ANALYSIS #6: WEAK SITES
+   -------------------------------------
+
+   Identify Old Atoms for Deletion
+   -------------------------------
+   Low occupancy sites identified for deletion.
+   Minimum occupancy depends on scattering type f"
+   Atoms previously restored are not deleted, to prevent cycling
+
+    Atom           f"      max occ      min occ   cutoff occ
+      XE       7.3585       0.6776       0.0576       0.0678
+
+   Deleted atoms list:
+   #        X      Y      Z    occupancy     Atom
+   6    0.204  0.541  0.053       0.0653       XE  (Previously restored)
+   8    0.244  0.196  0.662       0.0576       XE  (Previously restored)
+
+   Number of old atoms with occupancy less than cut-off = 2
+      Number of these previously restored (therefore not deleted) = 2
+   Number of old atoms identified for deletion = 0
+
+   SUB-STRUCTURE COMPLETION #6
+   ---------------------------
+** Substructure completion requested
+** Substructure completion has converged
+
+   FINAL PHASING STATISTICS
+   ------------------------
+   Atom Parameters: 7 atoms in list
+          X       Y       Z       O         B    (AnisoB) M Atomtype
+   #1     0.257   0.536   0.052   0.678    12.2 ( +20.04) 1 XE
+   #2     0.502   0.684  -0.045   0.324    20.7 (  ---- ) 1 XE
+   #5     0.255   0.143   0.537   0.117    26.4 (  ---- ) 1 XE
+   #6     0.204   0.541   0.053   0.065     8.1 (  ---- ) 1 XE
+   #7     0.212   0.653   0.174   0.085    16.0 (  ---- ) 1 XE
+   #8     0.244   0.196   0.662   0.058    19.1 (  ---- ) 1 XE
+   #9     0.045   0.959   0.013   0.070    17.7 (  ---- ) 1 XE
+
+   Scattering Parameters:
+    Atom             f"           (f')
+      XE         7.3585        -0.7870
+
+   Figures of Merit
+   ----------------
+   Bin Resolution   Acentric     Centric      Single       Total       
+                    Number FOM   Number FOM   Number FOM   Number FOM  
+   ALL  34.00- 1.79   9681 0.451   1758 0.169    731 0.299  12170 0.401
+
+   Final Log-Likelihood = 1060.85
+   Final R-factor =  78.6
+
+------------
+OUTPUT FILES
+------------
+
+   Output for 1 topfiles requested
+   Hand #1 of 1
+      Atom Set #1 of 1
+         Phases written to MTZ file:  PHASER_EP.1.mtz
+
+   $TEXT:SAD Result: $$ Baubles Markup $$
+
+   SAD Refinement Table (Unsorted)
+   -------------------------------
+   SET     SpaceGroup  FOM  Log-Likelihood Rfac  Composition
+                                                 XE   
+   #  1    P 21 21 21 0.401           1061 78.6  7    
+   -------
+
+   SAD Refinement Table (Sorted)
+   -----------------------------
+   SET     SpaceGroup  FOM  Log-Likelihood Rfac  Composition
+                                                 XE   
+   #  1    P 21 21 21 0.401           1061 78.6  7    
+   -------
+
+   $$
+CPU Time: 0 days 0 hrs 0 mins 7.01 secs (      7.01 secs)
+Finished: Sat Sep  5 18:20:07 2026
+
+CPU Time: 0 days 0 hrs 0 mins 7.01 secs (      7.01 secs)
+Finished: Sat Sep  5 18:20:07 2026
+

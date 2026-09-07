@@ -1,0 +1,953 @@
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Steps:
+**    Cell Content Analysis
+**    Anisotropy correction
+**    Translational NCS correction
+**    Rotation Function
+**    Translation Function
+**    Packing
+**    Refinement
+**    Final Refinement (if data higher resolution than search resolution)
+** Number of search ensembles = 2
+** Search Method: FAST
+** Input Search Order:
+**    #1   model  
+**    #2   model  
+** Automatic (best predicted) search order WILL be used
+
+CPU Time: 0 days 0 hrs 0 mins 0.12 secs (      0.12 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                         2.8.4 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 21 21 21 ( P 2ac 2ab)
+   Space-Group Number: 19
+   Unit Cell:   34.15   54.81   68.00   90.00   90.00   90.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies: 12935
+   Resolution for Matthews calculation:  1.79
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       12935      2.46  50.00      1.000       <== most probable
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.16185
+   Most probable MW of protein in asu for resolution = 14718.8
+
+CPU Time: 0 days 0 hrs 0 mins 0.33 secs (      0.33 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: ANISOTROPY CORRECTION                                         2.8.4 ***
+******************************************************************************************
+
+   Refined Anisotropy Parameters
+   -----------------------------
+   Principal components of anisotropic part of B affecting observed amplitudes:
+     eigenB (A^2)     direction cosines (orthogonal coordinates)
+         2.047              1.0000   0.0000   0.0000
+        -0.074             -0.0000  -0.0000   1.0000
+        -1.973             -0.0000   1.0000   0.0000
+   Anisotropic deltaB (i.e. range of principal components):   4.020
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   1.79  34.00 (12178)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 1.80 secs (      1.80 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: TRANSLATIONAL NON-CRYSTALLOGRAPHIC SYMMETRY                   2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   1.79  34.00 (12178)
+
+--------
+TWINNING
+--------
+
+   tNCS/Twin Detection Table
+   -------------------------
+                                 -Second Moments-             --P-values--
+                                 Centric Acentric       untwinned  twin frac < 5%
+   Theoretical for untwinned      3.00    2.00    
+     including measurement error  3.00    2.00    
+   Theoretical for perfect twin   2.00    1.50    
+   Initial (data as input)        2.92    1.96+/-0.063  0.257      1         
+   After Anisotropy Correction    2.84    1.96+/-0.063  0.276      1         
+   After Anisotropy and tNCS         ---n/a---
+
+   P-value < 0.01 for < 5% twinned is considered worth investigating
+   Resolution for Twin Analysis (85% I/SIGI > 3):  2.27A (HiRes= 1.79A)
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   1.79  34.00 (12178)
+
+CPU Time: 0 days 0 hrs 0 mins 2.14 secs (      2.14 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Z-score test for definite solution is ON
+** Z-score test for stopping search is OFF
+** Deep search is ON
+
+CPU Time: 0 days 0 hrs 0 mins 2.14 secs (      2.14 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+   Composition Table
+   -----------------
+   Total Scattering = 42178
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   model                              98.24%              98.24%
+
+<B><FONT COLOR="#FF8800">
+------------------------------------------------------------------------------------------
+Warning: Total search request exceeds scattering specified in composition. Composition
+increased to resolve the discrepancy.
+------------------------------------------------------------------------------------------
+</FONT></B>
+
+** Composition increased
+       from 42178
+         to 83709
+
+   Composition Table
+   -----------------
+   Total Scattering = 83709
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   model                              49.50%              49.50%
+
+CPU Time: 0 days 0 hrs 0 mins 2.15 secs (      2.15 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                         2.8.4 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 21 21 21 ( P 2ac 2ab)
+   Space-Group Number: 19
+   Unit Cell:   34.15   54.81   68.00   90.00   90.00   90.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies: 25671
+   Resolution for Matthews calculation:  1.79
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       25671      1.24  0.77       1.000       <== most probable
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.16185
+   Most probable MW of protein in asu for resolution = 14718.8
+
+CPU Time: 0 days 0 hrs 0 mins 2.23 secs (      2.23 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: EXPERIMENTAL ERROR CORRECTION PREPARATION                     2.8.4 ***
+******************************************************************************************
+
+   Data have been provided as raw intensities
+
+CPU Time: 0 days 0 hrs 0 mins 2.44 secs (      2.44 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: EXPECTED LLG OF ENSEMBLES                                     2.8.4 ***
+******************************************************************************************
+
+   Resolution of Data (Selected):    1.792 (1.7924)
+   Number of Reflections (Selected): 12183 (12178)
+   eLLG Target: 225
+
+-----------------
+POLY-ALANINE ELLG
+-----------------
+
+   Resolution = 1.7924
+   Default RMSD = 0.1 0.2 0.4 0.8 1.6 3.2
+   Minimum solvent = 20%
+      Maximum number of polyalanine residues = 296 (-full-)
+   Alanine residues for eLLG target = 74
+
+   Table of Alanine Residues for eLLG Target
+   -----------------------------------------
+                  ---RMSD--- 
+   eLLG-target |  0.10  0.20  0.40  0.80  1.60  3.20 
+           225 |    74    79   103   222 -full--full-
+           196 |    69    74    97   207 -full--full-
+           169 |    64    69    90   192 -full--full-
+           144 |    59    63    83   177 -full--full-
+           121 |    54    58    76   162 -full--full-
+           100 |    49    53    69   148 -full--full-
+            81 |    44    47    62   133 -full--full-
+            64 |    39    42    55   118 -full--full-
+            49 |    34    37    48   103 -full--full-
+            36 |    29    31    41    88 -full--full-
+            25 |    24    26    34    74   256 -full-
+            16 |    19    21    27    59   205 -full-
+             9 |    14    15    20    44   153 -full-
+             4 |     9    10    13    29   102 -full-
+             1 |     4     5     6    14    51 -full-
+
+--------------
+MONOMERIC ELLG
+--------------
+
+   Expected LLG (eLLG)
+   -------------------
+   eLLG: eLLG of ensemble alone
+       eLLG   RMSD frac-scat  Ensemble
+      605.9  0.442   0.49500  model
+
+   Resolution for eLLG target
+   --------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso  Ensemble
+         2.987  model
+
+   Resolution for eLLG target: data collection
+   -------------------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225) with perfect data
+     eLLG-reso  Ensemble
+         2.995  model
+
+   eLLG indicates that placement of a single copy of ensemble "model" should be easy
+
+   Expected LLG (eLLG): Chains
+   ---------------------------
+   eLLG: eLLG of chain alone
+       eLLG   RMSD frac-scat chain  Ensemble
+      605.9  0.442   0.49500  " A"  model
+
+   Resolution for eLLG target: Chains
+   ----------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso chain  Ensemble
+         2.987  " A"  model
+
+--------------------
+HOMO-OLIGOMERIC ELLG
+--------------------
+
+   Number of copies for eLLG target
+   --------------------------------
+   eLLG-target   RMSD frac-scat-known frac-scat   num-copies  Ensemble
+           225  0.442         0.00000   0.49500            1  model
+
+CPU Time: 0 days 0 hrs 0 mins 2.75 secs (      2.75 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Search Order (next search *) (placed +):
+**    #1   model *
+**    #2   model  
+
+CPU Time: 0 days 0 hrs 0 mins 2.76 secs (      2.76 secs)
+Finished: Sat Sep  5 18:16:54 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                       2.8.4 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit lowered by expected LLG =  2.99
+
+--------------
+R-FACTOR CHECK
+--------------
+
+   R-factor at 3.00A calculated
+   Space Group  R-factor
+   P 21 21 21   28.77
+   P 21 21 2    44.31
+   P 2 2 21     50.83
+   P 2 21 21    45.55
+   P 21 2 21    44.29
+   P 2 21 2     51.11
+   P 21 2 2     51.33
+   P 2 2 2      52.25
+
+   Minimum R-factor of ensemble at origin in original orientation = 28.77
+
+   SOLU SET  RF*0
+   SOLU SPAC P 21 21 21
+   SOLU TRIAL ENSEMBLE model EULER    0.000    0.000    0.000 RF    0.0 RFZ  0.00
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 3.67 secs (      3.67 secs)
+Finished: Sat Sep  5 18:16:55 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                    2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   2.99  34.00 (2805)
+
+--------------
+R-FACTOR CHECK
+--------------
+
+   R-factor at 3.00A calculated
+   Space Group  R-factor
+   P 21 21 21   28.77
+   P 21 21 2    44.31
+   P 2 2 21     50.83
+   P 2 21 21    45.55
+   P 21 2 21    44.29
+   P 2 21 2     51.11
+   P 21 2 2     51.33
+   P 2 2 2      52.25
+
+   Minimum R-factor of ensemble at origin in original orientation = 28.77
+
+   SOLU SET  RF*0 TF*0
+   SOLU SPAC P 21 21 21
+   SOLU 6DIM ENSE model EULER    0.0    0.0    0.0 FRAC  0.00  0.00  0.00 BFAC  0.00
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 4.58 secs (      4.58 secs)
+Finished: Sat Sep  5 18:16:55 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.4 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm  SpaceGroup  Annotation                                                   
+   1    Top1  0      --    P 21 21 21  RF*0 TF*0 PAK=0                                              
+
+   1 accepted of 1 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 4.73 secs (      4.73 secs)
+Finished: Sat Sep  5 18:16:55 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   1.79  34.00 (12178)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 3046.83
+   Top LLG (packs) = 3046.83
+   Mean LLG = -199.389
+   Percent used for purge = 75%
+      Cutoff for acceptance = 2235.3
+   Number used for purge  = 50
+      Cutoff for acceptance = 3046.8
+   All Z-scores over 8 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 3046.8
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          2073.9 29.2 n/a        3046.8 29.1 46.3   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   model                1   0.442   +0.000/+0.000    ( 0.442/ 0.442 )
+
+CPU Time: 0 days 0 hrs 0 mins 11.58 secs (     11.58 secs)
+Finished: Sat Sep  5 18:16:58 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Current is Best Solution (first search)
+** Current solution has 1 component
+** New Best LLG = 3046.8 (resolution = 1.79)
+** Best Component so far = model 
+
+CPU Time: 0 days 0 hrs 0 mins 11.58 secs (     11.58 secs)
+Finished: Sat Sep  5 18:16:58 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Solution stored for possible reversion if next search fails
+** Number of solutions = 1
+** Solution TOP LLG = 3046.8
+** Solution TOP TFZ = 46.3
+
+CPU Time: 0 days 0 hrs 0 mins 11.58 secs (     11.58 secs)
+Finished: Sat Sep  5 18:16:58 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Search: Next component
+** Search Order (next search *) (placed +):
+**    #1   model +
+**    #2   model *
+
+CPU Time: 0 days 0 hrs 0 mins 11.58 secs (     11.58 secs)
+Finished: Sat Sep  5 18:16:58 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                       2.8.4 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit lowered by expected LLG =  2.99
+
+   Rotation Function Table: model
+   ------------------------------
+   (Z-scores from Fast Rotation Function)
+   #SET        Top    (Z)      Second    (Z)       Third    (Z)
+   1        737.41   4.48      736.74   4.25      736.01   3.99
+
+   Select by Percentage of Top value: 75%
+   Top RF = 737.413
+   Purge RF mean = 724.745
+   Number of sets stored before final selection = 1
+   Number of solutions stored before final selection = 9
+   Number of sets stored (deleted) after final selection = 1 (0)
+   Number of solutions stored (deleted) after final selection = 9 (0)
+   Percent used for purge = 60.000%
+      Includes deep search down percent = 15%
+      Number of solutions stored above (below) deep threshold = 5 (4)
+
+   Rotation Function Final Selection Table
+   ---------------------------------------
+   Rotation list length by SET
+   SET#  Start Final Deleted Set (*)   Deep: Start Final Deleted Set (*)
+      1  5     5           -                 9     9           -
+   ALL   5     5                             9     9    
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 15.25 secs (     15.25 secs)
+Finished: Sat Sep  5 18:16:59 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                    2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   2.99  34.00 (2805)
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 1
+----------------------------
+
+   This TF set has 9 trial orientations
+
+      5 trial orientations in initial search
+      4 trial orientations in deep search
+
+   New Top Packing Fast Translation Function FSS = 904.73 (TFZ=6.6) at Trial #1
+<B><FONT COLOR="#0077FF">
+------------------------------------------------------------------------------------------
+Advisory: No Signal in Translation Function
+------------------------------------------------------------------------------------------
+</FONT></B>
+
+   New Top (ML) Translation Function LLG = 493.98 (TFZ=6.6) at Trial #1
+
+-------------------------
+DEEP TRANSLATION FUNCTION
+-------------------------
+
+   Best TFZ is NOT over Z-score cutoff for definite solution (8.00)
+   Search deep in trial orientation list
+
+---------------------------------
+DEEP TRANSLATION FUNCTION #1 OF 1
+---------------------------------
+
+   4 trial orientations in deep search
+
+<B><FONT COLOR="#0077FF">
+------------------------------------------------------------------------------------------
+Advisory: The top solution from a FTF did not pack
+------------------------------------------------------------------------------------------
+</FONT></B>
+
+<B><FONT COLOR="#0077FF">
+------------------------------------------------------------------------------------------
+Advisory: The top solution from a TF rescoring did not pack
+------------------------------------------------------------------------------------------
+</FONT></B>
+
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1          -     -          -     -          -     - P 21 21 21 model      
+     1   2          -     -          -     -          -     - P 21 21 21 model      
+     1   3          -     -          -     -          -     - P 21 21 21 model      
+     1   4          -     -          -     -          -     - P 21 21 21 model      
+     1   5          -     -          -     -          -     - P 21 21 21 model      
+     1   6*         -     -          -     -          -     - P 21 21 21 model      
+     1   7*         -     -          -     -          -     - P 21 21 21 model      
+     1   8*         -     -          -     -          -     - P 21 21 21 model      
+     1   9*         -     -          -     -          -     - P 21 21 21 model      
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   No solutions to purge
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 19.94 secs (     19.94 secs)
+Finished: Sat Sep  5 18:17:00 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** No solutions found at lower resolution
+** Increase resolution
+** Go back to rotation function step
+
+CPU Time: 0 days 0 hrs 0 mins 19.94 secs (     19.94 secs)
+Finished: Sat Sep  5 18:17:00 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Search: Next component
+** Search Order (next search *) (placed +):
+**    #1   model +
+**    #2   model *
+
+CPU Time: 0 days 0 hrs 0 mins 19.94 secs (     19.94 secs)
+Finished: Sat Sep  5 18:17:00 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                       2.8.4 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit unaltered by expected LLG
+
+   Rotation Function Table: model
+   ------------------------------
+   (Z-scores from Fast Rotation Function)
+   #SET        Top    (Z)      Second    (Z)       Third    (Z)
+   1       3062.67   5.32     3061.78   5.00     3057.66   3.55
+
+   Select by Percentage of Top value: 75%
+   Top RF = 3062.667
+   Purge RF mean = 3047.633
+   Number of sets stored before final selection = 1
+   Number of solutions stored before final selection = 4
+   Number of sets stored (deleted) after final selection = 1 (0)
+   Number of solutions stored (deleted) after final selection = 4 (0)
+   Percent used for purge = 60.000%
+      Includes deep search down percent = 15%
+      Number of solutions stored above (below) deep threshold = 2 (2)
+
+   Rotation Function Final Selection Table
+   ---------------------------------------
+   Rotation list length by SET
+   SET#  Start Final Deleted Set (*)   Deep: Start Final Deleted Set (*)
+      1  2     2           -                 4     4           -
+   ALL   2     2                             4     4    
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 39.91 secs (     39.91 secs)
+Finished: Sat Sep  5 18:17:05 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                    2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   1.79  34.00 (12178)
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 1
+----------------------------
+
+   This TF set has 4 trial orientations
+
+      2 trial orientations in initial search
+      2 trial orientations in deep search
+
+   New Top Packing Fast Translation Function FSS = 3228.64 (TFZ=5.8) at Trial #1
+   New Top (ML) Translation Function LLG = 3008.76 (TFZ=4.6) at Trial #1
+   New Top Packing Fast Translation Function FSS = 3233.60 (TFZ=6.2) at Trial #2
+-------------------------
+DEEP TRANSLATION FUNCTION
+-------------------------
+
+   Best TFZ is NOT over Z-score cutoff for definite solution (8.00)
+   Search deep in trial orientation list
+
+---------------------------------
+DEEP TRANSLATION FUNCTION #1 OF 1
+---------------------------------
+
+   2 trial orientations in deep search
+
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1     3008.8  4.60     3006.0  4.87     3005.4  4.49 P 21 21 21 model      
+     1   2     3003.8  4.77     2994.4  4.73     2987.2  4.71 P 21 21 21 model      
+     1   3*    3005.7  4.89     3001.6  5.04          -     - P 21 21 21 model      
+     1   4*         -     -          -     -          -     - P 21 21 21 model      
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   LLG will be used for purge, not FSS
+   Top TF  = 3008.76
+   Top TFZ = 5.04
+   Mean TF = 2918.56
+   Percent used for purge = 75%
+   Cutoff for acceptance = 2986.2
+      TFZ used for final selection = 8
+         Number of solutions over TF final cutoff  = 18
+         Number of solutions over TFZ final cutoff = 0
+         Number of solutions over TF & TFZ cutoff  = 0
+   Number of solutions stored before final selection = 19
+   Number of solutions stored (deleted) after final selection = 18 (1)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 45.85 secs (     45.85 secs)
+Finished: Sat Sep  5 18:17:07 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.4 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm TF-SET  ROT TFpk#        TF    TFZ    SpaceGroup 
+   1    ---  >10.10  --       1     1    1       3008.76  4.60  P 21 21 21 
+   2    ---  >10.10  --       1     1    2       3005.98  4.87  P 21 21 21 
+   3    ---  >10.10  --       1     3    1       3005.73  4.89  P 21 21 21 
+   4    ---  >10.10  --       1     1    3       3005.38  4.49  P 21 21 21 
+   5    ---  >10.10  --       1     2    1       3003.79  4.77  P 21 21 21 
+   6    ---  >10.10  --       1     3    2       3001.59  5.04  P 21 21 21 
+   7    ---  >10.10  --       1     1    4       2997.69  4.09  P 21 21 21 
+   8    ---  >10.10  --       1     1    5       2997.04  3.98  P 21 21 21 
+   9    ---  >10.10  --       1     1    6       2995.93  4.00  P 21 21 21 
+   10   ---  >10.10  --       1     1    7       2995.31  4.26  P 21 21 21 
+   11   ---  >10.10  --       1     1    8       2995.17  3.95  P 21 21 21 
+   12   ---  >10.10  --       1     1    9       2994.82  3.99  P 21 21 21 
+   13   ---  >10.10  --       1     2    2       2994.39  4.73  P 21 21 21 
+   14   ---  >10.10  --       1     1   10       2991.78  3.99  P 21 21 21 
+   15   ---  >10.10  --       1     1   11       2990.78  3.94  P 21 21 21 
+   16   ---  >10.10  --       1     1   12       2987.82  4.16  P 21 21 21 
+   17   ---  >10.10  --       1     1   13       2987.60  4.18  P 21 21 21 
+   18   ---  >10.10  --       1     2    3       2987.16  4.71  P 21 21 21 
+
+   0 accepted of 18 solutions
+      0 pack of 0 accepted solutions
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 46.07 secs (     46.07 secs)
+Finished: Sat Sep  5 18:17:07 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** There was only 1 possible ensemble for this component
+** End of possible ensembles for this component
+
+CPU Time: 0 days 0 hrs 0 mins 46.07 secs (     46.07 secs)
+Finished: Sat Sep  5 18:17:07 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** No more components
+** Number of solutions = 1
+** Solution TOP LLG = 3046.8
+** Solution TOP TFZ = 46.3
+** End with solutions
+
+CPU Time: 0 days 0 hrs 0 mins 46.07 secs (     46.07 secs)
+Finished: Sat Sep  5 18:17:07 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Solutions will be refined to highest resolution
+**    Resolution for refinement: 1.7924
+** Protocol for MR refinement is DEFAULT
+** VRMS (variances) of ensemble(s) WILL be refined
+
+CPU Time: 0 days 0 hrs 0 mins 46.14 secs (     46.14 secs)
+Finished: Sat Sep  5 18:17:07 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   1.79  34.00 (12178)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 4507.1
+   Top LLG (packs) = 4507.1
+   Mean LLG = -4534.37
+   Percent used for purge = 75%
+      Cutoff for acceptance = 2246.7
+   Number used for purge  = 50
+      Cutoff for acceptance = 4507.1
+   All Z-scores over 23.132 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 4507.1
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          3046.8 29.1 n/a        4507.1 29.1 46.2   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   model                1   0.442   -0.170/-0.170    ( 0.160/ 0.160 )
+
+CPU Time: 0 days 0 hrs 0 mins 49.63 secs (     49.63 secs)
+Finished: Sat Sep  5 18:17:08 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+** Refinement may have introduced clashes
+** Packing will be checked
+
+CPU Time: 0 days 0 hrs 0 mins 49.64 secs (     49.64 secs)
+Finished: Sat Sep  5 18:17:08 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.4 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm  SpaceGroup  Annotation                                                   
+   1    Top1  0      --    P 21 21 21  RF*0 TF*0 PAK=0 LLG=3047 TFZ==46.3 LLG=4507 TFZ==46.2 PAK=0  
+
+   1 accepted of 1 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 49.79 secs (     49.79 secs)
+Finished: Sat Sep  5 18:17:08 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        1.79  34.00 (12183)
+   Resolution of Selected Data (Number):   1.79  34.00 (12178)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 4507.1
+   Top LLG (packs) = 4507.1
+   Mean LLG = -4534.36
+   Percent used for purge = 75%
+      Cutoff for acceptance = 2246.7
+   Number used for purge  = 50
+      Cutoff for acceptance = 4507.1
+   All Z-scores over 23.1219 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 4507.1
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          4507.1 29.1 n/a        4507.1 29.1 46.2   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   model                1   0.442   -0.170/-0.170    ( 0.160/ 0.160 )
+
+CPU Time: 0 days 0 hrs 0 mins 52.56 secs (     52.56 secs)
+Finished: Sat Sep  5 18:17:09 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.4 ***
+******************************************************************************************
+
+   $TEXT:MR Result: $$ Baubles Markup $$
+
+** Sorry - No solution with all components
+   You may find a solution with a different search or selection strategy
+
+** Partial Solution #1 written to PDB file:  PHASER2.1.pdb
+** Partial Solution #1 written to MTZ file:  PHASER2.1.mtz
+   Partial Solution #1 annotation (history):
+   SOLU SET  RF*0 TF*0 PAK=0 LLG=3047 TFZ==46.3 LLG=4507 TFZ==46.2 PAK=0 LLG=4507 TFZ==46.2
+   SOLU SPAC P 21 21 21
+   SOLU 6DIM ENSE model EULER  360.0    0.0    0.0 FRAC -0.00  0.00  0.00 BFAC -4.51 #TFZ==46.2
+   SOLU ENSEMBLE model VRMS DELTA -0.1699 #RMSD  0.44 #VRMS  0.16
+
+   $$
+CPU Time: 0 days 0 hrs 0 mins 52.59 secs (     52.59 secs)
+Finished: Sat Sep  5 18:17:09 2026
+
+<B><FONT COLOR="##0077FF">
+--------
+ADVISORY
+--------
+
+$TEXT:Advisory: $$ Baubles Markup $$
+
+No Signal in Translation Function
+
+The top solution from a FTF did not pack
+
+The top solution from a TF rescoring did not pack
+
+$$
+<B><FONT COLOR="#FF8800">
+--------
+WARNINGS
+--------
+
+$TEXT:Warning: $$ Baubles Markup $$
+------------------------------------------------------------------------------------------
+Warning: Total search request exceeds scattering specified in composition. Composition
+increased to resolve the discrepancy.
+------------------------------------------------------------------------------------------
+$$
+
+
+CPU Time: 0 days 0 hrs 0 mins 52.59 secs (     52.59 secs)
+Finished: Sat Sep  5 18:17:09 2026
+

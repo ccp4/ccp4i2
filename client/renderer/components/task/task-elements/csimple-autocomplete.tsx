@@ -56,8 +56,12 @@ export const CSimpleAutocompleteElement: React.FC<
     onChange,
   });
 
+  // Unset primitives carry a sentinel _value; show nothing selected instead.
+  const isUnset = item?._valueState === "NOT_SET";
+  const displayedServerValue: OptionValue = isUnset ? "" : serverValue ?? "";
+
   const [localValue, setLocalValue] = useSyncedLocalValue<OptionValue>(
-    serverValue ?? ""
+    displayedServerValue
   );
 
   const { enumerators, labels, guiLabel, guiMode, onlyEnumerators } = useMemo(() => {
@@ -112,10 +116,10 @@ export const CSimpleAutocompleteElement: React.FC<
     async (newValue: OptionValue) => {
       const result = await commit(newValue);
       if (result && !result.success) {
-        setLocalValue(serverValue ?? "");
+        setLocalValue(displayedServerValue);
       }
     },
-    [commit, serverValue, setLocalValue]
+    [commit, displayedServerValue, setLocalValue]
   );
 
   const handleAutocompleteChange = useCallback(

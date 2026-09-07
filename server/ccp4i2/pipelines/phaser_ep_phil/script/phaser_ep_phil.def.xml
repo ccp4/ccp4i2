@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  SAD phasing pipeline that hosts Phaser's PHIL: its parameters are the
+  EP_AUTO task's, handed whole to the sub-job that runs Phaser. Typed
+  inputs are the task's plus the pipeline's own: a Free-R set, whether the
+  substructure comes from sites given or from a SHELX search, which hands
+  to phase, and the density modification and model building afterwards.
+-->
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>phaser_ep_phil</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="phaser_ep_phil">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <guiLabel>Anomalous reflections</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredContentFlag>1,2</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="WAVELENGTH">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Wavelength (A)</guiLabel>
+          <min>0.1</min>
+          <max>10.0</max>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_HA">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Heavy-atom sites</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="PARTIAL_BY">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Partial model</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>NONE,MODEL</enumerators>
+          <menuText>None,Coordinates</menuText>
+          <default>NONE</default>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_PARTIAL">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Partial model coordinates</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="ELEMENTS">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>Anomalous scatterers to look for</guiLabel>
+          <listMinLength>1</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CString</className>
+        </subItem>
+      </content>
+      <content id="LLGC_CYCLES">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Cycles of log-likelihood-gradient completion</guiLabel>
+          <default>1</default>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="PURE_ANOMALOUS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Look for pure anomalous scatterers (imaginary method)</guiLabel>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="COMP_BY">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Composition of the asymmetric unit</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,ASU,SEQUENCES,SOLVENT</enumerators>
+          <menuText>Average solvent content (50%),AsuContent file,Sequence files with copies,Solvent fraction</menuText>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="ASUFILE">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <guiLabel>AsuContent file</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="SEQUENCES">
+        <className>CSequenceWithCopiesList</className>
+        <qualifiers>
+          <guiLabel>Sequence files with copies</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="SOLVENT_FRACTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Solvent fraction</guiLabel>
+          <min>0.05</min>
+          <max>0.95</max>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="SUBSTRUCTURE_BY">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Substructure</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>SITES,SEARCH</enumerators>
+          <menuText>Heavy-atom sites given,Found by SHELXC/D</menuText>
+          <default>SITES</default>
+        </qualifiers>
+      </content>
+      <content id="SFAC">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Element to search for (SHELXD SFAC)</guiLabel>
+          <default>SE</default>
+        </qualifiers>
+      </content>
+      <content id="FIND">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Number of sites to find</guiLabel>
+          <default>4</default>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="NTRY">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>SHELXD trials</guiLabel>
+          <default>100</default>
+          <min>1</min>
+        </qualifiers>
+      </content>
+      <content id="HAND">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Hands to phase</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>both,off,on</enumerators>
+          <menuText>Both hands,Original hand only,Inverted hand only</menuText>
+          <default>both</default>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="ABCDOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPhsDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="MAPOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <default>
+              <contentFlag>1</contentFlag>
+              <subType>1</subType>
+            </default>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="FPHIOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <default>
+              <contentFlag>1</contentFlag>
+              <subType>1</subType>
+            </default>
+          </qualifiers>
+        </subItem>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="RUNPARROT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Density modification with parrot</guiLabel>
+          <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="RUNMODELCRAFT">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel>Model building with ModelCraft</guiLabel>
+          <default>False</default>
+        </qualifiers>
+      </content>
+      <content id="MODELCRAFT_ITERATIONS">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>ModelCraft cycles</guiLabel>
+          <default>1</default>
+          <min>1</min>
+          <max>20</max>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

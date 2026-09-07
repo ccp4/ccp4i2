@@ -1,8 +1,7 @@
 "use client";
 import { ProgramLocations } from "@/components/program-locations";
 import { CredentialsPanel } from "@/components/credentials-panel";
-import { Divider, Paper } from "@mui/material";
-import { NavigationShortcutsProvider } from "@/providers/navigation-shortcuts-provider";
+import { Divider, Paper, Stack } from "@mui/material";
 import CCP4i2TopBar from "@/components/ccp4i2-topbar";
 
 /**
@@ -13,19 +12,19 @@ import CCP4i2TopBar from "@/components/ccp4i2-topbar";
  */
 export default function PreferencesPage() {
   return (
-    <NavigationShortcutsProvider>
+    <Stack
+      sx={{
+        height: "100vh",
+        "@supports (height: 100dvh)": { height: "100dvh" },
+        overflow: "hidden",
+      }}
+    >
       <CCP4i2TopBar title="Preferences" showBackButton backPath="/ccp4i2" />
-      <Paper
-        sx={{
-          minHeight: "calc(100vh - 80px)",
-          overflowY: "auto",
-          py: 3,
-        }}
-      >
+      <Paper sx={{ flex: 1, minHeight: 0, overflowY: "auto", py: 3 }}>
         <ProgramLocations />
         <Divider sx={{ my: 2 }} />
         <CredentialsPanel />
       </Paper>
-    </NavigationShortcutsProvider>
+    </Stack>
   );
 }

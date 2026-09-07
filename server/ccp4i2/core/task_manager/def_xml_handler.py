@@ -487,6 +487,11 @@ class DefXmlParser:
                             obj.value = value
                             if hasattr(obj, "_value_states"):
                                 obj._value_states["value"] = ValueState.DEFAULT
+                            # Keep the coerced default: once the field is
+                            # cleared the value is gone, but the GUI still
+                            # wants to show what blank means.
+                            if hasattr(obj, "_default_values"):
+                                obj._default_values["value"] = getattr(obj, "_value", value)
                     except Exception as e:
                         if value not in [None, "", "None"]:
                             print(

@@ -134,9 +134,10 @@ class CInt(CData):
             value: The integer value to set, or None to clear/unset
         """
         if value is None:
-            # Clear the value and mark as unset
-            super().__setattr__("_value", 0)
+            # Clear the value and mark as unset. unSet() leaves _value as
+            # None; restore the sentinel so str()/float() keep working.
             self.unSet()
+            super().__setattr__("_value", 0)
             return self
         self.value = value
         return self
@@ -545,9 +546,10 @@ class CFloat(CData):
             value: The float value to set, or None to clear/unset
         """
         if value is None:
-            # Clear the value and mark as unset
-            super().__setattr__("_value", 0.0)
+            # Clear the value and mark as unset. unSet() leaves _value as
+            # None; restore the sentinel so str()/float() keep working.
             self.unSet()
+            super().__setattr__("_value", 0.0)
             return self
         self.value = value
         return self
@@ -966,9 +968,10 @@ class CString(CData):
             value: The string value to set, or None to clear/unset
         """
         if value is None:
-            # Clear the value and mark as unset
-            super().__setattr__("_value", "")
+            # Clear the value and mark as unset. unSet() leaves _value as
+            # None; restore the sentinel so str()/float() keep working.
             self.unSet()
+            super().__setattr__("_value", "")
             return self
         self.value = value
         return self
@@ -1347,9 +1350,10 @@ class CBoolean(CData):
             value: The boolean value to set, or None to clear/unset
         """
         if value is None:
-            # Clear the value and mark as unset
-            super().__setattr__("_value", False)
+            # Clear the value and mark as unset. unSet() leaves _value as
+            # None; restore the sentinel so str()/float() keep working.
             self.unSet()
+            super().__setattr__("_value", False)
             return self
         self.value = value
         return self

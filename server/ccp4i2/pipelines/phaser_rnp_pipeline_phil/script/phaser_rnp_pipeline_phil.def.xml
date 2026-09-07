@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  A pipeline that hosts Phaser's PHIL: its parameters are the MR_RNP
+  task's, handed whole to the sub-job that runs Phaser. The typed inputs
+  are a parent model and the selections that cut it into rigid bodies (the
+  task's ensembles are built from them at run time), the composition, a
+  Free-R set, and whether to run sheetbend and refmac afterwards.
+-->
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>phaser_rnp_pipeline_phil</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="phaser_rnp_pipeline_phil">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <guiLabel>Reflections</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <requiredContentFlag>1,2,3,4</requiredContentFlag>
+        </qualifiers>
+      </content>
+      <content id="XYZIN_PARENT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Model to cut into rigid bodies</guiLabel>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="SELECTIONS">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>Rigid bodies, one selection each (none: the whole model)</guiLabel>
+          <listMinLength>0</listMinLength>
+          <listMaxLength>1024</listMaxLength>
+        </qualifiers>
+        <subItem>
+          <className>CAtomSelection</className>
+          <qualifiers>
+            <pdbFileKey>XYZIN_PARENT</pdbFileKey>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="COMP_BY">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Composition of the asymmetric unit</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>DEFAULT,ASU,SEQUENCES,MW,SOLVENT</enumerators>
+          <menuText>Average solvent content (50%),AsuContent file,Sequence files with copies,Molecular weight,Solvent fraction</menuText>
+          <default>DEFAULT</default>
+        </qualifiers>
+      </content>
+      <content id="ASUFILE">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <guiLabel>AsuContent file</guiLabel>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+          <selectionMode>2</selectionMode>
+        </qualifiers>
+      </content>
+      <content id="SEQUENCES">
+        <className>CSequenceWithCopiesList</className>
+        <qualifiers>
+          <guiLabel>Sequence files with copies</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="ASU_PROTEIN_MW">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Protein molecular weight in the ASU (Da)</guiLabel>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="ASU_NUCLEICACID_MW">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Nucleic-acid molecular weight in the ASU (Da)</guiLabel>
+          <min>0</min>
+        </qualifiers>
+      </content>
+      <content id="SOLVENT_FRACTION">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Solvent fraction</guiLabel>
+          <min>0.05</min>
+          <max>0.95</max>
+          <default>0.5</default>
+        </qualifiers>
+      </content>
+      <content id="FREERFLAG">
+        <className>CFreeRDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <sameCrystalAs>F_SIGF</sameCrystalAs>
+        </qualifiers>
+      </content>
+      <content id="RUNSHEETBEND">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>Run shift-field refinement (sheetbend) on the solution</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="RUNREFMAC">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <guiLabel>Run refmac on the solution</guiLabel>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="dataReindexed">
+        <className>CBoolean</className>
+      </content>
+      <content id="XYZOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="SOLOUT">
+        <className>CPhaserSolDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="HKLOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMtzDataFile</className>
+          <qualifiers>
+            <saveToDb>False</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="MAPOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+            <default>
+              <contentFlag>1</contentFlag>
+              <subType>1</subType>
+            </default>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="DIFMAPOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CMapCoeffsDataFile</className>
+          <qualifiers>
+            <default>
+              <contentFlag>1</contentFlag>
+              <subType>2</subType>
+            </default>
+            <saveToDb>True</saveToDb>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="PHASEOUT">
+        <className>CList</className>
+        <subItem>
+          <className>CPhsDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <contentFlag>
+              <default>2</default>
+            </contentFlag>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="F_SIGF_OUT">
+        <className>CObsDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="FREERFLAG_OUT">
+        <className>CFreeRDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XYZOUT_SHEETBEND">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="XYZOUT_REFMAC">
+        <className>CPdbDataFile</className>
+        <qualifiers/>
+      </content>
+      <content id="DIFMAPOUT_REFMAC">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <contentFlag>1</contentFlag>
+            <subType>2</subType>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="MAPOUT_REFMAC">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <default>
+            <contentFlag>1</contentFlag>
+            <subType>1</subType>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PERFORMANCEINDICATOR">
+        <className>CRefinementPerformance</className>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <qualifiers/>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

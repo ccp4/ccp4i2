@@ -7,9 +7,9 @@ import pytest
 # See test_phil_plugin_script.py: libtbx is CCP4/cctbx-only, no pip wheel.
 parse = pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)").parse
 
-from ccp4i2.utils.phil_to_cdata import Phil2CData
+from ccp4i2.utils.phil_to_cdata import Phil2CData, parse_phil_style, match_modes
 from ccp4i2.core.base_object.base_classes import CContainer, ValueState
-from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CBoolean, CString, CList
 
 
 # ---------------------------------------------------------------------------
@@ -348,3 +348,344 @@ def _all_leaves(container):
             yield from _all_leaves(child)
         else:
             yield child
+
+
+# ---------------------------------------------------------------------------
+# .multiple scopes and definitions
+# ---------------------------------------------------------------------------
+
+MULTIPLE_PHIL = parse("""
+    composition {
+      solvent = None
+        .type = float
+      chain
+        .short_caption = "Macromolecular chain"
+        .optional = True
+        .multiple = True
+      {
+        chain_type = *protein na
+          .type = choice
+        nres = None
+          .short_caption = "Number of residues"
+          .type = int
+        num = 1
+          .type = int(value_min=1)
+        dataset
+          .multiple = True
+        {
+          label = None
+            .type = str
+        }
+      }
+    }
+    model = None
+      .short_caption = "Model file"
+      .type = path
+      .multiple = True
+""")
+
+
+class TestMultiple:
+    """A .multiple scope is a list of scope-shaped containers, and a .multiple
+    definition a list of leaves. Both start empty, as libtbx's fetch() leaves
+    them unless the working phil supplies instances."""
+
+    def setup_method(self):
+        self.root = Phil2CData(MULTIPLE_PHIL).convert()
+
+    def test_multiple_scope_is_an_empty_clist(self):
+        chain = self.root.composition.composition__chain
+        assert isinstance(chain, CList)
+        assert len(chain) == 0
+        assert chain.get_qualifier("multiple") is True
+        assert chain.get_qualifier("philPath") == "composition.chain"
+        assert chain.get_qualifier("guiLabel") == "Macromolecular chain"
+        assert chain.get_qualifier("listMinLength") == 0
+
+    def test_item_is_a_container_shaped_like_the_scope(self):
+        chain = self.root.composition.composition__chain
+        item = chain.makeItem()
+        assert isinstance(item, CContainer)
+        assert item.dataOrder() == [
+            "composition__chain__chain_type", "composition__chain__nres",
+            "composition__chain__num", "composition__chain__dataset"]
+        assert item.composition__chain__num.get_qualifier("philPath") == "composition.chain.num"
+
+    def test_item_carries_the_scope_defaults(self):
+        item = self.root.composition.composition__chain.makeItem()
+        assert item.composition__chain__num.value == 1
+        assert item.composition__chain__num.getValueState() == ValueState.DEFAULT
+        assert item.composition__chain__chain_type.value == "protein"
+        assert item.composition__chain__nres.getValueState() == ValueState.NOT_SET
+        assert item.composition__chain__num.get_qualifier("min") == 1
+
+    def test_items_are_independent(self):
+        chain = self.root.composition.composition__chain
+        chain.append(chain.makeItem())
+        chain.append(chain.makeItem())
+        chain[0].composition__chain__nres.value = 120
+        assert chain[1].composition__chain__nres.getValueState() == ValueState.NOT_SET
+        assert chain[0].objectPath().endswith("composition__chain[0]")
+
+    def test_nested_multiple_scope_inside_an_item(self):
+        item = self.root.composition.composition__chain.makeItem()
+        dataset = item.composition__chain__dataset
+        assert isinstance(dataset, CList)
+        assert len(dataset) == 0
+        inner = dataset.makeItem()
+        assert inner.dataOrder() == ["composition__chain__dataset__label"]
+
+    def test_set_from_dicts_builds_items(self):
+        # The client adds an item by sending the list with a new dict in it
+        chain = self.root.composition.composition__chain
+        chain.set([{"composition__chain__nres": 120, "composition__chain__num": 2},
+                   {"composition__chain__nres": 50}])
+        assert len(chain) == 2
+        assert chain[0].composition__chain__num.value == 2
+        assert chain[1].composition__chain__nres.value == 50
+        assert chain[1].composition__chain__num.value == 1   # default kept
+
+    def test_item_class_is_reused(self):
+        chain = self.root.composition.composition__chain
+        assert type(chain.makeItem()) is type(chain.makeItem())
+        assert type(chain.makeItem()).PHIL_SCOPE_PATH == "composition.chain"
+
+    def test_multiple_definition_is_a_clist_of_the_leaf_type(self):
+        model = self.root.model
+        assert isinstance(model, CList)
+        assert len(model) == 0
+        assert model.get_qualifier("philPath") == "model"
+        assert model.get_qualifier("multiple") is True
+        item = model.makeItem()
+        assert isinstance(item, CString)
+        assert item.get_qualifier("guiLabel") == "Model file"
+
+    def test_single_scope_is_still_a_container(self):
+        assert isinstance(self.root.composition, CContainer)
+        assert isinstance(self.root.composition.composition__solvent, CFloat)
+
+
+# ---------------------------------------------------------------------------
+# .style: the libtbx GUI conventions become qualifiers
+# ---------------------------------------------------------------------------
+
+STYLE_PHIL = parse("""
+    top
+      .style = "phaser:mode:EP_AUTO box"
+    {
+      copies = 1
+        .type = int
+        .style = "spinner max=1000 min=1 bold"
+      bounded = 5
+        .type = int(value_min=2)
+        .style = "spinner min=1"
+      mute = None
+        .type = bool
+        .style = "hidden tribool"
+      sequence = None
+        .type = str
+        .style = "height:48"
+      seq_file = None
+        .type = path
+        .style = "input_file file_type:seq phaser:mode:MR*"
+      out_dir = None
+        .type = path
+        .style = "directory"
+      mode = *a b
+        .type = choice
+        .style = "bold phaser:ignore OnChange:update"
+      resolution = None
+        .type = float
+        .style = "tng:input:+brf+frf+ftf"
+      occupancy = None
+        .type = float
+        .style = "phaser:mode:MR_AUTO,MR_OCC,box auto_align"
+    }
+""")
+
+
+class TestParsePhilStyle:
+
+    def test_reads_every_convention(self):
+        parsed = parse_phil_style("spinner max=1000 min=1 hidden height:48 "
+                                  "input_file file_type:seq directory phaser:ignore")
+        assert parsed["min"] == 1 and parsed["max"] == 1000
+        assert parsed["hidden"] and parsed["multiLine"] and parsed["directory"]
+        assert parsed["inputFile"] and parsed["fileType"] == "seq"
+        assert parsed["ignored"]
+
+    def test_both_mode_spellings(self):
+        assert parse_phil_style("phaser:mode:MR*,EP_AUTO")["modes"] == ["MR*", "EP_AUTO"]
+        assert parse_phil_style("tng:input:+brf+frf")["modes"] == ["brf", "frf"]
+
+    def test_layout_word_after_a_comma_is_not_a_mode(self):
+        assert parse_phil_style("phaser:mode:MR_AUTO,MR_OCC,box auto_align")["modes"] == [
+            "MR_AUTO", "MR_OCC"]
+
+    def test_ignores_what_it_does_not_know(self):
+        parsed = parse_phil_style("bold box noauto OnChange:x renderer:y")
+        assert parsed == parse_phil_style("")
+
+
+class TestStyleQualifiers:
+
+    def setup_method(self):
+        # Hold the root: a container garbage-collected destroys its children
+        self.root = Phil2CData(STYLE_PHIL).convert()
+        self.top = self.root.top
+
+    def test_spinner_bounds_where_the_type_gave_none(self):
+        assert self.top.top__copies.get_qualifier("min") == 1
+        assert self.top.top__copies.get_qualifier("max") == 1000
+
+    def test_the_type_bound_wins_over_the_spinner(self):
+        assert self.top.top__bounded.get_qualifier("min") == 2
+
+    def test_hidden(self):
+        assert self.top.top__mute.get_qualifier("hidden") is True
+        assert self.top.top__copies.get_qualifier("hidden") is None
+
+    def test_height_is_multiline_for_strings(self):
+        assert self.top.top__sequence.get_qualifier("guiMode") == "multiLine"
+
+    def test_input_files_are_tagged_not_converted(self):
+        f = self.top.top__seq_file
+        assert isinstance(f, CString)
+        assert f.get_qualifier("philInputFile") is True
+        assert f.get_qualifier("philFileType") == "seq"
+        assert self.top.top__out_dir.get_qualifier("isDirectory") is True
+
+    def test_modes_on_definitions_and_scopes(self):
+        assert self.top.top__seq_file.get_qualifier("philModes") == ["MR*"]
+        assert self.top.top__resolution.get_qualifier("philModes") == ["brf", "frf", "ftf"]
+        assert self.top.top__occupancy.get_qualifier("philModes") == ["MR_AUTO", "MR_OCC"]
+        assert self.top.get_qualifier("philModes") == ["EP_AUTO"]
+
+    def test_ignored_is_recorded_not_hidden(self):
+        assert self.top.top__mode.get_qualifier("philIgnored") is True
+        assert self.top.top__mode.get_qualifier("hidden") is None
+
+    def test_raw_style_is_kept(self):
+        assert "OnChange:update" in self.top.top__mode.get_qualifier("style")
+
+
+# ---------------------------------------------------------------------------
+# Mode filtering
+# ---------------------------------------------------------------------------
+
+MODE_PHIL = parse("""
+    tool {
+      mode = *MR_AUTO EP_AUTO
+        .type = choice
+      title = None
+        .type = str
+      hklin = None
+        .type = path
+        .style = "phaser:mode:ANO,MR*"
+      ensemble
+        .multiple = True
+        .style = "phaser:mode:MR*"
+      {
+        pdb = None
+          .type = path
+        rms = None
+          .type = float
+          .style = "phaser:mode:MR_AUTO"
+      }
+      crystal
+        .style = "phaser:mode:EP_AUTO"
+      {
+        wavelength = None
+          .type = float
+      }
+      keywords {
+        resolution = None
+          .type = float
+        macmr
+          .style = "phaser:mode:MR_AUTO,MR_RNP"
+        {
+          cycles = 50
+            .type = int
+        }
+        xyzout = None
+          .type = bool
+          .style = "phaser:mode:*"
+      }
+    }
+""")
+
+
+class TestMatchModes:
+
+    def test_untagged_applies_everywhere(self):
+        assert match_modes("EP_AUTO", None) and match_modes("EP_AUTO", [])
+
+    def test_exact_star_and_prefix(self):
+        assert match_modes("MR_AUTO", ["ANO", "MR_AUTO"])
+        assert match_modes("MR_FRF", ["*"])
+        assert match_modes("MR_FRF", ["MR*"])
+        assert not match_modes("EP_AUTO", ["MR*"])
+        assert not match_modes("MR_AUTO", ["EP_AUTO"])
+
+
+class TestModeFiltering:
+
+    def names(self, mode):
+        self.root = Phil2CData(MODE_PHIL, mode=mode).convert()
+        found = []
+        def walk(c):
+            for n in c.dataOrder():
+                o = getattr(c, n)
+                found.append(n)
+                if isinstance(o, CList):
+                    walk(o.makeItem())
+                elif hasattr(o, "dataOrder"):
+                    walk(o)
+        walk(self.root)
+        return found
+
+    def test_no_mode_keeps_everything(self):
+        assert "tool__crystal" in self.names(None) and "tool__ensemble" in self.names(None)
+
+    def test_mr_auto_sees_mr_things_and_shared_things(self):
+        names = self.names("MR_AUTO")
+        assert "tool__hklin" in names and "tool__ensemble" in names
+        assert "tool__ensemble__rms" in names
+        assert "tool__keywords__macmr" in names
+        assert "tool__crystal" not in names
+        assert "tool__title" in names and "tool__keywords__resolution" in names
+        assert "tool__keywords__xyzout" in names
+
+    def test_ep_auto_sees_ep_things_and_shared_things(self):
+        names = self.names("EP_AUTO")
+        assert "tool__crystal" in names and "tool__crystal__wavelength" in names
+        assert "tool__hklin" not in names and "tool__ensemble" not in names
+        assert "tool__keywords__macmr" not in names
+        assert "tool__title" in names and "tool__keywords__xyzout" in names
+
+    def test_an_untagged_child_inherits_the_scope_tag(self):
+        # ensemble.pdb has no tag: MR* from its scope; ensemble.rms narrows to MR_AUTO
+        names = self.names("MR_FRF")
+        assert "tool__ensemble__pdb" in names
+        assert "tool__ensemble__rms" not in names
+
+
+def test_real_phaser_modes_partition_the_tree():
+    pi = pytest.importorskip("phaser.phenix_interface", reason="needs phaser")
+    def paths(mode):
+        root = Phil2CData(pi.master_phil(), mode=mode).convert()
+        out = set()
+        def walk(c):
+            for n in c.dataOrder():
+                o = getattr(c, n)
+                out.add(o.get_qualifier("philPath") or n.replace("__", "."))
+                if hasattr(o, "dataOrder") and not isinstance(o, CList):
+                    walk(o)
+        walk(root)
+        return out
+    mr, ep = paths("MR_AUTO"), paths("EP_AUTO")
+    assert {"phaser.ensemble", "phaser.search", "phaser.keywords.macmr"} <= mr
+    assert {"phaser.crystal", "phaser.keywords.macsad", "phaser.keywords.llgcompletion"} <= ep
+    assert not {"phaser.crystal", "phaser.keywords.macsad"} & mr
+    assert not {"phaser.ensemble", "phaser.search", "phaser.keywords.macmr"} & ep
+    assert {"phaser.composition", "phaser.keywords.resolution", "phaser.keywords.general.root"} <= mr & ep

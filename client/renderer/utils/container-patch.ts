@@ -19,6 +19,8 @@ export interface ContainerItem {
   _objectPath: string;
   _baseClass: string;
   _subItem?: any;
+  /** Primitives only: "NOT_SET" | "DEFAULT" | "EXPLICITLY_SET". */
+  _valueState?: string;
 }
 
 /**

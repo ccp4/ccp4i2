@@ -84,16 +84,60 @@ def test_substitute_ligand_with_smiles():
         _check_aimless_pipe_performance(job)
 
 
-def _find_aimless_pipe_dir(job_dir):
-    """Find the aimless_pipe sub-job directory by checking params.xml pluginName."""
+@pytest.mark.order("first")
+def test_substitute_ligand_phaser_rnp():
+    """The Phaser route: rigid-body refinement of the whole model by
+    phaser_rnp_pipeline_phil, then servalcat. Until this test the Phaser
+    route had no coverage at all."""
+    args = ["SubstituteLigand"]
+    args += ["--XYZIN", demoData("mdm2", "4hg7.cif")]
+    args += ["--UNMERGEDFILES", "file=" + demoData("mdm2", "mdm2_unmerged.mtz")]
+    args += ["--LIGANDAS", "NONE"]
+    args += ["--PIPELINE", "PHASER_RNP"]
+    with i2run(args) as job:
+        for name in ("DIFFPHIOUT", "F_SIGF_OUT", "FREERFLAG_OUT"):
+            gemmi.read_mtz_file(str(job / f"{name}.mtz"))
+        gemmi.read_structure(str(job / "XYZOUT.pdb"))
+        xml = ET.parse(job / "program.xml")
+        # Rigid-body refinement (MR_RNP) gives refined solutions, no verdict
+        record = xml.find(".//PhaserMrResults")
+        assert record is not None
+        llgs = [float(e.text) for e in record.findall("Solutions/Solution/LLG")]
+        assert llgs and max(llgs) > 0
+        assert xml.find(".//POINTLESS") is not None
+        # The record's r_factor elements are the RNP pipeline's refmac (ten
+        # jelly-body cycles from the rigid-body model); the final figures
+        # are servalcat's, on its performance indicator. This route refines
+        # less than DIMPLE's (which reaches 0.23): the refmac step is the
+        # classic pipeline's, unchanged.
+        r_work, r_free = _servalcat_r_factors(job)
+        assert r_work < 0.30
+        assert r_free < 0.32
+        _check_aimless_pipe_performance(job)
+
+
+def _find_subjob_dir(job_dir, plugin_name):
+    """Find a sub-job directory by its params.xml pluginName."""
     for sub in sorted(job_dir.iterdir()):
         params = sub / "params.xml"
         if params.exists():
             tree = ET.parse(params)
             plugin = tree.find('.//pluginName')
-            if plugin is not None and plugin.text == 'aimless_pipe':
+            if plugin is not None and plugin.text == plugin_name:
                 return sub
     return None
+
+
+def _find_aimless_pipe_dir(job_dir):
+    return _find_subjob_dir(job_dir, "aimless_pipe")
+
+
+def _servalcat_r_factors(job_dir):
+    sub = _find_subjob_dir(job_dir, "servalcat_pipe")
+    assert sub is not None, f"No servalcat_pipe sub-job found in {job_dir}"
+    perf = ET.parse(sub / "params.xml").find(".//outputData/PERFORMANCEINDICATOR")
+    assert perf is not None, "No PERFORMANCEINDICATOR in servalcat_pipe params.xml"
+    return float(perf.findtext("R1Factor")), float(perf.findtext("R1Free"))
 
 
 def _check_aimless_pipe_performance(job_dir):

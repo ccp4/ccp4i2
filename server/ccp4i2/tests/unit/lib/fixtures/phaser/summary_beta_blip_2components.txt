@@ -1,0 +1,914 @@
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Steps:
+**    Cell Content Analysis
+**    Anisotropy correction
+**    Translational NCS correction
+**    Rotation Function
+**    Translation Function
+**    Packing
+**    Refinement
+**    Final Refinement (if data higher resolution than search resolution)
+** Number of search ensembles = 2
+** Search Method: FAST
+** Input Search Order:
+**    #1   beta  
+**    #2   blip  
+** Automatic (best predicted) search order WILL be used
+
+CPU Time: 0 days 0 hrs 0 mins 0.03 secs (      0.03 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                        2.8.4 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 32 2 1 ( P 32 2")
+   Space-Group Number: 154
+   Unit Cell:   75.11   75.11  133.31   90.00   90.00  120.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies: 17496
+   Resolution for Matthews calculation:  3.01
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       17496      6.20  80.18      0.005     
+   2       34991      3.10  60.35      0.364     
+   3       52487      2.07  40.53      1.000       <== most probable
+   4       69982      1.55  20.70      0.005     
+   5       87478      1.24  0.88       0.005     
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.27165
+   Most probable MW of protein in asu for resolution = 47785.5
+
+CPU Time: 0 days 0 hrs 0 mins 0.29 secs (      0.29 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: ANISOTROPY CORRECTION                                        2.8.4 ***
+******************************************************************************************
+
+   Refined Anisotropy Parameters
+   -----------------------------
+   Principal components of anisotropic part of B affecting observed amplitudes:
+     eigenB (A^2)     direction cosines (orthogonal coordinates)
+        10.744              0.4775   0.8786  -0.0000
+        10.744              0.8786  -0.4775   0.0000
+       -21.487             -0.0000   0.0000   1.0000
+   Anisotropic deltaB (i.e. range of principal components):  32.231
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   3.01  14.83 (8823)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 0.93 secs (      0.93 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: TRANSLATIONAL NON-CRYSTALLOGRAPHIC SYMMETRY                  2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   3.01  14.83 (8820)
+
+--------
+TWINNING
+--------
+
+   tNCS/Twin Detection Table
+   -------------------------
+                                 -Second Moments-             --P-values--
+                                 Centric Acentric       untwinned  twin frac < 5%
+   Theoretical for untwinned      3.00    2.00    
+     including measurement error  3.02    2.00    
+   Theoretical for perfect twin   2.00    1.50    
+   Initial (data as input)        3.85    2.19+/-0.067  1          1         
+   After Anisotropy Correction    2.80    2.07+/-0.067  1          1         
+   After Anisotropy and tNCS         ---n/a---
+
+   P-value < 0.01 for < 5% twinned is considered worth investigating
+   Resolution for Twin Analysis (85% I/SIGI > 3):  3.55A (HiRes= 3.01A)
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   3.01  14.83 (8823)
+
+CPU Time: 0 days 0 hrs 0 mins 1.29 secs (      1.29 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Z-score test for definite solution is ON
+** Z-score test for stopping search is OFF
+** Deep search is ON
+
+CPU Time: 0 days 0 hrs 0 mins 1.29 secs (      1.29 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+   Composition Table
+   -----------------
+   Total Scattering = 56529
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   beta                              160.90%             160.90%
+   blip                               98.17%              98.17%
+
+<B><FONT COLOR="#FF8800">
+------------------------------------------------------------------------------------------
+Warning: Total search request exceeds scattering specified in composition. Composition
+increased to resolve the discrepancy.
+------------------------------------------------------------------------------------------
+</FONT></B>
+
+** Composition increased
+       from 56529
+         to 147930
+
+   Composition Table
+   -----------------
+   Total Scattering = 147930
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   beta                               61.49%              61.49%
+   blip                               37.51%              37.51%
+
+CPU Time: 0 days 0 hrs 0 mins 1.30 secs (      1.30 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                        2.8.4 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 32 2 1 ( P 32 2")
+   Space-Group Number: 154
+   Unit Cell:   75.11   75.11  133.31   90.00   90.00  120.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies: 45784
+   Resolution for Matthews calculation:  3.01
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       45784      2.37  48.12      1.000       <== most probable
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.27165
+   Most probable MW of protein in asu for resolution = 47785.5
+
+CPU Time: 0 days 0 hrs 0 mins 1.57 secs (      1.57 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: EXPERIMENTAL ERROR CORRECTION PREPARATION                    2.8.4 ***
+******************************************************************************************
+
+   Data have been provided as raw amplitudes
+
+CPU Time: 0 days 0 hrs 0 mins 1.71 secs (      1.71 secs)
+Finished: Sat Sep  5 21:05:08 2026
+
+******************************************************************************************
+*** Phaser Module: EXPECTED LLG OF ENSEMBLES                                    2.8.4 ***
+******************************************************************************************
+
+   Resolution of Data (Selected):    3.006 (3.00608)
+   Number of Reflections (Selected): 8823 (8823)
+   eLLG Target: 225
+
+-----------------
+POLY-ALANINE ELLG
+-----------------
+
+   Resolution = 3.00608
+   Default RMSD = 0.1 0.2 0.4 0.8 1.6 3.2
+   Minimum solvent = 20%
+      Maximum number of polyalanine residues = 523 (-full-)
+   Alanine residues for eLLG target = 157
+
+   Table of Alanine Residues for eLLG Target
+   -----------------------------------------
+                  ---RMSD--- 
+   eLLG-target |  0.10  0.20  0.40  0.80  1.60  3.20 
+           225 |   157   161   179   263 -full--full-
+           196 |   147   151   167   246 -full--full-
+           169 |   136   140   155   228 -full--full-
+           144 |   126   129   143   211 -full--full-
+           121 |   115   118   131   193 -full--full-
+           100 |   105   107   119   175   507 -full-
+            81 |    94    97   107   158   457 -full-
+            64 |    84    86    95   140   406 -full-
+            49 |    73    75    83   123   355 -full-
+            36 |    63    64    71   105   304 -full-
+            25 |    52    53    59    87   253 -full-
+            16 |    42    43    47    70   203 -full-
+             9 |    31    32    35    52   152 -full-
+             4 |    21    21    23    35   101 -full-
+             1 |    10    10    11    17    50   333 
+
+--------------
+MONOMERIC ELLG
+--------------
+
+   Expected LLG (eLLG)
+   -------------------
+   eLLG: eLLG of ensemble alone
+       eLLG   RMSD frac-scat  Ensemble
+      965.0  0.502   0.61486  beta
+      383.8  0.461   0.37514  blip
+
+   Resolution for eLLG target
+   --------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso  Ensemble
+         4.990  beta
+         3.713  blip
+
+   Resolution for eLLG target: data collection
+   -------------------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225) with perfect data
+     eLLG-reso  Ensemble
+         5.000  beta
+         3.743  blip
+
+   eLLG indicates that placement of a single copy of ensemble "beta" should be easy
+   eLLG indicates that placement of a single copy of ensemble "blip" should be easy
+
+   Expected LLG (eLLG): Chains
+   ---------------------------
+   eLLG: eLLG of chain alone
+       eLLG   RMSD frac-scat chain  Ensemble
+      965.0  0.502   0.61486  "  "  beta
+      383.8  0.461   0.37514  "  "  blip
+
+   Resolution for eLLG target: Chains
+   ----------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso chain  Ensemble
+         4.990  "  "  beta
+         3.713  "  "  blip
+
+--------------------
+HOMO-OLIGOMERIC ELLG
+--------------------
+
+   Number of copies for eLLG target
+   --------------------------------
+   eLLG-target   RMSD frac-scat-known frac-scat   num-copies  Ensemble
+           225  0.502         0.00000   0.61486            1  beta
+           225  0.461         0.00000   0.37514            1  blip
+
+CPU Time: 0 days 0 hrs 0 mins 2.23 secs (      2.23 secs)
+Finished: Sat Sep  5 21:05:09 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Search Order (next search *) (placed +):
+**    #1   beta *
+**    #2   blip  
+
+CPU Time: 0 days 0 hrs 0 mins 2.24 secs (      2.24 secs)
+Finished: Sat Sep  5 21:05:09 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                      2.8.4 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit lowered by expected LLG =  4.99
+
+   Rotation Function Table: beta
+   -----------------------------
+   (Z-scores from Fast Rotation Function)
+   #SET        Top    (Z)      Second    (Z)       Third    (Z)
+   1        -16.73   5.13      -33.99   4.32      -52.15   3.46
+
+   Select by Percentage of Top value: 75%
+   Top RF = -16.731
+   Purge RF mean = -125.159
+   Number of sets stored before final selection = 1
+   Number of solutions stored before final selection = 7
+   Number of sets stored (deleted) after final selection = 1 (0)
+   Number of solutions stored (deleted) after final selection = 7 (0)
+   Percent used for purge = 60.000%
+      Includes deep search down percent = 15%
+      Number of solutions stored above (below) deep threshold = 2 (5)
+
+   Rotation Function Final Selection Table
+   ---------------------------------------
+   Rotation list length by SET
+   SET#  Start Final Deleted Set (*)   Deep: Start Final Deleted Set (*)
+      1  2     2           -                 7     7           -
+   ALL   2     2                             7     7    
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 4.97 secs (      4.97 secs)
+Finished: Sat Sep  5 21:05:09 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                   2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   4.99  14.83 (1986)
+
+------------------------
+ALTERNATIVE SPACE GROUPS
+------------------------
+
+   Space Group(s) to be tested:
+     P 32 2 1
+     P 31 2 1
+     P 3 2 1
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 3
+----------------------------
+
+   Space Group: P 32 2 1
+   This TF set has 7 trial orientations
+
+      2 trial orientations in initial search
+      5 trial orientations in deep search
+
+   New Top Packing Fast Translation Function FSS = 396.25 (TFZ=11.8) at Trial #1
+   New Top (ML) Translation Function LLG = -751.92 (TFZ=11.8) at Trial #1
+
+----------------------------
+TRANSLATION FUNCTION #2 OF 3
+----------------------------
+
+   Space Group: P 31 2 1
+   This TF set has 7 trial orientations
+
+      2 trial orientations in initial search
+      5 trial orientations in deep search
+
+
+----------------------------
+TRANSLATION FUNCTION #3 OF 3
+----------------------------
+
+   Space Group: P 3 2 1
+   This TF set has 7 trial orientations
+
+      2 trial orientations in initial search
+      5 trial orientations in deep search
+
+
+-------------------------
+DEEP TRANSLATION FUNCTION
+-------------------------
+
+   Best TFZ is over Z-score cutoff for definite solution (8.00)
+   Do NOT search deep in trial orientation list
+
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1     -751.9 11.84          -     -          -     - P 32 2 1 beta       
+     1   2          -     -          -     -          -     - P 32 2 1 beta       
+   --- ---
+     2   1          -     -          -     -          -     - P 31 2 1 beta       
+     2   2          -     -          -     -          -     - P 31 2 1 beta       
+   --- ---
+     3   1          -     -          -     -          -     - P 3 2 1  beta       
+     3   2          -     -          -     -          -     - P 3 2 1  beta       
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   LLG will be used for purge, not FSS
+   Top TF  = -751.92
+   Top TFZ = 11.84
+   Mean TF = -1916.53
+   Percent used for purge = 75%
+   Cutoff for acceptance = -1043.1
+      TFZ used for final selection = 8
+         Number of solutions over TF final cutoff  = 1
+         Number of solutions over TFZ final cutoff = 1
+         Number of solutions over TF & TFZ cutoff  = 1
+   Number of solutions stored before final selection = 1
+   Number of solutions stored (deleted) after final selection = 1 (0)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 7.06 secs (      7.06 secs)
+Finished: Sat Sep  5 21:05:10 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                       2.8.4 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm TF-SET  ROT TFpk#        TF    TFZ    SpaceGroup 
+   1    Top1  0      --       1     1    1       -751.92 11.84  P 32 2 1   
+
+   1 accepted of 1 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 7.11 secs (      7.11 secs)
+Finished: Sat Sep  5 21:05:10 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                 2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   4.99  14.83 (1986)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 188.521
+   Top LLG (packs) = 188.521
+   Mean LLG = -213.911
+   Percent used for purge = 75%
+      Cutoff for acceptance = 87.9
+   Number used for purge  = 50
+      Cutoff for acceptance = 188.5
+   All Z-scores over 8 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 188.5
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          -751.9 48.1 11.8        188.5 46.3 15.7   P 32 2 1      n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   beta                 1   0.502   +0.000/+0.000    ( 0.502/ 0.502 )
+
+CPU Time: 0 days 0 hrs 0 mins 8.50 secs (      8.50 secs)
+Finished: Sat Sep  5 21:05:10 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Current is Best Solution (first search)
+** Current solution has 1 component
+** New Best LLG = 188.5 (resolution = 4.99)
+** Best Component so far = beta 
+
+CPU Time: 0 days 0 hrs 0 mins 8.51 secs (      8.51 secs)
+Finished: Sat Sep  5 21:05:10 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Solution stored for possible reversion if next search fails
+** Number of solutions = 1
+** Solution TOP LLG = 188.5
+** Solution TOP TFZ = 15.7
+
+CPU Time: 0 days 0 hrs 0 mins 8.51 secs (      8.51 secs)
+Finished: Sat Sep  5 21:05:10 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Search: Next component
+** Search Order (next search *) (placed +):
+**    #1   beta +
+**    #2   blip *
+
+CPU Time: 0 days 0 hrs 0 mins 8.52 secs (      8.52 secs)
+Finished: Sat Sep  5 21:05:10 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                      2.8.4 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit lowered by expected LLG =  3.71
+
+   Rotation Function Table: blip
+   -----------------------------
+   (Z-scores from Fast Rotation Function)
+   #SET        Top    (Z)      Second    (Z)       Third    (Z)
+   1        330.54   4.74      319.21   3.65      319.01   3.63
+
+   Select by Percentage of Top value: 75%
+   Top RF = 330.545
+   Purge RF mean = 281.496
+   Number of sets stored before final selection = 1
+   Number of solutions stored before final selection = 39
+   Number of sets stored (deleted) after final selection = 1 (0)
+   Number of solutions stored (deleted) after final selection = 39 (0)
+   Percent used for purge = 60.000%
+      Includes deep search down percent = 15%
+      Number of solutions stored above (below) deep threshold = 4 (35)
+
+   Rotation Function Final Selection Table
+   ---------------------------------------
+   Rotation list length by SET
+   SET#  Start Final Deleted Set (*)   Deep: Start Final Deleted Set (*)
+      1  4     4           -                 39    39          -
+   ALL   4     4                             39    39   
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 17.97 secs (     17.97 secs)
+Finished: Sat Sep  5 21:05:13 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                   2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   3.71  14.83 (4734)
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 1
+----------------------------
+
+   This TF set has 39 trial orientations
+
+      4 trial orientations in initial search
+      35 trial orientations in deep search
+
+   New Top Packing Fast Translation Function FSS = 1326.19 (TFZ=25.2) at Trial #1
+   New Top (ML) Translation Function LLG = 689.69 (TFZ=25.2) at Trial #1
+
+-------------------------
+DEEP TRANSLATION FUNCTION
+-------------------------
+
+   Best TFZ is over Z-score cutoff for definite solution (8.00)
+   Do NOT search deep in trial orientation list
+
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1      689.7 25.24          -     -          -     - P 32 2 1 blip       
+     1   2          -     -          -     -          -     - P 32 2 1 blip       
+     1   3          -     -          -     -          -     - P 32 2 1 blip       
+     1   4          -     -          -     -          -     - P 32 2 1 blip       
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   LLG will be used for purge, not FSS
+   Top TF  = 689.69
+   Top TFZ = 25.24
+   Mean TF = -381.79
+   Percent used for purge = 75%
+   Cutoff for acceptance = 421.8
+      TFZ used for final selection = 12.622
+         Number of solutions over TF final cutoff  = 1
+         Number of solutions over TFZ final cutoff = 1
+         Number of solutions over TF & TFZ cutoff  = 1
+   Number of solutions stored before final selection = 1
+   Number of solutions stored (deleted) after final selection = 1 (0)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 20.33 secs (     20.33 secs)
+Finished: Sat Sep  5 21:05:13 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                       2.8.4 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm TF-SET  ROT TFpk#        TF    TFZ    SpaceGroup 
+   1    Top1  0      --       1     1    1        689.69 25.24  P 32 2 1   
+
+   1 accepted of 1 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 20.39 secs (     20.39 secs)
+Finished: Sat Sep  5 21:05:13 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Search: Only parameters of last component will be refined
+
+CPU Time: 0 days 0 hrs 0 mins 20.40 secs (     20.40 secs)
+Finished: Sat Sep  5 21:05:13 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                 2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   3.71  14.83 (4734)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 758.795
+   Top LLG (packs) = 758.795
+   Mean LLG = -146.966
+   Percent used for purge = 75%
+      Cutoff for acceptance = 532.4
+   Number used for purge  = 50
+      Cutoff for acceptance = 758.8
+   Overall cutoff for acceptance (excluding high TFZ) = 758.8
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1           689.7 41.7 25.2        758.8 40.5 26.1   P 32 2 1      n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   beta                 1   0.502   +0.000/+0.000    ( 0.502/ 0.502 )
+   blip                 1   0.461   +0.000/+0.000    ( 0.461/ 0.461 )
+
+CPU Time: 0 days 0 hrs 0 mins 22.55 secs (     22.55 secs)
+Finished: Sat Sep  5 21:05:14 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Current is best for this component
+** New best solution has 2 components
+** New best solution LLG = 758.8 (resolution = 3.71)
+** New best solution component = blip
+
+CPU Time: 0 days 0 hrs 0 mins 22.56 secs (     22.56 secs)
+Finished: Sat Sep  5 21:05:14 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** There was only 1 possible ensemble for this component
+** End of possible ensembles for this component
+
+CPU Time: 0 days 0 hrs 0 mins 22.56 secs (     22.56 secs)
+Finished: Sat Sep  5 21:05:14 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Definite solutions found
+** New best solution has 2 components
+** New best solution overall
+** New best solution LLG = 758.8
+** New best solution TFZ = 26.1
+
+CPU Time: 0 days 0 hrs 0 mins 22.57 secs (     22.57 secs)
+Finished: Sat Sep  5 21:05:14 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Solutions will be refined to highest resolution
+**    Resolution for refinement: 3.00608
+** Protocol for MR refinement is DEFAULT
+** VRMS (variances) of ensemble(s) WILL be refined
+
+CPU Time: 0 days 0 hrs 0 mins 22.65 secs (     22.65 secs)
+Finished: Sat Sep  5 21:05:14 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                 2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   3.01  14.83 (8823)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 1053.28
+   Top LLG (packs) = 1053.28
+   Mean LLG = -197.041
+   Percent used for purge = 75%
+      Cutoff for acceptance = 740.7
+   Number used for purge  = 50
+      Cutoff for acceptance = 1053.3
+   Overall cutoff for acceptance (excluding high TFZ) = 1053.3
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1           892.0 43.6 26.1       1053.3 42.4 30.2   P 32 2 1      n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   beta                 1   0.502   +0.433/+0.433    ( 0.828/ 0.828 )
+   blip                 1   0.461   +0.867/+0.867    ( 1.039/ 1.039 )
+
+CPU Time: 0 days 0 hrs 0 mins 29.49 secs (     29.49 secs)
+Finished: Sat Sep  5 21:05:17 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+** Refinement may have introduced clashes
+** Packing will be checked
+
+CPU Time: 0 days 0 hrs 0 mins 29.50 secs (     29.50 secs)
+Finished: Sat Sep  5 21:05:17 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                       2.8.4 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm  SpaceGroup  Annotation                                                   
+   1    Top1  0      --    P 32 2 1    ... TFZ=25.2 PAK=0 LLG=759 TFZ==26.1 LLG=1053 TFZ==30.2 PAK=0
+
+   1 accepted of 1 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 29.59 secs (     29.59 secs)
+Finished: Sat Sep  5 21:05:17 2026
+
+******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                 2.8.4 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        3.01  14.83 (8823)
+   Resolution of Selected Data (Number):   3.01  14.83 (8823)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 1053.24
+   Top LLG (packs) = 1053.24
+   Mean LLG = -197.035
+   Percent used for purge = 75%
+      Cutoff for acceptance = 740.7
+   Number used for purge  = 50
+      Cutoff for acceptance = 1053.2
+   Overall cutoff for acceptance (excluding high TFZ) = 1053.2
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          1053.3 42.4 n/a        1053.2 42.4 30.2   P 32 2 1      n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   beta                 1   0.502   +0.433/+0.433    ( 0.828/ 0.828 )
+   blip                 1   0.461   +0.867/+0.867    ( 1.039/ 1.039 )
+
+CPU Time: 0 days 0 hrs 0 mins 32.63 secs (     32.63 secs)
+Finished: Sat Sep  5 21:05:18 2026
+
+******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                              2.8.4 ***
+******************************************************************************************
+
+   $TEXT:MR Result: $$ Baubles Markup $$
+
+** SINGLE solution
+
+** Solution written to PDB file: 
+   /Users/nmemn/.cache/ccp4i2-tests/20260905_210507_30cf_phaser_pipeline_phil_test_beta_blip_asu_no_refinement/CCP4_JOBS/job_1/job_1/PHASER.1.pdb
+** Solution written to MTZ file: 
+   /Users/nmemn/.cache/ccp4i2-tests/20260905_210507_30cf_phaser_pipeline_phil_test_beta_blip_asu_no_refinement/CCP4_JOBS/job_1/job_1/PHASER.1.mtz
+   Solution annotation (history):
+   SOLU SET  RFZ=5.1 TFZ=11.8 PAK=0 LLG=189 TFZ==15.7 RFZ=4.7 TFZ=25.2 PAK=0 LLG=759 TFZ==26.1 LLG=1053 TFZ==30.2 PAK=0
+    LLG=1053 TFZ==30.2
+   SOLU SPAC P 32 2 1
+   SOLU 6DIM ENSE beta EULER  200.9   41.3  183.9 FRAC -0.50 -0.16 -0.28 BFAC  0.01 #TFZ==15.7
+   SOLU 6DIM ENSE blip EULER   43.9   81.0  117.3 FRAC -0.12  0.29 -0.09 BFAC  0.13 #TFZ==30.2
+   SOLU ENSEMBLE beta VRMS DELTA +0.4334 #RMSD  0.50 #VRMS  0.83
+   SOLU ENSEMBLE blip VRMS DELTA +0.8674 #RMSD  0.46 #VRMS  1.04
+
+   $$
+CPU Time: 0 days 0 hrs 0 mins 32.66 secs (     32.66 secs)
+Finished: Sat Sep  5 21:05:18 2026
+
+<B><FONT COLOR="#FF8800">
+--------
+WARNINGS
+--------
+
+$TEXT:Warning: $$ Baubles Markup $$
+------------------------------------------------------------------------------------------
+Warning: Total search request exceeds scattering specified in composition. Composition
+increased to resolve the discrepancy.
+------------------------------------------------------------------------------------------
+$$
+
+
+CPU Time: 0 days 0 hrs 0 mins 32.66 secs (     32.66 secs)
+Finished: Sat Sep  5 21:05:18 2026
+

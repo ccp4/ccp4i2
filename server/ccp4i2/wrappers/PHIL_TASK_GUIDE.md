@@ -533,7 +533,145 @@ for obj in parser.master_phil.all_definitions():
 "
 ```
 
-Output like `picard.xyzin  type=path  multiple=True` tells you to use `CList` + `PdbFileListShim` rather than a single `CPdbDataFile` + `PdbFileShim`.
+Output like `picard.xyzin  type=path  multiple=True` tells you to use `CList` + `PdbFileListShim` rather than a single `CPdbDataFile` + `PdbFileShim` for an *input file* you want typed on the CCP4i2 side.
+
+### Style tokens
+
+`.style` is free text the Phenix GUI interprets. The tokens a CCP4i2 GUI can
+act on become qualifiers (`parse_phil_style` in `phil_to_cdata.py`); the rest
+stay in the raw `style` qualifier and are ignored:
+
+| token | qualifier |
+|---|---|
+| `spinner min=N max=M` | `min`/`max`, only where the `.type` declared none |
+| `hidden` | `hidden: True` — the container element does not draw it |
+| `height:N` | `guiMode: multiLine` (str only) |
+| `input_file`, `file_type:X` | `philInputFile`, `philFileType` — a tag, not a file object: files belong in `inputData` via a shim, and the tag is the list of shims to write |
+| `directory` | `isDirectory` |
+| `phaser:mode:A,B*` or `tng:input:+a+b` | `philModes: [...]` |
+| `phaser:ignore` | `philIgnored: True` (recorded, not hidden — these are the GUI's own control-flow choices) |
+
+### One task per mode
+
+A tool that runs in one of several modes and tags its parameters by mode
+(`phaser:mode:`, `tng:input:`) becomes one CCP4i2 task per mode: set
+`PHIL_MODE = "EP_AUTO"` and `PHIL_MODE_PATH = "phaser.mode"` on the
+wrapper. Only the parameters whose tags match are offered — an untagged
+parameter takes the tag of its nearest tagged scope, `*` and `MR*` are
+wildcards (`match_modes` in `phil_to_cdata.py`, Phaser's own rule) — the
+mode parameter leaves the tree, and the working phil opens with
+`phaser.mode = EP_AUTO`.
+
+### A worked example: `phaser_mr_auto_phil`
+
+`wrappers/phaser_mr_auto_phil` is Phaser's MR_AUTO as a mode task: `PHIL_MODE`
+fixes the mode, the def.xml declares only typed inputs (reflections, search
+models, a composition source), and the shims in
+`wrappers/phaser_phil/script/phaser_shims.py` write `phaser.hklin`/`labin`,
+`phaser.ensemble`/`search` blocks and `phaser.composition` from them. Phaser
+runs in-process (`phaser_run.run_mode`): Phaser's own driver builds the
+`phaser.Input` object from the working phil, and a `PhaserRecorder` is the
+callback that writes `program.xml` as the run proceeds -- module timeline,
+progress, warnings, graphs, the verdict. After the run the solutions come
+from the `mr_solution` object (typed fields; only the annotation is
+tokenised, against the grammar Phaser documents), and the search-strategy
+narrative from the fixed control sentences in Phaser's summary blocks, with
+a count of any block that matched none of them. Nothing in the report is
+inferred from prose. `phaser_ep_auto_phil` is EP_AUTO the same way: an
+`EpCrystalShim` writes the one crystal block (anomalous pairs, labels read
+back from the file with iotbx, substructure as `crystal.pdb_file`), the
+hands, sites and figures of merit come from `ResultEP`, and the
+substructure-completion cycles from the SAD summary block. The sections the
+two reports share live in `phaser_report_base.py`.
+
+The other MR modes are thin subclasses of `phaser_mr_auto_phil`, each setting
+`PHIL_MODE` and composing the base class's harvest steps (`harvestCoordinates`,
+`writeSolutions`, `recordRun`) as the mode's Result allows:
+
+| task | mode | takes | writes |
+|---|---|---|---|
+| `phaser_mr_frf_phil` | MR_FRF | search models | a rotation list (`RFILEOUT`) |
+| `phaser_mr_ftf_phil` | MR_FTF | a rotation list (`RFILEIN`) | solutions (`SOLOUT`) |
+| `phaser_mr_pak_phil` | MR_PAK | solutions (`SOLIN`) | the ones that pack |
+| `phaser_mr_rnp_phil` | MR_RNP | solutions, or ensembles placed at origin | refined solutions, models, maps |
+
+A mode that works on placed solutions sets `SEARCHES_ENSEMBLES = False` so
+the ensembles need not ask for copies, and `SOLUTION_INPUT` names the typed
+input the `SolutionHook` hands to `setSOLU`. Phaser's rule on the kind of
+file -- the translation function wants a rotation list, every other mode
+solutions with translations -- is checked before the run (`solutions_kind_check`,
+code 118), as is that the solutions name this job's ensembles (code 117).
+
+The pickle names the ensembles but carries no models, so a step created from
+the step before it (What next, or the context job in the job header) takes
+them from that job's own inputs: `INHERITS_FROM_CONTEXT` on the plugin class
+lists the input names, and the same population that fills `fromPreviousJob`
+file inputs copies those that are set there and not explicitly set here.
+Any task may declare it; the Phaser tasks and pipelines name the ensembles,
+fixed ensembles and composition.
+
+### A pipeline that hosts the tool's PHIL
+
+`pipelines/phaser_pipeline_phil` runs `phaser_mr_auto_phil` as a sub-job and
+then sheetbend and refmac. Its parameters *are* the task's: the same
+`PHIL_PARAMS_FILE` and `PHIL_MODE`, and `get_phil_exclude_scopes()` returns
+the task's exclusions plus `phaser_mr_auto_phil.phil_shim_targets()`, so the
+two trees have the same shape and `hand_phil_to(sub_job)` copies every set
+value across. The pipeline keeps no keyword snapshot of its own; its typed
+inputs are the task's plus what it adds (a Free-R set, a reference structure,
+two switches), copied by name. The sub-job's `xml_responders` let the pipeline
+embed the live record in its own `program.xml`. `phaser_simple_phil` is the
+one-model case, building the ensemble list from `XYZIN` before validation and
+before the run. `phaser_rnp_pipeline_phil` hosts MR_RNP: a parent model cut
+into rigid bodies by atom selections, each an ensemble placed at the origin of
+its own coordinates (`FIXENSEMBLES`, Phaser's `solution_at_origin`), so no
+solution file changes hands.
+
+One trap: the base constructor asks a task for its shims -- to keep their
+targets out of the parameter tree -- before the subclass `__init__` runs, so
+a shim that needs the plugin must be created lazily (a property), not in
+`__init__`.
+
+### Replacing a classic task
+
+A PHIL task that replaces a def.xml one is named as its `successor` in
+`tasks.py`. The classic task stays registered -- its jobs still open and
+their reports render -- but the chooser no longer offers it (the task lookup
+reports `supersededBy`), and cloning one of its jobs makes a job of the
+successor, which adopts the old job's front page through
+`PhilPluginScript.adopt_legacy_container(old_container)`: typed inputs of
+the same name, inputs renamed in `LEGACY_INPUT_RENAMES` (new name -> old),
+and values that were parameters there and are PHIL here, listed in
+`LEGACY_PHIL_VALUES` (old name -> PHIL path; the Phaser tasks map the
+resolution limits). Everything else takes the PHIL defaults: the old job's
+keyword snapshot is not carried over, by design.
+
+### Shims write blocks too, and own their targets
+
+A shim's `convert()` may return `(path, [entries])` for one instance of a
+repeated scope, inner paths relative to the scope, alongside plain
+`(path, value)` pairs. And every path a shim writes (its `phil_*`
+attributes, see `PhilShim.phil_targets()`) is excluded from the generic tree
+automatically, so a file chosen as a typed input is not also offered as a
+bare path string under the parameters.
+
+### Repeated scopes and definitions in controlParameters
+
+Nothing needs doing for `.multiple` parameters that stay in `controlParameters`:
+`Phil2CData` turns a `.multiple = True` **scope** into a `CList` whose items are
+containers shaped like the scope (Phaser's `composition.chain`, `ensemble`,
+`crystal.dataset` — nested repeats included), and a `.multiple = True`
+**definition** into a `CList` of the leaf type. Both start empty, which is
+what libtbx's `fetch()` gives the tool unless the working phil supplies
+instances; each `makeItem()` carries the scope's defaults. `build_working_phil()`
+writes one `path { ... }` block per item, and one `path = value` line per item
+of a repeated definition.
+
+Two libtbx facts shape this. A block with no assignments in it is dropped by
+`fetch()`, and so is an instance whose values all equal the master template —
+PHIL cannot express "a repeat that is all defaults", so an item the user adds
+and leaves untouched is not an instance as far as the tool is concerned. Only
+user-set values are written inside a block, exactly as at the top level.
 
 ### Inspecting scopes and their attributes
 

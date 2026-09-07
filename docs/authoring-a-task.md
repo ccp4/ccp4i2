@@ -34,6 +34,11 @@ with expert-level filtering for free — so you don't hand-transcribe hundreds o
 options, and the wrapper auto-syncs when the tool updates. Even a PHIL task keeps
 a small `def.xml` for its `inputData`/`outputData`.
 
+A **pipeline** whose sub-job is a PHIL task is PHIL-hosted too: it declares the
+same master and mode, hands its tree to the sub-job whole, and keeps no keyword
+snapshot of its own — see
+[Pipelines over a PHIL-hosted task](pipeline_best_practices.md#42-pipelines-over-a-phil-hosted-task).
+
 The rest of this guide follows the `def.xml` path; the PHIL guide slots in at
 steps 1–2 where noted.
 

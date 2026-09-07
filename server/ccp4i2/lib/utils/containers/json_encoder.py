@@ -122,6 +122,17 @@ class CCP4i2JsonEncoder(json.JSONEncoder):
                 "_objectPath": obj_path,
             }
             result["_baseClass"] = base_class(o)
+            # A primitive's _value is a sentinel (0, 0.0, "", False) when it
+            # has never been set, so _value alone cannot tell the client
+            # "unset" from "the user typed 0". Send the state as well.
+            if isinstance(o, (CInt, CFloat, CString, CBoolean)) and hasattr(o, 'getValueState'):
+                result["_valueState"] = o.getValueState("value").name
+                # A def.xml <default> is applied to the value rather than kept
+                # as a qualifier; surface it so an unset field can show it.
+                if qualifiers.get("default") is None:
+                    default = getattr(o, "_default_values", {}).get("value")
+                    if default is not None:
+                        result["_qualifiers"]["default"] = default
             if isinstance(o, CList) and hasattr(o, 'makeItem'):
                 result["_subItem"] = o.makeItem()
             return result

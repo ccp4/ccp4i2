@@ -223,6 +223,26 @@ class TestProjectTagEditingAPI:
         )
         assert response.status_code == 400
 
+    def test_rejection_carries_a_single_error_string_for_the_client(self):
+        """The renderer's fetch wrapper surfaces a body's ``error`` key and
+        nothing else, so the per-field DRF shape alone reached the user as
+        "HTTP 400: Bad Request"."""
+        ProjectTag.objects.create(text="B", parent=self.other)
+        response = self.client.patch(
+            self._url(self.b), {"parent": self.other.id}, format="json"
+        )
+        body = response.json()
+        # The collision is caught by the model's unique_together validator,
+        # so its wording is DRF's; what matters is that it is now one string
+        # under ``error`` as well as in the per-field shape.
+        assert body["error"] == "The fields parent, text must make a unique set."
+        assert body["non_field_errors"] == [body["error"]]
+
+        response = self.client.patch(
+            self._url(self.a), {"parent": self.c.id}, format="json"
+        )
+        assert response.json()["error"] == "A tag cannot be moved beneath itself."
+
     def test_delete_removes_the_whole_subtree(self):
         project = Project.objects.create(name="p", directory="/tmp/p")
         self.c.projects.add(project)
