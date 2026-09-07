@@ -903,9 +903,9 @@ export default function ProjectsTable() {
             sx={{
               p: 2,
               mb: 2,
-              bgcolor: "primary.50",
+              bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.08),
               border: "1px solid",
-              borderColor: "primary.200",
+              borderColor: (theme: Theme) => alpha(theme.palette.primary.main, 0.4),
               borderRadius: 2,
             }}
           >

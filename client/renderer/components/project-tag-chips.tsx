@@ -118,9 +118,9 @@ export const ProjectTagChips = React.memo(
               sx={{
                 height: size === "small" ? 20 : 24,
                 fontSize: size === "small" ? "0.7rem" : "0.75rem",
-                bgcolor: "grey.100",
-                borderColor: "grey.300",
-                color: "grey.600",
+                bgcolor: "action.hover",
+                borderColor: "divider",
+                color: "text.secondary",
                 fontWeight: 500,
                 cursor: "help",
               }}
