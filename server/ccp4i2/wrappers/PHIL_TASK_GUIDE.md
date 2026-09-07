@@ -602,6 +602,14 @@ file -- the translation function wants a rotation list, every other mode
 solutions with translations -- is checked before the run (`solutions_kind_check`,
 code 118), as is that the solutions name this job's ensembles (code 117).
 
+The pickle names the ensembles but carries no models, so a step created from
+the step before it (What next, or the context job in the job header) takes
+them from that job's own inputs: `INHERITS_FROM_CONTEXT` on the plugin class
+lists the input names, and the same population that fills `fromPreviousJob`
+file inputs copies those that are set there and not explicitly set here.
+Any task may declare it; the Phaser tasks and pipelines name the ensembles,
+fixed ensembles and composition.
+
 ### A pipeline that hosts the tool's PHIL
 
 `pipelines/phaser_pipeline_phil` runs `phaser_mr_auto_phil` as a sub-job and

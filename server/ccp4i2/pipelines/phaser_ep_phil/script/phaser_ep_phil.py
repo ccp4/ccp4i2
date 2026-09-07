@@ -31,6 +31,7 @@ class phaser_ep_phil(PhilPluginScript):
     PHIL_MODE = phaser_ep_auto_phil.PHIL_MODE
     LEGACY_PHIL_VALUES = phaser_ep_auto_phil.LEGACY_PHIL_VALUES
     LEGACY_INPUT_RENAMES = phaser_ep_auto_phil.LEGACY_INPUT_RENAMES
+    INHERITS_FROM_CONTEXT = phaser_ep_auto_phil.INHERITS_FROM_CONTEXT
     PHIL_MODE_PATH = phaser_ep_auto_phil.PHIL_MODE_PATH
     WHATNEXT = ["parrot", "modelcraft", "coot_rebuild"]
     ASYNCHRONOUS = False
