@@ -161,7 +161,7 @@ export default function EditTags(props: {
           <Chip
             {...getTagProps({ index })}
             key={option.id}
-            label={option.text}
+            label={option.displayPath ?? option.text}
             size="small"
           />
         ))
