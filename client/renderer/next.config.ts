@@ -52,13 +52,22 @@ const nextConfig: NextConfig = {
     unoptimized: isElectron || isWeb,
   },
 
-  // Increase body size limit for large fixture file imports (AssayCompounds can be >10MB)
+  // Any request that passes through middleware has its body cloned with this
+  // cap, and a body over the cap is silently truncated (Next's default is
+  // 10 MB). The desktop app is a single user importing their own project zips,
+  // which run to hundreds of MB, so it gets a generous ceiling. The web build
+  // keeps 100 MB: it is the cloud deployment, the cloned body is held in
+  // memory, and a larger cap there would widen the denial-of-service surface
+  // for anyone who can reach the server.
+  //
+  // Note for the desktop app: this file is not shipped in the package, so the
+  // runtime gets these values through .next/required-server-files.json (see
+  // client/main/ccp4i2-next-config.ts) - editing here is still the right place.
   experimental: {
     serverActions: {
       bodySizeLimit: '100mb',
     },
-    // For API routes (route handlers), use middlewareClientMaxBodySize
-    middlewareClientMaxBodySize: '100mb',
+    middlewareClientMaxBodySize: isElectron ? '2gb' : '100mb',
   },
 
   // No basePath - routes are organized at app level (/ccp4i2/*, /compounds/*)

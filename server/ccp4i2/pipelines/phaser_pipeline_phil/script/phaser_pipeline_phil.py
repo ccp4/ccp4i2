@@ -36,6 +36,7 @@ class phaser_pipeline_phil(PhilPluginScript):
     WHATNEXT = ["prosmart_refmac", "modelcraft", "coot_rebuild"]
     ASYNCHRONOUS = False
     LEGACY_PHIL_VALUES = phaser_phil.LEGACY_PHIL_VALUES
+    INHERITS_FROM_CONTEXT = phaser_mr_auto_phil.INHERITS_FROM_CONTEXT
 
     ERROR_CODES = {
         200: {"description": "Phaser failed"},

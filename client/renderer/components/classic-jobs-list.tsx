@@ -32,6 +32,7 @@ import {
   TreeItem2LabelInput,
   TreeItem2Props,
   TreeItem2Root,
+  TreeViewCancellableEvent,
   useTreeItem2,
 } from "@mui/x-tree-view";
 import { CheckBoxOutlined, Clear, Delete, DragIndicator, MoreVert } from "@mui/icons-material";
@@ -89,6 +90,11 @@ const IDLE_POLL_INTERVAL = 30000;
 const ACTIVE_JOB_STATUSES = [2, 3, 7];
 
 const TIME_DISPLAY_STYLE = { fontSize: "75%" };
+
+/** Width (px) of the expand/collapse chevron slot, kept when the chevron is hidden. */
+const EXPAND_TOGGLE_SIZE = 24;
+/** data-role marking the chevron; also the hook for click detection and tests. */
+export const EXPAND_TOGGLE_ROLE = "expand-toggle";
 
 // =============================================================================
 // Context for sharing job tree data with tree items
@@ -476,9 +482,12 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
 
   const handleTreeSelection = useCallback(
     (event: React.SyntheticEvent, ids: string | null) => {
-      // Prevent selection when clicking the expand/collapse icon
+      // Clicking the expand/collapse chevron must not select (and so navigate
+      // to) the row. The chevron is tagged with a data attribute of our own
+      // rather than matched by a generated MUI class name, which differs
+      // between builds.
       const isIconClick = (event.target as Element).closest(
-        '[class*="-MuiTreeItem2-iconContainer"]'
+        `[data-role="${EXPAND_TOGGLE_ROLE}"]`
       );
 
       if (event.type !== "click" || !isIconClick) {
@@ -635,6 +644,8 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
   function CustomTreeItem({ id, itemId, label, disabled, children }, ref) {
     const { job, file, isJob, timestamp } = useTreeItemData(itemId);
     const { selectMode, selectedJobIds, toggleJobSelection } = useContext(JobTreeContext);
+    // Only top-level jobs can be selected for bulk deletion.
+    const isTopLevelJob = Boolean(job && !job.number.includes("."));
 
     const { setJobMenuAnchorEl, setJob } = useJobMenu();
     const { setFileMenuAnchorEl, setFile } = useFileMenu();
@@ -740,12 +751,41 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       [job, file, setJobMenuAnchorEl, setJob, setFileMenuAnchorEl, setFile]
     );
 
-    // Handle right-click context menu
+    // Handle right-click context menu. In select mode the row is a checkbox
+    // target and nothing else, so no menu opens.
     const handleContextMenu = useCallback(
       (event: React.MouseEvent<HTMLElement>) => {
+        if (selectMode) {
+          event.preventDefault();
+          return;
+        }
         handleMenuClick(event);
       },
-      [handleMenuClick]
+      [handleMenuClick, selectMode]
+    );
+
+    // In select mode a click anywhere on a top-level row toggles its checkbox
+    // (sub-job rows do nothing). defaultMuiPrevented stops the tree view from
+    // treating the click as a selection, which would otherwise navigate.
+    const handleContentClick = useCallback(
+      (event: React.MouseEvent<HTMLElement> & TreeViewCancellableEvent) => {
+        if (!selectMode) return;
+        event.defaultMuiPrevented = true;
+        if (job && isTopLevelJob) {
+          toggleJobSelection(job.id);
+        }
+      },
+      [selectMode, job, isTopLevelJob, toggleJobSelection]
+    );
+
+    // Double-clicking the label starts a rename; not while selecting.
+    const handleLabelDoubleClick = useCallback(
+      (event: React.MouseEvent<HTMLElement> & TreeViewCancellableEvent) => {
+        if (selectMode) {
+          event.defaultMuiPrevented = true;
+        }
+      },
+      [selectMode]
     );
 
     // Handle button click (left-click on menu button)
@@ -761,12 +801,13 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
     // context needed); a bare /job/<id> has no matching route and 404s.
     const handleDoubleClick = useCallback(
       (event: React.MouseEvent<HTMLElement>) => {
+        if (selectMode) return;
         if (job) {
           const path = `/ccp4i2/job/${job.id}`;
           window.open(path, "_blank", "noopener,noreferrer");
         }
       },
-      [job]
+      [job, selectMode]
     );
 
     const renderAvatar = () => {
@@ -834,7 +875,10 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
 
       return (
         <Stack direction="column" sx={{ flexGrow: 1 }}>
-          <TreeItem2Label {...getLabelProps()} sx={labelStyle} />
+          <TreeItem2Label
+            {...getLabelProps({ onDoubleClick: handleLabelDoubleClick })}
+            sx={labelStyle}
+          />
           {timestamp && (
             <Typography
               variant="body2"
@@ -856,36 +900,56 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
         sx={undefined}
       >
         <TreeItem2Content
-          {...getContentProps()}
+          {...getContentProps({ onClick: handleContentClick })}
           onContextMenu={handleContextMenu}
           onDoubleClick={handleDoubleClick}
           sx={{
-            cursor: "context-menu",
+            cursor: selectMode
+              ? isTopLevelJob
+                ? "pointer"
+                : "default"
+              : "context-menu",
             "&:hover": {
               backgroundColor: "action.hover",
             },
           }}
         >
-          <TreeItem2IconContainer
-            {...getIconContainerProps()}
-            sx={{
-              width: 24,
-              height: 24,
-              minWidth: 24,
-              minHeight: 24,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 4,
-              backgroundColor: children ? "rgba(0,0,0,0.04)" : "transparent",
-              boxSizing: "border-box",
-              mr: 1,
-            }}
-          >
-            <TreeItem2Icon status={status} />
-          </TreeItem2IconContainer>
+          {selectMode ? (
+            // Only top-level jobs can be selected, so sub-jobs cannot be
+            // expanded in select mode: no chevron, but the slot keeps its
+            // width so rows do not shift when the mode is toggled.
+            <Box
+              aria-hidden
+              sx={{
+                width: EXPAND_TOGGLE_SIZE,
+                minWidth: EXPAND_TOGGLE_SIZE,
+                height: EXPAND_TOGGLE_SIZE,
+                mr: 1,
+              }}
+            />
+          ) : (
+            <TreeItem2IconContainer
+              {...getIconContainerProps()}
+              data-role={EXPAND_TOGGLE_ROLE}
+              sx={{
+                width: EXPAND_TOGGLE_SIZE,
+                height: EXPAND_TOGGLE_SIZE,
+                minWidth: EXPAND_TOGGLE_SIZE,
+                minHeight: EXPAND_TOGGLE_SIZE,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 4,
+                backgroundColor: children ? "rgba(0,0,0,0.04)" : "transparent",
+                boxSizing: "border-box",
+                mr: 1,
+              }}
+            >
+              <TreeItem2Icon status={status} />
+            </TreeItem2IconContainer>
+          )}
 
-          {selectMode && job && !job.number.includes(".") && (
+          {selectMode && job && isTopLevelJob && (
             <Checkbox
               size="small"
               checked={selectedJobIds.has(job.id)}
@@ -908,17 +972,19 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
             {renderContent()}
           </Stack>
 
-          <Tooltip title={`Open ${isJob ? "job" : "file"} menu`}>
-            <IconButton
-              color="inherit"
-              onClick={handleButtonClick}
-              aria-label={`Open ${isJob ? "job" : "file"} menu`}
-              size="small"
-              sx={{ ml: 1 }}
-            >
-              <MoreVert fontSize="small" />
-            </IconButton>
-          </Tooltip>
+          {!selectMode && (
+            <Tooltip title={`Open ${isJob ? "job" : "file"} menu`}>
+              <IconButton
+                color="inherit"
+                onClick={handleButtonClick}
+                aria-label={`Open ${isJob ? "job" : "file"} menu`}
+                size="small"
+                sx={{ ml: 1 }}
+              >
+                <MoreVert fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
         </TreeItem2Content>
 
         {children && (

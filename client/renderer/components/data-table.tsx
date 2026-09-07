@@ -9,6 +9,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TableRowProps,
   TableSortLabel,
   Typography,
 } from "@mui/material";
@@ -29,6 +30,11 @@ interface DataTableProps<T> {
   columns: Column<T>[];
   onRowClick?: (row: T) => void;
   getRowKey: (row: T) => string | number;
+  /**
+   * Extra props for a row — drag-and-drop handlers, a highlight — merged over
+   * the table's own. An `sx` here is layered on top of the row's default.
+   */
+  getRowProps?: (row: T) => Partial<TableRowProps>;
   emptyMessage: string;
 }
 
@@ -39,6 +45,7 @@ export function DataTable<T extends Record<string, any>>({
   columns,
   onRowClick,
   getRowKey,
+  getRowProps,
   emptyMessage,
 }: DataTableProps<T>) {
   const [orderBy, setOrderBy] = useState<string | null>(null);
@@ -160,6 +167,7 @@ export function DataTable<T extends Record<string, any>>({
                 {/* Virtualized rows */}
                 {virtualItems.map((virtualRow) => {
                   const row = sortedData[virtualRow.index];
+                  const { sx: extraSx, ...extraProps } = getRowProps?.(row) ?? {};
                   return (
                     <TableRow
                       key={getRowKey(row)}
@@ -167,12 +175,16 @@ export function DataTable<T extends Record<string, any>>({
                       ref={rowVirtualizer.measureElement}
                       hover
                       onClick={() => onRowClick?.(row)}
-                      sx={{
-                        cursor: onRowClick ? "pointer" : "default",
-                        "&:hover": onRowClick
-                          ? { bgcolor: "action.hover" }
-                          : undefined,
-                      }}
+                      {...extraProps}
+                      sx={[
+                        {
+                          cursor: onRowClick ? "pointer" : "default",
+                          "&:hover": onRowClick
+                            ? { bgcolor: "action.hover" }
+                            : undefined,
+                        },
+                        ...(Array.isArray(extraSx) ? extraSx : [extraSx]),
+                      ]}
                     >
                       {columns.map((column) => (
                         <TableCell key={column.key}>

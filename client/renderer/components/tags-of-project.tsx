@@ -7,7 +7,6 @@ import {
   Typography,
   CircularProgress,
   Paper,
-  Tooltip,
 } from "@mui/material";
 import { Add as AddIcon, LocalOffer as TagIcon } from "@mui/icons-material";
 import { useApi } from "../api";
@@ -244,21 +243,15 @@ export const TagsOfProject: React.FC<{
   // Custom tag rendering
   const renderTags = (tagValue: TagOption[], getTagProps: any) =>
     tagValue.map((option, index) => (
-      <Tooltip
+      // Full path, matching the dropdown option and the chips in the project
+      // list, so a tag reads the same wherever it appears.
+      <Chip
+        {...getTagProps({ index })}
         key={option.id || option.text}
-        title={
-          option.displayPath && option.displayPath !== option.text
-            ? option.displayPath
-            : ""
-        }
-      >
-        <Chip
-          {...getTagProps({ index })}
-          label={option.text}
-          size="small"
-          disabled={isSubmitting}
-        />
-      </Tooltip>
+        label={option.displayPath ?? option.text}
+        size="small"
+        disabled={isSubmitting}
+      />
     ));
 
   if (isLoadingProjectTags || isLoadingAllTags) {

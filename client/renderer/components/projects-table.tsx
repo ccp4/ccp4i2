@@ -51,7 +51,13 @@ import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
 import { ProjectTagChips } from "./project-tag-chips";
 import { DeleteProjectFilesOption } from "./delete-project-files-option";
-import ProjectTagTreePane, { PROJECT_DRAG_TYPE } from "./project-tag-tree";
+import ProjectTagTreePane, {
+  PROJECT_DRAG_TYPE,
+  TAG_DRAG_TYPE,
+  TagDragPayload,
+  dropTargetSx,
+  readTagDragPayload,
+} from "./project-tag-tree";
 import TagSelectionDialog from "./tag-selection-dialog";
 import { ViewMode, ViewModeToggle } from "./view-mode-toggle";
 import { MoveProjectDialog } from "./move-project-dialog";
@@ -109,6 +115,8 @@ const ProjectCard = React.memo(
     onExport,
     onMove,
     onDelete,
+    isDropTarget,
+    dropHandlers,
   }: {
     project: Project;
     isSelected: boolean;
@@ -119,15 +127,26 @@ const ProjectCard = React.memo(
     /** Omitted in the web build, where there is no local filesystem to move to. */
     onMove?: () => void;
     onDelete: () => void;
+    /** A tag is being dragged over this card. */
+    isDropTarget?: boolean;
+    /** Drag-and-drop handlers for a tag dropped onto the card. */
+    dropHandlers?: Pick<
+      React.HTMLAttributes<HTMLElement>,
+      "onDragOver" | "onDragLeave" | "onDrop"
+    >;
   }) => {
     return (
       <Card
-        sx={isSelected ? sxSelectedCard : sxProjectCard}
+        sx={[
+          isSelected ? sxSelectedCard : sxProjectCard,
+          ...(isDropTarget ? [dropTargetSx] : []),
+        ]}
         onClick={(event) => {
           if (!(event.target as HTMLElement).closest(".action-button")) {
             onNavigate();
           }
         }}
+        {...dropHandlers}
       >
         <CardContent sx={{ p: 2.5, "&:last-child": { pb: 2.5 } }}>
           <Box
@@ -417,7 +436,9 @@ export default function ProjectsTable() {
         if (p.description?.toLowerCase().includes(term)) return true;
         if (Array.isArray(p.tags)) {
           return p.tags.some(
-            (tag) => typeof tag === "object" && tag.text?.toLowerCase().includes(term)
+            (tag) =>
+              typeof tag === "object" &&
+              (tag.display_path ?? tag.text)?.toLowerCase().includes(term)
           );
         }
         return false;
@@ -454,6 +475,44 @@ export default function ProjectsTable() {
       );
     }
   }
+
+  // The reverse gesture: a tag from the tree dropped onto one project in the
+  // list applies that tag to that project. The selection is left alone — this
+  // is a single-project action, whatever happens to be selected.
+  const [tagDropTarget, setTagDropTarget] = useState<number | null>(null);
+
+  async function dropTagOnProject(project: Project, tag: TagDragPayload) {
+    try {
+      await api.post(`projecttags/${tag.id}/add_projects/`, {
+        project_ids: [project.id],
+      });
+      await Promise.all([mutate(), mutateTagTree()]);
+      setMessage(`Tagged "${project.name}" with "${tag.label}"`, "success");
+    } catch (error) {
+      setMessage(
+        `Failed to tag "${project.name}": ${error instanceof Error ? error.message : String(error)}`,
+        "error"
+      );
+    }
+  }
+
+  const tagDropHandlers = (project: Project) => ({
+    onDragOver: (event: React.DragEvent) => {
+      if (!Array.from(event.dataTransfer.types).includes(TAG_DRAG_TYPE)) return;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "copy";
+      setTagDropTarget(project.id);
+    },
+    onDragLeave: () =>
+      setTagDropTarget((current) => (current === project.id ? null : current)),
+    onDrop: (event: React.DragEvent) => {
+      setTagDropTarget(null);
+      const tag = readTagDragPayload(event.dataTransfer);
+      if (!tag) return;
+      event.preventDefault();
+      dropTagOnProject(project, tag);
+    },
+  });
 
   function deleteSelected() {
     const selectedProjects = projects?.filter((project) =>
@@ -809,9 +868,12 @@ export default function ProjectsTable() {
             : undefined
         }
         onDelete={() => deleteProjects([project])}
+        isDropTarget={tagDropTarget === project.id}
+        dropHandlers={tagDropHandlers(project)}
       />
     ),
-    [selectedIds, router, canMoveProjects, brokenIds]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [selectedIds, router, canMoveProjects, brokenIds, tagDropTarget]
   );
 
   if (projects === undefined) return <LinearProgress />;
@@ -919,9 +981,9 @@ export default function ProjectsTable() {
             sx={{
               p: 2,
               mb: 2,
-              bgcolor: "primary.50",
+              bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.08),
               border: "1px solid",
-              borderColor: "primary.200",
+              borderColor: (theme: Theme) => alpha(theme.palette.primary.main, 0.4),
               borderRadius: 2,
             }}
           >
@@ -1026,6 +1088,10 @@ export default function ProjectsTable() {
             data={filteredProjects}
             columns={tableColumns}
             getRowKey={(project) => project.id}
+            getRowProps={(project) => ({
+              ...tagDropHandlers(project),
+              ...(tagDropTarget === project.id && { sx: dropTargetSx }),
+            })}
             onRowClick={(project) => router.push(`/ccp4i2/project/${project.id}`)}
             emptyMessage="No projects found"
           />
