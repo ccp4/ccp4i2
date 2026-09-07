@@ -307,7 +307,10 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     // errors on every start-up.
     const code = error.code ?? error.cause?.code;
     if (code !== "ECONNREFUSED") {
-      console.error("[CCP4I2 PROXY] Error:", error.message, "→", targetUrl);
+      // undici's "fetch failed" carries the real reason in .cause; without it
+      // a truncated upload and a refused connection log the same line.
+      const cause = error.cause?.message ? ` (${error.cause.message})` : "";
+      console.error("[CCP4I2 PROXY] Error:", error.message + cause, "→", targetUrl);
     }
     return NextResponse.json(
       { error: `Proxy error: ${error.message}`, targetUrl, code: error.code },
