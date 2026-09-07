@@ -336,8 +336,8 @@ export const installIpcHandlers = (
       });
   });
 
-  // IPC communication to trigger file dialog to select parent directory for new projects
-  // and set the CCP4I2_PROJECTS_DIR in the store
+  // Reports whether a path already exists, for the New Project page's
+  // resulting-directory field.
   ipcMain.on("check-file-exists", (event, data) => {
     event.reply("message-from-main", {
       message: "check-file-exists",
@@ -346,8 +346,6 @@ export const installIpcHandlers = (
     });
   });
 
-  // IPC communication to trigger file dialog to select parent directory for new projects
-  // and set the CCP4I2_PROJECTS_DIR in the store
   // Pick a parent directory for ONE project, without touching any preference.
   //
   // Distinct from locate-ccp4i2-project-directory below, which deliberately
