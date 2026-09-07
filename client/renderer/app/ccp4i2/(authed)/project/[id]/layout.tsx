@@ -19,7 +19,6 @@ import { FilePreviewProvider } from "@/providers/file-preview-context";
 import { JobMenuProvider } from "@/providers/job-context-menu";
 import { FileMenuProvider } from "@/providers/file-context-menu";
 import MenuBar from "@/components/menu-bar";
-import { NavigationShortcutsProvider } from "@/providers/navigation-shortcuts-provider";
 import { FileSystemFileBrowserProvider } from "@/providers/file-system-file-browser-context";
 import { JobTabProvider } from "@/providers/job-tab-provider";
 
@@ -62,117 +61,115 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
 
   return (
     <DraggableContext>
-      <NavigationShortcutsProvider>
-        <FileSystemFileBrowserProvider>
-          <FilePreviewProvider>
-            <JobMenuProvider>
-              <JobTabProvider>
-                <FileMenuProvider>
-                  <Stack
-                      spacing={2}
-                      sx={{
-                        height: "100svh",
-                        width: "100%",
-                      }}
-                    >
-                      <MenuBar />
+      <FileSystemFileBrowserProvider>
+        <FilePreviewProvider>
+          <JobMenuProvider>
+            <JobTabProvider>
+              <FileMenuProvider>
+                <Stack
+                    spacing={2}
+                    sx={{
+                      height: "100svh",
+                      width: "100%",
+                    }}
+                  >
+                    <MenuBar />
 
-                      {isMobile ? (
-                        // Mobile: Tabbed interface
-                        <Box sx={{ height: "calc(100vh - 10rem)" }}>
-                            <Tabs
-                              value={mobileTabValue}
-                              onChange={handleMobileTabChange}
-                              variant="fullWidth"
-                            >
-                              <Tab value={0} label="Jobs" />
-                              <Tab value={1} label="Directory" />
-                              <Tab value={2} label="Content" />
-                            </Tabs>
-                            <Box
-                              sx={{
-                                height: "calc(100% - 48px)",
-                                overflow: "auto",
-                                // Theme-aware scrollbar styling
-                                scrollbarColor: `${theme.palette.action.disabled} transparent`,
-                                scrollbarWidth: "thin",
-                                "&::-webkit-scrollbar": {
-                                  width: 8,
-                                },
-                                "&::-webkit-scrollbar-track": {
-                                  background: "transparent",
-                                },
-                                "&::-webkit-scrollbar-thumb": {
-                                  backgroundColor: theme.palette.action.disabled,
-                                  borderRadius: 4,
-                                },
-                              }}
-                            >
-                              {mobileTabValue === 0 && project && (
-                                <ClassicJobList projectId={project.id} />
-                              )}
-                              {mobileTabValue === 1 && project && (
-                                <CCP4i2DirectoryViewer projectId={project.id} />
-                              )}
-                              {mobileTabValue === 2 && (
-                                <Box sx={{ height: "100%" }}>
-                                  {props.children}
-                                </Box>
-                              )}
-                            </Box>
-                        </Box>
-                      ) : (
-                        // Desktop: Side-by-side panels
-                        <PanelGroup direction="horizontal" style={{flex: "auto"}}>
-                          <Panel defaultSize={30} minSize={20}>
-                            <Stack sx={{ height: "100%" }}>
-                              <Tabs
-                                value={leftTabValue}
-                                onChange={handleLeftTabChange}
-                                variant="fullWidth"
-                              >
-                                <Tab value={0} label="Job list" />
-                                <Tab value={1} label="Project directory" />
-                              </Tabs>
-                              {leftTabValue === 0 && project && (
-                                <ClassicJobList projectId={project.id} />
-                              )}
-                              {leftTabValue === 1 && project && (
-                                <CCP4i2DirectoryViewer projectId={project.id} />
-                              )}
-                            </Stack>
-                          </Panel>
-                          <PanelResizeHandle
-                            style={{
-                              width: 10,
-                              backgroundColor: "transparent",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              cursor: "col-resize",
+                    {isMobile ? (
+                      // Mobile: Tabbed interface
+                      <Box sx={{ height: "calc(100vh - 10rem)" }}>
+                          <Tabs
+                            value={mobileTabValue}
+                            onChange={handleMobileTabChange}
+                            variant="fullWidth"
+                          >
+                            <Tab value={0} label="Jobs" />
+                            <Tab value={1} label="Directory" />
+                            <Tab value={2} label="Content" />
+                          </Tabs>
+                          <Box
+                            sx={{
+                              height: "calc(100% - 48px)",
+                              overflow: "auto",
+                              // Theme-aware scrollbar styling
+                              scrollbarColor: `${theme.palette.action.disabled} transparent`,
+                              scrollbarWidth: "thin",
+                              "&::-webkit-scrollbar": {
+                                width: 8,
+                              },
+                              "&::-webkit-scrollbar-track": {
+                                background: "transparent",
+                              },
+                              "&::-webkit-scrollbar-thumb": {
+                                backgroundColor: theme.palette.action.disabled,
+                                borderRadius: 4,
+                              },
                             }}
                           >
-                            <div
-                              style={{
-                                width: 4,
-                                height: "50%",
-                                backgroundColor: "gray",
-                                borderRadius: 2,
-                              }}
-                            />
-                          </PanelResizeHandle>
-                          <Panel defaultSize={70} minSize={20}>
-                            {props.children}
-                          </Panel>
-                        </PanelGroup>
-                      )}
-                  </Stack>
-                </FileMenuProvider>
-              </JobTabProvider>
-            </JobMenuProvider>
-          </FilePreviewProvider>
-        </FileSystemFileBrowserProvider>
-      </NavigationShortcutsProvider>
+                            {mobileTabValue === 0 && project && (
+                              <ClassicJobList projectId={project.id} />
+                            )}
+                            {mobileTabValue === 1 && project && (
+                              <CCP4i2DirectoryViewer projectId={project.id} />
+                            )}
+                            {mobileTabValue === 2 && (
+                              <Box sx={{ height: "100%" }}>
+                                {props.children}
+                              </Box>
+                            )}
+                          </Box>
+                      </Box>
+                    ) : (
+                      // Desktop: Side-by-side panels
+                      <PanelGroup direction="horizontal" style={{flex: "auto"}}>
+                        <Panel defaultSize={30} minSize={20}>
+                          <Stack sx={{ height: "100%" }}>
+                            <Tabs
+                              value={leftTabValue}
+                              onChange={handleLeftTabChange}
+                              variant="fullWidth"
+                            >
+                              <Tab value={0} label="Job list" />
+                              <Tab value={1} label="Project directory" />
+                            </Tabs>
+                            {leftTabValue === 0 && project && (
+                              <ClassicJobList projectId={project.id} />
+                            )}
+                            {leftTabValue === 1 && project && (
+                              <CCP4i2DirectoryViewer projectId={project.id} />
+                            )}
+                          </Stack>
+                        </Panel>
+                        <PanelResizeHandle
+                          style={{
+                            width: 10,
+                            backgroundColor: "transparent",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "col-resize",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: 4,
+                              height: "50%",
+                              backgroundColor: "gray",
+                              borderRadius: 2,
+                            }}
+                          />
+                        </PanelResizeHandle>
+                        <Panel defaultSize={70} minSize={20}>
+                          {props.children}
+                        </Panel>
+                      </PanelGroup>
+                    )}
+                </Stack>
+              </FileMenuProvider>
+            </JobTabProvider>
+          </JobMenuProvider>
+        </FilePreviewProvider>
+      </FileSystemFileBrowserProvider>
     </DraggableContext>
   );
 }
