@@ -2,6 +2,7 @@ from pathlib import Path
 from django.utils.text import slugify
 from django.conf import settings
 from rest_framework.serializers import (
+    CharField,
     ModelSerializer,
     ReadOnlyField,
     SerializerMethodField,
@@ -130,6 +131,8 @@ def default_project_parent() -> Path:
 class ProjectSerializer(ModelSerializer):
     # Include tag details in project serialization
     tags = ProjectTagSerializer(many=True, read_only=True)
+    # Omitted on create to mean "let the server choose"; validate() fills it in.
+    directory = CharField(required=False, allow_blank=True)
 
     class Meta:
         model = models.Project
@@ -143,12 +146,7 @@ class ProjectSerializer(ModelSerializer):
         )  # This is the instance being updated (or None if creating)
 
         if instance is None:
-            if (
-                "directory" not in attrs
-                or not attrs["directory"]
-                or len(attrs["directory"]) == 0
-                or attrs["directory"] == "__default__"
-            ):
+            if "directory" not in attrs or not attrs["directory"]:
                 attrs["directory"] = str(
                     default_project_parent() / slugify(attrs["name"])
                 )

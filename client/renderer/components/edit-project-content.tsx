@@ -114,7 +114,6 @@ export const EditProjectContent: React.FC<{ projectId: number }> = ({
           onChange={(event) => setDescription(event.target.value)}
           multiline
           minRows={3}
-          helperText="What the project is for; shown wherever it is listed."
         />
         <Stack direction="row" spacing={2} justifyContent="flex-end">
           <Button variant="outlined" onClick={discard} disabled={!isDirty || isSaving}>

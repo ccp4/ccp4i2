@@ -31,8 +31,7 @@ class ProjectSerializerTestCase(TestCase):
         return super().tearDown()
 
     def create_project(self, name: str) -> Project:
-        # "__default__" is what the client sends for "put it in the usual place".
-        serializer = ProjectSerializer(data={"name": name, "directory": "__default__"})
+        serializer = ProjectSerializer(data={"name": name})
         self.assertTrue(serializer.is_valid(), serializer.errors)
         return serializer.save()
 
@@ -72,6 +71,6 @@ class ProjectSerializerTestCase(TestCase):
         self.assertEqual(project.directory, directory)
 
     def test_create_still_refuses_a_name_already_taken(self):
-        serializer = ProjectSerializer(data={"name": "MDM2", "directory": "__default__"})
+        serializer = ProjectSerializer(data={"name": "MDM2"})
         self.assertFalse(serializer.is_valid())
         self.assertIn("name", serializer.errors)
