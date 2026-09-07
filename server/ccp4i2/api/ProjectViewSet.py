@@ -9,6 +9,7 @@ import subprocess
 from asgiref.sync import async_to_sync
 from django.conf import settings
 from django.core.management import call_command
+from django.db import transaction
 from django.db.models import Prefetch
 from django.http import FileResponse, Http404, JsonResponse
 from django.urls import reverse
@@ -24,11 +25,11 @@ from rest_framework.viewsets import ModelViewSet
 from ccp4i2_api.file_grants import grant_ttl, mint_grant
 
 from ..db import models
+from ..db.delete_project_directory import remove_project_directory
 from ..lib.async_create_job import create_job_async
 from ..lib.response import api_error, api_success
 from ..lib.utils.files.preview import preview_file
 from ..lib.utils.files.resolve_fileuse import resolve_fileuse
-from ..lib.utils.navigation.dependencies import delete_job_and_dependents
 from ..lib.utils.navigation.list_project import list_project
 from . import serializers
 
@@ -141,80 +142,49 @@ class ProjectViewSet(ModelViewSet):
         return serializers.ProjectSerializer
 
     def destroy(self, request, *args, **kwargs):
+        """Delete a project's records; its directory only when asked.
+
+        ``?delete_files=true`` removes the project directory from disk as well.
+        Without it the directory is left exactly as it is - the Qt-era default -
+        so a project deleted from the list can be brought back with
+        Import -> a project folder. Jobs, files, file uses and imports go with
+        the project through the database cascades; nothing on disk is touched.
+        """
+        delete_files = str(request.query_params.get("delete_files", "")).lower() in (
+            "1",
+            "true",
+            "yes",
+        )
         try:
             instance = self.get_object()
-            logger.warning("Deleting project %s", instance)
-            while (
-                models.Job.objects.filter(project=instance, parent__isnull=True).count()
-                > 0
-            ):
-                last_job = models.Job.objects.filter(
-                    project=instance, parent__isnull=True
-                ).last()
-                logger.warning("Deleting job %s", last_job)
-                delete_job_and_dependents(last_job)
+            directory = pathlib.Path(instance.directory)
+            logger.warning(
+                "Deleting project %s (%s its files on disk)",
+                instance,
+                "removing" if delete_files else "keeping",
+            )
+            with transaction.atomic():
+                # XData rows restrict the deletion of their job; everything else
+                # hanging off a project cascades.
+                models.XData.objects.filter(job__project=instance).delete()
+                instance.delete()
+            logger.warning("Deleted project records for %s", directory)
 
-            # Attempt some security by using a defined list of subdirectories for deletion
-            for subdir in [
-                "CCP4_COOT",
-                "CCP4_IMPORTED_FILES",
-                "CCP4_JOBS",
-                "CCP4_PROJECT_FILES",
-                "CCP4_TMP",
-            ]:
-                subdir_path = os.path.join(instance.directory, subdir)
-                if os.path.exists(subdir_path):
-                    logger.warning("Deleting subdirectory %s", subdir_path)
-                    # Definitely need to
-                    for root, dirs, files in os.walk(
-                        subdir_path, topdown=False, followlinks=False
-                    ):
-                        for file in files:
-                            file_path = os.path.join(root, file)
-                        for directory in dirs:
-                            dir_path = os.path.join(root, directory)
-                            try:
-                                os.rmdir(dir_path)
-                            except Exception as e:
-                                logger.warning(
-                                    "Failed to delete directory %s: %s", dir_path, e
-                                )
-                            except Exception as e:
-                                logger.warning(
-                                    "Failed to delete file %s: %s", file_path, e
-                                )
-                    try:
-                        os.rmdir(subdir_path)
-                    except Exception as e:
-                        logger.warning(
-                            "Failed to delete directory %s: %s", subdir_path, e
-                        )
-            # Attempt to delete any special files in the project directory
-            for special_file in [".DS_Store"]:
-                special_file_path = os.path.join(instance.directory, special_file)
-                if os.path.exists(special_file_path):
-                    logger.warning("Deleting special file %s", special_file_path)
-                    try:
-                        os.remove(special_file_path)
-                    except Exception as e:
-                        logger.warning(
-                            "Failed to delete file %s: %s", special_file_path, e
-                        )
-            # Attempt to delete the main project directory
-            try:
-                os.rmdir(instance.directory)
-            except Exception as e:
-                logger.warning(
-                    "Failed to delete project directory %s: %s", instance.directory, e
-                )
-            instance.delete()
-            logger.warning("Deleted project %s", instance)
-
+            files_deleted, reason = (
+                remove_project_directory(directory) if delete_files else (False, None)
+            )
+            payload = {
+                "deleted": True,
+                "directory": str(directory),
+                "files_deleted": files_deleted,
+            }
+            if reason is not None:
+                payload["files_kept_because"] = reason
             # Note I am adding a bit of body to the response because of an odd
             # javascript feature which presents as network error if no body in response.
-            return api_success({"deleted": True})
+            return api_success(payload)
         except Http404:
-            return Http404("Job not found")
+            return api_error("Project not found", status=404)
 
     @action(
         detail=False,

@@ -55,6 +55,7 @@ import {
   VirtualizedMemberProjectsTable,
 } from "@/components/campaigns";
 import { useCampaignsApi, useSmilesLookup } from "@/lib/campaigns-api";
+import { DeleteProjectFilesOption } from "@/components/delete-project-files-option";
 import { doDownload } from "@/api";
 import { apiDelete } from "@/api-fetch";
 import {
@@ -125,6 +126,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
   const [showPanddaExport, setShowPanddaExport] = useState(false);
   const [showSubJobs, setShowSubJobs] = useState(false);
   const [deleteProject, setDeleteProject] = useState<MemberProjectWithSummary | null>(null);
+  const [deleteProjectFiles, setDeleteProjectFiles] = useState(false);
 
   // Search/filter state for member projects table
   const [searchQuery, setSearchQuery] = useState("");
@@ -180,17 +182,24 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
     router.push(`/ccp4i2/project/${project.id}`);
   };
 
+  const closeDeleteDialog = () => {
+    setDeleteProject(null);
+    setDeleteProjectFiles(false);
+  };
+
   const handleDeleteProject = async () => {
     if (!deleteProject) return;
     try {
-      await apiDelete(`projects/${deleteProject.id}/`);
+      await apiDelete(
+        `projects/${deleteProject.id}/?delete_files=${deleteProjectFiles}`
+      );
       // Also remove from campaign
       await campaignsApi.removeMember(campaignId, deleteProject.id);
       mutateMemberProjects();
     } catch (err) {
       console.error("Failed to delete project:", err);
     }
-    setDeleteProject(null);
+    closeDeleteDialog();
   };
 
   const handleDownloadFile = (file: CCP4File) => {
@@ -596,7 +605,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
       )}
 
       {/* Delete Project Dialog */}
-      <Dialog open={!!deleteProject} onClose={() => setDeleteProject(null)}>
+      <Dialog open={!!deleteProject} onClose={closeDeleteDialog}>
         <DialogTitle>Delete Project</DialogTitle>
         <DialogContent>
           <Typography>
@@ -605,9 +614,15 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
           <Typography variant="body2" color="error" sx={{ mt: 1 }}>
             This action cannot be undone.
           </Typography>
+          {deleteProject && (
+            <DeleteProjectFilesOption
+              key={deleteProject.id}
+              onChange={setDeleteProjectFiles}
+            />
+          )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDeleteProject(null)}>Cancel</Button>
+          <Button onClick={closeDeleteDialog}>Cancel</Button>
           <Button onClick={handleDeleteProject} color="error" variant="contained">
             Delete
           </Button>
