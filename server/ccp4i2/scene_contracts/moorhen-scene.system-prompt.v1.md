@@ -57,7 +57,13 @@ superpose?: ({
   matchType?: "all"|"main"|"ca"  # default "main"
 })[]
 globalDictionaries?: string[]
-domains?: { name: string, selection: string, color: string }[]
+domains?: ({
+  name: string  # used by colour: by-domain and the resolver log
+  selection?: string  # CID selection, e.g. //F or //F/32-64 — the preferred form
+  chain?: string | string[]  # deprecated: chain "A", "*", or ["A","B"]; use selection
+  range?: string  # deprecated: inclusive range; omitted ⇒ whole chain; use selection
+  color: string  # hex colour #rrggbb or #rrggbbaa
+})[]
 elements?: ({
   file: string  # name of a files[] entry
   dictionaries?: string[]
@@ -166,8 +172,12 @@ resolver?: { onMissingResidues?: "clamp-and-log"|"strict" }
 
 === CONVENTIONS ===
 - Selections are Coot CIDs: //A (whole chain A), //A/703-740 (residue range),
-  //*/LIG (residues named LIG), //A/750/CA (one atom). Join several with || :
+  //*/(LIG) (residues named LIG — parens REQUIRED), //A/750/CA (one atom).
+  Join several with || :
   //A||//B. Same syntax in representation `selection` and in view.centre/slab.
+- The residue field takes ONE number or ONE start-end range — NEVER a comma
+  list. //A/115,116 is a parse error; write //A/115||//A/116. (Comma lists ARE
+  valid inside residue-NAME parens: //A/(ALA,GLY).)
 - A representation draws its own `selection` (the WHOLE molecule if omitted);
   colour does NOT limit what is drawn — scope the selection to limit it.
 - colour is a hex "#rrggbb"; OR a named scheme (by-domain, b-factor, af2-plddt,

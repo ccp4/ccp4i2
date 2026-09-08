@@ -52,7 +52,8 @@
           },
           "pdb": {
             "description": "PDB id; fetched via proxy on apply",
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9A-Za-z]{4}$|^pdb_[0-9a-z]{8}$"
           },
           "url": {
             "description": "absolute URL (portable)",
@@ -220,8 +221,30 @@
             "description": "used by colour: by-domain and the resolver log"
           },
           "selection": {
+            "description": "CID selection, e.g. //F or //F/32-64 — the preferred form",
+            "type": "string"
+          },
+          "chain": {
+            "description": "deprecated: chain \"A\", \"*\", or [\"A\",\"B\"]; use selection",
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            ]
+          },
+          "range": {
+            "description": "deprecated: inclusive range; omitted ⇒ whole chain; use selection",
             "type": "string",
-            "description": "CID selection, e.g. //F or //F/32-64"
+            "pattern": "^-?\\d+-{1}-?\\d+$|^-?\\d+$"
           },
           "color": {
             "type": "string",
@@ -231,7 +254,6 @@
         },
         "required": [
           "name",
-          "selection",
           "color"
         ],
         "additionalProperties": false
@@ -780,7 +802,8 @@
             },
             "pad": {
               "description": "extra Å each side",
-              "type": "number"
+              "type": "number",
+              "minimum": 0
             }
           },
           "additionalProperties": false

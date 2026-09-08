@@ -244,8 +244,11 @@
             "description": "used by colour: by-domain and the resolver log"
           },
           "selection": {
-            "type": "string",
-            "description": "CID selection, e.g. //F or //F/32-64"
+            "description": "CID selection, e.g. //F or //F/32-64 — the preferred form",
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "color": {
             "type": "string",
