@@ -150,6 +150,34 @@ describe("published JSON Schema contracts", () => {
     walk(buildStructuredJsonSchema());
   });
 
+  it("the strict profile prunes the deprecated domain form but keeps the LSQ shorthand", () => {
+    // `chain`/`range` are the deprecated domain fields AND the current superpose
+    // LSQ shorthand. STRUCTURED_PRUNE.scopedProps drops them only from the
+    // domain object (matched on its `selection`+`color` siblings); pruning by
+    // bare name would strip the LSQ form too. Guards that scoping.
+    const domains: string[][] = [];
+    const lsq: string[][] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const walk = (node: any): void => {
+      if (Array.isArray(node)) return node.forEach(walk);
+      if (!node || typeof node !== "object") return;
+      const props = node.properties;
+      if (props && typeof props === "object") {
+        const keys = Object.keys(props);
+        if (keys.includes("name") && keys.includes("color")) domains.push(keys.sort());
+        if (keys.includes("matches")) lsq.push(keys.sort());
+      }
+      for (const v of Object.values(node)) walk(v);
+    };
+    walk(buildStructuredJsonSchema());
+
+    expect(domains.length, "expected one domains[] item schema").toBe(1);
+    expect(domains[0]).toEqual(["color", "name", "selection"]);
+    expect(lsq.length, "expected one lsq superpose branch").toBe(1);
+    expect(lsq[0]).toContain("chain");
+    expect(lsq[0]).toContain("range");
+  });
+
   it("the strict profile stays under Azure's 100-property cap (with headroom)", () => {
     // Azure OpenAI hard-caps a strict json_schema at 100 object properties total
     // and 5 nesting levels. The authoring-core prune (STRUCTURED_PRUNE) keeps us
