@@ -164,6 +164,8 @@ class _Browser09(object):
         self.loader = loader_module
         self.client = client
         self.mode = "projects"
+        self.search = None
+        self._current_items = []
         self.projects = []
         self.job_rows = []
         self.project = None
@@ -186,6 +188,10 @@ class _Browser09(object):
         header.pack_start(self.back_button, False, False, 0)
         header.pack_start(self.crumb, True, True, 0)
         vbox.pack_start(header, False, False, 0)
+
+        self.search = gtk.Entry()
+        self.search.connect("changed", lambda *_a: self._render())
+        vbox.pack_start(self.search, False, False, 0)
 
         scroller = gtk.ScrolledWindow()
         scroller.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -232,6 +238,17 @@ class _Browser09(object):
 
     # -- list helpers -------------------------------------------------------
 
+    def _apply(self, labels_and_data):
+        """Set the current level's rows and render them (filter applied)."""
+        self._current_items = labels_and_data
+        self._render()
+
+    def _render(self):
+        query = self.search.get_text() if self.search is not None else ""
+        self._fill(self.bridge.filter_rows(
+            getattr(self, "_current_items", []), query,
+            key=lambda item: item[0]))
+
     def _fill(self, labels_and_data):
         self.store.clear()
         self.row_data = []
@@ -253,6 +270,8 @@ class _Browser09(object):
         self.status.set_text(message)
 
     def _set_mode(self, mode, crumb):
+        if mode != self.mode and self.search is not None:
+            self.search.set_text("")  # a fresh level starts unfiltered
         self.mode = mode
         self.crumb.set_text(crumb)
         self.back_button.set_sensitive(mode != "projects")
@@ -273,8 +292,8 @@ class _Browser09(object):
             _log(traceback.format_exc())
             return
         self._set_mode("projects", "Projects")
-        self._fill([((p.get("name") or str(p.get("id"))) + "  >", p)
-                    for p in self.projects])
+        self._apply([((p.get("name") or str(p.get("id"))) + "  >", p)
+                     for p in self.projects])
         self._say("{0} projects".format(len(self.projects)))
 
     def _show_jobs(self, project):
@@ -288,7 +307,7 @@ class _Browser09(object):
             _log(traceback.format_exc())
             return
         self._set_mode("jobs", project.get("name") or "Jobs")
-        self._fill([
+        self._apply([
             ("{0}{1}  >".format("  " * job["depth"], job["label"]), job)
             for job in self.job_rows])
         self._say("{0} jobs with loadable files".format(len(self.job_rows)))
@@ -297,21 +316,21 @@ class _Browser09(object):
         self.job = job
         self._set_mode("files", "{0} / {1}".format(
             self.project.get("name") or "", job["label"]))
-        self._fill([("{0}  [{1}]".format(f["label"], f["kind"]), f)
-                    for f in job["files"]])
+        self._apply([("{0}  [{1}]".format(f["label"], f["kind"]), f)
+                     for f in job["files"]])
         self._say("{0} files - activate one to load it".format(
             len(job["files"])))
 
     def _go_back(self):
         if self.mode == "files":
             self._set_mode("jobs", self.project.get("name") or "Jobs")
-            self._fill([
+            self._apply([
                 ("{0}{1}  >".format("  " * job["depth"], job["label"]), job)
                 for job in self.job_rows])
         elif self.mode == "jobs":
             self._set_mode("projects", "Projects")
-            self._fill([((p.get("name") or str(p.get("id"))) + "  >", p)
-                        for p in self.projects])
+            self._apply([((p.get("name") or str(p.get("id"))) + "  >", p)
+                         for p in self.projects])
 
     def _refresh(self):
         if self.mode == "projects":

@@ -222,6 +222,19 @@ def test_order_for_load_puts_dictionaries_first():
         "model", "model2"]
 
 
+def test_filter_rows_case_insensitive_substring():
+    rows = [("2: Refine model", 2), ("1: Import data", 1),
+            ("3: refmac run", 3)]
+    key = lambda r: r[0]
+    # blank query -> everything, order preserved
+    assert api_client.filter_rows(rows, "", key) == rows
+    assert api_client.filter_rows(rows, "   ", key) == rows
+    # case-insensitive substring
+    assert [r[1] for r in api_client.filter_rows(rows, "ref", key)] == [2, 3]
+    assert [r[1] for r in api_client.filter_rows(rows, "IMPORT", key)] == [1]
+    assert api_client.filter_rows(rows, "zzz", key) == []
+
+
 def test_display_label_prefixes_only_cross_project():
     # same project -> unchanged
     assert api_client.display_label("model", "projA", "projA") == "model"
