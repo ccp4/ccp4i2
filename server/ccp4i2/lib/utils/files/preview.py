@@ -57,10 +57,17 @@ def preview_file(viewer: str = None, file_path: pathlib.Path = None):
         ValueError: If the viewer is not supported.
     """
     if viewer == "coot":
-        # Here should dial into mechanism to use the user-specified path to coot as appropriate.
-        # Also suspect will need diverse environment variables to be set for this to work.
+        # Honour the user's Program locations preference (COOT_EXECUTABLE)
+        # before falling back to whatever "coot" means on PATH.
+        coot_exe = "coot"
+        try:
+            from ccp4i2.config.program_discovery import resolve_program
+
+            coot_exe = resolve_program("coot") or "coot"
+        except Exception:
+            pass
         subprocess.Popen(
-            ["coot", "--no-guano", str(file_path)],
+            [coot_exe, "--no-guano", str(file_path)],
             start_new_session=True,
         )
         return {"status": "Success"}
