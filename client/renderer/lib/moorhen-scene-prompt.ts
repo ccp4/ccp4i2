@@ -15,8 +15,10 @@ import { buildSceneBrief } from "./scene/brief";
 const SCENE_CONVENTIONS = [
   "=== CONVENTIONS ===",
   "- Selections are Coot CIDs: //A (whole chain A), //A/703-740 (residue range),",
-  "  //*/LIG (residues named LIG), //A/750/CA (one atom). Join several with || :",
+  "  //*/(LIG) (residues named LIG — parens REQUIRED), //A/750/CA (one atom).",
+  "  Join several with || :",
   "  //A||//B. Same syntax in representation `selection` and in view.centre/slab.",
+  "- The residue field takes ONE number or ONE start-end range — NEVER a comma\n  list. //A/115,116 is a parse error; write //A/115||//A/116. (Comma lists ARE\n  valid inside residue-NAME parens: //A/(ALA,GLY).)",
   "- A representation draws its own `selection` (the WHOLE molecule if omitted);",
   "  colour does NOT limit what is drawn — scope the selection to limit it.",
   "- colour is a hex \"#rrggbb\"; OR a named scheme (by-domain, b-factor, af2-plddt,",
