@@ -231,6 +231,17 @@ export const installIpcHandlers = (
     };
   };
 
+  // Pushes the current config to every open window, not just the one that
+  // triggered a change — a second window left showing an already-mounted New
+  // Project or Config page would otherwise keep displaying the old default
+  // until its own get-config happened to be asked again.
+  const broadcastConfigToAllWindows = () => {
+    const payload = getConfigResponse();
+    BrowserWindow.getAllWindows().forEach((win) => {
+      win.webContents.send("message-from-main", payload);
+    });
+  };
+
   const getCwdResponse = () => {
     return {
       message: "get-cwd",
@@ -396,7 +407,7 @@ export const installIpcHandlers = (
           // new folder was quietly given an empty one and concluded their work
           // had gone. One database, in the CCP4i2 home, as Qt-era CCP4i2 had.
           updatePreferences({ projectsDir });
-          event.reply("message-from-main", getConfigResponse());
+          broadcastConfigToAllWindows();
         }
       });
   });

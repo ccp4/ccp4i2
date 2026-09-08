@@ -57,6 +57,11 @@ _api_patterns = [
         name="default_project_parent",
     ),
     path(
+        "config/default-project-parent/set/",
+        views.set_default_project_parent_view,
+        name="set_default_project_parent",
+    ),
+    path(
         "config/discover-programs/",
         views.discover_programs_view,
         name="discover_programs",

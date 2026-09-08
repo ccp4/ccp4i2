@@ -4,8 +4,10 @@ import path from "path";
 import { useRouter } from "next/navigation";
 import {
   Button,
+  Checkbox,
   CircularProgress,
   Container,
+  FormControlLabel,
   Stack,
   TextField,
   Tooltip,
@@ -13,7 +15,7 @@ import {
 } from "@mui/material";
 import { Folder } from "@mui/icons-material";
 import { useApi } from "../api";
-import { apiGet, apiPost } from "../api-fetch";
+import { apiGet, apiPatch, apiPost } from "../api-fetch";
 import { Project } from "../types/models";
 import EditTags from "./edit-tags";
 import {
@@ -30,6 +32,17 @@ export const NewProjectContent: React.FC = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [parentDirectory, setParentDirectory] = useState<string>("");
+  // The currently persisted default, so the "make default" checkbox can be
+  // offered only when the chosen parent actually differs from it.
+  const [configuredProjectsDir, setConfiguredProjectsDir] = useState<string>("");
+  // Only the desktop app can change it (a cloud deployment configures this via
+  // the CCP4I2_PROJECTS_DIR environment variable instead) — reported by the
+  // server rather than inferred from Electron's presence.
+  const [projectsDirEditable, setProjectsDirEditable] = useState(false);
+  // Offered once the user has actively picked a parent: persisting it avoids
+  // stranding the default in a hidden home folder the user can't find their
+  // way back to (see Preferences' "Reset to default" for the way back).
+  const [makeDefaultProjectsDir, setMakeDefaultProjectsDir] = useState(false);
   const [directoryExists, setDirectoryExists] = useState(true);
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
@@ -38,17 +51,19 @@ export const NewProjectContent: React.FC = () => {
   const [isCreating, setIsCreating] = useState(false);
   const { data: projects } = api.get<Project[]>("projects");
 
-  // The server supplies the initial parent because it owns the rule for where
-  // new projects go by default. The selected value is then submitted
-  // explicitly, so the displayed location and created location cannot diverge.
+  // The server supplies the initial parent, resolved fresh on every request
+  // (not cached at process start), so this reflects a change made moments ago
+  // from this window or another.
   useEffect(() => {
     let cancelled = false;
-    apiGet<{ data?: { directory?: string } }>(
+    apiGet<{ data?: { directory?: string; configured?: string; editable?: boolean } }>(
       "config/default-project-parent/"
     )
       .then((resp) => {
         if (cancelled) return;
         if (resp?.data?.directory) setParentDirectory(resp.data.directory);
+        if (resp?.data?.configured) setConfiguredProjectsDir(resp.data.configured);
+        setProjectsDirEditable(Boolean(resp?.data?.editable));
       })
       .catch(() => {
         /* The Electron config value below remains a local fallback. */
@@ -68,9 +83,11 @@ export const NewProjectContent: React.FC = () => {
         "message-from-main",
         (event: any, data: any) => {
           if (data.message === "get-config") {
-            // Only a fallback for the split second before the server answers,
-            // and for a desktop build talking to an older backend.
+            // Only a fallback for the split second before the server answers.
             setParentDirectory((current) =>
+              current || data.config.CCP4I2_PROJECTS_DIR
+            );
+            setConfiguredProjectsDir((current) =>
               current || data.config.CCP4I2_PROJECTS_DIR
             );
           }
@@ -78,9 +95,11 @@ export const NewProjectContent: React.FC = () => {
             setDirectoryExists(data.exists);
           }
           if (data.message === "choose-project-parent-directory") {
-            // Local to this page only — choosing a parent does not change the
+            // Local to this page only unless "make this the default" is
+            // checked below — choosing a parent does not itself change the
             // configured projects directory for future projects.
             setParentDirectory(data.directory);
+            setMakeDefaultProjectsDir(false);
           }
         }
       );
@@ -97,6 +116,12 @@ export const NewProjectContent: React.FC = () => {
     return result;
   }, [parentDirectory, name]);
 
+  const showMakeDefaultCheckbox =
+    projectsDirEditable &&
+    parentDirectory.length > 0 &&
+    configuredProjectsDir.length > 0 &&
+    parentDirectory !== configuredProjectsDir;
+
   async function createProject() {
     setIsCreating(true);
     try {
@@ -104,6 +129,15 @@ export const NewProjectContent: React.FC = () => {
       formData.append("name", name);
       formData.append("description", description);
       formData.append("directory", directory);
+      if (showMakeDefaultCheckbox && makeDefaultProjectsDir) {
+        try {
+          await apiPatch("config/default-project-parent/set/", {
+            directory: parentDirectory,
+          });
+        } catch (err) {
+          console.error("Could not set the default projects directory:", err);
+        }
+      }
       const project = await api.post<Project>("projects", formData);
 
       // Apply tags to the new project
@@ -424,6 +458,19 @@ export const NewProjectContent: React.FC = () => {
               </Tooltip>
             )}
           </Stack>
+        )}
+        {showMakeDefaultCheckbox && (
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={makeDefaultProjectsDir}
+                onChange={(event) =>
+                  setMakeDefaultProjectsDir(event.target.checked)
+                }
+              />
+            }
+            label="Make this the default projects directory"
+          />
         )}
         <Stack direction="row">
           <TextField

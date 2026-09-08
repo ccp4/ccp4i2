@@ -265,39 +265,91 @@ def default_project_parent_view(request):
 
     GET /api/ccp4i2/config/default-project-parent/
 
-    The New Project dialog needs to show this, and it cannot compute it: the
-    answer is the parent of the most recently created project, falling back to
-    the configured projects directory. Reimplementing that rule in the client
-    would give two resolvers for one question, which is how the dialog came to
-    display one location while the server used another.
+    The New Project dialog needs to show this, and it cannot compute it
+    itself without a second resolver for the same question: the answer is
+    simply the configured projects directory. Reported under both keys —
+    "directory" is what the dialog proposes, "configured" is the same value
+    named for what it is — so the dialog can tell, once the user browses
+    elsewhere, that the new choice now differs from the configured default.
 
-    Returns the configured root alongside it, and which of the two the proposal
-    came from, so the dialog can say "this is where your last project went" and
-    offer the configured root instead — a choice it can only present if it knows
-    the two differ.
+    Resolved fresh from preferences.json/the environment on every call, NOT
+    from ``settings.CCP4I2_PROJECTS_DIR`` (cached once when this process
+    started) — otherwise the desktop app's long-running server subprocess
+    would keep reporting yesterday's default after "set-default-project-
+    parent/" changed it within the same session.
+
+    ``editable`` says whether "set/" below will actually accept a change —
+    only true on the desktop app; a cloud deployment configures this via the
+    ``CCP4I2_PROJECTS_DIR`` environment variable instead.
 
     Response: {"success": true, "data": {
         "directory":  "/where a new project would go",
         "configured": "/the projects directory from preferences",
-        "source":     "last_project" | "configured"
+        "editable":   <bool>
     }}
     """
-    from django.conf import settings
+    from ..config import preferences as _preferences
 
-    from .serializers import default_project_parent
-
-    proposed = str(default_project_parent())
-    configured = str(settings.CCP4I2_PROJECTS_DIR)
+    proposed = str(
+        _preferences.resolve(
+            "projectsDir",
+            env="CCP4I2_PROJECTS_DIR",
+            default=str(_preferences.default_projects_dir()),
+        )
+    )
     return JsonResponse(
         {
             "success": True,
             "data": {
                 "directory": proposed,
-                "configured": configured,
-                "source": "configured" if proposed == configured else "last_project",
+                "configured": proposed,
+                "editable": _preferences.is_desktop(),
             },
         }
     )
+
+
+@api_view(["PATCH", "POST"])
+def set_default_project_parent_view(request):
+    """Change, or reset, the configured projects directory (desktop only).
+
+    PATCH /api/ccp4i2/config/default-project-parent/set/  {"directory": "/abs/path"}
+    Omit "directory" (or send "" / null) to reset to the built-in default —
+    the New Project page's "make this the default" checkbox and Preferences'
+    "Reset to default" both go through here, so both see the change reflected
+    by the very next GET above, from any open window.
+    """
+    from ..config import preferences as _preferences
+
+    if not _preferences.is_desktop():
+        return JsonResponse(
+            {
+                "success": False,
+                "error": "The default projects directory is editable only on "
+                "the desktop app; in a server deployment set it via the "
+                "CCP4I2_PROJECTS_DIR environment variable.",
+            },
+            status=409,
+        )
+
+    payload = request.data if isinstance(request.data, dict) else {}
+    directory = payload.get("directory") or None
+
+    prefs = _preferences.load_preferences()
+    if directory:
+        prefs["projectsDir"] = directory
+    else:
+        prefs.pop("projectsDir", None)
+    _preferences.save_preferences(prefs)
+
+    proposed = str(
+        _preferences.resolve(
+            "projectsDir",
+            env="CCP4I2_PROJECTS_DIR",
+            default=str(_preferences.default_projects_dir()),
+        )
+    )
+    return JsonResponse({"success": True, "data": {"directory": proposed}})
 
 @api_view(["GET"])
 def discover_programs_view(request):

@@ -101,30 +101,15 @@ class ProjectListSerializer(ModelSerializer):
 
 
 def default_project_parent() -> Path:
-    """Where a project with no explicit directory should go.
+    """Where a project with no explicit directory should go: the configured
+    projects directory.
 
-    The parent of the most recently created project, falling back to the
-    configured projects directory. So a user who put their last project
-    somewhere particular gets offered the same place again, WITHOUT that choice
-    being written into a preference: the "default" is derived on demand rather
-    than stored and mutated. A stored-and-mutated default is how a one-off
-    choice silently became everybody's default, and how a second database could
-    appear somewhere unexpected.
-
-    A project whose recorded directory no longer exists is skipped -- an
-    unplugged external disk should not send the next project somewhere
-    unwritable.
+    A user who wants a project somewhere else picks it explicitly (and can
+    make that pick the new default from the New Project page or Preferences)
+    rather than the server guessing from where the last project happened to
+    land — a guess that made the configured default hard to get back to once
+    a single one-off project nudged it aside.
     """
-    from ..db.models import Project
-
-    for directory in (
-        Project.objects.exclude(directory="")
-        .order_by("-creation_time")
-        .values_list("directory", flat=True)[:10]
-    ):
-        parent = Path(directory).parent
-        if parent.is_dir():
-            return parent
     return Path(settings.CCP4I2_PROJECTS_DIR)
 
 
@@ -201,10 +186,11 @@ class ProjectSerializer(ModelSerializer):
         # directory of its own, which need not be under that root at all, and
         # renaming it does not move it.
         if self.instance is None and "directory" not in self.initial_data:
-            assert Path(settings.CCP4I2_PROJECTS_DIR).is_dir()
+            parent = default_project_parent()
+            assert parent.is_dir()
             try:
-                testWritePath = Path(settings.CCP4I2_PROJECTS_DIR) / "testWrite.txt"
-                with open(testWritePath, "w") as testWrite:
+                testWritePath = parent / "testWrite.txt"
+                with open(testWritePath, "w", encoding="utf-8") as testWrite:
                     testWrite.write("test")
                 testWritePath.unlink()
             except Exception as err:
