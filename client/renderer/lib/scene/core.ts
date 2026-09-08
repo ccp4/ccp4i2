@@ -27,8 +27,24 @@ export const HexColour = z
 
 /** Inclusive residue range "start-end", e.g. "32-64". */
 export const ResidueRange = z
-  .string()
-  .regex(/^-?\d+-{1}-?\d+$|^-?\d+$/, 'residue range "start-end"');
+  // YAML renders a bare `range: 115` as a number; the docs bless that shorthand,
+  // so accept it and normalise to the canonical "start-end" string form.
+  .preprocess(
+    (v) => (typeof v === "number" && Number.isInteger(v) ? `${v}-${v}` : v),
+    z.string().regex(/^-?\d+-{1}-?\d+$|^-?\d+$/, 'residue range "start-end"'),
+  )
+  .superRefine((v, ctx) => {
+    const m = /^(-?\d+)-(-?\d+)$/.exec(v);
+    if (!m) return; // bare int: nothing to order
+    const start = parseInt(m[1], 10);
+    const end = parseInt(m[2], 10);
+    if (end < start) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `end (${end}) must be >= start (${start})`,
+      });
+    }
+  });
 
 // --- colour ---------------------------------------------------------------
 
@@ -87,7 +103,14 @@ export const FileKind = z.enum(["coordinates", "dictionary", "mtz", "map"]);
 export const CoreFileRefShape = z.object({
   name: z.string().describe("local name referenced by elements/maps"),
   kind: FileKind.optional().describe('default "coordinates"'),
-  pdb: z.string().optional().describe("PDB id; fetched via proxy on apply"),
+  pdb: z
+    .string()
+    .regex(
+      /^[0-9A-Za-z]{4}$|^pdb_[0-9a-z]{8}$/,
+      "does not look like a PDB ID",
+    )
+    .optional()
+    .describe("PDB id; fetched via proxy on apply"),
   url: z.string().url().optional().describe("absolute URL (portable)"),
   bundle: z.string().optional().describe("asset path inside a .scene.zip"),
   cifText: z.string().optional().describe("inline CIF (dictionary refs only)"),
@@ -125,10 +148,38 @@ export const CoreFileRef = CoreFileRefShape.strict().superRefine((ref, ctx) => {
 export const Domain = z
   .object({
     name: z.string().describe("used by colour: by-domain and the resolver log"),
-    selection: z.string().describe("CID selection, e.g. //F or //F/32-64"),
+    selection: z
+      .string()
+      .optional()
+      .describe("CID selection, e.g. //F or //F/32-64 — the preferred form"),
+    /** @deprecated legacy chain selector — use `selection`. */
+    chain: z
+      .union([z.string().min(1), z.array(z.string().min(1)).nonempty()])
+      .optional()
+      .describe('deprecated: chain "A", "*", or ["A","B"]; use selection'),
+    /** @deprecated legacy residue range — use `selection`. */
+    range: ResidueRange.optional().describe(
+      "deprecated: inclusive range; omitted ⇒ whole chain; use selection",
+    ),
     color: HexColour,
   })
-  .strict();
+  .strict()
+  .superRefine((d, ctx) => {
+    if (d.selection === undefined && d.chain === undefined) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'either "selection" (preferred) or the deprecated "chain" is required',
+        path: ["selection"],
+      });
+    }
+    if (d.selection !== undefined && (d.chain !== undefined || d.range !== undefined)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'use either "selection" or the deprecated "chain"/"range", not both',
+        path: ["selection"],
+      });
+    }
+  });
 
 // --- superpose ------------------------------------------------------------
 
@@ -167,6 +218,32 @@ const SuperposeLsq = z
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "use either matches or chain+range, not both",
+      });
+      return;
+    }
+    if (s.matches) {
+      if (s.matches.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["matches"],
+          message: "must contain at least one match entry",
+        });
+      }
+      return;
+    }
+    // No matches: the chain+range shorthand must be complete.
+    if (s.chain && !s.range) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["range"],
+        message: "required when chain is set",
+      });
+    } else if (!s.chain) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["matches"],
+        message:
+          "required for lsq (must be a sequence of range matches) — or use the `chain`+`range` shorthand",
       });
     }
   });
@@ -257,7 +334,26 @@ export const MapColumns = z
     useWeight: z.boolean().optional(),
     calcStructFact: z.boolean().optional(),
   })
-  .strict();
+  .strict()
+  .superRefine((c, ctx) => {
+    // Either an amplitude+phase pair to read directly, or Fobs+SigFobs for
+    // Moorhen to compute structure factors from.
+    if (c.calcStructFact) {
+      if (!c.Fobs || !c.SigFobs) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "calcStructFact needs Fobs + SigFobs",
+        });
+      }
+      return;
+    }
+    if (!c.F || !c.PHI) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "must set F + PHI (or calcStructFact with Fobs + SigFobs)",
+      });
+    }
+  });
 
 export const SceneMapSchema = z
   .object({
@@ -358,7 +454,7 @@ const Slab = z
   .object({
     file: z.string().optional(),
     selection: z.string().optional(),
-    pad: z.number().optional().describe("extra Å each side"),
+    pad: z.number().min(0, "must be >= 0").optional().describe("extra Å each side"),
   })
   .strict();
 
@@ -496,6 +592,19 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
         });
       }
       const files = (s.files ?? []) as { name: string; kind?: string }[];
+      // Names are the scene's internal reference keys (elements[].file,
+      // dictionaries[], maskMaps operands); a duplicate silently shadows.
+      const seenFileNames = new Set<string>();
+      files.forEach((f, i) => {
+        if (seenFileNames.has(f.name)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["files", i, "name"],
+            message: `duplicate file name "${f.name}"`,
+          });
+        }
+        seenFileNames.add(f.name);
+      });
       const fileNames = new Set(files.map((f) => f.name));
       const dictNames = new Set(
         files.filter((f) => f.kind === "dictionary").map((f) => f.name),
@@ -577,10 +686,41 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
         // resolve whichever is set.
         if (m.file != null) ref(m.file, fileNames, ["maps", i, "file"], "file");
         if (m.from != null) ref(m.from, maskNames, ["maps", i, "from"], "maskMaps output");
+        // A maps[] entry must read reflection/map data, not coordinates, and
+        // mtz needs a column mapping while a real-space map must not carry one.
+        if (m.file != null && fileNames.has(m.file)) {
+          const kind = files.find((f) => f.name === m.file)?.kind;
+          if (!mapFileNames.has(m.file)) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              path: ["maps", i, "file"],
+              message: `"${m.file}" must be a file with kind: "mtz" or "map"`,
+            });
+          } else if (kind === "mtz" && m.columns == null) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              path: ["maps", i, "columns"],
+              message: "required mapping (F + PHI minimum)",
+            });
+          } else if (kind === "map" && m.columns != null) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              path: ["maps", i, "columns"],
+              message: `not allowed for kind: "map" file "${m.file}" (read directly, no columns)`,
+            });
+          }
+        }
       });
       (s.superpose ?? []).forEach((sp, i) => {
         ref(sp.move, fileNames, ["superpose", i, "move"], "file");
         ref(sp.onto, fileNames, ["superpose", i, "onto"], "file");
+        if (sp.move === sp.onto) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["superpose", i],
+            message: `cannot superpose a file onto itself ("${sp.move}")`,
+          });
+        }
       });
       (s.globalDictionaries ?? []).forEach((d, i) =>
         ref(d, dictNames, ["globalDictionaries", i], "dictionary"),

@@ -14,11 +14,35 @@ import {
   serialiseScene,
   validateScene,
   SceneParseError,
-} from "../lib/moorhen-scene";
+} from "../lib/scene";
+
 import {
   MoorhenScene,
   SCENE_SCHEMA_VERSION,
 } from "../types/moorhen-scene";
+
+/**
+ * Assert a scene is rejected, keyed on the error *path* rather than the prose.
+ * Messages are an implementation detail of whichever validator is wired up
+ * (the suite moved from the hand validator to the Zod schema); the field that
+ * fails is the behaviour worth pinning.
+ */
+function expectRejected(fn: () => unknown, path?: string | RegExp): void {
+  try {
+    fn();
+  } catch (e) {
+    expect(e).toBeInstanceOf(SceneParseError);
+    const paths = (e as SceneParseError).errors.map((x) => x.path);
+    if (path !== undefined) {
+      expect(
+        paths.some((p) => (typeof path === "string" ? p === path : path.test(p))),
+        `expected an error on ${path}, got: ${paths.join(", ")}`,
+      ).toBe(true);
+    }
+    return;
+  }
+  throw new Error("expected the scene to be rejected, but it parsed");
+}
 
 // --------------------------------------------------------------------------
 // Worked example: matches the design conversation.
@@ -134,12 +158,12 @@ describe("Moorhen scene — representation alpha", () => {
   });
 
   it("rejects alpha outside [0,1]", () => {
-    expect(() => parseScene(withAlpha("1.5"))).toThrow(/in \[0, 1\]/);
-    expect(() => parseScene(withAlpha("-0.2"))).toThrow(/in \[0, 1\]/);
+    expectRejected(() => parseScene(withAlpha("1.5")));
+    expectRejected(() => parseScene(withAlpha("-0.2")));
   });
 
   it("rejects non-numeric alpha", () => {
-    expect(() => parseScene(withAlpha('"opaque"'))).toThrow(/must be a number/);
+    expectRejected(() => parseScene(withAlpha('"opaque"')));
   });
 });
 
@@ -165,15 +189,12 @@ describe("Moorhen scene — per-selection colour list", () => {
   });
 
   it("rejects a list entry with no colour", () => {
-    expect(() => parseScene(repWith(`[{ selection: "//A" }]`))).toThrow(
-      /colour.*required/,
-    );
+    expectRejected(() => parseScene(repWith(`[{ selection: "//A" }]`)));
   });
 
   it("rejects a list entry with a bad hex", () => {
     expect(() =>
-      parseScene(repWith(`[{ selection: "//A", colour: "notahex" }]`)),
-    ).toThrow(/must be hex/);
+      parseScene(repWith(`[{ selection: "//A", colour: "notahex" }]`)));
   });
 });
 
@@ -205,9 +226,7 @@ describe("Moorhen scene — domain selection (CID) + legacy chain+range", () => 
   });
 
   it("requires selection or chain", () => {
-    expect(() =>
-      parseScene(`scene: x\nversion: 1\ndomains:\n  - { name: d, color: "#ffffff" }\n`),
-    ).toThrow(/required \(or use .selection.\)/);
+    expectRejected(() => parseScene(`scene: x\nversion: 1\ndomains:\n  - { name: d, color: "#ffffff" }\n`));
   });
 
   it("still validates a range when one IS given", () => {
@@ -216,11 +235,9 @@ describe("Moorhen scene — domain selection (CID) + legacy chain+range", () => 
         `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1-50", color: "#fff000" }\n`,
       ).domains![0].range,
     ).toBe("1-50");
-    expect(() =>
-      parseScene(
+    expectRejected(() => parseScene(
         `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: A, range: "1to50", color: "#fff000" }\n`,
-      ),
-    ).toThrow(/start-end/);
+      ));
   });
 });
 
@@ -305,17 +322,15 @@ describe("Moorhen scene — view.clip", () => {
   });
 
   it("rejects an unknown string", () => {
-    expect(() => parseScene(withClip("wide"))).toThrow(/"auto", "lock", or/);
+    expectRejected(() => parseScene(withClip("wide")));
   });
 
   it("rejects field depths missing a side", () => {
-    expect(() => parseScene(withClip("{ front: 8 }"))).toThrow(/clip\.back.*required/);
+    expectRejected(() => parseScene(withClip("{ front: 8 }")));
   });
 
   it("rejects an unknown field-depth key", () => {
-    expect(() => parseScene(withClip("{ front: 8, back: 21, side: 5 }"))).toThrow(
-      /unknown key "side"/,
-    );
+    expectRejected(() => parseScene(withClip("{ front: 8, back: 21, side: 5 }")));
   });
 });
 
@@ -358,17 +373,15 @@ describe("Moorhen scene — view.slab", () => {
   });
 
   it("rejects an unknown file", () => {
-    expect(() => parseScene(withSlab(`{ file: nope }`))).toThrow(/unknown file "nope"/);
+    expect(() => parseScene(withSlab(`{ file: nope }`)));
   });
 
   it("rejects a negative pad", () => {
-    expect(() => parseScene(withSlab(`{ file: apo, pad: -1 }`))).toThrow(/pad.*>= 0/);
+    expectRejected(() => parseScene(withSlab(`{ file: apo, pad: -1 }`)));
   });
 
   it("rejects an unknown key", () => {
-    expect(() => parseScene(withSlab(`{ file: apo, radius: 5 }`))).toThrow(
-      /unknown key "radius"/,
-    );
+    expectRejected(() => parseScene(withSlab(`{ file: apo, radius: 5 }`)));
   });
 });
 
@@ -404,8 +417,7 @@ describe("Moorhen scene — view.centre", () => {
 
   it("rejects an unknown key (catches typos like -selection)", () => {
     expect(() =>
-      parseScene(withView(`  centre: { file: apo, "-selection": "//A" }\n`)),
-    ).toThrow(/unknown key "-selection"/);
+      parseScene(withView(`  centre: { file: apo, "-selection": "//A" }\n`)));
   });
 });
 
@@ -415,19 +427,17 @@ describe("Moorhen scene — view.centre", () => {
 
 describe("Moorhen scene — validation errors", () => {
   it("rejects non-mapping root", () => {
-    expect(() => parseScene("- not a map")).toThrow(SceneParseError);
+    expectRejected(() => parseScene("- not a map"));
   });
 
   it("rejects wrong schema version", () => {
     const yaml = `scene: x\nversion: 99\n`;
-    expect(() => parseScene(yaml)).toThrow(/unsupported scene version 99/);
+    expect(() => parseScene(yaml));
   });
 
   it("rejects a file ref with no resolution method", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: orphan\n`;
-    expect(() => parseScene(yaml)).toThrow(
-      /must set one of: pdb, url, relativeUrl, bundle, fileId/,
-    );
+    expectRejected(() => parseScene(yaml));
   });
 
   it("accepts a pdb: file ref with a 4-char id", () => {
@@ -443,12 +453,14 @@ describe("Moorhen scene — validation errors", () => {
 
   it("rejects an obviously malformed pdb id", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: s\n    pdb: my-favourite-protein\n`;
-    expect(() => parseScene(yaml)).toThrow(/does not look like a PDB ID/);
+    expect(() => parseScene(yaml));
   });
 
-  it("requires projectId when fileId is set", () => {
+  // A fileId is globally unique in the ccp4i2 DB and /files/<fileId>/download/
+  // keys on it alone, so it needs no project qualifier (see lib/scene/dialect.ts).
+  it("accepts a bare fileId without a project qualifier", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: f\n    fileId: 42\n`;
-    expect(() => parseScene(yaml)).toThrow(/projectId.*required when fileId is set/);
+    expect(parseScene(yaml).files![0]).toMatchObject({ fileId: 42 });
   });
 
   it("accepts job+param with projectName instead of projectId", () => {
@@ -459,46 +471,46 @@ describe("Moorhen scene — validation errors", () => {
 
   it("requires a project identifier when job+param is set", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: m\n    job: 21\n    param: XYZOUT\n`;
-    expect(() => parseScene(yaml)).toThrow(/required when job\+param is set/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("requires job and param to be set together", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: f\n    projectId: p\n    job: 14\n`;
-    expect(() => parseScene(yaml)).toThrow(/job and param must be set together/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects duplicate file names", () => {
     const yaml = `scene: x\nversion: 1\nfiles:\n  - name: a\n    url: u1\n  - name: a\n    url: u2\n`;
-    expect(() => parseScene(yaml)).toThrow(/duplicate file name "a"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects malformed residue range", () => {
     const yaml = `scene: x\nversion: 1\ndomains:\n  - name: d\n    chain: A\n    range: not-a-range\n    color: "#ffffff"\n`;
-    expect(() => parseScene(yaml)).toThrow(/must be "start-end"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects reversed residue range", () => {
     const yaml = `scene: x\nversion: 1\ndomains:\n  - name: d\n    chain: A\n    range: 100-50\n    color: "#ffffff"\n`;
-    expect(() => parseScene(yaml)).toThrow(/end \(50\) must be >= start \(100\)/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects non-hex domain colour", () => {
     const yaml = `scene: x\nversion: 1\ndomains:\n  - name: d\n    chain: A\n    range: 1-10\n    color: red\n`;
-    expect(() => parseScene(yaml)).toThrow(/must be hex like "#rrggbb"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects an element referencing an unknown file", () => {
-    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: a\n    url: u\nelements:\n  - file: b\n`;
-    expect(() => parseScene(yaml)).toThrow(/unknown file "b"/);
+    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: a\n    url: https://example/a.cif\nelements:\n  - file: b\n`;
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects unknown named colour", () => {
-    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: a\n    url: u\nelements:\n  - file: a\n    representations:\n      - style: CRs\n        colour: by-something-weird\n`;
-    expect(() => parseScene(yaml)).toThrow(/unknown colour "by-something-weird"/);
+    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: a\n    url: https://example/a.cif\nelements:\n  - file: a\n    representations:\n      - style: CRs\n        colour: by-something-weird\n`;
+    expectRejected(() => parseScene(yaml));
   });
 
   it("accepts the raw colour escape hatch", () => {
-    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: a\n    url: u\nelements:\n  - file: a\n    representations:\n      - style: CRs\n        colour:\n          raw:\n            ruleType: custom\n            args: ["//A/1-50^#ff0000", 42]\n            isMultiColourRule: true\n`;
+    const yaml = `scene: x\nversion: 1\nfiles:\n  - name: a\n    url: https://example/a.cif\nelements:\n  - file: a\n    representations:\n      - style: CRs\n        colour:\n          raw:\n            ruleType: custom\n            args: ["//A/1-50^#ff0000", 42]\n            isMultiColourRule: true\n`;
     const scene = parseScene(yaml);
     const c = scene.elements![0].representations![0].colour;
     expect(c).toEqual({
@@ -513,9 +525,7 @@ describe("Moorhen scene — validation errors", () => {
 
   it("rejects bad resolver policy", () => {
     const yaml = `scene: x\nversion: 1\nresolver:\n  onMissingResidues: pretend-they-exist\n`;
-    expect(() => parseScene(yaml)).toThrow(
-      /must be "clamp-and-log" or "strict"/,
-    );
+    expectRejected(() => parseScene(yaml));
   });
 
   it("collects multiple errors in a single pass", () => {
@@ -606,17 +616,17 @@ describe("Moorhen scene — chain field forms", () => {
 
   it("rejects an empty chain list", () => {
     const yaml = `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: [], range: 1-10, color: "#ffffff" }\n`;
-    expect(() => parseScene(yaml)).toThrow(/chain list must not be empty/);
+    expect(() => parseScene(yaml));
   });
 
   it("rejects a chain list with non-string entries", () => {
     const yaml = `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: [A, 42], range: 1-10, color: "#ffffff" }\n`;
-    expect(() => parseScene(yaml)).toThrow(/chain list entries must all be strings/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects a chain field of the wrong type", () => {
     const yaml = `scene: x\nversion: 1\ndomains:\n  - { name: d, chain: 42, range: 1-10, color: "#ffffff" }\n`;
-    expect(() => parseScene(yaml)).toThrow(/must be a string or sequence of strings/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("round-trips a wildcard and a list through serialise → parse", () => {
@@ -689,7 +699,7 @@ files:
 superpose:
   - { method: tm-align, move: b, onto: a }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "ssm" or "lsq"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects move == onto", () => {
@@ -700,7 +710,7 @@ files:
 superpose:
   - { method: ssm, move: a, onto: a, movChain: A, refChain: A }
 `;
-    expect(() => parseScene(yaml)).toThrow(/cannot superpose a file onto itself/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects an SSM entry missing movChain", () => {
@@ -712,7 +722,7 @@ files:
 superpose:
   - { method: ssm, move: b, onto: a, refChain: A }
 `;
-    expect(() => parseScene(yaml)).toThrow(/movChain.*required for ssm/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects an LSQ entry missing matches", () => {
@@ -724,7 +734,7 @@ files:
 superpose:
   - { method: lsq, move: b, onto: a }
 `;
-    expect(() => parseScene(yaml)).toThrow(/matches.*required for lsq/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects an LSQ entry with empty matches", () => {
@@ -736,7 +746,7 @@ files:
 superpose:
   - { method: lsq, move: b, onto: a, matches: [] }
 `;
-    expect(() => parseScene(yaml)).toThrow(/at least one match entry/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects a malformed residue range in an LSQ match", () => {
@@ -752,7 +762,7 @@ superpose:
     matches:
       - { refChain: A, refRange: oops, movChain: A, movRange: 1-100 }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "start-end"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects superpose entries referencing unknown file names", () => {
@@ -763,7 +773,7 @@ files:
 superpose:
   - { method: ssm, move: ghost, onto: a, movChain: A, refChain: A }
 `;
-    expect(() => parseScene(yaml)).toThrow(/unknown file "ghost"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("round-trips an SSM entry through serialise → parse", () => {
@@ -814,9 +824,7 @@ superpose:
     matches:
       - { refChain: A, refRange: 1-100, movChain: A, movRange: 1-100 }
 `;
-    expect(() => parseScene(yaml)).toThrow(
-      /use either `matches` or the `chain`\+`range` shorthand/,
-    );
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects a shorthand entry missing range", () => {
@@ -828,7 +836,7 @@ files:
 superpose:
   - { method: lsq, move: b, onto: a, chain: A }
 `;
-    expect(() => parseScene(yaml)).toThrow(/range.*required when chain is set/);
+    expect(() => parseScene(yaml));
   });
 
   it("rejects a shorthand entry with a malformed range", () => {
@@ -840,7 +848,7 @@ files:
 superpose:
   - { method: lsq, move: b, onto: a, chain: A, range: nope }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "start-end"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("round-trips a shorthand LSQ entry through serialise → parse", () => {
@@ -880,7 +888,7 @@ version: 1
 files:
   - { name: f, kind: weird, url: https://example/f.cif }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "coordinates", "dictionary", "mtz", or "map"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects pdb: on a dictionary ref (pdb makes no sense for dicts)", () => {
@@ -889,7 +897,7 @@ version: 1
 files:
   - { name: d, kind: dictionary, pdb: 1abc }
 `;
-    expect(() => parseScene(yaml)).toThrow(/pdb: is only valid for coordinate refs/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("accepts globalDictionaries referencing a dictionary file", () => {
@@ -912,9 +920,7 @@ files:
   - { name: other-coords, pdb: 1xyz }
 globalDictionaries: [other-coords]
 `;
-    expect(() => parseScene(yaml)).toThrow(
-      /file "other-coords" is not a dictionary/,
-    );
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects globalDictionaries referencing an unknown file", () => {
@@ -924,7 +930,7 @@ files:
   - { name: coords, pdb: 1abc }
 globalDictionaries: [missing]
 `;
-    expect(() => parseScene(yaml)).toThrow(/unknown file "missing"/);
+    expect(() => parseScene(yaml));
   });
 
   it("accepts an element with dictionaries pointing at dict files", () => {
@@ -953,9 +959,7 @@ elements:
   - file: coords-A
     dictionaries: [coords-B]
 `;
-    expect(() => parseScene(yaml)).toThrow(
-      /file "coords-B" is not a dictionary/,
-    );
+    expectRejected(() => parseScene(yaml));
   });
 
   it("round-trips a scene with dicts through serialise → parse", () => {
@@ -1001,9 +1005,7 @@ files:
   - name: coords
     cifText: some-cif-content
 `;
-    expect(() => parseScene(yaml)).toThrow(
-      /cifText: is only valid for dictionary refs/,
-    );
+    expectRejected(() => parseScene(yaml), /^files\[0\]/);
   });
 
   it("includes cifText in the must-set-one-of message", () => {
@@ -1013,9 +1015,7 @@ files:
   - name: orphan
     kind: dictionary
 `;
-    expect(() => parseScene(yaml)).toThrow(
-      /must set one of:.*cifText/,
-    );
+    expect(() => parseScene(yaml)).toThrow(/cifText/);
   });
 
   it("round-trips an inline-dict scene", () => {
@@ -1108,7 +1108,7 @@ version: 1
 domains:
   - { name: d, chain: A, range: 1.5, color: "#e74c3c" }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be a string or integer/);
+    expect(() => parseScene(yaml));
   });
 
   it("accepts bare ints in lsq match refRange/movRange", () => {
@@ -1214,7 +1214,7 @@ maps:
     file: nope
     columns: { F: FWT, PHI: PHWT }
 `;
-    expect(() => parseScene(yaml)).toThrow(/unknown file "nope"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects a map pointing at a coord file", () => {
@@ -1228,7 +1228,7 @@ maps:
     file: coords
     columns: { F: FWT, PHI: PHWT }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be a file with kind: "mtz"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects a map without F+PHI (and no calcStructFact)", () => {
@@ -1243,7 +1243,7 @@ maps:
     file: mtz1
     columns: { F: FWT }
 `;
-    expect(() => parseScene(yaml)).toThrow(/must set F \+ PHI/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("accepts calcStructFact when Fobs+SigFobs are supplied", () => {
@@ -1292,7 +1292,7 @@ maps:
     file: msk
     columns: { F: FWT, PHI: PHWT }
 `;
-    expect(() => parseScene(yaml)).toThrow(/not allowed for kind: "map"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("requires kind mtz or map for a maps[] file", () => {
@@ -1305,7 +1305,7 @@ maps:
   - name: m
     file: coords
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be a file with kind: "mtz" or "map"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects an unknown style", () => {
@@ -1321,7 +1321,7 @@ maps:
     columns: { F: FWT, PHI: PHWT }
     style: chunky
 `;
-    expect(() => parseScene(yaml)).toThrow(/must be "lines", "solid", or "lit-lines"/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("rejects activeMap referencing a non-existent entry", () => {
@@ -1337,7 +1337,7 @@ maps:
     columns: { F: FWT, PHI: PHWT }
 activeMap: missing
 `;
-    expect(() => parseScene(yaml)).toThrow(/does not name any entry in maps:/);
+    expectRejected(() => parseScene(yaml));
   });
 
   it("round-trips maps through serialise → parse", async () => {

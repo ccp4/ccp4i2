@@ -57,7 +57,13 @@ superpose?: ({
   matchType?: "all"|"main"|"ca"  # default "main"
 })[]
 globalDictionaries?: string[]
-domains?: { name: string, selection: string, color: string }[]
+domains?: ({
+  name: string  # used by colour: by-domain and the resolver log
+  selection?: string  # CID selection, e.g. //F or //F/32-64 — the preferred form
+  chain?: string | string[]  # deprecated: chain "A", "*", or ["A","B"]; use selection
+  range?: string  # deprecated: inclusive range; omitted ⇒ whole chain; use selection
+  color: string  # hex colour #rrggbb or #rrggbbaa
+})[]
 elements?: ({
   file: string  # name of a files[] entry
   dictionaries?: string[]
