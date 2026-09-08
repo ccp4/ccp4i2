@@ -44,6 +44,7 @@ class coot1(CPluginScript):
         with scriptPath.open("w", encoding="utf-8") as stream:
             stream.write("\n".join(script))
         self.appendCommandLine(["--script", scriptPath])
+        self.appendCommandLine("--no-state-script")
 
         return CPluginScript.SUCCEEDED
 
