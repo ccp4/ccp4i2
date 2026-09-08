@@ -333,6 +333,8 @@ class _Browser(object):
         self.panel = None
         self._dock_parent = None
         self._dock_kind = None
+        self.search = None
+        self._current_items = []
 
         if prefer_dock is None:
             prefer_dock = DOCK_BROWSER
@@ -365,6 +367,11 @@ class _Browser(object):
         header.append(self.crumb)
         header.append(close)
         outer.append(header)
+
+        self.search = Gtk.SearchEntry()
+        self.search.set_placeholder_text("Filter...")
+        self.search.connect("search-changed", lambda _e: self._render())
+        outer.append(self.search)
 
         self.listbox = Gtk.ListBox()
         self.listbox.connect("row-activated",
@@ -566,10 +573,23 @@ class _Browser(object):
             row.payload = payload
             self.listbox.append(row)
 
+    def _apply(self, labels_and_data):
+        """Set the current level's rows and render them (filter applied)."""
+        self._current_items = labels_and_data
+        self._render()
+
+    def _render(self):
+        query = self.search.get_text() if self.search is not None else ""
+        self._fill(api_client.filter_rows(
+            getattr(self, "_current_items", []), query,
+            key=lambda item: item[0]))
+
     def _say(self, message):
         self.status.set_text(message)
 
     def _set_mode(self, mode, crumb):
+        if mode != self.mode and self.search is not None:
+            self.search.set_text("")  # a fresh level starts unfiltered
         self.mode = mode
         self.crumb.set_text(crumb)
         self.back_button.set_sensitive(mode != "projects")
@@ -597,8 +617,8 @@ class _Browser(object):
             self.projects = sorted(
                 result or [], key=lambda p: (p.get("name") or "").lower())
             self._set_mode("projects", "Projects")
-            self._fill([((p.get("name") or str(p.get("id"))) + "  ▸", p)
-                        for p in self.projects])
+            self._apply([((p.get("name") or str(p.get("id"))) + "  ▸", p)
+                         for p in self.projects])
             self._say("{0} projects".format(len(self.projects)))
         except Exception:
             self._say("Browser error rendering projects - see terminal")
@@ -620,7 +640,7 @@ class _Browser(object):
         try:
             self.job_rows = result or []
             self._set_mode("jobs", self.project.get("name") or "Jobs")
-            self._fill([
+            self._apply([
                 ("{0}{1}  ▸".format("  " * job["depth"], job["label"]),
                  job) for job in self.job_rows])
             self._say("{0} jobs with loadable files".format(
@@ -633,8 +653,8 @@ class _Browser(object):
         self.job = job
         self._set_mode("files", "{0} / {1}".format(
             self.project.get("name") or "", job["label"]))
-        self._fill([("{0}  [{1}]".format(f["label"], f["kind"]), f)
-                    for f in job["files"]])
+        self._apply([("{0}  [{1}]".format(f["label"], f["kind"]), f)
+                     for f in job["files"]])
         self._say("{0} files - activate one to load it".format(
             len(job["files"])))
 

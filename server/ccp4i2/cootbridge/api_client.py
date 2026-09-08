@@ -431,6 +431,18 @@ def order_for_load(files):
         files, key=lambda record: _LOAD_PRIORITY.get(record.get("kind"), 99))
 
 
+def filter_rows(rows, query, key):
+    """Rows whose ``key(row)`` contains ``query`` (case-insensitive).
+
+    Empty/blank query returns all rows. Shared by both browsers so the
+    filter behaves identically on Coot 1.x and 0.9.
+    """
+    needle = (query or "").strip().lower()
+    if not needle:
+        return list(rows)
+    return [row for row in rows if needle in (key(row) or "").lower()]
+
+
 def display_label(label, source_project_name, own_project_name):
     """Molecule label for a loaded file, prefixed with the project name
     when it comes from a project other than the launching job's - the
