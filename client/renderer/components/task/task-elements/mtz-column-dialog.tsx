@@ -651,8 +651,14 @@ const EnhancedMtzColumnDialogComponent: React.FC<EnhancedMtzColumnDialogProps> =
       ),
     [columnOptions]
   );
+  // A FreeR decision only exists when there are FreeR columns to include
+  // (the section is hidden otherwise) — showFreeR can be true for a task with
+  // a FreeR sibling even when this file has no FreeR columns, so gate on the
+  // options actually offered, not the flag.
   const autoAccept =
-    !multiSelectMode && !showFreeR && totalReflectionOptions === 1;
+    !multiSelectMode &&
+    freeROptions.length === 0 &&
+    totalReflectionOptions === 1;
   useEffect(() => {
     if (
       autoAccept &&
