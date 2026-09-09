@@ -287,7 +287,7 @@ const MtzColumnDialogComponent: React.FC<MtzColumnDialogProps> = ({
         },
       }}
     >
-      <DialogTitle>{item._objectPath}</DialogTitle>
+      <DialogTitle>Select reflection data to import</DialogTitle>
 
       <DialogContent>
         <RadioGroup value={selectedGroup} onChange={handleGroupChange}>
@@ -856,6 +856,30 @@ export function showMtzColumnDialog(
   columnNames: ColumnNames,
   item: MtzItem
 ): Promise<string | null> {
+  // Work out the choices the dialog would offer before rendering it. Each
+  // signature (e.g. mean structure factors) is a radio option, and each
+  // signature's column-set list feeds its Autocomplete; the user ultimately
+  // picks a single column selector. When there is exactly one possibility
+  // across both controls there is nothing to choose, so resolve it directly
+  // as if the user had confirmed the sole option -- no dialog is shown.
+  const columnOptions = buildColumnOptions(columnNames, item);
+  const signatures = Object.keys(columnOptions);
+  const totalOptions = signatures.reduce(
+    (count, signature) => count + columnOptions[signature].length,
+    0
+  );
+
+  if (totalOptions === 0) {
+    // Nothing the dialog could offer; matches the component's auto-cancel.
+    return Promise.resolve(null);
+  }
+
+  if (totalOptions === 1) {
+    // Sole possibility -- auto-select it (this is the value the dialog would
+    // have initialised and returned on OK).
+    return Promise.resolve(columnOptions[signatures[0]][0]);
+  }
+
   return new Promise((resolve) => {
     // Create a container for the dialog
     const container = document.createElement("div");

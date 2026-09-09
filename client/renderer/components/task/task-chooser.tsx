@@ -19,6 +19,7 @@ import {
 import SearchField from "../search-field";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useApi } from "../../api";
+import { useCCP4i2Window } from "../../app-context";
 import { ViewMode, ViewModeToggle } from "../view-mode-toggle";
 
 interface TaskCategory {
@@ -314,15 +315,21 @@ function FilteredTasks(props: {
 }) {
   const filteredTasks = useMemo(() => {
     const searchText = props.searchText.toUpperCase();
-    return Object.keys(props.taskLookup).filter((name) => {
+    // Rank matches so title matches weigh more: a TASKTITLE that starts with
+    // the query ranks above one that merely contains it, above a name match,
+    // above a description-only match. Lower score = shown first; -1 = no match.
+    const score = (name: string): number => {
       const info = props.taskLookup[name];
-      if (info.supersededBy) return false;
-      if (name.toUpperCase().includes(searchText)) return true;
-      return (
-        info.TASKTITLE?.toUpperCase().includes(searchText) ||
-        info.DESCRIPTION?.toUpperCase().includes(searchText)
-      );
-    });
+      const title = info.TASKTITLE?.toUpperCase() ?? "";
+      if (title.startsWith(searchText)) return 0;
+      if (title.includes(searchText)) return 1;
+      if (name.toUpperCase().includes(searchText)) return 2;
+      if (info.DESCRIPTION?.toUpperCase().includes(searchText)) return 3;
+      return -1;
+    };
+    return Object.keys(props.taskLookup)
+      .filter((name) => !props.taskLookup[name].supersededBy && score(name) >= 0)
+      .sort((a, b) => score(a) - score(b));
   }, [props.searchText, props.taskLookup]);
 
   return (
@@ -340,6 +347,7 @@ function TaskTree(props: {
   viewMode: ViewMode;
   onTaskSelect: (taskName: string) => void;
 }) {
+  const { devMode } = useCCP4i2Window();
   const uncategorised = useMemo(
     () => uncategorisedCategory(props.taskLookup),
     [props.taskLookup],
@@ -356,12 +364,14 @@ function TaskTree(props: {
           onTaskSelect={props.onTaskSelect}
         />
       ))}
-      <TaskTreeFolder
-        category={uncategorised}
-        taskLookup={props.taskLookup}
-        viewMode={props.viewMode}
-        onTaskSelect={props.onTaskSelect}
-      />
+      {devMode && (
+        <TaskTreeFolder
+          category={uncategorised}
+          taskLookup={props.taskLookup}
+          viewMode={props.viewMode}
+          onTaskSelect={props.onTaskSelect}
+        />
+      )}
     </>
   );
 }
