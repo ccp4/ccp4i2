@@ -189,13 +189,15 @@ class _FakeChild:
         return self._q.get(key, default)
 
 
-def test_resolve_spec_defaults_to_spacegroup_and_cell():
-    """With only sameCrystalAs set, the strictest sensible default applies:
-    require the same space group and a compatible cell."""
+def test_resolve_spec_defaults_to_spacegroup_and_auto_cell():
+    """With only sameCrystalAs set, the default is: same space group, and
+    'auto' cell (None) -- the check then requires the cell only when a model
+    is involved, so a reflection<->reflection pair (free-R vs data) skips the
+    cell and survives a soak series' cell drift."""
     from ccp4i2.core.CCP4PluginScript import _resolve_same_crystal_spec
 
     mode, cell, sev = _resolve_same_crystal_spec(_FakeChild())
-    assert (mode, cell, sev) == ("spaceGroup", True, None)
+    assert (mode, cell, sev) == ("spaceGroup", None, None)
 
 
 def test_resolve_spec_named_qualifiers():
@@ -216,34 +218,66 @@ def test_resolve_spec_named_qualifiers():
 
     mode, cell, sev = _resolve_same_crystal_spec(_FakeChild(
         sameCrystalMatch="none", sameCrystalSeverity="advisory"))
-    assert (mode, cell, sev) == ("none", True, SEVERITY_WARNING)
+    assert (mode, cell, sev) == ("none", None, SEVERITY_WARNING)
 
-
-def test_resolve_spec_legacy_level_shim():
-    """The old sameCrystalLevel int ladder still maps onto the new model, so
-    the def.xml files that set it keep their exact Qt-branch meaning."""
-    from ccp4i2.core.CCP4PluginScript import _resolve_same_crystal_spec
-
-    # 1 == same point group, no cell (what all 8 legacy files set)
+    # explicit cell overrides the auto default in both directions
     assert _resolve_same_crystal_spec(
-        _FakeChild(sameCrystalLevel=1))[:2] == ("pointGroup", False)
+        _FakeChild(sameCrystalCell="true"))[1] is True
     assert _resolve_same_crystal_spec(
-        _FakeChild(sameCrystalLevel="1"))[:2] == ("pointGroup", False)
-    # 0 cell-only, 2 Laue, 3 SG, 4 SG+cell
-    assert _resolve_same_crystal_spec(
-        _FakeChild(sameCrystalLevel=0))[:2] == ("none", True)
-    assert _resolve_same_crystal_spec(
-        _FakeChild(sameCrystalLevel=2))[:2] == ("laue", False)
-    assert _resolve_same_crystal_spec(
-        _FakeChild(sameCrystalLevel=4))[:2] == ("spaceGroup", True)
+        _FakeChild(sameCrystalCell="false"))[1] is False
 
 
-def test_resolve_spec_new_qualifiers_win_over_legacy():
-    """When both are present, the explicit new qualifier takes precedence over
-    the legacy int for that axis."""
-    from ccp4i2.core.CCP4PluginScript import _resolve_same_crystal_spec
+class _FakeInput:
+    """Input object with a parent and a leaf name, for partner resolution."""
 
-    mode, cell, _ = _resolve_same_crystal_spec(_FakeChild(
-        sameCrystalMatch="spaceGroup", sameCrystalLevel=1))
-    assert mode == "spaceGroup"          # new match wins
-    assert cell is False                 # cell axis still filled from legacy 1
+    def __init__(self, name, parent):
+        self._name = name
+        self._parent = parent
+
+    def parent(self):
+        return self._parent
+
+
+def test_partner_resolution_prefers_same_scope():
+    """When a leaf name is duplicated across composed scopes (e.g. a
+    metalcoord sub-scope that also has an XYZIN/F_SIGF), the partner must
+    resolve to the sibling in the declaring input's own scope, not the
+    other scope's object."""
+    from ccp4i2.core.CCP4PluginScript import _resolve_same_crystal_partner
+
+    main = object()          # main inputData container
+    metal = object()         # metalcoord sub-scope container
+
+    xyzin_main = _FakeInput("XYZIN", main)
+    fsigf_main = _FakeInput("F_SIGF", main)
+    xyzin_metal = _FakeInput("XYZIN", metal)
+    fsigf_metal = _FakeInput("F_SIGF", metal)
+    all_files = [("XYZIN", xyzin_main), ("F_SIGF", fsigf_main),
+                 ("XYZIN", xyzin_metal), ("F_SIGF", fsigf_metal)]
+
+    # each XYZIN resolves F_SIGF within its own scope
+    assert _resolve_same_crystal_partner(
+        xyzin_main, "F_SIGF", all_files) is fsigf_main
+    assert _resolve_same_crystal_partner(
+        xyzin_metal, "F_SIGF", all_files) is fsigf_metal
+    # never resolves to itself
+    assert _resolve_same_crystal_partner(
+        xyzin_main, "XYZIN", all_files) is not xyzin_main
+    # unknown partner -> None
+    assert _resolve_same_crystal_partner(
+        xyzin_main, "NOPE", all_files) is None
+
+
+def test_partner_resolution_falls_back_across_scope():
+    """If the partner is not a sibling, fall back to any input with that
+    name rather than failing."""
+    from ccp4i2.core.CCP4PluginScript import _resolve_same_crystal_partner
+
+    main = object()
+    other = object()
+    xyzin = _FakeInput("XYZIN", main)
+    hklin_other = _FakeInput("HKLIN", other)  # only HKLIN lives elsewhere
+    all_files = [("XYZIN", xyzin), ("HKLIN", hklin_other)]
+
+    assert _resolve_same_crystal_partner(
+        xyzin, "HKLIN", all_files) is hklin_other
