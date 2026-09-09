@@ -2916,6 +2916,33 @@ class CPdbData(CDataFileContent):
         """
         return getattr(self, '_composition', None)
 
+    @property
+    def cell(self):
+        """Unit cell of the loaded model, or None.
+
+        Returns the gemmi ``UnitCell`` (``.a/.b/.c/.alpha/.beta/.gamma``) of the
+        parsed structure, so a coordinate file's cell can be compared against a
+        reflection file's cell (the ``sameCrystalAs`` runtime check). Computed
+        from the gemmi structure on demand and read via ``getattr`` from the
+        ``object.__setattr__``-stored ``_gemmi_structure`` -- deliberately NOT a
+        tracked CData attribute, so it never enters the serialised parameter
+        file. Returns None when the file records no crystallographic cell (gemmi
+        fills an absent CRYST1 with the trivial 1x1x1 cell), so a model without
+        one cannot raise a spurious mismatch.
+        """
+        structure = getattr(self, '_gemmi_structure', None)
+        if structure is None:
+            return None
+        cell = getattr(structure, 'cell', None)
+        if cell is None:
+            return None
+        try:
+            if cell.a <= 1.0 and cell.b <= 1.0 and cell.c <= 1.0:
+                return None
+        except Exception:
+            return None
+        return cell
+
     def isMMCIF(self) -> bool:
         """
         Check if the loaded coordinate file is in mmCIF format.
