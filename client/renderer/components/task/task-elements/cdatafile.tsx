@@ -44,6 +44,7 @@ import { ACTIVE_JOB_STATUSES, useJob, useProject, useProjectFiles } from "../../
 import { CCP4i2TaskElementProps } from "./task-element";
 import { File as CCP4i2File, nullFile, Project } from "../../../types/models";
 import { FileMenuExtraItem, useFileMenu } from "../../../providers/file-context-menu";
+import { useImportProvenance } from "../../../providers/import-provenance-provider";
 import { ErrorTrigger } from "./error-info";
 import { InputFileFetch } from "./input-file-fetch";
 import { InputFileUpload } from "./input-file-upload";
@@ -175,6 +176,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     onChange,
   });
   const { setFileMenuAnchorEl, setFile, setExtraMenuItems } = useFileMenu();
+  const { forgetImportProvenance } = useImportProvenance();
 
   // Data and state
   // Poll for files only while the job is active, so task widgets see newly
@@ -372,10 +374,15 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     ) => {
       if (!item?._objectPath || !projects) return;
 
-      const writeValue =
-        reason === "clear" || selectedFile === nullFile
-          ? null
-          : fileItemToParameterArg(
+      const isClear = reason === "clear" || selectedFile === nullFile;
+      // A deliberate clear starts a fresh import cycle: drop the burst-dedup so
+      // re-picking the same file asks for provenance again rather than silently
+      // reusing the note from the import just cleared.
+      if (isClear) forgetImportProvenance();
+
+      const writeValue = isClear
+        ? null
+        : fileItemToParameterArg(
               selectedFile!,
               item._objectPath,
               projectJobs || [],
@@ -398,6 +405,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
       fileItemToParameterArg,
       commit,
       value,
+      forgetImportProvenance,
       mutateContainer,
       mutateContent,
       mutateDigest,
@@ -406,7 +414,22 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
 
   const handleFileChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setFiles?.(event.currentTarget.files);
+      const input = event.currentTarget;
+      const picked = input.files;
+      // Copy the selection into an independent FileList before touching the
+      // input, so resetting its value below can't empty what we hand on.
+      let files: FileList | null = picked;
+      if (picked && picked.length && typeof DataTransfer !== "undefined") {
+        const dt = new DataTransfer();
+        for (let i = 0; i < picked.length; i++) dt.items.add(picked[i]);
+        files = dt.files;
+      }
+      setFiles?.(files);
+      // Clear the input's value so the SAME file can be chosen again after a
+      // Clear: an <input type="file"> fires no change event when its value is
+      // unchanged, which otherwise leaves a cleared field impossible to
+      // repopulate by re-picking the same path.
+      input.value = "";
     },
     [setFiles]
   );
