@@ -25,7 +25,7 @@
     "electron-postinstall": "electron-builder install-app-deps",
     "build": "npm run build:electron",
     "start": "npm run start:electron",
-    "build:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && next build renderer && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts",
+    "build:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && cross-env BUILD_TARGET=electron next build renderer && cross-env BUILD_TARGET=electron vite build --config vite.electron.config.ts && cross-env BUILD_TARGET=electron vite build --config vite.preload.config.ts",
     "start:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts && electron dist/main.js",
     "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next build",
     "start:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next dev",
