@@ -5,6 +5,7 @@ import {
   Brightness4,
   Brightness7,
   DeveloperMode,
+  HistoryEdu,
   Refresh,
   SyncAlt,
   Visibility,
@@ -26,6 +27,9 @@ export default function ViewMenu() {
   const { projectId, devMode, setDevMode } = useCCP4i2Window();
   const { mode, setTheme } = useTheme();
   const [showJobIcons, setShowJobIcons] = useUiPreference("showJobIcons");
+  const [captureImportProvenance, setCaptureImportProvenance] = useUiPreference(
+    "captureImportProvenance"
+  );
   const api = useApi();
   const { data: project } = api.get<Project>(`projects/${projectId}`);
   const router = useRouter();
@@ -98,6 +102,10 @@ export default function ViewMenu() {
     setShowJobIcons(!showJobIcons);
     handleClose();
   };
+  const handleSwitchImportProvenance = () => {
+    setCaptureImportProvenance(!captureImportProvenance);
+    handleClose();
+  };
 
   return (
     <>
@@ -152,6 +160,15 @@ export default function ViewMenu() {
           text={showJobIcons ? "Hide Job Icons" : "Show Job Icons"}
           icon={showJobIcons ? VisibilityOff : Visibility}
           onClick={handleSwitchJobIcons}
+        />
+        <CCP4i2MenuItem
+          text={
+            captureImportProvenance
+              ? "Don't Ask for Import Provenance"
+              : "Ask for Import Provenance"
+          }
+          icon={HistoryEdu}
+          onClick={handleSwitchImportProvenance}
         />
         {project && (
           <CCP4i2MenuItem

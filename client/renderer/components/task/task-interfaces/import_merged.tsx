@@ -661,7 +661,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         }
       }
 
-      // Upload the file
+      // Upload the file. This is a derived upload -- the user picked HKLIN
+      // (which prompted for provenance and stored the note on that file); this
+      // splits it into HKLIN_OBS. Being programmatic, not a user pick, it does
+      // not prompt again.
       if (columnPath && columnPath.trim().length > 0 && HKLIN_OBSItem) {
         await uploadFileParam({
           objectPath: HKLIN_OBSItem._objectPath,

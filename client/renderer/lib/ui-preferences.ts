@@ -10,10 +10,16 @@ import { useCallback, useEffect, useState } from "react";
 const PREFIX = "ccp4i2.ui.";
 const EVENT = "ccp4i2-ui-preference";
 
-export type UiPreferenceKey = "showJobIcons";
+export type UiPreferenceKey = "showJobIcons" | "captureImportProvenance";
 
 const DEFAULTS: Record<UiPreferenceKey, boolean> = {
   showJobIcons: true,
+  // When on, importing a local file prompts for a free-text provenance note
+  // ("where did this come from?") stored on the file's import record. On by
+  // default (the Qt-era behaviour); the prompt itself offers a "Don't ask
+  // again" checkbox that turns this off, so a user can opt out at first
+  // exposure without opening any settings. Also toggled from the View menu.
+  captureImportProvenance: true,
 };
 
 export function readUiPreference(key: UiPreferenceKey): boolean {

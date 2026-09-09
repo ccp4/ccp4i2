@@ -468,6 +468,12 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     object_path = request.POST.get("object_path") or request.POST.get("objectPath")
     files = request.FILES.getlist("file")
 
+    # Optional free-text provenance narrative ("where did this come from?"),
+    # captured by the client when the import-provenance preference is on. Stored
+    # on FileImport.description, distinct from the auto-generated File.annotation
+    # label. Absent/blank for programmatic or un-prompted imports.
+    provenance_description = (request.POST.get("description") or "").strip()
+
     logger.info("object_path from request: %s", object_path)
     logger.info("files: %s", [f.name for f in files])
 
@@ -742,6 +748,7 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
             name=files[0].name,
             checksum=param_object.checksum(),
             source_checksum=source_checksum,
+            description=provenance_description,
         )
         new_file_import.save()
         # Note: calling set_parameter here would invalidate "param_object" (since it takes job argument and constructs a new container),
