@@ -1,18 +1,16 @@
 "use client";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   Alert,
-  Button,
   Container,
   LinearProgress,
   Paper,
   Stack,
   Typography,
 } from "@mui/material";
-import { Archive, Upload } from "@mui/icons-material";
+import { Archive } from "@mui/icons-material";
 import { useApi } from "../api";
 import { apiUploadWithProgress, UploadProgress } from "../api-fetch";
-import { VisuallyHiddenInput } from "./task/task-elements/input-file-upload";
 import { useRouter } from "next/navigation";
 import { Project } from "../types/models";
 import { ImportProjectDirectory } from "./import-project-directory";
@@ -25,9 +23,6 @@ export const ImportProjectContent: React.FC = () => {
   const [progress, setProgress] = useState<UploadProgress | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { mutate: mutateProjects } = api.get<Project[]>("projects");
-
-  // Create a ref for the hidden file input
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = useCallback(
     async (selectedFiles: FileList | null) => {
@@ -67,10 +62,6 @@ export const ImportProjectContent: React.FC = () => {
     [mutateProjects, router]
   );
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    void handleFileUpload(event.target.files);
-  };
-
   return (
     <Container
       sx={{
@@ -104,33 +95,17 @@ export const ImportProjectContent: React.FC = () => {
               An exported <code>.ccp4_project.zip</code>. Its contents are
               copied into your project store.
             </Typography>
-            <Stack spacing={2} direction="row" alignItems="center">
-              <DropZone
-                onFilesSelected={(files) => void handleFileUpload(files)}
-                accept=".zip"
-                multiple
-                disabled={uploading}
-                sx={{ p: 4, flexGrow: 1 }}
-              >
-                <Typography variant="body1" color="textSecondary">
-                  Drag and drop files here, or click here to upload
-                </Typography>
-              </DropZone>
-              <Button
-                component="label"
-                variant="contained"
-                startIcon={<Upload />}
-                disabled={uploading}
-              >
-                <VisuallyHiddenInput
-                  ref={fileInputRef}
-                  type="file"
-                  multiple
-                  accept=".zip"
-                  onChange={onChange}
-                />
-              </Button>
-            </Stack>
+            <DropZone
+              onFilesSelected={(files) => void handleFileUpload(files)}
+              accept=".zip"
+              multiple
+              disabled={uploading}
+              sx={{ p: 4 }}
+            >
+              <Typography variant="body1" color="textSecondary">
+                Drag and drop files here, or click here to upload
+              </Typography>
+            </DropZone>
 
             {uploading && (
               <Stack spacing={0.5}>
