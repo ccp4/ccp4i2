@@ -15,6 +15,11 @@
                     <fromPreviousJob>True</fromPreviousJob>
                     <requiredSubType>1,0</requiredSubType>
                     <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <!-- refmac5 takes symmetry from the MTZ and tolerates an
+                         exact space-group difference in the model's CRYST1, so
+                         require only a compatible point group (block genuinely
+                         incompatible symmetry) plus a compatible cell. -->
+                    <sameCrystalMatch>pointGroup</sameCrystalMatch>
                     <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
                 </qualifiers>
             </content>

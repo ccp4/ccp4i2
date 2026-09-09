@@ -155,9 +155,9 @@ def spacegroups_are_compatible(sg1, sg2):
             'laue1' / 'laue2': str  -- the Laue-class symbols
             'spaceGroup1' / 'spaceGroup2': str -- normalised group names
 
-    The keys correspond to the classic ``sameCrystalLevel`` ladder that selects
-    which of these must match: 1=point group, 2=Laue, 3=space group, 4=space
-    group and cell (the cell handled separately by cells_are_compatible).
+    The caller selects which of these must match via the ``sameCrystalMatch``
+    qualifier (pointGroup / laue / spaceGroup); the cell is a separate axis,
+    handled by cells_are_compatible.
     """
     if not sg1 or not sg2:
         return None

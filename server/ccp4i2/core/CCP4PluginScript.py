@@ -36,24 +36,24 @@ logger = logging.getLogger(__name__)
 #   sameCrystalAs        partner input name (str)
 #   sameCrystalMatch     symmetry requirement: none | pointGroup | laue |
 #                        spaceGroup            (default 'spaceGroup')
-#   sameCrystalCell      also require a compatible unit cell (bool, default True)
+#   sameCrystalCell      also require a compatible unit cell (bool). Unset means
+#                        "auto": check the cell only when a coordinate model is
+#                        one side of the pair. A model is placed in a definite
+#                        cell, so a cell mismatch there is worth an (overridable)
+#                        heads-up; but reflection<->reflection pairings -- a
+#                        free-R set or phases against the observed data -- must
+#                        NOT default to a cell check, because one free-R set is
+#                        routinely shared across an isomorphous ligand-soak
+#                        series whose cells drift a percent or two, and the
+#                        clipper tolerance blocks that. Same crystal *form* (the
+#                        space group) is the meaningful invariant there.
 #   sameCrystalSeverity  force a mismatch to 'error' or 'advisory'/'warning'
 #                        (default: auto-graded by mismatch kind)
-# A legacy shim maps the old opaque `sameCrystalLevel` int ladder (Qt-branch:
-# 0 cell-only, 1 point group, 2 Laue, 3 space group, 4 space group + cell) onto
-# the new pair, so def.xml files that still set it keep their old meaning.
 _SAME_CRYSTAL_MATCH_ALIASES = {
     'none': 'none', 'off': 'none', 'cell': 'none', 'cellonly': 'none',
     'pointgroup': 'pointGroup', 'point_group': 'pointGroup', 'pg': 'pointGroup',
     'laue': 'laue', 'lauegroup': 'laue', 'laue_group': 'laue',
     'spacegroup': 'spaceGroup', 'space_group': 'spaceGroup', 'sg': 'spaceGroup',
-}
-_SAME_CRYSTAL_LEVEL_SHIM = {
-    0: ('none', True),
-    1: ('pointGroup', False),
-    2: ('laue', False),
-    3: ('spaceGroup', False),
-    4: ('spaceGroup', True),
 }
 
 
@@ -73,10 +73,11 @@ def _parse_bool_qualifier(value, default):
 def _resolve_same_crystal_spec(child):
     """Return (match_mode, require_cell, severity_override) for an input.
 
-    match_mode is one of 'none'|'pointGroup'|'laue'|'spaceGroup'; require_cell
-    is a bool; severity_override is a SEVERITY_* constant or None (auto-grade).
-    Honours the new qualifiers, falls back to the legacy sameCrystalLevel int
-    ladder, and defaults to 'spaceGroup' + cell when nothing is specified.
+    match_mode is one of 'none'|'pointGroup'|'laue'|'spaceGroup' (default
+    'spaceGroup'). require_cell is True/False, or None meaning "auto" -- the
+    check then requires the cell only when a model is involved (see the
+    qualifier notes above). severity_override is a SEVERITY_* constant or None
+    (auto-grade).
     """
     def q(key):
         return (child.get_qualifier(key)
@@ -85,32 +86,17 @@ def _resolve_same_crystal_spec(child):
     match_q = q('sameCrystalMatch')
     cell_q = q('sameCrystalCell')
     sev_q = q('sameCrystalSeverity')
-    level_q = q('sameCrystalLevel')
 
     match_mode = None
     if match_q is not None and str(match_q).strip():
         match_mode = _SAME_CRYSTAL_MATCH_ALIASES.get(
             str(match_q).strip().lower().replace(' ', ''))
-    require_cell = None
-    if cell_q is not None:
-        require_cell = _parse_bool_qualifier(cell_q, True)
-
-    # Legacy int ladder only fills gaps the new qualifiers left unset.
-    if (match_mode is None or require_cell is None) and level_q is not None:
-        try:
-            shim = _SAME_CRYSTAL_LEVEL_SHIM.get(int(level_q))
-        except (TypeError, ValueError):
-            shim = None
-        if shim is not None:
-            if match_mode is None:
-                match_mode = shim[0]
-            if require_cell is None:
-                require_cell = shim[1]
-
     if match_mode is None:
         match_mode = 'spaceGroup'
-    if require_cell is None:
-        require_cell = True
+
+    require_cell = None            # None == auto (decided by the check)
+    if cell_q is not None:
+        require_cell = _parse_bool_qualifier(cell_q, True)
 
     severity_override = None
     if sev_q is not None:
@@ -121,6 +107,32 @@ def _resolve_same_crystal_spec(child):
             severity_override = SEVERITY_WARNING
 
     return match_mode, require_cell, severity_override
+
+
+def _resolve_same_crystal_partner(decl, name, all_files):
+    """Resolve a sameCrystalAs partner name to one of the walked input objects.
+
+    Prefer a match in the declaring input's *own scope* (same parent
+    container), so a duplicate leaf name introduced by def.xml composition --
+    e.g. a metalcoord sub-scope that also carries an XYZIN / F_SIGF -- cannot
+    make the lookup resolve to the wrong object. Fall back to any input with
+    that name only when the partner is not a sibling. `all_files` is the
+    (name, object) list from _find_datafile_descendants; its objects carry a
+    real object_path, whereas a container find() returns a detached copy whose
+    path is None. Returns None if nothing matches.
+    """
+    def parent_of(obj):
+        return obj.parent() if hasattr(obj, 'parent') else None
+
+    matches = [obj for n, obj in all_files if n == name and obj is not decl]
+    if not matches:
+        return None
+    decl_parent = parent_of(decl)
+    if decl_parent is not None:
+        for obj in matches:
+            if parent_of(obj) is decl_parent:
+                return obj
+    return matches[0]
 
 
 # Codes the base class reports on a task's behalf. A task's own ERROR_CODES
@@ -1481,11 +1493,10 @@ class CPluginScript(CData):
         if input_data is None:
             return
 
-        # Build a name→object lookup for all input file objects
         all_files = self._find_datafile_descendants(input_data)
-        files_by_name = {name: obj for name, obj in all_files}
 
-        # Track pairs already checked (avoid checking A→B and B→A)
+        # Deduplicate symmetric pairs by resolved object path (unique across
+        # scopes), not by leaf name (which collides across composed sub-scopes).
         checked_pairs = set()
 
         for child_name, child in all_files:
@@ -1493,21 +1504,21 @@ class CPluginScript(CData):
             if not partner_name:
                 continue
 
-            # Deduplicate symmetric pairs
-            pair_key = tuple(sorted([child_name, partner_name]))
-            if pair_key in checked_pairs:
-                continue
-            checked_pairs.add(pair_key)
-
             # Both files must be set — skip if either is absent
             if not (hasattr(child, 'isSet') and child.isSet()):
                 continue
-            partner = files_by_name.get(partner_name)
-            if partner is None:
-                # Fall back to container-level find for nested paths
-                partner = self.container.find(f'inputData.{partner_name}')
+            partner = _resolve_same_crystal_partner(child, partner_name, all_files)
             if partner is None or not (hasattr(partner, 'isSet') and partner.isSet()):
                 continue
+
+            child_path = (child.object_path()
+                          if hasattr(child, 'object_path') else child_name)
+            partner_path = (partner.object_path()
+                            if hasattr(partner, 'object_path') else partner_name)
+            pair_key = frozenset((child_path, partner_path))
+            if pair_key in checked_pairs:
+                continue
+            checked_pairs.add(pair_key)
 
             # Compare the two inputs. Both a reflection content (CMtzData) and a
             # coordinate content (CPdbData) expose `.cell` and `.spaceGroup`, so
@@ -1536,6 +1547,11 @@ class CPluginScript(CData):
                 model_involved = (
                     not hasattr(content, 'clipperSameCell')
                     or not hasattr(partner_content, 'clipperSameCell'))
+                # Auto cell default: check the cell only when a model is one
+                # side. Reflection<->reflection (free-R / phases vs data) skips
+                # it, so a shared free-R set survives a soak series' cell drift.
+                if require_cell is None:
+                    require_cell = model_involved
 
                 def _graded(base):
                     return base if severity_override is None else severity_override
