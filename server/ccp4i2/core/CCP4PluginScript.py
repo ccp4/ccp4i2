@@ -1410,37 +1410,62 @@ class CPluginScript(CData):
             if partner is None or not (hasattr(partner, 'isSet') and partner.isSet()):
                 continue
 
-            # Load file contents and compare cells
+            # Load file contents and compare unit cells. Both a reflection
+            # content (CMtzData) and a coordinate content (CPdbData) expose a
+            # `.cell`, so this works model<->data as well as data<->data.
             try:
                 content = child.getFileContent()
                 partner_content = partner.getFileContent()
                 if content is None or partner_content is None:
                     continue
-                if not hasattr(content, 'clipperSameCell'):
+                cell = getattr(content, 'cell', None)
+                partner_cell = getattr(partner_content, 'cell', None)
+                if cell is None or partner_cell is None:
+                    # A file with no crystallographic cell (or one that could
+                    # not be read) cannot be checked; skip rather than warn.
                     continue
 
+                from ccp4i2.core.CCP4XtalData import cells_are_compatible
+
                 tolerance = child.get_qualifier('sameCrystalLevel') or 1.0
-                result = content.clipperSameCell(partner_content, tolerance=tolerance)
+                params = (cell.a, cell.b, cell.c,
+                          cell.alpha, cell.beta, cell.gamma)
+                partner_params = (partner_cell.a, partner_cell.b, partner_cell.c,
+                                  partner_cell.alpha, partner_cell.beta,
+                                  partner_cell.gamma)
+                result = cells_are_compatible(
+                    params, partner_params, tolerance=tolerance)
 
                 if not result['validity']:
-                    def _cell_str(c):
+                    def _cell_str(cell_obj):
                         try:
-                            cell = c.cell
-                            return (f"({cell.a}, {cell.b}, {cell.c}, "
-                                    f"{cell.alpha}, {cell.beta}, {cell.gamma})")
+                            return (f"({cell_obj.a}, {cell_obj.b}, {cell_obj.c}, "
+                                    f"{cell_obj.alpha}, {cell_obj.beta}, "
+                                    f"{cell_obj.gamma})")
                         except Exception:
                             return "(unknown)"
 
+                    # A coordinate content has no `clipperSameCell`; when a model
+                    # is one side of the pair the mismatch is advisory and
+                    # overridable (matching the Qt "Ignore" behaviour) rather
+                    # than a hard block -- a user may knowingly refine a model
+                    # into a compatible cell. Reflection<->reflection stays a
+                    # hard error, as before.
+                    model_involved = (
+                        not hasattr(content, 'clipperSameCell')
+                        or not hasattr(partner_content, 'clipperSameCell'))
+                    severity = (SEVERITY_WARNING if model_involved
+                                else SEVERITY_ERROR)
                     error.append(
                         klass=self.TASKNAME if hasattr(self, 'TASKNAME') else self.__class__.__name__,
                         code=210,
                         details=(
                             f'Incompatible unit cells between {child_name} '
-                            f'{_cell_str(content)} and {partner_name} '
-                            f'{_cell_str(partner_content)}'
+                            f'{_cell_str(cell)} and {partner_name} '
+                            f'{_cell_str(partner_cell)}'
                         ),
                         name=child.object_path() if hasattr(child, 'object_path') else child_name,
-                        severity=SEVERITY_ERROR,
+                        severity=severity,
                     )
             except Exception as e:
                 logger.debug(
