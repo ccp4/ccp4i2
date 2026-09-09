@@ -90,9 +90,9 @@ they need no per-interface change.
 ### The short-window dedup (why wiring liberally is safe)
 
 One user action can drive several `uploadFileParam` calls for the *same* bytes:
-a mini-MTZ populating both F/SIGF and the free-R set, or `import_merged`
-re-uploading a split of the file the user just picked (which may itself have
-prompted when picked). `requestImportProvenance(name, size)` caches its answer
+a monolithic MTZ split into separate F/SIGF and free-R mini-MTZs, or
+`import_merged` re-uploading a split of the file the user just picked (which may
+itself have prompted when picked). `requestImportProvenance(name, size)` caches its answer
 per `(name, size)` for `DEDUP_WINDOW_MS` (30 s), so the burst asks **once** and
 the rest inherit the note silently. The window is short enough never to bridge
 two separate, deliberate imports.

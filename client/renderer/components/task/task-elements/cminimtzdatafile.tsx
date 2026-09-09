@@ -117,8 +117,9 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
         }
 
         // Ask for a provenance note once (no-op unless the preference is on).
-        // The same physical file may populate two parameters (F/SIGF and the
-        // free-R sibling below), so capture the note here and apply it to both.
+        // A monolithic MTZ can be split here into two mini-MTZs from the same
+        // source bytes -- F/SIGF (this param) and the free-R sibling below --
+        // so capture the note once and apply it to both.
         const provenance = await requestImportProvenance(file.name, file.size);
 
         // Read file and upload using centralized uploadFileParam (with local cache patching)
