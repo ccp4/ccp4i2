@@ -705,10 +705,21 @@ export default function ProjectsTable() {
         return (
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
             <Box sx={{ minWidth: 0 }}>
-              <Stack direction="row" spacing={0.5} alignItems="center">
-                <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
-                  {project.name}
-                </Typography>
+              <Stack
+                direction="row"
+                spacing={0.5}
+                alignItems="center"
+                sx={{ minWidth: 0 }}
+              >
+                <Tooltip title={project.name}>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 500, minWidth: 0 }}
+                    noWrap
+                  >
+                    {project.name}
+                  </Typography>
+                </Tooltip>
                 {brokenIds.has(project.id) && (
                   <Tooltip title="This project's folder cannot be found on disk">
                     <LinkOff sx={{ fontSize: 16, color: "warning.main" }} />
@@ -768,6 +779,9 @@ export default function ProjectsTable() {
     {
       key: "tags",
       label: "Tags",
+      // Pinned to a minimal width so the name column absorbs all spare
+      // horizontal space (tableLayout is "fixed"; only unsized columns flex).
+      width: 200,
       render: (_, project) => (
         <ProjectTagChips tags={project.tags} maxVisible={3} size="small" />
       ),
