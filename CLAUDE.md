@@ -434,6 +434,27 @@ joins. Full guide: `server/ccp4i2/wrappers/EXPORT_TASK_GUIDE.md`.
 - `server/ccp4i2/tipsOfTheDay/` - User tips
 - `docs/` - Documentation
 
+## Releasing an alpha
+
+Full guide: [docs/RELEASING.md](docs/RELEASING.md). The one thing that trips
+people (and agents): **`django` is PR-only** (a ruleset requires a pull request
+with all checks green; merge commits are disabled). So cutting an alpha is a
+**two-step** flow, not one push:
+
+```bash
+git checkout django
+scripts/cut-alpha.sh        # step 1: bump version, push a release-vX branch, open its PR
+#   ... review, wait for 6/6 checks green, squash-merge the PR ...
+scripts/cut-alpha.sh --tag  # step 2: tag the merged commit on django, push the tag -> release.yml
+```
+
+`scripts/cut-alpha.sh --dry-run` shows the plan without touching anything. The
+tag push is what fires `.github/workflows/release.yml` (PyPI wheel + mac/win/linux
+installers + GitHub Release). Common gotchas — Actions artifact-storage `403`s
+(the quota fills; prune old build artifacts) and verifying what a packaged build
+actually shipped (inspect the dmg's `app.asar`, don't trust an installed app) —
+are written up in the RELEASING.md troubleshooting section.
+
 ## Deployment (Docker / Azure)
 
 > **The Docker build and Azure deployment tooling no longer lives in this repo.**

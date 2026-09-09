@@ -1,24 +1,38 @@
 #!/usr/bin/env bash
-# Cut the next CCP4i2 alpha in one command.
+# Cut the next CCP4i2 alpha.
 #
-# Encodes the whole pre-flight that was previously hand-driven: sync the branch,
-# bump every version location in lockstep, verify they agree, commit, tag, push.
-# Pushing the tag triggers .github/workflows/release.yml (verify -> PyPI wheel ->
-# mac/win/linux installers -> GitHub Release).
+# The `django` branch is protected by a ruleset: EVERY change must go through a
+# pull request with all required checks green, and merge COMMITS are disabled
+# (squash/rebase only). A direct `git push ... django` is rejected with GH006,
+# so the release is a TWO-STEP flow, not one push:
+#
+#   Step 1 (--pr, the default): bump every version location in lockstep, commit
+#   on a release-vX branch, push it, and open the PR against django. Stops there.
+#
+#   Step 2 (--tag): AFTER that PR has been reviewed, gone green, and been
+#   squash-merged, tag the merged commit on django and push ONLY the tag. The
+#   tag push is what fires .github/workflows/release.yml (verify -> PyPI wheel ->
+#   mac/win/linux installers -> GitHub Release).
 #
 # The ONE source of truth is server/ccp4i2/__init__.py (MAJOR/MINOR/PATCH +
-# PRERELEASE). This script derives the next version and keeps the desktop app's
-# exact-pin default (client/main/ccp4i2-server-version.ts) in sync.
+# PRERELEASE). Step 1 derives the next version and keeps the desktop app's
+# exact-pin default (client/main/ccp4i2-server-version.ts) in sync; step 2 reads
+# back whatever version actually landed on django and tags that, so the tag can
+# never disagree with the merged bump.
+#
+# Full walkthrough, gotchas (artifact-storage 403s, verifying the real packaged
+# build): docs/RELEASING.md.
 #
 # Usage:
-#   scripts/cut-alpha.sh              # bump PRERELEASE aN -> a(N+1), tag, push
-#   scripts/cut-alpha.sh --version 3.1.0b1   # set an explicit version
-#   scripts/cut-alpha.sh --dry-run    # show what it WOULD do, change nothing
-#   scripts/cut-alpha.sh --no-push    # commit + tag locally, don't push (no release)
+#   scripts/cut-alpha.sh                 # step 1: bump aN->a(N+1), branch, push, PR
+#   scripts/cut-alpha.sh --version 3.1.0b1   # step 1 with an explicit version
+#   scripts/cut-alpha.sh --tag           # step 2 (after merge): tag django, push tag
+#   scripts/cut-alpha.sh --dry-run       # show what the chosen step WOULD do
+#   scripts/cut-alpha.sh --no-push       # step 1: commit on the branch locally only
 #
 # Requires: run from the repo root, on/for the `django` branch, with push access
-# to the ccp4 remote (uses `gh auth token` if the plain remote push is unauth'd).
-# Refuses to run with a dirty tree (except the version files it edits).
+# to the ccp4 remote (uses `gh auth token` if the plain remote push is unauth'd)
+# and the `gh` CLI. Refuses to run with a dirty tree (except the files it edits).
 
 set -euo pipefail
 
@@ -36,14 +50,16 @@ REMOTE="$(git remote -v | awk '/github.com[:\/]ccp4\/ccp4i2(\.git)? \(push\)/ {p
 
 DRY_RUN=0
 NO_PUSH=0
+TAG_MODE=0
 EXPLICIT_VERSION=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
     --dry-run) DRY_RUN=1 ;;
     --no-push) NO_PUSH=1 ;;
+    --tag) TAG_MODE=1 ;;
     --version) EXPLICIT_VERSION="${2:?--version needs an argument}"; shift ;;
-    -h|--help) sed -n '2,30p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,40p' "$0"; exit 0 ;;
     *) echo "unknown arg: $1" >&2; exit 2 ;;
   esac
   shift
@@ -72,6 +88,42 @@ fi
 # --- Sync to upstream ------------------------------------------------------
 say "Fetching $REMOTE/$BRANCH"
 git fetch "$REMOTE" --tags -q
+
+version_on() {  # read the MAJOR.MINOR.PATCH+PRERELEASE recorded at a git ref
+  git show "$1:$INIT" | python3 -c "import re,sys; t=sys.stdin.read(); g=lambda k:re.search(rf'^{k} *= *(.+)', t, re.M).group(1).strip().strip('\"'); print(f\"{g('MAJOR')}.{g('MINOR')}.{g('PATCH')}{g('PRERELEASE')}\")"
+}
+push_url() {  # authenticated push URL if the plain remote push is unauth'd
+  local token; token="$(gh auth token 2>/dev/null || true)"
+  [ -n "$token" ] && echo "https://x-access-token:${token}@github.com/ccp4/ccp4i2.git" || echo "$REMOTE"
+}
+
+# --- Step 2 (--tag): tag the merged bump on django, push the tag -----------
+if [ "$TAG_MODE" = 1 ]; then
+  MERGED_VER="$(version_on "$REMOTE/$BRANCH")"
+  TAG="v${MERGED_VER}"
+  say "Version on $REMOTE/$BRANCH: $MERGED_VER   ->   tag $TAG"
+  # The bump must already be merged. If the tip of django is not a release
+  # commit for this version, the PR from step 1 has not landed yet.
+  git log -1 --format='%s' "$REMOTE/$BRANCH" | grep -q "release: ccp4i2 $MERGED_VER" \
+    || die "the tip of $REMOTE/$BRANCH is not 'release: ccp4i2 $MERGED_VER' — has the release PR merged? (step 1 opens it; merge it first)"
+  if git ls-remote --tags "$REMOTE" "refs/tags/$TAG" | grep -q "$TAG"; then
+    die "tag $TAG already exists on $REMOTE — this release was already tagged."
+  fi
+  if curl -fsS "https://pypi.org/pypi/ccp4i2/${MERGED_VER}/json" >/dev/null 2>&1; then
+    die "ccp4i2 $MERGED_VER is ALREADY on PyPI (immutable) — already released."
+  fi
+  if [ "$DRY_RUN" = 1 ]; then
+    say "DRY RUN — would tag $REMOTE/$BRANCH ($(git rev-parse --short "$REMOTE/$BRANCH")) as $TAG and push it (fires release.yml)."
+    exit 0
+  fi
+  git tag -a "$TAG" "$REMOTE/$BRANCH" -m "CCP4i2 $MERGED_VER"
+  say "Pushing $TAG to $REMOTE (this triggers the release)"
+  git push "$(push_url)" "$TAG"
+  say "Released: $TAG pushed. Watch: gh run watch --repo ccp4/ccp4i2 \$(gh run list --repo ccp4/ccp4i2 --workflow release.yml --branch $TAG --limit 1 --json databaseId -q '.[0].databaseId')"
+  exit 0
+fi
+
+# --- Step 1 continues: sync local django so the release branch forks from it
 BEHIND="$(git rev-list --count HEAD.."$REMOTE/$BRANCH" 2>/dev/null || echo 0)"
 if [ "$BEHIND" -gt 0 ]; then
   [ "$DRY_RUN" = 1 ] && die "local $BRANCH is $BEHIND behind $REMOTE/$BRANCH; sync first (dry-run won't touch git)"
@@ -120,14 +172,16 @@ say "ccp4i2-api: wheel floor >=$FLOOR   lock pin ==$LOCKPIN"
 verlte() { python3 -c "import re,sys; f=lambda v:[int((re.match(r'\d*',p).group() or 0)) for p in v.split('.')]; sys.exit(0 if f('$1')>=f('$2') else 1)"; }
 verlte "$LOCKPIN" "$FLOOR" || die "runtime lock ccp4i2-api==$LOCKPIN < wheel floor >=$FLOOR. Update $LOCK (and re-test) before releasing — the app installs the LOCK version."
 
-# --- Apply the version bumps ----------------------------------------------
+# --- Apply the version bumps (step 1) -------------------------------------
 TODAY="$(date +'%Y, %-m, %-d')"
+RELEASE_BRANCH="release-$TAG"
 if [ "$DRY_RUN" = 1 ]; then
-  say "DRY RUN — would set:"
-  echo "    $INIT        PRERELEASE = \"$NEW_PRE\"  (+ __version_date__ = datetime($TODAY))"
-  echo "    $CLIENT_VER  default pin -> \"$NEW_VER\""
-  echo "    commit: 'release: ccp4i2 $NEW_VER'"
-  echo "    tag+push: $TAG -> $REMOTE   (triggers release.yml)"
+  say "DRY RUN — step 1 would:"
+  echo "    bump $INIT        PRERELEASE = \"$NEW_PRE\"  (+ date datetime($TODAY))"
+  echo "    bump $CLIENT_VER  default pin -> \"$NEW_VER\""
+  echo "    commit 'release: ccp4i2 $NEW_VER' on branch $RELEASE_BRANCH"
+  echo "    push $RELEASE_BRANCH and open a PR into $BRANCH"
+  echo "    (then, after the PR is merged: scripts/cut-alpha.sh --tag)"
   exit 0
 fi
 
@@ -145,28 +199,33 @@ GOT="$(python3 -c "import re; t=open('$INIT').read(); g=lambda k:re.search(rf'^{
 [ "$GOT" = "$NEW_VER" ] || die "post-edit version is '$GOT', expected '$NEW_VER' — check $INIT"
 grep -q "|| \"$NEW_VER\"" "$CLIENT_VER" || die "client pin didn't update to $NEW_VER"
 
-# --- Commit, tag, push -----------------------------------------------------
+# --- Commit on a release branch, push, open the PR ------------------------
+# django is PR-only (a direct push is rejected with GH006), so the bump lands
+# via a PR; the tag is pushed separately by --tag once it has merged.
+git checkout -b "$RELEASE_BRANCH" 2>/dev/null || git checkout "$RELEASE_BRANCH"
 git add "$INIT" "$CLIENT_VER"
 git commit -q -m "release: ccp4i2 $NEW_VER
 
 Automated alpha cut via scripts/cut-alpha.sh (bump PRERELEASE + exact-pin
-default in lockstep). Pushing tag $TAG triggers the release workflow.
+default in lockstep). After this PR merges, run scripts/cut-alpha.sh --tag to
+tag the merged commit and fire the release workflow.
 
-Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
-git tag -a "$TAG" -m "CCP4i2 $NEW_VER"
-
-TOKEN="$(gh auth token 2>/dev/null || true)"
-PUSH_URL="$REMOTE"
-[ -n "$TOKEN" ] && PUSH_URL="https://x-access-token:${TOKEN}@github.com/ccp4/ccp4i2.git"
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 
 if [ "$NO_PUSH" = 1 ]; then
-  say "Committed + tagged locally ($TAG). --no-push: NOT pushing. To release:"
-  echo "    git push $REMOTE $BRANCH && git push $REMOTE $TAG"
+  say "Committed on $RELEASE_BRANCH locally. --no-push: NOT pushing / no PR. To continue:"
+  echo "    git push $REMOTE $RELEASE_BRANCH && gh pr create --base $BRANCH --head $RELEASE_BRANCH"
   exit 0
 fi
 
-say "Pushing $BRANCH + $TAG to $REMOTE (this triggers the release)"
-git push "$PUSH_URL" "$BRANCH"
-git push "$PUSH_URL" "$TAG"
+say "Pushing $RELEASE_BRANCH to $REMOTE"
+git push -u "$(push_url)" "$RELEASE_BRANCH"
 
-say "Released: tag $TAG pushed. Watch: gh run watch --repo ccp4/ccp4i2 \$(gh run list --repo ccp4/ccp4i2 --workflow release.yml --branch $TAG --limit 1 --json databaseId -q '.[0].databaseId')"
+say "Opening the release PR into $BRANCH"
+gh pr create --repo ccp4/ccp4i2 --base "$BRANCH" --head "$RELEASE_BRANCH" \
+  --title "release: ccp4i2 $NEW_VER" \
+  --body "Version bump to \`$NEW_VER\` — PRERELEASE + the desktop exact-pin default, in lockstep. Merge this (squash), then run \`scripts/cut-alpha.sh --tag\`: it tags the merged commit on \`$BRANCH\` and pushes the tag, firing the release workflow (PyPI wheel + mac/win/linux installers + GitHub Release)." \
+  || die "gh pr create failed — the branch pushed, so open the PR by hand (base $BRANCH, head $RELEASE_BRANCH)."
+
+say "Step 1 done. Next: review + wait for all checks green + squash-merge the PR, then run:"
+echo "    scripts/cut-alpha.sh --tag"
