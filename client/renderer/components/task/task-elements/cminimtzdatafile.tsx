@@ -120,7 +120,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
         // A monolithic MTZ can be split here into two mini-MTZs from the same
         // source bytes -- F/SIGF (this param) and the free-R sibling below --
         // so capture the note once and apply it to both.
-        const provenance = await requestImportProvenance(file.name, file.size);
+        const provenance = await requestImportProvenance(file.name);
 
         // Read file and upload using centralized uploadFileParam (with local cache patching)
         const fileBuffer = await readFilePromise(file, "ArrayBuffer");

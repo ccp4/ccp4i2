@@ -6,7 +6,6 @@ import {
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { doRetrieve, useApi } from "../../../api";
 import { useJob, usePrevious } from "../../../utils";
-import { useImportProvenance } from "../../../providers/import-provenance-provider";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { FieldRow } from "../task-elements/field-row";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -208,7 +207,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useFileDigest, useTaskItem, mutateValidation, uploadFileParam } =
     useJob(job.id);
-  const { requestImportProvenance } = useImportProvenance();
 
   const { item: HKLINItem, value: HKLINValue } = useTaskItem("HKLIN");
   const oldHKLINValue = usePrevious(HKLINValue);
@@ -663,22 +661,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         }
       }
 
-      // Upload the file
+      // Upload the file. This is a derived upload -- the user picked HKLIN
+      // (which prompted for provenance and stored the note on that file); this
+      // splits it into HKLIN_OBS. Being programmatic, not a user pick, it does
+      // not prompt again.
       if (columnPath && columnPath.trim().length > 0 && HKLIN_OBSItem) {
-        // Capture a provenance note (no-op unless enabled). Dedup in the
-        // provider means picking HKLIN and this derived obs upload of the same
-        // bytes ask at most once.
-        const provenance = await requestImportProvenance(file.name, file.size);
         await uploadFileParam({
           objectPath: HKLIN_OBSItem._objectPath,
           file: file,
           fileName: file.name,
           columnSelector: columnPath,
-          description: provenance ?? undefined,
         });
       }
     },
-    [HKLINDigest, HKLIN_OBSItem, forceSetHKLIN_OBS_COLUMNS, forceSetHKLIN_OBS_CONTENT_FLAG, uploadFileParam, requestImportProvenance]
+    [HKLINDigest, HKLIN_OBSItem, forceSetHKLIN_OBS_COLUMNS, forceSetHKLIN_OBS_CONTENT_FLAG, uploadFileParam]
   );
 
   // Handle HKLIN file change (trigger column dialog for MTZ)

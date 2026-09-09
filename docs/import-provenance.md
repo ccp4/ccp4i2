@@ -81,37 +81,40 @@ user-initiated **local-file** import, and both are wired:
 
 | Uploader | Wired? | Covers |
 |---|---|---|
-| `csimpledatafile` (`CSimpleDataFileElement`) | ✅ | generic data files, **coordinates** (`cpdbdatafile` renders it), sequences, dictionaries, TLS, … |
-| `cminimtzdatafile` (`CMiniMtzDataFileElement`) | ✅ | **MTZ** obs/map/phases (`CObsDataFile` etc.), and **free-R** (`cfreerfile` wraps it); the primary upload and its free-R-sibling upload share one note |
-| `import_merged` (task interface) | ✅ | the split-on-import obs upload (`HKLIN → HKLIN_OBS`) |
+| `csimpledatafile` (`CSimpleDataFileElement`) | ✅ | generic data files, **coordinates** (`cpdbdatafile` renders it), sequences, dictionaries, TLS, and the raw MTZ pick in `import_merged` (`CGenericReflDataFile` HKLIN) |
+| `cminimtzdatafile` (`CMiniMtzDataFileElement`) | ✅ | **MTZ** obs/map/phases (`CObsDataFile` etc.), and **free-R** (`cfreerfile` wraps it); one prompt on the pick, applied to both the F/SIGF and the free-R-sibling upload |
 | `fetch-file-for-param` (fetch from the internet / PDB) | — | *deferred*: the source is a URL/accession, already self-describing; a future touch could auto-record it as the note without prompting |
 
+`import_merged` needs no wiring of its own: the user picks HKLIN through
+`csimpledatafile` (which prompts and stores the note on that file), and the
+subsequent split into `HKLIN_OBS` is a *derived* upload — see the rule below.
 Task interfaces that render standard file elements — **`splitMtz`**, the
-`Import*` family — are covered automatically through the two element uploaders;
-they need no per-interface change.
+`Import*` family — are likewise covered through the element uploaders.
 
-### The short-window dedup (why wiring liberally is safe)
+### One prompt per pick — no dedup
 
-One user action can drive several `uploadFileParam` calls for the *same* bytes:
-a monolithic MTZ split into separate F/SIGF and free-R mini-MTZs, or
-`import_merged` re-uploading a split of the file the user just picked (which may
-itself have prompted when picked). `requestImportProvenance(name, size)` caches its answer
-per `(name, size)` for `DEDUP_WINDOW_MS` (30 s), so the burst asks **once** and
-the rest inherit the note silently. The window is short enough never to bridge
-two separate, deliberate imports.
+The prompt fires at the single moment the user picks a file from disk. A
+monolithic MTZ split into F/SIGF and free-R, or `import_merged` re-uploading a
+split of the file just picked, produces *further* `uploadFileParam` calls —
+but those are **derived, not user picks**, so they never call
+`requestImportProvenance` and never prompt. The note is captured once, at the
+pick, and stored on the file the user chose. Because there is only ever one
+call per pick, there is no cross-call dedup and no timing window to reason
+about. (`cminimtzdatafile` captures the note once and passes it to both the
+F/SIGF and free-R uploads explicitly.)
 
 ### Adding it to a new user-pick uploader
 
 ```ts
 const { requestImportProvenance } = useImportProvenance();
 // ... in the user-pick handler, before uploadFileParam:
-const provenance = await requestImportProvenance(file.name, file.size);
+const provenance = await requestImportProvenance(file.name);
 await uploadFileParam({ /* ... */, description: provenance ?? undefined });
 ```
 
-Do **not** add it to genuinely programmatic uploads that have no user behind
-them — those should never prompt. (Derived uploads of a just-picked file are
-fine to wire: the dedup collapses them.)
+Call it **only** for a genuine from-disk pick, and pass the note to every
+upload that pick produces (including derived splits). Never call it from a
+programmatic upload that has no user behind it.
 
 ## FileExport deferred
 

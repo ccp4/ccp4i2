@@ -44,7 +44,6 @@ import { ACTIVE_JOB_STATUSES, useJob, useProject, useProjectFiles } from "../../
 import { CCP4i2TaskElementProps } from "./task-element";
 import { File as CCP4i2File, nullFile, Project } from "../../../types/models";
 import { FileMenuExtraItem, useFileMenu } from "../../../providers/file-context-menu";
-import { useImportProvenance } from "../../../providers/import-provenance-provider";
 import { ErrorTrigger } from "./error-info";
 import { InputFileFetch } from "./input-file-fetch";
 import { InputFileUpload } from "./input-file-upload";
@@ -176,7 +175,6 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     onChange,
   });
   const { setFileMenuAnchorEl, setFile, setExtraMenuItems } = useFileMenu();
-  const { forgetImportProvenance } = useImportProvenance();
 
   // Data and state
   // Poll for files only while the job is active, so task widgets see newly
@@ -374,15 +372,10 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     ) => {
       if (!item?._objectPath || !projects) return;
 
-      const isClear = reason === "clear" || selectedFile === nullFile;
-      // A deliberate clear starts a fresh import cycle: drop the burst-dedup so
-      // re-picking the same file asks for provenance again rather than silently
-      // reusing the note from the import just cleared.
-      if (isClear) forgetImportProvenance();
-
-      const writeValue = isClear
-        ? null
-        : fileItemToParameterArg(
+      const writeValue =
+        reason === "clear" || selectedFile === nullFile
+          ? null
+          : fileItemToParameterArg(
               selectedFile!,
               item._objectPath,
               projectJobs || [],
@@ -405,7 +398,6 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
       fileItemToParameterArg,
       commit,
       value,
-      forgetImportProvenance,
       mutateContainer,
       mutateContent,
       mutateDigest,
