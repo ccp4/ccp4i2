@@ -638,6 +638,33 @@ const EnhancedMtzColumnDialogComponent: React.FC<EnhancedMtzColumnDialogProps> =
     }
   }, [columnOptions, handleCancel]);
 
+  // Auto-accept when there is nothing to choose: a single reflection column
+  // and no genuine second decision (not multi-selecting, and no FreeR
+  // include/exclude toggle). Accepting through the component's own
+  // handleAccept keeps the result (content flags, selectors, FreeR) built
+  // exactly as the OK button would, and we render nothing so no dialog flashes.
+  const totalReflectionOptions = useMemo(
+    () =>
+      Object.values(columnOptions).reduce(
+        (count, options) => count + options.length,
+        0
+      ),
+    [columnOptions]
+  );
+  const autoAccept =
+    !multiSelectMode && !showFreeR && totalReflectionOptions === 1;
+  useEffect(() => {
+    if (
+      autoAccept &&
+      state.primarySignature &&
+      state.columnValues[state.primarySignature]
+    ) {
+      handleAccept();
+    }
+  }, [autoAccept, state.primarySignature, state.columnValues, handleAccept]);
+
+  if (autoAccept) return null;
+
   return (
     <SimpleDialog
       open={open}
@@ -648,7 +675,7 @@ const EnhancedMtzColumnDialogComponent: React.FC<EnhancedMtzColumnDialogProps> =
         },
       }}
     >
-      <DialogTitle>{item._objectPath}</DialogTitle>
+      <DialogTitle>Select reflection data to import</DialogTitle>
 
       <DialogContent>
         {/* Reflection columns section */}
