@@ -185,6 +185,12 @@ export interface UploadFileParamArg {
   columnSelector?: string;
   /** Enhanced multi-selector format for multiple representations */
   columnSelectors?: ColumnSelectorEntry[];
+  /**
+   * Free-text provenance note ("where did this come from?"), when the user
+   * supplied one via the import-provenance prompt. Stored on the file's import
+   * record. Omit for programmatic/derived imports.
+   */
+  description?: string;
 }
 
 export interface JobData {
@@ -1131,7 +1137,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         return undefined;
       }
 
-      const { objectPath, file, fileName, columnSelector, columnSelectors } = uploadArg;
+      const { objectPath, file, fileName, columnSelector, columnSelectors, description } = uploadArg;
 
       // Enqueue the operation to ensure sequential execution
       return parameterQueue.enqueue(async () => {
@@ -1139,6 +1145,9 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           const formData = new FormData();
           formData.append("object_path", objectPath);
           formData.append("file", file, fileName);
+          if (description?.trim()) {
+            formData.append("description", description.trim());
+          }
           if (columnSelector?.trim()) {
             formData.append("column_selector", columnSelector);
           }

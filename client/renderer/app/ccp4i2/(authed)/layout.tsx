@@ -1,6 +1,7 @@
 "use client";
 import { PropsWithChildren } from "react";
 import { DeleteDialogProvider } from "@/providers/delete-dialog";
+import { ImportProvenanceProvider } from "@/providers/import-provenance-provider";
 import { FindInPageProvider } from "@/providers/find-in-page-provider";
 import { RecentlyStartedJobsProvider } from "@/providers/recently-started-jobs-context";
 import { CCP4i2App } from "@/providers/ccp4i2-app";
@@ -36,13 +37,15 @@ export default function AuthedLayout(props: PropsWithChildren) {
       <FindInPageProvider>
         <RecentlyStartedJobsProvider>
           <DeleteDialogProvider>
-            {REQUIRE_AUTH ? (
-              <RequireAuth>
+            <ImportProvenanceProvider>
+              {REQUIRE_AUTH ? (
+                <RequireAuth>
+                  <CCP4i2App>{props.children}</CCP4i2App>
+                </RequireAuth>
+              ) : (
                 <CCP4i2App>{props.children}</CCP4i2App>
-              </RequireAuth>
-            ) : (
-              <CCP4i2App>{props.children}</CCP4i2App>
-            )}
+              )}
+            </ImportProvenanceProvider>
           </DeleteDialogProvider>
         </RecentlyStartedJobsProvider>
       </FindInPageProvider>

@@ -415,10 +415,17 @@ class FileExport(Model):
 
 
 class FileImport(Model):
-    # MN: Note this has dropped fields annotation lastmodifiedtime importnumber
+    # MN: Note this has dropped fields lastmodifiedtime importnumber
     file = OneToOneField(File, on_delete=CASCADE, primary_key=True)
     time = DateTimeField(default=timezone.now)
     name = TextField()
+    # Free-text provenance narrative the user gives when importing a file
+    # ("where did this come from?"). This is the Qt-era ImportFiles.Annotation,
+    # named `description` here to keep it clearly distinct from File.annotation
+    # -- which is an auto-generated short label ("Imported from data.mtz;
+    # Columns: F, SIGF") that the GUI recycles as the file's display name in
+    # lists. Blank unless the user opted to describe the source at import time.
+    description = TextField(blank=True, default="")
     # `checksum` is the checksum of `file` as it ended up in the project. For
     # anything derived --- an MTZ split down to the columns one parameter
     # wanted --- that is the checksum of the derivative, not of what the user
