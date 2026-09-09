@@ -61,15 +61,18 @@ file is ever prompted.
 
 ## The preference (and its default)
 
-`captureImportProvenance` is a per-browser UI preference, toggled from the
-**View** menu. It is **off by default** — prompting on every import is the
-deliberately-tedious behaviour, so it is opt-in rather than opt-out. Flipping
-the default to on is a one-line change in `ui-preferences.ts` (`DEFAULTS`).
+`captureImportProvenance` is a per-browser UI preference. It is **on by
+default** (the Qt-era behaviour). Two ways to change it, neither needing a
+settings pane:
 
-> Decision flagged for review: the request was phrased as "provide the
-> behaviour, backed by a preference to switch it off", which reads as
-> *default-on*. I chose default-**off** to avoid a dialog on every alpha
-> tester's import; say the word to flip it.
+- The prompt itself carries a **"Don't ask again"** checkbox. Ticking it and
+  finishing (Save or Skip) turns the preference off from that first exposure
+  on — this import's note is still taken, and no further imports prompt.
+- The **View** menu toggles it either way ("Ask for Import Provenance" /
+  "Don't Ask for Import Provenance"), so a user who opted out can opt back in.
+
+The preference is read at each import (`readUiPreference`), so a change from
+either route takes effect on the very next import.
 
 ## Coverage
 

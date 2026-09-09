@@ -15,10 +15,11 @@ export type UiPreferenceKey = "showJobIcons" | "captureImportProvenance";
 const DEFAULTS: Record<UiPreferenceKey, boolean> = {
   showJobIcons: true,
   // When on, importing a local file prompts for a free-text provenance note
-  // ("where did this come from?") stored on the file's import record. Off by
-  // default: it is the deliberately-tedious Qt-era behaviour, opt-in for those
-  // who want the audit trail. Flip this to `true` to prompt by default.
-  captureImportProvenance: false,
+  // ("where did this come from?") stored on the file's import record. On by
+  // default (the Qt-era behaviour); the prompt itself offers a "Don't ask
+  // again" checkbox that turns this off, so a user can opt out at first
+  // exposure without opening any settings. Also toggled from the View menu.
+  captureImportProvenance: true,
 };
 
 export function readUiPreference(key: UiPreferenceKey): boolean {
