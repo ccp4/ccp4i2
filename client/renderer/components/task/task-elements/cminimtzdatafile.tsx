@@ -7,6 +7,7 @@ import { BaseSpacegroupCellElement } from "./base-spacegroup-cell-element";
 import { readFilePromise, useJob, useProject } from "../../../utils";
 import { selectMtzColumnsEnhanced, SiblingInput } from "./mtz-column-dialog";
 import { usePopcorn } from "../../../providers/popcorn-provider";
+import { useImportProvenance } from "../../../providers/import-provenance-provider";
 
 /** MTZ-related class names that are siblings of interest */
 const MTZ_SIBLING_CLASSES = [
@@ -24,6 +25,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
   const { useTaskItem, useFileDigest, uploadFileParam, container } = useJob(job.id);
   const { mutateJobs, mutateFiles } = useProject(job.project);
   const { setMessage } = usePopcorn();
+  const { requestImportProvenance } = useImportProvenance();
   const { item, value } = useTaskItem(itemName);
 
   // Only fetch digest when a file has been uploaded (has dbFileId)
@@ -114,6 +116,11 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
           return;
         }
 
+        // Ask for a provenance note once (no-op unless the preference is on).
+        // The same physical file may populate two parameters (F/SIGF and the
+        // free-R sibling below), so capture the note here and apply it to both.
+        const provenance = await requestImportProvenance(file.name, file.size);
+
         // Read file and upload using centralized uploadFileParam (with local cache patching)
         const fileBuffer = await readFilePromise(file, "ArrayBuffer");
         const fileBlob = new Blob([fileBuffer as ArrayBuffer], { type: "application/CCP4-mtz-file" });
@@ -126,6 +133,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
           // Send both for backward compatibility
           columnSelector: result.columnSelector || undefined,
           columnSelectors: result.reflectionSelections,
+          description: provenance ?? undefined,
         });
 
         // Handle response
@@ -145,6 +153,8 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
               file: fileBlob,
               fileName: file.name,
               columnSelector: result.freeRSelection.columnSelector,
+              // Same physical file, same provenance note as the primary upload.
+              description: provenance ?? undefined,
             });
           }
         }
@@ -167,7 +177,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
         );
       }
     },
-    [item, getSiblingInputs, onChange, uploadFileParam, mutateJobs, mutateFiles, mutateDigest, setMessage]
+    [item, getSiblingInputs, onChange, uploadFileParam, requestImportProvenance, mutateJobs, mutateFiles, mutateDigest, setMessage]
   );
 
   const isVisible = useMemo(

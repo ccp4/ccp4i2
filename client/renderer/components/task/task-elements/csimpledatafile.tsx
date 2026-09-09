@@ -32,7 +32,10 @@ export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (
     // Ask for a provenance note first (a no-op unless the user has turned the
     // preference on), so it rides along in the same upload POST. null means
     // "don't attach"; "" means the user chose Skip.
-    const provenance = await requestImportProvenance(selectedFiles[0].name);
+    const provenance = await requestImportProvenance(
+      selectedFiles[0].name,
+      selectedFiles[0].size,
+    );
 
     const fileBuffer = await readFilePromise(selectedFiles[0], "ArrayBuffer");
 

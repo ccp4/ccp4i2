@@ -71,23 +71,44 @@ the default to on is a one-line change in `ui-preferences.ts` (`DEFAULTS`).
 > *default-on*. I chose default-**off** to avoid a dialog on every alpha
 > tester's import; say the word to flip it.
 
-## Extending to other upload components
+## Coverage
 
-`csimpledatafile` (the generic `CDataFileElement`) is wired as the reference
-implementation and covers most file parameters. Specialised file widgets that
-call `uploadFileParam` directly for a **user-picked** file — e.g.
-`cminimtzdatafile`, `cpdbdatafile`, `casudatafile`, `cimportunmerged` — opt in
-with the same two lines:
+Only four components call `uploadFileParam` directly; two of them own every
+user-initiated **local-file** import, and both are wired:
+
+| Uploader | Wired? | Covers |
+|---|---|---|
+| `csimpledatafile` (`CSimpleDataFileElement`) | ✅ | generic data files, **coordinates** (`cpdbdatafile` renders it), sequences, dictionaries, TLS, … |
+| `cminimtzdatafile` (`CMiniMtzDataFileElement`) | ✅ | **MTZ** obs/map/phases (`CObsDataFile` etc.), and **free-R** (`cfreerfile` wraps it); the primary upload and its free-R-sibling upload share one note |
+| `import_merged` (task interface) | ✅ | the split-on-import obs upload (`HKLIN → HKLIN_OBS`) |
+| `fetch-file-for-param` (fetch from the internet / PDB) | — | *deferred*: the source is a URL/accession, already self-describing; a future touch could auto-record it as the note without prompting |
+
+Task interfaces that render standard file elements — **`splitMtz`**, the
+`Import*` family — are covered automatically through the two element uploaders;
+they need no per-interface change.
+
+### The short-window dedup (why wiring liberally is safe)
+
+One user action can drive several `uploadFileParam` calls for the *same* bytes:
+a mini-MTZ populating both F/SIGF and the free-R set, or `import_merged`
+re-uploading a split of the file the user just picked (which may itself have
+prompted when picked). `requestImportProvenance(name, size)` caches its answer
+per `(name, size)` for `DEDUP_WINDOW_MS` (30 s), so the burst asks **once** and
+the rest inherit the note silently. The window is short enough never to bridge
+two separate, deliberate imports.
+
+### Adding it to a new user-pick uploader
 
 ```ts
 const { requestImportProvenance } = useImportProvenance();
 // ... in the user-pick handler, before uploadFileParam:
-const provenance = await requestImportProvenance(file.name);
+const provenance = await requestImportProvenance(file.name, file.size);
 await uploadFileParam({ /* ... */, description: provenance ?? undefined });
 ```
 
-Do **not** add it to programmatic upload calls (e.g. the free-R sibling
-auto-import in `cminimtzdatafile`) — those should never prompt.
+Do **not** add it to genuinely programmatic uploads that have no user behind
+them — those should never prompt. (Derived uploads of a just-picked file are
+fine to wire: the dedup collapses them.)
 
 ## FileExport deferred
 
