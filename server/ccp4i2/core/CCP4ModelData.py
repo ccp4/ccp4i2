@@ -2916,6 +2916,73 @@ class CPdbData(CDataFileContent):
         """
         return getattr(self, '_composition', None)
 
+    @property
+    def cell(self):
+        """Unit cell of the loaded model, or None.
+
+        Returns the gemmi ``UnitCell`` (``.a/.b/.c/.alpha/.beta/.gamma``) of the
+        parsed structure, so a coordinate file's cell can be compared against a
+        reflection file's cell (the ``sameCrystalAs`` runtime check). Computed
+        from the gemmi structure on demand and read via ``getattr`` from the
+        ``object.__setattr__``-stored ``_gemmi_structure`` -- deliberately NOT a
+        tracked CData attribute, so it never enters the serialised parameter
+        file. Returns None when the file records no crystallographic cell (gemmi
+        fills an absent CRYST1 with the trivial 1x1x1 cell), so a model without
+        one cannot raise a spurious mismatch.
+        """
+        structure = getattr(self, '_gemmi_structure', None)
+        if structure is None:
+            return None
+        cell = getattr(structure, 'cell', None)
+        if cell is None:
+            return None
+        try:
+            import math
+            a, b, c = cell.a, cell.b, cell.c
+            al, be, ga = cell.alpha, cell.beta, cell.gamma
+            # No CRYST1: gemmi fills the trivial 1x1x1 cell.
+            if a <= 1.0 and b <= 1.0 and c <= 1.0:
+                return None
+            # Non-physical / malformed cell (a zero or negative axis, an angle
+            # outside (0, 180), or a NaN): treat as "no comparable cell" and
+            # skip rather than feed a degenerate cell into the comparison, where
+            # it would either raise or produce a spurious mismatch.
+            for v in (a, b, c, al, be, ga):
+                if v is None or math.isnan(v):
+                    return None
+            if a <= 0.0 or b <= 0.0 or c <= 0.0:
+                return None
+            if not (0.0 < al < 180.0 and 0.0 < be < 180.0 and 0.0 < ga < 180.0):
+                return None
+        except Exception:
+            return None
+        return cell
+
+    @property
+    def spaceGroup(self):
+        """Space-group H-M name of the loaded model, or None.
+
+        Read from the ``object.__setattr__``-stored gemmi structure
+        (``spacegroup_hm``) -- like :pyattr:`cell`, a computed accessor, NOT a
+        tracked CData attribute, so it never enters the serialised parameter
+        file. Returns None when the model declares no meaningful symmetry (an
+        absent CRYST1, or the ``P 1`` placeholder gemmi assigns to a cell-less
+        model), so an unreliable model space group cannot raise a spurious
+        mismatch. See the ``sameCrystalAs`` runtime check.
+        """
+        structure = getattr(self, '_gemmi_structure', None)
+        if structure is None:
+            return None
+        hm = getattr(structure, 'spacegroup_hm', None)
+        if not hm or not str(hm).strip():
+            return None
+        hm = str(hm).strip()
+        # A P 1 space group on a model with no real cell is gemmi's placeholder,
+        # not an assertion of triclinic symmetry -- don't compare against it.
+        if hm.replace(' ', '') in ('P1',) and self.cell is None:
+            return None
+        return hm
+
     def isMMCIF(self) -> bool:
         """
         Check if the loaded coordinate file is in mmCIF format.
