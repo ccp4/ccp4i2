@@ -32,28 +32,56 @@ edits an already-imported block a fresh issue can appear. That is rare and
 low-cost (triage and close the duplicate); the doc is being wound down in favour
 of GitHub anyway.
 
-## Running it
+## Running it from a checkout (works today)
 
-- **Manually:** Actions → *Alpha-doc feedback drain* → **Run workflow**. Tick
-  *dry_run* first to see what it would import without creating anything.
-- **From a checkout:** `DRY_RUN=true python3 .github/scripts/alpha_doc_drain.py`
-  (needs `gh` authenticated).
-
-## Making it periodic
-
-A GitHub **`schedule:`** trigger only fires from the repository's **default
-branch** (currently `main`). This workflow lives on `django` with a manual
-trigger only, so it does not yet run on its own. To make it periodic, carry a
-copy with a `schedule:` block on the default branch — e.g.
-
-```yaml
-on:
-  schedule:
-    - cron: "17 7 * * *"   # daily, ~07:17 UTC
-  workflow_dispatch:
+```bash
+DRY_RUN=true python3 .github/scripts/alpha_doc_drain.py   # report only
+python3 .github/scripts/alpha_doc_drain.py                # create issues
 ```
 
-That is the only durable option: a scheduled Action needs the default branch,
-and there is no off-branch scheduler that survives without it.
+Needs `gh` authenticated (or `GH_TOKEN` set). This is the whole drain — the
+GitHub Actions wrapper below just runs this same script on a schedule.
+
+## Running it as a GitHub Action — needs the default branch
+
+GitHub only registers a workflow that exists on the repository's **default
+branch** (`main`). A workflow living *only* on `django` cannot be triggered at
+all — not on a schedule, and **not even by `workflow_dispatch`** (the API
+returns *"workflow not found on the default branch"*). So there is no way to run
+this as an Action without a file on `main`, and CronCreate-style schedulers do
+not survive without a live session.
+
+The minimum-footprint way to keep the **logic on `django`** while satisfying
+that rule is a small scheduled workflow on `main` that checks out `django` and
+runs this script:
+
+```yaml
+# .github/workflows/alpha-doc-drain.yml  — on main
+name: Alpha-doc feedback drain
+on:
+  schedule:
+    - cron: "17 7 * * *"    # daily, ~07:17 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run: { type: boolean, default: false }
+permissions:
+  issues: write
+jobs:
+  drain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: django }          # take the script from django
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: python3 .github/scripts/alpha_doc_drain.py
+```
+
+`main` then carries only this ~15-line scheduler; the parser and issue logic
+stay on `django`, maintained there. The `alpha-doc-drain.yml` in *this* branch
+is the reference/definition and the `workflow_dispatch` copy for once the
+default-branch scheduler exists.
 
 [doc]: https://docs.google.com/document/d/1mLbsfvJV0JHdHbwOogGfytc4fWh3M-YKtGq9ulXv81M/edit
