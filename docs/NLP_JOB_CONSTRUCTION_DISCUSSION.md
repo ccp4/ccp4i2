@@ -12,6 +12,105 @@
 > Locked decisions: 0. Open questions: many. The point of the document
 > is to surface the design space cleanly, name the trade-offs, and flag
 > what reuses from Compounds NLP and what is genuinely new.
+>
+> **2026 reframe — read §0 first.** A later, zoomed-out pass reframes the
+> whole premise. The original document assumes CCP4i2 *owns* the LLM
+> (Azure client, bespoke system prompt, in-house eval harness). §0 argues
+> the opposite: CCP4i2 should be the **substrate a user's agent drives**,
+> not the owner of its own agent. That recolours much of what follows —
+> the deterministic machinery (§6–§7, slices 1–6) is exactly what an agent
+> facade should expose; the in-house LLM parts (§8, slices 7–10) are demoted
+> to an **optional reference skill**, not the core.
+
+---
+
+## 0. Strategic stance (2026 reframe): substrate, not agent
+
+Prompted by the appearance of capable general-purpose coding/agent harnesses
+(the kind now routinely used to develop CCP4i2 itself) and of demonstrations
+like the Phenix team's end-to-end "AI agent" at IUCr 2026 — raw images →
+processing → space-group call → MR → refinement → Coot, unattended. That demo
+sharpens a fork this document had implicitly taken the wrong branch of.
+
+### 0.1 The fork
+
+- **A — CCP4i2 provides the agent.** It owns the LLM, the orchestration, the
+  prompt-engineering and the eval loop, and ships a pilot that runs pipelines.
+- **B — CCP4i2 provides the substrate.** It exposes its capabilities as
+  tools + context + skills so that *whatever* agent the user brings — Claude,
+  ChatGPT, a lab's own — can drive it competently and safely.
+
+### 0.2 Position: B as the foundation, a thin A on top, and do **not** own the model layer
+
+1. **Know the moat.** CCP4i2's durable asset is decades of crystallographic
+   domain logic — the wrappers, the pipelines, the data model, and above all
+   the **validation** (`validity()` / `runTimeValidity()`, the `sameCrystalAs`
+   cell/space-group checks, the parity tests against the CCP4 binaries). The LLM
+   orchestration is *not* the moat; it is a commodity that reprices every few
+   months. Building the agent means perpetually re-chasing the frontier; being
+   the substrate means riding every model/agent improvement for free.
+
+2. **Agents already drive CCP4i2 — through the API and the CLI, with no bespoke
+   agent of ours.** Whole development-and-release cycles now run this way,
+   succeeding because the repo is *legible* to a general agent (CLAUDE.md,
+   `i2run`, the task registry, the tests). "Provide skills and background to
+   enable the user's agent of choice" is not speculative; it is the observed
+   working mode.
+
+3. **Validation is a stronger guardrail when the agent is external.** The
+   failure modes everyone flags — an agent that stalls, or converges
+   confidently on the *wrong* model — are worse if the tool also owns the agent,
+   because the tool then implicitly endorses the agent's choices. A
+   well-instrumented substrate protects the crystallographer **regardless of
+   which agent drives it**: the agent proposes, CCP4i2's deterministic checks
+   dispose. That is a far more defensible scientific-integrity posture than an
+   oracle that hands back an answer.
+
+4. **Meet the agent at a standard boundary.** See §0.3.
+
+### 0.3 API vs. a curated agent facade (why MCP is a *layer*, not a replacement)
+
+The REST API stays the foundation — nothing here supplants it. But the API is
+shaped for the React client: low-level, CRUD-ish, chatty, and not
+self-describing to a model. An agent wants *fewer, higher-level, intent-shaped,
+already-validated* operations ("construct-and-validate a refinement job from
+this intent", "list recent finished jobs in this project"), plus readable
+context (the task catalogue, a project's job tree, the validation rules). So the
+real choice is not "API vs. MCP" — it is **raw API vs. a curated agent facade
+over it**. Whatever the protocol, a facade is wanted.
+
+**MCP** is simply the low-effort standard for publishing that facade:
+
+- **Zero-glue interoperability** — any MCP-speaking agent auto-discovers the
+  tools (names, descriptions, JSON schemas) and calls them; no per-agent wrapper
+  to hand-write.
+- **Curation & safety** — expose exactly the affordances you choose (validated
+  submit, never raw writes), with agent-oriented descriptions.
+- **Not just tools** — MCP also standardises *resources* (context the agent
+  reads on demand) and *prompts/skills*, so tools **and** the background an agent
+  needs ship as one contract.
+
+Caveat, stated plainly: MCP is **optional**. A capable coding-style agent can
+already drive CCP4i2 via the REST API + `i2run` + good docs (that is exactly how
+this repo is developed today). MCP earns its keep for **plug-and-play with
+off-the-shelf agent apps** and a **curated, context-bundled front door** — as a
+layer on the API, not instead of it.
+
+### 0.4 Consequence for the rest of this document
+
+- The **deterministic substrate** — §6 (the `JobPlan` shape as a validated
+  target), §7 (task-class / output-reference / sub-job / validity resolution),
+  and **slices 1–6** of §15 — is the durable, worth-building asset, and is
+  precisely what an agent facade should expose as tools + resources.
+- The **in-house LLM machinery** — §8 (Azure client, bespoke system prompt),
+  and **slices 7–10** — is *reframed as an optional reference skill*: a
+  batteries-included default driver for users who bring no agent of their own,
+  built on the same open substrate. It is no longer the core deliverable, and
+  owning a model integration is now an explicit non-goal (§16).
+- Read §5's "LLM emits a `JobPlan`" principle as **"the agent (whoever's it is)
+  emits a `JobPlan`; the substrate resolves, validates, and — on explicit human
+  confirmation — submits."** The confirmation discipline (§11) matters *more*,
+  not less, when the proposing agent is not ours.
 
 ---
 
@@ -129,8 +228,14 @@ multi-step plan whose nodes reference each other.
 The Compounds principle was *"LLM emits a structured filter; backend
 applies it"*. The proposed analogue:
 
-> **The LLM emits a structured `JobPlan`; the backend deterministically
-> resolves references, validates against def.xml, and submits.**
+> **An agent emits a structured `JobPlan`; the backend deterministically
+> resolves references, validates against def.xml, and — on explicit human
+> confirmation — submits.**
+
+> **§0 reframe:** "an agent" here is *the user's* agent (via the curated
+> facade of §0.3), or the optional reference skill (§0.4). CCP4i2 owns the
+> right-hand side of the sentence — the resolver, the validator, the
+> submission — not the model that produces the plan.
 
 Concretely:
 
@@ -494,6 +599,25 @@ Each slice is independently shippable behind a feature flag. The first
 five have no LLM dependency at all — they harden the deterministic
 substrate before the model gets near it.
 
+**§0 reframe of the slice plan.** The split the plan already draws is the
+strategic one:
+
+- **Slices 1–6 are the product.** They are the deterministic substrate —
+  resolvers, `JobPlan`, plan validator, depth-1 sub-job synthesis. Ship these
+  *and expose them as an agent facade* (tools + resources; MCP is the low-effort
+  standard, §0.3). This is the durable investment and it stands whether or not
+  we ever ship an LLM ourselves.
+- **Slices 7–10 become the optional reference skill**, not the core. The Azure
+  client + bespoke system prompt (7–8) are the model-layer commodity we should
+  *not* own; a batteries-included default driver for agent-less users can be
+  built on the facade, and a user who brings their own agent skips it entirely.
+  The eval harness + golden set (10) still matter — but as a check on *our
+  reference skill and our resolvers*, not as the moat.
+
+A useful early milestone that the original plan buried: **slices 1–6 exposed
+over MCP, with no LLM at all**, is already a shippable, demonstrable "a user's
+agent can drive CCP4i2" story.
+
 ---
 
 ## 16. Deliberately out of scope (v1)
@@ -512,6 +636,11 @@ To protect against scope creep:
   0.3`"* — better solved by the existing parameter forms; NLP for that
   is uncanny-valley.
 - **Auto-submit** — locked off (§11).
+- **Owning the model/LLM layer (§0).** Being *the* agent, hosting a frontier
+  model, or maintaining a bespoke LLM integration as the core product is now an
+  explicit non-goal. CCP4i2 supplies the validated substrate + a curated facade;
+  the intent-producing agent is the user's. A reference skill on top is allowed
+  (batteries-included), but as one driver among many, never the walled garden.
 
 ---
 
