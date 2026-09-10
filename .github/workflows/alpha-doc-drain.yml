@@ -1,0 +1,32 @@
+name: Alpha-doc feedback drain
+
+# Pulls new tester feedback from the alpha-testing Google Doc's "Feedback"
+# section into GitHub issues (labelled alpha-feedback + from-tester-doc),
+# deduplicating on a hidden fingerprint marker each created issue carries.
+#
+# Trigger: manual for now (Run workflow, with an optional dry-run). A durable
+# *schedule* can only fire from the repo's default branch, so turning this
+# periodic means also carrying a `schedule:` copy on that branch -- see
+# docs/alpha-doc-drain.md.
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Parse and report only; create no issues"
+        type: boolean
+        default: false
+
+permissions:
+  issues: write
+
+jobs:
+  drain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Drain the alpha-testing doc into issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: python3 .github/scripts/alpha_doc_drain.py
