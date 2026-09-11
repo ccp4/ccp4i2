@@ -1,6 +1,7 @@
 "use client";
 import { ProgramLocations } from "@/components/program-locations";
 import { CredentialsPanel } from "@/components/credentials-panel";
+import { GeneralPreferencesPanel } from "@/components/general-preferences-panel";
 import { Divider, Paper, Stack } from "@mui/material";
 import CCP4i2TopBar from "@/components/ccp4i2-topbar";
 
@@ -21,6 +22,8 @@ export default function PreferencesPage() {
     >
       <CCP4i2TopBar title="Preferences" showBackButton backPath="/ccp4i2" />
       <Paper sx={{ flex: 1, minHeight: 0, overflowY: "auto", py: 3 }}>
+        <GeneralPreferencesPanel />
+        <Divider sx={{ my: 2 }} />
         <ProgramLocations />
         <Divider sx={{ my: 2 }} />
         <CredentialsPanel />

@@ -8,10 +8,11 @@ import { TeamsRoutePersistence } from "../components/teams-route-persistence";
 
 // Per-instance title read at request time from INSTANCE_TITLE (server-only env
 // var — NEXT_PUBLIC_* would bake in at build). Lets a single Docker image serve
-// differently-branded deployments. Falls back to "CCP4i2".
+// differently-branded deployments. Falls back to "CCP4i2x" so the desktop
+// window title matches the app/dock name (issue #407).
 export async function generateMetadata() {
   return {
-    title: process.env.INSTANCE_TITLE || "CCP4i2",
+    title: process.env.INSTANCE_TITLE || "CCP4i2x",
     description: "Software for Macromolecular X-Ray Crystallography",
   };
 }
