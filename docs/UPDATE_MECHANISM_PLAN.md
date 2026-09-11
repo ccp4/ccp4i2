@@ -169,6 +169,47 @@ them.
 - **Signing:** is macOS notarization + Windows signing ([#238](https://github.com/ccp4/ccp4i2/issues/238))
   resourced? It gates the only nag-free app-update path.
 
+## Appendix: alpha bootstrap (implemented)
+
+The plan's steps 4–6 (app version-gate → signing → `electron-updater`) can be
+short-circuited **during alpha** into a single working mechanism, because the
+alpha app *already* exact-pins its backend. Implemented in
+[PR #477](https://github.com/ccp4/ccp4i2/pull/477):
+
+1. **`electron-updater`** (GitHub provider) checks the ccp4/ccp4i2 Releases on
+   launch, background-downloads a newer app, and prompts to restart
+   ([`client/main/ccp4i2-updater.ts`](../client/main/ccp4i2-updater.ts)).
+2. The new app launches with a new `CCP4I2_REQUIRED_SERVER_VERSION`; the
+   readiness probe sees the mismatch and pip-installs the matching backend.
+
+So **the app-updater drives the app, and the existing exact-pin drives the
+backend** — no new backend-update code. This is not decoupling (§3): during
+alpha lockstep is *wanted*, so letting the pin pull the backend is exactly
+right. It becomes the GA design only after §3 relaxes the pin to a range and the
+Python side moves to CCP4 UM (§4).
+
+Mechanics worth recording:
+
+- **Metadata + feed:** `build.publish` (github) makes electron-builder emit
+  `app-update.yml` (embedded, tells the app its feed) and `latest*.yml` (the
+  update manifest). `release.yml` builds with `--publish never` and lets the
+  existing `softprops` step upload the installers **plus** `latest*.yml`,
+  `*.blockmap` and the mac `*.zip`.
+- **macOS needs the `zip` target** — electron-updater updates macOS from the
+  zip, not the dmg — and needs the app **signed** (Squirrel.Mac validates the
+  signature). So the alpha bootstrap and the signing switch
+  ([`macos-signing-setup.md`](macos-signing-setup.md), `ENABLE_MAC_SIGNING`) are
+  a pair: unsigned macOS silently cannot self-update.
+- **Coverage:** Windows (NSIS) and Linux AppImage self-update fully; macOS only
+  when signed; the Linux **`.deb` has no electron-updater path** — those users
+  update via CCP4 UM / apt / manual, which is why the plan keeps a version-gate
+  prompt as the cross-platform floor.
+
+The alpha bootstrap is therefore a faithful, smaller rehearsal of the full plan:
+it exercises the real update plumbing (feed, metadata, signing, per-platform
+coverage) while the pin stands in for the compatibility contract that §3 will
+later make explicit.
+
 ---
 
 *Straw man for discussion — concrete enough to push against, not a settled
