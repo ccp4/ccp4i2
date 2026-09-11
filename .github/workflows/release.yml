@@ -139,15 +139,27 @@ jobs:
         include:
           - os: macos-latest
             script: package-mac
-            glob: client/release/*.dmg
+            # .zip + latest-mac.yml are what electron-updater consumes on macOS
+            # (it updates from the zip, not the dmg); *.blockmap enables deltas.
+            glob: |
+              client/release/*.dmg
+              client/release/*.zip
+              client/release/latest-mac.yml
+              client/release/*.blockmap
           - os: windows-latest
             script: package-win
-            glob: client/release/*.exe
+            glob: |
+              client/release/*.exe
+              client/release/latest.yml
+              client/release/*.blockmap
           - os: ubuntu-latest
             script: package-linux-x64
+            # latest-linux.yml drives AppImage auto-update; the .deb has no
+            # auto-update mechanism (updated via CCP4 UM / apt / manual).
             glob: |
               client/release/*.AppImage
               client/release/*.deb
+              client/release/latest-linux.yml
     runs-on: ${{ matrix.os }}
     env:
       # Stamp the exact backend version from the tag so the released app pins
@@ -299,7 +311,11 @@ jobs:
         # Exactly one of EB_MAC_ARGS / EB_WIN_ARGS is ever set (per-OS gate); the
         # other is empty. Both empty -> unsigned build (Linux, or secrets absent).
         shell: bash
-        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS}
+        # --publish never: electron-builder still generates the auto-update
+        # metadata (latest*.yml + *.blockmap) because a `publish` provider is
+        # configured, but does NOT upload — the release job below attaches every
+        # artifact (installers + metadata) to the GitHub Release via softprops.
+        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS} --publish never
         working-directory: client
 
       - name: Upload installer
