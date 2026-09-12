@@ -139,27 +139,29 @@ jobs:
         include:
           - os: macos-latest
             script: package-mac
-            # .zip + latest-mac.yml are what electron-updater consumes on macOS
-            # (it updates from the zip, not the dmg); *.blockmap enables deltas.
+            # .zip + the channel yml (alpha-mac.yml for pre-releases,
+            # latest-mac.yml for stable) are what electron-updater consumes on
+            # macOS (it updates from the zip, not the dmg); *.blockmap = deltas.
             glob: |
               client/release/*.dmg
               client/release/*.zip
-              client/release/latest-mac.yml
+              client/release/*.yml
               client/release/*.blockmap
           - os: windows-latest
             script: package-win
             glob: |
               client/release/*.exe
-              client/release/latest.yml
+              client/release/*.yml
               client/release/*.blockmap
           - os: ubuntu-latest
             script: package-linux-x64
-            # latest-linux.yml drives AppImage auto-update; the .deb has no
-            # auto-update mechanism (updated via CCP4 UM / apt / manual).
+            # the channel yml (alpha-linux.yml / latest-linux.yml) drives
+            # AppImage auto-update; the .deb has no auto-update mechanism
+            # (updated via CCP4 UM / apt / manual).
             glob: |
               client/release/*.AppImage
               client/release/*.deb
-              client/release/latest-linux.yml
+              client/release/*.yml
     runs-on: ${{ matrix.os }}
     env:
       # Stamp the exact backend version from the tag so the released app pins
@@ -186,14 +188,22 @@ jobs:
       # Stamp the Electron app version from the release tag so installers are
       # named by their version (e.g. ccp4i2-django-3.1.0-a2.dmg) instead of the
       # hardcoded 0.0.1 — which made every alpha's installers indistinguishable
-      # and let a stale a1 build masquerade as the current release. electron-
-      # builder needs a semver-valid version, so convert PEP 440 pre-release
-      # (3.1.0a2) to semver (3.1.0-a2). --no-git-tag-version: don't commit/tag.
+      # and let a stale a1 build masquerade as the current release.
+      #
+      # The semver form must put the pre-release counter in a SEPARATE, DOTTED
+      # identifier — 3.1.0a56 -> 3.1.0-alpha.56, NOT 3.1.0-a56. electron-updater
+      # treats the FIRST pre-release identifier as the update *channel*. With
+      # "-a56" the channel is the whole token "a56", so every alpha is its own
+      # channel and an installed build never sees the next one as an update
+      # ("No published versions on GitHub"). With "-alpha.56" the channel is
+      # "alpha" for every alpha and it simply compares 56 > 55. electron-builder
+      # likewise derives channel "alpha" and writes alpha*.yml. (beta/rc same.)
       - name: Stamp installer version from tag
         shell: bash
         run: |
           PEP="${{ needs.verify-version.outputs.version }}"
-          SEMVER="$(printf '%s' "$PEP" | sed -E 's/([0-9])(a|b|rc)([0-9]+)/\1-\2\3/')"
+          SEMVER="$(printf '%s' "$PEP" \
+            | sed -E 's/([0-9])a([0-9]+)/\1-alpha.\2/; s/([0-9])b([0-9]+)/\1-beta.\2/; s/([0-9])rc([0-9]+)/\1-rc.\2/')"
           echo "Electron app version: $PEP -> $SEMVER"
           npm version "$SEMVER" --no-git-tag-version --allow-same-version
         working-directory: client
