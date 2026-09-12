@@ -146,12 +146,14 @@ jobs:
               client/release/*.dmg
               client/release/*.zip
               client/release/*.yml
+              !client/release/builder-debug.yml
               client/release/*.blockmap
           - os: windows-latest
             script: package-win
             glob: |
               client/release/*.exe
               client/release/*.yml
+              !client/release/builder-debug.yml
               client/release/*.blockmap
           - os: ubuntu-latest
             script: package-linux-x64
@@ -162,6 +164,7 @@ jobs:
               client/release/*.AppImage
               client/release/*.deb
               client/release/*.yml
+              !client/release/builder-debug.yml
     runs-on: ${{ matrix.os }}
     env:
       # Stamp the exact backend version from the tag so the released app pins
