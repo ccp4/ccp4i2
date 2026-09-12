@@ -65,6 +65,7 @@
     "cytoscape-cose-bilkent": "^4.1.0",
     "detect-port": "^2.1.0",
     "electron-store": "^8.2.0",
+    "electron-updater": "^6.8.9",
     "exceljs": "^4.4.0",
     "express": "^5.1.0",
     "form-data": "^4.0.4",
@@ -124,6 +125,13 @@
   "build": {
     "appId": "com.ccp4.ccp4i2x",
     "productName": "ccp4i2x",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ccp4",
+        "repo": "ccp4i2"
+      }
+    ],
     "electronVersion": "33.4.11",
     "npmRebuild": false,
     "icon": "assets/ccp4i2.png",
@@ -168,7 +176,10 @@
       "output": "release"
     },
     "mac": {
-      "target": "dmg",
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "assets/entitlements.mac.plist",

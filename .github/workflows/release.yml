@@ -139,15 +139,27 @@ jobs:
         include:
           - os: macos-latest
             script: package-mac
-            glob: client/release/*.dmg
+            # .zip + latest-mac.yml are what electron-updater consumes on macOS
+            # (it updates from the zip, not the dmg); *.blockmap enables deltas.
+            glob: |
+              client/release/*.dmg
+              client/release/*.zip
+              client/release/latest-mac.yml
+              client/release/*.blockmap
           - os: windows-latest
             script: package-win
-            glob: client/release/*.exe
+            glob: |
+              client/release/*.exe
+              client/release/latest.yml
+              client/release/*.blockmap
           - os: ubuntu-latest
             script: package-linux-x64
+            # latest-linux.yml drives AppImage auto-update; the .deb has no
+            # auto-update mechanism (updated via CCP4 UM / apt / manual).
             glob: |
               client/release/*.AppImage
               client/release/*.deb
+              client/release/latest-linux.yml
     runs-on: ${{ matrix.os }}
     env:
       # Stamp the exact backend version from the tag so the released app pins
@@ -227,15 +239,49 @@ jobs:
           if [ -n "$MAC_CSC_LINK" ] && [ -n "$APPLE_API_KEY_P8" ]; then
             KEYDIR="$RUNNER_TEMP/appleapi"; mkdir -p "$KEYDIR"
             printf '%s' "$APPLE_API_KEY_P8" > "$KEYDIR/AuthKey.p8"
+
+            # Provision the signing keychain OURSELVES rather than letting
+            # electron-builder create and unlock its own. electron-builder's
+            # auto-keychain path failed at
+            #   security set-key-partition-list ... SecKeychainUnlock: the
+            #   passphrase you entered is not correct
+            # on a53/a54: the cert imported fine, but it could not unlock the
+            # temporary keychain it had made. Creating the keychain here with a
+            # password WE control makes set-key-partition-list use the matching
+            # password, and we hand electron-builder a ready keychain via
+            # CSC_KEYCHAIN. Crucially we DO NOT export CSC_LINK/CSC_KEY_PASSWORD,
+            # so electron-builder signs from our keychain instead of building
+            # another one. (The .p12 must be legacy PBE-SHA1-3DES, not OpenSSL-3
+            # PBES2/AES — Apple's `security` cannot import the latter; see
+            # docs/macos-signing-setup.md.)
+            KEYCHAIN="$RUNNER_TEMP/ccp4i2-signing.keychain-db"
+            KEYCHAIN_PWD="$(openssl rand -base64 24)"
+            P12="$KEYDIR/cert.p12"
+            printf '%s' "$MAC_CSC_LINK" | base64 --decode > "$P12"
+
+            security create-keychain -p "$KEYCHAIN_PWD" "$KEYCHAIN"
+            security set-keychain-settings -lut 21600 "$KEYCHAIN"   # don't auto-lock mid-build
+            security unlock-keychain -p "$KEYCHAIN_PWD" "$KEYCHAIN"
+            security import "$P12" -P "$MAC_CSC_KEY_PASSWORD" \
+              -k "$KEYCHAIN" -T /usr/bin/codesign
+            security set-key-partition-list -S apple-tool:,apple:,codesign: \
+              -s -k "$KEYCHAIN_PWD" "$KEYCHAIN" >/dev/null
+            # Our keychain first in the search list so codesign finds the identity.
+            security list-keychain -d user -s "$KEYCHAIN" login.keychain-db
+            rm -f "$P12"
+
+            # Show the identity now available (name only) so a bad cert is obvious.
+            security find-identity -v -p codesigning "$KEYCHAIN" || true
+
             {
-              echo "CSC_LINK=$MAC_CSC_LINK"
-              echo "CSC_KEY_PASSWORD=$MAC_CSC_KEY_PASSWORD"
+              echo "CSC_KEYCHAIN=$KEYCHAIN"
+              echo "CSC_IDENTITY_AUTO_DISCOVERY=true"
               echo "APPLE_API_KEY=$KEYDIR/AuthKey.p8"
               echo "APPLE_API_KEY_ID=$APPLE_API_KEY_ID"
               echo "APPLE_API_ISSUER=$APPLE_API_ISSUER"
               echo "EB_MAC_ARGS=-c.mac.notarize=true"
             } >> "$GITHUB_ENV"
-            echo "macOS: signing + notarisation ENABLED"
+            echo "macOS: signing + notarisation ENABLED (self-provisioned keychain)"
           else
             echo "CSC_IDENTITY_AUTO_DISCOVERY=false" >> "$GITHUB_ENV"
             echo "macOS: Apple secrets absent -> building UNSIGNED (users run xattr -cr)"
@@ -299,7 +345,11 @@ jobs:
         # Exactly one of EB_MAC_ARGS / EB_WIN_ARGS is ever set (per-OS gate); the
         # other is empty. Both empty -> unsigned build (Linux, or secrets absent).
         shell: bash
-        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS}
+        # --publish never: electron-builder still generates the auto-update
+        # metadata (latest*.yml + *.blockmap) because a `publish` provider is
+        # configured, but does NOT upload — the release job below attaches every
+        # artifact (installers + metadata) to the GitHub Release via softprops.
+        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS} --publish never
         working-directory: client
 
       - name: Upload installer

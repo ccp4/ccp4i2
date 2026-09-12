@@ -20,6 +20,7 @@ import { createWindow } from "./ccp4i2-create-window";
 import { setupZoomLevel } from "./ccp4i2-zoom";
 import { assessPython, listCcp4Dirs } from "./ccp4i2-python-suitability";
 import { registerExitHandlers, terminateProcessTree } from "./ccp4i2-process-tree";
+import { initAutoUpdater } from "./ccp4i2-updater";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
@@ -234,6 +235,10 @@ app
       `http://localhost:${nextServerPort}/ccp4i2/config`,
       store
     );
+    // Check for an app update in the background. No-ops in dev and on package
+    // types that can't self-update; failures are swallowed. A new app pulls its
+    // matching backend on next launch via the exact-pin (see ccp4i2-updater.ts).
+    initAutoUpdater(getMainWindow);
   });
 
 app.on("window-all-closed", () => {

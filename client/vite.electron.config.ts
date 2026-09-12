@@ -31,6 +31,7 @@ export default defineConfig({
         "node:module",
         "next",
         "electron-store",
+        "electron-updater",
         "detect-port",
         "child_process",
         "express",
