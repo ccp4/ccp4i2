@@ -97,10 +97,20 @@ push_url() {  # authenticated push URL if the plain remote push is unauth'd
   [ -n "$token" ] && echo "https://x-access-token:${token}@github.com/ccp4/ccp4i2.git" || echo "$REMOTE"
 }
 
+# electron-updater's GitHub provider SKIPS any release whose git tag is not
+# valid semver (it calls semver.valid on the tag from the releases feed), so the
+# tag must be semver — v3.1.0-alpha.58, not the PEP 440 v3.1.0a58 — or installed
+# apps never see the release and report "No published versions on GitHub". The
+# Python package version stays PEP 440 (3.1.0a58); only the tag is semver-ised.
+# release.yml's verify-version converts the tag back to PEP to match __version__.
+pep_to_semver() {
+  printf '%s' "$1" | sed -E 's/([0-9])a([0-9]+)/\1-alpha.\2/; s/([0-9])b([0-9]+)/\1-beta.\2/; s/([0-9])rc([0-9]+)/\1-rc.\2/'
+}
+
 # --- Step 2 (--tag): tag the merged bump on django, push the tag -----------
 if [ "$TAG_MODE" = 1 ]; then
   MERGED_VER="$(version_on "$REMOTE/$BRANCH")"
-  TAG="v${MERGED_VER}"
+  TAG="v$(pep_to_semver "$MERGED_VER")"
   say "Version on $REMOTE/$BRANCH: $MERGED_VER   ->   tag $TAG"
   # The bump must already be merged. If the tip of django is not a release
   # commit for this version, the PR from step 1 has not landed yet.
@@ -153,7 +163,7 @@ else
   NEW_VER="${MAJOR}.${MINOR}.${PATCH}${NEW_PRE}"
 fi
 
-TAG="v${NEW_VER}"
+TAG="v$(pep_to_semver "$NEW_VER")"
 say "Current: $CUR_VER   ->   New: $NEW_VER   (tag $TAG)"
 
 # Refuse a version already on PyPI (immutable — re-cut would fail publish-pypi).
