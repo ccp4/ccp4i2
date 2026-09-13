@@ -123,6 +123,10 @@ Supporting references:
   installers on a GitHub Release (OIDC, no tokens).
 - [GitHub Actions](github-actions.md) — what the four workflows run and when,
   what is and is not gated, and the gotchas that bite when changing them.
+- [Update Mechanism Plan](UPDATE_MECHANISM_PLAN.md) — how CCP4i2 stays up to
+  date *after* it ships in CCP4: the Python backend via CCP4 UM and the Electron
+  app via its own channel (implemented + proven), the per-platform coverage
+  table, and how updates could be hosted under CCP4 control.
 
 ### …deploy
 - Docker / Azure sections in [`CLAUDE.md`](../CLAUDE.md)

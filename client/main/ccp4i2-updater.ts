@@ -25,10 +25,18 @@
  *
  * electron-updater is CommonJS; its ESM named export is unreliable, so we
  * default-import and destructure (the documented interop pattern).
+ *
+ * All update activity is logged to a file via electron-log — mac
+ * ~/Library/Logs/ccp4i2x/main.log, Windows %APPDATA%/ccp4i2x/logs/main.log,
+ * Linux ~/.config/ccp4i2x/logs/main.log — so a failed check can be diagnosed
+ * by opening a file rather than relaunching from a terminal (which is what the
+ * bring-up of this feature actually needed). electron-updater's own internal
+ * logs go there too (autoUpdater.logger = log).
  */
 import { app, dialog, ipcMain } from "electron";
 import type { BrowserWindow } from "electron";
 import electronUpdater from "electron-updater";
+import log from "electron-log/main";
 
 const { autoUpdater } = electronUpdater;
 
@@ -50,7 +58,13 @@ function wireOnce(): void {
   if (handlersWired) return;
   handlersWired = true;
 
-  // Our releases are GitHub pre-releases (…-a56); without this electron-updater
+  // Route electron-updater's own logs to the file (and console) so a failed
+  // check — "No published versions on GitHub", a 404 on the channel file, a
+  // download error — lands in main.log instead of vanishing with stdout.
+  autoUpdater.logger = log;
+  log.transports.file.level = "info";
+
+  // Our releases are pre-releases (…-alpha.56); without this electron-updater
   // ignores them and never offers an alpha→alpha update.
   autoUpdater.allowPrerelease = true;
   // Fetch in the background; prompt only once it is ready to apply.
@@ -59,14 +73,14 @@ function wireOnce(): void {
   autoUpdater.autoInstallOnAppQuit = true;
 
   autoUpdater.on("update-available", (info) => {
-    console.log(`[updater] update available: ${info?.version}`);
+    log.info(`[updater] update available: ${info?.version}`);
   });
   autoUpdater.on("update-not-available", () => {
-    console.log("[updater] no update available.");
+    log.info("[updater] no update available.");
   });
 
   autoUpdater.on("update-downloaded", async (info) => {
-    console.log(`[updater] update downloaded: ${info?.version}`);
+    log.info(`[updater] update downloaded: ${info?.version}`);
     const win = getWin();
     const opts = {
       type: "info" as const,
@@ -93,7 +107,7 @@ function wireOnce(): void {
     // A silent (launch) check must never interrupt work — an unsigned mac
     // build, an offline machine, or an unsupported package all land here. The
     // manual path reports its own errors via the promise, not this handler.
-    console.log(`[updater] error (non-fatal): ${err?.message ?? err}`);
+    log.warn(`[updater] error (non-fatal): ${err?.message ?? err}`);
   });
 }
 
@@ -132,7 +146,7 @@ async function runCheck(interactive: boolean): Promise<void> {
       info(`You're up to date.`, `CCP4i2x ${app.getVersion()} is the latest version.`);
     }
   } catch (err) {
-    console.log(`[updater] checkForUpdates failed: ${(err as Error)?.message ?? err}`);
+    log.warn(`[updater] checkForUpdates failed: ${(err as Error)?.message ?? err}`);
     info(
       "Couldn't check for updates.",
       "Please check your connection and try again later.",
