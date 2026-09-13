@@ -67,6 +67,31 @@ interface RBlockInfo {
   columnnames?: Record<string, string[]>;
 }
 
+/**
+ * Content-based diagnosis from the single Python authority
+ * (server: diagnose_reflection_file). Added additively to the digest in PR4a;
+ * this interface now reads it as the source of truth, falling back to the
+ * legacy top-level fields when it is absent (older server / other file types).
+ *
+ * `format` here is content-detected (not the filename extension), `merged` is
+ * really detected (not the getMerged() stub that always returned true), and
+ * `staraniso`/`needs` are signals the Qt GUI had and the React port dropped.
+ */
+interface ReflectionDiagnosis {
+  format: string;
+  merged: boolean | null;
+  anomalous: boolean | null;
+  staraniso: boolean;
+  cell: number[] | null;          // [a, b, c, alpha, beta, gamma]
+  spaceGroup: string | null;
+  spaceGroupNumber: number | null;
+  wavelength: number | null;
+  resolutionHigh: number | null;
+  resolutionLow: number | null;
+  needs: string[];                // metadata absent from the file (e.g. SHELX)
+  warnings: string[];
+}
+
 interface GenericReflDigest {
   format: string;
   merged: boolean;
@@ -85,6 +110,16 @@ interface GenericReflDigest {
   freerValid: boolean;
   freerWarnings: string[];
   freerColumnLabel?: string;
+  diagnosis?: ReflectionDiagnosis;
+}
+
+/** Convert the diagnosis cell array to the {a,b,c,alpha,beta,gamma} object the
+ *  UNITCELL task element expects. */
+function cellArrayToObject(cell: number[]) {
+  return {
+    a: cell[0], b: cell[1], c: cell[2],
+    alpha: cell[3], beta: cell[4], gamma: cell[5],
+  };
 }
 
 /**
@@ -237,6 +272,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { forceUpdate: forceSetMMCIF_SELECTED_INFO } = useTaskItem("MMCIF_SELECTED_INFO");
   const { forceUpdate: forceSetMMCIF_SELECTED_CONTENT } = useTaskItem("MMCIF_SELECTED_CONTENT");
   const { forceUpdate: forceSetHASFREER } = useTaskItem("HASFREER");
+  const { forceUpdate: forceSetSTARANISO_DATA } = useTaskItem("controlParameters.STARANISO_DATA");
+  const { forceUpdate: forceSetSKIP_FREER } = useTaskItem("controlParameters.SKIP_FREER");
+
+  // The content-based diagnosis is the source of truth; fall back to the legacy
+  // top-level digest fields when it is absent (older server, other file types).
+  const diag = HKLINDigest?.diagnosis;
+  const effectiveFormat = (diag?.format || HKLINDigest?.format || "").toUpperCase();
+  const effectiveMerged = diag?.merged ?? HKLINDigest?.merged;
 
   // Local state for UI
   const [selectedObsGroup, setSelectedObsGroup] = useState<ColumnGroup | null>(null);
@@ -361,11 +404,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // when the digest data actually changes.
   useEffect(() => {
     const digestKey = HKLINDigest ? JSON.stringify({
-      spaceGroup: HKLINDigest.spaceGroup,
-      wavelength: HKLINDigest.wavelength,
-      format: HKLINDigest.format,
-      cell: HKLINDigest.cell,
+      spaceGroup: diag?.spaceGroup ?? HKLINDigest.spaceGroup,
+      wavelength: diag?.wavelength ?? HKLINDigest.wavelength,
+      format: diag?.format ?? HKLINDigest.format,
+      cell: diag?.cell ?? HKLINDigest.cell,
       hasFreeR: HKLINDigest.hasFreeR,
+      staraniso: diag?.staraniso,
+      merged: diag?.merged,
     }) : null;
 
     // Skip if we've already processed this digest or if nothing to process
@@ -378,9 +423,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       let parametersChanged = false;
 
+      // Values from the content-based diagnosis take precedence; the legacy
+      // top-level fields are the fallback. For .sca especially, cell/SG live
+      // ONLY in the diagnosis (gemmi cannot read .sca), so this is what makes
+      // Scalepack import drivable through the GUI.
+      const diagnosisSG = diag?.spaceGroup ?? HKLINDigest.spaceGroup;
+      const diagnosisWL = diag?.wavelength ?? HKLINDigest.wavelength;
+      const diagnosisFmt = diag?.format ?? HKLINDigest.format;
+      const diagnosisCell = diag?.cell
+        ? cellArrayToObject(diag.cell)
+        : HKLINDigest.cell;
+
       // Update space group
-      if (HKLINDigest.spaceGroup) {
-        const cleanedSG = String(HKLINDigest.spaceGroup).replace(/\s+/g, "");
+      if (diagnosisSG) {
+        const cleanedSG = String(diagnosisSG).replace(/\s+/g, "");
         if (forceUpdateSPACEGROUP) {
           try {
             const result = await forceUpdateSPACEGROUP(cleanedSG);
@@ -394,10 +450,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       // Update wavelength
-      if (HKLINDigest.wavelength) {
+      if (diagnosisWL) {
         if (forceUpdateWAVELENGTH) {
           try {
-            const result = await forceUpdateWAVELENGTH(HKLINDigest.wavelength);
+            const result = await forceUpdateWAVELENGTH(diagnosisWL);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateWAVELENGTH error:", e);
@@ -406,10 +462,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       // Update format
-      if (HKLINDigest.format) {
+      if (diagnosisFmt) {
         if (forceUpdateHKLIN_FORMAT) {
           try {
-            const result = await forceUpdateHKLIN_FORMAT(HKLINDigest.format.toUpperCase());
+            const result = await forceUpdateHKLIN_FORMAT(diagnosisFmt.toUpperCase());
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateHKLIN_FORMAT error:", e);
@@ -418,13 +474,35 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       // Update unit cell
-      if (HKLINDigest.cell) {
+      if (diagnosisCell) {
         if (forceUpdateUNITCELL) {
           try {
-            const result = await forceUpdateUNITCELL(HKLINDigest.cell);
+            const result = await forceUpdateUNITCELL(diagnosisCell);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateUNITCELL error:", e);
+          }
+        }
+      }
+
+      // StarAniso: the server writes its own (anisotropically truncated) FreeR
+      // set that must be preserved, not regenerated. Record the flag the
+      // pipeline/report already consume (STARANISO_DATA) and default to not
+      // generating a fresh FreeR set. The user can still override below.
+      if (diag?.staraniso) {
+        if (forceSetSTARANISO_DATA) {
+          try {
+            const result = await forceSetSTARANISO_DATA(true);
+            parametersChanged = parametersChanged || Boolean(result);
+          } catch (e) {
+            console.error("[import_merged] forceSetSTARANISO_DATA error:", e);
+          }
+        }
+        if (forceSetSKIP_FREER) {
+          try {
+            await forceSetSKIP_FREER(true);
+          } catch (e) {
+            console.error("[import_merged] forceSetSKIP_FREER error:", e);
           }
         }
       }
@@ -616,7 +694,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   useEffect(() => {
     if (
       job?.status !== 1 ||
-      HKLINDigest?.format?.toUpperCase() !== "MMCIF" ||
+      effectiveFormat !== "MMCIF" ||
       validMmcifBlocks.length !== 1 ||
       selectedMmcifBlock ||
       autoSelectedBlockForFile === HKLINValue?.dbFileId
@@ -632,7 +710,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     selectedMmcifBlock,
     HKLINValue?.dbFileId,
     autoSelectedBlockForFile,
-    HKLINDigest?.format,
+    effectiveFormat,
   ]);
 
   // Process column selection from MTZ dialog (legacy path)
@@ -734,10 +812,44 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               qualifiers={{ guiLabel: "Reflections" }}
             />
 
+            {/* Unmerged-data warning - the whole reason "import MERGED" is a
+                separate task. The Qt GUI blocked this; the React port proceeded
+                silently (getMerged() was a stub). Now driven by the real
+                content-based merged detection. */}
+            {HKLINDigest && effectiveMerged === false && (
+              <Alert severity="error" icon={<WarningIcon />} sx={{ mb: 2 }}>
+                <Typography variant="body2" fontWeight="bold" gutterBottom>
+                  This looks like UNMERGED data
+                </Typography>
+                <Typography variant="body2">
+                  import_merged is for merged reflection data. Unmerged data
+                  should be scaled and merged first — use the data-reduction
+                  (aimless) task instead. Importing it here will not give correct
+                  results.
+                </Typography>
+              </Alert>
+            )}
+
+            {/* StarAniso: detected server-side (SA_flag column / _software.name).
+                Its anisotropically-truncated FreeR set must be preserved. */}
+            {HKLINDigest && diag?.staraniso && (
+              <Alert severity="info" sx={{ mb: 2 }}>
+                <Typography variant="body2" fontWeight="bold" gutterBottom>
+                  StarAniso data detected
+                </Typography>
+                <Typography variant="body2">
+                  These data were anisotropically truncated by StarAniso, which
+                  carries its own FreeR set. FreeR generation has been switched
+                  off so that set is preserved; re-enable it below only if you
+                  intend to replace it.
+                </Typography>
+              </Alert>
+            )}
+
             {/* Crystal information widgets - only shown when the input format does
                 not carry this metadata itself (MTZ/mmCIF embed it). */}
             {HKLINDigest &&
-              !["MTZ", "MMCIF"].includes(HKLINDigest.format?.toUpperCase() || "") && (
+              !["MTZ", "MMCIF"].includes(effectiveFormat) && (
                 <Card sx={{ mb: 2 }}>
                   <CardHeader title="Crystal Information" />
                   <CardContent>
@@ -797,8 +909,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               </Alert>
             )}
 
-            {/* Format-specific panels - use digest format directly, not the task parameter */}
-            {HKLINDigest?.format?.toUpperCase() === "MTZ" && (
+            {/* Format-specific panels - keyed on the content-based diagnosis
+                format, not the filename extension or the task parameter. */}
+            {HKLINDigest && effectiveFormat === "MTZ" && (
               <MtzReflectionPanel
                 {...props}
                 digest={HKLINDigest}
@@ -810,7 +923,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               />
             )}
 
-            {HKLINDigest?.format?.toUpperCase() === "MMCIF" && (
+            {HKLINDigest && effectiveFormat === "MMCIF" && (
               <MmcifReflectionPanel
                 {...props}
                 digest={HKLINDigest}
@@ -823,14 +936,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             )}
 
             {/* For other formats (Scalepack, XDS) show basic info from digest */}
-            {HKLINDigest && !["MTZ", "MMCIF"].includes(HKLINDigest.format?.toUpperCase() || "") && (
+            {HKLINDigest && !["MTZ", "MMCIF"].includes(effectiveFormat) && (
               <Card sx={{ mb: 2 }}>
-                <CardHeader title={`${HKLINDigest.format} Reflection Data`} />
+                <CardHeader title={`${effectiveFormat} Reflection Data`} />
                 <CardContent>
                   <Typography variant="body2" color="text.secondary">
-                    Format: {HKLINDigest.format}
-                    {HKLINDigest.merged !== undefined && (
-                      <> | {HKLINDigest.merged ? "Merged" : "Unmerged"}</>
+                    Format: {effectiveFormat}
+                    {effectiveMerged !== undefined && (
+                      <> | {effectiveMerged ? "Merged" : "Unmerged"}</>
+                    )}
+                    {diag?.anomalous !== undefined && diag?.anomalous !== null && (
+                      <> | {diag.anomalous ? "Anomalous" : "Non-anomalous"}</>
                     )}
                   </Typography>
                   <FreeRStatusDisplay
