@@ -12,6 +12,17 @@ Both formats are **fixed-width Fortran** — fields can abut with no separating
 space when a value fills its column — so parsing is by *column position*, never
 ``str.split()`` (verified: ``scalepack2mtz`` reads a crafted abutting line
 correctly, which whitespace-splitting cannot).
+
+**Intensities vs. amplitudes — where the answer comes from, per format:**
+
+- MTZ / mmCIF: *self-describing* — the column types (``J``/``F`` …) or
+  ``_refln`` labels say so per column; nothing to decide.
+- XDS / Scalepack: *intensities by convention* — these formats only ever carry
+  intensities (XDS ``IOBS``; scalepack merged output is ``I``, so
+  ``scalepack2mtz`` and ``read_scalepack`` always write ``IMEAN``/``I(+)``…).
+- SHELX: *undecidable from the file* — HKLF 4 (Fo^2) vs HKLF 3 (Fo) is set by
+  the ``HKLF`` instruction in the ``.ins``/``.res``, not the ``.hkl``. It is a
+  user declaration (``read_shelx(intensities=...)`` / the ``dataType`` need).
 """
 from __future__ import annotations
 
@@ -156,6 +167,15 @@ def read_shelx(path, cell, spacegroup, intensities: bool = True) -> gemmi.Mtz:
     SHELX carries no cell or space group, so both are supplied. A trailing
     ``0 0 0`` record terminates the data (SHELX convention). Output columns are
     ``H K L I SIGI`` (intensities) or ``H K L F SIGF`` (amplitudes).
+
+    **Intensities vs amplitudes is NOT decidable from the ``.hkl``.** The two
+    numeric columns are just "value" and "sigma"; whether they are Fo^2 (HKLF 4)
+    or Fo (HKLF 3) is declared by the ``HKLF`` instruction in the companion
+    ``.ins``/``.res`` file, which we do not have. So ``intensities`` is a
+    *caller-supplied declaration*, not something inferred here — it is the
+    ``dataType`` that ``diagnose_reflection_file`` lists under ``needs`` for
+    SHELX, i.e. a choice the user must make. The ``True`` default (HKLF 4) is
+    only the common case; the resolver passes the user's actual choice.
     """
     cell = _as_cell(cell)
     sg = _as_spacegroup(spacegroup)
