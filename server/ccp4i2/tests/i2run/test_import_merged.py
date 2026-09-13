@@ -117,3 +117,31 @@ def freer_flag_dict(hklin):
         (h, k, l): min(free, 1)
         for h, k, l, free in zip(hcol, kcol, lcol, freecol)
     }
+
+
+def test_baz2b_sca():
+    """Binary-free Scalepack import: read_scalepack -> gemmi split, no
+    scalepack2mtz/cmtzsplit. The .sca carries cell/SG in its header and no
+    FreeR, so import_merged generates a fresh free set."""
+    sca = demoData(
+        "baz2b",
+        "BAZ2BA_x828.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8281_scaled.sca",
+    )
+    args = ["import_merged", "--HKLIN", sca]
+    with i2run(args) as job:
+        obs = gemmi.read_mtz_file(str(job / "OBSOUT.mtz"))
+        labels = [c.label for c in obs.columns]
+        # anomalous intensities -> I(+/-) pair (CObsDataFile content flag 1)
+        assert "Iplus" in labels and "Iminus" in labels, f"OBSOUT columns {labels}"
+
+        free_mtz = gemmi.read_mtz_file(str(job / "FREEOUT.mtz"))
+        free_mtz.ensure_asu()
+        freecol = free_mtz.rfree_column()
+        assert freecol is not None, "FREEOUT.mtz missing FreeR column"
+        flags = [int(f) for f in freecol]
+        total = len(flags)
+        free_fraction = sum(1 for f in flags if f == 0) / total
+        assert 0.03 <= free_fraction <= 0.08, (
+            f"generated test set is {free_fraction:.1%}; freerflag holds out ~5%"
+        )
+        assert len(set(flags)) > 2, "working set should be segmented"

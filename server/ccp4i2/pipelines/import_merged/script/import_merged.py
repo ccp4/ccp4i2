@@ -45,9 +45,12 @@ class import_merged(CPluginScript):
     #------------------------------------------------------------------------
     def process(self):
       self.container.inputData.HKLIN.loadFile()
-      self.fformat = self.container.inputData.HKLIN.getFormat()
-      # Type(self.fformat) can be either [mtz] <class 'CCP4Data.CString'> or [mmcif] str  WHY? 
-      print("process self.fformat", type(self.fformat))
+      # Format by CONTENT, not extension: getFormat() keys off the filename and
+      # returns 'unknown' for .sca and mis-classifies a .hkl that is really
+      # XDS_ASCII. detect_format peeks the bytes. Returns a plain str, so the
+      # historical "CString vs str" ambiguity here also goes away.
+      from ccp4i2.lib.utils.files.reflection_diagnosis import detect_format
+      self.fformat = detect_format(str(self.container.inputData.HKLIN.fullPath))
       merged = self.container.inputData.HKLIN.getMerged()
       self.isintensity = 0  # unknown I or F
       
@@ -66,8 +69,6 @@ class import_merged(CPluginScript):
       # PR3 step (sca) / PR4 (shelx, which needs the user-declared data type).
       if str(self.fformat) in ['shelx']:
         self.x2mtz = self.makePluginObject('convert2mtz')
-      elif str(self.fformat) in ['sca']:
-        self.x2mtz = self.makePluginObject('scalepack2mtz')
 
       if self.x2mtz is not None:
           #  Copy parameters to x2mtz sub-object
@@ -102,7 +103,7 @@ class import_merged(CPluginScript):
           self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
           #  +1 if intensity, -1 if amplitude, 0 if unknown
           self.isintensity = 0
-          if str(self.fformat) in [ 'sca' ]:
+          if str(self.fformat) == 'scalepack':
               self.isintensity = +1  # scalepack files are intensity
           if self.container.inputData.MMCIF_SELECTED_ISINTENSITY:
               self.isintensity = self.container.inputData.MMCIF_SELECTED_ISINTENSITY
@@ -110,13 +111,34 @@ class import_merged(CPluginScript):
           self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
           self.outputLogXML(self.importXML)  # send self.importXML to program.xml
 
-          # mmCIF, direct import
+          # mmCIF, direct import (gemmi ConvertCIF)
           if str(self.fformat) == 'mmcif':
               status = self.convertmmcif()
               self.process1(status)
               # Return the status that was set by reportStatus()
               return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
 
+          # Scalepack .sca: pure-Python/gemmi reader (retires the
+          # scalepack2mtz + cmtzsplit binaries; slim-safe).
+          if str(self.fformat) == 'scalepack':
+              status = self.importscalepack()
+              self.process1(status)
+              return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
+
+          # remaining converters (shelx via convert2mtz) still use the binary
+          # plugin -- becomes a reader in PR4 (needs a user-declared data type).
+          if self.x2mtz is None:
+              # detect_format returned something with no import path wired up
+              # here (e.g. 'xds', 'unknown'). Fail loudly rather than crashing
+              # on a None.process(); PR4 wires XDS/SHELX intent-capture.
+              print("ERROR: import_merged: unsupported reflection format",
+                    self.fformat)
+              self.appendErrorReport(
+                  201,
+                  f'Unsupported reflection format: {self.fformat}',
+                  severity=CCP4ErrorHandling.SEVERITY_ERROR)
+              self.process1(CPluginScript.FAILED)
+              return self.get_status() if self.get_status() is not None else CPluginScript.FAILED
           status = self.x2mtz.process()
           self.process1(status)
           # Return the status that was set by reportStatus()
@@ -425,7 +447,7 @@ class import_merged(CPluginScript):
         if self.container.controlParameters.STARANISO_DATA:
             self.addElement(containerXML, 'StarAniso', 'True')
         
-        if self.fformat == 'sca':
+        if self.fformat == 'scalepack':
             # Scalepack
             resorange = self.makeResoRange()
             if resorange is not None:
@@ -574,6 +596,59 @@ class import_merged(CPluginScript):
         # Honour the import result -- do NOT force SUCCEEDED. A failed ImportMTZ
         # was previously reported as success (the verdict was overwritten
         # unconditionally on the next line), so a broken import looked fine.
+        if mtzimport.getstatus():
+            return {'finishStatus': CPluginScript.SUCCEEDED}
+        return {'finishStatus': CPluginScript.FAILED}
+
+    # -------------------------------------------------------------------------
+    def importscalepack(self):
+        # Import a merged Scalepack .sca file WITHOUT binaries: the pure-Python
+        # read_scalepack reader (parity-pinned to scalepack2mtz) produces a
+        # source MTZ, which the common gemmi ImportMTZ path then splits to
+        # OBSOUT. Replaces the scalepack2mtz + cmtzsplit chain; slim-safe.
+        from ccp4i2.lib.utils.files.reflection_formats import read_scalepack
+        from ccp4i2.lib.utils.files.reflection_diagnosis import diagnose_reflection_file
+
+        path = str(self.container.inputData.HKLIN)
+        diag = diagnose_reflection_file(path)
+        cell = diag.get('cell')
+        sgnum = diag.get('spaceGroupNumber')
+        anomalous = bool(diag.get('anomalous'))
+
+        # A user-supplied cell / space group overrides the .sca header.
+        sgc = self.container.inputData.SPACEGROUPCELL
+        if sgc.cell.isSet():
+            c = sgc.cell
+            cell = [c.a.__float__(), c.b.__float__(), c.c.__float__(),
+                    c.alpha.__float__(), c.beta.__float__(), c.gamma.__float__()]
+        if sgc.spaceGroup.isSet():
+            sgnum = sgc.spaceGroup.number()
+        if cell is None or sgnum is None:
+            print("ERROR: import_merged.importscalepack: no cell/space group for", path)
+            return {'finishStatus': CPluginScript.FAILED}
+
+        srcmtz = read_scalepack(path, cell, sgnum, anomalous=anomalous)
+        srcpath = str(self.workDirectory / 'scalepack_source.mtz')
+        srcmtz.write_to_file(srcpath)
+
+        if anomalous:
+            obsColLabels = ['I(+)', 'SIGI(+)', 'I(-)', 'SIGI(-)']
+            self.contentFlag = 1   # CObsDataFile I(+/-) anomalous
+        else:
+            obsColLabels = ['IMEAN', 'SIGIMEAN']
+            self.contentFlag = 3   # CObsDataFile Imean
+        self.isintensity = +1                              # scalepack is intensity
+        self.container.inputData.HASFREER.set(False)       # .sca carries no FreeR
+        self.freeout = None
+
+        outfile = str(self.container.outputData.OBSOUT)
+        resorange = self.makeResoRange()
+        mtzimport = ImportMTZ(srcpath, outfile, None,
+                              obsColLabels, int(self.contentFlag),
+                              None, resorange)
+        self.mtzXML = mtzimport.getXML()
+        if self.importXML is not None and self.mtzXML is not None:
+            self.importXML.append(self.mtzXML)
         if mtzimport.getstatus():
             return {'finishStatus': CPluginScript.SUCCEEDED}
         return {'finishStatus': CPluginScript.FAILED}
