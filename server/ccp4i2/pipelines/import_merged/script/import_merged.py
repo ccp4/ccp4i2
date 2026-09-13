@@ -509,11 +509,12 @@ class import_merged(CPluginScript):
         if self.container.controlParameters.SKIP_FREER:
             freerfile = str(self.container.outputData.FREEOUT)
         else:
-            # Temporary place for FreeR in job_1 subdirectory
+            # Temporary place for FreeR in job_1 subdirectory. Bind `freerfile`
+            # whether or not job_1 already exists (guarding on `not wdir.exists()`
+            # raised NameError on a rerun / pre-created dir).
             wdir = self.workDirectory / 'job_1'
-            if not wdir.exists():
-                wdir.mkdir(mode=0o777)
-                freerfile = str(wdir / 'FREEOUT.mtz')
+            wdir.mkdir(mode=0o777, exist_ok=True)
+            freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now
@@ -572,11 +573,13 @@ class import_merged(CPluginScript):
             if self.container.controlParameters.SKIP_FREER:
                 freerfile = str(self.container.outputData.FREEOUT)
             else:
-                # Temporary place for FreeR in job_1 subdirectory
+                # Temporary place for FreeR in job_1 subdirectory. `freerfile`
+                # must be bound whether or not job_1 already exists -- binding it
+                # only inside `if not wdir.exists()` raised NameError on a rerun
+                # or when the dir was pre-created.
                 wdir = self.workDirectory / 'job_1'
-                if not wdir.exists():
-                    wdir.mkdir(mode=0o777)
-                    freerfile = str(wdir / 'FREEOUT.mtz')
+                wdir.mkdir(mode=0o777, exist_ok=True)
+                freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now
@@ -589,11 +592,12 @@ class import_merged(CPluginScript):
 
         self.mtzXML = mtzimport.getXML()
         self.importXML.append(self.mtzXML)
-        status = {'finishStatus':CPluginScript.FAILED}
+        # Honour the import result -- do NOT force SUCCEEDED. A failed ImportMTZ
+        # was previously reported as success (the verdict was overwritten
+        # unconditionally on the next line), so a broken import looked fine.
         if mtzimport.getstatus():
-            status = {'finishStatus':CPluginScript.SUCCEEDED}
-        status = {'finishStatus':CPluginScript.SUCCEEDED}
-        return status
+            return {'finishStatus': CPluginScript.SUCCEEDED}
+        return {'finishStatus': CPluginScript.FAILED}
 
     # -------------------------------------------------------------------------
     def columnthings(self, filename):
