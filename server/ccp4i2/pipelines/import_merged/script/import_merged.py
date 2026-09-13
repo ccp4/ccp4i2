@@ -60,17 +60,13 @@ class import_merged(CPluginScript):
       if self.container.inputData.RESOLUTION_RANGE_SET:
           self.resolutioncutoff = True
 
-      if str(self.fformat) == 'mtz':
-          # MTZ file: if there is a resolution cutoff specified,
-          # cannot use x2mtz to run cmtzsplit
-          if not self.resolutioncutoff:
-              self.x2mtz = self.makePluginObject('x2mtz')
-      #elif str(self.fformat) == 'mmcif':
-      #    pass
-      # # self.x2mtz = self.makePluginObject('cif2mtz')  # not needed now
-      elif str(self.fformat) in [ 'shelx' ]:
+      # MTZ no longer needs the cmtzsplit binary (x2mtz) -- it goes through the
+      # gemmi ImportMTZ path unconditionally now. shelx/sca still create their
+      # converter plugins here; those become binary-free readers in a later
+      # PR3 step (sca) / PR4 (shelx, which needs the user-declared data type).
+      if str(self.fformat) in ['shelx']:
         self.x2mtz = self.makePluginObject('convert2mtz')
-      elif str(self.fformat) in [ 'sca' ]:
+      elif str(self.fformat) in ['sca']:
         self.x2mtz = self.makePluginObject('scalepack2mtz')
 
       if self.x2mtz is not None:
@@ -82,48 +78,24 @@ class import_merged(CPluginScript):
       self.importXML = None
       self.freeout = None
       if self.fformat == 'mtz':
-        if self.resolutioncutoff:
-            self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
-            status = self.importmtz()
-            self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
-            self.process1(status)
-            # Return the status that was set by reportStatus()
-            return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
-        # No resolution cutoff
-        # Just call the processOutputFiles() to convert to mini mtzs
-        self.x2mtz.container.outputData.HKLOUT.set(self.container.inputData.HKLIN)
-        # Pick up dataset name (and crystal name if available)
+        # Both the resolution-cut and no-cut cases now go through the gemmi
+        # ImportMTZ path (importmtz). The legacy no-cut branch shelled out to
+        # the `cmtzsplit` binary, which is unavailable on the slim server;
+        # ImportMTZ applies a (possibly-null) resolution range with gemmi and
+        # produces the same OBSOUT/FREEOUT, so the two engines are collapsed
+        # into one.  (columnthings() inside importmtz() auto-picks the best
+        # observation group when HKLIN_OBS_COLUMNS is unset.)
         fcontent = self.container.inputData.HKLIN.getFileContent()
-        #print 'input file content', type(fcontent), fcontent
-        #print 'columns', fcontent.listOfColumns
-        # check if selection columns are intensity or amplitudes
-        # return +1 if intensity, -1 if amplitude, 0 if unknown
-        self.isintensity = self.isIntensity(self.container.inputData.HKLIN_OBS_COLUMNS,
-                                            fcontent.listOfColumns)
-        self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
-        self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
-
-        if len(fcontent.datasets)>=2:
-          #print fcontent.datasets[1]
-          # self.crystalName = ###  set this, but how?
-          self.container.inputData.DATASETNAME = fcontent.datasets[1]
-
-
-        if self.container.controlParameters.SKIP_FREER:
-            self.x2mtz.container.outputData.FREEOUT.set(self.container.outputData.FREEOUT)
-        self.x2mtz.checkOutputData()
-        ret = self.x2mtz.processOutputFiles()  # runs cmtzsplit
-        if sys.platform != 'win32': # CCP4Utils.samefile() doesn't work (r1728)
-          self.x2mtz.reportStatus(ret)
-        self.container.outputData.OBSOUT.set(self.x2mtz.container.outputData.OBSOUT)
-        if self.importXML is not None:
-            freeRcolumnLabel = str(self.x2mtz.freeRcolumnLabel)
-            if freeRcolumnLabel is not None:
-                self.addElement(self.importXML, 'freeRcolumnLabel',
-                                freeRcolumnLabel)
-            self.outputLogXML(self.importXML)  # send self.importXML to program.xml
-        self.process1({'finishStatus': ret })
-        # Return the status that was set by reportStatus()
+        # +1 intensity, -1 amplitude, 0 unknown -- used by the QC/report step.
+        self.isintensity = self.isIntensity(
+            self.container.inputData.HKLIN_OBS_COLUMNS, fcontent.listOfColumns)
+        if len(fcontent.datasets) >= 2:
+            self.container.inputData.DATASETNAME = fcontent.datasets[1]
+        self.importXML = etree.Element('IMPORT_LOG')
+        status = self.importmtz()
+        self.makeReportXML(self.importXML)
+        self.outputLogXML(self.importXML)
+        self.process1(status)
         return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
       else:
           # not MTZ
@@ -162,8 +134,14 @@ class import_merged(CPluginScript):
             # No freeR generation, leave as is, eg from StarAniso
             self.process2(CPluginScript.SUCCEEDED)
 
-        if not self.container.inputData.HASFREER:
-            completeFreeR = False   # no valid FreeR data
+        # HASFREER records whether the *imported* file carried FreeR. It must
+        # NOT disable completion when the user supplied a separate FREERFLAG --
+        # that external set is exactly what we complete (case 1 below). The old
+        # cmtzsplit path never set HASFREER, so completion always ran; the gemmi
+        # importmtz path sets it False for a FreeR-less MTZ, so guard on both.
+        if not self.container.inputData.HASFREER and \
+                not self.container.inputData.FREERFLAG.isSet():
+            completeFreeR = False   # no valid FreeR data anywhere
 
         # Create or complete a freer set
         self.freerflag = self.makePluginObject('freerflag')
@@ -212,9 +190,10 @@ class import_merged(CPluginScript):
                 self.freerflag.container.inputData.FREERFLAG.set(self.freeout)
                 freeRsource = 'Input'
 
-            elif self.x2mtz.container.outputData.FREEOUT.exists():
-                # A freeR set has been imported, so extend/complete it
-                self.freerflag.container.inputData.FREERFLAG = self.x2mtz.container.outputData.FREEOUT                
+            elif self.x2mtz is not None and self.x2mtz.container.outputData.FREEOUT.exists():
+                # A freeR set has been imported (via a converter plugin), so
+                # extend/complete it. Guarded: x2mtz is None for the MTZ path now.
+                self.freerflag.container.inputData.FREERFLAG = self.x2mtz.container.outputData.FREEOUT
                 freeRsource = 'Input'
             else:
                 completeFreeR = False
