@@ -45,9 +45,12 @@ class import_merged(CPluginScript):
     #------------------------------------------------------------------------
     def process(self):
       self.container.inputData.HKLIN.loadFile()
-      self.fformat = self.container.inputData.HKLIN.getFormat()
-      # Type(self.fformat) can be either [mtz] <class 'CCP4Data.CString'> or [mmcif] str  WHY? 
-      print("process self.fformat", type(self.fformat))
+      # Format by CONTENT, not extension: getFormat() keys off the filename and
+      # returns 'unknown' for .sca and mis-classifies a .hkl that is really
+      # XDS_ASCII. detect_format peeks the bytes. Returns a plain str, so the
+      # historical "CString vs str" ambiguity here also goes away.
+      from ccp4i2.lib.utils.files.reflection_diagnosis import detect_format
+      self.fformat = detect_format(str(self.container.inputData.HKLIN.fullPath))
       merged = self.container.inputData.HKLIN.getMerged()
       self.isintensity = 0  # unknown I or F
       
@@ -60,18 +63,12 @@ class import_merged(CPluginScript):
       if self.container.inputData.RESOLUTION_RANGE_SET:
           self.resolutioncutoff = True
 
-      if str(self.fformat) == 'mtz':
-          # MTZ file: if there is a resolution cutoff specified,
-          # cannot use x2mtz to run cmtzsplit
-          if not self.resolutioncutoff:
-              self.x2mtz = self.makePluginObject('x2mtz')
-      #elif str(self.fformat) == 'mmcif':
-      #    pass
-      # # self.x2mtz = self.makePluginObject('cif2mtz')  # not needed now
-      elif str(self.fformat) in [ 'shelx' ]:
+      # MTZ no longer needs the cmtzsplit binary (x2mtz) -- it goes through the
+      # gemmi ImportMTZ path unconditionally now. shelx/sca still create their
+      # converter plugins here; those become binary-free readers in a later
+      # PR3 step (sca) / PR4 (shelx, which needs the user-declared data type).
+      if str(self.fformat) in ['shelx']:
         self.x2mtz = self.makePluginObject('convert2mtz')
-      elif str(self.fformat) in [ 'sca' ]:
-        self.x2mtz = self.makePluginObject('scalepack2mtz')
 
       if self.x2mtz is not None:
           #  Copy parameters to x2mtz sub-object
@@ -82,55 +79,31 @@ class import_merged(CPluginScript):
       self.importXML = None
       self.freeout = None
       if self.fformat == 'mtz':
-        if self.resolutioncutoff:
-            self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
-            status = self.importmtz()
-            self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
-            self.process1(status)
-            # Return the status that was set by reportStatus()
-            return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
-        # No resolution cutoff
-        # Just call the processOutputFiles() to convert to mini mtzs
-        self.x2mtz.container.outputData.HKLOUT.set(self.container.inputData.HKLIN)
-        # Pick up dataset name (and crystal name if available)
+        # Both the resolution-cut and no-cut cases now go through the gemmi
+        # ImportMTZ path (importmtz). The legacy no-cut branch shelled out to
+        # the `cmtzsplit` binary, which is unavailable on the slim server;
+        # ImportMTZ applies a (possibly-null) resolution range with gemmi and
+        # produces the same OBSOUT/FREEOUT, so the two engines are collapsed
+        # into one.  (columnthings() inside importmtz() auto-picks the best
+        # observation group when HKLIN_OBS_COLUMNS is unset.)
         fcontent = self.container.inputData.HKLIN.getFileContent()
-        #print 'input file content', type(fcontent), fcontent
-        #print 'columns', fcontent.listOfColumns
-        # check if selection columns are intensity or amplitudes
-        # return +1 if intensity, -1 if amplitude, 0 if unknown
-        self.isintensity = self.isIntensity(self.container.inputData.HKLIN_OBS_COLUMNS,
-                                            fcontent.listOfColumns)
-        self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
-        self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
-
-        if len(fcontent.datasets)>=2:
-          #print fcontent.datasets[1]
-          # self.crystalName = ###  set this, but how?
-          self.container.inputData.DATASETNAME = fcontent.datasets[1]
-
-
-        if self.container.controlParameters.SKIP_FREER:
-            self.x2mtz.container.outputData.FREEOUT.set(self.container.outputData.FREEOUT)
-        self.x2mtz.checkOutputData()
-        ret = self.x2mtz.processOutputFiles()  # runs cmtzsplit
-        if sys.platform != 'win32': # CCP4Utils.samefile() doesn't work (r1728)
-          self.x2mtz.reportStatus(ret)
-        self.container.outputData.OBSOUT.set(self.x2mtz.container.outputData.OBSOUT)
-        if self.importXML is not None:
-            freeRcolumnLabel = str(self.x2mtz.freeRcolumnLabel)
-            if freeRcolumnLabel is not None:
-                self.addElement(self.importXML, 'freeRcolumnLabel',
-                                freeRcolumnLabel)
-            self.outputLogXML(self.importXML)  # send self.importXML to program.xml
-        self.process1({'finishStatus': ret })
-        # Return the status that was set by reportStatus()
+        # +1 intensity, -1 amplitude, 0 unknown -- used by the QC/report step.
+        self.isintensity = self.isIntensity(
+            self.container.inputData.HKLIN_OBS_COLUMNS, fcontent.listOfColumns)
+        if len(fcontent.datasets) >= 2:
+            self.container.inputData.DATASETNAME = fcontent.datasets[1]
+        self.importXML = etree.Element('IMPORT_LOG')
+        status = self.importmtz()
+        self.makeReportXML(self.importXML)
+        self.outputLogXML(self.importXML)
+        self.process1(status)
         return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
       else:
           # not MTZ
           self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
           #  +1 if intensity, -1 if amplitude, 0 if unknown
           self.isintensity = 0
-          if str(self.fformat) in [ 'sca' ]:
+          if str(self.fformat) == 'scalepack':
               self.isintensity = +1  # scalepack files are intensity
           if self.container.inputData.MMCIF_SELECTED_ISINTENSITY:
               self.isintensity = self.container.inputData.MMCIF_SELECTED_ISINTENSITY
@@ -138,13 +111,34 @@ class import_merged(CPluginScript):
           self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
           self.outputLogXML(self.importXML)  # send self.importXML to program.xml
 
-          # mmCIF, direct import
+          # mmCIF, direct import (gemmi ConvertCIF)
           if str(self.fformat) == 'mmcif':
               status = self.convertmmcif()
               self.process1(status)
               # Return the status that was set by reportStatus()
               return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
 
+          # Scalepack .sca: pure-Python/gemmi reader (retires the
+          # scalepack2mtz + cmtzsplit binaries; slim-safe).
+          if str(self.fformat) == 'scalepack':
+              status = self.importscalepack()
+              self.process1(status)
+              return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
+
+          # remaining converters (shelx via convert2mtz) still use the binary
+          # plugin -- becomes a reader in PR4 (needs a user-declared data type).
+          if self.x2mtz is None:
+              # detect_format returned something with no import path wired up
+              # here (e.g. 'xds', 'unknown'). Fail loudly rather than crashing
+              # on a None.process(); PR4 wires XDS/SHELX intent-capture.
+              print("ERROR: import_merged: unsupported reflection format",
+                    self.fformat)
+              self.appendErrorReport(
+                  201,
+                  f'Unsupported reflection format: {self.fformat}',
+                  severity=CCP4ErrorHandling.SEVERITY_ERROR)
+              self.process1(CPluginScript.FAILED)
+              return self.get_status() if self.get_status() is not None else CPluginScript.FAILED
           status = self.x2mtz.process()
           self.process1(status)
           # Return the status that was set by reportStatus()
@@ -162,8 +156,14 @@ class import_merged(CPluginScript):
             # No freeR generation, leave as is, eg from StarAniso
             self.process2(CPluginScript.SUCCEEDED)
 
-        if not self.container.inputData.HASFREER:
-            completeFreeR = False   # no valid FreeR data
+        # HASFREER records whether the *imported* file carried FreeR. It must
+        # NOT disable completion when the user supplied a separate FREERFLAG --
+        # that external set is exactly what we complete (case 1 below). The old
+        # cmtzsplit path never set HASFREER, so completion always ran; the gemmi
+        # importmtz path sets it False for a FreeR-less MTZ, so guard on both.
+        if not self.container.inputData.HASFREER and \
+                not self.container.inputData.FREERFLAG.isSet():
+            completeFreeR = False   # no valid FreeR data anywhere
 
         # Create or complete a freer set
         self.freerflag = self.makePluginObject('freerflag')
@@ -212,9 +212,10 @@ class import_merged(CPluginScript):
                 self.freerflag.container.inputData.FREERFLAG.set(self.freeout)
                 freeRsource = 'Input'
 
-            elif self.x2mtz.container.outputData.FREEOUT.exists():
-                # A freeR set has been imported, so extend/complete it
-                self.freerflag.container.inputData.FREERFLAG = self.x2mtz.container.outputData.FREEOUT                
+            elif self.x2mtz is not None and self.x2mtz.container.outputData.FREEOUT.exists():
+                # A freeR set has been imported (via a converter plugin), so
+                # extend/complete it. Guarded: x2mtz is None for the MTZ path now.
+                self.freerflag.container.inputData.FREERFLAG = self.x2mtz.container.outputData.FREEOUT
                 freeRsource = 'Input'
             else:
                 completeFreeR = False
@@ -446,7 +447,7 @@ class import_merged(CPluginScript):
         if self.container.controlParameters.STARANISO_DATA:
             self.addElement(containerXML, 'StarAniso', 'True')
         
-        if self.fformat == 'sca':
+        if self.fformat == 'scalepack':
             # Scalepack
             resorange = self.makeResoRange()
             if resorange is not None:
@@ -509,11 +510,12 @@ class import_merged(CPluginScript):
         if self.container.controlParameters.SKIP_FREER:
             freerfile = str(self.container.outputData.FREEOUT)
         else:
-            # Temporary place for FreeR in job_1 subdirectory
+            # Temporary place for FreeR in job_1 subdirectory. Bind `freerfile`
+            # whether or not job_1 already exists (guarding on `not wdir.exists()`
+            # raised NameError on a rerun / pre-created dir).
             wdir = self.workDirectory / 'job_1'
-            if not wdir.exists():
-                wdir.mkdir(mode=0o777)
-                freerfile = str(wdir / 'FREEOUT.mtz')
+            wdir.mkdir(mode=0o777, exist_ok=True)
+            freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now
@@ -572,11 +574,13 @@ class import_merged(CPluginScript):
             if self.container.controlParameters.SKIP_FREER:
                 freerfile = str(self.container.outputData.FREEOUT)
             else:
-                # Temporary place for FreeR in job_1 subdirectory
+                # Temporary place for FreeR in job_1 subdirectory. `freerfile`
+                # must be bound whether or not job_1 already exists -- binding it
+                # only inside `if not wdir.exists()` raised NameError on a rerun
+                # or when the dir was pre-created.
                 wdir = self.workDirectory / 'job_1'
-                if not wdir.exists():
-                    wdir.mkdir(mode=0o777)
-                    freerfile = str(wdir / 'FREEOUT.mtz')
+                wdir.mkdir(mode=0o777, exist_ok=True)
+                freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now
@@ -589,11 +593,65 @@ class import_merged(CPluginScript):
 
         self.mtzXML = mtzimport.getXML()
         self.importXML.append(self.mtzXML)
-        status = {'finishStatus':CPluginScript.FAILED}
+        # Honour the import result -- do NOT force SUCCEEDED. A failed ImportMTZ
+        # was previously reported as success (the verdict was overwritten
+        # unconditionally on the next line), so a broken import looked fine.
         if mtzimport.getstatus():
-            status = {'finishStatus':CPluginScript.SUCCEEDED}
-        status = {'finishStatus':CPluginScript.SUCCEEDED}
-        return status
+            return {'finishStatus': CPluginScript.SUCCEEDED}
+        return {'finishStatus': CPluginScript.FAILED}
+
+    # -------------------------------------------------------------------------
+    def importscalepack(self):
+        # Import a merged Scalepack .sca file WITHOUT binaries: the pure-Python
+        # read_scalepack reader (parity-pinned to scalepack2mtz) produces a
+        # source MTZ, which the common gemmi ImportMTZ path then splits to
+        # OBSOUT. Replaces the scalepack2mtz + cmtzsplit chain; slim-safe.
+        from ccp4i2.lib.utils.files.reflection_formats import read_scalepack
+        from ccp4i2.lib.utils.files.reflection_diagnosis import diagnose_reflection_file
+
+        path = str(self.container.inputData.HKLIN)
+        diag = diagnose_reflection_file(path)
+        cell = diag.get('cell')
+        sgnum = diag.get('spaceGroupNumber')
+        anomalous = bool(diag.get('anomalous'))
+
+        # A user-supplied cell / space group overrides the .sca header.
+        sgc = self.container.inputData.SPACEGROUPCELL
+        if sgc.cell.isSet():
+            c = sgc.cell
+            cell = [c.a.__float__(), c.b.__float__(), c.c.__float__(),
+                    c.alpha.__float__(), c.beta.__float__(), c.gamma.__float__()]
+        if sgc.spaceGroup.isSet():
+            sgnum = sgc.spaceGroup.number()
+        if cell is None or sgnum is None:
+            print("ERROR: import_merged.importscalepack: no cell/space group for", path)
+            return {'finishStatus': CPluginScript.FAILED}
+
+        srcmtz = read_scalepack(path, cell, sgnum, anomalous=anomalous)
+        srcpath = str(self.workDirectory / 'scalepack_source.mtz')
+        srcmtz.write_to_file(srcpath)
+
+        if anomalous:
+            obsColLabels = ['I(+)', 'SIGI(+)', 'I(-)', 'SIGI(-)']
+            self.contentFlag = 1   # CObsDataFile I(+/-) anomalous
+        else:
+            obsColLabels = ['IMEAN', 'SIGIMEAN']
+            self.contentFlag = 3   # CObsDataFile Imean
+        self.isintensity = +1                              # scalepack is intensity
+        self.container.inputData.HASFREER.set(False)       # .sca carries no FreeR
+        self.freeout = None
+
+        outfile = str(self.container.outputData.OBSOUT)
+        resorange = self.makeResoRange()
+        mtzimport = ImportMTZ(srcpath, outfile, None,
+                              obsColLabels, int(self.contentFlag),
+                              None, resorange)
+        self.mtzXML = mtzimport.getXML()
+        if self.importXML is not None and self.mtzXML is not None:
+            self.importXML.append(self.mtzXML)
+        if mtzimport.getstatus():
+            return {'finishStatus': CPluginScript.SUCCEEDED}
+        return {'finishStatus': CPluginScript.FAILED}
 
     # -------------------------------------------------------------------------
     def columnthings(self, filename):
