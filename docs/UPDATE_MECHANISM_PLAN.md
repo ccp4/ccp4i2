@@ -169,41 +169,93 @@ them.
 - **Signing:** is macOS notarization + Windows signing ([#238](https://github.com/ccp4/ccp4i2/issues/238))
   resourced? It gates the only nag-free app-update path.
 
-## Appendix: alpha bootstrap (implemented)
+## Appendix: alpha bootstrap — implemented and proven
 
-The plan's steps 4–6 (app version-gate → signing → `electron-updater`) can be
+The plan's steps 4–6 (app version-gate → signing → `electron-updater`) were
 short-circuited **during alpha** into a single working mechanism, because the
-alpha app *already* exact-pins its backend. Implemented in
-[PR #477](https://github.com/ccp4/ccp4i2/pull/477):
+alpha app *already* exact-pins its backend. It is implemented and **proven
+end-to-end**: a signed `3.1.0-alpha.57` desktop build self-updated to
+`3.1.0-alpha.59` on macOS (silent download → "Restart now" → relaunch), with
+the matching backend installed on next launch.
 
-1. **`electron-updater`** (GitHub provider) checks the ccp4/ccp4i2 Releases on
-   launch, background-downloads a newer app, and prompts to restart
-   ([`client/main/ccp4i2-updater.ts`](../client/main/ccp4i2-updater.ts)).
+1. **`electron-updater`** checks the release feed on launch (and on demand via
+   **Help → Check for Updates…**), background-downloads a newer app, and prompts
+   to restart ([`client/main/ccp4i2-updater.ts`](../client/main/ccp4i2-updater.ts)).
 2. The new app launches with a new `CCP4I2_REQUIRED_SERVER_VERSION`; the
    readiness probe sees the mismatch and pip-installs the matching backend.
 
 So **the app-updater drives the app, and the existing exact-pin drives the
 backend** — no new backend-update code. This is not decoupling (§3): during
-alpha lockstep is *wanted*, so letting the pin pull the backend is exactly
-right. It becomes the GA design only after §3 relaxes the pin to a range and the
-Python side moves to CCP4 UM (§4).
+alpha lockstep is *wanted*. It becomes the GA design only after §3 relaxes the
+pin to a range and the Python side moves to CCP4 UM (§4).
 
-Mechanics worth recording:
+### Platform coverage (as shipped)
 
-- **Metadata + feed:** `build.publish` (github) makes electron-builder emit
-  `app-update.yml` (embedded, tells the app its feed) and `latest*.yml` (the
-  update manifest). `release.yml` builds with `--publish never` and lets the
-  existing `softprops` step upload the installers **plus** `latest*.yml`,
-  `*.blockmap` and the mac `*.zip`.
-- **macOS needs the `zip` target** — electron-updater updates macOS from the
-  zip, not the dmg — and needs the app **signed** (Squirrel.Mac validates the
-  signature). So the alpha bootstrap and the signing switch
-  ([`macos-signing-setup.md`](macos-signing-setup.md), `ENABLE_MAC_SIGNING`) are
-  a pair: unsigned macOS silently cannot self-update.
-- **Coverage:** Windows (NSIS) and Linux AppImage self-update fully; macOS only
-  when signed; the Linux **`.deb` has no electron-updater path** — those users
-  update via CCP4 UM / apt / manual, which is why the plan keeps a version-gate
-  prompt as the cross-platform floor.
+| Platform | Auto-update mechanism | Updates from | Channel file | Signing to apply? | Signing status | First-time note |
+|---|---|---|---|---|---|---|
+| **macOS** | Squirrel.Mac (electron-updater) | the **`.zip`** (not the `.dmg`) | `alpha-mac.yml` | **Yes** — Developer ID + notarization (Squirrel.Mac validates the signature) | ✅ signed + notarized (a55+) | can't update *from* an unsigned build → install the first signed one by hand once |
+| **Windows** | NSIS updater (electron-updater) | the **`.exe`** | `alpha.yml` | No — applies unsigned | ❌ unsigned (Authenticode not set up) | SmartScreen warns on *manual* download; auto-update applies silently, per-user, no UAC |
+| **Linux (AppImage)** | electron-updater in-place swap (zsync) | the **`.AppImage`** | `alpha-linux.yml` | No | n/a | only when run *as* an AppImage (`$APPIMAGE` set) and the file is writable |
+| **Linux (.deb)** | **none** from electron-updater | — | — | (apt repos use GPG) | n/a | the *recommended* Linux install; updated via apt / CCP4 UM / manual |
+
+Cross-cutting: the visible UX is **identical** on the three self-updating
+platforms (launch check → silent download → "Restart now" dialog, plus the
+manual menu item); and `.blockmap` (macOS/Windows) / zsync (AppImage) mean an
+incremental update downloads only the *changed* blocks, not the full ~375 MB.
+
+### What it actually took (non-obvious requirements)
+
+electron-updater is unforgiving about version/channel/tag *shape*; all three had
+to line up before an installed build would even see the next release. Recorded
+so the next person doesn't rediscover them:
+
+- **Installer semver, not PEP** — `3.1.0-alpha.58`, not `3.1.0-a58`. The first
+  pre-release identifier is the *update channel*; `-a58` made every alpha its
+  own channel, so a build only ever looked for a newer release in channel
+  "a58". ([PR #484](https://github.com/ccp4/ccp4i2/pull/484))
+- **Explicit channel** — under `--publish never` electron-builder writes
+  `latest*.yml` unless the publish config sets `channel: alpha`; that is what
+  makes it emit `alpha-mac.yml` / `alpha.yml` / `alpha-linux.yml`.
+  ([PR #486](https://github.com/ccp4/ccp4i2/pull/486))
+- **Semver git tag** — `v3.1.0-alpha.58`, not `v3.1.0a58`. The GitHub provider
+  runs `semver.valid()` on each release's git tag and **skips any that fail**, so
+  a PEP-440 tag makes every release invisible ("No published versions on
+  GitHub"). The Python package version stays PEP 440; only the tag is
+  semver-ised, and `release.yml`'s `verify-version` converts it back to compare
+  with `__version__`. ([PR #488](https://github.com/ccp4/ccp4i2/pull/488))
+- **macOS `zip` target + signing** — electron-updater updates macOS from the
+  `.zip` (not the dmg), and Squirrel.Mac validates the signature, so macOS
+  self-update requires a signed + notarized build (see
+  [`macos-signing-setup.md`](macos-signing-setup.md), `ENABLE_MAC_SIGNING`).
+
+### Hosting is portable — CCP4-hosted updates
+
+The in-app UX is independent of *where* updates are hosted. electron-updater is
+provider-based; today we use the `github` provider, but the **`generic`**
+provider points at any HTTPS location CCP4 controls:
+
+```json
+"publish": [{ "provider": "generic", "url": "https://updates.ccp4.ac.uk/ccp4i2/", "channel": "alpha" }]
+```
+
+CCP4 serves a directory of static files — `alpha-mac.yml`, `alpha.yml`,
+`alpha-linux.yml`, the installers and their `.blockmap`s. **Only the `publish`
+block changes**; the launch check, the menu item, the download and the restart
+dialog are all unchanged. Two things for the core-team discussion:
+
+- The generic provider reads `alpha-mac.yml` straight from the URL and compares
+  the `version:` field inside it — **no releases feed and no git-tag parsing** —
+  so the semver-tag requirement above does not even arise. CCP4-hosted is, if
+  anything, *simpler* than GitHub.
+- **Signing is orthogonal to hosting.** macOS notarization (and, later, Windows
+  Authenticode) is a Gatekeeper/Squirrel.Mac requirement *wherever* the files are
+  served from — a Developer ID cert is still needed under CCP4 hosting.
+
+The only path that would **not** preserve this UX is CCP4's own binary updater
+(CCP4 UM) swapping the app bundle itself — the app would then inherit CCP4 UM's
+UX. The generic-provider route is the "keep the UX, move the hosting" option, and
+is the recommended way to reconcile with CCP4's packaging while retaining what
+was built here.
 
 The alpha bootstrap is therefore a faithful, smaller rehearsal of the full plan:
 it exercises the real update plumbing (feed, metadata, signing, per-platform
