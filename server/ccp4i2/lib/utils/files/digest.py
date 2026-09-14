@@ -610,10 +610,13 @@ def digest_cgenericrefldatafile_file_object(file_object: CGenericReflDataFile):
         # `format` (extension-based) and `merged` (stub) keys are left untouched
         # for backward compatibility; the thin UI reads `diagnosis.*` instead.
         try:
+            # Cached (path, mtime, size): the digest can be requested many times
+            # for the same file across front-end renders, so the file read is
+            # memoised rather than repeated on each call.
             from ccp4i2.lib.utils.files.reflection_diagnosis import (
-                diagnose_reflection_file,
+                diagnose_reflection_file_cached,
             )
-            content_dict["diagnosis"] = diagnose_reflection_file(
+            content_dict["diagnosis"] = diagnose_reflection_file_cached(
                 str(file_object.fullPath)
             )
         except Exception as diag_err:

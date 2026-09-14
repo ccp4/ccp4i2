@@ -11,7 +11,9 @@ Pure gemmi/numpy-free stdlib, so it runs unchanged on the slim server.
 """
 from __future__ import annotations
 
+import os
 import re
+from functools import lru_cache
 from pathlib import Path
 
 
@@ -105,6 +107,27 @@ CARRIES_CELL_SG = frozenset({FORMAT_MTZ, FORMAT_MMCIF, FORMAT_XDS, FORMAT_SCALEP
 
 def _cell_list(cell) -> list:
     return [cell.a, cell.b, cell.c, cell.alpha, cell.beta, cell.gamma]
+
+
+@lru_cache(maxsize=64)
+def _diagnose_cached(path_str, mtime, size):
+    return diagnose_reflection_file(path_str)
+
+
+def diagnose_reflection_file_cached(path) -> dict:
+    """Like ``diagnose_reflection_file`` but memoised on (path, mtime, size).
+
+    ``validity()`` is polled on every parameter edit, so an uncached read of
+    the reflection file each time would be wasteful. The cache key includes
+    mtime and size so a replaced file is re-diagnosed. Returns a shallow copy so
+    a caller cannot mutate the cached dict.
+    """
+    p = str(path)
+    try:
+        st = os.stat(p)
+    except OSError:
+        return diagnose_reflection_file(p)
+    return dict(_diagnose_cached(p, st.st_mtime, st.st_size))
 
 
 def diagnose_reflection_file(path) -> dict:
@@ -240,6 +263,48 @@ def _mmcif_names_staraniso(doc) -> bool:
     return False
 
 
+# Cap the merged-case scan; an unmerged file repeats an hkl long before this, so
+# the cap only bounds pathologically large *merged* files (assume merged then).
+_MAX_HKL_SCAN = 300000
+
+
+def _scan_hkl_records(path, skip=0, stop_on_zero=False):
+    """One pass over fixed-width ``3I4`` hkl records (scalepack/SHELX).
+
+    Returns ``(anomalous, unmerged)``:
+      - ``anomalous`` -- any record carries more than two F8 value fields after
+        the hkl (the I+/sigma+/I-/sigma- width). Only meaningful for scalepack.
+      - ``unmerged`` -- some ``(h, k, l)`` repeats (multiple observations).
+        Merged data lists each reflection once (anomalous mates share a row), so
+        a repeat means unmerged. Early-exits on the first repeat.
+    """
+    seen = set()
+    anomalous = False
+    unmerged = False
+    with open(path, "r", errors="replace") as fh:
+        for i, rec in enumerate(fh):
+            if i < skip:
+                continue
+            if len(rec) < 12:
+                continue
+            try:
+                h = int(rec[0:4]); k = int(rec[4:8]); l = int(rec[8:12])
+            except ValueError:
+                continue
+            if stop_on_zero and h == 0 and k == 0 and l == 0:
+                break  # SHELX end-of-data marker
+            if not anomalous and len(rec[12:].rstrip()) > 2 * 8:
+                anomalous = True
+            key = (h, k, l)
+            if key in seen:
+                unmerged = True
+                break
+            seen.add(key)
+            if len(seen) >= _MAX_HKL_SCAN:
+                break  # enormous unique-hkl set, no repeat -> treat as merged
+    return anomalous, unmerged
+
+
 def _diagnose_scalepack(path, d):
     import gemmi
 
@@ -258,23 +323,22 @@ def _diagnose_scalepack(path, d):
             d["spaceGroupNumber"] = sg.number
         except Exception:
             d["warnings"].append(f"unrecognised space group '{sg_sym}'")
-    d["merged"] = True  # scalepack .sca handled here is merged output
-    # anomalous iff ANY data record carries the 7-field (I+ σ+ I- σ-) width;
-    # a single record can be short (a lone mate), so scan a window of them.
-    anomalous = False
-    with open(path, "r", errors="replace") as fh:
-        for i, rec in enumerate(fh):
-            if i < 3:
-                continue
-            if i > 3 + 5000:
-                break
-            if len(rec[3 * 4:].rstrip()) > 2 * 8:  # more than 2 F8 fields after HKL
-                anomalous = True
-                break
+    # Scalepack carries no MERGE flag, so decide merged/unmerged by content:
+    # unmerged data repeats (h,k,l) (multiple observations), merged data lists
+    # each reflection once (anomalous I+/I- share one row, so they do not
+    # repeat). One pass also settles anomalous (a 7-field record). Early-exit on
+    # the first duplicate makes the unmerged case cheap; a cap bounds the merged
+    # case for very large files.
+    anomalous, unmerged = _scan_hkl_records(path, skip=3)
     d["anomalous"] = anomalous
+    d["merged"] = not unmerged
 
 
 def _diagnose_shelx(path, d):
     # SHELX carries no metadata at all — everything must be supplied.
-    d["merged"] = True
     d["needs"] = ["cell", "spaceGroup", "dataType"]
+    # ...but merged/unmerged is still decidable from the records: an unmerged
+    # .hkl repeats reflections. (anomalous is not inferable from HKLF width, so
+    # it is left undecided here.)
+    _, unmerged = _scan_hkl_records(path, skip=0, stop_on_zero=True)
+    d["merged"] = not unmerged

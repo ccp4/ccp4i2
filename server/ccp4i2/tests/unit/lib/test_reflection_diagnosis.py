@@ -95,6 +95,42 @@ def test_detect_format_demo(expected, path):
 # --- diagnose_reflection_file (needs gemmi; CCP4-free) ------------------------
 
 
+# Unmerged variants: a repeated (h,k,l) is the format-agnostic signature of
+# unmerged data. scalepack/SHELX carry no MERGE flag, so this is the only cue —
+# and the unmerged hard-block in import_merged depends on catching it.
+SHELX_UNMERGED = (
+    "   1   2   3 1000.00   10.00\n"
+    "   1   2   3  990.00   11.00\n"   # same hkl again -> unmerged
+    "   0   0   0    0.00    0.00\n"
+)
+
+SCALEPACK_UNMERGED = (
+    "    1\n"
+    " -987\n"
+    "    83.090    96.790    57.950    90.000    90.000    90.000 c 2 2 21\n"
+    "   0   0   2   887.6    17.3\n"
+    "   0   0   2   901.2    18.1\n"   # same hkl again -> unmerged
+)
+
+
+def test_diagnose_shelx_merged_vs_unmerged(tmp_path):
+    m = tmp_path / "m.hkl"
+    m.write_text(SHELX_HKLF4)
+    assert diagnose_reflection_file(m)["merged"] is True   # unique hkls
+    u = tmp_path / "u.hkl"
+    u.write_text(SHELX_UNMERGED)
+    assert diagnose_reflection_file(u)["merged"] is False   # repeated hkl
+
+
+def test_diagnose_scalepack_merged_vs_unmerged(tmp_path):
+    m = tmp_path / "m.sca"
+    m.write_text(SCALEPACK)
+    assert diagnose_reflection_file(m)["merged"] is True
+    u = tmp_path / "u.sca"
+    u.write_text(SCALEPACK_UNMERGED)
+    assert diagnose_reflection_file(u)["merged"] is False
+
+
 def test_diagnose_shelx_reports_needs(tmp_path):
     p = tmp_path / "s.hkl"
     p.write_text(SHELX_HKLF4)
