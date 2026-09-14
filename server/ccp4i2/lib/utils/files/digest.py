@@ -603,6 +603,25 @@ def digest_cgenericrefldatafile_file_object(file_object: CGenericReflDataFile):
         content_dict["format"] = file_object.getFormat()
         content_dict["merged"] = file_object.getMerged()
 
+        # Content-based diagnosis (the single Python authority) as an ADDITIVE
+        # `diagnosis` block: content-detected format, real merged/anomalous,
+        # cell/SG/wavelength/resolution, StarAniso, and a `needs` list of
+        # metadata the file lacks (SHELX cell/SG/dataType). The legacy top-level
+        # `format` (extension-based) and `merged` (stub) keys are left untouched
+        # for backward compatibility; the thin UI reads `diagnosis.*` instead.
+        try:
+            from ccp4i2.lib.utils.files.reflection_diagnosis import (
+                diagnose_reflection_file,
+            )
+            content_dict["diagnosis"] = diagnose_reflection_file(
+                str(file_object.fullPath)
+            )
+        except Exception as diag_err:
+            logger.warning(
+                "diagnose_reflection_file failed for %s: %s",
+                file_object.fullPath, diag_err,
+            )
+
         # Initialize FreeR summary fields
         content_dict["hasFreeR"] = False
         content_dict["freerValid"] = False

@@ -114,6 +114,7 @@ def diagnose_reflection_file(path) -> dict:
         "format": fmt,
         "merged": None,
         "anomalous": None,
+        "staraniso": False,   # data from the STARANISO anisotropy server?
         "cell": None,
         "spaceGroup": None,
         "spaceGroupNumber": None,
@@ -154,6 +155,11 @@ def _diagnose_mtz(path, d):
     d["merged"] = not (len(mtz.batches) > 0 or has_msym)
     # anomalous iff any (+)/(-) column is present.
     d["anomalous"] = any("(+)" in c.label or "(-)" in c.label for c in mtz.columns)
+    # StarAniso: the server writes an "SA_flag" column, and stamps "STARANISO"
+    # into the MTZ history. Either cue is enough (Qt used the SA_flag column).
+    labels_up = [c.label.upper() for c in mtz.columns]
+    hist_up = " ".join(mtz.history).upper() if mtz.history else ""
+    d["staraniso"] = ("SA_FLAG" in labels_up) or ("STARANISO" in hist_up)
     # first non-base dataset wavelength
     for ds in mtz.datasets:
         if ds.id != 0 and ds.wavelength:
@@ -194,6 +200,9 @@ def _diagnose_mmcif(path, d):
     from ccp4i2.pipelines.import_merged.script import mmcifutils
 
     doc = gemmi.cif.read(str(path))
+    # StarAniso first, independent of the (fragile) per-block extraction below,
+    # so the flag is still set if CifBlockInfo chokes on an unusual file.
+    d["staraniso"] = _mmcif_names_staraniso(doc)
     rblocks = gemmi.as_refln_blocks(doc)
     if not rblocks:
         d["warnings"].append("no reflection blocks in mmCIF")
@@ -212,6 +221,23 @@ def _diagnose_mmcif(path, d):
     if getattr(info, "wavelength", None):
         d["wavelength"] = info.wavelength
     d["merged"] = not getattr(info, "unmerged", False)
+
+
+def _mmcif_names_staraniso(doc) -> bool:
+    # StarAniso: named in a _software.name / _computing.* record. Scan those
+    # items across all blocks rather than the raw bytes, so an unrelated
+    # occurrence of the word elsewhere cannot trip the flag.
+    items = ("_software.name", "_software.description",
+             "_computing.data_reduction", "_computing.data_scaling")
+    for block in doc:
+        for item in items:
+            for val in block.find_loop(item):
+                if "STARANISO" in str(val).upper():
+                    return True
+            v = block.find_value(item)
+            if v and "STARANISO" in str(v).upper():
+                return True
+    return False
 
 
 def _diagnose_scalepack(path, d):

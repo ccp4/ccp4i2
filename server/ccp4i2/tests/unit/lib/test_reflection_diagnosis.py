@@ -144,3 +144,66 @@ def test_diagnose_xds_demo_is_unmerged():
     # The old getMerged() stub always returned True; real detection sees MERGE=FALSE.
     assert d["merged"] is False
     assert d["anomalous"] is True       # FRIEDEL'S_LAW=FALSE
+
+
+# --- StarAniso detection (CCP4-free; the signal the Qt GUI had and React dropped) ---
+
+
+def _write_mtz(path, extra_cols):
+    """Minimal single-reflection MTZ with H,K,L,F,SIGF plus `extra_cols`
+    (list of (label, type)); values default to 0. gemmi only, no CCP4."""
+    import gemmi
+    import numpy as np
+
+    mtz = gemmi.Mtz(with_base=True)
+    mtz.cell = gemmi.UnitCell(50, 50, 50, 90, 90, 90)
+    mtz.spacegroup = gemmi.find_spacegroup_by_name("P 1")
+    mtz.add_dataset("data")
+    cols = [("F", "F"), ("SIGF", "Q")] + list(extra_cols)
+    for label, ctype in cols:
+        mtz.add_column(label, ctype)
+    ncol = 3 + len(cols)  # H K L + the rest
+    row = [0, 0, 1] + [0.0] * len(cols)
+    mtz.set_data(np.array([row], dtype=np.float32).reshape(1, ncol))
+    mtz.write_to_file(str(path))
+
+
+def test_diagnose_mtz_staraniso_column(tmp_path):
+    p = tmp_path / "sa.mtz"
+    _write_mtz(p, [("SA_flag", "I")])
+    d = diagnose_reflection_file(p)
+    assert d["format"] == FORMAT_MTZ
+    assert d["staraniso"] is True
+
+
+def test_diagnose_mtz_no_staraniso(tmp_path):
+    p = tmp_path / "plain.mtz"
+    _write_mtz(p, [("FreeR_flag", "I")])
+    d = diagnose_reflection_file(p)
+    assert d["format"] == FORMAT_MTZ
+    assert d["staraniso"] is False
+
+
+MMCIF_STARANISO = (
+    "data_r1abcsf\n"
+    "_software.name STARANISO\n"
+    "loop_\n"
+    "_refln.index_h\n_refln.index_k\n_refln.index_l\n_refln.F_meas_au\n"
+    "0 0 2 123.4\n"
+)
+
+
+def test_diagnose_mmcif_staraniso(tmp_path):
+    p = tmp_path / "sa.cif"
+    p.write_text(MMCIF_STARANISO)
+    d = diagnose_reflection_file(p)
+    assert d["format"] == FORMAT_MMCIF
+    assert d["staraniso"] is True
+
+
+def test_diagnose_mmcif_no_staraniso(tmp_path):
+    p = tmp_path / "plain.cif"
+    p.write_text(MMCIF_SF)   # the plain sfCIF fixture above, no _software.name
+    d = diagnose_reflection_file(p)
+    assert d["format"] == FORMAT_MMCIF
+    assert d["staraniso"] is False

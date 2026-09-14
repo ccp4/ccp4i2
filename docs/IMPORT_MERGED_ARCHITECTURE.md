@@ -202,6 +202,75 @@ one-shot import, and it costs exactly what we are trying to avoid: crystallograp
 logic outside Python. Reserve gemmi-WASM for continuously-interactive surfaces
 (map/model manipulation), not this.
 
+## Authoritative representations are computed in-job and then discarded
+
+A separate, higher-value defect surfaced while mapping the pipeline, and it
+reframes how the different data representations (I±, Imean, Fmean …) should be
+captured.
+
+**The data model stores one representation and re-derives the rest.** A
+`CObsDataFile` is a *mini-MTZ*: one canonical content type, tagged by a single
+`contentFlag` (1 IPAIR / 2 FPAIR / 3 IMEAN / 4 FMEAN, columns fixed by
+`CONTENT_SIGNATURE_LIST`). `ImportMTZ` extracts **only** the selected flag's
+columns (`ReflectionDataTypes.REFLECTION_DATA[contentType]`) — the other
+representations present in the source are dropped, not cached adjacent. When a
+downstream task needs a different representation, `ObsDataConverter` re-derives
+it: **`servalcat fw`** (French–Wilson) for I→F, gemmi/numpy inverse-variance
+mean for F±→Fmean. The lattice is monotone downhill (`CAN_CONVERT_TO`): I→F and
+pair→mean, never the reverse.
+
+**But a fresh downhill re-derivation is strictly less informed than the
+conversion the source already carried** — it cannot recover the pre-merge
+intensity distribution or the per-reflection multiplicities that ctruncate used.
+And crucially, **import_merged already runs ctruncate** (inside its aimless_pipe
+QC step) and that run *already computes* the authoritative representations — then
+throws them away:
+
+- `aimless_pipe.process_ctruncate()` runs ctruncate per dataset with
+  `OUTPUTMINIMTZ=True, OUTPUT_INTENSITIES=True` and harvests two tracked,
+  name-adjacent mini-MTZs: `HKLOUT[-1]` (contentFlag 1, I±, file
+  `HKLOUT_<n>-observed_data.mtz`) and `IMEANOUT[-1]` (contentFlag 3, Imean, from
+  ctruncate `OBSOUT1`). This runs unconditionally — *not* gated on
+  `ANALYSIS_MODE` — so it happens during import_merged's run too.
+- import_merged never reads `self.aimlesspipe.container.outputData.HKLOUT` /
+  `IMEANOUT`; its `OBSOUT` is the **pre-aimless raw input split**, computed
+  before ctruncate runs.
+- `aimless_pipe.buildCompleteMtz()` (the fat `COMPLETE_MTZ`, `saveToDb=True`) is
+  **deliberately skipped for import_merged** — gated on `XMLOUT.isSet()`
+  (`# i.e. not import_merged`) — so the one self-consistent multi-representation
+  file is switched off for the task that would benefit most, and Export instead
+  reconstructs it by a legacy child-job crawl.
+
+So the "cache adjacent to the richer representation" is not something to invent:
+**it already exists on disk as aimless_pipe's split outputs, and we ignore it.**
+
+**The one nuance that shapes the fix: don't double-truncate.** ctruncate did
+French–Wilson *on intensities*. For **amplitude input** (F±/Fmean, no I), using
+ctruncate output would apply French–Wilson to F² — truncate twice (the export
+path already guards this). So the reframe applies asymmetrically:
+
+- **Intensity input** → the ctruncate/aimless outputs *are* the better OBSOUT
+  and alternates; capture them.
+- **Amplitude input** → keep the raw import split; there is no better
+  representation to recover.
+
+**Two separable levels of fix:**
+
+1. **Stop dropping them (small, low-risk).** For intensity input, capture
+   aimless_pipe's `HKLOUT[0]`/`IMEANOUT[0]` as OBSOUT's representation set, and
+   build `COMPLETE_MTZ` for import_merged too (relax the `XMLOUT.isSet()` gate or
+   add an explicit flag).
+2. **Cache-aware `ObsDataConverter`.** Before `servalcat fw`, consult a
+   name-adjacent authoritative alternate (the IMEANOUT/HKLOUT sidecar) covering
+   the same reflections; use it if present and consistent, else re-derive. The
+   consistency gate is exactly the "which representations are present" signal the
+   enriched diagnosis (below) is the right home for.
+
+**This changes what `OBSOUT` *is*** — its provenance flips from raw-input to
+ctruncate-authoritative for intensity input — so it is a data-model decision for
+the crystallographers (Phil / Kathryn), recorded here as the artifact for that
+discussion rather than changed silently.
+
 ## Phased path
 
 1. **Extract `diagnose_reflection_file()`** from the scattered Python
