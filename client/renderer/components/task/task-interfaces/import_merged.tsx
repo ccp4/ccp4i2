@@ -4,12 +4,11 @@ import {
   CCP4i2TaskElementProps,
 } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-import { doRetrieve, useApi } from "../../../api";
-import { useJob, usePrevious } from "../../../utils";
+import { useApi } from "../../../api";
+import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { FieldRow } from "../task-elements/field-row";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { showMtzColumnDialog, parseMtzColumns } from "../task-elements/mtz-column-dialog";
 import { Job } from "../../../types/models";
 import {
   Alert,
@@ -240,11 +239,9 @@ function groupColumnsByPattern(columns: MtzColumn[]): ColumnGroup[] {
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const api = useApi();
   const { job } = props;
-  const { useFileDigest, useTaskItem, mutateValidation, uploadFileParam } =
-    useJob(job.id);
+  const { useFileDigest, useTaskItem, mutateValidation } = useJob(job.id);
 
   const { item: HKLINItem, value: HKLINValue } = useTaskItem("HKLIN");
-  const oldHKLINValue = usePrevious(HKLINValue);
 
   // Use task-qualified path for digest API - only fetch when file has been uploaded (has dbFileId)
   const hasUploadedFile = Boolean(HKLINValue?.dbFileId);
@@ -255,7 +252,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     error: Error | null;
   };
 
-  const { item: HKLIN_OBSItem } = useTaskItem("HKLIN_OBS");
   const { forceUpdate: forceUpdateSPACEGROUP } = useTaskItem("SPACEGROUP");
   const { forceUpdate: forceUpdateUNITCELL } = useTaskItem("UNITCELL");
   const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
@@ -280,6 +276,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const diag = HKLINDigest?.diagnosis;
   const effectiveFormat = (diag?.format || HKLINDigest?.format || "").toUpperCase();
   const effectiveMerged = diag?.merged ?? HKLINDigest?.merged;
+  // Unmerged data cannot be imported here (the server also blocks it in
+  // validity()). Suppress the whole selection / resolution / FreeR flow when
+  // the file is known to be unmerged, so we do not invite column choice for a
+  // job that must not run. `undefined` (digest still loading) keeps the flow
+  // visible; only an explicit `false` hides it.
+  const canImport = effectiveMerged !== false;
 
   // Local state for UI
   const [selectedObsGroup, setSelectedObsGroup] = useState<ColumnGroup | null>(null);
@@ -713,87 +715,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     effectiveFormat,
   ]);
 
-  // Process column selection from MTZ dialog (legacy path)
-  const processColumnSelection = useCallback(
-    async (columnPath: string, file: File) => {
-      if (!forceSetHKLIN_OBS_CONTENT_FLAG || !forceSetHKLIN_OBS_COLUMNS) return;
-
-      const match = columnPath.match(/\[([^\]]+)\]/);
-      if (match) {
-        await forceSetHKLIN_OBS_COLUMNS(match[1]);
-        const columnNames = match[1].split(",").map((name) => name.trim());
-
-        // Determine content flag from column types
-        if (HKLINDigest?.listOfColumns) {
-          const columnTypes = columnNames.map(
-            (name) =>
-              HKLINDigest.listOfColumns?.find(
-                (col) => col.columnLabel === name
-              )?.columnType
-          );
-          const signature = columnTypes.join("");
-          const contentFlag = ["KMKM", "GLGL", "JQ", "FQ"].indexOf(signature);
-          if (contentFlag > -1) {
-            await forceSetHKLIN_OBS_CONTENT_FLAG(contentFlag + 1);
-          }
-        }
-      }
-
-      // Upload the file. This is a derived upload -- the user picked HKLIN
-      // (which prompted for provenance and stored the note on that file); this
-      // splits it into HKLIN_OBS. Being programmatic, not a user pick, it does
-      // not prompt again.
-      if (columnPath && columnPath.trim().length > 0 && HKLIN_OBSItem) {
-        await uploadFileParam({
-          objectPath: HKLIN_OBSItem._objectPath,
-          file: file,
-          fileName: file.name,
-          columnSelector: columnPath,
-        });
-      }
-    },
-    [HKLINDigest, HKLIN_OBSItem, forceSetHKLIN_OBS_COLUMNS, forceSetHKLIN_OBS_CONTENT_FLAG, uploadFileParam]
-  );
-
-  // Handle HKLIN file change (trigger column dialog for MTZ)
-  const handleHKLINFileChange = useCallback(
-    async (hklinValue: any) => {
-      if (
-        !hklinValue?.dbFileId ||
-        !hklinValue?.baseName ||
-        !oldHKLINValue ||
-        job?.status !== 1
-      )
-        return;
-      if (JSON.stringify(hklinValue) === JSON.stringify(oldHKLINValue)) return;
-
-      const isMtzFile = hklinValue.baseName.toLowerCase().endsWith(".mtz");
-      if (!isMtzFile) return;
-
-      // Download and parse MTZ
-      const downloadURL = `files_by_uuid/${hklinValue.dbFileId}/download/`;
-      const arrayBuffer = await doRetrieve(downloadURL, hklinValue.baseName);
-      const blob = new Blob([arrayBuffer], { type: "application/CCP4-mtz-file" });
-      const file = new File([blob], hklinValue.baseName, { type: "application/CCP4-mtz-file" });
-
-      // Use native TypeScript MTZ parser (no cootModule dependency)
-      const columnNames = await parseMtzColumns(file);
-      if (!columnNames) return;
-
-      const columnPath = await showMtzColumnDialog(columnNames, HKLIN_OBSItem);
-      if (!columnPath) return;
-
-      await processColumnSelection(columnPath, file);
-    },
-    [oldHKLINValue, job?.status, HKLIN_OBSItem, processColumnSelection]
-  );
-
-  // Effect: Handle HKLIN value changes
-  useEffect(() => {
-    if (HKLINValue) {
-      handleHKLINFileChange(HKLINValue);
-    }
-  }, [HKLINValue, handleHKLINFileChange]);
+  // The legacy MTZ column-picker modal was removed here: it fired on every MTZ
+  // upload in parallel with the in-panel "Select Observation Data" list (two
+  // competing mechanisms writing HKLIN_OBS_*), and it invited column selection
+  // even for unmerged data. The in-panel, diagnosis-driven selection is now the
+  // sole path; the pipeline reads columns from HKLIN via HKLIN_OBS_COLUMNS /
+  // HKLIN_OBS_CONTENT_FLAG (HKLIN_OBS is allowUndefined), so the modal's extra
+  // HKLIN_OBS upload was redundant.
 
   return (
     <>
@@ -846,6 +774,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               </Alert>
             )}
 
+            {/* Everything below is the import configuration - observation
+                selection, resolution, FreeR. It is meaningless for unmerged
+                data (which cannot be imported here and is blocked server-side),
+                so it is hidden until the file is confirmed importable. */}
+            {canImport && (
+              <>
             {/* Crystal information widgets - only shown when the input format does
                 not carry this metadata itself (MTZ/mmCIF embed it). */}
             {HKLINDigest &&
@@ -1030,6 +964,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   "Accept a FreeR set whose cell differs from the data",
               }}
             />
+              </>
+            )}
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
       </CCP4i2Tabs>
