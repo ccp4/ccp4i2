@@ -1021,15 +1021,35 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
     return "No MTZ columns were found in this file.";
   };
 
+  const singleGroup = obsGroups.length === 1;
+
+  // Shared row: column labels + content-type chip + dataset. Used both as the
+  // static single-group summary and inside the selectable multi-group list.
+  const obsGroupRow = (group: ColumnGroup, selected: boolean) => (
+    <Stack direction="row" spacing={1.5} alignItems="center">
+      <TableChartIcon color={selected ? "primary" : "inherit"} />
+      <Box>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography variant="body2">
+            {group.columnList.map((c) => c.columnLabel).join(", ")}
+          </Typography>
+          <Chip
+            label={OBS_CONTENT_LABELS[group.contentFlag] || `Type ${group.contentFlag}`}
+            size="small"
+            color={selected ? "primary" : "default"}
+          />
+        </Stack>
+        <Typography variant="caption" color="text.secondary">
+          Dataset: {group.dataset || "default"}
+        </Typography>
+      </Box>
+    </Stack>
+  );
+
   return (
     <Card sx={{ mb: 2 }}>
       <CardHeader title="MTZ Reflection Data" />
       <CardContent>
-        {/* Observation Data Selection */}
-        <Typography variant="subtitle2" gutterBottom>
-          Select Observation Data
-        </Typography>
-
         {obsGroups.length === 0 ? (
           <Alert severity="warning" sx={{ mb: 2 }}>
             <Typography variant="body2" fontWeight="bold" gutterBottom>
@@ -1039,48 +1059,58 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
               {getNoObsExplanation()}
             </Typography>
           </Alert>
+        ) : singleGroup ? (
+          // One canonical observation group: there is nothing to choose, so
+          // present it as a static summary rather than a "Select..." control
+          // with a lone, redundant row.
+          <>
+            <Typography variant="subtitle2" gutterBottom>
+              Observation Data
+            </Typography>
+            <Paper variant="outlined" sx={{ p: 1.5, mb: 2 }}>
+              {obsGroupRow(obsGroups[0], true)}
+            </Paper>
+          </>
         ) : (
-          <List dense sx={{ mb: 2 }}>
-            {obsGroups.map((group, idx) => {
-              const isSelected = Boolean(
-                selectedObsGroup &&
-                group.columnList.map((c) => c.columnLabel).join(",") ===
-                  selectedObsGroup.columnList.map((c) => c.columnLabel).join(",")
-              );
-              const labels = group.columnList.map((c) => c.columnLabel).join(", ");
-
-              return (
-                <ListItemButton
-                  key={idx}
-                  selected={isSelected}
-                  onClick={() => onObsGroupSelect(group)}
-                  sx={{
-                    border: 1,
-                    borderColor: isSelected ? "primary.main" : "divider",
-                    borderRadius: 1,
-                    mb: 0.5,
-                  }}
-                >
-                  <ListItemIcon>
-                    <TableChartIcon color={isSelected ? "primary" : "inherit"} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={
-                      <Stack direction="row" spacing={1} alignItems="center">
-                        <Typography variant="body2">{labels}</Typography>
-                        <Chip
-                          label={OBS_CONTENT_LABELS[group.contentFlag] || `Type ${group.contentFlag}`}
-                          size="small"
-                          color={isSelected ? "primary" : "default"}
-                        />
-                      </Stack>
-                    }
-                    secondary={`Dataset: ${group.dataset || "default"}`}
-                  />
-                </ListItemButton>
-              );
-            })}
-          </List>
+          // More than one observation group: a genuine choice, so keep the
+          // selectable list (and say so).
+          <>
+            <Typography variant="subtitle2" gutterBottom>
+              Select Observation Data
+            </Typography>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ display: "block", mb: 1 }}
+            >
+              This file holds more than one observation set — click to choose
+              which to import.
+            </Typography>
+            <List dense sx={{ mb: 2 }}>
+              {obsGroups.map((group, idx) => {
+                const isSelected = Boolean(
+                  selectedObsGroup &&
+                  group.columnList.map((c) => c.columnLabel).join(",") ===
+                    selectedObsGroup.columnList.map((c) => c.columnLabel).join(",")
+                );
+                return (
+                  <ListItemButton
+                    key={idx}
+                    selected={isSelected}
+                    onClick={() => onObsGroupSelect(group)}
+                    sx={{
+                      border: 1,
+                      borderColor: isSelected ? "primary.main" : "divider",
+                      borderRadius: 1,
+                      mb: 0.5,
+                    }}
+                  >
+                    {obsGroupRow(group, isSelected)}
+                  </ListItemButton>
+                );
+              })}
+            </List>
+          </>
         )}
 
         {/* FreeR Status */}
@@ -1090,15 +1120,6 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
           freerWarnings={digest.freerWarnings}
           freerColumnLabel={digest.freerColumnLabel}
         />
-
-        {/* Show selected columns */}
-        {selectedObsGroup && (
-          <Box sx={{ mt: 2, p: 1, bgcolor: "action.hover", borderRadius: 1 }}>
-            <Typography variant="caption" color="text.secondary">
-              Selected: {selectedObsGroup.columnList.map((c) => c.columnLabel).join(", ")}
-            </Typography>
-          </Box>
-        )}
       </CardContent>
     </Card>
   );
