@@ -246,7 +246,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Use task-qualified path for digest API - only fetch when file has been uploaded (has dbFileId)
   const hasUploadedFile = Boolean(HKLINValue?.dbFileId);
   const digestObjectPath = hasUploadedFile ? "import_merged.inputData.HKLIN" : "";
-  const { data: HKLINDigest, isLoading: digestLoading, error: digestError } = useFileDigest(digestObjectPath) as {
+  // Key the digest on the file identity, not just the object path: swapping the
+  // HKLIN file keeps the path constant, so without this the cached digest (and
+  // its merged/unmerged verdict) from the previous file would persist.
+  const { data: HKLINDigest, isLoading: digestLoading, error: digestError } = useFileDigest(digestObjectPath, HKLINValue?.dbFileId) as {
     data: GenericReflDigest | null;
     isLoading: boolean;
     error: Error | null;
