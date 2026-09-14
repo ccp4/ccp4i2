@@ -227,6 +227,18 @@ app
     // NEXT_PUBLIC_API_BASE_URL (for any client-side code that needs it)
     process.env.API_BASE_URL = `http://localhost:${djangoServerPort}`;
     process.env.NEXT_PUBLIC_API_BASE_URL = `http://localhost:${djangoServerPort}`;
+    // The desktop app is single-user: authentication is never required here (by
+    // design the setup page has no accounts/teams chrome). The Next middleware
+    // decides whether to gate on auth by reading NEXT_PUBLIC_REQUIRE_AUTH at
+    // RUNTIME -- so one build can serve cloud-auth or desktop-no-auth -- which
+    // means it otherwise inherits the ambient shell environment. A developer who
+    // has `export NEXT_PUBLIC_REQUIRE_AUTH=true` (for the web build) and then
+    // launches the desktop app FROM THAT TERMINAL turns auth on for a desktop
+    // with no Azure AD to complete it: config -> /auth/login -> ... loops with
+    // ERR_TOO_MANY_REDIRECTS. Pin it off so the desktop app is immune to the
+    // launching environment. (GH #502 -- .deb launched from a terminal failed
+    // while the GUI-launched AppImage, with a clean env, did not.)
+    process.env.NEXT_PUBLIC_REQUIRE_AUTH = "false";
     nextServer = await startNextServer(isDev, nextServerPort, djangoServerPort);
   })
   .then(async () => {
