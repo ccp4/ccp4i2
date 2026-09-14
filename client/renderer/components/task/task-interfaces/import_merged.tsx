@@ -287,6 +287,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { forceUpdate: forceSetHASFREER } = useTaskItem("HASFREER");
   const { forceUpdate: forceSetSTARANISO_DATA } = useTaskItem("controlParameters.STARANISO_DATA");
   const { forceUpdate: forceSetSKIP_FREER } = useTaskItem("controlParameters.SKIP_FREER");
+  const { value: shelxIsIntensity, forceUpdate: forceSetSHELX_IS_INTENSITY } = useTaskItem("SHELX_IS_INTENSITY");
 
   // The content-based diagnosis is the source of truth; fall back to the legacy
   // top-level digest fields when it is absent (older server, other file types).
@@ -838,6 +839,50 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                       itemName="WAVELENGTH"
                       qualifiers={{ guiLabel: "Wavelength" }}
                     />
+
+                    {/* Data-type declaration - only for formats where it is not
+                        decidable from the file (SHELX: HKLF 4 vs HKLF 3). The
+                        server lists it in diagnosis.needs. */}
+                    {diag?.needs?.includes("dataType") && (
+                      <Box sx={{ mt: 2 }}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          Data type
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          color="text.secondary"
+                          sx={{ display: "block", mb: 0.5 }}
+                        >
+                          A SHELX .hkl does not record whether its two data
+                          columns are intensities (HKLF&nbsp;4, Fo²) or amplitudes
+                          (HKLF&nbsp;3, Fo) — that is declared in the .ins/.res,
+                          which we do not have. Choose which they are.
+                        </Typography>
+                        <RadioGroup
+                          row
+                          value={shelxIsIntensity === false ? "amplitudes" : "intensities"}
+                          onChange={async (e) => {
+                            if (forceSetSHELX_IS_INTENSITY) {
+                              await forceSetSHELX_IS_INTENSITY(
+                                e.target.value === "intensities"
+                              );
+                              await mutateValidation();
+                            }
+                          }}
+                        >
+                          <FormControlLabel
+                            value="intensities"
+                            control={<Radio size="small" />}
+                            label="Intensities (HKLF 4)"
+                          />
+                          <FormControlLabel
+                            value="amplitudes"
+                            control={<Radio size="small" />}
+                            label="Amplitudes (HKLF 3)"
+                          />
+                        </RadioGroup>
+                      </Box>
+                    )}
                   </CardContent>
                 </Card>
               )}
