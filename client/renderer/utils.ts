@@ -220,7 +220,7 @@ export interface JobData {
   useFileContent: (paramName: string) => SWRResponse<string, Error>;
   getValidationColor: (item: any) => string;
   getErrors: (item: any) => ValidationError[];
-  useFileDigest: (objectPath: string) => SWRResponse<any, Error>;
+  useFileDigest: (objectPath: string, cacheKey?: string | number) => SWRResponse<any, Error>;
   fetchDigest: (objectPath: string) => Promise<any | null>;
   callPluginMethod: (
     methodName: string,
@@ -1410,10 +1410,19 @@ export const useJob = (jobId: number | null | undefined): JobData => {
   // Custom hook to fetch file digest using SWR
   // Note: objectPath should be the full path like "prosmart_refmac.inputData.F_SIGF"
   // Returns unwrapped digest data (extracts .data from API response)
-  const useFileDigest = (objectPath: string): SWRResponse<any, Error> => {
-    // Create a unique key for SWR caching
+  const useFileDigest = (
+    objectPath: string,
+    cacheKey?: string | number
+  ): SWRResponse<any, Error> => {
+    // Create a unique key for SWR caching. The object path alone is NOT a
+    // sufficient key: the file behind a param can be swapped while the path
+    // stays constant, and with a 5-minute dedupingInterval SWR would then serve
+    // the previous file's digest (e.g. a merged .sca verdict lingering after an
+    // unmerged file is dropped in). Fold the file identity into the key so a
+    // different file refetches. The extra query param is ignored server-side.
     const swrKey = objectPath
-      ? `jobs/${job?.id}/digest?object_path=${objectPath}`
+      ? `jobs/${job?.id}/digest?object_path=${objectPath}` +
+        (cacheKey !== undefined && cacheKey !== null ? `&_f=${cacheKey}` : "")
       : null;
     const fetcher = async (): Promise<any> => {
       if (!swrKey) {
