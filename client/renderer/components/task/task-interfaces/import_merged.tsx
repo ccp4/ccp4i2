@@ -249,11 +249,25 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Key the digest on the file identity, not just the object path: swapping the
   // HKLIN file keeps the path constant, so without this the cached digest (and
   // its merged/unmerged verdict) from the previous file would persist.
-  const { data: HKLINDigest, isLoading: digestLoading, error: digestError } = useFileDigest(digestObjectPath, HKLINValue?.dbFileId) as {
+  const { data: HKLINDigest, isLoading: digestLoading, error: digestError, mutate: mutateDigest } = useFileDigest(digestObjectPath, HKLINValue?.dbFileId) as {
     data: GenericReflDigest | null;
     isLoading: boolean;
     error: Error | null;
+    mutate: () => Promise<any>;
   };
+
+  // Belt-and-braces against a stale digest when the HKLIN file is swapped. The
+  // digest is fetched once per SWR key and then cached (5-min dedupe), whereas
+  // validation is polled continuously -- so a stale digest can linger (e.g. a
+  // merged file showing the previous file's UNMERGED verdict) even though RUN is
+  // correctly enabled/disabled by the server. setParameter patches the container
+  // only AFTER the server commit, so by the time dbFileId changes the server
+  // already holds the new file; force a revalidation so the digest reads it.
+  useEffect(() => {
+    if (HKLINValue?.dbFileId && mutateDigest) {
+      mutateDigest();
+    }
+  }, [HKLINValue?.dbFileId, mutateDigest]);
 
   const { forceUpdate: forceUpdateSPACEGROUP } = useTaskItem("SPACEGROUP");
   const { forceUpdate: forceUpdateUNITCELL } = useTaskItem("UNITCELL");
