@@ -40,6 +40,31 @@ class import_merged(CPluginScript):
                 name=f'{self.TASKNAME}.container.inputData.MMCIF_SELECTED_BLOCK',
                 severity=CCP4ErrorHandling.SEVERITY_ERROR)
 
+        # Unmerged data is not importable here -- import_merged is for MERGED
+        # data. Block it server-side (the sole validation authority) so RUN is
+        # disabled, rather than letting the job run and produce nonsense. This
+        # reads the file, an exception to the "validity() does no I/O" guideline;
+        # the diagnosis is cached by (path, mtime, size) so repeated validation
+        # polls read the file only once, and the read is skipped unless HKLIN is
+        # set.
+        hklin = self.container.inputData.HKLIN
+        if hklin.isSet():
+            try:
+                from ccp4i2.lib.utils.files.reflection_diagnosis import (
+                    diagnose_reflection_file_cached,
+                )
+                diag = diagnose_reflection_file_cached(str(hklin.fullPath))
+                if diag.get('merged') is False:
+                    error.append(
+                        klass=self.TASKNAME, code=202,
+                        details='This looks like UNMERGED data. import_merged is '
+                                'for merged reflection data - scale and merge it '
+                                'first (e.g. the aimless data-reduction task).',
+                        name=f'{self.TASKNAME}.container.inputData.HKLIN',
+                        severity=CCP4ErrorHandling.SEVERITY_ERROR)
+            except Exception:
+                pass  # never let the merged probe break validation
+
         return error
 
     #------------------------------------------------------------------------

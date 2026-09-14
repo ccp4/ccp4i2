@@ -11,7 +11,9 @@ Pure gemmi/numpy-free stdlib, so it runs unchanged on the slim server.
 """
 from __future__ import annotations
 
+import os
 import re
+from functools import lru_cache
 from pathlib import Path
 
 
@@ -32,6 +34,19 @@ _SHELX_RE = re.compile(rb"^[ \d+-]{12}[ \d.+\-eE]{16}")
 _SCALEPACK_CELL_RE = re.compile(
     rb"^\s*(?:[-+]?\d+\.\d+\s+){6}\S"  # 6 floats then a non-space (SG symbol)
 )
+# Unmerged scalepack has a different header: line 1 is "<nsym> <SGname>" and is
+# followed by rows of symmetry-operator integers -- quite unlike the merged
+# 3-line header. We never READ unmerged scalepack (it is rejected as unmerged),
+# but we must still recognise it so the merged-check can reject it rather than
+# letting it fall through as "unknown".
+_SCALEPACK_UNMERGED_HEAD_RE = re.compile(r"^\s*\d+\s+[A-Za-z][A-Za-z0-9 /\-]*$")
+
+
+def _looks_unmerged_scalepack(line0: str, line1: str) -> bool:
+    if not _SCALEPACK_UNMERGED_HEAD_RE.match(line0.rstrip()):
+        return False
+    toks = line1.split()
+    return len(toks) == 9 and all(t.lstrip("-").isdigit() for t in toks)
 
 
 def _head_bytes(path, n: int = 4096) -> bytes:
@@ -70,11 +85,15 @@ def detect_format(path) -> str:
         if "_refln" in text or "_diffrn_refln" in text:
             return FORMAT_MMCIF
 
-    # 4. Scalepack — 3-line header whose 3rd line is "6 floats + SG symbol".
+    # 4. Scalepack (merged) — 3-line header whose 3rd line is "6 floats + SG".
     if len(lines) >= 3 and _SCALEPACK_CELL_RE.match(lines[2].encode("utf-8", "replace")):
         # guard: the first two lines are short integer-ish headers
         if lines[0].strip().lstrip("-").isdigit():
             return FORMAT_SCALEPACK
+
+    # 4b. Scalepack (unmerged) — "<nsym> <SGname>" header then symop rows.
+    if len(lines) >= 2 and _looks_unmerged_scalepack(lines[0], lines[1]):
+        return FORMAT_SCALEPACK
 
     # 5. SHELX — bare fixed-width h k l F sig records from the first line.
     if _SHELX_RE.match(lines[0].encode("utf-8", "replace")):
@@ -105,6 +124,27 @@ CARRIES_CELL_SG = frozenset({FORMAT_MTZ, FORMAT_MMCIF, FORMAT_XDS, FORMAT_SCALEP
 
 def _cell_list(cell) -> list:
     return [cell.a, cell.b, cell.c, cell.alpha, cell.beta, cell.gamma]
+
+
+@lru_cache(maxsize=64)
+def _diagnose_cached(path_str, mtime, size):
+    return diagnose_reflection_file(path_str)
+
+
+def diagnose_reflection_file_cached(path) -> dict:
+    """Like ``diagnose_reflection_file`` but memoised on (path, mtime, size).
+
+    ``validity()`` is polled on every parameter edit, so an uncached read of
+    the reflection file each time would be wasteful. The cache key includes
+    mtime and size so a replaced file is re-diagnosed. Returns a shallow copy so
+    a caller cannot mutate the cached dict.
+    """
+    p = str(path)
+    try:
+        st = os.stat(p)
+    except OSError:
+        return diagnose_reflection_file(p)
+    return dict(_diagnose_cached(p, st.st_mtime, st.st_size))
 
 
 def diagnose_reflection_file(path) -> dict:
@@ -240,12 +280,72 @@ def _mmcif_names_staraniso(doc) -> bool:
     return False
 
 
+# Cap the merged-case scan; an unmerged file repeats an hkl long before this, so
+# the cap only bounds pathologically large *merged* files (assume merged then).
+_MAX_HKL_SCAN = 300000
+
+
+def _scan_hkl_records(path, skip=0, stop_on_zero=False):
+    """One pass over fixed-width ``3I4`` hkl records (scalepack/SHELX).
+
+    Returns ``(anomalous, unmerged)``:
+      - ``anomalous`` -- any record carries more than two F8 value fields after
+        the hkl (the I+/sigma+/I-/sigma- width). Only meaningful for scalepack.
+      - ``unmerged`` -- some ``(h, k, l)`` repeats (multiple observations).
+        Merged data lists each reflection once (anomalous mates share a row), so
+        a repeat means unmerged. Early-exits on the first repeat.
+    """
+    seen = set()
+    anomalous = False
+    unmerged = False
+    with open(path, "r", errors="replace") as fh:
+        for i, rec in enumerate(fh):
+            if i < skip:
+                continue
+            if len(rec) < 12:
+                continue
+            try:
+                h = int(rec[0:4]); k = int(rec[4:8]); l = int(rec[8:12])
+            except ValueError:
+                continue
+            if stop_on_zero and h == 0 and k == 0 and l == 0:
+                break  # SHELX end-of-data marker
+            if not anomalous and len(rec[12:].rstrip()) > 2 * 8:
+                anomalous = True
+            key = (h, k, l)
+            if key in seen:
+                unmerged = True
+                break
+            seen.add(key)
+            if len(seen) >= _MAX_HKL_SCAN:
+                break  # enormous unique-hkl set, no repeat -> treat as merged
+    return anomalous, unmerged
+
+
 def _diagnose_scalepack(path, d):
     import gemmi
 
     # 3-line header; line 3 = 6 cell floats + a space-group symbol.
     with open(path, "r", errors="replace") as fh:
         lines = [next(fh, "") for _ in range(4)]
+
+    # Unmerged scalepack ("<nsym> <SGname>" + symop rows) has no 3-line merged
+    # header. We do not read unmerged data (it is rejected as unmerged); just
+    # flag it so the merged-check blocks it. The space group is on line 1.
+    if len(lines) >= 2 and _looks_unmerged_scalepack(lines[0], lines[1]):
+        d["merged"] = False
+        toks = lines[0].split()
+        if len(toks) >= 2:
+            sg_sym = toks[1]
+            d["spaceGroup"] = sg_sym
+            try:
+                sg = gemmi.SpaceGroup(sg_sym)
+                d["spaceGroup"] = sg.hm
+                d["spaceGroupNumber"] = sg.number
+            except Exception:
+                pass
+        return
+
     line3 = lines[2]
     m = re.match(r"\s*((?:[-+]?\d+\.\d+\s+){6})(.+)", line3)
     if m:
@@ -258,23 +358,22 @@ def _diagnose_scalepack(path, d):
             d["spaceGroupNumber"] = sg.number
         except Exception:
             d["warnings"].append(f"unrecognised space group '{sg_sym}'")
-    d["merged"] = True  # scalepack .sca handled here is merged output
-    # anomalous iff ANY data record carries the 7-field (I+ σ+ I- σ-) width;
-    # a single record can be short (a lone mate), so scan a window of them.
-    anomalous = False
-    with open(path, "r", errors="replace") as fh:
-        for i, rec in enumerate(fh):
-            if i < 3:
-                continue
-            if i > 3 + 5000:
-                break
-            if len(rec[3 * 4:].rstrip()) > 2 * 8:  # more than 2 F8 fields after HKL
-                anomalous = True
-                break
+    # Scalepack carries no MERGE flag, so decide merged/unmerged by content:
+    # unmerged data repeats (h,k,l) (multiple observations), merged data lists
+    # each reflection once (anomalous I+/I- share one row, so they do not
+    # repeat). One pass also settles anomalous (a 7-field record). Early-exit on
+    # the first duplicate makes the unmerged case cheap; a cap bounds the merged
+    # case for very large files.
+    anomalous, unmerged = _scan_hkl_records(path, skip=3)
     d["anomalous"] = anomalous
+    d["merged"] = not unmerged
 
 
 def _diagnose_shelx(path, d):
     # SHELX carries no metadata at all — everything must be supplied.
-    d["merged"] = True
     d["needs"] = ["cell", "spaceGroup", "dataType"]
+    # ...but merged/unmerged is still decidable from the records: an unmerged
+    # .hkl repeats reflections. (anomalous is not inferable from HKLF width, so
+    # it is left undecided here.)
+    _, unmerged = _scan_hkl_records(path, skip=0, stop_on_zero=True)
+    d["merged"] = not unmerged
