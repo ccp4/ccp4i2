@@ -62,6 +62,26 @@ class import_merged(CPluginScript):
                                 'first (e.g. the aimless data-reduction task).',
                         name=f'{self.TASKNAME}.container.inputData.HKLIN',
                         severity=CCP4ErrorHandling.SEVERITY_ERROR)
+
+                # Metadata the file does not carry must be supplied by the user
+                # (SHELX: cell + space group; the data-type has a default). Block
+                # until they are set, rather than failing at run time in the
+                # reader. mmCIF/XDS/scalepack carry their own cell/SG.
+                needs = diag.get('needs') or []
+                if 'cell' in needs and not self.container.inputData.UNITCELL.isSet():
+                    error.append(
+                        klass=self.TASKNAME, code=203,
+                        details='This format carries no unit cell - enter one '
+                                'under "Crystal Information".',
+                        name=f'{self.TASKNAME}.container.inputData.UNITCELL',
+                        severity=CCP4ErrorHandling.SEVERITY_ERROR)
+                if 'spaceGroup' in needs and not self.container.inputData.SPACEGROUP.isSet():
+                    error.append(
+                        klass=self.TASKNAME, code=204,
+                        details='This format carries no space group - enter one '
+                                'under "Crystal Information".',
+                        name=f'{self.TASKNAME}.container.inputData.SPACEGROUP',
+                        severity=CCP4ErrorHandling.SEVERITY_ERROR)
             except Exception:
                 pass  # never let the merged probe break validation
 
@@ -88,18 +108,11 @@ class import_merged(CPluginScript):
       if self.container.inputData.RESOLUTION_RANGE_SET:
           self.resolutioncutoff = True
 
-      # MTZ no longer needs the cmtzsplit binary (x2mtz) -- it goes through the
-      # gemmi ImportMTZ path unconditionally now. shelx/sca still create their
-      # converter plugins here; those become binary-free readers in a later
-      # PR3 step (sca) / PR4 (shelx, which needs the user-declared data type).
-      if str(self.fformat) in ['shelx']:
-        self.x2mtz = self.makePluginObject('convert2mtz')
-
-      if self.x2mtz is not None:
-          #  Copy parameters to x2mtz sub-object
-          self.x2mtz.container.inputData.copyData(otherContainer=self.container.inputData)
-          self.x2mtz.container.outputData.copyData(otherContainer=self.container.outputData,dataList=['HKLOUT','OBSOUT'])
-
+      # Every format now has a binary-free reader (gemmi ImportMTZ for MTZ,
+      # ConvertCIF for mmCIF, read_scalepack/read_shelx for .sca/.hkl, gemmi
+      # read_xds_ascii for XDS), so the old convert2mtz (f2mtz/combat) plugin is
+      # gone. self.x2mtz stays None; the process1/process2 guards that test it
+      # are harmless dead branches kept to minimise churn.
       self.freeRcompleteTried = True
       self.importXML = None
       self.freeout = None
@@ -150,24 +163,31 @@ class import_merged(CPluginScript):
               self.process1(status)
               return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
 
-          # remaining converters (shelx via convert2mtz) still use the binary
-          # plugin -- becomes a reader in PR4 (needs a user-declared data type).
-          if self.x2mtz is None:
-              # detect_format returned something with no import path wired up
-              # here (e.g. 'xds', 'unknown'). Fail loudly rather than crashing
-              # on a None.process(); PR4 wires XDS/SHELX intent-capture.
-              print("ERROR: import_merged: unsupported reflection format",
-                    self.fformat)
-              self.appendErrorReport(
-                  201,
-                  f'Unsupported reflection format: {self.fformat}',
-                  severity=CCP4ErrorHandling.SEVERITY_ERROR)
-              self.process1(CPluginScript.FAILED)
-              return self.get_status() if self.get_status() is not None else CPluginScript.FAILED
-          status = self.x2mtz.process()
-          self.process1(status)
-          # Return the status that was set by reportStatus()
-          return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
+          # SHELX .hkl: pure-Python reader (retires f2mtz). The file declares
+          # neither cell/SG nor whether the data are intensities or amplitudes,
+          # so all three come from the user (validity() requires cell + SG).
+          if str(self.fformat) == 'shelx':
+              status = self.importshelx()
+              self.process1(status)
+              return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
+
+          # XDS_ASCII: gemmi reads it natively. Only merged XDS reaches here --
+          # unmerged XDS (the usual CORRECT/INTEGRATE output) is rejected by the
+          # unmerged block in validity().
+          if str(self.fformat) == 'xds':
+              status = self.importxds()
+              self.process1(status)
+              return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
+
+          # Truly unrecognised content: fail with a clear message.
+          print("ERROR: import_merged: unsupported reflection format",
+                self.fformat)
+          self.appendErrorReport(
+              201,
+              f'Unsupported reflection format: {self.fformat}',
+              severity=CCP4ErrorHandling.SEVERITY_ERROR)
+          self.process1(CPluginScript.FAILED)
+          return self.get_status() if self.get_status() is not None else CPluginScript.FAILED
 
     def process1(self,status, completeFreeR=True):
         'if completeFreeR False, always generate new FreeR (for 2nd attempt)'
@@ -664,6 +684,116 @@ class import_merged(CPluginScript):
             self.contentFlag = 3   # CObsDataFile Imean
         self.isintensity = +1                              # scalepack is intensity
         self.container.inputData.HASFREER.set(False)       # .sca carries no FreeR
+        self.freeout = None
+
+        outfile = str(self.container.outputData.OBSOUT)
+        resorange = self.makeResoRange()
+        mtzimport = ImportMTZ(srcpath, outfile, None,
+                              obsColLabels, int(self.contentFlag),
+                              None, resorange)
+        self.mtzXML = mtzimport.getXML()
+        if self.importXML is not None and self.mtzXML is not None:
+            self.importXML.append(self.mtzXML)
+        if mtzimport.getstatus():
+            return {'finishStatus': CPluginScript.SUCCEEDED}
+        return {'finishStatus': CPluginScript.FAILED}
+
+    # -------------------------------------------------------------------------
+    def _userCellSpaceGroup(self):
+        """(cell6, sgNumber) from the user-supplied SPACEGROUP + UNITCELL (the
+        Crystal-Information card), falling back to the SPACEGROUPCELL compound.
+        For formats that carry no cell/SG of their own (SHELX)."""
+        inp = self.container.inputData
+        cell = None
+        sgnum = None
+        if inp.UNITCELL.isSet():
+            c = inp.UNITCELL
+            cell = [c.a.__float__(), c.b.__float__(), c.c.__float__(),
+                    c.alpha.__float__(), c.beta.__float__(), c.gamma.__float__()]
+        if inp.SPACEGROUP.isSet():
+            try:
+                sgnum = inp.SPACEGROUP.number()
+            except Exception:
+                sgnum = None
+        sgc = inp.SPACEGROUPCELL
+        if cell is None and sgc.cell.isSet():
+            c = sgc.cell
+            cell = [c.a.__float__(), c.b.__float__(), c.c.__float__(),
+                    c.alpha.__float__(), c.beta.__float__(), c.gamma.__float__()]
+        if sgnum is None and sgc.spaceGroup.isSet():
+            sgnum = sgc.spaceGroup.number()
+        return cell, sgnum
+
+    # -------------------------------------------------------------------------
+    def importshelx(self):
+        # Import a SHELX .hkl WITHOUT binaries (retires f2mtz). SHELX carries no
+        # cell/SG, and whether the two columns are intensities (HKLF 4) or
+        # amplitudes (HKLF 3) is undecidable from the file, so all three are
+        # user-supplied: cell + SG from the Crystal-Information card (required by
+        # validity()), and SHELX_IS_INTENSITY for the data type.
+        from ccp4i2.lib.utils.files.reflection_formats import read_shelx
+
+        path = str(self.container.inputData.HKLIN)
+        cell, sgnum = self._userCellSpaceGroup()
+        if cell is None or sgnum is None:
+            print("ERROR: import_merged.importshelx: SHELX needs a cell and "
+                  "space group", path)
+            return {'finishStatus': CPluginScript.FAILED}
+
+        intensities = bool(self.container.inputData.SHELX_IS_INTENSITY)
+        srcmtz = read_shelx(path, cell, sgnum, intensities=intensities)
+        srcpath = str(self.workDirectory / 'shelx_source.mtz')
+        srcmtz.write_to_file(srcpath)
+
+        if intensities:
+            obsColLabels = ['I', 'SIGI']
+            self.contentFlag = 3   # Imean
+            self.isintensity = +1
+        else:
+            obsColLabels = ['F', 'SIGF']
+            self.contentFlag = 4   # Fmean
+            self.isintensity = -1
+        self.container.inputData.HASFREER.set(False)       # .hkl carries no FreeR
+        self.freeout = None
+
+        outfile = str(self.container.outputData.OBSOUT)
+        resorange = self.makeResoRange()
+        mtzimport = ImportMTZ(srcpath, outfile, None,
+                              obsColLabels, int(self.contentFlag),
+                              None, resorange)
+        self.mtzXML = mtzimport.getXML()
+        if self.importXML is not None and self.mtzXML is not None:
+            self.importXML.append(self.mtzXML)
+        if mtzimport.getstatus():
+            return {'finishStatus': CPluginScript.SUCCEEDED}
+        return {'finishStatus': CPluginScript.FAILED}
+
+    # -------------------------------------------------------------------------
+    def importxds(self):
+        # Import a MERGED XDS_ASCII file. gemmi reads it natively and converts to
+        # an MTZ; XDS carries cell/SG/wavelength itself. Only merged XDS reaches
+        # here (unmerged XDS is rejected by the unmerged block in validity()).
+        import gemmi
+
+        path = str(self.container.inputData.HKLIN)
+        xds = gemmi.read_xds_ascii(path)
+        srcmtz = xds.to_mtz()
+        srcpath = str(self.workDirectory / 'xds_source.mtz')
+        srcmtz.write_to_file(srcpath)
+
+        # XDS is intensities; pick anomalous I(+/-) if present, else mean I.
+        labels = [c.label for c in srcmtz.columns]
+        if 'I(+)' in labels and 'I(-)' in labels:
+            obsColLabels = ['I(+)', 'SIGI(+)', 'I(-)', 'SIGI(-)']
+            self.contentFlag = 1   # I(+/-) anomalous
+        elif 'IMEAN' in labels:
+            obsColLabels = ['IMEAN', 'SIGIMEAN']
+            self.contentFlag = 3
+        else:
+            obsColLabels = ['I', 'SIGI']
+            self.contentFlag = 3   # Imean
+        self.isintensity = +1
+        self.container.inputData.HASFREER.set(False)
         self.freeout = None
 
         outfile = str(self.container.outputData.OBSOUT)
