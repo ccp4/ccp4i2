@@ -36,6 +36,7 @@ interface DataTableProps<T> {
    */
   getRowProps?: (row: T) => Partial<TableRowProps>;
   emptyMessage: string;
+  minWidth?: number;
 }
 
 type Order = "asc" | "desc";
@@ -47,6 +48,7 @@ export function DataTable<T extends Record<string, any>>({
   getRowKey,
   getRowProps,
   emptyMessage,
+  minWidth,
 }: DataTableProps<T>) {
   const [orderBy, setOrderBy] = useState<string | null>(null);
   const [order, setOrder] = useState<Order>("asc");
@@ -112,7 +114,7 @@ export function DataTable<T extends Record<string, any>>({
           overflow: "auto",
         }}
       >
-        <Table stickyHeader size="small" sx={{ tableLayout: "fixed" }}>
+        <Table stickyHeader size="small" sx={{ tableLayout: "fixed", minWidth }}>
           <TableHead>
             <TableRow>
               {columns.map((column) => (
