@@ -34,6 +34,19 @@ _SHELX_RE = re.compile(rb"^[ \d+-]{12}[ \d.+\-eE]{16}")
 _SCALEPACK_CELL_RE = re.compile(
     rb"^\s*(?:[-+]?\d+\.\d+\s+){6}\S"  # 6 floats then a non-space (SG symbol)
 )
+# Unmerged scalepack has a different header: line 1 is "<nsym> <SGname>" and is
+# followed by rows of symmetry-operator integers -- quite unlike the merged
+# 3-line header. We never READ unmerged scalepack (it is rejected as unmerged),
+# but we must still recognise it so the merged-check can reject it rather than
+# letting it fall through as "unknown".
+_SCALEPACK_UNMERGED_HEAD_RE = re.compile(r"^\s*\d+\s+[A-Za-z][A-Za-z0-9 /\-]*$")
+
+
+def _looks_unmerged_scalepack(line0: str, line1: str) -> bool:
+    if not _SCALEPACK_UNMERGED_HEAD_RE.match(line0.rstrip()):
+        return False
+    toks = line1.split()
+    return len(toks) == 9 and all(t.lstrip("-").isdigit() for t in toks)
 
 
 def _head_bytes(path, n: int = 4096) -> bytes:
@@ -72,11 +85,15 @@ def detect_format(path) -> str:
         if "_refln" in text or "_diffrn_refln" in text:
             return FORMAT_MMCIF
 
-    # 4. Scalepack — 3-line header whose 3rd line is "6 floats + SG symbol".
+    # 4. Scalepack (merged) — 3-line header whose 3rd line is "6 floats + SG".
     if len(lines) >= 3 and _SCALEPACK_CELL_RE.match(lines[2].encode("utf-8", "replace")):
         # guard: the first two lines are short integer-ish headers
         if lines[0].strip().lstrip("-").isdigit():
             return FORMAT_SCALEPACK
+
+    # 4b. Scalepack (unmerged) — "<nsym> <SGname>" header then symop rows.
+    if len(lines) >= 2 and _looks_unmerged_scalepack(lines[0], lines[1]):
+        return FORMAT_SCALEPACK
 
     # 5. SHELX — bare fixed-width h k l F sig records from the first line.
     if _SHELX_RE.match(lines[0].encode("utf-8", "replace")):
@@ -311,6 +328,24 @@ def _diagnose_scalepack(path, d):
     # 3-line header; line 3 = 6 cell floats + a space-group symbol.
     with open(path, "r", errors="replace") as fh:
         lines = [next(fh, "") for _ in range(4)]
+
+    # Unmerged scalepack ("<nsym> <SGname>" + symop rows) has no 3-line merged
+    # header. We do not read unmerged data (it is rejected as unmerged); just
+    # flag it so the merged-check blocks it. The space group is on line 1.
+    if len(lines) >= 2 and _looks_unmerged_scalepack(lines[0], lines[1]):
+        d["merged"] = False
+        toks = lines[0].split()
+        if len(toks) >= 2:
+            sg_sym = toks[1]
+            d["spaceGroup"] = sg_sym
+            try:
+                sg = gemmi.SpaceGroup(sg_sym)
+                d["spaceGroup"] = sg.hm
+                d["spaceGroupNumber"] = sg.number
+            except Exception:
+                pass
+        return
+
     line3 = lines[2]
     m = re.match(r"\s*((?:[-+]?\d+\.\d+\s+){6})(.+)", line3)
     if m:

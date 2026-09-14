@@ -131,6 +131,27 @@ def test_diagnose_scalepack_merged_vs_unmerged(tmp_path):
     assert diagnose_reflection_file(u)["merged"] is False
 
 
+# The real unmerged scalepack format: a "<nsym> <SGname>" header then symmetry-
+# operator rows -- NOT the 3-line merged header. Must be recognised as scalepack
+# and flagged unmerged, or it slips past the unmerged block as "unknown".
+SCALEPACK_UNMERGED_HEADER = (
+    "    8 C2221\n"
+    "  1  0  0  0  1  0  0  0  1\n"
+    "  0  0  0\n"
+    " -1  0  0  0 -1  0  0  0  1\n"
+    "  0  0  0\n"
+)
+
+
+def test_detect_unmerged_scalepack_header(tmp_path):
+    p = tmp_path / "u.sca"
+    p.write_text(SCALEPACK_UNMERGED_HEADER)
+    assert detect_format(p) == FORMAT_SCALEPACK
+    d = diagnose_reflection_file(p)
+    assert d["merged"] is False           # so the unmerged hard-block fires
+    assert d["spaceGroupNumber"] == 20    # C 2 2 21
+
+
 def test_diagnose_shelx_reports_needs(tmp_path):
     p = tmp_path / "s.hkl"
     p.write_text(SHELX_HKLF4)
