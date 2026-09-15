@@ -174,6 +174,13 @@ export async function startDjangoServer(
     NEXT_ADDRESS: `http://localhost:${NEXT_PORT}`,
     // Force local execution mode for Electron app
     EXECUTION_MODE: "local",
+    // The desktop is single-user and local, and cryo-EM maps / project zips run
+    // to hundreds of MB (a cryoSPARC volume is ~0.25 GB). Raise Django's upload
+    // ceiling so a large local import reaches the backend; the cloud keeps the
+    // 100 MB default as a DoS guard. Short-term unblock -- the proper fix is a
+    // local-path bypass that skips the upload entirely (#512).
+    DATA_UPLOAD_MAX_MEMORY_SIZE: "2147483648", // 2 GB
+
     // Our pid: the server's parent watchdog exits the uvicorn tree if we die
     // without a chance to kill it (crash, SIGKILL, debugger stop).
     ...parentPidEnvironment(),

@@ -52,20 +52,27 @@ const nextConfig: NextConfig = {
     unoptimized: isElectron || isWeb,
   },
 
-  // Any request that passes through middleware has its body cloned with this
-  // cap, and a body over the cap is silently truncated (Next's default is
-  // 10 MB). The desktop app is a single user importing their own project zips,
-  // which run to hundreds of MB, so it gets a generous ceiling. The web build
-  // keeps 100 MB: it is the cloud deployment, the cloned body is held in
-  // memory, and a larger cap there would widen the denial-of-service surface
-  // for anyone who can reach the server.
+  // Two body-size caps, both raised for the desktop app and held at 100 MB for
+  // the web (cloud) deployment:
+  //   - middlewareClientMaxBodySize: every request through middleware has its
+  //     body cloned with this cap (Next's default is 10 MB; over-cap bodies are
+  //     silently truncated).
+  //   - serverActions.bodySizeLimit: the cap on server-action bodies, which is
+  //     how imported files come in.
+  // The desktop app is a single user importing their own project zips and, now,
+  // cryo-EM maps -- which run to hundreds of MB (a cryoSPARC volume is ~0.25 GB)
+  // -- so both get a generous ceiling. The web build keeps 100 MB: it is the
+  // cloud deployment, the cloned body is held in memory, and a larger cap there
+  // would widen the denial-of-service surface for anyone who can reach the
+  // server. (This is the short-term unblock; the proper fix is to bypass the
+  // upload entirely on desktop and read the local file by path -- see #512.)
   //
   // Note for the desktop app: this file is not shipped in the package, so the
   // runtime gets these values through .next/required-server-files.json (see
   // client/main/ccp4i2-next-config.ts) - editing here is still the right place.
   experimental: {
     serverActions: {
-      bodySizeLimit: '100mb',
+      bodySizeLimit: isElectron ? '2gb' : '100mb',
     },
     middlewareClientMaxBodySize: isElectron ? '2gb' : '100mb',
   },
