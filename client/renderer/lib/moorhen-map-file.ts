@@ -22,6 +22,14 @@ import {
 export const MASK_SUBTYPE = 4;
 
 /**
+ * File.sub_type marking a CCP4-map file as a cryo-EM half map
+ * (CMapDataFile.SUBTYPE_HALFMAP) — one of a pair, for FSC cross-validation. It
+ * renders as ordinary density; the sub_type only lets tasks that consume half
+ * maps (servalcat --halfmaps) recognise it and keep it distinct from a full map.
+ */
+export const HALFMAP_SUBTYPE = 5;
+
+/**
  * Moorhen beta.1 reworked MoorhenMap: the constructor and the (now static)
  * loadToCootFrom* factory methods take a single MoorhenInstance instead of the
  * old `(commandCentreRef, store)` pair, and `this.commandCentre` is now the
@@ -191,6 +199,11 @@ export const MASK_COLOUR_RGB = { r: 126, g: 156, b: 216 };
 /** True if a DB file's sub_type marks it as a mask. */
 export function isMaskSubType(subType: number | null | undefined): boolean {
   return subType === MASK_SUBTYPE;
+}
+
+/** True if a DB file's sub_type marks it as a cryo-EM half map. */
+export function isHalfMapSubType(subType: number | null | undefined): boolean {
+  return subType === HALFMAP_SUBTYPE;
 }
 
 /**

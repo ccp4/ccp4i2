@@ -52,22 +52,29 @@ const nextConfig: NextConfig = {
     unoptimized: isElectron || isWeb,
   },
 
-  // Any request that passes through middleware has its body cloned with this
-  // cap, and a body over the cap is silently truncated (Next's default is
-  // 10 MB). The desktop app is a single user importing their own project zips,
-  // which run to hundreds of MB, so it gets a generous ceiling. The web build
-  // keeps 100 MB: it is the cloud deployment, the cloned body is held in
-  // memory, and a larger cap there would widen the denial-of-service surface
-  // for anyone who can reach the server.
+  // Body-size caps for uploads. Two of them: middlewareClientMaxBodySize (every
+  // request through middleware has its body cloned with this cap; over-cap bodies
+  // are silently truncated, Next's default 10 MB) and serverActions.bodySizeLimit.
+  // Only the WEB (cloud) build is held at 100 MB -- its cloned body sits in memory
+  // and a larger cap widens the denial-of-service surface. The desktop app (and
+  // dev) is a single local user importing their own project zips and cryo-EM maps,
+  // which run to hundreds of MB (a cryoSPARC volume is ~0.25 GB), so it gets a
+  // generous 1900 MB ceiling. Verified: a 250 MB map uploads through both caps.
+  //
+  // The gate is `isWeb`, not `isElectron`: only the cloud is built BUILD_TARGET=web,
+  // and `start:electron` doesn't set BUILD_TARGET at runtime, so keying off isWeb
+  // makes packaged AND dev generous while leaving only the web build capped. (1900,
+  // not 2 GB: '2gb' is exactly 2^31 bytes -- best avoided. Short-term fix; the
+  // proper one is the desktop local-path bypass, #512.)
   //
   // Note for the desktop app: this file is not shipped in the package, so the
   // runtime gets these values through .next/required-server-files.json (see
   // client/main/ccp4i2-next-config.ts) - editing here is still the right place.
   experimental: {
     serverActions: {
-      bodySizeLimit: '100mb',
+      bodySizeLimit: isWeb ? '100mb' : '1900mb',
     },
-    middlewareClientMaxBodySize: isElectron ? '2gb' : '100mb',
+    middlewareClientMaxBodySize: isWeb ? '100mb' : '1900mb',
   },
 
   // No basePath - routes are organized at app level (/ccp4i2/*, /compounds/*)

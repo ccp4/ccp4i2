@@ -124,6 +124,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "phaser_mr_ftf_phil",
       "phaser_mr_pak_phil",
       "molrep_pipe",
+      "molrep_map",
       "csymmatch",
       "AMPLE",
       "SIMBAD",

@@ -17,7 +17,19 @@
         </qualifiers>
       </content>
     </container>
-    <container id="controlParameters"/>
+    <container id="controlParameters">
+      <content id="MAP_SUBTYPE">
+        <className>CInt</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>1,2,3,4,5</enumerators>
+          <menuText>Normal (electron density),Difference (Fo-Fc),Anomalous difference,Mask,Half map (one of a pair)</menuText>
+          <default>1</default>
+          <guiLabel>Map type</guiLabel>
+          <toolTip>What kind of map this is. Half maps are one of a pair, used for cross-validated (FSC) refinement in servalcat and the cryo-EM placement task.</toolTip>
+        </qualifiers>
+      </content>
+    </container>
     <container id="outputData">
       <content id="MAPOUT">
         <className>CMapDataFile</className>

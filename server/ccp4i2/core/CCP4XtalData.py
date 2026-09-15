@@ -2361,7 +2361,10 @@ class CMapDataFile(CDataFile):
     # Persisted to File.sub_type by the gleaner and read by the Moorhen viewers
     # and the scene format to render each kind appropriately. MASK lets a mask
     # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
-    # an ordinary density map, which is otherwise the same FileType.
+    # an ordinary density map, which is otherwise the same FileType. HALFMAP marks
+    # a cryo-EM half map (one of a pair) so it is recognised by tasks that take
+    # half maps for FSC cross-validation (servalcat --halfmaps) and not confused
+    # with a full map; it renders as ordinary density.
 
     """A CCP4 Map file"""
     class Meta:
@@ -2382,6 +2385,7 @@ class CMapDataFile(CDataFile):
     SUBTYPE_DIFFERENCE = 2       # difference map (Fo-Fc)
     SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
     SUBTYPE_MASK = 4             # real-space mask (mode-0 region map)
+    SUBTYPE_HALFMAP = 5          # cryo-EM half map (one of a pair, for FSC cross-validation)
 
 
     def __init__(self, parent=None, name=None, **kwargs):

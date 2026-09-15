@@ -1,0 +1,169 @@
+<?xml version='1.0'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>molrep_map</pluginName>
+        <pluginTitle>Place a model in a cryo-EM map (both hands)</pluginTitle>
+    </ccp4i2_header>
+
+    <ccp4i2_body>
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>Model to place</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="MAPIN">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>Cryo-EM map</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="HALFMAP1">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>5,1,0</requiredSubType>
+                    <guiLabel>Half map 1 (optional, for cross-validated refinement)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="HALFMAP2">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>5,1,0</requiredSubType>
+                    <guiLabel>Half map 2 (optional, for cross-validated refinement)</guiLabel>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="controlParameters">
+            <content id="ENGINE">
+                <className>CString</className>
+                <qualifiers>
+                    <default>molrep</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>molrep,phaser</enumerators>
+                    <guiLabel>Molecular-replacement engine</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="NMON">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>1</default>
+                    <guiLabel>Number of copies to position</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="NP">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>5</default>
+                    <guiLabel>Number of rotation peaks to consider</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="BADD">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>50</default>
+                    <guiLabel>B-factor to blur the search map</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="DOWNSAMPLE">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>1.0</default>
+                    <min>1.0</min>
+                    <guiLabel>Search-map down-sampling factor (higher = faster, coarser)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="SEARCH_RESOLUTION">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0.0</min>
+                    <guiLabel>Search resolution limit in Angstrom (blank = use all data)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="TIME_LIMIT">
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0.0</min>
+                    <guiLabel>Time limit per placement in seconds (blank = none)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="BORDER">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>5</default>
+                    <guiLabel>Solvent border around the model for the trimmed map (Angstrom)</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="MASK_RADIUS">
+                <className>CFloat</className>
+                <qualifiers>
+                    <default>3</default>
+                    <guiLabel>Mask radius around atoms (Angstrom)</guiLabel>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="outputData">
+            <content id="ORIGINALMODEL">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><annotation>Model placed in the original-hand map</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="FLIPPEDMODEL">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><annotation>Model placed in the inverted-hand map</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="ORIGINALTRIMMEDMAP">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType><annotation>Original-hand map trimmed to the model</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="FLIPPEDTRIMMEDMAP">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType><annotation>Inverted-hand map trimmed to the model</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="ORIGINALMASK">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default><subType>4</subType><annotation>Mask around the original-hand model</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="FLIPPEDMASK">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default><subType>4</subType><annotation>Mask around the inverted-hand model</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="HALFMAPOUT1">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default><subType>5</subType><annotation>Half map 1 trimmed to the recommended hand</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="HALFMAPOUT2">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default><subType>5</subType><annotation>Half map 2 trimmed to the recommended hand</annotation></default>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>
