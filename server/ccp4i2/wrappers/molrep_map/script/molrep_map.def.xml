@@ -29,6 +29,8 @@
                 <qualifiers>
                     <mustExist>True</mustExist>
                     <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>5,1,0</requiredSubType>
                     <guiLabel>Half map 1 (optional, for cross-validated refinement)</guiLabel>
                 </qualifiers>
             </content>
@@ -37,6 +39,8 @@
                 <qualifiers>
                     <mustExist>True</mustExist>
                     <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>5,1,0</requiredSubType>
                     <guiLabel>Half map 2 (optional, for cross-validated refinement)</guiLabel>
                 </qualifiers>
             </content>
@@ -127,37 +131,37 @@
             <content id="ORIGINALTRIMMEDMAP">
                 <className>CMapDataFile</className>
                 <qualifiers>
-                    <default><annotation>Original-hand map trimmed to the model</annotation></default>
+                    <default><subType>1</subType><annotation>Original-hand map trimmed to the model</annotation></default>
                 </qualifiers>
             </content>
             <content id="FLIPPEDTRIMMEDMAP">
                 <className>CMapDataFile</className>
                 <qualifiers>
-                    <default><annotation>Inverted-hand map trimmed to the model</annotation></default>
+                    <default><subType>1</subType><annotation>Inverted-hand map trimmed to the model</annotation></default>
                 </qualifiers>
             </content>
             <content id="ORIGINALMASK">
                 <className>CMapDataFile</className>
                 <qualifiers>
-                    <default><annotation>Mask around the original-hand model</annotation></default>
+                    <default><subType>4</subType><annotation>Mask around the original-hand model</annotation></default>
                 </qualifiers>
             </content>
             <content id="FLIPPEDMASK">
                 <className>CMapDataFile</className>
                 <qualifiers>
-                    <default><annotation>Mask around the inverted-hand model</annotation></default>
+                    <default><subType>4</subType><annotation>Mask around the inverted-hand model</annotation></default>
                 </qualifiers>
             </content>
             <content id="HALFMAPOUT1">
                 <className>CMapDataFile</className>
                 <qualifiers>
-                    <default><annotation>Half map 1 trimmed to the recommended hand</annotation></default>
+                    <default><subType>5</subType><annotation>Half map 1 trimmed to the recommended hand</annotation></default>
                 </qualifiers>
             </content>
             <content id="HALFMAPOUT2">
                 <className>CMapDataFile</className>
                 <qualifiers>
-                    <default><annotation>Half map 2 trimmed to the recommended hand</annotation></default>
+                    <default><subType>5</subType><annotation>Half map 2 trimmed to the recommended hand</annotation></default>
                 </qualifiers>
             </content>
         </container>
