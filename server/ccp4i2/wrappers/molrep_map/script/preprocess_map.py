@@ -210,6 +210,67 @@ def model_frac_box(structure_path, cell: gemmi.UnitCell,
     return padded
 
 
+def model_ortho_box(structure_path, border_a: float):
+    """Orthogonal-Angstrom bounding box ``(min_xyz, max_xyz)`` of the model plus a
+    solvent border. Frame-independent -- the caller converts it into whichever
+    map's fractional coordinates it needs (see :func:`frac_box_from_ortho`)."""
+    st = gemmi.read_structure(str(structure_path))
+    lo = [float("inf")] * 3
+    hi = [float("-inf")] * 3
+    n_atoms = 0
+    for model in st:
+        for chain in model:
+            for res in chain:
+                for atom in res:
+                    p = atom.pos
+                    for i, v in enumerate((p.x, p.y, p.z)):
+                        if v < lo[i]:
+                            lo[i] = v
+                        if v > hi[i]:
+                            hi[i] = v
+                    n_atoms += 1
+    if n_atoms == 0:
+        raise ValueError(f"No atoms in {structure_path} to bound the map to")
+    lo = tuple(v - border_a for v in lo)
+    hi = tuple(v + border_a for v in hi)
+    return lo, hi
+
+
+def frac_box_from_ortho(cell: gemmi.UnitCell, ortho_min, ortho_max,
+                        offset=(0.0, 0.0, 0.0)) -> gemmi.FractionalBox:
+    """Fractional box in ``cell``'s frame from an orthogonal-Angstrom box, after
+    translating it by ``offset`` (Angstrom).
+
+    ``offset`` reconciles frames that a re-box reset to a common origin: a map
+    cropped to a smaller centred box sits at ``(big_cell - small_cell)/2`` in the
+    larger map's frame, and that lost registration is not in either header. All
+    eight corners are fractionalised (correct for any cell) and clamped to the
+    unit interval.
+    """
+    box = gemmi.FractionalBox()
+    for x in (ortho_min[0], ortho_max[0]):
+        for y in (ortho_min[1], ortho_max[1]):
+            for z in (ortho_min[2], ortho_max[2]):
+                f = cell.fractionalize(
+                    gemmi.Position(x + offset[0], y + offset[1], z + offset[2]))
+                box.extend(gemmi.Fractional(
+                    min(1.0, max(0.0, f.x)),
+                    min(1.0, max(0.0, f.y)),
+                    min(1.0, max(0.0, f.z))))
+    return box
+
+
+def centred_crop_offset(inner_cell: gemmi.UnitCell,
+                        outer_cell: gemmi.UnitCell):
+    """Angstrom shift taking a point in a centred-crop map's frame to the same
+    physical point in the larger (outer) map's frame: ``(outer - inner)/2`` per
+    axis. Zero when the cells match. Assumes the standard central re-box (both
+    maps origin-reset), which is what EMDB half-map/primary pairs use."""
+    ip = inner_cell.parameters
+    op = outer_cell.parameters
+    return tuple((op[i] - ip[i]) / 2.0 for i in range(3))
+
+
 def crop(m: gemmi.Ccp4Map, frac_box: gemmi.FractionalBox) -> gemmi.Ccp4Map:
     """Crop a full-cell map to ``frac_box`` in place, returning it.
 

@@ -288,21 +288,39 @@ class molrep_map(CPluginScript):
         return 'confident'
 
     def _prepare_half_maps(self, pp):
-        """Carry the recommended hand's flip+trim onto the half maps, if given."""
+        """Carry the recommended hand's flip + trim onto the half maps, if given.
+
+        Half maps are commonly a *different box* from the primary map (e.g. EMDB
+        deposits a re-boxed 128^3 primary but full 256^3 half maps), and the
+        re-box resets both to origin 0, discarding their mutual registration. So
+        the trim is computed in absolute Angstrom from the placed model and
+        converted into each half map's own frame with the central-crop offset
+        (zero when the boxes already match).
+        """
         inp = self.container.inputData
         out = self.container.outputData
         if not (inp.HALFMAP1.isSet() and inp.HALFMAP2.isSet()):
             return
-        if self._recommended not in self._boxes:
+        rec = self._recommended
+        result = self._results.get(rec)
+        if result is None or not result.placed:
             return
-        box = self._boxes[self._recommended]
-        flip = self._recommended == 'Flipped'
+
+        par = self.container.controlParameters
+        border = float(par.BORDER) if par.BORDER.isSet() else 5.0
+        flip = rec == 'Flipped'
+        # Model bbox in the (possibly flipped) primary frame, absolute Angstrom.
+        ortho_min, ortho_max = pp.model_ortho_box(result.model_path, border)
+        primary_cell = self._full[rec].grid.unit_cell
         try:
             for hm_in, hm_out in ((inp.HALFMAP1, out.HALFMAPOUT1),
                                   (inp.HALFMAP2, out.HALFMAPOUT2)):
                 hmap = pp.read_map(str(hm_in.fullPath))
                 if flip:
                     hmap = pp.flip_hand(hmap)
+                half_cell = hmap.grid.unit_cell
+                offset = pp.centred_crop_offset(primary_cell, half_cell)
+                box = pp.frac_box_from_ortho(half_cell, ortho_min, ortho_max, offset)
                 hmap = pp.crop(hmap, box)
                 pp.write_map(hmap, str(hm_out.fullPath))
         except Exception as e:

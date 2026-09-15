@@ -218,6 +218,36 @@ def test_map_model_cc_discriminates_the_hand(tmp_path):
     assert cc_correct > 3 * cc_wrong  # and clearly beats the wrong hand
 
 
+def test_centred_crop_offset():
+    inner = gemmi.UnitCell(40, 40, 40, 90, 90, 90)
+    outer = gemmi.UnitCell(80, 80, 80, 90, 90, 90)
+    assert pp.centred_crop_offset(inner, outer) == (20.0, 20.0, 20.0)
+    assert pp.centred_crop_offset(outer, outer) == (0.0, 0.0, 0.0)
+
+
+def test_frame_reconciliation_registers_a_smaller_box_into_a_larger_map(tmp_path):
+    """A model bounded in an inner (centred-crop) frame, reconciled with the
+    central-crop offset, crops the larger map around the right physical region."""
+    # Larger map with a blob at its centre (40,40,40).
+    outer = _blob_map(n=80, cell_len=80.0, centre=(40, 40, 40))
+    # The model sits at the *inner* frame's centre (20,20,20) -- the same physical
+    # point as the blob, but expressed in a 40 A centred-crop frame.
+    inner_cell = gemmi.UnitCell(40, 40, 40, 90, 90, 90)
+    pdb = _three_atom_pdb(tmp_path, [(18, 18, 18), (22, 22, 22), (20, 20, 20)])
+
+    omin, omax = pp.model_ortho_box(pdb, border_a=4.0)
+    offset = pp.centred_crop_offset(inner_cell, outer.grid.unit_cell)
+    box = pp.frac_box_from_ortho(outer.grid.unit_cell, omin, omax, offset)
+    cropped = pp.crop(pp.read_map(_write(outer, tmp_path, "outer.map")), box)
+
+    # The reconciled crop must contain the blob (offset applied); without the
+    # offset it would crop an empty corner.
+    assert np.array(cropped.grid, copy=False).max() > 0.5
+    box_wrong = pp.frac_box_from_ortho(outer.grid.unit_cell, omin, omax, (0, 0, 0))
+    cropped_wrong = pp.crop(pp.read_map(_write(outer, tmp_path, "outer2.map")), box_wrong)
+    assert np.array(cropped_wrong.grid, copy=False).max() < 0.2   # empty region
+
+
 def test_empty_model_raises(tmp_path):
     m = _blob_map()
     empty = tmp_path / "empty.pdb"
@@ -226,7 +256,7 @@ def test_empty_model_raises(tmp_path):
         pp.model_frac_box(empty, m.grid.unit_cell, border_a=5.0)
 
 
-def _write(m, tmp_path):
-    path = tmp_path / "full.map"
+def _write(m, tmp_path, name="full.map"):
+    path = tmp_path / name
     m.write_ccp4_map(str(path))
     return str(path)
