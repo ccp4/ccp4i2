@@ -1,5 +1,6 @@
 import hashlib
 import logging
+import os
 import pathlib
 import shutil
 import uuid
@@ -438,6 +439,78 @@ def _discard_staged_upload(job, staged_path) -> None:
         logger.warning("Could not remove staged upload %s: %s", staged_path, err)
 
 
+class _LocalPathUpload:
+    """A stand-in for a Django UploadedFile that reads from a local filesystem
+    path instead of a request body.
+
+    ``download_file`` only needs ``.name`` and chunked ``.read()``, so importing
+    a file already on the server's disk reuses the entire download/detect/import
+    path unchanged -- it just streams from disk rather than the network. Only ever
+    constructed after :func:`resolve_importable_path` has authorised the path.
+    """
+
+    def __init__(self, path: pathlib.Path):
+        self._path = pathlib.Path(path)
+        self.name = self._path.name
+        self._handle = None
+
+    def read(self, size: int = -1) -> bytes:
+        if self._handle is None:
+            self._handle = open(self._path, "rb")
+        return self._handle.read(size)
+
+    def close(self) -> None:
+        if self._handle is not None:
+            self._handle.close()
+            self._handle = None
+
+
+def resolve_importable_path(local_path: str):
+    """The absolute path to import from, if this deployment permits importing
+    ``local_path`` by copy -- otherwise ``None`` (import falls back to the HTTP
+    upload body).
+
+    Importing by path avoids round-tripping a large file through an HTTP upload,
+    which both the desktop (a localhost POST of the user's own file) and the
+    cloud (the container app's ~100 MB ingress cap) have reason to skip. Two
+    explicit, mutually exclusive modes decide which paths are allowed:
+
+    - **Desktop / local** -- ``CCP4I2_LOCAL_SESSION_TOKEN`` is set (only the
+      Electron app sets it). A single trusted user on their own machine, so any
+      readable local file is importable.
+
+    - **Cloud / staged** -- ``CCP4I2_IMPORT_STAGING_DIR`` names a directory the
+      deployment has staged files into out-of-band (past the ingress cap). Only
+      paths *inside* that directory are importable; an arbitrary server path is
+      refused. This is the line that keeps a shared/cloud deployment from being
+      turned into an arbitrary-file-read.
+
+    With neither set, returns ``None`` -- the web default, where files arrive as
+    the request body and no path is trusted.
+    """
+    if not local_path:
+        return None
+
+    if os.environ.get("CCP4I2_LOCAL_SESSION_TOKEN"):
+        candidate = pathlib.Path(local_path)
+        return candidate if candidate.is_file() else None
+
+    staging = os.environ.get("CCP4I2_IMPORT_STAGING_DIR")
+    if staging:
+        try:
+            staging_root = pathlib.Path(staging).resolve()
+            resolved = pathlib.Path(local_path).resolve()
+        except (OSError, ValueError):
+            return None
+        if resolved.is_relative_to(staging_root) and resolved.is_file():
+            return resolved
+        logger.warning(
+            "Refused import path outside the staging dir: %s (staging=%s)",
+            local_path, staging_root,
+        )
+    return None
+
+
 def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     """Import an uploaded file and point a job parameter at it.
 
@@ -466,7 +539,16 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     # convention); accept legacy `objectPath` (camelCase) as a back-compat
     # alias for older clients (i2remote, third-party integrators).
     object_path = request.POST.get("object_path") or request.POST.get("objectPath")
-    files = request.FILES.getlist("file")
+
+    # Import-by-path (copy) when this deployment permits it (desktop local file,
+    # or a cloud-staged file), avoiding an HTTP upload of the bytes. Falls back to
+    # the request body otherwise -- the web default. See resolve_importable_path.
+    importable = resolve_importable_path(request.POST.get("local_path"))
+    if importable is not None:
+        logger.info("Importing by path (copy) from %s", importable)
+        files = [_LocalPathUpload(importable)]
+    else:
+        files = request.FILES.getlist("file")
 
     # Optional free-text provenance narrative ("where did this come from?"),
     # captured by the client when the import-provenance preference is on. Stored
@@ -833,14 +915,21 @@ def download_file(job: models.Job, the_file, initial_download_project_folder: st
     assert dest.is_relative_to(destination_dir)
 
     logger.debug("Settled on destination path %s", dest)
-    with open(dest, "wb") as uploadFile:
-        CHUNK = 1024 * 1024
-        while True:
-            chunk = the_file.read(CHUNK)
-            if not chunk:
-                break
-            uploadFile.write(chunk)
-        uploadFile.close()
+    try:
+        with open(dest, "wb") as uploadFile:
+            CHUNK = 1024 * 1024
+            while True:
+                chunk = the_file.read(CHUNK)
+                if not chunk:
+                    break
+                uploadFile.write(chunk)
+    finally:
+        # Close the source. Harmless for a Django UploadedFile (idempotent);
+        # necessary for _LocalPathUpload, which otherwise leaks its open fd.
+        try:
+            the_file.close()
+        except Exception:
+            pass
     logger.debug("Upload complete")
     return dest
 
