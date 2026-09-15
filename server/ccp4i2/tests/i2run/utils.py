@@ -363,6 +363,30 @@ def i2run(args: list[str], project_name: str = None, project_path: Path = None, 
             pass
 
 
+@contextmanager
+def download_map(url: str):
+    """Fetch a (gzipped) CCP4/MRC map and yield a path to the *uncompressed* map.
+
+    EMDB serves maps gzipped (``emd_XXXXX.map.gz``); CCP4i2 wants the plain
+    ``.map``. The uncompressed copy is cached beside the ``.gz`` (same download
+    cache), so it survives between runs like every other fixture. A non-gzipped
+    URL is passed straight through.
+    """
+    with download(url) as gz_path:
+        if not str(gz_path).endswith(".gz"):
+            yield gz_path
+            return
+        out = Path(str(gz_path)[:-3])  # drop the .gz suffix, keep .map
+        if not out.exists() or out.stat().st_size == 0:
+            import gzip
+            import shutil
+            tmp = out.with_suffix(out.suffix + ".part")
+            with gzip.open(gz_path, "rb") as fi, open(tmp, "wb") as fo:
+                shutil.copyfileobj(fi, fo)
+            tmp.replace(out)  # atomic: never leave a half-written map to be reused
+        yield str(out)
+
+
 def demoData(*paths):
     return join(getCCP4I2Dir(), "demo_data", *paths)
 
