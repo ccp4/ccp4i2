@@ -24,6 +24,15 @@ class molrep_map_report(Report):
         "none": ("No placement was scored."),
     }
 
+    # Confidence -> colour for the verdict badge (table cells render inline HTML).
+    _CONFIDENCE_COLOUR = {
+        "confident": "#2e7d32",   # green
+        "ambiguous": "#e65100",   # orange
+        "weak": "#c62828",        # red
+        "single": "#616161",      # grey
+        "none": "#616161",
+    }
+
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
         results = self.addResults()
@@ -68,30 +77,66 @@ class molrep_map_report(Report):
         self.addTaskReferences()
 
     def _add_recommendation(self, results):
+        """The verdict: a coloured hand-comparison table (map-model CC is the
+        headline; molrep score alongside), then the confidence in words.
+
+        Note the asymmetry with the peak tables below: ``addText`` escapes, but
+        table *cells* render inline HTML (``_set_cell_content``), so the emphasis
+        and colour live in the table, not in free text.
+        """
         rec = self.xmlnode.findall('.//recommendation')
         if not rec:
             return
         rec = rec[0]
         hand = rec.get('hand', 'Original')
         confidence = rec.get('confidence', 'none')
-        label = 'original' if hand == 'Original' else 'inverted'
+        colour = self._CONFIDENCE_COLOUR.get(confidence, '#616161')
 
-        cc_o = rec.get('cc_original')
-        cc_f = rec.get('cc_flipped')
-        cc_bits = []
-        if cc_o is not None:
-            cc_bits.append(f'Original {cc_o}')
-        if cc_f is not None:
-            cc_bits.append(f'Flipped {cc_f}')
-        cc_line = ('Real-space map-model CC: ' + ', '.join(cc_bits) + '. ') if cc_bits else ''
-
-        # addText renders as escaped plain text (the frontend shows tags/entities
-        # literally), so keep this plain -- no HTML markup or entities.
-        note = self._CONFIDENCE_TEXT.get(confidence, '')
         results.addText(text=(
-            f'Recommended hand: {hand} ({label} map). Confidence: {confidence}. '
-            f'{cc_line}{note} Both hands are provided below; the recommended hand '
-            'carries any half maps through for cross-validated refinement.'))
+            'Cryo-EM hand assignment: the model is placed into the map and into '
+            'its mirror image, and the better real-space fit (map-model '
+            'correlation) wins.'))
+
+        hands = ['Original', 'Flipped']
+        cc = {'Original': rec.get('cc_original'), 'Flipped': rec.get('cc_flipped')}
+
+        def emphasise(h, s):
+            return f'<b>{s}</b>' if h == hand else s
+
+        table = results.addTable(title='Hand assignment')
+        table.addData(title='Hand', data=[
+            emphasise(h, 'Original (as given)' if h == 'Original'
+                      else 'Flipped (inverted)') for h in hands])
+        table.addData(title='Placed', data=[
+            self._hand_placed(h) for h in hands])
+        table.addData(title='Map-model CC', data=[
+            emphasise(h, cc[h] if cc[h] is not None else '-') for h in hands])
+        table.addData(title='molrep score', data=[
+            self._hand_score(h) for h in hands])
+        # Cell HTML is parsed as XML (_set_cell_content), so use numeric char
+        # refs only -- named HTML entities like &ndash; fail the parse and the
+        # whole cell falls back to escaped text.
+        table.addData(title='Verdict', data=[
+            (f'<span style="color:{colour};font-weight:bold">&#10003; '
+             f'recommended &#8211; {confidence}</span>') if h == hand else ''
+            for h in hands])
+
+        results.addText(text=self._CONFIDENCE_TEXT.get(confidence, '')
+                        + ' Both hands are provided below; the recommended hand '
+                        'carries any half maps through for cross-validated '
+                        'refinement.')
+
+    def _hand_placed(self, hand):
+        el = self.xmlnode.find(f'./{hand}')
+        if el is None:
+            return '-'
+        if el.get('placed') != 'true':
+            return 'no'
+        return 'timed out' if el.get('timed_out') == 'true' else 'yes'
+
+    def _hand_score(self, hand):
+        el = self.xmlnode.find(f'./{hand}')
+        return el.get('score', '-') if el is not None else '-'
 
     def addTaskReferences(self):
         try:
