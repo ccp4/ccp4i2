@@ -48,7 +48,7 @@ thorough search can loosen them.
 Down-sampling is **only ever applied to the disposable placement map**. The
 deliverable map is full-resolution (§2).
 
-## 2. The deliverable is one `(map, mask, model)` package, two consumers
+## 2. The deliverable is one shared-frame `(maps, mask, model)` package, two consumers
 
 The output is not "a placed model plus a map to look at." It is a
 **refinement-ready package in a single coordinate frame** that must satisfy two
@@ -57,24 +57,52 @@ consumers at once:
 | Consumer | Space | Needs |
 |---|---|---|
 | **Coot / Moorhen** | real (interactive) | full-res, *trimmed* (renderable) map, registered with the model |
-| **servalcat / refmac** | (pseudo-)reciprocal | the *same* map as a valid P1 cell to FFT into structure factors, plus a mask |
+| **servalcat** | real map in → SFs internally | the *same* frame's map(s) + model; **prefers two half-maps** (FSC cross-validation), does its own trim/mask/FFT |
 
-The two used to look like different outputs (a tight display crop vs an
-FFT-friendly molrep box). They **collapse into one refinement box** because the
-reciprocal-space consumer FFTs the very map the user renders. So the emitted map
-must be, simultaneously:
+Both consumers take a **real-space map** in the **model's frame** — not structure
+factors. That is the key simplification the port makes over the old draft: **no
+map-coefficient conversion, no spoofed `F`/`σ`.** servalcat's `refine_spa` takes
+`--map`/`--halfmaps` directly and FFTs internally with its own weighting (§0's
+help dump confirms it), and Moorhen contours the map on the GPU. So the emitted
+map must be, simultaneously:
 
 - **full resolution** (down-sampling is placement-only, never the deliverable);
 - **trimmed** to the molecule + a **solvent border** — tight enough that Moorhen
   can contour it (the failure mode is *extent*: a 400³–512³ box is millions of
-  voxels and an isosurface to match, and WebGL falls over), loose enough that
-  FFT-ing the box does not wrap density around the edges (series-termination in
-  the synthesised SFs) and the mask has room to fall off;
+  voxels and an isosurface to match, and WebGL falls over), loose enough that a
+  clean FFT is still possible and the mask has room to fall off. (servalcat will
+  *also* trim internally, so this trim is driven by Moorhen's render budget; a box
+  that satisfies Moorhen satisfies servalcat.);
 - a **valid P1 cell**: `CELLA = grid × voxel`, angles 90°, `MX/MY/MZ` = the new
   counts, **voxel unchanged**, on **composite grid dimensions** (products of small
-  primes) so the FFT is efficient and exact;
-- **axis-order normalised** to what the downstream FFT expects;
-- **origin-consistent with the model** — see §5's dual-origin trap.
+  primes) so any FFT is efficient and exact;
+- **axis-order normalised** (`gemmi.Ccp4.setup`) to a standard axis order;
+- **grid-origin-consistent with the model — via `nxstart`, never the Å `ORIGIN`**
+  (§4, confirmed from Moorhen/coot source).
+
+### 2a. Half-maps: optional in, for cross-validation out
+
+servalcat *prefers two half-maps* and only grudgingly accepts a single `--map`
+("Use this only if you really do not have half maps") — because the two
+independent half-maps give it **FSC-based cross-validation**: the resolution-
+dependent weighting and the guard against over-fitting both come from the
+half-map FSC. A single map has no such error model.
+
+So the task **optionally accepts two half-maps** (`HALFMAP1`, `HALFMAP2`) beside
+the required full `MAPIN`:
+
+- **Placement** always runs on the **full map** (best signal for MR).
+- The chosen hand's **flip + trim + frame transform is applied *identically* to
+  the full map and to both half-maps** — one transform, three maps, all landing
+  in the same box/frame. (If no half-maps were given, `MAPIN` can be taken *as*
+  the full map and no half-maps are emitted.)
+- **Emit**: the trimmed full map (`MAPOUT`, for molrep-scoring provenance + Moorhen
+  display), the two trimmed half-maps (`HALFMAPOUT1/2`, for servalcat's preferred
+  `--halfmaps` cross-validated path) when supplied, the mask, and the model.
+
+When half-maps are absent the package still refines — servalcat just falls back to
+single-`--map` mode. Emitting them when present is what makes the downstream
+refinement *properly* cross-validated rather than merely functional.
 
 Because trimming for rendering and trimming for FFT are the *same* origin-aware
 crop, getting it wrong mis-registers the *displayed* map against the *placed*
@@ -88,17 +116,19 @@ box). The same bounding-box work that trims the map defines that mask, so
 ## 3. Pipeline: place → choose hand → prepare → emit
 
 ```
-inputs:  XYZIN (model, CPdbDataFile)   MAPIN (real map, CMapDataFile: .map/.mrc)
+inputs:  XYZIN (model)   MAPIN (real map)   [HALFMAP1 HALFMAP2 (optional, §2a)]
 
 place :  for hand in {original, inverted}:            # inversion = §4 flip
              m = downsample(trim_loose(MAPIN), factor)  # disposable, fast
              placed[hand], score[hand] = ENGINE.place(m, XYZIN, phased=True)  # §5,§6
 choose:  hand* = argmax(score)                        # better-fitting hand wins
 prepare: box   = molecule_bbox(placed[hand*]) + solvent_border    # §2
-         MAPOUT  = trim(MAPIN, box) → valid P1 cell → composite grid → axis-norm  # full res
-         MASKOUT = mask(box, placed[hand*])
-         XYZOUT  = placed[hand*]              # already in the box frame
-emit  :  (MAPOUT, MASKOUT, XYZOUT, Δ, hand*, axis_perm)
+         T     = flip[hand*] ∘ trim(box) ∘ frame       # ONE transform (§2a, §4)
+         MAPOUT       = apply(T, MAPIN)  → valid P1 cell, composite grid, axis-norm, nxstart
+         HALFMAPOUT1/2 = apply(T, HALFMAP1/2)  if supplied   # identical transform
+         MASKOUT      = mask(box, placed[hand*])
+         XYZOUT       = placed[hand*]         # already in the box frame
+emit  :  (MAPOUT, HALFMAPOUT1/2?, MASKOUT, XYZOUT, Δ, hand*, axis_perm)
 ```
 
 `Δ` is the single real-space offset (Å) that carries the whole package back to the
@@ -120,14 +150,24 @@ stays off the CCP4-free request/validation/digest path (see §8).
   offset**, so the flip lives inside the same Δ bookkeeping — doing it separately
   is a classic sign error. Pin it with a parity test against
   `coot_headless_api.flip_hand` on a CCP4-aware box (§9).
-- **Dual-origin bookkeeping (the trap).** An MRC/CCP4 map pins its density in
-  space two ways: `NXSTART/NYSTART/NZSTART` (grid units, CCP4-native) **and**
-  `ORIGIN` words 50–52 (Å, MRC-2000, what RELION/cryoSPARC write). Crystallographic
-  tools read `nxstart` and are largely **blind to the Å `ORIGIN`** — the classic
-  cryo-EM registration bug. Do not trust any header field to survive the engine:
-  fold *both* origin conventions into one Å offset via gemmi's
-  fractional↔orthogonal maths, apply the trim as an explicit offset, and undo it
-  on the output so `XYZOUT` lands in the deliverable frame with `Δ` recorded.
+- **Dual-origin bookkeeping (the trap) — and which origin our consumers read.**
+  An MRC/CCP4 map pins its density in space two ways: `NXSTART/NYSTART/NZSTART`
+  (grid units, CCP4-native) **and** `ORIGIN` words 50–52 (Å, MRC-2000, what
+  RELION/cryoSPARC write). Crystallographic tools read `nxstart` and are **blind to
+  the Å `ORIGIN`** — the classic cryo-EM registration bug. This is not a guess for
+  our stack: **Moorhen/coot confirm it in source.** Moorhen's MRC parser
+  (`baby-gru/src/utils/mapHeaders.ts`) reads `nxstart/nystart/nzstart` and its
+  header-word loop stops at word 49 — it *never reads* the Å `ORIGIN` (words
+  50–52); and the density itself is placed by coot's `shim_read_ccp4_map` →
+  **clipper**, which lives in the grid/cell frame and uses `nxstart`. (Moorhen's
+  `originShift`/`drawOrigin` for EM maps are `−centre-of-mass` *camera centring*,
+  not registration.) **Therefore the output must express its position through the
+  grid (`nxstart`) and keep map + model in one shared frame — writing only the Å
+  `ORIGIN` would render the map off its model in Moorhen.** Concretely: fold *both*
+  input origin conventions into one Å offset via gemmi's fractional↔orthogonal
+  maths, apply the trim as an explicit offset, and emit the box so that `nxstart`
+  (or a zero-origin box with the model shifted to match) places the density on the
+  model, recording `Δ` back to the deposited frame.
 - **Valid-cell reconstruction, composite grid, solvent border, axis-norm** — as
   §2. gemmi's grid/cell setup and `Ccp4.setup(...)` do the cell and axis work; the
   border and composite-dimension snapping are a few lines of numpy on the grid
@@ -205,11 +245,13 @@ touch-points:
    (from the def.xml) is an acceptable first cut, so no bespoke `task-container`
    interface is required to ship.
 
-`def.xml` sketch — inputs: `XYZIN` (CPdbDataFile), `MAPIN` (CMapDataFile);
-outputs: `XYZOUT` (CPdbDataFile), `MAPOUT` (CMapDataFile), `MASKOUT`
-(CMapDataFile); controlParameters: `ENGINE`, `DOWNSAMPLE` (or `SEARCH_RESOLUTION`),
-`TIME_LIMIT`, `SOLVENT_BORDER`, molrep knobs (`NMON`, `BADD`, …), and the recorded
-`Δ`/`hand` for the report.
+`def.xml` sketch — inputs: `XYZIN` (CPdbDataFile), `MAPIN` (CMapDataFile),
+`HALFMAP1`/`HALFMAP2` (CMapDataFile, *optional* — §2a); outputs: `XYZOUT`
+(CPdbDataFile), `MAPOUT` (CMapDataFile), `HALFMAPOUT1`/`HALFMAPOUT2` (CMapDataFile,
+emitted only when half-maps were supplied), `MASKOUT` (CMapDataFile);
+controlParameters: `ENGINE`, `DOWNSAMPLE` (or `SEARCH_RESOLUTION`), `TIME_LIMIT`,
+`SOLVENT_BORDER`, molrep knobs (`NMON`, `BADD`, …), and the recorded `Δ`/`hand` for
+the report.
 
 ## 8. Slim-server safety
 
@@ -228,9 +270,11 @@ outputs: `XYZOUT` (CPdbDataFile), `MAPOUT` (CMapDataFile), `MASKOUT`
 
 - **Two-sided round-trip (the acceptance test).** Place a known model into a map,
   then check both consumers: (a) real space — `XYZOUT` overlays the *original*
-  (untrimmed) map to sub-voxel accuracy after applying `Δ`; (b) reciprocal space —
-  SFs synthesised from `MAPOUT` refine sensibly in servalcat (R/CC moves the right
-  way). One test, both failure surfaces.
+  (untrimmed) map to sub-voxel accuracy after applying `Δ`, **and loads registered
+  in Moorhen via `nxstart`** (not the Å `ORIGIN`); (b) servalcat — feeding
+  `MAPOUT` (or `HALFMAPOUT1/2` when present) + `MASKOUT` + `XYZOUT` to `refine_spa`
+  moves R/FSC the right way. servalcat FFTs internally, so this needs no SF
+  synthesis. One test, both failure surfaces.
 - **`flip_hand` parity** — gemmi origin-inversion vs `coot_headless_api.flip_hand`
   on a sample map, on a CCP4-aware box (skip on slim), in `tests/parity/`.
 - **i2run E2E** — a small demo cryo-EM `(map, model)` through the task, asserting
