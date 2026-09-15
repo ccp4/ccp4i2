@@ -242,6 +242,22 @@ app
     nextServer = await startNextServer(isDev, nextServerPort, djangoServerPort);
   })
   .then(async () => {
+    // Dev-only: clear the session HTTP cache before the window loads. The
+    // packaged app is built trailingSlash=true and serves a *permanent* 308
+    // /ccp4i2/config -> /ccp4i2/config/, which Chromium caches per-origin
+    // (localhost:3000). The dev server runs trailingSlash=false (serves 200),
+    // so a stale 308 cached by an earlier packaged run wedges dev into
+    // ERR_TOO_MANY_REDIRECTS on a page the server is answering correctly -- a
+    // non-obvious failure that cost a long debugging session (GH #513). Both
+    // run as the same Electron app, sharing this cache. Clearing it on dev
+    // start makes `npm run start` self-healing. Packaged is untouched.
+    if (isDev) {
+      try {
+        await session.defaultSession.clearCache();
+      } catch (e) {
+        console.warn("Dev cache clear failed (non-fatal):", e);
+      }
+    }
     // Use /ccp4i2 base path for multi-app integration
     mainWindow = await createWindow(
       `http://localhost:${nextServerPort}/ccp4i2/config`,
