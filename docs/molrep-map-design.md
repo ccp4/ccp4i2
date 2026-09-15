@@ -139,6 +139,31 @@ to the untrimmed map or to other maps of the same particle.
 the user runs (`servalcat_pipe` / a Coot session) on the emitted package. This
 keeps the task self-contained and the responsibilities clean.
 
+### 3a. Considered and rejected: a built-in pseudo-`Fobs` sheetbend polish
+
+A high-radius-of-convergence polish (sheetbend) *inside* the pipe was considered,
+to nudge concerted distortions after placement. It was rejected. This CCP4's
+`csheetbend` (0.5.0) is **reciprocal-space, amplitudes only** (`-colin-fo`, no map
+/ no phases), so it would need the map converted to spoofed `F+SIGF` — and that
+route fails on exactly the two points that matter here:
+
+- **Amplitudes discard the phase, which is the origin.** `|F|` is
+  translation-invariant, so amplitude refinement literally cannot see (or
+  preserve, or correct) placement/origin — in a synthetic test csheetbend drove
+  R 0.62 → 0.04 while a rigid model shift stayed put at 2.6 Å RMSD. It only
+  corrects *amplitude-visible*, concerted distortions, not the frame.
+- **`SIGF` would be spoofed.** A constant or `k·F` sigma is meaningless weighting.
+  The only principled source is the half-map FSC (`σ_F(s) ∝ F(s)·√((1−FSC)/FSC)`),
+  i.e. exactly what a real-space, half-map-aware refiner already uses internally.
+
+The right tool is **real-space refinement against the map**, which keeps the
+phases/origin and derives its error model from the half-map FSC: **servalcat SPA
+with jelly-body restraints** (`--jellybody`, the proper high-convergence,
+concerted-motion mechanism) and/or **ProSMART external restraints** (both already
+supported by `servalcat_pipe`, which is `WHATNEXT`). So the emitted package is the
+whole contribution here; the convergence step belongs downstream, origin-aware,
+not bolted on via discarded-phase amplitudes.
+
 ## 4. Map surgery, in gemmi
 
 All of this is execution-time gemmi/numpy — the slim server never runs it, so it
