@@ -196,6 +196,23 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     }
   }, [currentStatus, previousStatus, mutateDiagnosticXml]);
 
+  // Land on the report tab the moment the job finishes. The landing effect
+  // above only re-lands when the `useJob` object identity changes, which
+  // refreshes on a slower (10s) poll than `currentStatus` (from job_tree, the
+  // same signal that turns the job's colour green in the list). So the colour
+  // would go green while the tab stayed on the interface for up to ~10s. Drive
+  // the swap off the active -> terminal transition of currentStatus instead, so
+  // it coincides with the colour. (landingTab picks Report/Diagnostics per the
+  // terminal status.)
+  useEffect(() => {
+    if (previousStatus === undefined || currentStatus === undefined) return;
+    const wasActive = [2, 3, 7].includes(previousStatus);
+    const isTerminal = [4, 5, 6].includes(currentStatus);
+    if (wasActive && isTerminal) {
+      setTabValue(landingTab(currentStatus));
+    }
+  }, [currentStatus, previousStatus, setTabValue]);
+
   // Clamp synchronously so MUI never receives a value for a hidden tab
   const status = jobWithCurrentStatus?.status;
   const tabValue = useMemo(() => {
