@@ -178,6 +178,46 @@ def test_model_frac_box_clamped_to_cell(tmp_path):
     assert box.minimum.x >= 0.0 and box.minimum.y >= 0.0 and box.minimum.z >= 0.0
 
 
+def test_map_model_cc_discriminates_the_hand(tmp_path):
+    """CC is high when the model matches the map, low against the flipped map."""
+    # A map computed from a chiral model; the correct hand must win decisively.
+    st = gemmi.Structure()
+    st.cell = gemmi.UnitCell(60, 60, 60, 90, 90, 90)
+    st.spacegroup_hm = "P 1"
+    model = gemmi.Model("1")
+    chain = gemmi.Chain("A")
+    for i in range(30):
+        res = gemmi.Residue()
+        res.name = "ALA"
+        res.seqid = gemmi.SeqId(str(i + 1))
+        at = gemmi.Atom()
+        at.name = "CA"
+        at.element = gemmi.Element("C")
+        t = i * 0.6
+        at.pos = gemmi.Position(30 + 6 * np.cos(t), 30 + 6 * np.sin(t), 15 + i * 0.9)
+        at.b_iso = 20
+        res.add_atom(at)
+        chain.add_residue(res)
+    model.add_chain(chain)
+    st.add_model(model)
+    pdb = tmp_path / "model.pdb"
+    st.write_pdb(str(pdb))
+
+    dc = gemmi.DensityCalculatorX()
+    dc.d_min = 2.5
+    dc.set_grid_cell_and_spacegroup(st)
+    dc.put_model_density_on_grid(st[0])
+    m = gemmi.Ccp4Map()
+    m.grid = dc.grid
+    m.update_ccp4_header()
+    m.setup(float("nan"), gemmi.MapSetup.Full)
+
+    cc_correct = pp.map_model_cc(m, str(pdb), d_min=3.0)
+    cc_wrong = pp.map_model_cc(pp.flip_hand(m), str(pdb), d_min=3.0)
+    assert cc_correct > 0.5           # the model fits its own map
+    assert cc_correct > 3 * cc_wrong  # and clearly beats the wrong hand
+
+
 def test_empty_model_raises(tmp_path):
     m = _blob_map()
     empty = tmp_path / "empty.pdb"

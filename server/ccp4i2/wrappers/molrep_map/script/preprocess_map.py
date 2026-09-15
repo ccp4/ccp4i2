@@ -250,6 +250,56 @@ def atom_mask(reference_full_map: gemmi.Ccp4Map, structure_path,
     return mask
 
 
+def map_model_cc(m: gemmi.Ccp4Map, structure_path, d_min: float,
+                 mask_radius: float = 2.5) -> float:
+    """Real-space correlation between a (full-cell) map and the density calculated
+    from the placed model, over a mask around the model.
+
+    This is the honest hand-discriminator: it uses the map's *phases* (real space),
+    so unlike an amplitude score it actually distinguishes the two hands -- the
+    correct hand's model overlays the density and correlates; the wrong hand does
+    not. Returns Pearson r in ``[-1, 1]`` (NaN if it cannot be computed). The map
+    must span its full cell (read with ``MapSetup.Full``); pass the placement map
+    *before* it is cropped.
+    """
+    grid = m.grid
+    cell = grid.unit_cell
+    st = gemmi.read_structure(str(structure_path))
+    st.cell = cell
+    st.spacegroup_hm = "P 1"
+    dc = gemmi.DensityCalculatorX()
+    dc.d_min = d_min
+    dc.set_grid_cell_and_spacegroup(st)
+    dc.put_model_density_on_grid(st[0])
+    model_grid = dc.grid
+
+    mask = gemmi.FloatGrid(grid.nu, grid.nv, grid.nw)
+    mask.set_unit_cell(cell)
+    mask.spacegroup = _spacegroup(m)
+    for model in st:
+        for chain in model:
+            for res in chain:
+                for atom in res:
+                    mask.set_points_around(atom.pos, radius=mask_radius, value=1.0)
+    mk = np.array(mask, copy=False) > 0.5
+    if not mk.any():
+        return float("nan")
+
+    map_vals = np.array(grid, copy=False)[mk]
+    idx = np.argwhere(mk)
+    frac = idx / np.array([grid.nu, grid.nv, grid.nw])
+    cart = np.ascontiguousarray((frac @ _frac_to_cart_matrix(cell).T).astype("float64"))
+    model_vals = np.asarray(model_grid.interpolate_position_array(cart, order=1))
+
+    good = np.isfinite(map_vals) & np.isfinite(model_vals)
+    if good.sum() < 10:
+        return float("nan")
+    mv, dv = map_vals[good], model_vals[good]
+    if mv.std() == 0 or dv.std() == 0:
+        return float("nan")
+    return float(np.corrcoef(mv, dv)[0, 1])
+
+
 def write_map(m: gemmi.Ccp4Map, path) -> None:
     """Write a CCP4 map to ``path`` (str/Path)."""
     m.write_ccp4_map(str(path))

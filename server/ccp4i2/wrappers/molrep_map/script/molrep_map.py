@@ -56,7 +56,9 @@ class molrep_map(CPluginScript):
         super().__init__(*args, **kwargs)
         self._results = {}          # hand label -> engines.PlacementResult
         self._boxes = {}            # hand label -> gemmi.FractionalBox
+        self._cc = {}               # hand label -> real-space map-model CC (float/NaN)
         self._recommended = None
+        self._confidence = None     # 'confident' | 'ambiguous' | 'weak' | 'single' | 'none'
 
     # ---- pipeline hooks -------------------------------------------------
 
@@ -141,6 +143,14 @@ class molrep_map(CPluginScript):
                 cell = self._full[hand].grid.unit_cell
                 box = pp.model_frac_box(res.model_path, cell, border)
                 self._boxes[hand] = box
+                # Real-space map-model CC on the FULL map, BEFORE cropping mutates
+                # it -- the honest hand discriminator (uses the map's phases).
+                try:
+                    self._cc[hand] = pp.map_model_cc(
+                        self._full[hand], res.model_path, self._cc_resolution(hand))
+                except Exception as e:
+                    logger.warning("map-model CC failed for %s hand: %s", hand, e)
+                    self._cc[hand] = float('nan')
                 # Mask is built on the full grid (correct sampling) then cropped
                 # to the same box, so it aligns with the trimmed map voxel-for-voxel.
                 mask = pp.atom_mask(self._full[hand], res.model_path, mask_radius, box)
@@ -151,6 +161,7 @@ class molrep_map(CPluginScript):
                 self.appendErrorReport(204, f'{hand}: {e}')
 
         self._recommended = self._choose_hand()
+        self._confidence = self._hand_confidence()
         self._prepare_half_maps(pp)
         return CPluginScript.SUCCEEDED
 
@@ -205,20 +216,76 @@ class molrep_map(CPluginScript):
         with open(dst, 'w') as ostream:
             ostream.write(content)
 
+    def _cc_resolution(self, hand):
+        """Resolution (Angstrom) for the map-model CC: the user's search limit if
+        set, else ~2x the map's voxel spacing (Nyquist), floored at 3 A."""
+        par = self.container.controlParameters
+        if par.SEARCH_RESOLUTION.isSet():
+            return float(par.SEARCH_RESOLUTION)
+        grid = self._full[hand].grid
+        spacing = grid.unit_cell.a / grid.nu if grid.nu else 1.0
+        return max(3.0, 2.0 * spacing)
+
+    @staticmethod
+    def _is_num(x):
+        return x is not None and x == x  # not None, not NaN
+
+    def _placed_candidates(self):
+        return [h for h in ('Original', 'Flipped')
+                if h in self._results and self._results[h].placed]
+
     def _choose_hand(self):
-        """The higher-scoring hand, defaulting to Original when scores are absent."""
-        scores = {h: self._results[h].score
-                  for h in ('Original', 'Flipped') if h in self._results}
-        placed = {h: self._results[h].placed
-                  for h in ('Original', 'Flipped') if h in self._results}
-        # Prefer a hand that actually placed.
-        candidates = [h for h in ('Original', 'Flipped') if placed.get(h)]
+        """Recommend the hand whose placed model best fits the map.
+
+        Primary metric is the real-space map-model correlation (phase-aware); the
+        molrep score is only a fallback when no CC is available. Defaults to
+        Original when nothing discriminates.
+        """
+        candidates = self._placed_candidates()
         if not candidates:
             return 'Original'
+        if any(self._is_num(self._cc.get(h)) for h in candidates):
+            return max(candidates,
+                       key=lambda h: self._cc[h] if self._is_num(self._cc.get(h))
+                       else float('-inf'))
+        scores = {h: self._results[h].score for h in candidates}
         if all(scores.get(h) is None for h in candidates):
             return candidates[0]
         return max(candidates,
                    key=lambda h: scores[h] if scores.get(h) is not None else float('-inf'))
+
+    # Heuristic CC thresholds (advisory -- the report shows the numbers so the
+    # user makes the final call). A strong fit correlates well; the two hands
+    # must also be clearly separated to call one confidently.
+    _CC_CONFIDENT = 0.30
+    _CC_MARGIN = 0.05
+    _CC_WEAK = 0.15
+
+    def _hand_confidence(self):
+        """Classify how trustworthy the hand recommendation is, from the CCs.
+
+        'single'  - only one hand placed
+        'weak'    - both hands fit poorly (low CC): likely not a solvable case
+        'ambiguous' - the two hands are too close to separate
+        'confident' - a clear, well-fitting winner
+        'none'    - nothing placed / no CC
+        """
+        candidates = self._placed_candidates()
+        if not candidates:
+            return 'none'
+        if len(candidates) == 1:
+            return 'single'
+        ccs = sorted((self._cc.get(h) for h in candidates
+                      if self._is_num(self._cc.get(h))), reverse=True)
+        if not ccs:
+            return 'none'
+        win = ccs[0]
+        lose = ccs[1] if len(ccs) > 1 else float('-inf')
+        if win < self._CC_WEAK:
+            return 'weak'
+        if (win - lose) < self._CC_MARGIN or win < self._CC_CONFIDENT:
+            return 'ambiguous'
+        return 'confident'
 
     def _prepare_half_maps(self, pp):
         """Carry the recommended hand's flip+trim onto the half maps, if given."""
@@ -247,6 +314,11 @@ class molrep_map(CPluginScript):
         root = ET.Element('molrep_map')
         rec = ET.SubElement(root, 'recommendation')
         rec.set('hand', self._recommended or 'Original')
+        rec.set('confidence', self._confidence or 'none')
+        for hand in ('Original', 'Flipped'):
+            cc = self._cc.get(hand)
+            if self._is_num(cc):
+                rec.set(f'cc_{hand.lower()}', f'{cc:.4f}')
         for hand in ('Original', 'Flipped'):
             res = self._results.get(hand)
             el = ET.SubElement(root, hand)
@@ -257,6 +329,9 @@ class molrep_map(CPluginScript):
             el.set('timed_out', 'true' if res.timed_out else 'false')
             if res.score is not None:
                 el.set('score', f'{res.score:.4f}')
+            cc = self._cc.get(hand)
+            if self._is_num(cc):
+                el.set('map_model_cc', f'{cc:.4f}')
             if res.doc_path:
                 el.append(self._scrape_doc(res.doc_path))
         with open(str(self.makeFileName('PROGRAMXML')), 'w') as fh:
