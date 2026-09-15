@@ -83,14 +83,15 @@ class molrep_map_report(Report):
             cc_bits.append(f'Original {cc_o}')
         if cc_f is not None:
             cc_bits.append(f'Flipped {cc_f}')
-        cc_line = (' Real-space map-model CC: ' + ', '.join(cc_bits) + '.') if cc_bits else ''
+        cc_line = ('Real-space map-model CC: ' + ', '.join(cc_bits) + '. ') if cc_bits else ''
 
+        # addText renders as escaped plain text (the frontend shows tags/entities
+        # literally), so keep this plain -- no HTML markup or entities.
         note = self._CONFIDENCE_TEXT.get(confidence, '')
         results.addText(text=(
-            f'<b>Recommended hand: {hand}</b> ({label} map) &mdash; confidence: '
-            f'<b>{confidence}</b>.{cc_line} {note} Both hands are provided below; '
-            'the recommended hand carries any half maps through for cross-validated '
-            'refinement.'))
+            f'Recommended hand: {hand} ({label} map). Confidence: {confidence}. '
+            f'{cc_line}{note} Both hands are provided below; the recommended hand '
+            'carries any half maps through for cross-validated refinement.'))
 
     def addTaskReferences(self):
         try:
