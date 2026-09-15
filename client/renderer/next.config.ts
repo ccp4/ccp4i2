@@ -52,33 +52,22 @@ const nextConfig: NextConfig = {
     unoptimized: isElectron || isWeb,
   },
 
-  // Two body-size caps. Only the WEB (cloud) build is restricted to 100 MB; the
-  // desktop app -- and dev -- get a generous 2 GB ceiling:
-  //   - middlewareClientMaxBodySize: every request through middleware has its
-  //     body cloned with this cap (Next's default is 10 MB; over-cap bodies are
-  //     silently truncated -- which corrupts a large upload into a "Request body
-  //     length does not match content-length header" failure).
-  //   - serverActions.bodySizeLimit: the cap on server-action bodies.
-  // The desktop app is a single user importing their own project zips and, now,
-  // cryo-EM maps -- which run to hundreds of MB (a cryoSPARC volume is ~0.25 GB).
-  //
-  // The gate is `isWeb`, NOT `isElectron`, on purpose: only the cloud deployment
-  // has the denial-of-service surface that justifies the cap, and only the cloud
-  // is built with BUILD_TARGET=web. `start:electron` does NOT set BUILD_TARGET for
-  // the runtime process, so in dev the desktop app would otherwise fall through to
-  // the restricted branch and truncate large local imports. Keying off isWeb makes
-  // electron (packaged) and dev (BUILD_TARGET unset) both generous, and keeps only
-  // the web build capped. (Short-term unblock; the proper fix is to bypass the
-  // upload on desktop and read the local file by path -- see #512.)
+  // Any request that passes through middleware has its body cloned with this
+  // cap, and a body over the cap is silently truncated (Next's default is
+  // 10 MB). The desktop app is a single user importing their own project zips,
+  // which run to hundreds of MB, so it gets a generous ceiling. The web build
+  // keeps 100 MB: it is the cloud deployment, the cloned body is held in
+  // memory, and a larger cap there would widen the denial-of-service surface
+  // for anyone who can reach the server.
   //
   // Note for the desktop app: this file is not shipped in the package, so the
   // runtime gets these values through .next/required-server-files.json (see
   // client/main/ccp4i2-next-config.ts) - editing here is still the right place.
   experimental: {
     serverActions: {
-      bodySizeLimit: isWeb ? '100mb' : '2gb',
+      bodySizeLimit: '100mb',
     },
-    middlewareClientMaxBodySize: isWeb ? '100mb' : '2gb',
+    middlewareClientMaxBodySize: isElectron ? '2gb' : '100mb',
   },
 
   // No basePath - routes are organized at app level (/ccp4i2/*, /compounds/*)
