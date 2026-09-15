@@ -195,6 +195,8 @@ def digest_file_object(file_object: CDataFile):
     # Use CMtzDataFile for isinstance check because subclasses inherit from stubs
     if isinstance(file_object, CMtzDataFile):
         return digest_cmtzdatafile_file_object(file_object)
+    if isinstance(file_object, CMapDataFile):
+        return digest_cmapdatafile_file_object(file_object)
     if isinstance(file_object, CCP4ModelData.CSeqAlignDataFile):
         return digest_cseqaligndata_file_object(file_object)
     if isinstance(file_object, CCP4ModelData.CSeqDataFile):
@@ -381,6 +383,81 @@ def digest_cpdbdata_file_object(file_object: CPdbDataFile):
         return {
             "status": "Failed",
             "reason": f"Failed digesting CPdbDataFile {err}",
+            "digest": {},
+        }
+
+
+_MAP_SUBTYPE_LABELS = {
+    1: "Normal (electron density)",
+    2: "Difference (Fo-Fc)",
+    3: "Anomalous difference",
+    4: "Mask",
+    5: "Half map",  # CMapDataFile.SUBTYPE_HALFMAP (cryo-EM); label kept forward-compatible
+}
+
+
+def digest_cmapdatafile_file_object(file_object):
+    """Digest a real-space CCP4/MRC map by reading its header (gemmi only).
+
+    Reports the grid, full-cell sampling (MX/MY/MZ) and voxel spacing, unit cell,
+    axis order, start (nxstart...), spacegroup, density statistics and the
+    CMapDataFile subType -- the header information a map file otherwise never
+    surfaces in the file preview. Reads only the header (the DMIN/DMAX/DMEAN/RMS
+    stats come from the header words), so it does not load the whole grid.
+    """
+    if not isinstance(file_object, CMapDataFile):
+        return {"status": "Failed", "reason": "Not a CMapDataFile object", "digest": {}}
+    if not file_object.isSet():
+        return {"status": "Failed", "reason": "File object is not set", "digest": {}}
+    try:
+        import gemmi
+
+        path = str(file_object.fullPath)
+        m = gemmi.read_ccp4_map(path)  # header only; no setup() so nothing expands
+
+        cell = [round(m.header_float(i), 4) for i in range(11, 17)]
+        mx, my, mz = m.header_i32(8), m.header_i32(9), m.header_i32(10)
+        spacing = [
+            round(cell[0] / mx, 4) if mx else None,
+            round(cell[1] / my, 4) if my else None,
+            round(cell[2] / mz, 4) if mz else None,
+        ]
+        angles_90 = all(abs(a - 90.0) < 1e-3 for a in cell[3:6])
+        ispg = m.header_i32(23)
+
+        sub_type = None
+        try:
+            if file_object.subType.isSet():
+                sub_type = int(file_object.subType)
+        except Exception:
+            sub_type = None
+
+        return {
+            "format": "CCP4/MRC map",
+            "mode": m.header_i32(4),
+            "grid_sampling": [mx, my, mz],
+            "grid_stored": [m.header_i32(1), m.header_i32(2), m.header_i32(3)],
+            "start": [m.header_i32(5), m.header_i32(6), m.header_i32(7)],
+            "axis_order": [m.header_i32(17), m.header_i32(18), m.header_i32(19)],
+            "cell": {"a": cell[0], "b": cell[1], "c": cell[2],
+                     "alpha": cell[3], "beta": cell[4], "gamma": cell[5]},
+            "spacing": spacing,
+            "spacegroup": ispg,
+            "statistics": {
+                "min": round(m.header_float(20), 5),
+                "max": round(m.header_float(21), 5),
+                "mean": round(m.header_float(22), 5),
+                "rms": round(m.header_float(55), 5),
+            },
+            "sub_type": sub_type,
+            "sub_type_label": _MAP_SUBTYPE_LABELS.get(sub_type),
+            "likely_em": ispg in (0, 1) and angles_90,
+        }
+    except Exception as err:
+        logger.exception("Error digesting map file %s", file_object, exc_info=err)
+        return {
+            "status": "Failed",
+            "reason": f"Failed digesting CMapDataFile {err}",
             "digest": {},
         }
 
