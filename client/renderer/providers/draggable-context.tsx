@@ -66,24 +66,22 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
   };
 
   const handleDragEnd = async (event: any) => {
+    setActiveDragItem(null);
+    // A click, or a drag released away from any droppable, ends with no `over`.
+    const over = event.over?.data?.current;
+    if (!over) return;
     if (event.active.data?.current?.job) {
       const context_job = event.active.data.current.job as Job;
-      if (!event.over.data?.current?.job) return;
-      if (!event.over.data?.current?.item) {
-        const job = event.over.data.current.job as Job;
-        setContextJob(job, context_job);
+      if (!over.job) return;
+      if (!over.item) {
+        setContextJob(over.job as Job, context_job);
       }
     } else if (event.active.data?.current?.file) {
       const file = event.active.data.current.file as File;
-      if (
-        !event.over.data?.current?.job ||
-        event.over.data?.current?.job?.status !== 1
-      )
-        return;
-      if (event.over.data?.current?.item) {
-        if (!isValidDrop(file, event.over.data.current.item)) return;
-        const job = event.over.data.current.job as Job;
-        setFileByDrop(job, event.over.data?.current?.item._objectPath, file);
+      if (over.job?.status !== 1) return;
+      if (over.item) {
+        if (!isValidDrop(file, over.item)) return;
+        setFileByDrop(over.job as Job, over.item._objectPath, file);
       }
     }
   };
@@ -95,6 +93,7 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
   return (
     <DndContext
       onDragEnd={handleDragEnd}
+      onDragCancel={() => setActiveDragItem(null)}
       onDragStart={({ active }) => {
         setActiveDragItem(active.data.current as File | Job);
 
