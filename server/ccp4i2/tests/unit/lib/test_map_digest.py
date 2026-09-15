@@ -69,3 +69,10 @@ def test_dispatch_routes_map_to_the_map_handler(map_file):
 def test_digest_of_unset_file_fails_cleanly():
     d = digest_cmapdatafile_file_object(CMapDataFile())
     assert d["status"] == "Failed"
+
+
+def test_digest_labels_a_half_map(map_file):
+    # On the cryo-EM branch SUBTYPE_HALFMAP exists; a half map digests with its label.
+    d = digest_cmapdatafile_file_object(_digest(map_file, CMapDataFile.SUBTYPE_HALFMAP))
+    assert d["sub_type"] == 5
+    assert d["sub_type_label"] == "Half map"
