@@ -55,7 +55,7 @@ import {
   fetchPdbContents,
 } from "../../lib/moorhen-scene-prompt";
 import { useSceneNlCapability, generateScene } from "./use-scene-nl-capability";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeXtalMapContourStats } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
   MapRenderState,
@@ -385,6 +385,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       loadedMap = newMap;
       newMap.uniqueId = url;
       (newMap as any).mapSubType = mapSubType;
+      // Before addMap: an EM-flagged MTZ map crashes the viewer otherwise.
+      primeEmMapHeaderInfo(newMap);
       if (mapSubType === 3) {
         newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 };
         newMap.defaultNegativeMapColour = { r: 0.6, g: 0.3, b: 0.8 };
@@ -1009,6 +1011,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
         if (newMap.molNo === -1) return null;
         if (uniqueId) newMap.uniqueId = uniqueId;
+        primeEmMapHeaderInfo(newMap);
         dispatch(addMap(newMap));
         if (ref.kind === "map" && sceneMap.isMask) {
           await applyMaskDefaults(dispatch, newMap as any);

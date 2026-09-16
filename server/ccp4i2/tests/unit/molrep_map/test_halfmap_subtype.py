@@ -33,11 +33,15 @@ def test_molrep_map_tags_half_map_outputs_and_inputs():
     assert c.outputData.ORIGINALMASK.subType == CMapDataFile.SUBTYPE_MASK
     assert c.outputData.INVERTEDMASK.subType == CMapDataFile.SUBTYPE_MASK
     assert c.outputData.ORIGINALTRIMMEDMAP.subType == CMapDataFile.SUBTYPE_NORMAL
-    # Inputs accept half maps, and (for back-compat) normal/untagged maps too.
+    # Inputs require *strictly* half maps (subType 5). The old "5,1,0" admitted
+    # normal/untagged maps and -- because a requiredSubType list containing 0
+    # disables filtering entirely -- every map, so autopopulation could offer a
+    # non-half-map; with the ImportMap Map-type selector (#524 F1) a half map can
+    # be imported as one, so back-compat via 1/0 is no longer needed.
     for name in ("HALFMAP1", "HALFMAP2"):
         rq = getattr(c.inputData, name).qualifiers("requiredSubType")
-        assert CMapDataFile.SUBTYPE_HALFMAP in rq
-        assert CMapDataFile.SUBTYPE_NORMAL in rq and 0 in rq
+        rq = set(rq) if isinstance(rq, (list, tuple)) else {int(rq)}
+        assert rq == {CMapDataFile.SUBTYPE_HALFMAP}
 
 
 def _subtype_set(rq):
