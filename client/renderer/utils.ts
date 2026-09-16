@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { maybeStage } from "./lib/staged-upload";
 import $ from "jquery";
 import useSWR, { KeyedMutator, mutate, SWRResponse } from "swr";
 
@@ -1155,7 +1156,17 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           if (localPath) {
             formData.append("local_path", localPath);
           } else {
-            formData.append("file", file, fileName);
+            // Served deployment: a file over the staging threshold is delivered
+            // in chunks past the body caps and imported by an owner-bound handle.
+            // Small files, and any deployment not advertising staging, upload
+            // their bytes as before.
+            const staged =
+              file instanceof File ? await maybeStage(file) : null;
+            if (staged) {
+              formData.append(staged.field, staged.value);
+            } else {
+              formData.append("file", file, fileName);
+            }
           }
           if (description?.trim()) {
             formData.append("description", description.trim());
