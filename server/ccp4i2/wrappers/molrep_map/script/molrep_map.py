@@ -195,18 +195,24 @@ class molrep_map(CPluginScript):
     # ---- helpers --------------------------------------------------------
 
     def _ensure_pdb(self, xyzin):
-        """Return a filesystem path to a PDB form of the input model."""
+        """A filesystem path to a PDB form of the input model, honouring any
+        atom selection set on it.
+
+        ``getSelectedAtomsPdbFile`` writes the *selected* atoms -- or the whole
+        model when no selection is set -- as PDB whatever the input format, so it
+        covers both the chain-selection case (e.g. "use only chains A and D of a
+        fetched reference structure") and the mmCIF->PDB conversion molrep needs,
+        in one call.
+        """
         if not xyzin.isSet():
             raise ValueError('XYZIN is not set')
-        try:
-            ext = xyzin.getExt()
-        except Exception:
-            ext = os.path.splitext(str(xyzin.fullPath))[1]
-        if ext == '.pdb':
-            return str(xyzin.fullPath)
-        converted = os.path.join(self.workDir, 'model_input.pdb')
-        xyzin.convertFormat('pdb', converted)
-        return converted
+        selected = os.path.join(self.workDir, 'model_input.pdb')
+        rc = xyzin.getSelectedAtomsPdbFile(selected)
+        if rc != 0 or not os.path.isfile(selected):
+            raise RuntimeError(
+                f'Failed to extract the model (selection/format) from '
+                f'{xyzin.fullPath}')
+        return selected
 
     def _write_model(self, src, dst):
         """Copy molrep's placed model to ``dst``, stripping its #MOLECULE tags."""

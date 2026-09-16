@@ -439,6 +439,27 @@ def _discard_staged_upload(job, staged_path) -> None:
         logger.warning("Could not remove staged upload %s: %s", staged_path, err)
 
 
+def _primary_required_subtype(required):
+    """The subtype to capture an imported file as, from a slot's requiredSubType.
+
+    The primary (first) value of a list or comma-separated string, or an int as
+    is. A 0, None, or unparseable value means "no specific type" and maps to 1,
+    the historical default. So a file imported into a half-map slot
+    (``requiredSubType`` 5) is captured as 5, into a mask slot (4) as 4, and into
+    an untyped slot as 1 -- rather than every import being a blanket 1.
+    """
+    value = required
+    if isinstance(value, (list, tuple)):
+        value = value[0] if value else None
+    elif isinstance(value, str) and "," in value:
+        value = value.split(",")[0]
+    try:
+        sub = int(value)
+    except (TypeError, ValueError):
+        return 1
+    return sub if sub > 0 else 1
+
+
 class _LocalPathUpload:
     """A stand-in for a Django UploadedFile that reads from a local filesystem
     path instead of a request body.
@@ -751,11 +772,21 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
         logger.info("Setting content flag...")
         param_object.setContentFlag()
 
-        # Note deliberate explicit for != None instead of is not None
+        # A file's subtype: prefer what it already carries (a previous-job output
+        # knows its own), else fall back to what this slot declares it wants --
+        # its requiredSubType -- rather than a blanket 1. A raw map browsed or
+        # fetched into a half-map input has no intrinsic subtype, so without this
+        # it would be captured as an ordinary map (1) and never be recognised as
+        # a half map by the next task's autopopulation or file browser.
         try:
-            subType = int(param_object.subType)
+            ownSubType = int(param_object.subType)
         except Exception:
-            subType = 1
+            ownSubType = 0
+        if ownSubType > 0:
+            subType = ownSubType
+        else:
+            subType = _primary_required_subtype(
+                param_object.get_qualifier("requiredSubType"))
         try:
             contentFlag = int(param_object.contentFlag)
         except Exception:
