@@ -69,7 +69,7 @@ import {
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/scene";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
@@ -492,6 +492,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         }
         if (newMap.molNo === -1) return null;
         if (uniqueId) newMap.uniqueId = uniqueId;
+        primeEmMapHeaderInfo(newMap);
         dispatch(addMap(newMap));
         if (ref.kind === "map" && sceneMap.isMask) {
           await applyMaskDefaults(dispatch, newMap as any);
@@ -770,6 +771,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       newMap.uniqueId = url;
       // Store the original sub_type for proper labeling and coloring
       (newMap as any).mapSubType = mapSubType;
+      // Before addMap: an EM-flagged MTZ map crashes the viewer otherwise.
+      primeEmMapHeaderInfo(newMap);
       // Set custom colors for anomalous maps (orange/purple instead of green/red)
       if (mapSubType === 3) {
         newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 }; // Orange
