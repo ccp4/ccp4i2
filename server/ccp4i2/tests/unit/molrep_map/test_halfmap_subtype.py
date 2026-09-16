@@ -40,10 +40,23 @@ def test_molrep_map_tags_half_map_outputs_and_inputs():
         assert CMapDataFile.SUBTYPE_NORMAL in rq and 0 in rq
 
 
-def test_servalcat_half_map_inputs_recognise_the_subtype():
+def _subtype_set(rq):
+    return set(rq) if isinstance(rq, (list, tuple)) else {int(rq)}
+
+
+def test_servalcat_map_inputs_require_the_right_subtype():
     c = DefXmlParser().parse_def_xml(locate_def_xml("servalcat"))
+    # Half-map slots require *strictly* half maps. Admitting 1/0 (as the slots
+    # used to) also admits trimmed and normal maps -- a trimmed map is itself
+    # subType 1 -- and, because a requiredSubType list containing 0 disables
+    # subtype filtering entirely in get_by_context, admits *every* map: that is
+    # how autopopulation grabbed a trimmed map for both half-map slots. There is
+    # no way to accept an old subType-1 "half map" without also accepting
+    # subType-1 non-half-maps, so the slot requires 5 and files are captured with
+    # the right subtype on import instead (see upload_param).
     for name in ("MAPIN1", "MAPIN2"):
         rq = getattr(c.inputData, name).qualifiers("requiredSubType")
-        assert CMapDataFile.SUBTYPE_HALFMAP in rq
-        # back-compat: existing half maps (tagged normal or untagged) still connect
-        assert CMapDataFile.SUBTYPE_NORMAL in rq and 0 in rq
+        assert _subtype_set(rq) == {CMapDataFile.SUBTYPE_HALFMAP}
+    # The mask slot requires a mask, not any map.
+    rqm = c.inputData.MAPMASK.qualifiers("requiredSubType")
+    assert _subtype_set(rqm) == {CMapDataFile.SUBTYPE_MASK}
