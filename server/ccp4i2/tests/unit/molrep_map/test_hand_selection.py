@@ -11,31 +11,31 @@ from types import SimpleNamespace
 from ccp4i2.wrappers.molrep_map.script.molrep_map import molrep_map
 
 
-def _plugin(cc, placed=("Original", "Flipped"), scores=None):
+def _plugin(cc, placed=("Original", "Inverted"), scores=None):
     p = object.__new__(molrep_map)
     p._cc = dict(cc)
     scores = scores or {}
     p._results = {
         h: SimpleNamespace(placed=(h in placed), score=scores.get(h))
-        for h in ("Original", "Flipped")
+        for h in ("Original", "Inverted")
     }
     return p
 
 
 def test_confident_when_a_clear_high_cc_winner():
-    p = _plugin({"Original": 0.82, "Flipped": 0.10})
+    p = _plugin({"Original": 0.82, "Inverted": 0.10})
     assert p._choose_hand() == "Original"
     assert p._hand_confidence() == "confident"
 
 
 def test_weak_when_both_hands_fit_poorly():
     # The job_1 situation: both ~0.05 -> not a solvable case.
-    p = _plugin({"Original": 0.05, "Flipped": 0.05})
+    p = _plugin({"Original": 0.05, "Inverted": 0.05})
     assert p._hand_confidence() == "weak"
 
 
 def test_ambiguous_when_good_but_too_close():
-    p = _plugin({"Original": 0.42, "Flipped": 0.40})
+    p = _plugin({"Original": 0.42, "Inverted": 0.40})
     assert p._hand_confidence() == "ambiguous"
 
 
@@ -46,6 +46,6 @@ def test_single_when_only_one_hand_placed():
 
 
 def test_falls_back_to_molrep_score_without_cc():
-    p = _plugin({"Original": float("nan"), "Flipped": float("nan")},
-                scores={"Original": 0.05, "Flipped": 0.09})
-    assert p._choose_hand() == "Flipped"   # higher molrep score wins the fallback
+    p = _plugin({"Original": float("nan"), "Inverted": float("nan")},
+                scores={"Original": 0.05, "Inverted": 0.09})
+    assert p._choose_hand() == "Inverted"   # higher molrep score wins the fallback

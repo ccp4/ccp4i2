@@ -40,9 +40,9 @@ def test_cak_emd12042():
         ]
         with i2run(args) as job:
             # Both hands' refinement packages are emitted.
-            for name in ("ORIGINALMODEL.pdb", "FLIPPEDMODEL.pdb",
-                         "ORIGINALTRIMMEDMAP.map", "FLIPPEDTRIMMEDMAP.map",
-                         "ORIGINALMASK.map", "FLIPPEDMASK.map"):
+            for name in ("ORIGINALMODEL.pdb", "INVERTEDMODEL.pdb",
+                         "ORIGINALTRIMMEDMAP.map", "INVERTEDTRIMMEDMAP.map",
+                         "ORIGINALMASK.map", "INVERTEDMASK.map"):
                 assert (job / name).exists(), f"missing {name}: {list(job.iterdir())}"
 
             # The report records a hand recommendation, a confidence verdict, and
@@ -50,9 +50,9 @@ def test_cak_emd12042():
             root = ET.parse(str(job / "program.xml")).getroot()
             rec = root.find("recommendation")
             assert rec is not None, "no <recommendation> in program.xml"
-            assert rec.get("hand") in {"Original", "Flipped"}
+            assert rec.get("hand") in {"Original", "Inverted"}
             assert rec.get("confidence") in {"confident", "ambiguous", "weak", "single"}
-            assert rec.get("cc_original") or rec.get("cc_flipped"), \
+            assert rec.get("cc_original") or rec.get("cc_inverted"), \
                 "no map-model CC recorded for either hand"
 
 
@@ -85,7 +85,7 @@ def test_cak_emd12042_halfmaps():
             root = ET.parse(str(job / "program.xml")).getroot()
             hand = root.find("recommendation").get("hand")
             model_out = job / ("ORIGINALMODEL.pdb" if hand == "Original"
-                               else "FLIPPEDMODEL.pdb")
+                               else "INVERTEDMODEL.pdb")
 
             primary = gemmi.read_ccp4_map(mapin)
             hmout = gemmi.read_ccp4_map(str(job / "HALFMAPOUT1.map"))

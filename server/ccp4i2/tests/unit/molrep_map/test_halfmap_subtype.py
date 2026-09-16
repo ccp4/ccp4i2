@@ -31,7 +31,7 @@ def test_molrep_map_tags_half_map_outputs_and_inputs():
     assert c.outputData.HALFMAPOUT1.subType == CMapDataFile.SUBTYPE_HALFMAP
     assert c.outputData.HALFMAPOUT2.subType == CMapDataFile.SUBTYPE_HALFMAP
     assert c.outputData.ORIGINALMASK.subType == CMapDataFile.SUBTYPE_MASK
-    assert c.outputData.FLIPPEDMASK.subType == CMapDataFile.SUBTYPE_MASK
+    assert c.outputData.INVERTEDMASK.subType == CMapDataFile.SUBTYPE_MASK
     assert c.outputData.ORIGINALTRIMMEDMAP.subType == CMapDataFile.SUBTYPE_NORMAL
     # Inputs accept half maps, and (for back-compat) normal/untagged maps too.
     for name in ("HALFMAP1", "HALFMAP2"):
