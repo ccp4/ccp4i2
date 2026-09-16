@@ -44,10 +44,13 @@ class Command(BaseCommand):
 
         # Find jobs that are stuck in running state for too long
         # These jobs were likely being processed when a worker crashed
+        # An interactive job (a recorded Moorhen session) is RUNNING for as
+        # long as its window is open, which is routinely longer than the
+        # threshold; while its session is open it is not stale.
         stale_jobs = Job.objects.filter(
             status__in=[Job.Status.RUNNING, Job.Status.RUNNING_REMOTELY],
             creation_time__lt=cutoff_time,
-        )
+        ).exclude(interactive_session__finished=False)
 
         count = stale_jobs.count()
 
