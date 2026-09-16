@@ -147,16 +147,22 @@ A ladder from most to least authoritative:
    from MTZ column labels (`infer_map_subtype`, `splitMtz` patterns); and, on a
    separate axis, `CObsDataFile` F-vs-I `contentFlag` via
    `CMiniMtzDataFile.miniMtzType()` reading columns with gemmi. These are solved.
-3. **Content-recoverable, feasible but not implemented — masks.** A mask is
-   conventionally a CCP4 **mode-0** map with values in a tiny set ({0,1}).
-   gemmi exposes both the header mode and the grid array, so a "mode 0 + ≤N
-   distinct values in [0,1]" heuristic would reliably tag subType 4. **No code
-   does this today** — masks are only ever declared or set in code. This is the
-   single best candidate for a *new* content check.
+3. **Content-recoverable in principle — masks — but we deliberately don't.** A
+   mask is conventionally a CCP4 mode-0 map with values in {0,1}, so a heuristic
+   *could* tag subType 4. We reject it: a content guess would second-guess the
+   authoritative declaration, it scales badly (a full-DB scan touches every map),
+   and it buys nothing once the declarations are curated (§6). **Inference must
+   never override registered intent.**
 4. **Unknowable — half maps (5).** Not recoverable from one file; must be
    declared at the producing/importing parameter. Only `molrep_map` does. Every
    other half-map-producing or half-map-accepting slot must declare it or the
    data is silently mis-typed with no way to detect it later.
+
+**The governing principle.** subType comes from *declared intent*, never from a
+guess about a file's bytes. The def.xml declaration (and, on inputs,
+`requiredSubType`) is the single source of truth; every mechanism below either
+reads that declaration or leaves the value alone — nothing overwrites an existing
+subType, and nothing infers one from content.
 
 ---
 
@@ -173,36 +179,49 @@ non-inferable mask and half-map — that needs the work below.
 
 ## 6. Recommendations
 
+The whole plan is **curate the declarations, then recover from them** — no
+content inference at all.
+
+**Curation scope.** Declare subType in the def.xml (or set it in the wrapper)
+**only where the intended subType is not the recognisable default or sole subType
+for that parameter.** A plain normal map (the fallback), or a param that can only
+ever be one kind, stays bare — the default already types it correctly. The edits
+land exactly where a bare declaration silently mis-types: the non-default
+difference / anom / mask / half-map outputs (and the corresponding inputs). This
+is a small, targeted set, and it turns the def.xml into the complete authoritative
+source the backfill recovers from.
+
 ### Forward (stop generating badly-typed data)
 - **F1 — Expose `MAP_SUBTYPE` in ImportMap's interface** (`ImportMap.tsx`). One
   control, closes the headline UI gap so a user importing a half map/mask can say
   so. *(Small, high value.)*
-- **F2 — Annotate `requiredSubType` on input slots that accept maps/obs/phases**,
-  generalising #523 beyond servalcat, so browse/fetch captures the right subtype.
-  Prioritise slots that accept half maps or masks.
-- **F3 — Declare (or programmatically set) subType on bare *output* map slots**,
-  prioritising the unknowable ones (half-map, mask) since a missing declaration
-  there is undetectable. Use `refmac`/`molrep_map` as the pattern.
-- **F4 (optional) — A mask content-detector** (mode-0 + binary values) as a
-  fallback for maps that arrive untyped, and as a check in ImportMap.
+- **F2 — Declare subType on the non-default *output* slots** (difference, anom,
+  mask, half-map) that are currently bare, per the scope above. Prioritise the
+  unknowable ones (half-map, mask) since a missing declaration there is
+  undetectable. Use `refmac`/`molrep_map` as the pattern. This is the curation
+  that gives the backfill its authoritative data.
+- **F3 — Annotate `requiredSubType` on the non-default *input* slots** that accept
+  maps/obs/phases, generalising #523 beyond servalcat, so browse/fetch captures
+  the right subtype.
 
-### Retrospective (repair existing databases)
+*(No content detector. A mask/binary-map heuristic is deliberately excluded — it
+would second-guess the declaration, scale badly across a large DB, and add
+nothing once the declarations are curated.)*
+
+### Retrospective (repair existing databases) — authoritative only
 A **report-first management command** (`--dry-run` default) that, per File where
-`sub_type` is NULL/0:
-1. **Authoritative pass** — resolve `(task_name, job_param_name)` to the
-   historical task's def.xml subType and backfill. Rules (all verified):
-   strip the `[n]` suffix and read the CList `<subItem>` subType for list params;
-   skip params that declare no subType; use the task that actually ran (do **not**
-   follow `.successor`); skip tasks absent from `TASKS` (log them). Only touches
-   rows the wrapper demonstrably left untyped, so it's safe and reversible.
-2. **Content pass (opt-in)** — for still-untyped map-coeffs, run `infer_map_subtype`
-   on the columns; for still-untyped real-space maps, run the F4 mask detector if
-   built. Never guesses half-map.
-3. **Report** every `(task, param, old→new)` and everything skipped, so a human
-   can eyeball before `--apply`.
+`sub_type` is NULL/0 (never touching a row that already has a subType):
+- Resolve `(task_name, job_param_name)` to the historical task's def.xml subType
+  and backfill it. Rules (all verified): strip the `[n]` suffix and read the CList
+  `<subItem>` subType for list params; skip params that declare no subType; use
+  the task that actually ran (do **not** follow `.successor`); skip tasks absent
+  from `TASKS` (log them).
+- Report every `(task, param, old→new)` and everything skipped, so a human can
+  eyeball before `--apply`.
 
-Run the same authoritative pass **on project import** so legacy zips are repaired
-as they land, not just existing DBs.
+Because it reads only the (now-curated) declaration and only fills holes, it is
+safe, reversible, and never overrides registered intent. Run the same pass **on
+project import** so legacy zips are repaired as they land, not just existing DBs.
 
 ---
 
@@ -211,14 +230,13 @@ as they land, not just existing DBs.
 | Item | Integrity risk closed | Effort | Notes |
 |------|----------------------|--------|-------|
 | F1 ImportMap UI | high (half-map/mask mis-typed on every UI import) | small | do first |
-| Retrospective authoritative backfill | high (repairs history + legacy imports) | medium | report-first; the big lever |
-| F3 declare subType on bare half-map/mask outputs | high (unknowable, silent) | small–medium | audit the 9 bare real-space outputs |
-| F2 `requiredSubType` on bare input slots | medium (browse/fetch) | medium | generalises #523 |
-| F4 mask content-detector | medium (a real, unused signal) | medium | also strengthens the content pass |
-| CObs/CPhs bare outputs | low (provenance, rarely filtered) | large | lowest priority |
+| F2 declare subType on non-default (half-map/mask/diff) outputs | high (unknowable, silent) | small–medium | the curation; audit the bare real-space outputs |
+| Retrospective authoritative backfill | high (repairs history + legacy imports) | medium | report-first; recovers from the F2 curation |
+| F3 `requiredSubType` on non-default input slots | medium (browse/fetch) | medium | generalises #523 |
+| CObs/CPhs bare outputs | low (provenance, rarely filtered) | large | lowest priority — mostly leave bare |
 
 The through-line: **half maps and masks are the real exposure** because they're
-the subtypes you can't recover from the file. The authoritative backfill is the
-one mechanism that repairs even those (from the declaration), which is why it's
-the centrepiece of the retrospective plan — and why F1/F3 (getting the
-declaration right at the source) matter most going forward.
+the subtypes you can't recover from the file — so the leverage is entirely in
+getting the *declaration* right (F1/F2) and then recovering from it (the
+backfill). No content is ever inspected; declared intent is the sole source of
+truth.
