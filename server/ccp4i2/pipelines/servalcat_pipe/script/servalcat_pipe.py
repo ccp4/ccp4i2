@@ -73,13 +73,32 @@ class servalcat_pipe(CPluginScript):
             )
         error = super(servalcat_pipe, self).validity()
 
-        # Warn when Free R flag is not set (recommended but optional)
-        if not self.container.inputData.FREERFLAG.isSet():
+        is_spa = str(self.container.controlParameters.DATA_METHOD) == 'spa'
+
+        # Free R is an X-ray cross-validation concept; SPA refinement
+        # cross-validates against the half maps instead and takes no Free R set,
+        # so only recommend one in xtal mode.
+        if not is_spa and not self.container.inputData.FREERFLAG.isSet():
             error.append(
                 klass=self.TASKNAME, code=200,
                 details='Free R flag is strongly recommended for refinement',
                 name=f'{self.TASKNAME}.container.inputData.FREERFLAG',
                 severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+
+        # SPA refinement puts -d <RES_MIN> on servalcat's command line
+        # unconditionally and builds its grid from d_min, so an unset resolution
+        # is not a soft default -- the run dies with "initialize_grid(): d_min is
+        # not set". Require it here (the wrapper's own validity() does too, but
+        # the pipeline is what users run, and it does not invoke the child's
+        # validity at edit time).
+        if is_spa and not self.container.controlParameters.RES_MIN.isSet():
+            error.append(
+                klass=self.TASKNAME, code=201,
+                details='Set the high resolution limit (d_min, in Angstrom) of '
+                        'your map; SPA refinement cannot run without it.',
+                name=f'{self.TASKNAME}.container.controlParameters.RES_MIN',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
             )
 
         return error
