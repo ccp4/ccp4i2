@@ -19,6 +19,14 @@ compounds stubs remain under `client/renderer/lib/compounds/` (auth/rdkit/theme
 contexts), and the shared API contract it consumes lives in
 `packages/ccp4i2-api/`. For the compounds app itself, see the Materia repo.
 
+## Project skills
+
+Domain knowledge that is not derivable from the code lives in `.claude/skills/`,
+one skill per topic, loaded on demand by Claude Code. Each is a router to the
+sources of truth plus the judgement they cannot express; none copies generated
+material. First skill: `moorhen-scenes` (authoring, validating and changing
+Moorhen scene files).
+
 ## Key Directories
 
 The Python package lives at `server/ccp4i2/`; paths below are given in full,
