@@ -124,12 +124,19 @@ def version_info(request):
     Returns version information for the server deployment.
     Build timestamp and git commit are set via environment variables during Docker build.
     """
-    return JsonResponse(
-        {
-            "buildTimestamp": os.environ.get("BUILD_TIMESTAMP", "dev"),
-            "gitCommit": os.environ.get("GIT_COMMIT", "unknown"),
-        }
-    )
+    from ..lib.utils.files import staged_upload
+
+    payload = {
+        "buildTimestamp": os.environ.get("BUILD_TIMESTAMP", "dev"),
+        "gitCommit": os.environ.get("GIT_COMMIT", "unknown"),
+    }
+    # Advertise the chunked staging transport when this deployment enables it, so
+    # the client can stage large files past the body caps. Absent otherwise, and
+    # the client sends bytes as before.
+    staging = staged_upload.capability()
+    if staging is not None:
+        payload["import_staging"] = staging
+    return JsonResponse(payload)
 
 
 @api_view(["GET"])
