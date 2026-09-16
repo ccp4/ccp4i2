@@ -1217,17 +1217,18 @@ def exportJobFile(jobId=None, mode=None, fileInfo={}):
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         # The inner servalcat subjob writes the unsplit reflection file
-        # ("refined.mtz" for xtal, "refined_diffmap.mtz" for spa) before
-        # splitting it into the map-coefficient mini-MTZs. That unsplit file
-        # persists on disk, so locate the servalcat subjob and return it.
-        # Take the last servalcat subjob (there is normally one; a trailing
-        # validate_protein subjob does not produce it).
+        # ("refined.mtz" for xtal; "refined_maps.mtz" in servalcat 0.4+ or
+        # "refined_diffmap.mtz" in older versions for spa) before splitting it
+        # into the map-coefficient mini-MTZs. That unsplit file persists on disk,
+        # so locate the servalcat subjob and return it. Take the last servalcat
+        # subjob (there is normally one; a trailing validate_protein subjob does
+        # not produce it).
         childJobs = theDb.getChildJobs(jobId=jobId, details=True)
         servalcat_jobs = [cj for cj in childJobs if cj[2] == 'servalcat']
         for cj in reversed(servalcat_jobs):
             jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(
                 jobId=cj[1], create=False)
-            for name in ('refined.mtz', 'refined_diffmap.mtz'):
+            for name in ('refined.mtz', 'refined_maps.mtz', 'refined_diffmap.mtz'):
                 candidate = os.path.join(jobDir, name)
                 if os.path.exists(candidate):
                     return candidate
