@@ -8,7 +8,7 @@
  * the server a window detached (which finishes an empty session and
  * otherwise leaves it open for reconnect). See docs/moorhen-task-design.md.
  */
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { moorhen } from "moorhen/types/moorhen";
 import { apiGet, apiPost, apiUpload } from "../api-fetch";
 import { withAccessToken } from "../api";
@@ -224,6 +224,14 @@ export function useMoorhenSession(
     return result.disposition;
   }, [active, jobId]);
 
-  if (!active || !jobId) return null;
-  return { jobId, job, state, error, isOpen, refresh, saveMolecule, finish };
+  // One stable object per change of its parts: the wrapper hands it to
+  // Moorhen's side panels through useMemo, and a fresh object every render
+  // would rebuild those panels on every render.
+  return useMemo(
+    () =>
+      !active || !jobId
+        ? null
+        : { jobId, job, state, error, isOpen, refresh, saveMolecule, finish },
+    [active, jobId, job, state, error, isOpen, refresh, saveMolecule, finish],
+  );
 }
