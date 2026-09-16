@@ -15,8 +15,6 @@ client can report honestly, rather than the a63 silent fall-through to an empty
 
 from datetime import timedelta
 
-from django.conf import settings
-from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.parsers import BaseParser
@@ -34,10 +32,7 @@ class RawBytesParser(BaseParser):
         return stream.read()
 
 
-def _owner(request):
-    # Stable per-user key; request.user is authenticated (IsAuthenticated) and
-    # has a pk in both the desktop (local session) and cloud (JWT) middlewares.
-    return str(request.user.pk)
+_owner = su.owner_key
 
 
 def _error(exc):
@@ -62,11 +57,11 @@ class StagedUploadViewSet(viewsets.ViewSet):
         except su.StagedUploadError as exc:
             return _error(exc)
         expires = row.created_at + timedelta(
-            hours=settings.CCP4I2_IMPORT_STAGING_TTL_HOURS)
+            hours=su.ttl_hours())
         return Response(
             {
                 "upload_id": str(row.uuid),
-                "chunk_bytes": settings.CCP4I2_IMPORT_STAGING_CHUNK_BYTES,
+                "chunk_bytes": su.chunk_bytes(),
                 "expires_at": expires.isoformat(),
             },
             status=201,

@@ -52,6 +52,7 @@ from ..lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 from ..lib.utils.containers.validate import getEtree
 from ..lib.utils.files.digest import digest_param_file
 from ..lib.utils.files.upload_param import upload_file_param
+from ..lib.utils.files.staged_upload import StagedUploadError
 from ..lib.utils.helpers.object_method import object_method
 from ..lib.utils.helpers.plugin_method import plugin_method as call_plugin_method
 from ..lib.utils.jobs.clone import clone_job
@@ -1700,6 +1701,10 @@ class JobViewSet(ModelViewSet):
             # result carries updated_item plus duplicate_of (advisory: earlier
             # imports of the same source bytes in this project).
             return api_success(result)
+        except StagedUploadError as err:
+            # A bad staged handle (unknown/foreign 404, unfinished, expired 410,
+            # etc.) -- surface its own status, not a generic 400.
+            return api_error(err.message, status=err.status)
         except CCP4ErrorHandling.CException as err:
             error_tree = getEtree(err)
             ET.indent(error_tree, " ")

@@ -87,14 +87,49 @@ def staging_enabled():
     return staging_dir() is not None
 
 
+def owner_key(request):
+    """A stable per-user key for owner-binding a staged upload.
+
+    In a real deployment ``request.user`` is authenticated (a pk is set) by the
+    local-session (desktop) or JWT (cloud) middleware. Tests without auth may
+    leave it ``None`` or anonymous; those collapse to the string ``"None"``,
+    which is still internally consistent (the same request stages and imports).
+    """
+    user = getattr(request, "user", None)
+    return str(getattr(user, "pk", None))
+
+
+# Read config from settings with a fallback default, so the module works under
+# any settings module (the test settings do not define these).
+_DEFAULTS = {
+    "CCP4I2_IMPORT_STAGING_CHUNK_BYTES": 16 * 1024 * 1024,
+    "CCP4I2_IMPORT_STAGING_MAX_BYTES": 2 * 1024 * 1024 * 1024,
+    "CCP4I2_IMPORT_STAGING_TTL_HOURS": 24,
+    "CCP4I2_IMPORT_STAGING_THRESHOLD_BYTES": 32 * 1024 * 1024,
+    "CCP4I2_IMPORT_STAGING_MAX_INFLIGHT": 8,
+}
+
+
+def _conf(name):
+    return getattr(settings, name, _DEFAULTS[name])
+
+
+def chunk_bytes():
+    return _conf("CCP4I2_IMPORT_STAGING_CHUNK_BYTES")
+
+
+def ttl_hours():
+    return _conf("CCP4I2_IMPORT_STAGING_TTL_HOURS")
+
+
 def capability():
     """The ``import_staging`` capability advertised to the client, or ``None``."""
     if not staging_enabled():
         return None
     return {
-        "chunk_bytes": settings.CCP4I2_IMPORT_STAGING_CHUNK_BYTES,
-        "max_bytes": settings.CCP4I2_IMPORT_STAGING_MAX_BYTES,
-        "threshold_bytes": settings.CCP4I2_IMPORT_STAGING_THRESHOLD_BYTES,
+        "chunk_bytes": _conf("CCP4I2_IMPORT_STAGING_CHUNK_BYTES"),
+        "max_bytes": _conf("CCP4I2_IMPORT_STAGING_MAX_BYTES"),
+        "threshold_bytes": _conf("CCP4I2_IMPORT_STAGING_THRESHOLD_BYTES"),
     }
 
 
@@ -121,13 +156,13 @@ def begin(owner: str, filename: str, size_bytes: int, sha256: str = ""):
         raise NotFound("Staged upload is not enabled on this deployment")
     if size_bytes is None or int(size_bytes) < 0:
         raise StagedUploadError("size_bytes is required and must be >= 0")
-    if int(size_bytes) > settings.CCP4I2_IMPORT_STAGING_MAX_BYTES:
+    max_bytes = _conf("CCP4I2_IMPORT_STAGING_MAX_BYTES")
+    if int(size_bytes) > max_bytes:
         raise TooLarge(
-            f"File is larger than the {settings.CCP4I2_IMPORT_STAGING_MAX_BYTES}"
-            " byte staging limit")
+            f"File is larger than the {max_bytes} byte staging limit")
     inflight = models.StagedUpload.objects.filter(
         owner=owner, state=models.StagedUpload.State.STAGING).count()
-    if inflight >= settings.CCP4I2_IMPORT_STAGING_MAX_INFLIGHT:
+    if inflight >= _conf("CCP4I2_IMPORT_STAGING_MAX_INFLIGHT"):
         raise TooManyInFlight("Too many uploads already in progress")
 
     # Sanitise the filename to a plain basename; never trust it for the path.
@@ -154,7 +189,7 @@ def get_owned(uuid, owner: str):
 
 
 def _check_not_expired(row):
-    horizon = timedelta(hours=settings.CCP4I2_IMPORT_STAGING_TTL_HOURS)
+    horizon = timedelta(hours=_conf("CCP4I2_IMPORT_STAGING_TTL_HOURS"))
     if timezone.now() - row.created_at > horizon:
         raise Expired("This staged upload has expired")
 
@@ -164,7 +199,7 @@ def write_chunk(row, index: int, data: bytes):
     if row.state != models.StagedUpload.State.STAGING:
         raise NotFound("This upload is no longer accepting chunks")
     _check_not_expired(row)
-    if len(data) > settings.CCP4I2_IMPORT_STAGING_CHUNK_BYTES:
+    if len(data) > _conf("CCP4I2_IMPORT_STAGING_CHUNK_BYTES"):
         raise TooLarge("Chunk is larger than the negotiated chunk size")
     path = _part_path(row, index)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -251,12 +286,20 @@ def resolve_for_import(uuid, owner: str):
     return row, path
 
 
-def consume(row):
-    """Mark a row imported and delete its directory."""
+def consume(row, delete=True):
+    """Mark a row imported so its handle can't be reused.
+
+    ``delete`` removes the staging directory now -- correct when the bytes have
+    already been copied into the project (the synchronous upload_file_param
+    path). Pass ``delete=False`` when a *detached* importer still needs to read
+    the file (project-zip import): the row is marked consumed immediately, and
+    the sweeper reaps the directory once it is past the TTL.
+    """
     row.state = models.StagedUpload.State.CONSUMED
     row.save(update_fields=["state"])
-    shutil.rmtree(_row_dir(row), ignore_errors=True)
-    logger.info("staged upload consumed %s", row.uuid)
+    if delete:
+        shutil.rmtree(_row_dir(row), ignore_errors=True)
+    logger.info("staged upload consumed %s (delete=%s)", row.uuid, delete)
 
 
 def sweep():
@@ -267,7 +310,7 @@ def sweep():
     if staging_dir() is None:
         return 0
     horizon = timezone.now() - timedelta(
-        hours=settings.CCP4I2_IMPORT_STAGING_TTL_HOURS)
+        hours=_conf("CCP4I2_IMPORT_STAGING_TTL_HOURS"))
     removed = 0
     for row in models.StagedUpload.objects.all():
         gone = (row.state == models.StagedUpload.State.CONSUMED
