@@ -69,6 +69,34 @@ export async function primeXtalMapContourStats(map: any): Promise<void> {
   }
 }
 
+/**
+ * Give an EM-flagged MTZ map the header info Moorhen's MapOriginListener
+ * reads.
+ *
+ * MoorhenMap.initialise() flags a P1 map with 90° angles as EM and locks its
+ * origin, and MapOriginListener (src/components/managers/maps/
+ * MapOriginListener.tsx, line 25 in 1.0.0-beta.1-dev.gcf479260) then reads
+ * `map.headerInfo.cell` during render for any EM map with dataOrigin "mtz".
+ * But MoorhenMap never assigns `headerInfo`: initialise() keeps the header in
+ * a local, and the property stays null. So loading the map coefficients of a
+ * cryo-EM servalcat refinement (P1, orthogonal cell) crashed the whole viewer
+ * with "Cannot read properties of null (reading 'cell')"; real-space maps
+ * take a different branch and were fine. The upstream fix is for Moorhen to
+ * set `this.headerInfo` in initialise() or read getSimpleHeaderInfo() in the
+ * listener; until that ships, hand the listener the same object here.
+ * Must run before the map is added to the store, which is what renders the
+ * listener. No-op for non-EM maps and when Moorhen already set the property.
+ */
+export function primeEmMapHeaderInfo(map: any): void {
+  if (!map || !map.isEM || map.headerInfo != null) return;
+  try {
+    const info = map.getSimpleHeaderInfo?.();
+    if (info && info.cell) map.headerInfo = info;
+  } catch (err) {
+    console.warn("Could not prime EM map header info:", err);
+  }
+}
+
 // --------------------------------------------------------------------------
 // CCP4 map mode-0 -> float conversion
 //
