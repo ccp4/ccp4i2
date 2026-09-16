@@ -199,7 +199,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                 <className>CMapDataFile</className>
                 <qualifiers>
                     <saveToDb>True</saveToDb>
-                    <default><annotation>Difference density map (in real space)</annotation></default>
+                    <default><subType>2</subType><annotation>Difference density map (in real space)</annotation></default>
                 </qualifiers>
             </content>
             <content id="ANOMFPHIOUT"><!-- only from servalcat refine_xtal_norefmac -->

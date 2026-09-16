@@ -38,8 +38,22 @@ class fft(CPluginScript):
 
         return CPluginScript.SUCCEEDED
     
+    def _propagate_map_subtype(self):
+        """Type the output map from the input coefficients.
+
+        The real-space map is the FFT of the input coefficients, so it is the
+        same kind of map -- the coefficients' subType (normal/difference/anom,
+        1/2/3) maps straight across to the map subtypes. Authoritative: the typed
+        input is the source of truth, no user choice needed (#524). Left untyped
+        when the input carries no subtype.
+        """
+        fphiin = self.container.inputData.FPHIIN
+        if fphiin.subType.isSet():
+            self.container.outputData.MAPOUT.subType.set(int(fphiin.subType))
+
     def processOutputFiles(self):
         self.container.outputData.MAPOUT.annotation = 'Computed using ' + str(self.container.inputData.FPHIIN.annotation)
+        self._propagate_map_subtype()
       
         lines = open(self.makeFileName('LOG')).readlines()
         xmlRoot = etree.Element('Cfft')
