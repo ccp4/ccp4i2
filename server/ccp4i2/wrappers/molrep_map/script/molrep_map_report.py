@@ -38,7 +38,7 @@ class molrep_map_report(Report):
         results = self.addResults()
         self._add_recommendation(results)
 
-        for hand in ['Original', 'Flipped']:
+        for hand in ['Original', 'Inverted']:
             fold = results.addFold(label=f'{hand} hand')
             node = self.xmlnode.findall(f'./{hand}')
             if node and node[0].get('placed') == 'false':
@@ -97,8 +97,8 @@ class molrep_map_report(Report):
             'its mirror image, and the better real-space fit (map-model '
             'correlation) wins.'))
 
-        hands = ['Original', 'Flipped']
-        cc = {'Original': rec.get('cc_original'), 'Flipped': rec.get('cc_flipped')}
+        hands = ['Original', 'Inverted']
+        cc = {'Original': rec.get('cc_original'), 'Inverted': rec.get('cc_inverted')}
 
         def emphasise(h, s):
             return f'<b>{s}</b>' if h == hand else s
@@ -106,7 +106,7 @@ class molrep_map_report(Report):
         table = results.addTable(title='Hand assignment')
         table.addData(title='Hand', data=[
             emphasise(h, 'Original (as given)' if h == 'Original'
-                      else 'Flipped (inverted)') for h in hands])
+                      else 'Inverted (mirror image)') for h in hands])
         table.addData(title='Placed', data=[
             self._hand_placed(h) for h in hands])
         table.addData(title='Map-model CC', data=[
