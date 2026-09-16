@@ -7,7 +7,6 @@ from django.utils import timezone
 from ccp4i2.db import models
 
 
-@pytest.mark.django_db
 def test_command_reaps_expired(tmp_path, monkeypatch, settings, capsys):
     d = tmp_path / "staging"
     d.mkdir()
@@ -30,7 +29,6 @@ def test_command_reaps_expired(tmp_path, monkeypatch, settings, capsys):
     assert not models.StagedUpload.objects.filter(uuid=old.uuid).exists()
 
 
-@pytest.mark.django_db
 def test_command_noop_when_disabled(monkeypatch, capsys):
     monkeypatch.delenv("CCP4I2_IMPORT_STAGING_DIR", raising=False)
     call_command("sweep_staged_uploads")

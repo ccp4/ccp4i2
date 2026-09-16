@@ -35,7 +35,6 @@ def _stage(owner, data, sha256="", filename="map.mrc"):
     return su.finish(su.get_owned(row.uuid, owner))
 
 
-@pytest.mark.django_db
 def test_happy_path_with_hash(staging):
     data = b"cryo-em-map-bytes-x" * 3
     h = hashlib.sha256(data).hexdigest()
@@ -45,7 +44,6 @@ def test_happy_path_with_hash(staging):
     assert path.read_bytes() == data
 
 
-@pytest.mark.django_db
 def test_repeated_and_out_of_order_chunks_are_idempotent(staging):
     data = b"abcdefghijABCDEFGHIJ"   # 20 bytes -> 3 chunks (8,8,4)
     row = su.begin("7", "m.mrc", len(data), "")
@@ -59,7 +57,6 @@ def test_repeated_and_out_of_order_chunks_are_idempotent(staging):
     assert path.read_bytes() == data
 
 
-@pytest.mark.django_db
 def test_missing_chunk_is_409(staging):
     row = su.begin("7", "m.mrc", 20, "")
     su.write_chunk(row, 0, b"abcdefgh")
@@ -68,7 +65,6 @@ def test_missing_chunk_is_409(staging):
         su.finish(row)
 
 
-@pytest.mark.django_db
 def test_bad_hash_is_422(staging):
     data = b"twelve bytes"
     row = su.begin("7", "m.mrc", len(data), sha256="0" * 64)
@@ -78,7 +74,6 @@ def test_bad_hash_is_422(staging):
         su.finish(row)
 
 
-@pytest.mark.django_db
 def test_size_mismatch_is_422(staging):
     row = su.begin("7", "m.mrc", 99, "")      # declares 99, sends 8
     su.write_chunk(row, 0, b"eightby.")
@@ -86,7 +81,6 @@ def test_size_mismatch_is_422(staging):
         su.finish(row)
 
 
-@pytest.mark.django_db
 def test_expiry_is_410(staging):
     row = su.begin("7", "m.mrc", 8, "")
     row.created_at = timezone.now() - timezone.timedelta(hours=25)
@@ -95,13 +89,11 @@ def test_expiry_is_410(staging):
         su.write_chunk(row, 0, b"eightby.")
 
 
-@pytest.mark.django_db
 def test_over_max_is_413_at_begin(staging):
     with pytest.raises(su.TooLarge):
         su.begin("7", "big.mrc", 10_000, "")   # > MAX_BYTES=1000
 
 
-@pytest.mark.django_db
 def test_too_many_in_flight_is_429(staging):
     for _ in range(3):                          # MAX_INFLIGHT=3
         su.begin("7", "m.mrc", 8, "")
@@ -111,7 +103,6 @@ def test_too_many_in_flight_is_429(staging):
     assert su.begin("8", "m.mrc", 8, "")
 
 
-@pytest.mark.django_db
 def test_owner_isolation(staging):
     row = _stage("7", b"owned by 7 only!!", "")
     # user 8 can neither see nor import user 7's handle
@@ -121,7 +112,6 @@ def test_owner_isolation(staging):
         su.resolve_for_import(row.uuid, "8")
 
 
-@pytest.mark.django_db
 def test_consume_deletes_and_blocks_reuse(staging):
     row = _stage("7", b"import me once!!!", "")
     _, path = su.resolve_for_import(row.uuid, "7")
@@ -133,7 +123,6 @@ def test_consume_deletes_and_blocks_reuse(staging):
         su.resolve_for_import(row.uuid, "7")
 
 
-@pytest.mark.django_db
 def test_sweep_reaps_expired_and_consumed(staging):
     old = su.begin("7", "m.mrc", 8, "")
     old.created_at = timezone.now() - timezone.timedelta(hours=48)
