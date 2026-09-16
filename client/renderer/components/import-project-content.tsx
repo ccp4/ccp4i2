@@ -28,9 +28,24 @@ export const ImportProjectContent: React.FC = () => {
     async (selectedFiles: FileList | null) => {
       if (!selectedFiles || selectedFiles.length === 0) return;
 
+      // Desktop: if every dropped file has a real local path, import by path
+      // (server-side copy) instead of pushing multi-GB zips through the ingress
+      // cap -- mirrors utils.ts uploadFileParam, and the server only honours
+      // local_path when its gate allows it (desktop, or a staged cloud dir).
+      // getPathForFile lives only in the Electron preload; in the browser it is
+      // absent, so localPaths stays empty and we upload the bytes as before.
       const formData = new FormData();
+      const localPaths: string[] = [];
       for (let i = 0; i < selectedFiles.length; i++) {
-        formData.append("files", selectedFiles[i]);
+        const p = window.electronAPI?.getPathForFile?.(selectedFiles[i]) || "";
+        if (p) localPaths.push(p);
+      }
+      if (localPaths.length === selectedFiles.length) {
+        for (const p of localPaths) formData.append("local_path", p);
+      } else {
+        for (let i = 0; i < selectedFiles.length; i++) {
+          formData.append("files", selectedFiles[i]);
+        }
       }
 
       setUploading(true);
