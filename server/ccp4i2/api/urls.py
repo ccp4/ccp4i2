@@ -13,6 +13,7 @@ from .FileTypeViewSet import FileTypeViewSet
 from .FileImportViewSet import FileImportViewSet
 from .FileUseViewSet import FileUseViewSet
 from .JobViewSet import JobViewSet
+from .StagedUploadViewSet import StagedUploadViewSet
 from . import credential_views, views
 
 router = routers.DefaultRouter()
@@ -27,6 +28,7 @@ router.register("fileimports", FileImportViewSet)
 router.register("fileuses", FileUseViewSet)
 router.register("jobs", JobViewSet)
 router.register("projectexports", ProjectExportViewSet)
+router.register("staged-uploads", StagedUploadViewSet, basename="staged-uploads")
 
 # Path-based file serving — registered outside the DRF router to avoid
 # format-suffix routing that would strip file extensions like .html/.css.
