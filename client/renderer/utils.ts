@@ -1144,7 +1144,19 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         try {
           const formData = new FormData();
           formData.append("object_path", objectPath);
-          formData.append("file", file, fileName);
+          // Desktop: import the file by its local path (the server copies it in
+          // place) instead of uploading its bytes -- this is how a large file
+          // (cryo-EM map, project zip) gets past the middleware body-size cap.
+          // getPathForFile is only present in the Electron preload, and returns ""
+          // for a synthesized Blob; in either of those cases we upload as normal.
+          // The server only honours local_path when it is allowed to (desktop
+          // local-session, or a cloud staging dir) -- see resolve_importable_path.
+          const localPath = window.electronAPI?.getPathForFile?.(file as File) || "";
+          if (localPath) {
+            formData.append("local_path", localPath);
+          } else {
+            formData.append("file", file, fileName);
+          }
           if (description?.trim()) {
             formData.append("description", description.trim());
           }

@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from "electron";
+import { contextBridge, ipcRenderer, webUtils } from "electron";
 
 contextBridge.exposeInMainWorld("electronAPI", {
   sendMessage: (channel, data) => ipcRenderer.send(channel, data),
@@ -10,6 +10,19 @@ contextBridge.exposeInMainWorld("electronAPI", {
   // Promise-returning IPC (ipcMain.handle). Used e.g. by the Program locations
   // preferences panel to open a native file/folder picker and get the path back.
   invoke: (channel, data) => ipcRenderer.invoke(channel, data),
+  // The absolute local path of a File the renderer holds (from a file input or
+  // drag-drop). Electron 32 removed File.path; webUtils.getPathForFile is the
+  // sanctioned replacement, and must be called here in the preload. Returns "" for
+  // a File with no backing path (a synthesized Blob). Lets the desktop import a
+  // large file by path (server-side copy) instead of uploading its bytes -- see
+  // #512. Absent in the web build (no preload).
+  getPathForFile: (file) => {
+    try {
+      return webUtils.getPathForFile(file) || "";
+    } catch {
+      return "";
+    }
+  },
 });
 
 // LocalSession surface — exposes the per-launch token and the
