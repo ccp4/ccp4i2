@@ -31,6 +31,8 @@ from ..lib.response import api_error, api_success
 from ..lib.utils.files.preview import preview_file
 from ..lib.utils.files.resolve_fileuse import resolve_fileuse
 from ..lib.utils.files.upload_param import resolve_importable_path
+from ..lib.utils.files import staged_upload
+from ..lib.utils.files.staged_upload import StagedUploadError
 from ..lib.utils.navigation.list_project import list_project
 from . import serializers
 
@@ -199,34 +201,39 @@ class ProjectViewSet(ModelViewSet):
     def import_project(self, request):
         from ..db.import_i2xml import ProjectArchiveError, inspect_ccp4_project_zip
 
-        # Import-by-path (copy) when the deployment permits it -- a desktop local
-        # file, or a cloud-staged file placed past the ~100 MB ingress cap. This
-        # is the same gate the upload_file_param route uses
-        # (resolve_importable_path): desktop trusts any local path, a staged
-        # deployment trusts only paths inside CCP4I2_IMPORT_STAGING_DIR, and the
-        # web default trusts none. The zip is read straight from disk;
-        # import_ccp4_project_zip copies its *contents* into the project store
-        # either way, so nothing is adopted in place. Falls back to the multipart
-        # body when no path is authorised.
-        staged = [
-            p
-            for p in (
-                resolve_importable_path(lp)
-                for lp in request.POST.getlist("local_path")
-            )
-            if p is not None
-        ]
+        # Import-by-path (copy) when the deployment permits it, in priority order:
+        # a served deployment's owner-bound staged handles (cloud, past the ingress
+        # cap), then desktop local files, then the multipart body -- the web
+        # default. In a served deployment a client-named local_path is not trusted;
+        # only a staged handle is, and it is server-named and owner-bound. The zip
+        # is read straight from disk; import_ccp4_project_zip copies its *contents*
+        # into the project store, so nothing is adopted in place.
+        #
+        # Each source is (display name, zip path, staged row or None). The row is
+        # consumed after dispatch -- with delete=False, because the importer runs
+        # detached and still needs the file; the sweeper reaps it later.
+        try:
+            staged_ids = request.POST.getlist("staged_upload")
+            sources = []
+            if staged_ids and staged_upload.staging_enabled():
+                owner = staged_upload.owner_key(request)
+                for sid in staged_ids:
+                    row, path = staged_upload.resolve_for_import(sid, owner)
+                    sources.append((path.name, path, row))
+            else:
+                local = [p for p in (
+                    resolve_importable_path(lp)
+                    for lp in request.POST.getlist("local_path")) if p is not None]
+                sources = [(p.name, p, None) for p in local]
+        except StagedUploadError as err:
+            return api_error(err.message, status=err.status)
 
-        # (display name, zip path on disk) for each project to import.
-        if staged:
-            sources = [(p.name, p) for p in staged]
-        else:
+        if not sources:
             uploaded_files = request.FILES.getlist("files")
             if not uploaded_files:
                 return api_error("No file provided", status=400)
             secure_storage_dir = pathlib.Path(settings.MEDIA_ROOT) / "uploaded_files"
             secure_storage_dir.mkdir(parents=True, exist_ok=True)
-            sources = []
             for uploaded_file in uploaded_files:
                 if not uploaded_file.name.endswith(".zip"):
                     return api_error("Invalid file type", status=400)
@@ -234,10 +241,10 @@ class ProjectViewSet(ModelViewSet):
                 with open(file_path, "wb") as destination:
                     for chunk in uploaded_file.chunks():
                         destination.write(chunk)
-                sources.append((uploaded_file.name, file_path))
+                sources.append((uploaded_file.name, file_path, None))
 
         imported = []
-        for name, file_path in sources:
+        for name, file_path, staged_row in sources:
             if not str(file_path).endswith(".zip"):
                 return api_error("Invalid file type", status=400)
 
@@ -259,6 +266,10 @@ class ProjectViewSet(ModelViewSet):
                 )
                 return api_error(str(e), status=500)
             logger.warning("Project imported from %s", file_path)
+            # Retire the handle so it can't be reused; keep the file for the
+            # detached importer -- the sweeper deletes it once past the TTL.
+            if staged_row is not None:
+                staged_upload.consume(staged_row, delete=False)
             imported.append(
                 {
                     "file": name,

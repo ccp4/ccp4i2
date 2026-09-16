@@ -30,6 +30,7 @@ from ..parameters.value_dict import value_dict_for_object
 from .detect_type import detect_file_type
 from ..parameters.set_parameter import set_parameter, set_parameter_container
 from ccp4i2.db import models
+from . import staged_upload
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -500,14 +501,15 @@ def resolve_importable_path(local_path: str):
       Electron app sets it). A single trusted user on their own machine, so any
       readable local file is importable.
 
-    - **Cloud / staged** -- ``CCP4I2_IMPORT_STAGING_DIR`` names a directory the
-      deployment has staged files into out-of-band (past the ingress cap). Only
-      paths *inside* that directory are importable; an arbitrary server path is
-      refused. This is the line that keeps a shared/cloud deployment from being
-      turned into an arbitrary-file-read.
+    - **Cloud / served** -- a client-named ``local_path`` is **never** trusted.
+      A served deployment imports large files by an owner-bound *staged handle*
+      (``staged_upload``; see :mod:`ccp4i2.lib.utils.files.staged_upload`), which
+      the server names and binds to the user who staged it. This closes the "any
+      file inside the staging dir is importable by anyone who can name it" hole
+      that a client-supplied path would leave open. Returns ``None`` here.
 
-    With neither set, returns ``None`` -- the web default, where files arrive as
-    the request body and no path is trusted.
+    With neither desktop nor a handle, returns ``None`` -- the web default, where
+    files arrive as the request body and no path is trusted.
     """
     if not local_path:
         return None
@@ -516,20 +518,27 @@ def resolve_importable_path(local_path: str):
         candidate = pathlib.Path(local_path)
         return candidate if candidate.is_file() else None
 
-    staging = os.environ.get("CCP4I2_IMPORT_STAGING_DIR")
-    if staging:
-        try:
-            staging_root = pathlib.Path(staging).resolve()
-            resolved = pathlib.Path(local_path).resolve()
-        except (OSError, ValueError):
-            return None
-        if resolved.is_relative_to(staging_root) and resolved.is_file():
-            return resolved
-        logger.warning(
-            "Refused import path outside the staging dir: %s (staging=%s)",
-            local_path, staging_root,
-        )
+    # Served deployment: local_path is not honoured -- use a staged handle.
     return None
+
+
+def resolve_staged_import(request):
+    """A served import source from an owner-bound staged handle, or (None, None).
+
+    In a served deployment a large file is delivered by chunks into
+    ``CCP4I2_IMPORT_STAGING_DIR`` and imported by ``staged_upload=<uuid>`` -- the
+    server named the path and bound it to the user who staged it, so no client
+    string is trusted. Returns ``([_LocalPathUpload], StagedUpload)`` to import
+    and then consume, or ``(None, None)`` when no handle applies. Raises
+    :class:`staged_upload.StagedUploadError` (mapped to an HTTP status by the
+    caller) on an unknown, foreign, unfinished, or expired handle.
+    """
+    staged_id = request.POST.get("staged_upload")
+    if not staged_id or not staged_upload.staging_enabled():
+        return None, None
+    row, path = staged_upload.resolve_for_import(
+        staged_id, staged_upload.owner_key(request))
+    return [_LocalPathUpload(path)], row
 
 
 def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
@@ -561,15 +570,20 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     # alias for older clients (i2remote, third-party integrators).
     object_path = request.POST.get("object_path") or request.POST.get("objectPath")
 
-    # Import-by-path (copy) when this deployment permits it (desktop local file,
-    # or a cloud-staged file), avoiding an HTTP upload of the bytes. Falls back to
-    # the request body otherwise -- the web default. See resolve_importable_path.
-    importable = resolve_importable_path(request.POST.get("local_path"))
-    if importable is not None:
-        logger.info("Importing by path (copy) from %s", importable)
-        files = [_LocalPathUpload(importable)]
+    # Import-by-path (copy), avoiding an HTTP upload of the bytes, in priority
+    # order: a served deployment's owner-bound staged handle (cloud), then a
+    # desktop local file, then the request body -- the web default.
+    staged_files, staged_row = resolve_staged_import(request)
+    if staged_files is not None:
+        logger.info("Importing from staged handle %s", request.POST.get("staged_upload"))
+        files = staged_files
     else:
-        files = request.FILES.getlist("file")
+        importable = resolve_importable_path(request.POST.get("local_path"))
+        if importable is not None:
+            logger.info("Importing by path (copy) from %s", importable)
+            files = [_LocalPathUpload(importable)]
+        else:
+            files = request.FILES.getlist("file")
 
     # Optional free-text provenance narrative ("where did this come from?"),
     # captured by the client when the import-provenance preference is on. Stored
@@ -924,6 +938,11 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
                 job.project.name,
                 sum(1 for each in duplicate_of if each["interchangeable"]),
             )
+        # The staged file has been copied into the project; retire the handle and
+        # delete its staging directory. Only on success, so a failed import can
+        # be retried against the same handle.
+        if staged_row is not None:
+            staged_upload.consume(staged_row)
         return {"updated_item": result, "duplicate_of": duplicate_of}
     except Exception:
         _discard_staged_upload(job, downloaded_file_path)

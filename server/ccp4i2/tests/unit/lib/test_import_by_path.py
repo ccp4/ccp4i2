@@ -52,40 +52,17 @@ def test_desktop_local_rejects_missing_file(tmp_path, monkeypatch):
     assert resolve_importable_path(str(tmp_path / "nope.mrc")) is None
 
 
-def test_staged_allows_inside_staging_dir(tmp_path, monkeypatch):
+def test_served_never_honours_local_path(tmp_path, monkeypatch):
+    # A served deployment (staging dir set, no desktop token) does NOT trust a
+    # client-named local_path -- even one inside the staging directory. Cloud
+    # imports go through an owner-bound staged handle instead (StagedUpload), so
+    # the "any file in the staging dir is importable by anyone who can name it"
+    # hole is closed. resolve_importable_path returns None for every path here.
     staging = tmp_path / "staging"
     staging.mkdir()
-    f = _make(staging)
+    inside = _make(staging)
+    outside = _make(tmp_path, "outside.mrc")
     monkeypatch.setenv(STAGING, str(staging))
-    assert resolve_importable_path(str(f)) == f.resolve()
-
-
-def test_staged_refuses_outside_staging_dir(tmp_path, monkeypatch):
-    staging = tmp_path / "staging"
-    staging.mkdir()
-    outside = _make(tmp_path, "outside.mrc")   # sibling of staging, not inside
-    monkeypatch.setenv(STAGING, str(staging))
+    assert resolve_importable_path(str(inside)) is None
     assert resolve_importable_path(str(outside)) is None
-
-
-def test_staged_refuses_symlink_escape(tmp_path, monkeypatch):
-    # A symlink inside staging pointing outside must not smuggle an arbitrary
-    # read: resolve() follows it, and the is_relative_to check then fails.
-    staging = tmp_path / "staging"
-    staging.mkdir()
-    secret = _make(tmp_path, "secret.mrc")
-    link = staging / "innocent.mrc"
-    try:
-        link.symlink_to(secret)
-    except OSError:
-        pytest.skip("symlinks not supported here")
-    monkeypatch.setenv(STAGING, str(staging))
-    assert resolve_importable_path(str(link)) is None
-
-
-def test_staged_refuses_traversal(tmp_path, monkeypatch):
-    staging = tmp_path / "staging"
-    staging.mkdir()
-    _make(tmp_path, "secret.mrc")
-    monkeypatch.setenv(STAGING, str(staging))
-    assert resolve_importable_path(str(staging / ".." / "secret.mrc")) is None
+    assert resolve_importable_path(str(staging / ".." / "outside.mrc")) is None
