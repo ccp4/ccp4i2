@@ -49,7 +49,7 @@ class molrep_map(CPluginScript):
     # Hands: (label, output-model attr, output-map attr, output-mask attr)
     HANDS = (
         ('Original', 'ORIGINALMODEL', 'ORIGINALTRIMMEDMAP', 'ORIGINALMASK'),
-        ('Flipped', 'FLIPPEDMODEL', 'FLIPPEDTRIMMEDMAP', 'FLIPPEDMASK'),
+        ('Inverted', 'INVERTEDMODEL', 'INVERTEDTRIMMEDMAP', 'INVERTEDMASK'),
     )
 
     def __init__(self, *args, **kwargs):
@@ -73,7 +73,7 @@ class molrep_map(CPluginScript):
             self._full = {
                 'Original': pp.read_map(str(inp.MAPIN.fullPath)),
             }
-            self._full['Flipped'] = pp.flip_hand(self._full['Original'])
+            self._full['Inverted'] = pp.flip_hand(self._full['Original'])
         except Exception as e:
             self.appendErrorReport(201, str(e))
             return CPluginScript.FAILED
@@ -83,7 +83,7 @@ class molrep_map(CPluginScript):
             downs = float(par.DOWNSAMPLE) if par.DOWNSAMPLE.isSet() else 1.0
             badd = float(par.BADD) if par.BADD.isSet() else 0.0
             self._search = {}
-            for hand in ('Original', 'Flipped'):
+            for hand in ('Original', 'Inverted'):
                 search = pp.prepare_for_search(self._full[hand], downs, badd)
                 path = os.path.join(self.workDir, f'search_{hand}.map')
                 pp.write_map(search, path)
@@ -231,7 +231,7 @@ class molrep_map(CPluginScript):
         return x is not None and x == x  # not None, not NaN
 
     def _placed_candidates(self):
-        return [h for h in ('Original', 'Flipped')
+        return [h for h in ('Original', 'Inverted')
                 if h in self._results and self._results[h].placed]
 
     def _choose_hand(self):
@@ -308,8 +308,8 @@ class molrep_map(CPluginScript):
 
         par = self.container.controlParameters
         border = float(par.BORDER) if par.BORDER.isSet() else 5.0
-        flip = rec == 'Flipped'
-        # Model bbox in the (possibly flipped) primary frame, absolute Angstrom.
+        flip = rec == 'Inverted'
+        # Model bbox in the (possibly inverted) primary frame, absolute Angstrom.
         ortho_min, ortho_max = pp.model_ortho_box(result.model_path, border)
         primary_cell = self._full[rec].grid.unit_cell
         try:
@@ -333,11 +333,11 @@ class molrep_map(CPluginScript):
         rec = ET.SubElement(root, 'recommendation')
         rec.set('hand', self._recommended or 'Original')
         rec.set('confidence', self._confidence or 'none')
-        for hand in ('Original', 'Flipped'):
+        for hand in ('Original', 'Inverted'):
             cc = self._cc.get(hand)
             if self._is_num(cc):
                 rec.set(f'cc_{hand.lower()}', f'{cc:.4f}')
-        for hand in ('Original', 'Flipped'):
+        for hand in ('Original', 'Inverted'):
             res = self._results.get(hand)
             el = ET.SubElement(root, hand)
             if res is None:
