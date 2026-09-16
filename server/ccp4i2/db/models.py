@@ -4,6 +4,7 @@ from uuid import uuid4
 from pathlib import Path
 
 from django.db.models import (
+    BooleanField,
     CASCADE,
     CharField,
     DateTimeField,
@@ -309,6 +310,29 @@ class Job(Model):
         path_elements = [f"job_{element}" for element in self.number.split(".")]
         jobs_dir = Path(self.project.directory) / "CCP4_JOBS"
         return jobs_dir.joinpath(*path_elements)
+
+
+class JobInteractiveSession(Model):
+    """The session of an interactive job: one whose "program" is a window in
+    the app (the recorded Moorhen task) rather than a child process.
+
+    The session, not a process, is what is open while the user works. Run
+    creates it and sets the job RUNNING without dispatching; finishing it
+    dispatches the job so the runner harvests the drop directory. A job
+    started from i2run is dispatched first and its plugin waits on this row.
+    ``dispatched`` records that a runner owns the job, so finishing then
+    only marks the row. See docs/moorhen-task-design.md.
+    """
+
+    job = OneToOneField(Job, CASCADE, related_name="interactive_session")
+    requested_at = DateTimeField(default=timezone.now)
+    last_heartbeat = DateTimeField(blank=True, null=True)
+    dispatched = BooleanField(default=False)
+    finished = BooleanField(default=False)
+    finished_at = DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return f"session of {self.job}"
 
 
 class ServerJob(Model):

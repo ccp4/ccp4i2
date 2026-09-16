@@ -2088,6 +2088,12 @@ class JobViewSet(ModelViewSet):
             except Exception as e:
                 logger.warning("Error killing process for job %s: %s", pk, e)
 
+        # An interactive session has no process; cancelling it ends the
+        # session and nothing is harvested.
+        from ..lib.utils.jobs.interactive import cancel_session
+
+        cancel_session(job)
+
         # Mark job as interrupted regardless — for Azure workers this is the
         # primary cancellation mechanism (worker will see the status on next check)
         job.status = models.Job.Status.INTERRUPTED
@@ -2096,3 +2102,89 @@ class JobViewSet(ModelViewSet):
         logger.info("Cancelled job %s", pk)
         serializer = serializers.JobSerializer(job)
         return Response(serializer.data)
+
+    # -- interactive sessions (the recorded Moorhen task) -------------------
+    # A job whose "program" is a window in the app. Run opened a session
+    # instead of dispatching; these four are what the window does while it
+    # is open and how the user ends it. See lib/utils/jobs/interactive.py.
+
+    def _interactive_job(self, pk):
+        from ..lib.utils.jobs import interactive
+
+        job = models.Job.objects.get(id=pk)
+        if not interactive.is_interactive_job(job):
+            raise interactive.SessionError(
+                400, f"Task '{job.task_name}' is not interactive")
+        return job
+
+    def _interactive(self, pk, act):
+        from ..lib.utils.jobs import interactive
+
+        try:
+            job = self._interactive_job(pk)
+            return api_success(act(interactive, job))
+        except models.Job.DoesNotExist:
+            return api_error(f"Job {pk} not found", status=404)
+        except interactive.SessionError as err:
+            return api_error(str(err), status=err.status)
+        except Exception as err:
+            logger.exception("Interactive session request failed for job %s", pk)
+            return api_error(str(err), status=500)
+
+    @action(detail=True, methods=["get"])
+    def interactive_session(self, request, pk=None):
+        """The session's state, load plan and saved files so far.
+
+        GET /api/jobs/{id}/interactive_session/
+        """
+        return self._interactive(pk, lambda lib, job: lib.session_state(job))
+
+    @action(detail=True, methods=["post"])
+    def interactive_heartbeat(self, request, pk=None):
+        """A window is attached. Informational only: no timer acts on it.
+
+        POST /api/jobs/{id}/interactive_heartbeat/
+        """
+        return self._interactive(pk, lambda lib, job: lib.heartbeat(job))
+
+    @action(detail=True, methods=["post"])
+    def interactive_drop(self, request, pk=None):
+        """Save a model or dictionary into the session's drop directory.
+
+        POST /api/jobs/{id}/interactive_drop/  (multipart)
+            file        the coordinates or dictionary
+            kind        "model" (default) or "dictionary"
+            annotation  optional label for the harvested output
+        """
+        upload = request.FILES.get("file")
+        if upload is None:
+            return api_error("No file uploaded (multipart field 'file')", status=400)
+        kind = request.POST.get("kind", "model")
+        annotation = request.POST.get("annotation", "")
+        return self._interactive(
+            pk, lambda lib, job: lib.drop_file(job, upload, kind=kind,
+                                               annotation=annotation))
+
+    @action(detail=True, methods=["post"])
+    def interactive_finish(self, request, pk=None):
+        """End the session (Finish), or say a window closed.
+
+        POST /api/jobs/{id}/interactive_finish/
+            {"finished": true}   Finish: dispatch the job to harvest what was
+                                 saved, or mark it for deletion if nothing was.
+            {"finished": false}  A window closed: finish only if nothing was
+                                 saved; otherwise keep the session open.
+        """
+        finished = True
+        payload = None
+        try:
+            payload = request.data if hasattr(request, "data") else None
+            if not payload and request.body:
+                payload = json.loads(request.body.decode("utf-8"))
+        except Exception:
+            payload = None
+        if isinstance(payload, dict) and "finished" in payload:
+            value = payload.get("finished")
+            finished = value not in (False, "false", "False", 0, "0")
+        return self._interactive(
+            pk, lambda lib, job: lib.finish_session(job, finished=finished))

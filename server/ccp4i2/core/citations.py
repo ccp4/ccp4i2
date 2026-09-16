@@ -134,6 +134,7 @@ TASK_CITES: Dict[str, List[str]] = {
     "ShelxCD": ["shelxc", "shelxd"],
     # --- coot variants cite coot.
     "coot1": ["coot"],
+    "moorhen": ["coot"],  # Moorhen is Coot's engine (libcootapi) in the browser
     "coot_rsr_morph": ["coot"],
     "coot_script_lines": ["coot"],
     # --- acedrg variants.

@@ -30,6 +30,12 @@ class Task:
     # adopts the front page: typed inputs of the same name and the few
     # values that became PHIL parameters (PhilPluginScript.adopt_legacy_container).
     successor: str = None
+    # True for a task whose "program" is a window in the app rather than a
+    # child process (the recorded Moorhen session). Run does not dispatch such
+    # a job: it opens a session and the job is dispatched when the session is
+    # finished. See lib/utils/jobs/interactive.py and
+    # docs/moorhen-task-design.md.
+    interactive: bool = False
 
 
 TASKS = {
@@ -110,6 +116,16 @@ TASKS = {
         defXmlPath="pipelines/MakeProjectsAndDoLigandPipeline/script/MakeProjectsAndDoLigandPipeline.def.xml",
         reportPath="ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline_report:MakeProjectsAndDoLigandPipeline_report",
         runningReport=True,
+    ),
+    "moorhen": Task(
+        title="Moorhen",
+        description="Interactive model building with Moorhen, recorded as a job",
+        shortTitle="Moorhen",
+        pluginPath="ccp4i2.wrappers.moorhen.script.moorhen:moorhen",
+        defXmlPath="wrappers/moorhen/script/moorhen.def.xml",
+        reportPath="ccp4i2.wrappers.moorhen.script.moorhen_report:moorhen_report",
+        ccp4_free=True,
+        interactive=True,
     ),
     "Platonyzer": Task(
         shortTitle="Platonyzer",
@@ -1660,6 +1676,12 @@ def get_plugin_module(task_name: str):
         logger.error(f"Failed to import plugin module for {task_name}: {e}")
         _import_errors[task_name] = str(e)
         return None
+
+
+def is_interactive(task_name: str) -> bool:
+    """True if the task's program is a window in the app, not a child process."""
+    task = TASKS.get(task_name)
+    return bool(task.interactive) if task is not None else False
 
 
 @cache

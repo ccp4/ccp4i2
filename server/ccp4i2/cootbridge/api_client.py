@@ -232,7 +232,8 @@ def unwrap_envelope(payload):
 # toolkit-neutral kind each maps to. Renderers dispatch on the kind, so
 # adding an entry here lights it up in every Coot generation at once.
 INPUT_PARAM_KINDS = (
-    ("DICT", "dictionary"),          # dictionaries first: models may need them
+    ("DICT_LIST", "dictionary"),     # dictionaries first: models may need them
+    ("DICT", "dictionary"),
     ("XYZIN_LIST", "coordinates"),
     ("XYZIN", "coordinates"),
     ("FPHIIN_LIST", "map_2fofc"),
@@ -241,6 +242,7 @@ INPUT_PARAM_KINDS = (
     ("DELFPHIIN", "map_fofc"),
     ("DELFPHIINANOM_LIST", "map_anom"),
     ("DELFPHIINANOM", "map_anom"),
+    ("MAPIN_LIST", "map"),           # real-space maps and masks (moorhen task)
 )
 
 _FILE_CHILD_TAGS = ("baseName", "relPath", "project", "dbFileId",
