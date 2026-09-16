@@ -28,12 +28,35 @@ class servalcat(CPluginScript):
         205: {'description': 'Failed to parse output JSON statistics'},
         206: {'description': 'Failed to read output MTZ file'},
         207: {'description': 'Failed to split HKL output'},
+        208: {'description': 'High resolution (d_min) is required for SPA refinement'},
     }
 
     def __init__(self, *args, **kwargs):
         super(servalcat, self).__init__(*args, **kwargs)
         self.xmlroot = ET.Element('SERVALCAT')
         self.xmlLength = 0
+
+    def validity(self):
+        """Cheap, polled checks the def.xml qualifiers cannot express.
+
+        SPA refinement always puts ``-d <RES_MIN>`` on the command line
+        (``refine_spa_norefmac`` builds its grid from d_min), so an unset
+        RES_MIN is not a soft default -- the job dies at runtime with a cryptic
+        ``initialize_grid(): d_min is not set``. That is exactly how the cryo-EM
+        placement -> servalcat handoff trips people up. Require it here so the
+        gap surfaces as a blocking field error on RES_MIN, before submission.
+        """
+        error = super(servalcat, self).validity()
+        if str(self.container.controlParameters.DATA_METHOD) == 'spa':
+            if not self.container.controlParameters.RES_MIN.isSet():
+                error.append(
+                    klass=self.TASKNAME, code=208,
+                    details='Set the high resolution limit (d_min, in '
+                            'Angstrom) of your map; SPA refinement cannot run '
+                            'without it.',
+                    name=f'{self.TASKNAME}.container.controlParameters.RES_MIN',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        return error
 
     def runTimeValidity(self):
         """Pre-flight validation including monomer dictionary coverage."""
