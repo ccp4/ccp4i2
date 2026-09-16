@@ -35,6 +35,7 @@ import { MoorhenCcp4i2TabbedPanel } from "./moorhen-ccp4i2-tabbed-panel";
 import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import { useMoorhenSession } from "../../hooks/use-moorhen-session";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import {
   applyScene,
@@ -80,6 +81,9 @@ export interface MoorhenWrapperProps {
   /** Project pk for a project-scoped Moorhen page: provides project context
    *  (manifest + job/param resolution) without loading any specific file/job. */
   projectId?: number | null;
+  /** The job this window is a recorded Moorhen session for: load its inputs
+   *  from the server's load plan, save back into it, finish it. */
+  sessionJobId?: number | null;
 }
 
 /** comp_ids defined by a refmac/coot dictionary CIF (its `data_comp_<X>`
@@ -182,8 +186,9 @@ async function resolveJobParamUrl(
   return `/api/proxy/ccp4i2/files/${file.id}/download/`;
 }
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId }) => {
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId }) => {
   const capabilities = useMoorhenCapabilities();
+  const session = useMoorhenSession(sessionJobId, !!sessionJobId);
   const [isSafari] = useState(() => isSafariBrowser());
   const { setMessage } = usePopcorn();
   const dispatch = useDispatch();
@@ -538,7 +543,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       console.warn(`File with ID ${fileId} not found.`);
       return;
     }
-    if (fileInfo.type === "chemical/x-pdb") {
+    if (
+      fileInfo.type === "chemical/x-pdb" ||
+      fileInfo.type === "chemical/x-cif" ||
+      fileInfo.type === "chemical/x-mmcif"
+    ) {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.job_param_name || fileInfo.name || `file_${fileId}`;
       await fetchMolecule(url, molName);
@@ -1393,10 +1402,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           onBuildAuthoringPrompt={handleBuildAuthoringPrompt}
           onGenerateScene={sceneNl.available ? handleGenerateScene : undefined}
           cootInitialized={cootInitialized}
+          session={session}
         />
       ),
     },
-  }), [fetchFile, fetchJobFiles, projectPk, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, handleBuildAuthoringPrompt, sceneNl.available, handleGenerateScene, cootInitialized]);
+  }), [fetchFile, fetchJobFiles, projectPk, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus, handleApplyScene, handleCaptureScene, handlePromoteSceneToPortable, handleBuildAuthoringPrompt, sceneNl.available, handleGenerateScene, cootInitialized, session]);
 
   // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
   // (it builds the per-instance MoorhenInstance from it). One per wrapper.
@@ -1426,6 +1436,29 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       });
     }
   }, [fileIds, cootInitialized]);
+
+  // A session window loads the job's inputs from the server's load plan,
+  // once, in the server's order (dictionaries first, then coordinates,
+  // then maps), awaiting each so a model finds its ligand geometry.
+  const sessionPlanAppliedRef = useRef(false);
+  useEffect(() => {
+    if (!session?.state || !cootInitialized || sessionPlanAppliedRef.current) return;
+    sessionPlanAppliedRef.current = true;
+    const plan = session.state.load_plan;
+    (async () => {
+      for (const entry of plan) {
+        if (entry.file_id == null) {
+          console.warn(`Session load plan: ${entry.label} has no file record yet; skipped`);
+          continue;
+        }
+        try {
+          await fetchFile(entry.file_id);
+        } catch (err) {
+          console.warn(`Session load plan: could not load ${entry.label}`, err);
+        }
+      }
+    })();
+  }, [session?.state, cootInitialized, fetchFile]);
 
   // Show Safari advisory as a non-blocking snackbar
   const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;

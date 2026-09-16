@@ -39,6 +39,7 @@ import ClustalwInterface from "./clustalw";
 import CmapcoeffInterface from "./cmapcoeff";
 import ComitInterface from "./comit";
 import Coot1Interface from "./coot1";
+import MoorhenInterface from "./moorhen";
 import CootRebuildInterface from "./coot_rebuild";
 import CootRsrMorphInterface from "./coot_rsr_morph";
 import CoordinateSelectorInterface from "./coordinate_selector";
@@ -196,6 +197,7 @@ const TASK_INTERFACES: Record<
   cmapcoeff: CmapcoeffInterface,
   comit: ComitInterface,
   coot1: Coot1Interface,
+  moorhen: MoorhenInterface,
   coot_rebuild: CootRebuildInterface,
   coot_rsr_morph: CootRsrMorphInterface,
   coordinate_selector: CoordinateSelectorInterface,

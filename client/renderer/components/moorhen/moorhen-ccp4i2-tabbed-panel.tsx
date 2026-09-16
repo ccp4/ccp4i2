@@ -18,6 +18,8 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { moorhen } from "moorhen/types/moorhen";
 
 import { MoorhenControlPanel } from "./moorhen-control-panel";
+import { MoorhenSessionPanel } from "./moorhen-session-panel";
+import type { MoorhenSessionApi } from "../../hooks/use-moorhen-session";
 import { MoorhenScenesPanel, SceneBundleAssets } from "./moorhen-scenes-panel";
 import type { SceneResolveResult } from "../../lib/moorhen-scene-resolver";
 import type { SceneLiftHints } from "../../lib/moorhen-scene-lifter";
@@ -57,6 +59,9 @@ export interface MoorhenCcp4i2TabbedPanelProps {
    *  capability; when omitted the panel offers copy-paste authoring only. */
   onGenerateScene?: (request: string) => Promise<string>;
   cootInitialized: boolean;
+  /** Present when this window is a recorded Moorhen session for one job:
+   *  adds a Session tab (save to this job, finish) and opens on it. */
+  session?: MoorhenSessionApi | null;
 }
 
 export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> = ({
@@ -66,9 +71,12 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
   onBuildAuthoringPrompt,
   onGenerateScene,
   cootInitialized,
+  session,
   ...controlsProps
 }) => {
-  const [activeTab, setActiveTab] = useState<"controls" | "scenes">("controls");
+  const [activeTab, setActiveTab] = useState<"session" | "controls" | "scenes">(
+    session ? "session" : "controls",
+  );
 
   // Memoise the two sub-panels so switching tabs doesn't rebuild them
   // (Monaco re-init is expensive; preserving the Controls subtree keeps
@@ -105,6 +113,14 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
     [onApplyScene, onCaptureScene, onPromoteSceneToPortable, onBuildAuthoringPrompt, onGenerateScene, cootInitialized],
   );
 
+  const sessionContent = useMemo(
+    () =>
+      session ? (
+        <MoorhenSessionPanel session={session} molecules={controlsProps.molecules} />
+      ) : null,
+    [session, controlsProps.molecules],
+  );
+
   return (
     <Box
       sx={{
@@ -121,6 +137,13 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
         variant="fullWidth"
         sx={{ borderBottom: 1, borderColor: "divider", minHeight: 36 }}
       >
+        {session && (
+          <Tab
+            label="Session"
+            value="session"
+            sx={{ minHeight: 36, py: 0.5, fontSize: "0.75rem", textTransform: "none" }}
+          />
+        )}
         <Tab
           label="Controls"
           value="controls"
@@ -132,6 +155,19 @@ export const MoorhenCcp4i2TabbedPanel: React.FC<MoorhenCcp4i2TabbedPanelProps> =
           sx={{ minHeight: 36, py: 0.5, fontSize: "0.75rem", textTransform: "none" }}
         />
       </Tabs>
+      {session && (
+        <Box
+          sx={{
+            flex: 1,
+            minHeight: 0,
+            width: "100%",
+            overflow: "hidden",
+            display: activeTab === "session" ? "block" : "none",
+          }}
+        >
+          {sessionContent}
+        </Box>
+      )}
       <Box
         sx={{
           flex: 1,

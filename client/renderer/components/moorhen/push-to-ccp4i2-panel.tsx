@@ -13,6 +13,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { CreateTaskResponse } from "../../utils";
 import { usePopcorn } from "../../providers/popcorn-provider";
 import { ItemMetadata, fetchItemMetadata } from "./item-metadata-utils";
+import { serialiseMolecule } from "../../lib/moorhen-serialise";
 
 interface PushToCCP4i2Props {
   project?: ProjectInfo;
@@ -23,16 +24,6 @@ interface PushToCCP4i2Props {
 }
 
 type ProjectInfoOrNull = ProjectInfo | null;
-function detectCoordinateFormat(text: string): "pdb" | "mmcif" | "unknown" {
-  const trimmedText = text.replace(/^\s+/, ""); // Remove leading whitespace and blank lines
-  if (/^(HEADER|TITLE|ATOM  |HETATM)/m.test(trimmedText)) {
-    return "pdb";
-  }
-  if (/^data_/m.test(trimmedText) && /_atom_site\./.test(trimmedText)) {
-    return "mmcif";
-  }
-  return "unknown";
-}
 
 export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
   project,
@@ -99,35 +90,16 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
         }
 
         mutateJobs();
-        const modelCoords =
+        const serialised =
           item.type === "molecule"
-            ? await (item as moorhen.Molecule).getAtoms()
+            ? await serialiseMolecule(item as moorhen.Molecule)
             : null;
-        if (!modelCoords) return;
-
-        const format = detectCoordinateFormat(modelCoords);
-        setMessage(`Detected coordinate format: ${format}`, "info");
-
-        const slugify = (name: string) =>
-          name
-            .replace(/[/\\?%*:|"<>]/g, "") // Remove illegal filename chars
-            .replace(/\s+/g, "_") // Replace whitespace with underscores
-            .replace(/[^a-zA-Z0-9._-]/g, "") // Remove other non-safe chars
-            .replace(/^_+|_+$/g, ""); // Trim leading/trailing underscores
-
-        const moleculeName =
-          slugify((item as moorhen.Molecule).name) +
-          (format === "mmcif" ? ".cif" : ".pdb");
+        if (!serialised) return;
+        setMessage(`Detected coordinate format: ${serialised.format}`, "info");
 
         const formData = new FormData();
         formData.append("object_path", "coordinate_selector.inputData.XYZIN");
-        formData.append(
-          "file",
-          new Blob([modelCoords], {
-            type: format === "mmcif" ? "chemical/x-cif" : "chemical/x-pdb",
-          }),
-          moleculeName
-        );
+        formData.append("file", serialised.blob, serialised.filename);
         const newJobId = result.data?.new_job?.id;
         if (!newJobId) {
           setMessage(`Failed to create job: ${(result as any)?.error || 'Unknown error'}`, "error");

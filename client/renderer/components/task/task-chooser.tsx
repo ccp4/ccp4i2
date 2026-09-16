@@ -153,6 +153,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "dr_mr_modelbuild_pipeline",
       "ccp4mg_general",
       "coot1",
+      "moorhen",
       "nucleofind",
     ],
   },
