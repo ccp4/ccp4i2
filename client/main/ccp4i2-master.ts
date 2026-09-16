@@ -21,6 +21,7 @@ import { setupZoomLevel } from "./ccp4i2-zoom";
 import { assessPython, listCcp4Dirs } from "./ccp4i2-python-suitability";
 import { registerExitHandlers, terminateProcessTree } from "./ccp4i2-process-tree";
 import { initAutoUpdater } from "./ccp4i2-updater";
+import { desktopLaunchCommand, parseOpenRoute } from "./ccp4i2-open-route";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
@@ -168,6 +169,19 @@ export const store = new Store<StoreSchema>({
 // Note: projectRoot is always computed via getProjectRoot(), not read from store
 // The store default is just for schema compatibility
 
+// One instance of the app. A second launch, such as a job process running
+// `<this executable> --open-route <path>` to open a window for a recorded
+// Moorhen session started from i2run, hands its argv to this instance and
+// exits. The Django child (and so every job) learns how to launch us from
+// CCP4I2_DESKTOP_LAUNCH, set before the child is spawned.
+const hasSingleInstanceLock = app.requestSingleInstanceLock();
+if (!hasSingleInstanceLock) {
+  app.quit();
+}
+process.env.CCP4I2_DESKTOP_LAUNCH = JSON.stringify(
+  desktopLaunchCommand(process.execPath, app.isPackaged, app.getAppPath())
+);
+
 let mainWindow: BrowserWindow | null = null;
 let nextServerPort: number | null = null;
 let nextServer: Server | null = null;
@@ -205,6 +219,37 @@ const getMainWindow = () => {
     return null;
   }
 };
+
+// Routes asked for before the servers are up wait here; once the main
+// window exists they open in their own windows, like any Moorhen page.
+const pendingRoutes: string[] = [];
+const openRoute = (route: string) => {
+  if (!nextServerPort || !mainWindow) {
+    pendingRoutes.push(route);
+    return;
+  }
+  createWindow(`http://localhost:${nextServerPort}${route}`, store);
+};
+const openPendingRoutes = () => {
+  while (pendingRoutes.length > 0) openRoute(pendingRoutes.shift()!);
+};
+
+app.on("second-instance", (_event, argv) => {
+  const route = parseOpenRoute(argv);
+  if (route) {
+    openRoute(route);
+    return;
+  }
+  // A plain second launch: bring the app forward instead.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
+});
+
+// The same argument on our own launch (the app was not running yet).
+const startupRoute = parseOpenRoute(process.argv);
+if (startupRoute) pendingRoutes.push(startupRoute);
 
 app
   .whenReady()
@@ -267,6 +312,7 @@ app
     // types that can't self-update; failures are swallowed. A new app pulls its
     // matching backend on next launch via the exact-pin (see ccp4i2-updater.ts).
     initAutoUpdater(getMainWindow);
+    openPendingRoutes();
   });
 
 app.on("window-all-closed", () => {
