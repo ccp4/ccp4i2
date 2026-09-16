@@ -30,6 +30,7 @@ from ..lib.async_create_job import create_job_async
 from ..lib.response import api_error, api_success
 from ..lib.utils.files.preview import preview_file
 from ..lib.utils.files.resolve_fileuse import resolve_fileuse
+from ..lib.utils.files.upload_param import resolve_importable_path
 from ..lib.utils.navigation.list_project import list_project
 from . import serializers
 
@@ -196,30 +197,49 @@ class ProjectViewSet(ModelViewSet):
         ],  # Allow JSON and form data
     )
     def import_project(self, request):
-        uploaded_files = request.FILES.getlist("files")
-        if not uploaded_files:
-            return api_error("No file provided", status=400)
-        # Define a secure, platform-independent storage path
-        secure_storage_dir = pathlib.Path(settings.MEDIA_ROOT) / "uploaded_files"
-        secure_storage_dir.mkdir(parents=True, exist_ok=True)
-
         from ..db.import_i2xml import ProjectArchiveError, inspect_ccp4_project_zip
 
-        # Save the file to the secure storage directory
+        # Import-by-path (copy) when the deployment permits it -- a desktop local
+        # file, or a cloud-staged file placed past the ~100 MB ingress cap. This
+        # is the same gate the upload_file_param route uses
+        # (resolve_importable_path): desktop trusts any local path, a staged
+        # deployment trusts only paths inside CCP4I2_IMPORT_STAGING_DIR, and the
+        # web default trusts none. The zip is read straight from disk;
+        # import_ccp4_project_zip copies its *contents* into the project store
+        # either way, so nothing is adopted in place. Falls back to the multipart
+        # body when no path is authorised.
+        staged = [
+            p
+            for p in (
+                resolve_importable_path(lp)
+                for lp in request.POST.getlist("local_path")
+            )
+            if p is not None
+        ]
+
+        # (display name, zip path on disk) for each project to import.
+        if staged:
+            sources = [(p.name, p) for p in staged]
+        else:
+            uploaded_files = request.FILES.getlist("files")
+            if not uploaded_files:
+                return api_error("No file provided", status=400)
+            secure_storage_dir = pathlib.Path(settings.MEDIA_ROOT) / "uploaded_files"
+            secure_storage_dir.mkdir(parents=True, exist_ok=True)
+            sources = []
+            for uploaded_file in uploaded_files:
+                if not uploaded_file.name.endswith(".zip"):
+                    return api_error("Invalid file type", status=400)
+                file_path = secure_storage_dir / slugify(uploaded_file.name)
+                with open(file_path, "wb") as destination:
+                    for chunk in uploaded_file.chunks():
+                        destination.write(chunk)
+                sources.append((uploaded_file.name, file_path))
+
         imported = []
-        for uploaded_file in uploaded_files:
-            if not uploaded_file.name.endswith(".zip"):
+        for name, file_path in sources:
+            if not str(file_path).endswith(".zip"):
                 return api_error("Invalid file type", status=400)
-            # Ensure the filename is safe
-            # if not uploaded_file.name.isalnum():
-            #    return Response(
-            #        {"status": "Failed", "reason": "Invalid file name"},
-            #        status=status.HTTP_400_BAD_REQUEST,
-            #    )
-            file_path = secure_storage_dir / slugify(uploaded_file.name)
-            with open(file_path, "wb") as destination:
-                for chunk in uploaded_file.chunks():
-                    destination.write(chunk)
 
             # Look inside before dispatching. The import itself runs detached,
             # so anything not caught here fails in a subprocess with nobody
@@ -228,8 +248,8 @@ class ProjectViewSet(ModelViewSet):
             try:
                 summary = inspect_ccp4_project_zip(file_path)
             except ProjectArchiveError as err:
-                logger.warning("Rejected %s: %s", uploaded_file.name, err)
-                return api_error(f"{uploaded_file.name}: {err}", status=400)
+                logger.warning("Rejected %s: %s", name, err)
+                return api_error(f"{name}: {err}", status=400)
 
             try:
                 call_command("import_ccp4_project_zip", str(file_path), "--detach")
@@ -238,10 +258,10 @@ class ProjectViewSet(ModelViewSet):
                     "Failed to import project from %s", file_path, exc_info=e
                 )
                 return api_error(str(e), status=500)
-            logger.warning("File uploaded and saved to %s", file_path)
+            logger.warning("Project imported from %s", file_path)
             imported.append(
                 {
-                    "file": uploaded_file.name,
+                    "file": name,
                     "project_name": summary["project_name"],
                     "jobs": summary["jobs"],
                 }
