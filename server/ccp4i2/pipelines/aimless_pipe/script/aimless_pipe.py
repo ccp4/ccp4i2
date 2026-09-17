@@ -1037,6 +1037,28 @@ class aimless_pipe(CPluginScript):
         containerXML.append(e2)
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    def _configureFreerflag(self, plugin, complete):
+      """Set up the freerflag wrapper from this pipeline's data and control
+      parameters. Returns the FreeR output path. Pure configuration, so it
+      can be checked without CCP4."""
+      plugin.container.inputData.F_SIGF = self.container.outputData.HKLOUT[0]
+      plugin.container.inputData.FREERFLAG = self.container.inputData.FREERFLAG
+      plugin.container.controlParameters.COMPLETE = self.container.controlParameters.COMPLETE
+      plugin.container.controlParameters.FRAC = \
+                          self.container.controlParameters.FREER_FRACTION
+      plugin.container.controlParameters.CUTRESOLUTION = \
+                          self.container.controlParameters.CUTRESOLUTION
+      filePath = os.path.join(self.workDirectory,'FREERFLAG.mtz')
+      plugin.container.outputData.FREEROUT.setFullPath(filePath)
+      # Set optional COMPLETE flag: GEN_MODE = 'GEN_NEW' or 'COMPLETE'
+      plugin.container.controlParameters.GEN_MODE.set('COMPLETE' if complete else 'GEN_NEW')
+      # The pipeline's cell-difference override covers BOTH cell gates: the
+      # CellCheck above (skipped by the caller when set) and the wrapper's
+      # index-only join of data with the input FreeR set.
+      if self.container.controlParameters.OVERRIDE_CELL_DIFFERENCE:
+          plugin.container.controlParameters.OVERRIDE_CELL_DIFFERENCE.set(True)
+      return filePath
+
     def runFreerflag(self):
       print("runFreerflag")
 
@@ -1061,21 +1083,9 @@ class aimless_pipe(CPluginScript):
 
       freerReportXML = None
       self.freerflag = self.makePluginObject('freerflag')
-      self.freerflag.container.inputData.F_SIGF = self.container.outputData.HKLOUT[0]
-      self.freerflag.container.inputData.FREERFLAG = self.container.inputData.FREERFLAG
-      self.freerflag.container.controlParameters.COMPLETE = self.container.controlParameters.COMPLETE
-      self.freerflag.container.controlParameters.FRAC = \
-                          self.container.controlParameters.FREER_FRACTION
-      self.freerflag.container.controlParameters.CUTRESOLUTION = \
-                          self.container.controlParameters.CUTRESOLUTION
-      filePath = os.path.join(self.workDirectory,'FREERFLAG.mtz')
-      self.freerflag.container.outputData.FREEROUT.setFullPath(filePath)
-      # Set optional COMPLETE flag: GEN_MODE = 'GEN_NEW' or 'COMPLETE'
-      self.freerflag.container.controlParameters.GEN_MODE.set('GEN_NEW')
+      filePath = self._configureFreerflag(self.freerflag, complete)
 
-      if complete:
-          self.freerflag.container.controlParameters.GEN_MODE.set('COMPLETE')
-      else:
+      if not complete:
           # Generating new FreeR
           # Fraction for FreeR if specified
           if self.container.controlParameters.FREER_FRACTION.isSet():
