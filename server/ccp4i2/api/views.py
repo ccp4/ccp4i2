@@ -31,6 +31,28 @@ def task_lookup(request):
 
 
 @api_view(["GET"])
+def repository_entry(request, repository, entry):
+    """What a repository entry offers for fetching into a project.
+
+    GET repositories/emdb/EMD-11638/ -> {repository, entry, title, resolution,
+    files: [{kind, file, sub_type, label, index, pixel_spacing, dimensions,
+    size_kbytes, contour_level}], pdb_ids}. The server asks EMDB, so the
+    browser needs no proxy and the listing is the same one the fetch checks
+    the request against.
+    """
+    from ..lib.response import api_error, api_success
+    from ..lib.utils.files import repository_fetch as repo
+
+    try:
+        if repository != "emdb":
+            raise repo.RepositoryError(400, f"Unknown repository {repository!r}; only 'emdb' is supported")
+        entry_id = repo.normalise_emdb_entry(entry)
+        return api_success(repo.emdb_entry_summary(repo.fetch_emdb_entry(entry_id)))
+    except repo.RepositoryError as err:
+        return api_error(str(err), status=err.status)
+
+
+@api_view(["GET"])
 def active_jobs(request):
     """
     Returns a list of all running/queued jobs in the ccp4i2 job queue.
