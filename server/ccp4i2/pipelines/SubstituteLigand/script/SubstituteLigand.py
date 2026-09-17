@@ -303,6 +303,31 @@ class SubstituteLigand(CPluginScript):
 
         return error
 
+    def _configureAimless(self, plugin):
+        """Set up the aimless_pipe plugin from this pipeline's inputs. Pure
+        configuration (no execution), so it can be checked without CCP4."""
+        plugin.container.controlParameters.MODE.set('MATCH')
+        plugin.container.controlParameters.RESOLUTION_RANGE = self.container.controlParameters.RESOLUTION_RANGE
+        plugin.container.controlParameters.SCALING_PROTOCOL.set('DEFAULT')
+        plugin.container.controlParameters.ONLYMERGE.set(False)
+        plugin.container.controlParameters.REFERENCE_DATASET.set('XYZ')
+        plugin.container.controlParameters.AUTOCUTOFF.set(True)
+        plugin.container.controlParameters.TOLERANCE.set(10.)
+
+        plugin.container.inputData.copyData(self.container.inputData, ['UNMERGEDFILES'])
+        plugin.container.inputData.XYZIN_REF = self.container.inputData.XYZIN
+
+        if self.container.inputData.FREERFLAG_IN.isSet():
+            plugin.container.inputData.FREERFLAG = self.container.inputData.FREERFLAG_IN
+            # aimless_pipe only extends an input FreeR set whose cell agrees
+            # with the new data's to within Clipper's 1 A default, which a 0.6%
+            # change on a 185 A axis already exceeds. A FreeR handed in here
+            # usually comes from ANOTHER crystal of a campaign (one shared free
+            # set for PanDDA / comparable Rfree), so the caller can opt out of
+            # that check. Off by default: desktop behaviour is unchanged.
+            if self.container.controlParameters.OVERRIDE_CELL_DIFFERENCE:
+                plugin.container.controlParameters.OVERRIDE_CELL_DIFFERENCE.set(True)
+
     def _runAimless(self):
         """Run aimless_pipe to merge unmerged data."""
         error = CErrorReport()
@@ -317,19 +342,7 @@ class SubstituteLigand(CPluginScript):
 
         try:
             plugin = self.aimlessPlugin
-            plugin.container.controlParameters.MODE.set('MATCH')
-            plugin.container.controlParameters.RESOLUTION_RANGE = self.container.controlParameters.RESOLUTION_RANGE
-            plugin.container.controlParameters.SCALING_PROTOCOL.set('DEFAULT')
-            plugin.container.controlParameters.ONLYMERGE.set(False)
-            plugin.container.controlParameters.REFERENCE_DATASET.set('XYZ')
-            plugin.container.controlParameters.AUTOCUTOFF.set(True)
-            plugin.container.controlParameters.TOLERANCE.set(10.)
-
-            plugin.container.inputData.copyData(self.container.inputData, ['UNMERGEDFILES'])
-            plugin.container.inputData.XYZIN_REF = self.container.inputData.XYZIN
-
-            if self.container.inputData.FREERFLAG_IN.isSet():
-                plugin.container.inputData.FREERFLAG = self.container.inputData.FREERFLAG_IN
+            self._configureAimless(plugin)
 
             print(f"[SubstituteLigand] Running aimless_pipe...")
             status = plugin.process()
@@ -343,7 +356,13 @@ class SubstituteLigand(CPluginScript):
             # Verify outputs
             aimlessOut = plugin.container.outputData
             if not aimlessOut.FREEROUT.isSet() or not os.path.isfile(str(aimlessOut.FREEROUT.fullPath)):
-                self.appendErrorReport(211, 'Aimless did not produce FreeR output')
+                detail = 'Aimless did not produce FreeR output'
+                if (self.container.inputData.FREERFLAG_IN.isSet()
+                        and not self.container.controlParameters.OVERRIDE_CELL_DIFFERENCE):
+                    detail += (' (the input FreeR set was not extended: its cell may differ '
+                               'from the new data by more than the 1 A tolerance; set '
+                               'OVERRIDE_CELL_DIFFERENCE to extend it regardless)')
+                self.appendErrorReport(211, detail)
                 error.append(self.__class__.__name__, 211,
                             'Aimless did not produce FreeR output', 'aimless', 4)
                 return error
