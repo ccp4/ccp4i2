@@ -113,3 +113,19 @@ def test_aimless_pipe_leaves_freerflag_strict_unless_asked(tmp_path):
     pipe._configureFreerflag(freerflag, complete=False)
     assert not freerflag.container.controlParameters.OVERRIDE_CELL_DIFFERENCE
     assert str(freerflag.container.controlParameters.GEN_MODE) == "GEN_NEW"
+
+
+def test_import_merged_hands_its_override_to_freerflag(tmp_path):
+    pipe = _plugin(tmp_path, "import_merged")
+    pipe.container.controlParameters.OVERRIDE_CELL_DIFFERENCE.set(True)
+    freerflag = pipe.makePluginObject("freerflag")
+    pipe._propagateFreerOverride(freerflag)
+    assert freerflag.container.controlParameters.OVERRIDE_CELL_DIFFERENCE
+
+
+def test_import_merged_leaves_freerflag_strict_unless_asked(tmp_path):
+    pipe = _plugin(tmp_path, "import_merged")
+    freerflag = pipe.makePluginObject("freerflag")
+    pipe._propagateFreerOverride(freerflag)
+    assert not freerflag.container.controlParameters.OVERRIDE_CELL_DIFFERENCE
+
