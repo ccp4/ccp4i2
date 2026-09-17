@@ -69,6 +69,27 @@ describe("stageFile", () => {
   });
 });
 
+describe("progress feedback", () => {
+  it("announces the chunk plan once, before the first chunk, then progress", async () => {
+    const events: string[] = [];
+    global.fetch = vi.fn(async (url: any) => {
+      const u = String(url);
+      if (u.endsWith("staged-uploads/")) return { ok: true, json: async () => ({ upload_id: "p", chunk_bytes: 8 }) } as any;
+      if (u.includes("/chunks/")) events.push("chunk");
+      if (u.includes("/finish/")) return { ok: true, json: async () => ({ state: "ready" }) } as any;
+      return { ok: true } as any;
+    }) as any;
+    await stageFile(file("0123456789abcdefXY"), "m.mrc", cap, {
+      onStart: (info) => events.push(`start:${info.chunks}:${info.chunkBytes}:${info.totalBytes}`),
+      onProgress: (f) => events.push(`progress:${f.toFixed(2)}`),
+      concurrency: 1,
+    });
+    expect(events[0]).toBe("start:3:8:18");
+    expect(events.filter((e) => e === "chunk").length).toBe(3);
+    expect(events.at(-1)).toBe("progress:1.00");
+  });
+});
+
 describe("staging a Blob that is not a File", () => {
   it("stageFile takes a plain Blob and uses the given name for begin", async () => {
     const bodies: any[] = [];

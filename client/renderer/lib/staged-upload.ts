@@ -46,6 +46,11 @@ export function stagingCapability(): Promise<StagingCapability | null> {
 }
 
 export interface StageOptions {
+  /** Called once staging has begun, with how the file will be sent. Lets a
+   *  caller tell the user a chunked upload is under way before the first
+   *  chunk lands, which for a large file is the moment they otherwise start
+   *  to doubt anything is happening. */
+  onStart?: (info: { chunks: number; chunkBytes: number; totalBytes: number }) => void;
   /** 0..1 as chunks complete. */
   onProgress?: (fraction: number) => void;
   signal?: AbortSignal;
@@ -88,7 +93,7 @@ export async function stageFile(
   cap: StagingCapability,
   opts: StageOptions = {},
 ): Promise<string> {
-  const { onProgress, signal, concurrency = 3 } = opts;
+  const { onStart, onProgress, signal, concurrency = 3 } = opts;
 
   const beginResp = await fetch(`${PROXY_BASE}staged-uploads/`, {
     method: "POST",
@@ -101,6 +106,7 @@ export async function stageFile(
 
   const nChunks = Math.max(1, Math.ceil(file.size / chunk_bytes));
   let done = 0;
+  onStart?.({ chunks: nChunks, chunkBytes: chunk_bytes, totalBytes: file.size });
 
   const putChunk = async (index: number): Promise<void> => {
     const start = index * chunk_bytes;

@@ -1161,8 +1161,27 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             // in chunks past the body caps and imported by an owner-bound handle.
             // Small files, and any deployment not advertising staging, upload
             // their bytes as before.
-            const staged = await maybeStage(file, fileName);
+            // Staging a large file takes a while and gives no visible sign of
+            // its own; say what is happening, and how far it has got, or the
+            // user reasonably concludes nothing is and intervenes.
+            const megabytes = (file.size / 1048576).toFixed(0);
+            let lastReported = 0;
+            const staged = await maybeStage(file, fileName, {
+              onStart: ({ chunks }) =>
+                setMessage(
+                  `Uploading ${fileName} (${megabytes} MB) in ${chunks} chunks; this can take a while`,
+                  "info"
+                ),
+              onProgress: (fraction) => {
+                const percent = Math.floor(fraction * 10) * 10;
+                if (percent > lastReported && percent < 100) {
+                  lastReported = percent;
+                  setMessage(`Uploading ${fileName}: ${percent}%`, "info");
+                }
+              },
+            });
             if (staged) {
+              setMessage(`Uploaded ${fileName}; importing it into the project`, "info");
               formData.append(staged.field, staged.value);
             } else {
               formData.append("file", file, fileName);

@@ -257,6 +257,62 @@ def failed_report(
     return root
 
 
+REPORT_PENDING_ATTRIBUTE = "reportPending"
+
+
+def pending_report(task_name: str, job) -> ET.Element:
+    """The report for a job that is under way and has not written one yet.
+
+    Not a failure. A task writes its program.xml when it has something to
+    say, which for most tasks is at the end, so for the whole of a run the
+    only honest report is "running, nothing to show yet". Rendering that as
+    an error panel made a healthy job look broken (a red PROGRAM_XML_NOT_FOUND
+    box headed "Error Reports"), which is what a user sees first and reacts
+    to. This says what is happening in the report's own voice and lists the
+    inputs, and the page refreshes while the job runs. The root carries
+    ``reportPending`` so a cache can tell it from a real report.
+    """
+    status = Job.Status(job.status)
+    verb = {
+        Job.Status.QUEUED: "is queued and has not started",
+        Job.Status.RUNNING_REMOTELY: "is running remotely",
+    }.get(status, "is running")
+    title_text = f"Job {job.number} {verb}"
+
+    root = ET.Element(f"CCP4i2Report{task_name}_report")
+    root.set("key", f"{task_name}_report_0")
+    root.set("class", "")
+    root.set("style", "overflow:auto;")
+    root.set(REPORT_PENDING_ATTRIBUTE, "true")
+
+    title = ET.SubElement(root, "CCP4i2ReportTitle")
+    title.set("key", "Title_0")
+    title.set("class", "")
+    title.set("style", "")
+    title.set("title1", title_text)
+    title.set("title2", title_text)
+
+    text = ET.SubElement(root, "CCP4i2ReportText")
+    text.set("key", "Text_0")
+    text.set("class", "")
+    text.set("style", "")
+    text.text = (
+        f"{title_text}. It has not written a report yet; most tasks report only "
+        "when they finish. This page updates on its own while the job runs, and "
+        "the Logs tab shows the program output so far."
+    )
+
+    for section in _file_sections(job, task_name):
+        root.append(section)
+
+    return root
+
+
+def report_is_pending(report_xml: ET.Element) -> bool:
+    """True if this rendering is the running placeholder, not a report."""
+    return report_xml.get(REPORT_PENDING_ATTRIBUTE) == "true"
+
+
 def report_is_failure(report_xml: ET.Element) -> bool:
     """True if this rendering is a failure panel rather than a report.
 
@@ -583,9 +639,13 @@ def generate_job_report(job: Job) -> ET.Element:
         # Use debug for running/queued jobs (program XML doesn't exist yet),
         # warning only for terminal statuses where it should have been created.
         active_statuses = {Job.Status.RUNNING, Job.Status.QUEUED, Job.Status.RUNNING_REMOTELY}
-        log_level = logging.DEBUG if Job.Status(job.status) in active_statuses else logging.WARNING
-        logger.log(
-            log_level,
+        if Job.Status(job.status) in active_statuses:
+            # Nothing has gone wrong: the task has not reported yet.
+            logger.debug(
+                "No program XML yet in %s (job %s); pending report", job_directory, job.status
+            )
+            return pending_report(task_name, job)
+        logger.warning(
             "No program XML found in %s. Searched: %s", job_directory, searched_files
         )
         return failed_report(
