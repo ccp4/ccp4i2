@@ -2376,6 +2376,9 @@ class CMapDataFile(CDataFile):
             "guiLabel": 'Map',
             "toolTip": 'A map in CCP4/MRC format',
             "helpFile": 'data_files#map_files',
+            # Fetched on the server (lib/utils/files/repository_fetch.py), not
+            # through the browser: maps are large and arrive gzipped.
+            "downloadModes": ['emdb'],
         }
         content_qualifiers = {
             "subType": {'default': None},

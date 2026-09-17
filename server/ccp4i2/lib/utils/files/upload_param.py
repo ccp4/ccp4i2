@@ -5,6 +5,8 @@ import pathlib
 import shutil
 import uuid
 import json
+from typing import Optional
+from dataclasses import dataclass
 import gemmi
 import re
 from ccp4i2.core.base_object.cdata_file import CDataFile
@@ -541,6 +543,26 @@ def resolve_staged_import(request):
     return [_LocalPathUpload(path)], row
 
 
+@dataclass
+class ImportSpec:
+    """What an import needs once the transport has been decided: the bytes as
+    something with ``.name`` and chunked ``.read()`` (an UploadedFile or a
+    ``_LocalPathUpload``), where to put them, and the optional overrides a
+    repository fetch supplies because it knows more about the file than its
+    bytes say (its subtype and a descriptive annotation)."""
+
+    object_path: str
+    files: list
+    provenance_description: str = ""
+    column_selector: Optional[str] = None
+    column_selectors_json: Optional[str] = None
+    staged_row: object = None
+    #: Capture the file as this subtype instead of what the slot implies.
+    sub_type: Optional[int] = None
+    #: Use this annotation instead of one derived from the file name.
+    annotation: Optional[str] = None
+
+
 def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     """Import an uploaded file and point a job parameter at it.
 
@@ -558,13 +580,6 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     logger.info("=== upload_file_param START ===")
     logger.info("job: %s (task: %s)", job.uuid, job.task_name)
 
-    # Use plugin context for consistent container access (same as set_param/get_param/digest)
-    plugin_result = get_plugin_with_context(job)
-    if not plugin_result.success:
-        raise ValueError(f"Failed to load plugin: {plugin_result.error}")
-
-    plugin = plugin_result.data
-    container = plugin.container
     # Prefer snake_case `object_path` (matches set_parameter's JSON body
     # convention); accept legacy `objectPath` (camelCase) as a back-compat
     # alias for older clients (i2remote, third-party integrators).
@@ -590,6 +605,33 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     # on FileImport.description, distinct from the auto-generated File.annotation
     # label. Absent/blank for programmatic or un-prompted imports.
     provenance_description = (request.POST.get("description") or "").strip()
+
+    return import_file_for_param(job, ImportSpec(
+        object_path=object_path,
+        files=files,
+        provenance_description=provenance_description,
+        column_selector=request.POST.get("column_selector", None),
+        column_selectors_json=request.POST.get("column_selectors", None),
+        staged_row=staged_row,
+    ))
+
+
+def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
+    """Import ``spec.files[0]`` into the project and point ``spec.object_path``
+    at it. The one import path: uploads, staged handles, desktop local paths
+    and repository fetches all end here. See ``upload_file_param`` for the
+    return value."""
+    # Use plugin context for consistent container access (same as set_param/get_param/digest)
+    plugin_result = get_plugin_with_context(job)
+    if not plugin_result.success:
+        raise ValueError(f"Failed to load plugin: {plugin_result.error}")
+
+    plugin = plugin_result.data
+    container = plugin.container
+    object_path = spec.object_path
+    files = spec.files
+    provenance_description = spec.provenance_description
+    staged_row = spec.staged_row
 
     logger.info("object_path from request: %s", object_path)
     logger.info("files: %s", [f.name for f in files])
@@ -731,8 +773,8 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
         if isinstance(param_object, CMtzDataFile):
             # Check for enhanced multi-selector format first (JSON array)
-            column_selectors_json = request.POST.get("column_selectors", None)
-            column_selector = request.POST.get("column_selector", None)
+            column_selectors_json = spec.column_selectors_json
+            column_selector = spec.column_selector
 
             if column_selectors_json:
                 # Enhanced multi-selector mode
@@ -796,7 +838,10 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
             ownSubType = int(param_object.subType)
         except Exception:
             ownSubType = 0
-        if ownSubType > 0:
+        if spec.sub_type is not None:
+            # A repository fetch knows what it fetched (a half map, a mask).
+            subType = int(spec.sub_type)
+        elif ownSubType > 0:
             subType = ownSubType
         else:
             subType = _primary_required_subtype(
@@ -856,7 +901,7 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
         # job_param_name XYZOUT[0]. This is a bit of a hack, but it works.
 
         # Build annotation - include MTZ metadata if available
-        annotation = build_file_annotation(files[0].name, mtz_metadata)
+        annotation = spec.annotation or build_file_annotation(files[0].name, mtz_metadata)
 
         new_file = models.File(
             job=job,
