@@ -5,12 +5,16 @@ from ccp4i2.wrappers.import_common import CImportFileBase
 def _looks_like_space_group(text):
     """Guard the annotation against a mis-parsed header.
 
-    The unmerged loader reads the space group positionally for the text
-    formats, so a file it has misidentified can yield a whole header line
-    here -- an XDS_ASCII file taken for scalepack hands back
-    ``MERGE=FALSE    FRIEDEL'S_LAW=FALSE``. A real Hermann-Mauguin symbol is
-    short and made of letters, digits, spaces, slashes and minus signs, so
-    anything else is dropped rather than shown to the user as fact.
+    The scalepack reader takes the space group from a fixed position on the
+    header line without checking what it found, so a malformed or unexpected
+    file can yield arbitrary text where a symbol should be. A real
+    Hermann-Mauguin symbol is short and made of letters, digits, spaces,
+    slashes and minus signs, so anything else is dropped rather than shown to
+    the user as fact.
+
+    (The case that first exposed this -- an XDS file read as scalepack because
+    both use .hkl -- is fixed in the loader's format detection; this remains as
+    a backstop, since the positional parse itself is unchanged.)
     """
     text = text.strip()
     if not text or len(text) > 16:

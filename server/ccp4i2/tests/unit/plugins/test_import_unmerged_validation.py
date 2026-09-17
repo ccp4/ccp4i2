@@ -80,10 +80,11 @@ def test_annotation_carries_the_files_own_facts():
 
 
 def test_a_mis_parsed_space_group_is_left_out_of_the_annotation():
-    """The loader reads the space group positionally for the text formats, so a
-    file it has misidentified yields a header line where a symbol should be
-    (an XDS_ASCII file taken for scalepack gives "MERGE=FALSE ..."). Show the
-    format alone rather than presenting that to the user as a space group."""
+    """The scalepack reader takes the space group from a fixed position without
+    checking it, so a malformed file can yield arbitrary text where a symbol
+    belongs. Show the format alone rather than presenting that as fact. (The
+    XDS-read-as-scalepack case that exposed this is now fixed in the loader;
+    this is the backstop for the positional parse itself.)"""
     assert _looks_like_space_group("P 21 21 21")
     assert _looks_like_space_group("C2221")
     assert _looks_like_space_group("P 43 21 2")
