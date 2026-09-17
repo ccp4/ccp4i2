@@ -1152,7 +1152,8 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           // for a synthesized Blob; in either of those cases we upload as normal.
           // The server only honours local_path when it is allowed to (desktop
           // local-session, or a cloud staging dir) -- see resolve_importable_path.
-          const localPath = window.electronAPI?.getPathForFile?.(file as File) || "";
+          const localPath =
+            file instanceof File ? window.electronAPI?.getPathForFile?.(file) || "" : "";
           if (localPath) {
             formData.append("local_path", localPath);
           } else {
@@ -1160,8 +1161,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             // in chunks past the body caps and imported by an owner-bound handle.
             // Small files, and any deployment not advertising staging, upload
             // their bytes as before.
-            const staged =
-              file instanceof File ? await maybeStage(file) : null;
+            const staged = await maybeStage(file, fileName);
             if (staged) {
               formData.append(staged.field, staged.value);
             } else {
