@@ -2108,6 +2108,50 @@ class JobViewSet(ModelViewSet):
         serializer = serializers.JobSerializer(job)
         return Response(serializer.data)
 
+    @action(detail=True, methods=["post"])
+    def fetch_repository_file(self, request, pk=None):
+        """Fetch a file from a public repository into the project and set a
+        parameter to it, on the server (no bytes through the browser).
+
+        POST /api/jobs/{id}/fetch_repository_file/
+            {"object_path": "ImportMap.inputData.MAPIN",
+             "repository": "emdb", "entry": "EMD-11638",
+             "file": "emd_11638_half_map_1.map.gz", "sub_type": 5,
+             "description": "optional provenance note"}
+
+        The file must be one the entry lists (see repositories/<repo>/<entry>/)
+        and sub_type, if given, must agree with what it is. Returns what
+        upload_file_param returns plus source_url, annotation, entry, kind.
+        """
+        from ..lib.utils.files import repository_fetch as repo
+
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist:
+            return api_error(f"Job {pk} not found", status=404)
+        body = request.data if isinstance(request.data, dict) else {}
+        try:
+            spec = repo.RepositoryFetch(
+                repository=str(body.get("repository") or "emdb"),
+                entry=str(body.get("entry") or ""),
+                file=str(body.get("file") or ""),
+                object_path=str(body.get("object_path") or body.get("objectPath") or ""),
+                sub_type=body.get("sub_type"),
+                description=str(body.get("description") or ""),
+            )
+            if not spec.object_path or not spec.file:
+                return api_error("object_path and file are required", status=400)
+            return api_success(repo.fetch_repository_file(job, spec))
+        except repo.RepositoryError as err:
+            return api_error(str(err), status=err.status)
+        except CCP4ErrorHandling.CException as err:
+            error_tree = getEtree(err)
+            ET.indent(error_tree, " ")
+            return api_error(ET.tostring(error_tree).decode("utf-8"), status=400)
+        except Exception as err:
+            logger.exception("fetch_repository_file failed for job %s", pk)
+            return api_error(str(err), status=400)
+
     # -- interactive sessions (the recorded Moorhen task) -------------------
     # A job whose "program" is a window in the app. Run opened a session
     # instead of dispatching; these four are what the window does while it

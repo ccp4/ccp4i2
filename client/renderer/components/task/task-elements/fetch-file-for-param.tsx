@@ -1,15 +1,27 @@
 import {
   Autocomplete,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
   TextField,
   Typography,
 } from "@mui/material";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { apiFetch, apiBlob, apiText } from "../../../api-fetch";
+import { apiFetch, apiBlob, apiText, apiGet, apiPost } from "../../../api-fetch";
+import {
+  describeEmdbFile,
+  halfMapSibling,
+  otherHalfMap,
+  pickDefaultEmdbFile,
+  type EmdbEntrySummary,
+  type EmdbFile,
+} from "../../../lib/emdb-fetch";
 import { useCCP4i2Window } from "../../../app-context";
 import { useJob, useProject } from "../../../utils";
 
@@ -36,6 +48,7 @@ const MODE_LABELS: Record<string, string> = {
   ebiSFs: "PDBe (structure factors)",
   uniprotFasta: "UniProt (FASTA sequence)",
   "Uppsala-EDS": "PDB-REDO (map coefficients)",
+  emdb: "EMDB (cryo-EM map, half maps, mask)",
 };
 
 /** Placeholder text for the accession code field per mode */
@@ -46,6 +59,7 @@ const MODE_PLACEHOLDERS: Record<string, string> = {
   ebiSFs: "e.g. 1cbs or pdb_00001cbs",
   uniprotFasta: "e.g. P07550 or CDK2_HUMAN",
   "Uppsala-EDS": "e.g. 1cbs or pdb_00001cbs",
+  emdb: "e.g. EMD-11638 or 11638",
 };
 
 /** Modes that fetch PDB coordinate files */
@@ -104,14 +118,23 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   );
 
   const { jobId } = useCCP4i2Window();
-  const { job, uploadFileParam } = useJob(jobId);
+  const { job, uploadFileParam, container, mutateContainer } = useJob(jobId);
+  // EMDB: the entry is looked up first (what does it have?), then one file
+  // is fetched on the server straight into the project.
+  const [emdbEntry, setEmdbEntry] = useState<EmdbEntrySummary | null>(null);
+  const [emdbChoice, setEmdbChoice] = useState<EmdbFile | null>(null);
+  const [emdbPair, setEmdbPair] = useState(true);
   const { mutateJobs, mutateFiles } = useProject(job?.project);
 
   const [mode, setMode] = useState<string | null>(null);
 
   //Initialise identifier to empty string
   useEffect(() => {
-    if (open) setIdentifier("");
+    if (open) {
+      setIdentifier("");
+      setEmdbEntry(null);
+      setEmdbChoice(null);
+    }
   }, [open]);
 
   useEffect(() => {
@@ -405,6 +428,54 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
     }
   }, [identifier, uploadFile, onClose, setMessage, parsePdbeMolecules]);
 
+  const emdbSibling = useMemo(
+    () => (item?._objectPath ? halfMapSibling(container?.lookup, item._objectPath) : null),
+    [container?.lookup, item?._objectPath]
+  );
+  const emdbOtherHalf = useMemo(
+    () => (emdbEntry ? otherHalfMap(emdbEntry.files, emdbChoice) : null),
+    [emdbEntry, emdbChoice]
+  );
+
+  /** Ask the server what the entry has, and preselect by the parameter's subtype. */
+  const handleEmdbLookup = useCallback(async () => {
+    if (!identifier) return;
+    setMessage(`Looking up ${identifier.trim()} in EMDB`);
+    const raw: any = await apiGet(`repositories/emdb/${encodeURIComponent(identifier.trim())}/`);
+    if (raw?.success === false) throw new Error(raw.error || "EMDB lookup failed");
+    const summary: EmdbEntrySummary = raw?.data ?? raw;
+    if (!summary?.files?.length) throw new Error(`${summary?.entry ?? identifier} lists no map files`);
+    setEmdbEntry(summary);
+    setEmdbChoice(pickDefaultEmdbFile(summary.files, item?._qualifiers?.requiredSubType));
+    setMessage(`${summary.entry}: ${summary.files.length} file(s) available`);
+  }, [identifier, item, setMessage]);
+
+  /** Fetch the chosen file (and, for a half map, optionally its pair into the sibling). */
+  const handleEmdbFetch = useCallback(async () => {
+    if (!job || !item || !emdbEntry || !emdbChoice) return;
+    const fetchOne = async (objectPath: string, file: EmdbFile) => {
+      setMessage(`Fetching ${emdbEntry.entry} ${file.label.toLowerCase()} into ${objectPath.split(".").at(-1)}`);
+      const result: any = await apiPost(`jobs/${job.id}/fetch_repository_file/`, {
+        object_path: objectPath,
+        repository: "emdb",
+        entry: emdbEntry.entry,
+        file: file.file,
+        sub_type: file.sub_type,
+      });
+      if (result?.success === false) throw new Error(result.error || "Fetch failed");
+      return result?.data ?? result;
+    };
+    const first = await fetchOne(item._objectPath, emdbChoice);
+    if (onChange && first?.updated_item) onChange(first.updated_item);
+    if (emdbPair && emdbSibling && emdbOtherHalf) {
+      await fetchOne(emdbSibling.objectPath, emdbOtherHalf);
+    }
+    await Promise.all([mutateContainer(), mutateJobs(), mutateFiles()]);
+    setMessage(`Fetched ${emdbEntry.entry} ${emdbChoice.label.toLowerCase()}${
+      emdbPair && emdbSibling && emdbOtherHalf ? ` and ${emdbOtherHalf.label.toLowerCase()}` : ""}`, "success");
+    onClose();
+  }, [job, item, emdbEntry, emdbChoice, emdbPair, emdbSibling, emdbOtherHalf, onChange, mutateContainer, mutateJobs, mutateFiles, setMessage, onClose]);
+
   const handleFetch = useCallback(async () => {
     if (mode) {
       setInFlight(true);
@@ -427,12 +498,17 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
           await handleUniprotAFPdbFetch();
         } else if (mode === "Uppsala-EDS") {
           await handleUppsalaEdsFetch();
+        } else if (mode === "emdb") {
+          if (emdbEntry) await handleEmdbFetch();
+          else await handleEmdbLookup();
         }
+      } catch (err: any) {
+        setMessage(err?.message || "Fetch failed", "error");
       } finally {
         setInFlight(false);
       }
     }
-  }, [mode, item, modes, handleEbiCoordFetch, handleEbiSFsFetch, handleUniprotFastaFetch, handleRcsbPdbFetch, handleUniprotAFPdbFetch, handleUppsalaEdsFetch, handlePdbSequenceFetch]);
+  }, [mode, item, modes, emdbEntry, handleEbiCoordFetch, handleEbiSFsFetch, handleUniprotFastaFetch, handleRcsbPdbFetch, handleUniprotAFPdbFetch, handleUppsalaEdsFetch, handlePdbSequenceFetch, handleEmdbFetch, handleEmdbLookup, setMessage]);
 
   return (
     <>
@@ -463,6 +539,10 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
                 value={identifier || ""}
                 onChange={(event) => {
                   setIdentifier(event.target.value);
+                  if (emdbEntry) {
+                    setEmdbEntry(null);
+                    setEmdbChoice(null);
+                  }
                 }}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" && identifier && !inFlight) {
@@ -470,6 +550,39 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
                   }
                 }}
               />
+              {mode === "emdb" && emdbEntry && (
+                <>
+                  <Typography variant="body2" sx={{ mt: 2 }}>
+                    <b>{emdbEntry.entry}</b>
+                    {emdbEntry.title ? `: ${emdbEntry.title}` : ""}
+                    {emdbEntry.resolution ? ` (${emdbEntry.resolution} Å)` : ""}
+                  </Typography>
+                  <RadioGroup
+                    value={emdbChoice?.file ?? ""}
+                    onChange={(event) => {
+                      setEmdbChoice(emdbEntry.files.find((f) => f.file === event.target.value) ?? null);
+                    }}
+                  >
+                    {emdbEntry.files.map((f) => (
+                      <FormControlLabel
+                        key={f.file}
+                        value={f.file}
+                        control={<Radio size="small" />}
+                        label={`${f.label} — ${describeEmdbFile(f)} — ${f.file}`}
+                      />
+                    ))}
+                  </RadioGroup>
+                  {emdbSibling && emdbOtherHalf && (
+                    <FormControlLabel
+                      control={<Checkbox size="small" checked={emdbPair} onChange={(e) => setEmdbPair(e.target.checked)} />}
+                      label={`Also fetch ${emdbOtherHalf.label.toLowerCase()} into ${emdbSibling.name}`}
+                    />
+                  )}
+                  <Typography variant="caption" color="text.secondary" display="block">
+                    Fetched on the server straight into the project (no upload through the browser).
+                  </Typography>
+                </>
+              )}
             </>
           ) : (
             <Typography>No download modes</Typography>
@@ -479,8 +592,8 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
           <Button onClick={onClose} disabled={inFlight}>
             Cancel
           </Button>
-          <Button onClick={handleFetch} disabled={inFlight}>
-            Fetch
+          <Button onClick={handleFetch} disabled={inFlight || !identifier}>
+            {mode === "emdb" && !emdbEntry ? "Look up" : "Fetch"}
           </Button>
         </DialogActions>
       </Dialog>
