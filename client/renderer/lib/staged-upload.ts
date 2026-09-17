@@ -76,9 +76,15 @@ async function stagingError(resp: Response): Promise<Error> {
  * Stage a file into the server's staging directory in chunks and return the
  * handle (`upload_id`) to import it by. Throws a human-readable error on any
  * refusal.
+ *
+ * Takes any Blob, not only a File: the task-interface file elements hand
+ * `uploadFileParam` a Blob with the name alongside, and a Blob has the size
+ * and slicing staging needs. Gating on `instanceof File` here meant no task
+ * interface ever staged anything.
  */
 export async function stageFile(
-  file: File,
+  file: Blob,
+  fileName: string,
   cap: StagingCapability,
   opts: StageOptions = {},
 ): Promise<string> {
@@ -87,7 +93,7 @@ export async function stageFile(
   const beginResp = await fetch(`${PROXY_BASE}staged-uploads/`, {
     method: "POST",
     headers: await authHeaders({ "Content-Type": "application/json" }),
-    body: JSON.stringify({ filename: file.name, size_bytes: file.size }),
+    body: JSON.stringify({ filename: fileName, size_bytes: file.size }),
     signal,
   });
   if (!beginResp.ok) throw await stagingError(beginResp);
@@ -153,11 +159,12 @@ export async function stageFile(
  * Desktop `local_path` is decided by the caller before this.
  */
 export async function maybeStage(
-  file: File,
+  file: Blob,
+  fileName: string,
   opts: StageOptions = {},
 ): Promise<{ field: "staged_upload"; value: string } | null> {
   const cap = await stagingCapability();
   if (!cap || file.size <= cap.threshold_bytes) return null;
-  const handle = await stageFile(file, cap, opts);
+  const handle = await stageFile(file, fileName, cap, opts);
   return { field: "staged_upload", value: handle };
 }

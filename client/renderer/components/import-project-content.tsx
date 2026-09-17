@@ -59,7 +59,7 @@ export const ImportProjectContent: React.FC = () => {
             const totalBytes = sizes.reduce((a, b) => a + b, 0) || 1;
             let sentBefore = 0;
             for (let i = 0; i < files.length; i++) {
-              const handle = await stageFile(files[i], cap, {
+              const handle = await stageFile(files[i], files[i].name, cap, {
                 onProgress: (frac) => {
                   const loaded = sentBefore + frac * sizes[i];
                   setProgress({ loaded, total: totalBytes, fraction: loaded / totalBytes });

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { setTokenGetter, clearTokenGetter } from "@ccp4/ccp4i2-api";
 
-import { stageFile } from "../lib/staged-upload";
+import { stageFile, maybeStage } from "../lib/staged-upload";
 
 const cap = { chunk_bytes: 8, max_bytes: 1000, threshold_bytes: 4 };
 
@@ -21,7 +21,7 @@ describe("stageFile", () => {
       return { ok: true } as any;
     }) as any;
 
-    await stageFile(file("0123456789abcdefXY"), cap);
+    await stageFile(file("0123456789abcdefXY"), "m.mrc", cap);
 
     expect(headers.length).toBe(5); // begin + 3 chunks + finish
     for (const h of headers) expect(h?.Authorization).toBe("Bearer tok-123");
@@ -44,7 +44,7 @@ describe("stageFile", () => {
     }) as any;
 
     // 18 bytes -> ceil(18/8) = 3 chunks
-    const handle = await stageFile(file("0123456789abcdefXY"), cap);
+    const handle = await stageFile(file("0123456789abcdefXY"), "m.mrc", cap);
 
     expect(handle).toBe("abc");
     expect(calls.filter((c) => c.includes("/chunks/")).length).toBe(3);
@@ -59,12 +59,47 @@ describe("stageFile", () => {
       return { ok: true } as any;
     }) as any;
     const fractions: number[] = [];
-    await stageFile(file("0123456789abcdefXY"), cap, { onProgress: (f) => fractions.push(f) });
+    await stageFile(file("0123456789abcdefXY"), "m.mrc", cap, { onProgress: (f) => fractions.push(f) });
     expect(Math.max(...fractions)).toBeCloseTo(1, 5);
   });
 
   it("maps a 413 begin to a friendly error", async () => {
     global.fetch = vi.fn(async () => ({ ok: false, status: 413, json: async () => ({}) }) as any) as any;
-    await expect(stageFile(file("big"), cap)).rejects.toThrow(/larger than/i);
+    await expect(stageFile(file("big"), "m.mrc", cap)).rejects.toThrow(/larger than/i);
+  });
+});
+
+describe("staging a Blob that is not a File", () => {
+  it("stageFile takes a plain Blob and uses the given name for begin", async () => {
+    const bodies: any[] = [];
+    global.fetch = vi.fn(async (url: any, opts: any) => {
+      const u = String(url);
+      if (u.endsWith("staged-uploads/")) {
+        bodies.push(JSON.parse(opts.body));
+        return { ok: true, json: async () => ({ upload_id: "blob-1", chunk_bytes: 8 }) } as any;
+      }
+      if (u.includes("/finish/")) return { ok: true, json: async () => ({ state: "ready" }) } as any;
+      return { ok: true } as any;
+    }) as any;
+
+    const blob = new Blob(["0123456789abcdefXY"]); // the task interfaces' shape
+    expect(blob instanceof File).toBe(false);
+    const handle = await stageFile(blob, "big.map", cap);
+    expect(handle).toBe("blob-1");
+    expect(bodies[0]).toEqual({ filename: "big.map", size_bytes: 18 });
+  });
+
+  it("maybeStage stages a Blob over the threshold and leaves a small one alone", async () => {
+    global.fetch = vi.fn(async (url: any) => {
+      const u = String(url);
+      if (u.endsWith("version/")) return { ok: true, json: async () => ({ import_staging: cap }) } as any;
+      if (u.endsWith("staged-uploads/")) return { ok: true, json: async () => ({ upload_id: "h", chunk_bytes: 8 }) } as any;
+      if (u.includes("/finish/")) return { ok: true, json: async () => ({ state: "ready" }) } as any;
+      return { ok: true } as any;
+    }) as any;
+    vi.resetModules();
+    const fresh = await import("../lib/staged-upload");
+    expect(await fresh.maybeStage(new Blob(["0123456789"]), "big.map")).toEqual({ field: "staged_upload", value: "h" });
+    expect(await fresh.maybeStage(new Blob(["abc"]), "small.pdb")).toBeNull();
   });
 });
