@@ -4644,6 +4644,25 @@ class CMtzData(CDataFileContent):
         return rv
 
 
+def _looks_like_xds(file_path):
+    """True if this text reflection file is XDS rather than scalepack.
+
+    XDS writes a header of '!' directives -- '!FORMAT=XDS_ASCII' for
+    XDS_ASCII.HKL and CORRECT.HKL, '!OUTPUT_FILE=INTEGRATE.HKL' for
+    INTEGRATE.HKL -- so the leading '!' is the marker, not any one keyword.
+    Scalepack opens with a symmetry-operator count or a version number and
+    never with '!'.
+
+    An unreadable file is reported as not-XDS so the caller takes the
+    scalepack path and raises the error there, as it did before.
+    """
+    try:
+        with open(file_path, 'r', errors='replace') as stream:
+            return stream.readline().lstrip().startswith('!')
+    except OSError:
+        return False
+
+
 class CUnmergedDataContent(CDataFileContent):
 
 
@@ -4865,17 +4884,27 @@ class CUnmergedDataContent(CDataFileContent):
             elif suffix in ['.cif', '.mmcif', '.ent']:
                 self._load_mmcif_file(file_path, gemmi, error)
 
-            # Handle Scalepack format (.sca, .hkl)
+            # Handle the text reflection formats (.sca, .hkl).
+            #
+            # The extension does not settle this: XDS writes .HKL (XDS_ASCII.HKL,
+            # INTEGRATE.HKL) and so does scalepack in some pipelines, so the
+            # first line decides. XDS files open with '!' directives
+            # ('!FORMAT=XDS_ASCII...', '!OUTPUT_FILE=INTEGRATE.HKL...') and
+            # scalepack files never do -- theirs starts with a reflection count
+            # or a version number. Dispatching on extension alone used to read
+            # an XDS header as a scalepack one, which silently yielded
+            # format='sca' and a "space group" of "MERGE=FALSE
+            # FRIEDEL'S_LAW=FALSE", and discarded the cell and wavelength that
+            # gemmi reads perfectly well.
             elif suffix in ['.sca', '.hkl']:
-                self._load_scalepack_file(file_path, error)
-
-            # Handle XDS files (INTEGRATE.HKL, XDS_ASCII.HKL)
-            elif 'INTEGRATE' in path_obj.name or 'XDS_ASCII' in path_obj.name or suffix == '.hkl':
-                # Try XDS format first
-                try:
-                    self._load_xds_file(file_path, gemmi, error)
-                except:
-                    # Fall back to Scalepack
+                if _looks_like_xds(file_path):
+                    try:
+                        self._load_xds_file(file_path, gemmi, error)
+                    except Exception:
+                        # A truncated or unusual XDS file: better a scalepack
+                        # reading than none, as before.
+                        self._load_scalepack_file(file_path, error)
+                else:
                     self._load_scalepack_file(file_path, error)
 
             elif suffix == '.shelx':

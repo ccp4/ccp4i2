@@ -22,7 +22,7 @@ NON_CITABLE = frozenset({
     # imports / providers — pure CCP4i2 data-plumbing
     "ImportAsuContent", "ImportCoordinate", "ImportDictionary", "ImportFreeR",
     "ImportMap", "ImportMapCoeffs", "ImportObs", "ImportPhases",
-    "ImportSequence", "ProvideAlignment", "ProvideAsuContents",
+    "ImportSequence", "ImportUnmerged", "ProvideAlignment", "ProvideAsuContents",
     "ProvideSequence", "ProvideTLS",
     # format converters / column shims — no citable upstream program
     "coordinate_selector", "splitMtz", "mergeMtz", "cad_copy_column",
