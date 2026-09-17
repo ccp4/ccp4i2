@@ -1,4 +1,11 @@
-import { DndContext, DragOverlay } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { PropsWithChildren, useCallback } from "react";
 import { useCCP4i2Window } from "../app-context";
 import { Avatar, Box, Typography } from "@mui/material";
@@ -59,6 +66,14 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
     [project_jobs, projects, fileItemToParameterArg]
   );
 
+  // Rows in the job list are both draggable and clickable. Without a distance
+  // threshold the pointer sensor claims the pointerdown and the click that
+  // would open the job never arrives.
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor)
+  );
+
   const isValidDrop = (file: File, item: any) => {
     if (!file) return false;
     if (!item) return false;
@@ -66,24 +81,22 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
   };
 
   const handleDragEnd = async (event: any) => {
+    setActiveDragItem(null);
+    // A click, or a drag released away from any droppable, ends with no `over`.
+    const over = event.over?.data?.current;
+    if (!over) return;
     if (event.active.data?.current?.job) {
       const context_job = event.active.data.current.job as Job;
-      if (!event.over.data?.current?.job) return;
-      if (!event.over.data?.current?.item) {
-        const job = event.over.data.current.job as Job;
-        setContextJob(job, context_job);
+      if (!over.job) return;
+      if (!over.item) {
+        setContextJob(over.job as Job, context_job);
       }
     } else if (event.active.data?.current?.file) {
       const file = event.active.data.current.file as File;
-      if (
-        !event.over.data?.current?.job ||
-        event.over.data?.current?.job?.status !== 1
-      )
-        return;
-      if (event.over.data?.current?.item) {
-        if (!isValidDrop(file, event.over.data.current.item)) return;
-        const job = event.over.data.current.job as Job;
-        setFileByDrop(job, event.over.data?.current?.item._objectPath, file);
+      if (over.job?.status !== 1) return;
+      if (over.item) {
+        if (!isValidDrop(file, over.item)) return;
+        setFileByDrop(over.job as Job, over.item._objectPath, file);
       }
     }
   };
@@ -94,7 +107,9 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
 
   return (
     <DndContext
+      sensors={sensors}
       onDragEnd={handleDragEnd}
+      onDragCancel={() => setActiveDragItem(null)}
       onDragStart={({ active }) => {
         setActiveDragItem(active.data.current as File | Job);
 
