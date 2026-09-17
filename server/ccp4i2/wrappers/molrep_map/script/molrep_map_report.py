@@ -3,7 +3,9 @@ from ccp4i2.report import Report
 
 class molrep_map_report(Report):
     TASKNAME = 'molrep_map'
-    RUNNING = False
+    # The task writes its XML after each hand, so the original hand's
+    # placement is readable while the inverted hand runs.
+    RUNNING = True
 
     # molrep.doc peak-table columns, as scraped (tag name -> display title).
     _PEAK_COLUMNS = [
@@ -38,9 +40,19 @@ class molrep_map_report(Report):
         results = self.addResults()
         self._add_recommendation(results)
 
+        pending = [h for h in self.xmlnode.get('pending', '').split(',') if h]
+        if pending:
+            done = [h for h in ('Original', 'Inverted') if h not in pending]
+            results.addText(text=(
+                f"Running: the {' and '.join(h.lower() for h in done) or 'first'} hand "
+                f"is placed; the {' and '.join(h.lower() for h in pending)} hand is "
+                "still running. The hand recommendation appears when both are done."))
         for hand in ['Original', 'Inverted']:
-            fold = results.addFold(label=f'{hand} hand')
+            fold = results.addFold(label=f'{hand} hand', initiallyOpen=hand not in pending)
             node = self.xmlnode.findall(f'./{hand}')
+            if hand in pending:
+                fold.addText(text=f'The {hand.lower()} hand is still running.')
+                continue
             if node and node[0].get('placed') == 'false':
                 fold.addText(text=f'No model was placed in the {hand.lower()} map.')
                 continue

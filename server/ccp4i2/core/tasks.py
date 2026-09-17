@@ -922,6 +922,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.molrep_map.script.molrep_map:molrep_map",
         defXmlPath="wrappers/molrep_map/script/molrep_map.def.xml",
         reportPath="ccp4i2.wrappers.molrep_map.script.molrep_map_report:molrep_map_report",
+        runningReport=True,
     ),
     "molrep_mr": Task(
         title="Molecular Replacement and refinement- MOLREP",
