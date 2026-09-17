@@ -22,6 +22,14 @@ import {
 export const MASK_SUBTYPE = 4;
 
 /**
+ * File.sub_type marking a CCP4-map file as a cryo-EM half map
+ * (CMapDataFile.SUBTYPE_HALFMAP) — one of a pair, for FSC cross-validation. It
+ * renders as ordinary density; the sub_type only lets tasks that consume half
+ * maps (servalcat --halfmaps) recognise it and keep it distinct from a full map.
+ */
+export const HALFMAP_SUBTYPE = 5;
+
+/**
  * Moorhen beta.1 reworked MoorhenMap: the constructor and the (now static)
  * loadToCootFrom* factory methods take a single MoorhenInstance instead of the
  * old `(commandCentreRef, store)` pair, and `this.commandCentre` is now the
@@ -58,6 +66,34 @@ export async function primeXtalMapContourStats(map: any): Promise<void> {
     await map.fetchSuggestedLevelXtal?.();
   } catch (err) {
     console.warn("Failed to prime map contour stats:", err);
+  }
+}
+
+/**
+ * Give an EM-flagged MTZ map the header info Moorhen's MapOriginListener
+ * reads.
+ *
+ * MoorhenMap.initialise() flags a P1 map with 90° angles as EM and locks its
+ * origin, and MapOriginListener (src/components/managers/maps/
+ * MapOriginListener.tsx, line 25 in 1.0.0-beta.1-dev.gcf479260) then reads
+ * `map.headerInfo.cell` during render for any EM map with dataOrigin "mtz".
+ * But MoorhenMap never assigns `headerInfo`: initialise() keeps the header in
+ * a local, and the property stays null. So loading the map coefficients of a
+ * cryo-EM servalcat refinement (P1, orthogonal cell) crashed the whole viewer
+ * with "Cannot read properties of null (reading 'cell')"; real-space maps
+ * take a different branch and were fine. The upstream fix is for Moorhen to
+ * set `this.headerInfo` in initialise() or read getSimpleHeaderInfo() in the
+ * listener; until that ships, hand the listener the same object here.
+ * Must run before the map is added to the store, which is what renders the
+ * listener. No-op for non-EM maps and when Moorhen already set the property.
+ */
+export function primeEmMapHeaderInfo(map: any): void {
+  if (!map || !map.isEM || map.headerInfo != null) return;
+  try {
+    const info = map.getSimpleHeaderInfo?.();
+    if (info && info.cell) map.headerInfo = info;
+  } catch (err) {
+    console.warn("Could not prime EM map header info:", err);
   }
 }
 
@@ -191,6 +227,11 @@ export const MASK_COLOUR_RGB = { r: 126, g: 156, b: 216 };
 /** True if a DB file's sub_type marks it as a mask. */
 export function isMaskSubType(subType: number | null | undefined): boolean {
   return subType === MASK_SUBTYPE;
+}
+
+/** True if a DB file's sub_type marks it as a cryo-EM half map. */
+export function isHalfMapSubType(subType: number | null | undefined): boolean {
+  return subType === HALFMAP_SUBTYPE;
 }
 
 /**

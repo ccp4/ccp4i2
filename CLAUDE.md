@@ -374,6 +374,10 @@ class Task:
     reportPath: str = None      # optional "...:acorn_report"
     runningReport: bool = False
     watchedFile: str = None
+    ccp4_free: bool = False     # needs no CCP4 binary; may run on the slim server
+    successor: str = None       # the task that replaces this one (chooser hides this one)
+    interactive: bool = False   # its "program" is a window in the app: Run opens a
+                                # session instead of dispatching (docs/moorhen-task-design.md)
 ```
 
 Accessors (lazy, cached — they import the plugin module on first use) live in the

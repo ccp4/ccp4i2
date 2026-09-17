@@ -10,13 +10,12 @@ save action writes to, plus Coot's own --show-ccp4i2-save-button
 directory and loose saves in the work directory.
 """
 
-import os
 import sys
 from pathlib import Path
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
-from ccp4i2.cootbridge.harvest import cif_is_restraint_dictionary
+from ccp4i2.cootbridge import harvest
 
 
 class coot1(CPluginScript):
@@ -77,21 +76,13 @@ class coot1(CPluginScript):
         ):
             candidates.append(((2, path.name), path))
 
-        # Split coordinates from restraint dictionaries.
-        model_paths = []
-        dict_paths = []
-        for _key, path in candidates:
-            if path.suffix == ".cif" and cif_is_restraint_dictionary(path):
-                dict_paths.append(path)
-            else:
-                model_paths.append(path)
-
-        n_models = self._file_list_into(
-            self.container.outputData.XYZOUT, model_paths, work_dir, "XYZOUT",
-            self._annotate_model)
-        n_dicts = self._file_list_into(
-            self.container.outputData.DICTOUT, dict_paths, work_dir, "DICTOUT",
-            self._annotate_dict)
+        # Split coordinates from restraint dictionaries by content and file
+        # them (shared with coot_rebuild and the moorhen task).
+        n_models, n_dicts = harvest.harvest_candidates(
+            work_dir, [path for _key, path in candidates],
+            self.container.outputData.XYZOUT,
+            self.container.outputData.DICTOUT,
+            self._annotate_model, self._annotate_dict)
 
         # Merge harvested dictionaries into the project monomer library so
         # downstream tasks see the ligand geometry. Best-effort.
@@ -102,38 +93,12 @@ class coot1(CPluginScript):
                 pass
         return CPluginScript.SUCCEEDED
 
-    def _annotate_model(self, item, path):
+    def _annotate_model(self, item, path, meta=None):
         item.annotation.set(f"Coot output: {path.name}")
         item.subType.set(CPdbDataFile.SUBTYPE_MODEL)
         item.contentFlag.set(
             CPdbDataFile.CONTENT_FLAG_MMCIF if path.suffix == ".cif"
             else CPdbDataFile.CONTENT_FLAG_PDB)
 
-    def _annotate_dict(self, item, path):
+    def _annotate_dict(self, item, path, meta=None):
         item.annotation.set(f"Coot ligand dictionary: {path.name}")
-
-    def _file_list_into(self, out_list, paths, work_dir, stem, annotate):
-        """File ``paths`` into the ``out_list`` COutputFileList, moving
-        files from outside the work dir to canonical names first, and
-        setting metadata via ``annotate(item, path)``. Truncates spare
-        slots in place with pop() -- NOT out_list.set(slice), which
-        deep-copies items through CDataFile.get()/set() and drops the
-        annotation/subType just set (the gleaner then falls back to the
-        bare param name). Returns the number filed."""
-        index = 0
-        for path in paths:
-            if path.parent != work_dir:
-                target = work_dir / f"{stem}_{index}{path.suffix}"
-                while target.exists():
-                    target = work_dir / \
-                        f"{stem}_{index}_{target.stem}{path.suffix}"
-                os.replace(path, target)
-                path = target
-            while index >= len(out_list):
-                out_list.append(out_list.makeItem())
-            out_list[index].setFullPath(str(path))
-            annotate(out_list[index], path)
-            index += 1
-        while len(out_list) > index:
-            out_list.pop()
-        return index

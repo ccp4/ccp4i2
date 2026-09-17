@@ -121,7 +121,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           itemName=""
           {...props}
           qualifiers={{ guiLabel: "Scattering in the crystal" }}
-          key="Scattering"
           containerHint="FolderLevel"
           initiallyOpen={true}
         >

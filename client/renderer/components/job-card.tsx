@@ -37,6 +37,7 @@ import { usePopcorn } from "../providers/popcorn-provider";
 import { useRunCheck } from "../providers/run-check-provider";
 import { useCCP4i2Window } from "../app-context";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
+import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
 
 const MyCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -76,6 +77,7 @@ export const JobCard: React.FC<JobCardProps> = ({
 
   const { confirmTaskRun } = useRunCheck();
   const { markJobAsStarting } = useRecentlyStartedJobs();
+  const isInteractive = useIsInteractiveTask();
 
   const subJobs: any[] | undefined = useMemo(() => {
     return jobs?.filter((aJob) => aJob.parent === job.id);
@@ -175,6 +177,9 @@ export const JobCard: React.FC<JobCardProps> = ({
           runResult.number,
           runResult.task_name || job.title
         );
+        // An interactive task (a recorded Moorhen session) has no process:
+        // the window is what runs it.
+        if (isInteractive(job.task_name)) openSessionWindow(runResult.id);
         mutateJobs();
         router.push(`/ccp4i2/project/${projectId}/job/${runResult.id}`);
       }

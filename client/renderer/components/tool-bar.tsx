@@ -30,6 +30,7 @@ import { I2RunDialog } from "./i2run-dialog";
 import { ExportJobMenu, doDownload } from "./export-job-file-menu";
 import { BibliographyDialog } from "./bibliography-dialog";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
+import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
 import { useProjectJobs } from "../utils";
 import { mutate } from "swr";
 
@@ -80,6 +81,7 @@ export default function ToolBar() {
   const { confirmTaskRun } = useRunCheck();
   const { setJobTabValue } = useJobTab();
   const { markJobAsStarting } = useRecentlyStartedJobs();
+  const isInteractive = useIsInteractiveTask();
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
 
   useEffect(() => {
@@ -135,6 +137,9 @@ export default function ToolBar() {
             runResult.number,
             runResult.task_name || job.title
           );
+          // An interactive task (a recorded Moorhen session) has no process:
+          // the window is what runs it.
+          if (isInteractive(job.task_name)) openSessionWindow(runResult.id);
           mutateJob();
           mutateJobs();
           // Navigate to the running job if it's a new job (different from current)

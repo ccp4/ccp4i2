@@ -134,6 +134,7 @@ TASK_CITES: Dict[str, List[str]] = {
     "ShelxCD": ["shelxc", "shelxd"],
     # --- coot variants cite coot.
     "coot1": ["coot"],
+    "moorhen": ["coot"],  # Moorhen is Coot's engine (libcootapi) in the browser
     "coot_rsr_morph": ["coot"],
     "coot_script_lines": ["coot"],
     # --- acedrg variants.
@@ -142,6 +143,7 @@ TASK_CITES: Dict[str, List[str]] = {
     # --- molrep variants.
     "molrep_den": ["molrep"],
     "molrep_selfrot": ["molrep"],
+    "molrep_map": ["molrep"],
     # --- serial-crystallography import pipeline uses DIALS.
     "import_serial": ["dials"],
     "import_serial_pipe": ["dials"],

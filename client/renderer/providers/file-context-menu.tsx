@@ -549,6 +549,10 @@ export const FileMenu: React.FC = () => {
           [
             "chemical/x-pdb",
             "application/CCP4-mtz-map",
+            // Real-space CCP4/MRC map (CMapDataFile). The embedded Moorhen viewer
+            // already handles this type via loadToCootFromMapData (moorhen-wrapper);
+            // it was only ever missing from this menu gate. (#508)
+            "application/CCP4-map",
             "application/refmac-dictionary",
           ].includes(file.type) && (
             <MenuItem key="Moorhen" onClick={handlePreviewFileInMoorhen}>
