@@ -1,4 +1,11 @@
-import { DndContext, DragOverlay } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { PropsWithChildren, useCallback } from "react";
 import { useCCP4i2Window } from "../app-context";
 import { Avatar, Box, Typography } from "@mui/material";
@@ -59,6 +66,14 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
     [project_jobs, projects, fileItemToParameterArg]
   );
 
+  // Rows in the job list are both draggable and clickable. Without a distance
+  // threshold the pointer sensor claims the pointerdown and the click that
+  // would open the job never arrives.
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor)
+  );
+
   const isValidDrop = (file: File, item: any) => {
     if (!file) return false;
     if (!item) return false;
@@ -92,6 +107,7 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
 
   return (
     <DndContext
+      sensors={sensors}
       onDragEnd={handleDragEnd}
       onDragCancel={() => setActiveDragItem(null)}
       onDragStart={({ active }) => {
