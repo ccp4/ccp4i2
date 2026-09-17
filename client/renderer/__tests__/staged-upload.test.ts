@@ -1,4 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { setTokenGetter, clearTokenGetter } from "@ccp4/ccp4i2-api";
 
 import { stageFile } from "../lib/staged-upload";
 
@@ -7,6 +8,27 @@ const cap = { chunk_bytes: 8, max_bytes: 1000, threshold_bytes: 4 };
 const file = (bytes: string) => new File([bytes], "m.mrc");
 
 describe("stageFile", () => {
+  afterEach(() => clearTokenGetter());
+
+  it("sends the bearer token on begin, every chunk and finish", async () => {
+    setTokenGetter(async () => "tok-123");
+    const headers: Array<Record<string, string> | undefined> = [];
+    global.fetch = vi.fn(async (url: any, opts: any) => {
+      const u = String(url);
+      headers.push(opts?.headers);
+      if (u.endsWith("staged-uploads/")) return { ok: true, json: async () => ({ upload_id: "abc", chunk_bytes: 8 }) } as any;
+      if (u.includes("/finish/")) return { ok: true, json: async () => ({ state: "ready" }) } as any;
+      return { ok: true } as any;
+    }) as any;
+
+    await stageFile(file("0123456789abcdefXY"), cap);
+
+    expect(headers.length).toBe(5); // begin + 3 chunks + finish
+    for (const h of headers) expect(h?.Authorization).toBe("Bearer tok-123");
+    expect(headers[0]?.["Content-Type"]).toBe("application/json");
+    expect(headers[1]?.["Content-Type"]).toBe("application/octet-stream");
+  });
+
   it("begins, PUTs every chunk, finishes, and returns the handle", async () => {
     const calls: string[] = [];
     global.fetch = vi.fn(async (url: any, opts: any) => {

@@ -11,7 +11,19 @@
  * `import-project-content`) decide when to use it.
  */
 
+import { getAccessToken } from "@ccp4/ccp4i2-api";
+
 const PROXY_BASE = "/api/proxy/ccp4i2/";
+
+/**
+ * The bearer header every call needs, the way api-fetch.ts attaches it.
+ * The proxy route answers 401 to any non-public path without one, and a
+ * served deployment has no other way to authenticate a bare fetch.
+ */
+async function authHeaders(extra: Record<string, string> = {}): Promise<Record<string, string>> {
+  const token = await getAccessToken();
+  return token ? { ...extra, Authorization: `Bearer ${token}` } : extra;
+}
 
 export interface StagingCapability {
   chunk_bytes: number;
@@ -24,7 +36,8 @@ let capabilityPromise: Promise<StagingCapability | null> | null = null;
 /** The deployment's staging capability, or null. Cached for the session. */
 export function stagingCapability(): Promise<StagingCapability | null> {
   if (!capabilityPromise) {
-    capabilityPromise = fetch(`${PROXY_BASE}version/`)
+    capabilityPromise = authHeaders()
+      .then((headers) => fetch(`${PROXY_BASE}version/`, { headers }))
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => (j && j.import_staging) || null)
       .catch(() => null);
@@ -73,7 +86,7 @@ export async function stageFile(
 
   const beginResp = await fetch(`${PROXY_BASE}staged-uploads/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: await authHeaders({ "Content-Type": "application/json" }),
     body: JSON.stringify({ filename: file.name, size_bytes: file.size }),
     signal,
   });
@@ -90,7 +103,12 @@ export async function stageFile(
       try {
         const r = await fetch(
           `${PROXY_BASE}staged-uploads/${upload_id}/chunks/${index}/`,
-          { method: "PUT", body: blob, headers: { "Content-Type": "application/octet-stream" }, signal },
+          {
+            method: "PUT",
+            body: blob,
+            headers: await authHeaders({ "Content-Type": "application/octet-stream" }),
+            signal,
+          },
         );
         if (!r.ok) throw await stagingError(r);
         done += 1;
@@ -121,6 +139,7 @@ export async function stageFile(
 
   const finResp = await fetch(`${PROXY_BASE}staged-uploads/${upload_id}/finish/`, {
     method: "POST",
+    headers: await authHeaders(),
     signal,
   });
   if (!finResp.ok) throw await stagingError(finResp);
