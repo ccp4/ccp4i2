@@ -749,7 +749,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             {...props}
             itemName=""
             qualifiers={{ guiLabel: "Input data", initiallyOpen: true }}
-            key="Input data"
             containerHint="FolderLevel"
           >
             <CCP4i2TaskElement
@@ -809,25 +808,22 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                       <Grid2 size={{ xs: 6, md: 4 }}>
                         <CCP4i2TaskElement
                           {...props}
-                          key="SPACEGROUP"
                           itemName="SPACEGROUP"
                           qualifiers={{ guiLabel: "Space group" }}
                         />
                       </Grid2>
                       <Grid2 size={{ xs: 6, md: 8 }}>
-                        <CCP4i2TaskElement {...props} key="UNITCELL" itemName="UNITCELL" />
+                        <CCP4i2TaskElement {...props} itemName="UNITCELL" />
                       </Grid2>
                       <Grid2 size={{ xs: 12 }}>
                         <FieldRow>
                           <CCP4i2TaskElement
                             {...props}
-                            key="CRYSTALNAME"
                             itemName="CRYSTALNAME"
                             qualifiers={{ guiLabel: "Crystal name" }}
                           />
                           <CCP4i2TaskElement
                             {...props}
-                            key="DATASETNAME"
                             itemName="DATASETNAME"
                             qualifiers={{ guiLabel: "Dataset name" }}
                           />

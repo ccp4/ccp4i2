@@ -967,14 +967,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       <CCP4i2Tab label="Input" key="input">
         <CCP4i2ContainerElement
           {...props}
-          key="FileInput"
           itemName=""
           containerHint="BlockLevel"
           qualifiers={{ initiallyOpen: true, guiLabel: "MTZ File Input" }}
         >
           <CCP4i2TaskElement
             {...props}
-            key="HKLIN"
             itemName="HKLIN"
             qualifiers={{
               guiLabel: "Input MTZ file",
@@ -986,7 +984,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
         <CCP4i2ContainerElement
           {...props}
-          key="ColumnGroups"
           itemName=""
           containerHint="BlockLevel"
           qualifiers={{
