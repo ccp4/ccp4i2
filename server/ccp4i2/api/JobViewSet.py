@@ -2108,6 +2108,27 @@ class JobViewSet(ModelViewSet):
         serializer = serializers.JobSerializer(job)
         return Response(serializer.data)
 
+    @action(detail=True, methods=["get"])
+    def dictionaries(self, request, pk=None):
+        """The ligand dictionaries that belong with this job: the ones it
+        produced or imported, and the ones it took as input. A subjob with
+        none inherits its pipeline's. This is what a viewer associates with
+        the job's coordinates; nothing else is, because a project can hold
+        several ligands of the same residue name.
+
+        GET /api/jobs/{id}/dictionaries/ -> [File + {"role": "own"|"input"}]
+        """
+        from ..lib.utils.jobs.dictionaries import job_dictionaries
+
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist:
+            return api_error(f"Job {pk} not found", status=404)
+        return api_success([
+            {**serializers.FileSerializer(the_file).data, "role": role}
+            for the_file, role in job_dictionaries(job)
+        ])
+
     @action(detail=True, methods=["post"])
     def fetch_repository_file(self, request, pk=None):
         """Fetch a file from a public repository into the project and set a

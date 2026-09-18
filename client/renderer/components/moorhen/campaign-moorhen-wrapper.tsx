@@ -70,6 +70,7 @@ import {
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import { fetchJobDictionaryFiles } from "../../lib/moorhen-dictionaries";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
@@ -610,9 +611,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     // This ensures coot understands ligand geometry when parsing coordinates.
     // A dictionary file may contain multiple monomers — read_dictionary_string
     // loads all of them into coot's global store.
-    const ligandDictFiles = files.filter(
-      (f: { type: string }) => f.type === "application/refmac-dictionary"
-    );
+    // The job's dictionaries from the database: its own files AND its inputs
+    // (a refinement's ligand usually comes from an earlier acedrg job, which a
+    // filter over this job's own files never saw).
+    const ligandDictFiles = await fetchJobDictionaryFiles(jobId);
     if (ligandDictFiles.length > 0) {
       loadedDictContents.current = [];
       for (const dictFile of ligandDictFiles) {
