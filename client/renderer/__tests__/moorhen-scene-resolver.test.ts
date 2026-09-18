@@ -14,6 +14,7 @@ import {
   expandLsqMatches,
   geometryToM2tParams,
   isFetchable,
+  planDictionaryScopes,
   resolveChainSelector,
   resolveClipFogPlanes,
   splitMultiCid,
@@ -293,5 +294,45 @@ describe("splitMultiCid", () => {
 
   it("returns [] for an all-empty multi-CID", () => {
     expect(splitMultiCid("||||")).toEqual([]);
+  });
+});
+
+describe("planDictionaryScopes (a molecule's dictionaries are its own)", () => {
+  const files = [
+    { name: "job7", kind: "coordinates" },
+    { name: "job9", kind: "coordinates" },
+    { name: "dict-file-11", kind: "dictionary" },
+    { name: "dict-file-12", kind: "dictionary" },
+  ];
+  it("never loads an element's dictionary globally", () => {
+    const plan = planDictionaryScopes({
+      files,
+      elements: [
+        { file: "job7", dictionaries: ["dict-file-11"] },
+        { file: "job9", dictionaries: ["dict-file-12"] },
+      ],
+    });
+    expect(Array.from(plan.global)).toEqual([]);
+    expect(plan.byFile.get("job7")).toEqual(["dict-file-11"]);
+    expect(plan.byFile.get("job9")).toEqual(["dict-file-12"]);
+  });
+  it("a molecule whose element lists none inherits nothing from its neighbour", () => {
+    const plan = planDictionaryScopes({
+      files,
+      elements: [{ file: "job7", dictionaries: ["dict-file-11"] }, { file: "job9" }],
+    });
+    expect(plan.global.has("dict-file-11")).toBe(false);
+    expect(plan.byFile.get("job9")).toBeUndefined();
+    // dict-file-12 is attached nowhere, so it keeps the old global behaviour
+    expect(Array.from(plan.global)).toEqual(["dict-file-12"]);
+  });
+  it("globalDictionaries stay global, even when an element also lists them", () => {
+    const plan = planDictionaryScopes({
+      files,
+      globalDictionaries: ["dict-file-11"],
+      elements: [{ file: "job7", dictionaries: ["dict-file-11"] }],
+    });
+    expect(plan.global.has("dict-file-11")).toBe(true);
+    expect(plan.byFile.get("job7")).toEqual(["dict-file-11"]);
   });
 });
