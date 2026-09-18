@@ -103,7 +103,13 @@ class freerflag(CPluginScript):
                 #  cut the resolution of the FreeR set if it is higher than the data
                 self.cutResolution()
         
-            self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'])
+            # The join is by reflection index. A FreeR set from another
+            # crystal of the same form has a slightly different cell, which
+            # the default 1 A check rejects; the override drops the cell
+            # comparison (the space groups still have to match).
+            override = bool(self.container.controlParameters.OVERRIDE_CELL_DIFFERENCE)
+            self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'],
+                                              cell_tolerance=None if override else 1.0)
             print('freerflag.processInputFiles',self.hklin,error)
             if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
                 return CPluginScript.FAILED

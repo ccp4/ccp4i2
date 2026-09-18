@@ -199,6 +199,14 @@
                     <toolTip>Set resolution range (or just high resolution) to cut data for all steps</toolTip>
                 </qualifiers>
             </content>
+            <content id="OVERRIDE_CELL_DIFFERENCE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>Extend the input FreeR set even if its cell differs from the data</guiLabel>
+                    <toolTip>When a FreeR set is supplied with unmerged data, the merging step only extends it if the two cells agree to within 1 A (Clipper's test). A FreeR set shared across a fragment campaign comes from another crystal, so tick this to extend it regardless of the cell difference.</toolTip>
+                </qualifiers>
+            </content>
         </container>
     </ccp4i2_body>
 </ccp4:ccp4i2>

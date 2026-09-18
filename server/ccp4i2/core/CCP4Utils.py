@@ -5,6 +5,7 @@ Collection of utility functions for CCP4 crystallographic operations.
 This module has no CData dependencies - pure utility functions.
 """
 
+import logging
 import os
 import re
 import shutil
@@ -19,6 +20,8 @@ import numpy as np
 from lxml import etree
 
 from ccp4i2 import I2_TOP
+
+logger = logging.getLogger(__name__)
 
 
 def findReferenceFile(name: str) -> Optional[Path]:
@@ -283,10 +286,11 @@ def merge_mtz_files_cad(
 def merge_mtz_files(
     input_specs: List[dict],
     output_path: Union[str, Path],
-    merge_strategy: str = 'first'
+    merge_strategy: str = 'first',
+    cell_tolerance: Optional[float] = 1.0,
 ) -> Path:
     """
-    Merge multiple MTZ files using CAD from CCP4 (CData-agnostic).
+    Merge multiple MTZ files using gemmi (CData-agnostic).
 
     This is a low-level utility that merges reflection data from multiple
     MTZ files into a single output file. It has NO knowledge of CMiniMtzDataFile,
@@ -311,6 +315,16 @@ def merge_mtz_files(
             - 'last': Keep column from last file (not fully implemented)
             - 'error': Raise error on conflicts
             - 'rename': Auto-rename conflicts (F, F_1, F_2, ...)
+
+        cell_tolerance: How far the inputs' unit cells may differ, as the
+            resolution (in Angstroms) at which Clipper's Cell::equals test
+            would start mis-indexing reflections; 1.0 is Clipper's default.
+            ``None`` skips the cell comparison altogether: reflections are
+            matched by index only, and the output carries the FIRST file's
+            cell. That is what extending a FreeR set from another crystal of
+            the same form needs (a fragment campaign's shared free set), where
+            cells legitimately drift by a percent or more. The space groups
+            must still agree.
 
     Returns:
         Path: Full path to created output file
@@ -429,14 +443,23 @@ def merge_mtz_files(
                 f"{input_path} has {in_mtz.spacegroup.hm}"
             )
 
-        # Check cell compatibility using Clipper's reciprocal-space algorithm
-        from ccp4i2.core.CCP4XtalData import cells_are_compatible
-        cell_result = cells_are_compatible(out_mtz.cell.parameters, in_mtz.cell.parameters)
-        if not cell_result['validity']:
-            raise MtzMergeError(
-                f"Incompatible unit cells: {first_path} has {out_mtz.cell.parameters}, "
-                f"{input_path} has {in_mtz.cell.parameters}"
+        # Check cell compatibility using Clipper's reciprocal-space algorithm,
+        # unless the caller has said the cells are allowed to differ.
+        if cell_tolerance is None:
+            logger.warning(
+                "merge_mtz_files: cell check skipped; %s has %s, %s has %s "
+                "(output keeps the first)",
+                first_path, out_mtz.cell.parameters, input_path, in_mtz.cell.parameters,
             )
+        else:
+            from ccp4i2.core.CCP4XtalData import cells_are_compatible
+            cell_result = cells_are_compatible(
+                out_mtz.cell.parameters, in_mtz.cell.parameters, tolerance=cell_tolerance)
+            if not cell_result['validity']:
+                raise MtzMergeError(
+                    f"Incompatible unit cells: {first_path} has {out_mtz.cell.parameters}, "
+                    f"{input_path} has {in_mtz.cell.parameters}"
+                )
 
         # Add dataset if needed (for data columns, not H,K,L)
         if len(out_mtz.datasets) < 2:
