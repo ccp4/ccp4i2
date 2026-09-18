@@ -1,5 +1,5 @@
 {
-  "name": "ccp4i2-django",
+  "name": "ccp4i2x",
   "type": "module",
   "main": "dist/main.js",
   "version": "0.0.1",
@@ -25,7 +25,7 @@
     "electron-postinstall": "electron-builder install-app-deps",
     "build": "npm run build:electron",
     "start": "npm run start:electron",
-    "build:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && next build renderer && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts",
+    "build:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && cross-env BUILD_TARGET=electron next build renderer && cross-env BUILD_TARGET=electron vite build --config vite.electron.config.ts && cross-env BUILD_TARGET=electron vite build --config vite.preload.config.ts",
     "start:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts && electron dist/main.js",
     "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next build",
     "start:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next dev",
@@ -64,7 +64,9 @@
     "cytoscape": "^3.33.1",
     "cytoscape-cose-bilkent": "^4.1.0",
     "detect-port": "^2.1.0",
+    "electron-log": "^5.4.4",
     "electron-store": "^8.2.0",
+    "electron-updater": "^6.8.9",
     "exceljs": "^4.4.0",
     "express": "^5.1.0",
     "form-data": "^4.0.4",
@@ -122,8 +124,16 @@
     "node_modules/next"
   ],
   "build": {
-    "appId": "com.ccp4.ccp4i2-django",
-    "productName": "ccp4i2-django",
+    "appId": "com.ccp4.ccp4i2x",
+    "productName": "ccp4i2x",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ccp4",
+        "repo": "ccp4i2",
+        "channel": "alpha"
+      }
+    ],
     "electronVersion": "33.4.11",
     "npmRebuild": false,
     "icon": "assets/ccp4i2.png",
@@ -168,7 +178,10 @@
       "output": "release"
     },
     "mac": {
-      "target": "dmg",
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "assets/entitlements.mac.plist",
@@ -214,8 +227,9 @@
       "category": "Science",
       "desktop": {
         "entry": {
-          "Name": "CCP4i2",
-          "Comment": "CCP4i2 crystallographic computing environment"
+          "Name": "CCP4i2x",
+          "Comment": "CCP4i2 crystallographic computing environment",
+          "StartupWMClass": "ccp4i2x"
         }
       }
     }

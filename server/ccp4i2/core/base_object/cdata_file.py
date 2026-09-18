@@ -1156,6 +1156,22 @@ class CDataFile(CData):
             # Dict: handle special cases for file paths
             if 'fullPath' in value:
                 self.setFullPath(value['fullPath'])
+                # setFullPath owns baseName/relPath/project; apply any
+                # remaining metadata too. This branch used to stop at
+                # setFullPath and silently drop annotation, subType,
+                # contentFlag, ... so copying a populated file through
+                # get()/set() -- which CList.set() does to deep-copy items,
+                # and the client does when setting a file parameter -- lost
+                # everything but the path. Applied per child so keys absent
+                # from the dict are left as they are, not unset.
+                for key, sub_value in value.items():
+                    if key in ('fullPath', 'baseName', 'relPath',
+                               'project') or sub_value is None:
+                        continue
+                    child = getattr(self, key, None)
+                    if child is not None and hasattr(child, 'set') \
+                            and callable(child.set):
+                        child.set(sub_value)
             else:
                 # Regular dict - pass to parent
                 super().set(value)

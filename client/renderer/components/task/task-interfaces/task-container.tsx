@@ -22,6 +22,7 @@ import ImportFreeRInterface from "./ImportFreeR";
 import ImportMapInterface from "./ImportMap";
 import ImportMapCoeffsInterface from "./ImportMapCoeffs";
 import ImportObsInterface from "./ImportObs";
+import ImportUnmergedInterface from "./ImportUnmerged";
 import ImportPhasesInterface from "./ImportPhases";
 import ImportSequenceInterface from "./ImportSequence";
 import AMPLEInterface from "./ample";
@@ -39,6 +40,7 @@ import ClustalwInterface from "./clustalw";
 import CmapcoeffInterface from "./cmapcoeff";
 import ComitInterface from "./comit";
 import Coot1Interface from "./coot1";
+import MoorhenInterface from "./moorhen";
 import CootRebuildInterface from "./coot_rebuild";
 import CootRsrMorphInterface from "./coot_rsr_morph";
 import CoordinateSelectorInterface from "./coordinate_selector";
@@ -179,6 +181,7 @@ const TASK_INTERFACES: Record<
   ImportMap: ImportMapInterface,
   ImportMapCoeffs: ImportMapCoeffsInterface,
   ImportObs: ImportObsInterface,
+  ImportUnmerged: ImportUnmergedInterface,
   ImportPhases: ImportPhasesInterface,
   ImportSequence: ImportSequenceInterface,
   AMPLE: AMPLEInterface,
@@ -196,6 +199,7 @@ const TASK_INTERFACES: Record<
   cmapcoeff: CmapcoeffInterface,
   comit: ComitInterface,
   coot1: Coot1Interface,
+  moorhen: MoorhenInterface,
   coot_rebuild: CootRebuildInterface,
   coot_rsr_morph: CootRsrMorphInterface,
   coordinate_selector: CoordinateSelectorInterface,

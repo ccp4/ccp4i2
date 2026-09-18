@@ -1,9 +1,12 @@
 import hashlib
 import logging
+import os
 import pathlib
 import shutil
 import uuid
 import json
+from typing import Optional
+from dataclasses import dataclass
 import gemmi
 import re
 from ccp4i2.core.base_object.cdata_file import CDataFile
@@ -29,6 +32,7 @@ from ..parameters.value_dict import value_dict_for_object
 from .detect_type import detect_file_type
 from ..parameters.set_parameter import set_parameter, set_parameter_container
 from ccp4i2.db import models
+from . import staged_upload
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -438,6 +442,127 @@ def _discard_staged_upload(job, staged_path) -> None:
         logger.warning("Could not remove staged upload %s: %s", staged_path, err)
 
 
+def _primary_required_subtype(required):
+    """The subtype to capture an imported file as, from a slot's requiredSubType.
+
+    The primary (first) value of a list or comma-separated string, or an int as
+    is. A 0, None, or unparseable value means "no specific type" and maps to 1,
+    the historical default. So a file imported into a half-map slot
+    (``requiredSubType`` 5) is captured as 5, into a mask slot (4) as 4, and into
+    an untyped slot as 1 -- rather than every import being a blanket 1.
+    """
+    value = required
+    if isinstance(value, (list, tuple)):
+        value = value[0] if value else None
+    elif isinstance(value, str) and "," in value:
+        value = value.split(",")[0]
+    try:
+        sub = int(value)
+    except (TypeError, ValueError):
+        return 1
+    return sub if sub > 0 else 1
+
+
+class _LocalPathUpload:
+    """A stand-in for a Django UploadedFile that reads from a local filesystem
+    path instead of a request body.
+
+    ``download_file`` only needs ``.name`` and chunked ``.read()``, so importing
+    a file already on the server's disk reuses the entire download/detect/import
+    path unchanged -- it just streams from disk rather than the network. Only ever
+    constructed after :func:`resolve_importable_path` has authorised the path.
+    """
+
+    def __init__(self, path: pathlib.Path):
+        self._path = pathlib.Path(path)
+        self.name = self._path.name
+        self._handle = None
+
+    def read(self, size: int = -1) -> bytes:
+        if self._handle is None:
+            self._handle = open(self._path, "rb")
+        return self._handle.read(size)
+
+    def close(self) -> None:
+        if self._handle is not None:
+            self._handle.close()
+            self._handle = None
+
+
+def resolve_importable_path(local_path: str):
+    """The absolute path to import from, if this deployment permits importing
+    ``local_path`` by copy -- otherwise ``None`` (import falls back to the HTTP
+    upload body).
+
+    Importing by path avoids round-tripping a large file through an HTTP upload,
+    which both the desktop (a localhost POST of the user's own file) and the
+    cloud (the container app's ~100 MB ingress cap) have reason to skip. Two
+    explicit, mutually exclusive modes decide which paths are allowed:
+
+    - **Desktop / local** -- ``CCP4I2_LOCAL_SESSION_TOKEN`` is set (only the
+      Electron app sets it). A single trusted user on their own machine, so any
+      readable local file is importable.
+
+    - **Cloud / served** -- a client-named ``local_path`` is **never** trusted.
+      A served deployment imports large files by an owner-bound *staged handle*
+      (``staged_upload``; see :mod:`ccp4i2.lib.utils.files.staged_upload`), which
+      the server names and binds to the user who staged it. This closes the "any
+      file inside the staging dir is importable by anyone who can name it" hole
+      that a client-supplied path would leave open. Returns ``None`` here.
+
+    With neither desktop nor a handle, returns ``None`` -- the web default, where
+    files arrive as the request body and no path is trusted.
+    """
+    if not local_path:
+        return None
+
+    if os.environ.get("CCP4I2_LOCAL_SESSION_TOKEN"):
+        candidate = pathlib.Path(local_path)
+        return candidate if candidate.is_file() else None
+
+    # Served deployment: local_path is not honoured -- use a staged handle.
+    return None
+
+
+def resolve_staged_import(request):
+    """A served import source from an owner-bound staged handle, or (None, None).
+
+    In a served deployment a large file is delivered by chunks into
+    ``CCP4I2_IMPORT_STAGING_DIR`` and imported by ``staged_upload=<uuid>`` -- the
+    server named the path and bound it to the user who staged it, so no client
+    string is trusted. Returns ``([_LocalPathUpload], StagedUpload)`` to import
+    and then consume, or ``(None, None)`` when no handle applies. Raises
+    :class:`staged_upload.StagedUploadError` (mapped to an HTTP status by the
+    caller) on an unknown, foreign, unfinished, or expired handle.
+    """
+    staged_id = request.POST.get("staged_upload")
+    if not staged_id or not staged_upload.staging_enabled():
+        return None, None
+    row, path = staged_upload.resolve_for_import(
+        staged_id, staged_upload.owner_key(request))
+    return [_LocalPathUpload(path)], row
+
+
+@dataclass
+class ImportSpec:
+    """What an import needs once the transport has been decided: the bytes as
+    something with ``.name`` and chunked ``.read()`` (an UploadedFile or a
+    ``_LocalPathUpload``), where to put them, and the optional overrides a
+    repository fetch supplies because it knows more about the file than its
+    bytes say (its subtype and a descriptive annotation)."""
+
+    object_path: str
+    files: list
+    provenance_description: str = ""
+    column_selector: Optional[str] = None
+    column_selectors_json: Optional[str] = None
+    staged_row: object = None
+    #: Capture the file as this subtype instead of what the slot implies.
+    sub_type: Optional[int] = None
+    #: Use this annotation instead of one derived from the file name.
+    annotation: Optional[str] = None
+
+
 def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     """Import an uploaded file and point a job parameter at it.
 
@@ -455,6 +580,47 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     logger.info("=== upload_file_param START ===")
     logger.info("job: %s (task: %s)", job.uuid, job.task_name)
 
+    # Prefer snake_case `object_path` (matches set_parameter's JSON body
+    # convention); accept legacy `objectPath` (camelCase) as a back-compat
+    # alias for older clients (i2remote, third-party integrators).
+    object_path = request.POST.get("object_path") or request.POST.get("objectPath")
+
+    # Import-by-path (copy), avoiding an HTTP upload of the bytes, in priority
+    # order: a served deployment's owner-bound staged handle (cloud), then a
+    # desktop local file, then the request body -- the web default.
+    staged_files, staged_row = resolve_staged_import(request)
+    if staged_files is not None:
+        logger.info("Importing from staged handle %s", request.POST.get("staged_upload"))
+        files = staged_files
+    else:
+        importable = resolve_importable_path(request.POST.get("local_path"))
+        if importable is not None:
+            logger.info("Importing by path (copy) from %s", importable)
+            files = [_LocalPathUpload(importable)]
+        else:
+            files = request.FILES.getlist("file")
+
+    # Optional free-text provenance narrative ("where did this come from?"),
+    # captured by the client when the import-provenance preference is on. Stored
+    # on FileImport.description, distinct from the auto-generated File.annotation
+    # label. Absent/blank for programmatic or un-prompted imports.
+    provenance_description = (request.POST.get("description") or "").strip()
+
+    return import_file_for_param(job, ImportSpec(
+        object_path=object_path,
+        files=files,
+        provenance_description=provenance_description,
+        column_selector=request.POST.get("column_selector", None),
+        column_selectors_json=request.POST.get("column_selectors", None),
+        staged_row=staged_row,
+    ))
+
+
+def import_file_for_param(job: models.Job, spec: ImportSpec) -> dict:
+    """Import ``spec.files[0]`` into the project and point ``spec.object_path``
+    at it. The one import path: uploads, staged handles, desktop local paths
+    and repository fetches all end here. See ``upload_file_param`` for the
+    return value."""
     # Use plugin context for consistent container access (same as set_param/get_param/digest)
     plugin_result = get_plugin_with_context(job)
     if not plugin_result.success:
@@ -462,11 +628,10 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
     plugin = plugin_result.data
     container = plugin.container
-    # Prefer snake_case `object_path` (matches set_parameter's JSON body
-    # convention); accept legacy `objectPath` (camelCase) as a back-compat
-    # alias for older clients (i2remote, third-party integrators).
-    object_path = request.POST.get("object_path") or request.POST.get("objectPath")
-    files = request.FILES.getlist("file")
+    object_path = spec.object_path
+    files = spec.files
+    provenance_description = spec.provenance_description
+    staged_row = spec.staged_row
 
     logger.info("object_path from request: %s", object_path)
     logger.info("files: %s", [f.name for f in files])
@@ -608,8 +773,8 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
         if isinstance(param_object, CMtzDataFile):
             # Check for enhanced multi-selector format first (JSON array)
-            column_selectors_json = request.POST.get("column_selectors", None)
-            column_selector = request.POST.get("column_selector", None)
+            column_selectors_json = spec.column_selectors_json
+            column_selector = spec.column_selector
 
             if column_selectors_json:
                 # Enhanced multi-selector mode
@@ -663,11 +828,24 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
         logger.info("Setting content flag...")
         param_object.setContentFlag()
 
-        # Note deliberate explicit for != None instead of is not None
+        # A file's subtype: prefer what it already carries (a previous-job output
+        # knows its own), else fall back to what this slot declares it wants --
+        # its requiredSubType -- rather than a blanket 1. A raw map browsed or
+        # fetched into a half-map input has no intrinsic subtype, so without this
+        # it would be captured as an ordinary map (1) and never be recognised as
+        # a half map by the next task's autopopulation or file browser.
         try:
-            subType = int(param_object.subType)
+            ownSubType = int(param_object.subType)
         except Exception:
-            subType = 1
+            ownSubType = 0
+        if spec.sub_type is not None:
+            # A repository fetch knows what it fetched (a half map, a mask).
+            subType = int(spec.sub_type)
+        elif ownSubType > 0:
+            subType = ownSubType
+        else:
+            subType = _primary_required_subtype(
+                param_object.get_qualifier("requiredSubType"))
         try:
             contentFlag = int(param_object.contentFlag)
         except Exception:
@@ -723,7 +901,7 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
         # job_param_name XYZOUT[0]. This is a bit of a hack, but it works.
 
         # Build annotation - include MTZ metadata if available
-        annotation = build_file_annotation(files[0].name, mtz_metadata)
+        annotation = spec.annotation or build_file_annotation(files[0].name, mtz_metadata)
 
         new_file = models.File(
             job=job,
@@ -742,6 +920,7 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
             name=files[0].name,
             checksum=param_object.checksum(),
             source_checksum=source_checksum,
+            description=provenance_description,
         )
         new_file_import.save()
         # Note: calling set_parameter here would invalidate "param_object" (since it takes job argument and constructs a new container),
@@ -804,6 +983,11 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
                 job.project.name,
                 sum(1 for each in duplicate_of if each["interchangeable"]),
             )
+        # The staged file has been copied into the project; retire the handle and
+        # delete its staging directory. Only on success, so a failed import can
+        # be retried against the same handle.
+        if staged_row is not None:
+            staged_upload.consume(staged_row)
         return {"updated_item": result, "duplicate_of": duplicate_of}
     except Exception:
         _discard_staged_upload(job, downloaded_file_path)
@@ -826,14 +1010,21 @@ def download_file(job: models.Job, the_file, initial_download_project_folder: st
     assert dest.is_relative_to(destination_dir)
 
     logger.debug("Settled on destination path %s", dest)
-    with open(dest, "wb") as uploadFile:
-        CHUNK = 1024 * 1024
-        while True:
-            chunk = the_file.read(CHUNK)
-            if not chunk:
-                break
-            uploadFile.write(chunk)
-        uploadFile.close()
+    try:
+        with open(dest, "wb") as uploadFile:
+            CHUNK = 1024 * 1024
+            while True:
+                chunk = the_file.read(CHUNK)
+                if not chunk:
+                    break
+                uploadFile.write(chunk)
+    finally:
+        # Close the source. Harmless for a Django UploadedFile (idempotent);
+        # necessary for _LocalPathUpload, which otherwise leaks its open fd.
+        try:
+            the_file.close()
+        except Exception:
+            pass
     logger.debug("Upload complete")
     return dest
 

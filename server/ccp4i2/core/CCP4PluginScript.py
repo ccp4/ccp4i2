@@ -31,6 +31,110 @@ _ANSI_RE = re.compile(r'\x1b\[[0-9;]*m')
 logger = logging.getLogger(__name__)
 
 
+# --- sameCrystalAs qualifier resolution ---------------------------------
+# The comparison is declared with orthogonal, self-documenting qualifiers:
+#   sameCrystalAs        partner input name (str)
+#   sameCrystalMatch     symmetry requirement: none | pointGroup | laue |
+#                        spaceGroup            (default 'spaceGroup')
+#   sameCrystalCell      also require a compatible unit cell (bool). Unset means
+#                        "auto": check the cell only when a coordinate model is
+#                        one side of the pair. A model is placed in a definite
+#                        cell, so a cell mismatch there is worth an (overridable)
+#                        heads-up; but reflection<->reflection pairings -- a
+#                        free-R set or phases against the observed data -- must
+#                        NOT default to a cell check, because one free-R set is
+#                        routinely shared across an isomorphous ligand-soak
+#                        series whose cells drift a percent or two, and the
+#                        clipper tolerance blocks that. Same crystal *form* (the
+#                        space group) is the meaningful invariant there.
+#   sameCrystalSeverity  force a mismatch to 'error' or 'advisory'/'warning'
+#                        (default: auto-graded by mismatch kind)
+_SAME_CRYSTAL_MATCH_ALIASES = {
+    'none': 'none', 'off': 'none', 'cell': 'none', 'cellonly': 'none',
+    'pointgroup': 'pointGroup', 'point_group': 'pointGroup', 'pg': 'pointGroup',
+    'laue': 'laue', 'lauegroup': 'laue', 'laue_group': 'laue',
+    'spacegroup': 'spaceGroup', 'space_group': 'spaceGroup', 'sg': 'spaceGroup',
+}
+
+
+def _parse_bool_qualifier(value, default):
+    if value is None:
+        return default
+    if isinstance(value, bool):
+        return value
+    text = str(value).strip().lower()
+    if text in ('true', '1', 'yes', 'on'):
+        return True
+    if text in ('false', '0', 'no', 'off'):
+        return False
+    return default
+
+
+def _resolve_same_crystal_spec(child):
+    """Return (match_mode, require_cell, severity_override) for an input.
+
+    match_mode is one of 'none'|'pointGroup'|'laue'|'spaceGroup' (default
+    'spaceGroup'). require_cell is True/False, or None meaning "auto" -- the
+    check then requires the cell only when a model is involved (see the
+    qualifier notes above). severity_override is a SEVERITY_* constant or None
+    (auto-grade).
+    """
+    def q(key):
+        return (child.get_qualifier(key)
+                if hasattr(child, 'get_qualifier') else None)
+
+    match_q = q('sameCrystalMatch')
+    cell_q = q('sameCrystalCell')
+    sev_q = q('sameCrystalSeverity')
+
+    match_mode = None
+    if match_q is not None and str(match_q).strip():
+        match_mode = _SAME_CRYSTAL_MATCH_ALIASES.get(
+            str(match_q).strip().lower().replace(' ', ''))
+    if match_mode is None:
+        match_mode = 'spaceGroup'
+
+    require_cell = None            # None == auto (decided by the check)
+    if cell_q is not None:
+        require_cell = _parse_bool_qualifier(cell_q, True)
+
+    severity_override = None
+    if sev_q is not None:
+        s = str(sev_q).strip().lower()
+        if s in ('error', 'block', 'blocking'):
+            severity_override = SEVERITY_ERROR
+        elif s in ('advisory', 'warning', 'warn'):
+            severity_override = SEVERITY_WARNING
+
+    return match_mode, require_cell, severity_override
+
+
+def _resolve_same_crystal_partner(decl, name, all_files):
+    """Resolve a sameCrystalAs partner name to one of the walked input objects.
+
+    Prefer a match in the declaring input's *own scope* (same parent
+    container), so a duplicate leaf name introduced by def.xml composition --
+    e.g. a metalcoord sub-scope that also carries an XYZIN / F_SIGF -- cannot
+    make the lookup resolve to the wrong object. Fall back to any input with
+    that name only when the partner is not a sibling. `all_files` is the
+    (name, object) list from _find_datafile_descendants; its objects carry a
+    real object_path, whereas a container find() returns a detached copy whose
+    path is None. Returns None if nothing matches.
+    """
+    def parent_of(obj):
+        return obj.parent() if hasattr(obj, 'parent') else None
+
+    matches = [obj for n, obj in all_files if n == name and obj is not decl]
+    if not matches:
+        return None
+    decl_parent = parent_of(decl)
+    if decl_parent is not None:
+        for obj in matches:
+            if parent_of(obj) is decl_parent:
+                return obj
+    return matches[0]
+
+
 # Codes the base class reports on a task's behalf. A task's own ERROR_CODES
 # cannot describe them --- it did not raise them and has no business knowing
 # them --- so the Diagnostics panel had nothing to put above the specifics of,
@@ -1364,15 +1468,22 @@ class CPluginScript(CData):
     def _checkSameCrystalAs(self, error: CErrorReport) -> None:
         """Enforce sameCrystalAs constraints declared in def.xml.
 
-        Uses _find_datafile_descendants to walk all input file objects
-        (including items inside CLists and nested containers) looking
-        for the sameCrystalAs qualifier.  When both the object and its
-        named partner are set, loads the file contents and compares
-        unit cells using the Clipper reciprocal-space algorithm.
+        Walks all input file objects (via _find_datafile_descendants, so it
+        also reaches items inside CLists and nested containers) looking for the
+        sameCrystalAs qualifier. When both an object and its named partner are
+        set, compares them per the declaration resolved by
+        _resolve_same_crystal_spec: a symmetry requirement (point group / Laue /
+        space group, gemmi-derived) and/or a unit-cell requirement (clipper
+        reciprocal-space test). Works model<->data as well as data<->data --
+        both a CPdbData and a CMtzData expose `.cell` and `.spaceGroup`.
 
-        Only appends a blocking error when both partners are defined
-        but their cells are incompatible — an unset partner is silently
-        skipped so that optional files don't block submission.
+        Severity is graded by mismatch kind (a point-group/Laue mismatch blocks,
+        as servalcat aborts on it; an exact space-group difference within the
+        same point group is advisory, as refmac and servalcat silently disagree
+        on which group wins), advisory when a model is involved in a cell
+        mismatch, and can be forced by a sameCrystalSeverity qualifier. An unset
+        partner, or an input with no readable cell/space group, is skipped so
+        optional files and cell-less models never raise a spurious mismatch.
         """
         if not hasattr(self, 'container') or self.container is None:
             return
@@ -1382,11 +1493,10 @@ class CPluginScript(CData):
         if input_data is None:
             return
 
-        # Build a name→object lookup for all input file objects
         all_files = self._find_datafile_descendants(input_data)
-        files_by_name = {name: obj for name, obj in all_files}
 
-        # Track pairs already checked (avoid checking A→B and B→A)
+        # Deduplicate symmetric pairs by resolved object path (unique across
+        # scopes), not by leaf name (which collides across composed sub-scopes).
         checked_pairs = set()
 
         for child_name, child in all_files:
@@ -1394,54 +1504,162 @@ class CPluginScript(CData):
             if not partner_name:
                 continue
 
-            # Deduplicate symmetric pairs
-            pair_key = tuple(sorted([child_name, partner_name]))
+            # Both files must be set — skip if either is absent
+            if not (hasattr(child, 'isSet') and child.isSet()):
+                continue
+            partner = _resolve_same_crystal_partner(child, partner_name, all_files)
+            if partner is None or not (hasattr(partner, 'isSet') and partner.isSet()):
+                continue
+
+            child_path = (child.object_path()
+                          if hasattr(child, 'object_path') else child_name)
+            partner_path = (partner.object_path()
+                            if hasattr(partner, 'object_path') else partner_name)
+            pair_key = frozenset((child_path, partner_path))
             if pair_key in checked_pairs:
                 continue
             checked_pairs.add(pair_key)
 
-            # Both files must be set — skip if either is absent
-            if not (hasattr(child, 'isSet') and child.isSet()):
-                continue
-            partner = files_by_name.get(partner_name)
-            if partner is None:
-                # Fall back to container-level find for nested paths
-                partner = self.container.find(f'inputData.{partner_name}')
-            if partner is None or not (hasattr(partner, 'isSet') and partner.isSet()):
-                continue
-
-            # Load file contents and compare cells
+            # Compare the two inputs. Both a reflection content (CMtzData) and a
+            # coordinate content (CPdbData) expose `.cell` and `.spaceGroup`, so
+            # this works model<->data as well as data<->data. The declaration
+            # (see _resolve_same_crystal_spec) gives a symmetry requirement
+            # ('none'|'pointGroup'|'laue'|'spaceGroup'), whether a compatible
+            # cell is also required, and an optional severity override.
             try:
                 content = child.getFileContent()
                 partner_content = partner.getFileContent()
                 if content is None or partner_content is None:
                     continue
-                if not hasattr(content, 'clipperSameCell'):
-                    continue
 
-                tolerance = child.get_qualifier('sameCrystalLevel') or 1.0
-                result = content.clipperSameCell(partner_content, tolerance=tolerance)
+                match_mode, require_cell, severity_override = (
+                    _resolve_same_crystal_spec(child))
 
-                if not result['validity']:
-                    def _cell_str(c):
-                        try:
-                            cell = c.cell
-                            return (f"({cell.a}, {cell.b}, {cell.c}, "
-                                    f"{cell.alpha}, {cell.beta}, {cell.gamma})")
-                        except Exception:
-                            return "(unknown)"
+                klass = (self.TASKNAME if hasattr(self, 'TASKNAME')
+                         else self.__class__.__name__)
+                name = (child.object_path()
+                        if hasattr(child, 'object_path') else child_name)
+                # A coordinate content has no `clipperSameCell`; a symmetry or
+                # cell mismatch is advisory (overridable, matching the Qt
+                # "Ignore") when a model is one side of the pair, and a hard
+                # error for reflection<->reflection. An explicit
+                # sameCrystalSeverity overrides this.
+                model_involved = (
+                    not hasattr(content, 'clipperSameCell')
+                    or not hasattr(partner_content, 'clipperSameCell'))
+                # Auto cell default: check the cell only when a model is one
+                # side. Reflection<->reflection (free-R / phases vs data) skips
+                # it, so a shared free-R set survives a soak series' cell drift.
+                if require_cell is None:
+                    require_cell = model_involved
 
-                    error.append(
-                        klass=self.TASKNAME if hasattr(self, 'TASKNAME') else self.__class__.__name__,
-                        code=210,
-                        details=(
-                            f'Incompatible unit cells between {child_name} '
-                            f'{_cell_str(content)} and {partner_name} '
-                            f'{_cell_str(partner_content)}'
-                        ),
-                        name=child.object_path() if hasattr(child, 'object_path') else child_name,
-                        severity=SEVERITY_ERROR,
-                    )
+                def _graded(base):
+                    return base if severity_override is None else severity_override
+
+                def _sg_name(obj):
+                    sg = getattr(obj, 'spaceGroup', None)
+                    if sg is None:
+                        return None
+                    text = str(sg).strip()
+                    return text or None
+
+                # --- symmetry comparison ---
+                if match_mode in ('pointGroup', 'laue', 'spaceGroup'):
+                    sg1 = _sg_name(content)
+                    sg2 = _sg_name(partner_content)
+                    if sg1 and sg2:
+                        from ccp4i2.core.CCP4XtalData import (
+                            spacegroups_are_compatible)
+                        sgr = spacegroups_are_compatible(sg1, sg2)
+                        if sgr is not None:
+                            if match_mode == 'laue':
+                                symmetry_ok = sgr['sameLaue']
+                            elif match_mode == 'pointGroup':
+                                symmetry_ok = sgr['samePointGroup']
+                            else:  # spaceGroup
+                                symmetry_ok = sgr['sameSpaceGroup']
+                            if not symmetry_ok:
+                                # A point-group (or Laue) mismatch is an
+                                # incompatible crystal symmetry -- servalcat
+                                # aborts the job on it, so block by default. An
+                                # exact space-group difference within the same
+                                # point group is advisory: refmac silently uses
+                                # the data's group, servalcat the model's, so
+                                # which wins depends on the backend.
+                                if not sgr['samePointGroup']:
+                                    error.append(
+                                        klass=klass, code=211,
+                                        details=(
+                                            f'Incompatible crystal symmetry '
+                                            f'between {child_name} (point group '
+                                            f'{sgr["pointGroup1"]}, space group '
+                                            f'{sgr["spaceGroup1"]}) and '
+                                            f'{partner_name} (point group '
+                                            f'{sgr["pointGroup2"]}, space group '
+                                            f'{sgr["spaceGroup2"]})'
+                                        ),
+                                        name=name,
+                                        severity=_graded(SEVERITY_ERROR),
+                                    )
+                                else:
+                                    error.append(
+                                        klass=klass, code=212,
+                                        details=(
+                                            f'Space groups differ between '
+                                            f'{child_name} '
+                                            f'({sgr["spaceGroup1"]}) and '
+                                            f'{partner_name} '
+                                            f'({sgr["spaceGroup2"]}); the point '
+                                            f'group matches, but refinement '
+                                            f'programs differ on which space '
+                                            f'group they use'
+                                        ),
+                                        name=name,
+                                        severity=_graded(
+                                            SEVERITY_WARNING if model_involved
+                                            else SEVERITY_ERROR),
+                                    )
+
+                # --- cell comparison ---
+                if require_cell:
+                    cell = getattr(content, 'cell', None)
+                    partner_cell = getattr(partner_content, 'cell', None)
+                    if cell is None or partner_cell is None:
+                        # No crystallographic cell (or unreadable): skip, don't
+                        # manufacture a mismatch.
+                        continue
+
+                    from ccp4i2.core.CCP4XtalData import cells_are_compatible
+
+                    params = (cell.a, cell.b, cell.c,
+                              cell.alpha, cell.beta, cell.gamma)
+                    partner_params = (partner_cell.a, partner_cell.b,
+                                      partner_cell.c, partner_cell.alpha,
+                                      partner_cell.beta, partner_cell.gamma)
+                    result = cells_are_compatible(
+                        params, partner_params, tolerance=1.0)
+
+                    if not result['validity']:
+                        def _cell_str(cell_obj):
+                            try:
+                                return (f"({cell_obj.a}, {cell_obj.b}, "
+                                        f"{cell_obj.c}, {cell_obj.alpha}, "
+                                        f"{cell_obj.beta}, {cell_obj.gamma})")
+                            except Exception:
+                                return "(unknown)"
+
+                        error.append(
+                            klass=klass, code=210,
+                            details=(
+                                f'Incompatible unit cells between {child_name} '
+                                f'{_cell_str(cell)} and {partner_name} '
+                                f'{_cell_str(partner_cell)}'
+                            ),
+                            name=name,
+                            severity=_graded(
+                                SEVERITY_WARNING if model_involved
+                                else SEVERITY_ERROR),
+                        )
             except Exception as e:
                 logger.debug(
                     "sameCrystalAs check failed for %s vs %s: %s",

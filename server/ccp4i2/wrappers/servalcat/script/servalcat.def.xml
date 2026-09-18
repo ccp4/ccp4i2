@@ -14,6 +14,13 @@
                     <allowUndefined>False</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
                     <requiredSubType>1,0</requiredSubType>
+                    <sameCrystalAs>HKLIN</sameCrystalAs>
+                    <!-- servalcat silently keeps the model's space group when it
+                         differs from the data's (producing a quietly wrong
+                         refinement) and aborts on an incompatible point group,
+                         so require the exact space group and a compatible cell.
+                         Contrast refmac, which tolerates the SG difference. -->
+                    <sameCrystalMatch>spaceGroup</sameCrystalMatch>
                     <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
                 </qualifiers>
             </content>
@@ -51,6 +58,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <mustExist>True</mustExist>
                     <allowUndefined>True</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>5</requiredSubType>
                     <toolTip>Half map 1 (MRC format)</toolTip>
                 </qualifiers>
             </content>
@@ -60,6 +68,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <mustExist>True</mustExist>
                     <allowUndefined>True</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>5</requiredSubType>
                     <toolTip>Half map 2 (MRC format)</toolTip>
                 </qualifiers>
             </content>
@@ -69,6 +78,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <mustExist>True</mustExist>
                     <allowUndefined>True</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
+                    <requiredSubType>4</requiredSubType>
                     <toolTip>Map mask (MRC format)</toolTip>
                 </qualifiers>
             </content>
@@ -189,7 +199,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                 <className>CMapDataFile</className>
                 <qualifiers>
                     <saveToDb>True</saveToDb>
-                    <default><annotation>Difference density map (in real space)</annotation></default>
+                    <default><subType>2</subType><annotation>Difference density map (in real space)</annotation></default>
                 </qualifiers>
             </content>
             <content id="ANOMFPHIOUT"><!-- only from servalcat refine_xtal_norefmac -->

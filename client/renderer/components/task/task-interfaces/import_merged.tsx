@@ -4,12 +4,11 @@ import {
   CCP4i2TaskElementProps,
 } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-import { doRetrieve, useApi } from "../../../api";
-import { useJob, usePrevious } from "../../../utils";
+import { useApi } from "../../../api";
+import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { FieldRow } from "../task-elements/field-row";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { showMtzColumnDialog, parseMtzColumns } from "../task-elements/mtz-column-dialog";
 import { Job } from "../../../types/models";
 import {
   Alert,
@@ -67,6 +66,31 @@ interface RBlockInfo {
   columnnames?: Record<string, string[]>;
 }
 
+/**
+ * Content-based diagnosis from the single Python authority
+ * (server: diagnose_reflection_file). Added additively to the digest in PR4a;
+ * this interface now reads it as the source of truth, falling back to the
+ * legacy top-level fields when it is absent (older server / other file types).
+ *
+ * `format` here is content-detected (not the filename extension), `merged` is
+ * really detected (not the getMerged() stub that always returned true), and
+ * `staraniso`/`needs` are signals the Qt GUI had and the React port dropped.
+ */
+interface ReflectionDiagnosis {
+  format: string;
+  merged: boolean | null;
+  anomalous: boolean | null;
+  staraniso: boolean;
+  cell: number[] | null;          // [a, b, c, alpha, beta, gamma]
+  spaceGroup: string | null;
+  spaceGroupNumber: number | null;
+  wavelength: number | null;
+  resolutionHigh: number | null;
+  resolutionLow: number | null;
+  needs: string[];                // metadata absent from the file (e.g. SHELX)
+  warnings: string[];
+}
+
 interface GenericReflDigest {
   format: string;
   merged: boolean;
@@ -85,6 +109,16 @@ interface GenericReflDigest {
   freerValid: boolean;
   freerWarnings: string[];
   freerColumnLabel?: string;
+  diagnosis?: ReflectionDiagnosis;
+}
+
+/** Convert the diagnosis cell array to the {a,b,c,alpha,beta,gamma} object the
+ *  UNITCELL task element expects. */
+function cellArrayToObject(cell: number[]) {
+  return {
+    a: cell[0], b: cell[1], c: cell[2],
+    alpha: cell[3], beta: cell[4], gamma: cell[5],
+  };
 }
 
 /**
@@ -205,22 +239,36 @@ function groupColumnsByPattern(columns: MtzColumn[]): ColumnGroup[] {
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const api = useApi();
   const { job } = props;
-  const { useFileDigest, useTaskItem, mutateValidation, uploadFileParam } =
-    useJob(job.id);
+  const { useFileDigest, useTaskItem, mutateValidation } = useJob(job.id);
 
   const { item: HKLINItem, value: HKLINValue } = useTaskItem("HKLIN");
-  const oldHKLINValue = usePrevious(HKLINValue);
 
   // Use task-qualified path for digest API - only fetch when file has been uploaded (has dbFileId)
   const hasUploadedFile = Boolean(HKLINValue?.dbFileId);
   const digestObjectPath = hasUploadedFile ? "import_merged.inputData.HKLIN" : "";
-  const { data: HKLINDigest, isLoading: digestLoading, error: digestError } = useFileDigest(digestObjectPath) as {
+  // Key the digest on the file identity, not just the object path: swapping the
+  // HKLIN file keeps the path constant, so without this the cached digest (and
+  // its merged/unmerged verdict) from the previous file would persist.
+  const { data: HKLINDigest, isLoading: digestLoading, error: digestError, mutate: mutateDigest } = useFileDigest(digestObjectPath, HKLINValue?.dbFileId) as {
     data: GenericReflDigest | null;
     isLoading: boolean;
     error: Error | null;
+    mutate: () => Promise<any>;
   };
 
-  const { item: HKLIN_OBSItem } = useTaskItem("HKLIN_OBS");
+  // Belt-and-braces against a stale digest when the HKLIN file is swapped. The
+  // digest is fetched once per SWR key and then cached (5-min dedupe), whereas
+  // validation is polled continuously -- so a stale digest can linger (e.g. a
+  // merged file showing the previous file's UNMERGED verdict) even though RUN is
+  // correctly enabled/disabled by the server. setParameter patches the container
+  // only AFTER the server commit, so by the time dbFileId changes the server
+  // already holds the new file; force a revalidation so the digest reads it.
+  useEffect(() => {
+    if (HKLINValue?.dbFileId && mutateDigest) {
+      mutateDigest();
+    }
+  }, [HKLINValue?.dbFileId, mutateDigest]);
+
   const { forceUpdate: forceUpdateSPACEGROUP } = useTaskItem("SPACEGROUP");
   const { forceUpdate: forceUpdateUNITCELL } = useTaskItem("UNITCELL");
   const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
@@ -237,6 +285,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { forceUpdate: forceSetMMCIF_SELECTED_INFO } = useTaskItem("MMCIF_SELECTED_INFO");
   const { forceUpdate: forceSetMMCIF_SELECTED_CONTENT } = useTaskItem("MMCIF_SELECTED_CONTENT");
   const { forceUpdate: forceSetHASFREER } = useTaskItem("HASFREER");
+  const { forceUpdate: forceSetSTARANISO_DATA } = useTaskItem("controlParameters.STARANISO_DATA");
+  const { forceUpdate: forceSetSKIP_FREER } = useTaskItem("controlParameters.SKIP_FREER");
+  const { value: shelxIsIntensity, forceUpdate: forceSetSHELX_IS_INTENSITY } = useTaskItem("SHELX_IS_INTENSITY");
+
+  // The content-based diagnosis is the source of truth; fall back to the legacy
+  // top-level digest fields when it is absent (older server, other file types).
+  const diag = HKLINDigest?.diagnosis;
+  const effectiveFormat = (diag?.format || HKLINDigest?.format || "").toUpperCase();
+  const effectiveMerged = diag?.merged ?? HKLINDigest?.merged;
+  // Unmerged data cannot be imported here (the server also blocks it in
+  // validity()). Suppress the whole selection / resolution / FreeR flow when
+  // the file is known to be unmerged, so we do not invite column choice for a
+  // job that must not run. `undefined` (digest still loading) keeps the flow
+  // visible; only an explicit `false` hides it.
+  const canImport = effectiveMerged !== false;
 
   // Local state for UI
   const [selectedObsGroup, setSelectedObsGroup] = useState<ColumnGroup | null>(null);
@@ -361,11 +424,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // when the digest data actually changes.
   useEffect(() => {
     const digestKey = HKLINDigest ? JSON.stringify({
-      spaceGroup: HKLINDigest.spaceGroup,
-      wavelength: HKLINDigest.wavelength,
-      format: HKLINDigest.format,
-      cell: HKLINDigest.cell,
+      spaceGroup: diag?.spaceGroup ?? HKLINDigest.spaceGroup,
+      wavelength: diag?.wavelength ?? HKLINDigest.wavelength,
+      format: diag?.format ?? HKLINDigest.format,
+      cell: diag?.cell ?? HKLINDigest.cell,
       hasFreeR: HKLINDigest.hasFreeR,
+      staraniso: diag?.staraniso,
+      merged: diag?.merged,
     }) : null;
 
     // Skip if we've already processed this digest or if nothing to process
@@ -378,9 +443,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       let parametersChanged = false;
 
+      // Values from the content-based diagnosis take precedence; the legacy
+      // top-level fields are the fallback. For .sca especially, cell/SG live
+      // ONLY in the diagnosis (gemmi cannot read .sca), so this is what makes
+      // Scalepack import drivable through the GUI.
+      const diagnosisSG = diag?.spaceGroup ?? HKLINDigest.spaceGroup;
+      const diagnosisWL = diag?.wavelength ?? HKLINDigest.wavelength;
+      const diagnosisFmt = diag?.format ?? HKLINDigest.format;
+      const diagnosisCell = diag?.cell
+        ? cellArrayToObject(diag.cell)
+        : HKLINDigest.cell;
+
       // Update space group
-      if (HKLINDigest.spaceGroup) {
-        const cleanedSG = String(HKLINDigest.spaceGroup).replace(/\s+/g, "");
+      if (diagnosisSG) {
+        const cleanedSG = String(diagnosisSG).replace(/\s+/g, "");
         if (forceUpdateSPACEGROUP) {
           try {
             const result = await forceUpdateSPACEGROUP(cleanedSG);
@@ -394,10 +470,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       // Update wavelength
-      if (HKLINDigest.wavelength) {
+      if (diagnosisWL) {
         if (forceUpdateWAVELENGTH) {
           try {
-            const result = await forceUpdateWAVELENGTH(HKLINDigest.wavelength);
+            const result = await forceUpdateWAVELENGTH(diagnosisWL);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateWAVELENGTH error:", e);
@@ -406,10 +482,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       // Update format
-      if (HKLINDigest.format) {
+      if (diagnosisFmt) {
         if (forceUpdateHKLIN_FORMAT) {
           try {
-            const result = await forceUpdateHKLIN_FORMAT(HKLINDigest.format.toUpperCase());
+            const result = await forceUpdateHKLIN_FORMAT(diagnosisFmt.toUpperCase());
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateHKLIN_FORMAT error:", e);
@@ -418,13 +494,35 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       // Update unit cell
-      if (HKLINDigest.cell) {
+      if (diagnosisCell) {
         if (forceUpdateUNITCELL) {
           try {
-            const result = await forceUpdateUNITCELL(HKLINDigest.cell);
+            const result = await forceUpdateUNITCELL(diagnosisCell);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateUNITCELL error:", e);
+          }
+        }
+      }
+
+      // StarAniso: the server writes its own (anisotropically truncated) FreeR
+      // set that must be preserved, not regenerated. Record the flag the
+      // pipeline/report already consume (STARANISO_DATA) and default to not
+      // generating a fresh FreeR set. The user can still override below.
+      if (diag?.staraniso) {
+        if (forceSetSTARANISO_DATA) {
+          try {
+            const result = await forceSetSTARANISO_DATA(true);
+            parametersChanged = parametersChanged || Boolean(result);
+          } catch (e) {
+            console.error("[import_merged] forceSetSTARANISO_DATA error:", e);
+          }
+        }
+        if (forceSetSKIP_FREER) {
+          try {
+            await forceSetSKIP_FREER(true);
+          } catch (e) {
+            console.error("[import_merged] forceSetSKIP_FREER error:", e);
           }
         }
       }
@@ -616,7 +714,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   useEffect(() => {
     if (
       job?.status !== 1 ||
-      HKLINDigest?.format?.toUpperCase() !== "MMCIF" ||
+      effectiveFormat !== "MMCIF" ||
       validMmcifBlocks.length !== 1 ||
       selectedMmcifBlock ||
       autoSelectedBlockForFile === HKLINValue?.dbFileId
@@ -632,87 +730,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     selectedMmcifBlock,
     HKLINValue?.dbFileId,
     autoSelectedBlockForFile,
-    HKLINDigest?.format,
+    effectiveFormat,
   ]);
 
-  // Process column selection from MTZ dialog (legacy path)
-  const processColumnSelection = useCallback(
-    async (columnPath: string, file: File) => {
-      if (!forceSetHKLIN_OBS_CONTENT_FLAG || !forceSetHKLIN_OBS_COLUMNS) return;
-
-      const match = columnPath.match(/\[([^\]]+)\]/);
-      if (match) {
-        await forceSetHKLIN_OBS_COLUMNS(match[1]);
-        const columnNames = match[1].split(",").map((name) => name.trim());
-
-        // Determine content flag from column types
-        if (HKLINDigest?.listOfColumns) {
-          const columnTypes = columnNames.map(
-            (name) =>
-              HKLINDigest.listOfColumns?.find(
-                (col) => col.columnLabel === name
-              )?.columnType
-          );
-          const signature = columnTypes.join("");
-          const contentFlag = ["KMKM", "GLGL", "JQ", "FQ"].indexOf(signature);
-          if (contentFlag > -1) {
-            await forceSetHKLIN_OBS_CONTENT_FLAG(contentFlag + 1);
-          }
-        }
-      }
-
-      // Upload the file
-      if (columnPath && columnPath.trim().length > 0 && HKLIN_OBSItem) {
-        await uploadFileParam({
-          objectPath: HKLIN_OBSItem._objectPath,
-          file: file,
-          fileName: file.name,
-          columnSelector: columnPath,
-        });
-      }
-    },
-    [HKLINDigest, HKLIN_OBSItem, forceSetHKLIN_OBS_COLUMNS, forceSetHKLIN_OBS_CONTENT_FLAG, uploadFileParam]
-  );
-
-  // Handle HKLIN file change (trigger column dialog for MTZ)
-  const handleHKLINFileChange = useCallback(
-    async (hklinValue: any) => {
-      if (
-        !hklinValue?.dbFileId ||
-        !hklinValue?.baseName ||
-        !oldHKLINValue ||
-        job?.status !== 1
-      )
-        return;
-      if (JSON.stringify(hklinValue) === JSON.stringify(oldHKLINValue)) return;
-
-      const isMtzFile = hklinValue.baseName.toLowerCase().endsWith(".mtz");
-      if (!isMtzFile) return;
-
-      // Download and parse MTZ
-      const downloadURL = `files_by_uuid/${hklinValue.dbFileId}/download/`;
-      const arrayBuffer = await doRetrieve(downloadURL, hklinValue.baseName);
-      const blob = new Blob([arrayBuffer], { type: "application/CCP4-mtz-file" });
-      const file = new File([blob], hklinValue.baseName, { type: "application/CCP4-mtz-file" });
-
-      // Use native TypeScript MTZ parser (no cootModule dependency)
-      const columnNames = await parseMtzColumns(file);
-      if (!columnNames) return;
-
-      const columnPath = await showMtzColumnDialog(columnNames, HKLIN_OBSItem);
-      if (!columnPath) return;
-
-      await processColumnSelection(columnPath, file);
-    },
-    [oldHKLINValue, job?.status, HKLIN_OBSItem, processColumnSelection]
-  );
-
-  // Effect: Handle HKLIN value changes
-  useEffect(() => {
-    if (HKLINValue) {
-      handleHKLINFileChange(HKLINValue);
-    }
-  }, [HKLINValue, handleHKLINFileChange]);
+  // The legacy MTZ column-picker modal was removed here: it fired on every MTZ
+  // upload in parallel with the in-panel "Select Observation Data" list (two
+  // competing mechanisms writing HKLIN_OBS_*), and it invited column selection
+  // even for unmerged data. The in-panel, diagnosis-driven selection is now the
+  // sole path; the pipeline reads columns from HKLIN via HKLIN_OBS_COLUMNS /
+  // HKLIN_OBS_CONTENT_FLAG (HKLIN_OBS is allowUndefined), so the modal's extra
+  // HKLIN_OBS upload was redundant.
 
   return (
     <>
@@ -722,7 +749,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             {...props}
             itemName=""
             qualifiers={{ guiLabel: "Input data", initiallyOpen: true }}
-            key="Input data"
             containerHint="FolderLevel"
           >
             <CCP4i2TaskElement
@@ -731,10 +757,50 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               qualifiers={{ guiLabel: "Reflections" }}
             />
 
+            {/* Unmerged-data warning - the whole reason "import MERGED" is a
+                separate task. The Qt GUI blocked this; the React port proceeded
+                silently (getMerged() was a stub). Now driven by the real
+                content-based merged detection. */}
+            {HKLINDigest && effectiveMerged === false && (
+              <Alert severity="error" icon={<WarningIcon />} sx={{ mb: 2 }}>
+                <Typography variant="body2" fontWeight="bold" gutterBottom>
+                  This looks like UNMERGED data
+                </Typography>
+                <Typography variant="body2">
+                  import_merged is for merged reflection data. Unmerged data
+                  should be scaled and merged first — use the data-reduction
+                  (aimless) task instead. Importing it here will not give correct
+                  results.
+                </Typography>
+              </Alert>
+            )}
+
+            {/* StarAniso: detected server-side (SA_flag column / _software.name).
+                Its anisotropically-truncated FreeR set must be preserved. */}
+            {HKLINDigest && diag?.staraniso && (
+              <Alert severity="info" sx={{ mb: 2 }}>
+                <Typography variant="body2" fontWeight="bold" gutterBottom>
+                  StarAniso data detected
+                </Typography>
+                <Typography variant="body2">
+                  These data were anisotropically truncated by StarAniso, which
+                  carries its own FreeR set. FreeR generation has been switched
+                  off so that set is preserved; re-enable it below only if you
+                  intend to replace it.
+                </Typography>
+              </Alert>
+            )}
+
+            {/* Everything below is the import configuration - observation
+                selection, resolution, FreeR. It is meaningless for unmerged
+                data (which cannot be imported here and is blocked server-side),
+                so it is hidden until the file is confirmed importable. */}
+            {canImport && (
+              <>
             {/* Crystal information widgets - only shown when the input format does
                 not carry this metadata itself (MTZ/mmCIF embed it). */}
             {HKLINDigest &&
-              !["MTZ", "MMCIF"].includes(HKLINDigest.format?.toUpperCase() || "") && (
+              !["MTZ", "MMCIF"].includes(effectiveFormat) && (
                 <Card sx={{ mb: 2 }}>
                   <CardHeader title="Crystal Information" />
                   <CardContent>
@@ -742,25 +808,22 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                       <Grid2 size={{ xs: 6, md: 4 }}>
                         <CCP4i2TaskElement
                           {...props}
-                          key="SPACEGROUP"
                           itemName="SPACEGROUP"
                           qualifiers={{ guiLabel: "Space group" }}
                         />
                       </Grid2>
                       <Grid2 size={{ xs: 6, md: 8 }}>
-                        <CCP4i2TaskElement {...props} key="UNITCELL" itemName="UNITCELL" />
+                        <CCP4i2TaskElement {...props} itemName="UNITCELL" />
                       </Grid2>
                       <Grid2 size={{ xs: 12 }}>
                         <FieldRow>
                           <CCP4i2TaskElement
                             {...props}
-                            key="CRYSTALNAME"
                             itemName="CRYSTALNAME"
                             qualifiers={{ guiLabel: "Crystal name" }}
                           />
                           <CCP4i2TaskElement
                             {...props}
-                            key="DATASETNAME"
                             itemName="DATASETNAME"
                             qualifiers={{ guiLabel: "Dataset name" }}
                           />
@@ -772,6 +835,50 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                       itemName="WAVELENGTH"
                       qualifiers={{ guiLabel: "Wavelength" }}
                     />
+
+                    {/* Data-type declaration - only for formats where it is not
+                        decidable from the file (SHELX: HKLF 4 vs HKLF 3). The
+                        server lists it in diagnosis.needs. */}
+                    {diag?.needs?.includes("dataType") && (
+                      <Box sx={{ mt: 2 }}>
+                        <Typography variant="subtitle2" gutterBottom>
+                          Data type
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          color="text.secondary"
+                          sx={{ display: "block", mb: 0.5 }}
+                        >
+                          A SHELX .hkl does not record whether its two data
+                          columns are intensities (HKLF&nbsp;4, Fo²) or amplitudes
+                          (HKLF&nbsp;3, Fo) — that is declared in the .ins/.res,
+                          which we do not have. Choose which they are.
+                        </Typography>
+                        <RadioGroup
+                          row
+                          value={shelxIsIntensity === false ? "amplitudes" : "intensities"}
+                          onChange={async (e) => {
+                            if (forceSetSHELX_IS_INTENSITY) {
+                              await forceSetSHELX_IS_INTENSITY(
+                                e.target.value === "intensities"
+                              );
+                              await mutateValidation();
+                            }
+                          }}
+                        >
+                          <FormControlLabel
+                            value="intensities"
+                            control={<Radio size="small" />}
+                            label="Intensities (HKLF 4)"
+                          />
+                          <FormControlLabel
+                            value="amplitudes"
+                            control={<Radio size="small" />}
+                            label="Amplitudes (HKLF 3)"
+                          />
+                        </RadioGroup>
+                      </Box>
+                    )}
                   </CardContent>
                 </Card>
               )}
@@ -794,8 +901,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               </Alert>
             )}
 
-            {/* Format-specific panels - use digest format directly, not the task parameter */}
-            {HKLINDigest?.format?.toUpperCase() === "MTZ" && (
+            {/* Format-specific panels - keyed on the content-based diagnosis
+                format, not the filename extension or the task parameter. */}
+            {HKLINDigest && effectiveFormat === "MTZ" && (
               <MtzReflectionPanel
                 {...props}
                 digest={HKLINDigest}
@@ -807,7 +915,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               />
             )}
 
-            {HKLINDigest?.format?.toUpperCase() === "MMCIF" && (
+            {HKLINDigest && effectiveFormat === "MMCIF" && (
               <MmcifReflectionPanel
                 {...props}
                 digest={HKLINDigest}
@@ -820,14 +928,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             )}
 
             {/* For other formats (Scalepack, XDS) show basic info from digest */}
-            {HKLINDigest && !["MTZ", "MMCIF"].includes(HKLINDigest.format?.toUpperCase() || "") && (
+            {HKLINDigest && !["MTZ", "MMCIF"].includes(effectiveFormat) && (
               <Card sx={{ mb: 2 }}>
-                <CardHeader title={`${HKLINDigest.format} Reflection Data`} />
+                <CardHeader title={`${effectiveFormat} Reflection Data`} />
                 <CardContent>
                   <Typography variant="body2" color="text.secondary">
-                    Format: {HKLINDigest.format}
-                    {HKLINDigest.merged !== undefined && (
-                      <> | {HKLINDigest.merged ? "Merged" : "Unmerged"}</>
+                    Format: {effectiveFormat}
+                    {effectiveMerged !== undefined && (
+                      <> | {effectiveMerged ? "Merged" : "Unmerged"}</>
+                    )}
+                    {diag?.anomalous !== undefined && diag?.anomalous !== null && (
+                      <> | {diag.anomalous ? "Anomalous" : "Non-anomalous"}</>
                     )}
                   </Typography>
                   <FreeRStatusDisplay
@@ -911,6 +1022,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   "Accept a FreeR set whose cell differs from the data",
               }}
             />
+              </>
+            )}
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
       </CCP4i2Tabs>
@@ -966,15 +1079,35 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
     return "No MTZ columns were found in this file.";
   };
 
+  const singleGroup = obsGroups.length === 1;
+
+  // Shared row: column labels + content-type chip + dataset. Used both as the
+  // static single-group summary and inside the selectable multi-group list.
+  const obsGroupRow = (group: ColumnGroup, selected: boolean) => (
+    <Stack direction="row" spacing={1.5} alignItems="center">
+      <TableChartIcon color={selected ? "primary" : "inherit"} />
+      <Box>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography variant="body2">
+            {group.columnList.map((c) => c.columnLabel).join(", ")}
+          </Typography>
+          <Chip
+            label={OBS_CONTENT_LABELS[group.contentFlag] || `Type ${group.contentFlag}`}
+            size="small"
+            color={selected ? "primary" : "default"}
+          />
+        </Stack>
+        <Typography variant="caption" color="text.secondary">
+          Dataset: {group.dataset || "default"}
+        </Typography>
+      </Box>
+    </Stack>
+  );
+
   return (
     <Card sx={{ mb: 2 }}>
       <CardHeader title="MTZ Reflection Data" />
       <CardContent>
-        {/* Observation Data Selection */}
-        <Typography variant="subtitle2" gutterBottom>
-          Select Observation Data
-        </Typography>
-
         {obsGroups.length === 0 ? (
           <Alert severity="warning" sx={{ mb: 2 }}>
             <Typography variant="body2" fontWeight="bold" gutterBottom>
@@ -984,48 +1117,58 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
               {getNoObsExplanation()}
             </Typography>
           </Alert>
+        ) : singleGroup ? (
+          // One canonical observation group: there is nothing to choose, so
+          // present it as a static summary rather than a "Select..." control
+          // with a lone, redundant row.
+          <>
+            <Typography variant="subtitle2" gutterBottom>
+              Observation Data
+            </Typography>
+            <Paper variant="outlined" sx={{ p: 1.5, mb: 2 }}>
+              {obsGroupRow(obsGroups[0], true)}
+            </Paper>
+          </>
         ) : (
-          <List dense sx={{ mb: 2 }}>
-            {obsGroups.map((group, idx) => {
-              const isSelected = Boolean(
-                selectedObsGroup &&
-                group.columnList.map((c) => c.columnLabel).join(",") ===
-                  selectedObsGroup.columnList.map((c) => c.columnLabel).join(",")
-              );
-              const labels = group.columnList.map((c) => c.columnLabel).join(", ");
-
-              return (
-                <ListItemButton
-                  key={idx}
-                  selected={isSelected}
-                  onClick={() => onObsGroupSelect(group)}
-                  sx={{
-                    border: 1,
-                    borderColor: isSelected ? "primary.main" : "divider",
-                    borderRadius: 1,
-                    mb: 0.5,
-                  }}
-                >
-                  <ListItemIcon>
-                    <TableChartIcon color={isSelected ? "primary" : "inherit"} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={
-                      <Stack direction="row" spacing={1} alignItems="center">
-                        <Typography variant="body2">{labels}</Typography>
-                        <Chip
-                          label={OBS_CONTENT_LABELS[group.contentFlag] || `Type ${group.contentFlag}`}
-                          size="small"
-                          color={isSelected ? "primary" : "default"}
-                        />
-                      </Stack>
-                    }
-                    secondary={`Dataset: ${group.dataset || "default"}`}
-                  />
-                </ListItemButton>
-              );
-            })}
-          </List>
+          // More than one observation group: a genuine choice, so keep the
+          // selectable list (and say so).
+          <>
+            <Typography variant="subtitle2" gutterBottom>
+              Select Observation Data
+            </Typography>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ display: "block", mb: 1 }}
+            >
+              This file holds more than one observation set — click to choose
+              which to import.
+            </Typography>
+            <List dense sx={{ mb: 2 }}>
+              {obsGroups.map((group, idx) => {
+                const isSelected = Boolean(
+                  selectedObsGroup &&
+                  group.columnList.map((c) => c.columnLabel).join(",") ===
+                    selectedObsGroup.columnList.map((c) => c.columnLabel).join(",")
+                );
+                return (
+                  <ListItemButton
+                    key={idx}
+                    selected={isSelected}
+                    onClick={() => onObsGroupSelect(group)}
+                    sx={{
+                      border: 1,
+                      borderColor: isSelected ? "primary.main" : "divider",
+                      borderRadius: 1,
+                      mb: 0.5,
+                    }}
+                  >
+                    {obsGroupRow(group, isSelected)}
+                  </ListItemButton>
+                );
+              })}
+            </List>
+          </>
         )}
 
         {/* FreeR Status */}
@@ -1035,15 +1178,6 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
           freerWarnings={digest.freerWarnings}
           freerColumnLabel={digest.freerColumnLabel}
         />
-
-        {/* Show selected columns */}
-        {selectedObsGroup && (
-          <Box sx={{ mt: 2, p: 1, bgcolor: "action.hover", borderRadius: 1 }}>
-            <Typography variant="caption" color="text.secondary">
-              Selected: {selectedObsGroup.columnList.map((c) => c.columnLabel).join(", ")}
-            </Typography>
-          </Box>
-        )}
       </CardContent>
     </Card>
   );

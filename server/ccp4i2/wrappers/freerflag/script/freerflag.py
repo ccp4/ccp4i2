@@ -243,7 +243,11 @@ class freerflag(CPluginScript):
       dmin = mtz.resolution_high()
       if cp.RESMAX.isSet() and float(cp.RESMAX) > 0.0:
           dmin = float(cp.RESMAX)
-      full = np.array(gemmi.make_miller_array(mtz.cell, mtz.spacegroup, dmin), dtype=int)
+      # Every observed reflection must survive, including the one that sits
+      # exactly on the resolution limit (make_miller_array's limits are
+      # exclusive at floating-point precision).
+      from ccp4i2.core.CCP4Utils import complete_reflection_list
+      full = complete_reflection_list(mtz.cell, mtz.spacegroup, dmin, 0.0, data[:, :3])
       ncol = data.shape[1]
       obs = {(int(h[0]), int(h[1]), int(h[2])): data[i] for i, h in enumerate(data[:, :3].astype(int))}
       rows = np.empty((len(full), ncol), dtype=np.float32)

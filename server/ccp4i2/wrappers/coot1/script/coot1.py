@@ -1,6 +1,21 @@
+"""Interactive Coot 1.x session, database-connected via the cootbridge.
+
+The wrapper's job is deliberately small: it launches Coot with a stub
+script and an environment carrying ONLY connection details and the job
+identity (the handshake). Everything else - deciding what to load from
+the job's input parameters, the in-Coot CCP4i2 menu, the project
+browser, saving - happens inside Coot in ccp4i2.cootbridge (see that
+package). Harvesting picks up the COOT_FILE_DROP contract the bridge's
+save action writes to, plus Coot's own --show-ccp4i2-save-button
+directory and loose saves in the work directory.
+"""
+
+import sys
 from pathlib import Path
+
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
+from ccp4i2.cootbridge import harvest
 
 
 class coot1(CPluginScript):
@@ -12,48 +27,78 @@ class coot1(CPluginScript):
     ERROR_CODES = {}
 
     def makeCommandAndScript(self):
-        inputData = self.container.inputData
+        work_dir = Path(self.getWorkDirectory())
+        drop_dir = work_dir / "COOT_FILE_DROP"
+        drop_dir.mkdir(parents=True, exist_ok=True)
 
-        if inputData.XYZIN_LIST.isSet():
-            for path in inputData.XYZIN_LIST:
-                self.appendCommandLine(["--coords", path])
+        from ccp4i2.cootbridge import COOT1_STARTUP_STUB
+        from ccp4i2.cootbridge.handshake import export_handshake
 
-        if inputData.DICT.isSet():
-            self.appendCommandLine(["--dictionary", inputData.DICT])
+        export_handshake(self, work_dir, drop_dir)
 
-        script = ["import coot"]
-        if inputData.FPHIIN_LIST.isSet():
-            for path in inputData.FPHIIN_LIST:
-                script.append(f"coot.read_mtz('{path}', 'F', 'PHI', '', False, False)")
-        if inputData.DELFPHIIN_LIST.isSet():
-            for path in inputData.DELFPHIIN_LIST:
-                script.append(f"coot.read_mtz('{path}', 'F', 'PHI', '', False, True)")
-        if inputData.DELFPHIINANOM_LIST.isSet():
-            for path in inputData.DELFPHIINANOM_LIST:
-                script.append(
-                    f"imap = coot.read_mtz('{path}', 'F', 'PHI', '', False, True)"
-                )
-                script.append("coot.set_map_colour(imap, 0.75, 0.9, 0.75)")
-        scriptPath = Path(self.getWorkDirectory(), "coot_script.py")
-        with scriptPath.open("w", encoding="utf-8") as stream:
-            stream.write("\n".join(script))
-        self.appendCommandLine(["--script", scriptPath])
-
+        # A real static stub, not generated source: it reads the
+        # environment handshake and hands over to the bridge.
+        self.appendCommandLine(
+            ["--no-state-script", "--script", str(COOT1_STARTUP_STUB)])
         return CPluginScript.SUCCEEDED
+
+    # -- harvesting ---------------------------------------------------------
 
     def processOutputFiles(self):
-        xyzout = self.container.outputData.XYZOUT
-        workDir = Path(self.getWorkDirectory())
-        index = 0
-        for pattern, contentFlag in [
-            ("*.cif", CPdbDataFile.CONTENT_FLAG_MMCIF),
-            ("*.pdb", CPdbDataFile.CONTENT_FLAG_PDB),
-        ]:
-            for path in workDir.glob(pattern):
-                xyzout[index].setFullPath(str(path))
-                xyzout[index].annotation.set(f"Coot output: {path.name}")
-                xyzout[index].subType.set(CPdbDataFile.SUBTYPE_MODEL)
-                xyzout[index].contentFlag.set(contentFlag)
-                index += 1
-        self.container.outputData.XYZOUT.set(xyzout[:index])
+        work_dir = Path(self.getWorkDirectory())
+        candidates = []  # (sort_key, path)
+
+        # 1. The bridge's save contract: COOT_FILE_DROP/output<N>.pdb|cif,
+        #    in save order.
+        from ccp4i2.cootbridge import api_client
+
+        for number, path in api_client.harvestable_outputs(
+            str(work_dir / "COOT_FILE_DROP")
+        ):
+            candidates.append(((0, number), Path(path)))
+
+        # 2. Coot 1's own --show-ccp4i2-save-button writes into
+        #    ./coot-ccp4i2/ under the CWD (the work directory).
+        button_dir = work_dir / "coot-ccp4i2"
+        if button_dir.is_dir():
+            for path in sorted(
+                list(button_dir.glob("*.pdb")) + list(button_dir.glob("*.cif")),
+                key=lambda p: p.stat().st_mtime,
+            ):
+                candidates.append(((1, path.stat().st_mtime), path))
+
+        # 3. Loose files in the work directory: saved coordinates AND
+        #    ligand-builder restraint dictionaries (acedrg/get-monomer
+        #    write a *.cif here). They are told apart by content below,
+        #    not by extension -- a dictionary CIF is not a model.
+        for path in sorted(
+            list(work_dir.glob("*.pdb")) + list(work_dir.glob("*.cif"))
+        ):
+            candidates.append(((2, path.name), path))
+
+        # Split coordinates from restraint dictionaries by content and file
+        # them (shared with coot_rebuild and the moorhen task).
+        n_models, n_dicts = harvest.harvest_candidates(
+            work_dir, [path for _key, path in candidates],
+            self.container.outputData.XYZOUT,
+            self.container.outputData.DICTOUT,
+            self._annotate_model, self._annotate_dict)
+
+        # Merge harvested dictionaries into the project monomer library so
+        # downstream tasks see the ligand geometry. Best-effort.
+        for dict_file in self.container.outputData.DICTOUT[:n_dicts]:
+            try:
+                self.mergeDictToProjectLib(fileName=dict_file.__str__())
+            except Exception:
+                pass
         return CPluginScript.SUCCEEDED
+
+    def _annotate_model(self, item, path, meta=None):
+        item.annotation.set(f"Coot output: {path.name}")
+        item.subType.set(CPdbDataFile.SUBTYPE_MODEL)
+        item.contentFlag.set(
+            CPdbDataFile.CONTENT_FLAG_MMCIF if path.suffix == ".cif"
+            else CPdbDataFile.CONTENT_FLAG_PDB)
+
+    def _annotate_dict(self, item, path, meta=None):
+        item.annotation.set(f"Coot ligand dictionary: {path.name}")

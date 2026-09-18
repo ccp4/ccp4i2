@@ -16,3 +16,15 @@ class ImportMap(CImportFileBase):
         except Exception as e:
             return 'Not a readable CCP4/MRC map file: ' + str(e)
         return None
+
+    def finalize_output(self, out):
+        """Tag the imported map with the kind the user chose (CMapDataFile
+        SUBTYPE_*): normal / difference / anomalous / mask / half map. Half maps
+        are one of a pair for cross-validated refinement (servalcat --halfmaps)."""
+        control = self.container.controlParameters
+        if not (hasattr(control, 'MAP_SUBTYPE') and control.MAP_SUBTYPE.isSet()):
+            return
+        try:
+            out.subType.set(int(control.MAP_SUBTYPE))
+        except Exception:
+            out.subType = int(control.MAP_SUBTYPE)

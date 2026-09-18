@@ -35,7 +35,7 @@ import {
   TreeViewCancellableEvent,
   useTreeItem2,
 } from "@mui/x-tree-view";
-import { CheckBoxOutlined, Clear, Delete, DragIndicator, MoreVert } from "@mui/icons-material";
+import { CheckBoxOutlined, Clear, Delete, MoreVert } from "@mui/icons-material";
 import { useUiPreference } from "../lib/ui-preferences";
 import { useDraggable } from "@dnd-kit/core";
 import { useRouter } from "next/navigation";
@@ -813,19 +813,13 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
     const renderAvatar = () => {
       if (job) {
         // The avatar is also the drag handle. With icons hidden (a user
-        // preference, View menu) a narrow grip keeps dragging possible while
-        // giving the row the width the icon took.
+        // preference, View menu) no grip is shown at all -- a drag handle beside
+        // an otherwise icon-less row was more confusing than helpful now that
+        // dragging jobs is new (Paul's feedback). The row itself stays draggable
+        // instead: the drag listeners move to the row Stack below, so a
+        // press-and-move still drags while a plain click still opens/selects.
         if (!showJobIcons) {
-          return (
-            <Box
-              ref={setNodeRef}
-              {...listeners}
-              {...attributes}
-              sx={{ display: "inline-flex", cursor: "grab", color: "text.disabled", mr: 0.5 }}
-            >
-              <DragIndicator fontSize="small" />
-            </Box>
-          );
+          return null;
         }
         return (
           <CCP4i2JobAvatar
@@ -967,6 +961,12 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
             alignItems="center"
             spacing={1}
             sx={{ flexGrow: 1 }}
+            // When job icons are hidden there is no avatar to carry the drag
+            // handle, so the row itself becomes the drag surface. dnd-kit's
+            // movement threshold keeps a plain click opening/selecting the job.
+            {...(job && !showJobIcons
+              ? { ref: setNodeRef, ...listeners, ...attributes }
+              : {})}
           >
             {renderAvatar()}
             {renderContent()}

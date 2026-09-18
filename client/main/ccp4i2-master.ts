@@ -20,6 +20,8 @@ import { createWindow } from "./ccp4i2-create-window";
 import { setupZoomLevel } from "./ccp4i2-zoom";
 import { assessPython, listCcp4Dirs } from "./ccp4i2-python-suitability";
 import { registerExitHandlers, terminateProcessTree } from "./ccp4i2-process-tree";
+import { initAutoUpdater } from "./ccp4i2-updater";
+import { desktopLaunchCommand, parseOpenRoute } from "./ccp4i2-open-route";
 
 const isDev = !app.isPackaged; // ✅ Works in compiled builds
 
@@ -167,6 +169,19 @@ export const store = new Store<StoreSchema>({
 // Note: projectRoot is always computed via getProjectRoot(), not read from store
 // The store default is just for schema compatibility
 
+// One instance of the app. A second launch, such as a job process running
+// `<this executable> --open-route <path>` to open a window for a recorded
+// Moorhen session started from i2run, hands its argv to this instance and
+// exits. The Django child (and so every job) learns how to launch us from
+// CCP4I2_DESKTOP_LAUNCH, set before the child is spawned.
+const hasSingleInstanceLock = app.requestSingleInstanceLock();
+if (!hasSingleInstanceLock) {
+  app.quit();
+}
+process.env.CCP4I2_DESKTOP_LAUNCH = JSON.stringify(
+  desktopLaunchCommand(process.execPath, app.isPackaged, app.getAppPath())
+);
+
 let mainWindow: BrowserWindow | null = null;
 let nextServerPort: number | null = null;
 let nextServer: Server | null = null;
@@ -205,6 +220,37 @@ const getMainWindow = () => {
   }
 };
 
+// Routes asked for before the servers are up wait here; once the main
+// window exists they open in their own windows, like any Moorhen page.
+const pendingRoutes: string[] = [];
+const openRoute = (route: string) => {
+  if (!nextServerPort || !mainWindow) {
+    pendingRoutes.push(route);
+    return;
+  }
+  createWindow(`http://localhost:${nextServerPort}${route}`, store);
+};
+const openPendingRoutes = () => {
+  while (pendingRoutes.length > 0) openRoute(pendingRoutes.shift()!);
+};
+
+app.on("second-instance", (_event, argv) => {
+  const route = parseOpenRoute(argv);
+  if (route) {
+    openRoute(route);
+    return;
+  }
+  // A plain second launch: bring the app forward instead.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
+});
+
+// The same argument on our own launch (the app was not running yet).
+const startupRoute = parseOpenRoute(process.argv);
+if (startupRoute) pendingRoutes.push(startupRoute);
+
 app
   .whenReady()
   .then(async () => {
@@ -226,14 +272,47 @@ app
     // NEXT_PUBLIC_API_BASE_URL (for any client-side code that needs it)
     process.env.API_BASE_URL = `http://localhost:${djangoServerPort}`;
     process.env.NEXT_PUBLIC_API_BASE_URL = `http://localhost:${djangoServerPort}`;
+    // The desktop app is single-user: authentication is never required here (by
+    // design the setup page has no accounts/teams chrome). The Next middleware
+    // decides whether to gate on auth by reading NEXT_PUBLIC_REQUIRE_AUTH at
+    // RUNTIME -- so one build can serve cloud-auth or desktop-no-auth -- which
+    // means it otherwise inherits the ambient shell environment. A developer who
+    // has `export NEXT_PUBLIC_REQUIRE_AUTH=true` (for the web build) and then
+    // launches the desktop app FROM THAT TERMINAL turns auth on for a desktop
+    // with no Azure AD to complete it: config -> /auth/login -> ... loops with
+    // ERR_TOO_MANY_REDIRECTS. Pin it off so the desktop app is immune to the
+    // launching environment. (GH #502 -- .deb launched from a terminal failed
+    // while the GUI-launched AppImage, with a clean env, did not.)
+    process.env.NEXT_PUBLIC_REQUIRE_AUTH = "false";
     nextServer = await startNextServer(isDev, nextServerPort, djangoServerPort);
   })
   .then(async () => {
+    // Dev-only: clear the session HTTP cache before the window loads. The
+    // packaged app is built trailingSlash=true and serves a *permanent* 308
+    // /ccp4i2/config -> /ccp4i2/config/, which Chromium caches per-origin
+    // (localhost:3000). The dev server runs trailingSlash=false (serves 200),
+    // so a stale 308 cached by an earlier packaged run wedges dev into
+    // ERR_TOO_MANY_REDIRECTS on a page the server is answering correctly -- a
+    // non-obvious failure that cost a long debugging session (GH #513). Both
+    // run as the same Electron app, sharing this cache. Clearing it on dev
+    // start makes `npm run start` self-healing. Packaged is untouched.
+    if (isDev) {
+      try {
+        await session.defaultSession.clearCache();
+      } catch (e) {
+        console.warn("Dev cache clear failed (non-fatal):", e);
+      }
+    }
     // Use /ccp4i2 base path for multi-app integration
     mainWindow = await createWindow(
       `http://localhost:${nextServerPort}/ccp4i2/config`,
       store
     );
+    // Check for an app update in the background. No-ops in dev and on package
+    // types that can't self-update; failures are swallowed. A new app pulls its
+    // matching backend on next launch via the exact-pin (see ccp4i2-updater.ts).
+    initAutoUpdater(getMainWindow);
+    openPendingRoutes();
   });
 
 app.on("window-all-closed", () => {

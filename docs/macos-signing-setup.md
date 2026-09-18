@@ -104,19 +104,31 @@ the cert *and* the key. Skipping the CSR is the usual point of confusion.
    `MAC_CSC_KEY_PASSWORD` — **exactly**, no leading/trailing space.
 
    > **`MAC verification failed during PKCS12 import (wrong password?)`** in the
-   > build means `MAC_CSC_KEY_PASSWORD` does not match the `.p12`'s export
-   > password (or the `.p12`/base64 is corrupt). Fix by re-exporting the `.p12`
-   > with a known password and updating **both** secrets. Set the password
-   > non-interactively to remove all doubt (openssl route):
+   > build is misleading — the password is often correct. Its most common cause
+   > is the **`.p12` encryption algorithm**: OpenSSL 3.x exports `.p12` files
+   > with `PBES2` / `AES-256-CBC` by default, and Apple's `/usr/bin/security`
+   > **cannot import that** — it only reads the legacy `PBE-SHA1-3DES` scheme, and
+   > reports the failure as "wrong password". (`openssl … -info` reading the file
+   > locally proves nothing — openssl reads its own modern format fine.) Re-export
+   > with the **legacy** algorithm, then update `MAC_CSC_LINK` (the password
+   > secret is unchanged):
    > ```bash
-   > openssl pkcs12 -export -inkey DeveloperID.key -in DeveloperID.pem \
+   > openssl pkcs12 -export -legacy \
+   >   -inkey DeveloperID.key -in DeveloperID.pem \
+   >   -certpbe PBE-SHA1-3DES -keypbe PBE-SHA1-3DES -macalg SHA1 \
    >   -out DeveloperIDApplication.p12 -passout pass:YOURPASSWORD
    > ```
-   > Verify locally before updating secrets — this must succeed with the same
-   > password CI will use:
+   > Verify the **algorithm**, not just that it opens — you want `PBE1 … 3DES`,
+   > never `PBES2 … AES`:
    > ```bash
-   > openssl pkcs12 -in DeveloperIDApplication.p12 -passin pass:YOURPASSWORD -noout -info
+   > openssl pkcs12 -in DeveloperIDApplication.p12 -passin pass:YOURPASSWORD \
+   >   -info -noout -nokeys -nocerts 2>&1 | grep -i pbe
    > ```
+   > If import instead fails at **`set-key-partition-list … SecKeychainUnlock:
+   > passphrase not correct`** (the cert *did* import), that is electron-builder's
+   > auto-keychain, not your cert. The release workflow provisions the signing
+   > keychain itself to avoid this — see the "Configure macOS signing" step in
+   > `.github/workflows/release.yml`.
 
 ## 2. Notarisation API key → `APPLE_API_KEY_P8` + `_ID` + `_ISSUER`
 
@@ -134,7 +146,31 @@ the cert *and* the key. Skipping the CSR is the usual point of confusion.
    pbcopy < AuthKey_XXXXXXXXXX.p8    # paste as APPLE_API_KEY_P8
    ```
 
-## 3. Verify before cutting a release
+## 3. Turn signing on: the `ENABLE_MAC_SIGNING` **variable**
+
+The five secrets are necessary but **not sufficient**. Signing is opt-in behind
+a repository **variable**, so the workflow ships unsigned until you flip it — a
+build with every secret correctly set still logs *"signing disabled"* if this
+switch is missing. Set it:
+
+```bash
+gh variable set ENABLE_MAC_SIGNING --repo ccp4/ccp4i2 --body true
+# revert (ship unsigned again) with:  --body false
+```
+
+> **Critical — variable, not secret.** The workflow reads it as
+> `${{ vars.ENABLE_MAC_SIGNING }}`, which resolves **repository Variables only**.
+> If you add `ENABLE_MAC_SIGNING` as a *Secret* (the easy slip, since everything
+> else here is a secret), `vars.` reads empty and signing silently skips — the
+> build looks configured but ships unsigned. It must be a **Variable**
+> (Settings → Secrets and variables → **Actions** → **Variables**), set to
+> exactly `true`. Confirm with `gh variable list --repo ccp4/ccp4i2`.
+
+With the variable off, the macOS job logs
+`signing disabled (ENABLE_MAC_SIGNING != 'true') -> building UNSIGNED` and
+skips signing regardless of the secrets.
+
+## 4. Verify before cutting a release
 
 The Configure-signing step prints a **presence readout** (names only, never
 values). Trigger the release workflow via **workflow_dispatch** (Actions →

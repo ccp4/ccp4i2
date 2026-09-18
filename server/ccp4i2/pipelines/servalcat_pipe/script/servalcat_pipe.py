@@ -73,13 +73,32 @@ class servalcat_pipe(CPluginScript):
             )
         error = super(servalcat_pipe, self).validity()
 
-        # Warn when Free R flag is not set (recommended but optional)
-        if not self.container.inputData.FREERFLAG.isSet():
+        is_spa = str(self.container.controlParameters.DATA_METHOD) == 'spa'
+
+        # Free R is an X-ray cross-validation concept; SPA refinement
+        # cross-validates against the half maps instead and takes no Free R set,
+        # so only recommend one in xtal mode.
+        if not is_spa and not self.container.inputData.FREERFLAG.isSet():
             error.append(
                 klass=self.TASKNAME, code=200,
                 details='Free R flag is strongly recommended for refinement',
                 name=f'{self.TASKNAME}.container.inputData.FREERFLAG',
                 severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+
+        # SPA refinement puts -d <RES_MIN> on servalcat's command line
+        # unconditionally and builds its grid from d_min, so an unset resolution
+        # is not a soft default -- the run dies with "initialize_grid(): d_min is
+        # not set". Require it here (the wrapper's own validity() does too, but
+        # the pipeline is what users run, and it does not invoke the child's
+        # validity at edit time).
+        if is_spa and not self.container.controlParameters.RES_MIN.isSet():
+            error.append(
+                klass=self.TASKNAME, code=201,
+                details='Set the high resolution limit (d_min, in Angstrom) of '
+                        'your map; SPA refinement cannot run without it.',
+                name=f'{self.TASKNAME}.container.controlParameters.RES_MIN',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR,
             )
 
         return error
@@ -1217,17 +1236,18 @@ def exportJobFile(jobId=None, mode=None, fileInfo={}):
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         # The inner servalcat subjob writes the unsplit reflection file
-        # ("refined.mtz" for xtal, "refined_diffmap.mtz" for spa) before
-        # splitting it into the map-coefficient mini-MTZs. That unsplit file
-        # persists on disk, so locate the servalcat subjob and return it.
-        # Take the last servalcat subjob (there is normally one; a trailing
-        # validate_protein subjob does not produce it).
+        # ("refined.mtz" for xtal; "refined_maps.mtz" in servalcat 0.4+ or
+        # "refined_diffmap.mtz" in older versions for spa) before splitting it
+        # into the map-coefficient mini-MTZs. That unsplit file persists on disk,
+        # so locate the servalcat subjob and return it. Take the last servalcat
+        # subjob (there is normally one; a trailing validate_protein subjob does
+        # not produce it).
         childJobs = theDb.getChildJobs(jobId=jobId, details=True)
         servalcat_jobs = [cj for cj in childJobs if cj[2] == 'servalcat']
         for cj in reversed(servalcat_jobs):
             jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(
                 jobId=cj[1], create=False)
-            for name in ('refined.mtz', 'refined_diffmap.mtz'):
+            for name in ('refined.mtz', 'refined_maps.mtz', 'refined_diffmap.mtz'):
                 candidate = os.path.join(jobDir, name)
                 if os.path.exists(candidate):
                     return candidate

@@ -1,7 +1,14 @@
-import { DndContext, DragOverlay } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { PropsWithChildren, useCallback } from "react";
 import { useCCP4i2Window } from "../app-context";
-import { Avatar } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import { File, Job, Project } from "../types/models";
 import { useJob, useProjectJobs } from "../utils";
 import { useApi } from "../api";
@@ -59,6 +66,14 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
     [project_jobs, projects, fileItemToParameterArg]
   );
 
+  // Rows in the job list are both draggable and clickable. Without a distance
+  // threshold the pointer sensor claims the pointerdown and the click that
+  // would open the job never arrives.
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor)
+  );
+
   const isValidDrop = (file: File, item: any) => {
     if (!file) return false;
     if (!item) return false;
@@ -66,31 +81,35 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
   };
 
   const handleDragEnd = async (event: any) => {
+    setActiveDragItem(null);
+    // A click, or a drag released away from any droppable, ends with no `over`.
+    const over = event.over?.data?.current;
+    if (!over) return;
     if (event.active.data?.current?.job) {
       const context_job = event.active.data.current.job as Job;
-      if (!event.over.data?.current?.job) return;
-      if (!event.over.data?.current?.item) {
-        const job = event.over.data.current.job as Job;
-        setContextJob(job, context_job);
+      if (!over.job) return;
+      if (!over.item) {
+        setContextJob(over.job as Job, context_job);
       }
     } else if (event.active.data?.current?.file) {
       const file = event.active.data.current.file as File;
-      if (
-        !event.over.data?.current?.job ||
-        event.over.data?.current?.job?.status !== 1
-      )
-        return;
-      if (event.over.data?.current?.item) {
-        if (!isValidDrop(file, event.over.data.current.item)) return;
-        const job = event.over.data.current.job as Job;
-        setFileByDrop(job, event.over.data?.current?.item._objectPath, file);
+      if (over.job?.status !== 1) return;
+      if (over.item) {
+        if (!isValidDrop(file, over.item)) return;
+        setFileByDrop(over.job as Job, over.item._objectPath, file);
       }
     }
   };
 
+  // The dnd-kit draggable stores { job, file } as its data; files are
+  // disabled above, so a live overlay is always a job.
+  const dragJob = (activeDragItem as { job?: Job } | null)?.job;
+
   return (
     <DndContext
+      sensors={sensors}
       onDragEnd={handleDragEnd}
+      onDragCancel={() => setActiveDragItem(null)}
       onDragStart={({ active }) => {
         setActiveDragItem(active.data.current as File | Job);
 
@@ -127,17 +146,47 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
     >
       {props.children}
       <DragOverlay>
-        {activeDragItem ? (
-          <Avatar
-            src="/svgicons/ccp4i2.svg"
+        {dragJob ? (
+          // Show what is actually being dragged — the job as a compact,
+          // row-like chip — rather than a generic offset icon. dnd-kit is
+          // disabled for files (they use native HTML5 drag), so the overlay
+          // only ever previews a job. Keeping it small and anchored reads as
+          // the row itself moving, which is what the drag does (issue #432).
+          <Box
             sx={{
-              width: 64,
-              height: 64,
-              boxShadow: 3,
-              opacity: 0.8,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1,
+              px: 1.5,
+              py: 0.5,
+              maxWidth: 320,
+              bgcolor: "background.paper",
+              border: 1,
+              borderColor: "divider",
+              borderRadius: 1,
+              boxShadow: 4,
+              opacity: 0.95,
               pointerEvents: "none",
+              cursor: "grabbing",
             }}
-          />
+          >
+            <Avatar
+              src="/svgicons/ccp4i2.svg"
+              sx={{ width: 20, height: 20 }}
+            />
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: 600,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {dragJob.number ? `${dragJob.number}. ` : ""}
+              {dragJob.title || dragJob.task_name || "Job"}
+            </Typography>
+          </Box>
         ) : null}
       </DragOverlay>
     </DndContext>

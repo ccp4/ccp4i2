@@ -119,8 +119,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     (elements: any[]) =>
       elements.map(({ key, label, visible = () => true, onChange, ...extraProps }) => (
         <CCP4i2TaskElement
-          {...props}
           key={key}
+          {...props}
           itemName={key}
           qualifiers={{ guiLabel: label, ...extraProps }}
           visibility={visible}
@@ -142,7 +142,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               initiallyOpen: true,
             }}
             containerHint="BlockLevel"
-            key="Input data"
           >
             {renderElements(elementConfigs.inputData)}
           </CCP4i2ContainerElement>
@@ -155,7 +154,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               initiallyOpen: true,
             }}
             containerHint="FolderLevel"
-            key="Scattering"
           >
             {renderElements(elementConfigs.scatteringContent)}
           </CCP4i2ContainerElement>
@@ -168,7 +166,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               initiallyOpen: true,
             }}
             containerHint="FolderLevel"
-            key="Basic controls"
           >
             {renderElements(elementConfigs.basicControls)}
           </CCP4i2ContainerElement>
@@ -181,7 +178,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               initiallyOpen: true,
             }}
             containerHint="FolderLevel"
-            key="Similarity"
             visibility={visibility.isPartialModel}
           >
             {renderElements(elementConfigs.modelSimilarity)}

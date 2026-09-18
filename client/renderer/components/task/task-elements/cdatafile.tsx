@@ -406,7 +406,22 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
 
   const handleFileChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setFiles?.(event.currentTarget.files);
+      const input = event.currentTarget;
+      const picked = input.files;
+      // Copy the selection into an independent FileList before touching the
+      // input, so resetting its value below can't empty what we hand on.
+      let files: FileList | null = picked;
+      if (picked && picked.length && typeof DataTransfer !== "undefined") {
+        const dt = new DataTransfer();
+        for (let i = 0; i < picked.length; i++) dt.items.add(picked[i]);
+        files = dt.files;
+      }
+      setFiles?.(files);
+      // Clear the input's value so the SAME file can be chosen again after a
+      // Clear: an <input type="file"> fires no change event when its value is
+      // unchanged, which otherwise leaves a cleared field impossible to
+      // repopulate by re-picking the same path.
+      input.value = "";
     },
     [setFiles]
   );

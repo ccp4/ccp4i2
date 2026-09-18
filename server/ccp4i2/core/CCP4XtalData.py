@@ -121,6 +121,74 @@ def cells_are_compatible(params1, params2, tolerance=1.0):
     }
 
 
+def spacegroups_are_compatible(sg1, sg2):
+    """Compare two space groups for a sameCrystalAs model<->data pair.
+
+    A cell match alone does not mean two inputs share a crystal, and the CCP4
+    refinement binaries disagree on how they treat a space-group mismatch, so
+    the runtime check needs to distinguish two cases:
+
+      * **Different point group** (e.g. a monoclinic model against orthorhombic
+        data) -- an incompatible crystal symmetry. ``servalcat`` fails the job
+        outright ("Crystal symmetry mismatch between model and data"), and even
+        ``refmac5`` (which otherwise adopts the MTZ symmetry wholesale) is being
+        handed a model built in genuinely wrong symmetry. This is a blocker.
+      * **Same point group, different space group** (e.g. P2_1 vs P2, an
+        enantiomorph pair, or C222_1 vs P2_12_12_1) -- the cell and Laue
+        symmetry agree but the exact group differs. ``refmac5`` silently uses
+        the MTZ group; ``servalcat`` silently uses the *model* group -- so the
+        result depends on which backend runs. Advisory, overridable.
+
+    The comparison is by point group (the crystal-symmetry invariant), derived
+    with gemmi so no CCP4 binary is needed. Names are compared gemmi-normalised
+    so different spellings of the same group ("C 2 2 21" / "C2221") agree.
+
+    Args:
+        sg1, sg2: space-group H-M names (str), or None.
+
+    Returns:
+        dict, or None if either name is missing or unrecognised (caller skips):
+            'sameSpaceGroup': bool  -- exact group match (gemmi-normalised)
+            'sameLaue': bool        -- Laue classes match
+            'samePointGroup': bool  -- point groups (crystal symmetry) match
+            'pointGroup1' / 'pointGroup2': str -- the point-group H-M symbols
+            'laue1' / 'laue2': str  -- the Laue-class symbols
+            'spaceGroup1' / 'spaceGroup2': str -- normalised group names
+
+    The caller selects which of these must match via the ``sameCrystalMatch``
+    qualifier (pointGroup / laue / spaceGroup); the cell is a separate axis,
+    handled by cells_are_compatible.
+    """
+    if not sg1 or not sg2:
+        return None
+    try:
+        import gemmi
+    except Exception:
+        return None
+    try:
+        g1 = gemmi.SpaceGroup(str(sg1).strip())
+        g2 = gemmi.SpaceGroup(str(sg2).strip())
+    except Exception:
+        # An unrecognised / malformed space-group name is not something to
+        # raise a mismatch over -- the caller skips, as with an absent cell.
+        return None
+    if g1 is None or g2 is None:
+        return None
+    pg1, pg2 = g1.point_group_hm(), g2.point_group_hm()
+    lg1, lg2 = g1.laue_str(), g2.laue_str()
+    return {
+        'sameSpaceGroup': g1.xhm() == g2.xhm(),
+        'sameLaue': lg1 == lg2,
+        'samePointGroup': pg1 == pg2,
+        'pointGroup1': pg1,
+        'pointGroup2': pg2,
+        'laue1': lg1,
+        'laue2': lg2,
+        'spaceGroup1': g1.xhm(),
+        'spaceGroup2': g2.xhm(),
+    }
+
+
 class _ColumnInfo:
     """Lightweight wrapper around an MTZ column label and type.
 
@@ -2293,7 +2361,10 @@ class CMapDataFile(CDataFile):
     # Persisted to File.sub_type by the gleaner and read by the Moorhen viewers
     # and the scene format to render each kind appropriately. MASK lets a mask
     # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
-    # an ordinary density map, which is otherwise the same FileType.
+    # an ordinary density map, which is otherwise the same FileType. HALFMAP marks
+    # a cryo-EM half map (one of a pair) so it is recognised by tasks that take
+    # half maps for FSC cross-validation (servalcat --halfmaps) and not confused
+    # with a full map; it renders as ordinary density.
 
     """A CCP4 Map file"""
     class Meta:
@@ -2305,6 +2376,9 @@ class CMapDataFile(CDataFile):
             "guiLabel": 'Map',
             "toolTip": 'A map in CCP4/MRC format',
             "helpFile": 'data_files#map_files',
+            # Fetched on the server (lib/utils/files/repository_fetch.py), not
+            # through the browser: maps are large and arrive gzipped.
+            "downloadModes": ['emdb'],
         }
         content_qualifiers = {
             "subType": {'default': None},
@@ -2314,6 +2388,7 @@ class CMapDataFile(CDataFile):
     SUBTYPE_DIFFERENCE = 2       # difference map (Fo-Fc)
     SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
     SUBTYPE_MASK = 4             # real-space mask (mode-0 region map)
+    SUBTYPE_HALFMAP = 5          # cryo-EM half map (one of a pair, for FSC cross-validation)
 
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -4569,6 +4644,25 @@ class CMtzData(CDataFileContent):
         return rv
 
 
+def _looks_like_xds(file_path):
+    """True if this text reflection file is XDS rather than scalepack.
+
+    XDS writes a header of '!' directives -- '!FORMAT=XDS_ASCII' for
+    XDS_ASCII.HKL and CORRECT.HKL, '!OUTPUT_FILE=INTEGRATE.HKL' for
+    INTEGRATE.HKL -- so the leading '!' is the marker, not any one keyword.
+    Scalepack opens with a symmetry-operator count or a version number and
+    never with '!'.
+
+    An unreadable file is reported as not-XDS so the caller takes the
+    scalepack path and raises the error there, as it did before.
+    """
+    try:
+        with open(file_path, 'r', errors='replace') as stream:
+            return stream.readline().lstrip().startswith('!')
+    except OSError:
+        return False
+
+
 class CUnmergedDataContent(CDataFileContent):
 
 
@@ -4790,17 +4884,27 @@ class CUnmergedDataContent(CDataFileContent):
             elif suffix in ['.cif', '.mmcif', '.ent']:
                 self._load_mmcif_file(file_path, gemmi, error)
 
-            # Handle Scalepack format (.sca, .hkl)
+            # Handle the text reflection formats (.sca, .hkl).
+            #
+            # The extension does not settle this: XDS writes .HKL (XDS_ASCII.HKL,
+            # INTEGRATE.HKL) and so does scalepack in some pipelines, so the
+            # first line decides. XDS files open with '!' directives
+            # ('!FORMAT=XDS_ASCII...', '!OUTPUT_FILE=INTEGRATE.HKL...') and
+            # scalepack files never do -- theirs starts with a reflection count
+            # or a version number. Dispatching on extension alone used to read
+            # an XDS header as a scalepack one, which silently yielded
+            # format='sca' and a "space group" of "MERGE=FALSE
+            # FRIEDEL'S_LAW=FALSE", and discarded the cell and wavelength that
+            # gemmi reads perfectly well.
             elif suffix in ['.sca', '.hkl']:
-                self._load_scalepack_file(file_path, error)
-
-            # Handle XDS files (INTEGRATE.HKL, XDS_ASCII.HKL)
-            elif 'INTEGRATE' in path_obj.name or 'XDS_ASCII' in path_obj.name or suffix == '.hkl':
-                # Try XDS format first
-                try:
-                    self._load_xds_file(file_path, gemmi, error)
-                except:
-                    # Fall back to Scalepack
+                if _looks_like_xds(file_path):
+                    try:
+                        self._load_xds_file(file_path, gemmi, error)
+                    except Exception:
+                        # A truncated or unusual XDS file: better a scalepack
+                        # reading than none, as before.
+                        self._load_scalepack_file(file_path, error)
+                else:
                     self._load_scalepack_file(file_path, error)
 
             elif suffix == '.shelx':

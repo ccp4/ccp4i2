@@ -45,8 +45,18 @@ def _normalize_int_qualifier(value) -> Union[int, List[int], None]:
         return None
 
 
-def _populate_file_from_context(dobj: CDataFile, context_job_id: str, the_job):
-    """Populate a single CDataFile from context job outputs."""
+def _populate_file_from_context(dobj: CDataFile, context_job_id: str, the_job,
+                                claimed: set = None):
+    """Populate a single CDataFile from context job outputs.
+
+    ``claimed`` is a set of file UUIDs already assigned to earlier sibling slots
+    in this pass. A slot prefers a candidate no sibling has taken, so two
+    half-map inputs draw the two *distinct* half maps rather than the same one
+    twice. This is safe across all slots at once: by the mini-MTZ data model,
+    two slots only ever see the same candidate when they share
+    (mimeType, subType, contentFlag) -- i.e. they are genuinely interchangeable.
+    Slots with different criteria query disjoint pools and never collide.
+    """
     sub_type = dobj.qualifiers("requiredSubType")
     content_flag = dobj.qualifiers("requiredContentFlag")
     sub_type = _normalize_int_qualifier(sub_type)
@@ -70,7 +80,16 @@ def _populate_file_from_context(dobj: CDataFile, context_job_id: str, the_job):
         dobj._name, len(file_id_list)
     )
     if len(file_id_list) > 0:
-        _set_file_from_db(dobj, file_id_list[0], the_job)
+        # Prefer a candidate no sibling slot has claimed; if every candidate is
+        # already taken (e.g. only one file exists for two slots) fall back to
+        # the first, so this never populates less than before.
+        chosen = next(
+            (fid for fid in file_id_list if claimed is None or fid not in claimed),
+            file_id_list[0],
+        )
+        if claimed is not None:
+            claimed.add(chosen)
+        _set_file_from_db(dobj, chosen, the_job)
 
 
 def _set_file_from_db(dobj: CDataFile, file_uuid: str, the_job):
@@ -91,7 +110,8 @@ def _set_file_from_db(dobj: CDataFile, file_uuid: str, the_job):
     dobj.setContentFlag()
 
 
-def _populate_file_lists_from_context(input_data, context_job_id: str, the_job):
+def _populate_file_lists_from_context(input_data, context_job_id: str, the_job,
+                                      claimed: set = None):
     """Find empty CList objects with file subItems and populate from context.
 
     When a CList like DICT_LIST starts empty, find_all_files() discovers nothing
@@ -164,9 +184,14 @@ def _populate_file_lists_from_context(input_data, context_job_id: str, the_job):
         )
 
         for file_uuid in file_id_list:
+            # Don't re-add a file a sibling scalar slot already claimed.
+            if claimed is not None and file_uuid in claimed:
+                continue
             new_item = child.makeItem()
             child.append(new_item)
             _set_file_from_db(new_item, file_uuid, the_job)
+            if claimed is not None:
+                claimed.add(file_uuid)
 
 
 def _is_set(obj):
@@ -266,20 +291,26 @@ def set_input_by_context_job(
         [f._name for f in dobj_list]
     )
 
+    # File UUIDs already assigned in this pass, so sibling slots drawing from the
+    # same pool (e.g. the two half-map inputs) get distinct files. See
+    # _populate_file_from_context for why one shared set is safe across all slots.
+    claimed: set = set()
+
     dobj: CDataFile
     for dobj in dobj_list:
         if context_job_id is None:
             dobj.unSet()
             continue
 
-        _populate_file_from_context(dobj, context_job_id, the_job)
+        _populate_file_from_context(dobj, context_job_id, the_job, claimed)
 
     # Handle CList objects whose subItem is a CDataFile with fromPreviousJob=True.
     # When a CList (e.g. DICT_LIST) starts empty, find_all_files() finds nothing
     # inside it because there are no items to traverse. We need to find such lists,
     # query for matching files from the context job, and populate them.
     if context_job_id is not None:
-        _populate_file_lists_from_context(input_data, context_job_id, the_job)
+        _populate_file_lists_from_context(input_data, context_job_id, the_job,
+                                          claimed)
 
     # What the task declares it shares with the job before it, beyond files
     if context_job_id is not None and getattr(the_job_plugin, "INHERITS_FROM_CONTEXT", ()):

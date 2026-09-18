@@ -1,331 +1,242 @@
+"""Interactive Coot 0.9 session, database-connected via the cootbridge.
+
+The 0.9 twin of the coot1 wrapper: launch Coot with a Python-2 stub
+script and an environment carrying only connection details and the job
+identity. The stub loads the shared data layer (api_client) and the
+0.9 adapter (coot09_loader) directly by file path - Coot 0.9's
+embedded interpreter is Python 2.7 and cannot import the ccp4i2
+package - hands them the flat-namespace Coot functions they need, and
+the adapter fetches and loads the job's input data.
+
+Retained legacy behaviour: the classic COOT_FILE_DROP/output<N> save
+contract for harvest, keybindings, COOTSTATEFILE seeding, and best-
+effort inlining of COOTSCRIPTFILE scripts (with a no-op shim for the
+retired ccp4i2Interface object those scripts referenced, so they
+degrade instead of crashing). The legacy in-Coot GTK2 menu system
+(ccp4i2CootInterface) is gone by design; a GTK2 browser over the
+shared browse model is a later tier.
+"""
+
 import os
-import sys
+from pathlib import Path
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_rebuild(CPluginScript):
-#class coot_rebuild(CInternalPlugin):
-
-    TASKNAME = 'coot_rebuild'
-    TASKCOMMAND = 'coot'
+    TASKNAME = "coot_rebuild"
+    TASKCOMMAND = "coot"
     ASYNCHRONOUS = True
 
-    ERROR_CODES = {  200 : { 'description' : 'Coot exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
+    ERROR_CODES = {
+        200: {"description": "Coot exited with error status"},
+        201: {"description": "Failed in harvest operation"},
+        202: {"description": "Failed in processOutputFiles"},
+    }
 
     def makeCommandAndScript(self):
-        self.dropDir = os.path.join(self.workDirectory,'COOT_FILE_DROP')
-        if not os.path.exists(self.dropDir):
-          try:
-            os.mkdir(self.dropDir)
-          except:
-            self.dropDir = self.workDirectory
-            print('Could not make dropDir reset to',self.dropDir)
+        work_dir = Path(self.getWorkDirectory())
+        self.dropDir = str(work_dir / "COOT_FILE_DROP")
+        try:
+            os.makedirs(self.dropDir)
+        except OSError:
+            if not os.path.isdir(self.dropDir):
+                self.dropDir = str(work_dir)
 
-        # Copy a startup state file to the drop directory
-        if self.container.inputData.COOTSTATEFILE.isSet(): self.copyStateFile()
+        from ccp4i2.cootbridge import COOT09_STARTUP_STUB
+        from ccp4i2.cootbridge.handshake import export_handshake
 
-        # Make a script file with additional menu options to save to i2
-        self.cootScriptPath = os.path.normpath(os.path.join(self.workDirectory,'script.py'))
-        # Declare script text then re.sub in the variables
-        i2dir = CCP4Utils.getCCP4I2Dir()
-        script = """
-from __future__ import division
-import os, sys
-import __builtin__
-pythonDefsFile = os.path.normpath('"""+i2dir+"""')
-sys.path.append(pythonDefsFile)
-#Here provide that module with "global function calls it will need
-for cootFunction in [coot_menubar_menu, add_simple_coot_menu_menuitem, read_pdb, set_molecule_name, make_and_draw_map, auto_read_make_and_draw_maps, read_cif_dictionary, save_coordinates, save_state_file_py, molecule_chooser_gui, residue_centre, set_rotation_centre, handle_read_draw_molecule_with_recentre, refine_zone, model_molecule_number_list, interesting_things_gui, file_to_preferences, parse_wwpdb_validation_xml, sort_subgroups, validation_to_gui, add_status_bar_text, molecule_name]:
-    setattr(__builtin__, cootFunction.__name__, cootFunction)
+        export_handshake(self, work_dir, Path(self.dropDir))
 
-from wrappers.coot_rebuild.script import ccp4i2CootInterface
-print('Managed to load ccp4i2CootInterface')
-ccp4i2Interface = ccp4i2CootInterface.ccp4i2CootInterface(dropDir=r'"""+self.dropDir+"""')
-print(ccp4i2CootInterface, ccp4i2Interface)
-try:
-    ccp4i2Interface.installMenus()
-except Exception as e:
-    print(e)
-"""
-
-        if self.container.inputData.USEKEYBINDINGS.isSet() and self.container.inputData.USEKEYBINDINGS:
-            script+="""
-file_to_preferences('template_key_bindings.py')
-"""
-
-        if self.container.inputData.XYZIN_LIST.isSet():
-            try:
-                iFile = 1
-                for XYZIN in self.container.inputData.XYZIN_LIST:
-                    if os.path.isfile(XYZIN.__str__()):
-                        if XYZIN.__str__().lower().endswith("cif"):
-                            script += "try:\n"
-                            script += ("  filePath = r'"+XYZIN.__str__()+"'\n")
-                            script += ("  MolHandle_"+str(iFile)+"=read_pdb(filePath)\n")
-                            script += ("  ccp4i2Interface.patchMoleculeName(MolHandle_"+str(iFile)+", filePath, True)\n")
-                            script += "except Exception as err:\n  print('Error {} loading coordinates {}'.format(err, filePath))\n  pass\n"
-                        else:
-                            script += "try:\n"
-                            script += ("  filePath = r'"+XYZIN.__str__()+"'\n")
-                            script += ("  MolHandle_"+str(iFile)+"=read_pdb(filePath)\n")
-                            script += ("  ccp4i2Interface.patchMoleculeName(MolHandle_"+str(iFile)+", filePath)\n")
-                            script += "except Exception as err:\n  print('Error {} loading coordinates {}'.format(err, filePath))\n  pass\n"
-                    else:
-                        print('coot_rebuild.makeCommandAndScript XYZIN does not exist:',XYZIN.__str__())
-                    iFile += 1
-            except:
-                #an issue with the existence of files
-                pass
-        if self.container.inputData.FPHIIN_LIST.isSet():
-            try:
-                iFile = 1
-                for FPHIIN in self.container.inputData.FPHIIN_LIST:
-                    print(' reading file number ' + str ( iFile ))
-                    if os.path.isfile(FPHIIN.__str__()):
-                        script += "try:\n"
-                        script += ("  filePath = r'"+FPHIIN.__str__()+"'\n")
-                        script += ("  MapHandle_"+str(iFile)+"=make_and_draw_map(filePath, 'F', 'PHI', 'PHI', 0, 0)\n")
-                        script += ("  ccp4i2Interface.patchMoleculeName(MapHandle_"+str(iFile)+", filePath)\n")
-                        script += "except Exception as err:\n  print('Error {} loading map {}'.format(err, filePath))\n  pass\n"
-                    else:
-                        print('coot_rebuild.makeCommandAndScript FPHIIN does not exist:',FPHIIN.__str__())
-                    iFile += 1
-            except:
-                print(' Exception ')
-                #an issue with the existence of files
-                pass
-        if self.container.inputData.DELFPHIIN_LIST.isSet():
-            try:
-                iFile = 1
-                for DELFPHIIN in self.container.inputData.DELFPHIIN_LIST:
-                    print(' reading diff file number ' + str ( iFile ))
-                    if os.path.isfile(DELFPHIIN.__str__()):
-                        script += "try:\n"
-                        script += ("  filePath = r'"+DELFPHIIN.__str__()+"'\n")
-                        script += ("  DifMapHandle_"+str(iFile)+"=make_and_draw_map(filePath, 'F', 'PHI', 'PHI', 0, 1)\n")
-                        script += ("  ccp4i2Interface.patchMoleculeName(DifMapHandle_"+str(iFile)+",filePath)\n")
-#Make anomolous difference maps white.
-                        if DELFPHIIN.subType == 3:
-                            script += ("  set_map_colour(DifMapHandle_"+str(iFile)+",0.75,0.9,0.75)\n")
-                        script += "except Exception as err:\n  print('Error {} loading difmap {}'.format(err, filePath))\n  pass\n"
-                    else:
-                        print('coot_rebuild.makeCommandAndScript FPHIIN does not exist:',DELFPHIIN.__str__())
-                    iFile += 1
-            except:
-                print(' Exception ')
-                #an issue with the existence of files
-                pass
-
-        if self.container.inputData.DELFPHIINANOM_LIST.isSet():
-            try:
-                iFile = 1
-                for DELFPHIIN in self.container.inputData.DELFPHIINANOM_LIST:
-                    print(' reading anomalous diff file number ' + str ( iFile ))
-                    if os.path.isfile(DELFPHIIN.__str__()):
-                        script += "try:\n"
-                        script += ("  filePath = r'"+DELFPHIIN.__str__()+"'\n")
-                        script += ("  DifMapHandle_"+str(iFile)+"=make_and_draw_map(filePath, 'F', 'PHI', 'PHI', 0, 1)\n")
-                        script += ("  ccp4i2Interface.patchMoleculeName(DifMapHandle_"+str(iFile)+",filePath)\n")
-#Make anomolous difference maps white.
-                        if DELFPHIIN.subType == 3:
-                            script += ("  set_map_colour(DifMapHandle_"+str(iFile)+",0.75,0.9,0.75)\n")
-                        script += "except Exception as err:\n  print('Error {} loading difmap {}'.format(err, filePath))\n  pass\n"
-                    else:
-                        print('coot_rebuild.makeCommandAndScript FPHIIN does not exist:',DELFPHIIN.__str__())
-                    iFile += 1
-            except:
-                print(' Exception ')
-                #an issue with the existence of files
-                pass
-                
+        # Per-job extras the static stub reads from the environment, rather
+        # than being interpolated into generated source.
+        if self.container.inputData.USEKEYBINDINGS.isSet() and \
+                self.container.inputData.USEKEYBINDINGS:
+            os.environ["CCP4I2_COOT_KEYBINDINGS"] = "1"
+        else:
+            os.environ.pop("CCP4I2_COOT_KEYBINDINGS", None)
         if self.container.inputData.COOTSCRIPTFILE.isSet():
-            scriptLines = open(self.container.inputData.COOTSCRIPTFILE.fullPath.__str__()).readlines()
-            if len(scriptLines)>0:
-              script += 'try:\n'
-              for line in scriptLines:
-                  #MN from __future__ imports have to be at top of a module
-                  if not "from __future__ import" in line:
-                    #SJM - horrible kludge to deal with hopefully temporary problem with the Python in CCP4 Coot.
-                    #SJM - horrible kludge to deal with some filenames not being Windows compatible
-                    if "six.moves" in line:
-                        script += ('    '+line.replace("from six.moves import","from rdkit.six.moves import") + '\n')
-                    elif "with open(" in line and "win" in sys.platform:
-                        script += ('    '+line.replace("with open(","with open(r") + '\n')
-                    elif "with gzip.open(" in line and "win" in sys.platform:
-                        script += ('    '+line.replace("with gzip.open(","with gzip.open(r") + '\n')
-                    elif "handle_read_draw_probe_dots_unformatted(" in line and "win" in sys.platform:
-                        script += ('    '+line.replace("handle_read_draw_probe_dots_unformatted(","handle_read_draw_probe_dots_unformatted(r") + '\n')
-                    elif "os.remove (" in line and "win" in sys.platform:
-                        script += ('    '+line.replace("os.remove (","os.remove (r") + '\n')
-                    else:
-                        script += ('    '+line + '\n')
-              script += 'except:\n    pass\n'
+            os.environ["CCP4I2_COOTSCRIPTFILE"] = \
+                self.container.inputData.COOTSCRIPTFILE.fullPath.__str__()
+        else:
+            os.environ.pop("CCP4I2_COOTSCRIPTFILE", None)
 
-        CCP4Utils.saveFile(self.cootScriptPath,script)
+        if self.container.inputData.COOTSTATEFILE.isSet():
+            self.copyStateFile()
 
-        clArgs = ['--no-state-script','--python']
-
-        #clArgs = ['--python','--pdb',self.container.inputData.XYZIN.fullPath.__str__()]
-
-
-
-        dict_is_meaningful = True
+        cl_args = ["--no-state-script", "--python"]
         if self.container.inputData.DICT.isSet():
-
-            try:
-                from Bio.PDB.MMCIF2Dict import MMCIF2Dict
-
-                mmcif_dict = MMCIF2Dict ( str ( self.container.inputData.DICT.fullPath.__str__() ) )
-                lib_name    = mmcif_dict['_lib_name']
-                lib_version = mmcif_dict['_lib_version']
-                lib_update  = mmcif_dict['_lib_update']
-
-                print(lib_name[0])
-                print(lib_version[0])
-                print(lib_update[0])
-                #MN This test does not work on dicts made by ACEDRG, which show up as ??? for these properties
-                #if lib_name[0] == '?' and lib_version[0] == '?' and lib_update[0] == '?' :
-                #    dict_is_meaningful = False
-            except:
-                print('Bio python probably not available in this build of ccp4')
-
-        if self.container.inputData.DICT.isSet() and dict_is_meaningful :
-            clArgs += ['--dictionary']
-            clArgs += [self.container.inputData.DICT.fullPath.__str__()]
-
-
-        #MN Please talk to me before changing the below.  COOTSTATEFILE has almost no place in how
-        #i2 is used, but is incorporated into script.py above.
-        clArgs += ['--script',self.cootScriptPath ]
-
-        self.appendCommandLine(clArgs)
-
+            cl_args += ["--dictionary",
+                        self.container.inputData.DICT.fullPath.__str__()]
+        cl_args += ["--script", str(COOT09_STARTUP_STUB)]
+        self.appendCommandLine(cl_args)
         return CPluginScript.SUCCEEDED
 
-
-    def numberOfOutputFiles(self):
-        import glob
-        outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
-        outList += glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.cif')))
-        #print 'numberOfOutputFiles outList',os.path.join(self.dropDir,'output*.pdb'),outList
-        #print 'numberOfOutputFiles xmlList',glob.glob(os.path.normpath(os.path.join(self.workDirectory,'*.xml')))
-        maxIndx = 0
-        for f in outList:
-           fpath,fname = os.path.split(f)
-           #print 'numberOfOutputFiles  fpath,fname', fpath,fname
-           maxIndx =  max(maxIndx,int(fname[6:-4]))
-        return maxIndx
-
-    def processOutputFiles(self):
-        try:
-            # First up import PDB files that have been output
-
-            import glob
-            import os
-            import shutil
-            outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
-            outList += glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.cif')))
-
-            xyzoutList = self.container.outputData.XYZOUT
-            for outputPDB in outList:
-                fname = os.path.split(outputPDB)[1]
-                iFile = int(fname[6:-4])
-                newPath = str(xyzoutList[iFile].fullPath)
-                if fname.endswith(".cif") and newPath.endswith(".pdb"):
-                    newPath = newPath[:-4] + ".cif"
-                    xyzoutList[iFile].setFullPath(newPath)
-                os.rename(outputPDB, newPath)
-                xyzoutList[iFile].annotation = "Coot output file number"+str(iFile)
-                xyzoutList[iFile].subType = 1
-            #Here truncate the xyzoutList back to the numberof files that were actually found
-            xyzoutList = xyzoutList[0:len(outList)]
-
-            #Ligand builder places output cifs in the coot-cif directory as prorg-out.cif
-            #'prodrgify this residue' places output cifs in the coot-cif directory as prodrg-???.cif
-            #pyrogen create "TLC"_pyrogen.cif
-            cifOutList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'coot-ccp4', 'prodrg-*.cif')))
-            cifOutList += glob.glob(os.path.normpath(os.path.join(self.workDirectory,'coot-ccp4', 'prodrg-*.cif')))
-            cifOutList += glob.glob(os.path.normpath(os.path.join(self.workDirectory,'*pyrogen.cif')))
-            cifOutList += glob.glob(os.path.normpath(os.path.join(self.workDirectory,'acedrg-*.cif')))
-
-            dictoutList = self.container.outputData.DICTOUT
-            for iFile, outputCIF in enumerate(cifOutList):
-                fpath,fname = os.path.split(outputCIF)
-                os.rename(outputCIF, dictoutList[iFile].fullPath.__str__())
-                if 'acedrg' in fname: annotation='Coot/Acedrg created geometry for ligand'
-                elif 'pyrogen' in fname: annotation='Coot/Pyrogen created geometry for ligand'
-                elif 'prodrg' in fname: annotation='Coot/Prodrg created geometry for ligand'
-                else: annotation='Coot/Prodrg created geometry for ligand'
-                dictoutList[iFile].annotation = annotation
-            #Here truncate the dictoutList back to the numberof files that were actually found
-            dictoutList = dictoutList[0:len(cifOutList)]
-
-            # Create a trivial xml output file
-            from lxml import etree
-            self.xmlroot = etree.Element('coot_rebuild')
-            e = etree.Element('number_output_files')
-            e.text = str(self.numberOfOutputFiles())
-            e = etree.Element('number_output_dicts')
-            e.text = str(len(dictoutList))
-            self.xmlroot.append(e)
-
-            #Separate out here activity to attempt merge into project dictionary....this seems flakey,
-            #but is needed for ongoing work, so I ammaking it give an report a warning in case of failure, rather than
-            #offer the sad face ofdoom
-            try:
-                for dictFile in dictoutList:
-                    try:
-                        self.mergeDictToProjectLib(fileName=dictFile.__str__())
-                    except:
-                        self.addReportWarning('mergeDictToProjectLib raised exception: Does not compromise output Dict')
-
-                    ligNodes = self.xmlroot.xpath('//LIGANDS')
-                    if len(ligNodes) == 0: ligNode = etree.SubElement(self.xmlroot,'LIGANDS')
-                    else: ligNode = ligNodes[0]
-                    try:
-                        annotation='Coot/Prodrg created geometry for'
-                        for item in dictFile.fileContent.monomerList:
-                            lig =  etree.SubElement(ligNode,'ligand')
-                            lig.text = str(item.three_letter_code)
-                            annotation += (' ' + str(item.three_letter_code))
-                        dictFile.annotation = annotation
-                    except:
-                        self.addReportWarning('fileContent.monomerList raised exception: Does not compromise output Dict')
-            except:
-                self.addReportWarning('failed elsewhere in merging/analysing dicts: Does not compromise output Dict')
-        except:
-            self.appendErrorReport(202,'Data harvesting failed')
-
-        CCP4Utils.saveEtreeToFile(self.xmlroot,self.makeFileName('PROGRAMXML'))
-        if ( len(outList) + len(cifOutList) ) > 0:
-          return CPluginScript.SUCCEEDED
-        else:
-          return CPluginScript.MARK_TO_DELETE
-
-    def clearCootWorkingDir(self):
-        # Remove the working directory state and history files
-        import glob
-        zeroFileList = glob.glob(os.path.normpath(os.path.join(self.projectDirectory(),'CCP4_COOT','0-coot*')))
-        for filn in zeroFileList:
-            os.remove(filn)
+    # -- state file seeding (legacy behaviour, bug fixed) -------------------
 
     def copyStateFile(self):
-        newText = ''
-        text = CCP4Utils.readFile(self.container.inputData.COOTSTATEFILE.fullPath.__str__())
-        for line in text.split('\n'):
-          if line.count('handle-read-draw-molecule'):
-            newText = newText + '(handle-read-draw-molecule "'+self.container.inputData.XYZIN_LIST[0].__str__()+'" 1)\n'
-          else:
-            newText = newText + line +'\n'
-        CCP4Utils.saveFile(os.path.normpath(os.path.join(self.dropDir,'0-coot-history.scm')),text)
+        """Seed the session from a saved state file, re-pointing its
+        molecule load at XYZIN_LIST[0]."""
+        text = CCP4Utils.readFile(
+            self.container.inputData.COOTSTATEFILE.fullPath.__str__())
+        new_text = ""
+        for line in text.split("\n"):
+            if "handle-read-draw-molecule" in line and \
+                    self.container.inputData.XYZIN_LIST.isSet() and \
+                    len(self.container.inputData.XYZIN_LIST) > 0:
+                new_text += ('(handle-read-draw-molecule "' +
+                             self.container.inputData.XYZIN_LIST[0].__str__() +
+                             '" 1)\n')
+            else:
+                new_text += line + "\n"
+        # The legacy version computed new_text and then saved the
+        # unpatched original - documented as defect #5 in
+        # docs/interrupt-and-resume.md. Save the patched text.
+        CCP4Utils.saveFile(
+            os.path.join(self.dropDir, "0-coot-history.scm"), new_text)
+
+    # -- harvesting ---------------------------------------------------------
+
+    def numberOfOutputFiles(self):
+        from ccp4i2.cootbridge import api_client
+
+        outputs = api_client.harvestable_outputs(self.dropDir)
+        return outputs[-1][0] if outputs else 0
+
+    def processOutputFiles(self):
+        from lxml import etree
+
+        from ccp4i2.cootbridge import api_client
+        from ccp4i2.core.CCP4ModelData import CPdbDataFile
+
+        work_dir = Path(self.getWorkDirectory())
+        self.xmlroot = etree.Element("coot_rebuild")
+        n_models = 0
+        n_dicts = 0
+        try:
+            # Models saved through the drop-dir contract.
+            xyzout = self.container.outputData.XYZOUT
+            for number, path in api_client.harvestable_outputs(self.dropDir):
+                source = Path(path)
+                target = work_dir / f"XYZOUT_{n_models}{source.suffix}"
+                while target.exists():
+                    target = work_dir / \
+                        f"XYZOUT_{n_models}_{target.stem}{source.suffix}"
+                os.replace(source, target)
+                while n_models >= len(xyzout):
+                    xyzout.append(xyzout.makeItem())
+                xyzout[n_models].setFullPath(str(target))
+                xyzout[n_models].annotation.set(
+                    f"Coot output file number {number}")
+                xyzout[n_models].subType.set(CPdbDataFile.SUBTYPE_MODEL)
+                xyzout[n_models].contentFlag.set(
+                    CPdbDataFile.CONTENT_FLAG_MMCIF if source.suffix == ".cif"
+                    else CPdbDataFile.CONTENT_FLAG_PDB)
+                n_models += 1
+            # Truncate in place; XYZOUT.set(slice) would deep-copy the
+            # items through CDataFile.get()/set() and drop annotation and
+            # subType (see coot1.py).
+            while len(xyzout) > n_models:
+                xyzout.pop()
+
+            # Dictionaries left behind by Coot's ligand tools. Two passes:
+            # the classic name patterns (acedrg/pyrogen/prodrg), then a
+            # content sniff of any other loose CIF in the work/drop dirs -
+            # so a builder dict whose name matches no pattern is still
+            # caught. output<N>.cif saved coordinates classify as models
+            # and are skipped.
+            import glob as _glob
+
+            from ccp4i2.cootbridge.harvest import cif_is_restraint_dictionary
+
+            cif_list = []
+            seen = set()
+
+            def _add(candidate):
+                real = os.path.normpath(candidate)
+                if real not in seen and os.path.isfile(real):
+                    seen.add(real)
+                    cif_list.append(real)
+
+            for pattern in (
+                os.path.join(self.dropDir, "coot-ccp4", "prodrg-*.cif"),
+                os.path.join(str(work_dir), "coot-ccp4", "prodrg-*.cif"),
+                os.path.join(str(work_dir), "*pyrogen.cif"),
+                os.path.join(str(work_dir), "acedrg-*.cif"),
+            ):
+                for hit in _glob.glob(os.path.normpath(pattern)):
+                    _add(hit)
+            for extra in (
+                _glob.glob(os.path.join(str(work_dir), "*.cif"))
+                + _glob.glob(os.path.join(self.dropDir, "*.cif"))
+                + _glob.glob(os.path.join(self.dropDir, "coot-ccp4", "*.cif"))
+            ):
+                if cif_is_restraint_dictionary(extra):
+                    _add(extra)
+
+            dictout = self.container.outputData.DICTOUT
+            for output_cif in cif_list:
+                name = os.path.basename(output_cif)
+                target = work_dir / f"DICTOUT_{n_dicts}.cif"
+                os.replace(output_cif, target)
+                while n_dicts >= len(dictout):
+                    dictout.append(dictout.makeItem())
+                dictout[n_dicts].setFullPath(str(target))
+                if "acedrg" in name:
+                    producer = "Acedrg"
+                elif "pyrogen" in name:
+                    producer = "Pyrogen"
+                elif "prodrg" in name:
+                    producer = "Prodrg"
+                else:
+                    producer = "Coot"
+                dictout[n_dicts].annotation.set(
+                    f"Coot/{producer} created geometry for ligand")
+                n_dicts += 1
+            while len(dictout) > n_dicts:
+                dictout.pop()
+
+            etree.SubElement(self.xmlroot, "number_output_files").text = \
+                str(n_models)
+            etree.SubElement(self.xmlroot, "number_output_dicts").text = \
+                str(n_dicts)
+
+            # Merge new dictionaries into the project library; failures
+            # warn rather than fail the job ("no sad face of doom").
+            for dict_file in dictout[:n_dicts]:
+                try:
+                    self.mergeDictToProjectLib(fileName=dict_file.__str__())
+                except Exception:
+                    self.addReportWarning(
+                        "mergeDictToProjectLib raised exception: does not "
+                        "compromise output dictionary")
+                try:
+                    lig_nodes = self.xmlroot.xpath("//LIGANDS")
+                    lig_node = (lig_nodes[0] if lig_nodes else
+                                etree.SubElement(self.xmlroot, "LIGANDS"))
+                    for item in dict_file.fileContent.monomerList:
+                        etree.SubElement(lig_node, "ligand").text = \
+                            str(item.three_letter_code)
+                except Exception:
+                    self.addReportWarning(
+                        "fileContent.monomerList raised exception: does not "
+                        "compromise output dictionary")
+        except Exception:
+            self.appendErrorReport(202, "Data harvesting failed")
+
+        CCP4Utils.saveEtreeToFile(self.xmlroot,
+                                  self.makeFileName("PROGRAMXML"))
+        if n_models + n_dicts > 0:
+            return CPluginScript.SUCCEEDED
+        # Nothing was saved: the job self-deletes rather than litter the
+        # project (classic coot_rebuild behaviour).
+        return CPluginScript.MARK_TO_DELETE
 
     def addReportWarning(self, text):
         from lxml import etree
-        warningsNode = None
-        warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
-        else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
-        warningNode.text = text
+
+        nodes = self.xmlroot.xpath("//Warnings")
+        parent = nodes[0] if nodes else etree.SubElement(self.xmlroot,
+                                                         "Warnings")
+        etree.SubElement(parent, "Warning").text = text

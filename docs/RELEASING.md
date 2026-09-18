@@ -26,35 +26,64 @@ mismatch, so the desktop app and PyPI can never drift apart at release time.
 
 ## Cutting a release
 
-**Preferred — one command.** `scripts/cut-alpha.sh` does the whole pre-flight:
-syncs `django` to upstream, bumps `PRERELEASE` + the desktop exact-pin default
+> **`django` is protected by a ruleset:** every change must go through a **pull
+> request** with all required checks green, and **merge commits are disabled**
+> (squash/rebase only). A direct `git push … django` is rejected with `GH006`.
+> So a release is **two steps** — bump-via-PR, then tag-after-merge — not one
+> push. `scripts/cut-alpha.sh` drives both.
+
+**Step 1 — open the release PR.** `cut-alpha.sh` (no args) does the pre-flight:
+syncs `django`, bumps `PRERELEASE` + the desktop exact-pin default
 (`client/main/ccp4i2-server-version.ts`) in lockstep, updates the date, runs the
 ccp4i2-api lock≥floor guard, refuses a version already on PyPI or an existing
-tag, then commits, tags, and pushes (which fires the Release workflow).
+tag, then commits on a `release-vX` branch, pushes it, and opens the PR into
+`django`. It does **not** tag yet.
 
 ```bash
 git checkout django
-scripts/cut-alpha.sh              # aN -> a(N+1): bump, tag, push, release
+scripts/cut-alpha.sh              # aN -> a(N+1): bump, branch, push, open PR
 scripts/cut-alpha.sh --dry-run    # show the plan, change nothing
-scripts/cut-alpha.sh --no-push    # commit + tag locally only
 scripts/cut-alpha.sh --version 3.1.0b1   # explicit version (e.g. move to beta)
+scripts/cut-alpha.sh --no-push    # commit on the release branch locally only
 ```
+
+**Review, wait for all checks green, and squash-merge the PR.**
+
+**Step 2 — tag the merged bump.** Once the PR is on `django`:
+
+```bash
+scripts/cut-alpha.sh --tag        # tag the merged commit on django, push the tag
+scripts/cut-alpha.sh --tag --dry-run   # show what it would tag
+```
+
+`--tag` reads the version back **from `django`** (so the tag can never disagree
+with what merged), refuses if the tip isn't a fresh `release: …` commit or the
+tag/PyPI version already exists, then pushes only the tag — which is what fires
+the Release workflow.
 
 <details>
 <summary>Manual equivalent (if not using the script)</summary>
 
 ```bash
-# 1. Bump the version
-#    edit server/ccp4i2/__init__.py -> MAJOR/MINOR/PATCH + PRERELEASE (+ date),
-#    and the exact-pin default in client/main/ccp4i2-server-version.ts to match.
-git add server/ccp4i2/__init__.py client/main/ccp4i2-server-version.ts
-git commit -m "release: v3.1.0a1"
+# Step 1 — bump on a release branch and PR it (NOT a direct push to django).
+git checkout django && git pull
+git checkout -b release-v3.1.0a1
+#   edit server/ccp4i2/__init__.py -> PRERELEASE (+ date), and the exact-pin
+#   default in client/main/ccp4i2-server-version.ts to match.
+git commit -am "release: ccp4i2 3.1.0a1"
+git push ccp4 release-v3.1.0a1
+gh pr create --base django --head release-v3.1.0a1 --title "release: ccp4i2 3.1.0a1"
+#   ... review, all checks green, squash-merge ...
 
-# 2. Tag and push (tag must be v<the same version>, e.g. v3.1.0a1)
-git tag v3.1.0a1
-git push ccp4 django            # PRs/tags go to the ccp4/ccp4i2 upstream
+# Step 2 — after merge, tag the merged commit on django and push the tag.
+git fetch ccp4
+git tag -a v3.1.0a1 ccp4/django -m "CCP4i2 3.1.0a1"
 git push ccp4 v3.1.0a1          # <-- this fires the Release workflow
 ```
+
+A **stacked** PR (one branched off another still-open PR) does not auto-rebase
+when its base is squash-merged: `git rebase --onto ccp4/django <old-base>
+<branch>` and force-push to drop the now-duplicated squashed commit.
 </details>
 
 The workflow then:
@@ -176,3 +205,31 @@ with `CSC_IDENTITY_AUTO_DISCOVERY=false`.
 - **`gh workflow run` can't find a workflow.** `workflow_dispatch` only registers
   for workflows present on the **default branch** (`main`). All alpha work is on
   `django`, so branch-dispatch of a django-only workflow won't appear.
+
+- **A build fails with `Failed to FinalizeArtifact: (403) Forbidden` after the
+  installer already uploaded.** This is the org's **Actions artifact storage**
+  at (or over) quota, not a code fault — a single re-run may squeak through, but
+  the real fix is to prune. Each CI/release run uploads ~1.8 GB (three
+  installers), so it fills fast. To measure: `gh api
+  /repos/ccp4/ccp4i2/actions/artifacts --jq '.total_count'` and sum
+  `size_in_bytes` of the non-`expired` ones (use `gh run list`, **not**
+  `/actions/artifacts?per_page=100`, which times out expanding `workflow_run`).
+  To prune safely: enumerate the artifact-producing workflows (`Electron
+  Multiplatform Build`, `CI`) with `gh run list --json databaseId,headBranch`,
+  keep the newest few runs, and `gh api -X DELETE
+  /repos/ccp4/ccp4i2/actions/artifacts/{id}` the rest. These workflows only ever
+  ran on 3.x branches, so pruning them cannot touch the 2.x release assets (those
+  are **GitHub Release** assets — separate storage — not Actions artifacts).
+
+- **"The desktop build shipped the wrong value" — verify the real packaged
+  build, don't trust an installed app.** `next.config.ts` gates settings on
+  `BUILD_TARGET === "electron"`, baked at `next build` time. To confirm what a
+  release actually shipped, inspect the artifact itself, not `/Applications`:
+  `gh release download vX --pattern '*arm64.dmg'`, `hdiutil attach` it, and
+  `grep` the value in `…/ccp4i2-django.app/Contents/Resources/app.asar`. Installed
+  apps and mounted dmgs are routinely **stale** — always check
+  `CFBundleShortVersionString` (`/usr/libexec/PlistBuddy -c 'Print
+  :CFBundleShortVersionString' …/Info.plist`) before trusting that a build is the
+  version you think it is. A tester's "still broken in aN" is often a pre-fix
+  build, but — as the 100 MB import cap showed — it can also be a real bug the
+  packaged build genuinely carries; the dmg is the arbiter.

@@ -1,7 +1,8 @@
 import { CDataFileElement, IconMenuItem } from "./cdatafile";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { readFilePromise, useJob, useProject } from "../../../utils";
+import { useJob, useProject } from "../../../utils";
+import { useImportProvenance } from "../../../providers/import-provenance-provider";
 
 interface CSimpleDataFileElementProps extends CCP4i2TaskElementProps {
   hasValidationError?: boolean;
@@ -15,6 +16,7 @@ export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (
   const { job, itemName, onChange, visibility } = props;
   const { useTaskItem, useFileDigest, uploadFileParam } = useJob(job.id);
   const { mutateFiles, mutateJobs } = useProject(job.project);
+  const { requestImportProvenance } = useImportProvenance();
   const { item } = useTaskItem(itemName);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const { data: fileDigest, mutate: mutateDigest } = useFileDigest(
@@ -26,13 +28,22 @@ export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (
     if (!selectedFiles || selectedFiles.length == 0 || !item) return;
     if (selectedFiles === previousSelectedFiles.current) return;
     previousSelectedFiles.current = selectedFiles;
-    const fileBuffer = await readFilePromise(selectedFiles[0], "ArrayBuffer");
 
-    // Use centralized uploadFileParam with local cache patching
+    // Ask for a provenance note first (a no-op unless the user has turned the
+    // preference on), so it rides along in the same upload POST. null means
+    // "don't attach"; "" means the user chose Skip.
+    const provenance = await requestImportProvenance(selectedFiles[0].name);
+
+    // Hand over the picked File itself, not a re-read copy: a File is a Blob,
+    // so the upload needs nothing more, and only a real File lets the desktop
+    // import it by path (no bytes through the browser) and lets a served
+    // deployment stage it in chunks. Re-wrapping in a Blob defeated both and
+    // read the whole file into memory first.
     const uploadResult = await uploadFileParam({
       objectPath: item._objectPath,
-      file: new Blob([fileBuffer as ArrayBuffer], { type: item._qualifiers.mimeTypeName }),
+      file: selectedFiles[0],
       fileName: selectedFiles[0].name,
+      description: provenance ?? undefined,
     });
 
     // Handle response
@@ -52,6 +63,7 @@ export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (
     selectedFiles,
     onChange,
     uploadFileParam,
+    requestImportProvenance,
     mutateJobs,
     mutateFiles,
     mutateDigest,

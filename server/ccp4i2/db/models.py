@@ -4,11 +4,14 @@ from uuid import uuid4
 from pathlib import Path
 
 from django.db.models import (
+    BigIntegerField,
+    BooleanField,
     CASCADE,
     CharField,
     DateTimeField,
     FloatField,
     ForeignKey,
+    Index,
     IntegerChoices,
     IntegerField,
     JSONField,
@@ -311,6 +314,29 @@ class Job(Model):
         return jobs_dir.joinpath(*path_elements)
 
 
+class JobInteractiveSession(Model):
+    """The session of an interactive job: one whose "program" is a window in
+    the app (the recorded Moorhen task) rather than a child process.
+
+    The session, not a process, is what is open while the user works. Run
+    creates it and sets the job RUNNING without dispatching; finishing it
+    dispatches the job so the runner harvests the drop directory. A job
+    started from i2run is dispatched first and its plugin waits on this row.
+    ``dispatched`` records that a runner owns the job, so finishing then
+    only marks the row. See docs/moorhen-task-design.md.
+    """
+
+    job = OneToOneField(Job, CASCADE, related_name="interactive_session")
+    requested_at = DateTimeField(default=timezone.now)
+    last_heartbeat = DateTimeField(blank=True, null=True)
+    dispatched = BooleanField(default=False)
+    finished = BooleanField(default=False)
+    finished_at = DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return f"session of {self.job}"
+
+
 class ServerJob(Model):
     job = OneToOneField(Job, CASCADE, primary_key=True)
     server_process_id = IntegerField(blank=True, null=True)
@@ -415,10 +441,17 @@ class FileExport(Model):
 
 
 class FileImport(Model):
-    # MN: Note this has dropped fields annotation lastmodifiedtime importnumber
+    # MN: Note this has dropped fields lastmodifiedtime importnumber
     file = OneToOneField(File, on_delete=CASCADE, primary_key=True)
     time = DateTimeField(default=timezone.now)
     name = TextField()
+    # Free-text provenance narrative the user gives when importing a file
+    # ("where did this come from?"). This is the Qt-era ImportFiles.Annotation,
+    # named `description` here to keep it clearly distinct from File.annotation
+    # -- which is an auto-generated short label ("Imported from data.mtz;
+    # Columns: F, SIGF") that the GUI recycles as the file's display name in
+    # lists. Blank unless the user opted to describe the source at import time.
+    description = TextField(blank=True, default="")
     # `checksum` is the checksum of `file` as it ended up in the project. For
     # anything derived --- an MTZ split down to the columns one parameter
     # wanted --- that is the checksum of the derivative, not of what the user
@@ -459,3 +492,39 @@ class XData(Model):
 
     def __str__(self):
         return self.id
+
+
+class StagedUpload(Model):
+    """A large file being delivered into ``CCP4I2_IMPORT_STAGING_DIR`` in chunks,
+    so a cloud/web deployment can import it *by handle* past the body-size caps
+    (Next middleware, Django, the ingress) that a direct upload would hit.
+
+    The client never names any part of the path: the directory is this row's
+    server-generated ``uuid`` and the filename is sanitised on finish. A row is
+    owner-bound (``owner`` is a stable per-user key), so only the user who staged
+    a file can import it. State machine: ``staging`` (accepting chunks) ->
+    ``ready`` (assembled, verified, importable) -> ``consumed`` (imported; the
+    directory is deleted). The sweeper reaps expired and consumed rows.
+    """
+
+    class State(TextChoices):
+        STAGING = "staging", "staging"
+        READY = "ready", "ready"
+        CONSUMED = "consumed", "consumed"
+
+    uuid = UUIDField(default=uuid4, unique=True)
+    owner = CharField(max_length=255)
+    filename = CharField(max_length=255)
+    size_bytes = BigIntegerField()
+    sha256 = CharField(max_length=64, blank=True)
+    state = CharField(max_length=16, choices=State.choices,
+                      default=State.STAGING)
+    created_at = DateTimeField(default=timezone.now)
+
+    class Meta:
+        indexes = [
+            Index(fields=["owner", "state"]),
+        ]
+
+    def __str__(self):
+        return f"{self.uuid} ({self.state})"

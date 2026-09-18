@@ -4,9 +4,10 @@ import { CDataFileElement } from "./cdatafile";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useMemo } from "react";
 import { BaseSpacegroupCellElement } from "./base-spacegroup-cell-element";
-import { readFilePromise, useJob, useProject } from "../../../utils";
+import { useJob, useProject } from "../../../utils";
 import { selectMtzColumnsEnhanced, SiblingInput } from "./mtz-column-dialog";
 import { usePopcorn } from "../../../providers/popcorn-provider";
+import { useImportProvenance } from "../../../providers/import-provenance-provider";
 
 /** MTZ-related class names that are siblings of interest */
 const MTZ_SIBLING_CLASSES = [
@@ -24,6 +25,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
   const { useTaskItem, useFileDigest, uploadFileParam, container } = useJob(job.id);
   const { mutateJobs, mutateFiles } = useProject(job.project);
   const { setMessage } = usePopcorn();
+  const { requestImportProvenance } = useImportProvenance();
   const { item, value } = useTaskItem(itemName);
 
   // Only fetch digest when a file has been uploaded (has dbFileId)
@@ -114,18 +116,24 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
           return;
         }
 
-        // Read file and upload using centralized uploadFileParam (with local cache patching)
-        const fileBuffer = await readFilePromise(file, "ArrayBuffer");
-        const fileBlob = new Blob([fileBuffer as ArrayBuffer], { type: "application/CCP4-mtz-file" });
+        // Ask for a provenance note once (no-op unless the preference is on).
+        // A monolithic MTZ can be split here into two mini-MTZs from the same
+        // source bytes -- F/SIGF (this param) and the free-R sibling below --
+        // so capture the note once and apply it to both.
+        const provenance = await requestImportProvenance(file.name);
 
+        // Upload the picked File itself (a File is a Blob): only a real File can
+        // be imported by path on the desktop or staged in chunks on a served
+        // deployment, and re-reading it into a Blob defeated both.
         // Use enhanced columnSelectors if available, otherwise fall back to single columnSelector
         const uploadResult = await uploadFileParam({
           objectPath: item._objectPath,
-          file: fileBlob,
+          file,
           fileName: file.name,
           // Send both for backward compatibility
           columnSelector: result.columnSelector || undefined,
           columnSelectors: result.reflectionSelections,
+          description: provenance ?? undefined,
         });
 
         // Handle response
@@ -142,9 +150,11 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
           if (freeRSibling) {
             await uploadFileParam({
               objectPath: freeRSibling.objectPath,
-              file: fileBlob,
+              file,
               fileName: file.name,
               columnSelector: result.freeRSelection.columnSelector,
+              // Same physical file, same provenance note as the primary upload.
+              description: provenance ?? undefined,
             });
           }
         }
@@ -167,7 +177,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
         );
       }
     },
-    [item, getSiblingInputs, onChange, uploadFileParam, mutateJobs, mutateFiles, mutateDigest, setMessage]
+    [item, getSiblingInputs, onChange, uploadFileParam, requestImportProvenance, mutateJobs, mutateFiles, mutateDigest, setMessage]
   );
 
   const isVisible = useMemo(

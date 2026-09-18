@@ -66,6 +66,16 @@ export function DropZone({
         ...sx,
       }}
       onClick={openFilePicker}
+      role="button"
+      tabIndex={disabled ? -1 : 0}
+      aria-disabled={disabled}
+      onKeyDown={(e) => {
+        if (disabled) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openFilePicker();
+        }
+      }}
       onDragOver={(e) => {
         e.preventDefault();
         if (!disabled) setIsDragOver(true);

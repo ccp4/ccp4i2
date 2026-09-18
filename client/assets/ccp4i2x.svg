@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="14" result="spread"/>
+      <feGaussianBlur in="spread" stdDeviation="22" result="blur"/>
+      <feFlood flood-color="#ffffff" flood-opacity="1"/>
+      <feComposite in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Untouched original brush i2 + diamond as the base. -->
+  <image xlink:href="ccp4i2-i2-source.png" x="0" y="0" width="1024" height="1024"/>
+  <!-- Brushy "x" tucked under the 2, same navy + white glow. -->
+  <text x="748" y="650" text-anchor="middle" dominant-baseline="central"
+        font-family="'Marker Felt', 'Chalkboard SE', sans-serif"
+        font-size="300" font-weight="700" font-style="italic"
+        fill="#0a1733" filter="url(#glow)">x</text>
+</svg>

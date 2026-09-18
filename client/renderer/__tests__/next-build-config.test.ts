@@ -65,3 +65,28 @@ describe("applyBuildTimeNextConfig", () => {
     expect(env[STANDALONE_CONFIG_ENV]).toBeUndefined();
   });
 });
+
+describe("build:electron sets BUILD_TARGET for the Next build", () => {
+  // The desktop config in next.config.ts is gated on
+  // BUILD_TARGET === "electron" (isElectron). `cross-env VAR=x cmd1 && cmd2`
+  // scopes VAR to cmd1 ONLY, so if `next build` is a later &&-segment it runs
+  // WITHOUT the variable, isElectron is false, and the *web* config is baked -
+  // shipping the 100 MB body-size cap onto the desktop instead of 2 GB. This
+  // guards that every segment running the Next build carries the variable.
+  const pkg = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "..", "..", "package.json"), "utf8")
+  ) as { scripts: Record<string, string> };
+
+  it("runs `next build` with BUILD_TARGET=electron", () => {
+    const script = pkg.scripts["build:electron"];
+    expect(script).toBeDefined();
+    const nextBuildSegments = script
+      .split("&&")
+      .map((s) => s.trim())
+      .filter((s) => /\bnext build\b/.test(s));
+    expect(nextBuildSegments.length).toBeGreaterThan(0);
+    for (const segment of nextBuildSegments) {
+      expect(segment).toMatch(/cross-env\s+BUILD_TARGET=electron\s+next build/);
+    }
+  });
+});

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { maybeStage } from "./lib/staged-upload";
 import $ from "jquery";
 import useSWR, { KeyedMutator, mutate, SWRResponse } from "swr";
 
@@ -185,6 +186,12 @@ export interface UploadFileParamArg {
   columnSelector?: string;
   /** Enhanced multi-selector format for multiple representations */
   columnSelectors?: ColumnSelectorEntry[];
+  /**
+   * Free-text provenance note ("where did this come from?"), when the user
+   * supplied one via the import-provenance prompt. Stored on the file's import
+   * record. Omit for programmatic/derived imports.
+   */
+  description?: string;
 }
 
 export interface JobData {
@@ -214,7 +221,7 @@ export interface JobData {
   useFileContent: (paramName: string) => SWRResponse<string, Error>;
   getValidationColor: (item: any) => string;
   getErrors: (item: any) => ValidationError[];
-  useFileDigest: (objectPath: string) => SWRResponse<any, Error>;
+  useFileDigest: (objectPath: string, cacheKey?: string | number) => SWRResponse<any, Error>;
   fetchDigest: (objectPath: string) => Promise<any | null>;
   callPluginMethod: (
     methodName: string,
@@ -1131,14 +1138,58 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         return undefined;
       }
 
-      const { objectPath, file, fileName, columnSelector, columnSelectors } = uploadArg;
+      const { objectPath, file, fileName, columnSelector, columnSelectors, description } = uploadArg;
 
       // Enqueue the operation to ensure sequential execution
       return parameterQueue.enqueue(async () => {
         try {
           const formData = new FormData();
           formData.append("object_path", objectPath);
-          formData.append("file", file, fileName);
+          // Desktop: import the file by its local path (the server copies it in
+          // place) instead of uploading its bytes -- this is how a large file
+          // (cryo-EM map, project zip) gets past the middleware body-size cap.
+          // getPathForFile is only present in the Electron preload, and returns ""
+          // for a synthesized Blob; in either of those cases we upload as normal.
+          // The server only honours local_path when it is allowed to (desktop
+          // local-session, or a cloud staging dir) -- see resolve_importable_path.
+          const localPath =
+            file instanceof File ? window.electronAPI?.getPathForFile?.(file) || "" : "";
+          if (localPath) {
+            formData.append("local_path", localPath);
+          } else {
+            // Served deployment: a file over the staging threshold is delivered
+            // in chunks past the body caps and imported by an owner-bound handle.
+            // Small files, and any deployment not advertising staging, upload
+            // their bytes as before.
+            // Staging a large file takes a while and gives no visible sign of
+            // its own; say what is happening, and how far it has got, or the
+            // user reasonably concludes nothing is and intervenes.
+            const megabytes = (file.size / 1048576).toFixed(0);
+            let lastReported = 0;
+            const staged = await maybeStage(file, fileName, {
+              onStart: ({ chunks }) =>
+                setMessage(
+                  `Uploading ${fileName} (${megabytes} MB) in ${chunks} chunks; this can take a while`,
+                  "info"
+                ),
+              onProgress: (fraction) => {
+                const percent = Math.floor(fraction * 10) * 10;
+                if (percent > lastReported && percent < 100) {
+                  lastReported = percent;
+                  setMessage(`Uploading ${fileName}: ${percent}%`, "info");
+                }
+              },
+            });
+            if (staged) {
+              setMessage(`Uploaded ${fileName}; importing it into the project`, "info");
+              formData.append(staged.field, staged.value);
+            } else {
+              formData.append("file", file, fileName);
+            }
+          }
+          if (description?.trim()) {
+            formData.append("description", description.trim());
+          }
           if (columnSelector?.trim()) {
             formData.append("column_selector", columnSelector);
           }
@@ -1401,10 +1452,19 @@ export const useJob = (jobId: number | null | undefined): JobData => {
   // Custom hook to fetch file digest using SWR
   // Note: objectPath should be the full path like "prosmart_refmac.inputData.F_SIGF"
   // Returns unwrapped digest data (extracts .data from API response)
-  const useFileDigest = (objectPath: string): SWRResponse<any, Error> => {
-    // Create a unique key for SWR caching
+  const useFileDigest = (
+    objectPath: string,
+    cacheKey?: string | number
+  ): SWRResponse<any, Error> => {
+    // Create a unique key for SWR caching. The object path alone is NOT a
+    // sufficient key: the file behind a param can be swapped while the path
+    // stays constant, and with a 5-minute dedupingInterval SWR would then serve
+    // the previous file's digest (e.g. a merged .sca verdict lingering after an
+    // unmerged file is dropped in). Fold the file identity into the key so a
+    // different file refetches. The extra query param is ignored server-side.
     const swrKey = objectPath
-      ? `jobs/${job?.id}/digest?object_path=${objectPath}`
+      ? `jobs/${job?.id}/digest?object_path=${objectPath}` +
+        (cacheKey !== undefined && cacheKey !== null ? `&_f=${cacheKey}` : "")
       : null;
     const fetcher = async (): Promise<any> => {
       if (!swrKey) {

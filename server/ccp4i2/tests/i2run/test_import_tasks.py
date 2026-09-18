@@ -46,6 +46,29 @@ def test_import_dictionary():
         assert out.exists() and out.stat().st_size > 0
 
 
+def test_import_unmerged_mtz():
+    args = ["ImportUnmerged", "--UNMERGEDIN", demoData("gamma", "HKLOUT_unmerged.mtz")]
+    with i2run(args) as job:
+        out = _find_output(job, ".mtz", exclude_prefixes=("UNMERGEDIN",))
+        mtz = gemmi.read_mtz_file(str(out))
+        labels = set(c.label for c in mtz.columns)
+        # BATCH is what makes it unmerged, and what aimless needs downstream.
+        assert "BATCH" in labels, labels
+        assert mtz.nreflections > 0
+
+
+def test_import_unmerged_scalepack():
+    """A non-MTZ format keeps its own extension, so the format stays unambiguous."""
+    sca = demoData(
+        "baz2b",
+        "BAZ2BA_x828.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8281_scaled_unmerged.sca",
+    )
+    args = ["ImportUnmerged", "--UNMERGEDIN", sca]
+    with i2run(args) as job:
+        out = _find_output(job, ".sca", exclude_prefixes=("UNMERGEDIN",))
+        assert out.stat().st_size > 0
+
+
 # ---------------------------------------------------------------------------
 # Mini-MTZ imports — auto-detect (single unambiguous group)
 # ---------------------------------------------------------------------------

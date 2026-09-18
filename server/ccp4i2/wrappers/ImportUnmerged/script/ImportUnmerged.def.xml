@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>ImportUnmerged</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="ImportUnmerged">
+    <container id="inputData">
+      <content id="UNMERGEDIN">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+          <guiLabel>Unmerged reflections</guiLabel>
+          <toolTip>An unmerged reflection file: MTZ (multi-record, with BATCH), XDS HKL, scalepack sca, SAINT, SHELX or mmCIF. Copied into the project unchanged.</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters"/>
+    <container id="outputData">
+      <content id="UNMERGEDOUT">
+        <className>CUnmergedDataFile</className>
+        <qualifiers>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

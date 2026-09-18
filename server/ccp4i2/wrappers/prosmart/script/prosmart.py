@@ -1,5 +1,6 @@
 import glob
 import os
+import re
 import shutil
 
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
@@ -48,8 +49,15 @@ class prosmart(CPluginScript):
     
         if self.container.inputData.CHAINLIST_1.isSet():
            c1 = ['-c1']
-           for chain in self.container.inputData.CHAINLIST_1.__str__().split():
-              c1.append(str(chain))
+           # The chain list may be comma- and/or whitespace-delimited. The React
+           # chain selector writes it comma-delimited ("A,B"); the old Qt widget
+           # wrote it space-delimited. Splitting on whitespace alone (as before)
+           # left "A,B" as a single token, so prosmart was handed one chain
+           # literally named "A,B" and died with "could not read chain A,B".
+           for chain in re.split(r'[,\s]+',
+                                 self.container.inputData.CHAINLIST_1.__str__().strip()):
+              if chain:
+                 c1.append(str(chain))
            if len(c1) > 1:
               self.appendCommandLine(c1)
            else:

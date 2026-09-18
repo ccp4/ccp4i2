@@ -20,6 +20,7 @@ import {
   DriveFileRenameOutline,
   Delete,
   ExpandMore,
+  FormatIndentDecrease,
   Inbox,
   LabelOutlined,
   Layers,
@@ -750,6 +751,27 @@ export default function ProjectTagTreePane({
           <DriveFileRenameOutline fontSize="small" sx={{ mr: 1 }} />
           Rename
         </MenuItem>
+        {/* Only for a nested tag (its path carries a separator): a discoverable
+            way to un-nest it, since the drag-onto-"All projects" gesture that
+            also does this is not obvious (Paul's feedback, #425). Runs directly
+            rather than via pendingAction -- it is just a patch, with no editor
+            or dialog that needs the menu fully closed first. */}
+        {menuFor?.node.path.includes(PATH_SEPARATOR) && (
+          <MenuItem
+            onClick={() => {
+              if (menuFor) {
+                reparentTag(
+                  { id: menuFor.node.id, path: menuFor.node.path },
+                  null,
+                );
+              }
+              setMenuFor(null);
+            }}
+          >
+            <FormatIndentDecrease fontSize="small" sx={{ mr: 1 }} />
+            Make top-level
+          </MenuItem>
+        )}
         <MenuItem
           onClick={() => {
             if (menuFor) setPendingAction({ kind: "delete", node: menuFor.node });
