@@ -56,13 +56,15 @@ export const NewProjectContent: React.FC = () => {
   // from this window or another.
   useEffect(() => {
     let cancelled = false;
-    apiGet<{ data?: { directory?: string; configured?: string; editable?: boolean } }>(
+    apiGet<{ data?: { directory?: string; editable?: boolean } }>(
       "config/default-project-parent/"
     )
       .then((resp) => {
         if (cancelled) return;
-        if (resp?.data?.directory) setParentDirectory(resp.data.directory);
-        if (resp?.data?.configured) setConfiguredProjectsDir(resp.data.configured);
+        if (resp?.data?.directory) {
+          setParentDirectory(resp.data.directory);
+          setConfiguredProjectsDir(resp.data.directory);
+        }
         setProjectsDirEditable(Boolean(resp?.data?.editable));
       })
       .catch(() => {
@@ -136,6 +138,11 @@ export const NewProjectContent: React.FC = () => {
           });
         } catch (err) {
           console.error("Could not set the default projects directory:", err);
+          alert(
+            "The project was created here, but this could not be made the " +
+              "default projects directory: " +
+              err
+          );
         }
       }
       const project = await api.post<Project>("projects", formData);

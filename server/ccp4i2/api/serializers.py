@@ -8,6 +8,7 @@ from rest_framework.serializers import (
     SerializerMethodField,
     ValidationError,
 )
+from ..config import preferences
 from ..db import models
 
 
@@ -109,7 +110,16 @@ def default_project_parent() -> Path:
     rather than the server guessing from where the last project happened to
     land — a guess that made the configured default hard to get back to once
     a single one-off project nudged it aside.
+
+    On the desktop this is read from preferences.json on every call, not from
+    ``settings.CCP4I2_PROJECTS_DIR``: that was resolved when this worker
+    started, and Preferences can change the default while the app runs — for
+    both uvicorn workers at once, which only the file can express. A
+    deployment's configuration is fixed for the life of the process, so there
+    the setting is the answer.
     """
+    if preferences.is_desktop():
+        return preferences.projects_dir()
     return Path(settings.CCP4I2_PROJECTS_DIR)
 
 

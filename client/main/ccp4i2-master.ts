@@ -15,7 +15,7 @@ import { installIpcHandlers } from "./ccp4i2-ipc";
 import { Server } from "node:http";
 import { installWillDownloadHandler } from "./ccp4i2-session";
 import { StoreSchema } from "../types/store";
-import { ccp4i2Home, defaultProjectsDir } from "./ccp4i2-preferences";
+import { ccp4i2Home } from "./ccp4i2-preferences";
 import { createWindow } from "./ccp4i2-create-window";
 import { setupZoomLevel } from "./ccp4i2-zoom";
 import { assessPython, listCcp4Dirs } from "./ccp4i2-python-suitability";
@@ -45,13 +45,6 @@ if (!isDev) {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Where new projects go. Delegated to the shared resolver rather than computed
-// here: this function used to return ~/.ccp4i2/CCP4X_PROJECTS while the Django
-// settings said ~/.ccp4i2-django/CCP4X_PROJECTS, so the desktop app and the
-// server it launched disagreed about the project store — which is why testers
-// reported seeing several directories where they expected one.
-const getProjectsDir = () => defaultProjectsDir();
 
 // Compute projectRoot based on dev vs packaged mode
 // This is NOT user-configurable - it's always derived from the app location
@@ -160,7 +153,6 @@ export const store = new Store<StoreSchema>({
     projectRoot: getProjectRoot(), // Computed, not user-configurable
     devMode: false,
     zoomLevel: 0,
-    CCP4I2_PROJECTS_DIR: getProjectsDir(),
     theme: "dark",
     autoLaunch: true,
   },

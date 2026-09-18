@@ -93,6 +93,46 @@ def test_resolve_ignores_empty_env(monkeypatch, tmp_path):
 
 
 # ---------------------------------------------------------------------------
+# the projects directory, whose precedence is deliberately not resolve()'s
+# ---------------------------------------------------------------------------
+
+
+def test_projects_dir_falls_back_to_the_built_in_default(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.delenv("CCP4I2_LOCAL_SESSION_TOKEN", raising=False)
+    monkeypatch.delenv("CCP4I2_PROJECTS_DIR", raising=False)
+    assert preferences.projects_dir(prefs={}) == preferences.default_projects_dir()
+
+
+def test_projects_dir_takes_the_environment_in_a_deployment(monkeypatch, tmp_path):
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.delenv("CCP4I2_LOCAL_SESSION_TOKEN", raising=False)
+    monkeypatch.setenv("CCP4I2_PROJECTS_DIR", "/from/env")
+    prefs = {"projectsDir": "/from/file"}
+    assert preferences.projects_dir(prefs=prefs) == Path("/from/env")
+
+
+def test_projects_dir_takes_the_file_on_the_desktop(monkeypatch, tmp_path):
+    """The one setting that does not follow `env var > file`.
+
+    The Electron launcher spawns the server with CCP4I2_PROJECTS_DIR already
+    holding whatever the file said at launch, so there the variable is a copy
+    of the preference. While the copy won, Preferences' Change and Reset
+    buttons wrote the file and then read the launch value straight back over
+    it, and appeared to do nothing for as long as the app stayed open.
+    """
+    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
+    monkeypatch.setenv("CCP4I2_LOCAL_SESSION_TOKEN", "desktop")
+    monkeypatch.setenv("CCP4I2_PROJECTS_DIR", "/from/env")
+
+    prefs = {"projectsDir": "/from/file"}
+    assert preferences.projects_dir(prefs=prefs) == Path("/from/file")
+    # And a reset — no stored choice — restores the built-in default rather
+    # than the directory the app was launched with.
+    assert preferences.projects_dir(prefs={}) == preferences.default_projects_dir()
+
+
+# ---------------------------------------------------------------------------
 # settings.py precedence (end-to-end, fresh subprocess per case)
 # ---------------------------------------------------------------------------
 
@@ -159,6 +199,21 @@ def test_settings_env_overrides_preferences(tmp_path):
         extra_env={"CCP4I2_PROJECTS_DIR": str(tmp_path / "fromenv")},
     )
     assert out["projects"] == str(tmp_path / "fromenv")
+
+
+def test_settings_projects_dir_follows_the_file_on_the_desktop(tmp_path):
+    """Startup must land on the same answer the API gives while running, or
+    the New Project dialog and the project it creates disagree."""
+    home = tmp_path / "home"
+    out = _probe_settings(
+        home,
+        {"projectsDir": str(tmp_path / "fromfile")},
+        extra_env={
+            "CCP4I2_PROJECTS_DIR": str(tmp_path / "fromenv"),
+            "CCP4I2_LOCAL_SESSION_TOKEN": "desktop",
+        },
+    )
+    assert out["projects"] == str(tmp_path / "fromfile")
 
 
 # ---------------------------------------------------------------------------
