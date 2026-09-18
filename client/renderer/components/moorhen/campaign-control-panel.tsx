@@ -103,6 +103,9 @@ interface CampaignControlPanelProps {
   onTagProjectWithSite?: (siteName: string) => Promise<void>;
   /** Callback to load a file into the Moorhen session */
   onFileSelect?: (fileId: number) => Promise<void>;
+  /** Callback to load all of a job's outputs into the session (the browser's
+   *  per-job load button, shown only when this is given). */
+  onJobLoad?: (jobId: number) => Promise<void>;
   /** Callback to run servalcat_pipe refinement on a molecule */
   onRunServalcat?: (mol: moorhen.Molecule) => Promise<void>;
 }
@@ -128,6 +131,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   onMapContourLevelChange,
   onTagProjectWithSite,
   onFileSelect,
+  onJobLoad,
   onRunServalcat,
 }) => {
   const dispatch = useDispatch();
@@ -208,6 +212,17 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       setShowImportModal(false);
     },
     [onFileSelect]
+  );
+
+  // Handle "load all job outputs" from the hierarchy browser
+  const handleImportJobLoad = useCallback(
+    async (jobId: number) => {
+      if (onJobLoad) {
+        await onJobLoad(jobId);
+      }
+      setShowImportModal(false);
+    },
+    [onJobLoad]
   );
 
   const handleOpenPushDialog = useCallback((molecule: moorhen.Molecule) => {
@@ -844,12 +859,16 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         <DialogTitle>
           Import from Projects
           <Typography variant="body2" color="text.secondary">
-            Navigate to a project and job to load files into this session
+            Navigate to a project and job to load a file, or all of a job&apos;s
+            outputs, into this session
           </Typography>
         </DialogTitle>
         <DialogContent sx={{ p: 0, display: "flex", flexDirection: "column" }}>
           <Box sx={{ flex: 1, minHeight: 0 }}>
-            <CCP4i2HierarchyBrowser onFileSelect={handleImportFileSelect} />
+            <CCP4i2HierarchyBrowser
+              onFileSelect={handleImportFileSelect}
+              onJobLoad={onJobLoad ? handleImportJobLoad : undefined}
+            />
           </Box>
         </DialogContent>
         <DialogActions>

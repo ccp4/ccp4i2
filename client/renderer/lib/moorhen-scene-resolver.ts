@@ -122,7 +122,41 @@ export interface SceneResolveResult {
  */
 export type SceneFileFetcher = (
   ref: SceneFileRef,
+  opts?: {
+    /** The dictionaries this file's element lists, to attach to the
+     *  molecule as it loads (text plus the project file it came from, so a
+     *  re-captured scene keeps the association). */
+    dictionaries?: { text: string; fileId?: number; projectId?: string }[];
+  },
 ) => Promise<moorhen.Molecule | null>;
+
+/**
+ * How a scene's dictionaries are scoped. A dictionary named by an element is
+ * that molecule's and is never loaded into Coot's global store: a global
+ * entry is inherited by every molecule that has none of its own, so another
+ * file's ligand of the same residue name (LIG, DRG) would be drawn with this
+ * chemistry. Only `globalDictionaries`, and a dictionary listed in `files`
+ * but attached nowhere (older hand-written scenes relied on that), go global.
+ */
+export function planDictionaryScopes(scene: {
+  files?: { name: string; kind?: string }[];
+  globalDictionaries?: string[];
+  elements?: { file: string; dictionaries?: string[] }[];
+}): { global: Set<string>; byFile: Map<string, string[]> } {
+  const byFile = new Map<string, string[]>();
+  const scoped = new Set<string>();
+  for (const element of scene.elements ?? []) {
+    for (const name of element.dictionaries ?? []) {
+      scoped.add(name);
+      byFile.set(element.file, [...(byFile.get(element.file) ?? []), name]);
+    }
+  }
+  const global = new Set<string>(scene.globalDictionaries ?? []);
+  for (const f of scene.files ?? []) {
+    if (f.kind === "dictionary" && !scoped.has(f.name)) global.add(f.name);
+  }
+  return { global, byFile };
+}
 
 /**
  * Fetches the raw text of a dictionary CIF and returns it. The resolver
@@ -358,8 +392,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     (f) => f.kind !== "dictionary" && f.kind !== "mtz" && f.kind !== "map",
   );
 
-  // 1a. Fetch and globally-load dictionary text. Keep the raw text
-  //     keyed by name so we can re-load per-molecule later.
+  // 1a. Fetch dictionary text, keyed by name. Only unscoped dictionaries are
+  //     loaded globally; an element's own are attached to its molecule (at
+  //     load in 1b, or in 1c for a molecule that was already loaded).
+  const dictScopes = planDictionaryScopes(scene);
   const dictTexts = new Map<string, string>();
   for (const fr of dictRefs) {
     if (!dictionaryFetcher || !dictionaryLoader) {
@@ -380,7 +416,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       // Global association: imol = -999999 (Coot's "any" sentinel).
       // Coots parses every `data_comp_*` block in a single call, so
       // multi-comp dicts are handled in one shot.
-      await dictionaryLoader(text, -999999);
+      if (dictScopes.global.has(fr.name)) await dictionaryLoader(text, -999999);
     } catch (e) {
       console.warn(`[scene] dictionary fetch failed for ${fr.name}:`, e);
       result.unresolvedFiles.push(fr.name);
@@ -401,7 +437,16 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     }
     if (fetcher && isFetchable(fr)) {
       try {
-        const fetched = await fetcher(fr);
+        const dictRefByName = new Map(dictRefs.map((d) => [d.name, d]));
+        const fetched = await fetcher(fr, {
+          dictionaries: (dictScopes.byFile.get(fr.name) ?? [])
+            .filter((name) => dictTexts.has(name))
+            .map((name) => ({
+              text: dictTexts.get(name) as string,
+              fileId: dictRefByName.get(name)?.fileId,
+              projectId: dictRefByName.get(name)?.projectId,
+            })),
+        });
         if (fetched) {
           livePool.push(fetched);
           fileBindings.set(fr.name, fetched);
