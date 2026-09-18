@@ -50,7 +50,11 @@ export const ColourSelection = z
   })
   .strict();
 
-/** Escape hatch: a raw Moorhen colour rule we can't otherwise express. */
+/**
+ * Escape hatch: a raw Moorhen colour rule we can't otherwise express. `args` is
+ * what the rule sends to coot, as Moorhen's session format writes it: the
+ * `cid^#hex|...` data for a multi-colour rule, else `[cid, colour]`.
+ */
 export const RawColour = z
   .object({
     raw: z
@@ -399,7 +403,8 @@ const ResolverOptions = z
 // --- hints (advisory render layer) ----------------------------------------
 
 /**
- * Scene lighting. Mirrors Moorhen's single scene-global light (glRefSlice):
+ * Scene lighting. Mirrors Moorhen's single scene-global light (sceneSettingsSlice;
+ * glRefSlice before Moorhen 1.0.1):
  * a directional light plus ambient/diffuse/specular colours and a specular
  * power. `direction` is the "substituted" class — a renderer that can't honour
  * it falls back to its own default rather than omitting light (design doc §4a).

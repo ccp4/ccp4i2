@@ -44,10 +44,10 @@ directly; the lifter reads them back:
 |---|---|
 | `representations[].style` | `RepresentationStyles` union (`MoorhenMoleculeRepresentation.d.ts`) — the schema enumerates all 29 |
 | `representations[].geometry` (bond/ball/probe radii, ribbon widths, Å) | `m2tParameters` (`setM2tParams` + `useDefaultM2tParams`) |
-| `representations[].colour` | representation colour rules (`addColourRule`) + the named multi-colour rule types |
-| `hints.lighting` (direction, ambient/diffuse/specular, shininess) | `glRefSlice`: `lightPosition`, `ambient`/`diffuse`/`specular` (`[r,g,b,a]`), `specularPower` |
+| `representations[].colour` | representation colour rules (`ColourRule` objects assigned to `representation.colourRules`) + the named multi-colour rule types, whose data comes from `getMultiColourRuleArgs` |
+| `hints.lighting` (direction, ambient/diffuse/specular, shininess) | `sceneSettingsSlice` (`glRefSlice` before 1.0.1): `lightPosition`, `ambient`/`diffuse`/`specular` (`[r,g,b,a]`), `specularPower` |
 | `hints.effects` (ssao, edgeDetect, shadows, depthBlur, perspective) | `setDoSSAO`/`setDoEdgeDetect`/`setDoShadow`/`setUseOffScreenBuffers`/`setDoPerspectiveProjection` |
-| `view` (origin, quat, zoom, clip/fog, background) | `glRefSlice` + `setBackgroundColor` |
+| `view` (origin, quat, zoom, clip/fog, background) | `sceneSettingsSlice` for origin, zoom and clip/fog, `glRefSlice` for `quat` (all of them `glRefSlice` before 1.0.1) + `setBackgroundColor` |
 
 ## How it's built and kept honest (the mechanism)
 
@@ -64,7 +64,7 @@ lib/scene/core.ts (+ dialect.ts)   ← Zod, the single source of truth
 - **Validation** is the schema (`parseScene`/`safeParse`); errors carry a path,
   usable for a generate→check→repair loop.
 - The **resolver** (scene → Moorhen) takes the host's fetchers as callbacks and
-  otherwise touches only molecule/map/representation/glRef APIs — no CCP4
+  otherwise touches only molecule/map/representation/scene-settings APIs — no CCP4
   dependency. The **lifter** is the inverse (Moorhen state → scene), emitting
   only non-default values.
 - **Apply policy**: `onMissingResidues: clamp-and-log` clamps a slightly-wrong
@@ -91,13 +91,16 @@ While grounding the format we noticed a few things, shared in case they're news:
   programmatic outline.
 - **`lightPosition` is a position** (default `[25,25,50,1]`, |·|≈61), not a unit
   direction — the resolver maps a conceptual `direction` to a position along it.
-- **Colour rules are molecule-scoped, accumulating, and shared by reference.** A
-  representation's `colourRules` is the parent molecule's `defaultColourRules`
-  *by reference*; `addColourRule` push()es onto it, so per-representation colours
-  accumulate molecule-wide and leak across representations (plus the load-time
-  default chain palette). A genuine per-representation colour API (or not sharing
-  the array by reference) would help. We work around it by nulling `colourRules`
-  before adding, and model two explicit levels in the scene (molecule + per-rep).
+- **Colour rules have two levels, and since 1.0.1 they are properly separate.**
+  A representation uses the parent molecule's `defaultColourRules` until it is
+  given rules of its own; assigning `representation.colourRules` copies the list
+  and turns the defaults off, so per-representation colours no longer leak. (Up
+  to 1.0.0-beta.1 the list was shared by reference and `addColourRule` pushed
+  onto it molecule-wide; we nulled `colourRules` first to get a private list.)
+  The scene models the same two levels (molecule + per-rep). One gap remains:
+  `representation.addColourRule` has no parameter for `multiColourData`, so a
+  multi-colour rule cannot be made through it. We build `ColourRule` directly
+  (seventh constructor argument) and assign the list.
 - **SSM/LSQ superpose moves coordinates inside coot** (`changesMolecules` +
   `setAtomsDirty`), with no display transform — so superposition can't be
   captured from a molecule's state, only re-applied from a remembered directive.

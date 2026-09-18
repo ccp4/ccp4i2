@@ -85,6 +85,33 @@ describe("buildPendingRules cascade (element.colour ↔ representation.colour)",
   it("no colour at either level → no rules", () => {
     expect(buildPendingRules({ ...base, rep: { style: "CRs" } }, "//A")).toEqual([]);
   });
+
+  // What reaches coot is the rule's own fields: cid + color for a single
+  // colour, multiColourData for a multi-colour rule (Moorhen 1.0.1).
+  it("a hex colour is a single-colour rule on the representation's CID", () => {
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour: "#123456" } }, "//A");
+    expect(rules).toEqual([
+      { ruleType: "molecule", cid: "//A", color: "#123456", multiColourData: "", isMultiColourRule: false },
+    ]);
+  });
+
+  it("a named scheme is staged with no data: it is computed from the molecule on apply", () => {
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour: "b-factor" } }, "//A");
+    expect(rules).toHaveLength(1);
+    expect(rules[0]).toMatchObject({ ruleType: "b-factor", isMultiColourRule: true, multiColourData: null });
+  });
+
+  it("a raw multi-rule carries args[0] as its multi-colour data", () => {
+    const colour = { raw: { ruleType: "bespoke", args: ["//A/1-5^#ff0000"], isMultiColourRule: true } };
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour } }, "//A");
+    expect(rules[0]).toMatchObject({ isMultiColourRule: true, multiColourData: "//A/1-5^#ff0000", cid: "//A" });
+  });
+
+  it("a raw single-colour rule takes its cid and colour from args", () => {
+    const colour = { raw: { ruleType: "cid", args: ["//B/10-20", "red"], isMultiColourRule: false } };
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour } }, "//A");
+    expect(rules[0]).toMatchObject({ isMultiColourRule: false, cid: "//B/10-20", color: "red", multiColourData: "" });
+  });
 });
 
 describe("geometryToM2tParams (honoured geometry → Moorhen m2tParameters)", () => {
