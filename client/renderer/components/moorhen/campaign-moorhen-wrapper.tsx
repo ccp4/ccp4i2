@@ -70,7 +70,14 @@ import {
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
-import { fetchJobDictionaryFiles } from "../../lib/moorhen-dictionaries";
+import {
+  COORDINATE_TYPES,
+  fetchCompanionDictionaryFiles,
+  fetchDictionaryTexts,
+  fetchJobDictionaryFiles,
+  loadWithDictionaries,
+  type DictionaryToAttach,
+} from "../../lib/moorhen-dictionaries";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
@@ -195,7 +202,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const [ligandDictFileId, setLigandDictFileId] = useState<number | null>(null);
   const [ligandName, setLigandName] = useState<string | null>(null);
   // Store ALL loaded dictionary contents so we can add them to molecules
-  const loadedDictContents = useRef<string[]>([]);
 
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -267,7 +273,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     // Reset ligand info
     setLigandDictFileId(null);
     setLigandName(null);
-    loadedDictContents.current = [];
     // Reset representation state to default
     setVisibleRepresentations(["CRs"]);
     hasInitializedReps.current = false;
@@ -583,10 +588,12 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       console.warn(`File with ID ${fileId} not found.`);
       return;
     }
-    if (fileInfo.type === "chemical/x-pdb") {
+    if (COORDINATE_TYPES.has(fileInfo.type)) {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.job_param_name;
-      await fetchMolecule(url, molName);
+      // A coordinate file brings the dictionaries of the job it belongs to.
+      const dictionaries = await fetchDictionaryTexts(await fetchCompanionDictionaryFiles(fileId));
+      await fetchMolecule(url, molName, dictionaries);
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
@@ -600,48 +607,53 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     }
   };
 
-  const fetchJobFiles = async (jobId: number) => {
+  /**
+   * Load a job's best coordinate file, with the job's own dictionaries
+   * attached to that molecule alone, and its maps.
+   *
+   * `asCurrentMember` (the default) is the campaign's own use: the job is the
+   * selected member's, so its first dictionary drives the 2D ligand panel and
+   * the view centres on it. With it false the job is an addition brought in
+   * from the project browser ("load all job outputs"): nothing about the
+   * current member is disturbed and the camera stays where it is.
+   */
+  const fetchJobFiles = async (
+    jobId: number,
+    opts: { asCurrentMember?: boolean } = {},
+  ) => {
+    const asCurrentMember = opts.asCurrentMember !== false;
     const files = await apiGet(`files/?job=${jobId}`);
     if (!files || !Array.isArray(files)) return;
 
     // Filter to only JOB_DIR files (directory=1), exclude imported files (directory=2)
     const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
 
-    // STEP 1: Load ALL ligand dictionaries FIRST (before coordinates)
-    // This ensures coot understands ligand geometry when parsing coordinates.
-    // A dictionary file may contain multiple monomers — read_dictionary_string
-    // loads all of them into coot's global store.
-    // The job's dictionaries from the database: its own files AND its inputs
-    // (a refinement's ligand usually comes from an earlier acedrg job, which a
-    // filter over this job's own files never saw).
+    // STEP 1: The job's dictionaries from the database: its own files AND its
+    // inputs (a refinement's ligand usually comes from an earlier acedrg job,
+    // which a filter over this job's own files never saw). They are attached
+    // to this job's molecule only, never to Coot's global store, so a second
+    // job brought into the view keeps its own chemistry for a ligand of the
+    // same name.
     const ligandDictFiles = await fetchJobDictionaryFiles(jobId);
-    if (ligandDictFiles.length > 0) {
-      loadedDictContents.current = [];
-      for (const dictFile of ligandDictFiles) {
-        const dictUrl = `/api/proxy/ccp4i2/files/${dictFile.id}/download/`;
-        await fetchDict(dictUrl);
+    const dictionaries = await fetchDictionaryTexts(ligandDictFiles);
+    if (asCurrentMember) {
+      if (ligandDictFiles.length > 0) {
+        // Use the first dictionary file for 2D display in the control panel
+        const firstDict = ligandDictFiles[0];
+        setLigandDictFileId(firstDict.id);
+        const name = firstDict.name?.replace(/\.cif$/i, "") ||
+                     firstDict.annotation ||
+                     "Ligand";
+        setLigandName(name);
+      } else {
+        setLigandDictFileId(null);
+        setLigandName(null);
       }
-      // Use the first dictionary file for 2D display in the control panel
-      const firstDict = ligandDictFiles[0];
-      setLigandDictFileId(firstDict.id);
-      const name = firstDict.name?.replace(/\.cif$/i, "") ||
-                   firstDict.annotation ||
-                   "Ligand";
-      setLigandName(name);
-    } else {
-      loadedDictContents.current = [];
-      setLigandDictFileId(null);
-      setLigandName(null);
     }
 
     // STEP 2: Find and load coordinate files
     // Check for both PDB and mmCIF types
-    const coordFiles = jobOutputFiles.filter(
-      (f: { type: string }) =>
-        f.type === "chemical/x-pdb" ||
-        f.type === "chemical/x-cif" ||
-        f.type === "chemical/x-mmcif"
-    );
+    const coordFiles = jobOutputFiles.filter((f: { type: string }) => COORDINATE_TYPES.has(f.type));
     // Prefer mmCIF (.cif) over PDB (.pdb) for coordinates
     const mmcifFile = coordFiles.find((f: { name: string }) =>
       f.name.toLowerCase().endsWith(".cif")
@@ -652,7 +664,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     if (coordFile) {
       const url = `/api/proxy/ccp4i2/files/${coordFile.id}/download/`;
       const molName = coordFile.annotation || coordFile.job_param_name;
-      await fetchMolecule(url, molName);
+      await fetchMolecule(url, molName, dictionaries, { centre: asCurrentMember });
     }
 
     // STEP 3: Load map files (MTZ coefficients and real-space CCP4 maps / masks)
@@ -671,34 +683,15 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     }
   };
 
-  /**
-   * Load a ligand dictionary into coot's global dictionary store.
-   * This should be called BEFORE loading coordinates so coot understands ligand geometry.
-   */
-  const fetchDict = async (url: string): Promise<string | null> => {
-    if (!commandCentre.current) return null;
-    try {
-      const fileContent = await apiText(url);
-      // Load dictionary globally into coot (molNo=-999999 means global)
-      await commandCentre.current.cootCommand(
-        {
-          returnType: "status",
-          command: "read_dictionary_string",
-          commandArgs: [fileContent, -999999],
-          changesMolecules: [],
-        },
-        false
-      );
-      // Store content so we can add it to molecules later
-      loadedDictContents.current.push(fileContent);
-      return fileContent;
-    } catch (err) {
-      console.error("[fetchDict] Failed to load dictionary:", err);
-      return null;
-    }
-  };
+  /** Bring an extra job into the view from the project browser. */
+  const importJobFiles = (jobId: number) => fetchJobFiles(jobId, { asCurrentMember: false });
 
-  const fetchMolecule = async (url: string, molName: string) => {
+  const fetchMolecule = async (
+    url: string,
+    molName: string,
+    dictionaries: DictionaryToAttach[] = [],
+    opts: { centre?: boolean } = {},
+  ) => {
     if (!commandCentre.current) return;
     const newMolecule = new MoorhenMolecule(
       commandCentre as RefObject<moorhen.CommandCentre>,
@@ -709,21 +702,15 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
       const pdbData = await apiText(url);
-      await newMolecule.loadToCootFromString(pdbData, molName);
+      // The molecule's own dictionaries, attached to it alone, before Moorhen
+      // goes looking for missing monomers (see lib/moorhen-dictionaries).
+      await loadWithDictionaries(newMolecule as any, dictionaries, () =>
+        newMolecule.loadToCootFromString(pdbData, molName),
+      );
       if (newMolecule.molNo === -1) {
         throw new Error("Cannot read the fetched molecule...");
       }
       newMolecule.uniqueId = url;
-
-      // Add all loaded dictionaries to molecule
-      // This ensures the molecule understands geometry for all monomers
-      for (const dictContent of loadedDictContents.current) {
-        try {
-          await newMolecule.addDict(dictContent);
-        } catch (err) {
-          console.warn("[fetchMolecule] Failed to add dictionary:", err);
-        }
-      }
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
       try {
@@ -740,7 +727,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         console.warn("[fetchMolecule] Ligands representation failed");
       }
 
-      await newMolecule.centreOn("/*/*/*/*", false, true);
+      if (opts.centre !== false) await newMolecule.centreOn("/*/*/*/*", false, true);
       dispatch(addMolecule(newMolecule));
     } catch (err) {
       console.warn(err);
@@ -1135,6 +1122,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             onMapContourLevelChange: handleMapContourLevelChange,
             onTagProjectWithSite: handleTagProjectWithSite,
             onFileSelect: fetchFile,
+            onJobLoad: importJobFiles,
             onRunServalcat: handleRunServalcat,
           }}
           onApplyScene={handleApplyScene}
