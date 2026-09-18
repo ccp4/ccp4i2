@@ -51,6 +51,14 @@
       </content>
     </container>
     <container id="controlParameters">
+      <content id="OVERRIDE_CELL_DIFFERENCE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>Extend the FreeR set even if its cell differs from the data</guiLabel>
+          <toolTip>In COMPLETE mode the data and the input FreeR set are joined by reflection index. By default they must have the same unit cell to within Clipper's 1 A test; set this when the FreeR set comes from another crystal of the same form (a campaign's shared free set), and only the space groups have to agree.</toolTip>
+        </qualifiers>
+      </content>
       <content id="CUTRESOLUTION">
         <className>CBoolean</className>
         <qualifiers>

@@ -103,7 +103,13 @@ class freerflag(CPluginScript):
                 #  cut the resolution of the FreeR set if it is higher than the data
                 self.cutResolution()
         
-            self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'])
+            # The join is by reflection index. A FreeR set from another
+            # crystal of the same form has a slightly different cell, which
+            # the default 1 A check rejects; the override drops the cell
+            # comparison (the space groups still have to match).
+            override = bool(self.container.controlParameters.OVERRIDE_CELL_DIFFERENCE)
+            self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'],
+                                              cell_tolerance=None if override else 1.0)
             print('freerflag.processInputFiles',self.hklin,error)
             if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
                 return CPluginScript.FAILED
@@ -243,7 +249,11 @@ class freerflag(CPluginScript):
       dmin = mtz.resolution_high()
       if cp.RESMAX.isSet() and float(cp.RESMAX) > 0.0:
           dmin = float(cp.RESMAX)
-      full = np.array(gemmi.make_miller_array(mtz.cell, mtz.spacegroup, dmin), dtype=int)
+      # Every observed reflection must survive, including the one that sits
+      # exactly on the resolution limit (make_miller_array's limits are
+      # exclusive at floating-point precision).
+      from ccp4i2.core.CCP4Utils import complete_reflection_list
+      full = complete_reflection_list(mtz.cell, mtz.spacegroup, dmin, 0.0, data[:, :3])
       ncol = data.shape[1]
       obs = {(int(h[0]), int(h[1]), int(h[2])): data[i] for i, h in enumerate(data[:, :3].astype(int))}
       rows = np.empty((len(full), ncol), dtype=np.float32)

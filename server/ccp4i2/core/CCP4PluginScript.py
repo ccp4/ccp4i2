@@ -4050,7 +4050,8 @@ class CPluginScript(CData):
         self,
         file_objects: list,
         output_name: str = 'hklin',
-        merge_strategy: str = 'first'
+        merge_strategy: str = 'first',
+        cell_tolerance: Optional[float] = 1.0,
     ) -> Path:
         """
         Merge normalized mini-MTZ files into a single HKLIN file (new Pythonic API).
@@ -4303,7 +4304,8 @@ class CPluginScript(CData):
         result = merge_mtz_files(
             input_specs=input_specs,
             output_path=output_path,
-            merge_strategy=merge_strategy
+            merge_strategy=merge_strategy,
+            cell_tolerance=cell_tolerance,
         )
 
         return result
@@ -4332,7 +4334,8 @@ class CPluginScript(CData):
 
         raise ValueError(f"No content flag name found for value {content_flag}")
 
-    def makeHklin(self, miniMtzsIn: list, hklin: str = 'hklin') -> tuple:
+    def makeHklin(self, miniMtzsIn: list, hklin: str = 'hklin',
+                  cell_tolerance: Optional[float] = 1.0) -> tuple:
         """
         Merge mini-MTZ files into HKLIN (backward-compatible legacy API).
 
@@ -4349,6 +4352,10 @@ class CPluginScript(CData):
                        converts file to target format first (handled by makeHklinGemmi)
 
             hklin: Base name for output file (default: 'hklin')
+
+            cell_tolerance: Passed to merge_mtz_files; None skips the unit-cell
+                comparison (reflections matched by index only, first file's
+                cell kept), for extending a FreeR set across crystals.
 
         Returns:
             tuple: (hklin_filename, CErrorReport) where:
@@ -4407,7 +4414,8 @@ class CPluginScript(CData):
             output_path = self.makeHklinGemmi(
                 file_objects=file_objects,
                 output_name=hklin,
-                merge_strategy='first'
+                merge_strategy='first',
+                cell_tolerance=cell_tolerance,
             )
 
             # Store the output filename for legacy API compatibility
