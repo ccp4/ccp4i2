@@ -208,6 +208,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "freerflag",
       "matthews",
       "ImportObs",
+      "ImportUnmerged",
       "ImportMapCoeffs",
       "ImportFreeR",
       "ImportPhases",

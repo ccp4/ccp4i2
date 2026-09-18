@@ -22,6 +22,7 @@ import ImportFreeRInterface from "./ImportFreeR";
 import ImportMapInterface from "./ImportMap";
 import ImportMapCoeffsInterface from "./ImportMapCoeffs";
 import ImportObsInterface from "./ImportObs";
+import ImportUnmergedInterface from "./ImportUnmerged";
 import ImportPhasesInterface from "./ImportPhases";
 import ImportSequenceInterface from "./ImportSequence";
 import AMPLEInterface from "./ample";
@@ -180,6 +181,7 @@ const TASK_INTERFACES: Record<
   ImportMap: ImportMapInterface,
   ImportMapCoeffs: ImportMapCoeffsInterface,
   ImportObs: ImportObsInterface,
+  ImportUnmerged: ImportUnmergedInterface,
   ImportPhases: ImportPhasesInterface,
   ImportSequence: ImportSequenceInterface,
   AMPLE: AMPLEInterface,

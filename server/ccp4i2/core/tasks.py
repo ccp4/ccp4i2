@@ -770,6 +770,13 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ImportMap.script.ImportMap:ImportMap",
         defXmlPath="wrappers/ImportMap/script/ImportMap.def.xml",
     ),
+    "ImportUnmerged": Task(
+        title="Import unmerged reflections",
+        description="Import an unmerged reflection file (MTZ, XDS, scalepack, mmCIF) into the project",
+        shortTitle="Import unmerged",
+        pluginPath="ccp4i2.wrappers.ImportUnmerged.script.ImportUnmerged:ImportUnmerged",
+        defXmlPath="wrappers/ImportUnmerged/script/ImportUnmerged.def.xml",
+    ),
     "ImportSequence": Task(
         title="Import a sequence file",
         description="Import a FASTA / PIR / plain sequence file into the project",
