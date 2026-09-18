@@ -68,10 +68,21 @@ the format.
   entry with `from:`. `keep: inside` (default) keeps density near the
   selection. Only reach for masking when the request is about carving density
   to a region.
-- **Dictionaries** go in `files[]` with `kind: dictionary` and are attached to
-  an element (`elements[].dictionaries`) or globally
-  (`globalDictionaries`). A model with a ligand and no dictionary draws
-  without geometry.
+- **Dictionaries belong to a molecule, and the molecule's job decides which.**
+  The rule: a molecule's dictionaries are the ones its *job* took as input or
+  wrote as output, and nothing else. A project routinely holds several
+  ligands called LIG or DRG, so associating by residue name, or by "any
+  dictionary in the project", is a guess that is wrong as soon as there are
+  two. The server answers it from the database (`jobs/{id}/dictionaries/`,
+  `files/{id}/companion_dictionaries/`); do not reconstruct it on the client.
+  In a scene, put each dictionary in `files[]` with `kind: dictionary` and
+  list it under its molecule's `elements[].dictionaries`. On apply it is
+  attached to that molecule as it loads and is **never** loaded into Coot's
+  global store, because a global entry is inherited by every molecule that
+  has none of its own. `globalDictionaries` is for a monomer you really do
+  want shared by every molecule. A dictionary listed in `files[]` but
+  attached nowhere still goes global, which older hand-written scenes relied
+  on; do not author new scenes that way.
 - **Honoured versus hint.** Anything with a physical unit, or that governs
   visibility (`alpha`, clip planes, geometry radii, camera, background) is
   honoured: a renderer must reproduce it. `hints` (lighting, SSAO, edge
@@ -122,8 +133,9 @@ moves. A strict-portable export lowers deployment refs to `bundle` or `url`.
 
 ## Producers and consumers
 
-- **Client**: `lib/moorhen-scene-resolver.ts` applies, `lib/moorhen-scene-lifter.ts`
-  captures, `components/moorhen/moorhen-scenes-panel.tsx` is the UI,
+- **Client**: `lib/moorhen-scene-resolver.ts` applies (`planDictionaryScopes`
+  decides what may go global), `lib/moorhen-scene-lifter.ts` captures,
+  `lib/moorhen-dictionaries.ts` attaches dictionaries per molecule, `components/moorhen/moorhen-scenes-panel.tsx` is the UI,
   `lib/moorhen-scene-prompt.ts` and `components/moorhen/use-scene-nl-capability.ts`
   drive natural-language generation when a deployment provides it.
 - **Server**: `lib/campaign_scene.py` (`build_summary_scene`) and the
@@ -135,6 +147,13 @@ moves. A strict-portable export lowers deployment refs to `bundle` or `url`.
   migration path.
 
 ## Traps
+
+- A captured scene whose ligands draw with the wrong bonds after a paste
+  almost always means an element with no `dictionaries:` beside another
+  file's ligand of the same residue name. Every loader records where a
+  molecule's dictionaries came from (`lib/moorhen-dictionaries.ts`), and
+  capture writes them from that; a new load path that attaches dictionaries
+  any other way, or reads one into the global store, breaks the round trip.
 
 - Loading a P1 map with 90° angles from MTZ coefficients marks it EM in
   Moorhen; the viewer needs `primeEmMapHeaderInfo` (in `lib/moorhen-map-file.ts`)
