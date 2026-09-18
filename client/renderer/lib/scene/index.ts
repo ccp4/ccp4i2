@@ -296,6 +296,22 @@ const STRUCTURED_PRUNE = {
     "clipStart", "clipEnd", "fogStart", "fogEnd", // slab/clip cover the common case
     "columns", // MTZ column spec — the resolver derives it from the file
   ]),
+  /** Properties pruned only inside the object that declares a sibling key —
+   *  for names that are NOT unique across the schema. `chain`/`range` are the
+   *  deprecated domain form (sibling: `selection`), but the SAME names are the
+   *  current LSQ shorthand under `superpose` (sibling: `matches`), which must
+   *  survive. Without this scoping, pruning by bare name strips both. */
+  scopedProps: [
+    {
+      // Deprecated domain form. strictify() makes every property
+      // required-and-nullable, so leaving these in would force the model to
+      // emit the superseded shape on every domain. `selection` is the only
+      // form a generated scene should use; validateScene still accepts the
+      // legacy pair from scenes already on disk.
+      siblings: ["selection", "color"],
+      drop: ["chain", "range"],
+    },
+  ],
 } as const;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -309,6 +325,18 @@ function isRawColourBranch(node: any): boolean {
   );
 }
 
+/** Which scoped properties to drop from one `properties` object, matched by the
+ *  siblings it declares (see STRUCTURED_PRUNE.scopedProps). */
+function scopedDropsFor(props: Record<string, unknown>): Set<string> {
+  const drop = new Set<string>();
+  for (const rule of STRUCTURED_PRUNE.scopedProps) {
+    if (rule.siblings.every((sib) => sib in props)) {
+      for (const d of rule.drop) drop.add(d);
+    }
+  }
+  return drop;
+}
+
 /** Deep-clone the schema while removing the authoring-core exclusions: top-level
  *  blocks, named properties, and the raw-colour escape-hatch union branch. Run
  *  BEFORE strictify so it recomputes required/additionalProperties cleanly. */
@@ -319,17 +347,23 @@ function pruneForAuthoringCore(input: unknown, atRoot = false): any {
   const out: JsonNode = {};
   for (const [k, v] of Object.entries(input)) {
     if (k === "properties" && isPlainObject(v)) {
+      const scopedDrop = scopedDropsFor(v);
       const props: JsonNode = {};
       for (const [pk, pv] of Object.entries(v)) {
         if (STRUCTURED_PRUNE.props.has(pk)) continue;
+        if (scopedDrop.has(pk)) continue;
         if (atRoot && (STRUCTURED_PRUNE.topLevel as readonly string[]).includes(pk)) continue;
         props[pk] = pruneForAuthoringCore(pv);
       }
       out[k] = props;
     } else if (k === "required" && Array.isArray(v)) {
+      const scopedDrop = isPlainObject(input.properties)
+        ? scopedDropsFor(input.properties as Record<string, unknown>)
+        : new Set<string>();
       out[k] = v.filter(
         (r: string) =>
           !STRUCTURED_PRUNE.props.has(r) &&
+          !scopedDrop.has(r) &&
           !(atRoot && (STRUCTURED_PRUNE.topLevel as readonly string[]).includes(r)),
       );
     } else if (k === "anyOf" && Array.isArray(v)) {
