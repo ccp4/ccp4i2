@@ -3520,10 +3520,30 @@ class CPluginScript(CData):
 
         # Parse warnings for unrestrained atoms ("definition not found for ...")
         # and collect missing-from-model atoms (dict defines them, structure lacks them)
+        #
+        # Not every "definition not found" warning is fatal. gemmi appends a
+        # parenthesised remark saying what refinement will do about it, and
+        # "linkage should remove this atom" means exactly that: the atom is
+        # dropped when the link is applied, which refmac and servalcat both do
+        # silently and correctly. Typically these are the extra N-terminal
+        # hydrogens (H2/H3) on a residue that is no longer a chain terminus.
+        # Treating that advisory as a blocking error stopped submission of a
+        # model that refinement would have handled by itself.
         unrestrained = []
+        advisory = []
         for line in log.getvalue().splitlines():
             if 'definition not found' in line:
-                unrestrained.append(line.replace('Warning: ', ''))
+                msg = line.replace('Warning: ', '')
+                if 'linkage should remove this atom' in msg:
+                    advisory.append(msg)
+                else:
+                    unrestrained.append(msg)
+
+        if advisory:
+            logger.info(
+                "checkMonomeCoverage: %d atom(s) will be removed by linkage "
+                "(not an error): %s", len(advisory), '; '.join(advisory)
+            )
 
         missing_from_model = topo.find_missing_atoms()
 
@@ -3552,6 +3572,7 @@ class CPluginScript(CData):
         if unrestrained:
             # Group by residue for readability
             by_residue = {}
+            blank_residues = []
             for msg in unrestrained:
                 # Format: "definition not found for A/GOL 1/N1"
                 parts = msg.split('/')
@@ -3562,7 +3583,31 @@ class CPluginScript(CData):
                 else:
                     lines.append(msg)
             for res_key, atoms in sorted(by_residue.items()):
-                lines.append(f"  {res_key}: atoms without restraints: {', '.join(atoms)}")
+                # An atom written without a name yields an empty name here, so
+                # the raw warning reads "(replace  with N)" -- the doubled
+                # space is where the name should have been, which tells the
+                # user nothing. Name the real defect instead.
+                label = res_key.replace('definition not found for ', '')
+                n_blank = sum(1 for a in atoms if not a.split('(')[0].strip())
+                named = [a for a in atoms if a.split('(')[0].strip()]
+                if named:
+                    lines.append(
+                        f"  {label}: atoms without restraints: {', '.join(named)}"
+                    )
+                if n_blank:
+                    blank_residues.append(f"{label} ({n_blank})")
+
+            if blank_residues:
+                lines.append(
+                    "  No atom name in the coordinate file (so no restraints "
+                    f"can be matched): {', '.join(blank_residues)}"
+                )
+                lines.append(
+                    "  This means the program that wrote the file left the "
+                    "atom name blank when it created the atom. Re-saving the "
+                    "model through CCP4i2 restores the name wherever the "
+                    "element identifies the atom unambiguously."
+                )
 
             # Flag likely code collisions: if a residue has both unrestrained
             # atoms AND atoms missing from the model, the dictionary almost

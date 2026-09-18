@@ -9,6 +9,8 @@ subclass's ancestry and `isinstance` would say no to a file that plainly
 was one. They are one class now.
 """
 
+import logging
+
 from typing import Optional
 from typing import TYPE_CHECKING, Optional, Any
 from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType, content
@@ -17,6 +19,8 @@ from ccp4i2.core.base_object.fundamental_types import CBoolean, CFloat, CInt, CL
 from ccp4i2.core.base_object.error_reporting import SEVERITY_WARNING
 from ccp4i2.core.CCP4Data import CDict, COneWord, CUUID
 from ccp4i2.core.CCP4File import CFilePath, CI2XmlDataFile, CProjectId
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -2107,6 +2111,51 @@ class CMol2DataFile(CDataFile):
         self.set_qualifier('mimeTypeName', 'chemical/x-mol2')
 
 
+# Backbone atom that each element uniquely identifies in a standard residue.
+# Deliberately minimal: only the carbonyl oxygen is inferred, because that is
+# the atom observed to lose its name (Moorhen "add back as ALA") and the only
+# one an element can name without ambiguity -- a residue has exactly one
+# main-chain O, whereas C or N appear many times over.
+_BLANK_NAME_FROM_ELEMENT = {'O': 'O'}
+
+
+def _repair_blank_atom_names(structure):
+    """Give a name back to atoms that were written without one.
+
+    An atom whose name is empty (or pure whitespace) matches no monomer-library
+    definition, so refinement reports its whole residue as unrestrained. Where
+    the element identifies the atom unambiguously and the residue does not
+    already have that atom, restore the name; otherwise leave it alone rather
+    than guess. Coordinates, occupancy and B are never touched.
+
+    Returns the list of "chain/resname resnum/newname" strings repaired, so
+    callers can log what was changed.
+    """
+    repaired = []
+    for model in structure:
+        for chain in model:
+            for residue in chain:
+                blanks = [a for a in residue if not a.name.strip()]
+                if not blanks:
+                    continue
+                present = {a.name.strip() for a in residue if a.name.strip()}
+                for atom in blanks:
+                    candidate = _BLANK_NAME_FROM_ELEMENT.get(atom.element.name)
+                    if candidate is None or candidate in present:
+                        continue
+                    atom.name = candidate
+                    present.add(candidate)
+                    repaired.append(
+                        f"{chain.name}/{residue.name} {residue.seqid.num}/{candidate}"
+                    )
+    if repaired:
+        logger.warning(
+            "Repaired %d atom(s) written with a blank name (recovered from "
+            "element): %s", len(repaired), ', '.join(repaired)
+        )
+    return repaired
+
+
 class CPdbDataComposition:
     """
     Coordinate file composition analysis using gemmi.
@@ -2881,6 +2930,19 @@ class CPdbData(CDataFileContent):
             # EntityType.Polymer / .Water / .NonPolymer to every residue so
             # that CPdbDataComposition can classify chains correctly.
             structure.setup_entities()
+
+            # Repair blank atom names before anything downstream sees them.
+            # Some upstream writers emit an atom whose name is empty or pure
+            # whitespace while type_symbol is correct -- notably Moorhen's
+            # "add residue back as ALA", which creates N/CA/C/O but leaves the
+            # carbonyl O unnamed. An unnamed atom matches no monomer-library
+            # definition, so refinement (and our own checkMonomeCoverage
+            # pre-flight) reports the residue as having atoms without
+            # restraints, with a message mangled by the empty name. The atom
+            # is otherwise sound: position, occupancy and B are all valid, so
+            # dropping it would lose real coordinates. Recover the name from
+            # the element where that is unambiguous.
+            _repair_blank_atom_names(structure)
 
             # Store gemmi Structure object for advanced queries
             # Use object.__setattr__ to bypass smart assignment
