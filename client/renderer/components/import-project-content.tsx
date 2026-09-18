@@ -11,6 +11,7 @@ import {
 import { Archive } from "@mui/icons-material";
 import { useApi } from "../api";
 import { apiUploadWithProgress, UploadProgress } from "../api-fetch";
+import { stagingCapability, stageFile } from "../lib/staged-upload";
 import { useRouter } from "next/navigation";
 import { Project } from "../types/models";
 import { ImportProjectDirectory } from "./import-project-directory";
@@ -34,28 +35,49 @@ export const ImportProjectContent: React.FC = () => {
       // local_path when its gate allows it (desktop, or a staged cloud dir).
       // getPathForFile lives only in the Electron preload; in the browser it is
       // absent, so localPaths stays empty and we upload the bytes as before.
-      const formData = new FormData();
-      const localPaths: string[] = [];
-      for (let i = 0; i < selectedFiles.length; i++) {
-        const p = window.electronAPI?.getPathForFile?.(selectedFiles[i]) || "";
-        if (p) localPaths.push(p);
-      }
-      if (localPaths.length === selectedFiles.length) {
-        for (const p of localPaths) formData.append("local_path", p);
-      } else {
-        for (let i = 0; i < selectedFiles.length; i++) {
-          formData.append("files", selectedFiles[i]);
-        }
-      }
+      const files = Array.from(selectedFiles);
+      const localPaths = files
+        .map((f) => window.electronAPI?.getPathForFile?.(f) || "")
+        .filter(Boolean);
 
       setUploading(true);
       setProgress(null);
       setError(null);
       try {
+        const formData = new FormData();
+        if (localPaths.length === files.length) {
+          // Desktop: import each zip by its local path (server-side copy).
+          for (const p of localPaths) formData.append("local_path", p);
+        } else {
+          // Served deployment: if staging is advertised, deliver each zip in
+          // chunks past the ingress/body caps and import by owner-bound handles
+          // (import_project takes all-staged or all-body, so stage every file);
+          // otherwise upload the bytes as before.
+          const cap = await stagingCapability();
+          if (cap) {
+            const sizes = files.map((f) => f.size);
+            const totalBytes = sizes.reduce((a, b) => a + b, 0) || 1;
+            let sentBefore = 0;
+            for (let i = 0; i < files.length; i++) {
+              const handle = await stageFile(files[i], files[i].name, cap, {
+                onProgress: (frac) => {
+                  const loaded = sentBefore + frac * sizes[i];
+                  setProgress({ loaded, total: totalBytes, fraction: loaded / totalBytes });
+                },
+              });
+              sentBefore += sizes[i];
+              formData.append("staged_upload", handle);
+            }
+          } else {
+            for (const f of files) formData.append("files", f);
+          }
+        }
+
         // apiUploadWithProgress, not api.post: the ordinary JSON path puts a
         // 30 s AbortController around the request, and a project zip is
         // routinely far bigger than 30 s of uplink. This one bounds on a
-        // stall instead, and can say how far it got.
+        // stall instead, and can say how far it got. (With staged handles the
+        // body is tiny; the progress above came from staging.)
         const response: any = await apiUploadWithProgress(
           "projects/import_project/",
           formData,

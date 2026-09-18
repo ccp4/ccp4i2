@@ -270,6 +270,7 @@ class import_merged(CPluginScript):
             self.freerflag.container.controlParameters.COMPLETE = True
             self.freerflag.container.controlParameters.CUTRESOLUTION = \
                           self.container.controlParameters.CUTRESOLUTION
+            self._propagateFreerOverride(self.freerflag)
             newfreer = 'False'
           
         self.freerflag.container.controlParameters.FRAC = \
@@ -283,6 +284,15 @@ class import_merged(CPluginScript):
         status = self.freerflag.process()
         self.process2(status)
         
+    #------------------------------------------------------------------------
+    def _propagateFreerOverride(self, plugin):
+      """The pipeline's cell-difference override covers both cell gates: the
+      CellCheck above and the freerflag wrapper's index-only join of the data
+      with the input FreeR set (which would otherwise refuse a set from
+      another crystal of the same form)."""
+      if self.container.controlParameters.OVERRIDE_CELL_DIFFERENCE:
+          plugin.container.controlParameters.OVERRIDE_CELL_DIFFERENCE.set(True)
+
     #------------------------------------------------------------------------
     def process2(self,status):
       freerOK = True

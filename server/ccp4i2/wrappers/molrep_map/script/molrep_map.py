@@ -160,6 +160,15 @@ class molrep_map(CPluginScript):
             except Exception as e:
                 self.appendErrorReport(204, f'{hand}: {e}')
 
+            # A running report: the first hand's placement is worth reading
+            # while the second hand runs, and it says which hand is in
+            # progress. The final write in processOutputFiles replaces it.
+            try:
+                self._write_program_xml(
+                    pending=[h for h, *_ in self.HANDS if h not in self._results])
+            except Exception as e:
+                logger.warning("running report for %s hand not written: %s", hand, e)
+
         self._recommended = self._choose_hand()
         self._confidence = self._hand_confidence()
         self._prepare_half_maps(pp)
@@ -334,18 +343,27 @@ class molrep_map(CPluginScript):
 
     # ---- report XML -----------------------------------------------------
 
-    def _write_program_xml(self):
+    def _write_program_xml(self, pending=()):
+        """The report's XML. With ``pending`` hands (still to run) this is the
+        running report: those hands are marked ``pending`` rather than
+        unplaced, and no recommendation is made yet."""
         root = ET.Element('molrep_map')
-        rec = ET.SubElement(root, 'recommendation')
-        rec.set('hand', self._recommended or 'Original')
-        rec.set('confidence', self._confidence or 'none')
-        for hand in ('Original', 'Inverted'):
-            cc = self._cc.get(hand)
-            if self._is_num(cc):
-                rec.set(f'cc_{hand.lower()}', f'{cc:.4f}')
+        if pending:
+            root.set('pending', ','.join(pending))
+        else:
+            rec = ET.SubElement(root, 'recommendation')
+            rec.set('hand', self._recommended or 'Original')
+            rec.set('confidence', self._confidence or 'none')
+            for hand in ('Original', 'Inverted'):
+                cc = self._cc.get(hand)
+                if self._is_num(cc):
+                    rec.set(f'cc_{hand.lower()}', f'{cc:.4f}')
         for hand in ('Original', 'Inverted'):
             res = self._results.get(hand)
             el = ET.SubElement(root, hand)
+            if hand in pending:
+                el.set('pending', 'true')
+                continue
             if res is None:
                 el.set('placed', 'false')
                 continue

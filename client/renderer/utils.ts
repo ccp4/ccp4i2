@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { maybeStage } from "./lib/staged-upload";
 import $ from "jquery";
 import useSWR, { KeyedMutator, mutate, SWRResponse } from "swr";
 
@@ -1151,11 +1152,40 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           // for a synthesized Blob; in either of those cases we upload as normal.
           // The server only honours local_path when it is allowed to (desktop
           // local-session, or a cloud staging dir) -- see resolve_importable_path.
-          const localPath = window.electronAPI?.getPathForFile?.(file as File) || "";
+          const localPath =
+            file instanceof File ? window.electronAPI?.getPathForFile?.(file) || "" : "";
           if (localPath) {
             formData.append("local_path", localPath);
           } else {
-            formData.append("file", file, fileName);
+            // Served deployment: a file over the staging threshold is delivered
+            // in chunks past the body caps and imported by an owner-bound handle.
+            // Small files, and any deployment not advertising staging, upload
+            // their bytes as before.
+            // Staging a large file takes a while and gives no visible sign of
+            // its own; say what is happening, and how far it has got, or the
+            // user reasonably concludes nothing is and intervenes.
+            const megabytes = (file.size / 1048576).toFixed(0);
+            let lastReported = 0;
+            const staged = await maybeStage(file, fileName, {
+              onStart: ({ chunks }) =>
+                setMessage(
+                  `Uploading ${fileName} (${megabytes} MB) in ${chunks} chunks; this can take a while`,
+                  "info"
+                ),
+              onProgress: (fraction) => {
+                const percent = Math.floor(fraction * 10) * 10;
+                if (percent > lastReported && percent < 100) {
+                  lastReported = percent;
+                  setMessage(`Uploading ${fileName}: ${percent}%`, "info");
+                }
+              },
+            });
+            if (staged) {
+              setMessage(`Uploaded ${fileName}; importing it into the project`, "info");
+              formData.append(staged.field, staged.value);
+            } else {
+              formData.append("file", file, fileName);
+            }
           }
           if (description?.trim()) {
             formData.append("description", description.trim());

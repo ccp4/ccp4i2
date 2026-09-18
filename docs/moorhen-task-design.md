@@ -13,8 +13,13 @@ deployment, then to defer scene capture, then to record the decisions in
 `JobInteractiveSession` model (migration 0022), the four `interactive_*`
 endpoints on `JobViewSet`, the `force_dispatch` hook in
 `run_job_context_aware`, the `Task.interactive` flag, and the shared
-`cootbridge/harvest.py` filing helpers. PR 2 (client) and PR 3 (Electron)
-are not started.
+`cootbridge/harvest.py` filing helpers. **PR 2 (client) is implemented on branch `moorhen-task-client`**, stacked on
+PR 1: the session route, `hooks/use-moorhen-session.ts`, the Session tab of
+the CCP4i2 side panel, `lib/interactive-tasks.ts`, `lib/moorhen-serialise.ts`
+(shared with push-to-CCP4i2), the job-menu entries, the task interface and
+chooser entry, and `interactive` on `task_lookup/`. **PR 3 (Electron) is implemented on branch `moorhen-task-electron`**:
+single-instance lock, `--open-route`, `CCP4I2_DESKTOP_LAUNCH`, and the
+plugin-side launch on the i2run branch.
 
 Companion documents:
 

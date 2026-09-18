@@ -770,6 +770,13 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ImportMap.script.ImportMap:ImportMap",
         defXmlPath="wrappers/ImportMap/script/ImportMap.def.xml",
     ),
+    "ImportUnmerged": Task(
+        title="Import unmerged reflections",
+        description="Import an unmerged reflection file (MTZ, XDS, scalepack, mmCIF) into the project",
+        shortTitle="Import unmerged",
+        pluginPath="ccp4i2.wrappers.ImportUnmerged.script.ImportUnmerged:ImportUnmerged",
+        defXmlPath="wrappers/ImportUnmerged/script/ImportUnmerged.def.xml",
+    ),
     "ImportSequence": Task(
         title="Import a sequence file",
         description="Import a FASTA / PIR / plain sequence file into the project",
@@ -922,6 +929,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.molrep_map.script.molrep_map:molrep_map",
         defXmlPath="wrappers/molrep_map/script/molrep_map.def.xml",
         reportPath="ccp4i2.wrappers.molrep_map.script.molrep_map_report:molrep_map_report",
+        runningReport=True,
     ),
     "molrep_mr": Task(
         title="Molecular Replacement and refinement- MOLREP",

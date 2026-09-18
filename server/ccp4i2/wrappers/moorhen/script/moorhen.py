@@ -30,6 +30,38 @@ from ccp4i2.core.CCP4ModelData import CPdbDataFile
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 DROP_DIR_NAME = "MOORHEN_FILE_DROP"
+DESKTOP_LAUNCH_ENV = "CCP4I2_DESKTOP_LAUNCH"
+
+
+def session_route(job):
+    return f"/ccp4i2/moorhen-page/session/{job.id}"
+
+
+def launch_session_window(route, environ=None):
+    """Ask the desktop app to open ``route``; returns the spawned Popen or
+    None if no app launch command is known or spawning failed."""
+    import json
+    import subprocess
+
+    environ = os.environ if environ is None else environ
+    raw = environ.get(DESKTOP_LAUNCH_ENV)
+    if not raw:
+        return None
+    try:
+        command = json.loads(raw)
+        if not isinstance(command, list) or not command:
+            raise ValueError("not a non-empty list")
+    except (ValueError, TypeError) as err:
+        logger.warning("%s is not a JSON list: %s", DESKTOP_LAUNCH_ENV, err)
+        return None
+    try:
+        return subprocess.Popen(
+            [str(part) for part in command] + ["--open-route", route],
+            stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL, start_new_session=True)
+    except OSError as err:
+        logger.warning("Could not launch the desktop app for %s: %s", route, err)
+        return None
 
 
 class moorhen(CPluginScript):
@@ -88,12 +120,20 @@ class moorhen(CPluginScript):
                 return CPluginScript.INTERRUPTED
 
     def _announce_session(self, job):
-        """Say where a window can attach. Opening one from here is the
-        desktop launch work (--open-route); until then the route is logged
-        and the app's job menu offers "Open session window"."""
-        route = f"/ccp4i2/moorhen-page/session/{job.id}"
+        """Say where a window can attach, and open one if we can.
+
+        The desktop app exports CCP4I2_DESKTOP_LAUNCH (a JSON list: its own
+        executable, plus the app directory in development) into the Django
+        child, so a job started from i2run can run it with --open-route;
+        the app's single-instance lock forwards that to the running app,
+        which opens the session window. Without it (a bare runserver, a web
+        deployment) the route is logged and the app's job menu offers
+        "Open session window".
+        """
+        route = session_route(job)
         print(f"Moorhen session open for job {job.number}: {route}")
         logger.info("moorhen session route: %s", route)
+        launch_session_window(route)
 
     # -- harvesting ---------------------------------------------------------
 
