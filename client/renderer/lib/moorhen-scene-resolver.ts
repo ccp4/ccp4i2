@@ -58,15 +58,14 @@ import {
   showMap,
   hideMap,
   setActiveMap,
+  ColourRule,
+  getMultiColourRuleArgs,
 } from "moorhen/react-lib";
 import type { moorhen } from "moorhen/types/moorhen";
 
-// We deliberately don't import MoorhenColourRule from "moorhen/react-lib". Although
-// the class is exported in Moorhen's source, the installed package's
-// bundled moorhen.js does not re-expose it on the package export object
-// (runtime "is not a constructor"). Instead, we add colour rules via
-// MoleculeRepresentation.addColourRule, which constructs the rule
-// internally with the right commandCentre + parent molecule wiring.
+// The colour-rule class is exported at runtime as `ColourRule`. The package's
+// types also name it `MoorhenColourRule`, but the bundle does not export that
+// name (importing it gives "is not a constructor").
 
 import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import {
@@ -1188,14 +1187,20 @@ interface ApplyRepCtx {
 }
 
 /**
- * A colour rule expressed as the arguments to MoleculeRepresentation.addColourRule.
+ * A colour rule expressed as the arguments to Moorhen's ColourRule constructor.
  * Lets us stage the rule independently of how Moorhen wires it together.
+ *
+ * A single-colour rule is its `cid` + `color`. A multi-colour rule is its
+ * `multiColourData`, pipe-joined `cid^#hex` segments — except for Moorhen's
+ * named schemes (b-factor, af2-plddt, ...), whose data depends on the loaded
+ * molecule: those are staged with `multiColourData: null` and computed when the
+ * rule is applied.
  */
 interface PendingRule {
   ruleType: string;
   cid: string;
   color: string;
-  args: (string | number)[];
+  multiColourData: string | null;
   isMultiColourRule: boolean;
   applyColourToNonCarbonAtoms?: boolean;
 }
@@ -1256,27 +1261,31 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
         );
       }
       if (pendingRules.length > 0) {
-        // Decouple this representation from the molecule's shared
-        // `defaultColourRules` array (assigned to a rep BY REFERENCE at draw
-        // time in Moorhen). Without this reset, addColourRule push()es onto the
-        // shared array, so colour rules accumulate molecule-wide and leak across
-        // every representation (the "colour soup" on capture). Nulling it makes
-        // the first addColourRule build a fresh, rep-private list.
-        created.colourRules = null;
+        // Colour rule CID stays as authored — the rule's CID and the
+        // representation's CID don't have to match (e.g. by-domain rules
+        // target absolute residue numbers regardless of the representation's
+        // selection). The rules are built here rather than through
+        // created.addColourRule because that cannot carry multi-colour data.
+        const rules: ColourRule[] = [];
         for (const r of pendingRules) {
-          // Colour rule CID stays as authored — the rule's CID and the
-          // representation's CID don't have to match (e.g. by-domain
-          // rules target absolute residue numbers regardless of the
-          // representation's selection).
-          created.addColourRule(
-            r.ruleType,
+          const multiColourData = !r.isMultiColourRule
+            ? ""
+            : r.multiColourData ?? (await getMultiColourRuleArgs(molecule, r.ruleType));
+          const rule = new ColourRule(
+            r.ruleType as ConstructorParameters<typeof ColourRule>[0],
             r.cid,
             r.color,
-            r.args,
+            molecule.commandCentre,
             r.isMultiColourRule,
             r.applyColourToNonCarbonAtoms ?? false,
+            multiColourData,
           );
+          rule.setParentMolecule(molecule);
+          rules.push(rule);
         }
+        // Assigning gives the representation its own copy of the list and
+        // turns its default colour rules off.
+        created.colourRules = rules;
       }
       // Rebuild the buffers once if colour rules and/or geometry changed.
       if (pendingRules.length > 0 || geomSet) {
@@ -1355,22 +1364,18 @@ export function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): Pending
       ruleType: "molecule",
       cid: c.selection,
       color: c.colour,
-      args: [c.selection, c.colour],
+      multiColourData: "",
       isMultiColourRule: false,
     }));
   }
 
   if (isSceneHexColour(colour)) {
-    // libcoot's add_colour_rule reads cid+colour from args, not from
-    // this.cid/this.color (which are only consulted by the bond-style
-    // shim_set_bond_colours path). Without [cid, colour] in args,
-    // ribbons / MolecularSurface / etc. silently no-op.
     return [
       {
         ruleType: "molecule",
         cid: defaultCid,
         color: colour,
-        args: [defaultCid, colour],
+        multiColourData: "",
         isMultiColourRule: false,
       },
     ];
@@ -1380,29 +1385,33 @@ export function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): Pending
     if (colour === "by-domain") {
       return buildByDomainPendingRule(molecule, domains, fileName, log, policy);
     }
-    // Named schemes (b-factor, af2-plddt, etc.) are Moorhen multi-rules
-    // whose args are filled in by Moorhen at apply-time. We pass an empty
-    // args array; Moorhen's internal getMultiColourRuleArgs supplies them.
+    // Named schemes (b-factor, af2-plddt, etc.) are Moorhen multi-rules whose
+    // data is computed from the molecule. Moorhen does not do that for us: the
+    // rule goes to coot exactly as built, so the data is fetched with
+    // getMultiColourRuleArgs when the rule is applied (multiColourData: null).
     return [
       {
         ruleType: colour,
         cid: defaultCid,
         color: "#ffffff",
-        args: [],
+        multiColourData: null,
         isMultiColourRule: true,
       },
     ];
   }
 
   if (isSceneRawColour(colour)) {
+    // `args` is the scene format's spelling of what the rule sends to coot:
+    // the multi-colour data for a multi-rule, else [cid, colour].
     const raw = colour.raw;
+    const isMultiColourRule = raw.isMultiColourRule ?? true;
     return [
       {
         ruleType: raw.ruleType,
-        cid: defaultCid,
-        color: "#ffffff",
-        args: raw.args,
-        isMultiColourRule: raw.isMultiColourRule ?? true,
+        cid: isMultiColourRule ? defaultCid : String(raw.args[0] ?? defaultCid),
+        color: isMultiColourRule ? "#ffffff" : String(raw.args[1] ?? "#ffffff"),
+        multiColourData: isMultiColourRule ? String(raw.args[0] ?? "") : "",
+        isMultiColourRule,
         applyColourToNonCarbonAtoms: raw.applyColourToNonCarbonAtoms,
       },
     ];
@@ -1575,7 +1584,7 @@ function buildByDomainPendingRule(
 
   if (segments.length === 0) return [];
 
-  // One multi-rule, args = pipe-joined segments. Matches Moorhen's own
+  // One multi-rule, data = pipe-joined segments. Matches Moorhen's own
   // internal shape for multi-residue colouring (see secondary-structure
   // colouring in baby-gru/src/utils/utils.ts).
   return [
@@ -1583,7 +1592,7 @@ function buildByDomainPendingRule(
       ruleType: "by-domain", // label only; not a built-in scheme
       cid: "/*/*/*/*",
       color: "#ffffff",
-      args: [segments.join("|")],
+      multiColourData: segments.join("|"),
       isMultiColourRule: true,
     },
   ];

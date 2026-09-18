@@ -111,7 +111,8 @@ should honour**.
 ### 4b. Lighting and materials
 
 **Grounding finding (overrides the earlier per-rep-material plan).** Inspecting Moorhen's
-`glRefSlice`: the scene has a single light with `lightPosition: [n,n,n,n]` and
+`glRefSlice` (these fields moved to `sceneSettingsSlice` in 1.0.1, unchanged in meaning):
+the scene has a single light with `lightPosition: [n,n,n,n]` and
 `ambient` / `diffuse` / `specular` as **`[r,g,b,a]` colours of that light**, plus
 `specularPower`. Moorhen has **no per-object material concept at all** — diffuse/specular
 are properties of the *light*, not of a surface. The earlier "per-rep material
@@ -251,7 +252,7 @@ becomes a generated compact brief, not hand-maintained prose.
 - `$id` URL scheme and where the published `moorhen-scene.{core,ccp4i2}.v1.json` are hosted.
 
 **Shipped since v1 (PRs #223–#226 + superpose):** honoured geometry (→ `m2tParameters`);
-`hints` lighting/effects apply (→ `glRefSlice` + `setDo*`) **and** lifter capture
+`hints` lighting/effects apply (→ `glRefSlice`, `sceneSettingsSlice` from Moorhen 1.0.1, + `setDo*`) **and** lifter capture
 (emit-only-non-default); the generated LLM brief + regenerated human grammar; request-time
 **PDB digest** from PDBe; the two-level **colour** model and **superpose round-trip** (§10).
 `outline` was removed (it's a hover highlight, not a scene effect — §4b/§10).
@@ -268,10 +269,21 @@ real two levels:
 - **`representation.colour`** — overrides it for that rep (the cascade; effective colour =
   `rep.colour ?? element.colour`).
 
-Resolver: reset `created.colourRules = null` before `addColourRule` so each rep builds a
-fresh, private list (no leak). Lifter: dedup rules and **hoist** a colour shared by ≥2 reps
-up to `element.colour`. (Clean `setColourRules`/`defaultColourRules` is blocked — Moorhen
-doesn't export `ColourRule` at runtime — so we use the null-reset + addColourRule path.)
+Resolver: build the representation's `ColourRule` objects and assign them to
+`created.colourRules`, which gives the rep a private copy and turns its defaults off (no
+leak). Lifter: dedup rules and **hoist** a colour shared by ≥2 reps up to `element.colour`.
+
+*Moorhen 1.0.1 (2026-09).* The paragraph above describes 1.0.0-beta.1, where the list was
+shared by reference; from 1.0.1 the `colourRules` setter copies it, so the leak is fixed
+upstream. The same release replaced a rule's `args` with `cid` + `color` (single colour)
+or `multiColourData` (multi-colour), and `addColourRule` cannot carry the latter — hence
+building `ColourRule` directly. It is exported at runtime under that name;
+`MoorhenColourRule` exists only in the package's types, which is what the earlier "not a
+constructor" finding was. A named scheme's data (`b-factor`, `af2-plddt`, …) is never
+filled in by Moorhen: the resolver fetches it with `getMultiColourRuleArgs` when it applies
+the rule. The scene format is unchanged — `raw.args` keeps its spelling, which is also what
+Moorhen's own session format still writes: the multi-colour data for a multi-rule, else
+`[cid, colour]`.
 
 **`pdb:` recovery.** The lifter recognises PDBe download URLs (absolute or origin-relative)
 and emits a portable `pdb:` ref rather than a deployment-bound `relativeUrl`.

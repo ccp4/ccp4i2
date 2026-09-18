@@ -30,7 +30,7 @@ import {
 } from "moorhen/react-lib";
 import { setShownSidePanel, MoorhenInstanceProvider, MoorhenMenuSystem } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenPanel } from "moorhen/react-lib";
+import type { MoorhenInstance, MoorhenPanel } from "moorhen/react-lib";
 
 import {
   RefObject,
@@ -46,6 +46,7 @@ import { webGL } from "moorhen/types/mgWebGL";
 import { apiText, apiArrayBuffer, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import { readCameraState } from "../../lib/moorhen-view-state";
 import { useCampaignsApi } from "../../lib/campaigns-api";
 import { usePopcorn } from "../../providers/popcorn-provider";
 import {
@@ -69,7 +70,7 @@ import {
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/scene";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import {
   COORDINATE_TYPES,
   fetchCompanionDictionaryFiles,
@@ -190,6 +191,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
   const commandCentre = useRef<null | moorhen.CommandCentre>(null);
+  // Filled by MoorhenContainer on mount. Molecules and maps are built from it.
+  const moorhenInstanceRef = useRef<null | MoorhenInstance>(null);
   const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
   const mapsRef = useRef<null | moorhen.Map[]>(null);
   const activeMapRef = useRef<moorhen.Map>(null);
@@ -252,8 +255,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
 
   const getOrigin = useCallback(() => {
-    const state = store.getState() as moorhen.State;
-    return (state as unknown as { glRef: { origin: number[] } }).glRef.origin;
+    return readCameraState(store.getState() as moorhen.State).origin;
   }, [store]);
 
   // Cleanup all loaded molecules and maps
@@ -307,11 +309,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       uniqueId: string,
     ): Promise<moorhen.Molecule | null> => {
       if (!commandCentre.current) return null;
-      const newMolecule = new MoorhenMolecule(
-        commandCentre as RefObject<moorhen.CommandCentre>,
-        store as any,
-        monomerLibraryPath,
-      );
+      const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
       newMolecule.setBackgroundColour(backgroundColor);
       newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
       try {
@@ -465,7 +463,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         }
       }
       try {
-        const mapInstance = makeMoorhenMapInstance(commandCentre, store);
+        const mapInstance = requireMoorhenInstance(moorhenInstanceRef);
         let newMap: moorhen.Map;
         if (ref.kind === "map") {
           // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
@@ -693,11 +691,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     opts: { centre?: boolean } = {},
   ) => {
     if (!commandCentre.current) return;
-    const newMolecule = new MoorhenMolecule(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any,
-      monomerLibraryPath
-    );
+    const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
     newMolecule.setBackgroundColour(backgroundColor);
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
@@ -755,7 +749,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           useWeight: false,
           isDifference: isDiffMap,
         } as moorhen.selectedMtzColumns,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       newMap.uniqueId = url;
       // Store the original sub_type for proper labeling and coloring
@@ -813,7 +807,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         new Uint8Array(mapData),
         mapName,
         false,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
@@ -850,23 +844,21 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // Save current view as a site
   const handleSaveCurrentAsSite = useCallback(
     async (name: string) => {
-      const state = store.getState() as unknown as {
-        glRef: { origin: number[]; quat: number[]; zoom: number };
-      };
+      const camera = readCameraState(store.getState() as moorhen.State);
       const newSite: CampaignSite = {
         name,
-        origin: Array.from(state.glRef.origin).slice(0, 3) as [
+        origin: Array.from(camera.origin).slice(0, 3) as [
           number,
           number,
           number
         ],
-        quat: Array.from(state.glRef.quat).slice(0, 4) as [
+        quat: Array.from(camera.quat).slice(0, 4) as [
           number,
           number,
           number,
           number
         ],
-        zoom: state.glRef.zoom,
+        zoom: camera.zoom,
       };
       await onUpdateSites([...sites, newSite]);
     },
@@ -890,23 +882,21 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
       if (updatePosition) {
         // Capture current view position
-        const state = store.getState() as unknown as {
-          glRef: { origin: number[]; quat: number[]; zoom: number };
-        };
+        const camera = readCameraState(store.getState() as moorhen.State);
         updatedSite = {
           name,
-          origin: Array.from(state.glRef.origin).slice(0, 3) as [
+          origin: Array.from(camera.origin).slice(0, 3) as [
             number,
             number,
             number
           ],
-          quat: Array.from(state.glRef.quat).slice(0, 4) as [
+          quat: Array.from(camera.quat).slice(0, 4) as [
             number,
             number,
             number,
             number
           ],
-          zoom: state.glRef.zoom,
+          zoom: camera.zoom,
         };
       } else {
         // Keep existing position, just update name
@@ -1138,6 +1128,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     glRef,
     timeCapsuleRef,
     commandCentre,
+    moorhenInstanceRef,
     moleculesRef,
     mapsRef,
     activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,

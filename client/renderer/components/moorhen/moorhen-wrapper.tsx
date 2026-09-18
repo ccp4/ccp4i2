@@ -18,7 +18,7 @@ import {
 } from "moorhen/react-lib";
 import { MoorhenInstanceProvider, MoorhenMenuSystem, setShownSidePanel } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenPanel } from "moorhen/react-lib";
+import type { MoorhenInstance, MoorhenPanel } from "moorhen/react-lib";
 
 import {
   RefObject,
@@ -55,9 +55,9 @@ import {
   SceneMapMasker,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
-import type { SceneFileRef, SceneSuperpose } from "../../types/moorhen-scene";
+import type { SceneDomain, SceneFileRef, SceneSuperpose } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
-import { extractFileIdFromUniqueId } from "../../lib/moorhen-view-state";
+import { extractFileIdFromUniqueId, readCameraState } from "../../lib/moorhen-view-state";
 import {
   buildContentsBlock,
   buildManifestBlock,
@@ -67,7 +67,7 @@ import {
   fetchPdbContents,
 } from "../../lib/moorhen-scene-prompt";
 import { useSceneNlCapability, generateScene } from "./use-scene-nl-capability";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
   MapRenderState,
@@ -222,6 +222,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
   const commandCentre = useRef<null | moorhen.CommandCentre>(null);
+  // Filled by MoorhenContainer on mount. Molecules and maps are built from it.
+  const moorhenInstanceRef = useRef<null | MoorhenInstance>(null);
   const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
   const mapsRef = useRef<null | moorhen.Map[]>(null);
   const activeMapRef = useRef<moorhen.Map>(null);
@@ -281,11 +283,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
   const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
 
-  // Note: Don't subscribe to glRef state here - it changes every frame during rotation
+  // Note: Don't subscribe to the camera state here - it changes every frame during rotation
   // and would cause constant re-renders. Access origin directly from store when needed.
   const getOrigin = useCallback(() => {
-    const state = store.getState() as moorhen.State;
-    return state.glRef.origin;
+    return readCameraState(store.getState() as moorhen.State).origin;
   }, [store]);
 
   /**
@@ -315,11 +316,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     } = {},
   ): Promise<moorhen.Molecule | null> => {
     if (!commandCentre.current) return null;
-    const newMolecule = new MoorhenMolecule(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any,
-      monomerLibraryPath
-    );
+    const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
     newMolecule.setBackgroundColour(backgroundColor);
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
@@ -406,7 +403,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           useWeight: false,
           isDifference: isDiffMap,
         } as moorhen.selectedMtzColumns,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       loadedMap = newMap;
       newMap.uniqueId = url;
@@ -465,7 +462,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         new Uint8Array(mapData),
         mapName,
         false,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
@@ -527,11 +524,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         true
       )) as moorhen.WorkerResponse<number>;
       if (result.data.result.status === "Completed") {
-        const newMolecule = new MoorhenMolecule(
-          commandCentre as RefObject<moorhen.CommandCentre>,
-          store as any,
-          monomerLibraryPath
-        );
+        const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
         newMolecule.uniqueId = `${url}#${code}`;
         newMolecule.molNo = result.data.result.result;
         newMolecule.name = code;
@@ -767,6 +760,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // Same deal for mask recipes — a masked map is bytes with no operands, so the
   // lifter needs the remembered recipe to round-trip it (see LiftCtx.maskMaps).
   const lastAppliedMaskMapsRef = useRef<MaskMap[] | undefined>(undefined);
+  // And for domains: `colour: by-domain` compiles to a rule that keeps neither a
+  // domain's name nor its authored range (see LiftCtx.domains).
+  const lastAppliedDomainsRef = useRef<SceneDomain[] | undefined>(undefined);
 
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
     async (ref: SceneFileRef, fetchOpts) => {
@@ -945,7 +941,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
       }
       try {
-        const mapInstance = makeMoorhenMapInstance(commandCentre, store);
+        const mapInstance = requireMoorhenInstance(moorhenInstanceRef);
         let newMap: moorhen.Map;
         if (ref.kind === "map") {
           // Real-space CCP4 map file (incl. masks): load directly, no columns.
@@ -1017,7 +1013,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         )) as moorhen.WorkerResponse<number>;
         const newMolNo = result?.data?.result?.result;
         if (newMolNo == null || newMolNo === -1) return null;
-        const newMap = new MoorhenMap(makeMoorhenMapInstance(commandCentre, store));
+        const newMap = new MoorhenMap(requireMoorhenInstance(moorhenInstanceRef));
         newMap.molNo = newMolNo;
         newMap.name = name;
         // Inherit the difference-map flag from the source; a mask of a
@@ -1058,15 +1054,15 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // non-bundled apply.
       bundleAssetsRef.current = assets;
       const scene = parseScene(yamlText);
-      // Remember this scene's superpose + mask recipes so a later capture can
-      // re-emit them (neither is reconstructable from the resulting molecule/map).
+      // Remember this scene's superpose, mask recipes and domains so a later
+      // capture can re-emit them (none is reconstructable from the resulting
+      // molecule/map).
       lastAppliedSuperposeRef.current = scene.superpose;
       lastAppliedMaskMapsRef.current = scene.maskMaps;
-      // Live glRef snapshot for view.clip: { front, back } (clip = zoom*depth,
+      lastAppliedDomainsRef.current = scene.domains;
+      // Live camera snapshot for view.clip: { front, back } (clip = zoom*depth,
       // fog offset by fogClipOffset).
-      const gl = (store.getState() as moorhen.State).glRef as unknown as {
-        zoom: number; fogClipOffset: number;
-      };
+      const gl = readCameraState(store.getState() as moorhen.State);
       return applyScene({
         scene,
         molecules,
@@ -1260,20 +1256,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     assets: SceneBundleAssets;
   }> => {
     const state = store.getState() as moorhen.State;
-    const glRefState = (state as unknown as { glRef: {
-      origin: number[] | Float32Array;
-      quat: number[] | Float32Array;
-      zoom: number;
-      clipStart?: number;
-      clipEnd?: number;
-      fogStart?: number;
-      fogEnd?: number;
-      lightPosition?: number[] | Float32Array;
-      ambient?: number[] | Float32Array;
-      diffuse?: number[] | Float32Array;
-      specular?: number[] | Float32Array;
-      specularPower?: number;
-    } }).glRef;
+    const glRefState = readCameraState(state);
     // sceneSettings carries the effect toggles (SSAO / edge-detect / shadows /
     // depth-blur / perspective) the lifter folds into hints.effects.
     const sceneSettingsState = (state as unknown as {
@@ -1318,6 +1301,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       sceneSettings: sceneSettingsState,
       superpose: lastAppliedSuperposeRef.current,
       maskMaps: lastAppliedMaskMapsRef.current,
+      domains: lastAppliedDomainsRef.current,
       projectId: projectInfo?.id,
       projectName: projectInfo?.name,
       // First molecule's monomerLibraryPath is the canonical Moorhen
@@ -1375,6 +1359,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     glRef,
     timeCapsuleRef,
     commandCentre,
+    moorhenInstanceRef,
     moleculesRef,
     mapsRef,
     activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,
