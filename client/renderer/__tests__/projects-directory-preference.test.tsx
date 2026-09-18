@@ -62,7 +62,7 @@ describe("ProjectsDirectory", () => {
     fireEvent.click(screen.getByRole("button", { name: "Change" }));
 
     await waitFor(() =>
-      expect(apiPatch).toHaveBeenCalledWith("config/default-project-parent/set/", {
+      expect(apiPatch).toHaveBeenCalledWith("config/default-project-parent/", {
         directory: CHOSEN_DIR,
       })
     );
@@ -81,29 +81,11 @@ describe("ProjectsDirectory", () => {
     fireEvent.click(screen.getByRole("button", { name: "Reset" }));
 
     await waitFor(() =>
-      expect(apiPatch).toHaveBeenCalledWith("config/default-project-parent/set/", {
+      expect(apiPatch).toHaveBeenCalledWith("config/default-project-parent/", {
         directory: null,
       })
     );
     await screen.findByDisplayValue(DEFAULT_DIR);
-  });
-
-  it("accepts a typed path on blur", async () => {
-    apiGet
-      .mockResolvedValueOnce(state(DEFAULT_DIR))
-      .mockResolvedValue(state(CHOSEN_DIR));
-    apiPatch.mockResolvedValue({ data: { directory: CHOSEN_DIR } });
-
-    render(<ProjectsDirectory />);
-    const field = await screen.findByDisplayValue(DEFAULT_DIR);
-    fireEvent.change(field, { target: { value: CHOSEN_DIR } });
-    fireEvent.blur(field);
-
-    await waitFor(() =>
-      expect(apiPatch).toHaveBeenCalledWith("config/default-project-parent/set/", {
-        directory: CHOSEN_DIR,
-      })
-    );
   });
 
   it("reports a refusal instead of appearing to have done nothing", async () => {

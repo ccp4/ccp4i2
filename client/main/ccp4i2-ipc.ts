@@ -218,7 +218,6 @@ export const installIpcHandlers = (
     // Overlay the shared keys so the GUI reflects what the server/CLI will use
     // (including values set via the file or a future `i2 preferences set`).
     config.CCP4Dir = CCP4Dir;
-    // Not store.store's copy: that one survives a reset (see projectsDir).
     config.CCP4I2_PROJECTS_DIR = projectsDir();
     // The exact backend version this build is pinned to, so the launch page can
     // show what it EXPECTS alongside what's installed — making a mismatch (e.g.

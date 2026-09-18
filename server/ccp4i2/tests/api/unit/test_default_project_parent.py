@@ -3,8 +3,8 @@
 The server resolves an unspecified directory to the configured projects
 directory — always, regardless of where any previous project landed. The
 dialog cannot compute that itself without a second resolver for the same
-question, so it asks. It can also change or reset that default (desktop
-only) through the paired "set/" endpoint.
+question, so it asks. The same endpoint changes and resets that default
+(desktop only).
 """
 
 import json
@@ -13,7 +13,10 @@ import os
 import pytest
 from rest_framework.test import APIClient
 
+from ccp4i2.api.serializers import default_project_parent
 from ccp4i2.db.models import Project
+
+URL = "/api/ccp4i2/config/default-project-parent/"
 
 
 @pytest.fixture
@@ -34,21 +37,16 @@ def desktop(monkeypatch, tmp_path):
     return launched_with
 
 
-URL = "/api/ccp4i2/config/default-project-parent/"
-SET_URL = "/api/ccp4i2/config/default-project-parent/set/"
-
-
 def _set(client, **payload):
     return client.patch(
-        SET_URL, data=json.dumps(payload), content_type="application/json"
+        URL, data=json.dumps(payload), content_type="application/json"
     )
 
 
 def test_proposes_the_configured_projects_directory(client, settings):
     resp = client.get(URL)
     assert resp.status_code == 200
-    data = resp.json()["data"]
-    assert data["directory"] == str(settings.CCP4I2_PROJECTS_DIR)
+    assert resp.json()["data"]["directory"] == str(settings.CCP4I2_PROJECTS_DIR)
 
 
 def test_ignores_where_the_most_recent_project_landed(client, tmp_path):
@@ -60,16 +58,7 @@ def test_ignores_where_the_most_recent_project_landed(client, tmp_path):
     (elsewhere / "proj").mkdir(parents=True)
     Project.objects.create(name="proj", directory=str(elsewhere / "proj"))
 
-    data = client.get(URL).json()["data"]
-    assert data["directory"] != str(elsewhere)
-
-
-def test_reports_what_a_reset_would_restore(client, desktop):
-    """Preferences can only say "this is already the default", and disable its
-    Reset button, if it is told what the default is."""
-    data = client.get(URL).json()["data"]
-    assert data["default"] == str(desktop)
-    assert data["directory"] == data["default"]
+    assert client.get(URL).json()["data"]["directory"] != str(elsewhere)
 
 
 def test_editable_only_on_desktop(client, monkeypatch):
@@ -81,72 +70,34 @@ def test_editable_only_on_desktop(client, monkeypatch):
 
 
 def test_set_and_reset_roundtrip_on_desktop(client, desktop, tmp_path):
-    """The New Project page's "make this the default" checkbox and the
-    Preferences page's "Reset to default" both go through this endpoint, and
-    the very next GET — from any window — must reflect it immediately, with
-    no server restart needed."""
-    chosen = tmp_path / "elsewhere"
-    chosen.mkdir()
+    """New Project's "make this the default" and Preferences' Reset both come
+    here, and the very next GET — from any window — must reflect it with no
+    restart. The serializer must land a project there too, or the dialog and
+    the project it creates disagree.
 
-    resp = _set(client, directory=str(chosen))
-    assert resp.status_code == 200
-    assert resp.json()["data"]["directory"] == str(chosen)
+    The launch environment must not outrank the file: while it did, the
+    directory written here was read straight back over and both controls
+    appeared to do nothing at all.
+    """
+    chosen = tmp_path / "chosen"
+
+    body = _set(client, directory=str(chosen)).json()["data"]
+    assert body["directory"] == str(chosen)
+    assert body["default"] == str(desktop)
+    assert os.environ["CCP4I2_PROJECTS_DIR"] == str(desktop)
     assert client.get(URL).json()["data"]["directory"] == str(chosen)
+    assert default_project_parent() == chosen
+    # Created on the way: the New Project form asserts its parent exists.
+    assert chosen.is_dir()
 
-    resp = _set(client)
-    assert resp.status_code == 200
-    assert resp.json()["data"]["directory"] == str(desktop)
+    assert _set(client).json()["data"]["directory"] == str(desktop)
     assert client.get(URL).json()["data"]["directory"] == str(desktop)
 
 
-def test_the_launch_environment_does_not_outrank_the_file(client, desktop, tmp_path):
-    """The Electron launcher passes CCP4I2_PROJECTS_DIR to the server it
-    spawns, so on the desktop that variable is a copy of preferences.json
-    taken at launch, not an instruction that outranks it.
-
-    While it did outrank it, every change here was written to the file and
-    then immediately read back over: the Preferences panel's Change and Reset
-    buttons, and New Project's "make this the default", all appeared to do
-    nothing at all for the life of the app.
-    """
-    chosen = tmp_path / "chosen"
-    chosen.mkdir()
-    _set(client, directory=str(chosen))
-
-    assert os.environ["CCP4I2_PROJECTS_DIR"] == str(desktop)
-    assert client.get(URL).json()["data"]["directory"] == str(chosen)
-
-
-def test_a_new_project_goes_to_the_new_default(client, desktop, tmp_path):
-    """The point of the setting: the *serializer* must land the project where
-    the dialog said it would, without the server being restarted first."""
-    from ccp4i2.api.serializers import default_project_parent
-
-    chosen = tmp_path / "chosen"
-    chosen.mkdir()
-    _set(client, directory=str(chosen))
-
-    assert default_project_parent() == chosen
-
-
-def test_set_creates_the_directory(client, desktop, tmp_path):
-    """Whatever is chosen is about to have a project written into it, and the
-    New Project form asserts its parent exists."""
-    chosen = tmp_path / "not" / "there" / "yet"
-    assert _set(client, directory=str(chosen)).status_code == 200
-    assert chosen.is_dir()
-
-
-def test_set_rejects_a_relative_path(client, desktop):
-    resp = _set(client, directory="projects")
-    assert resp.status_code == 400
-    assert resp.json()["success"] is False
-
-
-def test_set_rejects_a_path_that_cannot_be_created(client, desktop, tmp_path):
-    blocker = tmp_path / "a-file-not-a-directory"
-    blocker.write_text("", encoding="utf-8")
-    resp = _set(client, directory=str(blocker / "projects"))
+@pytest.mark.parametrize("bad", ["projects", "{tmp}/a-file/projects"])
+def test_set_rejects_a_directory_it_cannot_use(client, desktop, tmp_path, bad):
+    (tmp_path / "a-file").write_text("", encoding="utf-8")
+    resp = _set(client, directory=bad.format(tmp=tmp_path))
     assert resp.status_code == 400
     assert resp.json()["success"] is False
 

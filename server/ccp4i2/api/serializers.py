@@ -103,20 +103,11 @@ class ProjectListSerializer(ModelSerializer):
 
 def default_project_parent() -> Path:
     """Where a project with no explicit directory should go: the configured
-    projects directory.
+    projects directory, never wherever the last project happened to land.
 
-    A user who wants a project somewhere else picks it explicitly (and can
-    make that pick the new default from the New Project page or Preferences)
-    rather than the server guessing from where the last project happened to
-    land — a guess that made the configured default hard to get back to once
-    a single one-off project nudged it aside.
-
-    On the desktop this is read from preferences.json on every call, not from
-    ``settings.CCP4I2_PROJECTS_DIR``: that was resolved when this worker
-    started, and Preferences can change the default while the app runs — for
-    both uvicorn workers at once, which only the file can express. A
-    deployment's configuration is fixed for the life of the process, so there
-    the setting is the answer.
+    Read from preferences.json rather than ``settings.CCP4I2_PROJECTS_DIR``
+    on the desktop, where Preferences can change it after this worker
+    resolved that setting at startup.
     """
     if preferences.is_desktop():
         return preferences.projects_dir()

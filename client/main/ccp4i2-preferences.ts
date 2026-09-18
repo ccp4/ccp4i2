@@ -117,15 +117,10 @@ export function savePreferences(prefs: CCP4i2Preferences): void {
 }
 
 /**
- * Where a project with no directory of its own lands: the stored preference,
- * or the built-in default when there is none.
- *
- * The mirror of `preferences.projects_dir` on the Python side, and the ONLY
- * place the Electron side should get this from. It used to come from the
- * electron-store as well, and that second copy outlived a reset: clearing
- * `projectsDir` from preferences.json (Preferences -> Reset to default) left
- * the store still holding the old directory, which the launcher then handed
- * straight back to the next server it spawned.
+ * Where a project with no directory of its own lands (the mirror of
+ * `preferences.projects_dir`), and the only place the Electron side should
+ * get it from: a second copy in the electron-store outlived a reset of this
+ * file and was handed back to the next server launched.
  */
 export function projectsDir(): string {
   return loadPreferences().projectsDir || defaultProjectsDir();

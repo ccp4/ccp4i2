@@ -234,16 +234,8 @@ else:
 
 TIME_ZONE = "UTC"
 USE_TZ = True
-# preferences.json on the desktop, the environment in a deployment, falling
-# back to <home>/projects or an adopted pre-a27 CCP4X_PROJECTS — see
-# preferences.projects_dir for why those two differ. The default is shared with
-# the Electron side so the two cannot drift (they used to: the desktop app
-# defaulted to ~/.ccp4i2/CCP4X_PROJECTS while this said
-# ~/.ccp4i2-django/CCP4X_PROJECTS, which is why testers saw both).
-#
-# This is the value resolved at startup. Anything that must reflect a change
-# made *since* — the New Project default, which Preferences can edit while the
-# app runs — goes through api.serializers.default_project_parent instead.
+# Resolved at startup, so anything needing the value Preferences may have
+# changed since goes through api.serializers.default_project_parent instead.
 CCP4I2_PROJECTS_DIR = _preferences.projects_dir(prefs=_PREFS)
 CCP4I2_PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
 

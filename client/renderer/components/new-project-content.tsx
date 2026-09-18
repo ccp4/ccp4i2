@@ -32,17 +32,14 @@ export const NewProjectContent: React.FC = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [parentDirectory, setParentDirectory] = useState<string>("");
-  // The currently persisted default, so the "make default" checkbox can be
-  // offered only when the chosen parent actually differs from it.
-  const [configuredProjectsDir, setConfiguredProjectsDir] = useState<string>("");
-  // Only the desktop app can change it (a cloud deployment configures this via
-  // the CCP4I2_PROJECTS_DIR environment variable instead) — reported by the
-  // server rather than inferred from Electron's presence.
-  const [projectsDirEditable, setProjectsDirEditable] = useState(false);
-  // Offered once the user has actively picked a parent: persisting it avoids
-  // stranding the default in a hidden home folder the user can't find their
-  // way back to (see Preferences' "Reset to default" for the way back).
-  const [makeDefaultProjectsDir, setMakeDefaultProjectsDir] = useState(false);
+  // The stored default and whether it can be changed at all — editable only
+  // on the desktop, as the server reports rather than as Electron's presence
+  // implies.
+  const [storedDefault, setStoredDefault] = useState({
+    directory: "",
+    editable: false,
+  });
+  const [makeDefault, setMakeDefault] = useState(false);
   const [directoryExists, setDirectoryExists] = useState(true);
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
@@ -51,9 +48,9 @@ export const NewProjectContent: React.FC = () => {
   const [isCreating, setIsCreating] = useState(false);
   const { data: projects } = api.get<Project[]>("projects");
 
-  // The server supplies the initial parent, resolved fresh on every request
-  // (not cached at process start), so this reflects a change made moments ago
-  // from this window or another.
+  // The server owns the rule for where new projects go by default, and
+  // answers from preferences.json rather than from anything cached at launch,
+  // so this picks up a change made moments ago in Preferences.
   useEffect(() => {
     let cancelled = false;
     apiGet<{ data?: { directory?: string; editable?: boolean } }>(
@@ -61,11 +58,11 @@ export const NewProjectContent: React.FC = () => {
     )
       .then((resp) => {
         if (cancelled) return;
-        if (resp?.data?.directory) {
-          setParentDirectory(resp.data.directory);
-          setConfiguredProjectsDir(resp.data.directory);
-        }
-        setProjectsDirEditable(Boolean(resp?.data?.editable));
+        if (resp?.data?.directory) setParentDirectory(resp.data.directory);
+        setStoredDefault({
+          directory: resp?.data?.directory ?? "",
+          editable: Boolean(resp?.data?.editable),
+        });
       })
       .catch(() => {
         /* The Electron config value below remains a local fallback. */
@@ -89,19 +86,15 @@ export const NewProjectContent: React.FC = () => {
             setParentDirectory((current) =>
               current || data.config.CCP4I2_PROJECTS_DIR
             );
-            setConfiguredProjectsDir((current) =>
-              current || data.config.CCP4I2_PROJECTS_DIR
-            );
           }
           if (data.message === "check-file-exists") {
             setDirectoryExists(data.exists);
           }
           if (data.message === "choose-project-parent-directory") {
-            // Local to this page only unless "make this the default" is
-            // checked below — choosing a parent does not itself change the
-            // configured projects directory for future projects.
+            // Local to this page unless "make this the default" is then
+            // ticked: choosing a parent does not itself change the default.
             setParentDirectory(data.directory);
-            setMakeDefaultProjectsDir(false);
+            setMakeDefault(false);
           }
         }
       );
@@ -118,11 +111,10 @@ export const NewProjectContent: React.FC = () => {
     return result;
   }, [parentDirectory, name]);
 
-  const showMakeDefaultCheckbox =
-    projectsDirEditable &&
+  const canMakeDefault =
+    storedDefault.editable &&
     parentDirectory.length > 0 &&
-    configuredProjectsDir.length > 0 &&
-    parentDirectory !== configuredProjectsDir;
+    parentDirectory !== storedDefault.directory;
 
   async function createProject() {
     setIsCreating(true);
@@ -131,9 +123,13 @@ export const NewProjectContent: React.FC = () => {
       formData.append("name", name);
       formData.append("description", description);
       formData.append("directory", directory);
-      if (showMakeDefaultCheckbox && makeDefaultProjectsDir) {
+      const project = await api.post<Project>("projects", formData);
+
+      // After the project exists, not before: a create that fails must not
+      // leave the default moved to a directory nothing went into.
+      if (canMakeDefault && makeDefault) {
         try {
-          await apiPatch("config/default-project-parent/set/", {
+          await apiPatch("config/default-project-parent/", {
             directory: parentDirectory,
           });
         } catch (err) {
@@ -145,7 +141,6 @@ export const NewProjectContent: React.FC = () => {
           );
         }
       }
-      const project = await api.post<Project>("projects", formData);
 
       // Apply tags to the new project
       for (const tagId of tags) {
@@ -466,14 +461,12 @@ export const NewProjectContent: React.FC = () => {
             )}
           </Stack>
         )}
-        {showMakeDefaultCheckbox && (
+        {canMakeDefault && (
           <FormControlLabel
             control={
               <Checkbox
-                checked={makeDefaultProjectsDir}
-                onChange={(event) =>
-                  setMakeDefaultProjectsDir(event.target.checked)
-                }
+                checked={makeDefault}
+                onChange={(event) => setMakeDefault(event.target.checked)}
               />
             }
             label="Make this the default projects directory"

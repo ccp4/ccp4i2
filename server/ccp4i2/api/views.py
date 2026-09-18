@@ -292,109 +292,67 @@ def import_policy_view(request):
     )
 
 
-def _default_project_parent_payload():
-    """The body both views below answer with, so a set and the next get cannot
-    describe the setting differently."""
+@api_view(["GET", "PATCH"])
+def default_project_parent_view(request):
+    """Where a project created with no explicit directory will land.
+
+    GET   /api/ccp4i2/config/default-project-parent/
+    PATCH /api/ccp4i2/config/default-project-parent/  {"directory": "/abs/path"}
+
+    PATCH with no directory (or "" / null) resets to the built-in default,
+    and is refused off the desktop, where this is the CCP4I2_PROJECTS_DIR
+    environment variable's to say. Both methods answer:
+
+        {"directory": <in use>, "default": <what a reset gives>,
+         "editable": <bool>}
+    """
     from ..config import preferences as _preferences
     from .serializers import default_project_parent
 
-    return {
-        "directory": str(default_project_parent()),
-        "default": str(_preferences.default_projects_dir()),
-        "editable": _preferences.is_desktop(),
-    }
+    if request.method == "PATCH":
+        if not _preferences.is_desktop():
+            return JsonResponse(
+                {
+                    "success": False,
+                    "error": "The default projects directory is editable only "
+                    "on the desktop app; in a server deployment set it via the "
+                    "CCP4I2_PROJECTS_DIR environment variable.",
+                },
+                status=409,
+            )
 
+        payload = request.data if isinstance(request.data, dict) else {}
+        directory = (payload.get("directory") or "").strip() or None
+        target = Path(directory) if directory else _preferences.default_projects_dir()
+        # Created now because the next thing to happen to it is a project being
+        # written there, and the New Project form asserts its parent exists.
+        try:
+            if not target.is_absolute():
+                raise OSError("not an absolute path")
+            target.mkdir(parents=True, exist_ok=True)
+        except OSError as err:
+            return JsonResponse(
+                {"success": False, "error": f"Cannot use [{target}]: {err}"},
+                status=400,
+            )
 
-@api_view(["GET"])
-def default_project_parent_view(request):
-    """Where a project created with no explicit directory will actually land.
+        prefs = _preferences.load_preferences()
+        if directory:
+            prefs["projectsDir"] = directory
+        else:
+            prefs.pop("projectsDir", None)
+        _preferences.save_preferences(prefs)
 
-    GET /api/ccp4i2/config/default-project-parent/
-
-    The New Project dialog needs to show this, and it cannot compute it
-    itself without a second resolver for the same question — it asks the one
-    the serializer itself uses (``default_project_parent``), which on the
-    desktop reads preferences.json rather than the value this worker resolved
-    at startup, so a change made moments ago from any window is reflected.
-
-    "default" is what "Reset to default" would give: the built-in
-    ``<ccp4i2 home>/projects``. The dialog needs it to say whether the
-    current setting *is* the default, which it cannot compute either.
-
-    ``editable`` says whether "set/" below will accept a change — only true
-    on the desktop app; a deployment configures this with the
-    ``CCP4I2_PROJECTS_DIR`` environment variable instead.
-
-    Response: {"success": true, "data": {
-        "directory": "/where a new project would go",
-        "default":   "/what a reset would restore",
-        "editable":  <bool>
-    }}
-    """
-    return JsonResponse({"success": True, "data": _default_project_parent_payload()})
-
-
-@api_view(["PATCH", "POST"])
-def set_default_project_parent_view(request):
-    """Change, or reset, the default projects directory (desktop only).
-
-    PATCH /api/ccp4i2/config/default-project-parent/set/  {"directory": "/abs/path"}
-
-    Omit "directory" (or send "" / null) to reset to the built-in default —
-    the New Project page's "make this the default" checkbox and Preferences'
-    "Reset to default" both come here, and both see the change in the very
-    next GET above, from any window and either uvicorn worker.
-
-    The directory is created if it does not exist, because the next thing to
-    happen to it is a project being written there. A path that cannot be
-    created is rejected now rather than at the end of the New Project form.
-
-    Responds with the same body as the GET, so the caller needs no second
-    request to show the result.
-    """
-    from ..config import preferences as _preferences
-
-    if not _preferences.is_desktop():
-        return JsonResponse(
-            {
-                "success": False,
-                "error": "The default projects directory is editable only on "
-                "the desktop app; in a server deployment set it via the "
-                "CCP4I2_PROJECTS_DIR environment variable.",
+    return JsonResponse(
+        {
+            "success": True,
+            "data": {
+                "directory": str(default_project_parent()),
+                "default": str(_preferences.default_projects_dir()),
+                "editable": _preferences.is_desktop(),
             },
-            status=409,
-        )
-
-    payload = request.data if isinstance(request.data, dict) else {}
-    directory = (payload.get("directory") or "").strip() or None
-
-    if directory and not Path(directory).is_absolute():
-        return JsonResponse(
-            {
-                "success": False,
-                "error": "The projects directory must be an absolute path, "
-                f"not [{directory}].",
-            },
-            status=400,
-        )
-
-    target = Path(directory) if directory else _preferences.default_projects_dir()
-    try:
-        target.mkdir(parents=True, exist_ok=True)
-    except OSError as err:
-        return JsonResponse(
-            {"success": False, "error": f"Cannot use [{target}]: {err}"},
-            status=400,
-        )
-
-    prefs = _preferences.load_preferences()
-    if directory:
-        prefs["projectsDir"] = directory
-    else:
-        prefs.pop("projectsDir", None)
-    _preferences.save_preferences(prefs)
-
-    return JsonResponse({"success": True, "data": _default_project_parent_payload()})
+        }
+    )
 
 
 @api_view(["GET"])

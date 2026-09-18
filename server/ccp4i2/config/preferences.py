@@ -109,23 +109,13 @@ def default_projects_dir() -> Path:
 
 
 def projects_dir(prefs: dict = None) -> Path:
-    """The project store: where a project with no directory of its own lands.
+    """The project store, the one setting the environment does not win.
 
-    The one setting whose precedence is not the module-wide ``env var >
-    preferences.json > default``. On the desktop that order is reversed: the
-    **file wins**.
-
-    The desktop launcher spawns the server with ``CCP4I2_PROJECTS_DIR``
-    already set to what the file said at launch, so an environment variable
-    there is a *copy* of the preference rather than an instruction that
-    outranks it. Letting the copy win froze the setting for the life of the
-    app: Preferences wrote the file, the next read still returned the launch
-    value, and changing or resetting the default looked like it had done
-    nothing. The file is also the only state the server's two uvicorn workers
-    share — neither can see a change the other made to its own environment.
-
-    Off the desktop nothing writes the file and the environment is the
-    configuration, so the usual precedence applies unchanged.
+    The desktop launcher spawns the server with ``CCP4I2_PROJECTS_DIR`` set
+    to what the file said at launch, so there the variable is a copy of this
+    preference and must not outrank it — while it did, every change written
+    here was read straight back over for the life of the app. The file is
+    also the only state the two uvicorn workers share.
     """
     if prefs is None:
         prefs = load_preferences()

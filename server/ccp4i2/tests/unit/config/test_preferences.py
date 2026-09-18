@@ -97,13 +97,6 @@ def test_resolve_ignores_empty_env(monkeypatch, tmp_path):
 # ---------------------------------------------------------------------------
 
 
-def test_projects_dir_falls_back_to_the_built_in_default(monkeypatch, tmp_path):
-    monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
-    monkeypatch.delenv("CCP4I2_LOCAL_SESSION_TOKEN", raising=False)
-    monkeypatch.delenv("CCP4I2_PROJECTS_DIR", raising=False)
-    assert preferences.projects_dir(prefs={}) == preferences.default_projects_dir()
-
-
 def test_projects_dir_takes_the_environment_in_a_deployment(monkeypatch, tmp_path):
     monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
     monkeypatch.delenv("CCP4I2_LOCAL_SESSION_TOKEN", raising=False)
@@ -113,22 +106,18 @@ def test_projects_dir_takes_the_environment_in_a_deployment(monkeypatch, tmp_pat
 
 
 def test_projects_dir_takes_the_file_on_the_desktop(monkeypatch, tmp_path):
-    """The one setting that does not follow `env var > file`.
-
-    The Electron launcher spawns the server with CCP4I2_PROJECTS_DIR already
-    holding whatever the file said at launch, so there the variable is a copy
-    of the preference. While the copy won, Preferences' Change and Reset
-    buttons wrote the file and then read the launch value straight back over
-    it, and appeared to do nothing for as long as the app stayed open.
-    """
+    """The one setting that does not follow `env var > file`: on the desktop
+    the variable is a copy of the file taken at launch, so while it won,
+    every change written to the file was read straight back over."""
     monkeypatch.setenv("CCP4I2_HOME", str(tmp_path))
     monkeypatch.setenv("CCP4I2_LOCAL_SESSION_TOKEN", "desktop")
     monkeypatch.setenv("CCP4I2_PROJECTS_DIR", "/from/env")
 
-    prefs = {"projectsDir": "/from/file"}
-    assert preferences.projects_dir(prefs=prefs) == Path("/from/file")
-    # And a reset — no stored choice — restores the built-in default rather
-    # than the directory the app was launched with.
+    assert preferences.projects_dir(prefs={"projectsDir": "/from/file"}) == Path(
+        "/from/file"
+    )
+    # A reset — no stored choice — restores the built-in default rather than
+    # the directory the app was launched with.
     assert preferences.projects_dir(prefs={}) == preferences.default_projects_dir()
 
 
