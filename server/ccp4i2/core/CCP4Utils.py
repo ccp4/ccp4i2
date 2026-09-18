@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import List, Optional, Union
 
 import gemmi
+import numpy as np
 from lxml import etree
 
 from ccp4i2 import I2_TOP
@@ -59,6 +60,32 @@ class MtzMergeError(Exception):
 class MtzSplitError(Exception):
     """Errors during MTZ splitting operations."""
     pass
+
+
+def complete_reflection_list(cell, spacegroup, d_min, d_max, *observed) -> np.ndarray:
+    """The unique reflections of ``spacegroup`` between ``d_min`` and ``d_max``,
+    unioned with every (h, k, l) in each ``observed`` array, sorted by H, K, L.
+
+    This is the only correct way to build the reflection list of a file that
+    is going to receive columns copied from other files. ``gemmi.make_miller_array``
+    treats both limits as exclusive at floating-point precision, so the
+    reflection that defines a file's ``resolution_low()`` (and sometimes the
+    one defining ``resolution_high()``) is missing from the list built from
+    that file's own limits, and copy_column then silently drops its
+    observation. Every merge, split and import in a pipeline shed one more
+    reflection that way. A later input may also hold reflections outside the
+    first file's range altogether (a FreeR set that extends past the data).
+
+    ``observed`` arrays are taken as ASU representatives (call ``ensure_asu()``
+    on the source first) so they match the unique list's convention.
+    """
+    parts = [np.asarray(gemmi.make_miller_array(cell, spacegroup, d_min, d_max),
+                        dtype=np.int32).reshape(-1, 3)]
+    for hkl in observed:
+        arr = np.asarray(hkl, dtype=np.int32).reshape(-1, 3)
+        if len(arr):
+            parts.append(arr)
+    return np.unique(np.concatenate(parts, axis=0), axis=0)
 
 
 def split_mtz_file(
@@ -130,15 +157,17 @@ def split_mtz_file(
         mtzout.add_column('K', 'H')
         mtzout.add_column('L', 'H')
 
-        # Create complete unique reflection set for the space group
-        # This ensures all expected reflections (including absences) are present
-        uniques = gemmi.make_miller_array(
+        # Complete unique reflection set for the space group, plus every
+        # reflection the input holds (see complete_reflection_list: the unique
+        # set alone loses the boundary reflections).
+        uniques = complete_reflection_list(
             mtzout.cell,
             mtzout.spacegroup,
             mtzin.resolution_high(),
-            mtzin.resolution_low()
+            mtzin.resolution_low(),
+            mtzin.array[:, :3],
         )
-        mtzout.set_data(uniques)
+        mtzout.set_data(uniques.astype(np.float32))
 
         # Determine if we need a data dataset (for non-HKL columns)
         dataset = hkl_base
@@ -340,19 +369,32 @@ def merge_mtz_files(
     out_mtz.add_column('K', 'H')
     out_mtz.add_column('L', 'H')
 
-    # Create complete unique reflection set for the space group
-    # This ensures all files will have a common reflection list
+    # The output reflection list must hold EVERY reflection of EVERY input:
+    # the unique set within the first file's range, unioned with what each
+    # input actually holds (see complete_reflection_list for why the unique
+    # set alone is not enough). Each input is read in the same ASU convention.
     # Note: resolution_high() returns HIGH resolution (small d-spacing)
     #       resolution_low() returns LOW resolution (large d-spacing)
-    #       make_miller_array expects: (cell, spacegroup, d_min, d_max)
-    #       So d_min should be resolution_high() and d_max should be resolution_low()
-    uniques = gemmi.make_miller_array(
+    observed_lists = [first_mtz.array[:, :3]]
+    for spec in input_specs[1:]:
+        spec_path = Path(spec['path'])
+        if not spec_path.exists():
+            raise FileNotFoundError(f"Input MTZ file not found: {spec_path}")
+        try:
+            spec_mtz = gemmi.read_mtz_file(str(spec_path))
+        except Exception as e:
+            raise MtzMergeError(f"Failed to read {spec_path}: {e}")
+        spec_mtz.ensure_asu()
+        if spec_mtz.nreflections:
+            observed_lists.append(spec_mtz.array[:, :3])
+    uniques = complete_reflection_list(
         out_mtz.cell,
         out_mtz.spacegroup,
         first_mtz.resolution_high(),  # d_min (high resolution, small value)
-        first_mtz.resolution_low()     # d_max (low resolution, large value)
+        first_mtz.resolution_low(),    # d_max (low resolution, large value)
+        *observed_lists,
     )
-    out_mtz.set_data(uniques)
+    out_mtz.set_data(uniques.astype(np.float32))
 
     # Track which columns have been added to detect conflicts
     added_columns = set()
