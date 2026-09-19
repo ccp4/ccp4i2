@@ -36,6 +36,7 @@ import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-f
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 import { useMoorhenSession } from "../../hooks/use-moorhen-session";
+import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
 import {
   COORDINATE_TYPES,
   DICTIONARY_TYPE,
@@ -278,10 +279,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   );
 
   // URL prefix for Moorhen to load its resources (CSS, pixmaps, monomers, etc.)
-  // In web browsers, use API route for CORP headers (COEP compatibility)
-  // In Electron, serve directly from public/MoorhenAssets
-  const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
-  const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
+  // In web browsers, use API route for CORP headers (COEP compatibility), with
+  // the Moorhen version in the path so the route's immutable cache is honest
+  // across upgrades. In Electron, serve directly from public/MoorhenAssets.
+  const isElectron = isElectronWindow();
+  const urlPrefix = moorhenUrlPrefix(isElectron);
 
   // Note: Don't subscribe to the camera state here - it changes every frame during rotation
   // and would cause constant re-renders. Access origin directly from store when needed.

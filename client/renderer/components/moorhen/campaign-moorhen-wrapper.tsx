@@ -80,6 +80,7 @@ import {
   type DictionaryToAttach,
 } from "../../lib/moorhen-dictionaries";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
+import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 
@@ -248,11 +249,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     (state: moorhen.State) => state.sceneSettings.defaultBondSmoothness
   );
 
-  const isElectron =
-    typeof window !== "undefined" && !!(window as any).electronAPI;
-  // In web browsers, use API route for CORP headers (COEP compatibility)
-  // In Electron, serve directly from public/MoorhenAssets
-  const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
+  // In web browsers, use API route for CORP headers (COEP compatibility), with
+  // the Moorhen version in the path so the route's immutable cache is honest
+  // across upgrades. In Electron, serve directly from public/MoorhenAssets.
+  const isElectron = isElectronWindow();
+  const urlPrefix = moorhenUrlPrefix(isElectron);
 
   const getOrigin = useCallback(() => {
     return readCameraState(store.getState() as moorhen.State).origin;

@@ -34,7 +34,19 @@ export async function GET(
   { params }: { params: Promise<{ path: string[] }> }
 ) {
   const { path } = await params;
-  const filePath = path.join("/");
+  const requestedPath = path.join("/");
+
+  // Strip the Moorhen version segment, e.g. `v/1.0.1-dev.g10d4c0b00/...`.
+  //
+  // The version exists to make the `immutable` cache header below honest: it
+  // changes every asset URL when Moorhen is bumped, so a returning browser
+  // cannot keep last release's worker and WASM (see
+  // lib/moorhen-asset-path.ts). Nothing here needs to *check* it -- the files
+  // on disk are whatever the current build copied -- so it is removed before
+  // the allow-list runs and plays no part in resolving the file. Older clients
+  // that still ask for the unversioned path keep working.
+  const versioned = requestedPath.match(/^v\/([^/]+)\/(.+)$/);
+  const filePath = versioned ? versioned[2] : requestedPath;
 
   // Security: only allow specific file patterns for moorhen resources
   const allowedPatterns = [

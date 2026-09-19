@@ -1,8 +1,48 @@
 import type { NextConfig } from "next";
+import { existsSync, readFileSync } from "fs";
+import * as nodePath from "path";
 
 const isElectron = process.env.BUILD_TARGET === "electron";
 const isWeb = process.env.BUILD_TARGET === "web";
 const isDevelopment = process.env.NODE_ENV === "development";
+
+// The Moorhen package version, read from its package.json at build time and
+// handed to the client as NEXT_PUBLIC_MOORHEN_VERSION.
+//
+// It becomes a path segment in the URL the web build uses for Moorhen's runtime
+// assets (see lib/moorhen-asset-path.ts). Those responses are served
+// `immutable` for a year -- necessary, because one window loads moorhen.js 33
+// times for its pthread workers -- so the URL has to change when the bytes do,
+// or a returning browser keeps last release's worker and WASM against the
+// current React library. Resolved defensively: a build that cannot read the
+// package falls back to the unversioned path rather than failing.
+const moorhenVersion = (() => {
+  // Read package.json off disk rather than `require("moorhen/package.json")`:
+  // Moorhen's package has an `exports` map that does not expose
+  // ./package.json, so both require and require.resolve throw
+  // ERR_PACKAGE_PATH_NOT_EXPORTED. Walk up from this file to find the
+  // node_modules that holds it (it is installed in client/, while this config
+  // lives in client/renderer/), so the lookup does not depend on cwd.
+  let dir = __dirname;
+  for (let up = 0; up < 5; up++) {
+    const candidate = nodePath.join(dir, "node_modules", "moorhen", "package.json");
+    if (existsSync(candidate)) {
+      const version = JSON.parse(readFileSync(candidate, "utf8")).version;
+      if (typeof version === "string" && version) return version;
+      break;
+    }
+    const parent = nodePath.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  // Unversioned assets still work; they just lose the cache-busting, so say so
+  // loudly rather than shipping a silently broken cache policy.
+  console.warn(
+    "[next.config] Moorhen package.json not found: asset URLs will be unversioned " +
+      "and the immutable cache will not bust on upgrade."
+  );
+  return "";
+})();
 
 // Set the Content Security Policy header
 const csp = {
@@ -47,6 +87,10 @@ const cspString = [
   .trim(); // Clean up whitespace
 
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_MOORHEN_VERSION: moorhenVersion,
+  },
+
   trailingSlash: isElectron,
   images: {
     unoptimized: isElectron || isWeb,
