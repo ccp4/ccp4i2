@@ -19,6 +19,10 @@ MTZ by the ordinary import path (gemmi), so no external conversion step is
 needed. Note that PDB-REDO is NOT used: it was unreachable when this was
 written, and PDBe carries everything required.
 
+The jobs refine with DIMPLE: these are isomorphous crystals of a known
+structure being re-refined against the campaign reference, which is what
+dimple is for.
+
 The SubstituteLigand jobs are created and fully parameterised but NOT run --
 running them is slow and needs CCP4, and is left to the operator. Each job is
 set to merged mode (OBSAS=MERGED), which is what lets this work without any
@@ -382,6 +386,11 @@ class Command(BaseCommand):
                 # Merged mode: takes F_SIGF_IN directly and skips aimless, so
                 # the demo needs no unmerged sweep from Diamond or Zenodo.
                 self._set(job, "container.controlParameters.OBSAS", "MERGED")
+
+                # Dimple, which is also the def.xml default now -- set
+                # explicitly so the demo does not silently change route if
+                # that default ever moves back.
+                self._set(job, "container.inputData.PIPELINE", "DIMPLE")
 
                 # What to substitute. Without these the job is created with an
                 # empty SMILES field: the ligand panel shows no structure and
