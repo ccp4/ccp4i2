@@ -631,71 +631,186 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["get", "put"], )
+    @staticmethod
+    def _site_payload(site):
+        """The wire shape of a site.
+
+        `id` is new in migration 0024 and is what everything else refers to: a
+        site used to be identified by its name and its index in a JSON list, so
+        renaming one silently orphaned every reference to it. The rest of the
+        shape is unchanged, so existing readers keep working.
+        """
+        payload = {
+            "id": site.id,
+            "name": site.name,
+            "origin": [site.origin_x, site.origin_y, site.origin_z],
+            "order": site.order,
+        }
+        if site.quat:
+            payload["quat"] = site.quat
+        if site.zoom is not None:
+            payload["zoom"] = site.zoom
+        return payload
+
+    @staticmethod
+    def _parse_site(data, index=0):
+        """Validate one incoming site. Returns (fields, error_message)."""
+        if not isinstance(data, dict):
+            return None, f"Site {index} must be an object"
+        if "name" not in data:
+            return None, f"Site {index} missing required field 'name'"
+        origin = data.get("origin")
+        if not isinstance(origin, list) or len(origin) != 3:
+            return None, f"Site {index} 'origin' must be an array of 3 numbers"
+        try:
+            x, y, z = (float(v) for v in origin)
+        except (TypeError, ValueError):
+            return None, f"Site {index} 'origin' must be an array of 3 numbers"
+
+        quat = data.get("quat")
+        if quat is not None and (not isinstance(quat, list) or len(quat) != 4):
+            return None, f"Site {index} 'quat' must be an array of 4 numbers"
+
+        zoom = data.get("zoom")
+        if zoom is not None:
+            try:
+                zoom = float(zoom)
+            except (TypeError, ValueError):
+                return None, f"Site {index} 'zoom' must be a number"
+
+        return {
+            "name": str(data["name"])[:100],
+            "origin_x": x,
+            "origin_y": y,
+            "origin_z": z,
+            "quat": quat,
+            "zoom": zoom,
+        }, None
+
+    @action(detail=True, methods=["get", "post"])
     def sites(self, request, pk=None):
         """
-        Get or update the binding sites for this campaign.
+        List this campaign's binding sites, or add one.
 
-        Sites are saved view states for quick navigation in the Moorhen viewer.
-        Each site contains:
-            - name: Display name for the site
-            - origin: [x, y, z] view origin coordinates
-            - quat: [x, y, z, w] quaternion for view orientation (optional)
-            - zoom: Zoom level (optional)
+        GET returns the list, ordered. POST adds a single site and returns it.
 
-        GET: Returns the current list of sites.
-        PUT: Updates the entire sites list (replaces existing sites).
-
-        Request body (PUT):
-            List of site objects, e.g.:
-            [
-                {"name": "Active Site", "origin": [10.5, 20.3, 15.2]},
-                {"name": "Binding Pocket", "origin": [5.0, 10.0, 8.0], "quat": [0, 0, 0, 1]}
-            ]
-
-        Returns:
-            Response: Current sites list.
+        Sites were a JSON list on the group until migration 0024, replaced
+        wholesale on every write. Adding one at a time means two people editing
+        a campaign no longer overwrite each other: the old PUT sent the entire
+        array, so the last writer silently discarded the other's new sites.
+        Use PATCH/DELETE on `sites/<id>/` to change or remove one.
         """
         try:
             group = self.get_object()
 
             if request.method == "GET":
-                return Response(group.sites)
+                return Response(
+                    [self._site_payload(s) for s in group.site_set.all()]
+                )
 
-            # PUT - validate and update sites
-            sites_data = request.data
+            fields, error = self._parse_site(request.data)
+            if error:
+                return api_error(error, status=400)
 
-            # Validate sites format
-            if not isinstance(sites_data, list):
-                return api_error("sites must be a list", status=400)
+            if group.site_set.filter(name=fields["name"]).exists():
+                return api_error(
+                    f"This campaign already has a site called '{fields['name']}'",
+                    status=409,
+                )
 
-            for i, site in enumerate(sites_data):
-                if not isinstance(site, dict):
-                    return api_error(f"Site {i} must be an object", status=400)
-                if "name" not in site:
-                    return api_error(f"Site {i} missing required field 'name'", status=400)
-                if "origin" not in site:
-                    return api_error(f"Site {i} missing required field 'origin'", status=400)
-                if not isinstance(site["origin"], list) or len(site["origin"]) != 3:
-                    return api_error(
-                        f"Site {i} 'origin' must be an array of 3 numbers",
-                        status=400
-                    )
-                # Validate optional quat if present
-                if "quat" in site:
-                    if not isinstance(site["quat"], list) or len(site["quat"]) != 4:
-                        return api_error(
-                            f"Site {i} 'quat' must be an array of 4 numbers",
-                            status=400
-                        )
-
-            # Save sites
-            group.sites = sites_data
-            group.save(update_fields=["sites"])
-            logger.info("Updated sites for campaign %s: %d sites", pk, len(sites_data))
-
-            return Response(group.sites)
+            last = group.site_set.order_by("-order").first()
+            site = models.CampaignSite.objects.create(
+                group=group, order=(last.order + 1) if last else 0, **fields
+            )
+            logger.info("Added site '%s' to campaign %s", site.name, pk)
+            return Response(self._site_payload(site), status=201)
 
         except Exception as e:
             logger.exception("Failed to manage sites for group %s", pk, exc_info=e)
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
+        methods=["patch", "delete"],
+        url_path=r"sites/(?P<site_id>[0-9]+)",
+    )
+    def site_detail(self, request, pk=None, site_id=None):
+        """Update or delete one site, addressed by its stable id.
+
+        Renaming through here keeps every evaluation attached, which is the
+        point of sites having ids at all.
+        """
+        try:
+            group = self.get_object()
+            try:
+                site = group.site_set.get(id=site_id)
+            except models.CampaignSite.DoesNotExist:
+                return api_error("Site not found in this campaign", status=404)
+
+            if request.method == "DELETE":
+                name = site.name
+                site.delete()  # cascades to this site's evaluations
+                logger.info("Deleted site '%s' from campaign %s", name, pk)
+                return Response(status=204)
+
+            data = request.data
+            if not isinstance(data, dict):
+                return api_error("Expected an object", status=400)
+
+            if "name" in data:
+                name = str(data["name"])[:100]
+                if group.site_set.filter(name=name).exclude(id=site.id).exists():
+                    return api_error(
+                        f"This campaign already has a site called '{name}'",
+                        status=409,
+                    )
+                site.name = name
+
+            if "origin" in data:
+                origin = data["origin"]
+                if not isinstance(origin, list) or len(origin) != 3:
+                    return api_error(
+                        "'origin' must be an array of 3 numbers", status=400
+                    )
+                try:
+                    site.origin_x, site.origin_y, site.origin_z = (
+                        float(v) for v in origin
+                    )
+                except (TypeError, ValueError):
+                    return api_error(
+                        "'origin' must be an array of 3 numbers", status=400
+                    )
+
+            if "quat" in data:
+                quat = data["quat"]
+                if quat is not None and (
+                    not isinstance(quat, list) or len(quat) != 4
+                ):
+                    return api_error(
+                        "'quat' must be an array of 4 numbers", status=400
+                    )
+                site.quat = quat
+
+            if "zoom" in data:
+                zoom = data["zoom"]
+                if zoom is not None:
+                    try:
+                        zoom = float(zoom)
+                    except (TypeError, ValueError):
+                        return api_error("'zoom' must be a number", status=400)
+                site.zoom = zoom
+
+            if "order" in data:
+                try:
+                    site.order = int(data["order"])
+                except (TypeError, ValueError):
+                    return api_error("'order' must be an integer", status=400)
+
+            site.save()
+            return Response(self._site_payload(site))
+
+        except Exception as e:
+            logger.exception(
+                "Failed to update site %s of group %s", site_id, pk, exc_info=e
+            )
             return api_error(str(e), status=500)
