@@ -200,7 +200,7 @@ class SubstituteLigand(CPluginScript):
         # =====================================================================
         if self._ligandMode == 'DICT':
             # User provided dictionary directly
-            self.dictToUse = self.container.inputData.DICTIN
+            self._useFile('dictToUse', self.container.inputData.DICTIN)
             print(f"[SubstituteLigand] Using provided dictionary: {self.dictToUse.fullPath}")
 
         elif self._ligandMode != 'NONE':
@@ -218,8 +218,8 @@ class SubstituteLigand(CPluginScript):
                 return merge_error
         else:
             # Use provided merged data
-            self.obsToUse = self.container.inputData.F_SIGF_IN
-            self.freerToUse = self.container.inputData.FREERFLAG_IN
+            self._useFile('obsToUse', self.container.inputData.F_SIGF_IN)
+            self._useFile('freerToUse', self.container.inputData.FREERFLAG_IN)
 
             # A free-R set from another crystal is reconciled ONCE, here.
             #
@@ -312,7 +312,7 @@ class SubstituteLigand(CPluginScript):
                             'LidiaAcedrg did not produce dictionary output', 'LidiaAcedrg', 4)
                 return error
 
-            self.dictToUse = plugin.container.outputData.DICTOUT_LIST[0]
+            self._useFile('dictToUse', plugin.container.outputData.DICTOUT_LIST[0])
             print(f"[SubstituteLigand] LidiaAcedrg completed: {self.dictToUse.fullPath}")
 
             # Append XML
@@ -446,12 +446,12 @@ class SubstituteLigand(CPluginScript):
 
             # Store results for harvest
             out = plugin.container.outputData
-            self.mapToUse = out.MAPOUT_REFMAC
+            self._useFile('mapToUse', out.MAPOUT_REFMAC)
 
             if self._ligandMode == 'NONE':
                 # No ligand - use refined coordinates directly
                 if len(out.XYZOUT) > 0:
-                    self.finalCoordinates = out.XYZOUT[0]
+                    self._useFile('finalCoordinates', out.XYZOUT[0])
                 else:
                     self.appendErrorReport(211, 'phaser_rnp did not produce coordinate output')
                     error.append(self.__class__.__name__, 211,
@@ -459,7 +459,7 @@ class SubstituteLigand(CPluginScript):
                     return error
             else:
                 # Need coordinates for coot
-                self.coordinatesForCoot = out.XYZOUT_REFMAC
+                self._useFile('coordinatesForCoot', out.XYZOUT_REFMAC)
 
             # The data as reindexed to match the model
             if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
@@ -509,12 +509,12 @@ class SubstituteLigand(CPluginScript):
 
             # Store results for harvest
             out = plugin.container.outputData
-            self.mapToUse = out.FPHIOUT
+            self._useFile('mapToUse', out.FPHIOUT)
 
             if self._ligandMode == 'NONE':
-                self.finalCoordinates = out.XYZOUT
+                self._useFile('finalCoordinates', out.XYZOUT)
             else:
-                self.coordinatesForCoot = out.XYZOUT
+                self._useFile('coordinatesForCoot', out.XYZOUT)
 
             # Update obsToUse/freerToUse if dimple reindexed
             if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
@@ -630,12 +630,12 @@ class SubstituteLigand(CPluginScript):
 
             # Update map and coordinates for coot
             out = plugin.container.outputData
-            self.mapToUse = out.FPHIOUT
+            self._useFile('mapToUse', out.FPHIOUT)
 
             if self._ligandMode == 'NONE':
-                self.finalCoordinates = out.XYZOUT
+                self._useFile('finalCoordinates', out.XYZOUT)
             else:
-                self.coordinatesForCoot = out.XYZOUT
+                self._useFile('coordinatesForCoot', out.XYZOUT)
 
             print(f"[SubstituteLigand] Servalcat refinement completed")
 
@@ -797,24 +797,6 @@ class SubstituteLigand(CPluginScript):
         check_merge_cells(
             error, self.TASKNAME, inp.F_SIGF_IN, inp.FREERFLAG_IN
         )
-
-    def _useFile(self, attribute, dataFile):
-        """Point one of this pipeline's working attributes at a CDataFile.
-
-        Plain assignment does not do this. Once ``self.<attribute>`` holds a
-        CDataFile, ``self.<attribute> = other`` is intercepted by CData's
-        __setattr__ and coerced INTO the existing object, which keeps its own
-        baseName and relPath -- so the attribute still reads as whatever it
-        held before, while the code plainly says otherwise. The two objects
-        having different ids after the assignment is how this was found: the
-        free-R set reconciled with the data was handed to every downstream
-        step as the original, unreconciled input.
-
-        The first assignment works, because the attribute starts as None and
-        there is nothing to coerce into; it is every reassignment after that
-        which silently does nothing.
-        """
-        object.__setattr__(self, attribute, dataFile)
 
     def _reconcileFreeRWithData(self):
         """Make the supplied free-R set fit this dataset, once, up front.
@@ -1319,7 +1301,7 @@ class SubstituteLigand(CPluginScript):
                             'Coot did not produce output coordinates', 'coot', 4)
                 return error
 
-            self.finalCoordinates = self.container.outputData.XYZOUT
+            self._useFile('finalCoordinates', self.container.outputData.XYZOUT)
             print(f"[SubstituteLigand] Coot ligand fitting completed")
 
         except Exception as e:

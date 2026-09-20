@@ -62,9 +62,10 @@ Two threads, which became entangled because the second blocked testing the first
   on every row to render two chips. `sites_evaluated` / `sites_total` give the
   completeness count. 14 tests.
 
-### Not started: the UI
+### Landed on this branch: the UI
 
-Agreed design, for whoever picks this up:
+Built to the design below, which is left in place because it records *why*
+each choice was made rather than only what was built.
 
 * A **Sites column** in the campaign overview, showing chips **only for `hit`
   and `unclear`**. Empty and unevaluated render nothing.
@@ -82,6 +83,22 @@ Agreed design, for whoever picks this up:
 * The **verdict control replaces the site-tag button** in the Moorhen campaign
   panel. Tag and verdict should not coexist: two records of one fact, with
   only one of them maintained.
+
+Three things came out of building it that the design did not anticipate:
+
+* **The client was still on the old sites API.** PR #563 moved sites to rows
+  with ids and per-site endpoints, but the client went on PUTting the whole
+  list back, so adding, renaming, moving and deleting a site were all broken
+  on this branch. Writes now go one site at a time, addressed by id.
+* **The overview payload cannot drive the verdict control.** It carries only
+  hits and unclears by design, and a control that *records* verdicts has to
+  distinguish "looked, found nothing" from "not looked at yet" or it writes
+  the wrong one back. Added `GET evaluations/<project>/`: every verdict for
+  one dataset, empties included. The overview stays lean; the per-dataset
+  view can afford the whole picture.
+* **Which job a chip opens** was unspecified. It opens the dataset's latest
+  *finished* top-level job, falling back to its latest job of any status so a
+  running or failed dataset still opens on something.
 
 ### Also requested, not started
 
@@ -196,16 +213,83 @@ All 5 tests in the file pass (~5 min). Unit suite 2570.
 
 ---
 
+## The `__setattr__` sweep (done)
+
+The mechanism is worse than described above, and narrower.
+
+**Worse:** the reassignment does not merely leave the old `baseName` in place
+— the new file's path never arrives at all. `CData.__setattr__` dispatches a
+CData-into-CData assignment to `_smart_assign_from_cdata`, which for a
+CDataFile copies nothing that matters. The attribute is completely unchanged.
+
+**Narrower:** it needs the *containing* object to be an initialised CData.
+That is always true of a CPluginScript in a real run, but it means the trap
+cannot be reproduced on a plain object, or on a plugin built with `__new__` —
+the guard `not hasattr(self, "_hierarchy_initialized")` sends those straight
+to the default assignment. A first attempt to reproduce it this way appears to
+show no bug at all.
+
+There is a **second silent no-op in the same code path**: assigning a CData
+whose values are all unset is skipped entirely, so a stage that produced
+nothing leaves the previous stage's file in place rather than clearing it.
+
+An AST sweep of `wrappers/` and `pipelines/` for attributes assigned a
+container-derived value more than once found 11 candidates. Six are false
+positives — the two assignments are arms of one `if`/`else`, so only one ever
+runs (`PrepareDeposit.coordsToUse`, `dr_mr_modelbuild_pipeline.dictToUse`,
+and that pipeline's `coordinatesForCoot`/`mapToUse`). The rest were real:
+
+* **`SubstituteLigand`** — Phase 3 (Dimple *or* Phaser RNP) binds
+  `finalCoordinates`, `mapToUse` and `coordinatesForCoot`; Phase 4
+  (Servalcat, which runs *always*) and Phase 5 (Coot ligand fitting) re-point
+  them, and were doing nothing. What that actually cost, traced through to the
+  consumers: **Coot fitted its ligand into Phase 3's coordinates and Phase 3's
+  map**, not into the refined coordinates and the better map Servalcat had
+  just produced — `_runCootLigandFitting` reads `coordinatesForCoot` and
+  `mapToUse` directly. The *published* XYZOUT is not affected: Coot writes
+  straight to `outputData.XYZOUT`'s path and Servalcat's is harvested into it,
+  neither going through these attributes. And the Phase 5 re-point of
+  `finalCoordinates` has no consumer at all — a trap lying in wait for whoever
+  reads it next, rather than a live fault.
+* **`phaser_rnp_pipeline`** — the most consequential. `F_SIGF_TOUSE` and
+  `FREERFLAG_TOUSE` are set from the inputs, then re-pointed at pointless's
+  reindexed output when the cells disagree; `runPhaser` and `runRefmac` both
+  read them afterwards. So when pointless decided a reindex was needed, phaser
+  and refmac ran on the original, un-reindexed data anyway — which is the one
+  thing that branch exists to prevent.
+* **`prosmart_refmac`** — `currentCoordinates` is re-pointed at Coot's output
+  after water fitting and handed to the post-Coot Refmac, which was therefore
+  refining the pre-Coot coordinates.
+
+`_useFile` is now a method on `CPluginScript` rather than a local helper in
+SubstituteLigand, so every plugin has the remedy, and the three files above
+use it. Seven tests in `tests/unit/plugins/test_working_file_attributes.py`
+pin the trap itself, the unset-source no-op, and that `_useFile` defeats both
+— including one that should be deleted loudly if CData's semantics ever
+change so that plain assignment rebinds.
+
 ## Suggested next steps
 
 1. **Land PR #563** (data model + demo command). It is green and independent.
 2. **Split this branch.** The cell/reconcile work (`8d174ba45`, `15af2dc8e`,
    `5f1398f0f`, `6b1f2b509`) is independently useful and should not wait on
    the UI. The endpoints commit (`67a3d8753`) belongs with the UI.
-3. **Decide on the permissive-merge commits.** `15af2dc8e` and `5f1398f0f`
-   make `i2Dimple` and `pointless_reindexToMatch` tolerant of cell
-   differences. The reconcile largely obviates them — the free set now
-   matches before those merges see it. Keep as defence in depth, or drop for
-   a minimal change? **Not yet decided.**
-4. **Build the Sites column** to the design above.
-5. **Sweep for the `__setattr__` coercion pattern** elsewhere.
+3. **Decide on the permissive-merge commits.** Recommendation: **keep them.**
+   They fix the failure at a different layer from the reconcile, which only
+   runs inside SubstituteLigand — `i2Dimple` and `pointless_reindexToMatch`
+   are reusable, and `phaser_pipeline`, `phaser_pipeline_phil` and
+   `phaser_rnp_pipeline_phil` all reach the same join without passing through
+   the reconcile. Dimple's own argument stands on its own terms too: fitting a
+   model that does not quite match its data is what the program is *for*, so a
+   1 Å cell test is the wrong default for it. `STRICT_CELL_MATCH` keeps the
+   guard reachable. The cost is that data genuinely paired from the wrong
+   crystal no longer fails early — worth a look at whether the report says
+   loudly enough that the cells differed.
+4. ~~Build the Sites column~~ — done, above.
+5. ~~Sweep for the `__setattr__` coercion pattern~~ — done, above.
+6. **Still not started: the "place ligand here" button** in the Moorhen
+   campaign page (a direct Coot API call in place of the generic "Get
+   monomer" dialog).
+7. **`member-project-row.tsx` is dead code** — exported from the campaigns
+   index but rendered nowhere; the virtualized table has its own row. It did
+   not get the Sites column. Delete it, or wire it up.

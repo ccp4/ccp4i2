@@ -2036,6 +2036,32 @@ class CPluginScript(CData):
         """Clear the command line list."""
         self.commandLine = []
 
+    def _useFile(self, attribute, dataFile):
+        """Point one of this plugin's working attributes at a CDataFile.
+
+        Plain assignment does not do this, because a CPluginScript is itself a
+        CData. Once ``self.<attribute>`` holds a CData, ``self.<attribute> =
+        other`` is intercepted by CData.__setattr__, which copies *other* into
+        the existing object rather than rebinding the name -- and for a
+        CDataFile that copy does not carry the path, so the attribute goes on
+        reading as whatever it held before while the code plainly says
+        otherwise.
+
+        The first assignment is fine: the attribute is None, there is nothing
+        to coerce into. It is every reassignment after that which silently
+        does nothing, which is why this is so easy to miss -- a pipeline that
+        re-points a working attribute after each stage keeps handing the first
+        stage's file downstream, and every stage after the first is discarded
+        in silence.
+
+        This is deliberately not fixed in CData.__setattr__: copying into the
+        existing object is the wanted behaviour for a container's declared
+        children (``container.inputData.XYZIN = someFile`` must fill in the
+        declared child), and only wrong for the ad-hoc attributes a plugin
+        uses to track which file the next stage should read.
+        """
+        object.__setattr__(self, attribute, dataFile)
+
     def makeFileName(self, format='COM', ext='', qualifier=None):
         """
         Generate consistent names for output files.
