@@ -38,6 +38,22 @@
                     <default>0.45</default>
                 </qualifiers>
             </content>
+            <content id="STRICT_CELL_MATCH">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <!-- Off by default. Dimple exists to fit a model that does
+                         not quite match its data, so the observations and a
+                         FreeR set brought from another crystal of the same
+                         form routinely differ in cell by a percent or more.
+                         Clipper's 1 A test then refuses the merge before
+                         dimple ever runs. Tick this to require the cells to
+                         agree, which catches data paired from the wrong
+                         crystal at the cost of refusing a shared free set. -->
+                    <default>False</default>
+                    <guiLabel>Require the input cells to match</guiLabel>
+                    <toolTip>When observations and a FreeR set come from different crystals of the same form -- a fragment campaign's shared free set -- their cells legitimately differ. Leave this off to merge them anyway, matching reflections by index and keeping the observations' cell. Tick it to refuse the merge when the cells disagree by more than 1 A on Clipper's test.</toolTip>
+                </qualifiers>
+            </content>
         </container>
         <container id="outputData">
             <content id="COMPLETE_MTZ">

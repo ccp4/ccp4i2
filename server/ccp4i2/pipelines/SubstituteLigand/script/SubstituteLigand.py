@@ -14,6 +14,7 @@ except ImportError:
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.lib.utils.formats.cell_compatibility import check_merge_cells
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 
@@ -760,6 +761,26 @@ class SubstituteLigand(CPluginScript):
                 name=f'{self.TASKNAME}.container.inputData.FREERFLAG_IN',
                 severity=CCP4ErrorHandling.SEVERITY_WARNING,
             )
+            return
+
+        # Say at the Run dialog what would otherwise surface from inside the
+        # merge, part-way through the job, as "Incompatible unit cells".
+        #
+        # A free-R set shared across a fragment campaign comes from another
+        # crystal, so a cell difference here is expected rather than wrong.
+        # The refinement routes merge permissively for that reason, and this
+        # reports the difference as an advisory; it becomes an error only if
+        # the run has been asked to require matching cells, in which case the
+        # merge really will refuse them.
+        check_merge_cells(
+            error,
+            self.TASKNAME,
+            inp.F_SIGF_IN,
+            inp.FREERFLAG_IN,
+            strict=bool(
+                getattr(self.container.controlParameters, 'STRICT_CELL_MATCH', False)
+            ),
+        )
 
     def _checkLigandChemistryMatchesMode(self, error) -> None:
         """The ligand's chemistry must arrive in the form the menu promises.
