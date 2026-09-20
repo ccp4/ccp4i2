@@ -14,7 +14,9 @@ except ImportError:
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.lib.utils.formats.cell_compatibility import check_merge_cells
+from ccp4i2.lib.utils.formats.cell_compatibility import (
+    check_merge_cells,
+)
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 
@@ -219,6 +221,26 @@ class SubstituteLigand(CPluginScript):
             self.obsToUse = self.container.inputData.F_SIGF_IN
             self.freerToUse = self.container.inputData.FREERFLAG_IN
 
+            # A free-R set from another crystal is reconciled ONCE, here.
+            #
+            # On the unmerged route aimless makes a free set that matches the
+            # data. On this route the user supplies one, and in a fragment
+            # campaign it comes from the reference crystal: its cell differs
+            # by a percent or more, and it may not reach the resolution of
+            # this dataset. Every downstream merge would otherwise meet the
+            # same mismatch and have to be told to ignore it.
+            #
+            # freerflag in COMPLETE mode does both halves of the job -- it
+            # joins by reflection index (so the existing flags keep the
+            # reflections they were assigned to), takes the data's cell, and
+            # fills in flags for the reflections the input set lacks, which
+            # re-stamping a cell alone would not do. The result is harvested
+            # to FREERFLAG_OUT, so it is a real project file the next job can
+            # use instead of repeating this.
+            freer_error = self._reconcileFreeRWithData()
+            if freer_error and freer_error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+                return freer_error
+
         # =====================================================================
         # Phase 3: Rigid Body Refinement
         # =====================================================================
@@ -374,8 +396,8 @@ class SubstituteLigand(CPluginScript):
                             'Aimless did not produce merged HKL output', 'aimless', 4)
                 return error
 
-            self.obsToUse = aimlessOut.HKLOUT[0]
-            self.freerToUse = aimlessOut.FREEROUT
+            self._useFile('obsToUse', aimlessOut.HKLOUT[0])
+            self._useFile('freerToUse', aimlessOut.FREEROUT)
             print(f"[SubstituteLigand] aimless_pipe completed")
 
             # Append XML
@@ -441,9 +463,9 @@ class SubstituteLigand(CPluginScript):
 
             # The data as reindexed to match the model
             if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
-                self.obsToUse = out.F_SIGF_OUT
+                self._useFile('obsToUse', out.F_SIGF_OUT)
             if os.path.isfile(str(out.FREERFLAG_OUT.fullPath)):
-                self.freerToUse = out.FREERFLAG_OUT
+                self._useFile('freerToUse', out.FREERFLAG_OUT)
 
             print(f"[SubstituteLigand] phaser_rnp_pipeline_phil completed")
 
@@ -496,9 +518,9 @@ class SubstituteLigand(CPluginScript):
 
             # Update obsToUse/freerToUse if dimple reindexed
             if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
-                self.obsToUse = out.F_SIGF_OUT
+                self._useFile('obsToUse', out.F_SIGF_OUT)
             if os.path.isfile(str(out.FREERFLAG_OUT.fullPath)):
-                self.freerToUse = out.FREERFLAG_OUT
+                self._useFile('freerToUse', out.FREERFLAG_OUT)
 
             print(f"[SubstituteLigand] i2Dimple completed")
 
@@ -773,14 +795,137 @@ class SubstituteLigand(CPluginScript):
         # the run has been asked to require matching cells, in which case the
         # merge really will refuse them.
         check_merge_cells(
-            error,
-            self.TASKNAME,
-            inp.F_SIGF_IN,
-            inp.FREERFLAG_IN,
-            strict=bool(
-                getattr(self.container.controlParameters, 'STRICT_CELL_MATCH', False)
-            ),
+            error, self.TASKNAME, inp.F_SIGF_IN, inp.FREERFLAG_IN
         )
+
+    def _useFile(self, attribute, dataFile):
+        """Point one of this pipeline's working attributes at a CDataFile.
+
+        Plain assignment does not do this. Once ``self.<attribute>`` holds a
+        CDataFile, ``self.<attribute> = other`` is intercepted by CData's
+        __setattr__ and coerced INTO the existing object, which keeps its own
+        baseName and relPath -- so the attribute still reads as whatever it
+        held before, while the code plainly says otherwise. The two objects
+        having different ids after the assignment is how this was found: the
+        free-R set reconciled with the data was handed to every downstream
+        step as the original, unreconciled input.
+
+        The first assignment works, because the attribute starts as None and
+        there is nothing to coerce into; it is every reassignment after that
+        which silently does nothing.
+        """
+        object.__setattr__(self, attribute, dataFile)
+
+    def _reconcileFreeRWithData(self):
+        """Make the supplied free-R set fit this dataset, once, up front.
+
+        Returns a CErrorReport; an ERROR in it stops the pipeline.
+
+        Does nothing unless a free set was given AND its cell disagrees with
+        the data's. When it does disagree the set almost always comes from
+        another crystal of the same form -- a fragment campaign shares one
+        across the whole series -- and two things are wrong with using it as
+        it stands: every downstream merge compares the cells and refuses, and
+        the set may stop short of this dataset's resolution.
+
+        freerflag in COMPLETE mode fixes both. It joins by reflection index,
+        so existing flags stay with the reflections they were assigned to;
+        takes the data's cell; and fills in flags for the reflections the
+        input lacks. Re-stamping the cell by hand would do only the first
+        half and leave the outer shells unflagged. It is gemmi-native, so
+        this costs no subprocess.
+        """
+        error = CErrorReport()
+        inp = self.container.inputData
+
+        if not inp.FREERFLAG_IN.isSet() or not inp.F_SIGF_IN.isSet():
+            return error
+
+        # Run this whenever a free-R set is supplied, not only when the cells
+        # disagree.
+        #
+        # A cell difference is the obvious reason a supplied set does not fit
+        # this data, but it is not the only one: gamma's demo free-R set
+        # shares the data's cell and still leaves 264 observed reflections
+        # with no flag, and servalcat stops on "Missing FREE reflection(s)".
+        # freerflag in COMPLETE mode fills those in as readily as it restamps
+        # a cell, and is a no-op when the set already covers the data, so
+        # there is nothing to gain by guessing in advance which case this is.
+
+        try:
+            plugin = self.makePluginObject('freerflag')
+        except Exception as e:
+            self.appendErrorReport(221, f'Could not create freerflag: {e}')
+            error.append(self.__class__.__name__, 221,
+                         f'Could not create freerflag: {e}', 'freerflag', 4)
+            return error
+
+        control = plugin.container.controlParameters
+        control.GEN_MODE.set('COMPLETE')
+        # The cells differ by definition at this point; that is why we are
+        # here, so the comparison inside freerflag's own merge has to be told
+        # to allow it.
+        control.OVERRIDE_CELL_DIFFERENCE.set(True)
+        plugin.container.inputData.F_SIGF.set(self.obsToUse)
+        plugin.container.inputData.FREERFLAG.set(inp.FREERFLAG_IN)
+
+        print('[SubstituteLigand] Reconciling the supplied free-R set with '
+              'this dataset (freerflag COMPLETE)')
+
+        if plugin.process() != CPluginScript.SUCCEEDED:
+            self.appendErrorReport(
+                221,
+                'freerflag could not extend the supplied free-R set onto this '
+                'data. The space groups must match; a cell difference alone is '
+                'handled.')
+            error.append(self.__class__.__name__, 221,
+                         'freerflag failed to reconcile the free-R set',
+                         'freerflag', 4)
+            return error
+
+        reconciled = plugin.container.outputData.FREEROUT
+        if not os.path.isfile(str(reconciled.fullPath)):
+            self.appendErrorReport(
+                221, 'freerflag reported success but wrote no free-R file.')
+            error.append(self.__class__.__name__, 221,
+                         'freerflag wrote no output', 'freerflag', 4)
+            return error
+
+        # Publish it FIRST, then point everything downstream at the published
+        # copy rather than the sub-job's own output.
+        #
+        # Assigning the sub-job's FREEROUT to freerToUse looked right and was
+        # not: the assignment carried the annotation across but left the path
+        # on the original input, so servalcat was handed the reference
+        # crystal's file -- with the reconciled file's annotation on it -- and
+        # failed on the very cell difference this method exists to remove.
+        self._harvestFile(reconciled, self.container.outputData.FREERFLAG_OUT)
+
+        # Point downstream at the harvested file by PATH, not by assigning the
+        # CDataFile.
+        #
+        # `freerToUse = <someCDataFile>` copies the other object's contents
+        # into this one under CData's assignment coercion, which carried the
+        # annotation across but left the path on the original input -- so
+        # dimple and servalcat were handed the reference crystal's file
+        # wearing the reconciled file's annotation, and failed on the very
+        # cell difference this method exists to remove.
+        # Hand on the pipeline's OWN output object, which already points at
+        # the harvested file. Constructing a fresh CFreeRDataFile from its path
+        # does not work here: a CDataFile resolves its path against the job
+        # context, so the new object came back pointing at the original input
+        # and every downstream step was handed the unreconciled set.
+        # object.__setattr__, not plain assignment.
+        #
+        # freerToUse already holds FREERFLAG_IN, and `self.freerToUse = other`
+        # does not rebind the attribute: CData's __setattr__ coerces the
+        # assignment into the EXISTING object, which keeps its own baseName and
+        # relPath. The result reads as the original input -- confirmed by the
+        # two objects having different ids after the assignment -- so every
+        # downstream step was handed the unreconciled set while the log said
+        # otherwise.
+        self._useFile('freerToUse', self.container.outputData.FREERFLAG_OUT)
+        return error
 
     def _checkLigandChemistryMatchesMode(self, error) -> None:
         """The ligand's chemistry must arrive in the form the menu promises.

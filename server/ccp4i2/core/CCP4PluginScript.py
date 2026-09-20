@@ -4465,6 +4465,7 @@ class CPluginScript(CData):
         self,
         miniMtzsIn: list = [],
         hklin: str = 'hklin',
+        cell_tolerance: Optional[float] = 1.0,
     ) -> tuple:
         """
         Legacy API for makeHklin that returns prefixed column names.
@@ -4476,6 +4477,11 @@ class CPluginScript(CData):
         Args:
             miniMtzsIn: List of file names or [name, contentFlag] pairs
             hklin: Output filename (without extension)
+            cell_tolerance: How far the inputs' cells may differ, as passed on
+                to merge_mtz_files; ``None`` skips the comparison, matching
+                reflections by index and keeping the first file's cell. Needed
+                when observations are joined to a FreeR set from another
+                crystal of the same form.
 
         Returns:
             Tuple of (outfile_path, column_names_string, error_report)
@@ -4528,7 +4534,8 @@ class CPluginScript(CData):
             output_path = self.makeHklinGemmi(
                 file_objects=file_objects,
                 output_name=hklin,
-                merge_strategy='first'
+                merge_strategy='first',
+                cell_tolerance=cell_tolerance,
             )
             outfile = str(output_path)
 

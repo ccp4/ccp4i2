@@ -18,22 +18,7 @@ class i2Dimple(CPluginScript):
         inputs = [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN] ]
         if self.container.inputData.FREERFLAG.isSet():
             inputs += [ ['FREERFLAG', 1] ]
-        # Permissive cell matching by default.
-        #
-        # Dimple's job is to fit a model that does not quite match its data, so
-        # a cell difference is the expected condition rather than a fault --
-        # and a FreeR set shared across a fragment campaign comes from another
-        # crystal of the same form, whose cell legitimately drifts by a percent
-        # or more. Clipper's 1 A test then refuses the merge before dimple ever
-        # runs. With the check off, reflections are matched by index and the
-        # output keeps the observations' cell; the space groups must still
-        # agree. STRICT_CELL_MATCH restores the check for callers who would
-        # rather catch data paired from the wrong crystal.
-        control = self.container.controlParameters
-        strict = bool(getattr(control, 'STRICT_CELL_MATCH', False))
-        self.hklin, self.columns, error = self.makeHklin0(
-            inputs, cell_tolerance=1.0 if strict else None
-        )
+        self.hklin,self.columns,error = self.makeHklin0(inputs)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         self.columnsAsArray = self.columns.split(",")

@@ -69,18 +69,17 @@ def check_merge_cells(
     free_r,
     *,
     parameter_name="FREERFLAG_IN",
-    strict=False,
     tolerance=DEFAULT_TOLERANCE,
     code=220,
 ):
-    """Report a cell difference between observations and a FreeR set.
+    """Say, before the job runs, that the free-R set will be reconciled.
 
-    ``strict`` says whether the merge will actually refuse: when the task
-    merges permissively (the usual case for rigid-body and MR routes, where a
-    cell difference is the expected condition rather than a fault) this is an
-    advisory that says what will happen and why it is probably fine. When the
-    task has been asked to require matching cells, the same difference is an
-    error, because the job would fail during the merge.
+    A cell difference here is not a fault: it is what a free-R set shared
+    across a fragment campaign looks like, and the task handles it by running
+    freerflag in COMPLETE mode to produce a set carrying this dataset's cell
+    and reaching its resolution. This is an advisory so that the user knows
+    that happened and can sanity-check the one thing no code can decide for
+    them -- whether the two files really are the same crystal form.
 
     Appends to ``error`` and returns True if anything was reported.
     """
@@ -91,45 +90,25 @@ def check_merge_cells(
     if result is None or result["validity"]:
         return False
 
-    shared = (
-        "The observations and the free-R set have different unit cells:\n"
-        "  observations  %s\n"
-        "  free-R set    %s\n"
-        % (format_cell(first), format_cell(second))
-    )
-
-    if strict:
-        details = (
-            shared
-            + "\nThis task has been asked to require matching cells, so the "
-            "merge will refuse them and the job will stop.\n\n"
-            "If these really are different crystals of the same form -- a "
-            "free-R set shared across a fragment campaign, say -- untick that "
-            "requirement. Reflections are then matched by index and the output "
-            "keeps the observations' cell, which is what re-celling a free-R "
-            "set means; the flags stay with the reflections they were assigned "
-            "to. If they are NOT the same crystal form, use a free-R set from "
-            "this crystal instead."
-        )
-        severity = CCP4ErrorHandling.SEVERITY_ERROR
-    else:
-        details = (
-            shared
-            + "\nThey will be merged anyway: reflections are matched by index "
-            "and the output keeps the observations' cell, so the free-R "
-            "assignments carry across unchanged. That is what a campaign's "
-            "shared free-R set needs.\n\n"
-            "Worth checking only that the two files really are the same "
-            "crystal form -- nothing here can tell a legitimate soak-to-soak "
-            "drift from a free-R set picked from the wrong crystal."
-        )
-        severity = CCP4ErrorHandling.SEVERITY_WARNING
-
     error.append(
         klass=task_name,
         code=code,
-        details=details,
+        details=(
+            "The observations and the free-R set have different unit cells:\n"
+            "  observations  %s\n"
+            "  free-R set    %s\n"
+            "\nThe free-R set will be reconciled with this data before "
+            "refinement: freerflag joins the two by reflection index, so the "
+            "existing flags stay with the reflections they were assigned to, "
+            "stamps this dataset's cell, and extends the set to this data's "
+            "resolution. The result is saved as this job's FREERFLAG_OUT, so "
+            "later jobs on this dataset can use it directly.\n\n"
+            "Worth checking only that the two files really are the same "
+            "crystal form -- nothing here can tell a legitimate soak-to-soak "
+            "drift from a free-R set picked from the wrong crystal."
+            % (format_cell(first), format_cell(second))
+        ),
         name=f"{task_name}.container.inputData.{parameter_name}",
-        severity=severity,
+        severity=CCP4ErrorHandling.SEVERITY_WARNING,
     )
     return True
