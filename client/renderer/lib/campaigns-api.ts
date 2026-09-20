@@ -17,6 +17,9 @@ import {
   ParentFilesResponse,
   MembershipType,
   CampaignSite,
+  NewCampaignSite,
+  SiteEvaluation,
+  SiteVerdict,
 } from "../types/campaigns";
 import { Project } from "../types/models";
 import type { MoorhenScene } from "../types/moorhen-scene";
@@ -44,6 +47,34 @@ export interface SummarySceneResponse {
 // =============================================================================
 // Hook for campaign operations
 // =============================================================================
+
+/**
+ * Re-fetch a campaign's sites wherever they are on screen.
+ *
+ * Matched by substring rather than by exact key because the same collection
+ * is read under several keys (the campaign page, the Moorhen panel), and a
+ * site added in one has to show up in the other.
+ */
+function revalidateSites(campaignId: number) {
+  mutate(
+    (key) =>
+      typeof key === "string" &&
+      key.includes(`projectgroups/${campaignId}/sites`),
+    undefined,
+    { revalidate: true }
+  );
+}
+
+/** Re-fetch the campaign overview — it carries the verdicts per dataset. */
+function revalidateMemberProjects(campaignId: number) {
+  mutate(
+    (key) =>
+      typeof key === "string" &&
+      key.includes(`projectgroups/${campaignId}/member_projects`),
+    undefined,
+    { revalidate: true }
+  );
+}
 
 export function useCampaignsApi() {
   const api = useApi();
@@ -247,27 +278,90 @@ export function useCampaignsApi() {
     },
 
     /**
-     * Update binding sites for a campaign.
-     * @param campaignId - The campaign ID
-     * @param sites - Array of site objects with name, origin, and optional quat/zoom
+     * Add one binding site to a campaign.
+     *
+     * One at a time, not the whole list: the list used to be replaced
+     * wholesale on every write, so two people editing a campaign silently
+     * discarded each other's sites.
      */
-    async updateSites(
+    async addSite(
       campaignId: number,
-      sites: CampaignSite[]
-    ): Promise<CampaignSite[]> {
-      const result = await apiPut<CampaignSite[]>(
-        `projectgroups/${campaignId}/sites/`,
-        sites
+      site: NewCampaignSite
+    ): Promise<CampaignSite> {
+      const result = await apiPost<CampaignSite>(
+        `projectgroups/${campaignId}/sites`,
+        site
       );
-      // Invalidate sites query
-      mutate(
-        (key) =>
-          typeof key === "string" &&
-          key.includes(`projectgroups/${campaignId}/sites`),
-        undefined,
-        { revalidate: true }
-      );
+      revalidateSites(campaignId);
       return result;
+    },
+
+    /**
+     * Change one site, addressed by its id.
+     *
+     * By id rather than by position or name, so a rename keeps every verdict
+     * recorded against that site attached to it.
+     */
+    async updateSite(
+      campaignId: number,
+      siteId: number,
+      changes: Partial<NewCampaignSite> & { order?: number }
+    ): Promise<CampaignSite> {
+      const result = await apiPatch<CampaignSite>(
+        `projectgroups/${campaignId}/sites/${siteId}`,
+        changes
+      );
+      revalidateSites(campaignId);
+      return result;
+    },
+
+    /** Remove one site, and with it every verdict recorded at that site. */
+    async deleteSite(campaignId: number, siteId: number): Promise<void> {
+      await apiDelete(`projectgroups/${campaignId}/sites/${siteId}`);
+      revalidateSites(campaignId);
+      revalidateMemberProjects(campaignId);
+    },
+
+    /** Every verdict recorded for one dataset, including the empties. */
+    async fetchEvaluations(
+      campaignId: number,
+      projectId: number
+    ): Promise<SiteEvaluation[]> {
+      return apiGet(`projectgroups/${campaignId}/evaluations/${projectId}`);
+    },
+
+    /** Record or change what was found at one site in one dataset. */
+    async setSiteEvaluation(
+      campaignId: number,
+      siteId: number,
+      projectId: number,
+      verdict: SiteVerdict,
+      extra: { evaluator?: string; note?: string } = {}
+    ): Promise<SiteEvaluation> {
+      const result = await apiPut<SiteEvaluation>(
+        `projectgroups/${campaignId}/sites/${siteId}/evaluation/${projectId}`,
+        { verdict, ...extra }
+      );
+      revalidateMemberProjects(campaignId);
+      return result;
+    },
+
+    /**
+     * Withdraw a verdict.
+     *
+     * Not the same as recording "empty": this returns the site to nobody
+     * having looked, where "empty" asserts that somebody looked and found
+     * nothing.
+     */
+    async clearSiteEvaluation(
+      campaignId: number,
+      siteId: number,
+      projectId: number
+    ): Promise<void> {
+      await apiDelete(
+        `projectgroups/${campaignId}/sites/${siteId}/evaluation/${projectId}`
+      );
+      revalidateMemberProjects(campaignId);
     },
 
     /**

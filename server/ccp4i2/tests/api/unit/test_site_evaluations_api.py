@@ -274,3 +274,116 @@ class TestRenamingASite:
         )
         assert response.status_code == 204
         assert not models.SiteEvaluation.objects.exists()
+
+
+@pytest.mark.django_db
+class TestReadingOneDatasetsVerdicts:
+    """``evaluations/<project>/`` — the per-dataset view, empties included.
+
+    The overview omits empties on purpose; a control that records verdicts
+    cannot. Without them it would show "not looked at yet" for a site somebody
+    had looked at and found nothing in, and write the wrong thing back.
+    """
+
+    def test_lists_every_verdict_including_empty(self, campaign):
+        client = APIClient()
+        client.put(
+            evaluation_url(campaign["group"], campaign["site_a"], campaign["a"]),
+            {"verdict": "hit"}, format="json",
+        )
+        client.put(
+            evaluation_url(campaign["group"], campaign["site_b"], campaign["a"]),
+            {"verdict": "empty"}, format="json",
+        )
+
+        response = client.get(
+            f"/api/ccp4i2/projectgroups/{campaign['group'].id}"
+            f"/evaluations/{campaign['a'].id}/"
+        )
+        assert response.status_code == 200, response.data
+        verdicts = {row["site_id"]: row["verdict"] for row in response.data}
+        assert verdicts == {
+            campaign["site_a"].id: "hit",
+            campaign["site_b"].id: "empty",
+        }
+
+    def test_a_site_nobody_looked_at_is_simply_absent(self, campaign):
+        """The distinction the rows exist for, from the reading side."""
+        client = APIClient()
+        client.put(
+            evaluation_url(campaign["group"], campaign["site_a"], campaign["a"]),
+            {"verdict": "empty"}, format="json",
+        )
+
+        response = client.get(
+            f"/api/ccp4i2/projectgroups/{campaign['group'].id}"
+            f"/evaluations/{campaign['a'].id}/"
+        )
+        assert [row["site_id"] for row in response.data] == [campaign["site_a"].id]
+        assert campaign["site_b"].id not in {r["site_id"] for r in response.data}
+
+    def test_carries_the_note_and_evaluator(self, campaign):
+        client = APIClient()
+        client.put(
+            evaluation_url(campaign["group"], campaign["site_a"], campaign["a"]),
+            {"verdict": "unclear", "evaluator": "mn", "note": "density is weak"},
+            format="json",
+        )
+
+        response = client.get(
+            f"/api/ccp4i2/projectgroups/{campaign['group'].id}"
+            f"/evaluations/{campaign['a'].id}/"
+        )
+        row = response.data[0]
+        assert row["evaluator"] == "mn"
+        assert row["note"] == "density is weak"
+        assert row["project_id"] == campaign["a"].id
+
+    def test_ordered_by_site(self, campaign):
+        client = APIClient()
+        for site in (campaign["site_b"], campaign["site_a"]):
+            client.put(
+                evaluation_url(campaign["group"], site, campaign["a"]),
+                {"verdict": "hit"}, format="json",
+            )
+
+        response = client.get(
+            f"/api/ccp4i2/projectgroups/{campaign['group'].id}"
+            f"/evaluations/{campaign['a'].id}/"
+        )
+        assert [row["site_id"] for row in response.data] == [
+            campaign["site_a"].id, campaign["site_b"].id
+        ]
+
+    def test_another_campaigns_verdicts_are_not_included(self, campaign, tmp_path):
+        """A project can belong to more than one campaign."""
+        other_group = models.ProjectGroup.objects.create(
+            name="OtherCampaign", type=models.ProjectGroup.GroupType.FRAGMENT_SET
+        )
+        models.ProjectGroupMembership.objects.create(
+            group=other_group, project=campaign["a"],
+            type=models.ProjectGroupMembership.MembershipType.MEMBER,
+        )
+        other_site = models.CampaignSite.objects.create(
+            group=other_group, name="Elsewhere",
+            origin_x=0, origin_y=0, origin_z=0, order=0,
+        )
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=other_site, verdict="hit"
+        )
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=campaign["site_a"], verdict="empty"
+        )
+
+        response = APIClient().get(
+            f"/api/ccp4i2/projectgroups/{campaign['group'].id}"
+            f"/evaluations/{campaign['a'].id}/"
+        )
+        assert [row["site_id"] for row in response.data] == [campaign["site_a"].id]
+
+    def test_a_project_outside_the_campaign_is_refused(self, campaign):
+        response = APIClient().get(
+            f"/api/ccp4i2/projectgroups/{campaign['group'].id}"
+            f"/evaluations/{campaign['outsider'].id}/"
+        )
+        assert response.status_code == 404

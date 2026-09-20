@@ -773,6 +773,59 @@ class ProjectGroupViewSet(ModelViewSet):
 
     @action(
         detail=True,
+        methods=["get"],
+        url_path=r"evaluations/(?P<project_id>[0-9]+)",
+    )
+    def project_evaluations(self, request, pk=None, project_id=None):
+        """Every verdict recorded for one dataset, including the empties.
+
+        The overview payload in `member_projects` carries only hits and
+        unclears, because it renders a row per dataset and most sites are
+        empty for most datasets. A view of a single dataset can afford the
+        whole picture and needs it: without the empties it cannot tell
+        "somebody looked and found nothing" from "nobody has looked yet",
+        which is the distinction these rows exist to keep. A control that
+        confused the two would write the wrong one back.
+
+        Ordered by site, so a caller can zip this against the site list.
+        """
+        try:
+            group = self.get_object()
+
+            if not group.memberships.filter(project_id=project_id).exists():
+                return api_error(
+                    "That project is not part of this campaign", status=404
+                )
+
+            evaluations = (
+                models.SiteEvaluation.objects.filter(
+                    project_id=project_id, site__group=group
+                )
+                .select_related("site")
+                .order_by("site__order", "site__id")
+            )
+
+            return Response([
+                {
+                    "site_id": evaluation.site_id,
+                    "site_name": evaluation.site.name,
+                    "project_id": int(project_id),
+                    "verdict": evaluation.verdict,
+                    "evaluator": evaluation.evaluator,
+                    "note": evaluation.note,
+                }
+                for evaluation in evaluations
+            ])
+
+        except Exception as e:
+            logger.exception(
+                "Failed to list evaluations of project %s in group %s",
+                project_id, pk, exc_info=e,
+            )
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
         methods=["put", "delete"],
         url_path=r"sites/(?P<site_id>[0-9]+)/evaluation/(?P<project_id>[0-9]+)",
     )

@@ -55,7 +55,9 @@ import {
   Edit as EditIcon,
   Home as HomeIcon,
   Upload as UploadIcon,
-  Label as LabelIcon,
+  CheckCircle as HitIcon,
+  HelpOutline as UnclearIcon,
+  DoDisturbOn as NothingThereIcon,
   FolderOpen as FolderOpenIcon,
   Science as ScienceIcon,
   VisibilityOutlined,
@@ -71,6 +73,8 @@ import {
   ProjectGroup,
   CampaignSite,
   MemberProjectWithSummary,
+  SiteEvaluation,
+  SiteVerdict,
 } from "../../types/campaigns";
 import { Project } from "../../types/models";
 
@@ -79,8 +83,8 @@ interface CampaignControlPanelProps {
   sites: CampaignSite[];
   onGoToSite: (site: CampaignSite) => void;
   onSaveCurrentAsSite: (name: string) => Promise<void>;
-  onUpdateSite: (index: number, name: string, updatePosition: boolean) => Promise<void>;
-  onDeleteSite: (index: number) => Promise<void>;
+  onUpdateSite: (siteId: number, name: string, updatePosition: boolean) => Promise<void>;
+  onDeleteSite: (siteId: number) => Promise<void>;
   memberProjects: MemberProjectWithSummary[];
   selectedMemberProjectId: number | null;
   onSelectMemberProject: (projectId: number | null) => void;
@@ -99,8 +103,16 @@ interface CampaignControlPanelProps {
   maps?: moorhen.Map[];
   /** Callback to change map contour level */
   onMapContourLevelChange?: (molNo: number, level: number) => void;
-  /** Callback to tag the currently selected project with a site name */
-  onTagProjectWithSite?: (siteName: string) => Promise<void>;
+  /**
+   * What has been found at each site in the selected dataset, empties
+   * included. An absent entry means nobody has looked there yet, which is a
+   * different thing from having looked and found nothing.
+   */
+  evaluations?: SiteEvaluation[];
+  /** Record or change what was found at a site in the selected dataset. */
+  onSetVerdict?: (siteId: number, verdict: SiteVerdict) => Promise<void>;
+  /** Withdraw a verdict, returning the site to "nobody has looked". */
+  onClearVerdict?: (siteId: number) => Promise<void>;
   /** Callback to load a file into the Moorhen session */
   onFileSelect?: (fileId: number) => Promise<void>;
   /** Callback to load all of a job's outputs into the session (the browser's
@@ -129,7 +141,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   ligandName,
   maps,
   onMapContourLevelChange,
-  onTagProjectWithSite,
+  evaluations,
+  onSetVerdict,
+  onClearVerdict,
   onFileSelect,
   onJobLoad,
   onRunServalcat,
@@ -165,7 +179,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   const [isSaving, setIsSaving] = useState(false);
 
   // Edit site dialog state
-  const [editingSiteIndex, setEditingSiteIndex] = useState<number | null>(null);
+  const [editingSiteId, setEditingSiteId] = useState<number | null>(null);
   const [editSiteName, setEditSiteName] = useState("");
   const [updatePosition, setUpdatePosition] = useState(false);
 
@@ -270,6 +284,15 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     [molecules, visibleRepresentations, onRepresentationsChange]
   );
 
+  // What has been recorded at each site for the selected dataset. Absent
+  // means nobody has looked there; "empty" means somebody looked and found
+  // nothing. The control has to show those differently or it will write the
+  // wrong one back.
+  const verdictBySite = useMemo(
+    () => new Map((evaluations ?? []).map((e) => [e.site_id, e.verdict])),
+    [evaluations]
+  );
+
   const handleSaveSite = useCallback(async () => {
     if (!newSiteName.trim()) return;
     setIsSaving(true);
@@ -283,34 +306,34 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   }, [newSiteName, onSaveCurrentAsSite]);
 
   const handleDeleteSite = useCallback(
-    async (index: number) => {
-      await onDeleteSite(index);
+    async (siteId: number) => {
+      await onDeleteSite(siteId);
     },
     [onDeleteSite]
   );
 
-  const handleOpenEditDialog = useCallback((index: number) => {
-    setEditingSiteIndex(index);
-    setEditSiteName(sites[index].name);
+  const handleOpenEditDialog = useCallback((site: CampaignSite) => {
+    setEditingSiteId(site.id);
+    setEditSiteName(site.name);
     setUpdatePosition(false);
-  }, [sites]);
+  }, []);
 
   const handleCloseEditDialog = useCallback(() => {
-    setEditingSiteIndex(null);
+    setEditingSiteId(null);
     setEditSiteName("");
     setUpdatePosition(false);
   }, []);
 
   const handleSaveEdit = useCallback(async () => {
-    if (editingSiteIndex === null || !editSiteName.trim()) return;
+    if (editingSiteId === null || !editSiteName.trim()) return;
     setIsSaving(true);
     try {
-      await onUpdateSite(editingSiteIndex, editSiteName.trim(), updatePosition);
+      await onUpdateSite(editingSiteId, editSiteName.trim(), updatePosition);
       handleCloseEditDialog();
     } finally {
       setIsSaving(false);
     }
-  }, [editingSiteIndex, editSiteName, updatePosition, onUpdateSite, handleCloseEditDialog]);
+  }, [editingSiteId, editSiteName, updatePosition, onUpdateSite, handleCloseEditDialog]);
 
   return (
     <Box sx={{ p: 1.5, height: "100%", display: "flex", flexDirection: "column", overflowY: "auto", overflowX: "hidden" }}>
@@ -567,9 +590,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           </Paper>
         ) : (
           <List dense sx={{ flex: 1, overflow: "auto" }}>
-            {sites.map((site, index) => (
+            {sites.map((site) => (
               <ListItem
-                key={index}
+                key={site.id}
                 component="div"
                 onClick={() => onGoToSite(site)}
                 sx={{
@@ -599,32 +622,31 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                       <PlaceIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                  {selectedMemberProjectId && onTagProjectWithSite && (
-                    <Tooltip title="Tag project with this site">
-                      <IconButton
-                        edge="end"
-                        size="small"
-                        onClick={() => onTagProjectWithSite(site.name)}
-                        color="success"
-                      >
-                        <LabelIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
+                  {selectedMemberProjectId && onSetVerdict && (
+                    <SiteVerdictControl
+                      verdict={verdictBySite.get(site.id)}
+                      onSet={(verdict) => onSetVerdict(site.id, verdict)}
+                      onClear={
+                        onClearVerdict
+                          ? () => onClearVerdict(site.id)
+                          : undefined
+                      }
+                    />
                   )}
                   <Tooltip title="Edit site">
                     <IconButton
                       edge="end"
                       size="small"
-                      onClick={() => handleOpenEditDialog(index)}
+                      onClick={() => handleOpenEditDialog(site)}
                     >
                       <EditIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Delete site">
+                  <Tooltip title="Delete site (and any verdicts recorded there)">
                     <IconButton
                       edge="end"
                       size="small"
-                      onClick={() => handleDeleteSite(index)}
+                      onClick={() => handleDeleteSite(site.id)}
                       color="error"
                     >
                       <DeleteIcon fontSize="small" />
@@ -782,7 +804,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
       {/* Edit Site Dialog */}
       <Dialog
-        open={editingSiteIndex !== null}
+        open={editingSiteId !== null}
         onClose={handleCloseEditDialog}
         maxWidth="xs"
         fullWidth
@@ -876,5 +898,93 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         </DialogActions>
       </Dialog>
     </Box>
+  );
+};
+
+
+/**
+ * Record what was found at one site in one dataset.
+ *
+ * This replaces tagging the project with the site's name. A tag carried one
+ * bit where three are needed: an untagged project was indistinguishable from
+ * one somebody had examined and found nothing in, and the association broke
+ * whenever a site was renamed.
+ *
+ * Clicking the verdict already recorded withdraws it, which is how "nobody has
+ * looked" is reachable again without a fourth button. Withdrawing is not the
+ * same as recording "nothing there".
+ */
+const VERDICT_OPTIONS: {
+  verdict: SiteVerdict;
+  label: string;
+  colour: "success" | "warning" | "standard";
+  Icon: typeof HitIcon;
+}[] = [
+  { verdict: "hit", label: "Ligand present", colour: "success", Icon: HitIcon },
+  {
+    verdict: "unclear",
+    label: "Unclear",
+    colour: "warning",
+    Icon: UnclearIcon,
+  },
+  {
+    verdict: "empty",
+    label: "Looked, nothing there",
+    colour: "standard",
+    Icon: NothingThereIcon,
+  },
+];
+
+const SiteVerdictControl: React.FC<{
+  verdict: SiteVerdict | undefined;
+  onSet: (verdict: SiteVerdict) => Promise<void>;
+  onClear?: () => Promise<void>;
+}> = ({ verdict, onSet, onClear }) => {
+  const [busy, setBusy] = useState(false);
+
+  const handle = useCallback(
+    async (choice: SiteVerdict) => {
+      setBusy(true);
+      try {
+        if (choice === verdict && onClear) {
+          await onClear();
+        } else {
+          await onSet(choice);
+        }
+      } finally {
+        setBusy(false);
+      }
+    },
+    [verdict, onSet, onClear]
+  );
+
+  return (
+    <>
+      {VERDICT_OPTIONS.map(({ verdict: choice, label, colour, Icon }) => {
+        const active = verdict === choice;
+        return (
+          <Tooltip
+            key={choice}
+            title={active ? `${label} — click to withdraw` : label}
+          >
+            <span>
+              <IconButton
+                edge="end"
+                size="small"
+                disabled={busy}
+                onClick={() => handle(choice)}
+                color={active && colour !== "standard" ? colour : "default"}
+                sx={{
+                  opacity: active ? 1 : 0.35,
+                  p: 0.25,
+                }}
+              >
+                <Icon fontSize="small" />
+              </IconButton>
+            </span>
+          </Tooltip>
+        );
+      })}
+    </>
   );
 };

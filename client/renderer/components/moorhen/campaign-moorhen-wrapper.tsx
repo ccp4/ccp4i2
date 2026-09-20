@@ -52,6 +52,9 @@ import { usePopcorn } from "../../providers/popcorn-provider";
 import {
   ProjectGroup,
   CampaignSite,
+  NewCampaignSite,
+  SiteEvaluation,
+  SiteVerdict,
   MemberProjectWithSummary,
 } from "../../types/campaigns";
 import { Project } from "../../types/models";
@@ -98,8 +101,20 @@ export interface CampaignMoorhenWrapperProps {
    *  path — the single rendering pathway shared with hand-edited scenes. */
   summaryScene?: MoorhenScene | null;
   viewParam?: string | null;
+  /** A site to move to once the scene is up — the `site` URL parameter, which
+   *  is how a verdict chip in the campaign overview opens its site. */
+  initialSiteId?: number | null;
   sites: CampaignSite[];
-  onUpdateSites: (sites: CampaignSite[]) => Promise<void>;
+  onAddSite: (site: NewCampaignSite) => Promise<void>;
+  onUpdateSite: (
+    siteId: number,
+    changes: Partial<NewCampaignSite>
+  ) => Promise<void>;
+  onDeleteSite: (siteId: number) => Promise<void>;
+  /** Verdicts recorded for the selected dataset, empties included. */
+  evaluations: SiteEvaluation[];
+  onSetVerdict: (siteId: number, verdict: SiteVerdict) => Promise<void>;
+  onClearVerdict: (siteId: number) => Promise<void>;
   memberProjects: MemberProjectWithSummary[];
   selectedMemberProjectId: number | null;
   onSelectMemberProject: (projectId: number | null) => void;
@@ -111,8 +126,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   fileSource,
   summaryScene,
   viewParam,
+  initialSiteId,
   sites,
-  onUpdateSites,
+  onAddSite,
+  onUpdateSite,
+  onDeleteSite,
+  evaluations,
+  onSetVerdict,
+  onClearVerdict,
   memberProjects,
   selectedMemberProjectId,
   onSelectMemberProject,
@@ -855,11 +876,27 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [dispatch]
   );
 
+  // Move to the site named in the URL, once there is a scene to move around.
+  //
+  // Waits for coot: dispatching an origin before the molecules are drawn puts
+  // the camera in the right place and then has it reset underneath us. Fires
+  // once, so a user who navigates away from the site is not dragged back by a
+  // later re-render.
+  const appliedInitialSite = useRef(false);
+  useEffect(() => {
+    if (appliedInitialSite.current) return;
+    if (!initialSiteId || !cootInitialized || sites.length === 0) return;
+    const site = sites.find((s) => s.id === initialSiteId);
+    if (!site) return;
+    appliedInitialSite.current = true;
+    handleGoToSite(site);
+  }, [initialSiteId, cootInitialized, sites, handleGoToSite]);
+
   // Save current view as a site
   const handleSaveCurrentAsSite = useCallback(
     async (name: string) => {
       const camera = readCameraState(store.getState() as moorhen.State);
-      const newSite: CampaignSite = {
+      const newSite: NewCampaignSite = {
         name,
         origin: Array.from(camera.origin).slice(0, 3) as [
           number,
@@ -874,57 +911,46 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         ],
         zoom: camera.zoom,
       };
-      await onUpdateSites([...sites, newSite]);
+      await onAddSite(newSite);
     },
-    [store, sites, onUpdateSites]
+    [store, onAddSite]
   );
 
-  // Delete a site
+  // Delete a site, by its id. Deleting takes that site's verdicts with it.
   const handleDeleteSite = useCallback(
-    async (index: number) => {
-      const newSites = sites.filter((_, i) => i !== index);
-      await onUpdateSites(newSites);
+    async (siteId: number) => {
+      await onDeleteSite(siteId);
     },
-    [sites, onUpdateSites]
+    [onDeleteSite]
   );
 
-  // Update a site (rename and optionally update position)
+  // Rename a site, and optionally move it to the current view.
+  //
+  // Addressed by id, not by position: a site's verdicts hang off its id, so a
+  // rename has to reach the same row rather than replace a list entry.
   const handleUpdateSite = useCallback(
-    async (index: number, name: string, updatePosition: boolean) => {
-      const existingSite = sites[index];
-      let updatedSite: CampaignSite;
+    async (siteId: number, name: string, updatePosition: boolean) => {
+      const changes: Partial<NewCampaignSite> = { name };
 
       if (updatePosition) {
-        // Capture current view position
         const camera = readCameraState(store.getState() as moorhen.State);
-        updatedSite = {
-          name,
-          origin: Array.from(camera.origin).slice(0, 3) as [
-            number,
-            number,
-            number
-          ],
-          quat: Array.from(camera.quat).slice(0, 4) as [
-            number,
-            number,
-            number,
-            number
-          ],
-          zoom: camera.zoom,
-        };
-      } else {
-        // Keep existing position, just update name
-        updatedSite = {
-          ...existingSite,
-          name,
-        };
+        changes.origin = Array.from(camera.origin).slice(0, 3) as [
+          number,
+          number,
+          number
+        ];
+        changes.quat = Array.from(camera.quat).slice(0, 4) as [
+          number,
+          number,
+          number,
+          number
+        ];
+        changes.zoom = camera.zoom;
       }
 
-      const newSites = [...sites];
-      newSites[index] = updatedSite;
-      await onUpdateSites(newSites);
+      await onUpdateSite(siteId, changes);
     },
-    [store, sites, onUpdateSites]
+    [store, onUpdateSite]
   );
 
   // Handle map contour level changes
@@ -951,24 +977,44 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [dispatch, maps]
   );
 
-  // Handle tagging the currently selected project with a site name
-  const handleTagProjectWithSite = useCallback(
-    async (siteName: string) => {
+  // Record what was found at a site in the selected dataset.
+  //
+  // This replaces tagging the project with the site's name. A tag could not
+  // say that somebody looked and found nothing -- an untagged project was
+  // both "empty" and "not yet looked at" -- and it broke on a rename.
+  const handleSetVerdict = useCallback(
+    async (siteId: number, verdict: SiteVerdict) => {
       if (!selectedMemberProjectId) {
         setMessage("Please select a member project first");
         return;
       }
+      const site = sites.find((s) => s.id === siteId);
       try {
-        await campaignsApi.addTagByText(selectedMemberProjectId, siteName);
-        const memberProject = memberProjects.find((p) => p.id === selectedMemberProjectId);
-        const projectName = memberProject?.name || `Project ${selectedMemberProjectId}`;
-        setMessage(`Tagged "${projectName}" with "${siteName}"`);
+        await onSetVerdict(siteId, verdict);
+        setMessage(`Recorded ${verdict} at "${site?.name ?? "site"}"`);
       } catch (err) {
-        console.error("Failed to tag project:", err);
-        setMessage("Failed to tag project");
+        console.error("Failed to record verdict:", err);
+        setMessage("Failed to record verdict");
       }
     },
-    [selectedMemberProjectId, campaignsApi, setMessage, memberProjects]
+    [selectedMemberProjectId, sites, onSetVerdict, setMessage]
+  );
+
+  // Withdraw a verdict: back to nobody having looked, which is not the same
+  // as recording "empty".
+  const handleClearVerdict = useCallback(
+    async (siteId: number) => {
+      if (!selectedMemberProjectId) return;
+      const site = sites.find((s) => s.id === siteId);
+      try {
+        await onClearVerdict(siteId);
+        setMessage(`Withdrew the verdict at "${site?.name ?? "site"}"`);
+      } catch (err) {
+        console.error("Failed to withdraw verdict:", err);
+        setMessage("Failed to withdraw verdict");
+      }
+    },
+    [selectedMemberProjectId, sites, onClearVerdict, setMessage]
   );
 
   // Run servalcat_pipe refinement on a molecule
@@ -1124,7 +1170,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             ligandName,
             maps,
             onMapContourLevelChange: handleMapContourLevelChange,
-            onTagProjectWithSite: handleTagProjectWithSite,
+            evaluations,
+            onSetVerdict: handleSetVerdict,
+            onClearVerdict: handleClearVerdict,
             onFileSelect: fetchFile,
             onJobLoad: importJobFiles,
             onRunServalcat: handleRunServalcat,
