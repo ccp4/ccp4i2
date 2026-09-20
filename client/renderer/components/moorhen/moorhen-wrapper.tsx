@@ -37,6 +37,7 @@ import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 import { useMoorhenSession } from "../../hooks/use-moorhen-session";
 import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
+import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
 import {
   COORDINATE_TYPES,
   DICTIONARY_TYPE,
@@ -284,6 +285,18 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // across upgrades. In Electron, serve directly from public/MoorhenAssets.
   const isElectron = isElectronWindow();
   const urlPrefix = moorhenUrlPrefix(isElectron);
+
+  // Start the WASM download now, rather than after the data archives.
+  //
+  // MoorhenCommandCentre.init() awaits three .tar.gz fetches before posting
+  // CootInitialize, and only that message makes the worker fetch the WASM --
+  // the biggest file on the page, last in the queue. Warming the cache here
+  // lets the two run together; the worker's own fetch then joins it. No effect
+  // in Electron, which reads these files from disk.
+  useEffect(() => {
+    if (isElectron) return;
+    return prefetchMoorhenWasm(urlPrefix);
+  }, [isElectron, urlPrefix]);
 
   // Note: Don't subscribe to the camera state here - it changes every frame during rotation
   // and would cause constant re-renders. Access origin directly from store when needed.

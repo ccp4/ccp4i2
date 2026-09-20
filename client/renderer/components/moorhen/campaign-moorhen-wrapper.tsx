@@ -81,6 +81,7 @@ import {
 } from "../../lib/moorhen-dictionaries";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
+import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 
@@ -254,6 +255,18 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // across upgrades. In Electron, serve directly from public/MoorhenAssets.
   const isElectron = isElectronWindow();
   const urlPrefix = moorhenUrlPrefix(isElectron);
+
+  // Start the WASM download now, rather than after the data archives.
+  //
+  // MoorhenCommandCentre.init() awaits three .tar.gz fetches before posting
+  // CootInitialize, and only that message makes the worker fetch the WASM --
+  // the biggest file on the page, last in the queue. Warming the cache here
+  // lets the two run together; the worker's own fetch then joins it. No effect
+  // in Electron, which reads these files from disk.
+  useEffect(() => {
+    if (isElectron) return;
+    return prefetchMoorhenWasm(urlPrefix);
+  }, [isElectron, urlPrefix]);
 
   const getOrigin = useCallback(() => {
     return readCameraState(store.getState() as moorhen.State).origin;
