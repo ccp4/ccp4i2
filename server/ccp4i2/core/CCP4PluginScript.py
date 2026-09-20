@@ -4643,7 +4643,7 @@ class CPluginScript(CData):
             traceback.print_exc()
             return self.FAILED
 
-    def joinMtz(self, outfile, infiles):
+    def joinMtz(self, outfile, infiles, cell_tolerance=1.0):
         """
         Merge columns from one or more MTZ files into a single output MTZ.
 
@@ -4655,6 +4655,12 @@ class CPluginScript(CData):
                 - (filepath, column_labels_out)  — 2-tuple form
                 - (filepath, column_labels_in, column_labels_out) — 3-tuple form
                 Column labels are comma-separated strings (e.g. "F,SIGF").
+            cell_tolerance: How far the inputs' cells may differ, as passed to
+                merge_mtz_files; ``None`` skips the comparison, matching
+                reflections by index and keeping the first file's cell. That
+                is what joining observations to a FreeR set from another
+                crystal of the same form needs -- a fragment campaign's shared
+                free set, where cells drift a percent or more between soaks.
 
         Returns:
             CPluginScript.SUCCEEDED on success, CPluginScript.FAILED on error.
@@ -4684,7 +4690,10 @@ class CPluginScript(CData):
                 # trailing comma); there is no column to take for it
                 mapping = {i: o for i, o in zip(in_labels, out_labels) if i and o}
                 input_specs.append({"path": str(filepath), "column_mapping": mapping})
-            merge_mtz_files(input_specs, str(outfile), merge_strategy="first")
+            merge_mtz_files(
+                input_specs, str(outfile), merge_strategy="first",
+                cell_tolerance=cell_tolerance,
+            )
             return self.SUCCEEDED
 
         except Exception as e:

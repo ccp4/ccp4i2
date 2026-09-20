@@ -83,7 +83,16 @@ class pointless_reindexToMatch(CPluginScript):
                 self.freeRFlagLabelsString = ','.join(freeRFlagLabelList)
                 fileList += [(str(self.container.inputData.FREERFLAG.fullPath), self.freeRFlagLabelsString, self.freeRFlagLabelsString)]
             mergedFilename = os.path.join(self.workDirectory,'MergedToReindex.mtz')
-            rv = self.joinMtz(mergedFilename, fileList)
+            # Permissive cell matching, as elsewhere on this route.
+            #
+            # This wrapper exists to reindex data onto a reference model, so
+            # the data and the reference need not share a cell -- that is the
+            # problem it is solving. The FreeR set is routinely from another
+            # crystal too (a campaign's shared free set). Clipper's 1 A test
+            # would refuse the join before pointless ever ran. Reflections are
+            # matched by Miller index and the output keeps the observations'
+            # cell; the space groups must still agree.
+            rv = self.joinMtz(mergedFilename, fileList, cell_tolerance=None)
             if rv != CPluginScript.SUCCEEDED:
                 self.appendErrorReport(201, 'Pointless_reindexToMatch: could not join the reflection files to reindex: '
                                        + ', '.join(str(f[0]) for f in fileList))
