@@ -108,7 +108,15 @@ class ProjectGroupViewSet(ModelViewSet):
             group = self.get_object()
             member_memberships = group.memberships.filter(
                 type=models.ProjectGroupMembership.MembershipType.MEMBER
-            ).select_related("project").prefetch_related("project__tags")
+            ).select_related("project").prefetch_related(
+                "project__tags", "project__site_evaluations__site"
+            )
+
+            # Every site of this campaign, so a row can say how much of its
+            # evaluation is outstanding. The denominator is the campaign's
+            # current site count, which keeps the fraction comparable down the
+            # column rather than varying per dataset.
+            site_total = group.site_set.count()
 
             result = []
             for membership in member_memberships:
@@ -154,9 +162,43 @@ class ProjectGroupViewSet(ModelViewSet):
                         if cv.key_id not in kpis:
                             kpis[cv.key_id] = cv.value
 
+                # What was found at each site, and how much is still unlooked
+                # at. Carried in THIS payload rather than fetched per row: the
+                # overview renders one row per dataset and a separate request
+                # each would be N round trips for data the table already has
+                # the shape for.
+                #
+                # Only hit and unclear are listed. A rich campaign has 30-40
+                # sites and most are empty for most datasets, so sending every
+                # verdict would put a 40-entry list on every row to render a
+                # cell that shows two chips. "Empty" is recoverable from the
+                # evaluated count, and the per-dataset view has the detail.
+                evaluations = []
+                evaluated = 0
+                for evaluation in project.site_evaluations.all():
+                    if evaluation.site.group_id != group.id:
+                        # A project can belong to more than one campaign.
+                        continue
+                    evaluated += 1
+                    if evaluation.verdict in ("hit", "unclear"):
+                        evaluations.append({
+                            "site_id": evaluation.site_id,
+                            "site_name": evaluation.site.name,
+                            "verdict": evaluation.verdict,
+                        })
+
+                # Hits first, so a dataset with many unclears never has its
+                # hits pushed out of a capped chip list.
+                evaluations.sort(
+                    key=lambda e: (e["verdict"] != "hit", e["site_name"])
+                )
+
                 project_data["job_summary"] = job_summary
                 project_data["jobs"] = jobs_list
                 project_data["kpis"] = kpis
+                project_data["site_evaluations"] = evaluations
+                project_data["sites_evaluated"] = evaluated
+                project_data["sites_total"] = site_total
                 result.append(project_data)
 
             return Response(result)
@@ -727,6 +769,81 @@ class ProjectGroupViewSet(ModelViewSet):
 
         except Exception as e:
             logger.exception("Failed to manage sites for group %s", pk, exc_info=e)
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
+        methods=["put", "delete"],
+        url_path=r"sites/(?P<site_id>[0-9]+)/evaluation/(?P<project_id>[0-9]+)",
+    )
+    def site_evaluation(self, request, pk=None, site_id=None, project_id=None):
+        """Record, change or withdraw what was found at one site in one dataset.
+
+        PUT with {"verdict": "hit"|"empty"|"unclear"} and an optional
+        "evaluator" and "note". DELETE withdraws the verdict.
+
+        Withdrawing is not the same as recording "empty": no row means nobody
+        has looked, while "empty" asserts that somebody looked and found
+        nothing. That distinction is the reason these are rows rather than
+        tags, so DELETE really does remove the row rather than writing an
+        "empty" over it.
+        """
+        try:
+            group = self.get_object()
+
+            try:
+                site = group.site_set.get(id=site_id)
+            except models.CampaignSite.DoesNotExist:
+                return api_error("Site not found in this campaign", status=404)
+
+            if not group.memberships.filter(project_id=project_id).exists():
+                return api_error(
+                    "That project is not part of this campaign", status=404
+                )
+
+            if request.method == "DELETE":
+                deleted, _ = models.SiteEvaluation.objects.filter(
+                    project_id=project_id, site=site
+                ).delete()
+                return Response(status=204 if deleted else 404)
+
+            verdict = (request.data or {}).get("verdict")
+            valid = [choice[0] for choice in models.SiteEvaluation.Verdict.choices]
+            if verdict not in valid:
+                return api_error(
+                    f"verdict must be one of {', '.join(valid)}", status=400
+                )
+
+            evaluation, created = models.SiteEvaluation.objects.update_or_create(
+                project_id=project_id,
+                site=site,
+                defaults={
+                    "verdict": verdict,
+                    "evaluator": str(request.data.get("evaluator", ""))[:150],
+                    "note": str(request.data.get("note", "")),
+                },
+            )
+            logger.info(
+                "%s %s at site '%s' for project %s",
+                "Recorded" if created else "Updated", verdict, site.name, project_id,
+            )
+            return Response(
+                {
+                    "site_id": site.id,
+                    "site_name": site.name,
+                    "project_id": int(project_id),
+                    "verdict": evaluation.verdict,
+                    "evaluator": evaluation.evaluator,
+                    "note": evaluation.note,
+                },
+                status=201 if created else 200,
+            )
+
+        except Exception as e:
+            logger.exception(
+                "Failed to set evaluation for site %s of group %s",
+                site_id, pk, exc_info=e,
+            )
             return api_error(str(e), status=500)
 
     @action(
