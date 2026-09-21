@@ -92,9 +92,44 @@ git fetch "$REMOTE" --tags -q
 version_on() {  # read the MAJOR.MINOR.PATCH+PRERELEASE recorded at a git ref
   git show "$1:$INIT" | python3 -c "import re,sys; t=sys.stdin.read(); g=lambda k:re.search(rf'^{k} *= *(.+)', t, re.M).group(1).strip().strip('\"'); print(f\"{g('MAJOR')}.{g('MINOR')}.{g('PATCH')}{g('PRERELEASE')}\")"
 }
-push_url() {  # authenticated push URL if the plain remote push is unauth'd
+# Push to $REMOTE, borrowing gh's credentials when the plain remote push is
+# unauthenticated -- WITHOUT ever putting the token where it can persist.
+#
+# This used to build https://x-access-token:$(gh auth token)@github.com/... and
+# hand that to git as the remote. Two things then leaked it, and both bit
+# repeatedly (a64-era, a69, a73):
+#
+#   * `git push -u <url>` records the URL it was given as branch.<name>.remote,
+#     so the token landed in .git/config in plain text and stayed there. Thirteen
+#     release branches were found carrying one.
+#   * git announces the upstream it just set -- "branch 'x' set up to track
+#     'https://x-access-token:gho_...'" -- so the token also went to stdout, into
+#     whatever captured the release log. There is no flag to suppress that line,
+#     and nothing can un-print it afterwards.
+#
+# Supplying the credential through a helper instead means git is pushing to the
+# ordinary named remote: there is no secret in the URL for it to store or echo.
+# The token reaches the helper through the environment rather than the command
+# line, so it also stays out of `ps`.
+git_push_authed() {
   local token; token="$(gh auth token 2>/dev/null || true)"
-  [ -n "$token" ] && echo "https://x-access-token:${token}@github.com/ccp4/ccp4i2.git" || echo "$REMOTE"
+  if [ -z "$token" ]; then
+    git push "$REMOTE" "$@"
+    return
+  fi
+  CUT_ALPHA_GH_TOKEN="$token" git \
+    -c 'credential.helper=' \
+    -c 'credential.helper=!f() { echo username=x-access-token; echo "password=$CUT_ALPHA_GH_TOKEN"; }; f' \
+    push "$REMOTE" "$@"
+}
+
+# Belt and braces: if a future change reintroduces a URL-embedded token, say so
+# at the point it happens rather than leaving it to be found months later.
+assert_no_token_in_config() {
+  if git config --local --list | grep -q 'x-access-token'; then
+    printf '\033[1;31mWARNING:\033[0m a token-bearing URL is in .git/config. Scrub it:\n' >&2
+    printf '    git config branch.%s.remote %s\n' "$RELEASE_BRANCH" "$REMOTE" >&2
+  fi
 }
 
 # electron-updater's GitHub provider SKIPS any release whose git tag is not
@@ -128,7 +163,7 @@ if [ "$TAG_MODE" = 1 ]; then
   fi
   git tag -a "$TAG" "$REMOTE/$BRANCH" -m "CCP4i2 $MERGED_VER"
   say "Pushing $TAG to $REMOTE (this triggers the release)"
-  git push "$(push_url)" "$TAG"
+  git_push_authed "$TAG"
   say "Released: $TAG pushed. Watch: gh run watch --repo ccp4/ccp4i2 \$(gh run list --repo ccp4/ccp4i2 --workflow release.yml --branch $TAG --limit 1 --json databaseId -q '.[0].databaseId')"
   exit 0
 fi
@@ -229,7 +264,8 @@ if [ "$NO_PUSH" = 1 ]; then
 fi
 
 say "Pushing $RELEASE_BRANCH to $REMOTE"
-git push -u "$(push_url)" "$RELEASE_BRANCH"
+git_push_authed -u "$RELEASE_BRANCH"
+assert_no_token_in_config
 
 say "Opening the release PR into $BRANCH"
 gh pr create --repo ccp4/ccp4i2 --base "$BRANCH" --head "$RELEASE_BRANCH" \
