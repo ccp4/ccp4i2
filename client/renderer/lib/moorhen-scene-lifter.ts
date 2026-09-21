@@ -241,9 +241,17 @@ export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
   // into this lift, so we never emit a dangling reference.
   if (ctx.superpose?.length) {
     const fileNames = new Set((scene.files ?? []).map((f) => f.name));
-    const kept = ctx.superpose.filter(
-      (sp) => fileNames.has(sp.move) && fileNames.has(sp.onto),
-    );
+    const kept = ctx.superpose.flatMap<SceneSuperpose>((sp) => {
+      if (!fileNames.has(sp.move)) return [];
+      if (sp.method !== "matrix") return fileNames.has(sp.onto) ? [sp] : [];
+      // A matrix applies without its reference loaded; only the provenance
+      // would dangle, so drop that rather than the transform.
+      if (sp.fitted && !fileNames.has(sp.fitted.onto)) {
+        const { fitted: _dropped, ...bare } = sp;
+        return [bare];
+      }
+      return [sp];
+    });
     if (kept.length) scene.superpose = kept;
   }
 

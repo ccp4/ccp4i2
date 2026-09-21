@@ -80,6 +80,7 @@ import {
   SceneRepresentation,
   SceneLsqMatch,
   SceneSuperpose,
+  SceneSuperposeMatrix,
   SceneView,
   isSceneHexColour,
   isSceneNamedColour,
@@ -512,35 +513,46 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //    step to have happened. Each entry mutates the *moving* molecule's
   //    display transform in place; the reference is untouched.
   for (const sp of scene.superpose ?? []) {
+    const target = sp.method === "matrix" ? sp.fitted?.onto ?? "(matrix)" : sp.onto;
+    const domain = `superpose ${sp.move}→${target}`;
     const mov = fileBindings.get(sp.move);
-    const ref = fileBindings.get(sp.onto);
-    if (!mov || !ref) {
-      const missing = !mov ? sp.move : sp.onto;
+    if (!mov) {
       result.log.push({
-        file: missing,
-        domain: `superpose ${sp.move}→${sp.onto}`,
-        message: `cannot superpose: file "${missing}" not bound`,
+        file: sp.move,
+        domain,
+        message: `cannot superpose: file "${sp.move}" not bound`,
       });
       continue;
     }
-    if (ref.molNo === undefined || ref.molNo === null) {
-      result.log.push({
-        file: sp.onto,
-        domain: `superpose ${sp.move}→${sp.onto}`,
-        message: `reference molecule has no molNo yet; skipped`,
-      });
-      continue;
+    // A matrix carries its own transform, so only the moving molecule need
+    // be loaded; ssm and lsq ask coot to derive one and need the reference.
+    let ref: moorhen.Molecule | undefined;
+    if (sp.method !== "matrix") {
+      ref = fileBindings.get(sp.onto);
+      if (!ref) {
+        result.log.push({
+          file: sp.onto,
+          domain,
+          message: `cannot superpose: file "${sp.onto}" not bound`,
+        });
+        continue;
+      }
+      if (ref.molNo === undefined || ref.molNo === null) {
+        result.log.push({
+          file: sp.onto,
+          domain,
+          message: `reference molecule has no molNo yet; skipped`,
+        });
+        continue;
+      }
     }
     try {
       await runSuperpose(sp, mov, ref);
     } catch (e) {
-      console.warn(
-        `[scene] superpose failed (${sp.method} ${sp.move}→${sp.onto}):`,
-        e,
-      );
+      console.warn(`[scene] superpose failed (${sp.method} ${sp.move}→${target}):`, e);
       result.log.push({
         file: sp.move,
-        domain: `superpose ${sp.move}→${sp.onto}`,
+        domain,
         message: `${sp.method} superpose failed: ${e instanceof Error ? e.message : "unknown error"}`,
       });
     }
@@ -1051,15 +1063,24 @@ function hexToRgb01(hex: string): { r: number; g: number; b: number } | null {
 // --------------------------------------------------------------------------
 
 /**
- * Apply one SceneSuperpose entry to a pair of already-loaded molecules.
- * Mutates `mov` in place; `ref` is untouched. Throws on coot-side
- * errors so the caller can record them in the resolver log.
+ * Apply one SceneSuperpose entry to an already-loaded molecule. Mutates
+ * `mov` in place; `ref` is untouched, and not needed for a `matrix` entry.
+ * Throws on coot-side errors so the caller can record them in the
+ * resolver log.
+ *
+ * Exported for unit testing — the matrix path's argument layout is the bit
+ * that must not drift (see applyMatrix).
  */
-async function runSuperpose(
+export async function runSuperpose(
   sp: SceneSuperpose,
   mov: moorhen.Molecule,
-  ref: moorhen.Molecule,
+  ref?: moorhen.Molecule,
 ): Promise<void> {
+  if (sp.method === "matrix") {
+    await applyMatrix(sp, mov);
+    return;
+  }
+  if (!ref) throw new Error(`${sp.method} superpose needs the reference molecule`);
   if (sp.method === "ssm") {
     await mov.SSMSuperpose(sp.movChain, ref.molNo as number, sp.refChain, true);
     return;
@@ -1082,6 +1103,47 @@ async function runSuperpose(
   const matchTypeMap = { all: 0, main: 1, ca: 2 } as const;
   const matchType = matchTypeMap[sp.matchType ?? "main"];
   await mov.lsqkbSuperpose(ref.molNo as number, residueMatches, matchType, true);
+}
+
+/**
+ * Apply a scene-carried transform to every atom of `mov` through coot's
+ * `apply_transformation_to_atom_selection`. Two things about that call are
+ * easy to get wrong:
+ *
+ * - Its rotation centre is separate from its translation. The scene's
+ *   transform is `x' = mat.x + vec` about the origin, so the centre is
+ *   (0,0,0) and the translation is `vec`. Passing a centroid as the centre
+ *   and `vec` as the translation would shift the molecule twice (and coot's
+ *   implementation subtracts the centre on both sides of the rotation, so a
+ *   non-zero centre is wrong in a second way).
+ *
+ * - `n_atoms` is a validation count: coot moves nothing unless it equals
+ *   the size of the CID selection. It is taken from coot's own
+ *   `get_number_of_atoms` (model 1, TER records excluded), which is the set
+ *   a whole-molecule CID selects for a single-model structure. A zero moved
+ *   count is raised rather than left as a silent no-op.
+ */
+async function applyMatrix(
+  sp: SceneSuperposeMatrix,
+  mov: moorhen.Molecule,
+): Promise<void> {
+  const molNo = mov.molNo as number;
+  const nAtoms = await mov.getNumberOfAtoms();
+  const response = await mov.commandCentre.cootCommand(
+    {
+      command: "apply_transformation_to_atom_selection",
+      returnType: "int",
+      commandArgs: [molNo, "/*/*/*/*", nAtoms, ...sp.mat, 0, 0, 0, ...sp.vec],
+      changesMolecules: [molNo],
+    },
+    true,
+  );
+  const moved = response?.data?.result?.result;
+  if (moved === 0) {
+    throw new Error(`coot moved no atoms (selection count ${nAtoms} was not accepted)`);
+  }
+  mov.setAtomsDirty(true);
+  await mov.redraw();
 }
 
 /**

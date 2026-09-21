@@ -175,9 +175,43 @@ const SuperposeLsq = z
     }
   });
 
+// A fit computed elsewhere (a server-side builder, gemmi) and carried as the
+// transform itself, so the viewer applies rather than derives it: the scene
+// then says what the alignment rests on, and re-applying it reproduces the
+// same picture instead of re-deriving a slightly different one. Coot needs
+// no reference molecule to apply a matrix, so `onto` lives in the
+// provenance, not at the top level.
+const SuperposeMatrix = z
+  .object({
+    method: z.literal("matrix"),
+    move: z.string().describe("file being transformed"),
+    mat: z
+      .array(z.number())
+      .length(9)
+      .describe("row-major 3x3 rotation; x' = mat.x + vec about the origin"),
+    vec: z.array(z.number()).length(3).describe("translation, Angstrom"),
+    fitted: z
+      .object({
+        onto: z.string().describe("reference file the fit was made against"),
+        atoms: z.number().int().nonnegative().describe("CA atoms in the final fit"),
+        radius: z
+          .number()
+          .positive()
+          .nullable()
+          .optional()
+          .describe("Angstrom about the site; absent for a global fit"),
+        rmsd: z.number().nonnegative().nullable().optional(),
+      })
+      .strict()
+      .optional()
+      .describe("provenance: what the matrix was derived from"),
+  })
+  .strict();
+
 export const Superpose = z.discriminatedUnion("method", [
   SuperposeSsm,
   SuperposeLsq,
+  SuperposeMatrix,
 ]);
 
 // --- elements / representations -------------------------------------------
@@ -585,7 +619,12 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
       });
       (s.superpose ?? []).forEach((sp, i) => {
         ref(sp.move, fileNames, ["superpose", i, "move"], "file");
-        ref(sp.onto, fileNames, ["superpose", i, "onto"], "file");
+        if (sp.method === "matrix") {
+          if (sp.fitted)
+            ref(sp.fitted.onto, fileNames, ["superpose", i, "fitted", "onto"], "file");
+        } else {
+          ref(sp.onto, fileNames, ["superpose", i, "onto"], "file");
+        }
       });
       (s.globalDictionaries ?? []).forEach((d, i) =>
         ref(d, dictNames, ["globalDictionaries", i], "dictionary"),

@@ -6,7 +6,7 @@
  * via manual verification in the browser. The clamp logic is pure and
  * the most failure-prone bit, so it's worth a focused unit test.
  */
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   buildPendingRules,
   clampRangeToPresent,
@@ -17,8 +17,77 @@ import {
   planDictionaryScopes,
   resolveChainSelector,
   resolveClipFogPlanes,
+  runSuperpose,
   splitMultiCid,
 } from "../lib/moorhen-scene-resolver";
+
+describe("runSuperpose: method matrix → apply_transformation_to_atom_selection", () => {
+  const mat = [0.9999, -0.0121, 0.0043, 0.0121, 0.9999, -0.0018, -0.0043, 0.0018, 1.0];
+  const vec = [-0.31, 0.12, 0.05];
+
+  /** A Moorhen molecule reduced to what the matrix path touches. */
+  function mockMolecule(moved = 120) {
+    const cootCommand = vi.fn(async () => ({ data: { result: { result: moved } } }));
+    return {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+  }
+
+  it("passes mat row-major, a ZERO rotation centre, then vec as the translation", async () => {
+    const mol = mockMolecule();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any);
+
+    expect(mol.cootCommand).toHaveBeenCalledTimes(1);
+    const [kwargs, journal] = mol.cootCommand.mock.calls[0] as unknown as [
+      { command: string; returnType: string; commandArgs: unknown[]; changesMolecules: number[] },
+      boolean,
+    ];
+    expect(kwargs.command).toBe("apply_transformation_to_atom_selection");
+    expect(kwargs.returnType).toBe("int");
+    expect(kwargs.changesMolecules).toEqual([3]);
+    expect(journal).toBe(true);
+    // (imol, cid, n_atoms, m00..m22, c0 c1 c2, t0 t1 t2) — exactly 18 args
+    expect(kwargs.commandArgs).toHaveLength(18);
+    expect(kwargs.commandArgs.slice(0, 3)).toEqual([3, "/*/*/*/*", 120]);
+    expect(kwargs.commandArgs.slice(3, 12)).toEqual(mat);
+    expect(kwargs.commandArgs.slice(12, 15)).toEqual([0, 0, 0]); // centre: origin, never a centroid
+    expect(kwargs.commandArgs.slice(15, 18)).toEqual(vec);
+    // the count comes from coot, not a cached field
+    expect(mol.getNumberOfAtoms).toHaveBeenCalledTimes(1);
+    // coordinates changed inside coot: mark dirty and redraw, as ssm/lsq do
+    expect(mol.setAtomsDirty).toHaveBeenCalledWith(true);
+    expect(mol.redraw).toHaveBeenCalledTimes(1);
+  });
+
+  it("needs no reference molecule", async () => {
+    const mol = mockMolecule();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await expect(runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any, undefined)).resolves.toBeUndefined();
+  });
+
+  it("raises when coot moved nothing (count mismatch is otherwise a silent no-op)", async () => {
+    const mol = mockMolecule(0);
+    await expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any),
+    ).rejects.toThrow(/moved no atoms/);
+    expect(mol.redraw).not.toHaveBeenCalled();
+  });
+
+  it("ssm/lsq still require the reference", async () => {
+    const mol = mockMolecule();
+    await expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runSuperpose({ method: "ssm", move: "b", onto: "a", movChain: "A", refChain: "A" }, mol as any),
+    ).rejects.toThrow(/reference molecule/);
+  });
+});
 
 const present = (...nums: number[]) => new Set(nums);
 

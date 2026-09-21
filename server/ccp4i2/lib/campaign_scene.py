@@ -33,7 +33,7 @@ from typing import Optional
 import gemmi
 
 from ..db import models
-from . import pandda_export
+from . import pandda_export, superposition
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -294,6 +294,11 @@ def build_summary_scene(group) -> dict:
         # the campaign's parent or a stand-in. A caller that cannot tell those
         # apart cannot explain a scene whose frame is one dataset's.
         "reference": None,        # {"project": name, "is_parent": bool}
+        # One record per drawn hit: whether it was fitted onto the reference
+        # and on what evidence (CA count, RMSD), or why it could not be. A
+        # dataset left unfitted is still drawn, in its own frame; this is
+        # where a reader learns that.
+        "superpose": [],          # [{project, ok, atoms, radius, rmsd, reason}]
     }
 
     # -- Parent reference: ribbon -----------------------------------------
@@ -330,9 +335,10 @@ def build_summary_scene(group) -> dict:
         type=models.ProjectGroupMembership.MembershipType.MEMBER
     ).select_related("project")
 
-    # The first hit, kept so it can stand in as the reference when the
-    # campaign's parent has no coordinates of its own.
-    first_hit = None
+    # Every drawn hit, in order. The first can stand in as the reference when
+    # the campaign's parent has no coordinates of its own, and each is fitted
+    # onto whichever structure ends up as the reference.
+    hits: list = []
 
     for membership in member_memberships:
         project = membership.project
@@ -416,8 +422,14 @@ def build_summary_scene(group) -> dict:
             element["dictionaries"] = [dict_ref_name]
         elements.append(element)
         stats["hits"] += 1
-        if first_hit is None:
-            first_hit = (project, element)
+        hits.append(
+            {
+                "project": project,
+                "element": element,
+                "name": ds_name,
+                "coord_path": coord_file.path,
+            }
+        )
 
     # -- No parent coordinates: promote a hit to the reference ribbon ------
     #
@@ -431,9 +443,11 @@ def build_summary_scene(group) -> dict:
     # The frame is then that dataset's rather than the campaign's. Members are
     # near-isomorphous, so the picture is right; `stats["reference"]` records
     # whose frame it is, because a caller that cannot tell cannot explain it.
-    if ref_name is None and first_hit is not None:
-        exemplar_project, exemplar_element = first_hit
-        exemplar_element["representations"].insert(
+    ref_path = parent_coord.path if parent_coord is not None else None
+    movers = hits
+    if ref_name is None and hits:
+        exemplar = hits[0]
+        exemplar["element"]["representations"].insert(
             0,
             {
                 "style": "CRs",
@@ -442,15 +456,44 @@ def build_summary_scene(group) -> dict:
             },
         )
         stats["reference"] = {
-            "project": exemplar_project.name,
+            "project": exemplar["project"].name,
             "is_parent": False,
         }
+        ref_name, ref_path = exemplar["name"], exemplar["coord_path"]
+        movers = hits[1:]
+
+    # -- Put every hit in the reference's frame ----------------------------
+    #
+    # Members ought to share a frame already (molecular-replaced from one
+    # reference), but in practice they do not: PDB imports carry their own
+    # origin choice, and even in-campaign refinements drift. Drawn as they
+    # come, the ribbons fan out by an Angstrom or so and binding events that
+    # are probably equivalent look different. A whole-campaign summary has
+    # no single pocket to align on, so the fit is global, on every CA the
+    # two structures share; the site scene fits locally. A dataset that
+    # cannot be fitted is still drawn, untransformed, and stats say so.
+    superpose: list = []
+    for hit in movers:
+        fit = superposition.fit_files(ref_path, hit["coord_path"])
+        stats["superpose"].append(
+            {
+                "project": hit["project"].name,
+                "ok": fit.ok,
+                "atoms": fit.atoms,
+                "radius": fit.radius,
+                "rmsd": fit.rmsd,
+                "reason": fit.reason,
+            }
+        )
+        if fit.ok:
+            superpose.append(fit.scene_entry(hit["name"], ref_name))
 
     scene = {
         "scene": f"{group.name} - fragment summary",
         "version": 1,
         "authoredIn": {"projectName": group.name},
         "files": files,
+        **({"superpose": superpose} if superpose else {}),
         "elements": elements,
         "resolver": {"onMissingResidues": "clamp-and-log"},
     }
