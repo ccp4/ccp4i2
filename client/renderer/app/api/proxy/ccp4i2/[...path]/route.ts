@@ -60,6 +60,13 @@ function isAuthRequired(path: string): boolean {
  * backend re-checks the grant's scope on every request, so the cookie's path
  * is a convenience, not the security boundary.
  */
+/**
+ * Statuses HTTP defines as carrying no body: 204 No Content, 205 Reset
+ * Content, 304 Not Modified. The Response constructor rejects any body --
+ * even a zero-length one -- alongside these.
+ */
+const NO_BODY_STATUSES = new Set([204, 205, 304]);
+
 const GRANT_QUERY_PARAM = "file_grant";
 const GRANT_COOKIE = "ccp4i2_file_grant";
 const GRANT_HEADER = "X-CCP4I2-File-Grant";
@@ -252,6 +259,17 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     };
 
     const response = await fetch(targetUrl, fetchOptions);
+
+    // A no-body status must be passed through with a null body. Django
+    // answers a successful DELETE with 204 and DRF still labels it
+    // application/json, so the JSON branch below would hand the Response
+    // constructor an (empty) body with a 204 status -- which throws, and was
+    // caught as a proxy error, turning every successful DELETE into a 500.
+    if (NO_BODY_STATUSES.has(response.status)) {
+      const headers = new Headers();
+      headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
+      return new NextResponse(null, { status: response.status, headers });
+    }
 
     // Check if this is a JSON response - if so, use arrayBuffer to handle gzip decompression
     const contentType = response.headers.get('Content-Type') || '';

@@ -51,6 +51,12 @@ function emitAuthError(detail: AuthErrorDetail): void {
 // Per-request configuration + factory options
 // =============================================================================
 
+/**
+ * Statuses HTTP defines as carrying no body: 204 No Content, 205 Reset
+ * Content, 304 Not Modified. Parsing one as JSON can only fail.
+ */
+const NO_BODY_STATUSES = new Set([204, 205, 304]);
+
 export interface ApiFetchConfig {
   headers?: Record<string, string>;
   timeout?: number;
@@ -303,12 +309,25 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
     }
   }
 
+  /**
+   * The JSON body, or ``undefined`` when the response carries no body.
+   *
+   * A successful DELETE answers 204 No Content, and ``response.json()`` on an
+   * empty body rejects with "Unexpected end of JSON input" — so every caller
+   * of ``apiDelete`` saw its *successful* request as a failure, and reported
+   * one, while the server had already done the work. Statuses that are
+   * defined to have no body are therefore resolved as ``undefined`` rather
+   * than parsed.
+   */
   async function apiJson<T = any>(
     url: string,
     options: RequestInit = {},
     config: ApiFetchConfig = {},
   ): Promise<T> {
     const response = await apiFetch(url, options, config);
+    if (NO_BODY_STATUSES.has(response.status)) {
+      return undefined as T;
+    }
     return response.json();
   }
 

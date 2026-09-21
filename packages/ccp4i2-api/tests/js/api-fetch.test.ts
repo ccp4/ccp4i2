@@ -99,3 +99,36 @@ describe("createApiFetch", () => {
     expect(headers["X-User-Email"]).toBeUndefined();
   });
 });
+
+describe("responses with no body", () => {
+  it("resolves apiDelete on a 204 rather than failing to parse it", async () => {
+    // A successful DELETE is the common case, and JSON.parse of an empty
+    // body throws -- so before this, every successful withdraw/delete
+    // surfaced to the caller as an error over work the server had done.
+    setTokenGetter(async () => "fake-token");
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(null, {
+        status: 204,
+        headers: { "content-type": "application/json" },
+      }),
+    );
+
+    const fetcher = createApiFetch({ baseUrl: "/api/proxy/ccp4i2/" });
+    await expect(fetcher.apiDelete("things/1/")).resolves.toBeUndefined();
+  });
+
+  it("still reports a DELETE the server refused", async () => {
+    setTokenGetter(async () => "fake-token");
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(JSON.stringify({ error: "Site not found in this campaign" }), {
+        status: 404,
+        headers: { "content-type": "application/json" },
+      }),
+    );
+
+    const fetcher = createApiFetch({ baseUrl: "/api/proxy/ccp4i2/" });
+    await expect(fetcher.apiDelete("things/1/")).rejects.toThrow(
+      "Site not found in this campaign",
+    );
+  });
+});

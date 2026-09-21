@@ -2,9 +2,9 @@
  * The Sites cell, rendered.
  *
  * The rules live in lib/site-verdicts and are tested there; these cover what
- * only rendering shows — that an empty verdict and an unevaluated site are
- * equally invisible, that the cell disappears entirely rather than leaving a
- * stray fragment, and that a chip is a link only when there is a job to open.
+ * only rendering shows — that the note distinguishes the three states the
+ * chips cannot, that the cell disappears entirely rather than leaving a stray
+ * fragment, and that a chip is a link only when there is a job to open.
  */
 
 import { describe, it, expect, vi, beforeEach } from "vitest";
@@ -53,10 +53,10 @@ describe("SiteVerdictChips", () => {
     expect(screen.getByText("Pocket B")).toBeTruthy();
   });
 
-  it("shows nothing for a dataset examined and found empty throughout", () => {
-    // Empties are not sent, so this looks the same as unevaluated here -- the
-    // count is what tells them apart, and it is silent once complete.
-    const { container } = render(
+  it("marks a dataset examined and found empty throughout", () => {
+    // Empties are not chipped, so without the note this row would look
+    // exactly like one nobody has opened.
+    render(
       <SiteVerdictChips
         campaignId={7}
         project={project({
@@ -67,7 +67,22 @@ describe("SiteVerdictChips", () => {
       />
     );
 
-    expect(container.firstChild).toBeNull();
+    expect(screen.getByText("all 40 empty")).toBeTruthy();
+  });
+
+  it("marks a dataset nobody has looked at", () => {
+    render(
+      <SiteVerdictChips
+        campaignId={7}
+        project={project({
+          site_evaluations: [],
+          sites_evaluated: 0,
+          sites_total: 40,
+        })}
+      />
+    );
+
+    expect(screen.getByText("not evaluated")).toBeTruthy();
   });
 
   it("shows the count while a dataset is part-evaluated", () => {
@@ -83,6 +98,35 @@ describe("SiteVerdictChips", () => {
     );
 
     expect(screen.getByText("12/40")).toBeTruthy();
+  });
+
+  it("renders nothing when the campaign has no sites to evaluate", () => {
+    const { container } = render(
+      <SiteVerdictChips
+        campaignId={7}
+        project={project({ site_evaluations: [], sites_total: 0 })}
+      />
+    );
+
+    expect(container.firstChild).toBeNull();
+  });
+
+  it("does not label a complete dataset that already has chips", () => {
+    render(
+      <SiteVerdictChips
+        campaignId={7}
+        project={project({
+          site_evaluations: [
+            { site_id: 1, site_name: "Pocket A", verdict: "hit" },
+          ],
+          sites_evaluated: 40,
+          sites_total: 40,
+        })}
+      />
+    );
+
+    expect(screen.queryByText("40/40")).toBeNull();
+    expect(screen.queryByText("all 40 empty")).toBeNull();
   });
 
   it("collapses the tail into a +N", () => {
