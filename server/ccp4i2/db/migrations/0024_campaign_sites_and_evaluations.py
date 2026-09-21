@@ -113,14 +113,6 @@ class Migration(migrations.Migration):
                 ('note', models.TextField(blank=True, default='')),
             ],
         ),
-        # Move the data before the column holding it is dropped.
-        migrations.RunPython(
-            migrate_sites_out_of_json, migrate_sites_back_to_json
-        ),
-        migrations.RemoveField(
-            model_name='projectgroup',
-            name='sites',
-        ),
         migrations.AddConstraint(
             model_name='projectgroupmembership',
             constraint=models.UniqueConstraint(condition=models.Q(('type', 'parent')), fields=('group',), name='one_parent_per_group'),
@@ -147,5 +139,27 @@ class Migration(migrations.Migration):
         migrations.AlterUniqueTogether(
             name='siteevaluation',
             unique_together={('project', 'site')},
+        ),
+        # The data step comes after EVERY schema operation on the new tables
+        # and before the one that drops the column it reads. As released in
+        # 3.1.0a71 it sat straight after the CreateModels, ahead of the AddField
+        # that gives CampaignSite its group, so it raised "CampaignSite() got
+        # unexpected keyword arguments: 'group'" on any database that had a
+        # campaign with sites -- and on no other, which is how it got out.
+        #
+        # The data step sees the historical model as of its position in this
+        # list, so the rule is: finish the tables, then fill them. (Moving up
+        # only that one AddField also works, on SQLite and PostgreSQL alike;
+        # this order just leaves nothing to reason about.)
+        #
+        # Reordering a released migration is safe here because the schema it
+        # arrives at is unchanged: a database that already applied 0024 (one
+        # with no sites) is exactly where this version would have left it.
+        migrations.RunPython(
+            migrate_sites_out_of_json, migrate_sites_back_to_json
+        ),
+        migrations.RemoveField(
+            model_name='projectgroup',
+            name='sites',
         ),
     ]

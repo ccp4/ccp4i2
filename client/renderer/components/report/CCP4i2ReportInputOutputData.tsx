@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { JobMenu } from "../../providers/job-context-menu";
 import { CCP4i2ReportFile } from "./CCP4i2ReportFile";
 
 export const CCP4i2ReportInputOutputData: React.FC<CCP4i2ReportElementProps> = (
@@ -111,7 +110,6 @@ export const CCP4i2ReportInputOutputData: React.FC<CCP4i2ReportElementProps> = (
           )}
         </AccordionDetails>
       </Accordion>
-      <JobMenu />
     </>
   );
 };
