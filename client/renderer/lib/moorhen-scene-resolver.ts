@@ -1117,21 +1117,24 @@ export async function runSuperpose(
  *   implementation subtracts the centre on both sides of the rotation, so a
  *   non-zero centre is wrong in a second way).
  *
- * - `n_atoms` is a validation count, and coot's two sides of it disagree.
- *   It gates on the size of its mmdb `Select`, which counts the TER
- *   pseudo-atoms mmdb keeps, while `get_number_of_atoms` walks model 1 and
- *   skips them. So the documented pairing -- pass what
- *   `get_number_of_atoms` returns -- is short by one per polymer terminus
- *   and coot moves nothing at all. Confirmed against real files: three
- *   structures of 1124/1125/1128 atoms with one TER each were rejected at
- *   their atom count and accepted one higher. Coot's own tests use a single
- *   residue and a copied fragment, neither of which has a TER, so the
- *   parameter has never been exercised where it can fail.
+ * - `n_atoms` is a validation count and coot moves NOTHING unless it equals
+ *   the size of its mmdb `Select`. What that size is, we do not reliably
+ *   know: `get_number_of_atoms` walks model 1 and is not it, and two
+ *   hypotheses (TER pseudo-atoms raising it by one per chain; alternate
+ *   conformers lowering it) each failed against real data -- a 1124-atom,
+ *   one-chain, one-TER structure with five A and five B altlocs rejected
+ *   both 1124 and 1125.
  *
- *   There is no API for the selection size, so we try the honest count
- *   first (right for a molecule with no TER) and walk up by at most the
- *   number of chains. Every rejected attempt is a true no-op: coot returns
- *   0 having touched nothing, so retrying cannot double-apply.
+ *   Coot's own two tests pass a single residue and a copied fragment, so the
+ *   parameter has never been exercised on anything with a TER or an altloc,
+ *   and its ERROR message naming the real count goes to stdout where the
+ *   browser cannot read it.
+ *
+ *   So rather than guess a third time, probe: a small bounded set of CIDs
+ *   and counts around the honest one, most likely first. Every rejected
+ *   attempt is a true no-op -- coot returns 0 having touched nothing -- so
+ *   this cannot double-apply, and the accepted pair is logged so the rule
+ *   can be derived from one real run and this replaced by arithmetic.
  */
 async function applyMatrix(
   sp: SceneSuperposeMatrix,
@@ -1139,42 +1142,59 @@ async function applyMatrix(
 ): Promise<void> {
   const molNo = mov.molNo as number;
   const nAtoms = await mov.getNumberOfAtoms();
-  // One TER per polymer terminus is the realistic gap; bound the walk by the
-  // chain count so a genuinely wrong count fails fast rather than looping.
-  const maxExtra = Math.max(1, mov.getChainNames?.().length ?? 1);
+  const nChains = Math.max(1, mov.getChainNames?.().length ?? 1);
 
-  let moved = 0;
-  let accepted = -1;
-  for (let extra = 0; extra <= maxExtra; extra++) {
-    const response = await mov.commandCentre.cootCommand(
-      {
-        command: "apply_transformation_to_atom_selection",
-        returnType: "int",
-        commandArgs: [molNo, "/*/*/*/*", nAtoms + extra, ...sp.mat, 0, 0, 0, ...sp.vec],
-        changesMolecules: [molNo],
-      },
-      true,
-    );
-    moved = response?.data?.result?.result ?? 0;
-    if (moved > 0) {
-      accepted = nAtoms + extra;
-      break;
+  // "//" is the whole-molecule CID coot's own test uses; "/*/*/*/*" is the
+  // explicit form. Try both, because which one mmdb agrees with is part of
+  // what is unknown here.
+  const cids = ["//", "/*/*/*/*"];
+  // Most likely first: the honest count, then one TER per chain, then the
+  // altloc-suppressed counts below it. Bounded either way.
+  const deltas = [0, 1, nChains, ...range(2, nChains + 2), ...range(-1, -17, -1)];
+
+  for (const cid of cids) {
+    for (const delta of dedupe(deltas)) {
+      const count = nAtoms + delta;
+      if (count <= 0) continue;
+      const response = await mov.commandCentre.cootCommand(
+        {
+          command: "apply_transformation_to_atom_selection",
+          returnType: "int",
+          commandArgs: [molNo, cid, count, ...sp.mat, 0, 0, 0, ...sp.vec],
+          changesMolecules: [molNo],
+        },
+        true,
+      );
+      const moved = response?.data?.result?.result ?? 0;
+      if (moved > 0) {
+        if (delta !== 0 || cid !== cids[0]) {
+          console.info(
+            `[scene] ${sp.move}: coot accepted cid "${cid}" with ${count} atoms ` +
+            `(get_number_of_atoms reported ${nAtoms}, delta ${delta >= 0 ? "+" : ""}${delta}); ` +
+            `moved ${moved}. Please report this pair -- it pins the rule.`,
+          );
+        }
+        mov.setAtomsDirty(true);
+        await mov.redraw();
+        return;
+      }
     }
   }
-  if (moved <= 0) {
-    throw new Error(
-      `coot moved no atoms for ${sp.move}: no count in ${nAtoms}..${nAtoms + maxExtra} ` +
-      `matched its atom selection`,
-    );
-  }
-  if (accepted !== nAtoms) {
-    console.info(
-      `[scene] ${sp.move}: coot wanted ${accepted} atoms where get_number_of_atoms ` +
-      `reported ${nAtoms} (TER accounting); moved ${moved}`,
-    );
-  }
-  mov.setAtomsDirty(true);
-  await mov.redraw();
+  throw new Error(
+    `coot moved no atoms for ${sp.move}: no cid/count combination around ` +
+    `${nAtoms} matched its atom selection`,
+  );
+}
+
+/** Inclusive-exclusive integer range, for building the probe order. */
+function range(from: number, to: number, step = 1): number[] {
+  const out: number[] = [];
+  for (let i = from; step > 0 ? i < to : i > to; i += step) out.push(i);
+  return out;
+}
+
+function dedupe(xs: number[]): number[] {
+  return [...new Set(xs)];
 }
 
 /**

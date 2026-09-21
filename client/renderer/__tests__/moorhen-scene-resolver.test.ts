@@ -61,7 +61,7 @@ describe("runSuperpose: method matrix → apply_transformation_to_atom_selection
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any);
 
-    expect(calls).toEqual([120, 121]);   // honest count first, then +1
+    expect(calls.slice(0, 2)).toEqual([120, 121]);  // honest count first, then +1
     expect(mol.setAtomsDirty).toHaveBeenCalled();
     expect(mol.redraw).toHaveBeenCalled();
   });
@@ -80,9 +80,10 @@ describe("runSuperpose: method matrix → apply_transformation_to_atom_selection
     await expect(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any),
-    ).rejects.toThrow(/no count in 120\.\.121 matched/);
-    // Bounded: one chain means two attempts, never an unbounded walk.
-    expect(cootCommand).toHaveBeenCalledTimes(2);
+    ).rejects.toThrow(/no cid\/count combination around 120/);
+    // Bounded: it gives up rather than looping. Two CIDs x a small delta
+    // set, not an unbounded walk.
+    expect(cootCommand.mock.calls.length).toBeLessThan(50);
     expect(mol.setAtomsDirty).not.toHaveBeenCalled();
   });
 
@@ -102,7 +103,7 @@ describe("runSuperpose: method matrix → apply_transformation_to_atom_selection
     expect(journal).toBe(true);
     // (imol, cid, n_atoms, m00..m22, c0 c1 c2, t0 t1 t2) — exactly 18 args
     expect(kwargs.commandArgs).toHaveLength(18);
-    expect(kwargs.commandArgs.slice(0, 3)).toEqual([3, "/*/*/*/*", 120]);
+    expect(kwargs.commandArgs.slice(0, 3)).toEqual([3, "//", 120]);
     expect(kwargs.commandArgs.slice(3, 12)).toEqual(mat);
     expect(kwargs.commandArgs.slice(12, 15)).toEqual([0, 0, 0]); // centre: origin, never a centroid
     expect(kwargs.commandArgs.slice(15, 18)).toEqual(vec);
