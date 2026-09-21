@@ -1,3 +1,4 @@
+import os
 import sys
 
 from lxml import etree
@@ -414,6 +415,7 @@ class import_merged(CPluginScript):
     def nearlyDone(self,status):
       print('import_merged.nearlyDone')
       self.container.outputData.OBSOUT.setContentFlag(reset=True)
+      self.annotateObsOut()
       try:
           # XML data: We have
           #   a) self.importXML etree element report on the import step
@@ -429,6 +431,46 @@ class import_merged(CPluginScript):
 
       print('import_merged.nearlyDone, finished')
       self.reportStatus(status)
+
+    #------------------------------------------------------------------------
+    def annotateObsOut(self):
+      """Say what the imported observations are and where they came from.
+
+      Without this OBSOUT reaches the next job's pull-down as a bare "n: " --
+      the content type and the source file are both known, but neither got as
+      far as the label (Paul, issue #510). columnthings() set an annotation
+      only on the branch where the interface had *not* already chosen the
+      columns, i.e. the branch marked "should not happen"; every real import
+      took the other branch and was left blank.
+
+      Called from nearlyDone(), which is the one point every import format
+      passes through and which has just settled the final contentFlag.
+      """
+      obsOut = self.container.outputData.OBSOUT
+      if obsOut.annotation.isSet() and str(obsOut.annotation).strip():
+          return  # something more specific got there first - leave it alone
+
+      # int() of an unset contentFlag is 0, and CONTENT_ANNOTATION[-1] would
+      # then confidently call anything 'Mean SFs'. Check the flag is both set
+      # and in range before believing it.
+      what = obsOut.qualifiers('guiLabel')   # 'Observed data'
+      if obsOut.contentFlag.isSet():
+          contentFlag = int(obsOut.contentFlag)
+          if 1 <= contentFlag <= len(obsOut.CONTENT_ANNOTATION):
+              what = obsOut.CONTENT_ANNOTATION[contentFlag - 1]
+
+      # The file name with its extension, as the aimless-side annotations
+      # give it; stripedName() would drop the '.mtz'.
+      hklin = self.container.inputData.HKLIN
+      if hklin.isSet():
+          what += ' from ' + os.path.basename(str(hklin))
+
+      for label, param in (('Crystal', self.container.inputData.CRYSTALNAME),
+                           ('Dataset', self.container.inputData.DATASETNAME)):
+          if param.isSet() and str(param).strip():
+              what += '; %s: %s' % (label, str(param).strip())
+
+      obsOut.annotation.set(what)
 
     #------------------------------------------------------------------------
     def isIntensity(self, selectedcolumns, listOfColumns):
@@ -837,9 +879,7 @@ class import_merged(CPluginScript):
             # Obs columns not already set (should not happen)
             self.contentFlag = columnGroups[iBestObs].contentFlag
             outputData.OBSOUT.contentFlag.set(self.contentFlag)
-            outputData.OBSOUT.annotation.set(\
-                outputData.OBSOUT.qualifiers('guiLabel')+' from '+\
-                inputData.HKLIN.stripedName())
+            # The annotation is set once, for every format, in annotateObsOut()
             obsColLabels = str(columnGroups[iBestObs].columnList[0].columnLabel)
             for col in columnGroups[iBestObs].columnList[1:]:
                 obsColLabels += ','+str(col.columnLabel)
