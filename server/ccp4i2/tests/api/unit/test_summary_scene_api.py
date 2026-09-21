@@ -24,10 +24,12 @@ Uses the api/ conftest, which auto-applies django_db(transaction=True) and
 sets AllowAny on the viewsets — do NOT add @pytest.mark.django_db here.
 """
 
+import math
 import uuid
 from pathlib import Path
 
 import gemmi
+import pytest
 from rest_framework.test import APIClient
 
 from ccp4i2.db import models
@@ -37,31 +39,52 @@ from ccp4i2.db import models
 # Minimal on-disk coordinate / dictionary builders (gemmi only)
 # --------------------------------------------------------------------------
 
-def _write_pdb(path: Path, ligand_code=None):
-    """One-residue alanine 'protein', optionally plus a HET ligand."""
+N_RESIDUES = 20
+LIG_SHIFT = (1.0, -0.5, 2.0)
+
+
+def _write_pdb(path: Path, ligand_code=None, shift=(0.0, 0.0, 0.0)):
+    """A short poly-alanine helix, optionally plus a HET ligand.
+
+    Twenty residues with distinct CA positions, so the summary scene's CA
+    fit onto the reference is well conditioned (it needs at least twelve).
+    ``shift`` moves the whole model, standing in for a member deposited in
+    a different frame.
+    """
     st = gemmi.Structure()
     st.spacegroup_hm = "P 1"
-    st.cell = gemmi.UnitCell(30, 30, 30, 90, 90, 90)
+    st.cell = gemmi.UnitCell(60, 60, 60, 90, 90, 90)
     model = gemmi.Model(1)
     chain = gemmi.Chain("A")
 
-    res = gemmi.Residue()
-    res.name = "ALA"
-    res.seqid = gemmi.SeqId("1")
-    for nm, el in [("N", "N"), ("CA", "C"), ("C", "C"), ("O", "O")]:
-        a = gemmi.Atom()
-        a.name = nm
-        a.element = gemmi.Element(el)
-        a.pos = gemmi.Position(1, 2, 3)
-        a.occ = 1.0
-        a.b_iso = 20.0
-        res.add_atom(a)
-    chain.add_residue(res)
+    sx, sy, sz = shift
+    for i in range(N_RESIDUES):
+        res = gemmi.Residue()
+        res.name = "ALA"
+        res.seqid = gemmi.SeqId(str(i + 1))
+        theta = math.radians(100.0 * i)
+        cx = 10.0 + 2.3 * math.cos(theta) + sx
+        cy = 10.0 + 2.3 * math.sin(theta) + sy
+        cz = 5.0 + 1.5 * i + sz
+        for nm, el, (dx, dy, dz) in [
+            ("N", "N", (-1.2, 0.3, -0.5)),
+            ("CA", "C", (0.0, 0.0, 0.0)),
+            ("C", "C", (1.0, 0.8, 0.4)),
+            ("O", "O", (1.4, 1.9, 0.2)),
+        ]:
+            a = gemmi.Atom()
+            a.name = nm
+            a.element = gemmi.Element(el)
+            a.pos = gemmi.Position(cx + dx, cy + dy, cz + dz)
+            a.occ = 1.0
+            a.b_iso = 20.0
+            res.add_atom(a)
+        chain.add_residue(res)
 
     if ligand_code:
         lig = gemmi.Residue()
         lig.name = ligand_code
-        lig.seqid = gemmi.SeqId("2")
+        lig.seqid = gemmi.SeqId("101")
         lig.het_flag = "H"
         a = gemmi.Atom()
         a.name = "C1"
@@ -113,7 +136,8 @@ _chem_comp.desc_level
 # --------------------------------------------------------------------------
 
 def _make_refined_project(root: Path, name, pdb_type, dict_type,
-                          ligand_code=None, dict_codes=None):
+                          ligand_code=None, dict_codes=None,
+                          shift=(0.0, 0.0, 0.0)):
     """A Project with one finished refmac job carrying XYZOUT (+ optional dict)."""
     project = models.Project.objects.create(
         name=name, directory=str(root / name)
@@ -128,7 +152,7 @@ def _make_refined_project(root: Path, name, pdb_type, dict_type,
     )
     job.directory.mkdir(parents=True, exist_ok=True)
 
-    _write_pdb(job.directory / "XYZOUT.pdb", ligand_code=ligand_code)
+    _write_pdb(job.directory / "XYZOUT.pdb", ligand_code=ligand_code, shift=shift)
     models.File.objects.create(
         uuid=uuid.uuid4(),
         name="XYZOUT.pdb",
@@ -162,8 +186,10 @@ def _build_campaign(root: Path):
     frag_drg = _make_refined_project(
         root, "frag_drg", pdb_type, dict_type, ligand_code="DRG", dict_codes=["DRG"]
     )
+    # Deposited in its own frame: what the summary's fit exists to undo.
     frag_lig = _make_refined_project(
-        root, "frag_lig", pdb_type, dict_type, ligand_code="LIG", dict_codes=["LIG"]
+        root, "frag_lig", pdb_type, dict_type, ligand_code="LIG", dict_codes=["LIG"],
+        shift=LIG_SHIFT,
     )
     # Apo: refined but no ligand bound; dict present but irrelevant.
     frag_apo = _make_refined_project(
@@ -252,6 +278,30 @@ def test_summary_scene_endpoint(bypass_api_permissions, test_project_path):
         for dname in element["dictionaries"]:
             assert dname in dict_names
 
+    # ---- superposition ---------------------------------------------------
+    # Every hit is fitted onto the reference on all shared CAs and carries
+    # the transform, with the evidence it rests on. frag_lig was written in
+    # a shifted frame, so its fit must undo exactly that shift; frag_drg is
+    # already in frame, so its fit is the identity.
+    superpose = {sp["move"]: sp for sp in scene["superpose"]}
+    assert set(superpose) == {e["file"] for e in stick_elements}
+    for entry in superpose.values():
+        assert entry["method"] == "matrix"
+        assert len(entry["mat"]) == 9 and len(entry["vec"]) == 3
+        assert entry["fitted"]["onto"] == "reference"
+        assert entry["fitted"]["atoms"] == N_RESIDUES
+        assert entry["fitted"]["rmsd"] == pytest.approx(0.0, abs=2e-3)
+        assert "radius" not in entry["fitted"]   # a global fit
+        assert entry["mat"] == pytest.approx([1, 0, 0, 0, 1, 0, 0, 0, 1], abs=1e-3)
+    assert superpose["frag_drg"]["vec"] == pytest.approx([0, 0, 0], abs=2e-3)
+    assert superpose["frag_lig"]["vec"] == pytest.approx(
+        [-c for c in LIG_SHIFT], abs=2e-3
+    )
+    fits = {s["project"]: s for s in stats["superpose"]}
+    assert set(fits) == {"frag_drg", "frag_lig"}
+    assert all(f["ok"] and f["atoms"] == N_RESIDUES and f["reason"] is None
+               for f in fits.values())
+
 
 def test_summary_scene_promotes_a_hit_when_the_parent_has_no_model(
     bypass_api_permissions, test_project_path
@@ -301,6 +351,16 @@ def test_summary_scene_promotes_a_hit_when_the_parent_has_no_model(
 
     # Both hits still draw their ligands.
     assert data["stats"]["hits"] == 2
+
+    # The promoted hit IS the frame, so it is not fitted; the other hit is
+    # fitted onto it, and the provenance names the member, not "reference".
+    superpose = scene["superpose"]
+    assert len(superpose) == 1
+    assert superpose[0]["move"] != ribbons[0]["file"]
+    assert superpose[0]["fitted"]["onto"] == ribbons[0]["file"]
+    assert superpose[0]["fitted"]["atoms"] == N_RESIDUES
+    assert [s["project"] for s in data["stats"]["superpose"]] != [exemplar]
+    assert len(data["stats"]["superpose"]) == 1
 
 
 def test_summary_scene_parent_reference_wins_over_a_hit(

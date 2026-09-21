@@ -411,3 +411,34 @@ parse/validate/repair stay in the ccp4i2 frontend.
 **Authoring UI** — how the frontend surfaces NL authoring and adapts to whether this endpoint
 (or any LLM) is reachable, plus the `nlp/status` capability-detection contract, is designed in
 `MOORHEN_SCENES_NL_UI.md`.
+
+## 13. `superpose: method: matrix` — a transform computed elsewhere (shipped)
+
+`ssm` and `lsq` are *recipes*: the viewer asks coot to derive a transform, and nothing about
+which atoms it fitted, or how well, survives into the scene. A third method carries the
+**transform itself** — `mat` (row-major 3×3), `vec` (Å), `x' = mat·x + vec` about the origin,
+mapping `move` onto the structure named in `fitted.onto` — plus the provenance it was derived
+from (`fitted: { onto, atoms, radius?, rmsd }`). The producer is a server-side gemmi fit
+(`server/ccp4i2/lib/superposition.py`, `docs/campaign-site-scene-design.md`), which is what
+makes the selection logic testable, allows outlier rejection, and lets a reader judge an
+alignment rather than trust it. `radius` is absent (or null, as it arrives from JSON) for a
+global fit. Still `version: 1`: purely additive.
+
+Decisions worth recording:
+
+- **No top-level `onto`.** Applying a matrix needs no reference molecule loaded, so the
+  resolver binds only `move`; `onto` lives in the provenance and is cross-referenced there.
+  The lifter keeps a matrix entry whose reference did not survive the lift and drops only
+  its `fitted` block, where an `ssm`/`lsq` entry would be dropped whole.
+- **Resolver applies it through `apply_transformation_to_atom_selection`** with the rotation
+  centre fixed at (0,0,0) and `vec` as the translation. Coot's centre is separate from its
+  translation, and its implementation subtracts the centre on both sides of the rotation, so
+  any non-zero centre would be wrong twice over. `n_atoms` is a validation count coot demands
+  to match its CID selection exactly; it is taken from coot's own `get_number_of_atoms`, and a
+  zero moved-count is raised, not ignored.
+- **Pruned from the strict authoring profile** (§12): a nine-number rotation is machine
+  output, never something a model should author, and its properties would push the profile
+  past Azure's cap. The published core/ccp4i2 contracts, grammar and system prompt carry it.
+- **Round trip:** like `ssm`/`lsq`, the coordinates move inside coot, so capture re-emits the
+  last-applied block (§10); a matrix entry re-applies to the same picture exactly, where a
+  recipe re-derives one.

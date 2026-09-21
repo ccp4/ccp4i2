@@ -55,6 +55,17 @@ superpose?: ({
   chain?: string  # shorthand chain, both sides
   range?: string  # shorthand range, both sides
   matchType?: "all"|"main"|"ca"  # default "main"
+} | {
+  method: "matrix"
+  move: string  # file being transformed
+  mat: number[]  # row-major 3x3 rotation; x' = mat.x + vec about the origin
+  vec: number[]  # translation, Angstrom
+  fitted?: {
+    onto: string  # reference file the fit was made against
+    atoms: number  # CA atoms in the final fit
+    radius?: number | any  # Angstrom about the site; absent for a global fit
+    rmsd?: number | any
+  }  # provenance: what the matrix was derived from
 })[]
 globalDictionaries?: string[]
 domains?: { name: string, selection: string, color: string }[]
