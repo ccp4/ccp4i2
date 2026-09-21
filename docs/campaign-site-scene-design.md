@@ -338,7 +338,9 @@ Both halves have been checked against the real APIs:
   the translation would apply the shift twice.
 
 **Recommendation: compute the transform in Python, carry it in the scene, and
-have the resolver apply it.** The reasons are about what can be tested and
+have the resolver apply it.** *(Implemented in #574 — `method: matrix` is in
+the schema, the resolver applies it, and `lib/superposition.py` does the fit.
+A site scene needs only to pass `centre=(x, y, z)` to `fit_files`.)* The reasons are about what can be tested and
 what can be read:
 
 * **It is testable without a browser.** Radius growth, the intersection, the
@@ -419,6 +421,43 @@ fragment is still far from the site origin is a real anomaly rather than a
 frame artefact.
 
 ---
+
+## The site origin's frame: a known, accepted imprecision
+
+A `CampaignSite.origin` is whatever the camera was looking at when somebody
+pressed save, in the frame of whichever dataset happened to be on screen. It
+is stored raw and restored raw (`handleSaveCurrentAsSite`, `handleGoToSite`),
+so the round trip is world-space in, world-space out — self-consistent only
+while world space stays put, which is exactly what superposition does not do.
+
+Measured on the BAZ2B demo campaign after the phase-1 superposition landed and
+the parent gained a reference model: sites saved before that are **2.3–3.4 Å**
+from where their feature now sits. The four members' transforms independently
+agree on where the point goes to within 0.76 Å, so the discrepancy is a frame
+offset, not noise.
+
+**Decision (2026-09-21): accept it. Do not engineer around it.** No inverse
+transform on save, no provenance field recording the capture frame, no
+migration of stored origins. The reasoning, which is the crystallographer's
+and is correct: the coordinates are right *relative to each other*, which is
+the whole point of superposing, and a 2–3 Å shift of the screen centre does
+not make the site of interest ambiguous at the zoom these views use.
+Re-saving a site corrects it in one click, which is proportionate to the harm.
+
+**The one place to keep in mind while implementing.** The site origin is used
+at two very different scales, and the offset is proportionally very different
+at each:
+
+* The **fit sphere** (15 Å, growing) is over-determined — a 3 Å shift of its
+  centre trades a few CAs at one edge for a few at the other and produces an
+  equally valid local fit. Ignorable.
+* The **environment sphere** (8 Å) is not. A 3 Å offset there is nearly 40% of
+  the radius, so it genuinely changes which side chains are drawn as "the
+  pocket": some that do not line it appear, some that do are missed.
+
+So if a pocket selection looks slightly off-centre during development, suspect
+a site saved in an older frame before suspecting the code. Re-save the site
+and look again. This is not a bug to fix in the builder.
 
 ## The exemplar
 
