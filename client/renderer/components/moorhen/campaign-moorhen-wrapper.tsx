@@ -82,6 +82,7 @@ import {
   loadWithDictionaries,
   type DictionaryToAttach,
 } from "../../lib/moorhen-dictionaries";
+import { candidateLigandCodes, placeLigand } from "../../lib/ligand-codes";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
 import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
 import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
@@ -227,6 +228,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // Ligand dictionary file ID for 2D structure display (first dict file found)
   const [ligandDictFileId, setLigandDictFileId] = useState<number | null>(null);
   const [ligandName, setLigandName] = useState<string | null>(null);
+  // What "Add ligand here" needs: the codes the member's dictionaries define
+  // and the file its coordinates came from (the molecule is found by that,
+  // not by which molecule is active; see lib/ligand-codes).
+  const [ligandCodes, setLigandCodes] = useState<string[]>([]);
+  const [memberCoordFileId, setMemberCoordFileId] = useState<number | null>(null);
   // Store ALL loaded dictionary contents so we can add them to molecules
 
   const cootInitialized = useSelector(
@@ -342,13 +348,23 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       coordText: string,
       molName: string,
       uniqueId: string,
+      opts: { dictionaries?: DictionaryToAttach[] } = {},
     ): Promise<moorhen.Molecule | null> => {
       if (!commandCentre.current) return null;
       const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
       newMolecule.setBackgroundColour(backgroundColor);
       newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
       try {
-        await newMolecule.loadToCootFromString(coordText, molName);
+        // The element's own dictionaries go on BEFORE Moorhen goes looking
+        // for missing monomers. Without this the ligand is bonded from
+        // whatever the monomer library happens to return for its code -- or
+        // from nothing at all for a novel fragment -- and the scoped
+        // read_dictionary_string that the resolver does afterwards arrives
+        // too late to be what the molecule was built from. See
+        // lib/moorhen-dictionaries: deferring that fetch is the whole point.
+        await loadWithDictionaries(newMolecule as any, opts.dictionaries ?? [], () =>
+          newMolecule.loadToCootFromString(coordText, molName),
+        );
         if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
         newMolecule.uniqueId = uniqueId;
         // Ribbon first (protein overview), fall back to sticks. These get
@@ -376,10 +392,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   );
 
   const loadSceneStructure = useCallback(
-    async (url: string, molName: string): Promise<moorhen.Molecule | null> => {
+    async (
+      url: string,
+      molName: string,
+      opts: { dictionaries?: DictionaryToAttach[] } = {},
+    ): Promise<moorhen.Molecule | null> => {
       try {
         const pdbData = await apiText(url);
-        return loadSceneStructureFromText(pdbData, molName, url);
+        return loadSceneStructureFromText(pdbData, molName, url, opts);
       } catch (err) {
         console.warn(`[scene] failed to fetch ${molName} from ${url}:`, err);
         return null;
@@ -389,7 +409,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   );
 
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
-    async (ref: SceneFileRef) => {
+    async (ref: SceneFileRef, fetchOpts) => {
+      // The element's scoped dictionaries, which the resolver hands us here.
+      // Dropping this argument is what left every campaign summary ligand
+      // bonded without its own chemistry.
+      const loadOpts = { dictionaries: fetchOpts?.dictionaries ?? [] };
       // Bundle: decode bytes from the in-memory asset map (no network).
       if (ref.bundle) {
         const buf = bundleAssetsRef.current.get(ref.bundle);
@@ -402,12 +426,17 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           coordText,
           ref.name || ref.bundle,
           `bundle:${ref.bundle}`,
+          loadOpts,
         );
       }
-      if (ref.fileId !== undefined && ref.projectId) {
+      // A ccp4i2 fileId is globally unique, so it alone builds the URL;
+      // projectId is advisory and must not gate the fetch (the generic
+      // wrapper has always treated it that way).
+      if (ref.fileId !== undefined) {
         return loadSceneStructure(
           `/api/proxy/ccp4i2/files/${ref.fileId}/download/`,
           ref.name || `file_${ref.fileId}`,
+          loadOpts,
         );
       }
       if (ref.pdb) {
@@ -415,9 +444,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         return loadSceneStructure(
           `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`,
           ref.name || pdbId,
+          loadOpts,
         );
       }
-      if (ref.url) return loadSceneStructure(ref.url, ref.name || ref.url);
+      if (ref.url) return loadSceneStructure(ref.url, ref.name || ref.url, loadOpts);
       return null;
     },
     [loadSceneStructure, loadSceneStructureFromText],
@@ -678,9 +708,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
                      firstDict.annotation ||
                      "Ligand";
         setLigandName(name);
+        setLigandCodes(candidateLigandCodes(dictionaries.map((d) => d.text)));
       } else {
         setLigandDictFileId(null);
         setLigandName(null);
+        setLigandCodes([]);
       }
     }
 
@@ -692,6 +724,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       f.name.toLowerCase().endsWith(".cif")
     );
     const coordFile = mmcifFile || coordFiles[0];
+    if (asCurrentMember) setMemberCoordFileId(coordFile ? coordFile.id : null);
 
     // Load the single best coordinate file
     if (coordFile) {
@@ -1162,6 +1195,27 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [selectedMemberProjectId, memberProjects, ligandDictFileId, setMessage]
   );
 
+  // Place the member's ligand at the view centre. Nothing is saved: the
+  // result lives in the browser until it is pushed, and it is not pushed
+  // automatically because a placed, unfitted ligand in an arbitrary
+  // orientation is not something anyone wants silently written into their
+  // project.
+  const handleAddLigand = useCallback(
+    async (code: string) => {
+      try {
+        await placeLigand(molecules, memberCoordFileId, code);
+        dispatch(setRequestDrawScene(true));
+        setMessage(`Ligand ${code} added. Push to CCP4i2 to keep it.`, "success");
+      } catch (err) {
+        setMessage(
+          `Could not add ${code}: ${err instanceof Error ? err.message : String(err)}`,
+          "error",
+        );
+      }
+    },
+    [molecules, memberCoordFileId, dispatch, setMessage]
+  );
+
   // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
   // (it builds the per-instance MoorhenInstance from it).
   const menuSystem = useMemo(() => new MoorhenMenuSystem(), []);
@@ -1204,6 +1258,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             onRepresentationsChange: setVisibleRepresentations,
             ligandDictFileId,
             ligandName,
+            ligandCodes,
+            memberCoordFileId,
+            onAddLigand: handleAddLigand,
             maps,
             onMapContourLevelChange: handleMapContourLevelChange,
             evaluations,
