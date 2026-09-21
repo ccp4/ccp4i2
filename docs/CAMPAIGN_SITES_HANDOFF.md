@@ -1,7 +1,7 @@
 # Campaign sites, evaluations, and the merged SubstituteLigand route
 
-**Branch:** `campaign-site-verdicts-ui` (branched off `campaign-sites-evaluations`, which is PR #563)
-**Written:** 2026-09-20, against `django` at a70.
+**Branch:** `campaign-site-verdicts-ui` — PR #564, on top of #563 (merged)
+**Written:** 2026-09-20, against `django` at a70. Updated 2026-09-21.
 
 This is a handoff note. It says what is finished, what is half-done, what was
 learned the hard way, and what to do next.
@@ -270,10 +270,11 @@ change so that plain assignment rebinds.
 
 ## Suggested next steps
 
-1. **Land PR #563** (data model + demo command). It is green and independent.
-2. **Split this branch.** The cell/reconcile work (`8d174ba45`, `15af2dc8e`,
-   `5f1398f0f`, `6b1f2b509`) is independently useful and should not wait on
-   the UI. The endpoints commit (`67a3d8753`) belongs with the UI.
+1. ~~Land PR #563~~ — merged 2026-09-21 as `e42bb3471`.
+2. ~~Split this branch~~ — not done, and no longer worth doing. The split was
+   proposed so the cell/reconcile work would not wait on the UI; with the UI
+   finished they land together as #564, and separating them now would mean
+   rewriting pushed history to save nothing.
 3. **Decide on the permissive-merge commits.** Recommendation: **keep them.**
    They fix the failure at a different layer from the reconcile, which only
    runs inside SubstituteLigand — `i2Dimple` and `pointless_reindexToMatch`
