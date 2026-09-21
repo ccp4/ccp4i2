@@ -93,7 +93,15 @@
                     <onlyEnumerators>True</onlyEnumerators>
                     <enumerators>PHASER_RNP,DIMPLE</enumerators>
                     <menuText>Phaser RNP pipeline,Dimple</menuText>
-                    <default>PHASER_RNP</default>
+                    <!-- Dimple by default: the common case is a ligand
+                         soaked into a known, isomorphous crystal, which is
+                         what dimple is for. Phaser RNP solves a placement
+                         problem most of those jobs do not have, and is the
+                         less exercised of the two routes. Its own i2run test
+                         records that until that test was written the Phaser
+                         route had no coverage at all, where Dimple has two
+                         i2run tests, an e2e API test and a report fixture. -->
+                    <default>DIMPLE</default>
                 </qualifiers>
             </content>
             <content id="DICTIN">

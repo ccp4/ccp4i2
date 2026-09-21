@@ -42,6 +42,7 @@ import {
 } from "../../types/campaigns";
 import { SmilesView } from "./smiles-view";
 import { ProjectTagChips } from "../project-tag-chips";
+import { SiteVerdictChips } from "./site-verdict-chips";
 
 // Status ID to color mapping (matching legacy CCP4i2)
 const STATUS_COLORS: Record<number, string> = {
@@ -158,6 +159,7 @@ export function VirtualizedMemberProjectsTable({
             <TableCell align="center" width={80}>Resolution</TableCell>
             <TableCell align="center" width={80}>R-Factor</TableCell>
             <TableCell align="center" width={80}>R-Free</TableCell>
+            <TableCell width={190}>Sites</TableCell>
             <TableCell>Jobs</TableCell>
           </TableRow>
         </TableHead>
@@ -166,7 +168,7 @@ export function VirtualizedMemberProjectsTable({
           {virtualItems.length > 0 && virtualItems[0].start > 0 && (
             <TableRow>
               <TableCell
-                colSpan={7}
+                colSpan={8}
                 sx={{
                   height: virtualItems[0].start,
                   padding: 0,
@@ -200,7 +202,7 @@ export function VirtualizedMemberProjectsTable({
           {virtualItems.length > 0 && (
             <TableRow>
               <TableCell
-                colSpan={7}
+                colSpan={8}
                 sx={{
                   height:
                     rowVirtualizer.getTotalSize() -
@@ -505,6 +507,11 @@ function MemberProjectRow({
           size="small"
           variant="outlined"
         />
+      </TableCell>
+
+      {/* Sites - where something was found in this dataset */}
+      <TableCell onClick={(e) => e.stopPropagation()}>
+        <SiteVerdictChips project={project} campaignId={campaignId} />
       </TableCell>
 
       {/* Jobs - clickable icons matching legacy style */}
