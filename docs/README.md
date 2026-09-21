@@ -99,6 +99,12 @@ Supporting references:
 - [Organising Projects](organising-projects.md) — `ProjectTag` vs `ProjectGroup`:
   which to reach for, why hierarchy lives on tags, and where legacy Qt-i2
   "folders" map to
+- [Campaign sites handoff](CAMPAIGN_SITES_HANDOFF.md) — what landed in the
+  `CampaignSite` / `SiteEvaluation` work, and what was learned the hard way
+- [Place the ligand here](campaign-place-ligand-design.md) — design for the
+  one-click monomer button in the campaign Moorhen page (not implemented)
+- [A site view as a Moorhen scene](campaign-site-scene-design.md) — design for
+  a per-site overlay of every hit, built as a scene (not implemented)
 
 ### …understand the architecture
 - Project [`CLAUDE.md`](../CLAUDE.md) — architecture, task registry, validation,
