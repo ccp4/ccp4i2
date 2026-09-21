@@ -1,17 +1,20 @@
 /**
  * What the campaign overview shows in a dataset's Sites cell.
  *
- * A row shows chips for the sites where something was found, and how much of
- * the dataset is still unlooked at. Both are deliberately partial views:
+ * A row shows chips for the sites where something was found, and a one-line
+ * note saying how far through the dataset the evaluation has got. Both are
+ * deliberately partial views:
  *
  * * Only `hit` and `unclear` get a chip. A rich campaign has 30-40 sites and
  *   most are empty for most datasets, so chipping every verdict would fill the
- *   column with the least interesting one. `empty` and "nobody has looked"
- *   both render as nothing here — they are distinguished in the per-dataset
- *   view, and in the count below.
- * * The count appears only while the dataset is incomplete. "40/40" on every
- *   finished row is noise; what the eye is looking for down the column is the
- *   rows still carrying work.
+ *   column with the least interesting one. `empty` renders as no chip.
+ * * The note carries the rest. Chips alone cannot separate a dataset examined
+ *   throughout and found empty from one nobody has opened — both have no hits
+ *   and no unclears — and those are opposite states: one is a finished result,
+ *   the other is work outstanding. So the note speaks whenever the chips do
+ *   not already answer the question, and stays quiet only when they do (a
+ *   fully evaluated dataset that has chips) or when the campaign has no sites
+ *   to evaluate against.
  */
 
 import { CampaignJobInfo, SiteEvaluationSummary } from "../types/campaigns";
@@ -54,22 +57,70 @@ export function verdictChips(
   };
 }
 
+/** How loudly a dataset's note should be rendered. */
+export type EvaluationTone =
+  /** Part-way through: work outstanding. */
+  | "progress"
+  /** Finished, and nothing was found. */
+  | "clear"
+  /** Nobody has looked yet. */
+  | "untouched";
+
+export interface EvaluationNote {
+  /** The caption under the chips. */
+  text: string;
+  tone: EvaluationTone;
+  /** The longer form, for the tooltip. */
+  detail: string;
+}
+
 /**
- * "12/40" while a dataset is part-evaluated, or null when there is nothing
- * useful to say — all sites looked at, none looked at, or no sites at all.
+ * The note under a dataset's chips, or null when there is nothing to say.
  *
  * The denominator is the campaign's site count rather than anything
  * per-dataset, so the fractions are comparable down the column.
+ *
+ * Silent in two cases. A campaign with no sites has nothing to be part-way
+ * through. And a fully evaluated dataset that has chips is already legible
+ * from the chips alone — "40/40" on those rows is the noise that would make
+ * the notes on the other rows hard to pick out.
  */
-export function evaluationProgress(
+export function evaluationNote(
   evaluated: number | undefined,
-  total: number | undefined
-): string | null {
+  total: number | undefined,
+  hasVerdicts: boolean
+): EvaluationNote | null {
   if (!total || total <= 0) return null;
-  const done = evaluated ?? 0;
-  if (done <= 0) return null;
-  if (done >= total) return null;
-  return `${done}/${total}`;
+
+  // Clamped, because a row is better described as finished than as silent if
+  // the two counts ever disagree.
+  const done = Math.min(Math.max(evaluated ?? 0, 0), total);
+
+  if (done <= 0) {
+    return {
+      text: "not evaluated",
+      tone: "untouched",
+      detail: `None of the campaign's ${total} sites has been looked at in this dataset.`,
+    };
+  }
+
+  if (done < total) {
+    return {
+      text: `${done}/${total}`,
+      tone: "progress",
+      detail: `${done} of ${total} sites evaluated \u2014 ${
+        total - done
+      } still to look at.`,
+    };
+  }
+
+  if (hasVerdicts) return null;
+
+  return {
+    text: `all ${total} empty`,
+    tone: "clear",
+    detail: `All ${total} sites evaluated in this dataset, and nothing was found at any of them.`,
+  };
 }
 
 /**

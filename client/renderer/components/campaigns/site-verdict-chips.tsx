@@ -3,13 +3,16 @@
 /**
  * A dataset's Sites cell in the campaign overview.
  *
- * Shows where something was found, and how much of the dataset is still
- * unlooked at. What it deliberately does not show is the empties: in a
- * campaign with 30-40 sites most are empty for most datasets, and chipping
- * them would bury the one or two results somebody is scanning the column for.
- * A dataset nobody has looked at and one examined and found empty both render
- * as nothing here; the count below tells them apart, and the per-dataset view
- * in Moorhen has the detail.
+ * Shows where something was found, and — in one quiet line underneath — how
+ * far the evaluation of this dataset has got. What it deliberately does not
+ * chip is the empties: in a campaign with 30-40 sites most are empty for most
+ * datasets, and chipping them would bury the one or two results somebody is
+ * scanning the column for.
+ *
+ * That makes three different datasets look alike from the chips alone: one
+ * nobody has opened, one part-way through with nothing found so far, and one
+ * examined throughout and found empty. The note is what tells them apart, and
+ * it says least on the rows the chips already explain.
  */
 
 import { Box, Chip, Stack, Tooltip, Typography } from "@mui/material";
@@ -18,7 +21,8 @@ import {
   SiteEvaluationSummary,
 } from "../../types/campaigns";
 import {
-  evaluationProgress,
+  EvaluationTone,
+  evaluationNote,
   preferredJobId,
   siteViewUrl,
   verdictChips,
@@ -32,19 +36,31 @@ interface SiteVerdictChipsProps {
   maxChips?: number;
 }
 
+/**
+ * The note is a footnote to the chips, never a competitor to them: an
+ * unevaluated dataset is the quietest thing in the column, because a column of
+ * them is the normal state of a campaign early on.
+ */
+const NOTE_SX: Record<EvaluationTone, object> = {
+  progress: { color: "text.secondary" },
+  clear: { color: "text.secondary" },
+  untouched: { color: "text.disabled", fontStyle: "italic" },
+};
+
 export function SiteVerdictChips({
   project,
   campaignId,
   maxChips = 3,
 }: SiteVerdictChipsProps) {
   const { shown, overflow } = verdictChips(project.site_evaluations, maxChips);
-  const progress = evaluationProgress(
+  const note = evaluationNote(
     project.sites_evaluated,
-    project.sites_total
+    project.sites_total,
+    (project.site_evaluations?.length ?? 0) > 0
   );
   const jobId = preferredJobId(project.jobs);
 
-  if (shown.length === 0 && !progress) return null;
+  if (shown.length === 0 && !note) return null;
 
   const open = (evaluation: SiteEvaluationSummary) => {
     const url = siteViewUrl(campaignId, jobId, evaluation.site_id);
@@ -104,11 +120,11 @@ export function SiteVerdictChips({
           </Tooltip>
         )}
       </Stack>
-      {progress && (
-        <Tooltip title="Sites evaluated in this dataset, of the campaign's sites">
+      {note && (
+        <Tooltip title={note.detail}>
           <Box>
-            <Typography variant="caption" color="text.secondary">
-              {progress}
+            <Typography variant="caption" sx={NOTE_SX[note.tone]}>
+              {note.text}
             </Typography>
           </Box>
         </Tooltip>
