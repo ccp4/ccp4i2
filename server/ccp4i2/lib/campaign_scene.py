@@ -1,10 +1,13 @@
 """
-Fragment-campaign summary-scene service.
+Fragment-campaign scene service: the whole-campaign summary and one site.
 
 Builds a Moorhen *scene* (see ``client/renderer/types/moorhen-scene.md``)
-that overlays every discovered fragment hit on the campaign's parent
-reference structure: the parent drawn as a ribbon, each hit dataset's
-ligand drawn as sticks, scoped to its own restraint dictionary.
+that overlays fragment hits on the campaign's parent reference structure:
+the parent drawn as a ribbon, each hit dataset's ligand drawn as sticks,
+scoped to its own restraint dictionary. ``build_summary_scene`` takes every
+hit the coordinates reveal; ``build_site_scene`` takes the datasets judged
+a hit at one site, and fits them on that site's pocket
+(``docs/campaign-site-scene-design.md``).
 
 Two jobs this module does that the scene format then exploits:
 
@@ -70,6 +73,23 @@ COMMON_NON_LIGANDS = frozenset({
 # Parent ribbon colour — a muted grey so the coloured fragment sticks
 # read clearly against it.
 PARENT_RIBBON_COLOUR = "#b0bec5"
+# The pocket sticks are a near neighbour of the ribbon grey, so the context
+# reads as context and the coloured fragments still carry the picture.
+POCKET_STICK_COLOUR = "#90a4ae"
+# One colour per hit at a site, cycled, so the hits are tellable apart.
+HIT_COLOURS = (
+    "#1f77b4", "#d62728", "#2ca02c", "#ff7f0e",
+    "#9467bd", "#8c564b", "#e377c2", "#17becf",
+)
+# Unclear verdicts, when asked for, share one muted colour: a site view is a
+# claim about what is there, and the doubtful must not look like the confident.
+UNCLEAR_COLOUR = "#d7ccc8"
+
+# Residues with any atom this close to the site origin are drawn as the
+# pocket. This radius decides only what is shown as sticks -- never which
+# datasets are hits -- so a wrong value shows a residue too many or too few,
+# visibly, rather than losing a ligand silently.
+ENVIRONMENT_RADIUS = 8.0
 
 DICT_FILE_TYPE = "application/refmac-dictionary"
 COORD_FILE_TYPES = ("chemical/x-pdb", "chemical/x-cif", "chemical/x-mmcif")
@@ -182,6 +202,128 @@ def detect_ligands(coord_path, dict_path: Optional[object] = None) -> list:
 
 
 # --------------------------------------------------------------------------
+# Site geometry (pure; gemmi only, no DB) -- unit-testable
+# --------------------------------------------------------------------------
+
+def _residue_cid(chain_name: str, res: gemmi.Residue) -> str:
+    """One residue as a Coot CID.
+
+    mmdb's residue id puts the insertion code after a dot (``ParseResID``):
+    ``//A/45.A``, not ``//A/45A``, which would parse as no residue at all.
+    """
+    cid = f"//{chain_name}/{res.seqid.num}"
+    if res.seqid.icode != " ":
+        cid += f".{res.seqid.icode}"
+    return cid
+
+
+def site_position(site) -> tuple:
+    """The site's centre as a REAL-SPACE coordinate.
+
+    ``CampaignSite.origin`` is not one. It is Moorhen's view origin, which is
+    the *negation* of the point at the centre of the screen: Moorhen's own
+    code negates it whenever it hands the value to something that wants real
+    coordinates (see ``GetMonomer``, which passes
+    ``origin.map(coord => -coord)`` to ``get_monomer_and_position_at``). The
+    site save/restore path stores and restores it raw, so the two negations
+    cancel and the camera round-trips correctly -- which is why the sign error
+    stayed invisible until something treated the stored value as a position.
+
+    Measured on the BAZ2B demo campaign: the stored origin is 40.9 A from the
+    nearest CA of the reference with zero CAs inside 30 A, while its negation
+    is 3.75 A away with 14 CAs inside 8 A. The negation is the pocket.
+
+    Anything selecting atoms or centring a fit must go through here.
+    ``view.origin`` in the scene must NOT -- that is handed back to Moorhen,
+    which wants its own convention.
+    """
+    return (-site.origin_x, -site.origin_y, -site.origin_z)
+
+
+def pocket_residue_cids(structure: gemmi.Structure, origin,
+                        radius: float = ENVIRONMENT_RADIUS) -> list:
+    """CIDs of the residues with any atom within ``radius`` of ``origin``.
+
+    One entry per residue however many of its atoms are in range, in
+    chain/sequence order, and an origin in empty solvent gives an empty list
+    -- which a caller must turn into *no* representation, because an empty
+    ``selection:`` draws the whole molecule.
+
+    Waters and fragment-like residues are left out: the pocket is what the
+    ligands bind *to*. When the exemplar is itself a hit (no parent), its own
+    ligand is already drawn in that hit's colour, and drawing it a second
+    time in the pocket grey would fight it for the same atoms.
+
+    A plain distance loop rather than ``gemmi.NeighborSearch``: the search
+    would also return symmetry images, and a residue that lines the pocket
+    only as a symmetry mate would be drawn where it sits in the asymmetric
+    unit, nowhere near the site.
+    """
+    if len(structure) == 0:
+        return []
+    centre = gemmi.Position(*origin)
+    found: dict = {}
+    for chain in structure[0]:
+        for res in chain:
+            name = res.name.strip().upper()
+            info = gemmi.find_tabulated_residue(name)
+            if info is not None and info.is_water():
+                continue
+            if _is_fragment_code(name):
+                continue
+            if any(atom.pos.dist(centre) <= radius for atom in res):
+                key = (chain.name, res.seqid.num, res.seqid.icode)
+                found[key] = _residue_cid(chain.name, res)
+    return [found[key] for key in sorted(found)]
+
+
+def fragment_centroids(structure: gemmi.Structure) -> list:
+    """``[(code, centroid)]`` for every fragment-like residue in the first model."""
+    out: list = []
+    if len(structure) == 0:
+        return out
+    for chain in structure[0]:
+        for res in chain:
+            code = res.name.strip().upper()
+            if len(res) == 0 or not _is_fragment_code(code):
+                continue
+            n = len(res)
+            centroid = gemmi.Position(
+                sum(a.pos.x for a in res) / n,
+                sum(a.pos.y for a in res) / n,
+                sum(a.pos.z for a in res) / n,
+            )
+            out.append((code, centroid))
+    return out
+
+
+def nearest_fragment_distance(structure: gemmi.Structure, origin,
+                              transform: Optional[gemmi.Transform] = None
+                              ) -> Optional[float]:
+    """Distance from ``origin`` to the closest fragment-like residue's centroid.
+
+    ``None`` -- not ``inf`` -- when the structure has no such residue. With a
+    ``transform`` the centroids are moved first, so the distance is measured
+    in the frame the scene draws the dataset in: after superposition a
+    fragment still far from the site is a real anomaly, not a frame artefact.
+
+    This is a diagnostic, never a filter. A hit verdict whose nearest fragment
+    is 40 A away is either recorded against density nobody has modelled yet
+    or a numbering mismatch that defeated the fit; either way the user should
+    see the number, not lose the ligand.
+    """
+    centre = gemmi.Position(*origin)
+    best: Optional[float] = None
+    for _code, centroid in fragment_centroids(structure):
+        if transform is not None:
+            centroid = gemmi.Position(transform.apply(centroid))
+        dist = centroid.dist(centre)
+        if best is None or dist < best:
+            best = dist
+    return best
+
+
+# --------------------------------------------------------------------------
 # Scene assembly (touches the DB)
 # --------------------------------------------------------------------------
 
@@ -275,6 +417,204 @@ def _safe_name(raw: str, used: set) -> str:
     return name
 
 
+def _ribbon() -> dict:
+    return {"style": "CRs", "selection": "/*/*/*/*", "colour": PARENT_RIBBON_COLOUR}
+
+
+def _resolve_hit(project, used_names: set):
+    """Turn one member into the scene pieces that draw its ligand.
+
+    Returns ``(hit, None)`` or ``(None, reason)``. ``hit`` carries the
+    ``files[]`` entries (coordinates, and the dictionary by fileId or as
+    inlined CIF text), the element with its ``//*/(CODE)`` sticks, and the
+    coordinate path later steps fit and measure on. ``sticks`` is the ligand
+    representation itself, so a caller can colour it without knowing where
+    it sits once a ribbon has been pushed in front of it.
+
+    The summary scene and the site scene both go through here. They differ
+    in which members they include, what the exemplar draws and where the
+    camera goes -- never in how a hit is resolved, so that a fix to the hit
+    rule cannot land in one and not the other.
+    """
+    refine_job = pandda_export._latest_finished_job(project, REFINE_TASK_NAMES)
+    if not refine_job:
+        return None, "no finished refinement job"
+
+    coord_file = _member_coord_file(refine_job)
+    if coord_file is None or not coord_file.path.exists():
+        return None, "no refined coordinate file"
+
+    dict_file = _member_dict_file(project, refine_job)
+    dict_path = None
+    if dict_file is not None and dict_file.path.exists():
+        dict_path = dict_file.path
+    else:
+        # Disk-only acedrg dictionary (no File record): inline its text.
+        acedrg_job = pandda_export._latest_finished_job(
+            project, pandda_export.ACEDRG_TASK_NAMES
+        )
+        disk_dict = pandda_export._find_dictionary_cif(acedrg_job)
+        if disk_dict is not None:
+            dict_path = disk_dict
+
+    codes = detect_ligands(coord_file.path, dict_path)
+    if not codes:
+        return None, "no ligand in refined model"
+
+    ds_name = _safe_name(project.name, used_names)
+    files = [
+        {
+            "name": ds_name,
+            "kind": "coordinates",
+            "fileId": coord_file.id,
+            "projectId": str(project.uuid),
+        }
+    ]
+
+    dict_ref_name = None
+    if dict_file is not None and dict_file.path.exists():
+        dict_ref_name = _safe_name(f"{ds_name}_dict", used_names)
+        files.append(
+            {
+                "name": dict_ref_name,
+                "kind": "dictionary",
+                "fileId": dict_file.id,
+                "projectId": str(project.uuid),
+            }
+        )
+    elif dict_path is not None:
+        try:
+            cif_text = Path(dict_path).read_text()
+            dict_ref_name = _safe_name(f"{ds_name}_dict", used_names)
+            files.append(
+                {
+                    "name": dict_ref_name,
+                    "kind": "dictionary",
+                    "cifText": cif_text,
+                }
+            )
+        except OSError as exc:
+            logger.warning("Could not inline dictionary %s: %s", dict_path, exc)
+
+    sticks = {
+        "style": "CBs",
+        "selection": "||".join(f"//*/({code})" for code in codes),
+    }
+    element = {"file": ds_name, "representations": [sticks]}
+    if dict_ref_name:
+        element["dictionaries"] = [dict_ref_name]
+
+    return (
+        {
+            "project": project,
+            "name": ds_name,
+            "files": files,
+            "element": element,
+            "sticks": sticks,
+            "coord_path": coord_file.path,
+            "codes": codes,
+        },
+        None,
+    )
+
+
+def _parent_reference(group, used_names: set, files: list, elements: list,
+                      stats: dict):
+    """Draw the parent's coordinates as the ribbon, if it has any.
+
+    Returns ``(name, path, element)`` -- all None when there is no parent
+    file, in which case a builder promotes a hit (``_promote_hit``). Claimed
+    first so the file is called ``reference`` whatever the members are named.
+    """
+    parent_project, parent_coord = _parent_coord_file(group)
+    if parent_coord is None:
+        return None, None, None
+    ref_name = _safe_name("reference", used_names)
+    files.append(
+        {
+            "name": ref_name,
+            "kind": "coordinates",
+            "fileId": parent_coord.id,
+            "projectId": str(parent_project.uuid),
+        }
+    )
+    element = {"file": ref_name, "representations": [_ribbon()]}
+    elements.append(element)
+    stats["parent_present"] = True
+    stats["reference"] = {"project": parent_project.name, "is_parent": True}
+    return ref_name, parent_coord.path, element
+
+
+def _promote_hit(hits: list, stats: dict):
+    """No parent coordinates: the first hit carries the ribbon.
+
+    A campaign whose parent project was never populated (or whose reference
+    model has not been imported yet) otherwise renders as fragments floating
+    in space with nothing to place them against, and says nothing about why.
+    Every member is a full structure, so one of them can carry the ribbon --
+    drawn from the SAME files[] entry that already carries its ligand, so
+    this costs no extra download and no second copy in the viewer.
+
+    The frame is then that dataset's rather than the campaign's. Members are
+    near-isomorphous, so the picture is right; ``stats["reference"]`` records
+    whose frame it is, because a caller that cannot tell cannot explain it.
+
+    Returns ``(name, path, element, movers)``: the promoted hit is the frame,
+    so ``movers`` is every other hit, the ones still to be fitted onto it.
+    """
+    if not hits:
+        return None, None, None, hits
+    exemplar = hits[0]
+    exemplar["element"]["representations"].insert(0, _ribbon())
+    stats["reference"] = {"project": exemplar["project"].name, "is_parent": False}
+    return exemplar["name"], exemplar["coord_path"], exemplar["element"], hits[1:]
+
+
+def _superpose(ref_name: str, ref_path, movers: list, stats: dict,
+               centre=None) -> list:
+    """Fit every mover onto the reference; return the ``superpose[]`` entries.
+
+    Each fit is recorded in ``stats["superpose"]`` with the evidence it
+    rests on, and kept on the hit as ``fit`` so later steps can measure in
+    the frame the scene draws. A dataset that cannot be fitted is still
+    drawn, untransformed, and stats say so.
+
+    With a ``centre`` the fit is local to the site. When the count gate
+    cannot be met inside the radius cap, a global fit stands in and is
+    named as such: past the cap a fit is no longer local in any meaningful
+    sense, and drawing the dataset in its own frame would be worse than a
+    global fit that says what it is. The scene shows the difference too --
+    a global fit's provenance carries no ``radius``.
+    """
+    entries: list = []
+    for hit in movers:
+        fit = superposition.fit_files(ref_path, hit["coord_path"], centre=centre)
+        record = {
+            "project": hit["project"].name,
+            "ok": fit.ok,
+            "atoms": fit.atoms,
+            "radius": fit.radius,
+            "rmsd": fit.rmsd,
+            "reason": fit.reason,
+        }
+        if not fit.ok and centre is not None:
+            fallback = superposition.fit_files(ref_path, hit["coord_path"])
+            if fallback.ok:
+                record.update(
+                    ok=True,
+                    atoms=fallback.atoms,
+                    radius=None,
+                    rmsd=fallback.rmsd,
+                    fallback="global",
+                )
+                fit = fallback
+        stats["superpose"].append(record)
+        hit["fit"] = fit
+        if fit.ok:
+            entries.append(fit.scene_entry(hit["name"], ref_name))
+    return entries
+
+
 def build_summary_scene(group) -> dict:
     """Build the fragment-campaign summary scene for ``group``.
 
@@ -301,166 +641,31 @@ def build_summary_scene(group) -> dict:
         "superpose": [],          # [{project, ok, atoms, radius, rmsd, reason}]
     }
 
-    # -- Parent reference: ribbon -----------------------------------------
-    parent_project, parent_coord = _parent_coord_file(group)
-    if parent_coord is not None:
-        ref_name = _safe_name("reference", used_names)
-        files.append(
-            {
-                "name": ref_name,
-                "kind": "coordinates",
-                "fileId": parent_coord.id,
-                "projectId": str(parent_project.uuid),
-            }
-        )
-        elements.append(
-            {
-                "file": ref_name,
-                "representations": [
-                    {
-                        "style": "CRs",
-                        "selection": "/*/*/*/*",
-                        "colour": PARENT_RIBBON_COLOUR,
-                    }
-                ],
-            }
-        )
-        stats["parent_present"] = True
-        stats["reference"] = {"project": parent_project.name, "is_parent": True}
-    else:
-        ref_name = None
+    ref_name, ref_path, _ref_element = _parent_reference(
+        group, used_names, files, elements, stats
+    )
 
     # -- Member hits: ligand sticks, each with its scoped dictionary ------
     member_memberships = group.memberships.filter(
         type=models.ProjectGroupMembership.MembershipType.MEMBER
     ).select_related("project")
 
-    # Every drawn hit, in order. The first can stand in as the reference when
-    # the campaign's parent has no coordinates of its own, and each is fitted
-    # onto whichever structure ends up as the reference.
     hits: list = []
-
     for membership in member_memberships:
         project = membership.project
         stats["members_total"] += 1
-
-        refine_job = pandda_export._latest_finished_job(project, REFINE_TASK_NAMES)
-        if not refine_job:
-            stats["skipped"].append(
-                {"project": project.name, "reason": "no finished refinement job"}
-            )
+        hit, reason = _resolve_hit(project, used_names)
+        if hit is None:
+            stats["skipped"].append({"project": project.name, "reason": reason})
             continue
-
-        coord_file = _member_coord_file(refine_job)
-        if coord_file is None or not coord_file.path.exists():
-            stats["skipped"].append(
-                {"project": project.name, "reason": "no refined coordinate file"}
-            )
-            continue
-
-        dict_file = _member_dict_file(project, refine_job)
-        dict_path = None
-        if dict_file is not None and dict_file.path.exists():
-            dict_path = dict_file.path
-        else:
-            # Disk-only acedrg dictionary (no File record): inline its text.
-            acedrg_job = pandda_export._latest_finished_job(
-                project, pandda_export.ACEDRG_TASK_NAMES
-            )
-            disk_dict = pandda_export._find_dictionary_cif(acedrg_job)
-            if disk_dict is not None:
-                dict_path = disk_dict
-
-        codes = detect_ligands(coord_file.path, dict_path)
-        if not codes:
-            stats["skipped"].append(
-                {"project": project.name, "reason": "no ligand in refined model"}
-            )
-            continue
-
-        ds_name = _safe_name(project.name, used_names)
-        files.append(
-            {
-                "name": ds_name,
-                "kind": "coordinates",
-                "fileId": coord_file.id,
-                "projectId": str(project.uuid),
-            }
-        )
-
-        dict_ref_name = None
-        if dict_file is not None and dict_file.path.exists():
-            dict_ref_name = _safe_name(f"{ds_name}_dict", used_names)
-            files.append(
-                {
-                    "name": dict_ref_name,
-                    "kind": "dictionary",
-                    "fileId": dict_file.id,
-                    "projectId": str(project.uuid),
-                }
-            )
-        elif dict_path is not None:
-            try:
-                cif_text = Path(dict_path).read_text()
-                dict_ref_name = _safe_name(f"{ds_name}_dict", used_names)
-                files.append(
-                    {
-                        "name": dict_ref_name,
-                        "kind": "dictionary",
-                        "cifText": cif_text,
-                    }
-                )
-            except OSError as exc:
-                logger.warning("Could not inline dictionary %s: %s", dict_path, exc)
-
-        selection = "||".join(f"//*/({code})" for code in codes)
-        element = {
-            "file": ds_name,
-            "representations": [{"style": "CBs", "selection": selection}],
-        }
-        if dict_ref_name:
-            element["dictionaries"] = [dict_ref_name]
-        elements.append(element)
+        files.extend(hit["files"])
+        elements.append(hit["element"])
         stats["hits"] += 1
-        hits.append(
-            {
-                "project": project,
-                "element": element,
-                "name": ds_name,
-                "coord_path": coord_file.path,
-            }
-        )
+        hits.append(hit)
 
-    # -- No parent coordinates: promote a hit to the reference ribbon ------
-    #
-    # A campaign whose parent project was never populated (or whose reference
-    # model has not been imported yet) otherwise renders as fragments floating
-    # in space with nothing to place them against, and says nothing about why.
-    # Every member is a full structure, so one of them can carry the ribbon --
-    # drawn from the SAME files[] entry that already carries its ligand, so
-    # this costs no extra download and no second copy in the viewer.
-    #
-    # The frame is then that dataset's rather than the campaign's. Members are
-    # near-isomorphous, so the picture is right; `stats["reference"]` records
-    # whose frame it is, because a caller that cannot tell cannot explain it.
-    ref_path = parent_coord.path if parent_coord is not None else None
     movers = hits
-    if ref_name is None and hits:
-        exemplar = hits[0]
-        exemplar["element"]["representations"].insert(
-            0,
-            {
-                "style": "CRs",
-                "selection": "/*/*/*/*",
-                "colour": PARENT_RIBBON_COLOUR,
-            },
-        )
-        stats["reference"] = {
-            "project": exemplar["project"].name,
-            "is_parent": False,
-        }
-        ref_name, ref_path = exemplar["name"], exemplar["coord_path"]
-        movers = hits[1:]
+    if ref_name is None:
+        ref_name, ref_path, _ref_element, movers = _promote_hit(hits, stats)
 
     # -- Put every hit in the reference's frame ----------------------------
     #
@@ -470,23 +675,10 @@ def build_summary_scene(group) -> dict:
     # come, the ribbons fan out by an Angstrom or so and binding events that
     # are probably equivalent look different. A whole-campaign summary has
     # no single pocket to align on, so the fit is global, on every CA the
-    # two structures share; the site scene fits locally. A dataset that
-    # cannot be fitted is still drawn, untransformed, and stats say so.
+    # two structures share; the site scene fits locally.
     superpose: list = []
-    for hit in movers:
-        fit = superposition.fit_files(ref_path, hit["coord_path"])
-        stats["superpose"].append(
-            {
-                "project": hit["project"].name,
-                "ok": fit.ok,
-                "atoms": fit.atoms,
-                "radius": fit.radius,
-                "rmsd": fit.rmsd,
-                "reason": fit.reason,
-            }
-        )
-        if fit.ok:
-            superpose.append(fit.scene_entry(hit["name"], ref_name))
+    if ref_path is not None:
+        superpose = _superpose(ref_name, ref_path, movers, stats)
 
     scene = {
         "scene": f"{group.name} - fragment summary",
@@ -503,6 +695,202 @@ def build_summary_scene(group) -> dict:
         scene["view"] = view
 
     return {"scene": scene, "stats": stats}
+
+
+def build_site_scene(group, site, include_unclear: bool = False,
+                     superpose: bool = True) -> dict:
+    """Build the scene for one binding site of a campaign.
+
+    The exemplar (the parent, else a hit) drawn once as a ribbon with the
+    residues around the site origin as sticks, and every dataset judged a
+    hit *at this site* drawn on top as its ligand's sticks, each fitted onto
+    the exemplar locally, on the CAs around the site.
+
+    Membership is the verdict and nothing else: a dataset is in iff it has a
+    ``hit`` evaluation at this site, plus ``unclear`` ones when asked for,
+    in a muted colour. ``empty`` and unevaluated members are out, and there
+    is deliberately no fall-back to ligand detection when a site has no
+    verdicts -- that would show every ligand in the campaign under the name
+    of one site. A site nobody has evaluated gets an honest exemplar-only
+    scene, and ``stats`` says so.
+
+    Each hit's ligand is drawn as every copy of its code (``//*/(CODE)``),
+    as the summary draws it; the camera and slab frame the site, and a copy
+    bound in an adjacent subsite is an observation, not clutter (see
+    ``docs/campaign-site-scene-design.md``, "Draw every copy").
+    """
+    files: list = []
+    elements: list = []
+    used_names: set = set()
+    stats = {
+        "site": {"id": site.id, "name": site.name},
+        "hits_claimed": 0,        # hit verdicts found at this site
+        "hits_drawn": 0,
+        "empty_verdicts": 0,      # somebody looked and found nothing
+        "unclear_verdicts": 0,
+        "unclear_drawn": 0,
+        "skipped": [],            # [{project, reason, nearest}]
+        "parent_present": False,
+        "reference": None,        # {"project": name, "is_parent": bool}
+        "pocket_residues": 0,
+        # Per drawn dataset, the distance from the site origin to its nearest
+        # fragment-like residue, measured after superposition. A hit whose
+        # fragment is far from the site is worth a look; it is not hidden.
+        "drawn": [],              # [{project, verdict, nearest}]
+        "superpose": [],          # [{project, ok, atoms, radius, rmsd, reason, fallback?}]
+    }
+
+    ref_name, ref_path, ref_element = _parent_reference(
+        group, used_names, files, elements, stats
+    )
+
+    # -- Membership: the verdicts at this site ------------------------------
+    #
+    # Only current members. An evaluation outlives the membership it was
+    # recorded under (it hangs off the project and the site, not the
+    # membership row), so a dataset removed from the campaign would otherwise
+    # still be drawn in its site views.
+    Verdict = models.SiteEvaluation.Verdict
+    member_ids = set(
+        group.memberships.filter(
+            type=models.ProjectGroupMembership.MembershipType.MEMBER
+        ).values_list("project_id", flat=True)
+    )
+    # Ordered by project id so the fallback exemplar, when one is needed, is
+    # the lowest-id hit: stable, arbitrary, and recorded as such in stats.
+    evaluations = site.evaluations.select_related("project").order_by("project_id")
+
+    hits: list = []
+    for evaluation in evaluations:
+        if evaluation.project_id not in member_ids:
+            continue
+        verdict = evaluation.verdict
+        if verdict == Verdict.EMPTY:
+            stats["empty_verdicts"] += 1
+            continue
+        if verdict == Verdict.UNCLEAR:
+            stats["unclear_verdicts"] += 1
+            if not include_unclear:
+                continue
+        else:
+            stats["hits_claimed"] += 1
+
+        project = evaluation.project
+        hit, reason = _resolve_hit(project, used_names)
+        if hit is None:
+            stats["skipped"].append(
+                {"project": project.name, "reason": reason, "nearest": None}
+            )
+            continue
+        hit["verdict"] = verdict
+        if verdict == Verdict.UNCLEAR:
+            hit["sticks"]["colour"] = UNCLEAR_COLOUR
+            stats["unclear_drawn"] += 1
+        else:
+            hit["sticks"]["colour"] = HIT_COLOURS[stats["hits_drawn"] % len(HIT_COLOURS)]
+            stats["hits_drawn"] += 1
+        files.extend(hit["files"])
+        elements.append(hit["element"])
+        hits.append(hit)
+
+    movers = hits
+    if ref_name is None:
+        ref_name, ref_path, ref_element, movers = _promote_hit(hits, stats)
+
+    # -- The pocket: the exemplar's residues around the site origin --------
+    #
+    # Taken from the exemplar alone: it is the frame, it is drawn once, and
+    # the pocket from each hit in turn would pile up six copies of the same
+    # side chains. The residue list is spelled out in the scene because a
+    # CID cannot express a sphere, and so that a user can edit it.
+    pocket_selection = None
+    if ref_path is not None:
+        try:
+            exemplar = gemmi.read_structure(str(ref_path))
+        except Exception as exc:  # noqa: BLE001 - no pocket beats no scene
+            logger.warning("Could not read exemplar %s: %s", ref_path, exc)
+            exemplar = None
+        if exemplar is not None:
+            cids = pocket_residue_cids(exemplar, site_position(site))
+            stats["pocket_residues"] = len(cids)
+            if cids:
+                pocket_selection = "||".join(cids)
+                # Straight after the ribbon; a promoted exemplar keeps its
+                # own ligand sticks after both.
+                ref_element["representations"].insert(
+                    1,
+                    {
+                        "style": "CBs",
+                        "selection": pocket_selection,
+                        "colour": POCKET_STICK_COLOUR,
+                    },
+                )
+
+    # -- Fit every hit onto the exemplar, locally, on the site --------------
+    #
+    # A global fit distributes its residual over the whole molecule and none
+    # of it is guaranteed to land anywhere but the pocket; the frame that
+    # must coincide here is the site's. The fit sphere is over-determined,
+    # so a site origin saved in an older frame (a few Angstroms off, see the
+    # design note) trades a few CAs at one edge for a few at the other.
+    superpose_entries: list = []
+    if superpose and ref_path is not None:
+        superpose_entries = _superpose(
+            ref_name, ref_path, movers, stats, centre=site_position(site)
+        )
+
+    for hit in hits:
+        fit = hit.get("fit")
+        transform = fit.transform() if fit is not None and fit.ok else None
+        nearest = None
+        try:
+            nearest = nearest_fragment_distance(
+                gemmi.read_structure(str(hit["coord_path"])), site_position(site), transform
+            )
+        except Exception as exc:  # noqa: BLE001 - a diagnostic, not the picture
+            logger.warning("Could not measure %s: %s", hit["coord_path"], exc)
+        stats["drawn"].append(
+            {"project": hit["project"].name, "verdict": hit["verdict"], "nearest": nearest}
+        )
+
+    # -- Camera: the site's own, with depth clipped to the pocket -----------
+    #
+    # `origin` sets the camera and `slab` only the clip depth, so both are
+    # needed to frame the site (see the grammar). The slab hangs off the
+    # pocket residues rather than the origin because it takes a selection.
+    view = _site_view(site)
+    if pocket_selection:
+        view["slab"] = {
+            "file": ref_name,
+            "selection": pocket_selection,
+            "pad": ENVIRONMENT_RADIUS,
+        }
+
+    scene = {
+        "scene": f"{group.name} - site {site.name}",
+        "version": 1,
+        "authoredIn": {"projectName": group.name},
+        "files": files,
+        **({"superpose": superpose_entries} if superpose_entries else {}),
+        "elements": elements,
+        "view": view,
+        "resolver": {"onMissingResidues": "clamp-and-log"},
+    }
+    return {"scene": scene, "stats": stats}
+
+
+def _site_view(site) -> dict:
+    """The camera a site row saved.
+
+    origin_x/y/z are non-null columns, so a site always has an origin; quat
+    and zoom are navigation extras and may not have been saved.
+    """
+    view: dict = {"origin": site.origin}
+    if site.quat:
+        view["quat"] = site.quat
+    if site.zoom is not None:
+        view["zoom"] = site.zoom
+    return view
 
 
 def _first_site_view(group) -> Optional[dict]:
@@ -523,11 +911,4 @@ def _first_site_view(group) -> Optional[dict]:
     site = group.site_set.first()
     if site is None:
         return None
-    # origin_x/y/z are non-null columns, so a site always has an origin;
-    # quat and zoom are navigation extras and may not have been saved.
-    view: dict = {"origin": site.origin}
-    if site.quat:
-        view["quat"] = site.quat
-    if site.zoom is not None:
-        view["zoom"] = site.zoom
-    return view
+    return _site_view(site)

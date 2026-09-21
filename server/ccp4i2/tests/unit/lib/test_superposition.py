@@ -297,3 +297,24 @@ def test_constants_are_as_designed():
     assert superposition.FIT_RADIUS_STEP == 5.0
     assert superposition.FIT_RADIUS_MAX == 30.0
     assert superposition.MIN_FIT_CAS == 12
+
+
+def test_transform_applies_the_same_fit_as_the_scene_entry():
+    """``FitResult.transform()`` is the matrix the scene carries, as gemmi
+    would apply it -- so a distance measured through it is measured in the
+    frame the viewer draws."""
+    ref = _structure(_helix_cas(20))
+    mov = _structure(_moved(_helix_cas(20)))
+    result = fit_structures(ref, mov)
+    assert result.ok
+    transform = result.transform()
+    ref_cas = superposition.ca_positions(ref)
+    mov_cas = superposition.ca_positions(mov)
+    for key, pos in ref_cas.items():
+        moved_back = gemmi.Position(transform.apply(mov_cas[key]))
+        assert moved_back.dist(pos) < 1e-3
+
+
+def test_transform_of_a_failed_fit_raises():
+    with pytest.raises(ValueError):
+        superposition.FitResult(ok=False, reason="nothing").transform()
