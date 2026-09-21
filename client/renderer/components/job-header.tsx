@@ -10,7 +10,7 @@ import { Job } from "../types/models";
 import EditableTypography from "./editable-typography";
 import { useState } from "react";
 import { CCP4i2JobAvatar } from "./job-avatar";
-import { JobMenu, useJobMenu } from "../providers/job-context-menu";
+import { useJobMenu } from "../providers/job-context-menu";
 import { Menu } from "@mui/icons-material";
 import { useJob, useProjectJobs } from "../utils";
 import { useApi } from "../api";
@@ -116,7 +116,6 @@ export const JobHeader: React.FC<JobHeaderProps> = ({ job, mutateJobs }) => {
           <Menu />
         </Button>
       </Stack>
-      <JobMenu />
     </>
   );
 };

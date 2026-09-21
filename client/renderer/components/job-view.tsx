@@ -19,7 +19,6 @@ import { TaskContainer } from "../components/task/task-interfaces/task-container
 import { prettifyXml, useJob, usePrevious, useProject } from "../utils";
 import ToolBar from "../components/tool-bar";
 import { JobCommentEditor } from "../components/job-comment-editor";
-import { JobMenu } from "../providers/job-context-menu";
 import { JobDirectoryView } from "../components/job-directory-view";
 import { useApi } from "../api";
 import { apiPut } from "../api-fetch";
@@ -366,7 +365,6 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           )}
         </Box>
         {tabValue == 3 && jobid && <CCP4i2WhatNext />}
-        <JobMenu />
       </Stack>
     </>
   );

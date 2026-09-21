@@ -1,5 +1,6 @@
 import json
 import logging
+import math
 import gemmi
 import importlib
 from typing import Dict, Type
@@ -182,7 +183,29 @@ def digest_param_file(the_job, object_path):
         return {"status": "Failed", "reason": str(err), "digest": {}}
 
 
+def json_safe(obj):
+    """Replace non-finite floats (NaN, +/-inf) with None, recursively.
+
+    A digest is sent as JSON, which has no NaN: one in the payload makes the
+    renderer raise and the endpoint answer 500 instead of a digest. They do
+    occur in real files -- gemmi's CifToMtz writes a NaN dataset wavelength
+    when the structure-factor mmCIF records none -- and NaN is truthy, so an
+    ``if value:`` guard does not keep it out.
+    """
+    if isinstance(obj, float):
+        return obj if math.isfinite(obj) else None
+    if isinstance(obj, dict):
+        return {key: json_safe(value) for key, value in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [json_safe(item) for item in obj]
+    return obj
+
+
 def digest_file_object(file_object: CDataFile):
+    return json_safe(_digest_file_object(file_object))
+
+
+def _digest_file_object(file_object: CDataFile):
     if not isinstance(file_object, CCP4File.CDataFile):
         return {"status": "Failed", "reason": "Not a valid file object", "digest": {}}
     if not file_object.isSet():
