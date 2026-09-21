@@ -38,6 +38,54 @@ describe("runSuperpose: method matrix → apply_transformation_to_atom_selection
     };
   }
 
+  it("retries one higher when coot rejects the TER-free atom count", async () => {
+    // coot gates on its mmdb Select size, which counts TER pseudo-atoms, while
+    // get_number_of_atoms skips them -- so the documented pairing is rejected
+    // for any structure with a polymer terminus and coot moves nothing at all.
+    // Real files: 1124/1125/1128 atoms, one TER each, accepted one higher.
+    const calls: number[] = [];
+    const cootCommand = vi.fn(async (kwargs: { commandArgs: unknown[] }) => {
+      const n = kwargs.commandArgs[2] as number;
+      calls.push(n);
+      return { data: { result: { result: n === 121 ? 120 : 0 } } };
+    });
+    const mol = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A", "B"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any);
+
+    expect(calls).toEqual([120, 121]);   // honest count first, then +1
+    expect(mol.setAtomsDirty).toHaveBeenCalled();
+    expect(mol.redraw).toHaveBeenCalled();
+  });
+
+  it("gives up, rather than looping, when no count in range is accepted", async () => {
+    const cootCommand = vi.fn(async () => ({ data: { result: { result: 0 } } }));
+    const mol = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    await expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any),
+    ).rejects.toThrow(/no count in 120\.\.121 matched/);
+    // Bounded: one chain means two attempts, never an unbounded walk.
+    expect(cootCommand).toHaveBeenCalledTimes(2);
+    expect(mol.setAtomsDirty).not.toHaveBeenCalled();
+  });
+
   it("passes mat row-major, a ZERO rotation centre, then vec as the translation", async () => {
     const mol = mockMolecule();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

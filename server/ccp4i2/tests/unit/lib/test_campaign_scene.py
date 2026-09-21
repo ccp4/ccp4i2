@@ -306,3 +306,54 @@ def test_nearest_fragment_distance_measures_after_the_transform():
     shift = gemmi.Transform(gemmi.Mat33(), gemmi.Vec3(-10, 0, 0))
     assert campaign_scene.nearest_fragment_distance(st, ORIGIN) == pytest.approx(10.0)
     assert campaign_scene.nearest_fragment_distance(st, ORIGIN, shift) == pytest.approx(0.0)
+
+
+# --------------------------------------------------------------------------
+# site_position: the sign that cost a whole implementation round
+# --------------------------------------------------------------------------
+
+class _FakeSite:
+    def __init__(self, x, y, z):
+        self.origin_x, self.origin_y, self.origin_z = x, y, z
+
+    @property
+    def origin(self):
+        return [self.origin_x, self.origin_y, self.origin_z]
+
+
+def test_site_position_negates_the_stored_origin():
+    """A CampaignSite stores Moorhen's view origin, not a position.
+
+    Moorhen's origin is the negation of the point at screen centre, and the
+    site save/restore path stores and restores it raw, so the two negations
+    cancel and nothing looks wrong until something treats the stored value as
+    a coordinate. The first thing that did -- the site scene's pocket
+    selection -- looked 41 A from the protein and found nothing.
+    """
+    site = _FakeSite(24.303, 8.865, -0.941)
+    assert campaign_scene.site_position(site) == (-24.303, -8.865, 0.941)
+
+
+def test_site_position_is_what_finds_the_pocket(tmp_path):
+    """The negated origin selects residues; the stored one selects nothing.
+
+    Pins the direction, not just the arithmetic: a sign flip that still
+    negated *something* would pass the test above and fail this one.
+    """
+    path = tmp_path / "pocket.pdb"
+    _write_pdb(path, ligand_code=None)
+    st = gemmi.read_structure(str(path))
+
+    centre = campaign_scene.pocket_residue_cids(st, (0.0, 0.0, 0.0), radius=20.0)
+    assert centre, "the fixture should have residues near the real origin"
+
+    site = _FakeSite(0.0, 0.0, 0.0)
+    assert campaign_scene.pocket_residue_cids(
+        st, campaign_scene.site_position(site), radius=20.0
+    ) == centre
+
+    # Off-centre: stored (30,0,0) means the screen was centred on (-30,0,0).
+    away = _FakeSite(300.0, 0.0, 0.0)
+    assert campaign_scene.pocket_residue_cids(
+        st, campaign_scene.site_position(away), radius=20.0
+    ) == []

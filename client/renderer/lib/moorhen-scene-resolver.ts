@@ -1117,11 +1117,21 @@ export async function runSuperpose(
  *   implementation subtracts the centre on both sides of the rotation, so a
  *   non-zero centre is wrong in a second way).
  *
- * - `n_atoms` is a validation count: coot moves nothing unless it equals
- *   the size of the CID selection. It is taken from coot's own
- *   `get_number_of_atoms` (model 1, TER records excluded), which is the set
- *   a whole-molecule CID selects for a single-model structure. A zero moved
- *   count is raised rather than left as a silent no-op.
+ * - `n_atoms` is a validation count, and coot's two sides of it disagree.
+ *   It gates on the size of its mmdb `Select`, which counts the TER
+ *   pseudo-atoms mmdb keeps, while `get_number_of_atoms` walks model 1 and
+ *   skips them. So the documented pairing -- pass what
+ *   `get_number_of_atoms` returns -- is short by one per polymer terminus
+ *   and coot moves nothing at all. Confirmed against real files: three
+ *   structures of 1124/1125/1128 atoms with one TER each were rejected at
+ *   their atom count and accepted one higher. Coot's own tests use a single
+ *   residue and a copied fragment, neither of which has a TER, so the
+ *   parameter has never been exercised where it can fail.
+ *
+ *   There is no API for the selection size, so we try the honest count
+ *   first (right for a molecule with no TER) and walk up by at most the
+ *   number of chains. Every rejected attempt is a true no-op: coot returns
+ *   0 having touched nothing, so retrying cannot double-apply.
  */
 async function applyMatrix(
   sp: SceneSuperposeMatrix,
@@ -1129,18 +1139,39 @@ async function applyMatrix(
 ): Promise<void> {
   const molNo = mov.molNo as number;
   const nAtoms = await mov.getNumberOfAtoms();
-  const response = await mov.commandCentre.cootCommand(
-    {
-      command: "apply_transformation_to_atom_selection",
-      returnType: "int",
-      commandArgs: [molNo, "/*/*/*/*", nAtoms, ...sp.mat, 0, 0, 0, ...sp.vec],
-      changesMolecules: [molNo],
-    },
-    true,
-  );
-  const moved = response?.data?.result?.result;
-  if (moved === 0) {
-    throw new Error(`coot moved no atoms (selection count ${nAtoms} was not accepted)`);
+  // One TER per polymer terminus is the realistic gap; bound the walk by the
+  // chain count so a genuinely wrong count fails fast rather than looping.
+  const maxExtra = Math.max(1, mov.getChainNames?.().length ?? 1);
+
+  let moved = 0;
+  let accepted = -1;
+  for (let extra = 0; extra <= maxExtra; extra++) {
+    const response = await mov.commandCentre.cootCommand(
+      {
+        command: "apply_transformation_to_atom_selection",
+        returnType: "int",
+        commandArgs: [molNo, "/*/*/*/*", nAtoms + extra, ...sp.mat, 0, 0, 0, ...sp.vec],
+        changesMolecules: [molNo],
+      },
+      true,
+    );
+    moved = response?.data?.result?.result ?? 0;
+    if (moved > 0) {
+      accepted = nAtoms + extra;
+      break;
+    }
+  }
+  if (moved <= 0) {
+    throw new Error(
+      `coot moved no atoms for ${sp.move}: no count in ${nAtoms}..${nAtoms + maxExtra} ` +
+      `matched its atom selection`,
+    );
+  }
+  if (accepted !== nAtoms) {
+    console.info(
+      `[scene] ${sp.move}: coot wanted ${accepted} atoms where get_number_of_atoms ` +
+      `reported ${nAtoms} (TER accounting); moved ${moved}`,
+    );
   }
   mov.setAtomsDirty(true);
   await mov.redraw();

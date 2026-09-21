@@ -25,7 +25,17 @@ from ccp4i2.lib import campaign_scene
 
 from .test_summary_scene_api import LIG_SHIFT, _build_campaign
 
-SITE_ORIGIN = (5.0, 5.0, 5.0)
+# The real-space point the fixture's site sits on -- inside the poly-Ala helix
+# that `_build_campaign` writes, so a pocket really is found there.
+SITE_POSITION = (5.0, 5.0, 5.0)
+
+# What a CampaignSite actually STORES is Moorhen's view origin, which is the
+# negation of that point (see campaign_scene.site_position for why, and for
+# the measurement that proved it). Building the fixture the way the app builds
+# it is the whole value of this constant: a fixture holding a real-space
+# coordinate would let a sign error through, and did.
+SITE_ORIGIN = tuple(-c for c in SITE_POSITION)
+
 Verdict = models.SiteEvaluation.Verdict
 
 

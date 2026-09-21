@@ -217,6 +217,29 @@ def _residue_cid(chain_name: str, res: gemmi.Residue) -> str:
     return cid
 
 
+def site_position(site) -> tuple:
+    """The site's centre as a REAL-SPACE coordinate.
+
+    ``CampaignSite.origin`` is not one. It is Moorhen's view origin, which is
+    the *negation* of the point at the centre of the screen: Moorhen's own
+    code negates it whenever it hands the value to something that wants real
+    coordinates (see ``GetMonomer``, which passes
+    ``origin.map(coord => -coord)`` to ``get_monomer_and_position_at``). The
+    site save/restore path stores and restores it raw, so the two negations
+    cancel and the camera round-trips correctly -- which is why the sign error
+    stayed invisible until something treated the stored value as a position.
+
+    Measured on the BAZ2B demo campaign: the stored origin is 40.9 A from the
+    nearest CA of the reference with zero CAs inside 30 A, while its negation
+    is 3.75 A away with 14 CAs inside 8 A. The negation is the pocket.
+
+    Anything selecting atoms or centring a fit must go through here.
+    ``view.origin`` in the scene must NOT -- that is handed back to Moorhen,
+    which wants its own convention.
+    """
+    return (-site.origin_x, -site.origin_y, -site.origin_z)
+
+
 def pocket_residue_cids(structure: gemmi.Structure, origin,
                         radius: float = ENVIRONMENT_RADIUS) -> list:
     """CIDs of the residues with any atom within ``radius`` of ``origin``.
@@ -788,7 +811,7 @@ def build_site_scene(group, site, include_unclear: bool = False,
             logger.warning("Could not read exemplar %s: %s", ref_path, exc)
             exemplar = None
         if exemplar is not None:
-            cids = pocket_residue_cids(exemplar, site.origin)
+            cids = pocket_residue_cids(exemplar, site_position(site))
             stats["pocket_residues"] = len(cids)
             if cids:
                 pocket_selection = "||".join(cids)
@@ -813,7 +836,7 @@ def build_site_scene(group, site, include_unclear: bool = False,
     superpose_entries: list = []
     if superpose and ref_path is not None:
         superpose_entries = _superpose(
-            ref_name, ref_path, movers, stats, centre=tuple(site.origin)
+            ref_name, ref_path, movers, stats, centre=site_position(site)
         )
 
     for hit in hits:
@@ -822,7 +845,7 @@ def build_site_scene(group, site, include_unclear: bool = False,
         nearest = None
         try:
             nearest = nearest_fragment_distance(
-                gemmi.read_structure(str(hit["coord_path"])), site.origin, transform
+                gemmi.read_structure(str(hit["coord_path"])), site_position(site), transform
             )
         except Exception as exc:  # noqa: BLE001 - a diagnostic, not the picture
             logger.warning("Could not measure %s: %s", hit["coord_path"], exc)
