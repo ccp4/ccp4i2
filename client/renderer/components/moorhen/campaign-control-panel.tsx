@@ -69,6 +69,7 @@ import { PasteViewLinkField } from "./paste-view-link-field";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
+import { AddLigandButton } from "./add-ligand-button";
 import {
   ProjectGroup,
   CampaignSite,
@@ -99,6 +100,13 @@ interface CampaignControlPanelProps {
   ligandDictFileId?: number | null;
   /** Ligand name for display */
   ligandName?: string | null;
+  /** The codes the member's dictionaries define, for "Add ligand here". */
+  ligandCodes?: string[];
+  /** The file the member's coordinates were loaded from: the molecule the
+   *  ligand is added to is found by this, never by which one is active. */
+  memberCoordFileId?: number | null;
+  /** Place one ligand code at the view centre in the member's molecule. */
+  onAddLigand?: (code: string) => Promise<void>;
   /** Maps loaded in Moorhen for contour control */
   maps?: moorhen.Map[];
   /** Callback to change map contour level */
@@ -139,6 +147,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   onRepresentationsChange,
   ligandDictFileId,
   ligandName,
+  ligandCodes,
+  memberCoordFileId,
+  onAddLigand,
   maps,
   onMapContourLevelChange,
   evaluations,
@@ -544,6 +555,19 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             </Box>
           </Stack>
         </>
+      )}
+
+      {/* Shown for any selected dataset, dictionary or not, so the disabled
+          state can say why rather than the button silently not existing. */}
+      {selectedMemberProjectId && onAddLigand && (
+        <Box sx={{ mb: 1 }}>
+          <AddLigandButton
+            ligandCodes={ligandCodes ?? []}
+            molecules={molecules ?? []}
+            memberCoordFileId={memberCoordFileId ?? null}
+            onAddLigand={onAddLigand}
+          />
+        </Box>
       )}
 
       <Divider sx={{ my: 1 }} />

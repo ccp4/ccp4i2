@@ -253,6 +253,139 @@ def test_summary_scene_endpoint(bypass_api_permissions, test_project_path):
             assert dname in dict_names
 
 
+def test_summary_scene_promotes_a_hit_when_the_parent_has_no_model(
+    bypass_api_permissions, test_project_path
+):
+    """With no parent coordinates, a hit carries the reference ribbon.
+
+    A campaign whose parent project was never populated used to render as
+    fragments floating in space with no reference and no explanation. The
+    ribbon now comes from a member, drawn from the same files[] entry that
+    already carries its ligand -- so no second copy is downloaded -- and
+    stats say whose frame the scene is in.
+    """
+    test_project_path.mkdir(parents=True, exist_ok=True)
+    group = _build_campaign(test_project_path)
+    # Strip the parent, leaving the members untouched: the state a campaign
+    # is in before its reference model has been imported.
+    group.memberships.filter(
+        type=models.ProjectGroupMembership.MembershipType.PARENT
+    ).delete()
+
+    client = APIClient()
+    response = client.get(
+        f"/api/ccp4i2/projectgroups/{group.id}/summary_scene/"
+    )
+    assert response.status_code == 200, response.content
+    data = response.json()
+
+    assert data["stats"]["parent_present"] is False
+    assert data["stats"]["reference"]["is_parent"] is False
+    exemplar = data["stats"]["reference"]["project"]
+    assert exemplar in {"frag_drg", "frag_lig"}
+
+    scene = data["scene"]
+    # Exactly one ribbon, and it is a member's.
+    ribbons = [
+        e for e in scene["elements"]
+        if any(r["style"] == "CRs" for r in e["representations"])
+    ]
+    assert len(ribbons) == 1
+    assert ribbons[0]["file"] != "reference"
+
+    # It is the SAME element as that member's ligand: one file, two
+    # representations, not a duplicate download.
+    styles = [r["style"] for r in ribbons[0]["representations"]]
+    assert styles == ["CRs", "CBs"], styles
+    assert len([f for f in scene["files"] if f["name"] == ribbons[0]["file"]]) == 1
+
+    # Both hits still draw their ligands.
+    assert data["stats"]["hits"] == 2
+
+
+def test_summary_scene_parent_reference_wins_over_a_hit(
+    bypass_api_permissions, test_project_path
+):
+    """With a parent present, the ribbon is the parent's and no hit gains one."""
+    test_project_path.mkdir(parents=True, exist_ok=True)
+    group = _build_campaign(test_project_path)
+
+    client = APIClient()
+    response = client.get(
+        f"/api/ccp4i2/projectgroups/{group.id}/summary_scene/"
+    )
+    assert response.status_code == 200, response.content
+    data = response.json()
+
+    assert data["stats"]["reference"] == {
+        "project": "parent_ref", "is_parent": True
+    }
+    ribbons = [
+        e for e in data["scene"]["elements"]
+        if any(r["style"] == "CRs" for r in e["representations"])
+    ]
+    assert len(ribbons) == 1
+    assert ribbons[0]["file"] == "reference"
+
+
+def test_summary_scene_carries_the_first_site_camera(
+    bypass_api_permissions, test_project_path
+):
+    """The scene's view comes from the campaign's first binding site.
+
+    A regression test with a history: sites moved out of a ProjectGroup JSON
+    field into the CampaignSite table in migration 0024, and the builder went
+    on reading the old attribute through a defaulted getattr. Nothing raised;
+    scenes simply came back with no camera, so the viewer opened on whatever
+    it happened to be looking at. Assert the camera is there, and that it is
+    the first site's by display order rather than by insertion.
+    """
+    test_project_path.mkdir(parents=True, exist_ok=True)
+    group = _build_campaign(test_project_path)
+
+    # Added second but ordered first: pins ordering, not insertion order.
+    models.CampaignSite.objects.create(
+        group=group, name="second pocket",
+        origin_x=1.0, origin_y=2.0, origin_z=3.0, order=1,
+    )
+    models.CampaignSite.objects.create(
+        group=group, name="main pocket",
+        origin_x=12.5, origin_y=-3.25, origin_z=28.75,
+        quat=[0.0, 0.0, 0.0, 1.0], zoom=0.35, order=0,
+    )
+
+    client = APIClient()
+    response = client.get(
+        f"/api/ccp4i2/projectgroups/{group.id}/summary_scene/"
+    )
+    assert response.status_code == 200, response.content
+    view = response.json()["scene"]["view"]
+
+    assert view["origin"] == [12.5, -3.25, 28.75]
+    assert view["quat"] == [0.0, 0.0, 0.0, 1.0]
+    assert view["zoom"] == 0.35
+
+
+def test_summary_scene_without_sites_has_no_view(
+    bypass_api_permissions, test_project_path
+):
+    """No sites means no camera key at all -- not a camera at the origin.
+
+    The distinction matters: an absent `view` leaves the viewer's own framing
+    alone, where `origin: [0, 0, 0]` would actively point it at the corner of
+    the cell.
+    """
+    test_project_path.mkdir(parents=True, exist_ok=True)
+    group = _build_campaign(test_project_path)
+
+    client = APIClient()
+    response = client.get(
+        f"/api/ccp4i2/projectgroups/{group.id}/summary_scene/"
+    )
+    assert response.status_code == 200, response.content
+    assert "view" not in response.json()["scene"]
+
+
 def test_summary_scene_empty_campaign(bypass_api_permissions, test_project_path):
     """A campaign with no members yields an empty-but-valid scene, not a 500."""
     test_project_path.mkdir(parents=True, exist_ok=True)

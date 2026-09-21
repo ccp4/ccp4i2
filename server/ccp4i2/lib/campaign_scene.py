@@ -193,16 +193,24 @@ def _parent_coord_file(group):
     if not parent_membership:
         return None, None
     parent_project = parent_membership.project
-    coord_file = (
-        models.File.objects.filter(
-            job__project=parent_project,
-            job_param_name="XYZOUT",
-            type__name="chemical/x-pdb",
-        )
-        .order_by("-id")
-        .first()
+    # Match what the member path accepts. This used to demand
+    # job_param_name="XYZOUT" AND chemical/x-pdb, which silently excluded a
+    # reference imported as mmCIF or held under any other parameter -- and a
+    # missing parent file costs the whole scene its reference structure.
+    candidates = models.File.objects.filter(
+        job__project=parent_project, type__name__in=COORD_FILE_TYPES
     )
-    return parent_project, coord_file
+    for queryset in (
+        candidates.filter(job_param_name="XYZOUT", type__name="chemical/x-pdb"),
+        candidates.filter(job_param_name="XYZOUT"),
+        candidates,
+    ):
+        for coord_file in queryset.order_by("-id"):
+            # A File row whose file is gone would put a fileId in the scene
+            # that 404s on fetch, which looks exactly like no ribbon at all.
+            if coord_file.path.exists():
+                return parent_project, coord_file
+    return parent_project, None
 
 
 def _member_coord_file(job):
@@ -282,6 +290,10 @@ def build_summary_scene(group) -> dict:
         "hits": 0,
         "skipped": [],            # [{project, reason}]
         "parent_present": False,
+        # Which structure ended up as the reference ribbon, and whether it was
+        # the campaign's parent or a stand-in. A caller that cannot tell those
+        # apart cannot explain a scene whose frame is one dataset's.
+        "reference": None,        # {"project": name, "is_parent": bool}
     }
 
     # -- Parent reference: ribbon -----------------------------------------
@@ -309,6 +321,7 @@ def build_summary_scene(group) -> dict:
             }
         )
         stats["parent_present"] = True
+        stats["reference"] = {"project": parent_project.name, "is_parent": True}
     else:
         ref_name = None
 
@@ -316,6 +329,10 @@ def build_summary_scene(group) -> dict:
     member_memberships = group.memberships.filter(
         type=models.ProjectGroupMembership.MembershipType.MEMBER
     ).select_related("project")
+
+    # The first hit, kept so it can stand in as the reference when the
+    # campaign's parent has no coordinates of its own.
+    first_hit = None
 
     for membership in member_memberships:
         project = membership.project
@@ -399,6 +416,35 @@ def build_summary_scene(group) -> dict:
             element["dictionaries"] = [dict_ref_name]
         elements.append(element)
         stats["hits"] += 1
+        if first_hit is None:
+            first_hit = (project, element)
+
+    # -- No parent coordinates: promote a hit to the reference ribbon ------
+    #
+    # A campaign whose parent project was never populated (or whose reference
+    # model has not been imported yet) otherwise renders as fragments floating
+    # in space with nothing to place them against, and says nothing about why.
+    # Every member is a full structure, so one of them can carry the ribbon --
+    # drawn from the SAME files[] entry that already carries its ligand, so
+    # this costs no extra download and no second copy in the viewer.
+    #
+    # The frame is then that dataset's rather than the campaign's. Members are
+    # near-isomorphous, so the picture is right; `stats["reference"]` records
+    # whose frame it is, because a caller that cannot tell cannot explain it.
+    if ref_name is None and first_hit is not None:
+        exemplar_project, exemplar_element = first_hit
+        exemplar_element["representations"].insert(
+            0,
+            {
+                "style": "CRs",
+                "selection": "/*/*/*/*",
+                "colour": PARENT_RIBBON_COLOUR,
+            },
+        )
+        stats["reference"] = {
+            "project": exemplar_project.name,
+            "is_parent": False,
+        }
 
     scene = {
         "scene": f"{group.name} - fragment summary",
@@ -417,16 +463,28 @@ def build_summary_scene(group) -> dict:
 
 
 def _first_site_view(group) -> Optional[dict]:
-    """Camera from the campaign's first saved binding site, if any."""
-    sites = getattr(group, "sites", None) or []
-    if not sites:
+    """Camera from the campaign's first binding site, if any.
+
+    Reads the ``CampaignSite`` table, ordered by the site's display ``order``
+    (``CampaignSite.Meta``), so "first" here is the first site the user sees
+    in the campaign panel.
+
+    This used to read a ``sites`` JSON attribute on the group. Migration 0024
+    moved sites into their own table and ``ProjectGroup.sites`` stopped
+    existing, but the read was a ``getattr(group, "sites", None)`` whose
+    default silently turned a missing attribute into "this campaign has no
+    sites" -- so every summary scene came back with no camera at all, and
+    nothing failed to say so. Reach for a real attribute, not a defaulted
+    getattr, precisely so that the next such move breaks loudly.
+    """
+    site = group.site_set.first()
+    if site is None:
         return None
-    site = sites[0]
-    view: dict = {}
-    if site.get("origin"):
-        view["origin"] = site["origin"]
-    if site.get("quat"):
-        view["quat"] = site["quat"]
-    if site.get("zoom") is not None:
-        view["zoom"] = site["zoom"]
-    return view or None
+    # origin_x/y/z are non-null columns, so a site always has an origin;
+    # quat and zoom are navigation extras and may not have been saved.
+    view: dict = {"origin": site.origin}
+    if site.quat:
+        view["quat"] = site.quat
+    if site.zoom is not None:
+        view["zoom"] = site.zoom
+    return view

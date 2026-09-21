@@ -305,9 +305,13 @@ change so that plain assignment rebinds.
    loudly enough that the cells differed.
 4. ~~Build the Sites column~~ — done, above.
 5. ~~Sweep for the `__setattr__` coercion pattern~~ — done, above.
-6. **Still not started: the "place ligand here" button** in the Moorhen
-   campaign page (a direct Coot API call in place of the generic "Get
-   monomer" dialog).
+6. ~~Still not started: the "place ligand here" button~~ — **done**
+   2026-09-21, client-only. Moorhen already had the whole sequence as
+   `MoorhenMolecule.addLigandOfType()`, so the work was deciding *which code*
+   (the job's dictionary comp_ids — not `detect_ligands`, because at that
+   moment the ligand is not in the coordinates) and *which molecule* (found by
+   loader URL, never the active one). Design and as-built notes:
+   [campaign-place-ligand-design.md](campaign-place-ligand-design.md).
 7. **`member-project-row.tsx` is dead code** — exported from the campaigns
    index but rendered nowhere; the virtualized table has its own row. It did
    not get the Sites column. Delete it, or wire it up.
