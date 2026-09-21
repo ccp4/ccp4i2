@@ -50,6 +50,7 @@ import {
 } from "@mui/material";
 import {
   Place as PlaceIcon,
+  Preview as PreviewIcon,
   Add as AddIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
@@ -83,6 +84,10 @@ interface CampaignControlPanelProps {
   campaign: ProjectGroup;
   sites: CampaignSite[];
   onGoToSite: (site: CampaignSite) => void;
+  /** Open the site's scene: every hit recorded there, fitted on the pocket.
+   *  Going TO a site moves the camera in what is loaded; VIEWING a site
+   *  loads what was found there. Different acts, so different controls. */
+  onViewSite?: (site: CampaignSite) => void;
   onSaveCurrentAsSite: (name: string) => Promise<void>;
   onUpdateSite: (siteId: number, name: string, updatePosition: boolean) => Promise<void>;
   onDeleteSite: (siteId: number) => Promise<void>;
@@ -134,6 +139,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   campaign,
   sites,
   onGoToSite,
+  onViewSite,
   onSaveCurrentAsSite,
   onUpdateSite,
   onDeleteSite,
@@ -646,6 +652,22 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                       <PlaceIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
+                  {onViewSite && (
+                    <Tooltip title="View this site: every hit found here, overlaid">
+                      <IconButton
+                        edge="end"
+                        size="small"
+                        onClick={(event) => {
+                          // The row itself goes to the site; this does not.
+                          event.stopPropagation();
+                          onViewSite(site);
+                        }}
+                        color="primary"
+                      >
+                        <PreviewIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  )}
                   {selectedMemberProjectId && onSetVerdict && (
                     <SiteVerdictControl
                       verdict={verdictBySite.get(site.id)}

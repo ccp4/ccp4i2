@@ -547,7 +547,8 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       }
     }
     try {
-      await runSuperpose(sp, mov, ref);
+      const note = await runSuperpose(sp, mov, ref);
+      if (note) result.log.push({ file: sp.move, domain, message: note });
     } catch (e) {
       console.warn(`[scene] superpose failed (${sp.method} ${sp.move}→${target}):`, e);
       result.log.push({
@@ -1075,10 +1076,9 @@ export async function runSuperpose(
   sp: SceneSuperpose,
   mov: moorhen.Molecule,
   ref?: moorhen.Molecule,
-): Promise<void> {
+): Promise<string | void> {
   if (sp.method === "matrix") {
-    await applyMatrix(sp, mov);
-    return;
+    return await applyMatrix(sp, mov);
   }
   if (!ref) throw new Error(`${sp.method} superpose needs the reference molecule`);
   if (sp.method === "ssm") {
@@ -1117,33 +1117,89 @@ export async function runSuperpose(
  *   implementation subtracts the centre on both sides of the rotation, so a
  *   non-zero centre is wrong in a second way).
  *
- * - `n_atoms` is a validation count: coot moves nothing unless it equals
- *   the size of the CID selection. It is taken from coot's own
- *   `get_number_of_atoms` (model 1, TER records excluded), which is the set
- *   a whole-molecule CID selects for a single-model structure. A zero moved
- *   count is raised rather than left as a silent no-op.
+ * - `n_atoms` is a validation count and coot moves NOTHING unless it equals
+ *   the size of its mmdb `Select`. What that size is, we do not reliably
+ *   know: `get_number_of_atoms` walks model 1 and is not it, and two
+ *   hypotheses (TER pseudo-atoms raising it by one per chain; alternate
+ *   conformers lowering it) each failed against real data -- a 1124-atom,
+ *   one-chain, one-TER structure with five A and five B altlocs rejected
+ *   both 1124 and 1125.
+ *
+ *   Coot's own two tests pass a single residue and a copied fragment, so the
+ *   parameter has never been exercised on anything with a TER or an altloc,
+ *   and its ERROR message naming the real count goes to stdout where the
+ *   browser cannot read it.
+ *
+ *   So rather than guess a third time, probe: a small bounded set of CIDs
+ *   and counts around the honest one, most likely first. Every rejected
+ *   attempt is a true no-op -- coot returns 0 having touched nothing -- so
+ *   this cannot double-apply, and the accepted pair is logged so the rule
+ *   can be derived from one real run and this replaced by arithmetic.
  */
 async function applyMatrix(
   sp: SceneSuperposeMatrix,
   mov: moorhen.Molecule,
-): Promise<void> {
+): Promise<string | void> {
   const molNo = mov.molNo as number;
   const nAtoms = await mov.getNumberOfAtoms();
-  const response = await mov.commandCentre.cootCommand(
-    {
-      command: "apply_transformation_to_atom_selection",
-      returnType: "int",
-      commandArgs: [molNo, "/*/*/*/*", nAtoms, ...sp.mat, 0, 0, 0, ...sp.vec],
-      changesMolecules: [molNo],
-    },
-    true,
-  );
-  const moved = response?.data?.result?.result;
-  if (moved === 0) {
-    throw new Error(`coot moved no atoms (selection count ${nAtoms} was not accepted)`);
+  const nChains = Math.max(1, mov.getChainNames?.().length ?? 1);
+
+  // "//" is the whole-molecule CID coot's own test uses; "/*/*/*/*" is the
+  // explicit form. Try both, because which one mmdb agrees with is part of
+  // what is unknown here.
+  const cids = ["//", "/*/*/*/*"];
+  // Most likely first: the honest count, then one TER per chain, then the
+  // altloc-suppressed counts below it. Bounded either way.
+  const deltas = [0, 1, nChains, ...range(2, nChains + 2), ...range(-1, -17, -1)];
+
+  for (const cid of cids) {
+    for (const delta of dedupe(deltas)) {
+      const count = nAtoms + delta;
+      if (count <= 0) continue;
+      const response = await mov.commandCentre.cootCommand(
+        {
+          command: "apply_transformation_to_atom_selection",
+          returnType: "int",
+          commandArgs: [molNo, cid, count, ...sp.mat, 0, 0, 0, ...sp.vec],
+          changesMolecules: [molNo],
+        },
+        true,
+      );
+      const moved = response?.data?.result?.result ?? 0;
+      if (moved > 0) {
+        mov.setAtomsDirty(true);
+        await mov.redraw();
+        // Report only the surprising case: the first candidate is the one we
+        // believe is right, so a note here means the belief is wrong and the
+        // probe earned its keep. Goes to the resolver log, which the Scenes
+        // panel shows -- the browser console is awkward to reach in Electron.
+        if (delta !== 0 || cid !== cids[0]) {
+          const note =
+            `coot accepted cid "${cid}" with ${count} atoms ` +
+            `(get_number_of_atoms said ${nAtoms}, delta ${delta >= 0 ? "+" : ""}${delta}); ` +
+            `moved ${moved}`;
+          console.info(`[scene] ${sp.move}: ${note}`);
+          return note;
+        }
+        return;
+      }
+    }
   }
-  mov.setAtomsDirty(true);
-  await mov.redraw();
+  throw new Error(
+    `coot moved no atoms for ${sp.move}: no cid/count combination around ` +
+    `${nAtoms} matched its atom selection`,
+  );
+}
+
+/** Inclusive-exclusive integer range, for building the probe order. */
+function range(from: number, to: number, step = 1): number[] {
+  const out: number[] = [];
+  for (let i = from; step > 0 ? i < to : i > to; i += step) out.push(i);
+  return out;
+}
+
+function dedupe(xs: number[]): number[] {
+  return [...new Set(xs)];
 }
 
 /**

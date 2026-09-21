@@ -909,6 +909,20 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [dispatch]
   );
 
+  // View a site: a fresh page on the site's scene, the way the campaign
+  // overview opens the summary. In a new tab, because the current session
+  // holds a dataset someone is looking at, and a site view replaces the
+  // loaded molecules with the site's hits.
+  const handleViewSite = useCallback(
+    (site: CampaignSite) => {
+      window.open(
+        `/ccp4i2/moorhen-page/campaign/${campaign.id}?summary=1&site=${site.id}`,
+        "_blank"
+      );
+    },
+    [campaign.id]
+  );
+
   // Move to the site named in the URL, once there is a scene to move around.
   //
   // Waits for coot: dispatching an origin before the molecules are drawn puts
@@ -1245,6 +1259,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             campaign,
             sites,
             onGoToSite: handleGoToSite,
+            onViewSite: handleViewSite,
             onSaveCurrentAsSite: handleSaveCurrentAsSite,
             onUpdateSite: handleUpdateSite,
             onDeleteSite: handleDeleteSite,

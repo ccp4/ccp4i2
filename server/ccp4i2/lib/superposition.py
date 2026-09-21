@@ -68,6 +68,16 @@ class FitResult:
     rmsd: Optional[float] = None
     reason: Optional[str] = None
 
+    def transform(self) -> gemmi.Transform:
+        """The fit as a gemmi transform, so a caller can measure in the
+        frame the scene draws the moving structure in."""
+        if not self.ok:
+            raise ValueError(f"no fit to apply: {self.reason}")
+        return gemmi.Transform(
+            gemmi.Mat33([self.mat[0:3], self.mat[3:6], self.mat[6:9]]),
+            gemmi.Vec3(*self.vec),
+        )
+
     def provenance(self, onto: str) -> dict:
         """The ``fitted`` block of a ``matrix`` superpose entry."""
         out = {"onto": onto, "atoms": self.atoms, "rmsd": self.rmsd}

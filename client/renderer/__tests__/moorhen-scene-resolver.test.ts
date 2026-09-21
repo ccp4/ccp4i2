@@ -38,6 +38,82 @@ describe("runSuperpose: method matrix → apply_transformation_to_atom_selection
     };
   }
 
+  it("retries one higher when coot rejects the TER-free atom count", async () => {
+    // coot gates on its mmdb Select size, which counts TER pseudo-atoms, while
+    // get_number_of_atoms skips them -- so the documented pairing is rejected
+    // for any structure with a polymer terminus and coot moves nothing at all.
+    // Real files: 1124/1125/1128 atoms, one TER each, accepted one higher.
+    const calls: number[] = [];
+    const cootCommand = vi.fn(async (kwargs: { commandArgs: unknown[] }) => {
+      const n = kwargs.commandArgs[2] as number;
+      calls.push(n);
+      return { data: { result: { result: n === 121 ? 120 : 0 } } };
+    });
+    const mol = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A", "B"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any);
+
+    expect(calls.slice(0, 2)).toEqual([120, 121]);  // honest count first, then +1
+    expect(mol.setAtomsDirty).toHaveBeenCalled();
+    expect(mol.redraw).toHaveBeenCalled();
+  });
+
+  it("returns a note only when the first candidate was not the one accepted", async () => {
+    // The note is what the Scenes panel shows. Silence means "the count we
+    // believe in was right", so a note that appeared on the happy path would
+    // train people to ignore it.
+    const quiet = mockMolecule();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(await runSuperpose({ method: "matrix", move: "b", mat, vec }, quiet as any))
+      .toBeUndefined();
+
+    const cootCommand = vi.fn(async (kwargs: { commandArgs: unknown[] }) => ({
+      data: { result: { result: (kwargs.commandArgs[2] as number) === 121 ? 120 : 0 } },
+    }));
+    const surprising = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const note = await runSuperpose({ method: "matrix", move: "b", mat, vec }, surprising as any);
+    expect(note).toMatch(/121 atoms/);
+    expect(note).toMatch(/delta \+1/);
+  });
+
+  it("gives up, rather than looping, when no count in range is accepted", async () => {
+    const cootCommand = vi.fn(async () => ({ data: { result: { result: 0 } } }));
+    const mol = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    await expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any),
+    ).rejects.toThrow(/no cid\/count combination around 120/);
+    // Bounded: it gives up rather than looping. Two CIDs x a small delta
+    // set, not an unbounded walk.
+    expect(cootCommand.mock.calls.length).toBeLessThan(50);
+    expect(mol.setAtomsDirty).not.toHaveBeenCalled();
+  });
+
   it("passes mat row-major, a ZERO rotation centre, then vec as the translation", async () => {
     const mol = mockMolecule();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -54,7 +130,7 @@ describe("runSuperpose: method matrix → apply_transformation_to_atom_selection
     expect(journal).toBe(true);
     // (imol, cid, n_atoms, m00..m22, c0 c1 c2, t0 t1 t2) — exactly 18 args
     expect(kwargs.commandArgs).toHaveLength(18);
-    expect(kwargs.commandArgs.slice(0, 3)).toEqual([3, "/*/*/*/*", 120]);
+    expect(kwargs.commandArgs.slice(0, 3)).toEqual([3, "//", 120]);
     expect(kwargs.commandArgs.slice(3, 12)).toEqual(mat);
     expect(kwargs.commandArgs.slice(12, 15)).toEqual([0, 0, 0]); // centre: origin, never a centroid
     expect(kwargs.commandArgs.slice(15, 18)).toEqual(vec);
