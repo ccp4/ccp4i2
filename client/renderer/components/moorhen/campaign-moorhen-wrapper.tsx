@@ -1039,24 +1039,48 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       setMessage("Creating servalcat refinement job...");
 
       try {
-        // Step 1: Find observation reflections from this project's top-level jobs
-        type ObsFile = { id: number; job: number; uuid: string; name: string;
-                         content: number | null; sub_type: number | null };
-        const obsFiles = await apiGet(
-          `files/?type=application/CCP4-mtz-observed&directory=1` +
-          `&job__project=${projectId}&job__parent__isnull=true`
-        ) as ObsFile[] | null;
+        // Step 1: Find observation reflections and the free-R set from this
+        // project's top-level jobs.
+        //
+        // Job outputs (directory 1) are preferred over imports (directory 2),
+        // but imports are NOT excluded. A member processed from unmerged data
+        // always has an F_SIGF_OUT from aimless; one processed from merged
+        // data has none unless the refinement step reindexed, because the
+        // observations pass through unchanged -- its only observed file is
+        // the imported F_SIGF_IN. Asking for directory=1 alone reported "no
+        // reflection data" for every such member.
+        type MtzFile = { id: number; job: number; uuid: string; name: string;
+                         directory: number; content: number | null;
+                         sub_type: number | null };
+        const topLevelFiles = async (mimeType: string) =>
+          ((await apiGet(
+            `files/?type=${mimeType}` +
+            `&job__project=${projectId}&job__parent__isnull=true`
+          )) as MtzFile[] | null) || [];
+        // Outputs before imports, then most recent job first
+        const byPreference = (a: MtzFile, b: MtzFile) =>
+          a.directory - b.directory || b.job - a.job;
 
-        if (!obsFiles || obsFiles.length === 0) {
+        const obsFiles = await topLevelFiles("application/CCP4-mtz-observed");
+        if (obsFiles.length === 0) {
           setMessage("No reflection data found in project");
           return;
         }
 
-        // Sort by job ID descending (most recent first), then prefer
+        // Among outputs if there are any (else among imports), prefer
         // anomalous data (IPAIR content & 1, FPAIR content & 2) over IMEAN/FMEAN
-        const sorted = [...obsFiles].sort((a, b) => b.job - a.job);
-        const hasAnomalous = (f: ObsFile) => f.content !== null && (f.content & 3) !== 0;
-        const reflectionFile = sorted.find(hasAnomalous) || sorted[0];
+        const sorted = [...obsFiles].sort(byPreference);
+        const candidates = sorted.filter((f) => f.directory === sorted[0].directory);
+        const hasAnomalous = (f: MtzFile) => f.content !== null && (f.content & 3) !== 0;
+        const reflectionFile = candidates.find(hasAnomalous) || candidates[0];
+
+        // The free-R set. Preferring outputs matters more here than for the
+        // observations: the imported set is the campaign's shared one, from
+        // the reference crystal, while FREERFLAG_OUT is that set reconciled
+        // with this dataset's cell and resolution.
+        const freeRFile = (
+          await topLevelFiles("application/CCP4-mtz-freerflag")
+        ).sort(byPreference)[0];
 
         // Step 2: Create servalcat_pipe job
         const jobResponse = await apiPost<{
@@ -1095,6 +1119,18 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           object_path: "servalcat_pipe.inputData.HKLIN",
           value: hklinValue,
         });
+
+        // Without this the refinement ran with no free set at all, so its
+        // R-free meant nothing and could not be compared between siblings.
+        if (freeRFile) {
+          await apiPost(`jobs/${newJobId}/set_parameter/`, {
+            object_path: "servalcat_pipe.inputData.FREERFLAG",
+            value: {
+              project: projectDbId,
+              dbFileId: freeRFile.uuid.replace(/-/g, ""),
+            },
+          });
+        }
 
         // Step 5: Upload dictionary if available
         // Uses upload_file_param (not set_parameter) because DICT_LIST starts empty

@@ -19,6 +19,14 @@ MTZ by the ordinary import path (gemmi), so no external conversion step is
 needed. Note that PDB-REDO is NOT used: it was unreachable when this was
 written, and PDBe carries everything required.
 
+The parent project is populated the way the campaign page populates a real
+one: a coordinate_selector job whose XYZOUT is the reference model, and a
+freerflag job whose FREEROUT is the collective free-R set. Those two files are
+what the parent_files endpoint looks for, so without them the campaign page
+reports the campaign as unconfigured and its Moorhen page has nothing to show
+for the parent. Both tasks are gemmi-native, so they are run here, and the
+member jobs take their model and free set from the results.
+
 The jobs refine with DIMPLE: these are isomorphous crystals of a known
 structure being re-refined against the campaign reference, which is what
 dimple is for.
@@ -193,7 +201,10 @@ class Command(BaseCommand):
         parser.add_argument(
             "--no-jobs",
             action="store_true",
-            help="Create projects and the campaign, but no SubstituteLigand jobs.",
+            help=(
+                "Create projects and the campaign, and populate the parent, "
+                "but create no SubstituteLigand jobs."
+            ),
         )
 
     # -- helpers ---------------------------------------------------------
@@ -236,6 +247,102 @@ class Command(BaseCommand):
             )
         return result
 
+    def _run_now(self, job, output_param):
+        """Run a quick job to completion and return its ``output_param`` file.
+
+        The same synchronous local run the campaign page's import dialogs ask
+        for (run_local, synchronous). It returns success even when the job
+        itself failed, so the status is checked here.
+        """
+        from ccp4i2.db import models
+        from ccp4i2.lib.utils.jobs.context_run import run_job_local
+
+        result = run_job_local(job, synchronous=True)
+        if not result.get("success"):
+            raise CommandError(
+                f"Could not run {job.task_name} job {job.number}: "
+                f"{result.get('error', 'unknown error')}"
+            )
+        job.refresh_from_db()
+        if job.status != models.Job.Status.FINISHED:
+            raise CommandError(
+                f"{job.task_name} job {job.number} in {job.project.name} did "
+                f"not finish (status {job.get_status_display()}); see "
+                f"{job.directory}"
+            )
+        output = job.files.filter(
+            job_param_name=output_param,
+            directory=models.File.Directory.JOB_DIR,
+        ).first()
+        if output is None:
+            raise CommandError(
+                f"{job.task_name} job {job.number} finished without "
+                f"registering {output_param}"
+            )
+        return output
+
+    def _populate_parent(self, parent_project, reference, fetched):
+        """Give the parent its reference model and collective free-R set.
+
+        Returns (coordinates, free_r) as File rows. These are made by the same
+        two tasks the campaign page's import dialogs use, because parent_files
+        recognises the parent's reference data by exactly that shape: XYZOUT
+        of type chemical/x-pdb, and FREEROUT of type CCP4-mtz-freerflag.
+        """
+        from ccp4i2.db import models
+        from ccp4i2.lib.utils.jobs.create import create_job
+
+        def new_job(task_name, title):
+            job_id = create_job(
+                projectId=str(parent_project.uuid), taskName=task_name, title=title
+            )
+            return models.Job.objects.get(uuid=job_id)
+
+        # Strip the reference's own fragment and waters.
+        #
+        # 5E9I is itself a fragment structure, so without this every member
+        # job starts from a model that already has a ligand sitting in the
+        # pocket it is being asked to rebuild -- the density is pre-explained,
+        # and what comes out says more about the start point than about the
+        # dataset. 'protein' takes 5E9I from 1128 atoms to 952, dropping F60
+        # and the waters.
+        job = new_job(
+            "coordinate_selector", f"Reference model from PDB {reference.upper()}"
+        )
+        self._import_into_job(
+            job,
+            "inputData.XYZIN",
+            fetched[reference]["coords"],
+            f"Campaign reference coordinates (PDB {reference.upper()})",
+        )
+        self._set(job, "container.inputData.XYZIN.selection.text", "protein")
+        coordinates = self._run_now(job, "XYZOUT")
+
+        # The deposited structure factors carry _refln.status, which gemmi
+        # turns into a FreeR_flag column on import (833 free of 16551 for
+        # 5E9I), so the reference's own file is both the data and the starting
+        # free set. COMPLETE keeps those flags and fills in any reflection the
+        # deposited set leaves unflagged.
+        job = new_job(
+            "freerflag", f"Collective free-R set from PDB {reference.upper()}"
+        )
+        self._import_into_job(
+            job,
+            "inputData.F_SIGF",
+            fetched[reference]["sfs"],
+            f"Observed reflections (PDB {reference.upper()})",
+        )
+        self._import_into_job(
+            job,
+            "inputData.FREERFLAG",
+            fetched[reference]["sfs"],
+            f"Deposited free-R flags (PDB {reference.upper()})",
+        )
+        self._set(job, "container.controlParameters.GEN_MODE", "COMPLETE")
+        free_r = self._run_now(job, "FREEROUT")
+
+        return coordinates, free_r
+
     def _make_project(self, name, description):
         from ccp4i2.api.serializers import ProjectSerializer
 
@@ -268,7 +375,7 @@ class Command(BaseCommand):
         if not options["dry_run"] and models.ProjectGroup.objects.filter(name=name).exists():
             raise CommandError(
                 f"A campaign called '{name}' already exists. "
-                "Use --name, or delete it first."
+                f"Use --name, or delete it first: manage.py delete_campaign {name}"
             )
 
         work = Path(tempfile.mkdtemp(prefix="demo-campaign-"))
@@ -370,6 +477,16 @@ class Command(BaseCommand):
                 )
             )
 
+            # Outside the transaction: the jobs run in a subprocess, which can
+            # only see committed rows.
+            parent_coordinates, parent_free_r = self._populate_parent(
+                parent_project, reference, fetched
+            )
+            self.stdout.write(
+                f"  parent: reference model (job {parent_coordinates.job.number}) "
+                f"and collective free-R set (job {parent_free_r.job.number})"
+            )
+
             if options["no_jobs"]:
                 self.stdout.write("Skipping job creation (--no-jobs).")
                 return
@@ -419,23 +536,16 @@ class Command(BaseCommand):
                     # that looks configured but cannot run.
                     self._set(job, "container.controlParameters.LIGANDAS", "NONE")
 
+                # The parent's reference model, as the campaign page's batch
+                # import takes it. Already stripped of the reference's own
+                # fragment and waters (see _populate_parent), so no selection
+                # is needed here.
                 self._import_into_job(
                     job,
                     "inputData.XYZIN",
-                    fetched[reference]["coords"],
+                    parent_coordinates.path,
                     f"Campaign reference coordinates (PDB {reference.upper()})",
                 )
-                # Strip the reference's own fragment and waters.
-                #
-                # 5E9I is itself a fragment structure, so without this every
-                # job starts from a model that already has a ligand sitting in
-                # the pocket it is being asked to rebuild -- the density is
-                # pre-explained, and what comes out says more about the start
-                # point than about the dataset. XYZIN declares
-                # ifAtomSelection, and its own tooltip recommends excluding
-                # waters and ligands. 'protein' takes 5E9I from 1128 atoms to
-                # 952, dropping F60 and the waters.
-                self._set(job, "container.inputData.XYZIN.selection.text", "protein")
                 self._import_into_job(
                     job,
                     "inputData.F_SIGF_IN",
@@ -443,8 +553,7 @@ class Command(BaseCommand):
                     f"Observed reflections (PDB {entry.upper()})",
                 )
 
-                # One free set for the whole campaign, taken from the
-                # reference.
+                # One free set for the whole campaign: the parent's.
                 #
                 # Without this the pipeline warns that no free-R set was given
                 # and nothing on the merged route generates one -- aimless
@@ -452,14 +561,10 @@ class Command(BaseCommand):
                 # member against its own deposited free set would be worse than
                 # no set at all: R-free would not be comparable between
                 # siblings, which is the whole point of a campaign.
-                #
-                # The deposited structure factors carry _refln.status, which
-                # gemmi turns into a FreeR_flag column on import (833 free of
-                # 16551 for 5E9I), so the reference's own file is the free set.
                 self._import_into_job(
                     job,
                     "inputData.FREERFLAG_IN",
-                    fetched[reference]["sfs"],
+                    parent_free_r.path,
                     f"Shared campaign free-R set (PDB {reference.upper()})",
                 )
 
