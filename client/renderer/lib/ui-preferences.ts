@@ -18,7 +18,9 @@ const DEFAULTS: Record<UiPreferenceKey, boolean> = {
   // ("where did this come from?") stored on the file's import record. On by
   // default (the Qt-era behaviour); the prompt itself offers a "Don't ask
   // again" checkbox that turns this off, so a user can opt out at first
-  // exposure without opening any settings. Also toggled from the View menu.
+  // exposure without opening any settings. Also toggled from Edit ->
+  // Preferences -> General (it is not in the View menu, which is for
+  // per-view display toggles).
   captureImportProvenance: true,
 };
 
