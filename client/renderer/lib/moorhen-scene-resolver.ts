@@ -547,7 +547,8 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       }
     }
     try {
-      await runSuperpose(sp, mov, ref);
+      const note = await runSuperpose(sp, mov, ref);
+      if (note) result.log.push({ file: sp.move, domain, message: note });
     } catch (e) {
       console.warn(`[scene] superpose failed (${sp.method} ${sp.move}→${target}):`, e);
       result.log.push({
@@ -1075,10 +1076,9 @@ export async function runSuperpose(
   sp: SceneSuperpose,
   mov: moorhen.Molecule,
   ref?: moorhen.Molecule,
-): Promise<void> {
+): Promise<string | void> {
   if (sp.method === "matrix") {
-    await applyMatrix(sp, mov);
-    return;
+    return await applyMatrix(sp, mov);
   }
   if (!ref) throw new Error(`${sp.method} superpose needs the reference molecule`);
   if (sp.method === "ssm") {
@@ -1139,7 +1139,7 @@ export async function runSuperpose(
 async function applyMatrix(
   sp: SceneSuperposeMatrix,
   mov: moorhen.Molecule,
-): Promise<void> {
+): Promise<string | void> {
   const molNo = mov.molNo as number;
   const nAtoms = await mov.getNumberOfAtoms();
   const nChains = Math.max(1, mov.getChainNames?.().length ?? 1);
@@ -1167,15 +1167,20 @@ async function applyMatrix(
       );
       const moved = response?.data?.result?.result ?? 0;
       if (moved > 0) {
-        if (delta !== 0 || cid !== cids[0]) {
-          console.info(
-            `[scene] ${sp.move}: coot accepted cid "${cid}" with ${count} atoms ` +
-            `(get_number_of_atoms reported ${nAtoms}, delta ${delta >= 0 ? "+" : ""}${delta}); ` +
-            `moved ${moved}. Please report this pair -- it pins the rule.`,
-          );
-        }
         mov.setAtomsDirty(true);
         await mov.redraw();
+        // Report only the surprising case: the first candidate is the one we
+        // believe is right, so a note here means the belief is wrong and the
+        // probe earned its keep. Goes to the resolver log, which the Scenes
+        // panel shows -- the browser console is awkward to reach in Electron.
+        if (delta !== 0 || cid !== cids[0]) {
+          const note =
+            `coot accepted cid "${cid}" with ${count} atoms ` +
+            `(get_number_of_atoms said ${nAtoms}, delta ${delta >= 0 ? "+" : ""}${delta}); ` +
+            `moved ${moved}`;
+          console.info(`[scene] ${sp.move}: ${note}`);
+          return note;
+        }
         return;
       }
     }

@@ -66,6 +66,33 @@ describe("runSuperpose: method matrix → apply_transformation_to_atom_selection
     expect(mol.redraw).toHaveBeenCalled();
   });
 
+  it("returns a note only when the first candidate was not the one accepted", async () => {
+    // The note is what the Scenes panel shows. Silence means "the count we
+    // believe in was right", so a note that appeared on the happy path would
+    // train people to ignore it.
+    const quiet = mockMolecule();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(await runSuperpose({ method: "matrix", move: "b", mat, vec }, quiet as any))
+      .toBeUndefined();
+
+    const cootCommand = vi.fn(async (kwargs: { commandArgs: unknown[] }) => ({
+      data: { result: { result: (kwargs.commandArgs[2] as number) === 121 ? 120 : 0 } },
+    }));
+    const surprising = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const note = await runSuperpose({ method: "matrix", move: "b", mat, vec }, surprising as any);
+    expect(note).toMatch(/121 atoms/);
+    expect(note).toMatch(/delta \+1/);
+  });
+
   it("gives up, rather than looping, when no count in range is accepted", async () => {
     const cootCommand = vi.fn(async () => ({ data: { result: { result: 0 } } }));
     const mol = {
