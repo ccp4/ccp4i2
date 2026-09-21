@@ -52,6 +52,12 @@ Two threads, which became entangled because the second blocked testing the first
   fragment series (5E9I, 5DYU, 5E9K, 5E9L, 5E9M, 5E9Y) via PDBe. Six datasets,
   same space group, cells within ~2 Å, **a different fragment in each**.
 
+* **`delete_campaign <name>`** — the inverse: removes the group, its sites and
+  evaluations, the parent and member projects, and their directories. Asks for
+  the name to be typed back (`--yes` skips that, `--dry-run` only reports,
+  `--keep-files` leaves the directories). A project that is also in another
+  group is kept, and it refuses while jobs are queued or running.
+
 ### On this branch, not yet in a PR
 
 * **Evaluation endpoints** (`67a3d8753`). `PUT`/`DELETE` on
@@ -203,7 +209,18 @@ All 5 tests in the file pass (~5 min). Unit suite 2570.
 
 * **The merged route writes no `F_SIGF_OUT`** — the observations pass through
   unchanged, so there is nothing to re-export. `FREERFLAG_OUT` *is* written,
-  because the free set is reconciled.
+  because the free set is reconciled. Anything that goes looking for a
+  member's reflections must therefore accept the imported `F_SIGF_IN`
+  (`directory=2`) when there is no output: the campaign Moorhen page's
+  "Run servalcat refinement" asked for `directory=1` only, and reported "no
+  reflection data" for every demo member until that was relaxed. It looked
+  like a consequence of the demo parent being empty, and was not.
+
+* **`make_demo_campaign` populates the parent** with a `coordinate_selector`
+  job (XYZOUT, protein only) and a `freerflag` job (FREEROUT), as the campaign
+  page's import dialogs do. `parent_files` recognises reference data by
+  exactly those param names and types, so an empty parent shows the campaign
+  as unconfigured. Member jobs take their model and free set from those files.
 
 * **`merge_mtz_files` builds a complete reflection list.** It takes the unique
   set for the resolution range and unions in every index every input holds, so
