@@ -211,37 +211,212 @@ hit" — and a good candidate for a later per-hit toggle. It is not the
 site-wide pocket, and reaching for it expecting one would produce an overlay
 of six datasets' side chains.
 
-## Frames: when to superpose
+## Frames: superpose locally, on the site
 
-Everything above assumes the members' coordinates and the site origin share a
-frame. In a fragment campaign that is usually true — the members are
-molecular-replaced or rigid-body-fitted from the same reference — and the
-existing summary scene already assumes it, drawing every hit on the parent
-ribbon with no transformation.
+**This section previously recommended not superposing by default. That was
+wrong, and a picture settled it.** A screenshot of the campaign summary
+(2026-09-21) shows the members' helices drawn as a fan of offset ribbons,
+displaced from one another by on the order of an Ångström, with the fragments
+spread correspondingly. Binding events that are probably equivalent are made
+to look different, and the difference is the protein frame, not the chemistry.
 
-But it is an assumption, and it fails on origin/indexing ambiguity in
-polar and high-symmetry space groups.
+The earlier reasoning was that campaign members are molecular-replaced or
+rigid-body-fitted from a common reference and are therefore already in frame.
+That holds for datasets processed *through* the campaign. It does not hold for
+datasets imported from the PDB, each deposited with its own origin choice
+within the space group — which is what a demo campaign is made of, and what a
+real one becomes as soon as anyone brings in a published structure. And the
+screenshot suggests it is not reliable even when it should be.
 
-The scene format has the remedy built in: a **`superpose`** block, `ssm` or
-`lsq`, implemented in the resolver (`lib/moorhen-scene-resolver.ts:1063`,
-`mov.SSMSuperpose(movChain, refMolNo, refChain, true)`).
+So: **superpose by default.** The cost argument was real but small — an LSQ fit
+is cheap next to loading the structure it applies to — and it was being
+weighed against a picture that is actively misleading, which is the wrong
+trade.
 
-**Recommendation: do not superpose by default; detect and report instead.**
+### Local, not global
 
-* Superposing every dataset onto the exemplar costs an SSM run per dataset in
-  the browser and moves atoms that, in the common case, were already right.
-* The builder can *detect* the failure for free, through the diagnostic
-  described above: if a dataset has a `hit` verdict and fragment-like residues
-  but its **nearest one is far** from the site origin — tens of Ångströms,
-  well beyond any pocket — the frames are a live suspect. Report the distance
-  in `stats` and let the panel say so.
-* Offer `superpose=1` as a query parameter, which emits one `ssm` entry per
-  member onto the exemplar. The chain to superpose on is the exemplar's first
-  polymer chain; that is a guess, which is another reason not to make it the
-  default.
+The important word is *local*. A global SSM onto the exemplar removes gross
+frame differences, but it distributes the residual over the whole molecule,
+and none of that residual is guaranteed to land anywhere but the pocket. For a
+view whose entire purpose is comparing ligands at one site, the frame that
+must coincide is **the site's**.
 
-If real campaigns turn out to need it routinely, flip the default then, on
-evidence.
+The scene format already expresses this. `superpose` takes an `lsq` method
+with explicit residue ranges, and the resolver implements it
+(`moorhen-scene-resolver.ts:1084`, `mov.lsqkbSuperpose(...)` → Coot's
+`add_lsq_superpose_match` + `lsq_superpose`).
+
+### What to fit on: CAs, in a sphere that grows until it has enough
+
+Three quantities, deliberately distinct. An earlier draft of this document
+claimed the pocket residues drawn as sticks could double as the fit target —
+"one computation, two uses". That was too neat. Seeing and fitting want
+different atoms at different distances:
+
+| | Criterion | Radius | Job |
+|---|---|---|---|
+| Environment sticks | **any atom** within radius | `ENVIRONMENT_RADIUS`, 8 Å | what the user *sees* lining the pocket |
+| LSQ fit target | **CA only** within radius | `FIT_RADIUS`, from 15 Å, grown | what defines the local *frame* |
+
+**CA only, not any atom.** The fit is on main chain, so a residue earns its
+place by where its backbone is. A long side chain — Arg, Lys, Glu — can reach
+several Ångströms into a pocket from a backbone that is nowhere near it;
+including it on the strength of that reach adds a point that does not belong
+to the local frame. Conversely a residue whose CA is close but whose side
+chain points away is exactly what should anchor the fit.
+
+**From 15 Å, and grow if need be.** 15 Å around a site in a folded domain
+typically encloses several dozen residues, far more than a stable fit needs.
+But a shallow surface site, a small protein, or a site near a domain edge can
+be sparse, so the radius grows in steps until the CA count is sufficient.
+
+**Cap the growth.** Past roughly 25–30 Å it is no longer a *local*
+superposition in any meaningful sense — it is a global fit wearing a sphere.
+At that point stop, fall back to global `ssm`, and record it in `stats`.
+Silently growing to 40 Å would produce the very thing this section exists to
+avoid, while reporting success.
+
+### Tolerating disorder: fit on the intersection, and re-count after
+
+Residues present in the exemplar are routinely missing from a member — a
+disordered loop at the pocket rim is ordinary, not exceptional. An earlier
+draft said to check the exemplar's pocket residues exist in the mover and skip
+the dataset's superposition where they do not. That is too brittle: one absent
+residue would forfeit the whole fit.
+
+The rule instead:
+
+1. Take the exemplar's CAs within the current `FIT_RADIUS` of the site origin.
+2. **Intersect** with the residues that are present *and have a CA* in the
+   moving structure.
+3. **Apply the count gate to the intersection, not to the exemplar's list.** A
+   pocket that is ample in the exemplar can fall below threshold in a dataset
+   with a disordered rim, and that dataset's fit is the one that would be bad.
+   If it is short, grow the radius and repeat; if the cap is reached, fall
+   back to `ssm`.
+4. Build the match ranges **from the intersection**, collapsed into contiguous
+   runs per chain.
+
+Step 4 matters more than it looks. The format's `matches` are *ranges*, and
+whether Coot pairs by residue number and skips residues absent from one side,
+or does something less forgiving, is **not verified here** — it lives in
+`lsq_superpose`'s handling of `add_lsq_superpose_match`. Building ranges from
+the intersection means the question never arises: every range spans only
+residues that exist on both sides. That is worth a little extra fragmentation
+(`1858-1861`, `1863-1867` rather than `1858-1867`) to avoid depending on
+behaviour nobody has checked.
+
+**Each dataset therefore gets its own match list**, because each has its own
+intersection with the exemplar. This is not one shared block of ranges
+repeated per `move:` — a sketch that shows identical ranges for every dataset
+is showing the easy case, not the general one.
+
+`matchType: main` (the format's default) is right here. Side chains move
+between datasets — sometimes *because* of the fragment — so fitting on them
+would let the ligand's own effect pull the frame around.
+
+### Compute the fit ourselves, and hand Coot a matrix
+
+Everything above describes *which atoms* to fit on. It does not require that
+Coot do the fitting, and there is a good case for doing it server-side instead.
+Both halves have been checked against the real APIs:
+
+* **gemmi can do the fit.** `gemmi.superpose_positions(pos1, pos2, weight=[])`
+  returns a `SupResult` with `.transform` (`.mat`, `.vec`), `.rmsd` and
+  `.count`. Verified on gemmi 0.7.5: fitting four points against the same four
+  translated by +5 Å in x gives `rmsd 0.0` and `vec (-5, 0, 0)` — so the
+  transform maps **pos2 onto pos1**. Call it as
+  `superpose_positions(reference_CAs, moving_CAs)` and the result moves the
+  member onto the exemplar. Worth stating explicitly: that argument order is
+  an easy silent sign error.
+* **Coot can apply an arbitrary transform.**
+  `apply_transformation_to_atom_selection(imol, cid, n_atoms, m00…m22, c0 c1 c2,
+  t0 t1 t2)` — `molecules-container.hh:2747`, exposed in the wasm bindings.
+  Note the **rotation centre** `c0 c1 c2` is separate from the translation.
+  gemmi's transform is `x' = mat·x + vec` about the origin, so feed
+  `c = (0, 0, 0)` and `t = vec`. Passing a centroid as the centre and `vec` as
+  the translation would apply the shift twice.
+
+**Recommendation: compute the transform in Python, carry it in the scene, and
+have the resolver apply it.** The reasons are about what can be tested and
+what can be read:
+
+* **It is testable without a browser.** Radius growth, the intersection, the
+  CA count gate, the fallback — all of it becomes a pure function over two
+  structures and a point, with unit tests in `tests/unit/lib/`. Routed through
+  Coot, none of that logic can be tested at all; it can only be looked at.
+* **It removes the range question entirely.** No `matches`, no contiguous
+  runs, no dependence on how `add_lsq_superpose_match` treats a residue absent
+  from one side.
+* **It makes the fit inspectable.** The scene carries the matrix *and* what it
+  was derived from — how many CAs, at what radius, to what RMSD. A reader can
+  judge the superposition instead of trusting it, and a lifted scene
+  reproduces it exactly rather than re-deriving something slightly different.
+* **It allows outlier rejection**, which is what actually makes a local fit
+  robust. Fit, drop CAs beyond ~2× RMSD (a rim loop that genuinely moved),
+  refit. gemmi's `weight` argument supports the softer version. Coot's LSQ
+  will not do this for us, and without it one shifted loop drags the whole
+  frame.
+
+The shape, as a third `method` alongside `ssm` and `lsq`:
+
+```yaml
+superpose:
+  - method: matrix
+    move: x0104
+    mat: [1.0, 0.0, 0.0,  0.0, 1.0, 0.0,  0.0, 0.0, 1.0]   # row-major
+    vec: [-0.31, 0.12, 0.05]
+    fitted:            # provenance: what the matrix was derived from
+      onto: reference
+      atoms: 47        # CAs in the intersection
+      radius: 15       # Å, after any growth
+      rmsd: 0.21
+```
+
+**The honest cost is a schema change.** The scene format is generated and
+CI-gated, so this means editing the Zod source and regenerating the
+contracts — read `MOORHEN_SCENES_SCHEMA_V1_DESIGN.md` first, as the
+`moorhen-scenes` skill directs, and do not hand-edit the generated files.
+
+**If that cost is unwelcome, `lsq` with ranges is a legitimate first cut** —
+it needs no schema change and the resolver already implements it. Take it
+knowing what is given up: the selection logic stays untestable, the range
+semantics stay unverified, and there is no outlier rejection. It is the
+cheaper half of the same idea, not a different one.
+
+### Constants, and what breaks them
+
+* `FIT_RADIUS_START = 15 Å`, grown in 5 Å steps to `FIT_RADIUS_MAX = 30 Å`.
+* `MIN_FIT_CAS`: enough for a conditioned rigid-body fit with margin. Three
+  non-collinear points determine the transform in principle; that is not a
+  usable floor. Start at **12**, and note it is a floor, not a target — the
+  15 Å sphere will normally supply several times that.
+* **Numbering must correspond** between exemplar and member. True for a
+  campaign on one construct; false as soon as a differently-numbered PDB entry
+  arrives. The intersection makes this fail *safely* rather than wrongly — a
+  mismatched numbering simply yields a small intersection, which trips the
+  count gate and falls back to `ssm`. That is the right failure: a silent fit
+  on coincidentally-numbered residues would be far worse than a global one.
+* **The superposition is site-specific.** Two site scenes of the same campaign
+  align the same datasets differently, because each aligns on its own pocket.
+  That is correct, and worth stating plainly: a site scene is a view *from* a
+  site, not a general overlay that happens to be centred on one.
+
+### The campaign summary has the same disease
+
+The screenshot is of the whole-campaign summary, not a site view, so this is
+not only a site-scene concern. The summary has no single pocket to fit on, so
+the local argument does not apply — but a **global `ssm` onto the exemplar**
+is still strictly better than the staggered fan it currently draws, and is a
+small change to `build_summary_scene`. Worth doing independently of the site
+view.
+
+### Keep the diagnostic
+
+The nearest-fragment distance is still worth reporting, and superposing makes
+it *more* meaningful rather than less: measured after alignment, a hit whose
+fragment is still far from the site origin is a real anomaly rather than a
+frame artefact.
 
 ---
 
@@ -275,6 +450,21 @@ files:
   - { name: x0104_dict, kind: dictionary, fileId: 5118, projectId: <uuid> }
   - { name: x0212, kind: coordinates, fileId: 5301, projectId: <uuid> }
   - { name: x0212_dict, kind: dictionary, fileId: 5299, projectId: <uuid> }
+superpose:
+  # Fitted server-side on the CAs near the site origin, present in BOTH
+  # structures. Each entry is its own fit: x0212 is missing a disordered rim
+  # loop, so fewer CAs and a slightly worse RMSD -- visible here rather than
+  # buried.
+  - method: matrix
+    move: x0104
+    mat: [0.9999, -0.0121, 0.0043,  0.0121, 0.9999, -0.0018,  -0.0043, 0.0018, 1.0000]
+    vec: [-0.31, 0.12, 0.05]
+    fitted: { onto: reference, atoms: 47, radius: 15, rmsd: 0.21 }
+  - method: matrix
+    move: x0212
+    mat: [0.9998, 0.0184, -0.0072,  -0.0184, 0.9998, 0.0031,  0.0072, -0.0031, 1.0000]
+    vec: [0.44, -0.19, -0.08]
+    fitted: { onto: reference, atoms: 31, radius: 15, rmsd: 0.34 }
 elements:
   - file: reference
     representations:
@@ -304,6 +494,9 @@ resolver: { onMissingResidues: clamp-and-log }
 
 Notes on the choices visible there:
 
+* **Each hit is fitted on the pocket before anything is drawn** — without it
+  the datasets fan out by an Ångström or so and equivalent binding events read
+  as different ones. See *Frames*.
 * **Each hit contributes its ligand's every copy**, by code, not one located
   residue — see *Draw every copy*. The `view` is what makes that legible:
   `origin` and `zoom` frame the site in x/y, and `slab` clips it in depth.
@@ -343,7 +536,7 @@ question open rather than guessing at it now.
 ## API
 
 ```
-GET /api/projectgroups/{id}/sites/{site_id}/scene/[?include=unclear][&superpose=1]
+GET /api/projectgroups/{id}/sites/{site_id}/scene/[?include=unclear][&superpose=none]
   -> {"scene": <MoorhenScene>, "stats": {...}}
 ```
 
@@ -352,9 +545,18 @@ DRF routing style as the existing site routes
 (`url_path=r"sites/(?P<site_id>[0-9]+)/..."`), so `site_evaluation` next door
 is the template for the 404 handling.
 
+Superposition is on by default, so the parameter turns it **off**
+(`superpose=none`) rather than on — for the rare case of wanting to see the
+frames as deposited, and for diagnosing a fit that went wrong.
+
 `stats` should carry: `hits_drawn`, `hits_claimed` (verdicts found),
 `empty_verdicts`, `unclear_verdicts`, `parent_present`, whether the exemplar
-was the parent or a fallback, and `skipped: [{project, reason, nearest}]` —
+was the parent or a fallback, and per dataset how it was
+superposed — the CA count, the radius it took to reach it, the RMSD, and
+whether it fell back to `ssm` because the count gate could not be met inside
+the radius cap. A fit is only as trustworthy as those numbers, so they belong
+in the payload rather than the server log. Also
+`skipped: [{project, reason, nearest}]` —
 where `nearest` is the distance from the site origin to the closest
 fragment-like residue, because that number is what tells a user whether the
 verdict is premature or the frames disagree.
@@ -419,6 +621,24 @@ keep the builder free of request objects.
 * The nearest-fragment diagnostic, likewise pure: a structure and an origin in
   gives a distance out, and a structure with no fragment-like residue gives
   `None` rather than `inf`.
+* **The fit itself**, as a pure function over two structures and a point —
+  which is the whole reason for computing it server-side. Take a structure,
+  apply a known rotation and translation, and assert the recovered transform
+  inverts it to within floating-point noise and reports ~0 RMSD. A sign error
+  in the `superpose_positions` argument order passes every vaguer test and
+  fails this one.
+* **Disorder tolerance**: delete a rim loop from the moving copy and assert
+  the fit still succeeds, on the intersection, with a correspondingly lower
+  `atoms` count — not that it is skipped.
+* **The count gate and radius growth**: a site with too few CAs at 15 Å grows
+  the radius; one that cannot reach `MIN_FIT_CAS` by the cap falls back to
+  `ssm` and says so in `stats`, rather than emitting an ill-conditioned fit.
+* **Numbering mismatch fails safely**: renumber the moving copy and assert the
+  intersection collapses, the gate trips, and the result is an `ssm` fallback
+  — never a confident fit on coincidentally-numbered residues.
+* **Outlier rejection**: displace a few CAs far from their partners and assert
+  they are dropped and the RMSD of the retained set is small, rather than the
+  whole frame being dragged.
 * `tests/api/unit/test_site_scene_api.py` — mirroring
   `test_summary_scene_api.py`: a site with two hits yields two ligand
   elements and one ribbon; `empty` and unevaluated members are absent;
@@ -435,10 +655,12 @@ keep the builder free of request objects.
 
 ## Open questions
 
-1. **`ENVIRONMENT_RADIUS = 8 Å`** is a judgement with no data behind it —
-   but a cosmetic one now, which is the point. Check it against a real
-   campaign; if the pocket looks sparse or bloated, change the number and
-   nothing else moves.
+1. **`ENVIRONMENT_RADIUS = 8 Å` is no longer purely cosmetic**, now that the
+   same residue list drives the LSQ fit. Too small gives an ill-conditioned
+   superposition; too large drags in residues that move for reasons unrelated
+   to the site. It is still a far safer knob than a ligand-membership radius
+   would have been, but it now wants checking against a real campaign on both
+   counts, not just on how the sticks look.
 2. **Whether all-copies really is quiet enough.** The argument above is that
    distant copies fall outside the frame. It has not been checked on a
    campaign with genuinely multi-site hits at a zoom a user would choose. If
