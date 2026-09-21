@@ -80,6 +80,20 @@ import {
 } from "../../types/campaigns";
 import { Project } from "../../types/models";
 
+/**
+ * The floor for the two lists that are navigated (sites) and acted on
+ * (loaded molecules). Both grow with the campaign, so left to themselves one
+ * squeezes the other out of the panel: with a dozen projects loaded the sites
+ * list collapsed to a sliver and the campaign could no longer be navigated.
+ * Each keeps at least this much and scrolls within it; if the panel is too
+ * short for both floors, the panel itself scrolls.
+ */
+const MIN_LIST_SECTION_HEIGHT = 160;
+
+/** The contour sliders are set once and left alone, so they yield space to the
+ *  lists that are worked in, and scroll past this. */
+const MAX_CONTOUR_SECTION_HEIGHT = 180;
+
 interface CampaignControlPanelProps {
   campaign: ProjectGroup;
   sites: CampaignSite[];
@@ -415,7 +429,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
       {/* Map Contour Controls */}
       {maps && maps.length > 0 && onMapContourLevelChange && (
-        <Box sx={{ mb: 1 }}>
+        // Two maps per loaded project, so this grows with the campaign as well;
+        // left uncapped it pushes the lists below it off the panel entirely.
+        <Box sx={{ mb: 1, maxHeight: MAX_CONTOUR_SECTION_HEIGHT, overflowY: "auto", flexShrink: 0 }}>
           {maps.map((map) => {
             const level = getContourLevel(map.molNo!);
             const isVisible = visibleMaps.includes(map.molNo!);
@@ -579,7 +595,14 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       <Divider sx={{ my: 1 }} />
 
       {/* Sites Section */}
-      <Box sx={{ flex: 1, display: "flex", flexDirection: "column", minHeight: 0 }}>
+      <Box
+        sx={{
+          flex: "1 1 0",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: MIN_LIST_SECTION_HEIGHT,
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -709,11 +732,18 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       {molecules && molecules.length > 0 && (
         <>
           <Divider sx={{ my: 1 }} />
-          <Box>
+          <Box
+            sx={{
+              flex: "1 1 0",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: MIN_LIST_SECTION_HEIGHT,
+            }}
+          >
             <Typography variant="caption" sx={{ fontWeight: "bold", mb: 0.5, display: "block" }}>
               Push to CCP4i2
             </Typography>
-            <List dense>
+            <List dense sx={{ flex: 1, overflow: "auto", minHeight: 0 }}>
               {molecules.map((mol) => {
                 const isVisible = visibleMolecules.includes(mol.molNo!);
                 return (
