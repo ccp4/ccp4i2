@@ -634,6 +634,57 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path=r"sites/(?P<site_id>[0-9]+)/scene",
+    )
+    def site_scene(self, request, pk=None, site_id=None):
+        """
+        Build a Moorhen scene for one binding site of a fragment campaign.
+
+        The exemplar as a ribbon with the pocket residues as sticks, and the
+        ligand of every dataset judged a hit at this site drawn on top, each
+        fitted onto the exemplar locally on the site. Membership is decided
+        by the recorded verdicts alone (see ``lib.campaign_scene``).
+
+        Query parameters:
+            include=unclear: also draw datasets with an ``unclear`` verdict,
+                in a muted colour.
+            superpose=none: draw every dataset in its own frame. Superposition
+                is the default, so the parameter turns it off -- for seeing the
+                frames as deposited, or diagnosing a fit that went wrong.
+
+        Returns:
+            Response: ``{"scene": <MoorhenScene>, "stats": {...}}``, the
+                same envelope as ``summary_scene``.
+        """
+        try:
+            group = self.get_object()
+            try:
+                site = group.site_set.get(id=site_id)
+            except models.CampaignSite.DoesNotExist:
+                return api_error("Site not found in this campaign", status=404)
+
+            include = {
+                token.strip()
+                for token in request.query_params.get("include", "").split(",")
+            }
+            return Response(
+                campaign_scene.build_site_scene(
+                    group,
+                    site,
+                    include_unclear="unclear" in include,
+                    superpose=request.query_params.get("superpose") != "none",
+                )
+            )
+        except Exception as e:
+            logger.exception(
+                "Failed to build scene for site %s of group %s", site_id, pk,
+                exc_info=e,
+            )
+            return api_error(str(e), status=500)
+
     @action(detail=True, methods=["post"], )
     def export_pandda(self, request, pk=None):
         """

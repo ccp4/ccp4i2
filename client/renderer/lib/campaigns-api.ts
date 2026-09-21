@@ -44,6 +44,41 @@ export interface SummarySceneResponse {
   stats: SummarySceneStats;
 }
 
+/** How one dataset was put in the exemplar's frame, or why it was not. */
+export interface SiteSceneFit {
+  project: string;
+  ok: boolean;
+  atoms: number;
+  radius: number | null;
+  rmsd: number | null;
+  reason: string | null;
+  /** Present when the local fit could not be made and a global one stood in. */
+  fallback?: "global";
+}
+
+/** Counts and diagnostics returned alongside a site scene. */
+export interface SiteSceneStats {
+  site: { id: number; name: string };
+  hits_claimed: number;
+  hits_drawn: number;
+  empty_verdicts: number;
+  unclear_verdicts: number;
+  unclear_drawn: number;
+  skipped: (SummarySceneSkip & { nearest: number | null })[];
+  parent_present: boolean;
+  reference: { project: string; is_parent: boolean } | null;
+  pocket_residues: number;
+  /** Distance from the site origin to each drawn dataset's nearest fragment,
+   *  after superposition: a large value is a verdict worth a second look. */
+  drawn: { project: string; verdict: string; nearest: number | null }[];
+  superpose: SiteSceneFit[];
+}
+
+export interface SiteSceneResponse {
+  scene: MoorhenScene;
+  stats: SiteSceneStats;
+}
+
 // =============================================================================
 // Hook for campaign operations
 // =============================================================================
@@ -137,6 +172,25 @@ export function useCampaignsApi() {
      */
     async fetchSummaryScene(campaignId: number): Promise<SummarySceneResponse> {
       return apiGet(`projectgroups/${campaignId}/summary_scene`);
+    },
+
+    /**
+     * Fetch the scene for one binding site: the exemplar as a ribbon with
+     * the pocket residues as sticks, and the ligand of every dataset judged
+     * a hit at that site fitted onto it. Membership is the recorded verdict,
+     * nothing else. Superposition is on by default, so the option turns it
+     * off.
+     */
+    async fetchSiteScene(
+      campaignId: number,
+      siteId: number,
+      options: { includeUnclear?: boolean; superpose?: boolean } = {}
+    ): Promise<SiteSceneResponse> {
+      const params = new URLSearchParams();
+      if (options.includeUnclear) params.set("include", "unclear");
+      if (options.superpose === false) params.set("superpose", "none");
+      const query = params.size ? `?${params.toString()}` : "";
+      return apiGet(`projectgroups/${campaignId}/sites/${siteId}/scene/${query}`);
     },
 
     /**

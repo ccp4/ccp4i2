@@ -71,12 +71,21 @@ function CampaignPageContent() {
   // then silently discarded. We depend only on the stable inputs and rely on
   // the `cancelled` flag (which is StrictMode-safe: the second mount re-fetches
   // and wins).
+  //
+  // With a site in the URL as well, the scene is that site's: the hits
+  // recorded there, fitted on its pocket, rather than the whole campaign.
+  // Everything downstream (serialise, seed the Scenes panel, auto-apply) is
+  // the same, so it goes through the same prop.
+  const summarySiteId = siteParam ? parseInt(siteParam) : null;
   const [summaryScene, setSummaryScene] = useState<MoorhenScene | null>(null);
   useEffect(() => {
     if (!summaryMode || campaignId === null) return;
     let cancelled = false;
-    campaignsApi
-      .fetchSummaryScene(campaignId)
+    const request =
+      summarySiteId !== null
+        ? campaignsApi.fetchSiteScene(campaignId, summarySiteId)
+        : campaignsApi.fetchSummaryScene(campaignId);
+    request
       .then((res) => {
         if (!cancelled) setSummaryScene(res.scene);
       })
@@ -87,7 +96,7 @@ function CampaignPageContent() {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [summaryMode, campaignId]);
+  }, [summaryMode, campaignId, summarySiteId]);
 
   // Determine which files to load based on selection
   const fileIds = useMemo(() => {
