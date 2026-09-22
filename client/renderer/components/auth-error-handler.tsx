@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { AUTH_ERROR_EVENT, AuthErrorDetail } from "../api-fetch";
 import { logout } from "@ccp4/ccp4i2-api";
-import { canReauthenticate, reauthenticate } from "../utils/reauth";
+import { reauthenticate } from "../utils/reauth";
 
 /**
  * Listens for 401/403 auth errors from the API layer and surfaces them
@@ -51,10 +51,28 @@ export const AuthErrorHandler: React.FC = () => {
         setMessage(message, "error", {
           label: "Sign in",
           onClick: async () => {
-            if (canReauthenticate()) {
-              if (await reauthenticate()) return;
+            switch (await reauthenticate()) {
+              case "started":
+                // The page is on its way to AAD; say nothing over it.
+                return;
+              case "in-progress":
+                setMessage("Signing in — this may take a moment.", "info");
+                return;
+              case "failed":
+                // It did not start, but the session is exactly as it was, so
+                // signing out would cost the user more than it saves. Offer
+                // it as their choice rather than doing it to them.
+                setMessage("Could not start sign-in.", "error", {
+                  label: "Sign out",
+                  onClick: () => logout(),
+                });
+                return;
+              case "unavailable":
+                // Nothing can re-authenticate here -- the desktop session,
+                // where logout is itself a no-op. Keeps the button honest.
+                logout();
+                return;
             }
-            logout();
           },
         });
       } else {
