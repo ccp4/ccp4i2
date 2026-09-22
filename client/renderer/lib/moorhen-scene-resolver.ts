@@ -58,15 +58,14 @@ import {
   showMap,
   hideMap,
   setActiveMap,
+  ColourRule,
+  getMultiColourRuleArgs,
 } from "moorhen/react-lib";
 import type { moorhen } from "moorhen/types/moorhen";
 
-// We deliberately don't import MoorhenColourRule from "moorhen/react-lib". Although
-// the class is exported in Moorhen's source, the installed package's
-// bundled moorhen.js does not re-expose it on the package export object
-// (runtime "is not a constructor"). Instead, we add colour rules via
-// MoleculeRepresentation.addColourRule, which constructs the rule
-// internally with the right commandCentre + parent molecule wiring.
+// The colour-rule class is exported at runtime as `ColourRule`. The package's
+// types also name it `MoorhenColourRule`, but the bundle does not export that
+// name (importing it gives "is not a constructor").
 
 import { extractFileIdFromUniqueId } from "./moorhen-view-state";
 import {
@@ -81,6 +80,7 @@ import {
   SceneRepresentation,
   SceneLsqMatch,
   SceneSuperpose,
+  SceneSuperposeMatrix,
   SceneView,
   isSceneHexColour,
   isSceneNamedColour,
@@ -122,7 +122,41 @@ export interface SceneResolveResult {
  */
 export type SceneFileFetcher = (
   ref: SceneFileRef,
+  opts?: {
+    /** The dictionaries this file's element lists, to attach to the
+     *  molecule as it loads (text plus the project file it came from, so a
+     *  re-captured scene keeps the association). */
+    dictionaries?: { text: string; fileId?: number; projectId?: string }[];
+  },
 ) => Promise<moorhen.Molecule | null>;
+
+/**
+ * How a scene's dictionaries are scoped. A dictionary named by an element is
+ * that molecule's and is never loaded into Coot's global store: a global
+ * entry is inherited by every molecule that has none of its own, so another
+ * file's ligand of the same residue name (LIG, DRG) would be drawn with this
+ * chemistry. Only `globalDictionaries`, and a dictionary listed in `files`
+ * but attached nowhere (older hand-written scenes relied on that), go global.
+ */
+export function planDictionaryScopes(scene: {
+  files?: { name: string; kind?: string }[];
+  globalDictionaries?: string[];
+  elements?: { file: string; dictionaries?: string[] }[];
+}): { global: Set<string>; byFile: Map<string, string[]> } {
+  const byFile = new Map<string, string[]>();
+  const scoped = new Set<string>();
+  for (const element of scene.elements ?? []) {
+    for (const name of element.dictionaries ?? []) {
+      scoped.add(name);
+      byFile.set(element.file, [...(byFile.get(element.file) ?? []), name]);
+    }
+  }
+  const global = new Set<string>(scene.globalDictionaries ?? []);
+  for (const f of scene.files ?? []) {
+    if (f.kind === "dictionary" && !scoped.has(f.name)) global.add(f.name);
+  }
+  return { global, byFile };
+}
 
 /**
  * Fetches the raw text of a dictionary CIF and returns it. The resolver
@@ -358,8 +392,10 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     (f) => f.kind !== "dictionary" && f.kind !== "mtz" && f.kind !== "map",
   );
 
-  // 1a. Fetch and globally-load dictionary text. Keep the raw text
-  //     keyed by name so we can re-load per-molecule later.
+  // 1a. Fetch dictionary text, keyed by name. Only unscoped dictionaries are
+  //     loaded globally; an element's own are attached to its molecule (at
+  //     load in 1b, or in 1c for a molecule that was already loaded).
+  const dictScopes = planDictionaryScopes(scene);
   const dictTexts = new Map<string, string>();
   for (const fr of dictRefs) {
     if (!dictionaryFetcher || !dictionaryLoader) {
@@ -380,7 +416,7 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
       // Global association: imol = -999999 (Coot's "any" sentinel).
       // Coots parses every `data_comp_*` block in a single call, so
       // multi-comp dicts are handled in one shot.
-      await dictionaryLoader(text, -999999);
+      if (dictScopes.global.has(fr.name)) await dictionaryLoader(text, -999999);
     } catch (e) {
       console.warn(`[scene] dictionary fetch failed for ${fr.name}:`, e);
       result.unresolvedFiles.push(fr.name);
@@ -401,7 +437,16 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
     }
     if (fetcher && isFetchable(fr)) {
       try {
-        const fetched = await fetcher(fr);
+        const dictRefByName = new Map(dictRefs.map((d) => [d.name, d]));
+        const fetched = await fetcher(fr, {
+          dictionaries: (dictScopes.byFile.get(fr.name) ?? [])
+            .filter((name) => dictTexts.has(name))
+            .map((name) => ({
+              text: dictTexts.get(name) as string,
+              fileId: dictRefByName.get(name)?.fileId,
+              projectId: dictRefByName.get(name)?.projectId,
+            })),
+        });
         if (fetched) {
           livePool.push(fetched);
           fileBindings.set(fr.name, fetched);
@@ -468,35 +513,47 @@ export async function applyScene(ctx: ResolveCtx): Promise<SceneResolveResult> {
   //    step to have happened. Each entry mutates the *moving* molecule's
   //    display transform in place; the reference is untouched.
   for (const sp of scene.superpose ?? []) {
+    const target = sp.method === "matrix" ? sp.fitted?.onto ?? "(matrix)" : sp.onto;
+    const domain = `superpose ${sp.move}→${target}`;
     const mov = fileBindings.get(sp.move);
-    const ref = fileBindings.get(sp.onto);
-    if (!mov || !ref) {
-      const missing = !mov ? sp.move : sp.onto;
-      result.log.push({
-        file: missing,
-        domain: `superpose ${sp.move}→${sp.onto}`,
-        message: `cannot superpose: file "${missing}" not bound`,
-      });
-      continue;
-    }
-    if (ref.molNo === undefined || ref.molNo === null) {
-      result.log.push({
-        file: sp.onto,
-        domain: `superpose ${sp.move}→${sp.onto}`,
-        message: `reference molecule has no molNo yet; skipped`,
-      });
-      continue;
-    }
-    try {
-      await runSuperpose(sp, mov, ref);
-    } catch (e) {
-      console.warn(
-        `[scene] superpose failed (${sp.method} ${sp.move}→${sp.onto}):`,
-        e,
-      );
+    if (!mov) {
       result.log.push({
         file: sp.move,
-        domain: `superpose ${sp.move}→${sp.onto}`,
+        domain,
+        message: `cannot superpose: file "${sp.move}" not bound`,
+      });
+      continue;
+    }
+    // A matrix carries its own transform, so only the moving molecule need
+    // be loaded; ssm and lsq ask coot to derive one and need the reference.
+    let ref: moorhen.Molecule | undefined;
+    if (sp.method !== "matrix") {
+      ref = fileBindings.get(sp.onto);
+      if (!ref) {
+        result.log.push({
+          file: sp.onto,
+          domain,
+          message: `cannot superpose: file "${sp.onto}" not bound`,
+        });
+        continue;
+      }
+      if (ref.molNo === undefined || ref.molNo === null) {
+        result.log.push({
+          file: sp.onto,
+          domain,
+          message: `reference molecule has no molNo yet; skipped`,
+        });
+        continue;
+      }
+    }
+    try {
+      const note = await runSuperpose(sp, mov, ref);
+      if (note) result.log.push({ file: sp.move, domain, message: note });
+    } catch (e) {
+      console.warn(`[scene] superpose failed (${sp.method} ${sp.move}→${target}):`, e);
+      result.log.push({
+        file: sp.move,
+        domain,
         message: `${sp.method} superpose failed: ${e instanceof Error ? e.message : "unknown error"}`,
       });
     }
@@ -1007,15 +1064,23 @@ function hexToRgb01(hex: string): { r: number; g: number; b: number } | null {
 // --------------------------------------------------------------------------
 
 /**
- * Apply one SceneSuperpose entry to a pair of already-loaded molecules.
- * Mutates `mov` in place; `ref` is untouched. Throws on coot-side
- * errors so the caller can record them in the resolver log.
+ * Apply one SceneSuperpose entry to an already-loaded molecule. Mutates
+ * `mov` in place; `ref` is untouched, and not needed for a `matrix` entry.
+ * Throws on coot-side errors so the caller can record them in the
+ * resolver log.
+ *
+ * Exported for unit testing — the matrix path's argument layout is the bit
+ * that must not drift (see applyMatrix).
  */
-async function runSuperpose(
+export async function runSuperpose(
   sp: SceneSuperpose,
   mov: moorhen.Molecule,
-  ref: moorhen.Molecule,
-): Promise<void> {
+  ref?: moorhen.Molecule,
+): Promise<string | void> {
+  if (sp.method === "matrix") {
+    return await applyMatrix(sp, mov);
+  }
+  if (!ref) throw new Error(`${sp.method} superpose needs the reference molecule`);
   if (sp.method === "ssm") {
     await mov.SSMSuperpose(sp.movChain, ref.molNo as number, sp.refChain, true);
     return;
@@ -1038,6 +1103,103 @@ async function runSuperpose(
   const matchTypeMap = { all: 0, main: 1, ca: 2 } as const;
   const matchType = matchTypeMap[sp.matchType ?? "main"];
   await mov.lsqkbSuperpose(ref.molNo as number, residueMatches, matchType, true);
+}
+
+/**
+ * Apply a scene-carried transform to every atom of `mov` through coot's
+ * `apply_transformation_to_atom_selection`. Two things about that call are
+ * easy to get wrong:
+ *
+ * - Its rotation centre is separate from its translation. The scene's
+ *   transform is `x' = mat.x + vec` about the origin, so the centre is
+ *   (0,0,0) and the translation is `vec`. Passing a centroid as the centre
+ *   and `vec` as the translation would shift the molecule twice (and coot's
+ *   implementation subtracts the centre on both sides of the rotation, so a
+ *   non-zero centre is wrong in a second way).
+ *
+ * - `n_atoms` is a validation count and coot moves NOTHING unless it equals
+ *   the size of its mmdb `Select`. What that size is, we do not reliably
+ *   know: `get_number_of_atoms` walks model 1 and is not it, and two
+ *   hypotheses (TER pseudo-atoms raising it by one per chain; alternate
+ *   conformers lowering it) each failed against real data -- a 1124-atom,
+ *   one-chain, one-TER structure with five A and five B altlocs rejected
+ *   both 1124 and 1125.
+ *
+ *   Coot's own two tests pass a single residue and a copied fragment, so the
+ *   parameter has never been exercised on anything with a TER or an altloc,
+ *   and its ERROR message naming the real count goes to stdout where the
+ *   browser cannot read it.
+ *
+ *   So rather than guess a third time, probe: a small bounded set of CIDs
+ *   and counts around the honest one, most likely first. Every rejected
+ *   attempt is a true no-op -- coot returns 0 having touched nothing -- so
+ *   this cannot double-apply, and the accepted pair is logged so the rule
+ *   can be derived from one real run and this replaced by arithmetic.
+ */
+async function applyMatrix(
+  sp: SceneSuperposeMatrix,
+  mov: moorhen.Molecule,
+): Promise<string | void> {
+  const molNo = mov.molNo as number;
+  const nAtoms = await mov.getNumberOfAtoms();
+  const nChains = Math.max(1, mov.getChainNames?.().length ?? 1);
+
+  // "//" is the whole-molecule CID coot's own test uses; "/*/*/*/*" is the
+  // explicit form. Try both, because which one mmdb agrees with is part of
+  // what is unknown here.
+  const cids = ["//", "/*/*/*/*"];
+  // Most likely first: the honest count, then one TER per chain, then the
+  // altloc-suppressed counts below it. Bounded either way.
+  const deltas = [0, 1, nChains, ...range(2, nChains + 2), ...range(-1, -17, -1)];
+
+  for (const cid of cids) {
+    for (const delta of dedupe(deltas)) {
+      const count = nAtoms + delta;
+      if (count <= 0) continue;
+      const response = await mov.commandCentre.cootCommand(
+        {
+          command: "apply_transformation_to_atom_selection",
+          returnType: "int",
+          commandArgs: [molNo, cid, count, ...sp.mat, 0, 0, 0, ...sp.vec],
+          changesMolecules: [molNo],
+        },
+        true,
+      );
+      const moved = response?.data?.result?.result ?? 0;
+      if (moved > 0) {
+        mov.setAtomsDirty(true);
+        await mov.redraw();
+        // Report only the surprising case: the first candidate is the one we
+        // believe is right, so a note here means the belief is wrong and the
+        // probe earned its keep. Goes to the resolver log, which the Scenes
+        // panel shows -- the browser console is awkward to reach in Electron.
+        if (delta !== 0 || cid !== cids[0]) {
+          const note =
+            `coot accepted cid "${cid}" with ${count} atoms ` +
+            `(get_number_of_atoms said ${nAtoms}, delta ${delta >= 0 ? "+" : ""}${delta}); ` +
+            `moved ${moved}`;
+          console.info(`[scene] ${sp.move}: ${note}`);
+          return note;
+        }
+        return;
+      }
+    }
+  }
+  throw new Error(
+    `coot moved no atoms for ${sp.move}: no cid/count combination around ` +
+    `${nAtoms} matched its atom selection`,
+  );
+}
+
+/** Inclusive-exclusive integer range, for building the probe order. */
+function range(from: number, to: number, step = 1): number[] {
+  const out: number[] = [];
+  for (let i = from; step > 0 ? i < to : i > to; i += step) out.push(i);
+  return out;
+}
+
+function dedupe(xs: number[]): number[] {
+  return [...new Set(xs)];
 }
 
 /**
@@ -1143,14 +1305,20 @@ interface ApplyRepCtx {
 }
 
 /**
- * A colour rule expressed as the arguments to MoleculeRepresentation.addColourRule.
+ * A colour rule expressed as the arguments to Moorhen's ColourRule constructor.
  * Lets us stage the rule independently of how Moorhen wires it together.
+ *
+ * A single-colour rule is its `cid` + `color`. A multi-colour rule is its
+ * `multiColourData`, pipe-joined `cid^#hex` segments — except for Moorhen's
+ * named schemes (b-factor, af2-plddt, ...), whose data depends on the loaded
+ * molecule: those are staged with `multiColourData: null` and computed when the
+ * rule is applied.
  */
 interface PendingRule {
   ruleType: string;
   cid: string;
   color: string;
-  args: (string | number)[];
+  multiColourData: string | null;
   isMultiColourRule: boolean;
   applyColourToNonCarbonAtoms?: boolean;
 }
@@ -1211,27 +1379,31 @@ async function applyRepresentation(ctx: ApplyRepCtx): Promise<boolean> {
         );
       }
       if (pendingRules.length > 0) {
-        // Decouple this representation from the molecule's shared
-        // `defaultColourRules` array (assigned to a rep BY REFERENCE at draw
-        // time in Moorhen). Without this reset, addColourRule push()es onto the
-        // shared array, so colour rules accumulate molecule-wide and leak across
-        // every representation (the "colour soup" on capture). Nulling it makes
-        // the first addColourRule build a fresh, rep-private list.
-        created.colourRules = null;
+        // Colour rule CID stays as authored — the rule's CID and the
+        // representation's CID don't have to match (e.g. by-domain rules
+        // target absolute residue numbers regardless of the representation's
+        // selection). The rules are built here rather than through
+        // created.addColourRule because that cannot carry multi-colour data.
+        const rules: ColourRule[] = [];
         for (const r of pendingRules) {
-          // Colour rule CID stays as authored — the rule's CID and the
-          // representation's CID don't have to match (e.g. by-domain
-          // rules target absolute residue numbers regardless of the
-          // representation's selection).
-          created.addColourRule(
-            r.ruleType,
+          const multiColourData = !r.isMultiColourRule
+            ? ""
+            : r.multiColourData ?? (await getMultiColourRuleArgs(molecule, r.ruleType));
+          const rule = new ColourRule(
+            r.ruleType as ConstructorParameters<typeof ColourRule>[0],
             r.cid,
             r.color,
-            r.args,
+            molecule.commandCentre,
             r.isMultiColourRule,
             r.applyColourToNonCarbonAtoms ?? false,
+            multiColourData,
           );
+          rule.setParentMolecule(molecule);
+          rules.push(rule);
         }
+        // Assigning gives the representation its own copy of the list and
+        // turns its default colour rules off.
+        created.colourRules = rules;
       }
       // Rebuild the buffers once if colour rules and/or geometry changed.
       if (pendingRules.length > 0 || geomSet) {
@@ -1310,22 +1482,18 @@ export function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): Pending
       ruleType: "molecule",
       cid: c.selection,
       color: c.colour,
-      args: [c.selection, c.colour],
+      multiColourData: "",
       isMultiColourRule: false,
     }));
   }
 
   if (isSceneHexColour(colour)) {
-    // libcoot's add_colour_rule reads cid+colour from args, not from
-    // this.cid/this.color (which are only consulted by the bond-style
-    // shim_set_bond_colours path). Without [cid, colour] in args,
-    // ribbons / MolecularSurface / etc. silently no-op.
     return [
       {
         ruleType: "molecule",
         cid: defaultCid,
         color: colour,
-        args: [defaultCid, colour],
+        multiColourData: "",
         isMultiColourRule: false,
       },
     ];
@@ -1335,29 +1503,33 @@ export function buildPendingRules(ctx: ApplyRepCtx, defaultCid: string): Pending
     if (colour === "by-domain") {
       return buildByDomainPendingRule(molecule, domains, fileName, log, policy);
     }
-    // Named schemes (b-factor, af2-plddt, etc.) are Moorhen multi-rules
-    // whose args are filled in by Moorhen at apply-time. We pass an empty
-    // args array; Moorhen's internal getMultiColourRuleArgs supplies them.
+    // Named schemes (b-factor, af2-plddt, etc.) are Moorhen multi-rules whose
+    // data is computed from the molecule. Moorhen does not do that for us: the
+    // rule goes to coot exactly as built, so the data is fetched with
+    // getMultiColourRuleArgs when the rule is applied (multiColourData: null).
     return [
       {
         ruleType: colour,
         cid: defaultCid,
         color: "#ffffff",
-        args: [],
+        multiColourData: null,
         isMultiColourRule: true,
       },
     ];
   }
 
   if (isSceneRawColour(colour)) {
+    // `args` is the scene format's spelling of what the rule sends to coot:
+    // the multi-colour data for a multi-rule, else [cid, colour].
     const raw = colour.raw;
+    const isMultiColourRule = raw.isMultiColourRule ?? true;
     return [
       {
         ruleType: raw.ruleType,
-        cid: defaultCid,
-        color: "#ffffff",
-        args: raw.args,
-        isMultiColourRule: raw.isMultiColourRule ?? true,
+        cid: isMultiColourRule ? defaultCid : String(raw.args[0] ?? defaultCid),
+        color: isMultiColourRule ? "#ffffff" : String(raw.args[1] ?? "#ffffff"),
+        multiColourData: isMultiColourRule ? String(raw.args[0] ?? "") : "",
+        isMultiColourRule,
         applyColourToNonCarbonAtoms: raw.applyColourToNonCarbonAtoms,
       },
     ];
@@ -1530,7 +1702,7 @@ function buildByDomainPendingRule(
 
   if (segments.length === 0) return [];
 
-  // One multi-rule, args = pipe-joined segments. Matches Moorhen's own
+  // One multi-rule, data = pipe-joined segments. Matches Moorhen's own
   // internal shape for multi-residue colouring (see secondary-structure
   // colouring in baby-gru/src/utils/utils.ts).
   return [
@@ -1538,7 +1710,7 @@ function buildByDomainPendingRule(
       ruleType: "by-domain", // label only; not a built-in scheme
       cid: "/*/*/*/*",
       color: "#ffffff",
-      args: [segments.join("|")],
+      multiColourData: segments.join("|"),
       isMultiColourRule: true,
     },
   ];

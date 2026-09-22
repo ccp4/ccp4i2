@@ -23,6 +23,8 @@ from django.db.models import (
     TextField,
     UUIDField,
     TextChoices,
+    UniqueConstraint,
+    Q,
 )
 from django.core.exceptions import ValidationError
 from django.utils import timezone
@@ -74,12 +76,26 @@ class ProjectGroup(Model):
         through_fields=("group", "project"),
     )
 
-    # Sites for fragment campaigns - stored view states for quick navigation
-    # Schema: [{"name": "Site 1", "origin": [x, y, z], "quat": [x, y, z, w], "zoom": z}, ...]
-    sites = JSONField(default=list, blank=True)
+    # Sites live in the CampaignSite table (related_name="site_set"), not here.
+    # They were a JSONField until migration 0024; see CampaignSite for why.
 
     def __str__(self):
         return self.name
+
+    @property
+    def parent_project(self):
+        """The campaign's reference project, or None.
+
+        A fragment campaign's parent is its reference coordinate frame: it is
+        what SubstituteLigand/DIMPLE start from, and what sibling datasets are
+        compared against. A group has at most one (enforced by a constraint on
+        ProjectGroupMembership), so this is single-valued rather than a
+        first()-of-many.
+        """
+        membership = self.memberships.filter(
+            type=ProjectGroupMembership.MembershipType.PARENT
+        ).first()
+        return membership.project if membership else None
 
 
 class ProjectGroupMembership(Model):
@@ -93,9 +109,99 @@ class ProjectGroupMembership(Model):
 
     class Meta:
         unique_together = ["group", "project"]
+        constraints = [
+            # A campaign's parent is its reference coordinate frame, so "the"
+            # parent has to mean one project. Both former call sites took
+            # .first() of a filter, which silently picked one of several if the
+            # data ever held two.
+            UniqueConstraint(
+                fields=["group"],
+                condition=Q(type="parent"),
+                name="one_parent_per_group",
+            )
+        ]
 
     def __str__(self):
         return f"{self.project} in {self.group} as {self.type}"
+
+
+class CampaignSite(Model):
+    """A binding site in a fragment campaign: a place, and what is known there.
+
+    Sites were a JSON list on ProjectGroup until migration 0024. That was
+    adequate while a site was only a camera bookmark, but not once anything
+    refers to one. A site in a list has no identity: it is found by its
+    position and its ``name``, so renaming "Site 1" to "Acetyl-lysine" orphans
+    every reference to it -- which already happened, since tagging a dataset
+    for a site created a tag whose text was the site's name. The whole list was
+    also replaced on every edit, so two people editing sites concurrently lost
+    one another's work with no conflict and no error.
+
+    ``origin`` is the centre of the site in the campaign's reference frame
+    (that of the parent project), which is what makes it meaningful across
+    datasets; ``quat`` and ``zoom`` are the saved camera, used only for
+    navigation.
+    """
+
+    group = ForeignKey(ProjectGroup, CASCADE, related_name="site_set")
+    name = CharField(max_length=100)
+    # Stored as three columns rather than a JSON triple so the database can
+    # answer questions about position (nearest site to a point, say).
+    origin_x = FloatField()
+    origin_y = FloatField()
+    origin_z = FloatField()
+    # Camera orientation and zoom: navigation only, hence nullable.
+    quat = JSONField(null=True, blank=True)
+    zoom = FloatField(null=True, blank=True)
+    # Display order, so the UI list is stable without depending on insertion id.
+    order = IntegerField(default=0)
+
+    class Meta:
+        unique_together = ["group", "name"]
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return f"{self.name} in {self.group}"
+
+    @property
+    def origin(self):
+        return [self.origin_x, self.origin_y, self.origin_z]
+
+
+class SiteEvaluation(Model):
+    """One person's verdict on one dataset at one site.
+
+    Per site, not per project: in fragment screening a dataset is routinely a
+    hit at one site and empty at another, so a project-level flag cannot say
+    what was found.
+
+    The absence of a row is the "not yet evaluated" state, and that is the
+    point of storing verdicts here rather than as a tag. "Empty" is an
+    assertion that somebody looked and found nothing; no row means nobody has
+    looked. A tag cannot tell those apart -- an untagged project is both.
+
+    There is deliberately no confidence field: the three verdicts already carry
+    the uncertainty, with UNCLEAR for the cases that warrant it, and a second
+    numeric axis would only invite the question of what 0.6 means.
+    """
+
+    class Verdict(TextChoices):
+        HIT = "hit", "Ligand present"
+        EMPTY = "empty", "No ligand"
+        UNCLEAR = "unclear", "Unclear"
+
+    project = ForeignKey(Project, CASCADE, related_name="site_evaluations")
+    site = ForeignKey(CampaignSite, CASCADE, related_name="evaluations")
+    verdict = CharField(max_length=16, choices=Verdict.choices)
+    evaluator = CharField(max_length=150, blank=True, default="")
+    evaluated_at = DateTimeField(auto_now=True)
+    note = TextField(blank=True, default="")
+
+    class Meta:
+        unique_together = ["project", "site"]
+
+    def __str__(self):
+        return f"{self.project} at {self.site}: {self.verdict}"
 
 
 class ProjectTag(Model):

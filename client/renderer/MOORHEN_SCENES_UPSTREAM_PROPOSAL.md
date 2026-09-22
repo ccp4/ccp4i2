@@ -87,7 +87,7 @@ own reference kinds, which is a fair proof that the extension API holds.
 
 The format is now formalised as a versioned JSON Schema contract generated from a
 single Zod source — see `MOORHEN_SCENES_FOR_MOORHEN.md` for the data model, the
-mapping onto Moorhen's own API (`glRefSlice`, `m2tParameters`,
+mapping onto Moorhen's own API (`sceneSettingsSlice`, `m2tParameters`,
 `RepresentationStyles`), and the published `moorhen-scene.core.v1.json`.
 
 ## What we would bring

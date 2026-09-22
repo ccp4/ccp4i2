@@ -134,7 +134,7 @@ export const ImportProvenanceProvider: React.FC<{ children: ReactNode }> = ({
                 onChange={(e) => setDontAskAgain(e.target.checked)}
               />
             }
-            label="Don't ask again (re-enable in the View menu)"
+            label="Don't ask again (re-enable in Edit → Preferences)"
             slotProps={{ typography: { variant: "body2" } }}
           />
           <Box>

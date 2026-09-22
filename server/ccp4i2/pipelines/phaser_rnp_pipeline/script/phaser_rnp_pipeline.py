@@ -128,8 +128,8 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
 
         self.xmlroot = etree.Element('PhaserPipeline')
 
-        self.F_SIGF_TOUSE = self.container.inputData.F_SIGF
-        self.FREERFLAG_TOUSE = self.container.inputData.FREERFLAG
+        self._useFile('F_SIGF_TOUSE', self.container.inputData.F_SIGF)
+        self._useFile('FREERFLAG_TOUSE', self.container.inputData.FREERFLAG)
         # Save flags before sub-plugins replace self.container.inputData
         self.runRefmacFlag = bool(self.container.inputData.RUNREFMAC)
         rv = self.runPointless()
@@ -253,10 +253,10 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             cellsAreSame = pluginOutputs.F_SIGF_OUT.fileContent.clipperSameCell(self.container.inputData.F_SIGF.fileContent)
             if not cellsAreSame['validity']:
                 self.harvestFile(pluginOutputs.F_SIGF_OUT, pipelineOutputs.F_SIGF_OUT)
-                self.F_SIGF_TOUSE = pluginOutputs.F_SIGF_OUT
+                self._useFile('F_SIGF_TOUSE', pluginOutputs.F_SIGF_OUT)
                 if self.container.inputData.FREERFLAG.isSet():
                     self.harvestFile(pluginOutputs.FREERFLAG_OUT, pipelineOutputs.FREERFLAG_OUT)
-                    self.FREERFLAG_TOUSE = pluginOutputs.FREERFLAG_OUT
+                    self._useFile('FREERFLAG_TOUSE', pluginOutputs.FREERFLAG_OUT)
 
             try:
                 self.appendXML(pointlessPlugin.makeFileName('PROGRAMXML'),'Pointless')

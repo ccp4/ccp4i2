@@ -10,6 +10,7 @@
  * mask looks the same however it's loaded.
  */
 import type { Dispatch } from "redux";
+import type { MoorhenInstance } from "moorhen/react-lib";
 import {
   setMapStyle,
   setMapAlpha,
@@ -30,20 +31,23 @@ export const MASK_SUBTYPE = 4;
 export const HALFMAP_SUBTYPE = 5;
 
 /**
- * Moorhen beta.1 reworked MoorhenMap: the constructor and the (now static)
- * loadToCootFrom* factory methods take a single MoorhenInstance instead of the
- * old `(commandCentreRef, store)` pair, and `this.commandCentre` is now the
- * CommandCentre object itself (not a ref). On the load / contour / suggested-
- * settings paths the class only reads `.commandCentre` and `.store` off the
- * instance, so a minimal shim over the wrapper's existing ref + store is enough
- * — no full InstanceManager wiring required. Use this at every MoorhenMap load
- * site so maps actually reach coot again.
+ * The wrapper's MoorhenInstance, or a clear error if Moorhen has not set it yet.
+ *
+ * MoorhenMap and MoorhenMolecule are both constructed from a MoorhenInstance
+ * (as are the static MoorhenMap.loadToCootFrom* factories). Until Moorhen 1.0.1
+ * a `{ commandCentre, store }` stand-in was enough for maps; it no longer is
+ * for anything: a molecule reports every edit through
+ * `moorhenInstance.triggerMoleculeChanged` and takes its monomer library from
+ * `moorhenInstance.paths`. So the wrappers hand MoorhenContainer a
+ * `moorhenInstanceRef` and build from the real thing. The container fills the
+ * ref on mount, well before coot is initialised and any load can start.
  */
-export function makeMoorhenMapInstance(
-  commandCentreRef: { current: unknown } | null | undefined,
-  store: unknown,
-): any {
-  return { commandCentre: commandCentreRef?.current ?? null, store };
+export function requireMoorhenInstance(
+  moorhenInstanceRef: { current: MoorhenInstance | null },
+): MoorhenInstance {
+  const instance = moorhenInstanceRef.current;
+  if (!instance) throw new Error("Moorhen is not initialised yet");
+  return instance;
 }
 
 /**
@@ -75,7 +79,7 @@ export async function primeXtalMapContourStats(map: any): Promise<void> {
  *
  * MoorhenMap.initialise() flags a P1 map with 90° angles as EM and locks its
  * origin, and MapOriginListener (src/components/managers/maps/
- * MapOriginListener.tsx, line 25 in 1.0.0-beta.1-dev.gcf479260) then reads
+ * MapOriginListener.tsx, line 25, still so in 1.0.1-dev.g10d4c0b00) then reads
  * `map.headerInfo.cell` during render for any EM map with dataOrigin "mtz".
  * But MoorhenMap never assigns `headerInfo`: initialise() keeps the header in
  * a local, and the property stays null. So loading the map coefficients of a

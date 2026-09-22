@@ -30,7 +30,7 @@ import {
 } from "moorhen/react-lib";
 import { setShownSidePanel, MoorhenInstanceProvider, MoorhenMenuSystem } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenPanel } from "moorhen/react-lib";
+import type { MoorhenInstance, MoorhenPanel } from "moorhen/react-lib";
 
 import {
   RefObject,
@@ -46,11 +46,15 @@ import { webGL } from "moorhen/types/mgWebGL";
 import { apiText, apiArrayBuffer, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import { readCameraState } from "../../lib/moorhen-view-state";
 import { useCampaignsApi } from "../../lib/campaigns-api";
 import { usePopcorn } from "../../providers/popcorn-provider";
 import {
   ProjectGroup,
   CampaignSite,
+  NewCampaignSite,
+  SiteEvaluation,
+  SiteVerdict,
   MemberProjectWithSummary,
 } from "../../types/campaigns";
 import { Project } from "../../types/models";
@@ -69,8 +73,19 @@ import {
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/scene";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import {
+  COORDINATE_TYPES,
+  fetchCompanionDictionaryFiles,
+  fetchDictionaryTexts,
+  fetchJobDictionaryFiles,
+  loadWithDictionaries,
+  type DictionaryToAttach,
+} from "../../lib/moorhen-dictionaries";
+import { candidateLigandCodes, placeLigand } from "../../lib/ligand-codes";
 import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
+import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
+import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
 
@@ -87,8 +102,20 @@ export interface CampaignMoorhenWrapperProps {
    *  path — the single rendering pathway shared with hand-edited scenes. */
   summaryScene?: MoorhenScene | null;
   viewParam?: string | null;
+  /** A site to move to once the scene is up — the `site` URL parameter, which
+   *  is how a verdict chip in the campaign overview opens its site. */
+  initialSiteId?: number | null;
   sites: CampaignSite[];
-  onUpdateSites: (sites: CampaignSite[]) => Promise<void>;
+  onAddSite: (site: NewCampaignSite) => Promise<void>;
+  onUpdateSite: (
+    siteId: number,
+    changes: Partial<NewCampaignSite>
+  ) => Promise<void>;
+  onDeleteSite: (siteId: number) => Promise<void>;
+  /** Verdicts recorded for the selected dataset, empties included. */
+  evaluations: SiteEvaluation[];
+  onSetVerdict: (siteId: number, verdict: SiteVerdict) => Promise<void>;
+  onClearVerdict: (siteId: number) => Promise<void>;
   memberProjects: MemberProjectWithSummary[];
   selectedMemberProjectId: number | null;
   onSelectMemberProject: (projectId: number | null) => void;
@@ -100,8 +127,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   fileSource,
   summaryScene,
   viewParam,
+  initialSiteId,
   sites,
-  onUpdateSites,
+  onAddSite,
+  onUpdateSite,
+  onDeleteSite,
+  evaluations,
+  onSetVerdict,
+  onClearVerdict,
   memberProjects,
   selectedMemberProjectId,
   onSelectMemberProject,
@@ -182,6 +215,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
   const commandCentre = useRef<null | moorhen.CommandCentre>(null);
+  // Filled by MoorhenContainer on mount. Molecules and maps are built from it.
+  const moorhenInstanceRef = useRef<null | MoorhenInstance>(null);
   const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
   const mapsRef = useRef<null | moorhen.Map[]>(null);
   const activeMapRef = useRef<moorhen.Map>(null);
@@ -193,8 +228,12 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // Ligand dictionary file ID for 2D structure display (first dict file found)
   const [ligandDictFileId, setLigandDictFileId] = useState<number | null>(null);
   const [ligandName, setLigandName] = useState<string | null>(null);
+  // What "Add ligand here" needs: the codes the member's dictionaries define
+  // and the file its coordinates came from (the molecule is found by that,
+  // not by which molecule is active; see lib/ligand-codes).
+  const [ligandCodes, setLigandCodes] = useState<string[]>([]);
+  const [memberCoordFileId, setMemberCoordFileId] = useState<number | null>(null);
   // Store ALL loaded dictionary contents so we can add them to molecules
-  const loadedDictContents = useRef<string[]>([]);
 
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -238,15 +277,26 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     (state: moorhen.State) => state.sceneSettings.defaultBondSmoothness
   );
 
-  const isElectron =
-    typeof window !== "undefined" && !!(window as any).electronAPI;
-  // In web browsers, use API route for CORP headers (COEP compatibility)
-  // In Electron, serve directly from public/MoorhenAssets
-  const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
+  // In web browsers, use API route for CORP headers (COEP compatibility), with
+  // the Moorhen version in the path so the route's immutable cache is honest
+  // across upgrades. In Electron, serve directly from public/MoorhenAssets.
+  const isElectron = isElectronWindow();
+  const urlPrefix = moorhenUrlPrefix(isElectron);
+
+  // Start the WASM download now, rather than after the data archives.
+  //
+  // MoorhenCommandCentre.init() awaits three .tar.gz fetches before posting
+  // CootInitialize, and only that message makes the worker fetch the WASM --
+  // the biggest file on the page, last in the queue. Warming the cache here
+  // lets the two run together; the worker's own fetch then joins it. No effect
+  // in Electron, which reads these files from disk.
+  useEffect(() => {
+    if (isElectron) return;
+    return prefetchMoorhenWasm(urlPrefix);
+  }, [isElectron, urlPrefix]);
 
   const getOrigin = useCallback(() => {
-    const state = store.getState() as moorhen.State;
-    return (state as unknown as { glRef: { origin: number[] } }).glRef.origin;
+    return readCameraState(store.getState() as moorhen.State).origin;
   }, [store]);
 
   // Cleanup all loaded molecules and maps
@@ -266,7 +316,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     // Reset ligand info
     setLigandDictFileId(null);
     setLigandName(null);
-    loadedDictContents.current = [];
     // Reset representation state to default
     setVisibleRepresentations(["CRs"]);
     hasInitializedReps.current = false;
@@ -299,17 +348,23 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       coordText: string,
       molName: string,
       uniqueId: string,
+      opts: { dictionaries?: DictionaryToAttach[] } = {},
     ): Promise<moorhen.Molecule | null> => {
       if (!commandCentre.current) return null;
-      const newMolecule = new MoorhenMolecule(
-        commandCentre as RefObject<moorhen.CommandCentre>,
-        store as any,
-        monomerLibraryPath,
-      );
+      const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
       newMolecule.setBackgroundColour(backgroundColor);
       newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
       try {
-        await newMolecule.loadToCootFromString(coordText, molName);
+        // The element's own dictionaries go on BEFORE Moorhen goes looking
+        // for missing monomers. Without this the ligand is bonded from
+        // whatever the monomer library happens to return for its code -- or
+        // from nothing at all for a novel fragment -- and the scoped
+        // read_dictionary_string that the resolver does afterwards arrives
+        // too late to be what the molecule was built from. See
+        // lib/moorhen-dictionaries: deferring that fetch is the whole point.
+        await loadWithDictionaries(newMolecule as any, opts.dictionaries ?? [], () =>
+          newMolecule.loadToCootFromString(coordText, molName),
+        );
         if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
         newMolecule.uniqueId = uniqueId;
         // Ribbon first (protein overview), fall back to sticks. These get
@@ -337,10 +392,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   );
 
   const loadSceneStructure = useCallback(
-    async (url: string, molName: string): Promise<moorhen.Molecule | null> => {
+    async (
+      url: string,
+      molName: string,
+      opts: { dictionaries?: DictionaryToAttach[] } = {},
+    ): Promise<moorhen.Molecule | null> => {
       try {
         const pdbData = await apiText(url);
-        return loadSceneStructureFromText(pdbData, molName, url);
+        return loadSceneStructureFromText(pdbData, molName, url, opts);
       } catch (err) {
         console.warn(`[scene] failed to fetch ${molName} from ${url}:`, err);
         return null;
@@ -350,7 +409,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   );
 
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
-    async (ref: SceneFileRef) => {
+    async (ref: SceneFileRef, fetchOpts) => {
+      // The element's scoped dictionaries, which the resolver hands us here.
+      // Dropping this argument is what left every campaign summary ligand
+      // bonded without its own chemistry.
+      const loadOpts = { dictionaries: fetchOpts?.dictionaries ?? [] };
       // Bundle: decode bytes from the in-memory asset map (no network).
       if (ref.bundle) {
         const buf = bundleAssetsRef.current.get(ref.bundle);
@@ -363,12 +426,17 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           coordText,
           ref.name || ref.bundle,
           `bundle:${ref.bundle}`,
+          loadOpts,
         );
       }
-      if (ref.fileId !== undefined && ref.projectId) {
+      // A ccp4i2 fileId is globally unique, so it alone builds the URL;
+      // projectId is advisory and must not gate the fetch (the generic
+      // wrapper has always treated it that way).
+      if (ref.fileId !== undefined) {
         return loadSceneStructure(
           `/api/proxy/ccp4i2/files/${ref.fileId}/download/`,
           ref.name || `file_${ref.fileId}`,
+          loadOpts,
         );
       }
       if (ref.pdb) {
@@ -376,9 +444,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         return loadSceneStructure(
           `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`,
           ref.name || pdbId,
+          loadOpts,
         );
       }
-      if (ref.url) return loadSceneStructure(ref.url, ref.name || ref.url);
+      if (ref.url) return loadSceneStructure(ref.url, ref.name || ref.url, loadOpts);
       return null;
     },
     [loadSceneStructure, loadSceneStructureFromText],
@@ -459,7 +528,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         }
       }
       try {
-        const mapInstance = makeMoorhenMapInstance(commandCentre, store);
+        const mapInstance = requireMoorhenInstance(moorhenInstanceRef);
         let newMap: moorhen.Map;
         if (ref.kind === "map") {
           // mode-0 -> float (sane stats); masks also dodge coot's EM cell-clamp.
@@ -582,75 +651,89 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       console.warn(`File with ID ${fileId} not found.`);
       return;
     }
-    if (fileInfo.type === "chemical/x-pdb") {
+    if (COORDINATE_TYPES.has(fileInfo.type)) {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.job_param_name;
-      await fetchMolecule(url, molName);
+      // A coordinate file brings the dictionaries of the job it belongs to.
+      const dictionaries = await fetchDictionaryTexts(await fetchCompanionDictionaryFiles(fileId));
+      await fetchMolecule(url, molName, dictionaries);
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
       // subType: 1=normal, 2=difference, 3=anomalous difference
       const mapSubType = fileInfo.sub_type || 1;
-      await fetchMap(url, molName, mapSubType);
+      await fetchMap(url, molName, mapSubType, fileInfo.annotation || molName);
     } else if (fileInfo.type === "application/CCP4-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.name || fileInfo.job_param_name;
-      await fetchMapFile(url, molName, { isMask: isMaskSubType(fileInfo.sub_type) });
+      await fetchMapFile(url, molName, {
+        isMask: isMaskSubType(fileInfo.sub_type),
+        description: molName,
+      });
     }
   };
 
-  const fetchJobFiles = async (jobId: number) => {
+  /**
+   * Load a job's best coordinate file, with the job's own dictionaries
+   * attached to that molecule alone, and its maps.
+   *
+   * `asCurrentMember` (the default) is the campaign's own use: the job is the
+   * selected member's, so its first dictionary drives the 2D ligand panel and
+   * the view centres on it. With it false the job is an addition brought in
+   * from the project browser ("load all job outputs"): nothing about the
+   * current member is disturbed and the camera stays where it is.
+   */
+  const fetchJobFiles = async (
+    jobId: number,
+    opts: { asCurrentMember?: boolean } = {},
+  ) => {
+    const asCurrentMember = opts.asCurrentMember !== false;
     const files = await apiGet(`files/?job=${jobId}`);
     if (!files || !Array.isArray(files)) return;
 
     // Filter to only JOB_DIR files (directory=1), exclude imported files (directory=2)
     const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
 
-    // STEP 1: Load ALL ligand dictionaries FIRST (before coordinates)
-    // This ensures coot understands ligand geometry when parsing coordinates.
-    // A dictionary file may contain multiple monomers — read_dictionary_string
-    // loads all of them into coot's global store.
-    const ligandDictFiles = files.filter(
-      (f: { type: string }) => f.type === "application/refmac-dictionary"
-    );
-    if (ligandDictFiles.length > 0) {
-      loadedDictContents.current = [];
-      for (const dictFile of ligandDictFiles) {
-        const dictUrl = `/api/proxy/ccp4i2/files/${dictFile.id}/download/`;
-        await fetchDict(dictUrl);
+    // STEP 1: The job's dictionaries from the database: its own files AND its
+    // inputs (a refinement's ligand usually comes from an earlier acedrg job,
+    // which a filter over this job's own files never saw). They are attached
+    // to this job's molecule only, never to Coot's global store, so a second
+    // job brought into the view keeps its own chemistry for a ligand of the
+    // same name.
+    const ligandDictFiles = await fetchJobDictionaryFiles(jobId);
+    const dictionaries = await fetchDictionaryTexts(ligandDictFiles);
+    if (asCurrentMember) {
+      if (ligandDictFiles.length > 0) {
+        // Use the first dictionary file for 2D display in the control panel
+        const firstDict = ligandDictFiles[0];
+        setLigandDictFileId(firstDict.id);
+        const name = firstDict.name?.replace(/\.cif$/i, "") ||
+                     firstDict.annotation ||
+                     "Ligand";
+        setLigandName(name);
+        setLigandCodes(candidateLigandCodes(dictionaries.map((d) => d.text)));
+      } else {
+        setLigandDictFileId(null);
+        setLigandName(null);
+        setLigandCodes([]);
       }
-      // Use the first dictionary file for 2D display in the control panel
-      const firstDict = ligandDictFiles[0];
-      setLigandDictFileId(firstDict.id);
-      const name = firstDict.name?.replace(/\.cif$/i, "") ||
-                   firstDict.annotation ||
-                   "Ligand";
-      setLigandName(name);
-    } else {
-      loadedDictContents.current = [];
-      setLigandDictFileId(null);
-      setLigandName(null);
     }
 
     // STEP 2: Find and load coordinate files
     // Check for both PDB and mmCIF types
-    const coordFiles = jobOutputFiles.filter(
-      (f: { type: string }) =>
-        f.type === "chemical/x-pdb" ||
-        f.type === "chemical/x-cif" ||
-        f.type === "chemical/x-mmcif"
-    );
+    const coordFiles = jobOutputFiles.filter((f: { type: string }) => COORDINATE_TYPES.has(f.type));
     // Prefer mmCIF (.cif) over PDB (.pdb) for coordinates
     const mmcifFile = coordFiles.find((f: { name: string }) =>
       f.name.toLowerCase().endsWith(".cif")
     );
     const coordFile = mmcifFile || coordFiles[0];
+    if (asCurrentMember) setMemberCoordFileId(coordFile ? coordFile.id : null);
 
     // Load the single best coordinate file
     if (coordFile) {
       const url = `/api/proxy/ccp4i2/files/${coordFile.id}/download/`;
       const molName = coordFile.annotation || coordFile.job_param_name;
-      await fetchMolecule(url, molName);
+      await fetchMolecule(url, molName, dictionaries, { centre: asCurrentMember });
     }
 
     // STEP 3: Load map files (MTZ coefficients and real-space CCP4 maps / masks)
@@ -660,68 +743,42 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         const molName = file.name || file.job_param_name;
         // subType: 1=normal, 2=difference, 3=anomalous difference
         const mapSubType = file.sub_type || 1;
-        await fetchMap(url, molName, mapSubType);
+        await fetchMap(url, molName, mapSubType, file.annotation || molName);
       } else if (file.type === "application/CCP4-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
         const molName = file.annotation || file.name || file.job_param_name;
-        await fetchMapFile(url, molName, { isMask: isMaskSubType(file.sub_type) });
+        await fetchMapFile(url, molName, {
+          isMask: isMaskSubType(file.sub_type),
+          description: molName,
+        });
       }
     }
   };
 
-  /**
-   * Load a ligand dictionary into coot's global dictionary store.
-   * This should be called BEFORE loading coordinates so coot understands ligand geometry.
-   */
-  const fetchDict = async (url: string): Promise<string | null> => {
-    if (!commandCentre.current) return null;
-    try {
-      const fileContent = await apiText(url);
-      // Load dictionary globally into coot (molNo=-999999 means global)
-      await commandCentre.current.cootCommand(
-        {
-          returnType: "status",
-          command: "read_dictionary_string",
-          commandArgs: [fileContent, -999999],
-          changesMolecules: [],
-        },
-        false
-      );
-      // Store content so we can add it to molecules later
-      loadedDictContents.current.push(fileContent);
-      return fileContent;
-    } catch (err) {
-      console.error("[fetchDict] Failed to load dictionary:", err);
-      return null;
-    }
-  };
+  /** Bring an extra job into the view from the project browser. */
+  const importJobFiles = (jobId: number) => fetchJobFiles(jobId, { asCurrentMember: false });
 
-  const fetchMolecule = async (url: string, molName: string) => {
+  const fetchMolecule = async (
+    url: string,
+    molName: string,
+    dictionaries: DictionaryToAttach[] = [],
+    opts: { centre?: boolean } = {},
+  ) => {
     if (!commandCentre.current) return;
-    const newMolecule = new MoorhenMolecule(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any,
-      monomerLibraryPath
-    );
+    const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
     newMolecule.setBackgroundColour(backgroundColor);
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
       const pdbData = await apiText(url);
-      await newMolecule.loadToCootFromString(pdbData, molName);
+      // The molecule's own dictionaries, attached to it alone, before Moorhen
+      // goes looking for missing monomers (see lib/moorhen-dictionaries).
+      await loadWithDictionaries(newMolecule as any, dictionaries, () =>
+        newMolecule.loadToCootFromString(pdbData, molName),
+      );
       if (newMolecule.molNo === -1) {
         throw new Error("Cannot read the fetched molecule...");
       }
       newMolecule.uniqueId = url;
-
-      // Add all loaded dictionaries to molecule
-      // This ensures the molecule understands geometry for all monomers
-      for (const dictContent of loadedDictContents.current) {
-        try {
-          await newMolecule.addDict(dictContent);
-        } catch (err) {
-          console.warn("[fetchMolecule] Failed to add dictionary:", err);
-        }
-      }
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
       try {
@@ -738,7 +795,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         console.warn("[fetchMolecule] Ligands representation failed");
       }
 
-      await newMolecule.centreOn("/*/*/*/*", false, true);
+      if (opts.centre !== false) await newMolecule.centreOn("/*/*/*/*", false, true);
       dispatch(addMolecule(newMolecule));
     } catch (err) {
       console.warn(err);
@@ -749,7 +806,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const fetchMap = async (
     url: string,
     mapName: string,
-    mapSubType: number = 1
+    mapSubType: number = 1,
+    // The file's own annotation, kept for the panel's tooltip: the contour
+    // rows are labelled by map type ("2Fo-Fc", "Fo-Fc"), which with several
+    // datasets loaded gives several identically-named rows.
+    description?: string,
   ) => {
     if (!commandCentre.current) return;
     // subType: 1=normal, 2=difference, 3=anomalous difference
@@ -766,11 +827,12 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           useWeight: false,
           isDifference: isDiffMap,
         } as moorhen.selectedMtzColumns,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       newMap.uniqueId = url;
       // Store the original sub_type for proper labeling and coloring
       (newMap as any).mapSubType = mapSubType;
+      if (description) (newMap as any).ccp4i2Description = description;
       // Before addMap: an EM-flagged MTZ map crashes the viewer otherwise.
       primeEmMapHeaderInfo(newMap);
       // Set custom colors for anomalous maps (orange/purple instead of green/red)
@@ -810,7 +872,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const fetchMapFile = async (
     url: string,
     mapName: string,
-    opts: { isMask?: boolean } = {}
+    opts: { isMask?: boolean; description?: string } = {}
   ) => {
     if (!commandCentre.current) return;
     let newMap: moorhen.Map | undefined;
@@ -824,12 +886,13 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         new Uint8Array(mapData),
         mapName,
         false,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
       (newMap as any).isCcp4MapFile = true;
+      if (opts.description) (newMap as any).ccp4i2Description = opts.description;
       if (opts.isMask) {
         markMaskMap(newMap);
       }
@@ -858,80 +921,95 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [dispatch]
   );
 
+  // View a site: a fresh page on the site's scene, the way the campaign
+  // overview opens the summary. In a new tab, because the current session
+  // holds a dataset someone is looking at, and a site view replaces the
+  // loaded molecules with the site's hits.
+  const handleViewSite = useCallback(
+    (site: CampaignSite) => {
+      window.open(
+        `/ccp4i2/moorhen-page/campaign/${campaign.id}?summary=1&site=${site.id}`,
+        "_blank"
+      );
+    },
+    [campaign.id]
+  );
+
+  // Move to the site named in the URL, once there is a scene to move around.
+  //
+  // Waits for coot: dispatching an origin before the molecules are drawn puts
+  // the camera in the right place and then has it reset underneath us. Fires
+  // once, so a user who navigates away from the site is not dragged back by a
+  // later re-render.
+  const appliedInitialSite = useRef(false);
+  useEffect(() => {
+    if (appliedInitialSite.current) return;
+    if (!initialSiteId || !cootInitialized || sites.length === 0) return;
+    const site = sites.find((s) => s.id === initialSiteId);
+    if (!site) return;
+    appliedInitialSite.current = true;
+    handleGoToSite(site);
+  }, [initialSiteId, cootInitialized, sites, handleGoToSite]);
+
   // Save current view as a site
   const handleSaveCurrentAsSite = useCallback(
     async (name: string) => {
-      const state = store.getState() as unknown as {
-        glRef: { origin: number[]; quat: number[]; zoom: number };
-      };
-      const newSite: CampaignSite = {
+      const camera = readCameraState(store.getState() as moorhen.State);
+      const newSite: NewCampaignSite = {
         name,
-        origin: Array.from(state.glRef.origin).slice(0, 3) as [
+        origin: Array.from(camera.origin).slice(0, 3) as [
           number,
           number,
           number
         ],
-        quat: Array.from(state.glRef.quat).slice(0, 4) as [
+        quat: Array.from(camera.quat).slice(0, 4) as [
           number,
           number,
           number,
           number
         ],
-        zoom: state.glRef.zoom,
+        zoom: camera.zoom,
       };
-      await onUpdateSites([...sites, newSite]);
+      await onAddSite(newSite);
     },
-    [store, sites, onUpdateSites]
+    [store, onAddSite]
   );
 
-  // Delete a site
+  // Delete a site, by its id. Deleting takes that site's verdicts with it.
   const handleDeleteSite = useCallback(
-    async (index: number) => {
-      const newSites = sites.filter((_, i) => i !== index);
-      await onUpdateSites(newSites);
+    async (siteId: number) => {
+      await onDeleteSite(siteId);
     },
-    [sites, onUpdateSites]
+    [onDeleteSite]
   );
 
-  // Update a site (rename and optionally update position)
+  // Rename a site, and optionally move it to the current view.
+  //
+  // Addressed by id, not by position: a site's verdicts hang off its id, so a
+  // rename has to reach the same row rather than replace a list entry.
   const handleUpdateSite = useCallback(
-    async (index: number, name: string, updatePosition: boolean) => {
-      const existingSite = sites[index];
-      let updatedSite: CampaignSite;
+    async (siteId: number, name: string, updatePosition: boolean) => {
+      const changes: Partial<NewCampaignSite> = { name };
 
       if (updatePosition) {
-        // Capture current view position
-        const state = store.getState() as unknown as {
-          glRef: { origin: number[]; quat: number[]; zoom: number };
-        };
-        updatedSite = {
-          name,
-          origin: Array.from(state.glRef.origin).slice(0, 3) as [
-            number,
-            number,
-            number
-          ],
-          quat: Array.from(state.glRef.quat).slice(0, 4) as [
-            number,
-            number,
-            number,
-            number
-          ],
-          zoom: state.glRef.zoom,
-        };
-      } else {
-        // Keep existing position, just update name
-        updatedSite = {
-          ...existingSite,
-          name,
-        };
+        const camera = readCameraState(store.getState() as moorhen.State);
+        changes.origin = Array.from(camera.origin).slice(0, 3) as [
+          number,
+          number,
+          number
+        ];
+        changes.quat = Array.from(camera.quat).slice(0, 4) as [
+          number,
+          number,
+          number,
+          number
+        ];
+        changes.zoom = camera.zoom;
       }
 
-      const newSites = [...sites];
-      newSites[index] = updatedSite;
-      await onUpdateSites(newSites);
+      await onUpdateSite(siteId, changes);
     },
-    [store, sites, onUpdateSites]
+    [store, onUpdateSite]
   );
 
   // Handle map contour level changes
@@ -958,24 +1036,44 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [dispatch, maps]
   );
 
-  // Handle tagging the currently selected project with a site name
-  const handleTagProjectWithSite = useCallback(
-    async (siteName: string) => {
+  // Record what was found at a site in the selected dataset.
+  //
+  // This replaces tagging the project with the site's name. A tag could not
+  // say that somebody looked and found nothing -- an untagged project was
+  // both "empty" and "not yet looked at" -- and it broke on a rename.
+  const handleSetVerdict = useCallback(
+    async (siteId: number, verdict: SiteVerdict) => {
       if (!selectedMemberProjectId) {
         setMessage("Please select a member project first");
         return;
       }
+      const site = sites.find((s) => s.id === siteId);
       try {
-        await campaignsApi.addTagByText(selectedMemberProjectId, siteName);
-        const memberProject = memberProjects.find((p) => p.id === selectedMemberProjectId);
-        const projectName = memberProject?.name || `Project ${selectedMemberProjectId}`;
-        setMessage(`Tagged "${projectName}" with "${siteName}"`);
+        await onSetVerdict(siteId, verdict);
+        setMessage(`Recorded ${verdict} at "${site?.name ?? "site"}"`);
       } catch (err) {
-        console.error("Failed to tag project:", err);
-        setMessage("Failed to tag project");
+        console.error("Failed to record verdict:", err);
+        setMessage("Failed to record verdict");
       }
     },
-    [selectedMemberProjectId, campaignsApi, setMessage, memberProjects]
+    [selectedMemberProjectId, sites, onSetVerdict, setMessage]
+  );
+
+  // Withdraw a verdict: back to nobody having looked, which is not the same
+  // as recording "empty".
+  const handleClearVerdict = useCallback(
+    async (siteId: number) => {
+      if (!selectedMemberProjectId) return;
+      const site = sites.find((s) => s.id === siteId);
+      try {
+        await onClearVerdict(siteId);
+        setMessage(`Withdrew the verdict at "${site?.name ?? "site"}"`);
+      } catch (err) {
+        console.error("Failed to withdraw verdict:", err);
+        setMessage("Failed to withdraw verdict");
+      }
+    },
+    [selectedMemberProjectId, sites, onClearVerdict, setMessage]
   );
 
   // Run servalcat_pipe refinement on a molecule
@@ -1000,24 +1098,48 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       setMessage("Creating servalcat refinement job...");
 
       try {
-        // Step 1: Find observation reflections from this project's top-level jobs
-        type ObsFile = { id: number; job: number; uuid: string; name: string;
-                         content: number | null; sub_type: number | null };
-        const obsFiles = await apiGet(
-          `files/?type=application/CCP4-mtz-observed&directory=1` +
-          `&job__project=${projectId}&job__parent__isnull=true`
-        ) as ObsFile[] | null;
+        // Step 1: Find observation reflections and the free-R set from this
+        // project's top-level jobs.
+        //
+        // Job outputs (directory 1) are preferred over imports (directory 2),
+        // but imports are NOT excluded. A member processed from unmerged data
+        // always has an F_SIGF_OUT from aimless; one processed from merged
+        // data has none unless the refinement step reindexed, because the
+        // observations pass through unchanged -- its only observed file is
+        // the imported F_SIGF_IN. Asking for directory=1 alone reported "no
+        // reflection data" for every such member.
+        type MtzFile = { id: number; job: number; uuid: string; name: string;
+                         directory: number; content: number | null;
+                         sub_type: number | null };
+        const topLevelFiles = async (mimeType: string) =>
+          ((await apiGet(
+            `files/?type=${mimeType}` +
+            `&job__project=${projectId}&job__parent__isnull=true`
+          )) as MtzFile[] | null) || [];
+        // Outputs before imports, then most recent job first
+        const byPreference = (a: MtzFile, b: MtzFile) =>
+          a.directory - b.directory || b.job - a.job;
 
-        if (!obsFiles || obsFiles.length === 0) {
+        const obsFiles = await topLevelFiles("application/CCP4-mtz-observed");
+        if (obsFiles.length === 0) {
           setMessage("No reflection data found in project");
           return;
         }
 
-        // Sort by job ID descending (most recent first), then prefer
+        // Among outputs if there are any (else among imports), prefer
         // anomalous data (IPAIR content & 1, FPAIR content & 2) over IMEAN/FMEAN
-        const sorted = [...obsFiles].sort((a, b) => b.job - a.job);
-        const hasAnomalous = (f: ObsFile) => f.content !== null && (f.content & 3) !== 0;
-        const reflectionFile = sorted.find(hasAnomalous) || sorted[0];
+        const sorted = [...obsFiles].sort(byPreference);
+        const candidates = sorted.filter((f) => f.directory === sorted[0].directory);
+        const hasAnomalous = (f: MtzFile) => f.content !== null && (f.content & 3) !== 0;
+        const reflectionFile = candidates.find(hasAnomalous) || candidates[0];
+
+        // The free-R set. Preferring outputs matters more here than for the
+        // observations: the imported set is the campaign's shared one, from
+        // the reference crystal, while FREERFLAG_OUT is that set reconciled
+        // with this dataset's cell and resolution.
+        const freeRFile = (
+          await topLevelFiles("application/CCP4-mtz-freerflag")
+        ).sort(byPreference)[0];
 
         // Step 2: Create servalcat_pipe job
         const jobResponse = await apiPost<{
@@ -1057,6 +1179,18 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           value: hklinValue,
         });
 
+        // Without this the refinement ran with no free set at all, so its
+        // R-free meant nothing and could not be compared between siblings.
+        if (freeRFile) {
+          await apiPost(`jobs/${newJobId}/set_parameter/`, {
+            object_path: "servalcat_pipe.inputData.FREERFLAG",
+            value: {
+              project: projectDbId,
+              dbFileId: freeRFile.uuid.replace(/-/g, ""),
+            },
+          });
+        }
+
         // Step 5: Upload dictionary if available
         // Uses upload_file_param (not set_parameter) because DICT_LIST starts empty
         // and upload_file_param handles list expansion automatically
@@ -1085,6 +1219,27 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       }
     },
     [selectedMemberProjectId, memberProjects, ligandDictFileId, setMessage]
+  );
+
+  // Place the member's ligand at the view centre. Nothing is saved: the
+  // result lives in the browser until it is pushed, and it is not pushed
+  // automatically because a placed, unfitted ligand in an arbitrary
+  // orientation is not something anyone wants silently written into their
+  // project.
+  const handleAddLigand = useCallback(
+    async (code: string) => {
+      try {
+        await placeLigand(molecules, memberCoordFileId, code);
+        dispatch(setRequestDrawScene(true));
+        setMessage(`Ligand ${code} added. Push to CCP4i2 to keep it.`, "success");
+      } catch (err) {
+        setMessage(
+          `Could not add ${code}: ${err instanceof Error ? err.message : String(err)}`,
+          "error",
+        );
+      }
+    },
+    [molecules, memberCoordFileId, dispatch, setMessage]
   );
 
   // Moorhen 1.0 requires the InstanceProvider to be seeded with a menu system
@@ -1116,6 +1271,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             campaign,
             sites,
             onGoToSite: handleGoToSite,
+            onViewSite: handleViewSite,
             onSaveCurrentAsSite: handleSaveCurrentAsSite,
             onUpdateSite: handleUpdateSite,
             onDeleteSite: handleDeleteSite,
@@ -1129,10 +1285,16 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             onRepresentationsChange: setVisibleRepresentations,
             ligandDictFileId,
             ligandName,
+            ligandCodes,
+            memberCoordFileId,
+            onAddLigand: handleAddLigand,
             maps,
             onMapContourLevelChange: handleMapContourLevelChange,
-            onTagProjectWithSite: handleTagProjectWithSite,
+            evaluations,
+            onSetVerdict: handleSetVerdict,
+            onClearVerdict: handleClearVerdict,
             onFileSelect: fetchFile,
+            onJobLoad: importJobFiles,
             onRunServalcat: handleRunServalcat,
           }}
           onApplyScene={handleApplyScene}
@@ -1148,6 +1310,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     glRef,
     timeCapsuleRef,
     commandCentre,
+    moorhenInstanceRef,
     moleculesRef,
     mapsRef,
     activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,

@@ -31,6 +31,12 @@ export type MembershipType = "parent" | "member";
  * Used for storing binding site locations in fragment campaigns.
  */
 export interface CampaignSite {
+  /**
+   * Stable identifier. Everything else refers to a site by this: a site used
+   * to be identified by its name and its position in a JSON list, so renaming
+   * one orphaned every reference to it.
+   */
+  id: number;
   /** Display name for the site */
   name: string;
   /** View origin coordinates [x, y, z] */
@@ -39,6 +45,41 @@ export interface CampaignSite {
   quat?: [number, number, number, number];
   /** Zoom level (optional) */
   zoom?: number;
+  /** Position in the campaign's site list */
+  order?: number;
+  /**
+   * How many verdicts are recorded at this site, across every dataset in the
+   * campaign. Sent by the list endpoint only, so the delete confirmation can
+   * say what deleting the site would actually destroy.
+   */
+  evaluation_count?: number;
+}
+
+/** A site's fields as supplied when creating one — the id comes back. */
+export type NewCampaignSite = Omit<CampaignSite, "id" | "order">;
+
+/**
+ * What was found at one site in one dataset.
+ *
+ * There is deliberately no "confidence" — the three verdicts carry the
+ * uncertainty. The *absence* of an evaluation is a fourth state and a
+ * meaningful one: `empty` asserts that somebody looked and found nothing,
+ * where no evaluation means nobody has looked yet.
+ */
+export type SiteVerdict = "hit" | "empty" | "unclear";
+
+/** One verdict as the campaign overview receives it. */
+export interface SiteEvaluationSummary {
+  site_id: number;
+  site_name: string;
+  verdict: SiteVerdict;
+}
+
+/** One verdict in full, as the per-dataset view receives it. */
+export interface SiteEvaluation extends SiteEvaluationSummary {
+  project_id: number;
+  evaluator: string;
+  note: string;
 }
 
 export interface ProjectGroup {
@@ -110,6 +151,16 @@ export interface MemberProjectWithSummary extends Omit<Project, "jobs"> {
   /** Detailed job info for campaign display (replaces base Project.jobs: number[]) */
   jobs: CampaignJobInfo[];
   kpis: ProjectKPIs;
+  /**
+   * Only the `hit` and `unclear` verdicts, hits first. A rich campaign has
+   * 30-40 sites and most are empty for most datasets, so the overview is not
+   * sent every verdict to render a cell showing two chips.
+   */
+  site_evaluations?: SiteEvaluationSummary[];
+  /** How many of the campaign's sites have been looked at in this dataset. */
+  sites_evaluated?: number;
+  /** The campaign's current site count — the same denominator for every row. */
+  sites_total?: number;
 }
 
 /**

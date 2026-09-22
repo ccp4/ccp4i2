@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { AUTH_ERROR_EVENT, AuthErrorDetail } from "../api-fetch";
 import { logout } from "@ccp4/ccp4i2-api";
+import { canReauthenticate, reauthenticate } from "../utils/reauth";
 
 /**
  * Listens for 401/403 auth errors from the API layer and surfaces them
@@ -39,9 +40,22 @@ export const AuthErrorHandler: React.FC = () => {
         // away after 2s gives them no time to read the message and no
         // agency to wait/cancel. The snackbar stays put (popcorn's
         // action-snackbars don't auto-hide) until they click.
+        //
+        // The action signs the user back IN. It used to call logout(),
+        // which tore down the AAD session that would have made the return
+        // trip silent and then sent them through credentials and MFA to
+        // land on "/" rather than the page they were reading. Signing out
+        // belongs on the Sign-out menu item, not on a recovery prompt.
+        // Falling back to logout() keeps the button honest where no re-auth
+        // is possible -- there is nothing else it could usefully do.
         setMessage(message, "error", {
           label: "Sign in",
-          onClick: () => logout(),
+          onClick: async () => {
+            if (canReauthenticate()) {
+              if (await reauthenticate()) return;
+            }
+            logout();
+          },
         });
       } else {
         // 403 — don't redirect, just inform

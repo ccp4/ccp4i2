@@ -18,7 +18,7 @@ import {
 } from "moorhen/react-lib";
 import { MoorhenInstanceProvider, MoorhenMenuSystem, setShownSidePanel } from "moorhen/react-lib";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
-import type { MoorhenPanel } from "moorhen/react-lib";
+import type { MoorhenInstance, MoorhenPanel } from "moorhen/react-lib";
 
 import {
   RefObject,
@@ -36,6 +36,19 @@ import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-f
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 import { useMoorhenSession } from "../../hooks/use-moorhen-session";
+import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
+import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
+import {
+  COORDINATE_TYPES,
+  DICTIONARY_TYPE,
+  fetchCompanionDictionaryFiles,
+  fetchDictionaryTexts,
+  fetchJobDictionaryFiles,
+  loadWithDictionaries,
+  provenanceOf,
+  type DictionaryFile,
+  type DictionaryToAttach,
+} from "../../lib/moorhen-dictionaries";
 import { parseScene, serialiseScene } from "../../lib/scene";
 import {
   applyScene,
@@ -44,9 +57,9 @@ import {
   SceneMapMasker,
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
-import type { SceneFileRef, SceneSuperpose } from "../../types/moorhen-scene";
+import type { SceneDomain, SceneFileRef, SceneSuperpose } from "../../types/moorhen-scene";
 import type { SceneBundleAssets } from "./moorhen-scenes-panel";
-import { extractFileIdFromUniqueId } from "../../lib/moorhen-view-state";
+import { extractFileIdFromUniqueId, readCameraState } from "../../lib/moorhen-view-state";
 import {
   buildContentsBlock,
   buildManifestBlock,
@@ -56,7 +69,7 @@ import {
   fetchPdbContents,
 } from "../../lib/moorhen-scene-prompt";
 import { useSceneNlCapability, generateScene } from "./use-scene-nl-capability";
-import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, makeMoorhenMapInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
+import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeXtalMapContourStats, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import {
   liftSceneStraight,
   MapRenderState,
@@ -84,18 +97,6 @@ export interface MoorhenWrapperProps {
   /** The job this window is a recorded Moorhen session for: load its inputs
    *  from the server's load plan, save back into it, finish it. */
   sessionJobId?: number | null;
-}
-
-/** comp_ids defined by a refmac/coot dictionary CIF (its `data_comp_<X>`
- *  blocks, excluding the `data_comp_list` header). */
-function extractDictCompIds(cifText: string): string[] {
-  const out: string[] = [];
-  const re = /^data_comp_(\S+)/gm;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(cifText)) !== null) {
-    if (m[1] !== "list") out.push(m[1]);
-  }
-  return out;
 }
 
 /** Map a project UUID to its primary key (the form the REST filters need). The
@@ -223,6 +224,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
   const commandCentre = useRef<null | moorhen.CommandCentre>(null);
+  // Filled by MoorhenContainer on mount. Molecules and maps are built from it.
+  const moorhenInstanceRef = useRef<null | MoorhenInstance>(null);
   const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
   const mapsRef = useRef<null | moorhen.Map[]>(null);
   const activeMapRef = useRef<moorhen.Map>(null);
@@ -277,16 +280,28 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   );
 
   // URL prefix for Moorhen to load its resources (CSS, pixmaps, monomers, etc.)
-  // In web browsers, use API route for CORP headers (COEP compatibility)
-  // In Electron, serve directly from public/MoorhenAssets
-  const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
-  const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
+  // In web browsers, use API route for CORP headers (COEP compatibility), with
+  // the Moorhen version in the path so the route's immutable cache is honest
+  // across upgrades. In Electron, serve directly from public/MoorhenAssets.
+  const isElectron = isElectronWindow();
+  const urlPrefix = moorhenUrlPrefix(isElectron);
 
-  // Note: Don't subscribe to glRef state here - it changes every frame during rotation
+  // Start the WASM download now, rather than after the data archives.
+  //
+  // MoorhenCommandCentre.init() awaits three .tar.gz fetches before posting
+  // CootInitialize, and only that message makes the worker fetch the WASM --
+  // the biggest file on the page, last in the queue. Warming the cache here
+  // lets the two run together; the worker's own fetch then joins it. No effect
+  // in Electron, which reads these files from disk.
+  useEffect(() => {
+    if (isElectron) return;
+    return prefetchMoorhenWasm(urlPrefix);
+  }, [isElectron, urlPrefix]);
+
+  // Note: Don't subscribe to the camera state here - it changes every frame during rotation
   // and would cause constant re-renders. Access origin directly from store when needed.
   const getOrigin = useCallback(() => {
-    const state = store.getState() as moorhen.State;
-    return state.glRef.origin;
+    return readCameraState(store.getState() as moorhen.State).origin;
   }, [store]);
 
   /**
@@ -306,21 +321,34 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     coordText: string,
     molName: string,
     uniqueIdMarker: string,
+    opts: {
+      /** The molecule's own dictionaries (its job's). Attached to THIS
+       *  molecule only, never to Coot's global store: a global entry is
+       *  inherited by every molecule with none of its own, which is how
+       *  another job's ligand of the same name ends up with this chemistry. */
+      dictionaries?: DictionaryToAttach[];
+      centre?: boolean;
+    } = {},
   ): Promise<moorhen.Molecule | null> => {
     if (!commandCentre.current) return null;
-    const newMolecule = new MoorhenMolecule(
-      commandCentre as RefObject<moorhen.CommandCentre>,
-      store as any,
-      monomerLibraryPath
-    );
+    const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
     newMolecule.setBackgroundColour(backgroundColor);
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
-      await newMolecule.loadToCootFromString(coordText, molName);
+      const dictionaries = opts.dictionaries ?? [];
+      await loadWithDictionaries(newMolecule as any, dictionaries, () =>
+        newMolecule.loadToCootFromString(coordText, molName),
+      );
       if (newMolecule.molNo === -1) {
         throw new Error("Cannot read the fetched molecule...");
       }
       newMolecule.uniqueId = uniqueIdMarker;
+      // Remember which file defines each of this molecule's ligands, so a
+      // captured scene lists them under this molecule's element.
+      const provenance = provenanceOf(dictionaries);
+      if (newMolecule.molNo != null && provenance.size > 0) {
+        dictSourcesRef.current.set(newMolecule.molNo, provenance);
+      }
 
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
@@ -337,7 +365,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         console.warn("[loadStructureFromText] Ligands representation failed");
       }
 
-      await newMolecule.centreOn("/*/*/*/*", false, true);
+      if (opts.centre !== false) await newMolecule.centreOn("/*/*/*/*", false, true);
       dispatch(addMolecule(newMolecule));
       dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
       return newMolecule;
@@ -351,10 +379,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   const loadStructure = useCallback(async (
     url: string,
     molName: string,
+    opts: { dictionaries?: DictionaryToAttach[]; centre?: boolean } = {},
   ): Promise<moorhen.Molecule | null> => {
     try {
       const pdbData = await apiText(url);
-      return loadStructureFromText(pdbData, molName, url);
+      return loadStructureFromText(pdbData, molName, url, opts);
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch PDB entry from ${url}, doing nothing...`);
@@ -362,8 +391,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     }
   }, [loadStructureFromText]);
 
-  const fetchMolecule = useCallback(async (url: string, molName: string) => {
-    await loadStructure(url, molName);
+  const fetchMolecule = useCallback(async (
+    url: string,
+    molName: string,
+    opts: { dictionaries?: DictionaryToAttach[]; centre?: boolean } = {},
+  ) => {
+    await loadStructure(url, molName, opts);
   }, [loadStructure]);
 
   const fetchMap = useCallback(async (
@@ -385,7 +418,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           useWeight: false,
           isDifference: isDiffMap,
         } as moorhen.selectedMtzColumns,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       loadedMap = newMap;
       newMap.uniqueId = url;
@@ -444,7 +477,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         new Uint8Array(mapData),
         mapName,
         false,
-        makeMoorhenMapInstance(commandCentre, store),
+        requireMoorhenInstance(moorhenInstanceRef),
       );
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
@@ -506,11 +539,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         true
       )) as moorhen.WorkerResponse<number>;
       if (result.data.result.status === "Completed") {
-        const newMolecule = new MoorhenMolecule(
-          commandCentre as RefObject<moorhen.CommandCentre>,
-          store as any,
-          monomerLibraryPath
-        );
+        const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
         newMolecule.uniqueId = `${url}#${code}`;
         newMolecule.molNo = result.data.result.result;
         newMolecule.name = code;
@@ -537,7 +566,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     }
   }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, getOrigin, dispatch]);
 
-  const fetchFile = useCallback(async (fileId: number) => {
+  const fetchFile = useCallback(async (
+    fileId: number,
+    opts: {
+      /** The dictionaries to attach to a coordinate file. Omitted: ask the
+       *  server for the ones that belong with the file (its job's). */
+      dictionaryFiles?: DictionaryFile[];
+    } = {},
+  ) => {
     const fileInfo = await apiGet(`files/${fileId}`);
     if (!fileInfo) {
       console.warn(`File with ID ${fileId} not found.`);
@@ -550,7 +586,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     ) {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.job_param_name || fileInfo.name || `file_${fileId}`;
-      await fetchMolecule(url, molName);
+      const dictionaryFiles = opts.dictionaryFiles ?? (await fetchCompanionDictionaryFiles(fileId));
+      await fetchMolecule(url, molName, { dictionaries: await fetchDictionaryTexts(dictionaryFiles) });
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
@@ -569,12 +606,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   /**
    * Load all output files from a job into Moorhen.
    *
-   * Dictionaries are loaded globally first so coot can parse ligand geometry
-   * in coordinates. After loading coordinates, dictionaries are re-associated
-   * with the specific molecule molNo (not the global -999999). This handles
-   * the "everything is called LIG/DRG" problem in fragment campaigns: each
-   * coordinate set gets its own dictionary association, so different ligand
-   * geometries with the same residue name coexist correctly.
+   * The job's dictionaries (its own and its inputs) are attached to the job's
+   * molecule and to nothing else. This handles the "everything is called
+   * LIG/DRG" problem: each coordinate set carries its own chemistry, and a
+   * molecule from a job without dictionaries inherits none.
    */
   const fetchJobFiles = useCallback(async (jobId: number) => {
     if (!commandCentre.current) return;
@@ -585,45 +620,18 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     // Only job output files (directory=1), not imported files (directory=2)
     const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
 
-    // STEP 1: Load all ligand dictionaries into coot's global store FIRST.
-    // This ensures coot understands ligand geometry when parsing coordinates.
-    const dictFiles = files.filter(
-      (f: { type: string }) => f.type === "application/refmac-dictionary"
+    // STEP 1: The job's dictionaries, from the database: the ones it wrote
+    // or imported AND the ones it took as input (a refinement's ligand
+    // usually comes from an earlier acedrg job, which a filter over this
+    // job's own files never saw). They are attached to this job's molecule
+    // only, so another job's ligand of the same name keeps its own chemistry.
+    const dictionaries = await fetchDictionaryTexts(
+      await fetchJobDictionaryFiles(jobId),
+      projectInfo?.id,
     );
-    const dictContents: string[] = [];
-    // Track which project dict file provides each comp_id, so Capture can emit
-    // terse fileId dict refs (scoped per-molecule once the molNo is known below).
-    const jobDictSources = new Map<string, { fileId: number; projectId?: string }>();
-    for (const dictFile of dictFiles) {
-      const dictUrl = `/api/proxy/ccp4i2/files/${dictFile.id}/download/`;
-      try {
-        const content = await apiText(dictUrl);
-        // Load globally so coordinate parsing works
-        await commandCentre.current.cootCommand(
-          {
-            returnType: "status",
-            command: "read_dictionary_string",
-            commandArgs: [content, -999999],
-            changesMolecules: [],
-          },
-          false
-        );
-        dictContents.push(content);
-        for (const compId of extractDictCompIds(content)) {
-          jobDictSources.set(compId, { fileId: dictFile.id, projectId: projectInfo?.id });
-        }
-      } catch (err) {
-        console.warn("[fetchJobFiles] Failed to load dictionary:", err);
-      }
-    }
 
     // STEP 2: Load the best coordinate file (prefer mmCIF over PDB)
-    const coordFiles = jobOutputFiles.filter(
-      (f: { type: string }) =>
-        f.type === "chemical/x-pdb" ||
-        f.type === "chemical/x-cif" ||
-        f.type === "chemical/x-mmcif"
-    );
+    const coordFiles = jobOutputFiles.filter((f: { type: string }) => COORDINATE_TYPES.has(f.type));
     const mmcifFile = coordFiles.find((f: { name: string }) =>
       f.name.toLowerCase().endsWith(".cif")
     );
@@ -633,57 +641,13 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     if (coordFile) {
       const url = `/api/proxy/ccp4i2/files/${coordFile.id}/download/`;
       const molName = coordFile.annotation || coordFile.job_param_name || coordFile.name || `job_${jobId}`;
-      const newMolecule = new MoorhenMolecule(
-        commandCentre as RefObject<moorhen.CommandCentre>,
-        store as any,
-        monomerLibraryPath
-      );
-      newMolecule.setBackgroundColour(backgroundColor);
-      newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
       try {
         const pdbData = await apiText(url);
-        await newMolecule.loadToCootFromString(pdbData, molName);
-        if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
-        newMolecule.uniqueId = url;
-
-        // STEP 2b: Re-associate dictionaries with THIS molecule's molNo.
-        // This overrides the global (-999999) association so that this
-        // coordinate set's ligands use the correct geometry even when
-        // other coordinate sets have ligands with the same residue name.
-        for (const dictContent of dictContents) {
-          await commandCentre.current!.cootCommand(
-            {
-              returnType: "status",
-              command: "read_dictionary_string",
-              commandArgs: [dictContent, newMolecule.molNo],
-              changesMolecules: [newMolecule.molNo!],
-            },
-            false
-          );
-          await newMolecule.addDict(dictContent);
-        }
-
-        // Add representations — ribbon + ligands
-        try {
-          await newMolecule.addRepresentation("CRs", "/*/*/*/*");
-        } catch {
-          await newMolecule.addRepresentation("CBs", "/*/*/*/*");
-        }
-        try {
-          await newMolecule.addRepresentation("ligands", "/*/*/*/*");
-        } catch {
-          console.warn("[fetchJobFiles] Ligands representation failed");
-        }
-
-        dispatch(addMolecule(newMolecule));
-        dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
-        loadedMolecule = newMolecule;
-        // Scope this job's dict provenance to THIS molecule's molNo (so two
-        // molecules whose ligands are both called LIG, from different dict
-        // files, stay distinct at capture time).
-        if (newMolecule.molNo != null && jobDictSources.size > 0) {
-          dictSourcesRef.current.set(newMolecule.molNo, jobDictSources);
-        }
+        // A second job loaded into a live view must not move the camera.
+        loadedMolecule = await loadStructureFromText(pdbData, molName, url, {
+          dictionaries,
+          centre: false,
+        });
       } catch (err) {
         console.warn("[fetchJobFiles] Failed to load coordinates:", err);
       }
@@ -705,7 +669,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 
     // STEP 4: If we loaded a molecule with dictionaries, redraw to pick up
     // correct bond orders / ligand geometry from the per-molecule dict.
-    if (loadedMolecule && dictContents.length > 0) {
+    if (loadedMolecule && dictionaries.length > 0) {
       try {
         await loadedMolecule.redraw();
       } catch (err) {
@@ -713,7 +677,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
       dispatch(setRequestDrawScene(true));
     }
-  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch, fetchMap, fetchMapFile, getOrigin]);
+  }, [commandCentre, dispatch, fetchMap, fetchMapFile, loadStructureFromText]);
 
   // Handle map contour level changes from the control panel slider
   const handleMapContourLevelChange = useCallback(
@@ -811,9 +775,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // Same deal for mask recipes — a masked map is bytes with no operands, so the
   // lifter needs the remembered recipe to round-trip it (see LiftCtx.maskMaps).
   const lastAppliedMaskMapsRef = useRef<MaskMap[] | undefined>(undefined);
+  // And for domains: `colour: by-domain` compiles to a rule that keeps neither a
+  // domain's name nor its authored range (see LiftCtx.domains).
+  const lastAppliedDomainsRef = useRef<SceneDomain[] | undefined>(undefined);
 
   const handleFetchSceneFile: SceneFileFetcher = useCallback(
-    async (ref: SceneFileRef) => {
+    async (ref: SceneFileRef, fetchOpts) => {
+      // The element's own dictionaries, attached as the molecule loads.
+      const loadOpts = { dictionaries: fetchOpts?.dictionaries ?? [] };
       // Bundle: decode bytes from the in-memory asset map and hand the
       // text straight to loadStructureFromText — no network round-trip,
       // no Blob URL (which would get prefixed by the ccp4i2 api-fetch
@@ -835,6 +804,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
             // Sentinel so matchOneFile recognises re-applies of the
             // same bundle ref instead of re-fetching.
             `bundle:${ref.bundle}`,
+            loadOpts,
           );
         } catch (err) {
           console.warn(`[scene] failed to load bundle coord ${ref.bundle}:`, err);
@@ -844,14 +814,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       if (ref.pdb) {
         const pdbId = ref.pdb.toLowerCase();
         const url = `/api/proxy/pdbe/entry-files/download/${pdbId}.cif`;
-        return loadStructure(url, ref.name || pdbId);
+        return loadStructure(url, ref.name || pdbId, loadOpts);
       }
       // A ccp4i2 fileId is globally unique and the download URL keys on it
       // alone — no project qualifier needed to build the URL. projectId/
       // projectName are advisory context (they don't gate the fetch).
       if (ref.fileId !== undefined) {
         const url = `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
-        return loadStructure(url, ref.name || `file_${ref.fileId}`);
+        return loadStructure(url, ref.name || `file_${ref.fileId}`, loadOpts);
       }
       // job + output param → resolve to a project file. Prefer the scene's own
       // projectId (uuid), falling back to this page's project context.
@@ -861,11 +831,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           { uuid: projectUuidRef.current, name: projectNameRef.current, pk: projectPkRef.current },
         );
         return url
-          ? loadStructure(url, ref.name || `job_${ref.job}_${ref.param}`)
+          ? loadStructure(url, ref.name || `job_${ref.job}_${ref.param}`, loadOpts)
           : null;
       }
       if (ref.url) {
-        return loadStructure(ref.url, ref.name || ref.url);
+        return loadStructure(ref.url, ref.name || ref.url, loadOpts);
       }
       return null;
     },
@@ -986,7 +956,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
       }
       try {
-        const mapInstance = makeMoorhenMapInstance(commandCentre, store);
+        const mapInstance = requireMoorhenInstance(moorhenInstanceRef);
         let newMap: moorhen.Map;
         if (ref.kind === "map") {
           // Real-space CCP4 map file (incl. masks): load directly, no columns.
@@ -1058,7 +1028,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         )) as moorhen.WorkerResponse<number>;
         const newMolNo = result?.data?.result?.result;
         if (newMolNo == null || newMolNo === -1) return null;
-        const newMap = new MoorhenMap(makeMoorhenMapInstance(commandCentre, store));
+        const newMap = new MoorhenMap(requireMoorhenInstance(moorhenInstanceRef));
         newMap.molNo = newMolNo;
         newMap.name = name;
         // Inherit the difference-map flag from the source; a mask of a
@@ -1099,15 +1069,15 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // non-bundled apply.
       bundleAssetsRef.current = assets;
       const scene = parseScene(yamlText);
-      // Remember this scene's superpose + mask recipes so a later capture can
-      // re-emit them (neither is reconstructable from the resulting molecule/map).
+      // Remember this scene's superpose, mask recipes and domains so a later
+      // capture can re-emit them (none is reconstructable from the resulting
+      // molecule/map).
       lastAppliedSuperposeRef.current = scene.superpose;
       lastAppliedMaskMapsRef.current = scene.maskMaps;
-      // Live glRef snapshot for view.clip: { front, back } (clip = zoom*depth,
+      lastAppliedDomainsRef.current = scene.domains;
+      // Live camera snapshot for view.clip: { front, back } (clip = zoom*depth,
       // fog offset by fogClipOffset).
-      const gl = (store.getState() as moorhen.State).glRef as unknown as {
-        zoom: number; fogClipOffset: number;
-      };
+      const gl = readCameraState(store.getState() as moorhen.State);
       return applyScene({
         scene,
         molecules,
@@ -1301,20 +1271,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     assets: SceneBundleAssets;
   }> => {
     const state = store.getState() as moorhen.State;
-    const glRefState = (state as unknown as { glRef: {
-      origin: number[] | Float32Array;
-      quat: number[] | Float32Array;
-      zoom: number;
-      clipStart?: number;
-      clipEnd?: number;
-      fogStart?: number;
-      fogEnd?: number;
-      lightPosition?: number[] | Float32Array;
-      ambient?: number[] | Float32Array;
-      diffuse?: number[] | Float32Array;
-      specular?: number[] | Float32Array;
-      specularPower?: number;
-    } }).glRef;
+    const glRefState = readCameraState(state);
     // sceneSettings carries the effect toggles (SSAO / edge-detect / shadows /
     // depth-blur / perspective) the lifter folds into hints.effects.
     const sceneSettingsState = (state as unknown as {
@@ -1359,6 +1316,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       sceneSettings: sceneSettingsState,
       superpose: lastAppliedSuperposeRef.current,
       maskMaps: lastAppliedMaskMapsRef.current,
+      domains: lastAppliedDomainsRef.current,
       projectId: projectInfo?.id,
       projectName: projectInfo?.name,
       // First molecule's monomerLibraryPath is the canonical Moorhen
@@ -1416,6 +1374,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     glRef,
     timeCapsuleRef,
     commandCentre,
+    moorhenInstanceRef,
     moleculesRef,
     mapsRef,
     activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,
@@ -1430,11 +1389,24 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   }), [urlPrefix, store, extraSidePanels, size]);
 
   useEffect(() => {
-    if (fileIds && cootInitialized) {
-      fileIds.forEach((fileId) => {
-        fetchFile(fileId);
-      });
-    }
+    if (!fileIds || fileIds.length === 0 || !cootInitialized) return;
+    (async () => {
+      // Know what each file is before loading any of them: a dictionary that
+      // arrives beside coordinates belongs to those coordinates and must not
+      // go into Coot's global store, which is what loading it by itself does.
+      const infos = await Promise.all(
+        fileIds.map((id) => apiGet(`files/${id}`).catch(() => null)),
+      );
+      const hasCoordinates = infos.some((info) => info && COORDINATE_TYPES.has(info.type));
+      // Opened on a job: the job's dictionaries (own and inputs) are the ones.
+      const jobDictionaries =
+        jobId && hasCoordinates ? await fetchJobDictionaryFiles(jobId) : undefined;
+      for (const [index, fileId] of fileIds.entries()) {
+        const info = infos[index];
+        if (hasCoordinates && info?.type === DICTIONARY_TYPE) continue;
+        await fetchFile(fileId, { dictionaryFiles: jobDictionaries });
+      }
+    })();
   }, [fileIds, cootInitialized]);
 
   // A session window loads the job's inputs from the server's load plan,
@@ -1445,14 +1417,25 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     if (!session?.state || !cootInitialized || sessionPlanAppliedRef.current) return;
     sessionPlanAppliedRef.current = true;
     const plan = session.state.load_plan;
+    // The session job's dictionary inputs belong to its coordinate inputs.
+    // (The job has not been dispatched, so the database does not list its
+    // inputs yet; the plan does.) With none given, each coordinate file
+    // brings the dictionaries of the job that produced it.
+    const sessionDictionaries: DictionaryFile[] = plan
+      .filter((entry) => entry.kind === "dictionary" && entry.file_id != null)
+      .map((entry) => ({ id: entry.file_id as number, name: entry.name }));
     (async () => {
       for (const entry of plan) {
         if (entry.file_id == null) {
           console.warn(`Session load plan: ${entry.label} has no file record yet; skipped`);
           continue;
         }
+        if (entry.kind === "dictionary") continue; // attached to the coordinates below
         try {
-          await fetchFile(entry.file_id);
+          await fetchFile(
+            entry.file_id,
+            sessionDictionaries.length > 0 ? { dictionaryFiles: sessionDictionaries } : {},
+          );
         } catch (err) {
           console.warn(`Session load plan: could not load ${entry.label}`, err);
         }

@@ -175,3 +175,185 @@ def test_unreadable_coordinates_are_not_a_hit(tmp_path):
     bad.write_text("this is not a coordinate file\n")
     # Should swallow the gemmi error and report no hit, not raise.
     assert campaign_scene.detect_ligands(bad, dict_path=None) == []
+
+
+# --------------------------------------------------------------------------
+# Site geometry: the pocket and the nearest-fragment diagnostic
+# --------------------------------------------------------------------------
+
+def _residue(name, seqnum, atoms, icode=" "):
+    """A residue with named atoms at given positions."""
+    res = gemmi.Residue()
+    res.name = name
+    res.seqid = gemmi.SeqId(seqnum, icode)
+    for atom_name, (x, y, z) in atoms:
+        atom = gemmi.Atom()
+        atom.name = atom_name
+        atom.element = gemmi.Element("O" if name == "HOH" else "C")
+        atom.pos = gemmi.Position(x, y, z)
+        res.add_atom(atom)
+    return res
+
+
+def _structure(chains):
+    """``{chain_name: [residues]}`` -> a one-model structure."""
+    st = gemmi.Structure()
+    st.spacegroup_hm = "P 1"
+    st.cell = gemmi.UnitCell(100, 100, 100, 90, 90, 90)
+    model = gemmi.Model(1)
+    for chain_name, residues in chains.items():
+        chain = gemmi.Chain(chain_name)
+        for res in residues:
+            chain.add_residue(res)
+        model.add_chain(chain)
+    st.add_model(model)
+    return st
+
+
+ORIGIN = (0.0, 0.0, 0.0)
+
+
+def test_pocket_residues_within_radius_as_cids():
+    """A residue is in the pocket if ANY atom is in range, and appears once.
+
+    Residue 2 has its CA out of range and one side-chain atom inside it, so
+    it belongs; residue 3 is out of range entirely.
+    """
+    st = _structure({
+        "A": [
+            _residue("ALA", 1, [("CA", (2, 0, 0)), ("CB", (3, 0, 0))]),
+            _residue("LYS", 2, [("CA", (12, 0, 0)), ("NZ", (7, 0, 0))]),
+            _residue("GLY", 3, [("CA", (20, 0, 0))]),
+        ]
+    })
+    assert campaign_scene.pocket_residue_cids(st, ORIGIN, radius=8.0) == [
+        "//A/1", "//A/2",
+    ]
+
+
+def test_pocket_is_in_chain_and_sequence_order_not_lexical():
+    """``//A/100`` sorts after ``//A/45`` numerically; a string sort would not."""
+    st = _structure({
+        "B": [_residue("ALA", 7, [("CA", (1, 0, 0))])],
+        "A": [
+            _residue("ALA", 100, [("CA", (0, 1, 0))]),
+            _residue("ALA", 45, [("CA", (0, 0, 1))]),
+        ],
+    })
+    assert campaign_scene.pocket_residue_cids(st, ORIGIN) == [
+        "//A/45", "//A/100", "//B/7",
+    ]
+
+
+def test_pocket_insertion_code_follows_a_dot():
+    """mmdb reads ``45.A``; ``45A`` would select nothing."""
+    st = _structure({
+        "A": [_residue("ALA", 45, [("CA", (1, 0, 0))], icode="A")]
+    })
+    assert campaign_scene.pocket_residue_cids(st, ORIGIN) == ["//A/45.A"]
+
+
+def test_pocket_in_empty_solvent_is_empty():
+    """The list must be empty, so the builder can emit no representation
+    at all; an empty selection would draw the whole molecule."""
+    st = _structure({"A": [_residue("ALA", 1, [("CA", (2, 0, 0))])]})
+    assert campaign_scene.pocket_residue_cids(st, (50, 50, 50)) == []
+
+
+def test_pocket_leaves_out_water_and_fragments():
+    """The pocket is what the ligands bind to: not the solvent, and not a
+    fragment (which, when the exemplar is a hit, is drawn as a hit)."""
+    st = _structure({
+        "A": [
+            _residue("ALA", 1, [("CA", (2, 0, 0))]),
+            _residue("HOH", 201, [("O", (1, 0, 0))]),
+            _residue("DRG", 301, [("C1", (0, 1, 0))]),
+            _residue("SO4", 401, [("S", (0, 0, 1))]),
+        ]
+    })
+    # A sulphate is context, not a fragment, so it stays.
+    assert campaign_scene.pocket_residue_cids(st, ORIGIN) == ["//A/1", "//A/401"]
+
+
+def test_nearest_fragment_distance_is_to_the_closest_centroid():
+    st = _structure({
+        "A": [
+            _residue("ALA", 1, [("CA", (0.5, 0, 0))]),
+            _residue("DRG", 301, [("C1", (9, 0, 0)), ("C2", (11, 0, 0))]),
+            _residue("LIG", 302, [("C1", (0, 30, 0))]),
+        ]
+    })
+    assert campaign_scene.nearest_fragment_distance(st, ORIGIN) == pytest.approx(10.0)
+
+
+def test_nearest_fragment_distance_is_none_without_a_fragment():
+    """None, not inf: a stats payload with ``inf`` in it is not JSON."""
+    st = _structure({
+        "A": [
+            _residue("ALA", 1, [("CA", (0.5, 0, 0))]),
+            _residue("HOH", 201, [("O", (1, 0, 0))]),
+        ]
+    })
+    assert campaign_scene.nearest_fragment_distance(st, ORIGIN) is None
+
+
+def test_nearest_fragment_distance_measures_after_the_transform():
+    """Measured in the frame the scene draws: a fit that brings the
+    fragment onto the site makes the distance small."""
+    st = _structure({
+        "A": [_residue("DRG", 301, [("C1", (10, 0, 0))])]
+    })
+    shift = gemmi.Transform(gemmi.Mat33(), gemmi.Vec3(-10, 0, 0))
+    assert campaign_scene.nearest_fragment_distance(st, ORIGIN) == pytest.approx(10.0)
+    assert campaign_scene.nearest_fragment_distance(st, ORIGIN, shift) == pytest.approx(0.0)
+
+
+# --------------------------------------------------------------------------
+# site_position: the sign that cost a whole implementation round
+# --------------------------------------------------------------------------
+
+class _FakeSite:
+    def __init__(self, x, y, z):
+        self.origin_x, self.origin_y, self.origin_z = x, y, z
+
+    @property
+    def origin(self):
+        return [self.origin_x, self.origin_y, self.origin_z]
+
+
+def test_site_position_negates_the_stored_origin():
+    """A CampaignSite stores Moorhen's view origin, not a position.
+
+    Moorhen's origin is the negation of the point at screen centre, and the
+    site save/restore path stores and restores it raw, so the two negations
+    cancel and nothing looks wrong until something treats the stored value as
+    a coordinate. The first thing that did -- the site scene's pocket
+    selection -- looked 41 A from the protein and found nothing.
+    """
+    site = _FakeSite(24.303, 8.865, -0.941)
+    assert campaign_scene.site_position(site) == (-24.303, -8.865, 0.941)
+
+
+def test_site_position_is_what_finds_the_pocket(tmp_path):
+    """The negated origin selects residues; the stored one selects nothing.
+
+    Pins the direction, not just the arithmetic: a sign flip that still
+    negated *something* would pass the test above and fail this one.
+    """
+    path = tmp_path / "pocket.pdb"
+    _write_pdb(path, ligand_code=None)
+    st = gemmi.read_structure(str(path))
+
+    centre = campaign_scene.pocket_residue_cids(st, (0.0, 0.0, 0.0), radius=20.0)
+    assert centre, "the fixture should have residues near the real origin"
+
+    site = _FakeSite(0.0, 0.0, 0.0)
+    assert campaign_scene.pocket_residue_cids(
+        st, campaign_scene.site_position(site), radius=20.0
+    ) == centre
+
+    # Off-centre: stored (30,0,0) means the screen was centred on (-30,0,0).
+    away = _FakeSite(300.0, 0.0, 0.0)
+    assert campaign_scene.pocket_residue_cids(
+        st, campaign_scene.site_position(away), radius=20.0
+    ) == []

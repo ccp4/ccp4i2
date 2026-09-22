@@ -6,7 +6,7 @@
  * via manual verification in the browser. The clamp logic is pure and
  * the most failure-prone bit, so it's worth a focused unit test.
  */
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   buildPendingRules,
   clampRangeToPresent,
@@ -14,10 +14,156 @@ import {
   expandLsqMatches,
   geometryToM2tParams,
   isFetchable,
+  planDictionaryScopes,
   resolveChainSelector,
   resolveClipFogPlanes,
+  runSuperpose,
   splitMultiCid,
 } from "../lib/moorhen-scene-resolver";
+
+describe("runSuperpose: method matrix → apply_transformation_to_atom_selection", () => {
+  const mat = [0.9999, -0.0121, 0.0043, 0.0121, 0.9999, -0.0018, -0.0043, 0.0018, 1.0];
+  const vec = [-0.31, 0.12, 0.05];
+
+  /** A Moorhen molecule reduced to what the matrix path touches. */
+  function mockMolecule(moved = 120) {
+    const cootCommand = vi.fn(async () => ({ data: { result: { result: moved } } }));
+    return {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+  }
+
+  it("retries one higher when coot rejects the TER-free atom count", async () => {
+    // coot gates on its mmdb Select size, which counts TER pseudo-atoms, while
+    // get_number_of_atoms skips them -- so the documented pairing is rejected
+    // for any structure with a polymer terminus and coot moves nothing at all.
+    // Real files: 1124/1125/1128 atoms, one TER each, accepted one higher.
+    const calls: number[] = [];
+    const cootCommand = vi.fn(async (kwargs: { commandArgs: unknown[] }) => {
+      const n = kwargs.commandArgs[2] as number;
+      calls.push(n);
+      return { data: { result: { result: n === 121 ? 120 : 0 } } };
+    });
+    const mol = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A", "B"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any);
+
+    expect(calls.slice(0, 2)).toEqual([120, 121]);  // honest count first, then +1
+    expect(mol.setAtomsDirty).toHaveBeenCalled();
+    expect(mol.redraw).toHaveBeenCalled();
+  });
+
+  it("returns a note only when the first candidate was not the one accepted", async () => {
+    // The note is what the Scenes panel shows. Silence means "the count we
+    // believe in was right", so a note that appeared on the happy path would
+    // train people to ignore it.
+    const quiet = mockMolecule();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(await runSuperpose({ method: "matrix", move: "b", mat, vec }, quiet as any))
+      .toBeUndefined();
+
+    const cootCommand = vi.fn(async (kwargs: { commandArgs: unknown[] }) => ({
+      data: { result: { result: (kwargs.commandArgs[2] as number) === 121 ? 120 : 0 } },
+    }));
+    const surprising = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const note = await runSuperpose({ method: "matrix", move: "b", mat, vec }, surprising as any);
+    expect(note).toMatch(/121 atoms/);
+    expect(note).toMatch(/delta \+1/);
+  });
+
+  it("gives up, rather than looping, when no count in range is accepted", async () => {
+    const cootCommand = vi.fn(async () => ({ data: { result: { result: 0 } } }));
+    const mol = {
+      molNo: 3,
+      commandCentre: { cootCommand },
+      getNumberOfAtoms: vi.fn(async () => 120),
+      getChainNames: () => ["A"],
+      setAtomsDirty: vi.fn(),
+      redraw: vi.fn(async () => {}),
+      cootCommand,
+    };
+    await expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any),
+    ).rejects.toThrow(/no cid\/count combination around 120/);
+    // Bounded: it gives up rather than looping. Two CIDs x a small delta
+    // set, not an unbounded walk.
+    expect(cootCommand.mock.calls.length).toBeLessThan(50);
+    expect(mol.setAtomsDirty).not.toHaveBeenCalled();
+  });
+
+  it("passes mat row-major, a ZERO rotation centre, then vec as the translation", async () => {
+    const mol = mockMolecule();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any);
+
+    expect(mol.cootCommand).toHaveBeenCalledTimes(1);
+    const [kwargs, journal] = mol.cootCommand.mock.calls[0] as unknown as [
+      { command: string; returnType: string; commandArgs: unknown[]; changesMolecules: number[] },
+      boolean,
+    ];
+    expect(kwargs.command).toBe("apply_transformation_to_atom_selection");
+    expect(kwargs.returnType).toBe("int");
+    expect(kwargs.changesMolecules).toEqual([3]);
+    expect(journal).toBe(true);
+    // (imol, cid, n_atoms, m00..m22, c0 c1 c2, t0 t1 t2) — exactly 18 args
+    expect(kwargs.commandArgs).toHaveLength(18);
+    expect(kwargs.commandArgs.slice(0, 3)).toEqual([3, "//", 120]);
+    expect(kwargs.commandArgs.slice(3, 12)).toEqual(mat);
+    expect(kwargs.commandArgs.slice(12, 15)).toEqual([0, 0, 0]); // centre: origin, never a centroid
+    expect(kwargs.commandArgs.slice(15, 18)).toEqual(vec);
+    // the count comes from coot, not a cached field
+    expect(mol.getNumberOfAtoms).toHaveBeenCalledTimes(1);
+    // coordinates changed inside coot: mark dirty and redraw, as ssm/lsq do
+    expect(mol.setAtomsDirty).toHaveBeenCalledWith(true);
+    expect(mol.redraw).toHaveBeenCalledTimes(1);
+  });
+
+  it("needs no reference molecule", async () => {
+    const mol = mockMolecule();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await expect(runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any, undefined)).resolves.toBeUndefined();
+  });
+
+  it("raises when coot moved nothing (count mismatch is otherwise a silent no-op)", async () => {
+    const mol = mockMolecule(0);
+    await expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runSuperpose({ method: "matrix", move: "b", mat, vec }, mol as any),
+    ).rejects.toThrow(/moved no atoms/);
+    expect(mol.redraw).not.toHaveBeenCalled();
+  });
+
+  it("ssm/lsq still require the reference", async () => {
+    const mol = mockMolecule();
+    await expect(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runSuperpose({ method: "ssm", move: "b", onto: "a", movChain: "A", refChain: "A" }, mol as any),
+    ).rejects.toThrow(/reference molecule/);
+  });
+});
 
 const present = (...nums: number[]) => new Set(nums);
 
@@ -83,6 +229,33 @@ describe("buildPendingRules cascade (element.colour ↔ representation.colour)",
 
   it("no colour at either level → no rules", () => {
     expect(buildPendingRules({ ...base, rep: { style: "CRs" } }, "//A")).toEqual([]);
+  });
+
+  // What reaches coot is the rule's own fields: cid + color for a single
+  // colour, multiColourData for a multi-colour rule (Moorhen 1.0.1).
+  it("a hex colour is a single-colour rule on the representation's CID", () => {
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour: "#123456" } }, "//A");
+    expect(rules).toEqual([
+      { ruleType: "molecule", cid: "//A", color: "#123456", multiColourData: "", isMultiColourRule: false },
+    ]);
+  });
+
+  it("a named scheme is staged with no data: it is computed from the molecule on apply", () => {
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour: "b-factor" } }, "//A");
+    expect(rules).toHaveLength(1);
+    expect(rules[0]).toMatchObject({ ruleType: "b-factor", isMultiColourRule: true, multiColourData: null });
+  });
+
+  it("a raw multi-rule carries args[0] as its multi-colour data", () => {
+    const colour = { raw: { ruleType: "bespoke", args: ["//A/1-5^#ff0000"], isMultiColourRule: true } };
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour } }, "//A");
+    expect(rules[0]).toMatchObject({ isMultiColourRule: true, multiColourData: "//A/1-5^#ff0000", cid: "//A" });
+  });
+
+  it("a raw single-colour rule takes its cid and colour from args", () => {
+    const colour = { raw: { ruleType: "cid", args: ["//B/10-20", "red"], isMultiColourRule: false } };
+    const rules = buildPendingRules({ ...base, rep: { style: "CRs", colour } }, "//A");
+    expect(rules[0]).toMatchObject({ isMultiColourRule: false, cid: "//B/10-20", color: "red", multiColourData: "" });
   });
 });
 
@@ -293,5 +466,45 @@ describe("splitMultiCid", () => {
 
   it("returns [] for an all-empty multi-CID", () => {
     expect(splitMultiCid("||||")).toEqual([]);
+  });
+});
+
+describe("planDictionaryScopes (a molecule's dictionaries are its own)", () => {
+  const files = [
+    { name: "job7", kind: "coordinates" },
+    { name: "job9", kind: "coordinates" },
+    { name: "dict-file-11", kind: "dictionary" },
+    { name: "dict-file-12", kind: "dictionary" },
+  ];
+  it("never loads an element's dictionary globally", () => {
+    const plan = planDictionaryScopes({
+      files,
+      elements: [
+        { file: "job7", dictionaries: ["dict-file-11"] },
+        { file: "job9", dictionaries: ["dict-file-12"] },
+      ],
+    });
+    expect(Array.from(plan.global)).toEqual([]);
+    expect(plan.byFile.get("job7")).toEqual(["dict-file-11"]);
+    expect(plan.byFile.get("job9")).toEqual(["dict-file-12"]);
+  });
+  it("a molecule whose element lists none inherits nothing from its neighbour", () => {
+    const plan = planDictionaryScopes({
+      files,
+      elements: [{ file: "job7", dictionaries: ["dict-file-11"] }, { file: "job9" }],
+    });
+    expect(plan.global.has("dict-file-11")).toBe(false);
+    expect(plan.byFile.get("job9")).toBeUndefined();
+    // dict-file-12 is attached nowhere, so it keeps the old global behaviour
+    expect(Array.from(plan.global)).toEqual(["dict-file-12"]);
+  });
+  it("globalDictionaries stay global, even when an element also lists them", () => {
+    const plan = planDictionaryScopes({
+      files,
+      globalDictionaries: ["dict-file-11"],
+      elements: [{ file: "job7", dictionaries: ["dict-file-11"] }],
+    });
+    expect(plan.global.has("dict-file-11")).toBe(true);
+    expect(plan.byFile.get("job7")).toEqual(["dict-file-11"]);
   });
 });

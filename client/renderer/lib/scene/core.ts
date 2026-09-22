@@ -50,7 +50,11 @@ export const ColourSelection = z
   })
   .strict();
 
-/** Escape hatch: a raw Moorhen colour rule we can't otherwise express. */
+/**
+ * Escape hatch: a raw Moorhen colour rule we can't otherwise express. `args` is
+ * what the rule sends to coot, as Moorhen's session format writes it: the
+ * `cid^#hex|...` data for a multi-colour rule, else `[cid, colour]`.
+ */
 export const RawColour = z
   .object({
     raw: z
@@ -171,9 +175,43 @@ const SuperposeLsq = z
     }
   });
 
+// A fit computed elsewhere (a server-side builder, gemmi) and carried as the
+// transform itself, so the viewer applies rather than derives it: the scene
+// then says what the alignment rests on, and re-applying it reproduces the
+// same picture instead of re-deriving a slightly different one. Coot needs
+// no reference molecule to apply a matrix, so `onto` lives in the
+// provenance, not at the top level.
+const SuperposeMatrix = z
+  .object({
+    method: z.literal("matrix"),
+    move: z.string().describe("file being transformed"),
+    mat: z
+      .array(z.number())
+      .length(9)
+      .describe("row-major 3x3 rotation; x' = mat.x + vec about the origin"),
+    vec: z.array(z.number()).length(3).describe("translation, Angstrom"),
+    fitted: z
+      .object({
+        onto: z.string().describe("reference file the fit was made against"),
+        atoms: z.number().int().nonnegative().describe("CA atoms in the final fit"),
+        radius: z
+          .number()
+          .positive()
+          .nullable()
+          .optional()
+          .describe("Angstrom about the site; absent for a global fit"),
+        rmsd: z.number().nonnegative().nullable().optional(),
+      })
+      .strict()
+      .optional()
+      .describe("provenance: what the matrix was derived from"),
+  })
+  .strict();
+
 export const Superpose = z.discriminatedUnion("method", [
   SuperposeSsm,
   SuperposeLsq,
+  SuperposeMatrix,
 ]);
 
 // --- elements / representations -------------------------------------------
@@ -399,7 +437,8 @@ const ResolverOptions = z
 // --- hints (advisory render layer) ----------------------------------------
 
 /**
- * Scene lighting. Mirrors Moorhen's single scene-global light (glRefSlice):
+ * Scene lighting. Mirrors Moorhen's single scene-global light (sceneSettingsSlice;
+ * glRefSlice before Moorhen 1.0.1):
  * a directional light plus ambient/diffuse/specular colours and a specular
  * power. `direction` is the "substituted" class — a renderer that can't honour
  * it falls back to its own default rather than omitting light (design doc §4a).
@@ -580,7 +619,12 @@ export function buildScene<T extends z.ZodTypeAny>(fileRef: T) {
       });
       (s.superpose ?? []).forEach((sp, i) => {
         ref(sp.move, fileNames, ["superpose", i, "move"], "file");
-        ref(sp.onto, fileNames, ["superpose", i, "onto"], "file");
+        if (sp.method === "matrix") {
+          if (sp.fitted)
+            ref(sp.fitted.onto, fileNames, ["superpose", i, "fitted", "onto"], "file");
+        } else {
+          ref(sp.onto, fileNames, ["superpose", i, "onto"], "file");
+        }
       });
       (s.globalDictionaries ?? []).forEach((d, i) =>
         ref(d, dictNames, ["globalDictionaries", i], "dictionary"),

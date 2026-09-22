@@ -219,7 +219,7 @@ describe("liftScene", () => {
   });
 
   it("hoists a colour shared by all reps to molecule-scoped element.colour", () => {
-    const rule = { ruleType: "molecule", cid: "//A", color: "#abcdef", isMultiColourRule: false, args: ["//A", "#abcdef"] };
+    const rule = { ruleType: "molecule", cid: "//A", color: "#abcdef", isMultiColourRule: false, multiColourData: "" };
     const scene = liftScene({
       molecules: [
         fakeMol({
@@ -238,7 +238,7 @@ describe("liftScene", () => {
   });
 
   it("keeps per-rep colour (no hoist) when representations differ", () => {
-    const mk = (c: string) => ({ ruleType: "molecule", cid: "//A", color: c, isMultiColourRule: false, args: ["//A", c] });
+    const mk = (c: string) => ({ ruleType: "molecule", cid: "//A", color: c, isMultiColourRule: false, multiColourData: "" });
     const scene = liftScene({
       molecules: [
         fakeMol({
@@ -287,7 +287,7 @@ describe("liftScene", () => {
             {
               style: "CRs",
               visible: true,
-              colourRules: [{ ruleType: "b-factor", isMultiColourRule: true, args: [] } as unknown as moorhen.ColourRule],
+              colourRules: [{ ruleType: "b-factor", isMultiColourRule: true, multiColourData: "" } as unknown as moorhen.ColourRule],
             } as Partial<moorhen.MoleculeRepresentation>,
           ],
         }),
@@ -313,7 +313,7 @@ describe("liftScene", () => {
                   ruleType: "molecule",
                   isMultiColourRule: false,
                   color: "#2ecc71",
-                  args: [],
+                  multiColourData: "",
                 } as unknown as moorhen.ColourRule,
               ],
             } as Partial<moorhen.MoleculeRepresentation>,
@@ -385,31 +385,70 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![1].alpha).toBeUndefined();
   });
 
-  it("recognises by-domain pipe-delimited args", () => {
-    const scene = liftScene({
-      molecules: [
-        fakeMol({
-          name: "m",
-          molNo: 0,
-          uniqueId: "x",
-          representations: [
+  // `colour: by-domain` compiles to one multi-colour rule of residue-range
+  // segments, which keeps neither a domain's name nor its authored range. So
+  // what it lifts to depends on whether the host remembered the domains.
+  const byDomainMol = () =>
+    fakeMol({
+      name: "m",
+      molNo: 0,
+      uniqueId: "x",
+      representations: [
+        {
+          style: "CRs",
+          visible: true,
+          colourRules: [
             {
-              style: "CRs",
-              visible: true,
-              colourRules: [
-                {
-                  ruleType: "by-domain",
-                  isMultiColourRule: true,
-                  args: ["//A/1-120^#4b8bbe|//A/121-130^#f1c40f|//A/131-300^#e74c3c"],
-                } as unknown as moorhen.ColourRule,
-              ],
-            } as Partial<moorhen.MoleculeRepresentation>,
+              ruleType: "by-domain",
+              isMultiColourRule: true,
+              multiColourData: "//A/10-120^#4b8bbe|//A/121-130^#f1c40f",
+            } as unknown as moorhen.ColourRule,
           ],
-        }),
+        } as Partial<moorhen.MoleculeRepresentation>,
       ],
-      glRef: fakeGlRef,
     });
+
+  it("lifts a by-domain rule as by-domain and re-emits the remembered domains", () => {
+    // Authored 1-120; the resolver clamped it to the 10-120 present. The
+    // authored block is what must come back, not the clamped segments.
+    const domains = [
+      { name: "nterm", selection: "//A/1-120", color: "#4b8bbe" },
+      { name: "hinge", selection: "//A/121-130", color: "#f1c40f" },
+    ];
+    const scene = liftScene({ molecules: [byDomainMol()], glRef: fakeGlRef, domains });
     expect(scene.elements![0].representations![0].colour).toBe("by-domain");
+    expect(scene.domains).toEqual(domains);
+    // ...and the result is a scene that parses: by-domain has its domains.
+    expect(() => parseScene(serialiseScene(scene))).not.toThrow();
+  });
+
+  it("with no remembered domains, lifts the by-domain rule as the list it amounts to", () => {
+    const scene = liftScene({ molecules: [byDomainMol()], glRef: fakeGlRef });
+    expect(scene.domains).toBeUndefined();
+    expect(scene.elements![0].representations![0].colour).toEqual([
+      { selection: "//A/10-120", colour: "#4b8bbe" },
+      { selection: "//A/121-130", colour: "#f1c40f" },
+    ]);
+  });
+
+  it("does not re-emit remembered domains once nothing is coloured by-domain", () => {
+    const mol = fakeMol({
+      name: "m",
+      molNo: 0,
+      uniqueId: "x",
+      representations: [
+        {
+          style: "CRs",
+          visible: true,
+          colourRules: [
+            { ruleType: "molecule", cid: "//A", color: "#2ecc71", isMultiColourRule: false, multiColourData: "" } as unknown as moorhen.ColourRule,
+          ],
+        } as Partial<moorhen.MoleculeRepresentation>,
+      ],
+    });
+    const domains = [{ name: "nterm", selection: "//A/1-120", color: "#4b8bbe" }];
+    const scene = liftScene({ molecules: [mol], glRef: fakeGlRef, domains });
+    expect(scene.domains).toBeUndefined();
   });
 
   it("falls back to the raw escape hatch for unrecognised rules", () => {
@@ -427,7 +466,7 @@ describe("liftScene", () => {
                 {
                   ruleType: "some-bespoke-thing",
                   isMultiColourRule: true,
-                  args: ["weird", 42],
+                  multiColourData: "weird",
                   applyColourToNonCarbonAtoms: true,
                 } as unknown as moorhen.ColourRule,
               ],
@@ -440,7 +479,7 @@ describe("liftScene", () => {
     expect(scene.elements![0].representations![0].colour).toEqual({
       raw: {
         ruleType: "some-bespoke-thing",
-        args: ["weird", 42],
+        args: ["weird"],
         isMultiColourRule: true,
         applyColourToNonCarbonAtoms: true,
       },
@@ -459,7 +498,7 @@ describe("liftScene", () => {
               style: "CRs",
               cid: "//A",
               visible: true,
-              colourRules: [{ ruleType: "b-factor", isMultiColourRule: true, args: [] } as unknown as moorhen.ColourRule],
+              colourRules: [{ ruleType: "b-factor", isMultiColourRule: true, multiColourData: "" } as unknown as moorhen.ColourRule],
             } as Partial<moorhen.MoleculeRepresentation>,
           ],
         }),

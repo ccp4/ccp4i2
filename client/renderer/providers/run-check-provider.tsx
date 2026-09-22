@@ -21,6 +21,7 @@ import { useJob, useProject } from "../utils";
 import { File as DjangoFile, Project } from "../types/models";
 import { InlineTaskModal } from "../components/task/task-elements/inline-task-modal";
 import { CredentialDialog } from "../components/credential-dialog";
+import { usePopcorn } from "./popcorn-provider";
 
 /**
  * An error report keyed by parameter objectPath.
@@ -170,22 +171,45 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
   handleCancel,
 }) => {
   const autoSubmitTimer = useRef<NodeJS.Timeout | null>(null);
-  const { jobId } = useCCP4i2Window();
+  const { jobId: windowJobId } = useCCP4i2Window();
+  // Check the job that Run was asked for, which is not always the job the
+  // window has loaded: the job tree's context menu runs any pending job, and
+  // on a project page no job is loaded at all. Reading the window's job here
+  // left the checks unfetched (no job) or fetched for the wrong job, and the
+  // "Checking the job" backdrop never cleared.
+  const jobId = runTaskRequested ?? windowJobId;
   const {
     validation, job, createPeerTask, mutateValidation,
     setParameter, fileItemToParameterArg, mutateContainer,
   } = useJob(jobId);
   const { jobs: projectJobs } = useProject(job?.project);
   const api = useApi();
+  const { setMessage } = usePopcorn();
   const { data: projects } = api.get<Project[]>(runTaskRequested !== null ? "projects" : null);
 
   // Fetch heavier run-time validation (monomer coverage etc.) only
   // when the run dialog is actually open.
-  const { data: runTimeValidation, mutate: mutateRunTimeValidation } = api.get_validation(
+  const {
+    data: runTimeValidation,
+    error: runTimeValidationError,
+    isValidating: runTimeValidationPending,
+    mutate: mutateRunTimeValidation,
+  } = api.get_validation(
     runTaskRequested !== null
       ? { type: "jobs", id: jobId, endpoint: "run_time_validation" }
       : null
   );
+
+  // If the checks cannot be fetched there is nothing to wait for: give the
+  // run up and say so, rather than leave the backdrop spinning. (SWR keeps a
+  // key's last error, so wait out the fetch this request started before
+  // believing it.)
+  useEffect(() => {
+    if (runTaskRequested === null || !runTimeValidationError) return;
+    if (runTimeValidationPending || runTimeValidation !== undefined) return;
+    setMessage("Could not check the job before running it", "error");
+    handleCancel();
+  }, [runTaskRequested, runTimeValidationError, runTimeValidationPending, runTimeValidation]);
 
   // Credential name whose dialog is open, if any (e.g. "pdb_redo").
   const [credentialDialog, setCredentialDialog] = useState<string | null>(null);
@@ -257,9 +281,7 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
     if (
       runTimeValidationLoaded &&
       !hasSeriousIssues &&
-      runTaskRequested !== null &&
-      jobId !== null &&
-      jobId === runTaskRequested
+      runTaskRequested !== null
     ) {
       // Nothing to confirm: go. (This used to wait 200 ms with the dialog
       // already open, so every clean Run showed a "Confirm Task Execution"

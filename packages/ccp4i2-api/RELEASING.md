@@ -41,6 +41,7 @@ release should re-align.
 | 0.3.3 | ✅ | — | First *automated* release. npm publish failed due to npm CLI 10.8 vs OIDC requirement (≥11.5). |
 | 0.3.4 | ✅ | ✅ | First *successful* end-to-end automated release. |
 | 0.3.5 | ✅ | ✅ | Exempted `/health` from the auth middleware, so the desktop launch-readiness gate can poll before any token exists. Shipped with `ccp4i2` 3.1.0a2. |
+| 0.5.0 | pending | pending | Auth recovery: a 401 is refreshed and replayed once (single-flighted) before it becomes the user's problem; `invalidateAccessToken()` lets a caller drop a token the server has refused; `TokenGetter` accepts `{ forceRefresh }`. Minor: the new parameter is optional, so existing getters and callers compile unchanged. **Re-aligns the two registries** — npm skipped 0.4.0 (see below), so this is npm's first release since 0.3.5 and carries the 0.4.0 TypeScript surface too. |
 | 0.4.0 | ✅ | — | File grants: scoped, expiring read capabilities for the requests a browser issues for itself (a report page's own images, stylesheets and relative fetches), which cannot carry a bearer token. Minor per the policy below — new capability, existing surface unchanged. npm publish failed: `npm install -g npm@latest` resolved npm 12, which requires Node ≥22.22, on a Node 20 runner. Pinned to npm 11.x afterwards. The TypeScript half is byte-identical to 0.3.5, so nothing is missing from npm; the next release with TypeScript changes re-aligns the versions. |
 
 ## Versioning policy
