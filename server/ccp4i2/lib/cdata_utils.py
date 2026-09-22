@@ -11,6 +11,7 @@ from pathlib import Path
 
 from ccp4i2.core import CCP4Data
 from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.lib.kpi_values import is_storable_kpi_value
 
 logger = logging.getLogger(__name__)
 
@@ -397,7 +398,17 @@ def extract_kpi_values(kpi_container) -> Dict[str, Any]:
             # Extract value based on CData type
             if isinstance(child, CCP4Data.CFloat):
                 if child.isSet():
-                    values[param_name] = float(child)
+                    value = float(child)
+                    # A NaN or infinite KPI is a failed measurement, not a
+                    # measurement. Dropping it here keeps it out of every
+                    # database: this is the one path fresh KPIs come down.
+                    if is_storable_kpi_value(value):
+                        values[param_name] = value
+                    else:
+                        logger.warning(
+                            "Discarding non-finite KPI %s=%r from %s",
+                            param_name, value, kpi_container.object_path(),
+                        )
 
             elif isinstance(child, CCP4Data.CInt):
                 if child.isSet():

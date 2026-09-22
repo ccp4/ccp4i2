@@ -27,6 +27,7 @@ from ccp4i2_api.file_grants import grant_ttl, mint_grant
 from ..db import models
 from ..db.delete_project_directory import remove_project_directory
 from ..lib.async_create_job import create_job_async
+from ..lib.kpi_values import kpi_map
 from ..lib.response import api_error, api_success
 from ..lib.utils.files.preview import preview_file
 from ..lib.utils.files.resolve_fileuse import resolve_fileuse
@@ -469,13 +470,12 @@ class ProjectViewSet(ModelViewSet):
                 ).data
 
                 # Add embedded KPIs as a structured object
-                # JobValueKey.name is the primary key, so kv.key_id gives us the string name directly
-                float_vals = {kv.key_id: kv.value for kv in job.float_values.all()}
-                char_vals = {kv.key_id: kv.value for kv in job.char_values.all()}
+                float_vals = kpi_map(job.float_values.all(), context=f"job {job.number}")
+                char_vals = kpi_map(job.char_values.all(), context=f"job {job.number}")
 
                 # Debug logging
                 if float_vals or char_vals:
-                    logger.info(f"Job {job.number} KPIs: float={float_vals}, char={char_vals}")
+                    logger.debug(f"Job {job.number} KPIs: float={float_vals}, char={char_vals}")
 
                 job_data["kpis"] = {
                     "float_values": float_vals,

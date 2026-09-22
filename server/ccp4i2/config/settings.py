@@ -309,6 +309,15 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
+    # SafeJSONRenderer stands in for DRF's JSONRenderer (BrowsableAPIRenderer is
+    # DRF's other default, kept so /api/ stays browsable). It renders strictly,
+    # then repairs and retries rather than 500ing if a float turns out to have no
+    # JSON spelling. Do NOT "fix" such a response by setting STRICT_JSON=False:
+    # that emits a bare NaN token, which JSON.parse rejects in the browser.
+    "DEFAULT_RENDERER_CLASSES": [
+        "ccp4i2.api.renderers.SafeJSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
 }
 
 # Static files settings

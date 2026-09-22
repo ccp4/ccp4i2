@@ -42,6 +42,7 @@ from ccp4i2.db.models import (
     ServerJob,
     XData,
 )
+from ccp4i2.lib.kpi_values import is_storable_kpi_value
 
 
 class Command(BaseCommand):
@@ -588,10 +589,18 @@ class Command(BaseCommand):
                     self.stats["jobfloatvalues_skipped"] += 1
                     continue
 
+                value = float(value) if value is not None else 0.0
+                if not is_storable_kpi_value(value):
+                    # NaN/infinity in a legacy database: a failed measurement.
+                    # Leave it behind rather than import a row that cannot be
+                    # stored on SQLite and cannot be served as JSON anywhere.
+                    self.stats["jobfloatvalues_skipped"] += 1
+                    continue
+
                 JobFloatValue.objects.create(
                     job=job,
                     key=key,
-                    value=float(value) if value is not None else 0.0,
+                    value=value,
                 )
                 self.stats["jobfloatvalues"] += 1
 
