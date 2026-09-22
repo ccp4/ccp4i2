@@ -240,6 +240,19 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const prevActiveMoleculeRef = useRef<null | moorhen.Molecule>(null);
   const timeCapsuleRef = useRef(null);
   const loadedFileSource = useRef<FileSource | null>(null);
+  /**
+   * True once the current `fileSource` has finished loading into Coot.
+   *
+   * `cootInitialized` is not that signal, and using it as one is what left
+   * the `site` URL parameter pointing at the wrong view. Coot reports itself
+   * ready long before a job's coordinates have been fetched, and loading them
+   * ends in `centreOn()` — so the camera was moved to the site and then had
+   * the load drag it back to the molecule's centre a second later. Anything
+   * that positions the view waits for this instead.
+   */
+  const [contentReady, setContentReady] = useState(false);
+  /** Guards against an overtaken load declaring a newer one's content ready. */
+  const loadToken = useRef(0);
 
   // Ligand dictionary file ID for 2D structure display (first dict file found)
   const [ligandDictFileId, setLigandDictFileId] = useState<number | null>(null);
@@ -671,15 +684,29 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
     loadedFileSource.current = fileSource;
 
+    // Only the newest load may declare the content ready, so a source that
+    // changes twice in quick succession is not called done by the first
+    // load settling late.
+    const token = ++loadToken.current;
+    const finish = () => {
+      if (loadToken.current === token) setContentReady(true);
+    };
+
     if (fileSource.type === "files" && fileSource.fileIds.length > 0) {
-      fileSource.fileIds.forEach((fileId) => {
-        fetchFile(fileId);
-      });
+      setContentReady(false);
+      Promise.all(fileSource.fileIds.map((fileId) => fetchFile(fileId))).then(
+        finish,
+        finish,
+      );
     } else if (fileSource.type === "job") {
-      fetchJobFiles(fileSource.jobId);
+      setContentReady(false);
+      fetchJobFiles(fileSource.jobId).then(finish, finish);
+    } else {
+      // Nothing to load here: the summary scene is applied by the Scenes
+      // panel (auto-apply), so it shares one rendering pathway with
+      // hand-edited scenes — and it carries its own camera.
+      finish();
     }
-    // The summary scene is applied by the Scenes panel (auto-apply), not here,
-    // so it shares one rendering pathway with hand-edited scenes.
   }, [fileSource, cootInitialized, cleanupLoadedContent]);
 
   // Dimension updates are handled by Moorhen's MainContainer automatically
@@ -974,21 +1001,24 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [campaign.id]
   );
 
-  // Move to the site named in the URL, once there is a scene to move around.
+  // Move to the site named in the URL, once there is something to move
+  // around in.
   //
-  // Waits for coot: dispatching an origin before the molecules are drawn puts
-  // the camera in the right place and then has it reset underneath us. Fires
-  // once, so a user who navigates away from the site is not dragged back by a
-  // later re-render.
+  // Waits for the content, not merely for coot: dispatching an origin before
+  // the molecules are loaded puts the camera in the right place and then has
+  // the load's own centreOn() reset it underneath us (see `contentReady`).
+  // Fires once, so a user who navigates away from the site is not dragged
+  // back by a later re-render.
   const appliedInitialSite = useRef(false);
   useEffect(() => {
     if (appliedInitialSite.current) return;
-    if (!initialSiteId || !cootInitialized || sites.length === 0) return;
+    if (!initialSiteId || !cootInitialized || !contentReady) return;
+    if (sites.length === 0) return;
     const site = sites.find((s) => s.id === initialSiteId);
     if (!site) return;
     appliedInitialSite.current = true;
     handleGoToSite(site);
-  }, [initialSiteId, cootInitialized, sites, handleGoToSite]);
+  }, [initialSiteId, cootInitialized, contentReady, sites, handleGoToSite]);
 
   // Save current view as a site
   const handleSaveCurrentAsSite = useCallback(
