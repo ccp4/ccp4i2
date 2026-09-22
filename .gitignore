@@ -68,3 +68,11 @@ Docker/data/
 # <test-cache>/report-diffs/ (see tests/unit/lib/test_report_fixtures.py);
 # this entry only catches stragglers from older checkouts.
 **/report_fixtures/**/actual_report.xml
+
+# A plugin run without a job directory writes its artefacts into the cwd, so a
+# test run from server/ can leave these at the repo root. Root-anchored: the
+# same names inside a project's CCP4_JOBS/ are real job output, not debris.
+/server/diagnostic.xml
+/server/log.txt
+/server/params.xml
+/server/stderr.txt

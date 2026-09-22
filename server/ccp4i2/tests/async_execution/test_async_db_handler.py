@@ -10,16 +10,21 @@ import uuid
 from pathlib import Path
 from unittest.mock import Mock, AsyncMock, patch, MagicMock
 
-# Mock Django before importing handler
-import sys
-sys.modules['django'] = MagicMock()
-sys.modules['django.db'] = MagicMock()
-sys.modules['django.db.models'] = MagicMock()
-sys.modules['django.db.transaction'] = MagicMock()
-sys.modules['asgiref'] = MagicMock()
-sys.modules['asgiref.sync'] = MagicMock()
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+# NB: this module used to stub Django out at import time --
+#     sys.modules['django'] = MagicMock() and friends -- so that the handler
+#     could be imported before Django was configured. pytest runs one process,
+#     so that replaced Django for the *whole session*: pytest-django's
+#     collection hook then did `from django.test import TestCase`, got a
+#     MagicMock, and raised "'django' is not a package" as an INTERNALERROR
+#     that aborted every run including this directory. `pytest ccp4i2/tests/`
+#     collected 3795 tests and then died.
+#
+#     It is also unnecessary: pytest.ini pins --ds=ccp4i2.config.test_settings,
+#     so Django is configured before collection starts. Do not reintroduce it.
+#     If a future test needs a module stubbed, scope it with
+#     monkeypatch.setitem(sys.modules, ...) so it unwinds after the test.
 
 
 class TestAsyncDatabaseHandlerDesign:
@@ -95,15 +100,18 @@ class TestAsyncDatabaseHandlerDesign:
         from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         handler = AsyncDatabaseHandler(uuid.uuid4())
-        plugin = Mock(spec=CPluginScript)
-        plugin.getTaskName.return_value = "test_plugin"
+        # Not spec=CPluginScript: track_job reads attributes a plugin carries
+        # per-instance (name, workDirectory) rather than on the class, which a
+        # spec'd Mock refuses. This mirrors the current API -- the old version
+        # of this test drove getTaskName() and a statusChanged Qt signal, both
+        # of which the Qt-free architecture removed.
+        plugin = Mock()
+        plugin.get_db_job_id.return_value = None  # so track_job creates the job
+        plugin.TASKNAME = "test_plugin"
         plugin.name = "test_job"
-        plugin.get_parent.return_value = None
-        plugin.getStatus.return_value = CPluginScript.SUCCEEDED
-        plugin.outputData = None
-        plugin.statusChanged = Mock()
-        plugin.statusChanged.connect = Mock()
-        plugin.statusChanged.disconnect = Mock()
+        plugin.parent.return_value = None
+        plugin.get_status.return_value = CPluginScript.SUCCEEDED
+        plugin.container.outputData = None
 
         # Mock the async methods
         with patch.object(handler, 'create_job', new_callable=AsyncMock) as mock_create:
@@ -111,6 +119,9 @@ class TestAsyncDatabaseHandlerDesign:
                 mock_job = Mock()
                 mock_job.uuid = uuid.uuid4()
                 mock_job.number = "1"
+                # track_job does Path(job.directory) to set the plugin's work
+                # directory, and Path() will not take a Mock.
+                mock_job.directory = "/tmp/track_job_test"
                 mock_create.return_value = mock_job
 
                 # Use context manager
@@ -164,25 +175,22 @@ class TestAsyncDatabaseHandlerDesign:
         # It parses parent.number and appends a new child number
         pass
 
-    def test_signal_integration_design(self):
+    def test_status_is_read_from_the_plugin_not_a_signal(self):
+        """The Qt-free architecture polls the plugin, it does not connect.
+
+        This test used to assert ``hasattr(CPluginScript, 'statusChanged')``
+        and describe track_job connecting to, and disconnecting from, a Qt
+        signal. That signal went with PySide2: track_job now reads
+        ``plugin.get_status()`` after the ``yield`` and converts it with
+        ``plugin_status_to_job_status``. The assertion had been false since
+        the migration, but the module could not be collected, so nobody saw
+        it fail.
         """
-        Test that the handler is designed to work with CPluginScript signals.
-
-        The track_job() context manager should:
-        1. Connect to plugin.statusChanged signal
-        2. Automatically update database on status changes
-        3. Disconnect signal on exit
-        """
-        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
-
-        handler = AsyncDatabaseHandler(uuid.uuid4())
-        plugin = Mock(spec=CPluginScript)
-
-        # Plugin should have statusChanged signal
-        assert hasattr(CPluginScript, 'statusChanged')
-
-        # The signal should be a Signal[dict] that emits status info
-        # track_job() will connect to this signal to update database automatically
+        assert not hasattr(CPluginScript, 'statusChanged'), (
+            "a Qt signal has reappeared on CPluginScript; track_job reads "
+            "get_status() and does not connect to signals"
+        )
+        assert hasattr(CPluginScript, 'get_status')
 
 
 @pytest.mark.integration
