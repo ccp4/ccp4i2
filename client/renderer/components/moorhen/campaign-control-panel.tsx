@@ -10,7 +10,7 @@
  * - Push modified structures back to CCP4i2
  */
 
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   hideMap,
@@ -61,6 +61,7 @@ import {
   DoDisturbOn as NothingThereIcon,
   FolderOpen as FolderOpenIcon,
   Science as ScienceIcon,
+  OpenInNew as OpenInNewIcon,
   VisibilityOutlined,
   VisibilityOffOutlined,
 } from "@mui/icons-material";
@@ -69,6 +70,11 @@ import { CopyViewLinkButton } from "./copy-view-link-button";
 import { PasteViewLinkField } from "./paste-view-link-field";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
+import {
+  hideMoleculeRepresentations,
+  showMoleculeRepresentations,
+  type MoleculeVisibilityMemory,
+} from "../../lib/moorhen-molecule-visibility";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
 import { AddLigandButton } from "./add-ligand-button";
 import {
@@ -147,6 +153,28 @@ interface CampaignControlPanelProps {
   onJobLoad?: (jobId: number) => Promise<void>;
   /** Callback to run servalcat_pipe refinement on a molecule */
   onRunServalcat?: (mol: moorhen.Molecule) => Promise<void>;
+  /**
+   * True when this panel is showing a *summary scene* — one site's hits, or
+   * the whole campaign's — rather than a dataset being evaluated.
+   *
+   * It changes what the loaded molecules may be asked to do. A summary scene
+   * carries no reflection data (``campaign_scene`` emits coordinates and
+   * dictionaries, never maps), and its ligands have been moved onto a common
+   * exemplar by a superposition, so refining or pushing one back into a
+   * project would write transformed coordinates refined against nothing.
+   * Those two affordances belong to the dataset view; here the row offers
+   * the dataset itself instead, where the density is.
+   */
+  siteSummary?: boolean;
+  /**
+   * Where a loaded molecule can be opened in full — its own dataset, with its
+   * maps, at this site if the scene is a site's. Returns a URL, or the reason
+   * there is none, so the row can disable the control and say why rather than
+   * hide it.
+   */
+  datasetLink?: (
+    mol: moorhen.Molecule
+  ) => { url: string; label: string } | { reason: string };
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
@@ -178,6 +206,8 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   onFileSelect,
   onJobLoad,
   onRunServalcat,
+  siteSummary,
+  datasetLink,
 }) => {
   const dispatch = useDispatch();
 
@@ -231,6 +261,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
   // Track which molecule (if any) has a servalcat job running
   const [runningServalcatMolNo, setRunningServalcatMolNo] = useState<number | null>(null);
+
+  // What was drawn on each molecule the eye icon hid, so showing it again
+  // restores that and only that (see lib/moorhen-molecule-visibility).
+  const visibilityMemory = useRef<MoleculeVisibilityMemory>(new Map());
 
   // Reset loaded ligand code when file ID changes
   useEffect(() => {
@@ -791,7 +825,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         )}
       </Box>
 
-      {/* Push to CCP4i2 Section */}
+      {/* Loaded molecules. What they can be asked to do depends on what is
+          loaded: a dataset under evaluation has its density and its project
+          behind it, a summary scene has neither (see `siteSummary`). */}
       {molecules && molecules.length > 0 && (
         <>
           <Divider sx={{ my: 1 }} />
@@ -804,11 +840,12 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             }}
           >
             <Typography variant="caption" sx={{ fontWeight: "bold", mb: 0.5, display: "block" }}>
-              Push to CCP4i2
+              {siteSummary ? "Loaded datasets" : "Push to CCP4i2"}
             </Typography>
             <List dense sx={{ flex: 1, overflow: "auto", minHeight: 0 }}>
               {molecules.map((mol) => {
                 const isVisible = visibleMolecules.includes(mol.molNo!);
+                const link = datasetLink?.(mol);
                 return (
                   <ListItem
                     key={mol.molNo ?? mol.uniqueId}
@@ -832,12 +869,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           size="small"
                           onClick={() => {
                             if (isVisible) {
-                              (mol as any).representations?.forEach((r: any) => r.hide());
+                              hideMoleculeRepresentations(mol, visibilityMemory.current);
                               dispatch(hideMolecule(mol as any));
                             } else {
-                              (mol as any).representations?.forEach((r: any) => {
-                                if (r.interfaceOption?.visible) r.show();
-                              });
+                              showMoleculeRepresentations(mol, visibilityMemory.current);
                               dispatch(showMolecule(mol as any));
                             }
                             dispatch(setRequestDrawScene(true));
@@ -863,7 +898,41 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           <DeleteIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>
-                      {onRunServalcat && (
+                      {/* Open the dataset this molecule came from, where its
+                          maps are (at this site, when the scene is a site's).
+                          A summary scene is the one view that shows a ligand
+                          without the density justifying it; this is the way
+                          out of it. */}
+                      {datasetLink && (
+                        <Tooltip
+                          title={
+                            link && "url" in link
+                              ? `Open ${link.label} with its maps`
+                              : link?.reason ?? "No dataset to open"
+                          }
+                        >
+                          <span>
+                            <IconButton
+                              edge="end"
+                              size="small"
+                              disabled={!link || !("url" in link)}
+                              onClick={() => {
+                                if (link && "url" in link) {
+                                  window.open(link.url, "_blank");
+                                }
+                              }}
+                              color="primary"
+                            >
+                              <OpenInNewIcon fontSize="small" />
+                            </IconButton>
+                          </span>
+                        </Tooltip>
+                      )}
+                      {/* Refining and pushing need reflections and a project
+                          to own the result. A summary scene has neither, and
+                          its ligands have been moved by a superposition, so
+                          both are withheld rather than offered and refused. */}
+                      {!siteSummary && onRunServalcat && (
                         <Tooltip title="Run servalcat refinement">
                           <span>
                             <IconButton
@@ -885,16 +954,18 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           </span>
                         </Tooltip>
                       )}
-                      <Tooltip title="Push to CCP4i2 project">
-                        <IconButton
-                          edge="end"
-                          size="small"
-                          onClick={() => handleOpenPushDialog(mol)}
-                          color="primary"
-                        >
-                          <UploadIcon fontSize="small" />
-                        </IconButton>
-                      </Tooltip>
+                      {!siteSummary && (
+                        <Tooltip title="Push to CCP4i2 project">
+                          <IconButton
+                            edge="end"
+                            size="small"
+                            onClick={() => handleOpenPushDialog(mol)}
+                            color="primary"
+                          >
+                            <UploadIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      )}
                     </ListItemSecondaryAction>
                   </ListItem>
                 );
