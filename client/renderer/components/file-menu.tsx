@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Divider,
@@ -15,10 +15,11 @@ import {
 import { Add, Download, Edit, FolderOpen, Menu as MenuIcon, OpenInNew, Upload, PowerSettingsNew } from "@mui/icons-material";
 import { useApi } from "../api";
 import { Project } from "../types/models";
-import { useCCP4i2Window } from "../app-context";
 import { apiPost } from "../api-fetch";
 import { ProjectExportsDialog } from "./project-exports";
 import { CCP4i2MenuItem } from "./menu-item";
+import { useProjectScope } from "../lib/project-scope";
+import { isElectron } from "../utils/platform";
 import { shortDate } from "../pipes";
 
 interface ExportResult {
@@ -30,12 +31,17 @@ interface ExportResult {
 
 export default function FileMenu() {
   const api = useApi();
-  const { projectId } = useCCP4i2Window();
+  const projectId = useProjectScope();
   const { data: projects, mutate: mutateProjects } =
     api.get<Project[]>("projects");
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  // Quit is Electron's to offer, and the check is deferred to an effect: this
+  // menu is rendered by the app bar on every route, so reading `window` during
+  // render broke server rendering of all of them.
+  const [canQuit, setCanQuit] = useState(false);
+  useEffect(() => setCanQuit(isElectron()), []);
   const [exportsDialogOpen, setExportsDialogOpen] = useState(false);
   const [exportSuccessDialogOpen, setExportSuccessDialogOpen] = useState(false);
   const [exportResult, setExportResult] = useState<ExportResult | null>(null);
@@ -115,11 +121,13 @@ export default function FileMenu() {
             }}
           />
         )}
-        <CCP4i2MenuItem
-          text="Export Project"
-          icon={Download}
-          onClick={handleExportProject}
-        />
+        {projectId && (
+          <CCP4i2MenuItem
+            text="Export Project"
+            icon={Download}
+            onClick={handleExportProject}
+          />
+        )}
         <CCP4i2MenuItem
           text="Import Project"
           icon={Upload}
@@ -166,12 +174,12 @@ export default function FileMenu() {
           icon={OpenInNew}
           onClick={handleNewWindow}
         />
-        {window.electronAPI && (
+        {canQuit && (
           <CCP4i2MenuItem
             text="Quit"
             icon={PowerSettingsNew}
             onClick={() => {
-              window.electronAPI!.sendMessage("quit-app", {});
+              window.electronAPI?.sendMessage("quit-app", {});
             }}
           />
         )}
