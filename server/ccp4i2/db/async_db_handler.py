@@ -20,6 +20,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Import using Django's registered app name to avoid app registry errors
 from ccp4i2.db import models
+from ccp4i2.lib.kpi_values import is_storable_kpi_value
 
 logger = logging.getLogger(__name__)
 
@@ -595,6 +596,16 @@ class AsyncDatabaseHandler:
             value: Float value
             description: Optional description of the KPI
         """
+        if not is_storable_kpi_value(value):
+            # Not merely unserialisable: JobFloatValue.value is NOT NULL, and
+            # SQLite rejects NaN outright with an IntegrityError that would
+            # abandon the rest of this job's KPIs.
+            logger.warning(
+                "Refusing to register non-finite KPI %s=%r for job %s",
+                key, value, job_uuid,
+            )
+            return
+
         @sync_to_async
         def _register():
             with transaction.atomic():
@@ -874,6 +885,12 @@ class AsyncDatabaseHandler:
                 # Register each value in database
                 for key, value in values.items():
                     if isinstance(value, float):
+                        if not is_storable_kpi_value(value):
+                            logger.warning(
+                                "Skipping non-finite KPI %s=%r while gleaning "
+                                "job %s", key, value, job_uuid,
+                            )
+                            continue
                         await self.register_job_float_value(
                             job_uuid=job_uuid,
                             key=key,

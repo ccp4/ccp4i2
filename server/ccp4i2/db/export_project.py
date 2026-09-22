@@ -19,6 +19,7 @@ from .models import (
     JobValueKey,
     FileType,
 )
+from ccp4i2.lib.kpi_values import is_storable_kpi_value
 from .ccp4i2_static_data import FILETYPELIST, KEYTYPELIST
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -456,6 +457,16 @@ def _export_job_key_value_tables(
 
     # Export float values
     for float_value in float_values:
+        if not is_storable_kpi_value(float_value.value):
+            # Rows that predate the write gate. Exporting "nan" would carry the
+            # defect into whatever database next imports this file.
+            logger.warning(
+                "Omitting non-finite KPI %s=%r from export of job %s",
+                float_value.key.name if float_value.key else "?",
+                float_value.value, float_value.job.uuid,
+            )
+            continue
+
         keyvalue_elem = ET.SubElement(keyvalue_table, "jobkeyvalue")
 
         keyvalue_elem.set("jobid", _format_uuid_for_xml(float_value.job.uuid))
