@@ -267,12 +267,35 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           // the user to the page they were on. Contrast setLogoutHandler
           // below, which tears the session down.
           setReauthHandler(async () => {
+            const scopes = [`${config.clientId}/.default`];
+
+            // In an iframe (Teams), a redirect to AAD is refused: it will not
+            // be framed. /auth/login knows how to do Teams SSO, so hand over
+            // to it -- the same move the logout handler makes. The return url
+            // goes as a query parameter because that page sets the stashed
+            // one from its own params, and would otherwise overwrite ours
+            // with "/" and lose the page the user was on.
+            if (isRunningInIframe()) {
+              const here = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+              window.location.replace(
+                `/auth/login?returnUrl=${encodeURIComponent(here)}`
+              );
+              return true;
+            }
+
             const accounts = pca.getAllAccounts();
-            if (accounts.length === 0) return false;
-            await pca.acquireTokenRedirect({
-              scopes: [`${config.clientId}/.default`],
-              account: accounts[0],
-            });
+            if (accounts.length === 0) {
+              // The cookie outlived MSAL's cache -- cleared site data, an
+              // evicted localStorage, a refresh token revoked long enough ago
+              // that the account went with it. There is no account to renew,
+              // but the user is trying to get IN. Signing them out here would
+              // be the logout/login cycle this whole change exists to remove,
+              // and would destroy the AAD session that can make this silent.
+              await pca.loginRedirect({ scopes });
+              return true;
+            }
+
+            await pca.acquireTokenRedirect({ scopes, account: accounts[0] });
             return true;
           });
 
