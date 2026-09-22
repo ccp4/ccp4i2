@@ -46,7 +46,7 @@ import { webGL } from "moorhen/types/mgWebGL";
 import { apiText, apiArrayBuffer, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
-import { readCameraState } from "../../lib/moorhen-view-state";
+import { extractFileIdFromUniqueId, readCameraState } from "../../lib/moorhen-view-state";
 import { useCampaignsApi } from "../../lib/campaigns-api";
 import { usePopcorn } from "../../providers/popcorn-provider";
 import {
@@ -73,6 +73,15 @@ import {
   SceneResolveResult,
 } from "../../lib/moorhen-scene-resolver";
 import { parseScene, serialiseScene } from "../../lib/scene";
+import {
+  liftSceneStraight,
+  promoteSceneToPortable,
+  type LiftCtx,
+  SceneLiftHints,
+  SceneRefUrlResolver,
+} from "../../lib/moorhen-scene-lifter";
+import { collectMapRenderState } from "../../lib/moorhen-map-render-state";
+import { preferredJobId, siteViewUrl } from "../../lib/site-verdicts";
 import { applyMaskDefaults, isMaskSubType, markMaskMap, ccp4Mode0ToFloat, ccp4DodgeEmClamp, requireMoorhenInstance, primeEmMapHeaderInfo } from "../../lib/moorhen-map-file";
 import {
   COORDINATE_TYPES,
@@ -80,10 +89,17 @@ import {
   fetchDictionaryTexts,
   fetchJobDictionaryFiles,
   loadWithDictionaries,
+  provenanceOf,
   type DictionaryToAttach,
 } from "../../lib/moorhen-dictionaries";
 import { candidateLigandCodes, placeLigand } from "../../lib/ligand-codes";
-import type { MoorhenScene, SceneFileRef } from "../../types/moorhen-scene";
+import type {
+  MaskMap,
+  MoorhenScene,
+  SceneDomain,
+  SceneFileRef,
+  SceneSuperpose,
+} from "../../types/moorhen-scene";
 import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
 import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
 import { CampaignMoorhenTabbedPanel } from "./campaign-moorhen-tabbed-panel";
@@ -337,6 +353,19 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // refreshed at the top of each apply.
   const bundleAssetsRef = useRef<SceneBundleAssets>(new Map());
 
+  // What the last applied scene asked for that cannot be read back off the
+  // live view: a superposition leaves no trace on a molecule, and mask/domain
+  // declarations are scene-level. Capturing without these would silently drop
+  // the fitting that a campaign scene is mostly made of.
+  const lastAppliedSuperposeRef = useRef<SceneSuperpose[] | undefined>(undefined);
+  const lastAppliedMaskMapsRef = useRef<MaskMap[] | undefined>(undefined);
+  const lastAppliedDomainsRef = useRef<SceneDomain[] | undefined>(undefined);
+  // Which file defines each molecule's ligands, gathered at load time, so a
+  // captured scene lists the dictionary under the molecule it belongs to.
+  const dictSourcesRef = useRef<
+    Map<number, Map<string, { fileId: number; projectId?: string }>>
+  >(new Map());
+
   // Structure load for the scene fetcher. Mirrors the generic wrapper's
   // proven loadStructureFromText: load coords, add default reps, centre, and
   // crucially dispatch(showMolecule) so the molecule is actually visible. The
@@ -367,6 +396,12 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         );
         if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
         newMolecule.uniqueId = uniqueId;
+        // Remember which file defines each of this molecule's ligands, so a
+        // captured scene lists them under this molecule's element.
+        const provenance = provenanceOf(opts.dictionaries ?? []);
+        if (newMolecule.molNo != null && provenance.size > 0) {
+          dictSourcesRef.current.set(newMolecule.molNo, provenance);
+        }
         // Ribbon first (protein overview), fall back to sticks. These get
         // hidden by the resolver and replaced with the scene's reps.
         try {
@@ -582,6 +617,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       assets: SceneBundleAssets = new Map(),
     ): Promise<SceneResolveResult> => {
       bundleAssetsRef.current = assets;
+      // Kept for the capture path, which cannot read these back off the view.
+      lastAppliedSuperposeRef.current = scene.superpose;
+      lastAppliedMaskMapsRef.current = scene.maskMaps;
+      lastAppliedDomainsRef.current = scene.domains;
       const result = await applyScene({
         scene,
         molecules,
@@ -1246,6 +1285,118 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // (it builds the per-instance MoorhenInstance from it).
   const menuSystem = useMemo(() => new MoorhenMenuSystem(), []);
 
+  // Where a scene ref's bytes live. Shared by the promoter (the export path)
+  // so it agrees with the fetchers above on what counts as resolvable. The
+  // campaign viewer's refs are fileId or url; a job+param ref, which needs a
+  // project to resolve against, is not something a campaign scene carries.
+  const resolveSceneRefUrl: SceneRefUrlResolver = useCallback(async (ref) => {
+    if (ref.pdb) return `/api/proxy/pdbe/entry-files/download/${ref.pdb.toLowerCase()}.cif`;
+    if (ref.fileId !== undefined) return `/api/proxy/ccp4i2/files/${ref.fileId}/download/`;
+    if (ref.url) return ref.url;
+    return null;
+  }, []);
+
+  // Lift the live view back into YAML. The campaign viewer used not to offer
+  // this — it was built to apply scenes, not author them — but a site scene
+  // is exactly the view worth keeping: it is assembled server-side, tuned by
+  // hand here, and otherwise lost when the tab closes.
+  const handleCaptureScene = useCallback(async (): Promise<{
+    scene: MoorhenScene;
+    hints: SceneLiftHints;
+    assets: SceneBundleAssets;
+  }> => {
+    const state = store.getState() as moorhen.State;
+    // sceneSettings carries the effect toggles (SSAO / edge-detect / shadows /
+    // depth-blur / perspective) the lifter folds into hints.effects.
+    const sceneSettingsState = (
+      state as unknown as { sceneSettings: LiftCtx["sceneSettings"] }
+    ).sceneSettings;
+    const activeMapMolNo = (
+      state as unknown as { generalStates?: { activeMap?: moorhen.Map | null } }
+    ).generalStates?.activeMap?.molNo;
+    const { scene, hints } = await liftSceneStraight({
+      molecules,
+      glRef: readCameraState(state),
+      sceneSettings: sceneSettingsState,
+      superpose: lastAppliedSuperposeRef.current,
+      maskMaps: lastAppliedMaskMapsRef.current,
+      domains: lastAppliedDomainsRef.current,
+      projectName: campaign.name,
+      monomerLibraryPath: molecules[0]?.monomerLibraryPath,
+      maps,
+      mapState: collectMapRenderState(state),
+      activeMapMolNo: typeof activeMapMolNo === "number" ? activeMapMolNo : undefined,
+      dictSources: dictSourcesRef.current,
+    });
+    return { scene, hints, assets: new Map() as SceneBundleAssets };
+  }, [store, molecules, maps, campaign.name]);
+
+  const handlePromoteSceneToPortable = useCallback(
+    async (
+      yamlText: string,
+      currentAssets: SceneBundleAssets,
+    ): Promise<{ yamlText: string; assets: SceneBundleAssets; warnings: string[] }> => {
+      const { scene: out, assets, warnings } = await promoteSceneToPortable({
+        scene: parseScene(yamlText),
+        existingAssets: currentAssets,
+        resolveUrl: resolveSceneRefUrl,
+        molecules,
+        monomerLibraryPath: molecules[0]?.monomerLibraryPath,
+      });
+      return { yamlText: serialiseScene(out), assets, warnings };
+    },
+    [molecules, resolveSceneRefUrl],
+  );
+
+  // Every loaded molecule's source file, by the fileId its uniqueId carries.
+  // The scene is where a molecule's provenance lives: the loader names it
+  // after the scene's file ref, and that ref says which project it came from.
+  const projectUuidByFileId = useMemo(() => {
+    const byFileId = new Map<number, string>();
+    for (const ref of summaryScene?.files ?? []) {
+      if (ref.kind === "coordinates" && ref.fileId !== undefined && ref.projectId) {
+        byFileId.set(ref.fileId, ref.projectId);
+      }
+    }
+    return byFileId;
+  }, [summaryScene]);
+
+  // The way out of a summary scene: open the dataset a drawn ligand belongs
+  // to, where its maps are, and at this site when the scene is a site's. A
+  // summary scene deliberately carries no density (campaign_scene emits
+  // coordinates and dictionaries, never maps), so nothing drawn in it can be
+  // judged on the evidence — this is the control that leads to the evidence.
+  //
+  // Returns a reason rather than nothing when there is no dataset to open:
+  // the campaign's own reference structure is drawn in every summary scene
+  // and is not a dataset. That is worth saying once, where a dead control
+  // would only be puzzled over.
+  const datasetLink = useCallback(
+    (mol: moorhen.Molecule): { url: string; label: string } | { reason: string } => {
+      const fileId = extractFileIdFromUniqueId(mol.uniqueId || "");
+      const projectUuid = fileId !== null ? projectUuidByFileId.get(fileId) : undefined;
+      if (!projectUuid) {
+        return { reason: "Not a campaign dataset (this is the reference structure)" };
+      }
+      const project = memberProjects.find((p) => p.uuid === projectUuid);
+      if (!project) {
+        return { reason: "That dataset is no longer a member of this campaign" };
+      }
+      const jobId = preferredJobId(project.jobs);
+      if (!jobId) return { reason: `${project.name} has no job to open` };
+      // With a site, the same link a verdict chip in the campaign overview
+      // follows; without one (the whole-campaign summary) the dataset opens
+      // on its own job, camera wherever the job leaves it.
+      const url =
+        initialSiteId != null
+          ? siteViewUrl(campaign.id, jobId, initialSiteId)
+          : `/ccp4i2/moorhen-page/campaign/${campaign.id}?job=${jobId}`;
+      if (!url) return { reason: `${project.name} has no job to open` };
+      return { url, label: project.name };
+    },
+    [projectUuidByFileId, memberProjects, campaign.id, initialSiteId],
+  );
+
   // When viewing the campaign summary, serialise the scene to YAML so the
   // Scenes panel can show it in the editor and auto-apply it through its own
   // parse/apply path (one shared rendering pathway).
@@ -1296,8 +1447,15 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             onFileSelect: fetchFile,
             onJobLoad: importJobFiles,
             onRunServalcat: handleRunServalcat,
+            // A summary scene is the view whose molecules have no density
+            // behind them and have been moved by a fit — whether it is one
+            // site's or the whole campaign's.
+            siteSummary: !!summaryScene,
+            datasetLink: summaryScene ? datasetLink : undefined,
           }}
           onApplyScene={handleApplyScene}
+          onCaptureScene={handleCaptureScene}
+          onPromoteSceneToPortable={handlePromoteSceneToPortable}
           cootInitialized={cootInitialized}
           initialSceneYaml={summarySceneYaml}
           autoApplyInitialScene={!!summarySceneYaml}
