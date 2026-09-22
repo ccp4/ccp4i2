@@ -10,6 +10,7 @@ from rest_framework.serializers import (
 )
 from ..config import preferences
 from ..db import models
+from ..lib.kpi_values import kpi_map
 
 
 class FileTypeSerializer(ModelSerializer):
@@ -224,11 +225,10 @@ class JobSerializer(ModelSerializer):
         fields = "__all__"
 
     def get_float_values(self, obj):
-        # JobValueKey.name is the PK, so kv.key_id is the KPI name string.
-        return {kv.key_id: kv.value for kv in obj.float_values.all()}
+        return kpi_map(obj.float_values.all(), context=f"job {obj.id}")
 
     def get_char_values(self, obj):
-        return {kv.key_id: kv.value for kv in obj.char_values.all()}
+        return kpi_map(obj.char_values.all(), context=f"job {obj.id}")
 
 
 class FileUseSerializer(ModelSerializer):

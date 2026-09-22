@@ -41,6 +41,12 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
     ],
+    # Mirror production's renderers too, for the same reason: a test that
+    # renders a response must render it the way the server will.
+    "DEFAULT_RENDERER_CLASSES": [
+        "ccp4i2.api.renderers.SafeJSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
 }
 
 ROOT_URLCONF = "ccp4i2.api.urls"  # Set default URL conf for API tests
