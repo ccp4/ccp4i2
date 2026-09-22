@@ -326,14 +326,22 @@ class AsyncDatabaseHandler:
                     status = models.Job.Status.UNSATISFACTORY
 
             if status is not None:
-                async_to_sync(self.update_job_status)(job_uuid, status)
-
-                # Glean files if job finished successfully
+                # Glean files if the job finished successfully, and record the
+                # status only afterwards. A job whose outputs never reach the
+                # database has produced nothing a later task can consume, so a
+                # gleaning failure demotes it to FAILED rather than being
+                # logged and forgotten -- this used to be a logger.warning that
+                # left the job FINISHED with silently missing outputs, which is
+                # the one place in the codebase that disagreed with what
+                # track_job and run_subjob do.
                 if status == models.Job.Status.FINISHED and container is not None:
                     try:
                         async_to_sync(self.glean_job_files)(job_uuid, container)
                     except Exception as e:
-                        logger.warning("Failed to glean job files: %s", e)
+                        logger.exception("Failed to glean job files: %s", e)
+                        status = models.Job.Status.FAILED
+
+                async_to_sync(self.update_job_status)(job_uuid, status)
 
         except Exception as e:
             logger.error("Error in updateJobStatus: %s", e, exc_info=True)
@@ -982,10 +990,19 @@ class AsyncDatabaseHandler:
             # plugin_status_to_job_status() defaults unrecognised codes to FAILED,
             # so a job is never silently left stuck at RUNNING.
             db_status = plugin_status_to_job_status(plugin_status)
-            await self.update_job_status(job_uuid, db_status)
-            logger.info(f"Job {job_uuid} status updated to {db_status}")
 
-            # After execution, glean output files and KPIs if finished successfully
+            # Glean first, record the terminal status afterwards.
+            #
+            # Gleaning is part of the job, not a postscript to it: a run whose
+            # outputs never reach the database has produced nothing a later
+            # task can consume, so it is FAILED however cleanly the program
+            # exited. Writing the status first also opened a window in which
+            # the job read as FINISHED while its output files were still
+            # unregistered -- and the report view refetches the moment it sees
+            # that transition, so a report with no outputs in it could be
+            # generated and then cached to report_xml.xml permanently by
+            # get_job_report_xml (which writes any terminal-status report to
+            # disk and never regenerates it unasked).
             logger.debug(f"[DEBUG track_job] plugin_status = {plugin_status}, SUCCEEDED = {CPluginScript.SUCCEEDED}")
             if plugin_status == CPluginScript.SUCCEEDED:
                 logger.debug(f"[DEBUG track_job] Status is SUCCEEDED, gleaning files...")
@@ -993,25 +1010,41 @@ class AsyncDatabaseHandler:
                 logger.debug(f"[DEBUG track_job] output_container = {output_container}")
                 logger.debug(f"[DEBUG track_job] output_container is not None = {output_container is not None}")
                 if output_container is not None:
-                    # Pass plugin so file objects can access dbHandler during gleaning
-                    files_gleaned = await self.glean_job_files(job_uuid, output_container, plugin=plugin)
-                    logger.info(f"Gleaned {len(files_gleaned)} output files")
-                    logger.debug(f"[DEBUG track_job] Gleaned {len(files_gleaned)} output files")
+                    try:
+                        # Pass plugin so file objects can access dbHandler during gleaning
+                        files_gleaned = await self.glean_job_files(job_uuid, output_container, plugin=plugin)
+                        logger.info(f"Gleaned {len(files_gleaned)} output files")
+                        logger.debug(f"[DEBUG track_job] Gleaned {len(files_gleaned)} output files")
 
-                    kpis_gleaned = await self.glean_performance_indicators(job_uuid, output_container)
-                    logger.info(f"Gleaned {kpis_gleaned} performance indicators")
-                    logger.debug(f"[DEBUG track_job] Gleaned {kpis_gleaned} performance indicators")
+                        kpis_gleaned = await self.glean_performance_indicators(job_uuid, output_container)
+                        logger.info(f"Gleaned {kpis_gleaned} performance indicators")
+                        logger.debug(f"[DEBUG track_job] Gleaned {kpis_gleaned} performance indicators")
 
-                    # Save params.xml with gleaned dbFileId values and KPIs
-                    logger.debug(f"[DEBUG track_job] Saving params.xml after gleaning...")
-                    from ..lib.utils.parameters.save_params import save_params_for_job
-                    job = await sync_to_async(models.Job.objects.get)(uuid=job_uuid)
-                    await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
-                    logger.info(f"Saved params.xml ({len(files_gleaned)} files, {kpis_gleaned} KPIs)")
+                        # Save params.xml with gleaned dbFileId values and KPIs
+                        logger.debug(f"[DEBUG track_job] Saving params.xml after gleaning...")
+                        from ..lib.utils.parameters.save_params import save_params_for_job
+                        job = await sync_to_async(models.Job.objects.get)(uuid=job_uuid)
+                        await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
+                        logger.info(f"Saved params.xml ({len(files_gleaned)} files, {kpis_gleaned} KPIs)")
+                    except Exception as glean_exc:
+                        # Mark FAILED and re-raise. The re-raise is load-bearing
+                        # twice over: run_job_async writes a belt-and-braces
+                        # FINISHED *after* this context manager exits, which
+                        # would otherwise undo the FAILED we just wrote; and the
+                        # non-zero exit it produces is how the Azure worker
+                        # learns the job failed (server/worker.py,
+                        # run_ccp4_analysis reads the subprocess return code).
+                        logger.exception("Job %s: gleaning failed", job_uuid)
+                        record_glean_failure(plugin, glean_exc)
+                        await self.update_job_status(job_uuid, models.Job.Status.FAILED)
+                        raise
                 else:
                     logger.debug(f"[DEBUG track_job] No output container found!")
             else:
                 logger.debug(f"[DEBUG track_job] Status is NOT SUCCEEDED, skipping gleaning")
+
+            await self.update_job_status(job_uuid, db_status)
+            logger.info(f"Job {job_uuid} status updated to {db_status}")
 
         finally:
             # Cleanup if needed
@@ -1076,22 +1109,31 @@ class AsyncDatabaseHandler:
                 # Execute the plugin synchronously (this is what pipelines expect)
                 status = plugin.process()
 
-                # Update job status based on result
-                await self.update_job_status(job.uuid, plugin_status_to_job_status(status))
-
-                # Glean output files and KPIs if succeeded
+                # Glean output files and KPIs if succeeded, *before* recording
+                # the terminal status, so a subjob never reads as FINISHED
+                # while its outputs are still unregistered. A glean failure
+                # re-raises into the handler below, which records FAILED --
+                # see track_job for why gleaning counts as part of the job.
                 if status == CPluginScript.SUCCEEDED:
                     output_container = plugin.container.outputData if hasattr(plugin.container, 'outputData') else None
                     if output_container is not None:
-                        files_gleaned = await self.glean_job_files(job.uuid, output_container, plugin=plugin)
-                        logger.info(f"Subjob {job.number}: Gleaned {len(files_gleaned)} output files")
+                        try:
+                            files_gleaned = await self.glean_job_files(job.uuid, output_container, plugin=plugin)
+                            logger.info(f"Subjob {job.number}: Gleaned {len(files_gleaned)} output files")
 
-                        kpis_gleaned = await self.glean_performance_indicators(job.uuid, output_container)
-                        logger.info(f"Subjob {job.number}: Gleaned {kpis_gleaned} performance indicators")
+                            kpis_gleaned = await self.glean_performance_indicators(job.uuid, output_container)
+                            logger.info(f"Subjob {job.number}: Gleaned {kpis_gleaned} performance indicators")
 
-                        # Save params.xml with gleaned dbFileId values and KPIs
-                        from ..lib.utils.parameters.save_params import save_params_for_job
-                        await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
+                            # Save params.xml with gleaned dbFileId values and KPIs
+                            from ..lib.utils.parameters.save_params import save_params_for_job
+                            await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
+                        except Exception as glean_exc:
+                            logger.exception(f"Subjob {job.number}: gleaning failed")
+                            record_glean_failure(plugin, glean_exc)
+                            raise
+
+                # Update job status based on result
+                await self.update_job_status(job.uuid, plugin_status_to_job_status(status))
 
                 return status
 
@@ -1326,6 +1368,42 @@ class AsyncDatabaseHandler:
         except Exception as e:
             logger.debug(f"Error getting project directory: {e}")
             return None
+
+
+#: errorReport code for a job whose program ran cleanly but whose outputs
+#: could not be gleaned into the database.
+#:
+#: 990-999 is a contiguous block already allocated by CCP4PluginScript and
+#: async_run_job (993 is "Python exception in processOutputFiles()", 994 is
+#: "postProcessCheck failed", 999 is the generic Python exception), so this
+#: takes the next one below the block rather than colliding with it.
+GLEAN_FAILED_ERROR_CODE = 989
+
+
+def record_glean_failure(plugin, exc: Exception) -> None:
+    """Record a gleaning failure on the plugin's error report.
+
+    A gleaning failure used to be a ``logger.warning`` in a file nobody reads,
+    which left the job FAILED with no visible reason. Putting it on the
+    errorReport carries it into diagnostic.xml by the same route as every
+    other job failure, so the job's Diagnostic tab can say what went wrong.
+
+    Deliberately defensive: this runs on the failure path, and a plugin that
+    cannot accept an error report must not mask the failure being reported.
+    """
+    try:
+        plugin.errorReport.append(
+            klass=plugin.__class__.__name__,
+            code=GLEAN_FAILED_ERROR_CODE,
+            details=(
+                "The job ran successfully but its output files could not be "
+                f"registered in the database: {type(exc).__name__}: {exc}"
+            ),
+            name="glean",
+            severity=4,  # CCP4ErrorHandling.SEVERITY_ERROR
+        )
+    except Exception:
+        logger.exception("Could not record the gleaning failure on the error report")
 
 
 def plugin_status_to_job_status(finish_status: int) -> int:
