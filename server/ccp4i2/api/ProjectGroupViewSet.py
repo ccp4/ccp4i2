@@ -7,6 +7,7 @@ coordinates and FreeR flags, and member projects each represent a dataset
 soaked with a different compound.
 """
 import logging
+from django.db.models import Count
 from django.http import FileResponse
 from django.conf import settings
 from rest_framework.viewsets import ModelViewSet
@@ -739,6 +740,14 @@ class ProjectGroupViewSet(ModelViewSet):
             "origin": [site.origin_x, site.origin_y, site.origin_z],
             "order": site.order,
         }
+        # Present only where the caller annotated it (the list view). Deleting
+        # a site deletes every verdict recorded there, across every dataset,
+        # and the difference between losing nothing and losing forty datasets'
+        # work is the whole content of that warning -- without it a
+        # confirmation is just a button to click through.
+        count = getattr(site, "evaluation_count", None)
+        if count is not None:
+            payload["evaluation_count"] = count
         if site.quat:
             payload["quat"] = site.quat
         if site.zoom is not None:
@@ -797,9 +806,10 @@ class ProjectGroupViewSet(ModelViewSet):
             group = self.get_object()
 
             if request.method == "GET":
-                return Response(
-                    [self._site_payload(s) for s in group.site_set.all()]
+                sites = group.site_set.annotate(
+                    evaluation_count=Count("evaluations")
                 )
+                return Response([self._site_payload(s) for s in sites])
 
             fields, error = self._parse_site(request.data)
             if error:

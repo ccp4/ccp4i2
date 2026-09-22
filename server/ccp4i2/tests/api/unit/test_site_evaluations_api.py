@@ -387,3 +387,50 @@ class TestReadingOneDatasetsVerdicts:
             f"/evaluations/{campaign['outsider'].id}/"
         )
         assert response.status_code == 404
+
+
+@pytest.mark.django_db
+class TestWhatDeletingASiteWouldCost:
+    """The site list carries how much work each site is holding.
+
+    Deleting a site cascades to every verdict recorded there, in every
+    dataset, and cannot be undone. The confirmation is only worth reading if
+    it can tell a site nobody has looked at from one carrying a campaign's
+    worth of verdicts, so the count comes down with the list.
+    """
+
+    def sites(self, campaign):
+        client = APIClient()
+        response = client.get(
+            f"/api/ccp4i2/projectgroups/{campaign['group'].id}/sites/"
+        )
+        assert response.status_code == 200
+        return {site["name"]: site for site in response.json()}
+
+    def test_counts_every_dataset_evaluated_at_that_site(self, campaign):
+        for project in (campaign["a"], campaign["b"]):
+            models.SiteEvaluation.objects.create(
+                project=project, site=campaign["site_a"], verdict="hit"
+            )
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=campaign["site_b"], verdict="empty"
+        )
+
+        sites = self.sites(campaign)
+        assert sites["Pocket A"]["evaluation_count"] == 2
+        assert sites["Pocket B"]["evaluation_count"] == 1
+
+    def test_says_zero_rather_than_nothing_for_an_unexamined_site(self, campaign):
+        # The dialog distinguishes "nothing recorded here" from "40 verdicts",
+        # so an absent key and a zero must not look the same to it.
+        sites = self.sites(campaign)
+        assert sites["Pocket A"]["evaluation_count"] == 0
+        assert sites["Pocket B"]["evaluation_count"] == 0
+
+    def test_counts_empties_too(self, campaign):
+        # An "empty" verdict is somebody's work: they looked and found
+        # nothing. Deleting the site discards that finding like any other.
+        models.SiteEvaluation.objects.create(
+            project=campaign["a"], site=campaign["site_a"], verdict="empty"
+        )
+        assert self.sites(campaign)["Pocket A"]["evaluation_count"] == 1
