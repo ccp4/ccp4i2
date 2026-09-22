@@ -18,7 +18,6 @@ import { DraggableContext } from "@/providers/draggable-context";
 import { FilePreviewProvider } from "@/providers/file-preview-context";
 import { JobMenuProvider } from "@/providers/job-context-menu";
 import { FileMenuProvider } from "@/providers/file-context-menu";
-import MenuBar from "@/components/menu-bar";
 import { FileSystemFileBrowserProvider } from "@/providers/file-system-file-browser-context";
 import { JobTabProvider } from "@/providers/job-tab-provider";
 
@@ -69,15 +68,15 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                 <Stack
                     spacing={2}
                     sx={{
-                      height: "100svh",
+                      flex: 1,
+                      minHeight: 0,
                       width: "100%",
+                      pt: 2,
                     }}
                   >
-                    <MenuBar />
-
                     {isMobile ? (
                       // Mobile: Tabbed interface
-                      <Box sx={{ height: "calc(100vh - 10rem)" }}>
+                      <Box sx={{ flex: 1, minHeight: 0 }}>
                           <Tabs
                             value={mobileTabValue}
                             onChange={handleMobileTabChange}

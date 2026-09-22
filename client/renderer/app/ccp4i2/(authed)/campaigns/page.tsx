@@ -31,7 +31,7 @@ import {
   Refresh as RefreshIcon,
   Science as ScienceIcon,
 } from "@mui/icons-material";
-import CCP4i2TopBar from "@/components/ccp4i2-topbar";
+import { useTopBar } from "@/providers/top-bar-context";
 import { useCampaignsApi } from "@/lib/campaigns-api";
 import { ProjectGroup } from "@/types/campaigns";
 
@@ -96,13 +96,14 @@ export default function CampaignsPage() {
     }
   };
 
+  useTopBar({ title: "Fragment Screening Campaigns" });
+
   const handleRowClick = (campaign: ProjectGroup) => {
     router.push(`/ccp4i2/campaigns/${campaign.id}`);
   };
 
   return (
-    <>
-      <CCP4i2TopBar title="Fragment Screening Campaigns" showBackButton />
+    <Box sx={{ flex: 1, minHeight: 0, overflow: "auto" }}>
       <Container sx={{ my: 3 }}>
         <Stack spacing={3}>
           {/* Toolbar */}
@@ -272,6 +273,6 @@ export default function CampaignsPage() {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </Box>
   );
 }

@@ -21,13 +21,17 @@ import { Project } from "../types/models";
 import { useRouter } from "next/dist/client/components/navigation";
 import LanIcon from "@mui/icons-material/Lan";
 import { CCP4i2MenuItem } from "./menu-item";
+import { useProjectScope } from "../lib/project-scope";
 
 export default function ViewMenu() {
-  const { projectId, devMode, setDevMode } = useCCP4i2Window();
+  const { devMode, setDevMode } = useCCP4i2Window();
+  const projectId = useProjectScope();
   const { mode, setTheme } = useTheme();
   const [showJobIcons, setShowJobIcons] = useUiPreference("showJobIcons");
   const api = useApi();
-  const { data: project } = api.get<Project>(`projects/${projectId}`);
+  const { data: project } = api.get<Project>(
+    projectId ? `projects/${projectId}` : null
+  );
   const router = useRouter();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
