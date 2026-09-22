@@ -15,7 +15,12 @@ import {
 } from "@mui/material";
 import { Folder } from "@mui/icons-material";
 import { useApi } from "../api";
-import { apiGet, apiPatch, apiPost } from "../api-fetch";
+import { apiGet, apiPost } from "../api-fetch";
+import {
+  DefaultProjectsDir,
+  getDefaultProjectsDir,
+  setDefaultProjectsDir,
+} from "../lib/default-projects-dir";
 import { Project } from "../types/models";
 import EditTags from "./edit-tags";
 import {
@@ -32,13 +37,11 @@ export const NewProjectContent: React.FC = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [parentDirectory, setParentDirectory] = useState<string>("");
-  // The stored default and whether it can be changed at all — editable only
-  // on the desktop, as the server reports rather than as Electron's presence
-  // implies.
-  const [storedDefault, setStoredDefault] = useState({
-    directory: "",
-    editable: false,
-  });
+  // The stored default, so the checkbox below can offer to move it — and
+  // only where the server says it is movable, which is the desktop.
+  const [storedDefault, setStoredDefault] = useState<DefaultProjectsDir | null>(
+    null
+  );
   const [makeDefault, setMakeDefault] = useState(false);
   const [directoryExists, setDirectoryExists] = useState(true);
   const [electronAPIAvailable, setElectronAPIAvailable] =
@@ -53,16 +56,11 @@ export const NewProjectContent: React.FC = () => {
   // so this picks up a change made moments ago in Preferences.
   useEffect(() => {
     let cancelled = false;
-    apiGet<{ data?: { directory?: string; editable?: boolean } }>(
-      "config/default-project-parent/"
-    )
-      .then((resp) => {
+    getDefaultProjectsDir()
+      .then((setting) => {
         if (cancelled) return;
-        if (resp?.data?.directory) setParentDirectory(resp.data.directory);
-        setStoredDefault({
-          directory: resp?.data?.directory ?? "",
-          editable: Boolean(resp?.data?.editable),
-        });
+        if (setting.directory) setParentDirectory(setting.directory);
+        setStoredDefault(setting);
       })
       .catch(() => {
         /* The Electron config value below remains a local fallback. */
@@ -111,10 +109,11 @@ export const NewProjectContent: React.FC = () => {
     return result;
   }, [parentDirectory, name]);
 
-  const canMakeDefault =
-    storedDefault.editable &&
-    parentDirectory.length > 0 &&
-    parentDirectory !== storedDefault.directory;
+  const canMakeDefault = Boolean(
+    storedDefault?.editable &&
+      parentDirectory &&
+      parentDirectory !== storedDefault.directory
+  );
 
   async function createProject() {
     setIsCreating(true);
@@ -129,9 +128,7 @@ export const NewProjectContent: React.FC = () => {
       // leave the default moved to a directory nothing went into.
       if (canMakeDefault && makeDefault) {
         try {
-          await apiPatch("config/default-project-parent/", {
-            directory: parentDirectory,
-          });
+          await setDefaultProjectsDir(parentDirectory);
         } catch (err) {
           console.error("Could not set the default projects directory:", err);
           alert(

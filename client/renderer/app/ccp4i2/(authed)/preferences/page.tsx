@@ -8,10 +8,9 @@ import CCP4i2TopBar from "@/components/ccp4i2-topbar";
 
 /**
  * Preferences — running-app settings (distinct from the launch/get-ready
- * screen at /ccp4i2/config). Sections: Program locations (binary discovery),
- * Projects directory (default project location) and Credentials (tokens/
- * passwords for external services). More preference sections can be added
- * here over time.
+ * screen at /ccp4i2/config). Sections: Program locations (binary discovery)
+ * and Credentials (tokens/passwords for external services). More preference
+ * sections can be added here over time.
  */
 export default function PreferencesPage() {
   return (

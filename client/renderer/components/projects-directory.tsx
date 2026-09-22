@@ -9,18 +9,12 @@ import {
 } from "@mui/material";
 import { FolderOpen } from "@mui/icons-material";
 import React, { useCallback, useEffect, useState } from "react";
-import { apiGet, apiPatch } from "../api-fetch";
+import {
+  DefaultProjectsDir,
+  getDefaultProjectsDir,
+  setDefaultProjectsDir,
+} from "../lib/default-projects-dir";
 import { browsePath } from "../utils/browse-path";
-
-const ENDPOINT = "config/default-project-parent/";
-
-interface Setting {
-  directory: string;
-  default: string;
-  editable: boolean;
-}
-
-const EMPTY: Setting = { directory: "", default: "", editable: false };
 
 /**
  * The default projects directory, and the way back to the built-in one.
@@ -29,20 +23,17 @@ const EMPTY: Setting = { directory: "", default: "", editable: false };
  * this from the CCP4I2_PROJECTS_DIR environment variable.
  */
 export function ProjectsDirectory() {
-  const [setting, setSetting] = useState<Setting>(EMPTY);
-  const [loading, setLoading] = useState(true);
+  const [setting, setSetting] = useState<DefaultProjectsDir | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const load = useCallback(async () => {
-    const resp = await apiGet<any>(ENDPOINT);
-    setSetting({ ...EMPTY, ...(resp?.data ?? resp) });
-  }, []);
+  const load = useCallback(
+    () => getDefaultProjectsDir().then(setSetting),
+    []
+  );
 
   useEffect(() => {
-    load()
-      .catch((err) => setError(`${err}`))
-      .finally(() => setLoading(false));
+    load().catch((err) => setError(`${err}`));
   }, [load]);
 
   // Reloaded rather than taken from the request: the server resolves a reset
@@ -51,7 +42,7 @@ export function ProjectsDirectory() {
     setSaving(true);
     setError(null);
     try {
-      await apiPatch(ENDPOINT, { directory });
+      await setDefaultProjectsDir(directory);
     } catch (err) {
       setError(err instanceof Error ? err.message : `${err}`);
     }
@@ -64,16 +55,16 @@ export function ProjectsDirectory() {
       mode: "directory",
       title: "Select the default projects directory",
     });
-    if (picked && picked !== setting.directory) persist(picked);
+    if (picked && picked !== setting?.directory) persist(picked);
   };
 
-  const isDefault = Boolean(setting.default) && setting.directory === setting.default;
+  const isDefault = setting?.directory === setting?.default;
 
   return (
     <Stack spacing={2} sx={{ maxWidth: 720, mx: "auto", p: 2 }}>
       <Typography variant="h6">Projects directory</Typography>
       {error && <Alert severity="error">{error}</Alert>}
-      {loading ? (
+      {!setting ? (
         <CircularProgress size={20} />
       ) : (
         <Stack direction="row" spacing={2} alignItems="flex-start">

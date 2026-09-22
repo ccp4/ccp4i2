@@ -292,6 +292,19 @@ def import_policy_view(request):
     )
 
 
+def _not_editable(what: str, instead: str):
+    """The refusal every preference-writing endpoint gives off the desktop,
+    where preferences.json is ephemeral and per-replica."""
+    return JsonResponse(
+        {
+            "success": False,
+            "error": f"{what} is editable only on the desktop app; in a server "
+            f"deployment set {instead}.",
+        },
+        status=409,
+    )
+
+
 @api_view(["GET", "PATCH"])
 def default_project_parent_view(request):
     """Where a project created with no explicit directory will land.
@@ -311,14 +324,9 @@ def default_project_parent_view(request):
 
     if request.method == "PATCH":
         if not _preferences.is_desktop():
-            return JsonResponse(
-                {
-                    "success": False,
-                    "error": "The default projects directory is editable only "
-                    "on the desktop app; in a server deployment set it via the "
-                    "CCP4I2_PROJECTS_DIR environment variable.",
-                },
-                status=409,
+            return _not_editable(
+                "The default projects directory",
+                "the CCP4I2_PROJECTS_DIR environment variable",
             )
 
         payload = request.data if isinstance(request.data, dict) else {}
@@ -439,14 +447,8 @@ def set_program_preferences(request):
     from ..config.preferences import is_desktop, load_preferences, save_preferences
 
     if not is_desktop():
-        return JsonResponse(
-            {
-                "success": False,
-                "error": "Program-location preferences are editable only on the "
-                "desktop app; in a server deployment set them via environment "
-                "variables.",
-            },
-            status=409,
+        return _not_editable(
+            "Program-location preferences", "them with environment variables"
         )
 
     payload = request.data if isinstance(request.data, dict) else {}

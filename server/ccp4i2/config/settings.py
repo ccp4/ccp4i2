@@ -234,8 +234,6 @@ else:
 
 TIME_ZONE = "UTC"
 USE_TZ = True
-# Resolved at startup, so anything needing the value Preferences may have
-# changed since goes through api.serializers.default_project_parent instead.
 CCP4I2_PROJECTS_DIR = _preferences.projects_dir(prefs=_PREFS)
 CCP4I2_PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
 
