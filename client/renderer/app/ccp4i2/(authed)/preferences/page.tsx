@@ -25,9 +25,9 @@ export default function PreferencesPage() {
       <Paper sx={{ flex: 1, minHeight: 0, overflowY: "auto", py: 3 }}>
         <GeneralPreferencesPanel />
         <Divider sx={{ my: 2 }} />
-        <ProgramLocations />
-        <Divider sx={{ my: 2 }} />
         <ProjectsDirectory />
+        <Divider sx={{ my: 2 }} />
+        <ProgramLocations />
         <Divider sx={{ my: 2 }} />
         <CredentialsPanel />
       </Paper>
