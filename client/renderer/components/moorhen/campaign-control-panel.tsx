@@ -211,6 +211,11 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
   // Edit site dialog state
   const [editingSiteId, setEditingSiteId] = useState<number | null>(null);
+  // The site awaiting a delete confirmation. Held as the site itself, not an
+  // id, so the dialog can name it and say what it is about to destroy.
+  const [sitePendingDelete, setSitePendingDelete] = useState<CampaignSite | null>(
+    null
+  );
   const [editSiteName, setEditSiteName] = useState("");
   const [updatePosition, setUpdatePosition] = useState(false);
 
@@ -336,12 +341,21 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     }
   }, [newSiteName, onSaveCurrentAsSite]);
 
-  const handleDeleteSite = useCallback(
-    async (siteId: number) => {
-      await onDeleteSite(siteId);
-    },
-    [onDeleteSite]
-  );
+  // Deleting a site is not undoable and takes every verdict recorded there
+  // with it, in every dataset. It also used to happen on one click of an icon
+  // sitting between "go to site" and "edit site" in a dense row, inside a
+  // panel whose whole purpose is clicking through sites one after another --
+  // so it was deleted by people who meant to navigate. It asks now.
+  const handleDeleteSite = useCallback((site: CampaignSite) => {
+    setSitePendingDelete(site);
+  }, []);
+
+  const handleConfirmDeleteSite = useCallback(async () => {
+    if (!sitePendingDelete) return;
+    const siteId = sitePendingDelete.id;
+    setSitePendingDelete(null);
+    await onDeleteSite(siteId);
+  }, [sitePendingDelete, onDeleteSite]);
 
   const handleOpenEditDialog = useCallback((site: CampaignSite) => {
     setEditingSiteId(site.id);
@@ -462,15 +476,53 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             const sliderPosition = valueToSlider(level);
             // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom), 4=mask (Mask)
             const shortName = mapSubType === 4 ? "Mask" : mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
+            // The row is labelled by map type, which is what you want while
+            // scanning contour sliders and useless for telling apart the two
+            // identically-labelled rows a second loaded dataset brings. The
+            // hover says which map this actually is: the type spelled out,
+            // and the file's own annotation underneath.
+            const fullType =
+              mapSubType === 4
+                ? "Mask"
+                : mapSubType === 3
+                ? "Anomalous difference map"
+                : mapSubType === 2 || isDiff
+                ? "Fo-Fc difference map"
+                : "2Fo-Fc weighted map";
+            const description =
+              ((map as any).ccp4i2Description as string | undefined) ||
+              map.name ||
+              undefined;
 
             return (
               <Stack key={map.molNo ?? map.uniqueId} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-                <Typography
-                  variant="caption"
-                  sx={{ minWidth: 42, flexShrink: 0, opacity: isVisible ? 1 : 0.4 }}
+                <Tooltip
+                  title={
+                    description && description !== fullType ? (
+                      <Box>
+                        <Typography variant="body2">{fullType}</Typography>
+                        <Typography variant="caption" sx={{ opacity: 0.85 }}>
+                          {description}
+                        </Typography>
+                      </Box>
+                    ) : (
+                      fullType
+                    )
+                  }
                 >
-                  {shortName}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      minWidth: 42,
+                      flexShrink: 0,
+                      opacity: isVisible ? 1 : 0.4,
+                      // Hints that the abbreviation has more behind it.
+                      cursor: "help",
+                    }}
+                  >
+                    {shortName}
+                  </Typography>
+                </Tooltip>
                 <Slider
                   size="small"
                   disabled={!isVisible}
@@ -715,8 +767,19 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                     <IconButton
                       edge="end"
                       size="small"
-                      onClick={() => handleDeleteSite(site.id)}
+                      onClick={(event) => {
+                        // The row itself navigates; without this, asking to
+                        // delete also moves the view.
+                        event.stopPropagation();
+                        handleDeleteSite(site);
+                      }}
                       color="error"
+                      // Set apart from the controls next to it. The row packs
+                      // six targets into a panel built for tapping through
+                      // sites in sequence, and on a phone they are all well
+                      // under the ~44pt a thumb needs -- which is how this
+                      // one got hit by someone who meant to navigate.
+                      sx={{ ml: 1 }}
                     >
                       <DeleteIcon fontSize="small" />
                     </IconButton>
@@ -874,6 +937,49 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             disabled={!newSiteName.trim() || isSaving}
           >
             {isSaving ? "Saving..." : "Save"}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Delete Site Confirmation */}
+      <Dialog
+        open={sitePendingDelete !== null}
+        onClose={() => setSitePendingDelete(null)}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle>Delete Site</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Delete &quot;{sitePendingDelete?.name}&quot; from this campaign?
+          </Typography>
+          {/* What it costs, not just that it costs something: a site nobody
+              has looked at yet is a different proposition from one carrying a
+              campaign's worth of verdicts, and a warning that cannot tell
+              them apart is one people learn to click through. */}
+          {sitePendingDelete?.evaluation_count ? (
+            <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+              {sitePendingDelete.evaluation_count === 1
+                ? "The one verdict recorded here, in any dataset, is deleted with it."
+                : `All ${sitePendingDelete.evaluation_count} verdicts recorded here, across every dataset, are deleted with it.`}
+            </Typography>
+          ) : (
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              No verdicts have been recorded at this site.
+            </Typography>
+          )}
+          <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+            This action cannot be undone.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setSitePendingDelete(null)}>Cancel</Button>
+          <Button
+            onClick={handleConfirmDeleteSite}
+            color="error"
+            variant="contained"
+          >
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

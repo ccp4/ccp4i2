@@ -47,6 +47,12 @@ export interface CampaignSite {
   zoom?: number;
   /** Position in the campaign's site list */
   order?: number;
+  /**
+   * How many verdicts are recorded at this site, across every dataset in the
+   * campaign. Sent by the list endpoint only, so the delete confirmation can
+   * say what deleting the site would actually destroy.
+   */
+  evaluation_count?: number;
 }
 
 /** A site's fields as supplied when creating one — the id comes back. */
