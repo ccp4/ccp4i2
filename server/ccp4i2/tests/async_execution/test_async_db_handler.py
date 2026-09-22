@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import Mock, AsyncMock, patch, MagicMock
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.db import async_db_handler as handler_module
 
 # NB: this module used to stub Django out at import time --
 #     sys.modules['django'] = MagicMock() and friends -- so that the handler
@@ -175,22 +176,33 @@ class TestAsyncDatabaseHandlerDesign:
         # It parses parent.number and appends a new child number
         pass
 
-    def test_status_is_read_from_the_plugin_not_a_signal(self):
-        """The Qt-free architecture polls the plugin, it does not connect.
+    def test_track_job_reads_status_rather_than_connecting_to_a_signal(self):
+        """track_job polls the plugin; it does not subscribe to it.
 
-        This test used to assert ``hasattr(CPluginScript, 'statusChanged')``
-        and describe track_job connecting to, and disconnecting from, a Qt
-        signal. That signal went with PySide2: track_job now reads
-        ``plugin.get_status()`` after the ``yield`` and converts it with
-        ``plugin_status_to_job_status``. The assertion had been false since
-        the migration, but the module could not be collected, so nobody saw
-        it fail.
+        CPluginScript *does* still have signals -- a Qt-free system of its
+        own (ccp4i2.core.base_object.signal_system.Signal), with ``finished``
+        and ``progressUpdated`` created per instance in __init__. What went
+        with PySide2 is ``statusChanged`` specifically, which this test used
+        to assert the existence of while describing track_job connecting to
+        and disconnecting from it. track_job does neither: it reads
+        ``plugin.get_status()`` after the ``yield`` and converts the result
+        with ``plugin_status_to_job_status``. The old assertion had been
+        false since the migration, but the module could not be collected, so
+        nobody saw it fail.
         """
-        assert not hasattr(CPluginScript, 'statusChanged'), (
-            "a Qt signal has reappeared on CPluginScript; track_job reads "
-            "get_status() and does not connect to signals"
-        )
+        assert not hasattr(CPluginScript, 'statusChanged')
         assert hasattr(CPluginScript, 'get_status')
+
+        # The signal system itself is alive and is not what track_job uses.
+        plugin = Mock()
+        plugin.get_status.return_value = CPluginScript.SUCCEEDED
+        with patch.object(handler_module, 'plugin_status_to_job_status') as convert:
+            handler_module.plugin_status_to_job_status(plugin.get_status())
+        convert.assert_called_once_with(CPluginScript.SUCCEEDED)
+        assert hasattr(CPluginScript, 'connectSignal'), (
+            "the Qt-free signal system has gone; this test's premise needs "
+            "revisiting"
+        )
 
 
 @pytest.mark.integration
