@@ -291,45 +291,77 @@ def import_policy_view(request):
         }
     )
 
-@api_view(["GET"])
+
+def _not_editable(what: str, instead: str):
+    """The refusal every preference-writing endpoint gives off the desktop,
+    where preferences.json is ephemeral and per-replica."""
+    return JsonResponse(
+        {
+            "success": False,
+            "error": f"{what} is editable only on the desktop app; in a server "
+            f"deployment set {instead}.",
+        },
+        status=409,
+    )
+
+
+@api_view(["GET", "PATCH"])
 def default_project_parent_view(request):
-    """Where a project created with no explicit directory will actually land.
+    """Where a project created with no explicit directory will land.
 
-    GET /api/ccp4i2/config/default-project-parent/
+    GET   /api/ccp4i2/config/default-project-parent/
+    PATCH /api/ccp4i2/config/default-project-parent/  {"directory": "/abs/path"}
 
-    The New Project dialog needs to show this, and it cannot compute it: the
-    answer is the parent of the most recently created project, falling back to
-    the configured projects directory. Reimplementing that rule in the client
-    would give two resolvers for one question, which is how the dialog came to
-    display one location while the server used another.
+    PATCH with no directory (or "" / null) resets to the built-in default,
+    and is refused off the desktop, where this is the CCP4I2_PROJECTS_DIR
+    environment variable's to say. Both methods answer:
 
-    Returns the configured root alongside it, and which of the two the proposal
-    came from, so the dialog can say "this is where your last project went" and
-    offer the configured root instead — a choice it can only present if it knows
-    the two differ.
-
-    Response: {"success": true, "data": {
-        "directory":  "/where a new project would go",
-        "configured": "/the projects directory from preferences",
-        "source":     "last_project" | "configured"
-    }}
+        {"directory": <in use>, "default": <what a reset gives>,
+         "editable": <bool>}
     """
-    from django.conf import settings
-
+    from ..config import preferences as _preferences
     from .serializers import default_project_parent
 
-    proposed = str(default_project_parent())
-    configured = str(settings.CCP4I2_PROJECTS_DIR)
+    if request.method == "PATCH":
+        if not _preferences.is_desktop():
+            return _not_editable(
+                "The default projects directory",
+                "the CCP4I2_PROJECTS_DIR environment variable",
+            )
+
+        payload = request.data if isinstance(request.data, dict) else {}
+        directory = (payload.get("directory") or "").strip() or None
+        target = Path(directory) if directory else _preferences.default_projects_dir()
+        # Created now because the next thing to happen to it is a project being
+        # written there, and the New Project form asserts its parent exists.
+        try:
+            if not target.is_absolute():
+                raise OSError("not an absolute path")
+            target.mkdir(parents=True, exist_ok=True)
+        except OSError as err:
+            return JsonResponse(
+                {"success": False, "error": f"Cannot use [{target}]: {err}"},
+                status=400,
+            )
+
+        prefs = _preferences.load_preferences()
+        if directory:
+            prefs["projectsDir"] = directory
+        else:
+            prefs.pop("projectsDir", None)
+        _preferences.save_preferences(prefs)
+
     return JsonResponse(
         {
             "success": True,
             "data": {
-                "directory": proposed,
-                "configured": configured,
-                "source": "configured" if proposed == configured else "last_project",
+                "directory": str(default_project_parent()),
+                "default": str(_preferences.default_projects_dir()),
+                "editable": _preferences.is_desktop(),
             },
         }
     )
+
 
 @api_view(["GET"])
 def discover_programs_view(request):
@@ -415,14 +447,8 @@ def set_program_preferences(request):
     from ..config.preferences import is_desktop, load_preferences, save_preferences
 
     if not is_desktop():
-        return JsonResponse(
-            {
-                "success": False,
-                "error": "Program-location preferences are editable only on the "
-                "desktop app; in a server deployment set them via environment "
-                "variables.",
-            },
-            status=409,
+        return _not_editable(
+            "Program-location preferences", "them with environment variables"
         )
 
     payload = request.data if isinstance(request.data, dict) else {}

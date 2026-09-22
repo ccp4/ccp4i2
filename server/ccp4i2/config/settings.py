@@ -234,18 +234,7 @@ else:
 
 TIME_ZONE = "UTC"
 USE_TZ = True
-CCP4I2_PROJECTS_DIR = Path(
-    _preferences.resolve(
-        "projectsDir",
-        env="CCP4I2_PROJECTS_DIR",
-        # <home>/projects, or an adopted pre-a27 CCP4X_PROJECTS. Shared with
-        # the Electron side so the two cannot drift (they used to: the desktop
-        # app defaulted to ~/.ccp4i2/CCP4X_PROJECTS while this said
-        # ~/.ccp4i2-django/CCP4X_PROJECTS, which is why testers saw both).
-        default=str(_preferences.default_projects_dir()),
-        prefs=_PREFS,
-    )
-)
+CCP4I2_PROJECTS_DIR = _preferences.projects_dir(prefs=_PREFS)
 CCP4I2_PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
 
 # In-place migration of a legacy (Qt) CCP4i2 installation is OFF during the
