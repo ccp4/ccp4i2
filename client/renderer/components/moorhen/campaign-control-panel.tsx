@@ -476,15 +476,53 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             const sliderPosition = valueToSlider(level);
             // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom), 4=mask (Mask)
             const shortName = mapSubType === 4 ? "Mask" : mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
+            // The row is labelled by map type, which is what you want while
+            // scanning contour sliders and useless for telling apart the two
+            // identically-labelled rows a second loaded dataset brings. The
+            // hover says which map this actually is: the type spelled out,
+            // and the file's own annotation underneath.
+            const fullType =
+              mapSubType === 4
+                ? "Mask"
+                : mapSubType === 3
+                ? "Anomalous difference map"
+                : mapSubType === 2 || isDiff
+                ? "Fo-Fc difference map"
+                : "2Fo-Fc weighted map";
+            const description =
+              ((map as any).ccp4i2Description as string | undefined) ||
+              map.name ||
+              undefined;
 
             return (
               <Stack key={map.molNo ?? map.uniqueId} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-                <Typography
-                  variant="caption"
-                  sx={{ minWidth: 42, flexShrink: 0, opacity: isVisible ? 1 : 0.4 }}
+                <Tooltip
+                  title={
+                    description && description !== fullType ? (
+                      <Box>
+                        <Typography variant="body2">{fullType}</Typography>
+                        <Typography variant="caption" sx={{ opacity: 0.85 }}>
+                          {description}
+                        </Typography>
+                      </Box>
+                    ) : (
+                      fullType
+                    )
+                  }
                 >
-                  {shortName}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      minWidth: 42,
+                      flexShrink: 0,
+                      opacity: isVisible ? 1 : 0.4,
+                      // Hints that the abbreviation has more behind it.
+                      cursor: "help",
+                    }}
+                  >
+                    {shortName}
+                  </Typography>
+                </Tooltip>
                 <Slider
                   size="small"
                   disabled={!isVisible}

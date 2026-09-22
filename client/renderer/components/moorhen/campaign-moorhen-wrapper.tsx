@@ -662,11 +662,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       const molName = fileInfo.name || fileInfo.job_param_name;
       // subType: 1=normal, 2=difference, 3=anomalous difference
       const mapSubType = fileInfo.sub_type || 1;
-      await fetchMap(url, molName, mapSubType);
+      await fetchMap(url, molName, mapSubType, fileInfo.annotation || molName);
     } else if (fileInfo.type === "application/CCP4-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.name || fileInfo.job_param_name;
-      await fetchMapFile(url, molName, { isMask: isMaskSubType(fileInfo.sub_type) });
+      await fetchMapFile(url, molName, {
+        isMask: isMaskSubType(fileInfo.sub_type),
+        description: molName,
+      });
     }
   };
 
@@ -740,11 +743,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         const molName = file.name || file.job_param_name;
         // subType: 1=normal, 2=difference, 3=anomalous difference
         const mapSubType = file.sub_type || 1;
-        await fetchMap(url, molName, mapSubType);
+        await fetchMap(url, molName, mapSubType, file.annotation || molName);
       } else if (file.type === "application/CCP4-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
         const molName = file.annotation || file.name || file.job_param_name;
-        await fetchMapFile(url, molName, { isMask: isMaskSubType(file.sub_type) });
+        await fetchMapFile(url, molName, {
+          isMask: isMaskSubType(file.sub_type),
+          description: molName,
+        });
       }
     }
   };
@@ -800,7 +806,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const fetchMap = async (
     url: string,
     mapName: string,
-    mapSubType: number = 1
+    mapSubType: number = 1,
+    // The file's own annotation, kept for the panel's tooltip: the contour
+    // rows are labelled by map type ("2Fo-Fc", "Fo-Fc"), which with several
+    // datasets loaded gives several identically-named rows.
+    description?: string,
   ) => {
     if (!commandCentre.current) return;
     // subType: 1=normal, 2=difference, 3=anomalous difference
@@ -822,6 +832,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       newMap.uniqueId = url;
       // Store the original sub_type for proper labeling and coloring
       (newMap as any).mapSubType = mapSubType;
+      if (description) (newMap as any).ccp4i2Description = description;
       // Before addMap: an EM-flagged MTZ map crashes the viewer otherwise.
       primeEmMapHeaderInfo(newMap);
       // Set custom colors for anomalous maps (orange/purple instead of green/red)
@@ -861,7 +872,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const fetchMapFile = async (
     url: string,
     mapName: string,
-    opts: { isMask?: boolean } = {}
+    opts: { isMask?: boolean; description?: string } = {}
   ) => {
     if (!commandCentre.current) return;
     let newMap: moorhen.Map | undefined;
@@ -881,6 +892,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       newMap.uniqueId = url;
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
       (newMap as any).isCcp4MapFile = true;
+      if (opts.description) (newMap as any).ccp4i2Description = opts.description;
       if (opts.isMask) {
         markMaskMap(newMap);
       }
