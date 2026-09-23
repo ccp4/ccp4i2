@@ -1,12 +1,8 @@
 import glob
 import os
-from pathlib import Path
 import shutil
-import sys
-from PySide2 import QtCore
 from lxml import etree
 from core.CCP4PluginScript import CPluginScript
-from core import CCP4Modules
 from core import CCP4Utils
 
 class lidia(CPluginScript):
@@ -18,38 +14,22 @@ class lidia(CPluginScript):
     TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
-    RUNEXTERNALPROCESS = False
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},
                    201 : {'description' : 'Failed to setFullPath'},}
     
-    def startProcess(self, command, **kw):
-        viewer = 'layla'
-        argList = []
-        lidiaPath = _lidiaPath()
-        if not sys.platform.startswith("win"):
-            viewer = '/bin/sh'
-            argList = [lidiaPath[0]]
-            if self.container.inputData.MOLIN.isSet():
-                argList.append(str(self.container.inputData.MOLIN))
-        envEdit=[['PWD', os.path.normpath(self.getWorkDirectory())]]
-        if lidiaPath[1]:
-            envEdit.append(["PYTHONHOME",lidiaPath[1]])
-        CCP4Modules.LAUNCHER().launch(
-            viewer=viewer,
-            argList=argList,
-            callBack=self.handleFinished,
-            envEdit=envEdit,
-            logFile=self.makeFileName('LOG')
-        )
+    def makeCommandAndScript(self):
+        inp = self.container.inputData
+        self.appendCommandLine("--ccp4i2_mode")
+        if self.container.inputData.MOLIN.isSet():
+            self.appendCommandLine(inp.MOLIN)
         return CPluginScript.SUCCEEDED
 
-    @QtCore.Slot()
-    def handleFinished(self):
+    def processOutputFiles(self):
         rootNode = etree.Element('Lidia')
         #This is looking forward to a position where more things might work
-        globPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'*.mdl'))
+        globPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'*.mol'))
         outList = glob.glob(globPath)
         moloutList = self.container.outputData.MOLOUT_LIST
         for outputMOL in outList:
@@ -96,16 +76,3 @@ class lidia(CPluginScript):
         from . import MOLSVG
         mdlMolecule = MOLSVG.MDLMolecule(molFilePath)
         return mdlMolecule.svgXML(size=(300,300))
-
-
-def _lidiaPath() -> str:
-    if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
-        path = Path(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE))
-        if path.is_file():
-            return (str(path.resolve().parent / "lidia"),None)
-    if lidiaPath := CCP4Utils.which('lidia'):
-        return (str(Path(lidiaPath).resolve()),None)
-    if sys.platform == "linux":# Seems that lidia does not run without PYTHONPATH being set on Linux
-        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),str(Path(os.environ["CCP4"]).resolve() / "coot_py2/"))
-    else:
-        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),None)

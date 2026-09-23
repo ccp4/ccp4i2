@@ -25,6 +25,7 @@ from __future__ import print_function
 import os
 import re
 import sys
+import shutil
 import socket
 import functools
 from core.CCP4ErrorHandling import *
@@ -128,20 +129,8 @@ class CLauncher(QtCore.QObject):
             if  os.path.exists(path): return path
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
-        elif  viewer == 'lidia':
-            # TODO
-            path = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
-            #print 'CLauncher.getExecutable  prfrences coot',path
-            if  path is not None and os.path.isfile(path) and os.access(path, os.X_OK):
-                if sys.platform == 'win32':
-                    altpath = self.modifyLidiaBat()
-                    if altpath is not None: return altpath
-                return path
-            if CCP4Utils.which(viewer) is not None: return viewer
-            #from core import CCP4Config
-            #path = CCP4Config.PATH(viewer)
-            if guiParent is not None:
-                return self.queryExecutable(viewer=viewer,guiParent=guiParent)
+        elif  viewer == 'layla':
+            return shutil.which("layla")
         return path
 
     def launch(self,viewer=None,argList=[],envEdit=[],projectId=None,logFile=None,callBack=None,guiParent=None):
@@ -189,7 +178,7 @@ class CLauncher(QtCore.QObject):
             argList.insert(0,"-a")
         else:
             exe = self.getExecutable(viewer,guiParent=guiParent)
-        if sys.platform[0:3] == "win" and viewer in ("ccp4mg", "lidia"):
+        if sys.platform[0:3] == "win" and viewer in ("ccp4mg", "layla"):
             whichExe = CCP4Utils.which(exe)
             if not exe.lower().endswith(".bat") and whichExe.lower().endswith(".bat"):
                 exe = whichExe
@@ -342,18 +331,8 @@ class CLauncher(QtCore.QObject):
             #  self.launch(viewer='moorhen',argList=argList)
         elif viewer.lower() == 'coot_job' or viewer.lower() == 'coot':
             self.runCootJob(contextJobId=jobId, projectId=projectId, fileName=fileName, fileType=fileType )
-        elif viewer.lower() == 'lidia':
-            cootExeDir = None
-            if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
-                if os.path.isfile(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)):
-                    cootExeDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
-            if cootExeDir is None:
-                cootExeDir = CCP4Utils.which('coot-1')
-            cootDir = os.path.normpath(os.path.dirname(os.path.dirname(cootExeDir)))
-            envEdit = [['COOT_PREFIX', cootDir]]
-            COOT_DATA_DIR = os.path.normpath(os.path.join(cootDir, 'share', 'coot'))
-            envEdit.append(['COOT_DATA_DIR',COOT_DATA_DIR])
-            self.launch(viewer='lidia', argList=[fileName], envEdit=envEdit, projectId=projectId, guiParent=guiParent)
+        elif viewer.lower() == 'layla':
+            self.launch(viewer='layla', argList=["--ccp4i2_mode", fileName], projectId=projectId, guiParent=guiParent)
         elif viewer.lower() == 'viewhkl':
             if not isinstance(fileName,(tuple,list)):
                 fileNameList = [fileName]
