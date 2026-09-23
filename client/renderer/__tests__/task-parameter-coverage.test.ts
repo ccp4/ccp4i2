@@ -153,6 +153,13 @@ function exposedParameters(module: string): Exposure {
   // to elements with `itemName={key}`. Object-literal `key:` only -- the JSX
   // attribute `key="..."` is React's list key and names no parameter.
   for (const m of source.matchAll(/\bkey:\s*["']([A-Za-z_][\w.]*)["']/g)) names.add(m[1]);
+  // The hook idiom: `useContainerList({ job, itemName: "DOMAINS" })` and its
+  // useContainerField sibling bind a parameter exactly as the element does,
+  // and a bespoke editor built on them (dm_multidomain's assembly grid) reaches
+  // its parameters without ever writing the JSX attribute.
+  for (const m of source.matchAll(/\bitemName:\s*["']([A-Za-z_][\w.]*)["']/g)) {
+    names.add(m[1]);
+  }
 
   const prefixes: string[] = [];
   for (const m of source.matchAll(/itemName=\{\s*`([A-Za-z_][\w.]*)\$\{/g)) {
