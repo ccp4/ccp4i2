@@ -5,9 +5,7 @@
 # dependencies `server/pyproject.toml` declares, plus the client's vitest
 # suite. That is ~1100 tests in about a minute on a plain ubuntu runner.
 #
-# Why not the rest: `tests/db/` does not collect without the `[science]` extra
-# (ccp4i2/lib/utils/formats/mtz.py imports pandas at module scope), and
-# `tests/i2run/` and `tests/api/e2e/` run real
+# Why not the rest: `tests/i2run/` and `tests/api/e2e/` run real
 # crystallographic jobs — they need a full CCP4 install and download reference
 # data from PDBe/RCSB, so they belong on a machine with CCP4, not here. What is
 # covered is the whole container/CData/def.xml core, MTZ and PDB handling,
@@ -109,15 +107,14 @@ jobs:
       - name: Async execution tests
         working-directory: server
         run: python -m pytest ccp4i2/tests/async_execution/ -q
-      # The interactive-session mechanism (open / drop / finish), which drives
-      # every interactive task's job. Only this file from tests/db/, not the
-      # tier: 33 of its tests fail for reasons predating this workflow, and
-      # identically under ccp4-python, so it is broken rather than merely
-      # CCP4-dependent. Fixing that is its own piece of work; until then this
-      # file must not be allowed to rot the way tests/i2run/test_moorhen.py did.
-      - name: Interactive session tests
+
+      # Database operations, project import/export, and the interactive-session
+      # mechanism that drives every interactive task's job. The tests whose
+      # fixtures still come from the external test101 checkout skip themselves
+      # when it is absent, the same way tests/api/unit/ does.
+      - name: Database tests
         working-directory: server
-        run: python -m pytest ccp4i2/tests/db/test_interactive_session.py -q
+        run: python -m pytest ccp4i2/tests/db/ -q
 
       # Configuring a job without running it: adding rows to a list, uploading
       # into them, removing one, adding another. Neither i2run (which never

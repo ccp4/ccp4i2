@@ -260,7 +260,7 @@ ccp4-python -m pytest ccp4i2/tests/ -v
 |-------|--------------|-------|-------------|-------------|
 | `unit/` | Core data classes, gemmi utilities, MTZ/PDB operations, PHIL, converters, plugin infrastructure, validation, serialization | Fast (~5s) | No (just ccp4-python) | Every commit, CI on all platforms |
 | `async_execution/` | Async execution framework | Fast | No | With unit tests, and in CI |
-| `db/` | Database operations, project import/export | Medium | No | When touching DB code |
+| `db/` | Database operations, project import/export, interactive sessions | Medium | No | With unit tests, and in CI |
 | `api/unit/` | REST endpoint behaviour | Fast | No | When touching API code |
 | `parity/` | Native gemmi/numpy implementations against the CCP4 binary they replaced (freerflag, chltofom, matthews, clipper cell checks) | Fast | Yes — the binaries | After changing any gemmi-native port |
 | `api/e2e/` | Full pipeline execution via REST API | Slow | Yes | Before release, after pipeline changes |
