@@ -211,9 +211,28 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
             await db_handler.update_job_status(job.uuid, models.Job.Status.FAILED)
             raise Exception(f"Job failed - see diagnostic.xml for details")
 
-        # Explicitly update job status to FINISHED
-        # This is belt-and-braces: track_job should have done this, but some legacy
-        # pipelines don't set plugin._status properly, causing track_job to skip the update
+        # Belt-and-braces: track_job should already have recorded a verdict,
+        # but a legacy pipeline that never sets plugin._status would otherwise
+        # be left at RUNNING for ever. Only stamp FINISHED when nothing
+        # terminal has been recorded.
+        #
+        # This must never overwrite a verdict already written. A pipeline that
+        # reported UNSATISFACTORY -- aimless_pipe whose ctruncate step dies,
+        # say -- was being relabelled "Finished" here, which both hid the
+        # failure and, because gleaning rides on the status, discarded the
+        # outputs the job really had made. track_job's glean-failure FAILED
+        # (see async_db_handler) is protected by the same test; it survives
+        # today only because that path re-raises.
+        current_status = await sync_to_async(
+            lambda: models.Job.objects.values_list("status", flat=True).get(uuid=job.uuid)
+        )()
+        if current_status in models.TERMINAL_JOB_STATUSES:
+            logger.info(
+                f"Job {job.number} already recorded as "
+                f"{models.Job.Status(current_status).label}; leaving it alone"
+            )
+            return result
+
         await db_handler.update_job_status(job.uuid, models.Job.Status.FINISHED)
 
         logger.info(f"Job {job.number} completed successfully")

@@ -25,6 +25,23 @@ from ccp4i2.lib.kpi_values import is_storable_kpi_value
 logger = logging.getLogger(__name__)
 
 
+#: Plugin statuses whose outputs are worth publishing to the project. A job
+#: that ran to the end publishes what it made, whether or not it liked the
+#: result: UNSATISFACTORY is "I got there, but look at the report", and its
+#: partial outputs are often the whole point -- aimless_pipe whose ctruncate
+#: step dies has still scaled the data. INTERRUPTED is excluded on purpose:
+#: an interrupted job publishes nothing, so Resume has a clean slate
+#: (docs/interrupt-and-resume.md).
+GLEANING_PLUGIN_STATUSES = frozenset(
+    {CPluginScript.SUCCEEDED, CPluginScript.UNSATISFACTORY}
+)
+
+#: The same set, in database terms.
+GLEANING_JOB_STATUSES = frozenset(
+    {models.Job.Status.FINISHED, models.Job.Status.UNSATISFACTORY}
+)
+
+
 class AsyncDatabaseHandler:
     """
     Modern async database handler for CCP4i2 plugin execution.
@@ -260,7 +277,7 @@ class AsyncDatabaseHandler:
         Args:
             job_uuid: UUID of job to update
             status: New status (models.Job.Status enum value)
-            finish_time: Optional finish time (auto-set for FINISHED status)
+            finish_time: Optional finish time (auto-set for terminal statuses)
         """
         @sync_to_async
         def _update():
@@ -269,7 +286,10 @@ class AsyncDatabaseHandler:
                 job = models.Job.objects.get(uuid=job_uuid)
                 job.status = status
 
-                if status == models.Job.Status.FINISHED:
+                # Every terminal status is a job that stopped running, so each
+                # gets a finish time. Reserving it for FINISHED left failed and
+                # unsatisfactory jobs looking as though they were still going.
+                if status in models.TERMINAL_JOB_STATUSES:
                     job.finish_time = finish_time or timezone.now()
 
                 job.save()
@@ -314,27 +334,22 @@ class AsyncDatabaseHandler:
         try:
             job_uuid = uuid.UUID(jobId) if isinstance(jobId, str) else jobId
 
-            # Convert finishStatus to database status
+            # Convert finishStatus to database status. Use the shared map
+            # rather than a second hand-rolled one: the hand-rolled version
+            # swept INTERRUPTED and MARK_TO_DELETE into UNSATISFACTORY.
             if status is None and finishStatus is not None:
-                # Map plugin finish status to Job.Status
-                # CPluginScript: SUCCEEDED=0, FAILED=1, MARK_TO_DELETE=2, etc.
-                if finishStatus == 0:
-                    status = models.Job.Status.FINISHED
-                elif finishStatus in (1, 2):
-                    status = models.Job.Status.FAILED
-                else:
-                    status = models.Job.Status.UNSATISFACTORY
+                status = plugin_status_to_job_status(finishStatus)
 
             if status is not None:
-                # Glean files if the job finished successfully, and record the
-                # status only afterwards. A job whose outputs never reach the
-                # database has produced nothing a later task can consume, so a
-                # gleaning failure demotes it to FAILED rather than being
+                # Glean the files of any job that ran to the end, and record
+                # the status only afterwards. A job whose outputs never reach
+                # the database has produced nothing a later task can consume,
+                # so a gleaning failure demotes it to FAILED rather than being
                 # logged and forgotten -- this used to be a logger.warning that
                 # left the job FINISHED with silently missing outputs, which is
                 # the one place in the codebase that disagreed with what
                 # track_job and run_subjob do.
-                if status == models.Job.Status.FINISHED and container is not None:
+                if status in GLEANING_JOB_STATUSES and container is not None:
                     try:
                         async_to_sync(self.glean_job_files)(job_uuid, container)
                     except Exception as e:
@@ -1003,9 +1018,9 @@ class AsyncDatabaseHandler:
             # generated and then cached to report_xml.xml permanently by
             # get_job_report_xml (which writes any terminal-status report to
             # disk and never regenerates it unasked).
-            logger.debug(f"[DEBUG track_job] plugin_status = {plugin_status}, SUCCEEDED = {CPluginScript.SUCCEEDED}")
-            if plugin_status == CPluginScript.SUCCEEDED:
-                logger.debug(f"[DEBUG track_job] Status is SUCCEEDED, gleaning files...")
+            logger.debug(f"[DEBUG track_job] plugin_status = {plugin_status}, gleaning statuses = {sorted(GLEANING_PLUGIN_STATUSES)}")
+            if plugin_status in GLEANING_PLUGIN_STATUSES:
+                logger.debug(f"[DEBUG track_job] Status {plugin_status} gleans, gleaning files...")
                 output_container = plugin.container.outputData if hasattr(plugin.container, 'outputData') else None
                 logger.debug(f"[DEBUG track_job] output_container = {output_container}")
                 logger.debug(f"[DEBUG track_job] output_container is not None = {output_container is not None}")
@@ -1041,7 +1056,7 @@ class AsyncDatabaseHandler:
                 else:
                     logger.debug(f"[DEBUG track_job] No output container found!")
             else:
-                logger.debug(f"[DEBUG track_job] Status is NOT SUCCEEDED, skipping gleaning")
+                logger.debug(f"[DEBUG track_job] Status {plugin_status} does not glean, skipping")
 
             await self.update_job_status(job_uuid, db_status)
             logger.info(f"Job {job_uuid} status updated to {db_status}")
@@ -1109,12 +1124,13 @@ class AsyncDatabaseHandler:
                 # Execute the plugin synchronously (this is what pipelines expect)
                 status = plugin.process()
 
-                # Glean output files and KPIs if succeeded, *before* recording
-                # the terminal status, so a subjob never reads as FINISHED
-                # while its outputs are still unregistered. A glean failure
-                # re-raises into the handler below, which records FAILED --
-                # see track_job for why gleaning counts as part of the job.
-                if status == CPluginScript.SUCCEEDED:
+                # Glean output files and KPIs if the subjob ran to the end,
+                # *before* recording the terminal status, so a subjob never
+                # reads as FINISHED while its outputs are still unregistered.
+                # A glean failure re-raises into the handler below, which
+                # records FAILED -- see track_job for why gleaning counts as
+                # part of the job.
+                if status in GLEANING_PLUGIN_STATUSES:
                     output_container = plugin.container.outputData if hasattr(plugin.container, 'outputData') else None
                     if output_container is not None:
                         try:
