@@ -109,6 +109,15 @@ jobs:
       - name: Async execution tests
         working-directory: server
         run: python -m pytest ccp4i2/tests/async_execution/ -q
+      # The interactive-session mechanism (open / drop / finish), which drives
+      # every interactive task's job. Only this file from tests/db/, not the
+      # tier: 33 of its tests fail for reasons predating this workflow, and
+      # identically under ccp4-python, so it is broken rather than merely
+      # CCP4-dependent. Fixing that is its own piece of work; until then this
+      # file must not be allowed to rot the way tests/i2run/test_moorhen.py did.
+      - name: Interactive session tests
+        working-directory: server
+        run: python -m pytest ccp4i2/tests/db/test_interactive_session.py -q
 
       # Configuring a job without running it: adding rows to a list, uploading
       # into them, removing one, adding another. Neither i2run (which never
