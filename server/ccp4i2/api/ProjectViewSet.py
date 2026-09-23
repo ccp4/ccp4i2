@@ -245,7 +245,16 @@ class ProjectViewSet(ModelViewSet):
                 # is Django's sanitiser for *filenames*: it keeps the extension
                 # and still removes path separators, so nothing can escape
                 # secure_storage_dir.
-                file_path = secure_storage_dir / get_valid_filename(uploaded_file.name)
+                #
+                # Same shape as the staged-upload path in
+                # lib/utils/files/staged_upload.py, which had it right all
+                # along: take the basename first rather than trusting the name
+                # for the path, and keep a fallback for a name that sanitises
+                # away to nothing.
+                safe_name = get_valid_filename(
+                    pathlib.Path(uploaded_file.name).name
+                ) or "upload.zip"
+                file_path = secure_storage_dir / safe_name
                 with open(file_path, "wb") as destination:
                     for chunk in uploaded_file.chunks():
                         destination.write(chunk)
