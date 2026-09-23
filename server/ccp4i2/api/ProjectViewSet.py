@@ -13,7 +13,7 @@ from django.db import transaction
 from django.db.models import Prefetch
 from django.http import FileResponse, Http404, JsonResponse
 from django.urls import reverse
-from django.utils.text import slugify
+from django.utils.text import get_valid_filename, slugify
 from pytz import timezone
 from rest_framework import status
 from rest_framework.decorators import action
@@ -238,7 +238,14 @@ class ProjectViewSet(ModelViewSet):
             for uploaded_file in uploaded_files:
                 if not uploaded_file.name.endswith(".zip"):
                     return api_error("Invalid file type", status=400)
-                file_path = secure_storage_dir / slugify(uploaded_file.name)
+                # get_valid_filename, not slugify: slugify strips the dot, so
+                # "project.zip" was stored as "projectzip" and the very next
+                # guard below -- which requires a .zip suffix -- rejected every
+                # uploaded project with "Invalid file type". get_valid_filename
+                # is Django's sanitiser for *filenames*: it keeps the extension
+                # and still removes path separators, so nothing can escape
+                # secure_storage_dir.
+                file_path = secure_storage_dir / get_valid_filename(uploaded_file.name)
                 with open(file_path, "wb") as destination:
                     for chunk in uploaded_file.chunks():
                         destination.write(chunk)
