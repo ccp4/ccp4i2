@@ -420,6 +420,20 @@ class Job(Model):
         return jobs_dir.joinpath(*path_elements)
 
 
+#: Statuses a job does not leave under its own steam. A terminal status is a
+#: verdict: whatever wrote it had looked at the outcome, so nothing downstream
+#: may overwrite it with a cheerier one. Mirrors TERMINAL_JOB_STATUSES in
+#: client/renderer/types/models.ts.
+TERMINAL_JOB_STATUSES = frozenset(
+    {
+        Job.Status.INTERRUPTED,
+        Job.Status.FAILED,
+        Job.Status.FINISHED,
+        Job.Status.UNSATISFACTORY,
+    }
+)
+
+
 class JobInteractiveSession(Model):
     """The session of an interactive job: one whose "program" is a window in
     the app (the recorded Moorhen task) rather than a child process.
