@@ -185,7 +185,9 @@ ccp4i2/tests/
 │   └── lib/                     # Utilities, reports, sequences, uploads
 ├── parity/                      # Native ports vs the CCP4 binary they
 │                                #   replaced (needs the CCP4 binaries)
-├── async/                       # Async execution infrastructure
+├── async_execution/             # Async execution infrastructure
+│                                #   (NOT `async/`: a reserved word, so the
+│                                #    package cannot be named in an import)
 ├── db/                          # Database, project import/export
 ├── api/
 │   ├── unit/                    # REST endpoint tests (Django test client)
@@ -257,7 +259,7 @@ ccp4-python -m pytest ccp4i2/tests/ -v
 | Layer | What it tests | Speed | CCP4 needed? | When to run |
 |-------|--------------|-------|-------------|-------------|
 | `unit/` | Core data classes, gemmi utilities, MTZ/PDB operations, PHIL, converters, plugin infrastructure, validation, serialization | Fast (~5s) | No (just ccp4-python) | Every commit, CI on all platforms |
-| `async/` | Async execution framework | Fast | No | With unit tests |
+| `async_execution/` | Async execution framework | Fast | No | With unit tests, and in CI |
 | `db/` | Database operations, project import/export | Medium | No | When touching DB code |
 | `api/unit/` | REST endpoint behaviour | Fast | No | When touching API code |
 | `parity/` | Native gemmi/numpy implementations against the CCP4 binary they replaced (freerflag, chltofom, matthews, clipper cell checks) | Fast | Yes — the binaries | After changing any gemmi-native port |

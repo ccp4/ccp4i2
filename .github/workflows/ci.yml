@@ -5,8 +5,9 @@
 # dependencies `server/pyproject.toml` declares, plus the client's vitest
 # suite. That is ~1100 tests in about a minute on a plain ubuntu runner.
 #
-# Why only these two: `tests/db/` and `tests/async/` do not currently collect
-# without more setup, and `tests/i2run/` and `tests/api/e2e/` run real
+# Why not the rest: `tests/db/` does not collect without the `[science]` extra
+# (ccp4i2/lib/utils/formats/mtz.py imports pandas at module scope), and
+# `tests/i2run/` and `tests/api/e2e/` run real
 # crystallographic jobs — they need a full CCP4 install and download reference
 # data from PDBe/RCSB, so they belong on a machine with CCP4, not here. What is
 # covered is the whole container/CData/def.xml core, MTZ and PDB handling,
@@ -99,6 +100,15 @@ jobs:
       - name: API tests
         working-directory: server
         run: python -m pytest ccp4i2/tests/api/unit/ -q
+
+      # The async-execution tier. It is CCP4-free (the ctruncate tests skip
+      # themselves without the binary) and fast. It spent a long time running
+      # nowhere -- one module stubbed Django into sys.modules at import time,
+      # which killed the whole pytest session -- so it is wired into CI here
+      # to stop that recurring silently.
+      - name: Async execution tests
+        working-directory: server
+        run: python -m pytest ccp4i2/tests/async_execution/ -q
 
       # Configuring a job without running it: adding rows to a list, uploading
       # into them, removing one, adding another. Neither i2run (which never

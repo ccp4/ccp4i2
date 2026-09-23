@@ -12,6 +12,7 @@ Run with:
 """
 
 import pytest
+import shutil
 import os
 from pathlib import Path
 
@@ -29,6 +30,15 @@ demo_data_path = Path(CCP4I2_ROOT) / 'demo_data' / 'gamma'
 test_mtz = demo_data_path / 'merged_intensities_native.mtz'
 if not test_mtz.exists():
     pytest.skip(f"Test data not found: {test_mtz}", allow_module_level=True)
+
+# These run the real ctruncate binary, so they need a CCP4 install. Skip rather
+# than fail without one: CI runs this suite on stock Python with no CCP4, and a
+# test that hard-requires a binary there turns the job red for everyone. The
+# module already guards CCP4I2_ROOT and the demo data above; this was the
+# missing third guard, unnoticed because the directory could not be collected.
+if shutil.which('ctruncate') is None:
+    pytest.skip("ctruncate not on PATH (needs a CCP4 install)",
+                allow_module_level=True)
 
 
 @pytest.fixture
