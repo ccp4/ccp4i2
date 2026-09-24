@@ -105,6 +105,30 @@ def test_freer_is_relabelled_where_the_source_needs_it(tmp_path, mini_specs):
     assert DICT_NAME not in manifest["datasets"][0]["files"], "optional dictionary absent"
 
 
+def test_freer_is_found_by_column_type_under_ccp4i2s_own_naming(tmp_path, mini_specs):
+    """dimple's COMPLETE_MTZ names the free set FREERFLAG_FREER (the parameter
+    that supplied it, joined mini-MTZ style): no label list anticipates it,
+    and PanDDA accepts only three exact labels. Found by column type."""
+    spec = mini_specs[0]
+    mtz = gemmi.read_mtz_file(str(spec.hklin))
+    for col in mtz.columns:
+        if col.label == "FreeR_flag":
+            col.label = "FREERFLAG_FREER"
+        elif col.label == "F":
+            col.label = "F_SIGF_F"
+        elif col.label == "SIGF":
+            col.label = "F_SIGF_SIGF"
+    src = tmp_path / "complete.mtz"
+    mtz.write_to_file(str(src))
+    root = tmp_path / "staging"
+    manifest = stage_datasets([DatasetSpec(label="i2", xyzin=spec.xyzin, hklin=src)], root)
+    staged = gemmi.read_mtz_file(str(root / DATASETS_DIR / xtal_name(0) / REFLECTIONS_NAME))
+    labels = [c.label for c in staged.columns]
+    assert "FreeR_flag" in labels and "FREERFLAG_FREER" not in labels
+    assert [c.label for c in staged.columns if c.type == "I"] == ["FreeR_flag"]
+    assert manifest["datasets"][0]["files"][REFLECTIONS_NAME]["how"] == "rewritten"
+
+
 def test_dictionary_is_respelled_where_the_source_needs_it(tmp_path, mini_specs):
     spec = mini_specs[0]
     pdbx = tmp_path / "ligand_pdbx.cif"
