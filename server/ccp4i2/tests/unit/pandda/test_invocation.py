@@ -44,12 +44,14 @@ def test_progress_is_the_last_line_or_unknown():
     ("0/201 datasets passed range filter", "dataset_range_zeroed"),
     ("OSError: [Errno 28] No space left on device", "ray_scratch_full"),
     ("sh: refmac5: command not found", "ccp4_missing"),
+    ("OSError: validate_socket_filename failed: AF_UNIX path length cannot exceed 103 bytes: /Users/x/...",
+     "socket_path_too_long"),
     ("something else entirely", "unclassified_crash"),
 ])
 def test_failure_classification_is_by_pattern(text, expected):
     name, code, prompt = c.classify_failure(text)
     assert name == expected
-    assert 210 <= code <= 216 and prompt
+    assert 210 <= code <= 217 and prompt
 
 
 def test_every_catalogue_code_is_distinct():
@@ -87,3 +89,15 @@ def test_probe_reads_the_ccp4_launcher(tmp_path):
     assert probe["site_packages"] == str(site)
     assert "micromamba run" in probe["launcher"]
     assert c.probe_executable(tmp_path / "missing")["version"] is None
+
+
+def test_scratch_defaults_to_a_path_ray_can_open_a_socket_under(tmp_path):
+    short = "/tmp/j"
+    assert c.scratch_fits(short)
+    assert c.default_scratch_dir(short, "abcdef0123") == c.Path(short) / "ray_scratch"
+    # a project store under a home directory: what a laptop actually has
+    long = "/Users/someone/.ccp4i2-pandda/projects/baz2b_demo_campaign_5e9i/CCP4_JOBS/job_3"
+    assert not c.scratch_fits(c.Path(long) / "ray_scratch")
+    fallback = c.default_scratch_dir(long, "abcdef0123456789")
+    assert str(fallback) == "/tmp/ccp4i2-ray-abcdef01"
+    assert c.scratch_fits(fallback)

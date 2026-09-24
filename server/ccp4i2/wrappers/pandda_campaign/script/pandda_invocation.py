@@ -8,6 +8,7 @@ plugin composes these into a job.
 """
 import os
 import re
+import sys
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -51,6 +52,35 @@ def build_argv(data_dirs, out_dir, local_cpus: int) -> List[str]:
         "--ligand_pdb_regex", LIGAND_PDB_REGEX,
         "--dataset_range", DATASET_RANGE,
     ]
+
+
+# --- scratch: Ray's socket lives under RAY_TMPDIR, and AF_UNIX is short ---
+
+#: What Ray appends under RAY_TMPDIR for its plasma-store socket:
+#: ``/ray/session_2026-09-24_14-16-10_293655_47847/sockets/plasma_store``.
+RAY_SOCKET_SUFFIX_LEN = len("/ray/session_2026-09-24_14-16-10_293655_47847/sockets/plasma_store")
+#: The longest Unix socket path the OS accepts (sun_path minus the NUL):
+#: 103 on macOS, 107 on Linux. Ray refuses anything longer before it starts.
+AF_UNIX_PATH_LIMIT = 103 if sys.platform == "darwin" else 107
+
+
+def scratch_fits(scratch_dir) -> bool:
+    """Whether Ray can open its socket under ``scratch_dir``."""
+    return len(str(scratch_dir).encode()) + RAY_SOCKET_SUFFIX_LEN <= AF_UNIX_PATH_LIMIT
+
+
+def default_scratch_dir(job_dir, job_token: str) -> Path:
+    """Where Ray spills when the user did not say.
+
+    Inside the job directory when that fits (it is removed with the job, and
+    fills no shared disk), else a short directory under the system temp
+    root, since a project store under a home directory is already too long
+    for the socket on macOS. ``job_token`` keeps two jobs apart there.
+    """
+    inside = Path(job_dir) / "ray_scratch"
+    if scratch_fits(inside):
+        return inside
+    return Path("/tmp") / f"ccp4i2-ray-{job_token[:8]}"
 
 
 def build_env(base_env: Dict[str, str], scratch_dir) -> Dict[str, str]:
@@ -100,6 +130,9 @@ FAILURE_CATALOGUE = [
      "The scratch disk filled. Point SCRATCH_DIR at a disk with tens of GB free"),
     ("ccp4_missing", re.compile(r"(refmac5|gemmi): command not found", re.I), 215,
      "PanDDA's environment could not see CCP4; the launcher did not source it"),
+    ("socket_path_too_long", re.compile(r"AF_UNIX path length cannot exceed", re.I), 217,
+     "Ray could not open its socket: the scratch directory path is too long for the "
+     "operating system. Leave SCRATCH_DIR empty, or choose a short path such as /tmp/ray"),
 ]
 
 UNCLASSIFIED = ("unclassified_crash", None, 216,

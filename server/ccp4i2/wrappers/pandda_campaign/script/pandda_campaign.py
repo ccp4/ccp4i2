@@ -63,6 +63,8 @@ class pandda_campaign(CPluginScript):
         214: {'description': 'PanDDA failed: scratch disk full'},
         215: {'description': 'PanDDA failed: CCP4 not visible to its environment'},
         216: {'description': 'PanDDA failed with an unrecognised error'},
+        217: {'description': 'PanDDA failed: scratch directory path too long for its socket'},
+        209: {'description': 'The scratch directory path is too long for Ray to open its socket there'},
         220: {'description': 'PanDDA exited cleanly but wrote no output tree'},
         221: {'severity': SEVERITY_WARNING,
               'description': 'PanDDA wrote processed datasets but no events table: a partial run'},
@@ -175,6 +177,14 @@ class pandda_campaign(CPluginScript):
 
         if self._mode() == 'local':
             scratch = self._scratch_dir()
+            if not contract.scratch_fits(scratch):
+                error.append(klass=self.TASKNAME, code=209,
+                             details=(f'{scratch} is {len(str(scratch))} characters; Ray needs its socket path '
+                                      f'under {contract.AF_UNIX_PATH_LIMIT}. Leave SCRATCH_DIR empty or '
+                                      'choose a short path such as /tmp/ray'),
+                             name=f'{self.TASKNAME}.container.controlParameters.SCRATCH_DIR',
+                             severity=SEVERITY_ERROR)
+                return error
             try:
                 scratch.mkdir(parents=True, exist_ok=True)
                 free_gib = shutil.disk_usage(scratch).free / 2 ** 30
@@ -262,10 +272,23 @@ class pandda_campaign(CPluginScript):
         tailer = threading.Thread(target=self._tail_progress, args=(stop,), daemon=True)
         tailer.start()
         try:
-            return super().startProcess()
+            result = super().startProcess()
         finally:
             stop.set()
             tailer.join(timeout=5)
+        # A non-zero exit comes back as an error report, and process() stops
+        # there without postProcess: classify here, or the run ends with the
+        # raw exit code and a report still saying "running".
+        if result:
+            self._classify_failure()
+        return result
+
+    def _classify_failure(self):
+        text = self._read(self.makeFileName('STDERR')) + '\n' + self._read(self.makeFileName('LOG'))
+        name, code, prompt = contract.classify_failure(text)
+        self.appendErrorReport(code, f'{name}: {prompt}', stack=False)
+        self._record_tree()
+        self._write_program_xml(state='failed', failure=name)
 
     def _prepareProcessExecution(self):
         prep = super()._prepareProcessExecution()
@@ -275,11 +298,7 @@ class pandda_campaign(CPluginScript):
     def postProcessCheck(self, processId=None):
         status, exit_status, exit_code = super().postProcessCheck(processId)
         if status != CPluginScript.SUCCEEDED and self._mode() == 'local':
-            text = self._read(self.makeFileName('STDERR')) + '\n' + self._read(self.makeFileName('LOG'))
-            name, code, prompt = contract.classify_failure(text)
-            self.appendErrorReport(code, f'{name}: {prompt}', stack=False)
-            self._record_tree()
-            self._write_program_xml(state='failed', failure=name)
+            self._classify_failure()
         return status, exit_status, exit_code
 
     def processOutputFiles(self):
@@ -314,7 +333,9 @@ class pandda_campaign(CPluginScript):
         par = self.container.controlParameters
         if par.SCRATCH_DIR.isSet() and str(par.SCRATCH_DIR).strip():
             return Path(str(par.SCRATCH_DIR)).expanduser()
-        return Path(self.workDirectory) / 'ray_scratch'
+        token = (self.get_db_job_id() if hasattr(self, 'get_db_job_id') else None) or ''
+        token = str(token).replace('-', '') or Path(self.workDirectory).name
+        return contract.default_scratch_dir(self.workDirectory, token)
 
     def _resolve_executable(self):
         par = self.container.controlParameters
