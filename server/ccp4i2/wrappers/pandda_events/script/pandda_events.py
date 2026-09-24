@@ -100,6 +100,12 @@ class pandda_events(CPluginScript):
         ligand_id = dataset.ligand_id
         rename = ligand_id if ligand_id and ligand_id != PANDDA_RESIDUE_NAME else None
         self._take(dataset.pandda_model, out.PANDDA_MODEL, rename=rename)
+        # The dictionary the poses were built with, so a viewer draws them with
+        # their bond orders and a refinement can take them: the job decides
+        # which dictionary goes with its molecules, and this job carries it.
+        self._take(dataset.dictionary, out.DICT)
+        if dataset.dictionary is not None and ligand_id:
+            out.DICT.annotation.set(f'Dictionary for {ligand_id}, as PanDDA used it')
         if rename:
             out.PANDDA_MODEL.annotation.set(
                 f"PanDDA's merged model, ligand {ligand_id}: a machine opinion, not the model of record")

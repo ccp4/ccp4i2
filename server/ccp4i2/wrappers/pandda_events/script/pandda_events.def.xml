@@ -62,6 +62,12 @@
                     <qualifiers/>
                 </subItem>
             </content>
+            <content id="DICT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <default><annotation>Ligand dictionary PanDDA built the poses with</annotation></default>
+                </qualifiers>
+            </content>
             <content id="PANDDA_MODEL">
                 <className>CPdbDataFile</className>
                 <qualifiers>

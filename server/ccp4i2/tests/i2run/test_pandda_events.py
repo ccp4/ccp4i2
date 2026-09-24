@@ -35,9 +35,12 @@ def test_complete_receipt_gleans_every_nested_file(tmp_path):
         assert db_job.status == models.Job.Status.FINISHED
         names = _param_names(db_job)
         assert names == sorted([
-            "XYZIN_APO", "ZMAP", "PANDDA_MODEL",
+            "XYZIN_APO", "ZMAP", "PANDDA_MODEL", "DICT",
             "EVENTS[0].EVENT_MAP", "EVENTS[0].POSE", "EVENTS[1].EVENT_MAP",
         ]), names
+        dict_row = models.File.objects.get(job=db_job, job_param_name="DICT")
+        assert dict_row.type.name == "application/refmac-dictionary"
+        assert "MZ0" in dict_row.annotation
         for name in ("XYZIN_APO.pdb", "ZMAP.map", "event_1_map.map", "event_1_pose.pdb", "event_2_map.map"):
             assert (job / name).is_file(), name
         assert not (job / "XYZIN_APO.pdb").is_symlink()
@@ -75,7 +78,7 @@ def test_short_receipt_is_unsatisfactory_and_still_gleans(tmp_path):
         names = _param_names(db_job)
         # what arrived is published: event 1 whole, event 2's pose, event 3's map
         assert names == sorted([
-            "XYZIN_APO", "ZMAP",
+            "XYZIN_APO", "ZMAP", "DICT",
             "EVENTS[0].EVENT_MAP", "EVENTS[0].POSE", "EVENTS[1].POSE", "EVENTS[2].EVENT_MAP",
         ]), names
         kpis = {v.key.name: v.value for v in models.JobFloatValue.objects.select_related("key").filter(job=db_job)}
@@ -95,7 +98,7 @@ def test_zero_event_dataset_is_a_clean_empty_receipt(tmp_path):
     with i2run(["pandda_events", "--PANDDA_OUT_DIR", str(tree), "--DTAG", "xtal-0000"]) as job:
         db_job = _job_row(job)
         assert db_job.status == models.Job.Status.FINISHED
-        assert _param_names(db_job) == ["XYZIN_APO", "ZMAP"]
+        assert _param_names(db_job) == ["DICT", "XYZIN_APO", "ZMAP"]
         kpis = {v.key.name: v.value for v in models.JobFloatValue.objects.select_related("key").filter(job=db_job)}
         assert kpis["nEventsExpected"] == 0
 

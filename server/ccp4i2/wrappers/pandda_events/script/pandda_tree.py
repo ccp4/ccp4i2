@@ -87,6 +87,8 @@ class DatasetOutputs:
     #: The component code of the dictionary PanDDA was given (``MZ0``), read
     #: from the copy it keeps under ligand_files/; None when there was none.
     ligand_id: Optional[str] = None
+    #: That dictionary itself, so the receipt can carry it with the poses.
+    dictionary: Optional[Path] = None
 
     # -- what was declared vs what arrived -------------------------------
     @property
@@ -195,6 +197,17 @@ def find_pose(dataset_dir: Path, dtag: str, idx: int, build: dict) -> Optional[P
     return None
 
 
+def find_dictionary(dataset_dir: Path) -> Optional[Path]:
+    """The dictionary PanDDA copied under ligand_files/, if any."""
+    ligand_dir = Path(dataset_dir) / LIGAND_FILES_DIR
+    if not ligand_dir.is_dir():
+        return None
+    for path in sorted(ligand_dir.glob("*.cif")):
+        if path.is_file():
+            return path
+    return None
+
+
 def read_ligand_id(dataset_dir: Path) -> Optional[str]:
     """The component code of the dictionary PanDDA used for this dataset.
 
@@ -283,4 +296,5 @@ def read_dataset(tree_root, dtag: str) -> DatasetOutputs:
         events=events,
         events_table_present=bool(table),
         ligand_id=read_ligand_id(dataset_dir),
+        dictionary=find_dictionary(dataset_dir),
     )
