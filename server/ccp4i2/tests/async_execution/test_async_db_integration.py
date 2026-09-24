@@ -236,49 +236,64 @@ class TestAsyncDatabaseHandlerIntegration:
 class TestCDataUtilitiesIntegration:
     """Test CData utilities with mock objects"""
 
-    def test_extract_file_metadata_with_mock(self):
-        """Test metadata extraction with a mock file object"""
+    def test_extract_file_metadata_maps_core_names_to_legacy_names(self):
+        """extract_file_metadata is a legacy shim over to_metadata_dict().
+
+        It exists to rename the core metadata keys (baseName -> base_name,
+        subType -> sub_type, ...) for callers that predate
+        CDataFile.to_metadata_dict(), and that renaming is what is worth
+        testing.
+
+        This used to drive a bare ``Mock()``, which stopped working when the
+        function was reduced to a wrapper: it now calls ``to_metadata_dict()``
+        and does ``'baseName' in`` the result, which a Mock is not. A Mock
+        could never have satisfied it anyway, because
+        ``get_file_type_from_class`` maps from the *class name* -- so the
+        fake below is named CMtzDataFile deliberately.
+        """
         from ccp4i2.lib.cdata_utils import extract_file_metadata
-        from unittest.mock import Mock
 
-        # Create mock file
-        mock_file = Mock()
-        mock_file.name = "HKLOUT"
-        mock_file.object_path.return_value = "outputData.HKLOUT"
-
-        # Mock get_merged_metadata to return different values based on parameter
-        def get_merged_metadata(key):
-            if key == 'qualifiers':
+        class CMtzDataFile:  # name is load-bearing: it selects the MIME type
+            def to_metadata_dict(self):
                 return {
-                    'mimeTypeName': 'application/CCP4-mtz',
+                    'exists': True,
+                    'baseName': 'HKLOUT.mtz',
+                    'relPath': 'CCP4_JOBS/job_1',
+                    'subType': 1,
+                    'contentFlag': 2,
+                    'annotation': 'Output reflections',
+                }
+
+            def objectName(self):
+                return 'HKLOUT'
+
+            def object_path(self):
+                return 'outputData.HKLOUT'
+
+            def get_qualifier(self, key, default=''):
+                return {
                     'guiLabel': 'Output MTZ file',
                     'toolTip': 'Reflection data',
-                }
-            elif key == 'attributes':
-                return {'subType': True}  # Indicate subType exists
-            return {}
+                }.get(key, default)
 
-        mock_file.get_merged_metadata.side_effect = get_merged_metadata
-        mock_file.isSet.return_value = True
-        mock_file.exists.return_value = True
+            def isSet(self):
+                return True
 
-        # Add optional attributes
-        mock_subtype = Mock()
-        mock_subtype.isSet.return_value = True
-        mock_subtype.value = 1
-        mock_file.subType = mock_subtype
+        metadata = extract_file_metadata(CMtzDataFile())
 
-        # Extract metadata
-        metadata = extract_file_metadata(mock_file)
-
-        # Verify
         assert metadata['name'] == 'HKLOUT'
+        assert metadata['object_path'] == 'outputData.HKLOUT'
         assert metadata['file_type'] == 'application/CCP4-mtz'
         assert metadata['gui_label'] == 'Output MTZ file'
-        assert metadata['sub_type'] == 1
+        assert metadata['tooltip'] == 'Reflection data'
         assert metadata['is_set'] is True
-
-        print(f"✅ Extracted metadata: {metadata}")
+        assert metadata['exists'] is True
+        # the renaming this shim exists for
+        assert metadata['base_name'] == 'HKLOUT.mtz'
+        assert metadata['rel_path'] == 'CCP4_JOBS/job_1'
+        assert metadata['sub_type'] == 1
+        assert metadata['content_flag'] == 2
+        assert metadata['annotation'] == 'Output reflections'
 
     def test_find_all_files_with_hierarchy(self):
         """Test finding files in a hierarchical structure"""

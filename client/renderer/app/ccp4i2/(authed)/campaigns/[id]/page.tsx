@@ -45,7 +45,7 @@ import {
   Science as ScienceIcon,
   FolderOpen as FolderIcon,
 } from "@mui/icons-material";
-import CCP4i2TopBar from "@/components/ccp4i2-topbar";
+import { useTopBar } from "@/providers/top-bar-context";
 import {
   SelectParentDialog,
   BatchImportDialog,
@@ -202,6 +202,8 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
     closeDeleteDialog();
   };
 
+  useTopBar({ title: campaign?.name ?? "Campaign" });
+
   const handleDownloadFile = (file: CCP4File) => {
     doDownload(
       `/api/proxy/ccp4i2/files_by_uuid/${file.uuid}/download/`,
@@ -211,29 +213,22 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
 
   if (campaignLoading) {
     return (
-      <>
-        <CCP4i2TopBar title="Loading..." showBackButton />
-        <Container sx={{ my: 3 }}>
-          <Skeleton variant="rectangular" width="100%" height={600} />
-        </Container>
-      </>
+      <Container sx={{ my: 3 }}>
+        <Skeleton variant="rectangular" width="100%" height={600} />
+      </Container>
     );
   }
 
   if (!campaign) {
     return (
-      <>
-        <CCP4i2TopBar title="Campaign Not Found" showBackButton />
-        <Container sx={{ my: 3 }}>
-          <Alert severity="error">Campaign not found</Alert>
-        </Container>
-      </>
+      <Container sx={{ my: 3 }}>
+        <Alert severity="error">Campaign not found</Alert>
+      </Container>
     );
   }
 
   return (
-    <>
-      <CCP4i2TopBar title={campaign.name} showBackButton />
+    <Box sx={{ flex: 1, minHeight: 0, overflow: "auto" }}>
       <Container sx={{ my: 3 }}>
         <Stack spacing={3}>
           {/* Header with actions and collapsible campaign info */}
@@ -673,7 +668,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </Box>
   );
 }
 

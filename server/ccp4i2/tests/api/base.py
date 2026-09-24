@@ -436,7 +436,8 @@ class APITestBase:
         """Get list of job output files."""
         assert self.job_id, "Must create job first"
 
-        response = self.client.get(f'{self.API_PREFIX}/jobs/{self.job_id}/files/')
+        # jobs/{id}/files/ was removed; the list endpoint filters by job.
+        response = self.client.get(f'{self.API_PREFIX}/files/', {'job': self.job_id})
         assert response.status_code == 200, f"Failed to get job files: {response.content}"
         return response.json()
 

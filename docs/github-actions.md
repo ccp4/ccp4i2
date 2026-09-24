@@ -61,8 +61,7 @@ run it under `ccp4-python` locally and you get strictly more coverage, not a
 different answer. Adding a test that hard-requires a CCP4 binary without a guard
 turns the job red for everyone.
 
-What is deliberately *not* in it: `tests/db/` and `tests/async/` do not collect
-without more setup, and `tests/i2run/` and `tests/api/e2e/` run real
+What is deliberately *not* in it: `tests/i2run/` and `tests/api/e2e/` run real
 crystallographic jobs and download from PDBe/RCSB. Those need a machine with
 CCP4; see [Testing](../CLAUDE.md) for running them locally.
 

@@ -1,6 +1,12 @@
 from pathlib import Path
 from shutil import rmtree
 from django.test import TestCase, override_settings
+
+from .external_data import (
+    PROJECTS_SCRATCH_DIR,
+    TEST_ZIPS_DIR,
+    requires_project_zips,
+)
 from django.conf import settings
 from xml.etree import ElementTree as ET
 from ccp4i2.db.models import Job
@@ -13,21 +19,14 @@ from ccp4i2.lib.utils.jobs.get_container import get_job_container
 from ccp4i2.db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
 from ccp4i2.db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
 
-# Resolve __file__ so that .parent chains work regardless of cwd
-_THIS_FILE = Path(__file__).resolve()
-# server/ccp4i2/tests/lib/  →  5 parents  →  server/../ (project root level)
-_PROJECT_ROOT = _THIS_FILE.parent.parent.parent.parent.parent
-_TEST_ZIPS_DIR = _PROJECT_ROOT.parent / "test101" / "ProjectZips"
 
-
-@override_settings(
-    CCP4I2_PROJECTS_DIR=_PROJECT_ROOT / "CCP4I2_TEST_PROJECT_DIRECTORY"
-)
+@requires_project_zips
+@override_settings(CCP4I2_PROJECTS_DIR=PROJECTS_SCRATCH_DIR)
 class CCP4i2TestCase(TestCase):
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(parents=True, exist_ok=True)
         import_ccp4_project_zip(
-            _TEST_ZIPS_DIR / "refmac_gamma_test_0.ccp4_project.zip",
+            TEST_ZIPS_DIR / "refmac_gamma_test_0.ccp4_project.zip",
             relocate_path=(settings.CCP4I2_PROJECTS_DIR),
         )
         return super().setUp()
