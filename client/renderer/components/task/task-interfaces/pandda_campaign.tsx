@@ -49,7 +49,7 @@ interface Preview {
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const api = useApi();
-  const { mutateContainer, useTaskItem } = useJob(job.id);
+  const { mutateContainer, mutateValidation, useTaskItem } = useJob(job.id);
   const { value: runMode } = useTaskItem("RUN_MODE");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -95,14 +95,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             : "Nothing to add.",
         );
       }
+      // The list changed underneath the cached validation: refresh it too, or
+      // the confirm dialog keeps saying "add at least one dataset".
       await mutateContainer();
+      await mutateValidation();
       await mutatePreview();
     } catch (err: any) {
       setMessage(err?.message ?? String(err));
     } finally {
       setBusy(false);
     }
-  }, [job.id, mutateContainer, mutatePreview]);
+  }, [job.id, mutateContainer, mutateValidation, mutatePreview]);
 
   return (
     <CCP4i2Tabs {...props}>
