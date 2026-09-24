@@ -42,6 +42,7 @@ dependencies = [
     "django",              # the web framework this whole backend is built on
     "gemmi",               # MTZ/PDB/mmCIF + crystallographic maths (clipper replacement)
     "numpy",
+    "pyyaml",              # PanDDA events.yaml (wrappers/pandda_events); CCP4 ships it
     "lxml",                # XML throughout core/containers/reports
     "lxml_html_clean",     # lxml.html.clean moved to separate package
     "pytz",

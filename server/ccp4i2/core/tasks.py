@@ -1030,6 +1030,15 @@ TASKS = {
         runningReport=True,
         watchedFile="pairef_project/PAIREF_project.html",
     ),
+    "pandda_events": Task(
+        title="PanDDA events for one dataset",
+        description="Receipt for one dataset's share of a PanDDA run: apo model, Z-map, and every event with its map and candidate pose",
+        shortTitle="PanDDA events",
+        pluginPath="ccp4i2.wrappers.pandda_events.script.pandda_events:pandda_events",
+        defXmlPath="wrappers/pandda_events/script/pandda_events.def.xml",
+        reportPath="ccp4i2.wrappers.pandda_events.script.pandda_events_report:pandda_events_report",
+        ccp4_free=True,  # reads a finished tree with gemmi/yaml; runs no program
+    ),
     "parrot": Task(
         title="Density modification - PARROT",
         description="Modify the electron density (Parrot)",
