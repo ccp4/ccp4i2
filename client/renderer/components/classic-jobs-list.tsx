@@ -1,3 +1,4 @@
+import { formatKpiValue } from "../lib/format-kpi";
 import React, {
   forwardRef,
   useCallback,
@@ -380,9 +381,7 @@ const formatFriendlyDate = (isoString: string): string => {
   return `${dayMonth} ${date.getFullYear()}`;
 };
 
-const formatFloatValue = (value: number): string => {
-  return value.toPrecision(3);
-};
+const formatFloatValue = (value: number): string => formatKpiValue(value);
 
 // =============================================================================
 // Main component
