@@ -584,12 +584,15 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     [setFiles, isDisabled, item, projectJobs, projects, fileItemToParameterArg, commit, mutateContainer]
   );
 
+  // A file registered with no annotation (dimple's final.pdb, for one) still
+  // has a name; labelling it by annotation alone rendered it as nothing, which
+  // looked like an empty picker.
   const getOptionLabel = useCallback(
     (option: CCP4i2File) => {
       const fileJob = projectJobs?.find((job) => job.id === option.job);
       return fileJob
-        ? `${fileJob.number}: ${option.annotation}`
-        : option.annotation;
+        ? `${fileJob.number}: ${option.annotation || option.name}`
+        : option.annotation || option.name;
     },
     [projectJobs]
   );
