@@ -247,16 +247,16 @@ type TaskInfo = {
 type TaskRef = { name: string; info: TaskInfo };
 type TaskLookup = Record<string, TaskInfo>;
 
+const CATEGORISED_TASKS = new Set(
+  TASK_CATEGORIES.flatMap((category) => category.tasks),
+);
+
 function uncategorisedCategory(lookup: TaskLookup): TaskCategory {
-  const assigned = new Set<string>();
-  TASK_CATEGORIES.forEach((category) => {
-    category.tasks.forEach((task) => assigned.add(task));
-  });
   return {
     icon: "ccp4i2",
     title: "Uncategorised (for developer use only)",
     tasks: Object.keys(lookup)
-      .filter((t) => !assigned.has(t) && !lookup[t]?.supersededBy)
+      .filter((t) => !CATEGORISED_TASKS.has(t))
       .sort((a, b) => {
         const titleA = (lookup[a]?.TASKTITLE ?? a).toLowerCase();
         const titleB = (lookup[b]?.TASKTITLE ?? b).toLowerCase();
@@ -271,7 +271,19 @@ export function TaskChooser(props: {
   const api = useApi();
   const [searchText, setSearchText] = useState<string>("");
   const [viewMode, setViewMode] = useState<ViewMode>("list");
-  const { data: taskLookup } = api.get<TaskLookup>("task_lookup/");
+  const { devMode } = useCCP4i2Window();
+  const { data: allTasks } = api.get<TaskLookup>("task_lookup/");
+  const taskLookup = useMemo(
+    () =>
+      allTasks &&
+      Object.fromEntries(
+        Object.entries(allTasks).filter(
+          ([name, info]) =>
+            !info.supersededBy && (devMode || CATEGORISED_TASKS.has(name)),
+        ),
+      ),
+    [allTasks, devMode],
+  );
 
   return (
     <Stack sx={{ height: "100%" }}>
@@ -331,7 +343,7 @@ function FilteredTasks(props: {
       return -1;
     };
     return Object.keys(props.taskLookup)
-      .filter((name) => !props.taskLookup[name].supersededBy && score(name) >= 0)
+      .filter((name) => score(name) >= 0)
       .sort((a, b) => score(a) - score(b));
   }, [props.searchText, props.taskLookup]);
 
@@ -350,7 +362,6 @@ function TaskTree(props: {
   viewMode: ViewMode;
   onTaskSelect: (taskName: string) => void;
 }) {
-  const { devMode } = useCCP4i2Window();
   const uncategorised = useMemo(
     () => uncategorisedCategory(props.taskLookup),
     [props.taskLookup],
@@ -367,7 +378,7 @@ function TaskTree(props: {
           onTaskSelect={props.onTaskSelect}
         />
       ))}
-      {devMode && (
+      {uncategorised.tasks.length > 0 && (
         <TaskTreeFolder
           category={uncategorised}
           taskLookup={props.taskLookup}
@@ -417,7 +428,7 @@ function TaskItems(props: {
     () =>
       props.taskNames.flatMap((name) => {
         const info = props.taskLookup[name];
-        return info && !info.supersededBy ? [{ name, info }] : [];
+        return info ? [{ name, info }] : [];
       }),
     [props.taskLookup, props.taskNames],
   );
