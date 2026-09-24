@@ -72,7 +72,6 @@ import LidiaAcedrgNewInterface from "./LidiaAcedrgNew";
 import LorestrI2Interface from "./lorestr_i2";
 import MakeLinkInterface from "./MakeLink";
 import MakeMonsterInterface from "./MakeMonster";
-import MakeProjectsAndDoLigandPipelineInterface from "./MakeProjectsAndDoLigandPipeline";
 import MatthewsInterface from "./matthews";
 import MergeMtzInterface from "./mergeMtz";
 import MetalCoordInterface from "./metalCoord";
@@ -230,7 +229,6 @@ const TASK_INTERFACES: Record<
   lorestr_i2: LorestrI2Interface,
   MakeLink: MakeLinkInterface,
   MakeMonster: MakeMonsterInterface,
-  MakeProjectsAndDoLigandPipeline: MakeProjectsAndDoLigandPipelineInterface,
   matthews: MatthewsInterface,
   mergeMtz: MergeMtzInterface,
   metalCoord: MetalCoordInterface,
