@@ -47,7 +47,8 @@ def test_stage_only_needs_no_campaign():
         db_job = models.Job.objects.get(uuid=job_id)
         assert db_job.status == models.Job.Status.FINISHED
         rows = models.File.objects.filter(job=db_job)
-        assert rows.filter(job_param_name="MANIFEST").count() == 1
+        manifest_row = rows.get(job_param_name="MANIFEST")
+        assert manifest_row.type.name == "application/pandda-manifest", "typed: a task takes it"
         # the nine inputs were imported into the project and registered
         # (imports are named by objectName, not path: XYZIN, not DATASETS[0].XYZIN)
         assert rows.filter(directory=models.File.Directory.IMPORT_DIR).count() == 9

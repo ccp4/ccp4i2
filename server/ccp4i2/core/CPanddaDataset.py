@@ -11,8 +11,29 @@ will analyse, and the ligand dictionary when there is one.
 Resolvable by the def.xml class-name lookup via ``ccp4i2.core.CPanddaDataset``.
 """
 from ccp4i2.core.base_object.class_metadata import content
+from ccp4i2.core.base_object.cdata_file import CDataFile
 from ccp4i2.core.CCP4Data import CData
 from ccp4i2.core.CCP4PerformanceData import CPerformanceIndicator
+
+
+class CPanddaManifestDataFile(CDataFile):
+    """The manifest a PanDDA run writes when it stages: which dataset became
+    which xtal-NNNN, whose it is (by uuid), digests, provenance.
+
+    Typed, because a task takes it as input (design note 3.3 and 10.3: the
+    test for a file subclass is naming the task that takes it, and
+    ``pandda_fanout`` does). The type is what lets the fan-out job's picker
+    offer only manifests and "take context from" a PanDDA job find it.
+    """
+
+    class Meta:
+        qualifiers = {
+            "mimeTypeName": "application/pandda-manifest",
+            "mimeTypeDescription": "PanDDA run manifest",
+            "fileExtensions": ["json"],
+            "guiLabel": "PanDDA run manifest",
+            "toolTip": "manifest.json from a PanDDA job: what was staged as which xtal-NNNN, keyed on uuid",
+        }
 
 
 class CPanddaDataset(CData):
