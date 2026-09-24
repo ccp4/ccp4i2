@@ -44,6 +44,29 @@ def value_order_dict(tmp_path, type_dict):
     return path
 
 
+@pytest.fixture
+def named_dict(tmp_path, type_dict):
+    """acedrg names the block after the ligand: comp_MZ0, not comp_LIG."""
+    path = tmp_path / "MZ0.cif"
+    text = open(type_dict).read().replace("comp_LIG", "comp_MZ0").replace("LIG ", "MZ0 ")
+    path.write_text(text)
+    assert [b.name for b in gemmi.cif.read(str(path))] == ["comp_list", "comp_MZ0"]
+    return path
+
+
+def test_a_ligand_named_block_gains_a_comp_lig_alias(tmp_path, named_dict):
+    assert needs_normalising(named_dict)
+    out = prepare_dict_for_pandda(named_dict, tmp_path / "staging")
+    names = [b.name for b in gemmi.cif.read(str(out))]
+    assert names == ["comp_list", "comp_MZ0", "comp_LIG"], "original first, for the content-based reader"
+    doc = gemmi.cif.read(str(out))
+    original, alias = doc["comp_MZ0"], doc["comp_LIG"]
+    assert list(alias.find_values("_chem_comp_atom.atom_id")) == list(original.find_values("_chem_comp_atom.atom_id"))
+    assert list(alias.find_values("_chem_comp_bond.type")) == list(original.find_values("_chem_comp_bond.type"))
+    assert _bond_orders(out) == _bond_orders(named_dict), "the first restraint block is still the true one"
+    assert prepare_dict_for_pandda(out, tmp_path / "again") == out, "idempotent"
+
+
 def test_type_only_dictionary_passes_through(tmp_path, type_dict):
     out = prepare_dict_for_pandda(type_dict, tmp_path / "staging")
     assert str(out) == str(type_dict)

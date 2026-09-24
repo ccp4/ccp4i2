@@ -122,10 +122,13 @@ We emit the shape the invocation contract already specifies, unchanged:
 ```
 <staging>/
 ├── datasets/
-│   ├── xtal-0000/{final.pdb, final.mtz, dict.cif?}
+│   ├── xtal-0000/{final.pdb, final.mtz, dict.cif?, compound/dict.cif?}
 │   └── xtal-0001/…
 └── Projects.csv          # header "Dataset, Project", one row per xtal-NNNN
 ```
+
+(`compound/dict.cif` is a hardlink of `dict.cif`, for the CCP4-bundled
+reader — §4.6 gap 6. The contract's tree is unchanged; this adds to it.)
 
 **Names must be clean `xtal-NNNN`.** PanDDA infers a crystal number from the
 last run of integers in the directory name, so a project-derived name with a
@@ -318,9 +321,25 @@ CCP4i2*:
 5. **No bounded-memory autobuild path**, so §6's memory story is the
    unmitigated one. This is the **only one of the five we cannot neutralise**
    (§6.5).
+6. **Ligand files are read only from a `compound/` subdirectory** of each
+   dataset (`fs/pandda_input.py`, `ligand_dir_regex`); a `dict.cif` beside
+   the model, which is what the contract specifies and what upstream reads
+   first, is invisible to it: *"Filtered because no ligand data!"* for every
+   dataset. Found on the first real run (2026-09-24). Staging now puts the
+   dictionary in both places, the second a hardlink, and the argv names
+   `--ligand_dir_regex compound` explicitly. One ligand either way.
+7. **The dictionary block is opened by name, `comp_LIG`** (fallback
+   `comp_XXX`; `dataset/small.py`). acedrg names the block after the
+   ligand — `comp_MZ0` — so every CCP4i2 dictionary fails here; upstream
+   finds the block by content (PR #97, the `ligand_block` catalogue entry).
+   `prepare_dict_for_pandda()` now appends a `comp_LIG` copy of the
+   restraint block after the original, so the name-based reader finds it
+   and the content-based reader still takes the true residue first. Nothing
+   is renamed.
 
-Tally: gap 1 is removed by §4.7, gap 2 is already removed by staging, gap 3 is
-removed by the contract's argv, gap 4 degrades gracefully. **So CCP4i2 needs no
+Tally: gaps 1, 6 and 7 are removed by §4.7 and staging, gap 2 is already
+removed by staging, gap 3 is removed by the contract's argv, gap 4 degrades
+gracefully. **So CCP4i2 needs no
 PanDDA fork and no particular PanDDA version** — which is the property that
 makes this task shippable. A CCP4 rebuild from current upstream (§4.8) removes
 gaps 1–4 at source and costs us nothing either way.

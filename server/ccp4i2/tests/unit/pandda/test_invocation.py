@@ -14,6 +14,7 @@ def test_argv_carries_both_defensive_literals():
     assert argv[argv.index("--pdb_regex") + 1] == "final.pdb"
     assert argv[argv.index("--mtz_regex") + 1] == "final.mtz"
     assert argv[argv.index("--ligand_cif_regex") + 1] == "dict.cif"
+    assert argv[argv.index("--ligand_dir_regex") + 1] == "compound"
     assert argv[argv.index("--local_cpus") + 1] == "6"
     assert argv[argv.index("--data_dirs") + 1] == "/s/datasets"
     assert argv[argv.index("--out_dir") + 1] == "/o/pandda2_out"

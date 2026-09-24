@@ -30,6 +30,11 @@ DATASET_RANGE = "0-999999999"
 #: takes the protein model for a ligand.
 LIGAND_PDB_REGEX = "ligand.pdb"
 
+#: Where the CCP4-bundled PanDDA looks for ligand files: a subdirectory of
+#: each dataset with this name, and nowhere else. Its default, made explicit
+#: because staging relies on it (upstream also reads the flat file).
+LIGAND_DIR_REGEX = "compound"
+
 MODEL_REGEX = "final.pdb"
 REFLECTIONS_REGEX = "final.mtz"
 DICT_REGEX = "dict.cif"
@@ -48,6 +53,7 @@ def build_argv(data_dirs, out_dir, local_cpus: int) -> List[str]:
         "--local_cpus", str(int(local_cpus)),
         "--pdb_regex", MODEL_REGEX,
         "--mtz_regex", REFLECTIONS_REGEX,
+        "--ligand_dir_regex", LIGAND_DIR_REGEX,
         "--ligand_cif_regex", DICT_REGEX,
         "--ligand_pdb_regex", LIGAND_PDB_REGEX,
         "--dataset_range", DATASET_RANGE,

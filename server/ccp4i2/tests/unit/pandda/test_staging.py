@@ -33,9 +33,14 @@ def test_staged_tree_matches_the_contract(tmp_path, mini_specs):
     manifest = stage_datasets(mini_specs, root)
     expected = [PROJECTS_CSV, MANIFEST_JSON]
     for i in range(3):
-        for name in (DICT_NAME, REFLECTIONS_NAME, MODEL_NAME):
+        for name in (DICT_NAME, f"compound/{DICT_NAME}", REFLECTIONS_NAME, MODEL_NAME):
             expected.append(f"{DATASETS_DIR}/{xtal_name(i)}/{name}")
     assert _tree(root) == sorted(expected)
+    # the CCP4-bundled reader looks only in compound/; upstream reads the flat
+    # file: the same bytes in both places, one ligand either way
+    for i in range(3):
+        d = root / DATASETS_DIR / xtal_name(i)
+        assert filecmp.cmp(d / DICT_NAME, d / "compound" / DICT_NAME, shallow=False)
     # clean integer names: PanDDA takes the crystal number from the last digits
     for entry in manifest["datasets"]:
         digits = entry["xtal"].rsplit("-", 1)[1]
@@ -66,6 +71,7 @@ def test_staged_bytes_equal_the_sources(tmp_path, mini_specs):
         # these sources already carry FreeR_flag and type: nothing rewritten
         assert filecmp.cmp(spec.hklin, dataset_dir / REFLECTIONS_NAME, shallow=False)
         assert filecmp.cmp(spec.dictionary, dataset_dir / DICT_NAME, shallow=False)
+        assert f"compound/{DICT_NAME}" in entry["files"]
         assert {f["how"] for f in entry["files"].values()} <= {"link", "copy"}
         assert not any(f["how"] == "rewritten" for f in entry["files"].values())
 

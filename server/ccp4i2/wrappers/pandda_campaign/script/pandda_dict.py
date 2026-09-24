@@ -107,21 +107,56 @@ def add_type_column(block) -> bool:
     return True
 
 
+#: The block name the CCP4-bundled PanDDA opens a dictionary by, with
+#: ``comp_XXX`` as its only fallback (``dataset/small.py``). Upstream finds
+#: the restraint block by content. A dictionary named after its ligand, as
+#: acedrg names them (``comp_MZ0``), satisfies only the second.
+LIG_BLOCK = "comp_LIG"
+
+
+def _restraint_blocks(doc):
+    """The blocks holding a component's atoms, in file order: everything but
+    the ``comp_list`` header that carries a ``_chem_comp_atom`` loop."""
+    return [b for b in doc if b.name != "comp_list"
+            and b.find_values("_chem_comp_atom.atom_id")]
+
+
+def add_lig_alias(doc) -> bool:
+    """Append a copy of the restraint block named ``comp_LIG`` when the
+    dictionary has none, so a reader that opens the block by that name finds
+    it. The original keeps its name and its place, so a reader that takes the
+    first restraint block by content still gets the true residue. Returns
+    True if a block was added."""
+    names = {b.name for b in doc}
+    if LIG_BLOCK in names:
+        return False
+    blocks = _restraint_blocks(doc)
+    if len(blocks) != 1:
+        return False        # nothing, or several: no single ligand to alias
+    alias = doc.add_copied_block(blocks[0])
+    alias.name = LIG_BLOCK
+    return True
+
+
 def needs_normalising(src_path) -> bool:
-    """True if any bond table in the file has ``value_order`` but no ``type``."""
+    """True if a reader of the CCP4-bundled PanDDA would misread this file:
+    a bond table spelt ``value_order`` only, or no ``comp_LIG`` block."""
     doc = gemmi.cif.read(str(src_path))
-    return any(bond_spellings(b) == {"value_order"} for b in _bond_blocks(doc))
+    if any(bond_spellings(b) == {"value_order"} for b in _bond_blocks(doc)):
+        return True
+    return LIG_BLOCK not in {b.name for b in doc} and len(_restraint_blocks(doc)) == 1
 
 
 def prepare_dict_for_pandda(src_path, staging_dir) -> Path:
     """Return a path to a dictionary every PanDDA build reads the same way.
 
-    If every bond table already carries ``_chem_comp_bond.type`` (or there is
-    no bond table to read), ``src_path`` is returned unchanged and nothing is
-    written. Otherwise a copy with the ``type`` (and, where derivable,
-    ``aromatic``) column added is written to ``staging_dir`` and its path is
-    returned. The original columns are kept, so the newer reader sees what it
-    saw before.
+    If every bond table already carries ``_chem_comp_bond.type`` and the
+    restraint block is reachable as ``comp_LIG`` (or there is nothing to
+    read), ``src_path`` is returned unchanged and nothing is written.
+    Otherwise a copy is written to ``staging_dir`` with the ``type`` (and,
+    where derivable, ``aromatic``) column added and a ``comp_LIG`` alias of
+    the restraint block appended, and its path is returned. The original
+    columns and block are kept, so the newer reader sees what it saw before.
 
     Mirrors ``prepare_mtz_for_pandda``: same signature, same contract.
     """
@@ -130,6 +165,7 @@ def prepare_dict_for_pandda(src_path, staging_dir) -> Path:
     changed = False
     for block in _bond_blocks(doc):
         changed = add_type_column(block) or changed
+    changed = add_lig_alias(doc) or changed
     if not changed:
         return src_path
     staging_dir = Path(staging_dir)

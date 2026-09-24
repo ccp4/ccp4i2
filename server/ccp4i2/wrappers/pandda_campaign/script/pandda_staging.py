@@ -54,6 +54,11 @@ MANIFEST_JSON = "manifest.json"
 MODEL_NAME = "final.pdb"
 REFLECTIONS_NAME = "final.mtz"
 DICT_NAME = "dict.cif"
+#: The CCP4-bundled PanDDA reads ligand files only from a subdirectory of the
+#: dataset matching its ligand_dir_regex ("compound"); upstream reads the
+#: flat file first. The dictionary is staged in both places, the second a
+#: hardlink of the first, so either reader finds exactly one ligand.
+LIGAND_DIR_NAME = "compound"
 
 
 @dataclass(frozen=True)
@@ -222,6 +227,9 @@ def stage_datasets(specs: Iterable[DatasetSpec], staging_root,
                 spec.dictionary, dataset_dir / DICT_NAME,
                 source_uuid=uuids.get("dict"),
                 prepare=prepare_dict_for_pandda)
+            nested = f"{LIGAND_DIR_NAME}/{DICT_NAME}"
+            how = link_or_copy(dataset_dir / DICT_NAME, dataset_dir / nested)
+            files[nested] = {**files[DICT_NAME], "how": how, "source": str(dataset_dir / DICT_NAME)}
         entries.append({
             "xtal": xtal,
             "label": spec.label,
