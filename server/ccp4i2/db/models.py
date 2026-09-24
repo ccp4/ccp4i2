@@ -63,6 +63,10 @@ class ProjectGroup(Model):
         GENERAL_SET = "general_set", "General set"
         FRAGMENT_SET = "fragment_set", "Fragment set"
 
+    # Identity that survives a rebuilt database and a rename. The recovery
+    # format keys on uuids (docs/PROJECT_RECOVERY.md); ``name`` is the mutable
+    # thing, and unique only within one installation.
+    uuid = UUIDField(default=uuid4, unique=True, editable=False)
     name = CharField(max_length=100, unique=True)
     type = CharField(
         max_length=32, choices=GroupType.choices, default=GroupType.GENERAL_SET
@@ -141,9 +145,20 @@ class CampaignSite(Model):
     (that of the parent project), which is what makes it meaningful across
     datasets; ``quat`` and ``zoom`` are the saved camera, used only for
     navigation.
+
+    ``uuid`` is what an evaluation, an event record or another installation's
+    snapshot refers to. The primary key is meaningless after a database
+    rebuild and the name is renameable, so neither can carry a reference.
+
+    Invariant (docs/pandda-campaign-design.md, section 9.1): an automated
+    process -- a PanDDA run, a rerun of one -- may propose sites and record
+    observations, but it may not delete or move a site that any
+    ``SiteEvaluation`` refers to. A site with verdicts belongs to the people
+    who recorded them.
     """
 
     group = ForeignKey(ProjectGroup, CASCADE, related_name="site_set")
+    uuid = UUIDField(default=uuid4, unique=True, editable=False)
     name = CharField(max_length=100)
     # Stored as three columns rather than a JSON triple so the database can
     # answer questions about position (nearest site to a point, say).
@@ -183,6 +198,16 @@ class SiteEvaluation(Model):
     There is deliberately no confidence field: the three verdicts already carry
     the uncertainty, with UNCLEAR for the cases that warrant it, and a second
     numeric axis would only invite the question of what 0.6 means.
+
+    Invariant (docs/pandda-campaign-design.md, section 9.1): nothing automated
+    ever writes a row here. A program's "interesting" flag or hit probability
+    is an opinion and lives with the job that produced it; a verdict is a
+    person's decision, and only a person records one.
+
+    A verdict exists only in the database, so it is written into its own
+    project's snapshot (docs/PROJECT_RECOVERY.md): the dataset's, because the
+    verdict is about that dataset, and a member exported or moved on its own
+    carries its verdicts with it.
     """
 
     class Verdict(TextChoices):

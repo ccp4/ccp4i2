@@ -49,6 +49,8 @@ The rule is: anything user-authored that exists only in the database.
 | `File` | `annotation`, `sub_type`, `content` |
 | `Project` | `name`, `description`, `directory`, `last_job_number` |
 | `ProjectTag` | tag text and which projects carry it |
+| `ProjectGroup`, `ProjectGroupMembership`, `CampaignSite` | any change: written into the campaign's **parent** project's snapshot (a membership also into the member's) |
+| `SiteEvaluation` | any change: written into the **evaluated** project's snapshot |
 
 Two deliberate exclusions:
 
@@ -199,6 +201,37 @@ logged-in user shares it — so those routes return 409 off the desktop, gated o
 the same `is_desktop()` signal that gates writing `preferences.json`. The
 registry route is unaffected: it reads only directories this installation
 already recorded, so recovery still works everywhere.
+
+### Campaigns span projects; the snapshot is per project
+
+A fragment campaign (`ProjectGroup`) has a roster, sites and verdicts, all
+user-authored and all in the database only. A snapshot is per project, so each
+piece is written with the project it is about:
+
+| Piece | Whose snapshot | Element |
+|---|---|---|
+| the campaign: identity, roster, sites | the **parent** project's (the reference frame the sites are defined in) | `campaignTable` |
+| this project's memberships | the project's own, as well | `campaignmembershipTable` |
+| this project's verdicts | the **evaluated** project's | `siteevaluationTable` |
+
+Everything is keyed on uuid — `ProjectGroup.uuid`, `CampaignSite.uuid`
+(migration 0026) and project uuids — never on a primary key or a name. A
+campaign whose name is already held by a *different* campaign comes back as
+`<name> (restored)`; two campaigns are never merged on a name.
+
+Rows are serialised field by field, not from a hand-written column list, so a
+column added to one of these models later rides through the snapshot without
+the serialiser changing; an attribute the model no longer has is ignored, and
+a field a snapshot predates keeps its default.
+
+Order matters: a member's verdicts refer to sites only the parent's snapshot
+defines. `restore_projects --registry` and `--scan` restore parents first for
+that reason. Restoring one member on its own before its parent restores the
+project and reports the verdicts it could not place — and keeps carrying them
+in the member's snapshot, unplaced, until the parent is back: a snapshot never
+drops a row the database cannot hold yet, so the act of recovering cannot
+destroy the record it recovers from. Restore the parent, then that member
+again with `--replace`, and the verdicts are back.
 
 ## What this does not do
 
