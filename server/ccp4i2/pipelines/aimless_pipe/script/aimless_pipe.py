@@ -108,6 +108,28 @@ class aimless_pipe(CPluginScript):
                 CCP4ErrorHandling.SEVERITY_ERROR
             )
 
+        # The resolution cutoff is estimated by phaser_analysis, so asking
+        # for one with the analysis turned off cannot be honoured. The
+        # pipeline silently drops AUTOCUTOFF in that case (process(), "can't
+        # do AUTOCUTOFF without Phaser"), which is the worst of both: the
+        # user believes their data were cut where the data stop, and they
+        # were not. Say so instead of discarding the instruction to a
+        # print(). Advisory, not blocking: the run is still a valid one,
+        # it just will not do the thing that was asked for.
+        if self.container.controlParameters.AUTOCUTOFF and \
+           not self.container.controlParameters.DOPHASERANALYSIS:
+            filtered.append(
+                self.TASKNAME,
+                203,
+                'Estimating the resolution cutoff needs the Phaser '
+                'analysis, which is switched off, so no cutoff will be '
+                'applied and the data will be scaled to their full '
+                'recorded resolution. Switch the Phaser analysis on, or '
+                'set an explicit resolution range.',
+                'aimless_pipe.container.controlParameters.AUTOCUTOFF',
+                CCP4ErrorHandling.SEVERITY_WARNING
+            )
+
         return filtered
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -122,6 +144,11 @@ class aimless_pipe(CPluginScript):
          return CPluginScript.FAILED
 
       self.fatalError = None
+
+      # Set by process_finish. This pipeline reports its verdict from deep
+      # inside a chain of ordinary calls, all of which return, so every
+      # caller up the chain has to know not to carry on afterwards.
+      self._pipelineFinished = False
 
       self.aimless1xml = None
       self.phaser_analysisxml = None
@@ -225,8 +252,14 @@ class aimless_pipe(CPluginScript):
       
         for self.aimlessruncount in aimlessruncount:
             self.process_aimless()
-
-        # Never returns here
+            if self._pipelineFinished:
+                # Finishing inside process_aimless unwinds to here rather
+                # than ending the job, so without this a first Aimless run
+                # that completed the pipeline -- because the data already
+                # reach the edge, or because they were declared hopeless --
+                # was followed by a second run of Aimless, phaser_analysis
+                # and ctruncate, whose results then replaced the first.
+                break
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def process_aimless(self):
@@ -293,14 +326,18 @@ class aimless_pipe(CPluginScript):
                     self.container.controlParameters,
                     ['RESOLUTION_RANGE'])  #  Input range if set
             else:
-                # 2nd or only run
+                # 2nd or only run. Copy the user's range first in either
+                # case: an estimated cutoff replaces the high-resolution
+                # end of it and nothing else. Setting .end alone on a
+                # container nobody had copied into silently dropped an
+                # explicit low-resolution limit, so asking for a resolution
+                # range and an automatic cutoff together lost the range.
+                self.aimless.container.controlParameters.copyData (\
+                  self.container.controlParameters,
+                  ['RESOLUTION_RANGE'])  #  Input range if set
                 if self.AUTOCUTOFF and self.highrescutoff > 0.0:
-                    # set 'RESOLUTION_RANGE' from 1st run
+                    # high-resolution limit estimated by the 1st run
                     self.aimless.container.controlParameters.RESOLUTION_RANGE.end.set(self.highrescutoff)
-                else:
-                    self.aimless.container.controlParameters.copyData (\
-                      self.container.controlParameters,
-                      ['RESOLUTION_RANGE'])  #  Input range if set
 
             print("**starting aimless")
             self.process_post_aimless(self.aimless.process())
@@ -352,8 +389,12 @@ class aimless_pipe(CPluginScript):
             if message is not None:
                 self.disastermessage = message
                 self.fatalError = [205, 'Very poor data', status]
-                # Exit pipeline!!!
+                # Exit pipeline. process_finish returns, so the return
+                # here is what stops it: without it the pipeline carried
+                # on into phaser_analysis and ctruncate with data it had
+                # just declared hopeless.
                 self.process_finish(CPluginScript.UNSATISFACTORY)
+                return
 
         if self.aimlessruncount == 2:
             # Final or only run, do phaser analysis
@@ -380,6 +421,12 @@ class aimless_pipe(CPluginScript):
                 self.cutoffdone = False
                 self.highrescutoff = -1.0  # flag that 2nd Aimless was not done
                 self.process_phaseranalysis()  # go directly to phaser_analysis
+                # process_phaseranalysis runs the whole rest of the pipeline
+                # and returns, so this return is what makes "no second run"
+                # mean it. Falling through overwrote both flags just set,
+                # and the second Aimless then applied a cutoff that this
+                # branch exists to say was not needed.
+                return
 
             # Get high resolution limit for 2nd run,
             # choose the best if > 1 datasets
@@ -443,6 +490,11 @@ class aimless_pipe(CPluginScript):
       self.collectedCtruncateEtree = lxml_etree.Element('CTRUNCATES')
       for file in self.aimless.container.outputData.MTZMERGEDOUT:
          self.process_ctruncate(file)
+         if self._pipelineFinished:
+             # A failed dataset finishes the pipeline in
+             # process_post_ctruncate, which returns, so without this the
+             # remaining datasets were converted after the job had reported.
+             break
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def process_ctruncate(self,infile):
@@ -534,6 +586,17 @@ class aimless_pipe(CPluginScript):
     def process_finish(self,status):
       import os
       import shutil
+
+      # Once only, as a backstop to the returns above. Every "exit the
+      # pipeline" in this file unwinds back into the loop that called it,
+      # so a second verdict would otherwise overwrite the first -- and,
+      # since gleaning rides on the status, replace the outputs of the work
+      # that should have ended the job with those of work that followed it.
+      if getattr(self, '_pipelineFinished', False):
+          print("process_finish called again with status", status,
+                "- ignored, the pipeline has already reported")
+          return
+      self._pipelineFinished = True
 
       print("process_finish", status)
       xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
