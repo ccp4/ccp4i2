@@ -31,11 +31,16 @@ _chem_comp_atom.type_symbol
 """
 
 
-def write_map(path, value=1.0):
+def write_map(path, value=1.0, spread=0.0):
+    """A tiny map; with ``spread``, a few points stand above the rest so the
+    map has a non-zero region with a spread, as an event map does."""
     import gemmi
     m = gemmi.Ccp4Map()
     m.grid = gemmi.FloatGrid(4, 4, 4)
     m.grid.fill(value)
+    if spread:
+        for k, v in enumerate((value + spread, value + 2 * spread, value - spread, value + 3 * spread)):
+            m.grid.set_value(k, 0, 0, v)
     m.grid.set_unit_cell(gemmi.UnitCell(10, 10, 10, 90, 90, 90))
     m.grid.spacegroup = gemmi.find_spacegroup_by_name('P1')
     m.update_ccp4_header()
@@ -110,7 +115,7 @@ def make_tree(root, datasets, *, events_table=True, staged_apo=True, ligand_code
             records[n] = record
             if options.get("event_map", True):
                 token = f"{round(1 - record['BDC'], 2):g}"
-                write_map(ddir / f"{dtag}-event_{n}_1-BDC_{token}_map.native.ccp4", 2.0)
+                write_map(ddir / f"{dtag}-event_{n}_1-BDC_{token}_map.native.ccp4", 2.0, spread=1.0)
             if "Build" in record and options.get("pose", True):
                 pose = ddir / "autobuild" / f"7_{n}_dict_0.pdb"
                 write_pdb(pose, tuple(record["Centroid"]), template=POSE_PDB)

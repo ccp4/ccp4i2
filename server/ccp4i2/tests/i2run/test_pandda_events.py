@@ -35,9 +35,31 @@ def test_complete_receipt_gleans_every_nested_file(tmp_path):
         assert db_job.status == models.Job.Status.FINISHED
         names = _param_names(db_job)
         assert names == sorted([
-            "XYZIN_APO", "ZMAP", "PANDDA_MODEL", "DICT",
-            "EVENTS[0].EVENT_MAP", "EVENTS[0].POSE", "EVENTS[1].EVENT_MAP",
+            "XYZIN_APO", "ZMAP", "PANDDA_MODEL", "DICT", "SCENE",
+            "EVENTS[0].EVENT_MAP", "EVENTS[0].POSE", "EVENTS[0].SCENE",
+            "EVENTS[1].EVENT_MAP", "EVENTS[1].SCENE",
         ]), names
+        # the scenes reference this job's own outputs and say where to look
+        import yaml
+        scene_row = models.File.objects.get(job=db_job, job_param_name="SCENE")
+        assert scene_row.type.name == "application/moorhen-scene"
+        overview = yaml.safe_load((job / "receipt.scene.yaml").read_text())
+        assert overview["version"] == 1
+        refs = {f["name"]: f for f in overview["files"]}
+        assert refs["apo"]["param"] == "XYZIN_APO" and refs["apo"]["job"] == int(db_job.number)
+        assert refs["apo"]["projectId"] == str(db_job.project.uuid)
+        assert refs["event1_map"]["param"] == "EVENTS[0].EVENT_MAP" and refs["event1_map"]["kind"] == "map"
+        maps = {m["name"]: m for m in overview["maps"]}
+        assert maps["Z-map"]["isDifference"] is True and maps["Z-map"]["contourLevel"] == 3.0
+        # both synthetic events score 0.3: the first is the focus
+        assert maps["Event 1 map"]["visible"] is True and maps["Event 2 map"]["visible"] is False
+        assert maps["Event 1 map"]["contourLevel"] == pytest.approx(
+            float(ET.parse(job / "params.xml").find(".//EVENTS/CPanddaEvent/DISPLAY_CONTOUR").text))
+        pose = next(e for e in overview["elements"] if e["file"] == "event1_pose")
+        assert pose["dictionaries"] == ["dict"]
+        assert overview["view"]["origin"] == [15.0, 40.0, 30.0]
+        event1 = yaml.safe_load((job / "event_1.scene.yaml").read_text())
+        assert [m["name"] for m in event1["maps"]] == ["Z-map", "Event 1 map"]
         dict_row = models.File.objects.get(job=db_job, job_param_name="DICT")
         assert dict_row.type.name == "application/refmac-dictionary"
         assert "MZ0" in dict_row.annotation
@@ -57,6 +79,7 @@ def test_complete_receipt_gleans_every_nested_file(tmp_path):
         assert " LIG " in (tree / "processed_datasets" / "xtal-0004" / "xtal-0004_event_1_best_autobuild.pdb").read_text()
         params = ET.parse(job / "params.xml")
         assert params.find(".//EVENTS/CPanddaEvent/LIGAND_ID").text == "MZ0"
+        assert float(params.find(".//EVENTS/CPanddaEvent/DISPLAY_CONTOUR").text) > 0
         kpis = {v.key.name: v.value for v in models.JobFloatValue.objects.select_related("key").filter(job=db_job)}
         assert kpis["nEventsExpected"] == 2 and kpis["nEventsDelivered"] == 2
         assert kpis["nPosesExpected"] == 1 and kpis["nPosesDelivered"] == 1
@@ -78,8 +101,9 @@ def test_short_receipt_is_unsatisfactory_and_still_gleans(tmp_path):
         names = _param_names(db_job)
         # what arrived is published: event 1 whole, event 2's pose, event 3's map
         assert names == sorted([
-            "XYZIN_APO", "ZMAP", "DICT",
-            "EVENTS[0].EVENT_MAP", "EVENTS[0].POSE", "EVENTS[1].POSE", "EVENTS[2].EVENT_MAP",
+            "XYZIN_APO", "ZMAP", "DICT", "SCENE",
+            "EVENTS[0].EVENT_MAP", "EVENTS[0].POSE", "EVENTS[0].SCENE",
+            "EVENTS[1].POSE", "EVENTS[1].SCENE", "EVENTS[2].EVENT_MAP", "EVENTS[2].SCENE",
         ]), names
         kpis = {v.key.name: v.value for v in models.JobFloatValue.objects.select_related("key").filter(job=db_job)}
         assert (kpis["nEventsExpected"], kpis["nEventsDelivered"]) == (3, 2)
@@ -98,7 +122,7 @@ def test_zero_event_dataset_is_a_clean_empty_receipt(tmp_path):
     with i2run(["pandda_events", "--PANDDA_OUT_DIR", str(tree), "--DTAG", "xtal-0000"]) as job:
         db_job = _job_row(job)
         assert db_job.status == models.Job.Status.FINISHED
-        assert _param_names(db_job) == ["DICT", "XYZIN_APO", "ZMAP"]
+        assert _param_names(db_job) == ["DICT", "SCENE", "XYZIN_APO", "ZMAP"]
         kpis = {v.key.name: v.value for v in models.JobFloatValue.objects.select_related("key").filter(job=db_job)}
         assert kpis["nEventsExpected"] == 0
 

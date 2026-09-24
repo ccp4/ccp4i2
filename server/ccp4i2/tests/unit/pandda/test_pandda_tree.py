@@ -7,7 +7,7 @@ pytest.importorskip("gemmi", reason="needs gemmi")
 pytest.importorskip("yaml", reason="needs PyYAML")
 
 from ccp4i2.wrappers.pandda_events.script.pandda_tree import (
-    DatasetNotFound, find_event_map, read_dataset, read_events_yaml, read_ligand_id)
+    DatasetNotFound, display_contour, find_event_map, read_dataset, read_events_yaml, read_ligand_id)
 from .synthetic_tree import event_record, make_tree, write_map
 
 
@@ -110,3 +110,20 @@ def test_ligand_id_is_the_component_pandda_was_given(tmp_path):
     assert read_ligand_id(ddir) == "5KX"
     none = make_tree(tmp_path / "none", {"xtal-0006": []}, ligand_code=None)
     assert read_dataset(none, "xtal-0006").ligand_id is None
+
+
+def test_display_contour_follows_the_maps_spread_and_is_capped_by_the_optimal(tree):
+    import gemmi
+    import numpy as np
+    ddir = tree / "processed_datasets" / "xtal-0004"
+    event_map = find_event_map(ddir, "xtal-0004", 1)
+    grid = np.array(gemmi.read_ccp4_map(str(event_map)).grid, copy=False)
+    spread = grid[grid != 0].std()
+    assert display_contour(event_map, None) == pytest.approx(1.5 * spread)
+    assert display_contour(event_map, 100.0) == pytest.approx(1.5 * spread), "a silly optimal does not raise it"
+    assert display_contour(event_map, 0.1) == pytest.approx(0.1), "a low optimal caps it"
+    flat = tmp = tree / "flat.map"
+    from .synthetic_tree import write_map
+    write_map(flat, 2.0)
+    assert display_contour(flat, 0.9) == 0.9, "no spread: the optimal, if any"
+    assert display_contour(flat, None) is None

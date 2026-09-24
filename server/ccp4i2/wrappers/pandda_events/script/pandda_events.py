@@ -30,7 +30,8 @@ from ccp4i2.core.CCP4XtalData import CMapDataFile
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
 from ccp4i2.wrappers.pandda_campaign.script.pandda_staging import link_or_copy
 
-from .pandda_tree import PANDDA_RESIDUE_NAME, DatasetNotFound, read_dataset
+from .pandda_tree import PANDDA_RESIDUE_NAME, DatasetNotFound, display_contour, read_dataset
+from . import pandda_scene
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -112,6 +113,7 @@ class pandda_events(CPluginScript):
                 f"PanDDA's merged model, ligand {ligand_id}: a machine opinion, not the model of record")
 
         best_score = None
+        scene_events = []
         for event in dataset.events:
             item = out.EVENTS.makeItem()
             item.EVENT_IDX.set(event.idx)
@@ -132,6 +134,10 @@ class pandda_events(CPluginScript):
                     best_score = (event.build.build_score if best_score is None
                                   else max(best_score, event.build.build_score))
             if event.event_map is not None:
+                level = display_contour(event.event_map,
+                                        event.build.optimal_contour if event.build else None)
+                if level is not None:
+                    item.DISPLAY_CONTOUR.set(round(level, 4))
                 dst = os.path.join(self.workDirectory, f'event_{event.idx}_map.map')
                 if self._copy(event.event_map, dst, spacegroup=spacegroup):
                     item.EVENT_MAP.setFullPath(dst)
@@ -150,6 +156,14 @@ class pandda_events(CPluginScript):
                         f'{" of " + ligand_id if ligand_id else ""} '
                         f'(build score {self._fmt(event.build.build_score if event.build else None)})')
             out.EVENTS.append(item)
+            scene_events.append({
+                "idx": event.idx, "position": len(scene_events), "centroid": event.centroid,
+                "score": event.score,
+                "display_contour": float(item.DISPLAY_CONTOUR) if item.DISPLAY_CONTOUR.isSet() else None,
+                "ligand_id": ligand_id, "has_map": item.EVENT_MAP.isSet(), "has_pose": item.POSE.isSet(),
+            })
+
+        self._write_scenes(dataset, scene_events, out)
 
         perf = out.PERFORMANCE
         perf.nEventsExpected.set(dataset.n_events)
@@ -180,6 +194,34 @@ class pandda_events(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     # -- helpers ------------------------------------------------------------
+
+    def _write_scenes(self, dataset, scene_events, out):
+        """One scene per event and one for the receipt, as outputs. The
+        references are this job's number and parameter names, which the
+        viewer resolves within the project."""
+        job_number = self.get_db_job_number() if hasattr(self, 'get_db_job_number') else None
+        project_id = getattr(self, '_dbProjectId', None)
+        if not job_number or not project_id:
+            return
+        project_id = str(project_id)
+        kw = dict(apo=out.XYZIN_APO.isSet(), zmap=out.ZMAP.isSet(), dictionary=out.DICT.isSet())
+        try:
+            for event, item in zip(scene_events, out.EVENTS):
+                if not (event["has_map"] or event["has_pose"]):
+                    continue
+                path = os.path.join(self.workDirectory, f'event_{event["idx"]}.scene.yaml')
+                with open(path, 'w') as handle:
+                    handle.write(pandda_scene.dump(pandda_scene.event_scene(
+                        dataset.dtag, job_number, project_id, event, **kw)))
+                item.SCENE.setFullPath(path)
+                item.SCENE.annotation.set(f'{dataset.dtag} event {event["idx"]}: scene')
+            path = os.path.join(self.workDirectory, 'receipt.scene.yaml')
+            with open(path, 'w') as handle:
+                handle.write(pandda_scene.dump(pandda_scene.overview_scene(
+                    dataset.dtag, job_number, project_id, scene_events, **kw)))
+            out.SCENE.setFullPath(path)
+        except OSError as e:
+            self.appendErrorReport(203, f'scene: {e}', stack=False)
 
     def _take(self, src, target, rename=None, spacegroup=None):
         """Copy ``src`` (if it exists) to the path ``checkOutputData`` gave

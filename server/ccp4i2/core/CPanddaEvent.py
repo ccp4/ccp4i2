@@ -31,8 +31,8 @@ class CPanddaEvent(CData):
     class Meta:
         contents_order = [
             'EVENT_IDX', 'SITE_IDX', 'BDC', 'SCORE', 'BUILD_SCORE', 'RSCC',
-            'HIT_PROBABILITY', 'OPTIMAL_CONTOUR', 'CENTROID', 'LIGAND_ID',
-            'EVENT_MAP', 'POSE',
+            'HIT_PROBABILITY', 'OPTIMAL_CONTOUR', 'DISPLAY_CONTOUR', 'CENTROID', 'LIGAND_ID',
+            'EVENT_MAP', 'POSE', 'SCENE',
         ]
         qualifiers = {"allowUndefined": True}
 
@@ -60,6 +60,11 @@ class CPanddaEvent(CData):
     OPTIMAL_CONTOUR = content(
         "CFloat", guiLabel='Optimal contour',
         toolTip='Contour level PanDDA chose for the pose, in absolute map units (not sigma)')
+    DISPLAY_CONTOUR = content(
+        "CFloat", guiLabel='Display contour',
+        toolTip="Where to open the event map, in absolute map units: 1.5 times the spread of the "
+                "map over its non-zero region, capped by the optimal contour. The optimal contour is "
+                "where the build scored best and on a poorly characterised run can sit above the map's peak")
     CENTROID = content(
         "CXyz", guiLabel='Centroid',
         toolTip='Centroid of the event density, in orthogonal Angstroms')
@@ -73,6 +78,10 @@ class CPanddaEvent(CData):
     POSE = content(
         "CPdbDataFile", guiLabel='Candidate pose',
         toolTip='Autobuilt ligand pose: a candidate to be judged, not the model of record')
+    SCENE = content(
+        "CMoorhenSceneDataFile", guiLabel='Scene',
+        toolTip='A Moorhen scene of this event: apo model, Z-map at z=3, the event map at its '
+                'display contour, the pose with its dictionary, centred on the event')
 
     def has_build(self):
         return self.BUILD_SCORE.isSet() or self.POSE.isSet()

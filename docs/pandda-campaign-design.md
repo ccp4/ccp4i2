@@ -1034,8 +1034,24 @@ Two findings mean the format is ready:
   (§7.3). The division belongs in the recipe — once, next to the task that
   knows where the number came from — not in each consumer.
 
-**Shape: a callable registered in the `Task` dataclass alongside
-`reportPath`.** A recipe is a producer, not a document: contour, centre and
+**Landed differently, 2026-09-24: scenes are outputs, not callables.** The
+receipt writes one scene per event (`EVENTS[i].SCENE`) and an overview
+(`SCENE`) as typed `CMoorhenSceneDataFile` outputs, gleaned like any file,
+referencing its own outputs by job number and parameter; the Moorhen job
+view applies a job's `SCENE` output when it has one and infers only for
+jobs that wrote none (Martin's rule: honour, don't infer). The contour unit
+question resolved itself on reading the resolver: the scene's `contourLevel`
+is passed straight into Moorhen's store, which is **absolute**; the
+grammar's "rmsd-relative" annotation was wrong and is corrected. So no
+conversion belongs anywhere: the Z-map reads at 3.0 and an event map at the
+`DISPLAY_CONTOUR` the receipt records (1.5 times the map's non-zero spread,
+capped by the optimal contour, which on a poorly characterised run can sit
+above the map's peak). The overview opens on the highest-scoring event with
+the other event maps hidden; the v2 triage view walks events across
+datasets.
+
+**Original shape considered: a callable registered in the `Task` dataclass
+alongside `reportPath`.** A recipe is a producer, not a document: contour, centre and
 transform are functions of *this* job's event. It is the deterministic sibling
 of `buildAuthoringPrompt`, and should share its vocabulary. This generalises
 past PanDDA — any task with a defensible "here is what you should be looking

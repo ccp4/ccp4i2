@@ -174,6 +174,37 @@ def read_events_table(tree_root: Path) -> Dict[tuple, dict]:
     return rows
 
 
+#: Multiple of an event map's non-zero spread at which to open it.
+DISPLAY_SIGMA = 1.5
+
+
+def display_contour(event_map: Path, optimal: Optional[float]) -> Optional[float]:
+    """A level to open an event map at, in absolute map units.
+
+    An event map is a box that is flat zero outside the event, so its
+    whole-box rmsd is meaningless (Reinspect found ~0.13 for BAZ2B and a
+    sigma slider pinned at the rail). The spread over the non-zero region is
+    the map's own scale; 1.5 of it shows the event without the noise. The
+    optimal contour caps it (a build that scored best low is a low event)
+    but never raises it: on a poorly characterised run it can sit above the
+    map's peak.
+    """
+    try:
+        import gemmi
+        import numpy as np
+        grid = np.array(gemmi.read_ccp4_map(str(event_map)).grid, copy=False)
+        nonzero = grid[grid != 0]
+        spread = float(nonzero.std()) if nonzero.size > 1 else 0.0
+    except Exception:      # noqa: BLE001 - no level is better than a crash
+        return optimal
+    level = DISPLAY_SIGMA * spread if spread > 0 else None
+    if level is None:
+        return optimal
+    if optimal is not None and optimal > 0:
+        level = min(level, optimal)
+    return level
+
+
 def find_event_map(dataset_dir: Path, dtag: str, idx: int) -> Optional[Path]:
     """The event map for ``idx``, matched on the index and never on the BDC
     token in the name."""
