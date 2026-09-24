@@ -1230,6 +1230,17 @@ client elements). §14.0 is PR #608 and §14.4 is PR #610, both against
   session.
 - **Fan-out runs receipts synchronously** through `run_job_context_aware`
   (`--no-run` creates them pending). On Azure that queues them.
+- **Fan-in is v1 after all, as plugin methods.** Filling `DATASETS` from
+  the campaign turned out to be the difference between a screenshot and a
+  runnable job, so it landed with v1: `campaignCandidates()` and
+  `fillDatasetsFromCampaign()` on the plugin, reached through the generic
+  `object_method` endpoint (no PanDDA-specific route; Martin's call,
+  2026-09-24), with the database reading in `lib/utils/jobs/pandda_fanin.py`.
+  `CPanddaDataset` carries `PROJECT_UUID` and `SOURCE_JOB_UUID` explicitly,
+  because the files are imported into the orchestrator's project when the
+  job runs and would otherwise stamp the parent's uuid into the manifest.
+  v2 item 12 is therefore only the campaign-page affordance that creates
+  the job and calls the fill.
 
 Also found on the way: the gleaner stored only `float` KPIs, so every `CInt`
 KPI in the tree was silently dropped (fixed in 0c0db80fb); imported input
