@@ -57,7 +57,7 @@ def test_complete_receipt_gleans_every_nested_file(tmp_path):
             float(ET.parse(job / "params.xml").find(".//EVENTS/CPanddaEvent/DISPLAY_CONTOUR").text))
         pose = next(e for e in overview["elements"] if e["file"] == "event1_pose")
         assert pose["dictionaries"] == ["dict"]
-        assert overview["view"]["origin"] == [15.0, 40.0, 30.0]
+        assert overview["view"]["origin"] == [-15.0, -40.0, -30.0], "Moorhen's origin: minus the centroid"
         event1 = yaml.safe_load((job / "event_1.scene.yaml").read_text())
         assert [m["name"] for m in event1["maps"]] == ["Z-map", "Event 1 map"]
         dict_row = models.File.objects.get(job=db_job, job_param_name="DICT")

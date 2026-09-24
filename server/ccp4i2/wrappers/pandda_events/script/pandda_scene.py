@@ -63,10 +63,19 @@ def _add_event(scene: Dict, event: Dict, job_number: str, project_id: str, *, di
         scene["elements"].append(element)
 
 
+def view_origin(point) -> List[float]:
+    """Moorhen's ``view.origin`` for a real-space point: the NEGATIVE of the
+    coordinates. Moorhen's origin is the translation that brings a point to
+    screen centre, not the point; hand it the point itself and the camera
+    goes to its reflection through the molecule origin (lib/campaign_scene.py
+    records the same trap on CampaignSite.origin)."""
+    return [-float(c) for c in point]
+
+
 def _look_at(scene: Dict, event: Dict) -> None:
     centroid = event.get("centroid")
     if centroid is not None:
-        scene["view"] = {"origin": [float(c) for c in centroid], "zoom": EVENT_ZOOM}
+        scene["view"] = {"origin": view_origin(centroid), "zoom": EVENT_ZOOM}
     if event.get("has_map"):
         scene["activeMap"] = f"Event {event['idx']} map"
 

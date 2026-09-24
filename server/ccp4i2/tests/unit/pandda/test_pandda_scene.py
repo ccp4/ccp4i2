@@ -45,7 +45,8 @@ def test_scene_says_what_the_receipt_knows():
     assert maps["Z-map"]["contourLevel"] == 3.0 and maps["Z-map"]["isDifference"] is True
     assert maps["Event 1 map"]["contourLevel"] == 0.42
     assert scene["activeMap"] == "Event 1 map"
-    assert scene["view"] == {"origin": [15.0, 40.0, 30.0], "zoom": pandda_scene.EVENT_ZOOM}
+    # Moorhen's origin is the negation of the point looked at
+    assert scene["view"] == {"origin": [-15.0, -40.0, -30.0], "zoom": pandda_scene.EVENT_ZOOM}
     pose = next(e for e in scene["elements"] if e["file"] == "event1_pose")
     assert pose["dictionaries"] == ["dict"]
     assert all(f["job"] == 2 and f["projectId"] == "uuid" for f in scene["files"])
@@ -63,7 +64,7 @@ def test_the_overview_opens_on_the_best_scored_event():
     scene = pandda_scene.overview_scene("x", "3", "u", [EVENT, EVENT2], apo=True, zmap=True, dictionary=True)
     maps = {m["name"]: m for m in scene["maps"]}
     assert maps["Event 2 map"]["visible"] is True and maps["Event 1 map"]["visible"] is False
-    assert scene["view"]["origin"] == [1.0, 2.0, 3.0] and scene["activeMap"] == "Event 2 map"
+    assert scene["view"]["origin"] == [-1.0, -2.0, -3.0] and scene["activeMap"] == "Event 2 map"
     assert pandda_scene.focus_event([]) is None
     unscored = [dict(EVENT, score=None), dict(EVENT2, score=None)]
     assert pandda_scene.focus_event(unscored)["idx"] == 1
