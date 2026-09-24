@@ -15,7 +15,9 @@ exists elsewhere (§5). So this design does two things at once: implement the
 local run, and place the seams so that the same staged inputs and the same
 results-landing work unchanged when the run happens somewhere bigger. It does
 not implement the big-compute path, and does not make local execution
-subordinate to it.
+subordinate to it. Done right, the receipts it lands are what the campaign
+views review — and a separate review application stops being necessary
+(§5.6).
 
 ---
 
@@ -431,20 +433,21 @@ job rather than an endpoint side effect.
 | Fan-in + staging | CCP4i2 | Always local |
 | The run | a runner | Local (implemented here) **or** elsewhere (exists already) |
 | Fan-out into member projects | CCP4i2 | Always local |
-| Triage model / review UX | Reinspect, where deployed | Elsewhere |
+| Triage and review | The campaign Moorhen views, consuming receipts (v2, §5.6); Reinspect where it is already deployed, until then | Wherever the projects are |
 
 CCP4i2 owns the ends because they are database work about *its* projects.
 CCP4i2 does not own the middle in every deployment, and should not try to: it
 would mean reimplementing the Batch SDK, the sizing catalogue and the failure
 taxonomy that already exist and are already maintained.
 
-### 5.3 The two consumers do not conflict
+### 5.3 The two consumers do not conflict — and one of them is transitional
 
 Reinspect's ingest and CCP4i2's fan-out read the same `pandda2_out/` tree and
 build different things — a cross-dataset triage model, and per-crystal receipts
 in per-crystal projects. Neither writes into the tree. A deployment that has
-both gets both; a desktop has only the second. This is worth stating explicitly
-so it does not become a turf question later.
+both gets both; a desktop has only the second.
+
+But this is a transitional state, not a division of labour. §5.6 says why.
 
 ### 5.4 What "preempting" costs us here: two requirements, no code
 
@@ -493,6 +496,50 @@ tree is neither. External-run mode finishes a session by recording *where the
 tree is* — a path the receipt reader and fan-out then consume exactly as they
 would a locally produced one (§8.4). So the new code is the finish-with-a-path
 step and its validation, on top of a lifecycle that already has tests.
+
+### 5.6 Done right, the receipts make a separate review application unnecessary
+
+Reinspect exists because PanDDA's output tree was not first-class data
+anywhere: it had to be ingested into a relational model, served through a
+`DataStore` seam, reviewed in a bespoke Moorhen client, and its poses refined
+through a hand-built job service that shells out to refmac. Every one of those
+is something CCP4i2 already has natively, once the output tree becomes
+receipts:
+
+| Reinspect built | CCP4i2 has |
+|---|---|
+| Ingest into `Dataset`/`Event`/`Artifact` rows | Fan-out into typed receipts, gleaned to `File` rows (§7, §8) |
+| `Finding` vs `Observation`, moved-peak guard | `SiteEvaluation` vs receipt events, §9 |
+| Artifact serving via `source_root` | Ordinary job-file serving |
+| Merge pose onto apo | "Place the ligand here", generalised to *accept this pose* |
+| Per-event refinement via `jobservice` | `SubstituteLigand` / `servalcat_pipe`, with dictionaries, provenance and export already correct |
+| Decision persistence | `SiteEvaluation`, backed by the snapshot once §14.0 lands |
+
+So the strategic shape is: **the campaign Moorhen views expand to consume the
+receipts**, and Reinspect's review role is absorbed. Its *findings* — the
+`events.yaml` shape, the BDC token, absolute contour units, the apo start
+model, unstable event ordinals — are already lifted into this document. Its
+*code* does not need to survive.
+
+Two honest limits on that claim:
+
+- **The cross-dataset triage queue is new.** The campaign views today are
+  per-dataset. "Every event across 200 datasets, ranked, step through them
+  fast" is the view Reinspect is actually *for*, and it is exactly the query
+  §10.2's `CampaignEvent` projection exists to answer. That deferral therefore
+  flips: **`CampaignEvent` is v2-essential, not optional** (§10.2, §14.3).
+- **Batch submission is the one Reinspect function that does not fold into
+  "views consume receipts".** Where a deployment runs PanDDA on Azure Batch,
+  *something* submits; today that is Reinspect's `AzureBatchRunner`. It is a
+  small piece — a couple of hundred lines of SDK — and the natural home for it
+  is a runner behind the orchestrator (§5.4's seam), but that is Materia's
+  deployment to decide and is not in this document's scope.
+
+Sequencing matters for how this is said to Materia: v1 lands receipts; v2
+lands the triage view over `CampaignEvent` and *accept-this-pose*. At that
+point Reinspect's review UX is redundant for any deployment running CCP4i2's
+campaign views, and the earlier question of "who owns the human verdict" is
+answered in the best way — there is one store.
 
 ---
 
@@ -892,7 +939,7 @@ association*, and recovery would have to decide which wins when they disagree.
 The association being structural — the `CDataFile` sits inside the event record
 — is what stops that question arising.
 
-### 10.2 `CampaignEvent` is a projection, not a source of truth — **OPEN**
+### 10.2 `CampaignEvent` is a projection, not a source of truth — **v2, decided**
 
 Campaign-wide questions ("every dataset with an unbuilt event above 0.5 at site
 3") cannot be answered from `params.xml`, and KPIs are per-job, not per-event.
@@ -903,8 +950,11 @@ Under the doctrine it is explicitly a **cache**: every field is derivable from
 finished receipts' `params.xml`. So it ships with a rebuild command, which
 doubles as the post-restore re-glean path.
 
-**OPEN:** v1 or later. For later: nothing yet queries it. For now: the rebuild
-command is the same work either way.
+**Decided: v2, and essential there.** It was going to be deferred on the
+grounds that nothing queried it. §5.6 names the thing that does: the
+cross-dataset triage queue that lets the campaign views replace a separate
+review application. Still not v1 — v1 has no schema footprint — but it is the
+first thing v2 builds, not the last.
 
 ### 10.3 A typed event-set `CDataFile` — **OPEN, default no**
 
@@ -1035,15 +1085,17 @@ rather than an accident.
     proves the shape before anything is built on it (§14.1).
 20. The campaign-persistence defect (§10.4) is **its own PR, ahead of this
     work** (§14.0) — it is a live defect, not a work package of this feature.
+21. **The campaign Moorhen views are the review application** (§5.6).
+    `CampaignEvent` is v2-essential because the triage queue needs it;
+    Reinspect's review role is absorbed once v2 lands, and only Batch
+    submission remains a separate question, for Materia.
 
 **Open:**
 
-1. `CampaignEvent` projection in v1, or deferred (§10.2). *Leaning defer —
-   nothing queries it.*
-2. Registration shape for scene recipes in `TASKS` (§11).
-3. Typed event-set `CDataFile` — default no, revisit when a consumer task is
+1. Registration shape for scene recipes in `TASKS` (§11).
+2. Typed event-set `CDataFile` — default no, revisit when a consumer task is
    named (§10.3).
-4. Campaign snapshot split — recommendation in §10.4 needs sign-off before
+3. Campaign snapshot split — recommendation in §10.4 needs sign-off before
    §14.0 is written.
 6. **What we tell a user whose job will not fit.** §4.7 removes the dictionary
    problem and §6.4 gives the estimate, so the remaining question is what the
@@ -1135,9 +1187,10 @@ whose tooling scripts that endpoint.
 | # | Work | Gated on |
 |---|---|---|
 | 8 | Site matching: PanDDA sites → `CampaignSite` by centroid with the moved-peak guard (§9); events gain a site reference | §14.0 |
-| 9 | Fan-in as a campaign-aware endpoint; `pandda_fanout` gains an API wrapper (the command remains the implementation) | — |
-| 10 | Scene recipes (§11) | — |
-| 11 | `CampaignEvent` projection + rebuild command (§10.2) | §14.0, item 8 |
+| 9 | `CampaignEvent` projection + rebuild command (§10.2) | §14.0, item 8 |
+| 10 | **Campaign triage view**: every event across the campaign, ranked, stepped through in the existing campaign Moorhen page; *accept this pose* as the generalisation of place-ligand (§5.6) | items 9, 11 |
+| 11 | Scene recipes (§11) — the triage view's per-event scene is the first consumer | — |
+| 12 | Fan-in as a campaign-aware endpoint; `pandda_fanout` gains an API wrapper (the command remains the implementation) | — |
 
 ### 14.4 Unrelated, whenever convenient
 
@@ -1262,7 +1315,7 @@ v1 item 2, so the suite does not depend on an external volume being mounted.
   works, which is §5.4's second requirement as an executable assertion.
 - **§14.0:** destroy-and-restore round trip; verdicts survive. The test that
   proves the doctrine holds, and it does not exist today for campaigns.
-- **v2 item 10:** a recipe's emitted contour for a known absolute `Optimal
+- **v2 item 11:** a recipe's emitted contour for a known absolute `Optimal
   Contour` and map rmsd equals the expected σ value. One assertion, pinning a
   unit conversion that has already cost debugging time once.
 
