@@ -10,7 +10,11 @@ import { assessPython } from "./ccp4i2-python-suitability";
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
 import { getProjectRoot } from "./ccp4i2-master";
-import { loadPreferences, updatePreferences } from "./ccp4i2-preferences";
+import {
+  loadPreferences,
+  projectsDir,
+  updatePreferences,
+} from "./ccp4i2-preferences";
 import {
   CCP4I2_REQUIRED_SERVER_VERSION,
   meetsServerVersionRequirement,
@@ -214,7 +218,7 @@ export const installIpcHandlers = (
     // Overlay the shared keys so the GUI reflects what the server/CLI will use
     // (including values set via the file or a future `i2 preferences set`).
     config.CCP4Dir = CCP4Dir;
-    if (filePrefs.projectsDir) config.CCP4I2_PROJECTS_DIR = filePrefs.projectsDir;
+    config.CCP4I2_PROJECTS_DIR = projectsDir();
     // The exact backend version this build is pinned to, so the launch page can
     // show what it EXPECTS alongside what's installed — making a mismatch (e.g.
     // an installed 3.1.0a1 under a 3.1.0a3 app) obvious rather than silent.
@@ -229,6 +233,17 @@ export const installIpcHandlers = (
       status: "Success",
       config,
     };
+  };
+
+  // Pushes the current config to every open window, not just the one that
+  // triggered a change — a second window left showing an already-mounted New
+  // Project or Config page would otherwise keep displaying the old default
+  // until its own get-config happened to be asked again.
+  const broadcastConfigToAllWindows = () => {
+    const payload = getConfigResponse();
+    BrowserWindow.getAllWindows().forEach((win) => {
+      win.webContents.send("message-from-main", payload);
+    });
   };
 
   const getCwdResponse = () => {
@@ -388,15 +403,14 @@ export const installIpcHandlers = (
       .then((result) => {
         if (!result.canceled) {
           console.log("Selected directory:", result.filePaths);
-          const projectsDir = result.filePaths[0];
-          store.set("CCP4I2_PROJECTS_DIR", projectsDir);
+          const chosen = result.filePaths[0];
           // Only the projects directory. The database is NOT written here any
           // more: pairing the two meant that changing where projects live also
           // changed which database was open, so a user who pointed CCP4i2 at a
           // new folder was quietly given an empty one and concluded their work
           // had gone. One database, in the CCP4i2 home, as Qt-era CCP4i2 had.
-          updatePreferences({ projectsDir });
-          event.reply("message-from-main", getConfigResponse());
+          updatePreferences({ projectsDir: chosen });
+          broadcastConfigToAllWindows();
         }
       });
   });
@@ -414,7 +428,7 @@ export const installIpcHandlers = (
       djangoServerPort,
       nextServerPort,
       isDev,
-      filePrefs.projectsDir || store.get("CCP4I2_PROJECTS_DIR")
+      projectsDir()
     );
     setDjangoServer(djangoServer);
     event.reply("message-from-main", {

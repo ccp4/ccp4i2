@@ -23,40 +23,46 @@ class TestCDataUtilities:
         pass
 
     def test_extract_file_metadata(self):
-        """Test extracting metadata from a file object"""
+        """extract_file_metadata is a legacy shim over to_metadata_dict().
+
+        It renames the core metadata keys (baseName -> base_name, subType ->
+        sub_type, ...) for callers predating CDataFile.to_metadata_dict(),
+        and that renaming is what is worth asserting.
+
+        This drove a bare ``Mock()`` until the function was reduced to a
+        wrapper: it now calls ``to_metadata_dict()`` and does
+        ``'baseName' in`` the result, which a Mock is not. A Mock could not
+        have satisfied it in any case, because get_file_type_from_class maps
+        from the class *name* -- hence the deliberately named fake below.
+        """
         from ccp4i2.lib.cdata_utils import extract_file_metadata
 
-        # Create mock file object
-        mock_file = Mock()
-        mock_file.name = "HKLOUT"
-        mock_file.object_path.return_value = "outputData.HKLOUT"
+        class CMtzDataFile:  # the name selects the MIME type
+            def to_metadata_dict(self):
+                return {
+                    'exists': True,
+                    'baseName': 'HKLOUT.mtz',
+                    'subType': 1,
+                    'contentFlag': 123,
+                }
 
-        # Mock metadata
-        mock_file.get_merged_metadata.return_value = {
-            'mimeTypeName': 'application/CCP4-mtz',
-            'guiLabel': 'Output MTZ file',
-            'toolTip': 'Reflection data output',
-        }
+            def objectName(self):
+                return 'HKLOUT'
 
-        # Mock attributes
-        mock_file.isSet.return_value = True
-        mock_file.exists.return_value = True
+            def object_path(self):
+                return 'outputData.HKLOUT'
 
-        # Mock optional attributes
-        mock_subtype = Mock()
-        mock_subtype.isSet.return_value = True
-        mock_subtype.value = 1
-        mock_file.subType = mock_subtype
+            def get_qualifier(self, key, default=''):
+                return {
+                    'guiLabel': 'Output MTZ file',
+                    'toolTip': 'Reflection data output',
+                }.get(key, default)
 
-        mock_content = Mock()
-        mock_content.isSet.return_value = True
-        mock_content.value = 123
-        mock_file.contentFlag = mock_content
+            def isSet(self):
+                return True
 
-        # Extract metadata
-        metadata = extract_file_metadata(mock_file)
+        metadata = extract_file_metadata(CMtzDataFile())
 
-        # Verify
         assert metadata['name'] == 'HKLOUT'
         assert metadata['file_type'] == 'application/CCP4-mtz'
         assert metadata['gui_label'] == 'Output MTZ file'
@@ -64,6 +70,7 @@ class TestCDataUtilities:
         assert metadata['content_flag'] == 123
         assert metadata['is_set'] is True
         assert metadata['exists'] is True
+        assert metadata['base_name'] == 'HKLOUT.mtz'
 
     def test_extract_parameter_name(self):
         """Test parameter name extraction"""
@@ -138,77 +145,6 @@ class TestAsyncDatabaseHandler:
         #     await plugin.execute()
 
 
-class TestComparisonLegacyVsModern:
-    """
-    Tests that compare legacy vs. modern approaches.
-
-    These document the improvements and ensure compatibility.
-    """
-
-    def test_metadata_access_patterns(self):
-        """Document the difference in metadata access"""
-
-        # Legacy approach (current glean_job_files.py)
-        def legacy_extract_metadata(item):
-            """Old way: fragile, lots of error handling"""
-            file_type = item.qualifiers("mimeTypeName")  # String access
-            sub_type = getattr(item, "subType", None)  # getattr fallback
-
-            try:
-                sub_type = int(sub_type)  # Manual conversion
-            except (AttributeError, TypeError):
-                sub_type = None
-
-            content = getattr(item, "contentFlag", None)
-            try:
-                content = int(content)
-            except (AttributeError, TypeError):
-                content = None
-
-            return {
-                'file_type': file_type,
-                'sub_type': sub_type,
-                'content': content,
-            }
-
-        # Modern approach (new cdata_utils.py)
-        def modern_extract_metadata(item):
-            """New way: type-safe, clean"""
-            from ccp4i2.lib.cdata_utils import extract_file_metadata
-            return extract_file_metadata(item)
-
-        # Create mock for comparison
-        mock_item = Mock()
-        mock_item.name = "HKLOUT"
-        mock_item.object_path.return_value = "outputData.HKLOUT"
-        mock_item.get_merged_metadata.return_value = {
-            'mimeTypeName': 'application/CCP4-mtz',
-            'guiLabel': 'Output file',
-        }
-        mock_item.isSet.return_value = True
-        mock_item.exists.return_value = True
-
-        # Add sub_type with proper structure
-        mock_subtype = Mock()
-        mock_subtype.isSet.return_value = True
-        mock_subtype.value = 1
-        mock_item.subType = mock_subtype
-
-        # For legacy approach, also add qualifiers method
-        mock_item.qualifiers = lambda key: 'application/CCP4-mtz' if key == 'mimeTypeName' else None
-
-        # Test both approaches
-        legacy_result = legacy_extract_metadata(mock_item)
-        modern_result = modern_extract_metadata(mock_item)
-
-        # Modern approach provides much more information
-        assert 'file_type' in legacy_result
-        assert 'file_type' in modern_result
-        assert 'name' in modern_result  # Additional info
-        assert 'gui_label' in modern_result  # Additional info
-        assert 'is_set' in modern_result  # Additional info
-
-
 class TestRealWorldScenarios:
     """Test real-world usage scenarios (with mocks)."""
 
@@ -267,59 +203,6 @@ class TestRealWorldScenarios:
 
 class TestPerformanceImprovements:
     """Tests documenting performance improvements."""
-
-    def test_no_redundant_type_conversions(self):
-        """Modern approach avoids redundant type conversions"""
-
-        # Legacy: Multiple try/except blocks for type conversion
-        legacy_conversions = 0
-
-        def legacy_process(item):
-            nonlocal legacy_conversions
-
-            sub_type = getattr(item, "subType", None)
-            try:
-                sub_type = int(sub_type)
-                legacy_conversions += 1
-            except (AttributeError, TypeError):
-                pass
-
-            content = getattr(item, "contentFlag", None)
-            try:
-                content = int(content)
-                legacy_conversions += 1
-            except (AttributeError, TypeError):
-                pass
-
-        # Modern: Type information known from metadata
-        modern_conversions = 0
-
-        def modern_process(item):
-            nonlocal modern_conversions
-
-            attributes = item.get_merged_metadata('attributes')
-            if 'subType' in attributes and hasattr(item, 'subType'):
-                if item.subType.isSet():
-                    # .value already returns the correct type
-                    sub_type = item.subType.value
-                    # No conversion needed!
-
-        # Create mock with both approaches
-        mock_item = Mock()
-        mock_item.get_merged_metadata.return_value = {'subType': int}
-
-        mock_subtype = Mock()
-        mock_subtype.isSet.return_value = True
-        mock_subtype.value = 1
-        mock_item.subType = mock_subtype
-
-        # Test
-        legacy_process(mock_item)
-        modern_process(mock_item)
-
-        # Modern approach has fewer type conversions
-        assert legacy_conversions > 0
-        assert modern_conversions == 0  # No manual conversions!
 
     def test_async_prevents_blocking(self):
         """Async operations don't block the event loop"""

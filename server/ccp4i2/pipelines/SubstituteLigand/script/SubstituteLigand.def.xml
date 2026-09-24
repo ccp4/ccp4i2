@@ -93,7 +93,15 @@
                     <onlyEnumerators>True</onlyEnumerators>
                     <enumerators>PHASER_RNP,DIMPLE</enumerators>
                     <menuText>Phaser RNP pipeline,Dimple</menuText>
-                    <default>PHASER_RNP</default>
+                    <!-- Dimple by default: the common case is a ligand
+                         soaked into a known, isomorphous crystal, which is
+                         what dimple is for. Phaser RNP solves a placement
+                         problem most of those jobs do not have, and is the
+                         less exercised of the two routes. Its own i2run test
+                         records that until that test was written the Phaser
+                         route had no coverage at all, where Dimple has two
+                         i2run tests, an e2e API test and a report fixture. -->
+                    <default>DIMPLE</default>
                 </qualifiers>
             </content>
             <content id="DICTIN">
@@ -197,6 +205,14 @@
                 <className>CFloatRange</className>
                 <qualifiers>
                     <toolTip>Set resolution range (or just high resolution) to cut data for all steps</toolTip>
+                </qualifiers>
+            </content>
+            <content id="OVERRIDE_CELL_DIFFERENCE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>Extend the input FreeR set even if its cell differs from the data</guiLabel>
+                    <toolTip>When a FreeR set is supplied with unmerged data, the merging step only extends it if the two cells agree to within 1 A (Clipper's test). A FreeR set shared across a fragment campaign comes from another crystal, so tick this to extend it regardless of the cell difference.</toolTip>
                 </qualifiers>
             </content>
         </container>

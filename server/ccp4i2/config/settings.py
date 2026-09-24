@@ -234,18 +234,7 @@ else:
 
 TIME_ZONE = "UTC"
 USE_TZ = True
-CCP4I2_PROJECTS_DIR = Path(
-    _preferences.resolve(
-        "projectsDir",
-        env="CCP4I2_PROJECTS_DIR",
-        # <home>/projects, or an adopted pre-a27 CCP4X_PROJECTS. Shared with
-        # the Electron side so the two cannot drift (they used to: the desktop
-        # app defaulted to ~/.ccp4i2/CCP4X_PROJECTS while this said
-        # ~/.ccp4i2-django/CCP4X_PROJECTS, which is why testers saw both).
-        default=str(_preferences.default_projects_dir()),
-        prefs=_PREFS,
-    )
-)
+CCP4I2_PROJECTS_DIR = _preferences.projects_dir(prefs=_PREFS)
 CCP4I2_PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
 
 # In-place migration of a legacy (Qt) CCP4i2 installation is OFF during the
@@ -264,6 +253,40 @@ CCP4I2_PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
 CCP4I2_ALLOW_INPLACE_MIGRATION = os.environ.get(
     "CCP4I2_ALLOW_INPLACE_MIGRATION", ""
 ).lower() in ("1", "true", "yes", "on")
+
+
+# ---------------------------------------------------------------------------
+# Staged import for web deployments
+# ---------------------------------------------------------------------------
+# CCP4I2_IMPORT_STAGING_DIR (read in upload_param) enables cloud import-by-handle:
+# a browser delivers a large file into the staging directory in chunks that stay
+# under every body cap, then imports it by an owner-bound handle. These tune the
+# transport; all have safe defaults, and none has any effect until the staging
+# directory is set.
+def _int_env(name, default):
+    try:
+        return int(os.environ.get(name, default))
+    except (TypeError, ValueError):
+        return default
+
+
+# Chunk size the client sends. Must stay under the smallest body cap in the
+# deployment (Next middlewareClientMaxBodySize, Django DATA_UPLOAD_MAX_MEMORY_SIZE).
+CCP4I2_IMPORT_STAGING_CHUNK_BYTES = _int_env(
+    "CCP4I2_IMPORT_STAGING_CHUNK_BYTES", 16 * 1024 * 1024)
+# Largest single staged file.
+CCP4I2_IMPORT_STAGING_MAX_BYTES = _int_env(
+    "CCP4I2_IMPORT_STAGING_MAX_BYTES", 2 * 1024 * 1024 * 1024)
+# Sweeper horizon: staging/ready rows older than this are reaped.
+CCP4I2_IMPORT_STAGING_TTL_HOURS = _int_env(
+    "CCP4I2_IMPORT_STAGING_TTL_HOURS", 24)
+# Below this the client sends the bytes directly, as before.
+CCP4I2_IMPORT_STAGING_THRESHOLD_BYTES = _int_env(
+    "CCP4I2_IMPORT_STAGING_THRESHOLD_BYTES", 32 * 1024 * 1024)
+# Per-owner cap on uploads still in the staging state (disk/DoS bound).
+CCP4I2_IMPORT_STAGING_MAX_INFLIGHT = _int_env(
+    "CCP4I2_IMPORT_STAGING_MAX_INFLIGHT", 8)
+
 
 REST_FRAMEWORK = {
     "DEFAULT_PARSER_CLASSES": (
@@ -285,6 +308,15 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
+    ],
+    # SafeJSONRenderer stands in for DRF's JSONRenderer (BrowsableAPIRenderer is
+    # DRF's other default, kept so /api/ stays browsable). It renders strictly,
+    # then repairs and retries rather than 500ing if a float turns out to have no
+    # JSON spelling. Do NOT "fix" such a response by setting STRICT_JSON=False:
+    # that emits a bare NaN token, which JSON.parse rejects in the browser.
+    "DEFAULT_RENDERER_CLASSES": [
+        "ccp4i2.api.renderers.SafeJSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
     ],
 }
 

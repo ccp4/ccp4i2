@@ -4,6 +4,7 @@ import gemmi
 from typing import List
 import re
 from ccp4i2.core import CCP4XtalData
+from ccp4i2.core.CCP4Utils import complete_reflection_list
 from ..files.available_name import available_file_name_based_on
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -85,10 +86,16 @@ def gemmi_split_mtz(
     mtzout.add_column("H", "H")
     mtzout.add_column("K", "H")
     mtzout.add_column("L", "H")
-    uniques = gemmi.make_miller_array(
-        mtzout.cell, mtzout.spacegroup, mtzin.resolution_high(), mtzin.resolution_low()
+    # The unique set within the input's range PLUS every reflection the input
+    # holds: make_miller_array's limits are exclusive at floating-point
+    # precision, so on its own it drops the reflection that defines the
+    # input's low-resolution limit, and copy_column then dropped that
+    # observation from every imported file.
+    uniques = complete_reflection_list(
+        mtzout.cell, mtzout.spacegroup, mtzin.resolution_high(), mtzin.resolution_low(),
+        mtzin.array[:, :3],
     )
-    mtzout.set_data(uniques)
+    mtzout.set_data(uniques.astype("float32"))
 
     dataset = hkl_base
     if len(mtzin.datasets) > 1:

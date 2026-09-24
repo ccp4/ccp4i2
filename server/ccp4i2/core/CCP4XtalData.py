@@ -2361,7 +2361,10 @@ class CMapDataFile(CDataFile):
     # Persisted to File.sub_type by the gleaner and read by the Moorhen viewers
     # and the scene format to render each kind appropriately. MASK lets a mask
     # (e.g. dm_multidomain's per-body NCS averaging masks) be distinguished from
-    # an ordinary density map, which is otherwise the same FileType.
+    # an ordinary density map, which is otherwise the same FileType. HALFMAP marks
+    # a cryo-EM half map (one of a pair) so it is recognised by tasks that take
+    # half maps for FSC cross-validation (servalcat --halfmaps) and not confused
+    # with a full map; it renders as ordinary density.
 
     """A CCP4 Map file"""
     class Meta:
@@ -2373,6 +2376,9 @@ class CMapDataFile(CDataFile):
             "guiLabel": 'Map',
             "toolTip": 'A map in CCP4/MRC format',
             "helpFile": 'data_files#map_files',
+            # Fetched on the server (lib/utils/files/repository_fetch.py), not
+            # through the browser: maps are large and arrive gzipped.
+            "downloadModes": ['emdb'],
         }
         content_qualifiers = {
             "subType": {'default': None},
@@ -2382,6 +2388,7 @@ class CMapDataFile(CDataFile):
     SUBTYPE_DIFFERENCE = 2       # difference map (Fo-Fc)
     SUBTYPE_ANOM_DIFFERENCE = 3  # anomalous difference map
     SUBTYPE_MASK = 4             # real-space mask (mode-0 region map)
+    SUBTYPE_HALFMAP = 5          # cryo-EM half map (one of a pair, for FSC cross-validation)
 
 
     def __init__(self, parent=None, name=None, **kwargs):
@@ -4637,6 +4644,25 @@ class CMtzData(CDataFileContent):
         return rv
 
 
+def _looks_like_xds(file_path):
+    """True if this text reflection file is XDS rather than scalepack.
+
+    XDS writes a header of '!' directives -- '!FORMAT=XDS_ASCII' for
+    XDS_ASCII.HKL and CORRECT.HKL, '!OUTPUT_FILE=INTEGRATE.HKL' for
+    INTEGRATE.HKL -- so the leading '!' is the marker, not any one keyword.
+    Scalepack opens with a symmetry-operator count or a version number and
+    never with '!'.
+
+    An unreadable file is reported as not-XDS so the caller takes the
+    scalepack path and raises the error there, as it did before.
+    """
+    try:
+        with open(file_path, 'r', errors='replace') as stream:
+            return stream.readline().lstrip().startswith('!')
+    except OSError:
+        return False
+
+
 class CUnmergedDataContent(CDataFileContent):
 
 
@@ -4858,17 +4884,27 @@ class CUnmergedDataContent(CDataFileContent):
             elif suffix in ['.cif', '.mmcif', '.ent']:
                 self._load_mmcif_file(file_path, gemmi, error)
 
-            # Handle Scalepack format (.sca, .hkl)
+            # Handle the text reflection formats (.sca, .hkl).
+            #
+            # The extension does not settle this: XDS writes .HKL (XDS_ASCII.HKL,
+            # INTEGRATE.HKL) and so does scalepack in some pipelines, so the
+            # first line decides. XDS files open with '!' directives
+            # ('!FORMAT=XDS_ASCII...', '!OUTPUT_FILE=INTEGRATE.HKL...') and
+            # scalepack files never do -- theirs starts with a reflection count
+            # or a version number. Dispatching on extension alone used to read
+            # an XDS header as a scalepack one, which silently yielded
+            # format='sca' and a "space group" of "MERGE=FALSE
+            # FRIEDEL'S_LAW=FALSE", and discarded the cell and wavelength that
+            # gemmi reads perfectly well.
             elif suffix in ['.sca', '.hkl']:
-                self._load_scalepack_file(file_path, error)
-
-            # Handle XDS files (INTEGRATE.HKL, XDS_ASCII.HKL)
-            elif 'INTEGRATE' in path_obj.name or 'XDS_ASCII' in path_obj.name or suffix == '.hkl':
-                # Try XDS format first
-                try:
-                    self._load_xds_file(file_path, gemmi, error)
-                except:
-                    # Fall back to Scalepack
+                if _looks_like_xds(file_path):
+                    try:
+                        self._load_xds_file(file_path, gemmi, error)
+                    except Exception:
+                        # A truncated or unusual XDS file: better a scalepack
+                        # reading than none, as before.
+                        self._load_scalepack_file(file_path, error)
+                else:
                     self._load_scalepack_file(file_path, error)
 
             elif suffix == '.shelx':

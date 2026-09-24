@@ -9,7 +9,20 @@
  * directly, since MSAL's account cache isn't populated by Teams SSO.
  */
 
-export type TokenGetter = () => Promise<string | null>;
+/**
+ * Options a caller can pass when asking for a token.
+ *
+ * ``forceRefresh`` asks the underlying provider to go past its own cache --
+ * MSAL's ``acquireTokenSilent`` accepts the same flag. It exists for the one
+ * case where a cached token is known to be bad: the server just rejected it.
+ */
+export interface TokenRequestOptions {
+  forceRefresh?: boolean;
+}
+
+export type TokenGetter = (
+  options?: TokenRequestOptions,
+) => Promise<string | null>;
 export type EmailGetter = () => string | null;
 export type LogoutHandler = () => void;
 
@@ -179,7 +192,9 @@ export function setTeamsTokenRefresher(refresher: () => Promise<string | null>):
  * which dramatically improves performance for applications like Moorhen that
  * make many API calls in rapid succession.
  */
-export async function getAccessToken(): Promise<string | null> {
+export async function getAccessToken(
+  options: TokenRequestOptions = {},
+): Promise<string | null> {
   const now = Date.now();
 
   // Try loading Teams token from sessionStorage if not in memory
@@ -221,13 +236,14 @@ export async function getAccessToken(): Promise<string | null> {
     return null;
   }
 
-  // Return cached token if still valid
-  if (cachedToken && now < tokenExpiresAt) {
+  // Return cached token if still valid. A forced refresh skips the cache:
+  // the caller is asking precisely because what the cache holds was refused.
+  if (!options.forceRefresh && cachedToken && now < tokenExpiresAt) {
     return cachedToken;
   }
 
   try {
-    const token = await tokenGetter();
+    const token = await tokenGetter(options);
     if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH) {
       console.log("[AUTH-TOKEN] tokenGetter returned:", token ? `token(${token.length} chars)` : "null");
     }
@@ -243,6 +259,21 @@ export async function getAccessToken(): Promise<string | null> {
     console.error("[AUTH-TOKEN] Failed to get access token:", error);
     return null;
   }
+}
+
+/**
+ * Forget the cached access token.
+ *
+ * The cache holds a token for four minutes, which is the right trade for
+ * throughput and the wrong one the moment the server refuses it: without
+ * this, every retry for the rest of that window replays the same rejected
+ * token. Called on a 401, before asking for a fresh one.
+ *
+ * Leaves the Teams token alone -- it has its own expiry and refresher.
+ */
+export function invalidateAccessToken(): void {
+  cachedToken = null;
+  tokenExpiresAt = 0;
 }
 
 /**

@@ -23,6 +23,7 @@ import {
   EmojiObjects,
   ContentCopy,
   Check,
+  SystemUpdateAlt,
 } from "@mui/icons-material";
 import { hasLocalSessionToken } from "@ccp4/ccp4i2-api";
 import { TipOfTheDayDialog } from "./tip-of-the-day-dialog";
@@ -111,6 +112,11 @@ export default function HelpMenu() {
   const [tipOpen, setTipOpen] = useState(false);
   const [version, setVersion] = useState<VersionInfo | null>(null);
   const [session, setSession] = useState<SessionInfo | null>(null);
+  // Only the packaged Electron app can self-update; hide the item in the web build.
+  const [isElectron, setIsElectron] = useState(false);
+  useEffect(() => {
+    setIsElectron(typeof window !== "undefined" && !!window.electronAPI);
+  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -181,6 +187,14 @@ export default function HelpMenu() {
     setTipOpen(true);
   };
 
+  // Fire-and-forget: the main process (ccp4i2-updater) runs the check and shows
+  // the result — "up to date", "downloading", or "not available here" — in a
+  // native dialog, so there is nothing to plumb back into the renderer.
+  const handleCheckForUpdates = () => {
+    handleClose();
+    window.electronAPI?.sendMessage("check-for-updates");
+  };
+
   // A command that works as pasted: the backend port and the bearer token
   // this launch actually uses, against an endpoint that needs auth (so a
   // 200 proves the token was accepted, which /health would not).
@@ -210,6 +224,13 @@ export default function HelpMenu() {
           icon={EmojiObjects}
           onClick={handleTip}
         />
+        {isElectron && (
+          <CCP4i2MenuItem
+            text="Check for Updates…"
+            icon={SystemUpdateAlt}
+            onClick={handleCheckForUpdates}
+          />
+        )}
         <CCP4i2MenuItem text="About CCP4i2" icon={Info} onClick={handleAbout} />
       </Menu>
 

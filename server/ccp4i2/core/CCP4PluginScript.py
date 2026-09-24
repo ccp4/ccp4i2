@@ -2036,6 +2036,32 @@ class CPluginScript(CData):
         """Clear the command line list."""
         self.commandLine = []
 
+    def _useFile(self, attribute, dataFile):
+        """Point one of this plugin's working attributes at a CDataFile.
+
+        Plain assignment does not do this, because a CPluginScript is itself a
+        CData. Once ``self.<attribute>`` holds a CData, ``self.<attribute> =
+        other`` is intercepted by CData.__setattr__, which copies *other* into
+        the existing object rather than rebinding the name -- and for a
+        CDataFile that copy does not carry the path, so the attribute goes on
+        reading as whatever it held before while the code plainly says
+        otherwise.
+
+        The first assignment is fine: the attribute is None, there is nothing
+        to coerce into. It is every reassignment after that which silently
+        does nothing, which is why this is so easy to miss -- a pipeline that
+        re-points a working attribute after each stage keeps handing the first
+        stage's file downstream, and every stage after the first is discarded
+        in silence.
+
+        This is deliberately not fixed in CData.__setattr__: copying into the
+        existing object is the wanted behaviour for a container's declared
+        children (``container.inputData.XYZIN = someFile`` must fill in the
+        declared child), and only wrong for the ad-hoc attributes a plugin
+        uses to track which file the next stage should read.
+        """
+        object.__setattr__(self, attribute, dataFile)
+
     def makeFileName(self, format='COM', ext='', qualifier=None):
         """
         Generate consistent names for output files.
@@ -3520,10 +3546,30 @@ class CPluginScript(CData):
 
         # Parse warnings for unrestrained atoms ("definition not found for ...")
         # and collect missing-from-model atoms (dict defines them, structure lacks them)
+        #
+        # Not every "definition not found" warning is fatal. gemmi appends a
+        # parenthesised remark saying what refinement will do about it, and
+        # "linkage should remove this atom" means exactly that: the atom is
+        # dropped when the link is applied, which refmac and servalcat both do
+        # silently and correctly. Typically these are the extra N-terminal
+        # hydrogens (H2/H3) on a residue that is no longer a chain terminus.
+        # Treating that advisory as a blocking error stopped submission of a
+        # model that refinement would have handled by itself.
         unrestrained = []
+        advisory = []
         for line in log.getvalue().splitlines():
             if 'definition not found' in line:
-                unrestrained.append(line.replace('Warning: ', ''))
+                msg = line.replace('Warning: ', '')
+                if 'linkage should remove this atom' in msg:
+                    advisory.append(msg)
+                else:
+                    unrestrained.append(msg)
+
+        if advisory:
+            logger.info(
+                "checkMonomeCoverage: %d atom(s) will be removed by linkage "
+                "(not an error): %s", len(advisory), '; '.join(advisory)
+            )
 
         missing_from_model = topo.find_missing_atoms()
 
@@ -3552,6 +3598,7 @@ class CPluginScript(CData):
         if unrestrained:
             # Group by residue for readability
             by_residue = {}
+            blank_residues = []
             for msg in unrestrained:
                 # Format: "definition not found for A/GOL 1/N1"
                 parts = msg.split('/')
@@ -3562,7 +3609,31 @@ class CPluginScript(CData):
                 else:
                     lines.append(msg)
             for res_key, atoms in sorted(by_residue.items()):
-                lines.append(f"  {res_key}: atoms without restraints: {', '.join(atoms)}")
+                # An atom written without a name yields an empty name here, so
+                # the raw warning reads "(replace  with N)" -- the doubled
+                # space is where the name should have been, which tells the
+                # user nothing. Name the real defect instead.
+                label = res_key.replace('definition not found for ', '')
+                n_blank = sum(1 for a in atoms if not a.split('(')[0].strip())
+                named = [a for a in atoms if a.split('(')[0].strip()]
+                if named:
+                    lines.append(
+                        f"  {label}: atoms without restraints: {', '.join(named)}"
+                    )
+                if n_blank:
+                    blank_residues.append(f"{label} ({n_blank})")
+
+            if blank_residues:
+                lines.append(
+                    "  No atom name in the coordinate file (so no restraints "
+                    f"can be matched): {', '.join(blank_residues)}"
+                )
+                lines.append(
+                    "  This means the program that wrote the file left the "
+                    "atom name blank when it created the atom. Re-saving the "
+                    "model through CCP4i2 restores the name wherever the "
+                    "element identifies the atom unambiguously."
+                )
 
             # Flag likely code collisions: if a residue has both unrestrained
             # atoms AND atoms missing from the model, the dictionary almost
@@ -4005,7 +4076,8 @@ class CPluginScript(CData):
         self,
         file_objects: list,
         output_name: str = 'hklin',
-        merge_strategy: str = 'first'
+        merge_strategy: str = 'first',
+        cell_tolerance: Optional[float] = 1.0,
     ) -> Path:
         """
         Merge normalized mini-MTZ files into a single HKLIN file (new Pythonic API).
@@ -4258,7 +4330,8 @@ class CPluginScript(CData):
         result = merge_mtz_files(
             input_specs=input_specs,
             output_path=output_path,
-            merge_strategy=merge_strategy
+            merge_strategy=merge_strategy,
+            cell_tolerance=cell_tolerance,
         )
 
         return result
@@ -4287,7 +4360,8 @@ class CPluginScript(CData):
 
         raise ValueError(f"No content flag name found for value {content_flag}")
 
-    def makeHklin(self, miniMtzsIn: list, hklin: str = 'hklin') -> tuple:
+    def makeHklin(self, miniMtzsIn: list, hklin: str = 'hklin',
+                  cell_tolerance: Optional[float] = 1.0) -> tuple:
         """
         Merge mini-MTZ files into HKLIN (backward-compatible legacy API).
 
@@ -4304,6 +4378,10 @@ class CPluginScript(CData):
                        converts file to target format first (handled by makeHklinGemmi)
 
             hklin: Base name for output file (default: 'hklin')
+
+            cell_tolerance: Passed to merge_mtz_files; None skips the unit-cell
+                comparison (reflections matched by index only, first file's
+                cell kept), for extending a FreeR set across crystals.
 
         Returns:
             tuple: (hklin_filename, CErrorReport) where:
@@ -4362,7 +4440,8 @@ class CPluginScript(CData):
             output_path = self.makeHklinGemmi(
                 file_objects=file_objects,
                 output_name=hklin,
-                merge_strategy='first'
+                merge_strategy='first',
+                cell_tolerance=cell_tolerance,
             )
 
             # Store the output filename for legacy API compatibility
@@ -4412,6 +4491,7 @@ class CPluginScript(CData):
         self,
         miniMtzsIn: list = [],
         hklin: str = 'hklin',
+        cell_tolerance: Optional[float] = 1.0,
     ) -> tuple:
         """
         Legacy API for makeHklin that returns prefixed column names.
@@ -4423,6 +4503,11 @@ class CPluginScript(CData):
         Args:
             miniMtzsIn: List of file names or [name, contentFlag] pairs
             hklin: Output filename (without extension)
+            cell_tolerance: How far the inputs' cells may differ, as passed on
+                to merge_mtz_files; ``None`` skips the comparison, matching
+                reflections by index and keeping the first file's cell. Needed
+                when observations are joined to a FreeR set from another
+                crystal of the same form.
 
         Returns:
             Tuple of (outfile_path, column_names_string, error_report)
@@ -4475,7 +4560,8 @@ class CPluginScript(CData):
             output_path = self.makeHklinGemmi(
                 file_objects=file_objects,
                 output_name=hklin,
-                merge_strategy='first'
+                merge_strategy='first',
+                cell_tolerance=cell_tolerance,
             )
             outfile = str(output_path)
 
@@ -4590,7 +4676,7 @@ class CPluginScript(CData):
             traceback.print_exc()
             return self.FAILED
 
-    def joinMtz(self, outfile, infiles):
+    def joinMtz(self, outfile, infiles, cell_tolerance=1.0):
         """
         Merge columns from one or more MTZ files into a single output MTZ.
 
@@ -4602,6 +4688,12 @@ class CPluginScript(CData):
                 - (filepath, column_labels_out)  — 2-tuple form
                 - (filepath, column_labels_in, column_labels_out) — 3-tuple form
                 Column labels are comma-separated strings (e.g. "F,SIGF").
+            cell_tolerance: How far the inputs' cells may differ, as passed to
+                merge_mtz_files; ``None`` skips the comparison, matching
+                reflections by index and keeping the first file's cell. That
+                is what joining observations to a FreeR set from another
+                crystal of the same form needs -- a fragment campaign's shared
+                free set, where cells drift a percent or more between soaks.
 
         Returns:
             CPluginScript.SUCCEEDED on success, CPluginScript.FAILED on error.
@@ -4631,7 +4723,10 @@ class CPluginScript(CData):
                 # trailing comma); there is no column to take for it
                 mapping = {i: o for i, o in zip(in_labels, out_labels) if i and o}
                 input_specs.append({"path": str(filepath), "column_mapping": mapping})
-            merge_mtz_files(input_specs, str(outfile), merge_strategy="first")
+            merge_mtz_files(
+                input_specs, str(outfile), merge_strategy="first",
+                cell_tolerance=cell_tolerance,
+            )
             return self.SUCCEEDED
 
         except Exception as e:

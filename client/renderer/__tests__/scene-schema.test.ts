@@ -242,6 +242,64 @@ describe("validity", () => {
       true,
     );
   });
+
+  describe("superpose method: matrix (a server-computed transform)", () => {
+    const files = [
+      { name: "a", pdb: "1abc" },
+      { name: "b", pdb: "2def" },
+    ];
+    const identity = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    const entry = {
+      method: "matrix",
+      move: "b",
+      mat: identity,
+      vec: [-0.31, 0.12, 0.05],
+      fitted: { onto: "a", atoms: 47, radius: 15, rmsd: 0.21 },
+    };
+    const scene = (sp: unknown) => ({ scene: "m", version: 1, files, superpose: [sp] });
+
+    it("accepts a full entry, and one without provenance or radius", () => {
+      expect(validateScene(scene(entry)).errors).toEqual([]);
+      expect(validateScene(scene({ ...entry, fitted: undefined })).errors).toEqual([]);
+      // a global fit has no radius; null (as JSON from the server) is fine too
+      expect(
+        validateScene(scene({ ...entry, fitted: { onto: "a", atoms: 300, rmsd: 0.4 } })).errors,
+      ).toEqual([]);
+      expect(
+        validateScene(scene({ ...entry, fitted: { ...entry.fitted, radius: null } })).errors,
+      ).toEqual([]);
+    });
+
+    it("rejects a mat that is not nine numbers and a vec that is not three", () => {
+      const eightErrs = validateScene(scene({ ...entry, mat: identity.slice(0, 8) })).errors;
+      expect(eightErrs.some((e) => e.path.includes("mat"))).toBe(true);
+      const tenErrs = validateScene(scene({ ...entry, mat: [...identity, 0] })).errors;
+      expect(tenErrs.some((e) => e.path.includes("mat"))).toBe(true);
+      const vecErrs = validateScene(scene({ ...entry, vec: [1, 2] })).errors;
+      expect(vecErrs.some((e) => e.path.includes("vec"))).toBe(true);
+    });
+
+    it("cross-references move and fitted.onto against files[]", () => {
+      const move = validateScene(scene({ ...entry, move: "zzz" })).errors;
+      expect(move.some((e) => e.path.includes("move"))).toBe(true);
+      const onto = validateScene(
+        scene({ ...entry, fitted: { ...entry.fitted, onto: "zzz" } }),
+      ).errors;
+      expect(onto.some((e) => e.path.includes("fitted") && e.path.includes("onto"))).toBe(true);
+    });
+
+    it("has no top-level onto and takes no ssm/lsq fields (strict)", () => {
+      expect(validateScene(scene({ ...entry, onto: "a" })).errors.length).toBeGreaterThan(0);
+      expect(validateScene(scene({ ...entry, movChain: "A" })).errors.length).toBeGreaterThan(0);
+    });
+
+    it("is pruned from the strict authoring profile (machine output, not authored)", () => {
+      const json = JSON.stringify(buildStructuredJsonSchema());
+      expect(json).not.toContain('"matrix"');
+      // ...but the published contracts still carry it
+      expect(JSON.stringify(buildJsonSchemas().core)).toContain('"matrix"');
+    });
+  });
 });
 
 describe("map masking (derived maps)", () => {

@@ -109,6 +109,13 @@
           <default>0</default>
         </qualifiers>
       </content>
+      <content id="SHELX_IS_INTENSITY">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>SHELX .hkl files do not say whether the two data columns are intensities (HKLF 4, Fo^2) or amplitudes (HKLF 3, Fo) - it is declared in the .ins/.res, which we do not have. Choose which they are.</toolTip>
+        </qualifiers>
+      </content>
       <content id="CAN_CUT_RESOLUTION">
         <className>CBoolean</className>
         <qualifiers>

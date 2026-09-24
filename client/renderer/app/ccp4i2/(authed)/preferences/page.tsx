@@ -1,8 +1,10 @@
 "use client";
 import { ProgramLocations } from "@/components/program-locations";
+import { ProjectsDirectory } from "@/components/projects-directory";
 import { CredentialsPanel } from "@/components/credentials-panel";
-import { Divider, Paper, Stack } from "@mui/material";
-import CCP4i2TopBar from "@/components/ccp4i2-topbar";
+import { GeneralPreferencesPanel } from "@/components/general-preferences-panel";
+import { Divider, Paper } from "@mui/material";
+import { useTopBar } from "@/providers/top-bar-context";
 
 /**
  * Preferences — running-app settings (distinct from the launch/get-ready
@@ -11,20 +13,16 @@ import CCP4i2TopBar from "@/components/ccp4i2-topbar";
  * sections can be added here over time.
  */
 export default function PreferencesPage() {
+  useTopBar({ title: "Preferences" });
   return (
-    <Stack
-      sx={{
-        height: "100vh",
-        "@supports (height: 100dvh)": { height: "100dvh" },
-        overflow: "hidden",
-      }}
-    >
-      <CCP4i2TopBar title="Preferences" showBackButton backPath="/ccp4i2" />
-      <Paper sx={{ flex: 1, minHeight: 0, overflowY: "auto", py: 3 }}>
-        <ProgramLocations />
-        <Divider sx={{ my: 2 }} />
-        <CredentialsPanel />
-      </Paper>
-    </Stack>
+    <Paper sx={{ flex: 1, minHeight: 0, overflowY: "auto", py: 3 }}>
+      <GeneralPreferencesPanel />
+      <Divider sx={{ my: 2 }} />
+      <ProjectsDirectory />
+      <Divider sx={{ my: 2 }} />
+      <ProgramLocations />
+      <Divider sx={{ my: 2 }} />
+      <CredentialsPanel />
+    </Paper>
   );
 }

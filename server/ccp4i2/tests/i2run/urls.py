@@ -2,6 +2,17 @@ _PDBE = "https://www.ebi.ac.uk/pdbe"
 _RCSB = "https://files.rcsb.org"
 _REDO = "https://pdb-redo.eu/db"
 _UNIPROT = "https://rest.uniprot.org"
+_EMDB = "https://ftp.ebi.ac.uk/pub/databases/emdb/structures"
+
+
+def emdb_map(code: str):
+    """Primary (post-processed) map for an EMDB entry, e.g. code='12042'."""
+    return f"{_EMDB}/EMD-{code}/map/emd_{code}.map.gz"
+
+
+def emdb_half_map(code: str, n: int):
+    """Unfiltered half map ``n`` (1 or 2) for an EMDB entry."""
+    return f"{_EMDB}/EMD-{code}/other/emd_{code}_half_map_{n}.map.gz"
 
 
 def pdbe_fasta(code: str):

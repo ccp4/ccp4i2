@@ -1,0 +1,965 @@
+{
+    "_id": "5f3a8eb1043d5cc5a75d4410",
+    "admin": {
+        "authors_list": {
+            "author": [
+                {
+                    "instance_type": "author",
+                    "valueOf_": "Gao Y"
+                },
+                {
+                    "instance_type": "author",
+                    "valueOf_": "Cao E"
+                }
+            ]
+        },
+        "current_status": {
+            "code": {
+                "valueOf_": "REL"
+            },
+            "date": "2024-11-13T00:00:00",
+            "processing_site": "RCSB"
+        },
+        "grant_support": {
+            "grant_reference": [
+                {
+                    "code": "R01NS047723",
+                    "country": "United States",
+                    "funding_body": "National Institutes of Health/National Institute of Neurological Disorders and Stroke (NIH/NINDS)",
+                    "instance_type": "grant_reference"
+                },
+                {
+                    "code": "R37NS065071",
+                    "country": "United States",
+                    "funding_body": "National Institutes of Health/National Institute of Neurological Disorders and Stroke (NIH/NINDS)",
+                    "instance_type": "grant_reference"
+                },
+                {
+                    "code": "S10OD020054",
+                    "country": "United States",
+                    "funding_body": "National Institutes of Health/Office of the Director",
+                    "instance_type": "grant_reference"
+                },
+                {
+                    "code": "R01GM098672",
+                    "country": "United States",
+                    "funding_body": "National Institutes of Health/National Institute of General Medical Sciences (NIH/NIGMS)",
+                    "instance_type": "grant_reference"
+                }
+            ]
+        },
+        "key_dates": {
+            "deposition": "2016-05-16T00:00:00",
+            "header_release": "2016-05-25T00:00:00",
+            "map_release": "2016-05-25T00:00:00",
+            "update": "2024-11-13T00:00:00"
+        },
+        "keywords": "TRP, ion channel, nanodisc, vanilloid, lipid, TRANSPORT PROTEIN",
+        "sites": {
+            "deposition": "RCSB",
+            "last_processing": "RCSB"
+        },
+        "title": "Structure of TRPV1 in complex with DkTx and RTX, determined in lipid nanodisc"
+    },
+    "crossreferences": {
+        "citation_list": {
+            "primary_citation": {
+                "citation_type": {
+                    "author": [
+                        {
+                            "instance_type": "author",
+                            "order": 1,
+                            "valueOf_": "Gao Y"
+                        },
+                        {
+                            "instance_type": "author",
+                            "order": 2,
+                            "valueOf_": "Cao E"
+                        },
+                        {
+                            "instance_type": "author",
+                            "order": 3,
+                            "valueOf_": "Julius D"
+                        },
+                        {
+                            "instance_type": "author",
+                            "order": 4,
+                            "valueOf_": "Cheng Y"
+                        }
+                    ],
+                    "country": "UK",
+                    "external_references": [
+                        {
+                            "instance_type": "external_references",
+                            "type_": "PUBMED",
+                            "valueOf_": "27281200"
+                        },
+                        {
+                            "instance_type": "external_references",
+                            "type_": "DOI",
+                            "valueOf_": "doi:10.1038/nature17964"
+                        },
+                        {
+                            "instance_type": "external_references",
+                            "type_": "ISSN",
+                            "valueOf_": "1476-4687"
+                        },
+                        {
+                            "instance_type": "external_references",
+                            "type_": "CSD",
+                            "valueOf_": "0006"
+                        },
+                        {
+                            "instance_type": "external_references",
+                            "type_": "ASTM",
+                            "valueOf_": "NATUAS"
+                        }
+                    ],
+                    "first_page": "347",
+                    "journal": "Nature",
+                    "journal_abbreviation": "Nature",
+                    "last_page": "351",
+                    "published": true,
+                    "title": "TRPV1 structures in nanodiscs reveal mechanisms of ligand and lipid action.",
+                    "volume": "534",
+                    "year": "2016"
+                }
+            }
+        },
+        "emdb_list": {
+            "emdb_reference": [
+                {
+                    "emdb_id": "EMD-8118",
+                    "instance_type": "emdb_reference",
+                    "relationship": {
+                        "other": "other EM volume"
+                    }
+                },
+                {
+                    "emdb_id": "EMD-8119",
+                    "instance_type": "emdb_reference",
+                    "relationship": {
+                        "other": "other EM volume"
+                    }
+                },
+                {
+                    "emdb_id": "EMD-8120",
+                    "instance_type": "emdb_reference",
+                    "relationship": {
+                        "other": "other EM volume"
+                    }
+                },
+                {
+                    "details": "TRPV1 in complex with DkTx and RTX in amphipol A8-35",
+                    "emdb_id": "EMD-5776",
+                    "instance_type": "emdb_reference",
+                    "relationship": {
+                        "other": "other EM volume"
+                    }
+                }
+            ]
+        },
+        "pdb_list": {
+            "pdb_reference": [
+                {
+                    "instance_type": "pdb_reference",
+                    "pdb_id": "5irx",
+                    "relationship": {
+                        "in_frame": "FULLOVERLAP"
+                    }
+                }
+            ]
+        }
+    },
+    "emdb_id": "EMD-8117",
+    "interpretation": {
+        "half_map_list": {
+            "half_map": [
+                {
+                    "annotation_details": "TRPV1 in complex with DkTx and RTX, half map 1",
+                    "axis_order": {
+                        "fast": "X",
+                        "medium": "Y",
+                        "slow": "Z"
+                    },
+                    "cell": {
+                        "a": {
+                            "units": "\u212b",
+                            "valueOf_": "233.3952"
+                        },
+                        "alpha": {
+                            "units": "deg",
+                            "valueOf_": "90.0"
+                        },
+                        "b": {
+                            "units": "\u212b",
+                            "valueOf_": "233.3952"
+                        },
+                        "beta": {
+                            "units": "deg",
+                            "valueOf_": "90.0"
+                        },
+                        "c": {
+                            "units": "\u212b",
+                            "valueOf_": "233.3952"
+                        },
+                        "gamma": {
+                            "units": "deg",
+                            "valueOf_": "90.0"
+                        }
+                    },
+                    "contour_list": {
+                        "contour": [
+                            {
+                                "instance_type": "contour",
+                                "primary": true,
+                                "source": "EMDB"
+                            }
+                        ]
+                    },
+                    "data_type": "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)",
+                    "dimensions": {
+                        "col": 192,
+                        "row": 192,
+                        "sec": 192
+                    },
+                    "file": "emd_8117_half_map_1.map.gz",
+                    "format": "CCP4",
+                    "instance_type": "half_map",
+                    "label": "::::EMDATABANK.org::::EMD-8117::::",
+                    "origin": {
+                        "col": 0,
+                        "row": 0,
+                        "sec": 0
+                    },
+                    "pixel_spacing": {
+                        "x": {
+                            "units": "\u212b",
+                            "valueOf_": "1.2156"
+                        },
+                        "y": {
+                            "units": "\u212b",
+                            "valueOf_": "1.2156"
+                        },
+                        "z": {
+                            "units": "\u212b",
+                            "valueOf_": "1.2156"
+                        }
+                    },
+                    "size_kbytes": 28312,
+                    "spacing": {
+                        "x": 192,
+                        "y": 192,
+                        "z": 192
+                    },
+                    "statistics": {
+                        "average": 0.000100006364,
+                        "maximum": 0.056881763,
+                        "minimum": -0.025243979,
+                        "std": 0.0029519103
+                    },
+                    "symmetry": {
+                        "space_group": 1
+                    }
+                },
+                {
+                    "annotation_details": "TRPV1 in complex with DkTx and RTX, half map 2",
+                    "axis_order": {
+                        "fast": "X",
+                        "medium": "Y",
+                        "slow": "Z"
+                    },
+                    "cell": {
+                        "a": {
+                            "units": "\u212b",
+                            "valueOf_": "233.3952"
+                        },
+                        "alpha": {
+                            "units": "deg",
+                            "valueOf_": "90.0"
+                        },
+                        "b": {
+                            "units": "\u212b",
+                            "valueOf_": "233.3952"
+                        },
+                        "beta": {
+                            "units": "deg",
+                            "valueOf_": "90.0"
+                        },
+                        "c": {
+                            "units": "\u212b",
+                            "valueOf_": "233.3952"
+                        },
+                        "gamma": {
+                            "units": "deg",
+                            "valueOf_": "90.0"
+                        }
+                    },
+                    "contour_list": {
+                        "contour": [
+                            {
+                                "instance_type": "contour",
+                                "primary": true,
+                                "source": "EMDB"
+                            }
+                        ]
+                    },
+                    "data_type": "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)",
+                    "dimensions": {
+                        "col": 192,
+                        "row": 192,
+                        "sec": 192
+                    },
+                    "file": "emd_8117_half_map_2.map.gz",
+                    "format": "CCP4",
+                    "instance_type": "half_map",
+                    "label": "::::EMDATABANK.org::::EMD-8117::::",
+                    "origin": {
+                        "col": 0,
+                        "row": 0,
+                        "sec": 0
+                    },
+                    "pixel_spacing": {
+                        "x": {
+                            "units": "\u212b",
+                            "valueOf_": "1.2156"
+                        },
+                        "y": {
+                            "units": "\u212b",
+                            "valueOf_": "1.2156"
+                        },
+                        "z": {
+                            "units": "\u212b",
+                            "valueOf_": "1.2156"
+                        }
+                    },
+                    "size_kbytes": 28312,
+                    "spacing": {
+                        "x": 192,
+                        "y": 192,
+                        "z": 192
+                    },
+                    "statistics": {
+                        "average": 0.00010246863,
+                        "maximum": 0.05822057,
+                        "minimum": -0.025769535,
+                        "std": 0.0029537866
+                    },
+                    "symmetry": {
+                        "space_group": 1
+                    }
+                }
+            ]
+        },
+        "modelling_list": {
+            "modelling": [
+                {
+                    "initial_model": [
+                        {
+                            "access_code": "3J5Q",
+                            "chain": {
+                                "chain_id": "A",
+                                "initial_model_type": "experimental model",
+                                "source_name": "PDB"
+                            },
+                            "instance_type": "initial_model"
+                        }
+                    ],
+                    "instance_type": "modelling",
+                    "refinement_protocol": "RIGID BODY FIT",
+                    "refinement_space": "REAL",
+                    "target_criteria": "correlation coefficient"
+                }
+            ]
+        }
+    },
+    "map": {
+        "annotation_details": "TRPV1 in complex with DkTx and RTX",
+        "axis_order": {
+            "fast": "X",
+            "medium": "Y",
+            "slow": "Z"
+        },
+        "cell": {
+            "a": {
+                "units": "\u212b",
+                "valueOf_": "233.3952"
+            },
+            "alpha": {
+                "units": "deg",
+                "valueOf_": "90.0"
+            },
+            "b": {
+                "units": "\u212b",
+                "valueOf_": "233.3952"
+            },
+            "beta": {
+                "units": "deg",
+                "valueOf_": "90.0"
+            },
+            "c": {
+                "units": "\u212b",
+                "valueOf_": "233.3952"
+            },
+            "gamma": {
+                "units": "deg",
+                "valueOf_": "90.0"
+            }
+        },
+        "contour_list": {
+            "contour": [
+                {
+                    "instance_type": "contour",
+                    "level": 3.5,
+                    "primary": true,
+                    "source": "EMDB"
+                }
+            ]
+        },
+        "data_type": "IMAGE STORED AS FLOATING POINT NUMBER (4 BYTES)",
+        "dimensions": {
+            "col": 192,
+            "row": 192,
+            "sec": 192
+        },
+        "file": "emd_8117.map.gz",
+        "format": "CCP4",
+        "label": "::::EMDATABANK.org::::EMD-8117::::",
+        "origin": {
+            "col": 0,
+            "row": 0,
+            "sec": 0
+        },
+        "pixel_spacing": {
+            "x": {
+                "units": "\u212b",
+                "valueOf_": "1.2156"
+            },
+            "y": {
+                "units": "\u212b",
+                "valueOf_": "1.2156"
+            },
+            "z": {
+                "units": "\u212b",
+                "valueOf_": "1.2156"
+            }
+        },
+        "size_kbytes": 28312,
+        "spacing": {
+            "x": 192,
+            "y": 192,
+            "z": 192
+        },
+        "statistics": {
+            "average": -4.099751e-09,
+            "maximum": 24.29218,
+            "minimum": -14.310628,
+            "std": 0.99999994
+        },
+        "symmetry": {
+            "space_group": 1
+        }
+    },
+    "sample": {
+        "macromolecule_list": {
+            "macromolecule": [
+                {
+                    "enantiomer": "LEVO",
+                    "instance_type": "protein_or_peptide",
+                    "macromolecule_id": 1,
+                    "molecular_weight": {
+                        "theoretical": {
+                            "units": "MDa",
+                            "valueOf_": "0.072959297"
+                        }
+                    },
+                    "name": {
+                        "valueOf_": "Transient receptor potential cation channel subfamily V member 1"
+                    },
+                    "natural_source": {
+                        "database": "NCBI",
+                        "organism": {
+                            "ncbi": 10116,
+                            "valueOf_": "Rattus norvegicus"
+                        }
+                    },
+                    "number_of_copies": "4",
+                    "recombinant_expression": {
+                        "database": "NCBI",
+                        "recombinant_organism": {
+                            "ncbi": 9606,
+                            "valueOf_": "Homo sapiens"
+                        }
+                    },
+                    "sequence": {
+                        "external_references": [
+                            {
+                                "instance_type": "external_references",
+                                "type_": "UNIPROTKB",
+                                "valueOf_": "O35433"
+                            },
+                            {
+                                "instance_type": "external_references",
+                                "type_": "UNIPROTKB",
+                                "valueOf_": "O35433"
+                            }
+                        ],
+                        "string": "AMGSRLYDRRSIFDAVAQSNCQELESLLPFLQRSKKRLTDSEFKDPETGKTCLLKAMLNLHNGQNDTIALLLDVARKTDS LKQFVNASYTDSYYKGQTALHIAIERRNMTLVTLLVENGADVQAAANGDFFKKTKGRPGFYFGELPLSLAACTNQLAIVK FLLQNSWQPADISARDSVGNTVLHALVEVADNTVDNTKFVTSMYNEILILGAKLHPTLKLEEITNRKGLTPLALAASSGK IGVLAYILQREIHEPECRHLSRKFTEWAYGPVHSSLYDLSCIDTCEKNSVLEVIAYSSSETPNRHDMLLVEPLNRLLQDK WDRFVKRIFYFNFFVYCLYMIIFTAAAYYRPVEGLPPYKLKNTVGDYFRVTGEILSVSGGVYFFFRGIQYFLQRRPSLKS LFVDSYSEILFFVQSLFMLVSVVLYFSQRKEYVASMVFSLAMGWTNMLYYTRGFQQMGIYAVMIEKMILRDLCRFMFVYL VFLFGFSTAVVTLIEDGKYNSLYSTCLELFKFTIGMGDLEFTENYDFKAVFIILLLAYVILTYILLLNMLIALMGETVNK IAQESKNIWKLQRAITILDTEKSFLKCMRKAFRSGKLLQVGFTPDGKDDYRWCFRVDEVNWTTWNTNVGIINEDPG"
+                    }
+                },
+                {
+                    "enantiomer": "LEVO",
+                    "instance_type": "protein_or_peptide",
+                    "macromolecule_id": 2,
+                    "molecular_weight": {
+                        "theoretical": {
+                            "units": "MDa",
+                            "valueOf_": "0.008552988"
+                        }
+                    },
+                    "name": {
+                        "valueOf_": "Tau-theraphotoxin-Hs1a"
+                    },
+                    "natural_source": {
+                        "database": "NCBI",
+                        "organism": {
+                            "ncbi": 29017,
+                            "valueOf_": "Haplopelma schmidti"
+                        }
+                    },
+                    "number_of_copies": "2",
+                    "recombinant_expression": {
+                        "database": "NCBI",
+                        "recombinant_organism": {
+                            "ncbi": 469008,
+                            "valueOf_": "Escherichia coli BL21(DE3)"
+                        }
+                    },
+                    "sequence": {
+                        "external_references": [
+                            {
+                                "instance_type": "external_references",
+                                "type_": "UNIPROTKB",
+                                "valueOf_": "P0CH43"
+                            }
+                        ],
+                        "string": "DCAKEGEVCSWGKKCCDLDNFYCPMEFIPHCKKYKPYVPVTTNCAKEGEVCGWGSKCCHGLDCPLAFIPYCEKYR"
+                    }
+                },
+                {
+                    "formula": "6O8",
+                    "instance_type": "ligand",
+                    "macromolecule_id": 3,
+                    "molecular_weight": {
+                        "theoretical": {
+                            "units": "MDa",
+                            "valueOf_": "0.00044048899999999996"
+                        }
+                    },
+                    "name": {
+                        "valueOf_": "(4R,7S)-4-hydroxy-N,N,N-trimethyl-4,9-dioxo-7-[(pentanoyloxy)methyl]-3,5,8-trioxa-4lambda~5~-phosphatetradecan-1-aminium"
+                    },
+                    "number_of_copies": "4"
+                },
+                {
+                    "formula": "6OE",
+                    "instance_type": "ligand",
+                    "macromolecule_id": 4,
+                    "molecular_weight": {
+                        "theoretical": {
+                            "units": "MDa",
+                            "valueOf_": "0.000411428"
+                        }
+                    },
+                    "name": {
+                        "valueOf_": "(2S)-3-{[(S)-(2-aminoethoxy)(hydroxy)phosphoryl]oxy}-2-(hexanoyloxy)propyl hexanoate"
+                    },
+                    "number_of_copies": "8"
+                },
+                {
+                    "formula": "6EU",
+                    "instance_type": "ligand",
+                    "macromolecule_id": 5,
+                    "molecular_weight": {
+                        "theoretical": {
+                            "units": "MDa",
+                            "valueOf_": "0.000628708"
+                        }
+                    },
+                    "name": {
+                        "valueOf_": "resiniferatoxin"
+                    },
+                    "number_of_copies": "4"
+                },
+                {
+                    "formula": "6O9",
+                    "instance_type": "ligand",
+                    "macromolecule_id": 6,
+                    "molecular_weight": {
+                        "theoretical": {
+                            "units": "MDa",
+                            "valueOf_": "0.000341295"
+                        }
+                    },
+                    "name": {
+                        "valueOf_": "(2S)-2-(acetyloxy)-3-{[(R)-(2-aminoethoxy)(hydroxy)phosphoryl]oxy}propyl pentanoate"
+                    },
+                    "number_of_copies": "4"
+                }
+            ]
+        },
+        "name": {
+            "valueOf_": "TRPV1 ion channel in complex with DkTx and RTX"
+        },
+        "supramolecule_list": {
+            "supramolecule": [
+                {
+                    "details": "Two molecules of DkTx and 4 molecules of RTX bound to one TRPV1 homo-tetramer",
+                    "instance_type": "complex_supramolecule",
+                    "macromolecule_list": {
+                        "macromolecule": [
+                            {
+                                "instance_type": "macromolecule",
+                                "macromolecule_id": 1
+                            },
+                            {
+                                "instance_type": "macromolecule",
+                                "macromolecule_id": 2
+                            }
+                        ]
+                    },
+                    "name": {
+                        "valueOf_": "TRPV1 ion channel in complex with DkTx and RTX"
+                    },
+                    "parent": 0,
+                    "supramolecule_id": 1
+                },
+                {
+                    "instance_type": "complex_supramolecule",
+                    "macromolecule_list": {
+                        "macromolecule": [
+                            {
+                                "instance_type": "macromolecule",
+                                "macromolecule_id": 1
+                            }
+                        ]
+                    },
+                    "name": {
+                        "valueOf_": "Transient receptor potential cation channel subfamily V member 1"
+                    },
+                    "natural_source": [
+                        {
+                            "database": "NCBI",
+                            "instance_type": "natural_source",
+                            "organism": {
+                                "ncbi": 10116,
+                                "valueOf_": "Rattus norvegicus"
+                            }
+                        }
+                    ],
+                    "parent": 1,
+                    "supramolecule_id": 2
+                },
+                {
+                    "instance_type": "complex_supramolecule",
+                    "macromolecule_list": {
+                        "macromolecule": [
+                            {
+                                "instance_type": "macromolecule",
+                                "macromolecule_id": 2
+                            }
+                        ]
+                    },
+                    "name": {
+                        "valueOf_": "Tau-theraphotoxin-Hs1a"
+                    },
+                    "natural_source": [
+                        {
+                            "database": "NCBI",
+                            "instance_type": "natural_source",
+                            "organism": {
+                                "ncbi": 29017,
+                                "valueOf_": "Haplopelma schmidti"
+                            }
+                        }
+                    ],
+                    "parent": 1,
+                    "supramolecule_id": 3
+                }
+            ]
+        }
+    },
+    "structure_determination_list": {
+        "structure_determination": [
+            {
+                "aggregation_state": "particle",
+                "image_processing": [
+                    {
+                        "details": "Each image stack was subjected to whole-frame motion correction followed by correction at the individual pixel level using program UcsfDfCorr.",
+                        "final_angle_assignment": {
+                            "software_list": {
+                                "software": [
+                                    {
+                                        "instance_type": "software",
+                                        "name": "RELION",
+                                        "version": "1.3"
+                                    }
+                                ]
+                            },
+                            "type_": "ANGULAR RECONSTITUTION"
+                        },
+                        "final_reconstruction": {
+                            "applied_symmetry": {
+                                "point_group": "C4"
+                            },
+                            "number_classes_used": 2,
+                            "number_images_used": 73929,
+                            "resolution": {
+                                "res_type": "BY AUTHOR",
+                                "units": "\u212b",
+                                "valueOf_": "2.95"
+                            },
+                            "resolution_method": "FSC 0.143 CUT-OFF",
+                            "software_list": {
+                                "software": [
+                                    {
+                                        "instance_type": "software",
+                                        "name": "RELION",
+                                        "version": "1.3"
+                                    }
+                                ]
+                            }
+                        },
+                        "final_three_d_classification": {
+                            "average_number_members_per_class": 40000.0,
+                            "details": "3D classification yielded two major classes representing ion channel-like structure features.",
+                            "number_classes": 6,
+                            "software_list": {
+                                "software": [
+                                    {
+                                        "instance_type": "software",
+                                        "name": "RELION",
+                                        "version": "1.3"
+                                    }
+                                ]
+                            }
+                        },
+                        "image_processing_id": 1,
+                        "image_recording_id": 1,
+                        "initial_angle_assignment": {
+                            "software_list": {
+                                "software": [
+                                    {
+                                        "instance_type": "software",
+                                        "name": "RELION",
+                                        "version": "1.3"
+                                    }
+                                ]
+                            },
+                            "type_": "ANGULAR RECONSTITUTION"
+                        },
+                        "instance_type": "singleparticle_processing",
+                        "particle_selection": [
+                            {
+                                "details": "Initial manual particle picking and automatic particle picking were performed using SamViewer and several python scripts based on SPIDER.",
+                                "instance_type": "particle_selection",
+                                "number_selected": 218787
+                            }
+                        ],
+                        "startup_model": [
+                            {
+                                "emdb_id": "EMD-5776",
+                                "instance_type": "startup_model",
+                                "type_of_model": "EMDB MAP"
+                            }
+                        ]
+                    }
+                ],
+                "instance_type": "structure_determination",
+                "method": "singleParticle",
+                "microscopy_list": {
+                    "microscopy": [
+                        {
+                            "acceleration_voltage": {
+                                "units": "kV",
+                                "valueOf_": "300"
+                            },
+                            "alignment_procedure": {
+                                "coma_free": {}
+                            },
+                            "c2_aperture_diameter": {
+                                "units": "\u00b5m",
+                                "valueOf_": "30.0"
+                            },
+                            "calibrated_defocus_max": {
+                                "units": "\u00b5m",
+                                "valueOf_": "2.2"
+                            },
+                            "calibrated_defocus_min": {
+                                "units": "\u00b5m",
+                                "valueOf_": "0.7000000000000001"
+                            },
+                            "calibrated_magnification": 41132.0,
+                            "cooling_holder_cryogen": "NITROGEN",
+                            "details": "Grid screening was performed manually.",
+                            "electron_source": "FIELD EMISSION GUN",
+                            "illumination_mode": "FLOOD BEAM",
+                            "image_recording_list": {
+                                "image_recording": [
+                                    {
+                                        "average_electron_dose_per_image": {
+                                            "units": "e/\u212b^2",
+                                            "valueOf_": "41.0"
+                                        },
+                                        "average_exposure_time": {
+                                            "units": "s",
+                                            "valueOf_": "6.0"
+                                        },
+                                        "details": "Images were collected in movie mode at 5 frames per second for 6 seconds.",
+                                        "detector_mode": "SUPER-RESOLUTION",
+                                        "digitization_details": {
+                                            "dimensions": {
+                                                "height": {
+                                                    "units": "pixel",
+                                                    "valueOf_": "3710"
+                                                },
+                                                "width": {
+                                                    "units": "pixel",
+                                                    "valueOf_": "3838"
+                                                }
+                                            },
+                                            "frames_per_image": "1-30"
+                                        },
+                                        "film_or_detector_model": {
+                                            "valueOf_": "GATAN K2 SUMMIT (4k x 4k)"
+                                        },
+                                        "image_recording_id": 1,
+                                        "instance_type": "image_recording",
+                                        "number_grids_imaged": 1,
+                                        "number_real_images": 1200
+                                    }
+                                ]
+                            },
+                            "imaging_mode": "BRIGHT FIELD",
+                            "instance_type": "single_particle_microscopy",
+                            "microscope": "FEI POLARA 300",
+                            "microscopy_id": 1,
+                            "nominal_cs": {
+                                "units": "mm",
+                                "valueOf_": "2.0"
+                            },
+                            "nominal_defocus_max": {
+                                "units": "\u00b5m",
+                                "valueOf_": "2.2"
+                            },
+                            "nominal_defocus_min": {
+                                "units": "\u00b5m",
+                                "valueOf_": "0.7000000000000001"
+                            },
+                            "nominal_magnification": 31000.0,
+                            "specimen_holder_model": "OTHER",
+                            "temperature": {
+                                "temperature_max": {
+                                    "units": "K",
+                                    "valueOf_": "70.0"
+                                },
+                                "temperature_min": {
+                                    "units": "K",
+                                    "valueOf_": "70.0"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "specimen_preparation_list": {
+                    "specimen_preparation": [
+                        {
+                            "buffer": {
+                                "component": [
+                                    {
+                                        "concentration": {
+                                            "units": "mM",
+                                            "valueOf_": "20.0"
+                                        },
+                                        "formula": "C8H18N2O4S",
+                                        "instance_type": "component",
+                                        "name": "HEPES"
+                                    },
+                                    {
+                                        "concentration": {
+                                            "units": "mM",
+                                            "valueOf_": "150.0"
+                                        },
+                                        "formula": "NaCl",
+                                        "instance_type": "component",
+                                        "name": "sodium chloride"
+                                    },
+                                    {
+                                        "concentration": {
+                                            "units": "mM",
+                                            "valueOf_": "2.0"
+                                        },
+                                        "formula": "C9H15O6P",
+                                        "instance_type": "component",
+                                        "name": "TCEP"
+                                    }
+                                ],
+                                "ph": 7.4
+                            },
+                            "concentration": {
+                                "units": "mg/mL",
+                                "valueOf_": "0.5"
+                            },
+                            "details": "This sample was monodisperse.",
+                            "grid": {
+                                "material": "COPPER",
+                                "mesh": 400,
+                                "model": "Quantifoil R1.2/1.3",
+                                "pretreatment": {
+                                    "atmosphere": "AIR",
+                                    "pressure": {
+                                        "units": "kPa",
+                                        "valueOf_": "290.0"
+                                    },
+                                    "time": {
+                                        "units": "s",
+                                        "valueOf_": "10"
+                                    },
+                                    "type_": "GLOW DISCHARGE"
+                                },
+                                "support_film": [
+                                    {
+                                        "film_material": "CARBON",
+                                        "film_thickness": {
+                                            "valueOf_": "12.0"
+                                        },
+                                        "film_topology": "HOLEY",
+                                        "film_type_id": 1,
+                                        "instance_type": "support_film"
+                                    }
+                                ]
+                            },
+                            "instance_type": "single_particle_preparation",
+                            "preparation_id": 1,
+                            "vitrification": {
+                                "chamber_humidity": {
+                                    "units": "percentage",
+                                    "valueOf_": "100"
+                                },
+                                "chamber_temperature": {
+                                    "units": "K",
+                                    "valueOf_": "278"
+                                },
+                                "cryogen_name": "ETHANE",
+                                "details": "Blot for 6 seconds before plunging into liquid ethane (FEI VITROBOT MARK III).. ",
+                                "instrument": "FEI VITROBOT MARK III"
+                            }
+                        }
+                    ]
+                },
+                "structure_determination_id": 1
+            }
+        ]
+    },
+    "version": "3.0.9.3"
+}

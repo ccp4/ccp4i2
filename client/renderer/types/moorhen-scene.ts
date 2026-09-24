@@ -270,7 +270,35 @@ export interface SceneDomain {
  *     know the correspondences (e.g. matching specific binding-site
  *     residues across distantly related structures).
  */
-export type SceneSuperpose = SceneSuperposeSsm | SceneSuperposeLsq;
+export type SceneSuperpose =
+  | SceneSuperposeSsm
+  | SceneSuperposeLsq
+  | SceneSuperposeMatrix;
+
+/**
+ * A transform computed outside the viewer (a server-side builder fitting
+ * CAs with gemmi) and applied as-is: `x' = mat.x + vec` about the origin,
+ * mapping `move` onto the file named in `fitted.onto`. Carrying the matrix
+ * rather than the recipe makes the alignment reproducible and inspectable;
+ * `fitted` says what it rests on. No top-level `onto`, because applying a
+ * matrix needs no reference molecule loaded.
+ */
+export interface SceneSuperposeMatrix {
+  method: "matrix";
+  move: string;
+  /** Row-major 3x3 rotation, nine numbers. */
+  mat: number[];
+  /** Translation in Angstrom, three numbers. */
+  vec: number[];
+  fitted?: {
+    onto: string;
+    /** CA atoms in the final fit (after outlier rejection). */
+    atoms: number;
+    /** Angstrom about the site; absent or null for a global fit. */
+    radius?: number | null;
+    rmsd?: number | null;
+  };
+}
 
 export interface SceneSuperposeSsm {
   method: "ssm";

@@ -13,6 +13,8 @@ of any library's internal fixed/moving convention.
 """
 from __future__ import annotations
 
+import re
+
 import gemmi
 import numpy as np
 
@@ -48,6 +50,7 @@ def parse_domain(spec):
 # AmBn complexes work: a partial instance simply omits a role.
 # ---------------------------------------------------------------------------
 _IMPLICIT_ROLE = "_"
+_RANGE_RE = re.compile(r"^(-?\d+)\s*-\s*(-?\d+)$")
 
 
 def parse_segments(spec):
@@ -66,7 +69,13 @@ def parse_segments(spec):
             role = role.strip() or _IMPLICIT_ROLE
         else:
             role, rng = _IMPLICIT_ROLE, tok
-        lo, hi = (int(x) for x in rng.split("-"))
+        # A regex, not rng.split("-"): residue numbering may be negative
+        # (expression tags are routinely numbered -5..0), and splitting on the
+        # hyphen turns "-5-100" into four fields and a ValueError.
+        m = _RANGE_RE.match(rng.strip())
+        if not m:
+            raise ValueError(f"cannot read the residue range {rng.strip()!r}")
+        lo, hi = int(m.group(1)), int(m.group(2))
         out.append((role, lo, hi))
     if not out:
         raise ValueError(f"no segments parsed from {spec!r}")
@@ -144,6 +153,226 @@ def detect_reference_and_copies(model, reference=None, copies=None):
     else:
         cps = [c for c in prot if c != ref]
     return ref, cps
+
+
+# ---------------------------------------------------------------------------
+# Assembly auto-detection
+#
+# The task's hardest question -- "which chains are copies of each other, and
+# which of them belong to the same copy of the assembly" -- is one the model
+# already answers. Chains with the same sequence are the same ENTITY (a role);
+# chains of different entities that sit together in space are one INSTANCE.
+# Detecting this is what lets the interface open on a working assembly instead
+# of an empty box, and what stops the user having to invent role names.
+# ---------------------------------------------------------------------------
+
+
+def chain_sequence(model, chain_name):
+    """One-letter polymer sequence of a chain ('' if it has no polymer)."""
+    chain = _chain(model, chain_name)
+    if chain is None:
+        return ''
+    polymer = chain.get_polymer()
+    if not len(polymer):
+        return ''
+    return gemmi.one_letter_code(polymer.extract_sequence())
+
+
+def residue_bounds(model, chain_name):
+    """(first, last) amino-acid seqid of a chain, or None if it has none."""
+    chain = _chain(model, chain_name)
+    if chain is None:
+        return None
+    nums = [r.seqid.num for r in chain if _is_amino_acid(r)]
+    return (min(nums), max(nums)) if nums else None
+
+
+def chain_residue_map(model, chain_name):
+    """{seqid -> residue name} for the amino acids of a chain."""
+    chain = _chain(model, chain_name)
+    if chain is None:
+        return {}
+    return {r.seqid.num: r.name for r in chain if _is_amino_acid(r)}
+
+
+def _residue_identity(map_a, map_b):
+    """Identity of two chains compared BY RESIDUE NUMBER, in [0, 1].
+
+    Not by sequence position: NCS copies of one entity routinely differ by a
+    disordered loop in the middle, and a positional comparison falls out of
+    register after the first such gap and calls two copies of the same protein
+    different entities (it did, on the six-copy AHIR model, splitting A/B/D/F
+    from C/E over a single missing residue). Crystallographic copies share
+    their numbering, so comparing on seqid is both simpler and right; two
+    chains whose numbering barely overlaps are different entities anyway.
+    """
+    if not map_a or not map_b:
+        return 0.0
+    shared = set(map_a) & set(map_b)
+    if len(shared) < 0.5 * min(len(map_a), len(map_b)):
+        return 0.0
+    same = sum(1 for n in shared if map_a[n] == map_b[n])
+    return same / len(shared)
+
+
+def _chain_centroid(model, chain_name):
+    chain = _chain(model, chain_name)
+    if chain is None:
+        return None
+    pts = [a.pos for r in chain for a in r]
+    if not pts:
+        return None
+    n = len(pts)
+    return (sum(p.x for p in pts) / n, sum(p.y for p in pts) / n,
+            sum(p.z for p in pts) / n)
+
+
+def _distance(p, q):
+    return sum((a - b) ** 2 for a, b in zip(p, q)) ** 0.5
+
+
+def group_chains_by_entity(model, identity_threshold=0.9):
+    """Cluster the protein chains into entities: [[chain, ...], ...].
+
+    Each group is one entity (one role), its chains in model order; the groups
+    themselves are ordered by the first chain of each. Two chains join the same
+    group when their sequences are at least `identity_threshold` identical.
+    """
+    groups = []          # [[chain names]]
+    group_maps = []      # representative residue map per group
+    for name in protein_chains(model):
+        if not name:
+            # A blank chain id (old-style single-chain PDB) cannot be written
+            # in the 'role=chain' grammar at all, so it cannot take part in an
+            # assembly. Such a model has no NCS to average anyway.
+            continue
+        residues = chain_residue_map(model, name)
+        for i, ref_map in enumerate(group_maps):
+            if _residue_identity(residues, ref_map) >= identity_threshold:
+                groups[i].append(name)
+                break
+        else:
+            groups.append([name])
+            group_maps.append(residues)
+    return groups
+
+
+def detect_assembly(model, identity_threshold=0.9):
+    """Auto-detect the NCS assembly: a list of instances (role -> chain).
+
+    The entity with the most chains anchors the assembly -- one instance per
+    one of its chains, in model order, so instance 0 is anchored on the first
+    chain of the biggest entity. Every other entity distributes its chains
+    one per instance, each going to the instance whose anchor chain it is
+    closest to (greedy on centroid distance). An entity with fewer chains than
+    there are instances simply leaves holes: that is the A(m)B(n) case, and
+    body_operators already skips an instance that lacks a role it needs.
+
+    Roles are named after the chain that carries them in instance 0, so a
+    detected assembly reads 'A=A B=B' / 'A=C B=D' and the user need not invent
+    a vocabulary -- except for a single entity, which takes the implicit role
+    and so stays in the terse bare-chain form. Returns ([instance dicts],
+    [role names in column order]).
+    """
+    groups = group_chains_by_entity(model, identity_threshold)
+    if not groups:
+        return [], []
+
+    # The biggest entity anchors the assembly: one instance per one of its
+    # chains. A model with a single copy yields a single instance -- detection
+    # reports what is there, and whether that is enough to average is the
+    # caller's judgement (validity() requires at least two).
+    anchor = max(groups, key=len)
+    n_instances = len(anchor)
+    instances = [{} for _ in range(n_instances)]
+    role_names = []
+    for group in groups:
+        if group is anchor:
+            # One entity means no vocabulary is needed, and the implicit role
+            # is what a bare chain id and a bare residue range parse to. Naming
+            # it after its chain instead would make "340-485" refer to a role
+            # called "A" that no body mentions -- which is exactly how the
+            # detected assembly stopped matching hand-written DOMAINS.
+            role = _IMPLICIT_ROLE if len(groups) == 1 else anchor[0]
+            role_names.append(role)
+            for i, chain in enumerate(anchor):
+                instances[i][role] = chain
+            continue
+
+        # assign this entity's chains to instances by proximity to the anchor
+        anchor_centroids = [_chain_centroid(model, c) for c in anchor]
+        taken = set()
+        placement = {}    # instance index -> chain
+        pairs = []
+        for chain in group:
+            cen = _chain_centroid(model, chain)
+            for i, anchor_cen in enumerate(anchor_centroids):
+                if cen is None or anchor_cen is None:
+                    continue
+                pairs.append((_distance(cen, anchor_cen), chain, i))
+        for _, chain, i in sorted(pairs):
+            if chain in taken or i in placement:
+                continue
+            placement[i] = chain
+            taken.add(chain)
+        if not placement:
+            continue
+        # name the role after the chain in instance 0 where there is one, so
+        # the names match what the user sees in the reference row
+        role = placement.get(0) or placement[min(placement)]
+        role_names.append(role)
+        for i, chain in placement.items():
+            instances[i][role] = chain
+
+    instances = [inst for inst in instances if inst]
+    return instances, role_names
+
+
+def format_assembly_rows(instances, role_order=None):
+    """Instances -> the 'role=chain' row strings the ASSEMBLY parameter holds.
+
+    A single-role assembly is written in the terse bare-chain form ('A', 'B',
+    ...) that parse_assembly_rows reads back as the implicit role, so the
+    homomer case never grows a vocabulary it does not need.
+    """
+    roles = list(role_order or [])
+    for inst in instances:
+        for role in inst:
+            if role not in roles:
+                roles.append(role)
+    # Terse only for the single UNNAMED entity. Collapsing a named single role
+    # to bare chain ids would lose the name on the next read: the rows would
+    # parse back as the implicit role and every body naming it would dangle.
+    single = roles == [_IMPLICIT_ROLE]
+    rows = []
+    for inst in instances:
+        if single:
+            rows.append(inst.get(roles[0], ''))
+        else:
+            rows.append(' '.join(f'{r}={inst[r]}' for r in roles if r in inst))
+    return [r for r in rows if r]
+
+
+def suggest_segments(model, instances):
+    """The 'whole assembly is one rigid body' segment spec for a model.
+
+    This is the sensible opening position: plain NCS averaging of everything
+    the copies have in common, which is what parrot would do. The user then
+    splits it where their structure actually hinges.
+    """
+    if not instances:
+        return ''
+    ref = instances[0]
+    all_roles = {role for inst in instances for role in inst}
+    single = all_roles == {_IMPLICIT_ROLE}
+    parts = []
+    for role, chain in ref.items():
+        bounds = residue_bounds(model, chain)
+        if bounds is None:
+            continue
+        lo, hi = bounds
+        parts.append(f'{lo}-{hi}' if single else f'{role}:{lo}-{hi}')
+    return ','.join(parts)
 
 
 def _chain(model, name):

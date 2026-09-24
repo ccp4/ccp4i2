@@ -4,7 +4,6 @@ export interface StoreSchema {
   projectRoot: string;          // Path to ccp4i2 project (where .venv lives)
   zoomLevel: number;
   devMode: boolean;
-  CCP4I2_PROJECTS_DIR: string;
   theme: "light" | "dark";
   autoLaunch: boolean;          // Auto-enter CCP4i2 (after a countdown) once setup is complete
 }

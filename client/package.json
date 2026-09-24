@@ -15,6 +15,7 @@
     "copy-moorhen-root": "copyfiles -u 2 -e '**/*.wasm' -e '**/*.wasm.map' node_modules/moorhen/public/* renderer/",
     "copy-moorhen-assets": "copyfiles -u 4 \"node_modules/moorhen/public/MoorhenAssets/**/*\" renderer/public/MoorhenAssets/",
     "copy-moorhen-wasm": "echo 'WASM files copied by copy-moorhen-assets from MoorhenAssets/wasm/'",
+    "precompress-assets": "node scripts/precompress-assets.cjs",
     "copy-report-files-base": "copyfiles -u 1 assets/report_files/* renderer/public/",
     "copy-report-files": "copyfiles -u 1 \"assets/report_files/**/*\" renderer/public/",
     "copy-qticons-base": "copyfiles -u 2 assets/qticons/* renderer/public/qticons/",
@@ -27,7 +28,7 @@
     "start": "npm run start:electron",
     "build:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && cross-env BUILD_TARGET=electron next build renderer && cross-env BUILD_TARGET=electron vite build --config vite.electron.config.ts && cross-env BUILD_TARGET=electron vite build --config vite.preload.config.ts",
     "start:electron": "cross-env BUILD_TARGET=electron npm run copy-assets && vite build --config vite.electron.config.ts && vite build --config vite.preload.config.ts && electron dist/main.js",
-    "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next build",
+    "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && npm run precompress-assets && cd renderer && next build",
     "start:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next dev",
     "export:web": "cross-env BUILD_TARGET=web npm run build:web && cd renderer && next export",
     "package-mac": "npm install && npm run build:electron && npm prune --omit=dev --ignore-scripts && npm install --no-save --ignore-scripts electron-builder@26.7.0 && electron-builder",
@@ -64,7 +65,9 @@
     "cytoscape": "^3.33.1",
     "cytoscape-cose-bilkent": "^4.1.0",
     "detect-port": "^2.1.0",
+    "electron-log": "^5.4.4",
     "electron-store": "^8.2.0",
+    "electron-updater": "^6.8.9",
     "exceljs": "^4.4.0",
     "express": "^5.1.0",
     "form-data": "^4.0.4",
@@ -74,7 +77,7 @@
     "jspdf": "^3.0.4",
     "jspdf-autotable": "^5.0.2",
     "jszip": "^3.10.1",
-    "moorhen": "file:moorhen-1.0.0-beta.1-dev.gcf479260.tgz",
+    "moorhen": "file:moorhen-1.0.1-dev.g10d4c0b00.tgz",
     "next": "^15.3.0",
     "pptxgenjs": "^4.0.1",
     "react": "^19.2.0",
@@ -124,6 +127,14 @@
   "build": {
     "appId": "com.ccp4.ccp4i2x",
     "productName": "ccp4i2x",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ccp4",
+        "repo": "ccp4i2",
+        "channel": "alpha"
+      }
+    ],
     "electronVersion": "33.4.11",
     "npmRebuild": false,
     "icon": "assets/ccp4i2.png",
@@ -168,7 +179,10 @@
       "output": "release"
     },
     "mac": {
-      "target": "dmg",
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "assets/entitlements.mac.plist",
@@ -215,7 +229,8 @@
       "desktop": {
         "entry": {
           "Name": "CCP4i2x",
-          "Comment": "CCP4i2 crystallographic computing environment"
+          "Comment": "CCP4i2 crystallographic computing environment",
+          "StartupWMClass": "ccp4i2x"
         }
       }
     }

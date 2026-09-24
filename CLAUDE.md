@@ -19,6 +19,14 @@ compounds stubs remain under `client/renderer/lib/compounds/` (auth/rdkit/theme
 contexts), and the shared API contract it consumes lives in
 `packages/ccp4i2-api/`. For the compounds app itself, see the Materia repo.
 
+## Project skills
+
+Domain knowledge that is not derivable from the code lives in `.claude/skills/`,
+one skill per topic, loaded on demand by Claude Code. Each is a router to the
+sources of truth plus the judgement they cannot express; none copies generated
+material. First skill: `moorhen-scenes` (authoring, validating and changing
+Moorhen scene files).
+
 ## Key Directories
 
 The Python package lives at `server/ccp4i2/`; paths below are given in full,
@@ -177,7 +185,9 @@ ccp4i2/tests/
 │   └── lib/                     # Utilities, reports, sequences, uploads
 ├── parity/                      # Native ports vs the CCP4 binary they
 │                                #   replaced (needs the CCP4 binaries)
-├── async/                       # Async execution infrastructure
+├── async_execution/             # Async execution infrastructure
+│                                #   (NOT `async/`: a reserved word, so the
+│                                #    package cannot be named in an import)
 ├── db/                          # Database, project import/export
 ├── api/
 │   ├── unit/                    # REST endpoint tests (Django test client)
@@ -249,8 +259,8 @@ ccp4-python -m pytest ccp4i2/tests/ -v
 | Layer | What it tests | Speed | CCP4 needed? | When to run |
 |-------|--------------|-------|-------------|-------------|
 | `unit/` | Core data classes, gemmi utilities, MTZ/PDB operations, PHIL, converters, plugin infrastructure, validation, serialization | Fast (~5s) | No (just ccp4-python) | Every commit, CI on all platforms |
-| `async/` | Async execution framework | Fast | No | With unit tests |
-| `db/` | Database operations, project import/export | Medium | No | When touching DB code |
+| `async_execution/` | Async execution framework | Fast | No | With unit tests, and in CI |
+| `db/` | Database operations, project import/export, interactive sessions | Medium | No | With unit tests, and in CI |
 | `api/unit/` | REST endpoint behaviour | Fast | No | When touching API code |
 | `parity/` | Native gemmi/numpy implementations against the CCP4 binary they replaced (freerflag, chltofom, matthews, clipper cell checks) | Fast | Yes — the binaries | After changing any gemmi-native port |
 | `api/e2e/` | Full pipeline execution via REST API | Slow | Yes | Before release, after pipeline changes |
@@ -374,6 +384,10 @@ class Task:
     reportPath: str = None      # optional "...:acorn_report"
     runningReport: bool = False
     watchedFile: str = None
+    ccp4_free: bool = False     # needs no CCP4 binary; may run on the slim server
+    successor: str = None       # the task that replaces this one (chooser hides this one)
+    interactive: bool = False   # its "program" is a window in the app: Run opens a
+                                # session instead of dispatching (docs/moorhen-task-design.md)
 ```
 
 Accessors (lazy, cached — they import the plugin module on first use) live in the

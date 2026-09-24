@@ -22,6 +22,51 @@ export function extractFileIdFromUniqueId(uniqueId: string): number | null {
 }
 
 /**
+ * The camera, clipping and lighting numbers of the live view.
+ *
+ * Moorhen keeps these in its redux store, and which slice holds which has
+ * moved between releases: up to 1.0.0-beta.1 all of them sat on `glRef`; from
+ * 1.0.1 only `quat` does, and origin, zoom, fog/clip and lighting are on
+ * `sceneSettings`. Every read goes through here so the next move is one edit,
+ * and it is typed off `moorhen.State` with no casts so that move is a compile
+ * error rather than a view link that silently captures nothing.
+ */
+export interface MoorhenCameraState {
+  origin: number[];
+  quat: number[];
+  zoom: number;
+  fogClipOffset: number;
+  clipStart: number;
+  clipEnd: number;
+  fogStart: number;
+  fogEnd: number;
+  lightPosition: number[];
+  ambient: number[];
+  diffuse: number[];
+  specular: number[];
+  specularPower: number;
+}
+
+export function readCameraState(state: moorhen.State): MoorhenCameraState {
+  const scene = state.sceneSettings;
+  return {
+    origin: scene.origin,
+    quat: state.glRef.quat,
+    zoom: scene.zoom,
+    fogClipOffset: scene.fogClipOffset,
+    clipStart: scene.clipStart,
+    clipEnd: scene.clipEnd,
+    fogStart: scene.fogStart,
+    fogEnd: scene.fogEnd,
+    lightPosition: scene.lightPosition,
+    ambient: scene.ambient,
+    diffuse: scene.diffuse,
+    specular: scene.specular,
+    specularPower: scene.specularPower,
+  };
+}
+
+/**
  * Encode view state to a compact base64url string for URL.
  * Uses base64url encoding which is URL-safe (no + / = characters).
  */
@@ -142,17 +187,7 @@ export function captureViewState(
   visibleMaps: number[],
   representations?: string[]
 ): MoorhenViewState {
-  const state = store.getState();
-  // glRef is at the root level of the Redux store
-  const glRef = (state as unknown as { glRef: {
-    origin: number[];
-    quat: number[];
-    zoom: number;
-    clipStart: number;
-    clipEnd: number;
-    fogStart: number;
-    fogEnd: number;
-  }}).glRef;
+  const glRef = readCameraState(store.getState());
 
   // Helper to check for array-like objects (includes Float32Array and other typed arrays)
   // Note: Array.isArray(Float32Array) returns false, so we check for length property
@@ -163,8 +198,8 @@ export function captureViewState(
 
   // Validate glRef data - accept both regular arrays and typed arrays
   if (!glRef || !isArrayLike(glRef.origin) || !isArrayLike(glRef.quat)) {
-    console.error("captureViewState - Invalid glRef state:", glRef);
-    // Return default state if glRef is invalid
+    console.error("captureViewState - Invalid camera state:", glRef);
+    // Return default state if the camera state is invalid
     return {
       o: [0, 0, 0],
       q: [0, 0, 0, -1],

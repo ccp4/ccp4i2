@@ -1,4 +1,5 @@
 from collections import Counter
+import numpy as np
 import gemmi
 from .urls import pdbe_sfcif
 from .utils import demoData, download, i2run
@@ -117,3 +118,139 @@ def freer_flag_dict(hklin):
         (h, k, l): min(free, 1)
         for h, k, l, free in zip(hcol, kcol, lcol, freecol)
     }
+
+
+def test_baz2b_sca():
+    """Binary-free Scalepack import: read_scalepack -> gemmi split, no
+    scalepack2mtz/cmtzsplit. The .sca carries cell/SG in its header and no
+    FreeR, so import_merged generates a fresh free set."""
+    sca = demoData(
+        "baz2b",
+        "BAZ2BA_x828.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8281_scaled.sca",
+    )
+    args = ["import_merged", "--HKLIN", sca]
+    with i2run(args) as job:
+        obs = gemmi.read_mtz_file(str(job / "OBSOUT.mtz"))
+        labels = [c.label for c in obs.columns]
+        # anomalous intensities -> I(+/-) pair (CObsDataFile content flag 1)
+        assert "Iplus" in labels and "Iminus" in labels, f"OBSOUT columns {labels}"
+
+        free_mtz = gemmi.read_mtz_file(str(job / "FREEOUT.mtz"))
+        free_mtz.ensure_asu()
+        freecol = free_mtz.rfree_column()
+        assert freecol is not None, "FREEOUT.mtz missing FreeR column"
+        flags = [int(f) for f in freecol]
+        total = len(flags)
+        free_fraction = sum(1 for f in flags if f == 0) / total
+        assert 0.03 <= free_fraction <= 0.08, (
+            f"generated test set is {free_fraction:.1%}; freerflag holds out ~5%"
+        )
+        assert len(set(flags)) > 2, "working set should be segmented"
+
+
+# baz2b scalepack header: cell + C 2 2 21 (space group 20).
+_BAZ2B_CELL = (83.09, 96.79, 57.95, 90.0, 90.0, 90.0)
+_BAZ2B_SG = "C 2 2 21"
+
+
+def _write_shelx_hklf4(sca_path, out_path):
+    """Make a SHELX HKLF4 (intensities) file from a merged .sca, so we exercise
+    the SHELX path without shipping a .hkl in the repo (all repo .hkl are XDS)."""
+    from ccp4i2.lib.utils.files.reflection_formats import read_scalepack
+
+    mtz = read_scalepack(sca_path, _BAZ2B_CELL, 20, anomalous=False)
+    arr = np.array(mtz, copy=False)
+    labels = [c.label for c in mtz.columns]
+    hi, ki, li = labels.index("H"), labels.index("K"), labels.index("L")
+    ii, si = labels.index("IMEAN"), labels.index("SIGIMEAN")
+    with open(out_path, "w") as fh:
+        for r in arr:
+            I, S = r[ii], r[si]
+            if I != I or S != S:   # skip missing (NaN)
+                continue
+            I = max(-9999.99, min(99999.99, float(I)))
+            S = max(-9999.99, min(99999.99, float(S)))
+            fh.write("%4d%4d%4d%8.2f%8.2f\n" % (int(r[hi]), int(r[ki]), int(r[li]), I, S))
+        fh.write("%4d%4d%4d%8.2f%8.2f\n" % (0, 0, 0, 0, 0))
+
+
+def test_shelx_hkl(tmp_path):
+    """Binary-free SHELX import: read_shelx -> gemmi split, no f2mtz. SHELX
+    carries neither cell/SG nor whether the columns are intensities or
+    amplitudes, so all are supplied (cell + SG here, HKLF4 = intensities)."""
+    sca = demoData(
+        "baz2b",
+        "BAZ2BA_x828.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8281_scaled.sca",
+    )
+    hkl = tmp_path / "baz2b_intensities.hkl"
+    _write_shelx_hklf4(sca, hkl)
+
+    a, b, c, al, be, ga = _BAZ2B_CELL
+    args = [
+        "import_merged", "--HKLIN", str(hkl),
+        "--SPACEGROUP", _BAZ2B_SG,
+        "--UNITCELL", f"a={a}", f"b={b}", f"c={c}",
+        f"alpha={al}", f"beta={be}", f"gamma={ga}",
+        "--SHELX_IS_INTENSITY", "True",
+    ]
+    with i2run(args) as job:
+        obs = gemmi.read_mtz_file(str(job / "OBSOUT.mtz"))
+        labels = [c.label for c in obs.columns]
+        # intensities -> I/SIGI (mean), content flag 3
+        assert "I" in labels and "SIGI" in labels, f"OBSOUT columns {labels}"
+
+        free_mtz = gemmi.read_mtz_file(str(job / "FREEOUT.mtz"))
+        free_mtz.ensure_asu()
+        assert free_mtz.rfree_column() is not None, "FREEOUT.mtz missing FreeR"
+
+
+def _write_merged_xds(sca_path, out_path):
+    """Make a MERGED XDS_ASCII file from a merged .sca. The demo .hkl are all
+    UNMERGED XDS (blocked), so a merged XDS to exercise the import path has to be
+    generated. XDS carries its own cell/SG/wavelength."""
+    from ccp4i2.lib.utils.files.reflection_formats import read_scalepack
+
+    mtz = read_scalepack(sca_path, _BAZ2B_CELL, 20, anomalous=False)
+    arr = np.array(mtz, copy=False)
+    labels = [c.label for c in mtz.columns]
+    hi, ki, li = labels.index("H"), labels.index("K"), labels.index("L")
+    ii, si = labels.index("IMEAN"), labels.index("SIGIMEAN")
+    a, b, c, al, be, ga = _BAZ2B_CELL
+    with open(out_path, "w") as fh:
+        fh.write("!FORMAT=XDS_ASCII    MERGE=TRUE    FRIEDEL'S_LAW=TRUE\n")
+        fh.write("!SPACE_GROUP_NUMBER=20\n")
+        fh.write(f"!UNIT_CELL_CONSTANTS= {a} {b} {c} {al} {be} {ga}\n")
+        fh.write("!X-RAY_WAVELENGTH= 0.97950\n")
+        fh.write("!NUMBER_OF_ITEMS_IN_EACH_DATA_RECORD=5\n")
+        fh.write("!ITEM_H=1\n!ITEM_K=2\n!ITEM_L=3\n!ITEM_IOBS=4\n!ITEM_SIGMA(IOBS)=5\n")
+        fh.write("!END_OF_HEADER\n")
+        for r in arr:
+            I, S = r[ii], r[si]
+            if I != I or S != S:
+                continue
+            fh.write("%6d%6d%6d %11.3E %11.3E\n" % (int(r[hi]), int(r[ki]), int(r[li]), I, S))
+        fh.write("!END_OF_DATA\n")
+
+
+def test_merged_xds():
+    """Binary-free XDS import: gemmi read_xds_ascii -> to_mtz -> gemmi split.
+    Merged XDS carries its own cell/SG, so nothing extra is supplied. (Unmerged
+    XDS -- the usual CORRECT/INTEGRATE output -- is rejected by validity.)"""
+    import tempfile
+    import os
+
+    sca = demoData(
+        "baz2b",
+        "BAZ2BA_x828.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8281_scaled.sca",
+    )
+    with tempfile.TemporaryDirectory() as d:
+        xds = os.path.join(d, "merged_XDS_ASCII.HKL")
+        _write_merged_xds(sca, xds)
+        args = ["import_merged", "--HKLIN", xds]
+        with i2run(args) as job:
+            obs = gemmi.read_mtz_file(str(job / "OBSOUT.mtz"))
+            labels = [c.label for c in obs.columns]
+            assert "I" in labels and "SIGI" in labels, f"OBSOUT columns {labels}"
+            free_mtz = gemmi.read_mtz_file(str(job / "FREEOUT.mtz"))
+            free_mtz.ensure_asu()
+            assert free_mtz.rfree_column() is not None, "FREEOUT.mtz missing FreeR"

@@ -176,6 +176,88 @@
               "onto"
             ],
             "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "const": "matrix"
+              },
+              "move": {
+                "type": "string",
+                "description": "file being transformed"
+              },
+              "mat": {
+                "minItems": 9,
+                "maxItems": 9,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "row-major 3x3 rotation; x' = mat.x + vec about the origin"
+              },
+              "vec": {
+                "minItems": 3,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "translation, Angstrom"
+              },
+              "fitted": {
+                "description": "provenance: what the matrix was derived from",
+                "type": "object",
+                "properties": {
+                  "onto": {
+                    "type": "string",
+                    "description": "reference file the fit was made against"
+                  },
+                  "atoms": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991,
+                    "description": "CA atoms in the final fit"
+                  },
+                  "radius": {
+                    "description": "Angstrom about the site; absent for a global fit",
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "rmsd": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "onto",
+                  "atoms"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "method",
+              "move",
+              "mat",
+              "vec"
+            ],
+            "additionalProperties": false
           }
         ]
       }

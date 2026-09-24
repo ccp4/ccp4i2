@@ -344,7 +344,7 @@ class prosmart_refmac(CPluginScript):
         best_r_free = self.firstRefmac.container.outputData.PERFORMANCEINDICATOR.RFactor
         if self.container.controlParameters.ADD_WATERS and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT:
             try:
-                self.currentCoordinates = self.firstRefmac.container.outputData.CIFFILE
+                self._useFile('currentCoordinates', self.firstRefmac.container.outputData.CIFFILE)
                 self.cootPlugin = self.makeCootPlugin()
                 self.cootPlugin.doAsync = self.doAsync
                 self.cootPlugin.connectSignal(self.cootPlugin,'finished',self.cootFinished)
@@ -448,7 +448,7 @@ class prosmart_refmac(CPluginScript):
             aFile.close()
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
           self.cootPlugin.container.outputData.XYZOUT.subType = 1
-          self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT
+          self._useFile('currentCoordinates', self.cootPlugin.container.outputData.XYZOUT)
           self.refmacPostCootPlugin = self.refmacJobWithWeight(inputCoordinates=self.currentCoordinates,ncyc=5)
           self.refmacPostCootPlugin.doAsync = True
           self.refmacPostCootPlugin.connectSignal(self.refmacPostCootPlugin,'finished',functools.partial(self.postCootRefmacFinished,self.refmacPostCootPlugin))

@@ -4,8 +4,10 @@ import path from "path";
 import { useRouter } from "next/navigation";
 import {
   Button,
+  Checkbox,
   CircularProgress,
   Container,
+  FormControlLabel,
   Stack,
   TextField,
   Tooltip,
@@ -14,6 +16,11 @@ import {
 import { Folder } from "@mui/icons-material";
 import { useApi } from "../api";
 import { apiGet, apiPost } from "../api-fetch";
+import {
+  DefaultProjectsDir,
+  getDefaultProjectsDir,
+  setDefaultProjectsDir,
+} from "../lib/default-projects-dir";
 import { Project } from "../types/models";
 import EditTags from "./edit-tags";
 import {
@@ -30,6 +37,12 @@ export const NewProjectContent: React.FC = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [parentDirectory, setParentDirectory] = useState<string>("");
+  // The stored default, so the checkbox below can offer to move it — and
+  // only where the server says it is movable, which is the desktop.
+  const [storedDefault, setStoredDefault] = useState<DefaultProjectsDir | null>(
+    null
+  );
+  const [makeDefault, setMakeDefault] = useState(false);
   const [directoryExists, setDirectoryExists] = useState(true);
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
@@ -38,17 +51,16 @@ export const NewProjectContent: React.FC = () => {
   const [isCreating, setIsCreating] = useState(false);
   const { data: projects } = api.get<Project[]>("projects");
 
-  // The server supplies the initial parent because it owns the rule for where
-  // new projects go by default. The selected value is then submitted
-  // explicitly, so the displayed location and created location cannot diverge.
+  // The server owns the rule for where new projects go by default, and
+  // answers from preferences.json rather than from anything cached at launch,
+  // so this picks up a change made moments ago in Preferences.
   useEffect(() => {
     let cancelled = false;
-    apiGet<{ data?: { directory?: string } }>(
-      "config/default-project-parent/"
-    )
-      .then((resp) => {
+    getDefaultProjectsDir()
+      .then((setting) => {
         if (cancelled) return;
-        if (resp?.data?.directory) setParentDirectory(resp.data.directory);
+        if (setting.directory) setParentDirectory(setting.directory);
+        setStoredDefault(setting);
       })
       .catch(() => {
         /* The Electron config value below remains a local fallback. */
@@ -68,8 +80,7 @@ export const NewProjectContent: React.FC = () => {
         "message-from-main",
         (event: any, data: any) => {
           if (data.message === "get-config") {
-            // Only a fallback for the split second before the server answers,
-            // and for a desktop build talking to an older backend.
+            // Only a fallback for the split second before the server answers.
             setParentDirectory((current) =>
               current || data.config.CCP4I2_PROJECTS_DIR
             );
@@ -78,9 +89,10 @@ export const NewProjectContent: React.FC = () => {
             setDirectoryExists(data.exists);
           }
           if (data.message === "choose-project-parent-directory") {
-            // Local to this page only — choosing a parent does not change the
-            // configured projects directory for future projects.
+            // Local to this page unless "make this the default" is then
+            // ticked: choosing a parent does not itself change the default.
             setParentDirectory(data.directory);
+            setMakeDefault(false);
           }
         }
       );
@@ -97,6 +109,12 @@ export const NewProjectContent: React.FC = () => {
     return result;
   }, [parentDirectory, name]);
 
+  const canMakeDefault = Boolean(
+    storedDefault?.editable &&
+      parentDirectory &&
+      parentDirectory !== storedDefault.directory
+  );
+
   async function createProject() {
     setIsCreating(true);
     try {
@@ -105,6 +123,21 @@ export const NewProjectContent: React.FC = () => {
       formData.append("description", description);
       formData.append("directory", directory);
       const project = await api.post<Project>("projects", formData);
+
+      // After the project exists, not before: a create that fails must not
+      // leave the default moved to a directory nothing went into.
+      if (canMakeDefault && makeDefault) {
+        try {
+          await setDefaultProjectsDir(parentDirectory);
+        } catch (err) {
+          console.error("Could not set the default projects directory:", err);
+          alert(
+            "The project was created here, but this could not be made the " +
+              "default projects directory: " +
+              err
+          );
+        }
+      }
 
       // Apply tags to the new project
       for (const tagId of tags) {
@@ -424,6 +457,17 @@ export const NewProjectContent: React.FC = () => {
               </Tooltip>
             )}
           </Stack>
+        )}
+        {canMakeDefault && (
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={makeDefault}
+                onChange={(event) => setMakeDefault(event.target.checked)}
+              />
+            }
+            label="Make this the default projects directory"
+          />
         )}
         <Stack direction="row">
           <TextField

@@ -60,6 +60,26 @@ class FileViewSet(ModelViewSet):
     # The old actions abused the {pk} URL slot to carry a uuid; the new
     # viewset uses lookup_field="uuid" so the URL pattern is honest.
 
+    @action(detail=True, methods=["get"])
+    def companion_dictionaries(self, request, pk=None):
+        """The ligand dictionaries that belong with this file: those of the
+        job it belongs to (see jobs/{id}/dictionaries/).
+
+        GET /api/files/{id}/companion_dictionaries/
+        """
+        from ..lib.response import api_error, api_success
+        from ..lib.utils.jobs.dictionaries import companion_dictionaries
+        from . import serializers as _serializers
+
+        try:
+            the_file = models.File.objects.select_related("job").get(id=pk)
+        except models.File.DoesNotExist:
+            return api_error(f"File {pk} not found", status=404)
+        return api_success([
+            {**_serializers.FileSerializer(each).data, "role": role}
+            for each, role in companion_dictionaries(the_file)
+        ])
+
     @action(
         detail=True,
         methods=["get"],

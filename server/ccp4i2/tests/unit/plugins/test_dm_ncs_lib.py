@@ -105,6 +105,20 @@ def test_parse_segments_implicit_and_roled():
         ("cyclin", 10, 95), ("CDK", 45, 60)]
 
 
+def test_parse_segments_handles_negative_residue_numbers():
+    """Expression tags are routinely numbered -5..0, and the interface now
+    bounds its range pickers by the model's real numbering -- so it can offer
+    a negative first residue that a naive rng.split("-") turns into four
+    fields and a ValueError."""
+    assert L.parse_segments("-5-100") == [("_", -5, 100)]
+    assert L.parse_segments("CDK:-5--1") == [("CDK", -5, -1)]
+
+
+def test_parse_segments_rejects_a_range_it_cannot_read():
+    with pytest.raises(ValueError):
+        L.parse_segments("CDK:forty-two")
+
+
 def test_parse_assembly_rows_bare_roled_and_partial():
     # homomer: bare chains, implicit role
     assert L.parse_assembly_rows(["A", "B", "C"]) == [
@@ -204,3 +218,108 @@ def test_body_operators_skips_partial_instance(model):
     ops, rmsds = L.body_operators(m, instances, segs, cell=cell)
     assert ops == [L.IDENTITY_DM]   # identity only; partial copy skipped
     assert rmsds == {}
+
+
+# ---------------------------------------------------------------------------
+# Assembly auto-detection
+#
+# The interface opens on whatever these return, so what they get wrong the
+# user has to unpick by hand. 1JST is CDK2/cyclin A with two copies of the
+# hetero-dimer (A+B, C+D) and is the case the role vocabulary exists for;
+# AHIR is the six-copy homomer that must stay in the terse, role-free form.
+# ---------------------------------------------------------------------------
+
+_CDK = os.path.join(os.path.dirname(ccp4i2.__file__),
+                    "demo_data", "CDK1CyclinBCKS2", "1jst.pdb")
+
+
+@pytest.fixture(scope="module")
+def cdk_model():
+    if not os.path.exists(_CDK):
+        pytest.skip("CDK/cyclin demo model not present")
+    st = gemmi.read_structure(_CDK)
+    st.setup_entities()
+    return st
+
+
+def test_entities_group_by_residue_number_not_sequence_position(model):
+    """All six AHIR chains are one entity.
+
+    Two of them are one residue shorter than the other four. Comparing the
+    one-letter sequences positionally falls out of register at that gap and
+    splits the homomer into two entities (it did); comparing by seqid, which
+    is what crystallographic copies actually share, does not.
+    """
+    groups = L.group_chains_by_entity(model[0])
+    assert len(groups) == 1
+    assert sorted(groups[0]) == ["A", "B", "C", "D", "E", "F"]
+
+
+def test_detect_homomer_stays_terse(model):
+    """One entity means the IMPLICIT role -- which is what a bare chain id and
+    a bare residue range parse to.
+
+    Naming it after its chain instead ("A") looks tidier and breaks every
+    hand-written or i2run-written body: "340-485" is the implicit role, so it
+    would refer to an entity the detected assembly does not have.
+    """
+    instances, roles = L.detect_assembly(model[0])
+    assert len(instances) == 6
+    assert roles == [L._IMPLICIT_ROLE]
+    # one role means no vocabulary: bare chain ids, bare residue ranges
+    assert L.format_assembly_rows(instances, roles) == \
+        ["A", "E", "B", "C", "D", "F"]
+    assert L.suggest_segments(model[0], instances) == "12-485"
+
+
+def test_a_named_single_entity_is_not_collapsed_to_bare_chains(model):
+    """The terse form is for the unnamed entity only: writing a named single
+    role as bare chain ids would lose the name, and the bodies naming it would
+    dangle on the next read."""
+    rows = L.format_assembly_rows([{"CDK": "A"}, {"CDK": "B"}], ["CDK"])
+    assert rows == ["CDK=A", "CDK=B"]
+    assert L.parse_assembly_rows(rows) == [{"CDK": "A"}, {"CDK": "B"}]
+
+
+def test_detect_heterodimer_pairs_chains_by_proximity(cdk_model):
+    """CDK2/cyclin A: two copies, each a CDK chain with ITS cyclin.
+
+    Pairing is by proximity, not by order -- getting A with D would define an
+    assembly whose 'copies' are two halves of different dimers, and every
+    superposition after it would be meaningless.
+    """
+    instances, roles = L.detect_assembly(cdk_model[0])
+    assert roles == ["A", "B"]
+    assert instances == [{"A": "A", "B": "B"}, {"A": "C", "B": "D"}]
+    assert L.format_assembly_rows(instances, roles) == ["A=A B=B", "A=C B=D"]
+    assert L.suggest_segments(cdk_model[0], instances) == "A:1-298,B:175-432"
+
+
+def test_detected_assembly_round_trips_through_the_parameter(cdk_model):
+    """What detection writes, parse_assembly_rows must read back unchanged --
+    the formatter and the parser are the two ends of the ASSEMBLY parameter."""
+    instances, roles = L.detect_assembly(cdk_model[0])
+    rows = L.format_assembly_rows(instances, roles)
+    assert L.parse_assembly_rows(rows) == instances
+
+
+def test_homomer_round_trip_is_lossless(model):
+    """The homomer path is the one i2run uses with no ASSEMBLY at all, so
+    detection, formatting and parsing have to agree exactly."""
+    instances, roles = L.detect_assembly(model[0])
+    rows = L.format_assembly_rows(instances, roles)
+    assert L.parse_assembly_rows(rows) == instances
+
+
+def test_suggested_segments_are_a_usable_body(cdk_model):
+    """The opening suggestion must survive the parser and superpose."""
+    instances, _ = L.detect_assembly(cdk_model[0])
+    segments = L.parse_segments(L.suggest_segments(cdk_model[0], instances))
+    _, rmsd = L.operator_ref_to_copy_body(
+        cdk_model[0], instances[0], instances[1], segments)
+    assert rmsd < 2.0
+
+
+def test_residue_bounds_covers_only_amino_acids(cdk_model):
+    assert L.residue_bounds(cdk_model[0], "A") == (1, 298)
+    assert L.residue_bounds(cdk_model[0], "nonesuch") is None

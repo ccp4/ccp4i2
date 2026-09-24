@@ -34,6 +34,7 @@ TASKS = {
     "ImportAsuContent": "AsuDataFile",
     "ImportMap": "MapDataFile",
     "ImportObs": "ObsDataFile",
+    "ImportUnmerged": "UnmergedDataFile",
     "ImportMapCoeffs": "MapCoeffsDataFile",
     "ImportFreeR": "FreeRDataFile",
     "ImportPhases": "PhsDataFile",

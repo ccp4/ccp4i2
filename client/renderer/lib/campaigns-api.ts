@@ -17,6 +17,9 @@ import {
   ParentFilesResponse,
   MembershipType,
   CampaignSite,
+  NewCampaignSite,
+  SiteEvaluation,
+  SiteVerdict,
 } from "../types/campaigns";
 import { Project } from "../types/models";
 import type { MoorhenScene } from "../types/moorhen-scene";
@@ -41,9 +44,72 @@ export interface SummarySceneResponse {
   stats: SummarySceneStats;
 }
 
+/** How one dataset was put in the exemplar's frame, or why it was not. */
+export interface SiteSceneFit {
+  project: string;
+  ok: boolean;
+  atoms: number;
+  radius: number | null;
+  rmsd: number | null;
+  reason: string | null;
+  /** Present when the local fit could not be made and a global one stood in. */
+  fallback?: "global";
+}
+
+/** Counts and diagnostics returned alongside a site scene. */
+export interface SiteSceneStats {
+  site: { id: number; name: string };
+  hits_claimed: number;
+  hits_drawn: number;
+  empty_verdicts: number;
+  unclear_verdicts: number;
+  unclear_drawn: number;
+  skipped: (SummarySceneSkip & { nearest: number | null })[];
+  parent_present: boolean;
+  reference: { project: string; is_parent: boolean } | null;
+  pocket_residues: number;
+  /** Distance from the site origin to each drawn dataset's nearest fragment,
+   *  after superposition: a large value is a verdict worth a second look. */
+  drawn: { project: string; verdict: string; nearest: number | null }[];
+  superpose: SiteSceneFit[];
+}
+
+export interface SiteSceneResponse {
+  scene: MoorhenScene;
+  stats: SiteSceneStats;
+}
+
 // =============================================================================
 // Hook for campaign operations
 // =============================================================================
+
+/**
+ * Re-fetch a campaign's sites wherever they are on screen.
+ *
+ * Matched by substring rather than by exact key because the same collection
+ * is read under several keys (the campaign page, the Moorhen panel), and a
+ * site added in one has to show up in the other.
+ */
+function revalidateSites(campaignId: number) {
+  mutate(
+    (key) =>
+      typeof key === "string" &&
+      key.includes(`projectgroups/${campaignId}/sites`),
+    undefined,
+    { revalidate: true }
+  );
+}
+
+/** Re-fetch the campaign overview — it carries the verdicts per dataset. */
+function revalidateMemberProjects(campaignId: number) {
+  mutate(
+    (key) =>
+      typeof key === "string" &&
+      key.includes(`projectgroups/${campaignId}/member_projects`),
+    undefined,
+    { revalidate: true }
+  );
+}
 
 export function useCampaignsApi() {
   const api = useApi();
@@ -106,6 +172,25 @@ export function useCampaignsApi() {
      */
     async fetchSummaryScene(campaignId: number): Promise<SummarySceneResponse> {
       return apiGet(`projectgroups/${campaignId}/summary_scene`);
+    },
+
+    /**
+     * Fetch the scene for one binding site: the exemplar as a ribbon with
+     * the pocket residues as sticks, and the ligand of every dataset judged
+     * a hit at that site fitted onto it. Membership is the recorded verdict,
+     * nothing else. Superposition is on by default, so the option turns it
+     * off.
+     */
+    async fetchSiteScene(
+      campaignId: number,
+      siteId: number,
+      options: { includeUnclear?: boolean; superpose?: boolean } = {}
+    ): Promise<SiteSceneResponse> {
+      const params = new URLSearchParams();
+      if (options.includeUnclear) params.set("include", "unclear");
+      if (options.superpose === false) params.set("superpose", "none");
+      const query = params.size ? `?${params.toString()}` : "";
+      return apiGet(`projectgroups/${campaignId}/sites/${siteId}/scene/${query}`);
     },
 
     /**
@@ -247,27 +332,90 @@ export function useCampaignsApi() {
     },
 
     /**
-     * Update binding sites for a campaign.
-     * @param campaignId - The campaign ID
-     * @param sites - Array of site objects with name, origin, and optional quat/zoom
+     * Add one binding site to a campaign.
+     *
+     * One at a time, not the whole list: the list used to be replaced
+     * wholesale on every write, so two people editing a campaign silently
+     * discarded each other's sites.
      */
-    async updateSites(
+    async addSite(
       campaignId: number,
-      sites: CampaignSite[]
-    ): Promise<CampaignSite[]> {
-      const result = await apiPut<CampaignSite[]>(
-        `projectgroups/${campaignId}/sites/`,
-        sites
+      site: NewCampaignSite
+    ): Promise<CampaignSite> {
+      const result = await apiPost<CampaignSite>(
+        `projectgroups/${campaignId}/sites`,
+        site
       );
-      // Invalidate sites query
-      mutate(
-        (key) =>
-          typeof key === "string" &&
-          key.includes(`projectgroups/${campaignId}/sites`),
-        undefined,
-        { revalidate: true }
-      );
+      revalidateSites(campaignId);
       return result;
+    },
+
+    /**
+     * Change one site, addressed by its id.
+     *
+     * By id rather than by position or name, so a rename keeps every verdict
+     * recorded against that site attached to it.
+     */
+    async updateSite(
+      campaignId: number,
+      siteId: number,
+      changes: Partial<NewCampaignSite> & { order?: number }
+    ): Promise<CampaignSite> {
+      const result = await apiPatch<CampaignSite>(
+        `projectgroups/${campaignId}/sites/${siteId}`,
+        changes
+      );
+      revalidateSites(campaignId);
+      return result;
+    },
+
+    /** Remove one site, and with it every verdict recorded at that site. */
+    async deleteSite(campaignId: number, siteId: number): Promise<void> {
+      await apiDelete(`projectgroups/${campaignId}/sites/${siteId}`);
+      revalidateSites(campaignId);
+      revalidateMemberProjects(campaignId);
+    },
+
+    /** Every verdict recorded for one dataset, including the empties. */
+    async fetchEvaluations(
+      campaignId: number,
+      projectId: number
+    ): Promise<SiteEvaluation[]> {
+      return apiGet(`projectgroups/${campaignId}/evaluations/${projectId}`);
+    },
+
+    /** Record or change what was found at one site in one dataset. */
+    async setSiteEvaluation(
+      campaignId: number,
+      siteId: number,
+      projectId: number,
+      verdict: SiteVerdict,
+      extra: { evaluator?: string; note?: string } = {}
+    ): Promise<SiteEvaluation> {
+      const result = await apiPut<SiteEvaluation>(
+        `projectgroups/${campaignId}/sites/${siteId}/evaluation/${projectId}`,
+        { verdict, ...extra }
+      );
+      revalidateMemberProjects(campaignId);
+      return result;
+    },
+
+    /**
+     * Withdraw a verdict.
+     *
+     * Not the same as recording "empty": this returns the site to nobody
+     * having looked, where "empty" asserts that somebody looked and found
+     * nothing.
+     */
+    async clearSiteEvaluation(
+      campaignId: number,
+      siteId: number,
+      projectId: number
+    ): Promise<void> {
+      await apiDelete(
+        `projectgroups/${campaignId}/sites/${siteId}/evaluation/${projectId}`
+      );
+      revalidateMemberProjects(campaignId);
     },
 
     /**

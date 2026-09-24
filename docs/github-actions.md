@@ -6,7 +6,7 @@ What runs, when, and what it would take to change it. Four workflows, in
 | Workflow | Fires on | Does | Cost |
 |---|---|---|---|
 | `ci.yml` | every pull request; pushes to `django` | Runs `tests/unit/` + `tests/api/unit/` on stock CPython 3.11 and 3.13 | ~1 min × 2 |
-| `electron-multiplatform-build.yml` | pushes to `django`; PRs into `django` — both `paths-ignore` docs | Packages the desktop app on mac, Windows and Linux. Compiles, does not test | ~10 min × 3 |
+| `electron-multiplatform-build.yml` | pushes to `django`; PRs into `django` — a `changes` job skips the three builds for docs-only changesets | Packages the desktop app on mac, Windows and Linux. Compiles, does not test | ~10 min × 3 |
 | `publish-ccp4i2-api.yml` | changes under `packages/ccp4i2-api/`; tags `ccp4i2-api-v*` | Tests the shared package (Python 3.9/3.11/3.12 × Django 4.2/5.2); on a tag also publishes to PyPI and npm | minutes |
 | `release.yml` | tags `v*` | Verifies the tag matches `ccp4i2.__version__`, publishes the backend wheel to PyPI, builds the three installers, creates the GitHub Release | ~20 min |
 
@@ -61,8 +61,7 @@ run it under `ccp4-python` locally and you get strictly more coverage, not a
 different answer. Adding a test that hard-requires a CCP4 binary without a guard
 turns the job red for everyone.
 
-What is deliberately *not* in it: `tests/db/` and `tests/async/` do not collect
-without more setup, and `tests/i2run/` and `tests/api/e2e/` run real
+What is deliberately *not* in it: `tests/i2run/` and `tests/api/e2e/` run real
 crystallographic jobs and download from PDBe/RCSB. Those need a machine with
 CCP4; see [Testing](../CLAUDE.md) for running them locally.
 
@@ -75,9 +74,23 @@ version. This bites when stacking: PR B based on PR A does not see A's workflow
 edits until B is rebased. (Widening `ci.yml`'s trigger and then wondering why
 the stacked PR had no checks is exactly how this entry got written.)
 
-**`paths-ignore` is evaluated over the whole changeset, not per file.** A commit
-mixing a doc edit with a source edit still triggers the Electron build. Do not
-rely on it to skip work for a mixed PR.
+**The Electron build is skipped by a job, not by a path filter, and that is
+deliberate.** `build-mac`, `build-win` and `build-linux` are required checks on
+`django`. A workflow skipped by `paths-ignore` never reports them: they sit at
+"Expected" for ever, so until 2026-09-18 a Markdown-only PR could not be merged
+at all (the first project skill had to ride on a code PR to land). A *job*
+skipped by an `if:` reports success. So the workflow always starts, a `changes`
+job runs `.github/scripts/changes-need-build.sh` over the changeset, and the
+three builds carry `if: needs.changes.outputs.build == 'true'`. Docs-only means
+every changed file is `*.md`, under `docs/`, or `LICENSE`; a changeset mixing a
+doc edit with a source edit still builds, and anything undecidable builds. A
+pull request is judged against its merge base, so a base branch that has moved
+on with code does not make a docs PR build. Two ways to break this, both
+tempting: putting `paths-ignore` back, and adding a second workflow that
+reports the same three job names for docs changes. The second one is worse
+than it looks: a PR touching docs and code runs both, and a passing stub can
+mask a failing build. The script is plain bash and can be run locally:
+`.github/scripts/changes-need-build.sh <base-sha> <head-sha> [merge-base|direct]`.
 
 **Action versions drift.** The tree currently pins `actions/checkout@v4`,
 `actions/setup-python@v5`, `actions/setup-node@v4`,

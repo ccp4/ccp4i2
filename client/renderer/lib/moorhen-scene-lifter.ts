@@ -103,6 +103,15 @@ export interface LiftCtx {
    *  masked via Moorhen's own menu, outside the scene context) are dropped and
    *  logged — they can't round-trip as a recipe and we don't materialise. */
   maskMaps?: MaskMap[];
+  /** The `domains:` block of the LAST-applied scene, remembered by the host —
+   *  the same deal as `superpose`. `colour: by-domain` compiles to one
+   *  multi-colour rule of `//chain/start-end^#hex` segments, which keeps neither
+   *  a domain's name nor its authored range (the resolver clamps the range to
+   *  the residues present). So a representation still carrying such a rule is
+   *  lifted as `by-domain` and the remembered block re-emitted beside it. With
+   *  no remembered domains there is nothing for `by-domain` to refer to, and
+   *  the rule is lifted as the per-selection list it amounts to instead. */
+  domains?: SceneDomain[];
   /** Optional: the ccp4i2 project UUID. If set, file refs get both
    *  projectId and (derivable) fileId. */
   projectId?: string;
@@ -232,14 +241,23 @@ export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
   // into this lift, so we never emit a dangling reference.
   if (ctx.superpose?.length) {
     const fileNames = new Set((scene.files ?? []).map((f) => f.name));
-    const kept = ctx.superpose.filter(
-      (sp) => fileNames.has(sp.move) && fileNames.has(sp.onto),
-    );
+    const kept = ctx.superpose.flatMap<SceneSuperpose>((sp) => {
+      if (!fileNames.has(sp.move)) return [];
+      if (sp.method !== "matrix") return fileNames.has(sp.onto) ? [sp] : [];
+      // A matrix applies without its reference loaded; only the provenance
+      // would dangle, so drop that rather than the transform.
+      if (sp.fitted && !fileNames.has(sp.fitted.onto)) {
+        const { fitted: _dropped, ...bare } = sp;
+        return [bare];
+      }
+      return [sp];
+    });
     if (kept.length) scene.superpose = kept;
   }
 
+  const haveDomains = (ctx.domains?.length ?? 0) > 0;
   const elements = ctx.molecules
-    .map((mol, i) => liftElement(mol, scene.files?.[i]?.name ?? `mol${i}`))
+    .map((mol, i) => liftElement(mol, scene.files?.[i]?.name ?? `mol${i}`, haveDomains))
     .filter((el): el is SceneElement => el !== null);
 
   // Attach the lifted dict refs to the element for their molecule.
@@ -356,6 +374,11 @@ export function liftScene(ctx: LiftCtx, opts: LiftOpts = {}): MoorhenScene {
     if (emittedMasks.length > 0) scene.maskMaps = emittedMasks;
     if (maps.length > 0) scene.maps = maps;
   }
+
+  // Re-emit the last-applied domains: block if anything lifted still refers to
+  // it. (It goes in whole: a domain is a scene-wide definition, not tied to the
+  // representation that happens to use it.)
+  if (haveDomains && usesByDomain(scene)) scene.domains = ctx.domains;
 
   // Fold any whole-chain colour lists into domains: + colour: by-domain, so a
   // molecule's per-chain colouring is stated once rather than inline per rep.
@@ -1118,14 +1141,18 @@ function liftHints(
 // Elements + representations
 // --------------------------------------------------------------------------
 
-function liftElement(mol: moorhen.Molecule, fileName: string): SceneElement | null {
+function liftElement(
+  mol: moorhen.Molecule,
+  fileName: string,
+  haveDomains = false,
+): SceneElement | null {
   const reps = (mol.representations ?? []).filter((r) => r && r.style);
   // Only lift visible reps; hidden ones are usually leftovers the user
   // wouldn't expect in a captured scene.
   const visible = reps.filter((r) => r.visible !== false);
   if (visible.length === 0) return null;
 
-  const out: SceneRepresentation[] = visible.map(liftRepresentation);
+  const out: SceneRepresentation[] = visible.map((r) => liftRepresentation(r, haveDomains));
   const element: SceneElement = { file: fileName, representations: out };
   hoistCommonColour(element);
   return element;
@@ -1150,11 +1177,14 @@ function hoistCommonColour(element: SceneElement): void {
   for (const r of reps) delete r.colour;
 }
 
-function liftRepresentation(rep: moorhen.MoleculeRepresentation): SceneRepresentation {
+function liftRepresentation(
+  rep: moorhen.MoleculeRepresentation,
+  haveDomains = false,
+): SceneRepresentation {
   const out: SceneRepresentation = { style: rep.style };
   if (rep.cid && rep.cid !== "/*/*/*/*") out.selection = rep.cid;
 
-  const colour = liftColour(rep.colourRules ?? []);
+  const colour = liftColour(rep.colourRules ?? [], haveDomains);
   if (colour !== undefined) out.colour = colour;
 
   // Per-representation opacity (Moorhen `nonCustomOpacity`); only emit a
@@ -1185,7 +1215,18 @@ function isSingleHexRule(r: moorhen.ColourRule): boolean {
   return !r.isMultiColourRule && typeof r.color === "string" && HEX_RE.test(r.color);
 }
 
-function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
+/** `cid^#hex|cid^#hex|...` → a per-selection colour list. */
+function multiColourDataToList(multi: string): SceneColourSelection[] {
+  return multi.split("|").map((seg) => {
+    const ix = seg.lastIndexOf("^");
+    return { selection: seg.slice(0, ix), colour: seg.slice(ix + 1) };
+  });
+}
+
+function liftColour(
+  rules: moorhen.ColourRule[],
+  haveDomains = false,
+): SceneColour | undefined {
   if (rules.length === 0) return undefined;
 
   // All single-colour rules → a single hex (one rule) or a per-selection list
@@ -1215,44 +1256,45 @@ function liftColour(rules: moorhen.ColourRule[]): SceneColour | undefined {
     return r.ruleType as SceneColour;
   }
 
-  // 2. A compiled WHOLE-CHAIN per-selection rule: one multi-rule whose args[0]
+  // A multi-colour rule carries its `cid^#hex|...` segments in multiColourData
+  // (Moorhen 1.0.1; before that it was args[0]).
+  const multi = r.isMultiColourRule ? r.multiColourData : undefined;
+
+  // 2. A compiled WHOLE-CHAIN per-selection rule: one multi-rule whose data
   //    is `//chain^#hex|...` (no residue range). This is what applying a
   //    hoisted per-chain colouring (domains: + by-domain) produces, so decompose
   //    it back to the list — hoistPerChainColours then re-folds it into
   //    domains: + by-domain, keeping capture→apply→capture stable.
   if (
-    r.isMultiColourRule &&
-    typeof r.args?.[0] === "string" &&
+    typeof multi === "string" &&
     /^\/\/[^/^|]+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?(\|\/\/[^/^|]+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?)*$/.test(
-      r.args[0] as string,
+      multi,
     )
   ) {
-    return (r.args[0] as string).split("|").map((seg) => {
-      const ix = seg.lastIndexOf("^");
-      return { selection: seg.slice(0, ix), colour: seg.slice(ix + 1) };
-    });
+    return multiColourDataToList(multi);
   }
 
-  // 3. by-domain shape: a single multi-rule whose args[0] is a string
-  //    of `//chain/start-end^#rrggbb|...` segments. Recognise and emit
-  //    as `by-domain` (the calling code can reconstitute domains from
-  //    the top-level domains: block; we don't try to lift those here
-  //    because we don't know what the segments *mean*).
+  // 3. by-domain shape: a single multi-rule whose data is a string of
+  //    `//chain/start-end^#rrggbb|...` segments. With a remembered `domains:`
+  //    block (LiftCtx.domains) it is `by-domain`, and liftScene re-emits the
+  //    block. Without one there is nothing for the name to refer to, so emit
+  //    the per-selection list the segments amount to — it applies identically.
   if (
-    r.isMultiColourRule &&
-    typeof r.args?.[0] === "string" &&
+    typeof multi === "string" &&
     /^\/\/[^/]+\/-?\d+--?\d+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?(\|\/\/[^/]+\/-?\d+--?\d+\^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?)*$/.test(
-      r.args[0] as string,
+      multi,
     )
   ) {
-    return "by-domain";
+    return haveDomains ? "by-domain" : multiColourDataToList(multi);
   }
 
-  // 4. Escape hatch: keep the rule verbatim. Lossless, ugly.
+  // 4. Escape hatch: keep the rule verbatim. Lossless, ugly. `args` is the
+  //    scene format's spelling (and Moorhen's own session format's): the
+  //    multi-colour data for a multi-rule, else [cid, colour].
   return {
     raw: {
       ruleType: r.ruleType,
-      args: r.args ?? [],
+      args: r.isMultiColourRule ? [r.multiColourData ?? ""] : [r.cid, r.color],
       isMultiColourRule: r.isMultiColourRule,
       applyColourToNonCarbonAtoms: r.applyColourToNonCarbonAtoms,
     },
@@ -1265,6 +1307,14 @@ function chainOfWholeChainCid(cid: string): string | null {
   const parts = cid.split("/"); // "//A" -> ["","","A"]; "/1/A" -> ["","1","A"]
   if (parts.length === 3 && parts[2] !== "" && parts[2] !== "*") return parts[2];
   return null;
+}
+
+function usesByDomain(scene: MoorhenScene): boolean {
+  return (scene.elements ?? []).some(
+    (el) =>
+      el.colour === "by-domain" ||
+      (el.representations ?? []).some((rep) => rep.colour === "by-domain"),
+  );
 }
 
 /**
