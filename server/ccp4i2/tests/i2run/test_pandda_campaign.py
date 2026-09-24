@@ -57,6 +57,10 @@ def test_stage_only_needs_no_campaign():
         argv = params.find(".//outputData/PROVENANCE_ARGV").text
         assert "--dataset_range 0-999999999" in argv and "--ligand_pdb_regex ligand.pdb" in argv
         assert "--local_cpus 3" in argv
+        # three datasets: the minimum is lowered to three so the run proceeds,
+        # recorded in the parameters, and warned about (205), without blocking
+        assert "--min_characterisation_datasets 3" in argv
+        assert params.find(".//controlParameters/MIN_CHARACTERISATION_DATASETS").text == "3"
         assert params.find(".//outputData/CONTRACT_VERSION").text
         # the submitted list is the record
         items = params.findall(".//inputData/DATASETS/CPanddaDataset")

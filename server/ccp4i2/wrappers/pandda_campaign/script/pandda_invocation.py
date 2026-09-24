@@ -44,9 +44,11 @@ DICT_REGEX = "dict.cif"
 MIN_DATASETS = 25
 
 
-def build_argv(data_dirs, out_dir, local_cpus: int) -> List[str]:
+def build_argv(data_dirs, out_dir, local_cpus: int,
+               min_characterisation_datasets: int = MIN_DATASETS) -> List[str]:
     """The contract's argv, argument for argument, both defensive literals
-    included. ``data_dirs`` is the staged ``datasets/`` directory."""
+    included, plus the one statistical knob a small run needs. ``data_dirs``
+    is the staged ``datasets/`` directory."""
     return [
         "--data_dirs", str(data_dirs),
         "--out_dir", str(out_dir),
@@ -57,6 +59,7 @@ def build_argv(data_dirs, out_dir, local_cpus: int) -> List[str]:
         "--ligand_cif_regex", DICT_REGEX,
         "--ligand_pdb_regex", LIGAND_PDB_REGEX,
         "--dataset_range", DATASET_RANGE,
+        "--min_characterisation_datasets", str(int(min_characterisation_datasets)),
     ]
 
 
@@ -101,6 +104,53 @@ def build_env(base_env: Dict[str, str], scratch_dir) -> Dict[str, str]:
     env = {k: v for k, v in base_env.items() if not k.startswith("PANDDA_")}
     env["RAY_TMPDIR"] = str(scratch_dir)
     return env
+
+
+# --- what a run produced ---------------------------------------------------
+
+#: PanDDA's own account of why a dataset went unanalysed, as it prints it.
+SKIP_REASON_RE = re.compile(
+    r"^\s*(?P<dtag>\S+)\s*:\s*(?P<why>Filtered because .*?)\s*$|"
+    r"^\s*(?P<why2>NOT ENOUGH COMPARATOR DATASETS: \d+!.*?)\s*$", re.M)
+
+
+def skip_reasons(log_text: str, limit: int = 20) -> List[str]:
+    """The distinct reasons PanDDA gave for leaving datasets unanalysed."""
+    seen, reasons = set(), []
+    for match in SKIP_REASON_RE.finditer(log_text or ""):
+        text = (f"{match.group('dtag')}: {match.group('why')}" if match.group('why')
+                else match.group('why2'))
+        if text not in seen:
+            seen.add(text)
+            reasons.append(text)
+        if len(reasons) >= limit:
+            break
+    return reasons
+
+
+def summarise_output_tree(tree, log_text: str = "") -> Dict[str, object]:
+    """What PanDDA left behind, counted from the tree, not the exit code.
+
+    A dataset directory exists for every dataset PanDDA loaded; a dataset it
+    *analysed* has a Z-map. A run that skipped every dataset (too few
+    comparators, no ligand data) exits 0 with a header-only events table and
+    empty directories, and only this distinction tells that run from a
+    successful one that found nothing.
+    """
+    tree = Path(tree)
+    processed_dir = tree / "processed_datasets"
+    dirs = sorted(d for d in processed_dir.iterdir() if d.is_dir()) if processed_dir.is_dir() else []
+    analysed = [d.name for d in dirs if (d / f"{d.name}-z_map.native.ccp4").is_file()]
+    table = tree / "analyses" / "pandda_analyse_events.csv"
+    events = max(0, sum(1 for _ in open(table)) - 1) if table.is_file() else 0
+    return {
+        "processed": len(dirs),
+        "analysed": len(analysed),
+        "unanalysed": [d.name for d in dirs if d.name not in analysed],
+        "events": events,
+        "complete": table.is_file(),
+        "reasons": skip_reasons(log_text),
+    }
 
 
 # --- progress (4.5) ---------------------------------------------------------

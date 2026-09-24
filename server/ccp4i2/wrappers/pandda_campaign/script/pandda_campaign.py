@@ -70,6 +70,10 @@ class pandda_campaign(CPluginScript):
               'description': 'PanDDA wrote processed datasets but no events table: a partial run'},
         222: {'severity': SEVERITY_WARNING,
               'description': 'Stage-only run: the tree is staged; run PanDDA elsewhere, then fan out from its output'},
+        223: {'severity': SEVERITY_WARNING,
+              'description': 'PanDDA ran to the end but analysed no dataset'},
+        224: {'severity': SEVERITY_WARNING,
+              'description': 'PanDDA left some datasets unanalysed'},
     }
 
     def __init__(self, *args, **kwargs):
@@ -81,6 +85,7 @@ class pandda_campaign(CPluginScript):
         self._started = None
         self._tailer_stop = None
         self._progress = None
+        self._summary = None
 
     # -- interface-time methods, through the generic object_method endpoint --
     #
@@ -169,10 +174,16 @@ class pandda_campaign(CPluginScript):
                              name=f'{self.TASKNAME}.container.controlParameters.PANDDA_EXECUTABLE',
                              severity=SEVERITY_ERROR)
 
-        if n < contract.MIN_DATASETS:
+        configured = self._configured_min_datasets()
+        minimum = self._min_datasets()
+        if minimum < contract.MIN_DATASETS:
+            lowered = (f'lowered from {configured} to {minimum}, the number of datasets, '
+                       if minimum < configured else f'set to {minimum} (PanDDA default {contract.MIN_DATASETS}) ')
             error.append(klass=self.TASKNAME, code=205,
-                         details=f'{n} dataset(s); PanDDA needs {contract.MIN_DATASETS} to run',
-                         name=f'{self.TASKNAME}.container.inputData.DATASETS',
+                         details=(f'minimum datasets to characterise a ground state {lowered}so the run '
+                                  'proceeds; expect the ground state to be poorly characterised and the '
+                                  'events to be noisy. Fine for a test; add datasets for a real screen'),
+                         name=f'{self.TASKNAME}.container.controlParameters.MIN_CHARACTERISATION_DATASETS',
                          severity=SEVERITY_WARNING)
 
         if self._mode() == 'local':
@@ -244,12 +255,13 @@ class pandda_campaign(CPluginScript):
             out.PROVENANCE_EXECUTABLE.set(self._resolved)
             out.PROVENANCE_PROBE.set(json.dumps(self._probe, sort_keys=True))
         out.PERFORMANCE.nDatasets.set(len(self._manifest['datasets']))
+        self.container.controlParameters.MIN_CHARACTERISATION_DATASETS.set(self._min_datasets())
         self._write_program_xml(state='staged')
         return None
 
     def makeCommandAndScript(self):
         argv = contract.build_argv(self._staging_root / 'datasets', self._out_dir(),
-                                   self._local_cpus())
+                                   self._local_cpus(), self._min_datasets())
         self.commandLine = list(argv)
         self.container.outputData.PROVENANCE_ARGV.set(' '.join([contract.PROGRAM] + argv))
         if self._resolved:
@@ -304,15 +316,26 @@ class pandda_campaign(CPluginScript):
     def processOutputFiles(self):
         if self._mode() == 'stage_only':
             return CPluginScript.SUCCEEDED
-        processed, events, complete = self._record_tree()
-        if processed == 0:
+        summary = self._record_tree()
+        if summary['processed'] == 0:
             self.appendErrorReport(220, f'nothing under {self._out_dir()}')
             self._write_program_xml(state='failed', failure='no_output')
             return CPluginScript.FAILED
-        if not complete:
-            self.appendErrorReport(221, f'{processed} processed dataset(s), no events table', stack=False)
+        if not summary['complete']:
+            self.appendErrorReport(221, f"{summary['processed']} processed dataset(s), no events table", stack=False)
             self._write_program_xml(state='partial')
             return CPluginScript.UNSATISFACTORY
+        reasons = '; '.join(summary['reasons']) or 'PanDDA gave no reason in its log'
+        if summary['analysed'] == 0:
+            # Exit 0, a header-only events table, empty dataset directories:
+            # the run got to the end and did nothing. Say so.
+            self.appendErrorReport(223, f"{summary['processed']} loaded, none analysed. {reasons}", stack=False)
+            self._write_program_xml(state='empty')
+            return CPluginScript.UNSATISFACTORY
+        if summary['unanalysed']:
+            self.appendErrorReport(
+                224, f"{len(summary['unanalysed'])} of {summary['processed']} unanalysed "
+                     f"({', '.join(summary['unanalysed'][:10])}). {reasons}", stack=False)
         self._write_program_xml(state='finished')
         return CPluginScript.SUCCEEDED
 
@@ -321,6 +344,22 @@ class pandda_campaign(CPluginScript):
     def _mode(self) -> str:
         par = self.container.controlParameters
         return str(par.RUN_MODE) if par.RUN_MODE.isSet() else 'local'
+
+    def _configured_min_datasets(self) -> int:
+        par = self.container.controlParameters
+        return int(par.MIN_CHARACTERISATION_DATASETS) if par.MIN_CHARACTERISATION_DATASETS.isSet() \
+            else contract.MIN_DATASETS
+
+    def _min_datasets(self) -> int:
+        """The minimum PanDDA is given: the parameter, but never more than
+        the datasets there are. A run with fewer datasets than PanDDA's
+        default of 25 would otherwise skip every one of them and finish
+        empty; lowering it lets a small set run, and the warning says what
+        that costs. The parameter is set to the value used, so params.xml
+        records what ran."""
+        configured = self._configured_min_datasets()
+        n = len(self.container.inputData.DATASETS)
+        return min(configured, n) if n else configured
 
     def _local_cpus(self) -> int:
         par = self.container.controlParameters
@@ -407,24 +446,20 @@ class pandda_campaign(CPluginScript):
             return ''
 
     def _record_tree(self):
-        """Count what PanDDA wrote; set the output-tree fields. Returns
-        ``(processed, events, complete)``."""
+        """Count what PanDDA wrote (see ``summarise_output_tree``); set the
+        output-tree fields and KPIs. Returns the summary."""
         out = self.container.outputData
         tree = self._out_dir()
-        processed_dir = tree / 'processed_datasets'
-        processed = len([d for d in processed_dir.iterdir() if d.is_dir()]) if processed_dir.is_dir() else 0
-        table = tree / 'analyses' / 'pandda_analyse_events.csv'
-        complete = table.is_file()
-        events = 0
-        if complete:
-            events = max(0, sum(1 for _ in open(table)) - 1)
-        if processed:
+        summary = contract.summarise_output_tree(tree, self._read(self.makeFileName('LOG')))
+        self._summary = summary
+        if summary['processed']:
             out.PANDDA_OUT_DIR.set(str(tree))
-        out.PERFORMANCE.nDatasetsProcessed.set(processed)
-        out.PERFORMANCE.nEvents.set(events)
+        out.PERFORMANCE.nDatasetsProcessed.set(summary['processed'])
+        out.PERFORMANCE.nDatasetsAnalysed.set(summary['analysed'])
+        out.PERFORMANCE.nEvents.set(summary['events'])
         if self._started is not None:
             out.PERFORMANCE.wallSeconds.set(round(time.time() - self._started, 1))
-        return processed, events, complete
+        return summary
 
     def _tail_progress(self, stop: threading.Event):
         log = self.makeFileName('LOG')
@@ -457,10 +492,14 @@ class pandda_campaign(CPluginScript):
         if self._progress:
             ET.SubElement(root, 'progress', done=str(self._progress[0]), total=str(self._progress[1]))
         perf = self.container.outputData.PERFORMANCE
-        for tag, field in (('n_processed', perf.nDatasetsProcessed), ('n_events', perf.nEvents),
-                           ('wall_seconds', perf.wallSeconds)):
+        for tag, field in (('n_processed', perf.nDatasetsProcessed), ('n_analysed', perf.nDatasetsAnalysed),
+                           ('n_events', perf.nEvents), ('wall_seconds', perf.wallSeconds)):
             if field.isSet():
                 ET.SubElement(root, tag).text = str(field)
+        if self._summary and self._summary.get('reasons'):
+            reasons = ET.SubElement(root, 'reasons')
+            for text in self._summary['reasons']:
+                ET.SubElement(reasons, 'reason').text = text
         if self._manifest:
             datasets = ET.SubElement(root, 'datasets')
             for entry in self._manifest['datasets']:

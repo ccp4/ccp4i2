@@ -14,6 +14,8 @@ class pandda_campaign_report(Report):
         'partial': 'PanDDA wrote processed datasets but no events table: a partial run. '
                    'Fan-out can still take what is there.',
         'failed': 'PanDDA failed.',
+        'empty': 'PanDDA ran to the end but analysed no dataset. Its reasons are below; '
+                 'too few comparators is the usual one, and the minimum is a parameter.',
         'stage_only': 'Stage-only run. The input tree is staged; run PanDDA elsewhere with the '
                       'command below, then fan out from its pandda2_out with this job\'s manifest.',
     }
@@ -41,13 +43,18 @@ class pandda_campaign_report(Report):
         summary = self.addFold(label='Run', brief='Run', initiallyOpen=True)
         table = summary.addTable(transpose=True)
         table.addData(title='Datasets staged', data=[text('n_datasets')])
-        table.addData(title='Datasets processed', data=[text('n_processed', '-')])
+        table.addData(title='Datasets loaded', data=[text('n_processed', '-')])
+        table.addData(title='Datasets analysed', data=[text('n_analysed', '-')])
         table.addData(title='Events', data=[text('n_events', '-')])
         table.addData(title='Wall time (s)', data=[text('wall_seconds', '-')])
         table.addData(title='Staged tree', data=[text('staging_dir')])
         table.addData(title='Output tree', data=[text('out_dir')])
         table.addData(title='Executable', data=[text('executable', '-')])
         table.addData(title='Contract', data=[text('contract')])
+        reasons = [r.text for r in xmlnode.findall('reasons/reason') if r.text]
+        if reasons:
+            summary.addText(text='Why datasets were left unanalysed, in PanDDA\'s words:')
+            summary.addPre(text='\n'.join(reasons))
         if text('probe'):
             summary.addPre(text=text('probe'))
 

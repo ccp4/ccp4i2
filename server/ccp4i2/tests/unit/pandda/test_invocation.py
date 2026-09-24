@@ -17,6 +17,8 @@ def test_argv_carries_both_defensive_literals():
     assert argv[argv.index("--ligand_dir_regex") + 1] == "compound"
     assert argv[argv.index("--local_cpus") + 1] == "6"
     assert argv[argv.index("--data_dirs") + 1] == "/s/datasets"
+    assert argv[argv.index("--min_characterisation_datasets") + 1] == "25", "PanDDA's default, explicit"
+    assert c.build_argv("/s", "/o", 1, 4)[-1] == "4"
     assert argv[argv.index("--out_dir") + 1] == "/o/pandda2_out"
 
 
@@ -102,3 +104,23 @@ def test_scratch_defaults_to_a_path_ray_can_open_a_socket_under(tmp_path):
     fallback = c.default_scratch_dir(long, "abcdef0123456789")
     assert str(fallback) == "/tmp/ccp4i2-ray-abcdef01"
     assert c.scratch_fits(fallback)
+
+
+def test_a_hollow_run_is_told_from_a_real_one(tmp_path):
+    from .synthetic_tree import event_record, make_tree
+    tree = make_tree(tmp_path / "out", {"xtal-0000": [event_record(1)], "xtal-0001": [], "xtal-0002": []})
+    (tree / "processed_datasets" / "xtal-0002" / "xtal-0002-z_map.native.ccp4").unlink()
+    log = ("    xtal-0002 : Filtered because no ligand data!                     \n"
+           "comparators : before : 5\n"
+           "    NOT ENOUGH COMPARATOR DATASETS: 5! SKIPPING!                     \n"
+           "    NOT ENOUGH COMPARATOR DATASETS: 5! SKIPPING!                     \n")
+    summary = c.summarise_output_tree(tree, log)
+    assert (summary["processed"], summary["analysed"], summary["events"], summary["complete"]) == (3, 2, 1, True)
+    assert summary["unanalysed"] == ["xtal-0002"]
+    assert summary["reasons"] == ["xtal-0002: Filtered because no ligand data!",
+                                  "NOT ENOUGH COMPARATOR DATASETS: 5! SKIPPING!"]
+    for d in (tree / "processed_datasets").iterdir():
+        zmap = d / f"{d.name}-z_map.native.ccp4"
+        if zmap.exists():
+            zmap.unlink()
+    assert c.summarise_output_tree(tree, "")["analysed"] == 0

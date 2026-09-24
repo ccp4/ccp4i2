@@ -57,12 +57,14 @@ class CPanddaRunPerformance(CPerformanceIndicator):
     """What the run did, as KPIs."""
 
     class Meta:
-        contents_order = ['nDatasets', 'nDatasetsProcessed', 'nEvents', 'wallSeconds']
+        contents_order = ['nDatasets', 'nDatasetsProcessed', 'nDatasetsAnalysed', 'nEvents', 'wallSeconds']
         qualifiers = {"allowUndefined": True}
 
     nDatasets = content("CInt", guiLabel='Datasets staged')
     nDatasetsProcessed = content("CInt", guiLabel='Datasets processed',
                                  toolTip='processed_datasets/ directories PanDDA wrote')
+    nDatasetsAnalysed = content("CInt", guiLabel='Datasets analysed',
+                                toolTip='Datasets PanDDA characterised and searched (those with a Z-map)')
     nEvents = content("CInt", guiLabel='Events',
                       toolTip='Rows in the run-level events table')
     wallSeconds = content("CFloat", guiLabel='Wall time (s)')

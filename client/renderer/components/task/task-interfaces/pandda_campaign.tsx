@@ -159,6 +159,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           initiallyOpen={true}
         >
           <CCP4i2TaskElement {...props} itemName="RUN_MODE" qualifiers={{ guiLabel: "Run mode" }} />
+          <CCP4i2TaskElement
+            {...props}
+            itemName="MIN_CHARACTERISATION_DATASETS"
+            qualifiers={{ guiLabel: "Minimum datasets to characterise a ground state (PanDDA default 25)" }}
+          />
           {runMode === "local" ? (
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <CCP4i2TaskElement {...props} itemName="LOCAL_CPUS" qualifiers={{ guiLabel: "CPUs" }} />

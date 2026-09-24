@@ -39,6 +39,15 @@
                     <toolTip>Concurrency inside PanDDA. Changes how fast it runs and how fast it hits the memory ceiling; it does not lower peak memory.</toolTip>
                 </qualifiers>
             </content>
+            <content id="MIN_CHARACTERISATION_DATASETS">
+                <className>CInt</className>
+                <qualifiers>
+                    <min>2</min>
+                    <default>25</default>
+                    <guiLabel>Minimum datasets to characterise a ground state</guiLabel>
+                    <toolTip>PanDDA's --min_characterisation_datasets, default 25. A dataset with fewer comparators than this is skipped without analysis. Lower it only for a small test set; below about 25 the ground-state statistics are poor.</toolTip>
+                </qualifiers>
+            </content>
             <content id="SCRATCH_DIR">
                 <className>CString</className>
                 <qualifiers>
