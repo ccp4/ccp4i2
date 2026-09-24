@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>pandda_events</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="pandda_events">
+        <container id="inputData">
+            <content id="PANDDA_OUT_DIR">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>PanDDA output directory</guiLabel>
+                    <toolTip>The pandda2_out directory of a finished (or partial) PanDDA 2 run: the one holding analyses/ and processed_datasets/</toolTip>
+                </qualifiers>
+            </content>
+            <content id="DTAG">
+                <className>CString</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>Dataset (dtag)</guiLabel>
+                    <toolTip>This dataset's directory name under processed_datasets/, e.g. xtal-0004</toolTip>
+                </qualifiers>
+            </content>
+            <content id="RUN_JOB_UUID">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Run job</guiLabel>
+                    <toolTip>UUID of the pandda_campaign job that produced the tree, when there was one; a tree produced elsewhere leaves it unset</toolTip>
+                </qualifiers>
+            </content>
+            <content id="RUN_INCOMPLETE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>Run did not finish</guiLabel>
+                    <toolTip>Set by fan-out when the tree comes from a run that did not complete, so this receipt says so</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZIN_APO">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType><annotation>Apo model PanDDA analysed: the model of record</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="ZMAP">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default><subType>2</subType><annotation>PanDDA Z-map</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="EVENTS">
+                <className>CList</className>
+                <qualifiers>
+                    <guiLabel>Events</guiLabel>
+                    <toolTip>One entry per event PanDDA recorded for this dataset, each with its event map and candidate pose</toolTip>
+                </qualifiers>
+                <subItem>
+                    <className>CPanddaEvent</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="PANDDA_MODEL">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default><subType>1</subType><annotation>PanDDA's merged model: a machine opinion, not the model of record</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CPanddaReceiptPerformance</className>
+            </content>
+        </container>
+        <container id="controlParameters">
+        </container>
+    </ccp4i2_body>
+</ccp4i2>
