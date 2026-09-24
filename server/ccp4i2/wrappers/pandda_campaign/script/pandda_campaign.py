@@ -163,8 +163,10 @@ class pandda_campaign(CPluginScript):
         self._staging_root = Path(self.workDirectory) / 'staging'
         self._resolved = self._resolve_executable() if self._mode() == 'local' else None
         self._probe = contract.probe_executable(self._resolved) if self._resolved else {}
+        job_uuid = self.get_db_job_id() if hasattr(self, 'get_db_job_id') else None
         provenance = {
             'task': self.TASKNAME,
+            'run_job_uuid': str(job_uuid) if job_uuid else None,
             'run_mode': self._mode(),
             'contract': contract.CONTRACT_VERSION,
             'executable': self._resolved,
