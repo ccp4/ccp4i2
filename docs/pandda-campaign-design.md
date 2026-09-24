@@ -1210,6 +1210,33 @@ migration, and `lib/pandda_export.py` and the `export_pandda` endpoint are
 still **not modified** — which defers the coordination question with Materia,
 whose tooling scripts that endpoint.
 
+**Status, 2026-09-24.** Items 1–6 are on `pandda-campaign` (commits
+964607ac4, 083110d07/0c0db80fb, c7f3b9444/0d39d9c87, 243e05620, plus the
+client elements). §14.0 is PR #608 and §14.4 is PR #610, both against
+`django`. Two things differ from the table above:
+
+- **Item 7 is done as a run mode, not an interactive session.**
+  `RUN_MODE=stage_only` stages the tree, records provenance and finishes
+  `SUCCEEDED`; the tree is shipped; fan-out later takes the resulting
+  `pandda2_out/` with that job's manifest, whose provenance carries the job's
+  uuid, so the receipts trace to it. That satisfies every requirement §5.5
+  states — the job exists with its `DATASETS`, manifest, provenance and
+  receipts — without a session. The `Task.interactive` route was not taken
+  because *Run opens a session instead of dispatching*, so the staging the
+  user needs before running elsewhere would not happen until the session
+  finished; and a plugin that dispatches and then waits for the tree would
+  hold a worker for days. If a "hand the tree back to this job" affordance
+  is wanted in the UI, it is a fan-out button on the stage-only job, not a
+  session.
+- **Fan-out runs receipts synchronously** through `run_job_context_aware`
+  (`--no-run` creates them pending). On Azure that queues them.
+
+Also found on the way: the gleaner stored only `float` KPIs, so every `CInt`
+KPI in the tree was silently dropped (fixed in 0c0db80fb); imported input
+files nested inside a composed list item are registered under their
+`objectName` (`XYZIN`), not their path (`DATASETS[0].XYZIN`), unlike outputs
+— harmless, noted.
+
 ### 14.3 v2 — the campaign-aware path
 
 | # | Work | Gated on |
