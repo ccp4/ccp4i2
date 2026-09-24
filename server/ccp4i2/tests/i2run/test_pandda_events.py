@@ -41,6 +41,12 @@ def test_complete_receipt_gleans_every_nested_file(tmp_path):
         for name in ("XYZIN_APO.pdb", "ZMAP.map", "event_1_map.map", "event_1_pose.pdb", "event_2_map.map"):
             assert (job / name).is_file(), name
         assert not (job / "XYZIN_APO.pdb").is_symlink()
+        # PanDDA wrote LIG; the copies carry the true component and the tree is untouched
+        assert " MZ0 " in (job / "event_1_pose.pdb").read_text()
+        assert " MZ0 " in (job / "PANDDA_MODEL.pdb").read_text()
+        assert " LIG " in (tree / "processed_datasets" / "xtal-0004" / "xtal-0004_event_1_best_autobuild.pdb").read_text()
+        params = ET.parse(job / "params.xml")
+        assert params.find(".//EVENTS/CPanddaEvent/LIGAND_ID").text == "MZ0"
         kpis = {v.key.name: v.value for v in models.JobFloatValue.objects.select_related("key").filter(job=db_job)}
         assert kpis["nEventsExpected"] == 2 and kpis["nEventsDelivered"] == 2
         assert kpis["nPosesExpected"] == 1 and kpis["nPosesDelivered"] == 1

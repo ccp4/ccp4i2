@@ -30,7 +30,7 @@ from ccp4i2.core.CCP4XtalData import CMapDataFile
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
 from ccp4i2.wrappers.pandda_campaign.script.pandda_staging import link_or_copy
 
-from .pandda_tree import DatasetNotFound, read_dataset
+from .pandda_tree import PANDDA_RESIDUE_NAME, DatasetNotFound, read_dataset
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -86,7 +86,16 @@ class pandda_events(CPluginScript):
 
         self._take(dataset.apo_model, out.XYZIN_APO)
         self._take(dataset.zmap, out.ZMAP)
-        self._take(dataset.pandda_model, out.PANDDA_MODEL)
+        # PanDDA names every residue it builds LIG, whatever the dictionary
+        # said (autobuild/inbuilt.py). The copies that become CCP4i2 data get
+        # the true component code back, so a pose can meet its dictionary in
+        # refinement; PanDDA's own tree is left as it is.
+        ligand_id = dataset.ligand_id
+        rename = ligand_id if ligand_id and ligand_id != PANDDA_RESIDUE_NAME else None
+        self._take(dataset.pandda_model, out.PANDDA_MODEL, rename=rename)
+        if rename:
+            out.PANDDA_MODEL.annotation.set(
+                f"PanDDA's merged model, ligand {ligand_id}: a machine opinion, not the model of record")
 
         best_score = None
         for event in dataset.events:
@@ -115,13 +124,16 @@ class pandda_events(CPluginScript):
                     item.EVENT_MAP.subType.set(CMapDataFile.SUBTYPE_NORMAL)
                     item.EVENT_MAP.annotation.set(
                         f'{dtag} event {event.idx} map (BDC {self._fmt(event.bdc)})')
+            if ligand_id:
+                item.LIGAND_ID.set(ligand_id)
             if event.pose is not None:
                 dst = os.path.join(self.workDirectory, f'event_{event.idx}_pose.pdb')
-                if self._copy(event.pose, dst):
+                if self._copy(event.pose, dst, rename=rename):
                     item.POSE.setFullPath(dst)
                     item.POSE.subType.set(CPdbDataFile.SUBTYPE_FRAGMENT)
                     item.POSE.annotation.set(
-                        f'{dtag} event {event.idx} candidate pose '
+                        f'{dtag} event {event.idx} candidate pose'
+                        f'{" of " + ligand_id if ligand_id else ""} '
                         f'(build score {self._fmt(event.build.build_score if event.build else None)})')
             out.EVENTS.append(item)
 
@@ -155,20 +167,38 @@ class pandda_events(CPluginScript):
 
     # -- helpers ------------------------------------------------------------
 
-    def _take(self, src, target):
+    def _take(self, src, target, rename=None):
         """Copy ``src`` (if it exists) to the path ``checkOutputData`` gave
         ``target``. Unset outputs are dropped by the gleaner."""
         if src is None:
             return
-        self._copy(src, str(target.fullPath))
+        self._copy(src, str(target.fullPath), rename=rename)
 
-    def _copy(self, src, dst) -> bool:
+    def _copy(self, src, dst, rename=None) -> bool:
+        """Bytes by hardlink-or-copy; with ``rename``, a model is rewritten
+        instead (a real copy, never a link, since a link would rename the
+        residue inside PanDDA's tree too)."""
         try:
-            link_or_copy(src, dst)
+            if rename:
+                self._write_renamed(src, dst, rename)
+            else:
+                link_or_copy(src, dst)
             return True
-        except OSError as e:
+        except (OSError, RuntimeError, ValueError) as e:
             self.appendErrorReport(203, f'{src} -> {dst}: {e}', stack=False)
             return False
+
+    @staticmethod
+    def _write_renamed(src, dst, ligand_id):
+        import gemmi
+        structure = gemmi.read_structure(str(src))
+        for model in structure:
+            for chain in model:
+                for residue in chain:
+                    if residue.name == PANDDA_RESIDUE_NAME:
+                        residue.name = ligand_id
+        structure.setup_entities()
+        structure.write_pdb(str(dst))
 
     @staticmethod
     def _set_float(field, value):
@@ -188,6 +218,7 @@ class pandda_events(CPluginScript):
         for tag, present in (('apo_model', dataset.apo_model), ('zmap', dataset.zmap),
                              ('pandda_model', dataset.pandda_model)):
             ET.SubElement(root, tag).text = 'present' if present else 'absent'
+        ET.SubElement(root, 'ligand_id').text = dataset.ligand_id or ''
         counts = ET.SubElement(root, 'counts')
         ET.SubElement(counts, 'events_expected').text = str(dataset.n_events)
         ET.SubElement(counts, 'event_maps_delivered').text = str(dataset.n_event_maps)

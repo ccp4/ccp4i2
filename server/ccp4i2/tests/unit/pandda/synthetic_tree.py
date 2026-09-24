@@ -10,6 +10,21 @@ from pathlib import Path
 
 PDB = ("ATOM      1  CA  GLY A   1      {x:8.3f}{y:8.3f}{z:8.3f}  1.00 20.00           C\n"
        "END\n")
+#: What PanDDA writes for a built pose: residue LIG, whatever the dictionary.
+POSE_PDB = ("HETATM    1  C1  LIG 0   1      {x:8.3f}{y:8.3f}{z:8.3f}  1.00 20.00           C\n"
+            "END\n")
+DICT_CIF = """data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+{code} {code}
+data_comp_{code}
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+{code} C1 C
+"""
 
 
 def write_map(path, value=1.0):
@@ -23,8 +38,8 @@ def write_map(path, value=1.0):
     m.write_ccp4_map(str(path))
 
 
-def write_pdb(path, xyz=(1.0, 2.0, 3.0)):
-    Path(path).write_text(PDB.format(x=xyz[0], y=xyz[1], z=xyz[2]))
+def write_pdb(path, xyz=(1.0, 2.0, 3.0), template=PDB):
+    Path(path).write_text(template.format(x=xyz[0], y=xyz[1], z=xyz[2]))
 
 
 def event_record(idx, bdc=0.8, score=0.3, centroid=(15.0, 40.0, 30.0), build=True,
@@ -44,7 +59,7 @@ def event_record(idx, bdc=0.8, score=0.3, centroid=(15.0, 40.0, 30.0), build=Tru
     return record
 
 
-def make_tree(root, datasets, *, events_table=True, staged_apo=True):
+def make_tree(root, datasets, *, events_table=True, staged_apo=True, ligand_code="MZ0"):
     """Build ``root`` as a PanDDA 2 output tree.
 
     ``datasets`` maps dtag -> list of ``(record, options)`` where ``record``
@@ -71,6 +86,8 @@ def make_tree(root, datasets, *, events_table=True, staged_apo=True):
         (ddir / "autobuild").mkdir(parents=True)
         (ddir / "modelled_structures").mkdir()
         (ddir / "ligand_files").mkdir()
+        if ligand_code:
+            (ddir / "ligand_files" / "dict.cif").write_text(DICT_CIF.format(code=ligand_code))
         # PanDDA symlinks the apo input into its tree; a receipt must follow it.
         apo_real = staging / f"{dtag}-final.pdb"
         write_pdb(apo_real, (0.0, 0.0, 0.0))
@@ -82,7 +99,7 @@ def make_tree(root, datasets, *, events_table=True, staged_apo=True):
         write_map(ddir / f"{dtag}-z_map.native.ccp4", 3.0)
         write_map(ddir / f"{dtag}-ground-state-average-map.native.ccp4", 1.0)
         if extra.get("pandda_model"):
-            write_pdb(ddir / "modelled_structures" / f"{dtag}-pandda-model.pdb")
+            write_pdb(ddir / "modelled_structures" / f"{dtag}-pandda-model.pdb", template=POSE_PDB)
         records = {}
         for n, entry in enumerate(spec, start=1):
             record, options = (entry if isinstance(entry, tuple) else (entry, {}))
@@ -92,9 +109,9 @@ def make_tree(root, datasets, *, events_table=True, staged_apo=True):
                 write_map(ddir / f"{dtag}-event_{n}_1-BDC_{token}_map.native.ccp4", 2.0)
             if "Build" in record and options.get("pose", True):
                 pose = ddir / "autobuild" / f"7_{n}_dict_0.pdb"
-                write_pdb(pose, tuple(record["Centroid"]))
+                write_pdb(pose, tuple(record["Centroid"]), template=POSE_PDB)
                 record["Build"]["Build Path"] = str(pose)
-                write_pdb(ddir / f"{dtag}_event_{n}_best_autobuild.pdb", tuple(record["Centroid"]))
+                write_pdb(ddir / f"{dtag}_event_{n}_best_autobuild.pdb", tuple(record["Centroid"]), template=POSE_PDB)
             rows.append((dtag, n, record))
         (ddir / "events.yaml").write_text(yaml.safe_dump(records) if records else "{}\n")
         (ddir / "processed_dataset.yaml").write_text("Summary:\n  Processing Resolution: 1.8\n")

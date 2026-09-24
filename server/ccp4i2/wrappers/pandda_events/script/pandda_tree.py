@@ -39,6 +39,9 @@ EVENTS_TABLE = "pandda_analyse_events.csv"
 PROCESSED_DIR = "processed_datasets"
 EVENTS_YAML = "events.yaml"
 MODELLED_DIR = "modelled_structures"
+LIGAND_FILES_DIR = "ligand_files"
+#: What PanDDA names every residue it builds, whatever the dictionary said.
+PANDDA_RESIDUE_NAME = "LIG"
 
 
 class DatasetNotFound(Exception):
@@ -81,6 +84,9 @@ class DatasetOutputs:
     pandda_model: Optional[Path]
     events: List[EventRecord]
     events_table_present: bool
+    #: The component code of the dictionary PanDDA was given (``MZ0``), read
+    #: from the copy it keeps under ligand_files/; None when there was none.
+    ligand_id: Optional[str] = None
 
     # -- what was declared vs what arrived -------------------------------
     @property
@@ -189,6 +195,33 @@ def find_pose(dataset_dir: Path, dtag: str, idx: int, build: dict) -> Optional[P
     return None
 
 
+def read_ligand_id(dataset_dir: Path) -> Optional[str]:
+    """The component code of the dictionary PanDDA used for this dataset.
+
+    PanDDA copies the dictionary it was given into ``ligand_files/``. The
+    code is the name of the restraint block (``comp_MZ0`` -> ``MZ0``), taking
+    the first block after the ``comp_list`` header that is not the
+    ``comp_LIG`` alias staging appends for the name-based reader.
+    """
+    import gemmi
+
+    ligand_dir = Path(dataset_dir) / LIGAND_FILES_DIR
+    if not ligand_dir.is_dir():
+        return None
+    for path in sorted(ligand_dir.glob("*.cif")):
+        try:
+            doc = gemmi.cif.read(str(path))
+        except Exception:      # noqa: BLE001 - an unreadable copy is no code
+            continue
+        blocks = [b for b in doc if b.name != "comp_list"
+                  and b.find_values("_chem_comp_atom.atom_id")]
+        preferred = [b for b in blocks if b.name != f"comp_{PANDDA_RESIDUE_NAME}"] or blocks
+        if preferred:
+            name = preferred[0].name
+            return name[len("comp_"):] if name.startswith("comp_") else name
+    return None
+
+
 def _centroid(record: dict) -> Optional[tuple]:
     value = record.get("Centroid")
     if isinstance(value, (list, tuple)) and len(value) == 3:
@@ -249,4 +282,5 @@ def read_dataset(tree_root, dtag: str) -> DatasetOutputs:
         pandda_model=_existing(dataset_dir / MODELLED_DIR / f"{dtag}-pandda-model.pdb"),
         events=events,
         events_table_present=bool(table),
+        ligand_id=read_ligand_id(dataset_dir),
     )

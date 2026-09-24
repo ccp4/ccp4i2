@@ -7,7 +7,7 @@ pytest.importorskip("gemmi", reason="needs gemmi")
 pytest.importorskip("yaml", reason="needs PyYAML")
 
 from ccp4i2.wrappers.pandda_events.script.pandda_tree import (
-    DatasetNotFound, find_event_map, read_dataset, read_events_yaml)
+    DatasetNotFound, find_event_map, read_dataset, read_events_yaml, read_ligand_id)
 from .synthetic_tree import event_record, make_tree, write_map
 
 
@@ -97,3 +97,16 @@ def test_pose_falls_back_to_recorded_build_path(tmp_path):
     (ddir / "xtal-0003_event_1_best_autobuild.pdb").unlink()
     ds = read_dataset(tree, "xtal-0003")
     assert ds.events[0].pose == ddir / "autobuild" / "7_1_dict_0.pdb"
+
+
+def test_ligand_id_is_the_component_pandda_was_given(tmp_path):
+    tree = make_tree(tmp_path / "out", {"xtal-0005": [event_record(1)]}, ligand_code="5KX")
+    ds = read_dataset(tree, "xtal-0005")
+    assert ds.ligand_id == "5KX"
+    # the comp_LIG alias staging appends is not the code
+    ddir = tree / "processed_datasets" / "xtal-0005"
+    cif = ddir / "ligand_files" / "dict.cif"
+    cif.write_text(cif.read_text() + "data_comp_LIG\nloop_\n_chem_comp_atom.comp_id\n_chem_comp_atom.atom_id\n_chem_comp_atom.type_symbol\nLIG C1 C\n")
+    assert read_ligand_id(ddir) == "5KX"
+    none = make_tree(tmp_path / "none", {"xtal-0006": []}, ligand_code=None)
+    assert read_dataset(none, "xtal-0006").ligand_id is None

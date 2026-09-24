@@ -31,7 +31,7 @@ class CPanddaEvent(CData):
     class Meta:
         contents_order = [
             'EVENT_IDX', 'SITE_IDX', 'BDC', 'SCORE', 'BUILD_SCORE', 'RSCC',
-            'HIT_PROBABILITY', 'OPTIMAL_CONTOUR', 'CENTROID',
+            'HIT_PROBABILITY', 'OPTIMAL_CONTOUR', 'CENTROID', 'LIGAND_ID',
             'EVENT_MAP', 'POSE',
         ]
         qualifiers = {"allowUndefined": True}
@@ -63,6 +63,10 @@ class CPanddaEvent(CData):
     CENTROID = content(
         "CXyz", guiLabel='Centroid',
         toolTip='Centroid of the event density, in orthogonal Angstroms')
+    LIGAND_ID = content(
+        "CString", guiLabel='Ligand',
+        toolTip="The ligand's component code from the dictionary PanDDA used; the pose "
+                "copy carries this name, where PanDDA itself writes LIG")
     EVENT_MAP = content(
         "CMapDataFile", guiLabel='Event map',
         toolTip='BDC-corrected event map for this event')

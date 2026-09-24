@@ -53,6 +53,7 @@ export const CPanddaEventElement: React.FC<CCP4i2TaskElementProps> = (
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
         {scalar("EVENT_IDX", "event", FIELD_SIZES.xs)}
+        {scalar("LIGAND_ID", "ligand", FIELD_SIZES.xs)}
         {scalar("SITE_IDX", "site", FIELD_SIZES.xs)}
         {scalar("BDC", "BDC", FIELD_SIZES.sm)}
         {scalar("SCORE", "score", FIELD_SIZES.sm)}
