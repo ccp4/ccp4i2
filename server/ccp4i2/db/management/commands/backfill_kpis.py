@@ -28,6 +28,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
 from ccp4i2.db.models import Job, Project, JobValueKey, JobFloatValue, JobCharValue
+from ccp4i2.lib.kpi_values import is_storable_kpi_value
 
 
 # KPI element names to look for in outputData, in priority order
@@ -174,8 +175,11 @@ class Command(BaseCommand):
             else:
                 try:
                     val = float(text)
-                    # Skip zero values — they typically mean "not set"
-                    if val != 0.0:
+                    # Skip zero values — they typically mean "not set".
+                    # float() also accepts "nan" and "inf" out of a program's
+                    # XML; those are failed measurements and must not be stored
+                    # (note NaN != 0.0 is true, so the zero test misses them).
+                    if val != 0.0 and is_storable_kpi_value(val):
                         kpis[tag] = val
                 except ValueError:
                     # Non-numeric, store as string
@@ -194,6 +198,8 @@ class Command(BaseCommand):
                 )
 
                 if isinstance(value, float):
+                    if not is_storable_kpi_value(value):
+                        continue
                     JobFloatValue.objects.update_or_create(
                         job=job,
                         key=job_value_key,

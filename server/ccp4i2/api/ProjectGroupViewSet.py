@@ -7,6 +7,7 @@ coordinates and FreeR flags, and member projects each represent a dataset
 soaked with a different compound.
 """
 import logging
+from django.db.models import Count
 from django.http import FileResponse
 from django.conf import settings
 from rest_framework.viewsets import ModelViewSet
@@ -17,6 +18,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from . import serializers
 from ..db import models
+from ..lib.kpi_values import kpi_map
 from ..lib.response import api_success, api_error
 from ..lib import pandda_export
 from ..lib import campaign_scene
@@ -152,15 +154,16 @@ class ProjectGroupViewSet(ModelViewSet):
                     })
 
                 # Get KPIs - look through all jobs for the relevant key values
-                # (matching legacy behavior: find last job with each key type)
+                # (matching legacy behavior: find last job with each key type).
+                # kpi_map drops values JSON cannot carry, so one NaN R-factor
+                # cannot take the whole campaign overview down with it.
                 kpis = {}
                 for job in reversed(list(jobs)):  # Most recent first
-                    for fv in job.float_values.all():
-                        if fv.key_id not in kpis:
-                            kpis[fv.key_id] = fv.value
-                    for cv in job.char_values.all():
-                        if cv.key_id not in kpis:
-                            kpis[cv.key_id] = cv.value
+                    context = f"job {job.number} of {project.name}"
+                    for key, value in kpi_map(job.float_values.all(), context).items():
+                        kpis.setdefault(key, value)
+                    for key, value in kpi_map(job.char_values.all(), context).items():
+                        kpis.setdefault(key, value)
 
                 # What was found at each site, and how much is still unlooked
                 # at. Carried in THIS payload rather than fetched per row: the
@@ -739,6 +742,14 @@ class ProjectGroupViewSet(ModelViewSet):
             "origin": [site.origin_x, site.origin_y, site.origin_z],
             "order": site.order,
         }
+        # Present only where the caller annotated it (the list view). Deleting
+        # a site deletes every verdict recorded there, across every dataset,
+        # and the difference between losing nothing and losing forty datasets'
+        # work is the whole content of that warning -- without it a
+        # confirmation is just a button to click through.
+        count = getattr(site, "evaluation_count", None)
+        if count is not None:
+            payload["evaluation_count"] = count
         if site.quat:
             payload["quat"] = site.quat
         if site.zoom is not None:
@@ -797,9 +808,10 @@ class ProjectGroupViewSet(ModelViewSet):
             group = self.get_object()
 
             if request.method == "GET":
-                return Response(
-                    [self._site_payload(s) for s in group.site_set.all()]
+                sites = group.site_set.annotate(
+                    evaluation_count=Count("evaluations")
                 )
+                return Response([self._site_payload(s) for s in sites])
 
             fields, error = self._parse_site(request.data)
             if error:

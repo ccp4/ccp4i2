@@ -1,7 +1,12 @@
 import pathlib
-import pandas as pd
 import numpy
 import gemmi
+
+# pandas is NOT imported here. pyproject.toml puts it in the [science] extra
+# and states that rdkit/scipy/pandas are lazy-imported; importing it at module
+# scope broke that contract and made every importer of this module -- and so
+# the whole tests/db/ tier -- uncollectable without the extra. It is used in
+# exactly one branch, so it is imported there.
 
 
 def analyze_mtz(file_path, with_reflections: bool = False):
@@ -69,6 +74,8 @@ def analyze_mtz(file_path, with_reflections: bool = False):
     result["counts"] = reflection_counts
 
     if with_reflections:
+        import pandas as pd  # [science] extra; see the note at the top
+
         df = pd.DataFrame(data=mtz.array, columns=mtz.column_labels())
         result["reflections"] = df.to_dict(orient="dict")
     return result

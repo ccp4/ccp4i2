@@ -8,7 +8,9 @@ from rest_framework.serializers import (
     SerializerMethodField,
     ValidationError,
 )
+from ..config import preferences
 from ..db import models
+from ..lib.kpi_values import kpi_map
 
 
 class FileTypeSerializer(ModelSerializer):
@@ -101,30 +103,15 @@ class ProjectListSerializer(ModelSerializer):
 
 
 def default_project_parent() -> Path:
-    """Where a project with no explicit directory should go.
+    """Where a project with no explicit directory should go: the configured
+    projects directory, never wherever the last project happened to land.
 
-    The parent of the most recently created project, falling back to the
-    configured projects directory. So a user who put their last project
-    somewhere particular gets offered the same place again, WITHOUT that choice
-    being written into a preference: the "default" is derived on demand rather
-    than stored and mutated. A stored-and-mutated default is how a one-off
-    choice silently became everybody's default, and how a second database could
-    appear somewhere unexpected.
-
-    A project whose recorded directory no longer exists is skipped -- an
-    unplugged external disk should not send the next project somewhere
-    unwritable.
+    Read from preferences.json rather than ``settings.CCP4I2_PROJECTS_DIR``
+    on the desktop, where Preferences can change it after this worker
+    resolved that setting at startup.
     """
-    from ..db.models import Project
-
-    for directory in (
-        Project.objects.exclude(directory="")
-        .order_by("-creation_time")
-        .values_list("directory", flat=True)[:10]
-    ):
-        parent = Path(directory).parent
-        if parent.is_dir():
-            return parent
+    if preferences.is_desktop():
+        return preferences.projects_dir()
     return Path(settings.CCP4I2_PROJECTS_DIR)
 
 
@@ -201,10 +188,11 @@ class ProjectSerializer(ModelSerializer):
         # directory of its own, which need not be under that root at all, and
         # renaming it does not move it.
         if self.instance is None and "directory" not in self.initial_data:
-            assert Path(settings.CCP4I2_PROJECTS_DIR).is_dir()
+            parent = default_project_parent()
+            assert parent.is_dir()
             try:
-                testWritePath = Path(settings.CCP4I2_PROJECTS_DIR) / "testWrite.txt"
-                with open(testWritePath, "w") as testWrite:
+                testWritePath = parent / "testWrite.txt"
+                with open(testWritePath, "w", encoding="utf-8") as testWrite:
                     testWrite.write("test")
                 testWritePath.unlink()
             except Exception as err:
@@ -237,11 +225,10 @@ class JobSerializer(ModelSerializer):
         fields = "__all__"
 
     def get_float_values(self, obj):
-        # JobValueKey.name is the PK, so kv.key_id is the KPI name string.
-        return {kv.key_id: kv.value for kv in obj.float_values.all()}
+        return kpi_map(obj.float_values.all(), context=f"job {obj.id}")
 
     def get_char_values(self, obj):
-        return {kv.key_id: kv.value for kv in obj.char_values.all()}
+        return kpi_map(obj.char_values.all(), context=f"job {obj.id}")
 
 
 class FileUseSerializer(ModelSerializer):

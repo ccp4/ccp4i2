@@ -26,8 +26,13 @@ import {
   Dialog,
 } from "@mui/material";
 import { MoreVert, Visibility, VisibilityOff } from "@mui/icons-material";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useApi } from "../../api";
+import {
+  hideMoleculeRepresentations,
+  showMoleculeRepresentations,
+  type MoleculeVisibilityMemory,
+} from "../../lib/moorhen-molecule-visibility";
 import { useTheme } from "../../theme/theme-provider";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
 import {
@@ -69,6 +74,10 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
   const [itemMetadata, setItemMetadata] = useState<Map<number, ItemMetadata>>(
     new Map()
   );
+
+  // What was drawn on each molecule this panel hid, so showing it again
+  // restores that and only that (see lib/moorhen-molecule-visibility).
+  const visibilityMemory = useRef<MoleculeVisibilityMemory>(new Map());
   const [pushDialogOpen, setPushDialogOpen] = useState(false);
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
   const [infoMolecule, setInfoMolecule] = useState<moorhen.Molecule | null>(null);
@@ -196,7 +205,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (menuState.item) {
       if (type === "Molecule") {
         const molecule = menuState.item as moorhen.Molecule;
-        (molecule as any).representations?.forEach((r: any) => r.hide());
+        hideMoleculeRepresentations(molecule, visibilityMemory.current);
         dispatch(hideMolecule(molecule as any));
         dispatch(setRequestDrawScene(true));
       } else {
@@ -213,9 +222,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (menuState.item) {
       if (type === "Molecule") {
         const molecule = menuState.item as moorhen.Molecule;
-        (molecule as any).representations?.forEach((r: any) => {
-          if (r.interfaceOption?.visible) r.show();
-        });
+        showMoleculeRepresentations(molecule, visibilityMemory.current);
         dispatch(showMolecule(molecule as any));
         dispatch(setRequestDrawScene(true));
       } else {
@@ -260,7 +267,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (isVisible(item)) {
       if (type === "Molecule") {
         const molecule = item as moorhen.Molecule;
-        (molecule as any).representations?.forEach((r: any) => r.hide());
+        hideMoleculeRepresentations(molecule, visibilityMemory.current);
         dispatch(hideMolecule(molecule as any));
       } else {
         const map = item as moorhen.Map;
@@ -269,9 +276,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     } else {
       if (type === "Molecule") {
         const molecule = item as moorhen.Molecule;
-        (molecule as any).representations?.forEach((r: any) => {
-          if (r.interfaceOption?.visible) r.show();
-        });
+        showMoleculeRepresentations(molecule, visibilityMemory.current);
         dispatch(showMolecule(molecule as any));
       } else {
         const map = item as moorhen.Map;

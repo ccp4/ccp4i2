@@ -1,6 +1,12 @@
 from pathlib import Path
 from shutil import rmtree
 from django.test import TestCase, override_settings
+
+from .external_data import (
+    PROJECTS_SCRATCH_DIR,
+    TEST_ZIPS_DIR,
+    requires_project_zips,
+)
 from django.conf import settings
 from ...db.models import Project
 from ...db.import_i2xml import import_ccp4_project_zip
@@ -9,16 +15,13 @@ from ...db.ccp4i2_django_projects_manager import (
 )
 
 
-@override_settings(
-    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY"
-)
+@requires_project_zips
+@override_settings(CCP4I2_PROJECTS_DIR=PROJECTS_SCRATCH_DIR)
 class CCP4i2TestCase(TestCase):
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(parents=True, exist_ok=True)
         import_ccp4_project_zip(
-            Path(__file__).parent.parent.parent.parent.parent.parent
-            / "test101"
-            / "ProjectZips"
+            TEST_ZIPS_DIR
             / "refmac_gamma_test_0.ccp4_project.zip",
             relocate_path=(settings.CCP4I2_PROJECTS_DIR),
         )
@@ -26,14 +29,12 @@ class CCP4i2TestCase(TestCase):
         return super().setUp()
 
     def tearDown(self):
-        rmtree(settings.CCP4I2_PROJECTS_DIR)
+        rmtree(settings.CCP4I2_PROJECTS_DIR, ignore_errors=True)
         return super().tearDown()
 
     def test_getProjectInfo(self):
         import_ccp4_project_zip(
-            Path(__file__).parent.parent.parent.parent.parent.parent
-            / "test101"
-            / "ProjectZips"
+            TEST_ZIPS_DIR
             / "refmac_gamma_test_0.ccp4_project.zip",
             relocate_path=(settings.CCP4I2_PROJECTS_DIR),
         )

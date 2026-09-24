@@ -8,7 +8,7 @@ import {
   setRequestDrawScene,
 } from "moorhen/react-lib";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Box,
   IconButton,
@@ -30,6 +30,11 @@ import {
   Science as ScienceIcon,
 } from "@mui/icons-material";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
+import {
+  hideMoleculeRepresentations,
+  showMoleculeRepresentations,
+  type MoleculeVisibilityMemory,
+} from "../../lib/moorhen-molecule-visibility";
 import { CopyViewLinkButton } from "./copy-view-link-button";
 import { PasteViewLinkField } from "./paste-view-link-field";
 // Scene-related UI (upload/download/edit) lives in the dedicated Scenes
@@ -95,6 +100,10 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
 
   // Push to CCP4i2 dialog
   const [pushMol, setPushMol] = useState<moorhen.Molecule | null>(null);
+
+  // What was drawn on each molecule the eye icon hid, so showing it again
+  // restores that and only that (see lib/moorhen-molecule-visibility).
+  const visibilityMemory = useRef<MoleculeVisibilityMemory>(new Map());
 
   // Initialize reps for newly loaded molecules (default is CRs from fetchMolecule)
   useEffect(() => {
@@ -356,12 +365,10 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
                       size="small"
                       onClick={() => {
                         if (isVisible) {
-                          mol.representations?.forEach((r: any) => r.hide());
+                          hideMoleculeRepresentations(mol, visibilityMemory.current);
                           dispatch(hideMolecule(mol as any));
                         } else {
-                          mol.representations?.forEach((r: any) => {
-                            if (r.interfaceOption?.visible) r.show();
-                          });
+                          showMoleculeRepresentations(mol, visibilityMemory.current);
                           dispatch(showMolecule(mol as any));
                         }
                         dispatch(setRequestDrawScene(true));

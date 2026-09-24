@@ -108,6 +108,30 @@ def default_projects_dir() -> Path:
     return home / "projects"
 
 
+def projects_dir(prefs: dict = None) -> Path:
+    """The project store, the one setting the environment does not win.
+
+    The desktop launcher spawns the server with ``CCP4I2_PROJECTS_DIR`` set
+    to what the file said at launch, so there the variable is a copy of this
+    preference and must not outrank it — while it did, every change written
+    here was read straight back over for the life of the app. The file is
+    also the only state the two uvicorn workers share.
+    """
+    if prefs is None:
+        prefs = load_preferences()
+    if is_desktop():
+        chosen = prefs.get("projectsDir")
+        return Path(chosen) if chosen else default_projects_dir()
+    return Path(
+        resolve(
+            "projectsDir",
+            env="CCP4I2_PROJECTS_DIR",
+            default=str(default_projects_dir()),
+            prefs=prefs,
+        )
+    )
+
+
 def preferences_path() -> Path:
     """Full path to ``preferences.json`` inside the CCP4i2 user home."""
     return ccp4i2_home() / "preferences.json"

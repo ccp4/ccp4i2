@@ -117,6 +117,16 @@ export function savePreferences(prefs: CCP4i2Preferences): void {
 }
 
 /**
+ * Where a project with no directory of its own lands (the mirror of
+ * `preferences.projects_dir`), and the only place the Electron side should
+ * get it from: a second copy in the electron-store outlived a reset of this
+ * file and was handed back to the next server launched.
+ */
+export function projectsDir(): string {
+  return loadPreferences().projectsDir || defaultProjectsDir();
+}
+
+/**
  * Merge a patch of top-level keys into the file, preserving everything else
  * (including the `userPreferences` bag). Returns the merged preferences.
  */

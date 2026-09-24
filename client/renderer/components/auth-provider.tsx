@@ -21,15 +21,29 @@ import { setReauthHandler } from "../utils/reauth";
 /**
  * Set the auth-session cookie via API route.
  * This cookie allows the middleware to gate requests server-side.
+ *
+ * Reports whether the cookie was actually set, so a caller that throttles
+ * itself can tell a failed attempt from a successful one. Note that `fetch`
+ * rejects only on a network failure, so the response status is checked too --
+ * a route that answered 500 would otherwise look like success.
  */
-async function setAuthSessionCookie(): Promise<void> {
+async function setAuthSessionCookie(): Promise<boolean> {
   try {
-    await fetch("/api/auth/session", {
+    const response = await fetch("/api/auth/session", {
       method: "POST",
       credentials: "include",
     });
+    if (!response.ok) {
+      console.error(
+        "[AUTH] Auth session cookie not set: HTTP",
+        response.status
+      );
+      return false;
+    }
+    return true;
   } catch (error) {
     console.error("[AUTH] Failed to set auth session cookie:", error);
+    return false;
   }
 }
 
@@ -52,8 +66,16 @@ let sessionCookieRefreshedAt = 0;
 async function keepSessionCookieAlive(): Promise<void> {
   const now = Date.now();
   if (now - sessionCookieRefreshedAt < SESSION_COOKIE_REFRESH_MS) return;
+  // Claim the window before awaiting, so concurrent acquisitions make one
+  // POST rather than a burst...
   sessionCookieRefreshedAt = now;
-  await setAuthSessionCookie();
+  if (!(await setAuthSessionCookie())) {
+    // ...but give the window back if the stamp did not happen. Otherwise a
+    // single transient failure leaves the cookie un-extended for a further
+    // five minutes with nothing retrying, and near the 8-hour boundary that
+    // is exactly the bounce to /auth/login this is here to prevent.
+    sessionCookieRefreshedAt = 0;
+  }
 }
 
 /**
@@ -245,12 +267,35 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           // the user to the page they were on. Contrast setLogoutHandler
           // below, which tears the session down.
           setReauthHandler(async () => {
+            const scopes = [`${config.clientId}/.default`];
+
+            // In an iframe (Teams), a redirect to AAD is refused: it will not
+            // be framed. /auth/login knows how to do Teams SSO, so hand over
+            // to it -- the same move the logout handler makes. The return url
+            // goes as a query parameter because that page sets the stashed
+            // one from its own params, and would otherwise overwrite ours
+            // with "/" and lose the page the user was on.
+            if (isRunningInIframe()) {
+              const here = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+              window.location.replace(
+                `/auth/login?returnUrl=${encodeURIComponent(here)}`
+              );
+              return true;
+            }
+
             const accounts = pca.getAllAccounts();
-            if (accounts.length === 0) return false;
-            await pca.acquireTokenRedirect({
-              scopes: [`${config.clientId}/.default`],
-              account: accounts[0],
-            });
+            if (accounts.length === 0) {
+              // The cookie outlived MSAL's cache -- cleared site data, an
+              // evicted localStorage, a refresh token revoked long enough ago
+              // that the account went with it. There is no account to renew,
+              // but the user is trying to get IN. Signing them out here would
+              // be the logout/login cycle this whole change exists to remove,
+              // and would destroy the AAD session that can make this silent.
+              await pca.loginRedirect({ scopes });
+              return true;
+            }
+
+            await pca.acquireTokenRedirect({ scopes, account: accounts[0] });
             return true;
           });
 

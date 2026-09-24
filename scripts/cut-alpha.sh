@@ -253,9 +253,7 @@ git commit -q -m "release: ccp4i2 $NEW_VER
 
 Automated alpha cut via scripts/cut-alpha.sh (bump PRERELEASE + exact-pin
 default in lockstep). After this PR merges, run scripts/cut-alpha.sh --tag to
-tag the merged commit and fire the release workflow.
-
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+tag the merged commit and fire the release workflow."
 
 if [ "$NO_PUSH" = 1 ]; then
   say "Committed on $RELEASE_BRANCH locally. --no-push: NOT pushing / no PR. To continue:"

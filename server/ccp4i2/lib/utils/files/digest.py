@@ -1,6 +1,5 @@
 import json
 import logging
-import math
 import gemmi
 import importlib
 from typing import Dict, Type
@@ -26,6 +25,7 @@ from ..formats.cif_ligand import parse_cif_ligand_summary, extract_monomer_atoms
 from ..parameters.value_dict import value_dict_for_object
 from ....db import models
 from ...parse import identify_data_type
+from ...json_safety import replace_non_finite
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -191,14 +191,11 @@ def json_safe(obj):
     occur in real files -- gemmi's CifToMtz writes a NaN dataset wavelength
     when the structure-factor mmCIF records none -- and NaN is truthy, so an
     ``if value:`` guard does not keep it out.
+
+    The implementation now lives in `ccp4i2.lib.json_safety`, which KPI
+    handling and the JSON renderer share; this name is kept for its callers.
     """
-    if isinstance(obj, float):
-        return obj if math.isfinite(obj) else None
-    if isinstance(obj, dict):
-        return {key: json_safe(value) for key, value in obj.items()}
-    if isinstance(obj, (list, tuple)):
-        return [json_safe(item) for item in obj]
-    return obj
+    return replace_non_finite(obj)
 
 
 def digest_file_object(file_object: CDataFile):
