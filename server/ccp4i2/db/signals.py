@@ -20,7 +20,16 @@ import logging
 from django.db.models.signals import m2m_changed, post_delete, post_save, pre_save
 from django.dispatch import receiver
 
-from .models import File, Job, Project, ProjectTag
+from .models import (
+    CampaignSite,
+    File,
+    Job,
+    Project,
+    ProjectGroup,
+    ProjectGroupMembership,
+    ProjectTag,
+    SiteEvaluation,
+)
 from .project_snapshot import schedule_snapshot, update_registry
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -158,3 +167,54 @@ def project_tags_changed(sender, instance, action, pk_set, **kwargs):
 def project_tag_saved(sender, instance, **kwargs):
     for project in instance.projects.all():
         schedule_snapshot(project)
+
+
+# ---------------------------------------------------------------------------
+# Campaigns. Every row here is user-authored and exists nowhere on disk.
+# Ownership follows docs/PROJECT_RECOVERY.md: the campaign, its roster and its
+# sites are the parent project's; a membership is also the member's own; a
+# verdict is the evaluated project's.
+# ---------------------------------------------------------------------------
+
+
+def _campaign_parent(group_id) -> Project:
+    """The parent project of a campaign, or None if it has none (yet) or the
+    campaign is mid-deletion."""
+    try:
+        membership = ProjectGroupMembership.objects.filter(
+            group_id=group_id, type=ProjectGroupMembership.MembershipType.PARENT
+        ).select_related("project").first()
+    except (ProjectGroup.DoesNotExist, Project.DoesNotExist):
+        return None
+    return membership.project if membership else None
+
+
+@receiver(post_save, sender=ProjectGroup)
+def campaign_saved(sender, instance, **kwargs):
+    schedule_snapshot(_campaign_parent(instance.pk))
+
+
+@receiver(post_save, sender=ProjectGroupMembership)
+@receiver(post_delete, sender=ProjectGroupMembership)
+def membership_changed(sender, instance, **kwargs):
+    # Both sides record it: the parent's roster and the member's own list.
+    try:
+        schedule_snapshot(instance.project)
+    except Project.DoesNotExist:
+        pass
+    schedule_snapshot(_campaign_parent(instance.group_id))
+
+
+@receiver(post_save, sender=CampaignSite)
+@receiver(post_delete, sender=CampaignSite)
+def site_changed(sender, instance, **kwargs):
+    schedule_snapshot(_campaign_parent(instance.group_id))
+
+
+@receiver(post_save, sender=SiteEvaluation)
+@receiver(post_delete, sender=SiteEvaluation)
+def evaluation_changed(sender, instance, **kwargs):
+    try:
+        schedule_snapshot(instance.project)
+    except Project.DoesNotExist:
+        pass

@@ -60,9 +60,15 @@ class RestoreReport:
     paths_rewritten: int = 0
     missing_job_directories: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
+    # Campaign state the snapshot carries: campaigns this project is the
+    # parent of, and verdicts recorded on this project.
+    campaigns: int = 0
+    evaluations: int = 0
 
     def as_dict(self) -> Dict:
         return {
+            "campaigns": self.campaigns,
+            "evaluations": self.evaluations,
             "directory": self.directory,
             "project_name": self.project_name,
             "project_uuid": self.project_uuid,
@@ -119,6 +125,8 @@ def inspect(directory: Path) -> RestoreReport:
     report.recorded_directory = node.attrib.get("projectdirectory")
     report.jobs = len(root.findall("ccp4i2_body/jobTable/job"))
     report.files = len(root.findall("ccp4i2_body/fileTable/file"))
+    report.campaigns = len(root.findall("ccp4i2_body/campaignTable/campaign"))
+    report.evaluations = len(root.findall("ccp4i2_body/siteevaluationTable/siteevaluation"))
     report.relocated = report.recorded_directory != str(directory)
     return report
 
@@ -191,9 +199,10 @@ def restore_from_directory(
                 # Rows first, so the rebuilt numbering starts from a clean sheet.
                 Job.objects.filter(project=existing).delete()
                 existing.delete()
-            _import_rerooted(directory)
+            campaign_warnings = _import_rerooted(directory)
 
     project = Project.objects.get(uuid=report.project_uuid)
+    report.warnings.extend(campaign_warnings)
     report.restored = True
     report.jobs = Job.objects.filter(project=project).count()
     report.files = File.objects.filter(job__project=project).count()
@@ -268,7 +277,7 @@ def copy_project_directory(source: Path, destination_root: Path) -> Path:
     shutil.copytree(source, destination, symlinks=True)
     return destination
 
-def _import_rerooted(directory: Path) -> None:
+def _import_rerooted(directory: Path) -> List[str]:
     """Import the snapshot with ``directory`` substituted as the project root.
 
     ``import_i2xml``'s own ``relocate_path`` appends the recorded directory's
@@ -279,7 +288,21 @@ def _import_rerooted(directory: Path) -> None:
     root = ET.parse(directory / SNAPSHOT_NAME).getroot()
     for node in root.findall("ccp4i2_body/projectTable/project"):
         node.attrib["projectdirectory"] = str(directory)
-    import_i2xml(root, relocate_path=None)
+    result = import_i2xml(root, relocate_path=None) or {}
+    return list(result.get("campaign_warnings", []))
+
+
+def carries_campaigns(directory: Path) -> bool:
+    """Whether the snapshot in ``directory`` defines a campaign, which makes
+    the project a campaign parent."""
+    path = snapshot_in(Path(directory))
+    if path is None:
+        return False
+    try:
+        root = ET.parse(path).getroot()
+    except ET.ParseError:
+        return False
+    return root.find("ccp4i2_body/campaignTable/campaign") is not None
 
 
 def _job_number_clash(project_uuid: str, directory: Path) -> List[str]:
@@ -379,8 +402,13 @@ def restore_all(
 
     One project failing does not abandon the rest: a partial recovery is worth
     having, and the ones that failed can be looked at individually.
+
+    Campaign parents go first. A member's verdicts refer to sites that only
+    its parent's snapshot defines, so restoring the members first would skip
+    every verdict and leave the operator to run the whole thing again.
     """
     reports = []
+    directories = sorted(directories, key=lambda d: 0 if carries_campaigns(d) else 1)
     for directory in directories:
         try:
             reports.append(

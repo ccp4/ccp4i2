@@ -4,6 +4,8 @@ import shutil
 from pathlib import Path
 from xml.etree import ElementTree as ET
 from xml.dom import minidom
+import json
+from django.db import models
 from datetime import datetime
 from typing import List, Dict, Optional, Any, TypedDict, Set
 
@@ -16,6 +18,10 @@ from .models import (
     JobFloatValue,
     JobCharValue,
     ProjectTag,
+    ProjectGroup,
+    ProjectGroupMembership,
+    CampaignSite,
+    SiteEvaluation,
     JobValueKey,
     FileType,
 )
@@ -71,6 +77,10 @@ def generate_project_xml_tree(
 
     # Export tag tables (always export full tags)
     _export_tag_tables(body, project)
+
+    # Campaign state this project owns (always: it is user-authored and
+    # exists nowhere on disk)
+    _export_campaign_tables(body, project)
 
     return root
 
@@ -514,6 +524,89 @@ def _export_tag_tables(body: ET.Element, project: Project) -> None:
 
             projecttag_elem.set("projectid", _format_uuid_for_xml(project.uuid))
             projecttag_elem.set("tagid", str(tag_id_map[project_tag.id]))
+
+
+def _field_value_for_xml(field, value):
+    """One model field's value as attribute text, or None to omit it."""
+    if value is None:
+        return None
+    if isinstance(field, models.JSONField):
+        return json.dumps(value)
+    if isinstance(field, models.DateTimeField):
+        return value.isoformat()
+    if isinstance(field, models.UUIDField):
+        return _format_uuid_for_xml(value)
+    return str(value)
+
+
+def _row_attributes(instance) -> Dict[str, str]:
+    """Every concrete, non-key field of a row, as XML attributes.
+
+    By field, not by a hand-written column list, so that a nullable column
+    added to a campaign model later rides through the snapshot without this
+    module knowing (design note, section 9.1). Keys and relations are the
+    caller's business: a foreign key is written as the uuid of what it points
+    at, never as a primary key.
+    """
+    attributes = {}
+    for field in instance._meta.concrete_fields:
+        if field.primary_key or field.is_relation:
+            continue
+        value = _field_value_for_xml(field, getattr(instance, field.attname))
+        if value is not None:
+            attributes[field.name] = value
+    return attributes
+
+
+def _export_campaign_tables(body: ET.Element, project: Project) -> None:
+    """Campaign state, split by ownership (docs/PROJECT_RECOVERY.md).
+
+    A campaign spans projects, and a snapshot is per project, so each piece
+    goes with the project it is about:
+
+    * the campaign itself -- its identity, its roster of memberships and its
+      sites -- with its **parent** project, which is the reference frame the
+      sites are defined in (``campaignTable``);
+    * this project's own memberships, with **this** project, so a member
+      restored on its own rejoins its campaigns (``campaignmembershipTable``);
+    * this project's verdicts, with **this** project, because a verdict is
+      about this dataset (``siteevaluationTable``).
+    """
+    parent_of = ProjectGroupMembership.objects.filter(
+        project=project, type=ProjectGroupMembership.MembershipType.PARENT
+    ).select_related("group")
+    groups = [membership.group for membership in parent_of]
+    if groups:
+        table = ET.SubElement(body, "campaignTable")
+        for group in groups:
+            elem = ET.SubElement(table, "campaign", _row_attributes(group))
+            for membership in group.memberships.select_related("project").order_by("id"):
+                ET.SubElement(
+                    elem, "membership",
+                    projectid=_format_uuid_for_xml(membership.project.uuid),
+                    type=membership.type,
+                )
+            for site in group.site_set.order_by("order", "id"):
+                ET.SubElement(elem, "site", _row_attributes(site))
+
+    memberships = ProjectGroupMembership.objects.filter(project=project).select_related("group")
+    if memberships.exists():
+        table = ET.SubElement(body, "campaignmembershipTable")
+        for membership in memberships.order_by("id"):
+            ET.SubElement(
+                table, "campaignmembership",
+                campaignuuid=_format_uuid_for_xml(membership.group.uuid),
+                campaignname=membership.group.name,
+                type=membership.type,
+            )
+
+    evaluations = SiteEvaluation.objects.filter(project=project).select_related("site")
+    if evaluations.exists():
+        table = ET.SubElement(body, "siteevaluationTable")
+        for evaluation in evaluations.order_by("id"):
+            attributes = _row_attributes(evaluation)
+            attributes["siteuuid"] = _format_uuid_for_xml(evaluation.site.uuid)
+            ET.SubElement(table, "siteevaluation", attributes)
 
 
 def _get_file_type_id(file_type_name: str) -> int:

@@ -50,6 +50,7 @@ Functions:
         Imports a project tag from an XML node, creating or updating the project tag in the database.
 """
 import datetime
+import json
 import shutil
 import zipfile
 
@@ -67,7 +68,13 @@ from ..api.serializers import (
     ProjectTagSerializer,
 )
 from . import project_snapshot
+from django.db import models as django_models
+
 from .models import (
+    CampaignSite,
+    ProjectGroup,
+    ProjectGroupMembership,
+    SiteEvaluation,
     Project,
     Job,
     FileType,
@@ -379,7 +386,8 @@ def import_i2xml(root_node: ET.Element, relocate_path: Path):
         import_tag(node)
     for node in root_node.findall("ccp4i2_body/projecttagTable/projecttag"):
         import_project_tag(node)
-    return {"job_map": job_map}
+    campaign_warnings = import_campaigns(root_node)
+    return {"job_map": job_map, "campaign_warnings": campaign_warnings}
 
 
 def import_project(node: ET.Element, relocate_path: Path = None):
@@ -698,3 +706,162 @@ def import_project_tag(node: ET.Element):
         else:
             logging.error(f"Issues creating new JobCharValue {item_form.errors}")
             return item_form.errors
+
+
+# ---------------------------------------------------------------------------
+# Campaigns: groups, memberships, sites and verdicts (docs/PROJECT_RECOVERY.md)
+# ---------------------------------------------------------------------------
+
+
+def _field_value_from_xml(field, text: str):
+    if isinstance(field, django_models.JSONField):
+        return json.loads(text)
+    if isinstance(field, django_models.DateTimeField):
+        return datetime.datetime.fromisoformat(text)
+    return field.to_python(text)
+
+
+def _row_fields(model, node: ET.Element) -> dict:
+    """The model's concrete, non-key fields that the node carries.
+
+    By field, not by column list, mirroring the export: an attribute the model
+    no longer has is ignored, a field the snapshot predates keeps its default.
+    """
+    values = {}
+    for field in model._meta.concrete_fields:
+        if field.primary_key or field.is_relation:
+            continue
+        if field.name in node.attrib:
+            values[field.name] = _field_value_from_xml(field, node.attrib[field.name])
+    return values
+
+
+def _free_name(name: str, taken) -> str:
+    """``name`` if ``taken(name)`` is false, else ``name (restored)``, then
+    ``name (restored 2)`` ... A name is an installation-local label; the uuid
+    is the identity, so a clash is resolved by relabelling, never by merging
+    two different campaigns."""
+    if not taken(name):
+        return name
+    candidate = f"{name[:89]} (restored)"
+    suffix = 2
+    while taken(candidate):
+        candidate = f"{name[:86]} (restored {suffix})"
+        suffix += 1
+    return candidate
+
+
+def _ensure_membership(group, project, membership_type: str, warnings: list) -> None:
+    if membership_type == ProjectGroupMembership.MembershipType.PARENT:
+        other = group.memberships.filter(
+            type=ProjectGroupMembership.MembershipType.PARENT
+        ).exclude(project=project).first()
+        if other is not None:
+            warnings.append(
+                f"campaign {group.name!r}: {project.name!r} is recorded as its "
+                f"parent but {other.project.name!r} already is; left as it is"
+            )
+            return
+    ProjectGroupMembership.objects.update_or_create(
+        group=group, project=project, defaults={"type": membership_type}
+    )
+
+
+def _import_campaign(node: ET.Element, warnings: list):
+    fields = _row_fields(ProjectGroup, node)
+    group_uuid = fields.pop("uuid", None)
+    if group_uuid is None:
+        warnings.append("a campaign with no uuid was skipped")
+        return None
+    group = ProjectGroup.objects.filter(uuid=group_uuid).first()
+    taken = lambda name: ProjectGroup.objects.filter(name=name).exclude(uuid=group_uuid).exists()
+    if "name" in fields:
+        fields["name"] = _free_name(fields["name"], taken)
+    if group is None:
+        group = ProjectGroup.objects.create(uuid=group_uuid, **fields)
+    else:
+        for key, value in fields.items():
+            setattr(group, key, value)
+        group.save()
+
+    for member in node.findall("membership"):
+        project = Project.objects.filter(uuid=member.attrib.get("projectid", "")).first()
+        if project is None:
+            # Restored later, and its own snapshot carries its membership.
+            continue
+        _ensure_membership(group, project, member.attrib.get("type", ""), warnings)
+
+    for site_node in node.findall("site"):
+        site_fields = _row_fields(CampaignSite, site_node)
+        site_uuid = site_fields.pop("uuid", None)
+        if site_uuid is None:
+            warnings.append(f"campaign {group.name!r}: a site with no uuid was skipped")
+            continue
+        site = CampaignSite.objects.filter(uuid=site_uuid).first()
+        taken = lambda name: CampaignSite.objects.filter(group=group, name=name).exclude(uuid=site_uuid).exists()
+        if "name" in site_fields:
+            site_fields["name"] = _free_name(site_fields["name"], taken)
+        if site is None:
+            CampaignSite.objects.create(group=group, uuid=site_uuid, **site_fields)
+        else:
+            site.group = group
+            for key, value in site_fields.items():
+                setattr(site, key, value)
+            site.save()
+    return group
+
+
+def import_campaigns(root_node: ET.Element) -> list:
+    """Restore the campaign rows a snapshot carries. Returns warnings.
+
+    Order matters across snapshots and is not this function's to control: a
+    member's verdicts refer to sites that only the parent's snapshot defines.
+    What is not yet resolvable is skipped and *said*, so the caller can
+    restore the parent and come back -- ``restore_all`` restores parents
+    first for exactly this reason.
+    """
+    warnings = []
+    project_node = root_node.find("ccp4i2_body/projectTable/project")
+    project = None
+    if project_node is not None:
+        project = Project.objects.filter(uuid=project_node.attrib.get("projectid", "")).first()
+
+    for node in root_node.findall("ccp4i2_body/campaignTable/campaign"):
+        _import_campaign(node, warnings)
+
+    for node in root_node.findall("ccp4i2_body/campaignmembershipTable/campaignmembership"):
+        if project is None:
+            break
+        group = ProjectGroup.objects.filter(uuid=node.attrib.get("campaignuuid", "")).first()
+        if group is None:
+            warnings.append(
+                f"membership of campaign {node.attrib.get('campaignname', '?')!r} not "
+                "restored: the campaign's parent project is not in the database yet; "
+                "restore it, then restore this project again with replace"
+            )
+            continue
+        _ensure_membership(group, project, node.attrib.get("type", ""), warnings)
+
+    skipped = 0
+    for node in root_node.findall("ccp4i2_body/siteevaluationTable/siteevaluation"):
+        if project is None:
+            break
+        site = CampaignSite.objects.filter(uuid=node.attrib.get("siteuuid", "")).first()
+        if site is None:
+            skipped += 1
+            continue
+        fields = _row_fields(SiteEvaluation, node)
+        evaluated_at = fields.pop("evaluated_at", None)
+        evaluation, _ = SiteEvaluation.objects.update_or_create(
+            project=project, site=site, defaults=fields
+        )
+        if evaluated_at is not None:
+            # auto_now stamped the save; put the recorded time back.
+            SiteEvaluation.objects.filter(pk=evaluation.pk).update(evaluated_at=evaluated_at)
+    if skipped:
+        warnings.append(
+            f"{skipped} site evaluation{'s' if skipped != 1 else ''} not restored: "
+            "the site is not in the database, because the campaign's parent project "
+            "has not been restored; restore it, then restore this project again with replace"
+        )
+    return warnings
