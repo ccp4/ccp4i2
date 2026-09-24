@@ -151,6 +151,7 @@ TASK_CITES: Dict[str, List[str]] = {
     "i2Dimple": ["dimple"],
     # --- PanDDA: the receipt task publishes what a PanDDA 2 run found.
     "pandda_events": ["pandda"],
+    "pandda_campaign": ["pandda"],
     # --- thin variants aliasing to a canonical program.
     "pointless_reindexToMatch": ["pointless"],
     "mrbump_model_prep": ["mrbump"],

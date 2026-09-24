@@ -69,6 +69,7 @@ class DefXmlParser:
                 'CDmDomain',
                 'CMoorhenSceneDataFile',
                 'CPanddaEvent',
+                'CPanddaDataset',
             ]
 
             for module_name in implementation_modules:

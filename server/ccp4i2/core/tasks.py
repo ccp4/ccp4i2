@@ -1030,6 +1030,16 @@ TASKS = {
         runningReport=True,
         watchedFile="pairef_project/PAIREF_project.html",
     ),
+    "pandda_campaign": Task(
+        title="PanDDA over a set of datasets",
+        description="Stage a declared list of datasets and run PanDDA 2 over them (or stage only, to run elsewhere)",
+        shortTitle="PanDDA",
+        pluginPath="ccp4i2.wrappers.pandda_campaign.script.pandda_campaign:pandda_campaign",
+        defXmlPath="wrappers/pandda_campaign/script/pandda_campaign.def.xml",
+        reportPath="ccp4i2.wrappers.pandda_campaign.script.pandda_campaign_report:pandda_campaign_report",
+        runningReport=True,
+        watchedFile="program.xml",
+    ),
     "pandda_events": Task(
         title="PanDDA events for one dataset",
         description="Receipt for one dataset's share of a PanDDA run: apo model, Z-map, and every event with its map and candidate pose",

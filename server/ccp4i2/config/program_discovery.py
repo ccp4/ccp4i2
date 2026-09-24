@@ -58,6 +58,7 @@ from ccp4i2.config.preferences import user_preference
 _EXECUTABLE_PREF: Dict[str, str] = {
     "coot": "COOT_EXECUTABLE",
     "ccp4mg": "CCP4MG_EXECUTABLE",
+    "pandda2.analyse": "PANDDA2_EXECUTABLE",
 }
 
 # Programs whose executable lives in a preference-specified suite directory.
