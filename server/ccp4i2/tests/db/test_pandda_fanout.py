@@ -16,7 +16,7 @@ from django.core.management import call_command
 from django.test import TestCase, override_settings
 
 from ...db import models
-from ...db.management.commands.pandda_fanout import plan_fanout
+from ...lib.utils.jobs.pandda_fanout import plan_fanout
 from ...tests.unit.pandda.synthetic_tree import event_record, make_tree
 
 pytest.importorskip("yaml", reason="needs PyYAML")

@@ -1040,6 +1040,15 @@ TASKS = {
         runningReport=True,
         watchedFile="program.xml",
     ),
+    "pandda_fanout": Task(
+        title="PanDDA: receipts for every dataset",
+        description="Fan a PanDDA run out into one pandda_events receipt per dataset, in each dataset's own project",
+        shortTitle="PanDDA fan-out",
+        pluginPath="ccp4i2.wrappers.pandda_fanout.script.pandda_fanout:pandda_fanout",
+        defXmlPath="wrappers/pandda_fanout/script/pandda_fanout.def.xml",
+        reportPath="ccp4i2.wrappers.pandda_fanout.script.pandda_fanout_report:pandda_fanout_report",
+        ccp4_free=True,  # copies files and creates jobs; runs no program
+    ),
     "pandda_events": Task(
         title="PanDDA events for one dataset",
         description="Receipt for one dataset's share of a PanDDA run: apo model, Z-map, and every event with its map and candidate pose",

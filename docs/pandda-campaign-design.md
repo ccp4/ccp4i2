@@ -785,6 +785,8 @@ Cross-run identity is §9's job.
 ## 8. Fan-out is a separate, re-runnable step
 
 Not the tail of the orchestrator's `process()`. Appendix A is the evidence.
+(A separate *task*, since 2026-09-24 — decision 1 as amended; the sections
+below describe the behaviour, which the task and the command share.)
 
 ### 8.1 It calls the same entry points the UI calls
 
@@ -1060,7 +1062,24 @@ rather than an accident.
 
 **Decided:**
 
-1. Two tasks, three steps; fan-in and fan-out are not tasks.
+1. ~~Two tasks, three steps; fan-in and fan-out are not tasks.~~ **Amended
+   2026-09-24: three tasks.** Fan-out is the `pandda_fanout` task, taking the
+   manifest as a typed input (`fromPreviousJob` from the orchestrator), with
+   the management command kept as a second way in for scripting; both call
+   `lib/utils/jobs/pandda_fanout.py`. Fan-in is two plugin methods over the
+   generic `object_method` endpoint (§14.2 status). What the original
+   decision guarded against was Appendix A's shape — fan-out *inside the
+   orchestrator's run* — and a separate task keeps every §8.2 property while
+   adding the two the command lacked: a record of each fan-out (which tree,
+   which manifest, what it created, when) and a place in the job list.
+   Conditions, from the challenge that preceded the change: the task is
+   `ccp4_free` and runs the receipts one at a time to completion inside
+   itself, so its report is a true record and a laptop is not asked to start
+   two hundred processes at once; the report is explicitly a *creation*
+   record — receipts are top-level jobs of their own projects and carry their
+   own state, and the fan-out job is not their parent; the manifest stays a
+   plain `CDataFile` until whether a `FileType` row needs a data migration is
+   settled; and on Azure "created" can only mean queued.
 2. The orchestrator takes a declared `DATASETS` list and never touches the
    database; campaign-awareness lives in job construction.
 3. Local execution is the implemented path. The big-compute path is kept open
@@ -1247,8 +1266,10 @@ client elements). §14.0 is PR #608 and §14.4 is PR #610, both against
   hold a worker for days. If a "hand the tree back to this job" affordance
   is wanted in the UI, it is a fan-out button on the stage-only job, not a
   session.
-- **Fan-out runs receipts synchronously** through `run_job_context_aware`
-  (`--no-run` creates them pending). On Azure that queues them.
+- **Fan-out is a task** (`pandda_fanout`, decision 1 as amended) as well as
+  a command; receipts run one at a time to completion inside it
+  (`RUN_RECEIPTS`), a preview is `DRY_RUN`, and a tree produced elsewhere is
+  `PANDDA_OUT_DIR`. On Azure that queues them.
 - **Fan-in is v1 after all, as plugin methods.** Filling `DATASETS` from
   the campaign turned out to be the difference between a screenshot and a
   runnable job, so it landed with v1: `campaignCandidates()` and

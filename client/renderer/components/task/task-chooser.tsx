@@ -185,6 +185,7 @@ const TASK_CATEGORIES: TaskCategory[] = [
       "MakeLink",
       "SubstituteLigand",
       "pandda_campaign",
+      "pandda_fanout",
       "pandda_events",
     ],
   },

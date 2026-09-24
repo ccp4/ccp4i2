@@ -68,3 +68,17 @@ class CPanddaRunPerformance(CPerformanceIndicator):
     nEvents = content("CInt", guiLabel='Events',
                       toolTip='Rows in the run-level events table')
     wallSeconds = content("CFloat", guiLabel='Wall time (s)')
+
+
+class CPanddaFanoutPerformance(CPerformanceIndicator):
+    """What a fan-out did, per dataset outcome."""
+
+    class Meta:
+        contents_order = ['nCreated', 'nSkipped', 'nAbsent', 'nFailed', 'nNoProject']
+        qualifiers = {"allowUndefined": True}
+
+    nCreated = content("CInt", guiLabel='Receipts created')
+    nSkipped = content("CInt", guiLabel='Already had a receipt')
+    nAbsent = content("CInt", guiLabel='Not in the tree')
+    nFailed = content("CInt", guiLabel='Failed')
+    nNoProject = content("CInt", guiLabel='Project not in this database')
