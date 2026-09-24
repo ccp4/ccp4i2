@@ -105,6 +105,10 @@ Supporting references:
   one-click monomer button in the campaign Moorhen page (not implemented)
 - [A site view as a Moorhen scene](campaign-site-scene-design.md) — design for
   a per-site overlay of every hit, built as a scene (not implemented)
+- [PanDDA over a campaign](pandda-campaign-design.md) — design for running
+  PanDDA2 from a campaign's parent project and landing per-event results in
+  the member projects: an orchestrator task, a per-dataset receipt, and a
+  separate fan-out step (not implemented)
 
 ### …understand the architecture
 - Project [`CLAUDE.md`](../CLAUDE.md) — architecture, task registry, validation,
