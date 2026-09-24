@@ -10,6 +10,10 @@ from pathlib import Path
 
 PDB = ("ATOM      1  CA  GLY A   1      {x:8.3f}{y:8.3f}{z:8.3f}  1.00 20.00           C\n"
        "END\n")
+#: The staged apo model keeps its crystal symmetry; PanDDA's maps do not.
+APO_PDB = ("CRYST1   10.000   10.000   10.000  90.00  90.00  90.00 C 2 2 21      8\n"
+           "ATOM      1  CA  GLY A   1      {x:8.3f}{y:8.3f}{z:8.3f}  1.00 20.00           C\n"
+           "END\n")
 #: What PanDDA writes for a built pose: residue LIG, whatever the dictionary.
 POSE_PDB = ("HETATM    1  C1  LIG 0   1      {x:8.3f}{y:8.3f}{z:8.3f}  1.00 20.00           C\n"
             "END\n")
@@ -90,7 +94,7 @@ def make_tree(root, datasets, *, events_table=True, staged_apo=True, ligand_code
             (ddir / "ligand_files" / "dict.cif").write_text(DICT_CIF.format(code=ligand_code))
         # PanDDA symlinks the apo input into its tree; a receipt must follow it.
         apo_real = staging / f"{dtag}-final.pdb"
-        write_pdb(apo_real, (0.0, 0.0, 0.0))
+        write_pdb(apo_real, (0.0, 0.0, 0.0), template=APO_PDB)
         apo_link = ddir / f"{dtag}-pandda-input.pdb"
         if staged_apo:
             apo_link.symlink_to(apo_real)

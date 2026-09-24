@@ -41,6 +41,13 @@ def test_complete_receipt_gleans_every_nested_file(tmp_path):
         for name in ("XYZIN_APO.pdb", "ZMAP.map", "event_1_map.map", "event_1_pose.pdb", "event_2_map.map"):
             assert (job / name).is_file(), name
         assert not (job / "XYZIN_APO.pdb").is_symlink()
+        # PanDDA wrote the Z-map as P1; the copy carries the crystal's space
+        # group from the apo model, so coot treats it as the X-ray map it is.
+        # The boxed event map is left as written; the tree is untouched.
+        import gemmi
+        assert gemmi.read_ccp4_map(str(job / "ZMAP.map")).grid.spacegroup.number == 20
+        assert gemmi.read_ccp4_map(str(job / "event_1_map.map")).grid.spacegroup.number == 1
+        assert gemmi.read_ccp4_map(str(tree / "processed_datasets" / "xtal-0004" / "xtal-0004-z_map.native.ccp4")).grid.spacegroup.number == 1
         # PanDDA wrote LIG; the copies carry the true component and the tree is untouched
         assert " MZ0 " in (job / "event_1_pose.pdb").read_text()
         assert " MZ0 " in (job / "PANDDA_MODEL.pdb").read_text()

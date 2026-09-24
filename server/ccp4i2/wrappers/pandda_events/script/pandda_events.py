@@ -85,7 +85,14 @@ class pandda_events(CPluginScript):
             return CPluginScript.FAILED
 
         self._take(dataset.apo_model, out.XYZIN_APO)
-        self._take(dataset.zmap, out.ZMAP)
+        # PanDDA writes its maps as P1 in the crystal's cell. A full-cell map
+        # with all angles 90 degrees is what coot takes for an EM map, and it
+        # then clamps the contour to the cell box instead of wrapping to where
+        # the model is. The apo model still carries the crystal's space group,
+        # so the Z-map copy gets it back: metadata PanDDA dropped, restored.
+        # Event maps are boxes positioned by their grid start and are left as
+        # written.
+        self._take(dataset.zmap, out.ZMAP, spacegroup=self._crystal_spacegroup(dataset.apo_model))
         # PanDDA names every residue it builds LIG, whatever the dictionary
         # said (autobuild/inbuilt.py). The copies that become CCP4i2 data get
         # the true component code back, so a pose can meet its dictionary in
@@ -167,26 +174,67 @@ class pandda_events(CPluginScript):
 
     # -- helpers ------------------------------------------------------------
 
-    def _take(self, src, target, rename=None):
+    def _take(self, src, target, rename=None, spacegroup=None):
         """Copy ``src`` (if it exists) to the path ``checkOutputData`` gave
         ``target``. Unset outputs are dropped by the gleaner."""
         if src is None:
             return
-        self._copy(src, str(target.fullPath), rename=rename)
+        self._copy(src, str(target.fullPath), rename=rename, spacegroup=spacegroup)
 
-    def _copy(self, src, dst, rename=None) -> bool:
-        """Bytes by hardlink-or-copy; with ``rename``, a model is rewritten
-        instead (a real copy, never a link, since a link would rename the
-        residue inside PanDDA's tree too)."""
+    def _copy(self, src, dst, rename=None, spacegroup=None) -> bool:
+        """Bytes by hardlink-or-copy; with ``rename`` a model is rewritten,
+        with ``spacegroup`` a full-cell P1 map is rewritten with that space
+        group -- real copies, never links, since a link would change the file
+        inside PanDDA's tree too."""
         try:
             if rename:
                 self._write_renamed(src, dst, rename)
+            elif spacegroup is not None and self._write_with_spacegroup(src, dst, spacegroup):
+                pass
             else:
                 link_or_copy(src, dst)
             return True
         except (OSError, RuntimeError, ValueError) as e:
             self.appendErrorReport(203, f'{src} -> {dst}: {e}', stack=False)
             return False
+
+    @staticmethod
+    def _crystal_spacegroup(apo_model):
+        """The crystal's space group from the apo model's CRYST1, or None
+        when there is none or it is P1 (nothing to restore)."""
+        if apo_model is None:
+            return None
+        import gemmi
+        try:
+            structure = gemmi.read_structure(str(apo_model))
+        except Exception:      # noqa: BLE001 - no CRYST1 is no space group
+            return None
+        sg = structure.find_spacegroup()
+        if sg is None or sg.number == 1:
+            return None
+        return sg
+
+    @staticmethod
+    def _write_with_spacegroup(src, dst, spacegroup) -> bool:
+        """Write ``src`` to ``dst`` carrying ``spacegroup``, if it is a P1
+        map covering the whole cell (only then is symmetry a statement about
+        the data rather than about a box). Returns False when it is not, and
+        nothing was written."""
+        import gemmi
+        m = gemmi.read_ccp4_map(str(src))
+        h = m.header_i32
+        full_cell = ((m.grid.nu, m.grid.nv, m.grid.nw) == (h(8), h(9), h(10))
+                     and (h(5), h(6), h(7)) == (0, 0, 0))
+        current = m.grid.spacegroup
+        if not full_cell or (current is not None and current.number != 1):
+            return False
+        m.grid.spacegroup = spacegroup
+        m.update_ccp4_header()
+        # update_ccp4_header does not carry a space group assigned after the
+        # read into the ISPG word; set it, or the file reads back as P1.
+        m.set_header_i32(23, spacegroup.ccp4)
+        m.write_ccp4_map(str(dst))
+        return True
 
     @staticmethod
     def _write_renamed(src, dst, ligand_id):
