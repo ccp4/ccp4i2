@@ -78,7 +78,8 @@ class CPanddaRunPerformance(CPerformanceIndicator):
     """What the run did, as KPIs."""
 
     class Meta:
-        contents_order = ['nDatasets', 'nDatasetsProcessed', 'nDatasetsAnalysed', 'nEvents', 'wallSeconds']
+        contents_order = ['nDatasets', 'nDatasetsProcessed', 'nDatasetsAnalysed', 'nEvents', 'nSites',
+                          'wallSeconds']
         qualifiers = {"allowUndefined": True}
 
     nDatasets = content("CInt", guiLabel='Datasets staged')
@@ -88,6 +89,8 @@ class CPanddaRunPerformance(CPerformanceIndicator):
                                 toolTip='Datasets PanDDA characterised and searched (those with a Z-map)')
     nEvents = content("CInt", guiLabel='Events',
                       toolTip='Rows in the run-level events table')
+    nSites = content("CInt", guiLabel='Sites',
+                     toolTip='Distinct sites the events cluster into (the sites table)')
     wallSeconds = content("CFloat", guiLabel='Wall time (s)')
 
 

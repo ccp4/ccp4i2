@@ -30,6 +30,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.CCP4ErrorHandling import CErrorReport, SEVERITY_WARNING, SEVERITY_ERROR
 
 from . import pandda_invocation as contract
+from . import pandda_run_summary as analysis
 from .pandda_staging import DatasetSpec, stage_datasets
 
 import logging
@@ -86,6 +87,7 @@ class pandda_campaign(CPluginScript):
         self._tailer_stop = None
         self._progress = None
         self._summary = None
+        self._analysis = None
 
     # -- interface-time methods, through the generic object_method endpoint --
     #
@@ -457,6 +459,14 @@ class pandda_campaign(CPluginScript):
         out.PERFORMANCE.nDatasetsProcessed.set(summary['processed'])
         out.PERFORMANCE.nDatasetsAnalysed.set(summary['analysed'])
         out.PERFORMANCE.nEvents.set(summary['events'])
+        # The run's own analysis, recapitulated from its tables (the bundled
+        # PanDDA 2 writes no HTML summary). Never worth failing the job over.
+        try:
+            self._analysis = analysis.summarise_run(tree)
+            out.PERFORMANCE.nSites.set(self._analysis['stats']['n_sites'])
+        except Exception as e:      # noqa: BLE001
+            logger.warning('PanDDA analysis tables not summarised: %s', e)
+            self._analysis = None
         if self._started is not None:
             out.PERFORMANCE.wallSeconds.set(round(time.time() - self._started, 1))
         return summary
@@ -505,6 +515,8 @@ class pandda_campaign(CPluginScript):
             for entry in self._manifest['datasets']:
                 ET.SubElement(datasets, 'dataset', xtal=entry['xtal'], label=entry['label'],
                               dict='yes' if 'dict.cif' in entry['files'] else 'no')
+        if self._analysis:
+            analysis.analysis_to_xml(root, self._analysis)
         tree = ET.ElementTree(root)
         ET.indent(tree, space='  ')
         tree.write(self.makeFileName('PROGRAMXML'), encoding='utf-8', xml_declaration=True)

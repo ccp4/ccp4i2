@@ -1298,6 +1298,21 @@ client elements). §14.0 is PR #608 and §14.4 is PR #610, both against
   v2 item 12 is therefore only the campaign-page affordance that creates
   the job and calls the fill.
 
+- **The orchestrator's report recapitulates PanDDA's own analysis.** The
+  bundled PanDDA 2 writes no HTML summary (`analyses/html_summaries/` stays
+  empty), so `pandda_run_summary.py` recovers what Reinspect recovered from
+  PanDDA 1: the events table joined with each dataset's `events.yaml` (score,
+  build score, RSCC), the sites table, and each `processed_dataset.yaml`
+  (processing resolution, comparator count, selected model, candidate-event
+  counts before and after the size and score filters). It goes into
+  program.xml as `<analysis>` and the report draws events per site, binned
+  histograms of event fraction, hit probability, resolution and R-free, and
+  events, sites and per-dataset tables. Two facts worth keeping:
+  `processed_dataset.yaml` carries numpy scalars as `!!python/object/apply`
+  tags, which `yaml.safe_load` refuses, so it is read with a loader that
+  yields `None` for them; and the report viewer draws `barchart` but not
+  `histogram`, so the binning is done in Python.
+
 Also found on the way: the gleaner stored only `float` KPIs, so every `CInt`
 KPI in the tree was silently dropped (fixed in 0c0db80fb); imported input
 files nested inside a composed list item are registered under their
