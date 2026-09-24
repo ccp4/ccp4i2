@@ -6,6 +6,7 @@ Source of truth: ``CCP4I2_PANDDA_INVOCATION_CONTRACT.md`` in the Materia
 repository (adopted verbatim, decision 4). Nothing here runs anything; the
 plugin composes these into a job.
 """
+import json
 import os
 import re
 import sys
@@ -268,8 +269,8 @@ def probe_executable(path) -> Dict[str, object]:
     installed source, which is the one behaviour this task adapts to.
     """
     path = Path(path)
-    probe = {"path": str(path), "launcher": None, "version": None,
-             "progress_signal": None, "site_packages": None}
+    probe = {"path": str(path), "launcher": None, "distribution": None, "version": None,
+             "origin": None, "progress_signal": None, "site_packages": None}
     try:
         head = path.read_text(errors="replace")[:2000]
     except OSError:
@@ -285,9 +286,19 @@ def probe_executable(path) -> Dict[str, object]:
         site = next(iter(sorted(env_root.glob("lib/python*/site-packages"))), None)
         if site is not None:
             probe["site_packages"] = str(site)
-            dist = next(iter(sorted(site.glob("pandda_gemmi-*.dist-info"))), None)
+            # The CCP4 bundle installs it as pandda_2_gemmi, upstream as
+            # pandda_gemmi; take whichever is there.
+            dist = next(iter(sorted(site.glob("pandda*gemmi-*.dist-info"))), None)
             if dist is not None:
-                probe["version"] = dist.name[len("pandda_gemmi-"):-len(".dist-info")]
+                stem = dist.name[:-len(".dist-info")]
+                probe["distribution"] = stem.rsplit("-", 1)[0]
+                probe["version"] = stem.rsplit("-", 1)[1]
+                origin = dist / "direct_url.json"
+                if origin.is_file():
+                    try:
+                        probe["origin"] = json.loads(origin.read_text()).get("url")
+                    except (OSError, ValueError):
+                        pass
             source = site / "pandda_gemmi" / "pandda" / "pandda.py"
             if source.is_file():
                 try:

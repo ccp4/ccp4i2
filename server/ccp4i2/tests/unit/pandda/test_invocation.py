@@ -80,7 +80,8 @@ def test_cell_classes_and_sizing():
 def test_probe_reads_the_ccp4_launcher(tmp_path):
     root = tmp_path / "share" / "mamba"
     site = root / "envs" / "pandda2" / "lib" / "python3.9" / "site-packages"
-    (site / "pandda_gemmi-0.0.1.dist-info").mkdir(parents=True)
+    (site / "pandda_2_gemmi-0.0.1.dist-info").mkdir(parents=True)   # the CCP4 bundle's name
+    (site / "pandda_2_gemmi-0.0.1.dist-info" / "direct_url.json").write_text('{"url": "file:///jenkins/build"}')
     (site / "pandda_gemmi" / "pandda").mkdir(parents=True)
     (site / "pandda_gemmi" / "pandda" / "pandda.py").write_text("print('PANDDA_PROGRESS: dataset', flush=True)\n")
     launcher = tmp_path / "bin" / "pandda2.analyse"
@@ -88,6 +89,8 @@ def test_probe_reads_the_ccp4_launcher(tmp_path):
     launcher.write_text(f"#!/bin/sh\n\nexec {tmp_path}/micromamba/bin/micromamba run -r {root} -n pandda2 pandda2.analyse \"$@\"\n")
     probe = c.probe_executable(launcher)
     assert probe["version"] == "0.0.1"
+    assert probe["distribution"] == "pandda_2_gemmi"
+    assert probe["origin"] == "file:///jenkins/build"
     assert probe["progress_signal"] is True
     assert probe["site_packages"] == str(site)
     assert "micromamba run" in probe["launcher"]
