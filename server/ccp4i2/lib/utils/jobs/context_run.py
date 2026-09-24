@@ -448,7 +448,8 @@ def run_job_local(job, synchronous=False):
         }
 
 
-def run_job_context_aware(job, force_local=False, synchronous=False):
+def run_job_context_aware(job, force_local=False, synchronous=False,
+                          force_dispatch=False):
     """
     Execute job using environment-appropriate backend.
 
@@ -463,6 +464,8 @@ def run_job_context_aware(job, force_local=False, synchronous=False):
         force_local (bool): If True, forces local execution regardless of environment
         synchronous (bool): If True, blocks until job completes (local mode only).
             Azure mode always returns immediately after queuing.
+        force_dispatch (bool): Dispatch even an interactive task (used when its
+            session is finished); otherwise Run opens the session instead.
 
     Returns:
         dict: Result dictionary with keys:
@@ -492,6 +495,18 @@ def run_job_context_aware(job, force_local=False, synchronous=False):
                 status=result["status"]
             )
     """
+    # An interactive task (the recorded Moorhen session) has no process to
+    # dispatch on Run: Run opens the session and the job is dispatched when
+    # the session is finished (force_dispatch=True from finish_session).
+    if not force_dispatch:
+        from .interactive import SessionError, is_interactive_job, open_session
+
+        if is_interactive_job(job):
+            try:
+                return {"success": True, "data": open_session(job)}
+            except SessionError as err:
+                return {"success": False, "error": str(err), "status": err.status}
+
     if force_local:
         execution_mode = "local"
         logger.info(

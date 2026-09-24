@@ -46,6 +46,7 @@ import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
 import { useJob, useProjectJobs } from "../utils";
 import ExportJobMenu from "../components/export-job-file-menu";
 import { useRecentlyStartedJobs } from "./recently-started-jobs-context";
+import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
 import { useSWRConfig } from "swr";
 
 interface JobMenuContextDataProps {
@@ -112,6 +113,7 @@ export const JobMenu: React.FC = () => {
   const { setMessage } = usePopcorn();
   const { confirmTaskRun } = useRunCheck();
   const { markJobAsStarting } = useRecentlyStartedJobs();
+  const isInteractive = useIsInteractiveTask();
   const { mutate: globalMutate } = useSWRConfig();
 
   const deleteDialog = useDeleteDialog();
@@ -333,6 +335,9 @@ export const JobMenu: React.FC = () => {
             runResult.number,
             runResult.task_name || job.title
           );
+          // An interactive task (a recorded Moorhen session) has no process:
+          // Run opened its session, and the window is what runs it.
+          if (isInteractive(job.task_name)) openSessionWindow(runResult.id);
           mutateJobs();
           router.push(`/ccp4i2/project/${job.project}/job/${runResult.id}`);
         }
@@ -375,6 +380,85 @@ export const JobMenu: React.FC = () => {
       window.open(path, "_blank", "noopener,noreferrer");
     },
     [job, setJobMenuAnchorEl]
+  );
+
+  // -- recorded Moorhen sessions ------------------------------------------
+  const handleOpenSessionWindow = useCallback(
+    (ev: SyntheticEvent) => {
+      if (!job) return;
+      ev.stopPropagation();
+      setJobMenuAnchorEl(null);
+      openSessionWindow(job.id);
+    },
+    [job, setJobMenuAnchorEl]
+  );
+
+  const handleFinishSession = useCallback(
+    async (ev: SyntheticEvent) => {
+      if (!job) return;
+      ev.stopPropagation();
+      setJobMenuAnchorEl(null);
+      try {
+        const result: any = await api.post(`jobs/${job.id}/interactive_finish/`, {
+          finished: true,
+        });
+        if (result?.success === false) {
+          setMessage(`Could not finish session: ${result?.error || "Unknown error"}`, "error");
+          return;
+        }
+        const disposition = result?.data?.disposition;
+        if (disposition === "deleted") {
+          setMessage(`Session of job ${job.number} had nothing saved; job discarded`, "info");
+        } else {
+          setMessage(`Session of job ${job.number} finished; filing what was saved`, "success");
+        }
+        mutateJobs();
+      } catch (error) {
+        setMessage(
+          `Could not finish session: ${error instanceof Error ? error.message : String(error)}`,
+          "error"
+        );
+      }
+    },
+    [job, api, setJobMenuAnchorEl, setMessage, mutateJobs]
+  );
+
+  // "Model build in Moorhen": a recorded session on this job's outputs.
+  // Creates a moorhen task with this job as context (inputs auto-populate),
+  // runs it (which opens its session), and opens the window.
+  const handleModelBuildInMoorhen = useCallback(
+    async (ev: SyntheticEvent) => {
+      if (!job) return;
+      ev.stopPropagation();
+      setJobMenuAnchorEl(null);
+      try {
+        const created: any = await api.post(`projects/${job.project}/create_task/`, {
+          task_name: "moorhen",
+          title: `Moorhen on ${job.number}: ${job.title}`,
+          context_job_uuid: job.uuid,
+        });
+        const newJobId = created?.data?.new_job?.id ?? created?.new_job?.id;
+        if (created?.success === false || !newJobId) {
+          setMessage(`Could not create Moorhen job: ${created?.error || "Unknown error"}`, "error");
+          return;
+        }
+        const runResult: any = await api.post(`jobs/${newJobId}/run/`);
+        if (runResult?.success === false) {
+          setMessage(`Could not start Moorhen session: ${runResult?.error || "Unknown error"}`, "error");
+          return;
+        }
+        markJobAsStarting(newJobId, job.project, runResult?.number, "moorhen");
+        mutateJobs();
+        openSessionWindow(newJobId);
+        router.push(`/ccp4i2/project/${job.project}/job/${newJobId}`);
+      } catch (error) {
+        setMessage(
+          `Could not start Moorhen session: ${error instanceof Error ? error.message : String(error)}`,
+          "error"
+        );
+      }
+    },
+    [job, api, setJobMenuAnchorEl, setMessage, mutateJobs, markJobAsStarting, router]
   );
 
   const handleDelete = useCallback(
@@ -576,6 +660,32 @@ export const JobMenu: React.FC = () => {
           >
             <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Moorhen
           </MenuItem>
+          {isInteractive(job.task_name) ? (
+            [
+              <MenuItem
+                key="OpenSession"
+                disabled={job.status !== 3}
+                onClick={handleOpenSessionWindow}
+              >
+                <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Open session window
+              </MenuItem>,
+              <MenuItem
+                key="FinishSession"
+                disabled={job.status !== 3}
+                onClick={handleFinishSession}
+              >
+                <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Finish session
+              </MenuItem>,
+            ]
+          ) : (
+            <MenuItem
+              key="ModelBuildInMoorhen"
+              disabled={job.status != 6 || job.number.includes(".")}
+              onClick={handleModelBuildInMoorhen}
+            >
+              <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Model build in Moorhen
+            </MenuItem>
+          )}
           <MenuItem
             key="Status"
             //disabled={job.number.includes(".")} // There are cases where we want to set the status of a job that is not top level

@@ -10,6 +10,7 @@
  * mask looks the same however it's loaded.
  */
 import type { Dispatch } from "redux";
+import type { MoorhenInstance } from "moorhen/react-lib";
 import {
   setMapStyle,
   setMapAlpha,
@@ -22,20 +23,31 @@ import {
 export const MASK_SUBTYPE = 4;
 
 /**
- * Moorhen beta.1 reworked MoorhenMap: the constructor and the (now static)
- * loadToCootFrom* factory methods take a single MoorhenInstance instead of the
- * old `(commandCentreRef, store)` pair, and `this.commandCentre` is now the
- * CommandCentre object itself (not a ref). On the load / contour / suggested-
- * settings paths the class only reads `.commandCentre` and `.store` off the
- * instance, so a minimal shim over the wrapper's existing ref + store is enough
- * — no full InstanceManager wiring required. Use this at every MoorhenMap load
- * site so maps actually reach coot again.
+ * File.sub_type marking a CCP4-map file as a cryo-EM half map
+ * (CMapDataFile.SUBTYPE_HALFMAP) — one of a pair, for FSC cross-validation. It
+ * renders as ordinary density; the sub_type only lets tasks that consume half
+ * maps (servalcat --halfmaps) recognise it and keep it distinct from a full map.
  */
-export function makeMoorhenMapInstance(
-  commandCentreRef: { current: unknown } | null | undefined,
-  store: unknown,
-): any {
-  return { commandCentre: commandCentreRef?.current ?? null, store };
+export const HALFMAP_SUBTYPE = 5;
+
+/**
+ * The wrapper's MoorhenInstance, or a clear error if Moorhen has not set it yet.
+ *
+ * MoorhenMap and MoorhenMolecule are both constructed from a MoorhenInstance
+ * (as are the static MoorhenMap.loadToCootFrom* factories). Until Moorhen 1.0.1
+ * a `{ commandCentre, store }` stand-in was enough for maps; it no longer is
+ * for anything: a molecule reports every edit through
+ * `moorhenInstance.triggerMoleculeChanged` and takes its monomer library from
+ * `moorhenInstance.paths`. So the wrappers hand MoorhenContainer a
+ * `moorhenInstanceRef` and build from the real thing. The container fills the
+ * ref on mount, well before coot is initialised and any load can start.
+ */
+export function requireMoorhenInstance(
+  moorhenInstanceRef: { current: MoorhenInstance | null },
+): MoorhenInstance {
+  const instance = moorhenInstanceRef.current;
+  if (!instance) throw new Error("Moorhen is not initialised yet");
+  return instance;
 }
 
 /**
@@ -58,6 +70,34 @@ export async function primeXtalMapContourStats(map: any): Promise<void> {
     await map.fetchSuggestedLevelXtal?.();
   } catch (err) {
     console.warn("Failed to prime map contour stats:", err);
+  }
+}
+
+/**
+ * Give an EM-flagged MTZ map the header info Moorhen's MapOriginListener
+ * reads.
+ *
+ * MoorhenMap.initialise() flags a P1 map with 90° angles as EM and locks its
+ * origin, and MapOriginListener (src/components/managers/maps/
+ * MapOriginListener.tsx, line 25, still so in 1.0.1-dev.g10d4c0b00) then reads
+ * `map.headerInfo.cell` during render for any EM map with dataOrigin "mtz".
+ * But MoorhenMap never assigns `headerInfo`: initialise() keeps the header in
+ * a local, and the property stays null. So loading the map coefficients of a
+ * cryo-EM servalcat refinement (P1, orthogonal cell) crashed the whole viewer
+ * with "Cannot read properties of null (reading 'cell')"; real-space maps
+ * take a different branch and were fine. The upstream fix is for Moorhen to
+ * set `this.headerInfo` in initialise() or read getSimpleHeaderInfo() in the
+ * listener; until that ships, hand the listener the same object here.
+ * Must run before the map is added to the store, which is what renders the
+ * listener. No-op for non-EM maps and when Moorhen already set the property.
+ */
+export function primeEmMapHeaderInfo(map: any): void {
+  if (!map || !map.isEM || map.headerInfo != null) return;
+  try {
+    const info = map.getSimpleHeaderInfo?.();
+    if (info && info.cell) map.headerInfo = info;
+  } catch (err) {
+    console.warn("Could not prime EM map header info:", err);
   }
 }
 
@@ -191,6 +231,11 @@ export const MASK_COLOUR_RGB = { r: 126, g: 156, b: 216 };
 /** True if a DB file's sub_type marks it as a mask. */
 export function isMaskSubType(subType: number | null | undefined): boolean {
   return subType === MASK_SUBTYPE;
+}
+
+/** True if a DB file's sub_type marks it as a cryo-EM half map. */
+export function isHalfMapSubType(subType: number | null | undefined): boolean {
+  return subType === HALFMAP_SUBTYPE;
 }
 
 /**

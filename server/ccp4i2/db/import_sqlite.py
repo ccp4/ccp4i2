@@ -46,6 +46,7 @@ from .models import (
     ServerJob,
     XData,
 )
+from ccp4i2.lib.kpi_values import is_storable_kpi_value
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -1391,9 +1392,15 @@ class SQLiteImporter:
                     if JobFloatValue.objects.filter(job=job, key=key).exists():
                         self.stats["jobfloatvalues_skipped"] += 1
                         continue
+                    value = float(row["value"]) if row["value"] is not None else 0.0
+                    if not is_storable_kpi_value(value):
+                        # A legacy database may hold a NaN or infinite KPI.
+                        # Don't carry it forward: it is not a measurement, and
+                        # it would break every endpoint that serves this job.
+                        self.stats["jobfloatvalues_skipped"] += 1
+                        continue
                     JobFloatValue.objects.create(
-                        job=job, key=key,
-                        value=float(row["value"]) if row["value"] is not None else 0.0,
+                        job=job, key=key, value=value,
                     )
                     self.stats["jobfloatvalues"] += 1
             except Exception as e:

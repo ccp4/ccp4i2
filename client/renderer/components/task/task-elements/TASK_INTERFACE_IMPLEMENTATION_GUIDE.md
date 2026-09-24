@@ -995,6 +995,45 @@ import { CChainSelectElement } from "../task-elements/cchainselect";
 
 This renders an MUI Autocomplete with `multiple` and chip tags. It reads a comma-separated CString (e.g. `"A,B,C"`) and writes back as a comma-joined string. The `options` prop should be populated from the XYZIN digest composition.
 
+### Bespoke List Editors (beyond `CListElement`)
+
+`CListElement` renders a `CList` as one generic row per item, which is right
+until the list's *shape* is the thing the user cannot see. `dm_multidomain`'s
+ASSEMBLY is a list of `"CDK=A cyclin=B"` strings that is really a grid (copies
+x entities), and rendering it as a column of text boxes is what made the task
+need a paragraph of explanation above it.
+
+Build the editor on `useContainerList`, whose `replaceArray` is the escape
+hatch for a bespoke mutation:
+
+```tsx
+const assembly = useContainerList({ job, itemName: "ASSEMBLY" });
+const rows = assembly.items.map((row: any) => String(row?._value ?? ""));
+// ... render whatever shape the data really has ...
+await assembly.replaceArray(["CDK=A cyclin=B", "CDK=C cyclin=D"]);
+```
+
+Three things to get right:
+
+1. **Keep the stored format.** i2run and the CLI write these strings by hand,
+   so the grammar stays; the interface just stops asking anyone to type it. Put
+   the parse/format pair in one module (`dm_multidomain/dm-spec.ts`), mirror the
+   wrapper's parser, and unit-test the round trip in
+   `renderer/__tests__/*.test.ts` — it runs on the fast `node` project with no
+   DOM.
+2. **Empty rows must survive a round trip.** If your formatter drops an empty
+   row, "Add row" becomes a dead button: the row is written, filtered out, and
+   gone before the user sees it.
+3. **The coverage test reads the hook.** `task-parameter-coverage.test.ts`
+   scans for `itemName="X"`, `useTaskItem("X")` and `itemName: "X"` — that last
+   form is how it sees a parameter reached only through `useContainerList` /
+   `useContainerField`. A bespoke editor that binds its parameter some other
+   way will be reported as a coverage regression, and rightly.
+
+For the server side of the same pattern — a `plugin_method` that derives
+something expensive from the input files so the form can show it before the
+job runs — see `dm_multidomain.ncs_preview()` and `useNcsPreview`.
+
 ### Info/Warning Text
 
 ```tsx

@@ -667,7 +667,6 @@ export default function ProjectsTable() {
           }
         >
           <Checkbox
-            size="small"
             checked={
               selectedIds.size > 0 &&
               selectedIds.size === filteredProjects.length
@@ -695,7 +694,7 @@ export default function ProjectsTable() {
     },
     {
       key: "name",
-      label: "Project Name",
+      label: "Name",
       sortable: true,
       searchable: true,
       render: (_, project) => {
@@ -703,41 +702,32 @@ export default function ProjectsTable() {
         const isParent = campaign?.membership_type === "parent";
         const isMember = campaign?.membership_type === "member";
         return (
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, py: 0.75 }}>
             <Box sx={{ minWidth: 0 }}>
               <Stack
                 direction="row"
-                spacing={0.5}
                 alignItems="center"
-                sx={{ minWidth: 0 }}
+                flexWrap="wrap"
+                sx={{ minWidth: 0, columnGap: 1.25, rowGap: 0.5 }}
               >
-                <Tooltip title={project.name}>
-                  <Typography
-                    variant="body2"
-                    sx={{ fontWeight: 500, minWidth: 0 }}
-                    noWrap
-                  >
-                    {project.name}
-                  </Typography>
-                </Tooltip>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 500 }}
+                >
+                  {project.name}
+                </Typography>
                 {brokenIds.has(project.id) && (
                   <Tooltip title="This project's folder cannot be found on disk">
                     <LinkOff sx={{ fontSize: 16, color: "warning.main" }} />
                   </Tooltip>
                 )}
+                <ProjectTagChips
+                  tags={project.tags}
+                  maxVisible={3}
+                  size="small"
+                  hideEmpty
+                />
               </Stack>
-              {project.description && (
-                <Tooltip title={project.description}>
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    noWrap
-                    sx={{ display: "block" }}
-                  >
-                    {project.description}
-                  </Typography>
-                </Tooltip>
-              )}
               <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
                 {isParent && (
                   <Tooltip title={`Campaign parent: ${campaign.campaign_name} (${campaign.member_count} datasets)`}>
@@ -777,20 +767,10 @@ export default function ProjectsTable() {
       },
     },
     {
-      key: "tags",
-      label: "Tags",
-      // Pinned to a minimal width so the name column absorbs all spare
-      // horizontal space (tableLayout is "fixed"; only unsized columns flex).
-      width: 200,
-      render: (_, project) => (
-        <ProjectTagChips tags={project.tags} maxVisible={3} size="small" />
-      ),
-    },
-    {
       key: "creation_time",
       label: "Created",
       sortable: true,
-      width: 120,
+      width: 110,
       render: (value) => (
         <Typography variant="body2" color="text.secondary">
           {shortDate(value)}
@@ -799,9 +779,9 @@ export default function ProjectsTable() {
     },
     {
       key: "last_access",
-      label: "Last Accessed",
+      label: "Accessed",
       sortable: true,
-      width: 120,
+      width: 110,
       render: (value) => (
         <Typography variant="body2" color="text.secondary">
           {shortDate(value)}
@@ -811,7 +791,7 @@ export default function ProjectsTable() {
     {
       key: "actions",
       label: "",
-      width: canMoveProjects ? 180 : 140,
+      width: canMoveProjects ? 160 : 120,
       render: (_, project) => (
         <Stack
           direction="row"
@@ -1108,6 +1088,7 @@ export default function ProjectsTable() {
             })}
             onRowClick={(project) => router.push(`/ccp4i2/project/${project.id}`)}
             emptyMessage="No projects found"
+            minWidth={540}
           />
         )}
 

@@ -7,6 +7,7 @@ coordinates and FreeR flags, and member projects each represent a dataset
 soaked with a different compound.
 """
 import logging
+from django.db.models import Count
 from django.http import FileResponse
 from django.conf import settings
 from rest_framework.viewsets import ModelViewSet
@@ -17,6 +18,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from . import serializers
 from ..db import models
+from ..lib.kpi_values import kpi_map
 from ..lib.response import api_success, api_error
 from ..lib import pandda_export
 from ..lib import campaign_scene
@@ -108,7 +110,15 @@ class ProjectGroupViewSet(ModelViewSet):
             group = self.get_object()
             member_memberships = group.memberships.filter(
                 type=models.ProjectGroupMembership.MembershipType.MEMBER
-            ).select_related("project").prefetch_related("project__tags")
+            ).select_related("project").prefetch_related(
+                "project__tags", "project__site_evaluations__site"
+            )
+
+            # Every site of this campaign, so a row can say how much of its
+            # evaluation is outstanding. The denominator is the campaign's
+            # current site count, which keeps the fraction comparable down the
+            # column rather than varying per dataset.
+            site_total = group.site_set.count()
 
             result = []
             for membership in member_memberships:
@@ -144,19 +154,54 @@ class ProjectGroupViewSet(ModelViewSet):
                     })
 
                 # Get KPIs - look through all jobs for the relevant key values
-                # (matching legacy behavior: find last job with each key type)
+                # (matching legacy behavior: find last job with each key type).
+                # kpi_map drops values JSON cannot carry, so one NaN R-factor
+                # cannot take the whole campaign overview down with it.
                 kpis = {}
                 for job in reversed(list(jobs)):  # Most recent first
-                    for fv in job.float_values.all():
-                        if fv.key_id not in kpis:
-                            kpis[fv.key_id] = fv.value
-                    for cv in job.char_values.all():
-                        if cv.key_id not in kpis:
-                            kpis[cv.key_id] = cv.value
+                    context = f"job {job.number} of {project.name}"
+                    for key, value in kpi_map(job.float_values.all(), context).items():
+                        kpis.setdefault(key, value)
+                    for key, value in kpi_map(job.char_values.all(), context).items():
+                        kpis.setdefault(key, value)
+
+                # What was found at each site, and how much is still unlooked
+                # at. Carried in THIS payload rather than fetched per row: the
+                # overview renders one row per dataset and a separate request
+                # each would be N round trips for data the table already has
+                # the shape for.
+                #
+                # Only hit and unclear are listed. A rich campaign has 30-40
+                # sites and most are empty for most datasets, so sending every
+                # verdict would put a 40-entry list on every row to render a
+                # cell that shows two chips. "Empty" is recoverable from the
+                # evaluated count, and the per-dataset view has the detail.
+                evaluations = []
+                evaluated = 0
+                for evaluation in project.site_evaluations.all():
+                    if evaluation.site.group_id != group.id:
+                        # A project can belong to more than one campaign.
+                        continue
+                    evaluated += 1
+                    if evaluation.verdict in ("hit", "unclear"):
+                        evaluations.append({
+                            "site_id": evaluation.site_id,
+                            "site_name": evaluation.site.name,
+                            "verdict": evaluation.verdict,
+                        })
+
+                # Hits first, so a dataset with many unclears never has its
+                # hits pushed out of a capped chip list.
+                evaluations.sort(
+                    key=lambda e: (e["verdict"] != "hit", e["site_name"])
+                )
 
                 project_data["job_summary"] = job_summary
                 project_data["jobs"] = jobs_list
                 project_data["kpis"] = kpis
+                project_data["site_evaluations"] = evaluations
+                project_data["sites_evaluated"] = evaluated
+                project_data["sites_total"] = site_total
                 result.append(project_data)
 
             return Response(result)
@@ -592,6 +637,57 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path=r"sites/(?P<site_id>[0-9]+)/scene",
+    )
+    def site_scene(self, request, pk=None, site_id=None):
+        """
+        Build a Moorhen scene for one binding site of a fragment campaign.
+
+        The exemplar as a ribbon with the pocket residues as sticks, and the
+        ligand of every dataset judged a hit at this site drawn on top, each
+        fitted onto the exemplar locally on the site. Membership is decided
+        by the recorded verdicts alone (see ``lib.campaign_scene``).
+
+        Query parameters:
+            include=unclear: also draw datasets with an ``unclear`` verdict,
+                in a muted colour.
+            superpose=none: draw every dataset in its own frame. Superposition
+                is the default, so the parameter turns it off -- for seeing the
+                frames as deposited, or diagnosing a fit that went wrong.
+
+        Returns:
+            Response: ``{"scene": <MoorhenScene>, "stats": {...}}``, the
+                same envelope as ``summary_scene``.
+        """
+        try:
+            group = self.get_object()
+            try:
+                site = group.site_set.get(id=site_id)
+            except models.CampaignSite.DoesNotExist:
+                return api_error("Site not found in this campaign", status=404)
+
+            include = {
+                token.strip()
+                for token in request.query_params.get("include", "").split(",")
+            }
+            return Response(
+                campaign_scene.build_site_scene(
+                    group,
+                    site,
+                    include_unclear="unclear" in include,
+                    superpose=request.query_params.get("superpose") != "none",
+                )
+            )
+        except Exception as e:
+            logger.exception(
+                "Failed to build scene for site %s of group %s", site_id, pk,
+                exc_info=e,
+            )
+            return api_error(str(e), status=500)
+
     @action(detail=True, methods=["post"], )
     def export_pandda(self, request, pk=None):
         """
@@ -631,71 +727,323 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["get", "put"], )
+    @staticmethod
+    def _site_payload(site):
+        """The wire shape of a site.
+
+        `id` is new in migration 0024 and is what everything else refers to: a
+        site used to be identified by its name and its index in a JSON list, so
+        renaming one silently orphaned every reference to it. The rest of the
+        shape is unchanged, so existing readers keep working.
+        """
+        payload = {
+            "id": site.id,
+            "name": site.name,
+            "origin": [site.origin_x, site.origin_y, site.origin_z],
+            "order": site.order,
+        }
+        # Present only where the caller annotated it (the list view). Deleting
+        # a site deletes every verdict recorded there, across every dataset,
+        # and the difference between losing nothing and losing forty datasets'
+        # work is the whole content of that warning -- without it a
+        # confirmation is just a button to click through.
+        count = getattr(site, "evaluation_count", None)
+        if count is not None:
+            payload["evaluation_count"] = count
+        if site.quat:
+            payload["quat"] = site.quat
+        if site.zoom is not None:
+            payload["zoom"] = site.zoom
+        return payload
+
+    @staticmethod
+    def _parse_site(data, index=0):
+        """Validate one incoming site. Returns (fields, error_message)."""
+        if not isinstance(data, dict):
+            return None, f"Site {index} must be an object"
+        if "name" not in data:
+            return None, f"Site {index} missing required field 'name'"
+        origin = data.get("origin")
+        if not isinstance(origin, list) or len(origin) != 3:
+            return None, f"Site {index} 'origin' must be an array of 3 numbers"
+        try:
+            x, y, z = (float(v) for v in origin)
+        except (TypeError, ValueError):
+            return None, f"Site {index} 'origin' must be an array of 3 numbers"
+
+        quat = data.get("quat")
+        if quat is not None and (not isinstance(quat, list) or len(quat) != 4):
+            return None, f"Site {index} 'quat' must be an array of 4 numbers"
+
+        zoom = data.get("zoom")
+        if zoom is not None:
+            try:
+                zoom = float(zoom)
+            except (TypeError, ValueError):
+                return None, f"Site {index} 'zoom' must be a number"
+
+        return {
+            "name": str(data["name"])[:100],
+            "origin_x": x,
+            "origin_y": y,
+            "origin_z": z,
+            "quat": quat,
+            "zoom": zoom,
+        }, None
+
+    @action(detail=True, methods=["get", "post"])
     def sites(self, request, pk=None):
         """
-        Get or update the binding sites for this campaign.
+        List this campaign's binding sites, or add one.
 
-        Sites are saved view states for quick navigation in the Moorhen viewer.
-        Each site contains:
-            - name: Display name for the site
-            - origin: [x, y, z] view origin coordinates
-            - quat: [x, y, z, w] quaternion for view orientation (optional)
-            - zoom: Zoom level (optional)
+        GET returns the list, ordered. POST adds a single site and returns it.
 
-        GET: Returns the current list of sites.
-        PUT: Updates the entire sites list (replaces existing sites).
-
-        Request body (PUT):
-            List of site objects, e.g.:
-            [
-                {"name": "Active Site", "origin": [10.5, 20.3, 15.2]},
-                {"name": "Binding Pocket", "origin": [5.0, 10.0, 8.0], "quat": [0, 0, 0, 1]}
-            ]
-
-        Returns:
-            Response: Current sites list.
+        Sites were a JSON list on the group until migration 0024, replaced
+        wholesale on every write. Adding one at a time means two people editing
+        a campaign no longer overwrite each other: the old PUT sent the entire
+        array, so the last writer silently discarded the other's new sites.
+        Use PATCH/DELETE on `sites/<id>/` to change or remove one.
         """
         try:
             group = self.get_object()
 
             if request.method == "GET":
-                return Response(group.sites)
+                sites = group.site_set.annotate(
+                    evaluation_count=Count("evaluations")
+                )
+                return Response([self._site_payload(s) for s in sites])
 
-            # PUT - validate and update sites
-            sites_data = request.data
+            fields, error = self._parse_site(request.data)
+            if error:
+                return api_error(error, status=400)
 
-            # Validate sites format
-            if not isinstance(sites_data, list):
-                return api_error("sites must be a list", status=400)
+            if group.site_set.filter(name=fields["name"]).exists():
+                return api_error(
+                    f"This campaign already has a site called '{fields['name']}'",
+                    status=409,
+                )
 
-            for i, site in enumerate(sites_data):
-                if not isinstance(site, dict):
-                    return api_error(f"Site {i} must be an object", status=400)
-                if "name" not in site:
-                    return api_error(f"Site {i} missing required field 'name'", status=400)
-                if "origin" not in site:
-                    return api_error(f"Site {i} missing required field 'origin'", status=400)
-                if not isinstance(site["origin"], list) or len(site["origin"]) != 3:
-                    return api_error(
-                        f"Site {i} 'origin' must be an array of 3 numbers",
-                        status=400
-                    )
-                # Validate optional quat if present
-                if "quat" in site:
-                    if not isinstance(site["quat"], list) or len(site["quat"]) != 4:
-                        return api_error(
-                            f"Site {i} 'quat' must be an array of 4 numbers",
-                            status=400
-                        )
-
-            # Save sites
-            group.sites = sites_data
-            group.save(update_fields=["sites"])
-            logger.info("Updated sites for campaign %s: %d sites", pk, len(sites_data))
-
-            return Response(group.sites)
+            last = group.site_set.order_by("-order").first()
+            site = models.CampaignSite.objects.create(
+                group=group, order=(last.order + 1) if last else 0, **fields
+            )
+            logger.info("Added site '%s' to campaign %s", site.name, pk)
+            return Response(self._site_payload(site), status=201)
 
         except Exception as e:
             logger.exception("Failed to manage sites for group %s", pk, exc_info=e)
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path=r"evaluations/(?P<project_id>[0-9]+)",
+    )
+    def project_evaluations(self, request, pk=None, project_id=None):
+        """Every verdict recorded for one dataset, including the empties.
+
+        The overview payload in `member_projects` carries only hits and
+        unclears, because it renders a row per dataset and most sites are
+        empty for most datasets. A view of a single dataset can afford the
+        whole picture and needs it: without the empties it cannot tell
+        "somebody looked and found nothing" from "nobody has looked yet",
+        which is the distinction these rows exist to keep. A control that
+        confused the two would write the wrong one back.
+
+        Ordered by site, so a caller can zip this against the site list.
+        """
+        try:
+            group = self.get_object()
+
+            if not group.memberships.filter(project_id=project_id).exists():
+                return api_error(
+                    "That project is not part of this campaign", status=404
+                )
+
+            evaluations = (
+                models.SiteEvaluation.objects.filter(
+                    project_id=project_id, site__group=group
+                )
+                .select_related("site")
+                .order_by("site__order", "site__id")
+            )
+
+            return Response([
+                {
+                    "site_id": evaluation.site_id,
+                    "site_name": evaluation.site.name,
+                    "project_id": int(project_id),
+                    "verdict": evaluation.verdict,
+                    "evaluator": evaluation.evaluator,
+                    "note": evaluation.note,
+                }
+                for evaluation in evaluations
+            ])
+
+        except Exception as e:
+            logger.exception(
+                "Failed to list evaluations of project %s in group %s",
+                project_id, pk, exc_info=e,
+            )
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
+        methods=["put", "delete"],
+        url_path=r"sites/(?P<site_id>[0-9]+)/evaluation/(?P<project_id>[0-9]+)",
+    )
+    def site_evaluation(self, request, pk=None, site_id=None, project_id=None):
+        """Record, change or withdraw what was found at one site in one dataset.
+
+        PUT with {"verdict": "hit"|"empty"|"unclear"} and an optional
+        "evaluator" and "note". DELETE withdraws the verdict.
+
+        Withdrawing is not the same as recording "empty": no row means nobody
+        has looked, while "empty" asserts that somebody looked and found
+        nothing. That distinction is the reason these are rows rather than
+        tags, so DELETE really does remove the row rather than writing an
+        "empty" over it.
+        """
+        try:
+            group = self.get_object()
+
+            try:
+                site = group.site_set.get(id=site_id)
+            except models.CampaignSite.DoesNotExist:
+                return api_error("Site not found in this campaign", status=404)
+
+            if not group.memberships.filter(project_id=project_id).exists():
+                return api_error(
+                    "That project is not part of this campaign", status=404
+                )
+
+            if request.method == "DELETE":
+                deleted, _ = models.SiteEvaluation.objects.filter(
+                    project_id=project_id, site=site
+                ).delete()
+                return Response(status=204 if deleted else 404)
+
+            verdict = (request.data or {}).get("verdict")
+            valid = [choice[0] for choice in models.SiteEvaluation.Verdict.choices]
+            if verdict not in valid:
+                return api_error(
+                    f"verdict must be one of {', '.join(valid)}", status=400
+                )
+
+            evaluation, created = models.SiteEvaluation.objects.update_or_create(
+                project_id=project_id,
+                site=site,
+                defaults={
+                    "verdict": verdict,
+                    "evaluator": str(request.data.get("evaluator", ""))[:150],
+                    "note": str(request.data.get("note", "")),
+                },
+            )
+            logger.info(
+                "%s %s at site '%s' for project %s",
+                "Recorded" if created else "Updated", verdict, site.name, project_id,
+            )
+            return Response(
+                {
+                    "site_id": site.id,
+                    "site_name": site.name,
+                    "project_id": int(project_id),
+                    "verdict": evaluation.verdict,
+                    "evaluator": evaluation.evaluator,
+                    "note": evaluation.note,
+                },
+                status=201 if created else 200,
+            )
+
+        except Exception as e:
+            logger.exception(
+                "Failed to set evaluation for site %s of group %s",
+                site_id, pk, exc_info=e,
+            )
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
+        methods=["patch", "delete"],
+        url_path=r"sites/(?P<site_id>[0-9]+)",
+    )
+    def site_detail(self, request, pk=None, site_id=None):
+        """Update or delete one site, addressed by its stable id.
+
+        Renaming through here keeps every evaluation attached, which is the
+        point of sites having ids at all.
+        """
+        try:
+            group = self.get_object()
+            try:
+                site = group.site_set.get(id=site_id)
+            except models.CampaignSite.DoesNotExist:
+                return api_error("Site not found in this campaign", status=404)
+
+            if request.method == "DELETE":
+                name = site.name
+                site.delete()  # cascades to this site's evaluations
+                logger.info("Deleted site '%s' from campaign %s", name, pk)
+                return Response(status=204)
+
+            data = request.data
+            if not isinstance(data, dict):
+                return api_error("Expected an object", status=400)
+
+            if "name" in data:
+                name = str(data["name"])[:100]
+                if group.site_set.filter(name=name).exclude(id=site.id).exists():
+                    return api_error(
+                        f"This campaign already has a site called '{name}'",
+                        status=409,
+                    )
+                site.name = name
+
+            if "origin" in data:
+                origin = data["origin"]
+                if not isinstance(origin, list) or len(origin) != 3:
+                    return api_error(
+                        "'origin' must be an array of 3 numbers", status=400
+                    )
+                try:
+                    site.origin_x, site.origin_y, site.origin_z = (
+                        float(v) for v in origin
+                    )
+                except (TypeError, ValueError):
+                    return api_error(
+                        "'origin' must be an array of 3 numbers", status=400
+                    )
+
+            if "quat" in data:
+                quat = data["quat"]
+                if quat is not None and (
+                    not isinstance(quat, list) or len(quat) != 4
+                ):
+                    return api_error(
+                        "'quat' must be an array of 4 numbers", status=400
+                    )
+                site.quat = quat
+
+            if "zoom" in data:
+                zoom = data["zoom"]
+                if zoom is not None:
+                    try:
+                        zoom = float(zoom)
+                    except (TypeError, ValueError):
+                        return api_error("'zoom' must be a number", status=400)
+                site.zoom = zoom
+
+            if "order" in data:
+                try:
+                    site.order = int(data["order"])
+                except (TypeError, ValueError):
+                    return api_error("'order' must be an integer", status=400)
+
+            site.save()
+            return Response(self._site_payload(site))
+
+        except Exception as e:
+            logger.exception(
+                "Failed to update site %s of group %s", site_id, pk, exc_info=e
+            )
             return api_error(str(e), status=500)

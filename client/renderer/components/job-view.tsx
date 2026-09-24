@@ -19,7 +19,6 @@ import { TaskContainer } from "../components/task/task-interfaces/task-container
 import { prettifyXml, useJob, usePrevious, useProject } from "../utils";
 import ToolBar from "../components/tool-bar";
 import { JobCommentEditor } from "../components/job-comment-editor";
-import { JobMenu } from "../providers/job-context-menu";
 import { JobDirectoryView } from "../components/job-directory-view";
 import { useApi } from "../api";
 import { apiPut } from "../api-fetch";
@@ -196,6 +195,23 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     }
   }, [currentStatus, previousStatus, mutateDiagnosticXml]);
 
+  // Land on the report tab the moment the job finishes. The landing effect
+  // above only re-lands when the `useJob` object identity changes, which
+  // refreshes on a slower (10s) poll than `currentStatus` (from job_tree, the
+  // same signal that turns the job's colour green in the list). So the colour
+  // would go green while the tab stayed on the interface for up to ~10s. Drive
+  // the swap off the active -> terminal transition of currentStatus instead, so
+  // it coincides with the colour. (landingTab picks Report/Diagnostics per the
+  // terminal status.)
+  useEffect(() => {
+    if (previousStatus === undefined || currentStatus === undefined) return;
+    const wasActive = [2, 3, 7].includes(previousStatus);
+    const isTerminal = [4, 5, 6].includes(currentStatus);
+    if (wasActive && isTerminal) {
+      setTabValue(landingTab(currentStatus));
+    }
+  }, [currentStatus, previousStatus, setTabValue]);
+
   // Clamp synchronously so MUI never receives a value for a hidden tab
   const status = jobWithCurrentStatus?.status;
   const tabValue = useMemo(() => {
@@ -349,7 +365,6 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           )}
         </Box>
         {tabValue == 3 && jobid && <CCP4i2WhatNext />}
-        <JobMenu />
       </Stack>
     </>
   );

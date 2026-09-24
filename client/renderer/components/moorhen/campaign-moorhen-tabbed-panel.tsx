@@ -8,9 +8,11 @@
  * sub-panels stay mounted (the inactive one is display:none) so Monaco's
  * editor state in the Scenes tab survives switching back to Controls.
  *
- * The campaign viewer applies scenes but does not lift them, so the Scenes
- * panel here is given only onApplyScene — its Capture / Save-self-contained
- * actions are hidden (those props are optional on MoorhenScenesPanel).
+ * The Scenes panel gets apply, capture and promote. It used to get only
+ * apply, on the reasoning that the campaign viewer consumes scenes rather
+ * than authoring them — but a site scene is assembled server-side and then
+ * adjusted here, and without Capture that adjustment could not be lifted
+ * back into YAML and was lost with the tab.
  */
 import React, { useMemo, useState } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
@@ -27,6 +29,12 @@ export interface CampaignMoorhenTabbedPanelProps {
     yamlText: string,
     assets: SceneBundleAssets,
   ) => Promise<SceneResolveResult>;
+  /** Lift the current view into the editor (the Capture button). */
+  onCaptureScene?: React.ComponentProps<typeof MoorhenScenesPanel>["onCaptureScene"];
+  /** Rewrite the editor YAML into a self-contained bundle (Save ▾). */
+  onPromoteSceneToPortable?: React.ComponentProps<
+    typeof MoorhenScenesPanel
+  >["onPromoteSceneToPortable"];
   /** True once Coot is ready (gates Apply / live-apply). */
   cootInitialized: boolean;
   /** Optional YAML to seed the Scenes editor with (the summary scene). */
@@ -38,6 +46,8 @@ export interface CampaignMoorhenTabbedPanelProps {
 export const CampaignMoorhenTabbedPanel: React.FC<CampaignMoorhenTabbedPanelProps> = ({
   controlPanelProps,
   onApplyScene,
+  onCaptureScene,
+  onPromoteSceneToPortable,
   cootInitialized,
   initialSceneYaml,
   autoApplyInitialScene,
@@ -54,12 +64,21 @@ export const CampaignMoorhenTabbedPanel: React.FC<CampaignMoorhenTabbedPanelProp
     () => (
       <MoorhenScenesPanel
         onApplyScene={onApplyScene}
+        onCaptureScene={onCaptureScene}
+        onPromoteSceneToPortable={onPromoteSceneToPortable}
         enabled={cootInitialized}
         initialYaml={initialSceneYaml}
         autoApplyInitial={autoApplyInitialScene}
       />
     ),
-    [onApplyScene, cootInitialized, initialSceneYaml, autoApplyInitialScene],
+    [
+      onApplyScene,
+      onCaptureScene,
+      onPromoteSceneToPortable,
+      cootInitialized,
+      initialSceneYaml,
+      autoApplyInitialScene,
+    ],
   );
 
   return (

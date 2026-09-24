@@ -23,7 +23,7 @@
  * existing relative imports.
  */
 
-import { getAccessToken } from "./auth-token.js";
+import { getAccessToken, invalidateAccessToken } from "./auth-token.js";
 
 // =============================================================================
 // Universal exports — auth-error event surface
@@ -50,6 +50,12 @@ function emitAuthError(detail: AuthErrorDetail): void {
 // =============================================================================
 // Per-request configuration + factory options
 // =============================================================================
+
+/**
+ * Statuses HTTP defines as carrying no body: 204 No Content, 205 Reset
+ * Content, 304 Not Modified. Parsing one as JSON can only fail.
+ */
+const NO_BODY_STATUSES = new Set([204, 205, 304]);
 
 export interface ApiFetchConfig {
   headers?: Record<string, string>;
@@ -170,6 +176,7 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
     url: string,
     requestOptions: RequestInit = {},
     config: ApiFetchConfig = {},
+    tokenOptions: { forceRefresh?: boolean } = {},
   ): Promise<Response> {
     const finalConfig = { ...DEFAULT_CONFIG, ...config };
     const normalizedUrl = normalizeApiUrl(url);
@@ -178,7 +185,7 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
       ...finalConfig.headers,
     };
 
-    const token = await getAccessToken();
+    const token = await getAccessToken(tokenOptions);
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
       if (
@@ -262,6 +269,46 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
     return fetch(normalizedUrl, finalRequestOptions);
   }
 
+  /**
+   * One refresh, however many callers ask at once.
+   *
+   * A stale session does not fail one request, it fails every hook on the
+   * page at the same moment. Without this, a dozen concurrent 401s would
+   * mean a dozen refreshes -- and against Azure AD, a dozen chances to
+   * trip a throttle while the user waits.
+   */
+  let refreshInFlight: Promise<string | null> | null = null;
+
+  function refreshTokenOnce(): Promise<string | null> {
+    if (!refreshInFlight) {
+      invalidateAccessToken();
+      refreshInFlight = getAccessToken({ forceRefresh: true }).finally(() => {
+        refreshInFlight = null;
+      });
+    }
+    return refreshInFlight;
+  }
+
+  /**
+   * Whether a body can be sent a second time.
+   *
+   * A stream is consumed by the first attempt, so replaying one would send
+   * an empty body -- worse than the 401. Strings, FormData and the other
+   * buffered kinds re-send intact.
+   */
+  function isReplayable(options: RequestInit): boolean {
+    const body = options.body;
+    if (body === undefined || body === null) return true;
+    return (
+      typeof body === "string" ||
+      body instanceof FormData ||
+      body instanceof URLSearchParams ||
+      body instanceof Blob ||
+      body instanceof ArrayBuffer ||
+      ArrayBuffer.isView(body)
+    );
+  }
+
   /** Returns the Response object. Use when you need headers / status. */
   async function apiFetch(
     url: string,
@@ -269,7 +316,22 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
     config: ApiFetchConfig = {},
   ): Promise<Response> {
     try {
-      const response = await coreFetch(url, options, config);
+      let response = await coreFetch(url, options, config);
+
+      // A 401 is worth one silent recovery before it becomes the user's
+      // problem. The common cause is not a revoked session but a token that
+      // expired (or was never acquired -- the getter returns null when a
+      // silent acquisition races an in-flight refresh, and the request then
+      // goes out with no Authorization header at all and fails closed).
+      // Both are fixed by acquiring a fresh token and asking again.
+      if (response.status === 401 && isReplayable(options)) {
+        const refreshed = await refreshTokenOnce();
+        if (refreshed) {
+          response = await coreFetch(url, options, config, {
+            forceRefresh: false,
+          });
+        }
+      }
 
       if (!response.ok) {
         let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
@@ -303,12 +365,25 @@ export function createApiFetch(options: CreateApiFetchOptions): ApiFetcher {
     }
   }
 
+  /**
+   * The JSON body, or ``undefined`` when the response carries no body.
+   *
+   * A successful DELETE answers 204 No Content, and ``response.json()`` on an
+   * empty body rejects with "Unexpected end of JSON input" — so every caller
+   * of ``apiDelete`` saw its *successful* request as a failure, and reported
+   * one, while the server had already done the work. Statuses that are
+   * defined to have no body are therefore resolved as ``undefined`` rather
+   * than parsed.
+   */
   async function apiJson<T = any>(
     url: string,
     options: RequestInit = {},
     config: ApiFetchConfig = {},
   ): Promise<T> {
     const response = await apiFetch(url, options, config);
+    if (NO_BODY_STATUSES.has(response.status)) {
+      return undefined as T;
+    }
     return response.json();
   }
 

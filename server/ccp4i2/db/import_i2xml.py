@@ -79,6 +79,7 @@ from .models import (
     JobFloatValue,
     JobCharValue,
 )
+from ccp4i2.lib.kpi_values import is_storable_kpi_value
 from .ccp4i2_static_data import FILETYPELIST, KEYTYPELIST
 from .project_snapshot import SNAPSHOT_NAME
 
@@ -608,6 +609,15 @@ def import_job_key_value(node: ET.Element):
     key_type = key_types[0]
     create_dict["key"] = JobValueKey.objects.get(name=key_type[1]).pk
     create_dict["value"] = float(node.attrib["value"])
+
+    if not is_storable_kpi_value(create_dict["value"]):
+        # db.xml from a database written before the write gate can spell a KPI
+        # "nan" or "inf". Skip it: importing it would reproduce the defect here.
+        logging.warning(
+            "Skipping non-finite KPI %s=%r for job %s",
+            key_type[1], create_dict["value"], node.attrib["jobid"],
+        )
+        return None
 
     try:
         instance = JobFloatValue.objects.get(

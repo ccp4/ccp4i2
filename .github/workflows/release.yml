@@ -59,11 +59,16 @@ jobs:
         name: Assert tag == ccp4i2.__version__
         working-directory: server
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
+          # The tag is semver (v3.1.0-alpha.58) so electron-updater's GitHub
+          # provider accepts it — it skips releases whose tag is not valid
+          # semver. Convert back to PEP 440 (3.1.0a58) to compare against
+          # ccp4i2.__version__. Old PEP-form tags pass through unchanged.
+          TAGRAW="${GITHUB_REF_NAME#v}"
+          TAG="$(printf '%s' "$TAGRAW" | sed -E 's/-alpha\.([0-9]+)/a\1/; s/-beta\.([0-9]+)/b\1/; s/-rc\.([0-9]+)/rc\1/')"
           PKG="$(python -c 'import ccp4i2; print(ccp4i2.__version__)')"
-          echo "tag=$TAG  package=$PKG"
+          echo "tag=$GITHUB_REF_NAME  ->  PEP=$TAG  package=$PKG"
           if [ "$TAG" != "$PKG" ]; then
-            echo "::error::Tag '$GITHUB_REF_NAME' does not match ccp4i2.__version__ ($PKG). Bump server/ccp4i2/__init__.py or retag."
+            echo "::error::Tag '$GITHUB_REF_NAME' (PEP $TAG) does not match ccp4i2.__version__ ($PKG). Bump server/ccp4i2/__init__.py or retag."
             exit 1
           fi
           echo "version=$PKG" >> "$GITHUB_OUTPUT"
@@ -139,15 +144,32 @@ jobs:
         include:
           - os: macos-latest
             script: package-mac
-            glob: client/release/*.dmg
+            # .zip + the channel yml (alpha-mac.yml for pre-releases,
+            # latest-mac.yml for stable) are what electron-updater consumes on
+            # macOS (it updates from the zip, not the dmg); *.blockmap = deltas.
+            glob: |
+              client/release/*.dmg
+              client/release/*.zip
+              client/release/*.yml
+              !client/release/builder-debug.yml
+              client/release/*.blockmap
           - os: windows-latest
             script: package-win
-            glob: client/release/*.exe
+            glob: |
+              client/release/*.exe
+              client/release/*.yml
+              !client/release/builder-debug.yml
+              client/release/*.blockmap
           - os: ubuntu-latest
             script: package-linux-x64
+            # the channel yml (alpha-linux.yml / latest-linux.yml) drives
+            # AppImage auto-update; the .deb has no auto-update mechanism
+            # (updated via CCP4 UM / apt / manual).
             glob: |
               client/release/*.AppImage
               client/release/*.deb
+              client/release/*.yml
+              !client/release/builder-debug.yml
     runs-on: ${{ matrix.os }}
     env:
       # Stamp the exact backend version from the tag so the released app pins
@@ -174,14 +196,22 @@ jobs:
       # Stamp the Electron app version from the release tag so installers are
       # named by their version (e.g. ccp4i2-django-3.1.0-a2.dmg) instead of the
       # hardcoded 0.0.1 — which made every alpha's installers indistinguishable
-      # and let a stale a1 build masquerade as the current release. electron-
-      # builder needs a semver-valid version, so convert PEP 440 pre-release
-      # (3.1.0a2) to semver (3.1.0-a2). --no-git-tag-version: don't commit/tag.
+      # and let a stale a1 build masquerade as the current release.
+      #
+      # The semver form must put the pre-release counter in a SEPARATE, DOTTED
+      # identifier — 3.1.0a56 -> 3.1.0-alpha.56, NOT 3.1.0-a56. electron-updater
+      # treats the FIRST pre-release identifier as the update *channel*. With
+      # "-a56" the channel is the whole token "a56", so every alpha is its own
+      # channel and an installed build never sees the next one as an update
+      # ("No published versions on GitHub"). With "-alpha.56" the channel is
+      # "alpha" for every alpha and it simply compares 56 > 55. electron-builder
+      # likewise derives channel "alpha" and writes alpha*.yml. (beta/rc same.)
       - name: Stamp installer version from tag
         shell: bash
         run: |
           PEP="${{ needs.verify-version.outputs.version }}"
-          SEMVER="$(printf '%s' "$PEP" | sed -E 's/([0-9])(a|b|rc)([0-9]+)/\1-\2\3/')"
+          SEMVER="$(printf '%s' "$PEP" \
+            | sed -E 's/([0-9])a([0-9]+)/\1-alpha.\2/; s/([0-9])b([0-9]+)/\1-beta.\2/; s/([0-9])rc([0-9]+)/\1-rc.\2/')"
           echo "Electron app version: $PEP -> $SEMVER"
           npm version "$SEMVER" --no-git-tag-version --allow-same-version
         working-directory: client
@@ -227,15 +257,49 @@ jobs:
           if [ -n "$MAC_CSC_LINK" ] && [ -n "$APPLE_API_KEY_P8" ]; then
             KEYDIR="$RUNNER_TEMP/appleapi"; mkdir -p "$KEYDIR"
             printf '%s' "$APPLE_API_KEY_P8" > "$KEYDIR/AuthKey.p8"
+
+            # Provision the signing keychain OURSELVES rather than letting
+            # electron-builder create and unlock its own. electron-builder's
+            # auto-keychain path failed at
+            #   security set-key-partition-list ... SecKeychainUnlock: the
+            #   passphrase you entered is not correct
+            # on a53/a54: the cert imported fine, but it could not unlock the
+            # temporary keychain it had made. Creating the keychain here with a
+            # password WE control makes set-key-partition-list use the matching
+            # password, and we hand electron-builder a ready keychain via
+            # CSC_KEYCHAIN. Crucially we DO NOT export CSC_LINK/CSC_KEY_PASSWORD,
+            # so electron-builder signs from our keychain instead of building
+            # another one. (The .p12 must be legacy PBE-SHA1-3DES, not OpenSSL-3
+            # PBES2/AES — Apple's `security` cannot import the latter; see
+            # docs/macos-signing-setup.md.)
+            KEYCHAIN="$RUNNER_TEMP/ccp4i2-signing.keychain-db"
+            KEYCHAIN_PWD="$(openssl rand -base64 24)"
+            P12="$KEYDIR/cert.p12"
+            printf '%s' "$MAC_CSC_LINK" | base64 --decode > "$P12"
+
+            security create-keychain -p "$KEYCHAIN_PWD" "$KEYCHAIN"
+            security set-keychain-settings -lut 21600 "$KEYCHAIN"   # don't auto-lock mid-build
+            security unlock-keychain -p "$KEYCHAIN_PWD" "$KEYCHAIN"
+            security import "$P12" -P "$MAC_CSC_KEY_PASSWORD" \
+              -k "$KEYCHAIN" -T /usr/bin/codesign
+            security set-key-partition-list -S apple-tool:,apple:,codesign: \
+              -s -k "$KEYCHAIN_PWD" "$KEYCHAIN" >/dev/null
+            # Our keychain first in the search list so codesign finds the identity.
+            security list-keychain -d user -s "$KEYCHAIN" login.keychain-db
+            rm -f "$P12"
+
+            # Show the identity now available (name only) so a bad cert is obvious.
+            security find-identity -v -p codesigning "$KEYCHAIN" || true
+
             {
-              echo "CSC_LINK=$MAC_CSC_LINK"
-              echo "CSC_KEY_PASSWORD=$MAC_CSC_KEY_PASSWORD"
+              echo "CSC_KEYCHAIN=$KEYCHAIN"
+              echo "CSC_IDENTITY_AUTO_DISCOVERY=true"
               echo "APPLE_API_KEY=$KEYDIR/AuthKey.p8"
               echo "APPLE_API_KEY_ID=$APPLE_API_KEY_ID"
               echo "APPLE_API_ISSUER=$APPLE_API_ISSUER"
               echo "EB_MAC_ARGS=-c.mac.notarize=true"
             } >> "$GITHUB_ENV"
-            echo "macOS: signing + notarisation ENABLED"
+            echo "macOS: signing + notarisation ENABLED (self-provisioned keychain)"
           else
             echo "CSC_IDENTITY_AUTO_DISCOVERY=false" >> "$GITHUB_ENV"
             echo "macOS: Apple secrets absent -> building UNSIGNED (users run xattr -cr)"
@@ -299,7 +363,11 @@ jobs:
         # Exactly one of EB_MAC_ARGS / EB_WIN_ARGS is ever set (per-OS gate); the
         # other is empty. Both empty -> unsigned build (Linux, or secrets absent).
         shell: bash
-        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS}
+        # --publish never: electron-builder still generates the auto-update
+        # metadata (latest*.yml + *.blockmap) because a `publish` provider is
+        # configured, but does NOT upload — the release job below attaches every
+        # artifact (installers + metadata) to the GitHub Release via softprops.
+        run: npm run ${{ matrix.script }} -- ${EB_MAC_ARGS} ${EB_WIN_ARGS} --publish never
         working-directory: client
 
       - name: Upload installer

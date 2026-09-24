@@ -18,6 +18,19 @@ CCP4I2_ROOT = Path(CCP4Utils.getCCP4I2Dir())
 TEST_MTZ = CCP4I2_ROOT / "wrappers/pointless/test_data/brap_pk_6A.mtz"
 TEST_SCA_MERGED = CCP4I2_ROOT / "demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled.sca"
 TEST_SCA_UNMERGED = CCP4I2_ROOT / "demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled_unmerged.sca"
+# XDS writes .HKL, and so does scalepack in some pipelines, so these exercise
+# the content sniff rather than the extension.
+TEST_XDS_ASCII = CCP4I2_ROOT / "demo_data/ceue/apo-ceue-sad-sweep1.hkl"
+TEST_XDS_INTEGRATE = (
+    CCP4I2_ROOT
+    / "demo_data/baz2b/BAZ2BA_x828.xia2/3daii-run/DataFiles/Integrate"
+    / "nt5073v16_xBAZ2BAx8281_SAD_SWEEP1_INTEGRATE.HKL"
+)
+TEST_XDS_CORRECT = (
+    CCP4I2_ROOT
+    / "demo_data/baz2b/BAZ2BA_x828.xia2/3daii-run/DataFiles/Integrate"
+    / "nt5073v16_xBAZ2BAx8281_SAD_SWEEP1_CORRECT.HKL"
+)
 
 
 class TestCUnmergedDataContent:
@@ -170,6 +183,80 @@ class TestCUnmergedDataContent:
 
         # No errors should occur
         assert True
+
+
+class TestXdsVersusScalepackDetection:
+    """An XDS file named .hkl must be read as XDS, not as scalepack.
+
+    Both formats use the .hkl/.HKL extension, so dispatching on the extension
+    alone sent every XDS file down the scalepack reader. That reader takes
+    line 1 as "<nsyms> <space group>" without checking, so XDS's
+    "!FORMAT=XDS_ASCII    MERGE=FALSE    FRIEDEL'S_LAW=FALSE" was reported as
+    a space group, with format 'sca' and no cell or wavelength at all. It
+    raised nothing, so the try/except fallback around it could never fire.
+    """
+
+    def test_xds_ascii_hkl_is_detected_as_xds(self):
+        data = CUnmergedDataContent()
+        data.loadFile(str(TEST_XDS_ASCII))
+
+        assert str(data.format) == 'xds'
+        assert str(data.merged) == 'unmerged'
+
+    def test_xds_header_is_not_reported_as_a_space_group(self):
+        """The specific regression: the header line leaking into spaceGroup."""
+        data = CUnmergedDataContent()
+        data.loadFile(str(TEST_XDS_ASCII))
+
+        space_group = str(data.spaceGroup)
+        assert 'MERGE' not in space_group, space_group
+        assert 'FRIEDEL' not in space_group, space_group
+        assert '!' not in space_group, space_group
+        # P1 at this stage of processing: unindexed, but a real answer.
+        assert space_group.replace(' ', '') == 'P1', space_group
+
+    def test_xds_cell_and_wavelength_are_recovered(self):
+        """The scalepack path discarded both; gemmi reads them fine."""
+        data = CUnmergedDataContent()
+        data.loadFile(str(TEST_XDS_ASCII))
+
+        assert bool(data.knowncell)
+        assert float(data.cell.a) == pytest.approx(57.0, abs=1.0)
+        assert bool(data.knownwavelength)
+        assert float(data.wavelength) == pytest.approx(0.9763, abs=0.001)
+
+    def test_integrate_hkl_is_detected_as_xds(self):
+        """INTEGRATE.HKL opens with !OUTPUT_FILE=, not !FORMAT=, so the sniff
+        keys on the leading '!' rather than on any single keyword."""
+        data = CUnmergedDataContent()
+        data.loadFile(str(TEST_XDS_INTEGRATE))
+
+        assert str(data.format) == 'xds'
+        assert bool(data.knowncell)
+        # !SPACE_GROUP_NUMBER=20 in the file itself.
+        assert str(data.spaceGroup).replace(' ', '') == 'C2221', str(data.spaceGroup)
+
+    def test_correct_hkl_is_detected_as_xds(self):
+        data = CUnmergedDataContent()
+        data.loadFile(str(TEST_XDS_CORRECT))
+
+        assert str(data.format) == 'xds'
+        assert bool(data.knownwavelength)
+
+    def test_scalepack_still_reads_as_scalepack(self):
+        """The sniff must not drag genuine scalepack files into the XDS path."""
+        for path in (TEST_SCA_MERGED, TEST_SCA_UNMERGED):
+            data = CUnmergedDataContent()
+            data.loadFile(str(path))
+            assert str(data.format) == 'sca', path
+
+    def test_scalepack_unmerged_space_group_is_unharmed(self):
+        data = CUnmergedDataContent()
+        data.loadFile(str(TEST_SCA_UNMERGED))
+
+        assert str(data.merged) == 'unmerged'
+        assert str(data.spaceGroup).replace(' ', '') == 'C2221', str(data.spaceGroup)
+
 
 
 if __name__ == '__main__':

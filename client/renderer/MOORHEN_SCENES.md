@@ -123,12 +123,22 @@ the resolver looks them up in an in-memory asset map.
 ### Lifter behaviour: conservative
 
 The lifter recognises a few common cases (named colour schemes,
-single-hex colours, by-domain pipe-delimited args, multi-domain
+single-hex colours, by-domain pipe-delimited multi-colour data, multi-domain
 dict ownership) and falls back to a `{raw: ...}` escape hatch for
 anything it doesn't understand. The escape hatch is lossless but
 ugly; the recognised cases produce clean editable YAML. Round-trip
 through `serialiseSceneWithComments(scene, hints)` adds a comment
 above each file entry naming the original source.
+
+Three things cannot be recovered from the live viewer at all, so the host
+remembers them from the last-applied scene and hands them to the lifter:
+`superpose` (coot moved the coordinates; there is no transform to read back),
+`maskMaps` (a masked map is grid bytes with no record of its operands), and
+`domains` (`colour: by-domain` compiles to a rule that keeps neither a domain's
+name nor its authored range — the resolver clamps ranges to the residues
+present). Each is re-emitted only while something lifted still refers to it. A
+by-domain-shaped rule with no remembered domains is lifted as the per-selection
+colour list it amounts to, never as a `by-domain` with nothing behind it.
 
 ### Resolver's "scene owns the look"
 

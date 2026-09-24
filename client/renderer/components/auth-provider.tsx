@@ -16,19 +16,65 @@ import {
   createLocalSessionEmailGetter,
 } from "@ccp4/ccp4i2-api";
 import { getAuthConfig } from "../utils/auth-config";
+import { setReauthHandler } from "../utils/reauth";
 
 /**
  * Set the auth-session cookie via API route.
  * This cookie allows the middleware to gate requests server-side.
+ *
+ * Reports whether the cookie was actually set, so a caller that throttles
+ * itself can tell a failed attempt from a successful one. Note that `fetch`
+ * rejects only on a network failure, so the response status is checked too --
+ * a route that answered 500 would otherwise look like success.
  */
-async function setAuthSessionCookie(): Promise<void> {
+async function setAuthSessionCookie(): Promise<boolean> {
   try {
-    await fetch("/api/auth/session", {
+    const response = await fetch("/api/auth/session", {
       method: "POST",
       credentials: "include",
     });
+    if (!response.ok) {
+      console.error(
+        "[AUTH] Auth session cookie not set: HTTP",
+        response.status
+      );
+      return false;
+    }
+    return true;
   } catch (error) {
     console.error("[AUTH] Failed to set auth session cookie:", error);
+    return false;
+  }
+}
+
+/**
+ * Re-stamp the auth-session cookie after a successful token acquisition.
+ *
+ * The cookie is a fixed 8-hour window set once at login, while MSAL's refresh
+ * token outlives it. A user still happily working at hour nine had a valid
+ * token and an expired cookie, and the middleware bounced their next
+ * navigation to /auth/login -- a sign-in prompt caused by nothing but the
+ * clock. Every silent acquisition is evidence the session is alive, so it is
+ * also the moment to extend the cookie.
+ *
+ * Throttled: tokens come from a 4-minute cache, but Moorhen can still ask
+ * often, and this is a same-origin round trip on the request path.
+ */
+const SESSION_COOKIE_REFRESH_MS = 5 * 60 * 1000;
+let sessionCookieRefreshedAt = 0;
+
+async function keepSessionCookieAlive(): Promise<void> {
+  const now = Date.now();
+  if (now - sessionCookieRefreshedAt < SESSION_COOKIE_REFRESH_MS) return;
+  // Claim the window before awaiting, so concurrent acquisitions make one
+  // POST rather than a burst...
+  sessionCookieRefreshedAt = now;
+  if (!(await setAuthSessionCookie())) {
+    // ...but give the window back if the stamp did not happen. Otherwise a
+    // single transient failure leaves the cookie un-extended for a further
+    // five minutes with nothing retrying, and near the 8-hour boundary that
+    // is exactly the bounce to /auth/login this is here to prevent.
+    sessionCookieRefreshedAt = 0;
   }
 }
 
@@ -89,6 +135,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     if (hasLocalSessionToken()) {
       setTokenGetter(createLocalSessionTokenGetter());
       setEmailGetter(createLocalSessionEmailGetter());
+      // The desktop session lives as long as the app process, so there is
+      // nothing to renew and nothing to sign out of.
+      setReauthHandler(null);
       setLogoutHandler(() => {
         // Desktop session lives until the app process dies; logout is a no-op.
         console.log("[AUTH] Local session active; logout is a no-op.");
@@ -175,15 +224,19 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           // snackbars: the popup fallback couldn't fire from the fetch
           // path so the request went out tokenless and got a real 401
           // anyway.
-          setTokenGetter(async () => {
+          setTokenGetter(async (options) => {
             const accounts = pca.getAllAccounts();
             if (accounts.length === 0) return null;
             const params = {
               scopes: [`${config.clientId}/.default`],
               account: accounts[0],
+              // Set when a request has just been refused: go past MSAL's own
+              // cache rather than re-presenting the token the server rejected.
+              forceRefresh: options?.forceRefresh ?? false,
             };
             try {
               const resp = await pca.acquireTokenSilent(params);
+              void keepSessionCookieAlive();
               return resp.accessToken;
             } catch (firstError: any) {
               // Brief delay lets any in-flight refresh on a sibling call
@@ -191,6 +244,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
               await new Promise((resolve) => setTimeout(resolve, 250));
               try {
                 const resp = await pca.acquireTokenSilent(params);
+                void keepSessionCookieAlive();
                 return resp.accessToken;
               } catch (secondError: any) {
                 console.error(
@@ -206,6 +260,43 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             const accounts = pca.getAllAccounts();
             if (accounts.length === 0) return null;
             return accounts[0].username || null;
+          });
+
+          // Signing back IN. MSAL keeps the account, so with a live AAD
+          // session this round-trips without a prompt; the callback returns
+          // the user to the page they were on. Contrast setLogoutHandler
+          // below, which tears the session down.
+          setReauthHandler(async () => {
+            const scopes = [`${config.clientId}/.default`];
+
+            // In an iframe (Teams), a redirect to AAD is refused: it will not
+            // be framed. /auth/login knows how to do Teams SSO, so hand over
+            // to it -- the same move the logout handler makes. The return url
+            // goes as a query parameter because that page sets the stashed
+            // one from its own params, and would otherwise overwrite ours
+            // with "/" and lose the page the user was on.
+            if (isRunningInIframe()) {
+              const here = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+              window.location.replace(
+                `/auth/login?returnUrl=${encodeURIComponent(here)}`
+              );
+              return true;
+            }
+
+            const accounts = pca.getAllAccounts();
+            if (accounts.length === 0) {
+              // The cookie outlived MSAL's cache -- cleared site data, an
+              // evicted localStorage, a refresh token revoked long enough ago
+              // that the account went with it. There is no account to renew,
+              // but the user is trying to get IN. Signing them out here would
+              // be the logout/login cycle this whole change exists to remove,
+              // and would destroy the AAD session that can make this silent.
+              await pca.loginRedirect({ scopes });
+              return true;
+            }
+
+            await pca.acquireTokenRedirect({ scopes, account: accounts[0] });
+            return true;
           });
 
           setLogoutHandler(async () => {
@@ -232,6 +323,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
     return () => {
       clearTokenGetter();
+      setReauthHandler(null);
     };
   }, []);
 

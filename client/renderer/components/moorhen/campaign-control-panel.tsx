@@ -10,7 +10,7 @@
  * - Push modified structures back to CCP4i2
  */
 
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   hideMap,
@@ -50,14 +50,18 @@ import {
 } from "@mui/material";
 import {
   Place as PlaceIcon,
+  Preview as PreviewIcon,
   Add as AddIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
   Home as HomeIcon,
   Upload as UploadIcon,
-  Label as LabelIcon,
+  CheckCircle as HitIcon,
+  HelpOutline as UnclearIcon,
+  DoDisturbOn as NothingThereIcon,
   FolderOpen as FolderOpenIcon,
   Science as ScienceIcon,
+  OpenInNew as OpenInNewIcon,
   VisibilityOutlined,
   VisibilityOffOutlined,
 } from "@mui/icons-material";
@@ -66,21 +70,47 @@ import { CopyViewLinkButton } from "./copy-view-link-button";
 import { PasteViewLinkField } from "./paste-view-link-field";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
+import {
+  hideMoleculeRepresentations,
+  showMoleculeRepresentations,
+  type MoleculeVisibilityMemory,
+} from "../../lib/moorhen-molecule-visibility";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
+import { AddLigandButton } from "./add-ligand-button";
 import {
   ProjectGroup,
   CampaignSite,
   MemberProjectWithSummary,
+  SiteEvaluation,
+  SiteVerdict,
 } from "../../types/campaigns";
 import { Project } from "../../types/models";
+
+/**
+ * The floor for the two lists that are navigated (sites) and acted on
+ * (loaded molecules). Both grow with the campaign, so left to themselves one
+ * squeezes the other out of the panel: with a dozen projects loaded the sites
+ * list collapsed to a sliver and the campaign could no longer be navigated.
+ * Each keeps at least this much and scrolls within it; if the panel is too
+ * short for both floors, the panel itself scrolls.
+ */
+const MIN_LIST_SECTION_HEIGHT = 160;
+
+/** The contour sliders are set once and left alone, so they yield space to the
+ *  lists that are worked in, and scroll past this. */
+const MAX_CONTOUR_SECTION_HEIGHT = 180;
 
 interface CampaignControlPanelProps {
   campaign: ProjectGroup;
   sites: CampaignSite[];
   onGoToSite: (site: CampaignSite) => void;
+  /** Open the site's scene: every hit recorded there, fitted on the pocket.
+   *  Going TO a site moves the camera in what is loaded; VIEWING a site
+   *  loads what was found there. Different acts, so different controls. */
+  onViewSite?: (site: CampaignSite) => void;
   onSaveCurrentAsSite: (name: string) => Promise<void>;
-  onUpdateSite: (index: number, name: string, updatePosition: boolean) => Promise<void>;
-  onDeleteSite: (index: number) => Promise<void>;
+  onUpdateSite: (siteId: number, name: string, updatePosition: boolean) => Promise<void>;
+  onDeleteSite: (siteId: number) => Promise<void>;
   memberProjects: MemberProjectWithSummary[];
   selectedMemberProjectId: number | null;
   onSelectMemberProject: (projectId: number | null) => void;
@@ -95,22 +125,63 @@ interface CampaignControlPanelProps {
   ligandDictFileId?: number | null;
   /** Ligand name for display */
   ligandName?: string | null;
+  /** The codes the member's dictionaries define, for "Add ligand here". */
+  ligandCodes?: string[];
+  /** The file the member's coordinates were loaded from: the molecule the
+   *  ligand is added to is found by this, never by which one is active. */
+  memberCoordFileId?: number | null;
+  /** Place one ligand code at the view centre in the member's molecule. */
+  onAddLigand?: (code: string) => Promise<void>;
   /** Maps loaded in Moorhen for contour control */
   maps?: moorhen.Map[];
   /** Callback to change map contour level */
   onMapContourLevelChange?: (molNo: number, level: number) => void;
-  /** Callback to tag the currently selected project with a site name */
-  onTagProjectWithSite?: (siteName: string) => Promise<void>;
+  /**
+   * What has been found at each site in the selected dataset, empties
+   * included. An absent entry means nobody has looked there yet, which is a
+   * different thing from having looked and found nothing.
+   */
+  evaluations?: SiteEvaluation[];
+  /** Record or change what was found at a site in the selected dataset. */
+  onSetVerdict?: (siteId: number, verdict: SiteVerdict) => Promise<void>;
+  /** Withdraw a verdict, returning the site to "nobody has looked". */
+  onClearVerdict?: (siteId: number) => Promise<void>;
   /** Callback to load a file into the Moorhen session */
   onFileSelect?: (fileId: number) => Promise<void>;
+  /** Callback to load all of a job's outputs into the session (the browser's
+   *  per-job load button, shown only when this is given). */
+  onJobLoad?: (jobId: number) => Promise<void>;
   /** Callback to run servalcat_pipe refinement on a molecule */
   onRunServalcat?: (mol: moorhen.Molecule) => Promise<void>;
+  /**
+   * True when this panel is showing a *summary scene* — one site's hits, or
+   * the whole campaign's — rather than a dataset being evaluated.
+   *
+   * It changes what the loaded molecules may be asked to do. A summary scene
+   * carries no reflection data (``campaign_scene`` emits coordinates and
+   * dictionaries, never maps), and its ligands have been moved onto a common
+   * exemplar by a superposition, so refining or pushing one back into a
+   * project would write transformed coordinates refined against nothing.
+   * Those two affordances belong to the dataset view; here the row offers
+   * the dataset itself instead, where the density is.
+   */
+  siteSummary?: boolean;
+  /**
+   * Where a loaded molecule can be opened in full — its own dataset, with its
+   * maps, at this site if the scene is a site's. Returns a URL, or the reason
+   * there is none, so the row can disable the control and say why rather than
+   * hide it.
+   */
+  datasetLink?: (
+    mol: moorhen.Molecule
+  ) => { url: string; label: string } | { reason: string };
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   campaign,
   sites,
   onGoToSite,
+  onViewSite,
   onSaveCurrentAsSite,
   onUpdateSite,
   onDeleteSite,
@@ -124,11 +195,19 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   onRepresentationsChange,
   ligandDictFileId,
   ligandName,
+  ligandCodes,
+  memberCoordFileId,
+  onAddLigand,
   maps,
   onMapContourLevelChange,
-  onTagProjectWithSite,
+  evaluations,
+  onSetVerdict,
+  onClearVerdict,
   onFileSelect,
+  onJobLoad,
   onRunServalcat,
+  siteSummary,
+  datasetLink,
 }) => {
   const dispatch = useDispatch();
 
@@ -161,7 +240,12 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   const [isSaving, setIsSaving] = useState(false);
 
   // Edit site dialog state
-  const [editingSiteIndex, setEditingSiteIndex] = useState<number | null>(null);
+  const [editingSiteId, setEditingSiteId] = useState<number | null>(null);
+  // The site awaiting a delete confirmation. Held as the site itself, not an
+  // id, so the dialog can name it and say what it is about to destroy.
+  const [sitePendingDelete, setSitePendingDelete] = useState<CampaignSite | null>(
+    null
+  );
   const [editSiteName, setEditSiteName] = useState("");
   const [updatePosition, setUpdatePosition] = useState(false);
 
@@ -177,6 +261,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
   // Track which molecule (if any) has a servalcat job running
   const [runningServalcatMolNo, setRunningServalcatMolNo] = useState<number | null>(null);
+
+  // What was drawn on each molecule the eye icon hid, so showing it again
+  // restores that and only that (see lib/moorhen-molecule-visibility).
+  const visibilityMemory = useRef<MoleculeVisibilityMemory>(new Map());
 
   // Reset loaded ligand code when file ID changes
   useEffect(() => {
@@ -208,6 +296,17 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       setShowImportModal(false);
     },
     [onFileSelect]
+  );
+
+  // Handle "load all job outputs" from the hierarchy browser
+  const handleImportJobLoad = useCallback(
+    async (jobId: number) => {
+      if (onJobLoad) {
+        await onJobLoad(jobId);
+      }
+      setShowImportModal(false);
+    },
+    [onJobLoad]
   );
 
   const handleOpenPushDialog = useCallback((molecule: moorhen.Molecule) => {
@@ -255,6 +354,15 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     [molecules, visibleRepresentations, onRepresentationsChange]
   );
 
+  // What has been recorded at each site for the selected dataset. Absent
+  // means nobody has looked there; "empty" means somebody looked and found
+  // nothing. The control has to show those differently or it will write the
+  // wrong one back.
+  const verdictBySite = useMemo(
+    () => new Map((evaluations ?? []).map((e) => [e.site_id, e.verdict])),
+    [evaluations]
+  );
+
   const handleSaveSite = useCallback(async () => {
     if (!newSiteName.trim()) return;
     setIsSaving(true);
@@ -267,35 +375,44 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     }
   }, [newSiteName, onSaveCurrentAsSite]);
 
-  const handleDeleteSite = useCallback(
-    async (index: number) => {
-      await onDeleteSite(index);
-    },
-    [onDeleteSite]
-  );
+  // Deleting a site is not undoable and takes every verdict recorded there
+  // with it, in every dataset. It also used to happen on one click of an icon
+  // sitting between "go to site" and "edit site" in a dense row, inside a
+  // panel whose whole purpose is clicking through sites one after another --
+  // so it was deleted by people who meant to navigate. It asks now.
+  const handleDeleteSite = useCallback((site: CampaignSite) => {
+    setSitePendingDelete(site);
+  }, []);
 
-  const handleOpenEditDialog = useCallback((index: number) => {
-    setEditingSiteIndex(index);
-    setEditSiteName(sites[index].name);
+  const handleConfirmDeleteSite = useCallback(async () => {
+    if (!sitePendingDelete) return;
+    const siteId = sitePendingDelete.id;
+    setSitePendingDelete(null);
+    await onDeleteSite(siteId);
+  }, [sitePendingDelete, onDeleteSite]);
+
+  const handleOpenEditDialog = useCallback((site: CampaignSite) => {
+    setEditingSiteId(site.id);
+    setEditSiteName(site.name);
     setUpdatePosition(false);
-  }, [sites]);
+  }, []);
 
   const handleCloseEditDialog = useCallback(() => {
-    setEditingSiteIndex(null);
+    setEditingSiteId(null);
     setEditSiteName("");
     setUpdatePosition(false);
   }, []);
 
   const handleSaveEdit = useCallback(async () => {
-    if (editingSiteIndex === null || !editSiteName.trim()) return;
+    if (editingSiteId === null || !editSiteName.trim()) return;
     setIsSaving(true);
     try {
-      await onUpdateSite(editingSiteIndex, editSiteName.trim(), updatePosition);
+      await onUpdateSite(editingSiteId, editSiteName.trim(), updatePosition);
       handleCloseEditDialog();
     } finally {
       setIsSaving(false);
     }
-  }, [editingSiteIndex, editSiteName, updatePosition, onUpdateSite, handleCloseEditDialog]);
+  }, [editingSiteId, editSiteName, updatePosition, onUpdateSite, handleCloseEditDialog]);
 
   return (
     <Box sx={{ p: 1.5, height: "100%", display: "flex", flexDirection: "column", overflowY: "auto", overflowX: "hidden" }}>
@@ -360,7 +477,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
       {/* Map Contour Controls */}
       {maps && maps.length > 0 && onMapContourLevelChange && (
-        <Box sx={{ mb: 1 }}>
+        // Two maps per loaded project, so this grows with the campaign as well;
+        // left uncapped it pushes the lists below it off the panel entirely.
+        <Box sx={{ mb: 1, maxHeight: MAX_CONTOUR_SECTION_HEIGHT, overflowY: "auto", flexShrink: 0 }}>
           {maps.map((map) => {
             const level = getContourLevel(map.molNo!);
             const isVisible = visibleMaps.includes(map.molNo!);
@@ -391,15 +510,53 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             const sliderPosition = valueToSlider(level);
             // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom), 4=mask (Mask)
             const shortName = mapSubType === 4 ? "Mask" : mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
+            // The row is labelled by map type, which is what you want while
+            // scanning contour sliders and useless for telling apart the two
+            // identically-labelled rows a second loaded dataset brings. The
+            // hover says which map this actually is: the type spelled out,
+            // and the file's own annotation underneath.
+            const fullType =
+              mapSubType === 4
+                ? "Mask"
+                : mapSubType === 3
+                ? "Anomalous difference map"
+                : mapSubType === 2 || isDiff
+                ? "Fo-Fc difference map"
+                : "2Fo-Fc weighted map";
+            const description =
+              ((map as any).ccp4i2Description as string | undefined) ||
+              map.name ||
+              undefined;
 
             return (
               <Stack key={map.molNo ?? map.uniqueId} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-                <Typography
-                  variant="caption"
-                  sx={{ minWidth: 42, flexShrink: 0, opacity: isVisible ? 1 : 0.4 }}
+                <Tooltip
+                  title={
+                    description && description !== fullType ? (
+                      <Box>
+                        <Typography variant="body2">{fullType}</Typography>
+                        <Typography variant="caption" sx={{ opacity: 0.85 }}>
+                          {description}
+                        </Typography>
+                      </Box>
+                    ) : (
+                      fullType
+                    )
+                  }
                 >
-                  {shortName}
-                </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      minWidth: 42,
+                      flexShrink: 0,
+                      opacity: isVisible ? 1 : 0.4,
+                      // Hints that the abbreviation has more behind it.
+                      cursor: "help",
+                    }}
+                  >
+                    {shortName}
+                  </Typography>
+                </Tooltip>
                 <Slider
                   size="small"
                   disabled={!isVisible}
@@ -508,10 +665,30 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         </>
       )}
 
+      {/* Shown for any selected dataset, dictionary or not, so the disabled
+          state can say why rather than the button silently not existing. */}
+      {selectedMemberProjectId && onAddLigand && (
+        <Box sx={{ mb: 1 }}>
+          <AddLigandButton
+            ligandCodes={ligandCodes ?? []}
+            molecules={molecules ?? []}
+            memberCoordFileId={memberCoordFileId ?? null}
+            onAddLigand={onAddLigand}
+          />
+        </Box>
+      )}
+
       <Divider sx={{ my: 1 }} />
 
       {/* Sites Section */}
-      <Box sx={{ flex: 1, display: "flex", flexDirection: "column", minHeight: 0 }}>
+      <Box
+        sx={{
+          flex: "1 1 0",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: MIN_LIST_SECTION_HEIGHT,
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -552,9 +729,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           </Paper>
         ) : (
           <List dense sx={{ flex: 1, overflow: "auto" }}>
-            {sites.map((site, index) => (
+            {sites.map((site) => (
               <ListItem
-                key={index}
+                key={site.id}
                 component="div"
                 onClick={() => onGoToSite(site)}
                 sx={{
@@ -584,33 +761,59 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                       <PlaceIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                  {selectedMemberProjectId && onTagProjectWithSite && (
-                    <Tooltip title="Tag project with this site">
+                  {onViewSite && (
+                    <Tooltip title="View this site: every hit found here, overlaid">
                       <IconButton
                         edge="end"
                         size="small"
-                        onClick={() => onTagProjectWithSite(site.name)}
-                        color="success"
+                        onClick={(event) => {
+                          // The row itself goes to the site; this does not.
+                          event.stopPropagation();
+                          onViewSite(site);
+                        }}
+                        color="primary"
                       >
-                        <LabelIcon fontSize="small" />
+                        <PreviewIcon fontSize="small" />
                       </IconButton>
                     </Tooltip>
+                  )}
+                  {selectedMemberProjectId && onSetVerdict && (
+                    <SiteVerdictControl
+                      verdict={verdictBySite.get(site.id)}
+                      onSet={(verdict) => onSetVerdict(site.id, verdict)}
+                      onClear={
+                        onClearVerdict
+                          ? () => onClearVerdict(site.id)
+                          : undefined
+                      }
+                    />
                   )}
                   <Tooltip title="Edit site">
                     <IconButton
                       edge="end"
                       size="small"
-                      onClick={() => handleOpenEditDialog(index)}
+                      onClick={() => handleOpenEditDialog(site)}
                     >
                       <EditIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Delete site">
+                  <Tooltip title="Delete site (and any verdicts recorded there)">
                     <IconButton
                       edge="end"
                       size="small"
-                      onClick={() => handleDeleteSite(index)}
+                      onClick={(event) => {
+                        // The row itself navigates; without this, asking to
+                        // delete also moves the view.
+                        event.stopPropagation();
+                        handleDeleteSite(site);
+                      }}
                       color="error"
+                      // Set apart from the controls next to it. The row packs
+                      // six targets into a panel built for tapping through
+                      // sites in sequence, and on a phone they are all well
+                      // under the ~44pt a thumb needs -- which is how this
+                      // one got hit by someone who meant to navigate.
+                      sx={{ ml: 1 }}
                     >
                       <DeleteIcon fontSize="small" />
                     </IconButton>
@@ -622,17 +825,27 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         )}
       </Box>
 
-      {/* Push to CCP4i2 Section */}
+      {/* Loaded molecules. What they can be asked to do depends on what is
+          loaded: a dataset under evaluation has its density and its project
+          behind it, a summary scene has neither (see `siteSummary`). */}
       {molecules && molecules.length > 0 && (
         <>
           <Divider sx={{ my: 1 }} />
-          <Box>
+          <Box
+            sx={{
+              flex: "1 1 0",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: MIN_LIST_SECTION_HEIGHT,
+            }}
+          >
             <Typography variant="caption" sx={{ fontWeight: "bold", mb: 0.5, display: "block" }}>
-              Push to CCP4i2
+              {siteSummary ? "Loaded datasets" : "Push to CCP4i2"}
             </Typography>
-            <List dense>
+            <List dense sx={{ flex: 1, overflow: "auto", minHeight: 0 }}>
               {molecules.map((mol) => {
                 const isVisible = visibleMolecules.includes(mol.molNo!);
+                const link = datasetLink?.(mol);
                 return (
                   <ListItem
                     key={mol.molNo ?? mol.uniqueId}
@@ -656,12 +869,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           size="small"
                           onClick={() => {
                             if (isVisible) {
-                              (mol as any).representations?.forEach((r: any) => r.hide());
+                              hideMoleculeRepresentations(mol, visibilityMemory.current);
                               dispatch(hideMolecule(mol as any));
                             } else {
-                              (mol as any).representations?.forEach((r: any) => {
-                                if (r.interfaceOption?.visible) r.show();
-                              });
+                              showMoleculeRepresentations(mol, visibilityMemory.current);
                               dispatch(showMolecule(mol as any));
                             }
                             dispatch(setRequestDrawScene(true));
@@ -687,7 +898,41 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           <DeleteIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>
-                      {onRunServalcat && (
+                      {/* Open the dataset this molecule came from, where its
+                          maps are (at this site, when the scene is a site's).
+                          A summary scene is the one view that shows a ligand
+                          without the density justifying it; this is the way
+                          out of it. */}
+                      {datasetLink && (
+                        <Tooltip
+                          title={
+                            link && "url" in link
+                              ? `Open ${link.label} with its maps`
+                              : link?.reason ?? "No dataset to open"
+                          }
+                        >
+                          <span>
+                            <IconButton
+                              edge="end"
+                              size="small"
+                              disabled={!link || !("url" in link)}
+                              onClick={() => {
+                                if (link && "url" in link) {
+                                  window.open(link.url, "_blank");
+                                }
+                              }}
+                              color="primary"
+                            >
+                              <OpenInNewIcon fontSize="small" />
+                            </IconButton>
+                          </span>
+                        </Tooltip>
+                      )}
+                      {/* Refining and pushing need reflections and a project
+                          to own the result. A summary scene has neither, and
+                          its ligands have been moved by a superposition, so
+                          both are withheld rather than offered and refused. */}
+                      {!siteSummary && onRunServalcat && (
                         <Tooltip title="Run servalcat refinement">
                           <span>
                             <IconButton
@@ -709,16 +954,18 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           </span>
                         </Tooltip>
                       )}
-                      <Tooltip title="Push to CCP4i2 project">
-                        <IconButton
-                          edge="end"
-                          size="small"
-                          onClick={() => handleOpenPushDialog(mol)}
-                          color="primary"
-                        >
-                          <UploadIcon fontSize="small" />
-                        </IconButton>
-                      </Tooltip>
+                      {!siteSummary && (
+                        <Tooltip title="Push to CCP4i2 project">
+                          <IconButton
+                            edge="end"
+                            size="small"
+                            onClick={() => handleOpenPushDialog(mol)}
+                            color="primary"
+                          >
+                            <UploadIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      )}
                     </ListItemSecondaryAction>
                   </ListItem>
                 );
@@ -765,9 +1012,52 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         </DialogActions>
       </Dialog>
 
+      {/* Delete Site Confirmation */}
+      <Dialog
+        open={sitePendingDelete !== null}
+        onClose={() => setSitePendingDelete(null)}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle>Delete Site</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Delete &quot;{sitePendingDelete?.name}&quot; from this campaign?
+          </Typography>
+          {/* What it costs, not just that it costs something: a site nobody
+              has looked at yet is a different proposition from one carrying a
+              campaign's worth of verdicts, and a warning that cannot tell
+              them apart is one people learn to click through. */}
+          {sitePendingDelete?.evaluation_count ? (
+            <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+              {sitePendingDelete.evaluation_count === 1
+                ? "The one verdict recorded here, in any dataset, is deleted with it."
+                : `All ${sitePendingDelete.evaluation_count} verdicts recorded here, across every dataset, are deleted with it.`}
+            </Typography>
+          ) : (
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              No verdicts have been recorded at this site.
+            </Typography>
+          )}
+          <Typography variant="body2" color="error" sx={{ mt: 1 }}>
+            This action cannot be undone.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setSitePendingDelete(null)}>Cancel</Button>
+          <Button
+            onClick={handleConfirmDeleteSite}
+            color="error"
+            variant="contained"
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       {/* Edit Site Dialog */}
       <Dialog
-        open={editingSiteIndex !== null}
+        open={editingSiteId !== null}
         onClose={handleCloseEditDialog}
         maxWidth="xs"
         fullWidth
@@ -844,12 +1134,16 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         <DialogTitle>
           Import from Projects
           <Typography variant="body2" color="text.secondary">
-            Navigate to a project and job to load files into this session
+            Navigate to a project and job to load a file, or all of a job&apos;s
+            outputs, into this session
           </Typography>
         </DialogTitle>
         <DialogContent sx={{ p: 0, display: "flex", flexDirection: "column" }}>
           <Box sx={{ flex: 1, minHeight: 0 }}>
-            <CCP4i2HierarchyBrowser onFileSelect={handleImportFileSelect} />
+            <CCP4i2HierarchyBrowser
+              onFileSelect={handleImportFileSelect}
+              onJobLoad={onJobLoad ? handleImportJobLoad : undefined}
+            />
           </Box>
         </DialogContent>
         <DialogActions>
@@ -857,5 +1151,93 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         </DialogActions>
       </Dialog>
     </Box>
+  );
+};
+
+
+/**
+ * Record what was found at one site in one dataset.
+ *
+ * This replaces tagging the project with the site's name. A tag carried one
+ * bit where three are needed: an untagged project was indistinguishable from
+ * one somebody had examined and found nothing in, and the association broke
+ * whenever a site was renamed.
+ *
+ * Clicking the verdict already recorded withdraws it, which is how "nobody has
+ * looked" is reachable again without a fourth button. Withdrawing is not the
+ * same as recording "nothing there".
+ */
+const VERDICT_OPTIONS: {
+  verdict: SiteVerdict;
+  label: string;
+  colour: "success" | "warning" | "standard";
+  Icon: typeof HitIcon;
+}[] = [
+  { verdict: "hit", label: "Ligand present", colour: "success", Icon: HitIcon },
+  {
+    verdict: "unclear",
+    label: "Unclear",
+    colour: "warning",
+    Icon: UnclearIcon,
+  },
+  {
+    verdict: "empty",
+    label: "Looked, nothing there",
+    colour: "standard",
+    Icon: NothingThereIcon,
+  },
+];
+
+const SiteVerdictControl: React.FC<{
+  verdict: SiteVerdict | undefined;
+  onSet: (verdict: SiteVerdict) => Promise<void>;
+  onClear?: () => Promise<void>;
+}> = ({ verdict, onSet, onClear }) => {
+  const [busy, setBusy] = useState(false);
+
+  const handle = useCallback(
+    async (choice: SiteVerdict) => {
+      setBusy(true);
+      try {
+        if (choice === verdict && onClear) {
+          await onClear();
+        } else {
+          await onSet(choice);
+        }
+      } finally {
+        setBusy(false);
+      }
+    },
+    [verdict, onSet, onClear]
+  );
+
+  return (
+    <>
+      {VERDICT_OPTIONS.map(({ verdict: choice, label, colour, Icon }) => {
+        const active = verdict === choice;
+        return (
+          <Tooltip
+            key={choice}
+            title={active ? `${label} — click to withdraw` : label}
+          >
+            <span>
+              <IconButton
+                edge="end"
+                size="small"
+                disabled={busy}
+                onClick={() => handle(choice)}
+                color={active && colour !== "standard" ? colour : "default"}
+                sx={{
+                  opacity: active ? 1 : 0.35,
+                  p: 0.25,
+                }}
+              >
+                <Icon fontSize="small" />
+              </IconButton>
+            </span>
+          </Tooltip>
+        );
+      })}
+    </>
   );
 };

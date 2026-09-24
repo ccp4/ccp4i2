@@ -13,6 +13,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         containerHint="FolderLevel"
       >
         <CCP4i2TaskElement itemName="MAPIN" {...props} />
+        {/* Let the user say what kind of map this is. Without this, every map
+            imported through the desktop UI was silently subType 1 (normal), so
+            half maps and masks were mis-typed (#524). The wrapper honours
+            MAP_SUBTYPE; it just was never shown. */}
+        <CCP4i2TaskElement itemName="MAP_SUBTYPE" {...props} />
       </CCP4i2ContainerElement>
     </Paper>
   );

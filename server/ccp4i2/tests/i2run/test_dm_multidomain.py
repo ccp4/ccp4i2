@@ -55,7 +55,22 @@ def test_dm_multidomain():
     with i2run(args) as job:
         for name in ["ABCDOUT", "FPHIOUT"]:
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
-        ET.parse(job / "program.xml")
+        root = ET.parse(job / "program.xml").getroot()
+
+        # The partition the report draws: every body the user asked for, the
+        # excluded one included, on the reference copy's residues. Without it
+        # the report gives correlations per domain number and never says which
+        # residues each number was.
+        tracks = root.findall("BodyMap/Track")
+        assert [(t.get("role"), t.get("chain")) for t in tracks] == [("_", "A")]
+        bodies = root.findall("BodyMap/Body")
+        assert [b.get("mode") for b in bodies] == \
+            ["average", "refine", "exclude"]
+        assert [(s.get("lo"), s.get("hi"))
+                for s in bodies[0].findall("Segment")] == [("340", "485")]
+        # and each averaged body carries its superposition against each copy
+        assert len(bodies[0].findall("Fit")) == 5     # A is the reference
+        assert not bodies[2].findall("Fit")           # excluded: none fitted
         # the two averaged bodies each yield a captured mask; the excluded
         # 13-139 yields none. The masks must be DISJOINT (nearest-atom
         # partition) -- dm needs non-overlapping NCS masks.

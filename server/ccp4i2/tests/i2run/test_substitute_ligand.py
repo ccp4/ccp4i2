@@ -154,3 +154,109 @@ def _check_aimless_pipe_performance(job_dir):
     r_meas = perf.find('rMeas')
     assert r_meas is not None and r_meas.text, "rMeas missing from PERFORMANCE"
     assert float(r_meas.text) > 0, f"rMeas is zero: {r_meas.text}"
+
+# ---------------------------------------------------------------------------
+# Merged data (OBSAS=MERGED)
+#
+# Until these, every SubstituteLigand test supplied UNMERGEDFILES, so the
+# merged route -- the one a fragment campaign uses, where aimless never runs
+# and the free-R set is whatever the user hands in -- had no end-to-end
+# coverage at all. That is where a run of real failures turned up: the ligand
+# written to the wrong field, the reference's own ligand left in the model,
+# and a free-R set from another crystal refused by a cell check part-way
+# through the job.
+# ---------------------------------------------------------------------------
+
+
+def _recelled_free_r(source_mtz, target_cell, destination):
+    """A copy of a free-R set stamped with a different unit cell.
+
+    Stands in for a campaign's shared free set: the same reflections and the
+    same flags, but the cell of the crystal it was measured on rather than the
+    one being refined. Built here rather than shipped as demo data so the
+    difference is visible in the test, and adjustable.
+    """
+    import gemmi
+
+    mtz = gemmi.read_mtz_file(str(source_mtz))
+    mtz.cell = gemmi.UnitCell(*target_cell)
+    for dataset in mtz.datasets:
+        dataset.cell = gemmi.UnitCell(*target_cell)
+    mtz.write_to_file(str(destination))
+    return destination
+
+
+def test_substitute_ligand_merged_data():
+    """The merged route runs at all: no unmerged files, no aimless.
+
+    OBSAS=MERGED sends F_SIGF_IN straight to refinement. This is the shape a
+    fragment campaign uses, and what make_demo_campaign configures.
+    """
+    args = ["SubstituteLigand"]
+    args += ["--XYZIN", demoData("gamma", "gamma_model.pdb")]
+    args += ["--OBSAS", "MERGED"]
+    args += ["--F_SIGF_IN", demoData("gamma", "merged_intensities_native.mtz")]
+    args += ["--FREERFLAG_IN", demoData("gamma", "freeR.mtz")]
+    args += ["--LIGANDAS", "NONE"]
+    args += ["--PIPELINE", "DIMPLE"]
+    with i2run(args) as job:
+        # No F_SIGF_OUT on this route: the observations were already merged
+        # when they came in and pass through unchanged, so there is nothing to
+        # re-export. FREERFLAG_OUT *is* written, because the supplied free-R
+        # set is reconciled with the data before refinement.
+        for name in ("FREERFLAG_OUT", "DIFFPHIOUT", "FPHIOUT"):
+            gemmi.read_mtz_file(str(job / f"{name}.mtz"))
+        gemmi.read_structure(str(job / "XYZOUT.pdb"))
+
+
+def test_merged_free_r_other_crystal(tmp_path):
+    """A free-R set whose cell disagrees with the data still refines.
+
+    This is the campaign case: one free set shared across a series of soaks,
+    so its cell is the reference crystal's and differs from every member's by
+    a percent or more. Every merge in the pipeline compares the two and would
+    otherwise refuse -- the job used to stop inside i2Dimple with
+    "Incompatible unit cells", part-way through, having already built the
+    ligand.
+
+    The pipeline reconciles the set up front instead: freerflag in COMPLETE
+    mode joins by reflection index, so the existing flags keep the reflections
+    they were assigned to, stamps the data's cell, and extends the set to the
+    data's resolution. Re-stamping the cell alone would not do that last part.
+    """
+    from ccp4i2.core.CCP4XtalData import cells_are_compatible
+
+    observations = demoData("gamma", "merged_intensities_native.mtz")
+    shifted = _recelled_free_r(
+        demoData("gamma", "freeR.mtz"),
+        # ~2 A out on a, the scale of a real soak-to-soak drift and well past
+        # Clipper's 1 A test.
+        (36.15, 54.81, 68.00, 90.0, 90.0, 90.0),
+        tmp_path / "free_from_another_crystal.mtz",
+    )
+
+    data_cell = gemmi.read_mtz_file(str(observations)).cell.parameters
+    free_cell = gemmi.read_mtz_file(str(shifted)).cell.parameters
+    assert not cells_are_compatible(data_cell, free_cell, 1.0)["validity"], (
+        "this test is pointless unless the cells really do fail the strict check"
+    )
+
+    args = ["SubstituteLigand"]
+    args += ["--XYZIN", demoData("gamma", "gamma_model.pdb")]
+    args += ["--OBSAS", "MERGED"]
+    args += ["--F_SIGF_IN", observations]
+    args += ["--FREERFLAG_IN", str(shifted)]
+    args += ["--LIGANDAS", "NONE"]
+    args += ["--PIPELINE", "DIMPLE"]
+    with i2run(args) as job:
+        gemmi.read_structure(str(job / "XYZOUT.pdb"))
+
+        # The published free-R set is the reconciled one: it carries the
+        # DATA's cell, not the one it came in with.
+        reconciled = gemmi.read_mtz_file(str(job / "FREERFLAG_OUT.mtz"))
+        assert cells_are_compatible(
+            data_cell, reconciled.cell.parameters, 1.0
+        )["validity"], (
+            "FREERFLAG_OUT should carry the data's cell, so later jobs on this "
+            "dataset can use it without repeating the reconciliation"
+        )

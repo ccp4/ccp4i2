@@ -195,6 +195,11 @@ class CImportFileBase(CPluginScript):
         """Optional subclass hook: return an error string if invalid, else None."""
         return None
 
+    def finalize_output(self, out):
+        """Optional subclass hook to set type-specific metadata on the output
+        object (e.g. a map's subType from a control parameter). Default no-op."""
+        return None
+
     def runTimeValidity(self):
         from ccp4i2.core import CCP4ErrorHandling
 
@@ -254,6 +259,12 @@ class CImportFileBase(CPluginScript):
             out.annotation.set(annotation)
         except Exception:
             out.annotation = annotation
+
+        # Type-specific metadata (e.g. map subType); non-fatal if it fails.
+        try:
+            self.finalize_output(out)
+        except Exception:
+            pass
 
         self.reportStatus(CPluginScript.SUCCEEDED)
         return CPluginScript.SUCCEEDED

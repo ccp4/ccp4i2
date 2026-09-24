@@ -309,6 +309,17 @@ function isRawColourBranch(node: any): boolean {
   );
 }
 
+/** The `method: matrix` superpose branch. A nine-number rotation is machine
+ *  output (a server-side fit), never something a model should author, and its
+ *  properties would push the strict profile past Azure's cap. */
+function isMatrixSuperposeBranch(node: any): boolean {
+  return (
+    isPlainObject(node) &&
+    isPlainObject(node.properties) &&
+    node.properties.method?.const === "matrix"
+  );
+}
+
 /** Deep-clone the schema while removing the authoring-core exclusions: top-level
  *  blocks, named properties, and the raw-colour escape-hatch union branch. Run
  *  BEFORE strictify so it recomputes required/additionalProperties cleanly. */
@@ -332,8 +343,10 @@ function pruneForAuthoringCore(input: unknown, atRoot = false): any {
           !STRUCTURED_PRUNE.props.has(r) &&
           !(atRoot && (STRUCTURED_PRUNE.topLevel as readonly string[]).includes(r)),
       );
-    } else if (k === "anyOf" && Array.isArray(v)) {
-      out[k] = v.filter((b) => !isRawColourBranch(b)).map((n) => pruneForAuthoringCore(n));
+    } else if ((k === "anyOf" || k === "oneOf") && Array.isArray(v)) {
+      out[k] = v
+        .filter((b) => !isRawColourBranch(b) && !isMatrixSuperposeBranch(b))
+        .map((n) => pruneForAuthoringCore(n));
     } else {
       out[k] = pruneForAuthoringCore(v);
     }

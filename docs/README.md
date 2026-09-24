@@ -99,6 +99,12 @@ Supporting references:
 - [Organising Projects](organising-projects.md) — `ProjectTag` vs `ProjectGroup`:
   which to reach for, why hierarchy lives on tags, and where legacy Qt-i2
   "folders" map to
+- [Campaign sites handoff](CAMPAIGN_SITES_HANDOFF.md) — what landed in the
+  `CampaignSite` / `SiteEvaluation` work, and what was learned the hard way
+- [Place the ligand here](campaign-place-ligand-design.md) — design for the
+  one-click monomer button in the campaign Moorhen page (not implemented)
+- [A site view as a Moorhen scene](campaign-site-scene-design.md) — design for
+  a per-site overlay of every hit, built as a scene (not implemented)
 
 ### …understand the architecture
 - Project [`CLAUDE.md`](../CLAUDE.md) — architecture, task registry, validation,
@@ -123,6 +129,10 @@ Supporting references:
   installers on a GitHub Release (OIDC, no tokens).
 - [GitHub Actions](github-actions.md) — what the four workflows run and when,
   what is and is not gated, and the gotchas that bite when changing them.
+- [Update Mechanism Plan](UPDATE_MECHANISM_PLAN.md) — how CCP4i2 stays up to
+  date *after* it ships in CCP4: the Python backend via CCP4 UM and the Electron
+  app via its own channel (implemented + proven), the per-platform coverage
+  table, and how updates could be hosted under CCP4 control.
 
 ### …deploy
 - Docker / Azure sections in [`CLAUDE.md`](../CLAUDE.md)

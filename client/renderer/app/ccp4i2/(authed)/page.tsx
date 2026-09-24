@@ -2,7 +2,7 @@
 import { Box, Container, Skeleton, Stack } from "@mui/material";
 import ProjectsToolbar from "@/components/projects-toolbar";
 import ProjectsTable from "@/components/projects-table";
-import CCP4i2TopBar from "@/components/ccp4i2-topbar";
+import { useTopBar } from "@/providers/top-bar-context";
 import { LaunchGate } from "@/components/launch-gate";
 import { WelcomeChooser } from "@/components/welcome-chooser";
 import { useApi } from "@/api";
@@ -18,15 +18,17 @@ function ProjectsHome() {
   // projects directory that leaves the user back at zero projects.
   const isEmpty = projects && projects.length === 0;
 
+  useTopBar({ title: "CCP4i2 Projects" });
+
   return (
-    <Stack sx={{ height: "100vh", overflow: "hidden" }}>
-      <CCP4i2TopBar title="CCP4i2 Projects" />
+    <Stack sx={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
       {isEmpty ? (
         <Box sx={{ flex: 1, overflow: "auto" }}>
           <WelcomeChooser />
         </Box>
       ) : (
         <Container
+          maxWidth="xl"
           sx={{
             flex: 1,
             display: "flex",

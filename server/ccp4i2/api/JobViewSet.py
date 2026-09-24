@@ -52,6 +52,7 @@ from ..lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 from ..lib.utils.containers.validate import getEtree
 from ..lib.utils.files.digest import digest_param_file
 from ..lib.utils.files.upload_param import upload_file_param
+from ..lib.utils.files.staged_upload import StagedUploadError
 from ..lib.utils.helpers.object_method import object_method
 from ..lib.utils.helpers.plugin_method import plugin_method as call_plugin_method
 from ..lib.utils.jobs.clone import clone_job
@@ -1700,6 +1701,10 @@ class JobViewSet(ModelViewSet):
             # result carries updated_item plus duplicate_of (advisory: earlier
             # imports of the same source bytes in this project).
             return api_success(result)
+        except StagedUploadError as err:
+            # A bad staged handle (unknown/foreign 404, unfinished, expired 410,
+            # etc.) -- surface its own status, not a generic 400.
+            return api_error(err.message, status=err.status)
         except CCP4ErrorHandling.CException as err:
             error_tree = getEtree(err)
             ET.indent(error_tree, " ")
@@ -2088,6 +2093,12 @@ class JobViewSet(ModelViewSet):
             except Exception as e:
                 logger.warning("Error killing process for job %s: %s", pk, e)
 
+        # An interactive session has no process; cancelling it ends the
+        # session and nothing is harvested.
+        from ..lib.utils.jobs.interactive import cancel_session
+
+        cancel_session(job)
+
         # Mark job as interrupted regardless — for Azure workers this is the
         # primary cancellation mechanism (worker will see the status on next check)
         job.status = models.Job.Status.INTERRUPTED
@@ -2096,3 +2107,154 @@ class JobViewSet(ModelViewSet):
         logger.info("Cancelled job %s", pk)
         serializer = serializers.JobSerializer(job)
         return Response(serializer.data)
+
+    @action(detail=True, methods=["get"])
+    def dictionaries(self, request, pk=None):
+        """The ligand dictionaries that belong with this job: the ones it
+        produced or imported, and the ones it took as input. A subjob with
+        none inherits its pipeline's. This is what a viewer associates with
+        the job's coordinates; nothing else is, because a project can hold
+        several ligands of the same residue name.
+
+        GET /api/jobs/{id}/dictionaries/ -> [File + {"role": "own"|"input"}]
+        """
+        from ..lib.utils.jobs.dictionaries import job_dictionaries
+
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist:
+            return api_error(f"Job {pk} not found", status=404)
+        return api_success([
+            {**serializers.FileSerializer(the_file).data, "role": role}
+            for the_file, role in job_dictionaries(job)
+        ])
+
+    @action(detail=True, methods=["post"])
+    def fetch_repository_file(self, request, pk=None):
+        """Fetch a file from a public repository into the project and set a
+        parameter to it, on the server (no bytes through the browser).
+
+        POST /api/jobs/{id}/fetch_repository_file/
+            {"object_path": "ImportMap.inputData.MAPIN",
+             "repository": "emdb", "entry": "EMD-11638",
+             "file": "emd_11638_half_map_1.map.gz", "sub_type": 5,
+             "description": "optional provenance note"}
+
+        The file must be one the entry lists (see repositories/<repo>/<entry>/)
+        and sub_type, if given, must agree with what it is. Returns what
+        upload_file_param returns plus source_url, annotation, entry, kind.
+        """
+        from ..lib.utils.files import repository_fetch as repo
+
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist:
+            return api_error(f"Job {pk} not found", status=404)
+        body = request.data if isinstance(request.data, dict) else {}
+        try:
+            spec = repo.RepositoryFetch(
+                repository=str(body.get("repository") or "emdb"),
+                entry=str(body.get("entry") or ""),
+                file=str(body.get("file") or ""),
+                object_path=str(body.get("object_path") or body.get("objectPath") or ""),
+                sub_type=body.get("sub_type"),
+                description=str(body.get("description") or ""),
+            )
+            if not spec.object_path or not spec.file:
+                return api_error("object_path and file are required", status=400)
+            return api_success(repo.fetch_repository_file(job, spec))
+        except repo.RepositoryError as err:
+            return api_error(str(err), status=err.status)
+        except CCP4ErrorHandling.CException as err:
+            error_tree = getEtree(err)
+            ET.indent(error_tree, " ")
+            return api_error(ET.tostring(error_tree).decode("utf-8"), status=400)
+        except Exception as err:
+            logger.exception("fetch_repository_file failed for job %s", pk)
+            return api_error(str(err), status=400)
+
+    # -- interactive sessions (the recorded Moorhen task) -------------------
+    # A job whose "program" is a window in the app. Run opened a session
+    # instead of dispatching; these four are what the window does while it
+    # is open and how the user ends it. See lib/utils/jobs/interactive.py.
+
+    def _interactive_job(self, pk):
+        from ..lib.utils.jobs import interactive
+
+        job = models.Job.objects.get(id=pk)
+        if not interactive.is_interactive_job(job):
+            raise interactive.SessionError(
+                400, f"Task '{job.task_name}' is not interactive")
+        return job
+
+    def _interactive(self, pk, act):
+        from ..lib.utils.jobs import interactive
+
+        try:
+            job = self._interactive_job(pk)
+            return api_success(act(interactive, job))
+        except models.Job.DoesNotExist:
+            return api_error(f"Job {pk} not found", status=404)
+        except interactive.SessionError as err:
+            return api_error(str(err), status=err.status)
+        except Exception as err:
+            logger.exception("Interactive session request failed for job %s", pk)
+            return api_error(str(err), status=500)
+
+    @action(detail=True, methods=["get"])
+    def interactive_session(self, request, pk=None):
+        """The session's state, load plan and saved files so far.
+
+        GET /api/jobs/{id}/interactive_session/
+        """
+        return self._interactive(pk, lambda lib, job: lib.session_state(job))
+
+    @action(detail=True, methods=["post"])
+    def interactive_heartbeat(self, request, pk=None):
+        """A window is attached. Informational only: no timer acts on it.
+
+        POST /api/jobs/{id}/interactive_heartbeat/
+        """
+        return self._interactive(pk, lambda lib, job: lib.heartbeat(job))
+
+    @action(detail=True, methods=["post"])
+    def interactive_drop(self, request, pk=None):
+        """Save a model or dictionary into the session's drop directory.
+
+        POST /api/jobs/{id}/interactive_drop/  (multipart)
+            file        the coordinates or dictionary
+            kind        "model" (default) or "dictionary"
+            annotation  optional label for the harvested output
+        """
+        upload = request.FILES.get("file")
+        if upload is None:
+            return api_error("No file uploaded (multipart field 'file')", status=400)
+        kind = request.POST.get("kind", "model")
+        annotation = request.POST.get("annotation", "")
+        return self._interactive(
+            pk, lambda lib, job: lib.drop_file(job, upload, kind=kind,
+                                               annotation=annotation))
+
+    @action(detail=True, methods=["post"])
+    def interactive_finish(self, request, pk=None):
+        """End the session (Finish), or say a window closed.
+
+        POST /api/jobs/{id}/interactive_finish/
+            {"finished": true}   Finish: dispatch the job to harvest what was
+                                 saved, or mark it for deletion if nothing was.
+            {"finished": false}  A window closed: finish only if nothing was
+                                 saved; otherwise keep the session open.
+        """
+        finished = True
+        payload = None
+        try:
+            payload = request.data if hasattr(request, "data") else None
+            if not payload and request.body:
+                payload = json.loads(request.body.decode("utf-8"))
+        except Exception:
+            payload = None
+        if isinstance(payload, dict) and "finished" in payload:
+            value = payload.get("finished")
+            finished = value not in (False, "false", "False", 0, "0")
+        return self._interactive(
+            pk, lambda lib, job: lib.finish_session(job, finished=finished))

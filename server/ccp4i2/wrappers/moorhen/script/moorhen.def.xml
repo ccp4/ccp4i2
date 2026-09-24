@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>moorhen</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="moorhen">
+        <container id="inputData">
+            <content id="XYZIN_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>False</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="FPHIIN_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>1</requiredSubType>
+                        <allowUndefined>False</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DELFPHIIN_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>2</requiredSubType>
+                        <allowUndefined>False</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DELFPHIINANOM_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>3</requiredSubType>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="MAPIN_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapDataFile</className>
+                    <qualifiers>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                        <toolTip>Real-space map or mask (CCP4/MRC format)</toolTip>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DICT_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers>
+                        <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                        <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                        <toolTip>Ideal ligand geometry for refinement</toolTip>
+                        <label>Ligand geometry</label>
+                        <fileExtensions>cif</fileExtensions>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>COutputFileList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DICTOUT">
+                <className>COutputFileList</className>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>

@@ -27,13 +27,37 @@ class servalcat(CPluginScript):
         204: {'description': 'Program completed without generating output statistics'},
         205: {'description': 'Failed to parse output JSON statistics'},
         206: {'description': 'Failed to read output MTZ file'},
-        207: {'description': 'Failed to split HKL output'},
+        207: {'description': 'Failed to split HKL output',
+              'severity': CCP4ErrorHandling.SEVERITY_WARNING},
+        208: {'description': 'High resolution (d_min) is required for SPA refinement'},
     }
 
     def __init__(self, *args, **kwargs):
         super(servalcat, self).__init__(*args, **kwargs)
         self.xmlroot = ET.Element('SERVALCAT')
         self.xmlLength = 0
+
+    def validity(self):
+        """Cheap, polled checks the def.xml qualifiers cannot express.
+
+        SPA refinement always puts ``-d <RES_MIN>`` on the command line
+        (``refine_spa_norefmac`` builds its grid from d_min), so an unset
+        RES_MIN is not a soft default -- the job dies at runtime with a cryptic
+        ``initialize_grid(): d_min is not set``. That is exactly how the cryo-EM
+        placement -> servalcat handoff trips people up. Require it here so the
+        gap surfaces as a blocking field error on RES_MIN, before submission.
+        """
+        error = super(servalcat, self).validity()
+        if str(self.container.controlParameters.DATA_METHOD) == 'spa':
+            if not self.container.controlParameters.RES_MIN.isSet():
+                error.append(
+                    klass=self.TASKNAME, code=208,
+                    details='Set the high resolution limit (d_min, in '
+                            'Angstrom) of your map; SPA refinement cannot run '
+                            'without it.',
+                    name=f'{self.TASKNAME}.container.controlParameters.RES_MIN',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        return error
 
     def runTimeValidity(self):
         """Pre-flight validation including monomer dictionary coverage."""
@@ -111,6 +135,21 @@ class servalcat(CPluginScript):
 
             return CPluginScript.SUCCEEDED
 
+    def _firstExistingInWork(self, names):
+        """The first of ``names`` that exists in the work directory, else None.
+
+        servalcat's output basenames have drifted across versions: 0.4 renamed
+        the SPA reflection file ``refined_diffmap.mtz`` -> ``refined_maps.mtz``
+        and dropped the ``_diffmap`` infix from the normalised map names. Resolve
+        against the names we know rather than a single hard-coded one, so the
+        harvest survives whichever servalcat the suite ships.
+        """
+        for name in names:
+            path = os.path.normpath(os.path.join(self.getWorkDirectory(), name))
+            if os.path.isfile(path):
+                return path
+        return None
+
     def processOutputFiles(self):
         if hasattr(self, 'logFileHandle'):
             self.logFileHandle.write("JOB TITLE SECTION\n")
@@ -179,13 +218,19 @@ class servalcat(CPluginScript):
         outputFiles = ['FPHIOUT', 'DIFFPHIOUT']
         outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
 
-        # Read output MTZ
+        # Read output MTZ. The basename differs by mode and has drifted across
+        # servalcat versions (spa: refined_diffmap.mtz in <=0.3 -> refined_maps.mtz
+        # in 0.4+), so resolve against the names we know rather than one literal.
         if str(self.container.controlParameters.DATA_METHOD) == "xtal":
-            hkloutFilePath = str(os.path.join(
-                self.getWorkDirectory(), "refined.mtz"))
+            mtzNames = ["refined.mtz"]
         else:  # spa
-            hkloutFilePath = str(os.path.join(
-                self.getWorkDirectory(), "refined_diffmap.mtz"))
+            mtzNames = ["refined_maps.mtz", "refined_diffmap.mtz"]
+        hkloutFilePath = self._firstExistingInWork(mtzNames)
+        if hkloutFilePath is None:
+            self.appendErrorReport(206,
+                'None of the expected output MTZ files were produced: '
+                + ', '.join(mtzNames))
+            return CPluginScript.FAILED
 
         try:
             hkloutFile = CCP4XtalData.CMtzDataFile(hkloutFilePath)
@@ -212,26 +257,34 @@ class servalcat(CPluginScript):
                 outputFiles += ['ANOMFPHIOUT']
                 outputColumns += ['FAN,PHAN']
 
-        # Split HKL output into individual map coefficient files
+        # Split HKL output into individual map-coefficient files. A split miss
+        # costs the separate FWT/DELFWT map objects but not the refined model or
+        # the complete reflection file (both tracked above), so it must not sink
+        # an otherwise-successful refinement -- record it as a warning and carry
+        # on. (A completed SPA refinement was marking itself "Failed" here after
+        # the output-name drift left the split reading a file that did not exist.)
         error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             self.appendErrorReport(207,
-                f'Failed to split HKL output')
-            return CPluginScript.FAILED
+                'Failed to split HKL output; the refined model and complete '
+                'reflection file are still available')
 
         # Handle SPA-specific outputs
         if str(self.container.controlParameters.DATA_METHOD) == 'spa':
             self.container.outputData.MAP_FO.annotation.set(
                 'Density map (in real space)')
-            outputMapFoPath = os.path.normpath(os.path.join(
-                self.getWorkDirectory(), 'refined_diffmap_normalized_fo.mrc'))
-            self.container.outputData.MAP_FO.setFullPath(outputMapFoPath)
+            outputMapFoPath = self._firstExistingInWork(
+                ['refined_normalized_fo.mrc', 'refined_diffmap_normalized_fo.mrc'])
+            if outputMapFoPath is not None:
+                self.container.outputData.MAP_FO.setFullPath(outputMapFoPath)
 
             self.container.outputData.MAP_FOFC.annotation.set(
                 'Difference density map (in real space)')
-            outputMapFoFcPath = os.path.normpath(os.path.join(
-                self.getWorkDirectory(), 'refined_diffmap_normalized_fofc.mrc'))
-            self.container.outputData.MAP_FOFC.setFullPath(outputMapFoFcPath)
+            outputMapFoFcPath = self._firstExistingInWork(
+                ['refined_normalized_fofc.mrc',
+                 'refined_diffmap_normalized_fofc.mrc'])
+            if outputMapFoFcPath is not None:
+                self.container.outputData.MAP_FOFC.setFullPath(outputMapFoFcPath)
 
             # Write Coot script with contour levels
             cootScriptI2FilePath = os.path.join(
