@@ -1291,7 +1291,8 @@ is getting real PanDDA inputs and outputs.
 | What | Where | Gives us |
 |---|---|---|
 | A **contract-conformant staged tree**, 201 datasets: `Projects.csv` + `datasets/xtal-NNNN/{final.pdb, final.mtz, dict.cif, ligand.pdb}` | `BAZ2B/` | The exact shape §3.2 must produce. Staging can be tested by *reproducing* it from CCP4i2 projects and diffing |
-| A **real output tree** — `analyses/`, `processed_datasets/`, `input.yaml` | `CDK4CyclinD1/pandda2_out/` | The receipt reader's fixture (§7.1), and the fan-out fixture (§8.4), with no run required |
+| A **real, complete output tree** over all 201 datasets — `analyses/pandda_analyse_events.csv`, `processed_datasets/`, 62 event maps | `BAZ2B/pandda2_subset60/` | The receipt reader's fixture (§7.1), and the fan-out fixture (§8.4), with no run required |
+| A **partial output tree** (no events table, no event maps) | `CDK4CyclinD1/pandda2_out/` | The incomplete-run case for fan-out and receipts (§8.4) |
 | A **large-cell campaign** (58 × 64 × 186 Å) | `CDK4CyclinD1/` | The sizing case §6.1 quotes |
 | **A/B/C path comparison** + `ABC_report.md` | `pathx_runs/` | Evidence on the §6.5 experiment, including its own honest account of what is confounded |
 
@@ -1301,12 +1302,26 @@ Two things the fixtures do **not** give us:
   they do not exercise §4.7's problem case at all. v1 item 1's test needs a
   PDBx-derived or newer-acedrg dictionary constructed for the purpose — which
   is cheap, but must be done deliberately or the test passes vacuously.
-- **A small run that finishes quickly.** The smallest honest end-to-end check is
-  a 3-dataset subset of BAZ2B; anything larger is not a test, it is an
-  afternoon.
+- **A small run that finishes quickly.** There is no such thing. PanDDA
+  characterises the ground state from comparator datasets and refuses to run
+  below `--min_characterisation_datasets`, whose default is **25**
+  (`pandda_gemmi/constants`); a 3-dataset subset cannot run, and a 25-dataset
+  one is not representative. The end-to-end run test for the orchestrator
+  (v1 item 4) therefore **needs the volume**: it runs over BAZ2B on
+  `/Volumes/LocalStore/pandda`, is skipped when that is not mounted, and is
+  an afternoon rather than a unit test. (Corrected 2026-09-24; an earlier
+  draft claimed a 3-dataset run was the smallest honest check.)
 
-A subset of BAZ2B small enough to live in `demo_data/` should be cut as part of
-v1 item 2, so the suite does not depend on an external volume being mounted.
+The three-dataset subset cut into `demo_data/pandda_baz2b_mini/` (v1 item 2,
+5.2 MB, kept deliberately) is a **staging** fixture: real dimple outputs to
+stage and diff against the real tree. It is not, and cannot be, a PanDDA
+input. A complete run over all 201 BAZ2B datasets already exists on the
+volume at `BAZ2B/pandda2_subset60/` (the name notwithstanding: its
+`input.yaml` lists 201 datasets, and it has the events table and 62 event
+maps), which makes it the fixture for the receipt over a real run and for
+fan-out (§8.4) with no run required. `CDK4CyclinD1/pandda2_out/`, named
+above, is an *incomplete* run — no events table, no event maps — and is
+useful only as the partial-tree case.
 
 ### 15.2 The assertions
 
