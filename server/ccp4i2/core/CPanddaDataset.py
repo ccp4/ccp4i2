@@ -20,7 +20,7 @@ class CPanddaDataset(CData):
     (optionally) ligand dictionary."""
 
     class Meta:
-        contents_order = ['DTAG', 'XYZIN', 'HKLIN', 'DICT']
+        contents_order = ['DTAG', 'XYZIN', 'HKLIN', 'DICT', 'PROJECT_UUID', 'SOURCE_JOB_UUID']
         qualifiers = {"allowUndefined": False, "guiLabel": "Dataset"}
 
     DTAG = content(
@@ -41,6 +41,16 @@ class CPanddaDataset(CData):
         guiLabel='Ligand dictionary',
         toolTip='Restraint dictionary for the ligand soaked into this crystal; '
                 'bond orders are normalised at staging')
+    # Ownership, carried explicitly: the files above are imported into the
+    # *orchestrator's* project when the job runs and take its uuid, so the
+    # dataset's own project -- where fan-out must put the receipt -- would be
+    # lost. The manifest keys on this (design note 3.3), never on a name.
+    PROJECT_UUID = content(
+        "CString", allowUndefined=True, guiLabel='Project',
+        toolTip="UUID of the project this dataset belongs to; where its receipt will go")
+    SOURCE_JOB_UUID = content(
+        "CString", allowUndefined=True, guiLabel='Source job',
+        toolTip='UUID of the job whose outputs these files are (the dimple run)')
 
 
 class CPanddaRunPerformance(CPerformanceIndicator):

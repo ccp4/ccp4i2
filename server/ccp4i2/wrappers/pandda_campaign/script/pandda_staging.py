@@ -246,7 +246,7 @@ def stage_datasets(specs: Iterable[DatasetSpec], staging_root,
     return manifest
 
 
-def campaign_dataset_specs(group) -> List[DatasetSpec]:
+def campaign_dataset_specs(group, skipped: Optional[list] = None) -> List[DatasetSpec]:
     """``DatasetSpec`` records for a campaign's member projects.
 
     The one database-reading function in this module. Uses the same
@@ -254,7 +254,8 @@ def campaign_dataset_specs(group) -> List[DatasetSpec]:
     campaign prefills into the orchestrator's ``DATASETS`` list are the
     datasets its ZIP export would contain. Members without a finished dimple,
     or whose dimple outputs are missing on disk, are skipped with a warning,
-    exactly as the export skips them.
+    exactly as the export skips them. ``skipped``, if given, collects
+    ``(project_name, reason)`` for each, so a caller can say why.
     """
     from ccp4i2.db import models
     from ccp4i2.lib.pandda_export import (
@@ -265,6 +266,8 @@ def campaign_dataset_specs(group) -> List[DatasetSpec]:
         if not dimple_job:
             logger.warning("campaign %s: %s has no finished dimple, skipped",
                            group.name, project.name)
+            if skipped is not None:
+                skipped.append((project.name, "no finished dimple job"))
             continue
         dimple_dir = Path(dimple_job.directory)
         xyzin = dimple_dir / MODEL_NAME
@@ -272,6 +275,8 @@ def campaign_dataset_specs(group) -> List[DatasetSpec]:
         if not xyzin.is_file() or not hklin.is_file():
             logger.warning("campaign %s: dimple outputs missing for %s, skipped",
                            group.name, project.name)
+            if skipped is not None:
+                skipped.append((project.name, f"dimple job {dimple_job.number} has no final.pdb/final.mtz on disk"))
             continue
         uuids = {}
         for role, path in (("xyzin", xyzin), ("hklin", hklin)):

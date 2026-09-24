@@ -80,6 +80,51 @@ class pandda_campaign(CPluginScript):
         self._tailer_stop = None
         self._progress = None
 
+    # -- interface-time methods, through the generic object_method endpoint --
+    #
+    # Campaign-awareness lives in job construction, not in the run (3.1):
+    # these read the database to *propose* a list; the run reads only the
+    # list. The reading itself lives in lib/utils/jobs/pandda_fanin.py.
+
+    def campaignCandidates(self):
+        """What "fill from campaign" would add, and why anything is left out."""
+        from ccp4i2.lib.utils.jobs.pandda_fanin import campaign_candidates
+        job = self._job_row()
+        if job is None:
+            return {"campaigns": [], "candidates": [], "skipped": [],
+                    "reason": "this job is not in the database"}
+        return campaign_candidates(job)
+
+    def fillDatasetsFromCampaign(self):
+        """Append every member of the campaign that has a finished dimple job
+        and is not already listed, and save the parameters."""
+        from ccp4i2.lib.utils.jobs.pandda_fanin import fill_datasets
+        job = self._job_row()
+        if job is None:
+            return {"success": False, "error": "this job is not in the database"}
+        result = fill_datasets(self, job)
+        return result.to_dict() if hasattr(result, "to_dict") else {
+            "success": result.success, "data": result.data, "error": result.error}
+
+    def _job_row(self):
+        """This job's database row: from the dbHandler context when there is
+        one, else from the jobId the params header records."""
+        from ccp4i2.db import models
+        job_id = self.get_db_job_id() if hasattr(self, 'get_db_job_id') else None
+        if not job_id:
+            for name in ('input_params.xml', 'params.xml'):
+                path = Path(self.workDirectory) / name
+                if path.is_file():
+                    try:
+                        job_id = ET.parse(path).getroot().findtext('ccp4i2_header/jobId')
+                    except ET.ParseError:
+                        job_id = None
+                    if job_id:
+                        break
+        if not job_id:
+            return None
+        return models.Job.objects.filter(uuid=job_id).first()
+
     # -- validation (two tiers) ------------------------------------------
 
     def validity(self) -> CErrorReport:
@@ -294,13 +339,19 @@ class pandda_campaign(CPluginScript):
             for role, member in (('xyzin', item.XYZIN), ('hklin', item.HKLIN), ('dict', item.DICT)):
                 if member.isSet() and member.dbFileId.isSet():
                     uuids[role] = str(member.dbFileId)
-            project_uuid = str(item.XYZIN.project) if item.XYZIN.project.isSet() else None
+            if item.PROJECT_UUID.isSet() and str(item.PROJECT_UUID).strip():
+                project_uuid = str(item.PROJECT_UUID).strip()
+            else:
+                project_uuid = str(item.XYZIN.project) if item.XYZIN.project.isSet() else None
+            source_job = (str(item.SOURCE_JOB_UUID).strip()
+                          if item.SOURCE_JOB_UUID.isSet() and str(item.SOURCE_JOB_UUID).strip() else None)
             specs.append(DatasetSpec(
                 label=str(item.DTAG) if item.DTAG.isSet() else f'dataset-{len(specs) + 1}',
                 xyzin=Path(str(item.XYZIN.fullPath)),
                 hklin=Path(str(item.HKLIN.fullPath)),
                 dictionary=Path(str(item.DICT.fullPath)) if item.DICT.isSet() else None,
                 project_uuid=project_uuid,
+                source_job_uuid=source_job,
                 source_file_uuids=uuids,
             ))
         return specs
