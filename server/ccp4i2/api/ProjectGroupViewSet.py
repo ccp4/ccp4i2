@@ -738,6 +738,7 @@ class ProjectGroupViewSet(ModelViewSet):
         """
         payload = {
             "id": site.id,
+            "uuid": str(site.uuid),
             "name": site.name,
             "origin": [site.origin_x, site.origin_y, site.origin_z],
             "order": site.order,

@@ -130,6 +130,7 @@ def write_snapshot(project: Project) -> Optional[Path]:
 
     try:
         root = generate_project_xml_tree(project)
+        _carry_unplaced_campaign_rows(directory / SNAPSHOT_NAME, root)
         header = root.find("ccp4i2_header")
         if header is not None:
             ET.SubElement(header, "generator").text = GENERATOR_MARK
@@ -143,6 +144,52 @@ def write_snapshot(project: Project) -> Optional[Path]:
             "Could not write snapshot for project '%s': %s", project.name, err
         )
         return None
+
+
+def _carry_unplaced_campaign_rows(previous: Path, root: ET.Element) -> None:
+    """Keep campaign rows the database cannot hold yet.
+
+    A member project's snapshot carries its verdicts and its memberships,
+    which refer to sites and campaigns that only the *parent's* snapshot
+    defines. Restore the member first and those rows have nowhere to go: the
+    import skips them, and the snapshot then written from the database would
+    be the first snapshot ever to lack them -- the one record of the user's
+    verdicts, overwritten by the act of recovering. So a row in the previous
+    snapshot whose site or campaign is unknown to the database is copied into
+    the new one verbatim, and keeps being copied until the parent is back and
+    the member is restored again with replace.
+    """
+    if not previous.is_file():
+        return
+    try:
+        old = ET.parse(previous).getroot()
+    except ET.ParseError:
+        return
+    from .models import CampaignSite, ProjectGroup
+
+    body = root.find("ccp4i2_body")
+    if body is None:
+        return
+
+    def carry(table_name, row_name, key, known):
+        old_rows = old.findall(f"ccp4i2_body/{table_name}/{row_name}")
+        if not old_rows:
+            return
+        table = body.find(table_name)
+        present = {row.get(key) for row in table.findall(row_name)} if table is not None else set()
+        for row in old_rows:
+            ref = row.get(key)
+            if not ref or ref in present or known(ref):
+                continue
+            if table is None:
+                table = ET.SubElement(body, table_name)
+            table.append(row)
+            present.add(ref)
+
+    carry("siteevaluationTable", "siteevaluation", "siteuuid",
+          lambda ref: CampaignSite.objects.filter(uuid=ref).exists())
+    carry("campaignmembershipTable", "campaignmembership", "campaignuuid",
+          lambda ref: ProjectGroup.objects.filter(uuid=ref).exists())
 
 
 def _preserve_foreign_snapshot(directory: Path) -> None:
