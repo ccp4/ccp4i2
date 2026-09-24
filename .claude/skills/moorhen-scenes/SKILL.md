@@ -46,9 +46,14 @@ the format.
 
 ### Rules the schema cannot express
 
-- **Selections are Coot CIDs**: `//A`, `//A/703-740`, `//*/LIG`, `//A/750/CA`.
-  Join several with `||` (`//A||//B`), in representation selections and in
-  `view.centre` / `view.slab` alike.
+- **Selections are Coot CIDs**: `//A`, `//A/703-740`, `//*/(LIG)`,
+  `//A/750/CA`. Join several with `||` (`//A||//B`), in representation
+  selections and in `view.centre` / `view.slab` alike.
+  **A residue *name* needs parentheses** — `//*/LIG` is a parse error, and a
+  bad selection draws nothing rather than complaining, so the mistake is
+  silent. The asymmetry that invites it: a comma list is valid *inside* the
+  parens (`//*/(AY7,LIG)`) but not for residue numbers (`//A/115,116` is a
+  parse error). Verified against gemmi.
 - **A representation draws its own `selection`**, the whole molecule if
   omitted. Colour never limits what is drawn; scope the selection instead.
 - **Colour forms**: hex `#rrggbb`; a named scheme (`by-domain`, `b-factor`,

@@ -134,7 +134,8 @@ domains) are Coot CIDs:
 
 - \`//A\` — the whole of chain A
 - \`//A/703-740\` — residues 703–740 of chain A
-- \`//*/LIG\` — every residue named LIG
+- \`//*/(LIG)\` — every residue named LIG (the parens are REQUIRED;
+  \`//*/LIG\` is a parse error)
 - \`//A/750/CA\` — one atom
 - join several with \`||\`: \`//A||//B\`
 

@@ -150,6 +150,95 @@ describe("published JSON Schema contracts", () => {
     walk(buildStructuredJsonSchema());
   });
 
+  it("the shipped authoring guide's scene examples still validate", () => {
+    // moorhen-scene-authoring.v1.md is hand-written (not generated from Zod) and
+    // ships as ccp4i2 package data for external adopters to feed their own model.
+    // Its examples are the part that rots silently when the schema moves — the
+    // deprecated-domain divergence this guard was added for shipped docs whose
+    // every domain example the validator rejected. Parse each complete scene
+    // block; skip schematic ones (placeholders like `scene: <string>`) and
+    // fragments that are not whole scenes.
+    const guide = path.join(SERVER_CONTRACTS_DIR, "moorhen-scene-authoring.v1.md");
+    expect(existsSync(guide), "authoring guide missing from scene_contracts").toBe(true);
+    const md = readFileSync(guide, "utf8");
+
+    const blocks = [...md.matchAll(/```yaml\n([\s\S]*?)```/g)].map((m) => m[1]);
+    expect(blocks.length, "expected yaml examples in the guide").toBeGreaterThan(5);
+
+    // Skip blocks that are illustrative rather than complete: schematic
+    // placeholders (`scene: <string>`), and any block using `[ ... ]` / `...`
+    // elision for a value the validator would then see as empty.
+    const schematic = (b: string) =>
+      /<[a-z][^>]*>/i.test(b) || /\.\.\./.test(b);
+
+    let whole = 0;
+    let fragments = 0;
+    for (const block of blocks) {
+      if (schematic(block)) continue;
+
+      if (/^\s*scene:/.test(block)) {
+        expect(() => parseScene(block), `guide example failed to validate:\n${block}`).not.toThrow();
+        whole++;
+        continue;
+      }
+
+      // Most examples are fragments (a bare `domains:` or `elements:` list).
+      // Those are where the rot actually showed: every documented domain used a
+      // shape the validator rejected. Wrap a fragment in a minimal scene so it
+      // is checked too.
+      const top = block.match(/^([a-zA-Z]+):/m)?.[1];
+      if (top !== "domains" && top !== "elements" && top !== "superpose") continue;
+      // Declare every name the fragment references (coords via file/move/onto,
+      // dictionaries via `dictionaries: [a, b]`) so cross-reference checks pass.
+      const coords = [...block.matchAll(/\b(?:file|move|onto):\s*([\w-]+)/g)].map((m) => m[1]);
+      const dicts = [...block.matchAll(/dictionaries:\s*\[([^\]]*)\]/g)].flatMap((m) =>
+        m[1].split(",").map((d) => d.trim()).filter(Boolean),
+      );
+      const uniq = (xs: string[]) => xs.filter((n, i, a) => a.indexOf(n) === i);
+      const files =
+        top === "domains"
+          ? ""
+          : "files:\n" +
+            uniq(coords).map((n) => `  - { name: ${n}, pdb: 1abc }\n`).join("") +
+            uniq(dicts)
+              .map((n) => `  - { name: ${n}, kind: dictionary, url: https://example/${n}.cif }\n`)
+              .join("");
+      const wrapped = `scene: guide-fragment\nversion: 1\n${files}${block}`;
+      expect(() => parseScene(wrapped), `guide fragment failed to validate:\n${block}`).not.toThrow();
+      fragments++;
+    }
+    expect(whole, "no complete scene examples were checked").toBeGreaterThan(0);
+    expect(fragments, "no domain/element fragments were checked").toBeGreaterThan(3);
+  });
+
+  it("the strict profile prunes the deprecated domain form but keeps the LSQ shorthand", () => {
+    // `chain`/`range` are the deprecated domain fields AND the current superpose
+    // LSQ shorthand. STRUCTURED_PRUNE.scopedProps drops them only from the
+    // domain object (matched on its `selection`+`color` siblings); pruning by
+    // bare name would strip the LSQ form too. Guards that scoping.
+    const domains: string[][] = [];
+    const lsq: string[][] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const walk = (node: any): void => {
+      if (Array.isArray(node)) return node.forEach(walk);
+      if (!node || typeof node !== "object") return;
+      const props = node.properties;
+      if (props && typeof props === "object") {
+        const keys = Object.keys(props);
+        if (keys.includes("name") && keys.includes("color")) domains.push(keys.sort());
+        if (keys.includes("matches")) lsq.push(keys.sort());
+      }
+      for (const v of Object.values(node)) walk(v);
+    };
+    walk(buildStructuredJsonSchema());
+
+    expect(domains.length, "expected one domains[] item schema").toBe(1);
+    expect(domains[0]).toEqual(["color", "name", "selection"]);
+    expect(lsq.length, "expected one lsq superpose branch").toBe(1);
+    expect(lsq[0]).toContain("chain");
+    expect(lsq[0]).toContain("range");
+  });
+
   it("the strict profile stays under Azure's 100-property cap (with headroom)", () => {
     // Azure OpenAI hard-caps a strict json_schema at 100 object properties total
     // and 5 nesting levels. The authoring-core prune (STRUCTURED_PRUNE) keeps us
