@@ -261,6 +261,19 @@ def campaign_dataset_specs(group, skipped: Optional[list] = None) -> List[Datase
     from ccp4i2.lib.pandda_export import (
         _find_dictionary_cif, collect_pandda_datasets)
 
+    def registered(job, *param_names):
+        """The File row a job registered under one of ``param_names``
+        (``DICTOUT`` or ``DICTOUT_LIST[0]`` for a dictionary), or None."""
+        if job is None:
+            return None
+        rows = models.File.objects.filter(job=job)
+        for name in param_names:
+            row = rows.filter(job_param_name=name).first() or \
+                rows.filter(job_param_name__startswith=name).order_by("id").first()
+            if row is not None:
+                return row
+        return None
+
     specs = []
     for project, dimple_job, acedrg_job in collect_pandda_datasets(group):
         if not dimple_job:
@@ -269,9 +282,14 @@ def campaign_dataset_specs(group, skipped: Optional[list] = None) -> List[Datase
             if skipped is not None:
                 skipped.append((project.name, "no finished dimple job"))
             continue
+        # By registered output where the job declared one -- what the
+        # interface can show and the manifest can key on -- else by the file
+        # dimple leaves on disk.
         dimple_dir = Path(dimple_job.directory)
-        xyzin = dimple_dir / MODEL_NAME
-        hklin = dimple_dir / REFLECTIONS_NAME
+        model_row = registered(dimple_job, "XYZOUT")
+        mtz_row = registered(dimple_job, "COMPLETE_MTZ")
+        xyzin = model_row.path if model_row is not None else dimple_dir / MODEL_NAME
+        hklin = mtz_row.path if mtz_row is not None else dimple_dir / REFLECTIONS_NAME
         if not xyzin.is_file() or not hklin.is_file():
             logger.warning("campaign %s: dimple outputs missing for %s, skipped",
                            group.name, project.name)
@@ -279,15 +297,16 @@ def campaign_dataset_specs(group, skipped: Optional[list] = None) -> List[Datase
                 skipped.append((project.name, f"dimple job {dimple_job.number} has no final.pdb/final.mtz on disk"))
             continue
         uuids = {}
-        for role, path in (("xyzin", xyzin), ("hklin", hklin)):
-            row = models.File.objects.filter(job=dimple_job, name=path.name).first()
-            if row is not None:
-                uuids[role] = str(row.uuid)
-        dict_cif = _find_dictionary_cif(acedrg_job)
-        if dict_cif is not None:
-            row = models.File.objects.filter(job=acedrg_job, name=dict_cif.name).first()
-            if row is not None:
-                uuids["dict"] = str(row.uuid)
+        if model_row is not None:
+            uuids["xyzin"] = str(model_row.uuid)
+        if mtz_row is not None:
+            uuids["hklin"] = str(mtz_row.uuid)
+        dict_row = registered(acedrg_job, "DICTOUT")
+        if dict_row is not None and dict_row.path.is_file():
+            dict_cif = dict_row.path
+            uuids["dict"] = str(dict_row.uuid)
+        else:
+            dict_cif = _find_dictionary_cif(acedrg_job)
         specs.append(DatasetSpec(
             label=project.name,
             xyzin=xyzin,

@@ -42,6 +42,23 @@ def _listed_labels(job) -> set:
     return set()
 
 
+def _file_reference(file_uuid: str) -> Dict:
+    """A registered file as a CDataFile takes it: by project, relPath,
+    baseName and dbFileId, so the interface shows the file and the run
+    records a use of it rather than importing a copy. The project is the
+    file's own, which is not the job's: these files live in the members."""
+    row = models.File.objects.select_related("job__project").get(uuid=file_uuid)
+    return {
+        "baseName": str(row.name),
+        "relPath": str(row.rel_path),
+        "project": str(row.job.project.uuid).replace("-", ""),
+        "dbFileId": str(row.uuid).replace("-", ""),
+        "annotation": str(row.annotation or ""),
+        "contentFlag": row.content,
+        "subType": row.sub_type,
+    }
+
+
 def campaign_candidates(job) -> Dict:
     """What a fill would add, and why anything is left out. Read-only.
 
@@ -83,6 +100,8 @@ def campaign_candidates(job) -> Dict:
                 "xyzin": str(spec.xyzin),
                 "hklin": str(spec.hklin),
                 "dict": str(spec.dictionary) if spec.dictionary else None,
+                "refs": {role: _file_reference(uuid)
+                         for role, uuid in (spec.source_file_uuids or {}).items()},
                 "listed": spec.label in listed,
             })
         result["skipped"].extend({"project": name, "reason": why} for name, why in skipped)
@@ -108,10 +127,14 @@ def fill_datasets(plugin, job) -> Result[Dict]:
     for candidate in to_add:
         item = datasets.makeItem()
         item.DTAG.set(candidate["label"])
-        item.XYZIN.setFullPath(candidate["xyzin"])
-        item.HKLIN.setFullPath(candidate["hklin"])
-        if candidate["dict"]:
-            item.DICT.setFullPath(candidate["dict"])
+        refs = candidate.get("refs") or {}
+        for role, member, path in (("xyzin", item.XYZIN, candidate["xyzin"]),
+                                   ("hklin", item.HKLIN, candidate["hklin"]),
+                                   ("dict", item.DICT, candidate["dict"])):
+            if role in refs:
+                member.set(refs[role])
+            elif path:
+                member.setFullPath(path)
         if candidate["project_uuid"]:
             item.PROJECT_UUID.set(candidate["project_uuid"])
         if candidate["source_job_uuid"]:

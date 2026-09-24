@@ -26,11 +26,21 @@ def make_project(name):
     return models.Project.objects.create(name=name, directory=str(directory))
 
 
-def finished_dimple(project, number="1", with_files=True):
+def register(job, param_name, name, mime):
+    file_type, _ = models.FileType.objects.get_or_create(name=mime, defaults={"description": mime})
+    (job.directory / name).write_text("x\n")
+    return models.File.objects.create(name=name, directory=models.File.Directory.JOB_DIR,
+                                      type=file_type, job=job, job_param_name=param_name)
+
+
+def finished_dimple(project, number="1", with_files=True, registered=True):
     job = models.Job.objects.create(project=project, number=number, task_name="i2Dimple",
                                     title="dimple", status=models.Job.Status.FINISHED)
     job.directory.mkdir(parents=True, exist_ok=True)
-    if with_files:
+    if with_files and registered:
+        register(job, "XYZOUT", "final.pdb", "chemical/x-pdb")
+        register(job, "COMPLETE_MTZ", "final.mtz", "application/CCP4-mtz")
+    elif with_files:
         (job.directory / "final.pdb").write_text("END\n")
         (job.directory / "final.mtz").write_bytes(b"MTZ ")
     return job
@@ -50,7 +60,8 @@ class FanInTest(TestCase):
         acedrg = models.Job.objects.create(project=self.m1, number="2", task_name="LidiaAcedrgNew",
                                            title="acedrg", status=models.Job.Status.FINISHED)
         acedrg.directory.mkdir(parents=True, exist_ok=True)
-        (acedrg.directory / "LIG.cif").write_text("data_comp_list\n")
+        # named after the ligand, as acedrg does, and registered as a list item
+        self.dict_row = register(acedrg, "DICTOUT_LIST[0]", "MZ0.cif", "application/refmac-dictionary")
         self.d2 = finished_dimple(self.m2, with_files=False)   # ran, but outputs gone
         # m3 has no dimple at all
         job_uuid = create_job(projectId=str(self.parent.uuid), taskName="pandda_campaign", title="PanDDA")
@@ -68,7 +79,10 @@ class FanInTest(TestCase):
         c = preview["candidates"][0]
         self.assertEqual(c["project_uuid"], str(self.m1.uuid))
         self.assertEqual(c["source_job_uuid"], str(self.d1.uuid))
-        self.assertTrue(c["dict"].endswith("LIG.cif"))
+        self.assertTrue(c["dict"].endswith("MZ0.cif"))
+        self.assertEqual(set(c["refs"]), {"xyzin", "hklin", "dict"})
+        self.assertEqual(c["refs"]["dict"]["dbFileId"], self.dict_row.uuid.hex)
+        self.assertEqual(c["refs"]["xyzin"]["project"], self.m1.uuid.hex, "the member's project, not the job's")
         self.assertFalse(c["listed"])
         reasons = {s["project"]: s["reason"] for s in preview["skipped"]}
         self.assertIn("no finished dimple", reasons["x428"])
@@ -84,12 +98,15 @@ class FanInTest(TestCase):
         self.assertEqual(item.findtext("DTAG"), "x425")
         self.assertEqual(item.findtext("PROJECT_UUID"), str(self.m1.uuid))
         self.assertEqual(item.findtext("SOURCE_JOB_UUID"), str(self.d1.uuid))
-        # Files in another project's job directory are recorded by path (the
-        # run imports them into this project); what matters is that they
-        # point at the right files.
-        self.assertTrue(item.findtext("XYZIN/baseName").endswith("x425/CCP4_JOBS/job_1/final.pdb"))
-        self.assertTrue(item.findtext("HKLIN/baseName").endswith("x425/CCP4_JOBS/job_1/final.mtz"))
-        self.assertTrue(item.findtext("DICT/baseName").endswith("x425/CCP4_JOBS/job_2/LIG.cif"))
+        # Registered outputs are referenced by identity: what the picker
+        # shows, what the run records a use of, what the manifest keys on.
+        self.assertEqual(item.findtext("XYZIN/baseName"), "final.pdb")
+        self.assertEqual(item.findtext("XYZIN/relPath"), "CCP4_JOBS/job_1")
+        self.assertEqual(item.findtext("XYZIN/project").replace("-", ""), self.m1.uuid.hex)
+        self.assertTrue(item.findtext("XYZIN/dbFileId"))
+        self.assertEqual(item.findtext("HKLIN/baseName"), "final.mtz")
+        self.assertEqual(item.findtext("DICT/baseName"), "MZ0.cif")
+        self.assertEqual(item.findtext("DICT/dbFileId").replace("-", ""), self.dict_row.uuid.hex)
 
     def test_filling_twice_adds_nothing(self):
         fill_datasets_from_campaign(self.job)
@@ -98,6 +115,17 @@ class FanInTest(TestCase):
         self.assertEqual(result.data["added"], [])
         self.assertTrue(result.data["candidates"][0]["listed"])
         self.assertEqual(len(self.datasets()), 1)
+
+    def test_unregistered_dimple_outputs_fall_back_to_the_path(self):
+        m4 = make_project("x429")
+        models.ProjectGroupMembership.objects.create(group=self.group, project=m4, type=MEMBER)
+        finished_dimple(m4, registered=False)
+        preview = campaign_candidates(self.job)
+        c = next(c for c in preview["candidates"] if c["label"] == "x429")
+        self.assertEqual(c["refs"], {})
+        fill_datasets_from_campaign(self.job)
+        item = next(i for i in self.datasets() if i.findtext("DTAG") == "x429")
+        self.assertTrue(item.findtext("XYZIN/baseName").endswith("x429/CCP4_JOBS/job_1/final.pdb"))
 
     def test_a_member_project_is_not_a_parent(self):
         job_uuid = create_job(projectId=str(self.m1.uuid), taskName="pandda_campaign", title="PanDDA")
