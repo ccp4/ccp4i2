@@ -31,7 +31,7 @@ NON_CITABLE = frozenset({
     "add_fractional_coords", "editbfac", "pdbview_edit", "chltofom",
     "cmapcoeff", "coot_script_lines",
     # i2 wrapper/glue tasks with no distinct publication
-    "MakeLink", "MakeMonster", "MakeProjectsAndDoLigandPipeline",
+    "MakeLink", "MakeMonster",
     "SubtractNative", "pdb_extract_wrapper", "PrepareDeposit", "Lidia",
     # i2 utility tasks with no distinct upstream program paper
     "density_calculator", "dm_multidomain", "findmyseq",

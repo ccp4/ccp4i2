@@ -952,7 +952,7 @@ each pipeline's nested wrappers and report modules.
 | `dr_mr_modelbuild_pipeline` | 1507 | 11 | 1 | **81** | 29 | 6 | [ ] | One of four pipelines using `doAsync`/`connectSignal` chaining, so fully exposed to C3. Re-check step transitions once slot exceptions surface. |
 | `MakeLink` | 564 | 6 | 0 | 46 | 3 | **21** | [ ] | 21 `return FAILED` and no `appendErrorReport` anywhere — every failure path is silent by construction. Small file, high yield: give each return a code and a message. |
 | `SubstituteLigand` | 945 | 0 | 3 | 23 | 0 | 0 | [ ] | Cleanest of the large pipelines — 33 error reports, no bare excepts. Already the reference implementation in `pipeline_best_practices.md`; keep it that way. |
-| `MakeProjectsAndDoLigandPipeline` | 318 | **10** | 3 | 16 | 18 | 1 | [ ] | Very high defect density for its size — 10 bare excepts in 318 lines. Cheap to rewrite outright rather than patch. |
+| `MakeProjectsAndDoLigandPipeline` | 318 | **10** | 3 | 16 | 18 | 1 | [x] | Very high defect density. **Deleted** 2026-09-24: it could not run (`JOBCONTROLLER`/`PROJECTSMANAGER` no longer exist); see `docs/pandda-campaign-design.md` Appendix A for its size — 10 bare excepts in 318 lines. Cheap to rewrite outright rather than patch. |
 | `tableone` | 304 | 0 | 0 | 1 | **25** | 0 | [ ] | Pure XML aggregation; 25 unguarded indexes in 304 lines. Prime candidate for M4 as a worked example. |
 | `import_xia2` | 574 | 6 | 0 | 2 | 6 | 0 | [ ] | Import path; same argument as `import_merged` but smaller. Reports 11 errors, returns FAILED never. |
 | `phaser_ep` | 318 | 0 | 0 | 0 | 5 | 7 | [ ] | Handle with `phaser_pipeline` — shared idioms, shared fixes. |

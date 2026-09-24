@@ -74,8 +74,6 @@ class TestTheOtherPortedModules:
         "module",
         [
             "ccp4i2.wrappers.qtpisa.script.qtpisa_report",
-            "ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script."
-            "MakeProjectsAndDoLigandPipeline_report",
             "ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac_report",
         ],
     )
