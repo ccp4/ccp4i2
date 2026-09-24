@@ -1147,6 +1147,34 @@ It is a day's work and it is the single highest-variance assumption in this
 document. Everything in §14.2 items 3–5 depends on it; if it does not hold,
 the receipt's shape changes and so does the delivery plan.
 
+**Outcome (2026-09-24): it holds.** A throwaway task with `outputData.EVENTS`
+a `CList` of a core-registered composed type holding a `CMapDataFile` and a
+`CPdbDataFile`, run under `i2run`, gave one `File` row per nested file with
+`job_param_name` exactly `EVENTS[0].EVENT_MAP`, `EVENTS[0].POSE`,
+`EVENTS[1].EVENT_MAP`, `EVENTS[1].POSE` and the right mime types; `params.xml`
+carried each nested file with its `dbFileId`; `get_job_plugin` (what the
+`/container/` endpoint uses) read it back as typed items with existing files;
+and the JSON encoder emitted the items as `CSpikeEventPair` with typed nested
+files. The parser gave the list a real subItem class, asserted directly. Three
+things learned on the way, none blocking:
+
+- **A misregistered *subItem* is quieter than line 403 suggests.** That
+  warning fires for a top-level `<content>`; for a `<subItem>` the parser
+  simply sets no `subItem` qualifier and `makeItem()` returns `CString` with
+  no message at all. The receipt's test must assert the item class.
+- **`checkOutputData()` does not name nested files.** It defaults paths only
+  for top-level `CDataFile`s and for lists *of* `CDataFile`s; a file inside a
+  composed item gets no default. The receipt sets every nested path itself
+  (it would anyway, since the names come from the PanDDA tree).
+- `lib/utils/containers/get_container.get_job_container` (bare `CContainer`
+  + `loadContentsFromXml` of a def.xml) returns an empty container and is not
+  what the UI uses; the read path to test against is `get_job_plugin`.
+
+The client already dispatches composed list items by `_class` to a
+per-class element (`CDmDomain` has `cdmdomain.tsx`), so `CPanddaEvent` will
+want one such element for the receipt's page; `GenericInterface` will not
+fall over without it, but will not show the files well either.
+
 ### 14.2 v1 — the runnable path
 
 v1 has **no database-schema footprint**: no model, no migration, no signal
