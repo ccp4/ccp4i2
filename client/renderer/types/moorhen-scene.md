@@ -138,7 +138,7 @@ maps?: ({
   }  # required for mtz, omit for map
   isMask?: boolean
   isDifference?: boolean
-  contourLevel?: number  # rmsd-relative
+  contourLevel?: number  # absolute map units (Moorhen's contour store; the resolver passes it straight through). A Z-map reads at 3.0; an event map at the level its producer recorded. Not rmsd-relative: a masked or boxed map's rmsd is meaningless
   radius?: number  # contour radius (Å)
   alpha?: number
   style?: "lines"|"solid"|"lit-lines"
@@ -149,7 +149,7 @@ maps?: ({
 })[]
 activeMap?: string
 view?: {
-  origin?: [number, number, number]
+  origin?: [number, number, number]  # Moorhen's view origin: the NEGATIVE of the point at screen centre (the translation that brings it there). To look at a point p, write -p; to centre on atoms, prefer `centre`, which handles the sign
   centre?: { file?: string, selection?: string }  # centroid of a selection; beats origin
   quat?: [number, number, number, number]
   zoom?: number
