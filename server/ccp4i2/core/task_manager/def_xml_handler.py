@@ -67,6 +67,7 @@ class DefXmlParser:
                 'CCP4RefmacData',
                 'CCP4XtalData',
                 'CDmDomain',
+                'CMoorhenSceneDataFile',
             ]
 
             for module_name in implementation_modules:

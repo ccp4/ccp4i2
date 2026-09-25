@@ -87,6 +87,7 @@ FILETYPES_TEXT = [
     "text/plain",
     "application/phasertng-dag",
     "application/dnatco-naval-json",
+    "application/moorhen-scene",
 ]
 FILETYPES_CLASS = [
     "DataFile",
@@ -130,6 +131,7 @@ FILETYPES_CLASS = [
     "TextDataFile",
     "PhaserTngDagFile",
     "DnatcoNavalJsonFile",
+    "MoorhenSceneDataFile",
 ]
 MINIMTZFILETYPES = [10, 11, 12, 13]
 FILE_ROLE_OUT = 0
@@ -189,6 +191,7 @@ FILETYPELIST = [
     (38, "text/plain", "Plain text file"),
     (39, "application/phasertng-dag", "PhaserTNG DAG file"),
     (40, "application/dnatco-naval-json", "DNATCO NAVAL nucleic acid geometry validation"),
+    (41, "application/moorhen-scene", "Moorhen scene"),
 ]
 
 KEYTYPELIST = [

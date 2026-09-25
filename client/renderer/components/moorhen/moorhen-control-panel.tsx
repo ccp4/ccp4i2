@@ -547,17 +547,20 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
                   spacing={0.5}
                   sx={{ mb: 0.25, px: 0.5 }}
                 >
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      minWidth: 38,
-                      flexShrink: 0,
-                      opacity: isVisible ? 1 : 0.4,
-                      fontSize: "0.7rem",
-                    }}
-                  >
-                    {shortName}
-                  </Typography>
+                  <Tooltip title={map.name || shortName} enterDelay={300}>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        minWidth: 38,
+                        flexShrink: 0,
+                        opacity: isVisible ? 1 : 0.4,
+                        fontSize: "0.7rem",
+                        cursor: "default",
+                      }}
+                    >
+                      {shortName}
+                    </Typography>
+                  </Tooltip>
                   <Slider
                     size="small"
                     disabled={!isVisible}
