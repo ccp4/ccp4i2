@@ -554,9 +554,14 @@ export const FileMenu: React.FC = () => {
             // it was only ever missing from this menu gate. (#508)
             "application/CCP4-map",
             "application/refmac-dictionary",
+            // A scene a job authored: the file-by-id page applies it as
+            // written (moorhen-wrapper's per-file loader), so opening a scene
+            // renders the view its job intended.
+            "application/moorhen-scene",
           ].includes(file.type) && (
             <MenuItem key="Moorhen" onClick={handlePreviewFileInMoorhen}>
-              <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Moorhen
+              <CCP4i2MoorhenIcon sx={{ mr: 1 }} />{" "}
+              {file.type === "application/moorhen-scene" ? "Open scene in Moorhen" : "Moorhen"}
             </MenuItem>
           )}
         {file && isMtzFile(file) && (

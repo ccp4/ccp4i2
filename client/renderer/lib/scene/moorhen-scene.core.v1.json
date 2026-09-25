@@ -710,7 +710,7 @@
             "type": "boolean"
           },
           "contourLevel": {
-            "description": "rmsd-relative",
+            "description": "absolute map units (Moorhen's contour store; the resolver passes it straight through). A Z-map reads at 3.0; an event map at the level its producer recorded. Not rmsd-relative: a masked or boxed map's rmsd is meaningless",
             "type": "number"
           },
           "radius": {
@@ -762,6 +762,7 @@
       "type": "object",
       "properties": {
         "origin": {
+          "description": "Moorhen's view origin: the NEGATIVE of the point at screen centre (the translation that brings it there). To look at a point p, write -p; to centre on atoms, prefer `centre`, which handles the sign",
           "type": "array",
           "prefixItems": [
             {

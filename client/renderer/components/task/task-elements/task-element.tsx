@@ -106,6 +106,7 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   CHhpredDataFile: { component: CSimpleDataFileElement },
   CBlastDataFile: { component: CSimpleDataFileElement },
   CDataFile: { component: CSimpleDataFileElement },
+  CMoorhenSceneDataFile: { component: CSimpleDataFileElement },
   CUnmergedDataFile: { component: CSimpleDataFileElement },
   CCootHistoryDataFile: { component: CSimpleDataFileElement },
   CDialsJsonFile: { component: CSimpleDataFileElement },

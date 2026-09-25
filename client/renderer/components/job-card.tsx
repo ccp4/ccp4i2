@@ -1,3 +1,4 @@
+import { formatKpiValue } from "../lib/format-kpi";
 import { useApi } from "../api";
 import {
   Button,
@@ -115,7 +116,7 @@ export const JobCard: React.FC<JobCardProps> = ({
           key={`float_${key}`}
           sx={{ backgroundColor: "#DFD" }}
           avatar={<div style={{ width: "5rem" }}>{key}</div>}
-          label={value.toPrecision(3)}
+          label={formatKpiValue(value)}
         />
       )
     );

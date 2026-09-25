@@ -187,6 +187,9 @@ async function resolveJobParamUrl(
   return `/api/proxy/ccp4i2/files/${file.id}/download/`;
 }
 
+/** The mime type a job's authored Moorhen scene registers under. */
+const SCENE_FILE_TYPE = "application/moorhen-scene";
+
 const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId, projectId, sessionJobId }) => {
   const capabilities = useMoorhenCapabilities();
   const session = useMoorhenSession(sessionJobId, !!sessionJobId);
@@ -463,10 +466,19 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   const fetchMapFile = useCallback(async (
     url: string,
     mapName: string,
-    opts: { isMask?: boolean } = {},
+    opts: {
+      isMask?: boolean;
+      /** The file's sub_type (1 normal, 2 difference, 3 anomalous, 4 mask):
+       *  labels the map and, for 2 and 3, contours it as a difference map. */
+      subType?: number;
+      /** An absolute level to open at, e.g. PanDDA's optimal contour for an
+       *  event map. Omitted: 3 rmsd for a difference map, else Moorhen's own. */
+      contourLevel?: number;
+    } = {},
   ) => {
     if (!commandCentre.current) return;
     let newMap: moorhen.Map | undefined;
+    const isDiffMap = opts.subType === 2 || opts.subType === 3;
     try {
       // Convert mode-0 (int8) CCP4 maps to float so Moorhen reads sane stats
       // (no-op if already float). For masks, also nudge the P1/orthogonal cell
@@ -476,19 +488,44 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       newMap = await MoorhenMap.loadToCootFromMapData(
         new Uint8Array(mapData),
         mapName,
-        false,
+        isDiffMap,
         requireMoorhenInstance(moorhenInstanceRef),
       );
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map file...");
       newMap.uniqueId = url;
       // Tag so the lifter captures it as a kind: "map" ref (not MTZ).
       (newMap as any).isCcp4MapFile = true;
+      if (opts.subType != null) (newMap as any).mapSubType = opts.subType;
+      if (isDiffMap) newMap.isDifference = true;
+      if (opts.subType === 3) {
+        newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 };
+        newMap.defaultNegativeMapColour = { r: 0.6, g: 0.3, b: 0.8 };
+      }
       if (opts.isMask) {
         markMaskMap(newMap);
       }
       dispatch(addMap(newMap));
       if (opts.isMask) {
         await applyMaskDefaults(dispatch, newMap as any);
+      }
+      // Where to open: a level the producer recorded (an event map's optimal
+      // contour, in absolute map units), else +/-3 rmsd for a difference map
+      // (a Z-map's rmsd is ~1, so that is z = 3). A normal map keeps Moorhen's
+      // own default.
+      let level = opts.contourLevel;
+      if (level == null && isDiffMap && !opts.isMask) {
+        try {
+          const rmsd = await newMap.fetchMapRmsd();
+          if (Number.isFinite(rmsd) && rmsd > 0) level = 3 * rmsd;
+        } catch (err) {
+          console.warn("map rmsd unavailable:", err);
+        }
+      }
+      if (level != null && Number.isFinite(level) && level > 0) {
+        dispatch(setContourLevel({ molNo: newMap.molNo, contourLevel: level } as any));
+        newMap.drawMapContour().catch((err: Error) => {
+          console.error("Failed to redraw map contour at its starting level:", err);
+        });
       }
     } catch (err) {
       console.warn(err);
@@ -593,10 +630,17 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       const molName = fileInfo.name || fileInfo.job_param_name;
       const mapSubType = fileInfo.sub_type || 1;
       await fetchMap(url, molName, mapSubType);
+    } else if (fileInfo.type === SCENE_FILE_TYPE) {
+      // A scene the job authored: apply it as written.
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      await applySceneRef.current?.(await apiText(url));
     } else if (fileInfo.type === "application/CCP4-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.name || fileInfo.job_param_name;
-      await fetchMapFile(url, molName, { isMask: isMaskSubType(fileInfo.sub_type) });
+      await fetchMapFile(url, molName, {
+        isMask: isMaskSubType(fileInfo.sub_type),
+        subType: fileInfo.sub_type,
+      });
     } else if (fileInfo.type === "application/refmac-dictionary") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       await fetchDict(url);
@@ -611,6 +655,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
    * LIG/DRG" problem: each coordinate set carries its own chemistry, and a
    * molecule from a job without dictionaries inherits none.
    */
+  // handleApplyScene is defined further down (it depends on the scene
+  // fetchers); the job loaders reach it through this ref.
+  const applySceneRef = useRef<((yamlText: string) => Promise<unknown>) | null>(null);
+
   const fetchJobFiles = useCallback(async (jobId: number) => {
     if (!commandCentre.current) return;
 
@@ -619,6 +667,21 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 
     // Only job output files (directory=1), not imported files (directory=2)
     const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
+
+    // A job that authored a scene is the authority on how its outputs should
+    // look: apply it and stop. The inference below is for jobs that wrote
+    // none. The job-level scene (param SCENE) wins over per-item ones.
+    const sceneFiles = jobOutputFiles.filter((f: { type: string }) => f.type === SCENE_FILE_TYPE);
+    if (sceneFiles.length > 0 && applySceneRef.current) {
+      const chosen =
+        sceneFiles.find((f: { job_param_name?: string }) => f.job_param_name === "SCENE") ?? sceneFiles[0];
+      try {
+        await applySceneRef.current(await apiText(`/api/proxy/ccp4i2/files/${chosen.id}/download/`));
+        return;
+      } catch (err) {
+        console.warn("[fetchJobFiles] the job's scene could not be applied; inferring instead:", err);
+      }
+    }
 
     // STEP 1: The job's dictionaries, from the database: the ones it wrote
     // or imported AND the ones it took as input (a refinement's ligand
@@ -663,7 +726,10 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       } else if (file.type === "application/CCP4-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
         const mapName = file.annotation || file.name || file.job_param_name;
-        await fetchMapFile(url, mapName, { isMask: isMaskSubType(file.sub_type) });
+        await fetchMapFile(url, mapName, {
+          isMask: isMaskSubType(file.sub_type),
+          subType: file.sub_type,
+        });
       }
     }
 
@@ -1103,6 +1169,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       handleMaskSceneMap,
     ],
   );
+  useEffect(() => {
+    applySceneRef.current = handleApplyScene;
+  }, [handleApplyScene]);
 
   // Resolve project context so scene authoring (manifest + projectId) and
   // job+param resolution work. Prefer an explicit projectId (the project-scoped

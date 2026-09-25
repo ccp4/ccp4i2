@@ -907,7 +907,12 @@ class AsyncDatabaseHandler:
 
                 # Register each value in database
                 for key, value in values.items():
-                    if isinstance(value, float):
+                    # A CInt KPI (a count) is a number too: it was being
+                    # dropped here because only float was checked, so no
+                    # integer KPI ever reached the database. bool is an int
+                    # in Python and is not a measurement.
+                    if isinstance(value, (int, float)) and not isinstance(value, bool):
+                        value = float(value)
                         if not is_storable_kpi_value(value):
                             logger.warning(
                                 "Skipping non-finite KPI %s=%r while gleaning "

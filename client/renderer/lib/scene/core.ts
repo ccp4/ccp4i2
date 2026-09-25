@@ -409,7 +409,12 @@ export const SceneMapSchema = z
     columns: MapColumns.optional().describe("required for mtz, omit for map"),
     isMask: z.boolean().optional(),
     isDifference: z.boolean().optional(),
-    contourLevel: z.number().optional().describe("rmsd-relative"),
+    contourLevel: z
+      .number()
+      .optional()
+      .describe(
+        "absolute map units (Moorhen's contour store; the resolver passes it straight through). A Z-map reads at 3.0; an event map at the level its producer recorded. Not rmsd-relative: a masked or boxed map's rmsd is meaningless",
+      ),
     radius: z.number().optional().describe("contour radius (Å)"),
     alpha: z.number().min(0).max(1).optional(),
     style: z.enum(["lines", "solid", "lit-lines"]).optional(),
@@ -498,7 +503,12 @@ const Slab = z
 
 export const View = z
   .object({
-    origin: z.tuple([z.number(), z.number(), z.number()]).optional(),
+    origin: z
+      .tuple([z.number(), z.number(), z.number()])
+      .optional()
+      .describe(
+        "Moorhen's view origin: the NEGATIVE of the point at screen centre (the translation that brings it there). To look at a point p, write -p; to centre on atoms, prefer `centre`, which handles the sign",
+      ),
     centre: Centre.optional().describe("centroid of a selection; beats origin"),
     quat: z.tuple([z.number(), z.number(), z.number(), z.number()]).optional(),
     zoom: z.number().optional(),
