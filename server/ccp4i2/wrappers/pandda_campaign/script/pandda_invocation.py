@@ -260,49 +260,121 @@ def estimate_peak_gib(n_datasets: int, volume_class: str, local_cpus: int) -> fl
 
 # --- the executable (4.6) ---------------------------------------------------
 
+def _env_root_for(path: Path, head: str) -> Optional[Path]:
+    """The conda/micromamba environment behind an executable, if any.
+
+    A PanDDA is reached one of four ways, and a parallel checkout (the
+    upstream repository, evolving faster than the CCP4 bundle) is usually
+    the second or third:
+
+    * the CCP4 launcher: ``micromamba run -r <root> -n <name> ...``;
+    * a launcher naming the environment by prefix: ``... run -p <prefix> ...``
+      (``conda run -p`` reads the same);
+    * a launcher naming it only: ``... run -n <name> ...``, resolved against
+      ``MAMBA_ROOT_PREFIX`` or the CCP4 tree;
+    * the environment's own console script, ``<env>/bin/pandda2.analyse``,
+      whose shebang names ``<env>/bin/python``.
+    """
+    match = re.search(r"(?:^|\s)(?:-p|--prefix)\s+(\S+)", head)
+    if match:
+        return Path(os.path.expandvars(match.group(1))).expanduser()
+    match = re.search(r"-r\s+(\S+)\s+-n\s+(\S+)", head)
+    if match:
+        return Path(os.path.expandvars(match.group(1))).expanduser() / "envs" / match.group(2)
+    match = re.search(r"(?:^|\s)(?:-n|--name)\s+(\S+)", head)
+    if match:
+        for root in (os.environ.get("MAMBA_ROOT_PREFIX"),
+                     os.path.join(os.environ.get("CCP4", ""), "share", "mamba") if os.environ.get("CCP4") else None):
+            if root and (Path(root) / "envs" / match.group(1)).is_dir():
+                return Path(root) / "envs" / match.group(1)
+    first = head.splitlines()[0] if head else ""
+    if first.startswith("#!"):
+        interpreter = Path(first[2:].split()[0]) if first[2:].split() else None
+        if interpreter and interpreter.parent.name == "bin" and (interpreter.parent.parent / "lib").is_dir():
+            return interpreter.parent.parent
+    if path.parent.name == "bin" and any(path.parent.parent.glob("lib/python*/site-packages")):
+        return path.parent.parent
+    return None
+
+
+def _git_head(checkout: Path) -> Optional[str]:
+    """The commit a checkout is at, read from ``.git`` without running git."""
+    git = checkout / ".git"
+    try:
+        if git.is_file():                      # a worktree: "gitdir: <path>"
+            git = Path(git.read_text().split(":", 1)[1].strip())
+        head = (git / "HEAD").read_text().strip()
+        if not head.startswith("ref:"):
+            return head
+        ref = head.split(":", 1)[1].strip()
+        direct = git / ref
+        if direct.is_file():
+            return direct.read_text().strip()
+        packed = git / "packed-refs"
+        if not packed.is_file():
+            common = git / "commondir"
+            packed = (git / common.read_text().strip() / "packed-refs") if common.is_file() else packed
+        for line in packed.read_text().splitlines() if packed.is_file() else ():
+            if line.endswith(" " + ref):
+                return line.split()[0]
+    except (OSError, IndexError, ValueError):
+        pass
+    return None
+
+
 def probe_executable(path) -> Dict[str, object]:
     """What can be said about the PanDDA behind ``path`` without running it.
 
     Both candidate builds report version 0.0.1 and carry no commit, so the
     resolved path plus a capability probe is the only usable provenance
     there is (4.6). The probe looks for the ``PANDDA_PROGRESS`` symbol in the
-    installed source, which is the one behaviour this task adapts to.
+    installed source, which is the one behaviour this task adapts to. An
+    editable install of a checkout (``pip install -e``) is followed to its
+    source, and the commit it sits at is recorded: that is the provenance a
+    parallel checkout has.
     """
     path = Path(path)
     probe = {"path": str(path), "launcher": None, "distribution": None, "version": None,
-             "origin": None, "progress_signal": None, "site_packages": None}
+             "origin": None, "editable_source": None, "commit": None,
+             "progress_signal": None, "site_packages": None}
     try:
         head = path.read_text(errors="replace")[:2000]
     except OSError:
         return probe
     probe["launcher"] = head.strip().splitlines()[-1][:200] if head.strip() else None
-    env_root = None
-    match = re.search(r"-r\s+(\S+)\s+-n\s+(\S+)", head)
-    if match:
-        root, name = match.group(1), match.group(2)
-        root = os.path.expandvars(root)
-        env_root = Path(root) / "envs" / name
-    if env_root and env_root.is_dir():
-        site = next(iter(sorted(env_root.glob("lib/python*/site-packages"))), None)
-        if site is not None:
-            probe["site_packages"] = str(site)
-            # The CCP4 bundle installs it as pandda_2_gemmi, upstream as
-            # pandda_gemmi; take whichever is there.
-            dist = next(iter(sorted(site.glob("pandda*gemmi-*.dist-info"))), None)
-            if dist is not None:
-                stem = dist.name[:-len(".dist-info")]
-                probe["distribution"] = stem.rsplit("-", 1)[0]
-                probe["version"] = stem.rsplit("-", 1)[1]
-                origin = dist / "direct_url.json"
-                if origin.is_file():
-                    try:
-                        probe["origin"] = json.loads(origin.read_text()).get("url")
-                    except (OSError, ValueError):
-                        pass
-            source = site / "pandda_gemmi" / "pandda" / "pandda.py"
-            if source.is_file():
-                try:
-                    probe["progress_signal"] = "PANDDA_PROGRESS" in source.read_text(errors="replace")
-                except OSError:
-                    pass
+    env_root = _env_root_for(path, head)
+    if not (env_root and env_root.is_dir()):
+        return probe
+    site = next(iter(sorted(env_root.glob("lib/python*/site-packages"))), None)
+    if site is None:
+        return probe
+    probe["site_packages"] = str(site)
+    source_root = site
+    # The CCP4 bundle installs it as pandda_2_gemmi, upstream as
+    # pandda_gemmi; take whichever is there.
+    dist = next(iter(sorted(site.glob("pandda*gemmi-*.dist-info"))), None)
+    if dist is not None:
+        stem = dist.name[:-len(".dist-info")]
+        probe["distribution"] = stem.rsplit("-", 1)[0]
+        probe["version"] = stem.rsplit("-", 1)[1]
+        origin = dist / "direct_url.json"
+        if origin.is_file():
+            try:
+                direct = json.loads(origin.read_text())
+            except (OSError, ValueError):
+                direct = {}
+            probe["origin"] = direct.get("url")
+            url = direct.get("url") or ""
+            if (direct.get("dir_info") or {}).get("editable") and url.startswith("file://"):
+                checkout = Path(url[len("file://"):])
+                if checkout.is_dir():
+                    probe["editable_source"] = str(checkout)
+                    probe["commit"] = _git_head(checkout)
+                    source_root = checkout
+    source = source_root / "pandda_gemmi" / "pandda" / "pandda.py"
+    if source.is_file():
+        try:
+            probe["progress_signal"] = "PANDDA_PROGRESS" in source.read_text(errors="replace")
+        except OSError:
+            pass
     return probe

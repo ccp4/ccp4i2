@@ -2,6 +2,8 @@
 in 15.2): both defensive arguments in the argv, RAY_TMPDIR set and no PanDDA
 switch we did not mean to set in the environment, the failure catalogue,
 the progress symbol, and the sizing estimate. CCP4-free, pure."""
+import json
+
 import pytest
 
 from ccp4i2.wrappers.pandda_campaign.script import pandda_invocation as c
@@ -127,3 +129,56 @@ def test_a_hollow_run_is_told_from_a_real_one(tmp_path):
         if zmap.exists():
             zmap.unlink()
     assert c.summarise_output_tree(tree, "")["analysed"] == 0
+
+
+def _fake_env(root, dist="pandda_gemmi", version="0.2.0", direct_url=None, pyver="3.11"):
+    site = root / "lib" / f"python{pyver}" / "site-packages"
+    info = site / f"{dist}-{version}.dist-info"
+    info.mkdir(parents=True)
+    if direct_url is not None:
+        (info / "direct_url.json").write_text(json.dumps(direct_url))
+    (root / "bin").mkdir()
+    return site
+
+
+def test_probe_follows_a_prefix_launcher_and_a_name_only_launcher(tmp_path, monkeypatch):
+    env = tmp_path / "mamba" / "envs" / "mypandda"
+    _fake_env(env)
+    by_prefix = tmp_path / "pandda-prefix.sh"
+    by_prefix.write_text(f'#!/bin/sh\nexec micromamba run -p {env} pandda2.analyse "$@"\n')
+    assert c.probe_executable(by_prefix)["version"] == "0.2.0"
+    by_name = tmp_path / "pandda-name.sh"
+    by_name.write_text('#!/bin/sh\nexec micromamba run -n mypandda pandda2.analyse "$@"\n')
+    monkeypatch.delenv("CCP4", raising=False)
+    monkeypatch.setenv("MAMBA_ROOT_PREFIX", str(tmp_path / "mamba"))
+    assert c.probe_executable(by_name)["distribution"] == "pandda_gemmi"
+
+
+def test_probe_reads_the_environment_behind_a_console_script(tmp_path):
+    env = tmp_path / "envs" / "upstream"
+    _fake_env(env)
+    script = env / "bin" / "pandda2.analyse"
+    script.write_text(f"#!{env}/bin/python\nfrom pandda_gemmi.pandda.pandda import pandda_run\n")
+    probe = c.probe_executable(script)
+    assert probe["version"] == "0.2.0" and probe["site_packages"].startswith(str(env))
+
+
+def test_probe_records_the_commit_of_an_editable_checkout(tmp_path):
+    checkout = tmp_path / "pandda_2_gemmi"
+    (checkout / "pandda_gemmi" / "pandda").mkdir(parents=True)
+    (checkout / "pandda_gemmi" / "pandda" / "pandda.py").write_text("print('PANDDA_PROGRESS: dataset 1/2')\n")
+    (checkout / ".git" / "refs" / "heads").mkdir(parents=True)
+    (checkout / ".git" / "HEAD").write_text("ref: refs/heads/main\n")
+    (checkout / ".git" / "refs" / "heads" / "main").write_text("abc123def456\n")
+    env = tmp_path / "envs" / "dev"
+    _fake_env(env, direct_url={"url": f"file://{checkout}", "dir_info": {"editable": True}})
+    launcher = tmp_path / "pandda-dev.sh"
+    launcher.write_text(f'#!/bin/sh\nexec micromamba run -p {env} pandda2.analyse "$@"\n')
+    probe = c.probe_executable(launcher)
+    assert probe["editable_source"] == str(checkout)
+    assert probe["commit"] == "abc123def456"
+    assert probe["progress_signal"] is True, "the source is read from the checkout, not site-packages"
+    # A packed ref resolves too.
+    (checkout / ".git" / "refs" / "heads" / "main").unlink()
+    (checkout / ".git" / "packed-refs").write_text("# pack-refs\n9876543210ab refs/heads/main\n")
+    assert c.probe_executable(launcher)["commit"] == "9876543210ab"
