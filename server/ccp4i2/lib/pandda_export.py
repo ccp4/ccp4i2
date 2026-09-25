@@ -65,13 +65,35 @@ def prepare_mtz_for_pandda(src_path: Path, staging_dir: Path) -> Path:
     labels = [col.label for col in mtz.columns]
     if any(label in PANDDA_FREER_LABELS for label in labels):
         return src_path
+    candidate = _freer_column(mtz)
+    if candidate is None:
+        return src_path
+    candidate.label = "FreeR_flag"
+    out_path = Path(staging_dir) / f"{src_path.stem}_pandda.mtz"
+    mtz.write_to_file(str(out_path))
+    return out_path
+
+
+def _freer_column(mtz):
+    """The column holding the free-R set, or None.
+
+    By a common label first; then, as the newer PanDDA reader does, by the
+    MTZ column *type*: a free-R flag is the one column of type ``I``. CCP4i2's
+    own complete MTZs name it by the parameter that supplied it
+    (``FREERFLAG_FREER`` from dimple's COMPLETE_MTZ), which no label list
+    anticipates, and that is what a label-only match missed on the first
+    real run.
+    """
     for col in mtz.columns:
         if col.label in COMMON_FREER_LABELS:
-            col.label = "FreeR_flag"
-            out_path = Path(staging_dir) / f"{src_path.stem}_pandda.mtz"
-            mtz.write_to_file(str(out_path))
-            return out_path
-    return src_path
+            return col
+    flags = [col for col in mtz.columns if col.type == "I"]
+    named = [col for col in flags if "FREE" in col.label.upper()]
+    if len(named) == 1:
+        return named[0]
+    if len(flags) == 1:
+        return flags[0]
+    return None
 
 
 def _latest_finished_job(project, task_names):
