@@ -88,6 +88,7 @@ FILETYPES_TEXT = [
     "application/phasertng-dag",
     "application/dnatco-naval-json",
     "application/moorhen-scene",
+    "application/pandda-manifest",
 ]
 FILETYPES_CLASS = [
     "DataFile",
@@ -132,6 +133,7 @@ FILETYPES_CLASS = [
     "PhaserTngDagFile",
     "DnatcoNavalJsonFile",
     "MoorhenSceneDataFile",
+    "PanddaManifestDataFile",
 ]
 MINIMTZFILETYPES = [10, 11, 12, 13]
 FILE_ROLE_OUT = 0
@@ -192,6 +194,7 @@ FILETYPELIST = [
     (39, "application/phasertng-dag", "PhaserTNG DAG file"),
     (40, "application/dnatco-naval-json", "DNATCO NAVAL nucleic acid geometry validation"),
     (41, "application/moorhen-scene", "Moorhen scene"),
+    (42, "application/pandda-manifest", "PanDDA run manifest"),
 ]
 
 KEYTYPELIST = [

@@ -72,6 +72,7 @@ import LidiaAcedrgNewInterface from "./LidiaAcedrgNew";
 import LorestrI2Interface from "./lorestr_i2";
 import MakeLinkInterface from "./MakeLink";
 import MakeMonsterInterface from "./MakeMonster";
+import PanddaCampaignInterface from "./pandda_campaign";
 import MatthewsInterface from "./matthews";
 import MergeMtzInterface from "./mergeMtz";
 import MetalCoordInterface from "./metalCoord";
@@ -229,6 +230,7 @@ const TASK_INTERFACES: Record<
   lorestr_i2: LorestrI2Interface,
   MakeLink: MakeLinkInterface,
   MakeMonster: MakeMonsterInterface,
+  pandda_campaign: PanddaCampaignInterface,
   matthews: MatthewsInterface,
   mergeMtz: MergeMtzInterface,
   metalCoord: MetalCoordInterface,

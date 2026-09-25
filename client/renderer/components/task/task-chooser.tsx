@@ -180,7 +180,14 @@ const TASK_CATEGORIES: TaskCategory[] = [
   {
     icon: "ligands",
     title: "Ligands",
-    tasks: ["LidiaAcedrgNew", "MakeLink", "SubstituteLigand"],
+    tasks: [
+      "LidiaAcedrgNew",
+      "MakeLink",
+      "SubstituteLigand",
+      "pandda_campaign",
+      "pandda_fanout",
+      "pandda_events",
+    ],
   },
   {
     icon: "validation",

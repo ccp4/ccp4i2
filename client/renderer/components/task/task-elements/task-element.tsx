@@ -30,6 +30,8 @@ import { CReindexOperatorElement } from "./creindexoperator";
 import { CRunBatchRangeElement } from "./crunbatchrange";
 import { CRangeElement } from "./crange";
 import { CDmDomainElement } from "./cdmdomain";
+import { CPanddaDatasetElement } from "./cpanddadataset";
+import { CPanddaEventElement } from "./cpanddaevent";
 import { v4 as uuid4 } from "uuid";
 import { CAsuContentSeqElement } from "./casucontentseq";
 import { CColumnGroupElement } from "./ccolumngroup";
@@ -107,6 +109,7 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   CBlastDataFile: { component: CSimpleDataFileElement },
   CDataFile: { component: CSimpleDataFileElement },
   CMoorhenSceneDataFile: { component: CSimpleDataFileElement },
+  CPanddaManifestDataFile: { component: CSimpleDataFileElement },
   CUnmergedDataFile: { component: CSimpleDataFileElement },
   CCootHistoryDataFile: { component: CSimpleDataFileElement },
   CDialsJsonFile: { component: CSimpleDataFileElement },
@@ -189,6 +192,8 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   CColumnGroup: { component: CColumnGroupElement },
   CRunBatchRange: { component: CRunBatchRangeElement },
   CDmDomain: { component: CDmDomainElement },
+  CPanddaDataset: { component: CPanddaDatasetElement },
+  CPanddaEvent: { component: CPanddaEventElement },
 };
 
 /**

@@ -1030,6 +1030,34 @@ TASKS = {
         runningReport=True,
         watchedFile="pairef_project/PAIREF_project.html",
     ),
+    "pandda_campaign": Task(
+        title="PanDDA over a set of datasets",
+        description="Stage a declared list of datasets and run PanDDA 2 over them (or stage only, to run elsewhere)",
+        shortTitle="PanDDA",
+        pluginPath="ccp4i2.wrappers.pandda_campaign.script.pandda_campaign:pandda_campaign",
+        defXmlPath="wrappers/pandda_campaign/script/pandda_campaign.def.xml",
+        reportPath="ccp4i2.wrappers.pandda_campaign.script.pandda_campaign_report:pandda_campaign_report",
+        runningReport=True,
+        watchedFile="program.xml",
+    ),
+    "pandda_fanout": Task(
+        title="PanDDA: receipts for every dataset",
+        description="Fan a PanDDA run out into one pandda_events receipt per dataset, in each dataset's own project",
+        shortTitle="PanDDA fan-out",
+        pluginPath="ccp4i2.wrappers.pandda_fanout.script.pandda_fanout:pandda_fanout",
+        defXmlPath="wrappers/pandda_fanout/script/pandda_fanout.def.xml",
+        reportPath="ccp4i2.wrappers.pandda_fanout.script.pandda_fanout_report:pandda_fanout_report",
+        ccp4_free=True,  # copies files and creates jobs; runs no program
+    ),
+    "pandda_events": Task(
+        title="PanDDA events for one dataset",
+        description="Receipt for one dataset's share of a PanDDA run: apo model, Z-map, and every event with its map and candidate pose",
+        shortTitle="PanDDA events",
+        pluginPath="ccp4i2.wrappers.pandda_events.script.pandda_events:pandda_events",
+        defXmlPath="wrappers/pandda_events/script/pandda_events.def.xml",
+        reportPath="ccp4i2.wrappers.pandda_events.script.pandda_events_report:pandda_events_report",
+        ccp4_free=True,  # reads a finished tree with gemmi/yaml; runs no program
+    ),
     "parrot": Task(
         title="Density modification - PARROT",
         description="Modify the electron density (Parrot)",

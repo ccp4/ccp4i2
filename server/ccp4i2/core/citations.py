@@ -149,6 +149,10 @@ TASK_CITES: Dict[str, List[str]] = {
     "import_serial_pipe": ["dials"],
     # --- dimple difference-map wrapper.
     "i2Dimple": ["dimple"],
+    # --- PanDDA: the receipt task publishes what a PanDDA 2 run found.
+    "pandda_events": ["pandda"],
+    "pandda_campaign": ["pandda"],
+    "pandda_fanout": ["pandda"],
     # --- thin variants aliasing to a canonical program.
     "pointless_reindexToMatch": ["pointless"],
     "mrbump_model_prep": ["mrbump"],

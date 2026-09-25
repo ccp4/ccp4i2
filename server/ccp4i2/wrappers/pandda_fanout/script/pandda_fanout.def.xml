@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>pandda_fanout</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="pandda_fanout">
+        <container id="inputData">
+            <content id="MANIFEST">
+                <className>CPanddaManifestDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <guiLabel>Run manifest</guiLabel>
+                    <toolTip>The manifest.json a PanDDA job wrote when it staged the run: which dataset became which xtal-NNNN, and whose it is</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="PANDDA_OUT_DIR">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>PanDDA output directory</guiLabel>
+                    <toolTip>The pandda2_out tree to fan out. Empty: the one written by the job that wrote the manifest. Set it for a tree produced elsewhere.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="DRY_RUN">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>Preview only</guiLabel>
+                    <toolTip>Report what would be created and create nothing</toolTip>
+                </qualifiers>
+            </content>
+            <content id="RUN_RECEIPTS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                    <guiLabel>Run the receipts</guiLabel>
+                    <toolTip>Run each receipt to completion, one at a time, as it is created. Off: create them pending, to be run from their projects.</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="PERFORMANCE">
+                <className>CPanddaFanoutPerformance</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

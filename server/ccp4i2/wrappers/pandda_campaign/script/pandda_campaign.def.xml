@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>pandda_campaign</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="pandda_campaign">
+        <container id="inputData">
+            <content id="DATASETS">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                    <guiLabel>Datasets</guiLabel>
+                    <toolTip>Every crystal in this run: label, refined model, reflections, ligand dictionary. PanDDA needs at least 25 to characterise a ground state.</toolTip>
+                </qualifiers>
+                <subItem>
+                    <className>CPanddaDataset</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id="RUN_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>local,stage_only</enumerators>
+                    <menuText>Run PanDDA on this machine,Stage the input tree only: run PanDDA elsewhere and fan out from its output</menuText>
+                    <default>local</default>
+                    <guiLabel>Run mode</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="LOCAL_CPUS">
+                <className>CInt</className>
+                <qualifiers>
+                    <min>1</min>
+                    <default>4</default>
+                    <guiLabel>CPUs</guiLabel>
+                    <toolTip>Concurrency inside PanDDA. Changes how fast it runs and how fast it hits the memory ceiling; it does not lower peak memory.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="MIN_CHARACTERISATION_DATASETS">
+                <className>CInt</className>
+                <qualifiers>
+                    <min>2</min>
+                    <default>25</default>
+                    <guiLabel>Minimum datasets to characterise a ground state</guiLabel>
+                    <toolTip>PanDDA's --min_characterisation_datasets, default 25. A dataset with fewer comparators than this is skipped without analysis. Lower it only for a small test set; below about 25 the ground-state statistics are poor.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="SCRATCH_DIR">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Scratch directory</guiLabel>
+                    <toolTip>Where Ray spills (RAY_TMPDIR). Needs tens of GB on a fast local disk. Empty: a ray_scratch directory inside this job.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="PANDDA_EXECUTABLE">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>pandda2.analyse</guiLabel>
+                    <toolTip>Explicit path to pandda2.analyse. Empty: the PANDDA2_EXECUTABLE preference, then PATH, then the one CCP4 ships.</toolTip>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="MANIFEST">
+                <className>CPanddaManifestDataFile</className>
+                <qualifiers>
+                    <default><annotation>Run manifest: what was staged as which xtal-NNNN, keyed on uuid, with digests and provenance</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="STAGING_DIR">
+                <className>CString</className>
+            </content>
+            <content id="PANDDA_OUT_DIR">
+                <className>CString</className>
+            </content>
+            <content id="PROVENANCE_EXECUTABLE">
+                <className>CString</className>
+            </content>
+            <content id="PROVENANCE_PROBE">
+                <className>CString</className>
+            </content>
+            <content id="PROVENANCE_ARGV">
+                <className>CString</className>
+            </content>
+            <content id="CONTRACT_VERSION">
+                <className>CString</className>
+            </content>
+            <content id="PERFORMANCE">
+                <className>CPanddaRunPerformance</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

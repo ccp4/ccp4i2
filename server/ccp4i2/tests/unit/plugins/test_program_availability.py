@@ -213,3 +213,16 @@ def test_crank2_no_longer_names_a_program_that_does_not_exist():
 
     assert 'crank2.py' not in task_commands(), \
         'the phantom is back; twelve tasks inherit this declaration'
+
+
+def test_every_explicit_executable_preference_is_settable_and_offered():
+    """A program that discovery resolves through a {PROG}_EXECUTABLE
+    preference must be writable through the preferences endpoint, or the
+    key exists only in code: the Program locations page would show a field
+    whose value the server silently drops. PANDDA2_EXECUTABLE was exactly
+    that for a day."""
+    from ccp4i2.api.views import _PROGRAM_PREF_KEYS
+    from ccp4i2.config.program_discovery import _EXECUTABLE_PREF
+
+    for program, key in _EXECUTABLE_PREF.items():
+        assert key in _PROGRAM_PREF_KEYS, f'{key} (for {program}) is not accepted by the preferences endpoint'
