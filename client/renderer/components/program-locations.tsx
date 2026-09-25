@@ -40,6 +40,7 @@ const EXPLICIT_FIELDS: {
 }[] = [
   { key: "COOT_EXECUTABLE", label: "Coot executable", help: "Full path to the coot binary", browse: "file" },
   { key: "CCP4MG_EXECUTABLE", label: "CCP4mg executable", help: "Full path to the ccp4mg binary", browse: "file" },
+  { key: "PANDDA2_EXECUTABLE", label: "PanDDA 2 executable", help: "Full path to pandda2.analyse, or to a launcher script that runs it inside its own conda/micromamba environment (micromamba run -p <env> pandda2.analyse \"$@\"). Not the environment's bin/pandda2.analyse itself: its shebang may not find that environment's Python.", browse: "file" },
   { key: "SHELXDIR", label: "SHELX directory", help: "Directory containing shelxc/d/e/l", browse: "directory" },
   { key: "DIALSDIR", label: "DIALS directory", help: "Directory containing dials binaries", browse: "directory" },
   { key: "BUSTERDIR", label: "BUSTER directory", help: "Directory containing the BUSTER refine binary", browse: "directory" },
