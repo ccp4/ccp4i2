@@ -13,7 +13,8 @@ class coot_find_ligand(CPluginScript):
     WHATNEXT = ["prosmart_refmac"]
 
     def startProcess(self):
-        import coot_headless_api  # lazy: external Coot API, only needed at execution (worker)
+        # lazy: the helper imports the external Coot API at execution (worker) only
+        from ccp4i2.lib.coot_api import molecules_container
         inputData = self.container.inputData
         outputData = self.container.outputData
         params = self.container.controlParameters
@@ -36,7 +37,7 @@ class coot_find_ligand(CPluginScript):
             os.chdir(job_dir)
 
         try:
-            mc = coot_headless_api.molecules_container_py(True)
+            mc = molecules_container(True)
             mc.set_make_backups(False)
             mc.set_use_gemmi(False)
             imol = mc.read_pdb(xyzin)
