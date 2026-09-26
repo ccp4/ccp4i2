@@ -284,7 +284,7 @@ cd $CCP4I2_ROOT
 ln -sf $CCP4/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
 
 # 4. Verify MolProbity detection works
-source /path/to/ccp4-20251105/bin/ccp4.setup-sh
+source /path/to/ccp4-20260904/bin/ccp4.setup-sh
 source .venv/bin/activate
 python -c "import libtbx.load_env; print(f'has probe: {libtbx.env.has_module(\"probe\")}')"
 # Should output: has probe: True

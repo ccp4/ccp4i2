@@ -74,7 +74,11 @@ The system automatically detects which backend to use:
 
 ## CCP4 Environment Setup
 
-**IMPORTANT**: CCP4i2 requires the CCP4 suite with `ccp4-python` to run. Before running any Python commands:
+**IMPORTANT**: CCP4i2 requires the CCP4 suite with `ccp4-python` to run.
+Validated builds are `ccp4-20260702` and `ccp4-20260904` (full i2run suite
+green on both, baselines under `server/.test-baselines/`). A fresh tarball
+has no `bin/ccp4.setup-sh` until `./BINARY.setup` has been run inside it.
+Before running any Python commands:
 
 ```bash
 # Source the CCP4 setup script (adjust path as needed)

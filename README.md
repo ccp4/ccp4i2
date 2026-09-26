@@ -30,11 +30,28 @@ CCP4i2 uses a modern web-based architecture:
 
 **See [Give it a try](docs/give-it-a-try.md)** for the full walkthrough. In short:
 
-1. **Install CCP4 10** from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/) (provides `ccp4-python`).
+1. **Install CCP4 10** from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/) (provides `ccp4-python`). Validated builds: **ccp4-20260702** and **ccp4-20260904** (the full i2run suite passes on both; see [Validated CCP4 builds](#validated-ccp4-builds)).
 2. **Download the desktop app** for your OS from [Releases](https://github.com/ccp4/ccp4i2/releases) — during the alpha, pick the top entry marked **Pre-release** and grab the installer for your OS (macOS `.dmg`, Windows `.exe`, Linux `.deb` **recommended** or `.AppImage`). On macOS, clear quarantine: `xattr -cr "/Applications/ccp4i2-django.app"`. On Ubuntu/Debian, `sudo apt install ./ccp4i2-django_*.deb`.
 3. **Launch it**, point it at your CCP4 installation, and click **Install** when prompted — the app installs the matching `ccp4i2` backend into `ccp4-python` for you.
 
 > Do **not** `pip install ccp4i2` against system Python — the backend must live in CCP4's `ccp4-python`, which the app handles automatically. Each app build is pinned to one exact backend version (shown on the launch screen), so you never match versions by hand.
+
+### Validated CCP4 builds
+
+The full i2run end-to-end suite (`server/run_i2run_baseline.sh`) is run
+against each CCP4 10 build we adopt, on the same commit, and the per-test
+results are committed under `server/.test-baselines/<build>/`.
+
+| Build | Result | Notes |
+|---|---|---|
+| `ccp4-20260904` | 203 passed · 0 failed · 21 skipped | current; Coot exposes only `molecules_container_t` (handled by `lib/coot_api.py`); ships `pandda2.analyse` |
+| `ccp4-20260702` | 203 passed · 0 failed · 21 skipped | previous; identical skip set |
+
+All 21 skips are environment gaps (no shelx or xds binaries, documented test
+stubs, opt-in PanDDA runs), not failures. Older builds (`ccp4-20260520`,
+`ccp4-20251105`) have baselines too but are no longer validated against
+current code. A fresh tarball needs `./BINARY.setup` run inside it once to
+create `bin/ccp4.setup-sh`.
 
 ### For Developers
 
@@ -48,7 +65,8 @@ See [Development Setup](mddocs/setup/DEVELOPMENT_SETUP.md) for the full guide. I
 git clone https://github.com/ccp4/ccp4i2.git
 cd ccp4i2
 
-# 3. Source CCP4 environment (use whichever CCP4 10 build you installed)
+# 3. Source CCP4 environment (use whichever CCP4 10 build you installed;
+#    ccp4-20260702 and ccp4-20260904 are the validated ones)
 source /path/to/ccp4-<build>/bin/ccp4.setup-sh
 
 # 4. Install ccp4i2 into ccp4-python (editable mode)
