@@ -459,6 +459,15 @@ CCP4i2 does not own the middle in every deployment, and should not try to: it
 would mean reimplementing the Batch SDK, the sizing catalogue and the failure
 taxonomy that already exist and are already maintained.
 
+> **Reversed 2026-09-26 (decision 18).** The argument above was conditional on
+> Reinspect existing to own the middle. Materia intends to deprecate Reinspect
+> in favour of a CCP4i2-based launch mechanism plus CCP4i2's own campaign
+> views, so the premise goes with it. CCP4i2 now owns the *contract* for the
+> middle — a run-target registry with two narrow interfaces — while each
+> deployment registers its implementation. What CCP4i2 still does not own is
+> any platform: no Batch SDK, no Service Bus, no sizing catalogue beyond the
+> `sizing_hint` it already computes.
+
 ### 5.3 The two consumers do not conflict — and one of them is transitional
 
 Reinspect's ingest and CCP4i2's fan-out read the same `pandda2_out/` tree and
@@ -1106,8 +1115,15 @@ rather than an accident.
    settled; and on Azure "created" can only mean queued.
 2. The orchestrator takes a declared `DATASETS` list and never touches the
    database; campaign-awareness lives in job construction.
-3. Local execution is the implemented path. The big-compute path is kept open
-   by two zero-cost requirements (§5.4), not by building a runner abstraction.
+3. ~~Local execution is the implemented path. The big-compute path is kept open
+   by two zero-cost requirements (§5.4), not by building a runner abstraction.~~
+   **Amended 2026-09-26 (decision 18):** the two §5.4 requirements stand and
+   are still what makes a tree produced elsewhere usable; the "no runner
+   abstraction" half is reversed. It was right with one implementation. There
+   are now two real mechanisms (local subprocess, Azure Service Bus) plus a
+   null one (`stage_only`), and the deployment that runs PanDDA already
+   chooses between two Batch pools, so the abstraction has work to do on day
+   one.
 4. The Materia invocation contract is adopted verbatim — argv including both
    defensive arguments, `RAY_TMPDIR`, output-tree shape, progress symbol,
    failure catalogue.
@@ -1141,6 +1157,57 @@ rather than an accident.
 
 17. **External-run mode ships in v1** (§5.5), over the existing
     `Task.interactive` lifecycle.
+
+18. **Run-target dispatch (v2), settled with Materia 2026-09-26** in the shared
+    brief "Run-target dispatch: a CCP4i2 v2 briefing". The governing rule, for
+    this and everything after it: **CCP4i2 builds generic capabilities with
+    hooks; each environment registers what it has.** Nothing in `ccp4/ccp4i2`
+    branches on a platform, and the desktop developer setup and the built
+    desktop apps must always work with no configuration at all.
+    - **One registry, two interfaces.** `CCP4I2_RUN_TARGETS` in settings maps a
+      name to a dotted class path; CCP4i2 ships only `local`. A target
+      implements axis A, `run_job(job)` (the whole CCP4i2 job moves — what
+      `context_run` does today), or axis B, `submit/poll/cancel/logs` (one
+      heavy program moves, the job stays in `RUNNING_REMOTELY`), or both, and
+      declares which. `context_run` resolves axis A through the registry
+      (`CCP4I2_JOB_TARGET`, default `local`); the orchestrator resolves axis B.
+    - **The Azure code leaves CCP4i2.** `run_job_azure` and the Service Bus
+      import move to Materia's `azure_extensions` as its registered axis-A
+      target, in the same step as the registry. No deprecated built-in for a
+      transition release: a clean seam for backend attachment. `EXECUTION_MODE`
+      and `SERVICE_BUS_*` stop being read by CCP4i2.
+    - **`DISPATCH_TARGET` is a separate parameter**, not a generalised
+      `RUN_MODE`: the def.xml's enumerators are a static list, so a target
+      registered only in a deployment's settings could never be one of them.
+      `RUN_MODE` becomes `local | stage_only | dispatch`; `DISPATCH_TARGET` is
+      validated in `validity()` against the registry and defaults to the
+      deployment's single non-local target when there is exactly one.
+      `stage_only` stays an instruction to stop after staging, not a target.
+    - **The dispatch record is typed `outputData`** beside `PROVENANCE_*` and
+      `CONTRACT_VERSION`: target name plus a target-tagged handle. Not
+      `process_id` (an integer that means a local pid and feeds
+      `postProcessCheck()`), and not the Qt-era `ServerJob` table (ten fields,
+      referenced only by `import_sqlite.py`), which is retired when the typed
+      record lands.
+    - **Targets never classify failure.** `logs(handle)` returns a path under
+      the job directory, present by the time `poll` reports terminal; the §4.5
+      catalogue classifies from it, unchanged for a local subprocess, a Batch
+      task or an HPC job alike.
+    - **Reconcile is idempotent and user-driven**: a plugin method over the
+      generic `object_method` endpoint plus a management command wrapping the
+      same function; `pandda_fanout` calls it first; it supersedes
+      `cleanup_stale_jobs` for dispatched jobs. Not `JobInteractiveSession`
+      (that models a user window, and `open_session` refuses a job in
+      `RUNNING_REMOTELY`); what is shared is `finish_session`'s out-of-process
+      completion, lifted into one "complete a job from outside its process"
+      function both paths call.
+    - **`cancel` is in the interface, not the UI**, mapping to `INTERRUPTED`.
+    - **The UI offers dispatch only when the API reports a registered target**,
+      the same pattern as the scenes Generate tier.
+    - Separately, and on its own PR: plugins register their own CData classes,
+      so `CPanddaEvent` and `CPanddaDataset` leave `core/` (the hard-coded list
+      in `def_xml_handler._build_class_registry()` is the same closed-enum
+      defect in a different place).
 18. A short receipt returns **`UNSATISFACTORY`, never `FAILED`** (§7.2), so
     what arrived is still published.
 19. The composed event type is a **registered core class** (§7.1), and a spike
@@ -1336,6 +1403,18 @@ files nested inside a composed list item are registered under their
 | 10 | **Campaign triage view**: every event across the campaign, ranked, stepped through in the existing campaign Moorhen page; *accept this pose* as the generalisation of place-ligand (§5.6) | items 9, 11 |
 | 11 | Scene recipes (§11) — the triage view's per-event scene is the first consumer | — |
 | 12 | Fan-in as a campaign-aware endpoint; `pandda_fanout` gains an API wrapper (the command remains the implementation) | — |
+
+**Run-target dispatch (decision 18), in this order, each its own PR.** Every
+one is judged first against the desktop invariant: an unpacked Electron dev
+tree and a packaged app see no behaviour change, nothing new is imported at
+request time, and the CCP4-free unit tier keeps passing on stock Python.
+
+| # | Work | Gated on |
+|---|---|---|
+| 13 | This note: record decision 18 and the §5.2 / decision 3 reversals | — |
+| 14 | `ccp4i2.lib.dispatch`: registry, the two interfaces, `LocalTarget`; `context_run` resolves axis A through it; `run_job_azure` and the Service Bus import removed (Materia lands its registered target in the same step) | — |
+| 15 | CData classes registered by their plugin; `CPanddaEvent` / `CPanddaDataset` move out of `core/` | — |
+| 16 | Axis B: `DISPATCH_TARGET`, the typed dispatch record, the reconcile (plugin method + command), the shared out-of-process completion, the API reporting registered targets, the UI affordance | items 14, 15 |
 
 ### 14.4 Unrelated, whenever convenient
 
