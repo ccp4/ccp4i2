@@ -4,7 +4,33 @@ Kept apart from settings.py so that the choice is testable without importing
 the settings module, and so that the reason for it is written once.
 """
 
+import django
+
 SQLITE_INIT_COMMAND = "PRAGMA busy_timeout=30000;"
+
+# Django 5.1 taught the sqlite3 backend the "transaction_mode" and
+# "init_command" OPTIONS. Older backends pass every OPTIONS key straight to
+# sqlite3.connect(), which rejects both with a TypeError on the first connect,
+# so an install that resolved Django 4.2 (Materia pins django>=4.2,<5.0 in its
+# server images) was dead on arrival with an error naming a sqlite keyword.
+BACKEND_KNOWS_TRANSACTION_MODE = django.VERSION >= (5, 1)
+
+
+def sqlite_options():
+    """The OPTIONS dict for this Django, as its sqlite3 backend will accept.
+
+    On 5.1+ the write lock is taken at BEGIN (IMMEDIATE) and busy_timeout is
+    set by the init command. Before 5.1 neither key exists; the connection
+    degrades to Django's deferred transaction, and the 30 s "timeout" -- which
+    every version passes to sqlite3.connect() -- still gives a contended
+    write that SQLite *does* wait on its chance. The contention fix is kept
+    wherever it is supported; nowhere is the install broken by it.
+    """
+    options = {"timeout": 30}
+    if BACKEND_KNOWS_TRANSACTION_MODE:
+        options["transaction_mode"] = "IMMEDIATE"
+        options["init_command"] = SQLITE_INIT_COMMAND
+    return options
 
 
 def sqlite_database(name):
@@ -23,6 +49,9 @@ def sqlite_database(name):
       contended transaction waits for its turn instead of failing.
     - busy_timeout / timeout give it 30 s to wait.
 
+    Both OPTIONS keys are Django 5.1+; see sqlite_options() for what an older
+    Django gets instead.
+
     The journal mode is deliberately left alone. WAL would let readers run
     beside the writer, but it needs shared memory between every process
     that opens the file and does not work over NFS or SMB -- and a user's
@@ -33,9 +62,5 @@ def sqlite_database(name):
     return {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": name,
-        "OPTIONS": {
-            "timeout": 30,
-            "transaction_mode": "IMMEDIATE",
-            "init_command": SQLITE_INIT_COMMAND,
-        },
+        "OPTIONS": sqlite_options(),
     }

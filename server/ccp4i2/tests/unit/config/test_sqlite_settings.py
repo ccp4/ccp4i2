@@ -15,8 +15,10 @@ import sqlite3
 import threading
 import time
 
+import django
 import pytest
 
+from ccp4i2.config import sqlite as sqlite_config
 from ccp4i2.config.sqlite import SQLITE_INIT_COMMAND, sqlite_database
 
 
@@ -24,13 +26,52 @@ def test_the_settings_say_so():
     db = sqlite_database("/tmp/x.sqlite3")
     assert db["ENGINE"] == "django.db.backends.sqlite3"
     opts = db["OPTIONS"]
-    assert opts["transaction_mode"] == "IMMEDIATE"
     assert opts["timeout"] >= 30
-    assert "busy_timeout=30000" in opts["init_command"]
-    assert opts["init_command"] == SQLITE_INIT_COMMAND
-    # Not WAL: it needs shared memory across processes and does not work over
-    # NFS or SMB, where a user's home may well be.
-    assert "journal_mode" not in opts["init_command"]
+    if django.VERSION >= (5, 1):
+        assert opts["transaction_mode"] == "IMMEDIATE"
+        assert "busy_timeout=30000" in opts["init_command"]
+        assert opts["init_command"] == SQLITE_INIT_COMMAND
+        # Not WAL: it needs shared memory across processes and does not work
+        # over NFS or SMB, where a user's home may well be.
+        assert "journal_mode" not in opts["init_command"]
+    else:
+        # Neither key exists before 5.1; the backend would hand them to
+        # sqlite3.connect(), which rejects them.
+        assert "transaction_mode" not in opts
+        assert "init_command" not in opts
+
+
+@pytest.mark.parametrize(
+    "version, expects_transaction_mode",
+    [
+        ((4, 2, 30, "final", 0), False),
+        ((5, 0, 14, "final", 0), False),
+        ((5, 1, 0, "final", 0), True),
+        ((5, 2, 17, "final", 0), True),
+    ],
+)
+def test_the_options_follow_the_django_version(monkeypatch, version, expects_transaction_mode):
+    """The Django 5.1 keys are offered only to a backend that understands them."""
+    monkeypatch.setattr(sqlite_config, "BACKEND_KNOWS_TRANSACTION_MODE", version >= (5, 1))
+    opts = sqlite_config.sqlite_options()
+    assert opts["timeout"] == 30
+    assert ("transaction_mode" in opts) is expects_transaction_mode
+    assert ("init_command" in opts) is expects_transaction_mode
+
+
+def test_this_django_accepts_the_options():
+    """The failure this guards against, on whichever Django is installed.
+
+    The sqlite3 backend hands OPTIONS to sqlite3.connect() after popping the
+    keys it knows; a key it does not know reaches sqlite3.connect() and is a
+    TypeError at the first connect. Run the same two steps here.
+    """
+    from django.db.backends.sqlite3.base import DatabaseWrapper
+
+    wrapper = DatabaseWrapper(sqlite_database(":memory:"))
+    params = wrapper.get_connection_params()
+    conn = sqlite3.connect(**params)  # raises TypeError on an unknown keyword
+    conn.close()
 
 
 def _contended_write(path, begin):
