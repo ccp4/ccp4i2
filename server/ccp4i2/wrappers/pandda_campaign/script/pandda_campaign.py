@@ -29,6 +29,8 @@ from xml.etree import ElementTree as ET
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.CCP4ErrorHandling import CErrorReport, SEVERITY_WARNING, SEVERITY_ERROR
 
+from ccp4i2.lib.utils.jobs import dispatch_record
+
 from . import pandda_invocation as contract
 from . import pandda_run_summary as analysis
 from .pandda_staging import DatasetSpec, stage_datasets
@@ -75,6 +77,11 @@ class pandda_campaign(CPluginScript):
               'description': 'PanDDA ran to the end but analysed no dataset'},
         224: {'severity': SEVERITY_WARNING,
               'description': 'PanDDA left some datasets unanalysed'},
+        225: {'description': 'this deployment registers no program run target'},
+        226: {'description': 'the run target to dispatch to is not chosen or not registered'},
+        227: {'description': 'the run target refused the submission'},
+        228: {'description': 'PanDDA dispatched to a run target; the job waits for the reconcile'},
+        229: {'description': 'the dispatched run was cancelled'},
     }
 
     def __init__(self, *args, **kwargs):
@@ -156,7 +163,32 @@ class pandda_campaign(CPluginScript):
                     error.append(klass=self.TASKNAME, code=203, details=f'Label {label!r} is used twice',
                                  name=f'{name}[{i}].DTAG', severity=SEVERITY_ERROR)
                 seen.add(label)
+        if self._mode() == 'dispatch':
+            self._check_dispatch_target(error)
         return error
+
+    def _check_dispatch_target(self, error: CErrorReport) -> None:
+        """Dispatch mode needs a registered program run target. The registry
+        is the deployment's (docs/run-target-dispatch.md); the desktop
+        registers none, and this says so instead of failing at submit."""
+        from ccp4i2.lib.dispatch import available_targets
+        targets = [t for t in available_targets() if t.get('runs_programs')]
+        name = self._target_name()
+        field = f'{self.TASKNAME}.container.controlParameters.DISPATCH_TARGET'
+        if not targets:
+            error.append(klass=self.TASKNAME, code=225,
+                         details='This deployment registers no run target that runs programs, so PanDDA '
+                                 'cannot be dispatched from here. Run locally, or stage only and run elsewhere',
+                         name=field, severity=SEVERITY_ERROR)
+        elif name is None:
+            error.append(klass=self.TASKNAME, code=226,
+                         details='Choose the run target: ' + ', '.join(t['name'] for t in targets),
+                         name=field, severity=SEVERITY_ERROR)
+        elif name not in {t['name'] for t in targets}:
+            error.append(klass=self.TASKNAME, code=226,
+                         details=f"'{name}' is not a registered program run target; registered: "
+                                 + ', '.join(t['name'] for t in targets),
+                         name=field, severity=SEVERITY_ERROR)
 
     def runTimeValidity(self) -> CErrorReport:
         error = super().runTimeValidity()
@@ -165,6 +197,10 @@ class pandda_campaign(CPluginScript):
         par = self.container.controlParameters
         datasets = self.container.inputData.DATASETS
         n = len(datasets)
+        if self._mode() == 'dispatch':
+            self._check_dispatch_target(error)
+            if error.maxSeverity() >= SEVERITY_ERROR:
+                return error
 
         if self._mode() == 'local':
             resolved = self._resolve_executable()
@@ -231,6 +267,21 @@ class pandda_campaign(CPluginScript):
         self._staging_root = Path(self.workDirectory) / 'staging'
         self._resolved = self._resolve_executable() if self._mode() == 'local' else None
         self._probe = contract.probe_executable(self._resolved) if self._resolved else {}
+        if self._is_harvest():
+            # The run happened elsewhere; the tree staged at submit is the
+            # record of what it was given. Re-staging would re-import every
+            # input into this project and hand out new uuids.
+            manifest_path = self._staging_root / 'manifest.json'
+            if not manifest_path.is_file():
+                self.appendErrorReport(208, f'no staged tree to complete from: {manifest_path} is missing')
+                return CPluginScript.FAILED
+            self._manifest = json.loads(manifest_path.read_text())
+            out.MANIFEST.setFullPath(str(Path(self.workDirectory) / 'manifest.json'))
+            out.STAGING_DIR.set(str(self._staging_root))
+            out.CONTRACT_VERSION.set(contract.CONTRACT_VERSION)
+            out.PERFORMANCE.nDatasets.set(len(self._manifest['datasets']))
+            self._record_dispatch_output()
+            return None
         job_uuid = self.get_db_job_id() if hasattr(self, 'get_db_job_id') else None
         provenance = {
             'task': self.TASKNAME,
@@ -279,6 +330,8 @@ class pandda_campaign(CPluginScript):
                      f'{" ".join(self.commandLine)}', stack=False)
             self._write_program_xml(state='stage_only')
             return CPluginScript.SUCCEEDED
+        if self._mode() == 'dispatch':
+            return self._dispatch_or_harvest()
         self._started = time.time()
         self._write_program_xml(state='running')
         stop = threading.Event()
@@ -346,6 +399,93 @@ class pandda_campaign(CPluginScript):
     def _mode(self) -> str:
         par = self.container.controlParameters
         return str(par.RUN_MODE) if par.RUN_MODE.isSet() else 'local'
+
+    # -- dispatch (axis B, docs/run-target-dispatch.md) ---------------------
+
+    def _target_name(self):
+        """DISPATCH_TARGET, else the one program target the deployment registers."""
+        par = self.container.controlParameters
+        if par.DISPATCH_TARGET.isSet() and str(par.DISPATCH_TARGET).strip():
+            return str(par.DISPATCH_TARGET).strip().lower()
+        from ccp4i2.lib.dispatch import available_targets
+        programs = [t['name'] for t in available_targets() if t.get('runs_programs')]
+        return programs[0] if len(programs) == 1 else None
+
+    def _is_harvest(self) -> bool:
+        return self._mode() == 'dispatch' and dispatch_record.is_harvest(self.workDirectory)
+
+    def _record_dispatch_output(self):
+        """Copy dispatch.json into the typed DISPATCH output."""
+        record = dispatch_record.read_record(self.workDirectory) or {}
+        out = self.container.outputData.DISPATCH
+        for field, key in (('TARGET', 'target'), ('HANDLE', 'handle'), ('SUBMITTED_AT', 'submitted_at'),
+                           ('STATE', 'state'), ('STDERR', 'stderr')):
+            if record.get(key):
+                getattr(out, field).set(str(record[key]))
+
+    def _dispatch_or_harvest(self):
+        record = dispatch_record.read_record(self.workDirectory)
+        if record and record.get('state') in dispatch_record.TERMINAL_STATES:
+            return self._harvest(record)
+        return self._submit()
+
+    def _submit(self):
+        from ccp4i2.lib.dispatch import RunTargetError, UnknownRunTarget, get_target
+        name = self._target_name()
+        try:
+            target = get_target(name) if name else None
+        except (UnknownRunTarget, RunTargetError) as err:
+            self.appendErrorReport(226, str(err), stack=False)
+            return CPluginScript.FAILED
+        if target is None:
+            self.appendErrorReport(226, 'no program run target to dispatch to', stack=False)
+            return CPluginScript.FAILED
+        self._write_program_xml(state='submitting')
+        try:
+            handle = target.submit(self._staging_root / 'datasets', list(self.commandLine),
+                                   self._out_dir(), self._sizing_hint())
+        except Exception as err:  # noqa: BLE001 -- the target's failure is this job's failure
+            self.appendErrorReport(227, f"run target '{name}' refused the submission: "
+                                        f"{type(err).__name__}: {err}", stack=False)
+            self._write_program_xml(state='failed', failure='submit_refused')
+            return CPluginScript.FAILED
+        dispatch_record.new_record(self.workDirectory, target=name, handle=str(handle),
+                                   out_dir=str(self._out_dir()),
+                                   sizing_hint=self._sizing_hint())
+        self._record_dispatch_output()
+        self._write_program_xml(state='dispatched')
+        self.appendErrorReport(228, f"PanDDA dispatched to run target '{name}' (handle {handle}); "
+                                    "the job waits until the run is reconciled", stack=False)
+        return CPluginScript.DISPATCHED
+
+    def _harvest(self, record):
+        """The run ended elsewhere: complete this job from what it left."""
+        self._record_dispatch_output()
+        state = record.get('state')
+        if state == 'succeeded':
+            self._write_program_xml(state='running')
+            return CPluginScript.SUCCEEDED      # processOutputFiles verifies the tree
+        stderr = record.get('stderr')
+        text = self._read(stderr) if stderr and Path(stderr).is_file() else ''
+        if state == 'cancelled':
+            self.appendErrorReport(229, f"the run on '{record.get('target')}' was cancelled", stack=False)
+            self._write_program_xml(state='failed', failure='cancelled')
+            return CPluginScript.INTERRUPTED
+        name, code, prompt = contract.classify_failure(text)
+        self.appendErrorReport(code, f'{name}: {prompt}', stack=False)
+        self._record_tree()
+        self._write_program_xml(state='failed', failure=name)
+        return CPluginScript.FAILED
+
+    def reconcileDispatch(self):
+        """Plugin method (object_method endpoint): ask the target how the
+        dispatched run is doing and act on it. Idempotent."""
+        from ccp4i2.db import models
+        job_uuid = self.get_db_job_id() if hasattr(self, 'get_db_job_id') else None
+        if not job_uuid:
+            return {"action": "error", "reason": "this job is not in the database"}
+        job = models.Job.objects.get(uuid=job_uuid)
+        return dispatch_record.reconcile(job)
 
     def _configured_min_datasets(self) -> int:
         par = self.container.controlParameters
@@ -497,6 +637,12 @@ class pandda_campaign(CPluginScript):
         ET.SubElement(root, 'contract').text = contract.CONTRACT_VERSION
         if self._probe:
             ET.SubElement(root, 'probe').text = json.dumps(self._probe, sort_keys=True)
+        record = dispatch_record.read_record(self.workDirectory)
+        if record:
+            node = ET.SubElement(root, 'dispatch')
+            for key in ('target', 'handle', 'state', 'submitted_at', 'polled_at', 'stderr'):
+                if record.get(key):
+                    ET.SubElement(node, key).text = str(record[key])
         n = len(self._manifest['datasets']) if self._manifest else len(self.container.inputData.DATASETS)
         ET.SubElement(root, 'n_datasets').text = str(n)
         if self._progress:

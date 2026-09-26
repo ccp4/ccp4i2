@@ -25,8 +25,12 @@ The desktop invariant: with no settings at all, ``job_target_name()`` is
 missing setting is never an error.
 """
 import importlib
+import json
+import logging
 import os
 from typing import Dict, List
+
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 DEFAULT_RUN_TARGETS: Dict[str, str] = {
     "local": "ccp4i2.lib.dispatch.local.LocalTarget",
@@ -55,10 +59,31 @@ def _settings():
     return None
 
 
+def _paths_from_env():
+    """``CCP4I2_RUN_TARGETS`` as JSON in the environment, for a settings module
+    that does not define the setting (a container configured by env, the
+    test settings). Malformed: reported and ignored, never a crash at import."""
+    raw = os.environ.get("CCP4I2_RUN_TARGETS", "").strip()
+    if not raw:
+        return None
+    try:
+        paths = json.loads(raw)
+    except ValueError as err:
+        logger.warning("CCP4I2_RUN_TARGETS in the environment is not JSON (%s); ignored", err)
+        return None
+    return paths if isinstance(paths, dict) and paths else None
+
+
 def run_target_paths() -> Dict[str, str]:
-    """Name -> dotted class path, as the deployment registered them."""
+    """Name -> dotted class path, as the deployment registered them.
+
+    The setting when the settings module defines it; else the environment;
+    else the shipped default, ``local`` alone.
+    """
     settings = _settings()
     paths = getattr(settings, "CCP4I2_RUN_TARGETS", None) if settings else None
+    if not paths:
+        paths = _paths_from_env()
     if not paths:
         return dict(DEFAULT_RUN_TARGETS)
     return {str(name).lower(): str(path) for name, path in dict(paths).items()}

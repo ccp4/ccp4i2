@@ -94,3 +94,76 @@ def test_local_run_over_baz2b():
         assert (job / "pandda2_out" / "processed_datasets").is_dir()
         job_id = ET.parse(job / "params.xml").find(".//jobId").text
         assert models.Job.objects.get(uuid=job_id).status == models.Job.Status.FINISHED
+
+
+# ---------------------------------------------------------------------------
+# Dispatch mode (axis B): the program goes to a registered program target and
+# the job waits in RUNNING_REMOTELY. i2run runs the job in this process, so a
+# target registered in settings here is the one the plugin resolves.
+# ---------------------------------------------------------------------------
+
+class _FakeBatch:
+    """A program target that records what it was given and answers as told."""
+    submissions = []
+    state = "queued"
+    log = None
+
+    def submit(self, tree, argv, out_dir, sizing_hint):
+        _FakeBatch.submissions.append({"tree": str(tree), "argv": list(argv),
+                                       "out_dir": str(out_dir), "sizing_hint": dict(sizing_hint)})
+        return f"fake-{len(_FakeBatch.submissions)}"
+
+    def poll(self, handle): return _FakeBatch.state
+    def cancel(self, handle): return None
+    def logs(self, handle): return _FakeBatch.log
+
+
+@pytest.fixture
+def fake_batch(monkeypatch):
+    from django.conf import settings
+    from ccp4i2.lib import dispatch
+    monkeypatch.setattr(settings, "CCP4I2_RUN_TARGETS",
+                        {**dispatch.DEFAULT_RUN_TARGETS, "batch": f"{__name__}._FakeBatch"}, raising=False)
+    _FakeBatch.submissions, _FakeBatch.state, _FakeBatch.log = [], "queued", None
+    return _FakeBatch
+
+
+def test_dispatch_submits_and_waits(fake_batch):
+    from ccp4i2.lib.utils.jobs import dispatch_record
+    args = ["pandda_campaign", "--RUN_MODE", "dispatch"] + _dataset_args(LABELS)
+    with i2run(args, allow_errors=True) as job:
+        job_id = ET.parse(job / "params.xml").find(".//jobId").text
+        db_job = models.Job.objects.get(uuid=job_id)
+        assert db_job.status == models.Job.Status.RUNNING_REMOTELY, db_job.get_status_display()
+        assert db_job.finish_time is None
+        # One submission, of the staged tree, with the contract's argv and the sizing hint.
+        (sub,) = fake_batch.submissions
+        assert sub["tree"].endswith("/staging/datasets") and sub["out_dir"].endswith("/pandda2_out")
+        assert "--dataset_range" in " ".join(sub["argv"]) and set(sub["sizing_hint"]) == {"datasets", "cell_volume_class"}
+        # The record is target-tagged, in the job directory and in the typed output.
+        rec = dispatch_record.read_record(job)
+        assert rec["target"] == "batch" and rec["handle"] == "fake-1" and rec["state"] == "submitted"
+        params = ET.parse(job / "params.xml")
+        assert params.find(".//outputData/DISPATCH/TARGET").text == "batch"
+        assert params.find(".//outputData/DISPATCH/HANDLE").text == "fake-1"
+        assert ET.parse(job / "program.xml").findtext("state") == "dispatched"
+        # Nothing published: no gleaned output files (directory=1) for a run
+        # that has not happened. The inputs imported at run (directory=2) are.
+        assert models.File.objects.filter(job=db_job, directory=1).count() == 0
+        # The reconcile, while the run is queued, changes nothing.
+        out = dispatch_record.reconcile(db_job, run=lambda j: pytest.fail("must not restart a queued run"))
+        assert out["action"] == "none" and out["state"] == "queued"
+        db_job.refresh_from_db()
+        assert db_job.status == models.Job.Status.RUNNING_REMOTELY
+
+
+def test_dispatch_refused_without_a_target():
+    """The desktop: nothing registered beyond local. validity() says why."""
+    args = ["pandda_campaign", "--RUN_MODE", "dispatch"] + _dataset_args(LABELS)
+    with i2run(args, allow_errors=True) as job:
+        job_id = ET.parse(job / "params.xml").find(".//jobId").text
+        assert models.Job.objects.get(uuid=job_id).status == models.Job.Status.FAILED
+        codes = {r.findtext("code") for r in ET.parse(job / "diagnostic.xml").findall(".//errorReport")}
+        assert "225" in codes
+        assert not (job / "dispatch.json").exists()
+

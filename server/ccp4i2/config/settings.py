@@ -298,6 +298,14 @@ CCP4I2_IMPORT_STAGING_MAX_INFLIGHT = _int_env(
 CCP4I2_RUN_TARGETS = {
     "local": "ccp4i2.lib.dispatch.local.LocalTarget",
 }
+# A container configured by environment may hand the whole map over as JSON,
+# e.g. CCP4I2_RUN_TARGETS='{"local": "...LocalTarget", "batch": "pkg.mod.Cls"}'.
+if os.environ.get("CCP4I2_RUN_TARGETS", "").strip():
+    import json as _json
+    try:
+        CCP4I2_RUN_TARGETS = dict(_json.loads(os.environ["CCP4I2_RUN_TARGETS"]))
+    except ValueError:
+        print("WARNING: CCP4I2_RUN_TARGETS in the environment is not JSON; using the default")
 # The target that runs whole jobs on this deployment (a name from the map).
 CCP4I2_JOB_TARGET = os.environ.get("CCP4I2_JOB_TARGET", "local")
 

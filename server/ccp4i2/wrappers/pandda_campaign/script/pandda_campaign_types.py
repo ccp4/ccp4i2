@@ -75,6 +75,29 @@ class CPanddaDataset(CData):
         toolTip='UUID of the job whose outputs these files are (the dimple run)')
 
 
+class CPanddaDispatch(CData):
+    """Which run target ran PanDDA, and its handle: a fact the run discovered,
+    so an output beside PROVENANCE_*, never an input. The handle is
+    target-tagged (TARGET + HANDLE), never bare: bare handles are
+    unreconcilable as soon as there is more than one target. The same record
+    lives in dispatch.json in the job directory for the reconcile; this typed
+    copy is what params.xml, the report and project recovery carry."""
+
+    class Meta:
+        contents_order = ['TARGET', 'HANDLE', 'SUBMITTED_AT', 'STATE', 'STDERR']
+        qualifiers = {"allowUndefined": True, "guiLabel": "Dispatch"}
+
+    TARGET = content("CString", allowUndefined=True, guiLabel='Run target',
+                     toolTip='The registered program run target that ran PanDDA')
+    HANDLE = content("CString", allowUndefined=True, guiLabel='Handle',
+                     toolTip="The target's own identifier for the run (a batch job id, a queue message id)")
+    SUBMITTED_AT = content("CString", allowUndefined=True, guiLabel='Submitted')
+    STATE = content("CString", allowUndefined=True, guiLabel='State',
+                    toolTip='submitted, queued, running, succeeded, failed, cancelled, unknown')
+    STDERR = content("CString", allowUndefined=True, guiLabel='stderr',
+                     toolTip="Where the target put the program's stderr, under the job directory")
+
+
 class CPanddaRunPerformance(CPerformanceIndicator):
     """What the run did, as KPIs."""
 

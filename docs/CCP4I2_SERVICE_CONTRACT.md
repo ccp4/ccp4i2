@@ -36,6 +36,14 @@ Public; no auth required.
 
 Used by consumers to render compatibility banners and to detect when an instance has been upgraded.
 
+From `ccp4i2-api` 0.6.0 the payload also declares what the deployment can do, so a client offers only what exists rather than asking:
+
+- `run_targets`: the run targets registered in `CCP4I2_RUN_TARGETS`, one `RunTarget` each (`name`, `runs_jobs`, `runs_programs`, and `error` when the class failed to load). A desktop lists only `local`. A client offers to dispatch a program (e.g. PanDDA to a batch service) only when some entry has `runs_programs`.
+- `job_target`: the name that runs whole jobs here (`CCP4I2_JOB_TARGET`).
+- `import_staging`: the chunked import transport, present only when the deployment enables it (it was sent before 0.6.0 but untyped).
+
+Additive; absence of a key means the server predates it.
+
 ### `GET /health/` — server health
 
 Public; no auth required.

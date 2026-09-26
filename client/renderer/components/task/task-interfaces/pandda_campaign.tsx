@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Alert,
   Box,
@@ -16,6 +16,7 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob } from "../../../utils";
 import { useApi } from "../../../api";
 import { apiPost } from "../../../api-fetch";
+import { programTargets, RunTarget } from "../../../lib/run-targets";
 
 /**
  * pandda_campaign — run PanDDA 2 over a declared list of datasets.
@@ -53,6 +54,29 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: runMode } = useTaskItem("RUN_MODE");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  // The deployment's program run targets (GET version/): dispatch is offered
+  // only where one exists, and the choice is named from this list. The
+  // desktop registers none and sees the reason instead of a dead option.
+  const [targets, setTargets] = useState<RunTarget[] | null>(null);
+  useEffect(() => {
+    let live = true;
+    programTargets().then((t) => { if (live) setTargets(t); });
+    return () => { live = false; };
+  }, []);
+  const [dispatch, setDispatch] = useState<any>(null);
+  const [checking, setChecking] = useState(false);
+  const checkRemoteRun = useCallback(async () => {
+    setChecking(true);
+    try {
+      const response: any = await apiPost(`jobs/${job.id}/reconcile_dispatch/`, {});
+      setDispatch(response?.data ?? response);
+      await mutateContainer();
+    } catch (err: any) {
+      setDispatch({ action: "error", reason: err?.message ?? String(err) });
+    } finally {
+      setChecking(false);
+    }
+  }, [job.id, mutateContainer]);
 
   const editable = job.status === 1 || job.status === 0; // pending / unknown
   const { data: previewResponse, mutate: mutatePreview } =
@@ -167,7 +191,42 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             itemName="MIN_CHARACTERISATION_DATASETS"
             qualifiers={{ guiLabel: "Minimum datasets to characterise a ground state (PanDDA default 25)" }}
           />
-          {runMode === "local" ? (
+          {runMode === "dispatch" ? (
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              {targets === null ? (
+                <Typography variant="body2" color="text.secondary">Checking this deployment&apos;s run targets...</Typography>
+              ) : targets.length === 0 ? (
+                <Alert severity="warning">
+                  This deployment registers no run target that runs programs, so PanDDA cannot be
+                  dispatched from here. Run locally, or stage only and run elsewhere.
+                </Alert>
+              ) : (
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="DISPATCH_TARGET"
+                  qualifiers={{
+                    guiLabel: "Run target",
+                    enumerators: targets.map((t) => t.name),
+                    onlyEnumerators: true,
+                  }}
+                />
+              )}
+              {job.status === 7 ? (
+                <Paper sx={{ p: 1 }}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Button variant="outlined" disabled={checking} onClick={checkRemoteRun}>
+                      Check remote run
+                    </Button>
+                    <Typography variant="body2" color="text.secondary">
+                      {dispatch
+                        ? `${dispatch.state ?? ""} ${dispatch.reason ?? ""}`.trim()
+                        : "PanDDA is running on the run target; nothing polls on its own."}
+                    </Typography>
+                  </Stack>
+                </Paper>
+              ) : null}
+            </Box>
+          ) : runMode === "local" ? (
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <CCP4i2TaskElement {...props} itemName="LOCAL_CPUS" qualifiers={{ guiLabel: "CPUs" }} />
               <CCP4i2TaskElement
