@@ -75,7 +75,7 @@ ln -sf /Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3
 Each `.env` file contains:
 
 ```bash
-CCP4_VERSION=ccp4-20251105      # CCP4 distribution name
+CCP4_VERSION=ccp4-20260904      # CCP4 distribution name
 CCP4_ROOT=/path/to/ccp4         # CCP4 installation directory
 VENV_DIR=.venv                  # Virtual environment directory
 PYTHON_VERSION=3.11             # Python version (informational)

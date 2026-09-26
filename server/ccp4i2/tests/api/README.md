@@ -17,13 +17,13 @@ The tests require the CCP4 suite with `ccp4-python`. Before running tests:
 
 ```bash
 # Option A: Source CCP4 setup directly
-source /path/to/ccp4-20251105/bin/ccp4.setup-sh
+source /path/to/ccp4-20260904/bin/ccp4.setup-sh
 
 # Option B: Place CCP4 in a sibling directory (auto-detected)
-# ../ccp4-20251105/bin/ccp4.setup-sh
+# ../ccp4-20260904/bin/ccp4.setup-sh
 
 # Option C: Set CCP4_ROOT in .env file
-echo "CCP4_ROOT=/path/to/ccp4-20251105" > .env
+echo "CCP4_ROOT=/path/to/ccp4-20260904" > .env
 ```
 
 ### 2. Python Packages
