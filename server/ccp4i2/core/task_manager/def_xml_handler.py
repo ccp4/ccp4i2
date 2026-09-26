@@ -28,72 +28,9 @@ class DefXmlParser:
         self.class_registry = self._build_class_registry()
 
     def _build_class_registry(self) -> Dict[str, Type[CData]]:
-        """Build registry of available CData classes."""
-        registry = {}
-
-        # Add fundamental types
-        registry.update(
-            {
-                "CInt": CInt,
-                "CFloat": CFloat,
-                "CBoolean": CBoolean,
-                "CString": CString,
-                "CContainer": CContainer,
-                "CList": CList,
-            }
-        )
-
-        # Add all implementation classes from core/
-        import importlib
-        import pkgutil
-
-        try:
-            # Import from the core package (implementation classes)
-            from ccp4i2 import core
-
-            # Get all implementation module files
-            implementation_modules = [
-                'CCP4Annotation',
-                'CCP4ComFilePatchManager',
-                'CCP4CootData',
-                'CCP4CustomTaskManager',
-                'CCP4Data',
-                'CCP4File',
-                'CCP4ImportedJobManager',
-                'CCP4MathsData',
-                'CCP4ModelData',
-                'CCP4PerformanceData',
-                'CCP4Preferences',
-                'CCP4RefmacData',
-                'CCP4XtalData',
-                'CDmDomain',
-                'CMoorhenSceneDataFile',
-                'CPanddaEvent',
-                'CPanddaDataset',
-            ]
-
-            for module_name in implementation_modules:
-                try:
-                    module = importlib.import_module(f'ccp4i2.core.{module_name}')
-                    for attr_name in dir(module):
-                        if attr_name.startswith('_'):
-                            continue
-                        attr = getattr(module, attr_name)
-                        if (
-                            isinstance(attr, type)
-                            and issubclass(attr, CData)
-                            and attr is not CData
-                            and attr is not CContainer
-                        ):
-                            registry[attr.__name__] = attr
-                except ImportError as e:
-                    print(f"Note: Could not import {module_name}: {e}")
-                    continue
-
-        except ImportError as e:
-            print(f"Note: Implementation classes not yet available: {e}")
-
-        return registry
+        """Every class a def.xml may name; see core/cdata_registry.py."""
+        from ccp4i2.core.cdata_registry import cdata_classes
+        return dict(cdata_classes())
 
     def parse_def_xml(self, xml_path: Union[str, Path]) -> CData:
         """

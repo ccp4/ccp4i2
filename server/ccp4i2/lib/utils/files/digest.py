@@ -1,7 +1,6 @@
 import json
 import logging
 import gemmi
-import importlib
 from typing import Dict, Type
 
 from ccp4i2.core import CCP4File
@@ -58,44 +57,11 @@ def normalize_object_path(object_path: str) -> str:
     return '.'.join(parts)
 
 
-def _build_class_registry() -> Dict[str, Type[CData]]:
-    """
-    Build registry of available CData classes by name.
+def _class_named(full_class_name):
+    """A file class by bare name, from the one CData registry (core/cdata_registry.py)."""
+    from ccp4i2.core.cdata_registry import cdata_classes
+    return cdata_classes().get(full_class_name)
 
-    This follows the same pattern as core/task_manager/def_xml_handler.py
-    to dynamically discover all CData implementation classes.
-    """
-    registry = {}
-
-    # Import from implementation modules
-    implementation_modules = [
-        'CCP4File',
-        'CCP4ModelData',
-        'CCP4XtalData',
-    ]
-
-    for module_name in implementation_modules:
-        try:
-            module = importlib.import_module(f'ccp4i2.core.{module_name}')
-            for attr_name in dir(module):
-                if attr_name.startswith('_'):
-                    continue
-                attr = getattr(module, attr_name)
-                if (
-                    isinstance(attr, type)
-                    and issubclass(attr, CData)
-                    and attr is not CData
-                ):
-                    registry[attr.__name__] = attr
-        except ImportError as e:
-            logger.warning(f"Could not import {module_name}: {e}")
-            continue
-
-    return registry
-
-
-# Build class registry at module level for use in digest_file()
-CLASS_REGISTRY = _build_class_registry()
 
 # The mimetype <-> class tables are the ones the database is seeded from; this
 # module used to carry its own copy, which drifted (it lacked text/plain and
@@ -147,7 +113,7 @@ def digest_file(the_file: models.File):
 
     # Use dynamic class registry to find the class
     full_class_name = f"C{class_name}"
-    the_class = CLASS_REGISTRY.get(full_class_name)
+    the_class = _class_named(full_class_name)
 
     if the_class is None:
         return {"status": "Failed", "reason": f"File type class not found: {full_class_name}"}

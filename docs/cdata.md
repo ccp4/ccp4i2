@@ -209,16 +209,23 @@ Real examples of each, in the order above: `CCellLength` (a `CFloat` with
 ### Put it where def.xml can find it
 
 A def.xml names classes by bare name (`<className>CCell</className>`), and the
-handler resolves that name by scanning a fixed list of `ccp4i2.core` modules —
-`CCP4XtalData`, `CCP4ModelData`, `CCP4File`, `CCP4Annotation`,
-`CCP4MathsData`, and friends (`implementation_modules` in
-`core/task_manager/def_xml_handler.py`).
+one registry in `core/cdata_registry.py` resolves it. The registry has two
+kinds of source: the core implementation modules CCP4i2 ships (`CORE_MODULES`:
+`CCP4XtalData`, `CCP4ModelData`, `CCP4File`, `CCP4Annotation`, `CCP4MathsData`
+and friends), and the modules a task declares in its `Task.dataTypes` entry in
+`core/tasks.py`. Both the def.xml handler and the file digest resolve through
+it.
 
-So either add the class to the themed module it belongs in, or give it its own
-`core/<ClassName>.py` **and add that module to the list**. Know the failure
-mode: an unresolvable class name falls back to `CString` with only a printed
-warning, so a typo does not raise — it renders as a text box and round-trips
-as a string. If a new type behaves that way, check the name resolved at all.
+So: a type of general use goes in the themed core module it belongs in. A
+type that belongs to one task lives **in that task's directory** and is
+registered by naming its module in the task's `dataTypes`, never in `core/`
+(the PanDDA types, `wrappers/pandda_events/script/pandda_events_types.py`,
+are the precedent). Know the failure mode: an unresolvable class name falls
+back to `CString` with only a printed warning, so a typo does not raise — it
+renders as a text box and round-trips as a string. A `subItem` that fails to
+resolve is worse, `makeItem()` gives a `CString` with no warning at all: assert
+the item class in a test. `tests/unit/plugins/test_cdata_registry.py` does
+this for the PanDDA types.
 
 ### Give it behaviour
 

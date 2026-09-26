@@ -8,7 +8,8 @@ and the list in params.xml is the record of exactly what was submitted. Each
 item is one crystal: a label, the refined model and the reflections PanDDA
 will analyse, and the ligand dictionary when there is one.
 
-Resolvable by the def.xml class-name lookup via ``ccp4i2.core.CPanddaDataset``.
+Resolvable by the def.xml class-name lookup because ``pandda_campaign`` and
+``pandda_fanout`` declare this module in their ``Task.dataTypes`` (core/tasks.py).
 """
 from ccp4i2.core.base_object.class_metadata import content
 from ccp4i2.core.base_object.cdata_file import CDataFile

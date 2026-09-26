@@ -715,6 +715,14 @@ There is no plugin-side class discovery and no inline nested content in a
 def.xml. So `CPanddaEvent` cannot live in the plugin directory: it needs a
 `ccp4i2/core/CPanddaEvent.py` plus one line in `implementation_modules`.
 
+> **Superseded 2026-09-26 (decision 18, item 15).** A task now declares the
+> modules of its own CData classes in `Task.dataTypes`, and one registry
+> (`core/cdata_registry.py`) serves both the def.xml handler and the file
+> digest. `CPanddaEvent` lives in `wrappers/pandda_events/script/
+> pandda_events_types.py` and `CPanddaDataset` in `wrappers/pandda_campaign/
+> script/pandda_campaign_types.py`; `core/` carries nothing PanDDA-specific.
+> The v1 rows below record what was true when v1 landed.
+
 **And the failure mode is silent.** An unresolvable class name does not raise —
 it logs `Warning: Unknown class '<name>', using CString as fallback`
 ([def_xml_handler.py:403](../server/ccp4i2/core/task_manager/def_xml_handler.py#L403))

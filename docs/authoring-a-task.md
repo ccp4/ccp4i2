@@ -200,13 +200,17 @@ entire registration — there is **no registry-regeneration step** (the old
     # runningReport=True,   # if the report updates live while the job runs
     # watchedFile="...",    # file to watch for a running report
     # ccp4_free=True,       # ONLY if execution needs no CCP4 binary/$CCP4 (pure gemmi/python)
+    # dataTypes=("ccp4i2.wrappers.mytask.script.mytask_types",),  # CData classes of your own
 ),
 ```
 
 Fields (from the `Task` dataclass): `title`, `description`, `shortTitle`,
 `pluginPath`, `defXmlPath` are the usual ones; `reportPath` only if you wrote a
 report class; `runningReport`/`watchedFile` for live reports; `ccp4_free` only
-for tasks that provably need no CCP4 install (verified by the CCP4-free guard).
+for tasks that provably need no CCP4 install (verified by the CCP4-free guard);
+`dataTypes` names the modules defining any `CData` classes your def.xml uses
+that `core/` does not know, so a composed type of your own lives in your task
+directory (see [Put it where def.xml can find it](cdata.md#put-it-where-defxml-can-find-it)).
 
 At this point the task runs (via i2run and the API) and **renders a default UI
 automatically**.
