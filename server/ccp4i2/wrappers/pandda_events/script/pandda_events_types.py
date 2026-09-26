@@ -14,7 +14,8 @@ within one run only (section 7.4). ``SITE_IDX`` is PanDDA's own site number
 from its events table; the campaign-site reference of section 9 is v2 and is
 added alongside it, not in its place.
 
-Resolvable by the def.xml class-name lookup via ``ccp4i2.core.CPanddaEvent``,
+Resolvable by the def.xml class-name lookup because ``pandda_events`` declares
+this module in its ``Task.dataTypes`` (core/tasks.py),
 like ``CDmDomain``. Core deliberately holds only the data; reading the PanDDA
 tree is the wrapper's job.
 """

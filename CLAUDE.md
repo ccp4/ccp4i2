@@ -389,6 +389,8 @@ class Task:
     runningReport: bool = False
     watchedFile: str = None
     ccp4_free: bool = False     # needs no CCP4 binary; may run on the slim server
+    dataTypes: tuple = ()       # modules defining CData classes this task's def.xml
+                                # names and core/ does not know (core/cdata_registry.py)
     successor: str = None       # the task that replaces this one (chooser hides this one)
     interactive: bool = False   # its "program" is a window in the app: Run opens a
                                 # session instead of dispatching (docs/moorhen-task-design.md)
@@ -425,6 +427,9 @@ def_xml = locate_def_xml('acorn')         # path to its .def.xml
    jobs still open, but the chooser hides it and cloning one of its jobs
    makes a job of the successor; a `PhilPluginScript` successor adopts the
    old job's front page (see `PHIL_TASK_GUIDE.md`, "Replacing a classic task").
+
+A task that needs a composed `CData` type of its own keeps it in its task
+directory and names the module in `dataTypes`; nothing is added to `core/`.
 
 There is **no registry-regeneration step** — adding the `TASKS` entry is the
 whole registration. (The historical `plugin_registry.py` / `plugin_lookup.json`

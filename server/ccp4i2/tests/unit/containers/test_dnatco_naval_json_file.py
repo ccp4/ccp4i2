@@ -44,7 +44,7 @@ def test_digest_uses_the_seeded_tables():
         pytest.skip(f"digest not importable here: {exc}")
     assert digest.FILETYPES_TEXT is FILETYPES_TEXT
     assert digest.FILETYPES_CLASS is FILETYPES_CLASS
-    assert "DnatcoNavalJsonFile" in digest.CLASS_REGISTRY or "CDnatcoNavalJsonFile" in digest.CLASS_REGISTRY
+    assert digest._class_named("CDnatcoNavalJsonFile") is not None  # the one registry, core/cdata_registry.py
 
 
 def test_def_xml_resolves_the_class_name():

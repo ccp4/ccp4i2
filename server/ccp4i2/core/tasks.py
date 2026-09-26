@@ -24,6 +24,11 @@ class Task:
     # otherwise (and verified by the CCP4-free behavioural guard). See
     # lib/utils/jobs/context_run.can_run_local().
     ccp4_free: bool = False
+    # Modules (dotted paths) defining CData classes this task's def.xml names
+    # and core/ does not know: a composed type that belongs to one task lives
+    # in that task's directory and is registered here, never in core/.
+    # Resolved by core/cdata_registry.py for def.xml parsing and file digests.
+    dataTypes: tuple = ()
     # The task that replaces this one. A superseded task stays registered
     # (its jobs still open and report) but is hidden from the chooser, and
     # cloning one of its jobs makes a job of the successor instead, which
@@ -1039,6 +1044,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.pandda_campaign.script.pandda_campaign_report:pandda_campaign_report",
         runningReport=True,
         watchedFile="program.xml",
+        dataTypes=("ccp4i2.wrappers.pandda_campaign.script.pandda_campaign_types",),
     ),
     "pandda_fanout": Task(
         title="PanDDA: receipts for every dataset",
@@ -1048,6 +1054,7 @@ TASKS = {
         defXmlPath="wrappers/pandda_fanout/script/pandda_fanout.def.xml",
         reportPath="ccp4i2.wrappers.pandda_fanout.script.pandda_fanout_report:pandda_fanout_report",
         ccp4_free=True,  # copies files and creates jobs; runs no program
+        dataTypes=("ccp4i2.wrappers.pandda_campaign.script.pandda_campaign_types",),
     ),
     "pandda_events": Task(
         title="PanDDA events for one dataset",
@@ -1057,6 +1064,7 @@ TASKS = {
         defXmlPath="wrappers/pandda_events/script/pandda_events.def.xml",
         reportPath="ccp4i2.wrappers.pandda_events.script.pandda_events_report:pandda_events_report",
         ccp4_free=True,  # reads a finished tree with gemmi/yaml; runs no program
+        dataTypes=("ccp4i2.wrappers.pandda_events.script.pandda_events_types",),
     ),
     "parrot": Task(
         title="Density modification - PARROT",
