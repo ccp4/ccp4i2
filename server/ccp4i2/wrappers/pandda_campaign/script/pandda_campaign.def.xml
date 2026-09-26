@@ -24,8 +24,8 @@
                 <className>CString</className>
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>local,stage_only</enumerators>
-                    <menuText>Run PanDDA on this machine,Stage the input tree only: run PanDDA elsewhere and fan out from its output</menuText>
+                    <enumerators>local,stage_only,dispatch</enumerators>
+                    <menuText>Run PanDDA on this machine,Stage the input tree only: run PanDDA elsewhere and fan out from its output,Dispatch PanDDA to a run target this deployment registered and wait for it</menuText>
                     <default>local</default>
                     <guiLabel>Run mode</guiLabel>
                 </qualifiers>
@@ -53,6 +53,13 @@
                 <qualifiers>
                     <guiLabel>Scratch directory</guiLabel>
                     <toolTip>Where Ray spills (RAY_TMPDIR). Needs tens of GB on a fast local disk. Empty: a ray_scratch directory inside this job.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="DISPATCH_TARGET">
+                <className>CString</className>
+                <qualifiers>
+                    <guiLabel>Run target</guiLabel>
+                    <toolTip>Which registered program run target runs PanDDA (dispatch mode). Empty: the only one this deployment registers.</toolTip>
                 </qualifiers>
             </content>
             <content id="PANDDA_EXECUTABLE">
@@ -87,6 +94,9 @@
             </content>
             <content id="CONTRACT_VERSION">
                 <className>CString</className>
+            </content>
+            <content id="DISPATCH">
+                <className>CPanddaDispatch</className>
             </content>
             <content id="PERFORMANCE">
                 <className>CPanddaRunPerformance</className>

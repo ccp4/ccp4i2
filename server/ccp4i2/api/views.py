@@ -158,6 +158,16 @@ def version_info(request):
     staging = staged_upload.capability()
     if staging is not None:
         payload["import_staging"] = staging
+    # The run targets this deployment registered and what each can do, so a
+    # client offers dispatch only where a program target exists (and the
+    # desktop, which registers nothing beyond "local", shows nothing).
+    try:
+        from ..lib.dispatch import available_targets, job_target_name
+        payload["run_targets"] = available_targets()
+        payload["job_target"] = job_target_name()
+    except Exception as err:  # noqa: BLE001 -- version must never fail on this
+        payload["run_targets"] = []
+        payload["run_targets_error"] = str(err)
     return JsonResponse(payload)
 
 

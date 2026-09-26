@@ -1416,6 +1416,17 @@ request time, and the CCP4-free unit tier keeps passing on stock Python.
 | 15 | CData classes registered by their plugin; `CPanddaEvent` / `CPanddaDataset` move out of `core/` | — |
 | 16 | Axis B: `DISPATCH_TARGET`, the typed dispatch record, the reconcile (plugin method + command), the shared out-of-process completion, the API reporting registered targets, the UI affordance | items 14, 15 |
 
+Item 16 as built (2026-09-26): `RUN_MODE=dispatch`; `DISPATCH_TARGET` validated
+against the registry in `validity()`; `CPanddaDispatch` typed output mirroring
+`dispatch.json`; `CPluginScript.DISPATCHED` leaves the job `RUNNING_REMOTELY`
+without gleaning; the reconcile is `lib/utils/jobs/dispatch_record.reconcile`,
+reached from the job page's **Check remote run** (`POST
+jobs/{id}/reconcile_dispatch/`), the `reconcileDispatch` plugin method and
+`manage.py reconcile_dispatch`; the harvest is the job started again, its
+plugin completing from the record (the out-of-process completion of the
+interactive task, generalised). `GET /version/` lists `run_targets`
+(`ccp4i2-api` 0.6.0). See docs/run-target-dispatch.md.
+
 ### 14.4 Unrelated, whenever convenient
 
 **Delete `MakeProjectsAndDoLigandPipeline`** (Appendix A) — small, its own PR.

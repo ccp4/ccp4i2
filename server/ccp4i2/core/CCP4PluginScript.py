@@ -426,6 +426,8 @@ class CPluginScript(CData):
     UNSATISFACTORY = 3  # Job completed but with warnings/issues
     INTERRUPTED = 4  # Job was deliberately stopped (Cancel), not an error
     MARK_TO_DELETE = 5  # No useful output was produced; job should be discarded
+    DISPATCHED = 6  # The program runs elsewhere (a program run target); the job
+                    # waits in RUNNING_REMOTELY until a reconcile harvests it
 
     def __init__(self,
                  parent=None,

@@ -13,14 +13,14 @@
 
 import { getAccessToken } from "@ccp4/ccp4i2-api";
 
-const PROXY_BASE = "/api/proxy/ccp4i2/";
+export const PROXY_BASE = "/api/proxy/ccp4i2/";
 
 /**
  * The bearer header every call needs, the way api-fetch.ts attaches it.
  * The proxy route answers 401 to any non-public path without one, and a
  * served deployment has no other way to authenticate a bare fetch.
  */
-async function authHeaders(extra: Record<string, string> = {}): Promise<Record<string, string>> {
+export async function authHeaders(extra: Record<string, string> = {}): Promise<Record<string, string>> {
   const token = await getAccessToken();
   return token ? { ...extra, Authorization: `Bearer ${token}` } : extra;
 }

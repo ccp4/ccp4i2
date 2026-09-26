@@ -172,6 +172,17 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
                 # Re-raise to trigger outer exception handler
                 raise
 
+        # A plugin that handed its program to a run target (DISPATCHED) has
+        # nothing to check yet: the job waits in RUNNING_REMOTELY, with its
+        # dispatch record in the job directory, until a reconcile finds the
+        # run finished and starts this job again to harvest it. No glean, no
+        # FINISHED stamp -- both would publish a run that has not happened.
+        if result == plugin.DISPATCHED:
+            await write_diagnostic_xml(plugin, job.directory)
+            await db_handler.update_job_status(job.uuid, models.Job.Status.RUNNING_REMOTELY)
+            logger.info(f"Job {job.number} dispatched to a run target; waiting remotely")
+            return result
+
         # For async tasks, call postProcessCheck to examine exit codes
         # This must be done AFTER process() completes and BEFORE writing diagnostic.xml
         # so that exit code errors are captured in the error report

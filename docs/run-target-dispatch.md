@@ -54,8 +54,35 @@ Every job the API, the interactive-session finish, and the PanDDA fan-out
 start goes this way. `program_checks_are_authoritative()` is true only on the
 local target with CCP4 present, as before.
 
-Axis B is defined here and consumed by the PanDDA orchestrator's dispatch
-mode (design note §14.3, item 16).
+Axis B is consumed by the PanDDA orchestrator's dispatch mode (design note
+§14.3, item 16), and the machinery is generic, in
+`lib/utils/jobs/dispatch_record.py`:
+
+1. **Submit.** The plugin resolves its target (`DISPATCH_TARGET`, or the one
+   program target the deployment registers), calls `submit(tree, argv,
+   out_dir, sizing_hint)`, writes `dispatch.json` in its job directory
+   (target, target-tagged handle, when), copies it into a typed output
+   (`DISPATCH`, beside the `PROVENANCE_*` outputs, so params.xml and project
+   recovery carry it), and returns `CPluginScript.DISPATCHED`. The runner
+   leaves the job in `RUNNING_REMOTELY`: no glean, no `FINISHED`.
+2. **Reconcile.** `reconcile(job)` is idempotent and caller-agnostic: it
+   reads the record, asks the target with `poll`, and maps the answer. Not
+   terminal: nothing changes. Terminal: it records the state and the stderr
+   path from `logs`, then starts the job again through the deployment's job
+   target. It is reached from the job page (**Check remote run**, the
+   `reconcile_dispatch` endpoint), from `manage.py reconcile_dispatch --job
+   <uuid> | --all`, and from any code that wants it. Nothing polls on its own:
+   the desktop has no server to host a poller, and nothing about a PanDDA run
+   is time-critical.
+3. **Harvest.** The job process starts, the plugin sees a terminal record,
+   skips staging and submit, and completes from what the run left: a
+   succeeded run goes through the same `processOutputFiles`, gleaning and
+   report as a local one; a failed run is classified by the plugin's own
+   catalogue from the stderr file the target named; a cancelled run ends
+   `INTERRUPTED`.
+
+A target therefore needs no CCP4i2 knowledge beyond the four methods, and a
+task that dispatches needs no platform knowledge at all.
 
 ## What a deployment does
 

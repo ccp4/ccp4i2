@@ -52,6 +52,40 @@ export interface VersionInfo {
   build_timestamp?: Iso8601;
   /** Short git commit hash of the running image, if available. */
   git_commit?: string;
+  /**
+   * Chunked import staging, advertised only by a deployment that enables it
+   * (``CCP4I2_IMPORT_STAGING_DIR``). Absent: send bytes directly.
+   */
+  import_staging?: ImportStagingCapability;
+  /**
+   * The run targets this deployment registered (``CCP4I2_RUN_TARGETS``) and
+   * what each can do. Always present from 0.6.0; a desktop lists only
+   * ``local``. A client offers dispatch of a program only when some entry
+   * has ``runs_programs``.
+   */
+  run_targets?: RunTarget[];
+  /** The target that runs whole jobs on this deployment (``CCP4I2_JOB_TARGET``). */
+  job_target?: string;
+}
+
+/** One registered run target, as ``GET /version/`` lists them. */
+export interface RunTarget {
+  /** The registered name (lower case), e.g. ``local``, ``azure``, ``batch``. */
+  name: string;
+  /** Runs whole CCP4i2 jobs (axis A). */
+  runs_jobs: boolean;
+  /** Runs one external program while the job waits remotely (axis B). */
+  runs_programs: boolean;
+  /** Present when the registered class could not be loaded; both flags are then false. */
+  error?: string;
+}
+
+/** Chunked import staging transport, when the deployment enables it. */
+export interface ImportStagingCapability {
+  chunk_bytes: number;
+  max_bytes: number;
+  threshold_bytes: number;
+  [key: string]: unknown;
 }
 
 // ---------------------------------------------------------------------------

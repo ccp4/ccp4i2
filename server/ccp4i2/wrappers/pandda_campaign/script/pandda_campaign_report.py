@@ -10,6 +10,9 @@ class pandda_campaign_report(Report):
     _STATE_TEXT = {
         'staged': 'Input tree staged; PanDDA is about to start.',
         'running': 'PanDDA is running.',
+        'dispatched': 'PanDDA was handed to a run target and is running elsewhere; the job waits '
+                      'here until the run is reconciled (Check remote run on the job, or '
+                      'manage.py reconcile_dispatch).',
         'finished': 'PanDDA finished and wrote its events table.',
         'partial': 'PanDDA wrote processed datasets but no events table: a partial run. '
                    'Fan-out can still take what is there.',

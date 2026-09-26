@@ -20,7 +20,7 @@ import React, { useRef, useEffect, useState, useMemo } from "react";
 import { useApi } from "../api";
 import { Job } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
-import { apiGet } from "../api-fetch";
+import { apiGet, apiPost } from "../api-fetch";
 import { useRouter } from "next/navigation";
 import { HelpIframe } from "./help_iframe";
 import { usePopcorn } from "../providers/popcorn-provider";
@@ -216,6 +216,25 @@ export default function ToolBar() {
         onClick: handleRun,
         show: job?.status === 1,
         available: job?.status === 1,
+      },
+      {
+        // A job whose program runs on a run target waits in RUNNING_REMOTELY
+        // (7) until someone asks; this is the ask (docs/run-target-dispatch.md).
+        label: "Check remote run",
+        icon: <DirectionsRun />,
+        onClick: async () => {
+          if (!job) return;
+          try {
+            const r: any = await apiPost(`jobs/${job.id}/reconcile_dispatch/`, {});
+            const d = r?.data ?? r;
+            setMessage(String(d?.reason ?? d?.action ?? "checked"), d?.action === "error" ? "error" : "info");
+          } catch (err: any) {
+            setMessage(err?.message ?? String(err), "error");
+          }
+          await mutateJob();
+        },
+        show: job?.status === 7,
+        available: job?.status === 7,
       },
       {
         label: "Clone job",

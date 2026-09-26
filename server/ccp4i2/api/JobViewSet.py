@@ -919,6 +919,26 @@ class JobViewSet(ModelViewSet):
             logger.exception("Unexpected error running job %s", pk, exc_info=err)
             return api_error(f"Unexpected error: {str(err)}", status=500)
 
+    @action(detail=True, methods=["post"])
+    def reconcile_dispatch(self, request, pk=None):
+        """
+        Reconcile a job whose program runs on a program run target.
+
+        POST /api/jobs/123/reconcile_dispatch/
+
+        Idempotent: asks the target how the run is doing and acts on the
+        answer (docs/run-target-dispatch.md). A job that is not running
+        remotely, or has no dispatch record, is left alone and says so.
+        """
+        from ..lib.utils.jobs.dispatch_record import reconcile
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist as err:
+            return api_error(str(err), status=404)
+        result = reconcile(job)
+        job.refresh_from_db()
+        return api_success({**result, "job": serializers.JobSerializer(job).data})
+
     @action(
         detail=True,
         methods=["post"],

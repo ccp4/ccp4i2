@@ -1443,5 +1443,6 @@ def plugin_status_to_job_status(finish_status: int) -> int:
         CPluginScript.INTERRUPTED: models.Job.Status.INTERRUPTED,
         CPluginScript.MARK_TO_DELETE: models.Job.Status.TO_DELETE,
         CPluginScript.UNSATISFACTORY: models.Job.Status.UNSATISFACTORY,
+        CPluginScript.DISPATCHED: models.Job.Status.RUNNING_REMOTELY,
     }
     return status_map.get(finish_status, models.Job.Status.FAILED)
