@@ -82,8 +82,10 @@ at all (the first project skill had to ride on a code PR to land). A *job*
 skipped by an `if:` reports success. So the workflow always starts, a `changes`
 job runs `.github/scripts/changes-need-build.sh` over the changeset, and the
 three builds carry `if: needs.changes.outputs.build == 'true'`. Docs-only means
-every changed file is `*.md`, under `docs/`, or `LICENSE`; a changeset mixing a
-doc edit with a source edit still builds, and anything undecidable builds. A
+every changed file is `*.md`, under `docs/`, `LICENSE`, or under
+`server/.test-baselines/` (committed i2run results and summaries: evidence
+about a build, never an input to one); a changeset mixing a doc edit with a
+source edit still builds, and anything undecidable builds. A
 pull request is judged against its merge base, so a base branch that has moved
 on with code does not make a docs PR build. Two ways to break this, both
 tempting: putting `paths-ignore` back, and adding a second workflow that
