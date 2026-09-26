@@ -172,8 +172,8 @@ export async function startDjangoServer(
     DJANGO_SETTINGS_MODULE: "ccp4i2.config.settings",
     UVICORN_PORT: `${UVICORN_PORT}`,
     NEXT_ADDRESS: `http://localhost:${NEXT_PORT}`,
-    // Force local execution mode for Electron app
-    EXECUTION_MODE: "local",
+    // The desktop always runs jobs locally (the default with no setting, too)
+    CCP4I2_JOB_TARGET: "local",
     // Our pid: the server's parent watchdog exits the uvicorn tree if we die
     // without a chance to kill it (crash, SIGKILL, debugger stop).
     ...parentPidEnvironment(),

@@ -125,6 +125,7 @@ Supporting references:
   never a task parameter
 - [Web-API Task Guide](../server/ccp4i2/wrappers/WEB_API_TASK_GUIDE.md) — the
   practical how-to for a task that calls an authenticated service
+- [Run targets](run-target-dispatch.md) — where a job runs; the settings hook a deployment uses to register its own target; the two interfaces (job / program)
 - [Remote Job Execution Plan](REMOTE_JOB_EXECUTION_PLAN.md) — ssh/qsub/SLURM
   dispatch, which reuses the same credential machinery
 

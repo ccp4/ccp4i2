@@ -16,13 +16,12 @@ def execute_job(job: models.Job, force_local: bool = False) -> Result[models.Job
     """
     Execute a job using environment-appropriate backend.
 
-    Automatically adapts to deployment context:
-    - Local Mode: Executes job via subprocess
-    - Azure Mode: Queues job via Service Bus
+    Runs on the deployment's job target (ccp4i2.lib.dispatch): the local
+    subprocess by default, or whatever the deployment registered.
 
     Args:
         job: Job model instance to execute
-        force_local: If True, force local execution even in Azure
+        force_local: If True, force the local target whatever the deployment's is
 
     Returns:
         Result containing updated job instance

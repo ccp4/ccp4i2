@@ -42,7 +42,7 @@ def no_dispatch(monkeypatch):
         calls.append(job.id)
         return {"success": True, "data": job}
 
-    monkeypatch.setattr("ccp4i2.lib.utils.jobs.context_run.run_job_local", fake_run_job_local)
+    monkeypatch.setattr("ccp4i2.lib.dispatch.local.run_job_local", fake_run_job_local)
     return calls
 
 
