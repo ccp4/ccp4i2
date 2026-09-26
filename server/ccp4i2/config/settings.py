@@ -288,6 +288,19 @@ CCP4I2_IMPORT_STAGING_MAX_INFLIGHT = _int_env(
     "CCP4I2_IMPORT_STAGING_MAX_INFLIGHT", 8)
 
 
+# ---------------------------------------------------------------------------
+# Run targets: where a job (or one heavy program) runs
+# ---------------------------------------------------------------------------
+# CCP4i2 ships only "local". A deployment adds a target by naming its class
+# here in its own settings overlay; CCP4i2 never imports it until asked and
+# never knows the platform (docs/run-target-dispatch.md). With neither
+# setting present, everything runs locally: the desktop needs no configuration.
+CCP4I2_RUN_TARGETS = {
+    "local": "ccp4i2.lib.dispatch.local.LocalTarget",
+}
+# The target that runs whole jobs on this deployment (a name from the map).
+CCP4I2_JOB_TARGET = os.environ.get("CCP4I2_JOB_TARGET", "local")
+
 REST_FRAMEWORK = {
     "DEFAULT_PARSER_CLASSES": (
         "rest_framework.parsers.JSONParser",

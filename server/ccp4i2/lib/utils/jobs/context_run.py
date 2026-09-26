@@ -1,39 +1,31 @@
 """
-Context-Dependent Job Execution Module
+Context-dependent job execution: resolve the run target, then run.
 
-Provides environment-aware job execution that adapts to deployment context:
-- Local Mode: Executes jobs via subprocess (laptop/development)
-- Azure Mode: Queues jobs via Azure Service Bus (container apps)
-
-The execution mode is determined automatically from environment variables,
-keeping Azure-specific dependencies isolated and only loading when needed.
-
-Environment Variables:
-    EXECUTION_MODE: Explicit mode ('local' or 'azure')
-    SERVICE_BUS_CONNECTION_STRING: Azure connection (implies azure mode)
-    SERVICE_BUS_QUEUE_NAME: Azure queue name (default: 'job-queue')
-    CCP4: Path to CCP4 installation (required for local mode)
+Where a job runs is a *run target* (ccp4i2.lib.dispatch): CCP4i2 ships
+``local`` (a subprocess) and a deployment registers its own in settings
+(``CCP4I2_RUN_TARGETS`` / ``CCP4I2_JOB_TARGET``). Nothing here names a
+platform. With no settings at all, jobs run locally.
 
 Example Usage:
-    from ccp4i2.lib.context_dependent_run import run_job_context_aware
-
+    from ccp4i2.lib.utils.jobs.context_run import run_job_context_aware
     result = run_job_context_aware(job)
     if result["success"]:
-        # Job started/queued successfully
-        return Response(result["data"])
+        return Response(result["data"])      # started / queued
     else:
-        # Handle error
         return Response({"error": result["error"]}, status=result["status"])
 """
 
 import os
-import json
 import logging
 import functools
 import shutil
-import subprocess
-import pathlib
-import sys
+
+from ccp4i2.lib.dispatch import (
+    UnknownRunTarget, RunTargetError, get_target, job_target_name, runs_jobs,
+)
+# Kept as a name here for existing importers; the implementation lives with
+# the other run targets.
+from ccp4i2.lib.dispatch.local import run_job_local  # noqa: F401
 
 logger = logging.getLogger(__name__)
 
@@ -90,410 +82,38 @@ def program_checks_are_authoritative():
       authoritative, so a missing binary should *block* submission: the job is
       certain to fail, and failing now with "shelxe was not found; set its
       location in Preferences" beats failing later with a silent empty result.
-    * Azure mode — the job is queued for a worker whose filesystem we cannot
-      see. A "not found" here says nothing about the worker.
+    * a remote job target (e.g. a queue to a worker) — the job runs on a
+      filesystem we cannot see. A "not found" here says nothing about it.
     * the slim CCP4-free API server — there is nothing to look in at all.
 
     In the last two the absence is our ignorance, not a defect in the user's
     setup, so the check stays advisory and must not block Confirm.
     """
-    return get_execution_mode() == "local" and ccp4_available()
-
-
-def _lazy_import_azure_servicebus():
-    """
-    Lazy import Azure Service Bus dependencies.
-
-    Only imports Azure libraries when running in Azure mode, keeping
-    local environments free of Azure dependencies.
-
-    Returns:
-        tuple: (ServiceBusClient, ServiceBusMessage) classes
-
-    Raises:
-        ImportError: If Azure libraries not installed when needed
-    """
-    try:
-        from azure.servicebus import ServiceBusClient, ServiceBusMessage
-
-        return ServiceBusClient, ServiceBusMessage
-    except ImportError:
-        raise ImportError(
-            "Azure Service Bus libraries not installed. "
-            "Required for Azure execution mode. "
-            "Install with: pip install azure-servicebus azure-identity"
-        )
-
-
-def get_execution_mode():
-    """
-    Determine execution mode from environment variables.
-
-    Detection Priority:
-    1. EXECUTION_MODE env var (explicit: 'local' or 'azure')
-    2. Presence of SERVICE_BUS_CONNECTION_STRING (implicit azure)
-    3. Default to 'local'
-
-    Returns:
-        str: 'local' or 'azure'
-
-    Example:
-        >>> os.environ["EXECUTION_MODE"] = "azure"
-        >>> get_execution_mode()
-        'azure'
-
-        >>> os.environ["SERVICE_BUS_CONNECTION_STRING"] = "Endpoint=..."
-        >>> get_execution_mode()
-        'azure'
-    """
-    # Explicit mode setting takes precedence
-    explicit_mode = os.getenv("EXECUTION_MODE", "").lower()
-    if explicit_mode in ["local", "azure"]:
-        logger.info("Using explicit execution mode: %s", explicit_mode)
-        return explicit_mode
-
-    # Implicit detection based on Azure configuration
-    if os.getenv("SERVICE_BUS_CONNECTION_STRING"):
-        logger.info("Detected Azure Service Bus config, using azure mode")
-        return "azure"
-
-    # Default to local mode
-    logger.info("No Azure config detected, defaulting to local mode")
-    return "local"
-
-
-def run_job_azure(job):
-    """
-    Execute job via Azure Service Bus queue.
-
-    Sends a message to the Azure Service Bus queue containing job details,
-    allowing asynchronous processing by worker container apps.
-
-    Args:
-        job: Job model instance with attributes:
-            - id: Job primary key
-            - uuid: Job UUID
-            - task_name: Name of the task to execute
-            - project: Related project with uuid attribute
-
-    Returns:
-        dict: Result dictionary with keys:
-            - success (bool): True if job queued successfully
-            - data (dict): Serialized job data (if success)
-            - error (str): Error message (if failure)
-            - status (int): HTTP status code
-
-    Message Format:
-        {
-            "action": "run_job",
-            "job_uuid": "550e8400-e29b-41d4-a716-446655440000",
-            "job_id": 123,
-            "task_name": "refmac5",
-            "project_uuid": "project-uuid-here"
-        }
-
-    Raises:
-        No exceptions - all errors returned in result dict
-    """
-    logger.info("Running job %s in AZURE mode via Service Bus", job.id)
-
-    try:
-        # Lazy import Azure dependencies
-        ServiceBusClient, ServiceBusMessage = _lazy_import_azure_servicebus()
-
-        # Prepare message payload
-        message_body = {
-            "action": "run_job",
-            "job_uuid": str(job.uuid),
-            "job_id": job.id,
-            "task_name": job.task_name,
-            "project_uuid": str(job.project.uuid),
-        }
-
-        # Get Service Bus configuration
-        connection_string = os.getenv("SERVICE_BUS_CONNECTION_STRING")
-        queue_name = os.getenv("SERVICE_BUS_QUEUE_NAME", "job-queue")
-
-        if not connection_string:
-            error_msg = "Azure Service Bus connection string not configured"
-            logger.error(error_msg)
-            return {
-                "success": False,
-                "error": "Service Bus configuration missing",
-                "status": 500,
-            }
-
-        # Send message to Service Bus
-        with ServiceBusClient.from_connection_string(connection_string) as client:
-            with client.get_queue_sender(queue_name) as sender:
-                message = ServiceBusMessage(json.dumps(message_body))
-                sender.send_messages(message)
-
-        # Update job status to QUEUED
-        # Import here to avoid circular imports
-        from ccp4i2.db import models
-
-        job.status = models.Job.Status.QUEUED
-        job.save()
-
-        logger.info("Queued job %s (%s) via Azure Service Bus", job.id, job.uuid)
-
-        return {
-            "success": True,
-            "data": job,
-            "status": 200,
-        }
-
-    except ImportError as import_error:
-        logger.exception("Azure libraries not available", exc_info=import_error)
-        return {
-            "success": False,
-            "error": str(import_error),
-            "status": 500,
-        }
-    except Exception as error:
-        logger.exception("Failed to queue job via Service Bus", exc_info=error)
-        return {
-            "success": False,
-            "error": f"Service Bus error: {str(error)}",
-            "status": 500,
-        }
-
-
-def _find_python_interpreter() -> tuple:
-    """
-    Find the appropriate Python interpreter for job execution.
-
-    Priority:
-    1. ccp4-python (if available on PATH after sourcing ccp4.setup-sh)
-    2. sys.executable (the interpreter running this Django process)
-
-    Returns:
-        tuple: (interpreter_path: str, interpreter_name: str) or (None, None) if not found
-    """
-    import shutil
-    import sys
-
-    # Priority 1: ccp4-python on PATH (preferred for CCP4 environment)
-    ccp4_python = shutil.which("ccp4-python")
-    if ccp4_python:
-        logger.info("Found ccp4-python on PATH: %s", ccp4_python)
-        return ccp4_python, "ccp4-python"
-
-    # Priority 2: The interpreter running this process (guaranteed to have Django)
-    if sys.executable:
-        logger.info("Using current interpreter: %s", sys.executable)
-        return sys.executable, "sys.executable"
-
-    return None, None
-
-
-def run_job_local(job, synchronous=False):
-    """
-    Execute job via local subprocess.
-
-    Starts the job in a detached subprocess using the most appropriate
-    Python interpreter:
-    1. ccp4-python (preferred - includes CCP4 environment and site-packages)
-    2. Project virtual environment (fallback for development)
-
-    Args:
-        job: Job model instance with attributes:
-            - id: Job primary key
-            - uuid: Job UUID
-        synchronous (bool): If True, blocks until job completes and returns
-            the final job state. If False (default), starts the job in the
-            background and returns immediately.
-
-    Returns:
-        dict: Result dictionary with keys:
-            - success (bool): True if job started/completed successfully
-            - data (dict): Serialized job data (if success)
-            - error (str): Error message (if failure)
-            - status (int): HTTP status code
-
-    Environment Requirements:
-        - ccp4-python on PATH (after sourcing ccp4.setup-sh), OR
-        - Project virtual environment with Django dependencies
-        - CCP4 environment variables
-
-    Raises:
-        No exceptions - all errors returned in result dict
-    """
-    logger.info(
-        "Running job %s in LOCAL mode via subprocess (synchronous=%s)",
-        job.id,
-        synchronous
-    )
-
-    try:
-        # Find appropriate Python interpreter
-        python_interpreter, interpreter_name = _find_python_interpreter()
-
-        if python_interpreter is None:
-            error_msg = (
-                "No suitable Python interpreter found. "
-                "Either source ccp4.setup-sh to get ccp4-python on PATH, "
-                "or create a virtual environment at .venv"
-            )
-            logger.error(error_msg)
-            return {
-                "success": False,
-                "error": error_msg,
-                "status": 500,
-            }
-
-        # Inherit current environment (includes CCP4 vars, PYTHONPATH, etc.)
-        env = os.environ.copy()
-
-        # Update job status to QUEUED before starting subprocess
-        # (Matches Azure mode behavior - job is considered queued once submitted)
-        from ccp4i2.db import models
-        job.status = models.Job.Status.QUEUED
-        job.save()
-
-        if synchronous:
-            # Synchronous execution: block until job completes
-            logger.info(
-                "Running job %s (%s) synchronously using %s",
-                job.id, job.uuid, interpreter_name
-            )
-
-            result = subprocess.run(
-                [
-                    python_interpreter,
-                    "-m", "django",
-                    "run_job",
-                    "-ju",
-                    str(job.uuid),
-                ],
-                env=env,
-                capture_output=True,
-                text=True,
-            )
-
-            # Refresh job from database to get final status
-            job.refresh_from_db()
-
-            if result.returncode != 0:
-                logger.warning(
-                    "Job %s completed with non-zero exit code %d: %s",
-                    job.id, result.returncode, result.stderr
-                )
-
-            logger.info(
-                "Job %s (%s) completed synchronously with status %s",
-                job.id, job.uuid, job.status
-            )
-
-            return {
-                "success": True,
-                "data": job,
-                "status": 200,
-            }
-        else:
-            # Asynchronous execution: start job in detached process
-            # Use crash-safe wrapper script to catch segfaults and mark jobs FAILED.
-            # Without this, a C extension crash kills the Python process and the job
-            # stays stuck in "running" state with no way to detect the failure.
-            # Path: context_run.py -> jobs -> utils -> lib -> ccp4i2 -> scripts/
-            scripts_dir = (
-                pathlib.Path(__file__).parent.parent.parent.parent / "scripts"
-            )
-
-            if sys.platform == "win32":
-                wrapper_script = str(scripts_dir / "run_job_safe.cmd")
-                popen_args = [
-                    wrapper_script,
-                    python_interpreter,
-                    str(job.uuid),
-                ]
-                # On Windows, CREATE_NEW_PROCESS_GROUP is the equivalent
-                # of start_new_session on Unix
-                subprocess.Popen(
-                    popen_args,
-                    creationflags=subprocess.CREATE_NEW_PROCESS_GROUP,
-                    env=env,
-                )
-            else:
-                wrapper_script = str(scripts_dir / "run_job_safe.sh")
-                subprocess.Popen(
-                    [
-                        "/bin/bash",
-                        wrapper_script,
-                        python_interpreter,
-                        str(job.uuid),
-                    ],
-                    start_new_session=True,
-                    env=env,
-                )
-
-            logger.info(
-                "Started job %s (%s) via crash-safe wrapper using %s",
-                job.id, job.uuid, interpreter_name
-            )
-
-            return {
-                "success": True,
-                "data": job,
-                "status": 200,
-            }
-
-    except Exception as error:
-        logger.exception("Failed to start job via subprocess", exc_info=error)
-        return {
-            "success": False,
-            "error": f"Subprocess error: {str(error)}",
-            "status": 500,
-        }
+    return job_target_name() == "local" and ccp4_available()
 
 
 def run_job_context_aware(job, force_local=False, synchronous=False,
                           force_dispatch=False):
     """
-    Execute job using environment-appropriate backend.
+    Run a job on this deployment's job target.
 
-    Automatically detects execution context and routes to appropriate handler:
-    - Azure Mode: Queues job via Azure Service Bus
-    - Local Mode: Executes job via subprocess
-
-    This is the main entry point for context-aware job execution.
+    Resolves the target by name (``CCP4I2_JOB_TARGET``, default ``local``)
+    through the run-target registry and hands the job to it. An interactive
+    task opens its session instead, unless ``force_dispatch``.
 
     Args:
         job: Job model instance
-        force_local (bool): If True, forces local execution regardless of environment
-        synchronous (bool): If True, blocks until job completes (local mode only).
-            Azure mode always returns immediately after queuing.
-        force_dispatch (bool): Dispatch even an interactive task (used when its
+        force_local (bool): run on the ``local`` target whatever the deployment's
+            job target is (the run_local endpoint; the caller has checked
+            feasibility with ``can_run_local``).
+        synchronous (bool): block until the job completes. Honoured by the local
+            target; a target that queues proceeds asynchronously and logs so.
+        force_dispatch (bool): dispatch even an interactive task (used when its
             session is finished); otherwise Run opens the session instead.
 
     Returns:
-        dict: Result dictionary with keys:
-            - success (bool): True if job started/queued successfully
-            - data (dict): Job instance (if success)
-            - error (str): Error message (if failure)
-            - status (int): HTTP status code
-
-    Example:
-        from ccp4i2.lib.context_dependent_run import run_job_context_aware
-
-        # Normal context-aware execution
-        result = run_job_context_aware(job)
-
-        # Force local execution
-        result = run_job_context_aware(job, force_local=True)
-
-        # Synchronous local execution (blocks until complete)
-        result = run_job_context_aware(job, force_local=True, synchronous=True)
-
-        if result["success"]:
-            serializer = JobSerializer(result["data"])
-            return Response(serializer.data)
-        else:
-            return Response(
-                {"error": result["error"]},
-                status=result["status"]
-            )
+        dict: ``{"success": True, "data": job, "status": 200}`` or
+        ``{"success": False, "error": str, "status": int}``. Never raises.
     """
     # An interactive task (the recorded Moorhen session) has no process to
     # dispatch on Run: Run opens the session and the job is dispatched when
@@ -507,32 +127,19 @@ def run_job_context_aware(job, force_local=False, synchronous=False,
             except SessionError as err:
                 return {"success": False, "error": str(err), "status": err.status}
 
-    if force_local:
-        execution_mode = "local"
-        logger.info(
-            "Forcing local execution for job %s (uuid=%s, task=%s) via force_local=True",
-            job.id,
-            job.uuid,
-            job.task_name,
-        )
-    else:
-        execution_mode = get_execution_mode()
+    name = "local" if force_local else job_target_name()
+    try:
+        target = get_target(name)
+    except (UnknownRunTarget, RunTargetError) as err:
+        logger.error("Job %s not run: %s", job.id, err)
+        return {"success": False, "error": str(err), "status": 500}
+    if not runs_jobs(target):
+        msg = (f"run target '{name}' does not run jobs (no run_job); "
+               "set CCP4I2_JOB_TARGET to one that does")
+        logger.error("Job %s not run: %s", job.id, msg)
+        return {"success": False, "error": msg, "status": 500}
 
-    logger.info(
-        "Executing job %s (uuid=%s) in %s mode (synchronous=%s)",
-        job.id,
-        job.uuid,
-        execution_mode.upper(),
-        synchronous,
-    )
-
-    if execution_mode == "azure":
-        if synchronous:
-            logger.warning(
-                "Synchronous execution requested but Azure mode does not support it. "
-                "Job %s will be queued asynchronously.",
-                job.id,
-            )
-        return run_job_azure(job)
-
-    return run_job_local(job, synchronous=synchronous)
+    logger.info("Executing job %s (uuid=%s, task=%s) on target '%s' (synchronous=%s%s)",
+                job.id, job.uuid, job.task_name, name, synchronous,
+                ", forced local" if force_local else "")
+    return target.run_job(job, synchronous=synchronous)

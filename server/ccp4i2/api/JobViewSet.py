@@ -877,10 +877,10 @@ class JobViewSet(ModelViewSet):
 
         Automatically adapts to deployment context:
         - Local Mode: Executes job via subprocess (laptop/development)
-        - Azure Mode: Queues job via Service Bus (container apps)
+        - a registered remote target (a deployment's own, e.g. a job queue)
 
-        The execution mode is determined from environment variables.
-        See ccp4i2.lib.context_dependent_run for implementation details.
+        The target is the deployment's CCP4I2_JOB_TARGET (default "local");
+        see docs/run-target-dispatch.md.
 
         Args:
             request (Request): HTTP request object
@@ -892,10 +892,10 @@ class JobViewSet(ModelViewSet):
         Example:
             POST /api/jobs/123/run/
 
-        Environment Variables:
-            EXECUTION_MODE: Explicit mode ('local' or 'azure')
-            SERVICE_BUS_CONNECTION_STRING: Azure connection (implies azure)
-            CCP4: Path to CCP4 installation (for local mode)
+        Settings:
+            CCP4I2_JOB_TARGET: name of the run target (default "local")
+            CCP4I2_RUN_TARGETS: name -> class map the deployment registered
+            CCP4: Path to CCP4 installation (for the local target)
         """
         try:
             from ..lib.utils.jobs.context_run import run_job_context_aware
@@ -928,7 +928,7 @@ class JobViewSet(ModelViewSet):
         """
         Execute a job locally regardless of environment configuration.
 
-        Forces local execution even in Azure environments, useful for:
+        Forces the local target even when the deployment's job target is remote, useful for:
         - Tasks requiring direct filesystem access
         - Interactive or GUI-based tasks
         - Tasks with specific local dependencies
@@ -2044,9 +2044,9 @@ class JobViewSet(ModelViewSet):
         """
         Cancel a running or queued job.
 
-        Works in both local and Azure deployment contexts:
+        Works on the local target and on a remote one:
         - Local: Kills the process tree via its stored PID
-        - Azure/remote: Sets job status to INTERRUPTED in the database
+        - Remote target: Sets job status to INTERRUPTED in the database
 
         Args:
             request (Request): HTTP request object
@@ -2099,8 +2099,8 @@ class JobViewSet(ModelViewSet):
 
         cancel_session(job)
 
-        # Mark job as interrupted regardless — for Azure workers this is the
-        # primary cancellation mechanism (worker will see the status on next check)
+        # Mark job as interrupted regardless — for a remote worker this is the
+        # primary cancellation mechanism (it sees the status on its next check)
         job.status = models.Job.Status.INTERRUPTED
         job.save()
 

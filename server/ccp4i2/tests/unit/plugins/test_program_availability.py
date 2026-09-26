@@ -129,14 +129,14 @@ def test_authority_helper_reflects_execution_mode(monkeypatch):
     from ccp4i2.lib.utils.jobs import context_run
 
     monkeypatch.setattr(context_run, 'ccp4_available', lambda: True)
-    monkeypatch.setattr(context_run, 'get_execution_mode', lambda: 'local')
+    monkeypatch.setattr(context_run, 'job_target_name', lambda: 'local')
     assert context_run.program_checks_are_authoritative() is True
 
-    monkeypatch.setattr(context_run, 'get_execution_mode', lambda: 'azure')
+    monkeypatch.setattr(context_run, 'job_target_name', lambda: 'queue')
     assert context_run.program_checks_are_authoritative() is False
 
     # slim CCP4-free server: local mode, but nothing to look in
-    monkeypatch.setattr(context_run, 'get_execution_mode', lambda: 'local')
+    monkeypatch.setattr(context_run, 'job_target_name', lambda: 'local')
     monkeypatch.setattr(context_run, 'ccp4_available', lambda: False)
     assert context_run.program_checks_are_authoritative() is False
 
