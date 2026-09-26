@@ -7,13 +7,9 @@ import traceback
 
 from lxml import etree
 
-try:  # external Coot API, present only in the execution (worker) env, not the slim API
-    import coot_headless_api
-except ImportError:
-    coot_headless_api = None
-
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.lib.coot_api import molecules_container
 from ccp4i2.lib.utils.formats.cell_compatibility import (
     check_merge_cells,
 )
@@ -1213,7 +1209,7 @@ class SubstituteLigand(CPluginScript):
         try:
 
             # Initialize coot headless API
-            mc = coot_headless_api.molecules_container_py(True)
+            mc = molecules_container(True)
             mc.set_make_backups(False)
             mc.set_use_gemmi(False)
 
