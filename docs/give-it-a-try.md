@@ -33,6 +33,13 @@ Download and install a **CCP4 10** build from
 <https://ccp4serv6.rc-harwell.ac.uk/10/downloads/>. This gives you the CCP4
 suite and, with it, `ccp4-python` — the interpreter the backend runs in.
 
+The builds we have validated end to end are **ccp4-20260904** (current) and
+**ccp4-20260702**: the whole i2run test suite passes on both (see "Validated
+CCP4 builds" in the [README](../README.md)). Newer nightlies usually work but
+have not been checked the same way. If you unpack a tarball by hand rather
+than running an installer, run `./BINARY.setup` inside it once; that creates
+the `bin/ccp4.setup-sh` the app looks for.
+
 You do **not** need to source any setup script for the desktop app; it locates
 your CCP4 installation itself (step 3).
 
