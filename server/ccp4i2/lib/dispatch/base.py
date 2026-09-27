@@ -33,9 +33,15 @@ class ProgramTarget(Protocol):
     The CCP4i2 job sits in ``RUNNING_REMOTELY`` holding the handle; a
     reconcile step asks ``poll`` and maps the answer onto job status.
 
-    - ``submit`` takes the staged input tree, the program's argv, the output
-      directory and the ``sizing_hint`` dict, and returns an opaque string
-      handle. The handle is recorded target-tagged, never bare.
+    - ``submit`` takes the staged input tree, the program's argv **with the
+      program as argv[0]** (a target builds its command from this alone and
+      never needs to know what the image runs), the output directory and the
+      ``sizing_hint`` dict, and returns an opaque string handle. The handle
+      is recorded target-tagged, never bare. ``sizing_hint`` always carries
+      ``datasets``, ``cell_volume_class``, ``local_cpus`` and
+      ``estimated_peak_gib``: the last is the number a target choosing
+      between pools needs, computed by the task so the formula lives in one
+      place.
     - ``poll`` returns one of ``"queued"``, ``"running"``, ``"succeeded"``,
       ``"failed"``, ``"cancelled"``, ``"unknown"``.
     - ``cancel`` asks the platform to stop the run; it may be a no-op.

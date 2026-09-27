@@ -114,6 +114,7 @@ def _submit(tmp_path, env, project_name):
     submission = json.loads((tmp_path / "submission.json").read_text())
     record = json.loads((job_dir / "dispatch.json").read_text())
     assert record["target"] == "batch" and record["state"] == "submitted"
+    assert submission["argv"][0] == "pandda2.analyse" and "estimated_peak_gib" in submission["sizing_hint"]
     return uuid, job_dir, submission
 
 

@@ -44,7 +44,7 @@ results are committed under `server/.test-baselines/<build>/`.
 
 | Build | Result | Notes |
 |---|---|---|
-| `ccp4-20260904` | 203 passed · 0 failed · 21 skipped | current; Coot exposes only `molecules_container_t` (handled by `lib/coot_api.py`); ships `pandda2.analyse` |
+| `ccp4-20260904` | 203 passed · 0 failed · 21 skipped | current; Coot exposes only `molecules_container_t` (handled by `lib/coot_api.py`); ships `pandda2.analyse`. **Caveat:** its RDKit 2025.09 breaks acedrg for any ligand with no stereocentre (`KeyError: '_CIPRank'`), which the suite does not cover; a CCP4 bundle bug, reported. Fragment campaigns should supply dictionaries rather than derive them from SMILES on this build |
 | `ccp4-20260702` | 203 passed · 0 failed · 21 skipped | previous; identical skip set |
 
 All 21 skips are environment gaps (no shelx or xds binaries, documented test
