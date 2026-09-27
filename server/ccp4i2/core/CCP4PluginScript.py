@@ -428,6 +428,9 @@ class CPluginScript(CData):
     MARK_TO_DELETE = 5  # No useful output was produced; job should be discarded
     DISPATCHED = 6  # The program runs elsewhere (a program run target); the job
                     # waits in RUNNING_REMOTELY until a reconcile harvests it
+    #: Statuses that are not a verdict: work is still going on. Nothing that
+    #: reads a plugin status as success-or-failure may treat these as either.
+    NO_VERDICT_STATUSES = frozenset({RUNNING, DISPATCHED})
 
     def __init__(self,
                  parent=None,
@@ -3040,6 +3043,22 @@ class CPluginScript(CData):
         if getattr(self, '_causesRecorded', False):
             return
         self._causesRecorded = True
+        if status in self.NO_VERDICT_STATUSES:
+            # Work still going on -- a program dispatched to a run target,
+            # say. "Not SUCCEEDED" is not "failed": that reading put an
+            # ERROR-severity "The job failed" into the diagnostics of a
+            # healthy remote run while the job sat in RUNNING_REMOTELY, and
+            # an operator reading the panel resubmitted it (Materia,
+            # 2026-09-27). Write what was recorded, as it stands, and draw
+            # no verdict until the harvest brings one back.
+            try:
+                if self.workDirectory and os.path.isdir(str(self.workDirectory)):
+                    from ccp4i2.core.base_object.error_reporting import write_diagnostic_xml
+                    write_diagnostic_xml(self.errorReport, self.workDirectory)
+            except Exception as err:
+                logger.warning(f"[recordCauses] Could not write diagnostic.xml: {err}")
+            self._causesRecorded = False      # the verdict, when it comes, still records
+            return
         succeeded = (status == self.SUCCEEDED)
         self.absorbPendingCauses(downgrade=succeeded)
 
