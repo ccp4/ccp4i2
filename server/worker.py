@@ -831,12 +831,16 @@ def run_worker_loop(sb_client, queue_name):
 
 def cleanup_stale_jobs(stale_threshold_hours=2):
     """
-    Clean up jobs stuck in RUNNING or RUNNING_REMOTELY state.
+    Clean up jobs a worker was running when it died.
 
     This handles cases where:
     - Worker was OOM-killed without catching signal
     - Container crashed unexpectedly
     - Network partition prevented status update
+
+    A job in RUNNING_REMOTELY is not swept by age: no worker holds it, so this
+    worker's death says nothing about it. reconcile_dispatched_jobs() below
+    speaks for those instead, by asking their targets.
 
     Args:
         stale_threshold_hours: Jobs running longer than this are considered stale
@@ -883,6 +887,46 @@ def cleanup_stale_jobs(stale_threshold_hours=2):
         logger.warning("Error during stale job cleanup: %s", e)
 
 
+def reconcile_dispatched_jobs():
+    """Ask each dispatched job's run target how its program is doing.
+
+    A worker restart is the moment this matters: while no worker was up,
+    nothing was polling, so a run that finished during the gap has a job still
+    sitting in RUNNING_REMOTELY with its output unharvested. The reconcile is
+    idempotent and acts only on a terminal answer, so calling it here is safe
+    however many workers start at once, and a live run is left alone.
+    """
+    import subprocess
+
+    logger.info("Reconciling dispatched jobs...")
+
+    ccp4_python = os.getenv("CCP4_PYTHON")
+    if not ccp4_python:
+        logger.warning("CCP4_PYTHON not set, skipping dispatch reconcile")
+        return
+
+    try:
+        result = subprocess.run(
+            [ccp4_python, "-m", "django", "reconcile_dispatch", "--all"],
+            capture_output=True,
+            text=True,
+            timeout=300,
+            cwd="/usr/src/app",
+            check=False,
+            env=get_subprocess_env(),
+        )
+        if result.returncode == 0:
+            logger.info("Dispatch reconcile completed: %s", result.stdout.strip())
+        else:
+            logger.warning("Dispatch reconcile failed: %s", result.stderr)
+    except subprocess.TimeoutExpired:
+        logger.warning("Dispatch reconcile timed out")
+    except FileNotFoundError:
+        logger.warning("reconcile_dispatch command not found - skipping")
+    except Exception as e:  # noqa: BLE001 -- a startup sweep must not stop the worker
+        logger.warning("Error during dispatch reconcile: %s", e)
+
+
 def main():
     """Main worker loop"""
     # Register signal handlers for graceful shutdown
@@ -902,6 +946,10 @@ def main():
 
     # Clean up any stale jobs from previous worker crashes on startup
     cleanup_stale_jobs()
+
+    # Dispatched jobs are not swept by age; ask their targets instead, and
+    # harvest anything that finished while no worker was up to notice.
+    reconcile_dispatched_jobs()
 
     # Initialize Service Bus client
     try:
