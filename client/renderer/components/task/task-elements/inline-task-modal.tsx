@@ -23,6 +23,7 @@ import { useApi } from "../../../api";
 import { apiJson } from "../../../api-fetch";
 import { useJob, useProject, useProjectFiles } from "../../../utils";
 import { Job, File as DjangoFile } from "../../../types/models";
+import { getStatusLabel } from "../../../lib/job-status-label";
 import { TaskProvider } from "../../../providers/task-provider";
 import { TaskContainer } from "../task-interfaces/task-container";
 
@@ -300,15 +301,3 @@ export const InlineTaskModal: React.FC<InlineTaskModalProps> = ({
 };
 
 /** Convert job status code to a human-readable label */
-function getStatusLabel(status: number): string {
-  switch (status) {
-    case 1: return "Pending";
-    case 2: return "Queued";
-    case 3: return "Running";
-    case 4: return "Failed";
-    case 5: return "Unsatisfactory";
-    case 6: return "Finished";
-    case 7: return "Running remotely";
-    default: return `Unknown (${status})`;
-  }
-}
