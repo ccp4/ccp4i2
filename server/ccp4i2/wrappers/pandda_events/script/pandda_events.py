@@ -30,7 +30,8 @@ from ccp4i2.core.CCP4XtalData import CMapDataFile
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
 from ccp4i2.wrappers.pandda_campaign.script.pandda_staging import link_or_copy
 
-from .pandda_tree import PANDDA_RESIDUE_NAME, DatasetNotFound, display_contour, read_dataset
+from .pandda_tree import (PANDDA_RESIDUE_NAME, STAGED_DATASETS_DIR, STAGING_DIR_NAME,
+                          DatasetNotFound, display_contour, read_dataset)
 from . import pandda_scene
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -79,8 +80,12 @@ class pandda_events(CPluginScript):
         tree = Path(str(inp.PANDDA_OUT_DIR))
         dtag = str(inp.DTAG)
 
+        # The staged tree sits beside the run's output in the campaign job's
+        # own directory, which is how the receipt can reach what PanDDA was
+        # given when PanDDA's links into it do not resolve here.
+        staged = tree.parent / STAGING_DIR_NAME / STAGED_DATASETS_DIR / dtag
         try:
-            dataset = read_dataset(tree, dtag)
+            dataset = read_dataset(tree, dtag, staged_dir=staged)
         except DatasetNotFound as e:
             self.appendErrorReport(201, str(e))
             return CPluginScript.FAILED
