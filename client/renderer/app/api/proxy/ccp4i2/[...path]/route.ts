@@ -1,4 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { gzip } from "node:zlib";
+import { promisify } from "node:util";
+
+const gzipAsync = promisify(gzip);
+
+/**
+ * Below this, compressing costs more than it saves.
+ */
+const COMPRESS_OVER_BYTES = 4096;
+
 
 /**
  * CCP4i2 API Proxy Route
@@ -274,12 +284,32 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     // Check if this is a JSON response - if so, use arrayBuffer to handle gzip decompression
     const contentType = response.headers.get('Content-Type') || '';
     if (contentType.includes('application/json')) {
-      const data = await response.arrayBuffer();
+      const data = Buffer.from(await response.arrayBuffer());
       const headers = new Headers();
       headers.set('Content-Type', 'application/json');
-      headers.set('Content-Length', String(data.byteLength));
       // CORP header allows loading from pages with COEP: require-corp (Moorhen)
       headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
+
+      // Django compresses (GZipMiddleware) but fetch() decompresses on arrival,
+      // and the response built here dropped the encoding header and never
+      // compressed again -- so every JSON body crossed the internet raw. The
+      // project list is 2.45 MB that gzips to 342 kB, and the CCP4i2 landing
+      // page fetched it twice, which is what made it unusable over a slow link.
+      const wantsGzip = (req.headers.get('accept-encoding') || '')
+        .toLowerCase()
+        .includes('gzip');
+      if (wantsGzip && data.byteLength > COMPRESS_OVER_BYTES) {
+        const compressed = await gzipAsync(data);
+        headers.set('Content-Encoding', 'gzip');
+        headers.set('Content-Length', String(compressed.byteLength));
+        headers.set('Vary', 'Accept-Encoding');
+        return new NextResponse(compressed, {
+          status: response.status,
+          headers,
+        });
+      }
+
+      headers.set('Content-Length', String(data.byteLength));
       return new NextResponse(data, {
         status: response.status,
         headers,

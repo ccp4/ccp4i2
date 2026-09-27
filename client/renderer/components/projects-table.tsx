@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo, useState, useCallback } from "react";
+import React, { useDeferredValue, useEffect, useMemo, useState, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import {
@@ -75,17 +75,26 @@ interface CampaignInfo {
 // Hook to fetch campaign info for projects (includes both parent and member campaigns)
 // Uses POST to avoid URL length limits with large numbers of projects
 function useProjectCampaigns(projectIds: number[]) {
-  // Use a stable key for SWR based on sorted IDs
-  const cacheKey = projectIds.length > 0
-    ? `project_campaigns:${projectIds.slice().sort((a, b) => a - b).join(",")}`
-    : null;
+  // The key was a join of every id -- 50 kB of string, rebuilt by sorting and
+  // joining 7,204 numbers on every render of the page, including every
+  // keystroke in the search box. The set only changes when the project list
+  // does, so derive it once per list.
+  const cacheKey = useMemo(
+    () =>
+      projectIds.length > 0
+        ? `project_campaigns:${projectIds.slice().sort((a, b) => a - b).join(",")}`
+        : null,
+    [projectIds]
+  );
 
   const { data } = useSWR<Record<string, CampaignInfo>>(
     cacheKey,
     async () => {
       // Use POST to send project IDs in body (avoids URL length limits)
       const response = await apiFetch(
-        "/api/proxy/ccp4i2/projectgroups/project_campaigns/",
+        // No trailing slash: the proxy adds it, and a POST that arrives with
+        // one is answered 308 and re-sent, doubling every call.
+        "/api/proxy/ccp4i2/projectgroups/project_campaigns",
         {
           method: "POST",
           headers: {
@@ -405,8 +414,10 @@ export default function ProjectsTable() {
     [brokenProjects]
   );
 
-  // Get campaign info for all projects
-  const projectIds = (projects || []).map((p) => p.id);
+  // Get campaign info for all projects. Memoised so the key below is built
+  // when the list changes rather than on every render: a fresh array here
+  // would defeat it, since its identity is what the memo watches.
+  const projectIds = useMemo(() => (projects || []).map((p) => p.id), [projects]);
   const campaignInfo = useProjectCampaigns(projectIds);
 
   // Does a project sit at or below the selected node of the tag tree?
@@ -424,9 +435,15 @@ export default function ProjectsTable() {
   };
 
   // Filter and sort projects
+  // The filter runs over every project, so at DDU's 7,204 it is far too much
+  // work to do between keystrokes: React renders the character, then blocks on
+  // the filter, and the field feels dead. Deferring it lets the input update
+  // immediately and the list catch up.
+  const deferredQuery = useDeferredValue(query);
+
   const filteredProjects = useMemo(() => {
     if (!Array.isArray(projects)) return [];
-    const term = query.toLowerCase();
+    const term = deferredQuery.toLowerCase();
 
     return projects
       .filter(matchesTagFilter)
@@ -442,12 +459,11 @@ export default function ProjectsTable() {
           );
         }
         return false;
-      })
-      .sort(
-        (a, b) =>
-          new Date(b.last_access).getTime() - new Date(a.last_access).getTime()
-      );
-  }, [projects, query, tagFilter]);
+      });
+    // No sort here: get_queryset() already orders the list by -last_access,
+    // and re-doing it allocated two Date objects per comparison -- about
+    // 190,000 of them per keystroke at 7,204 projects.
+  }, [projects, deferredQuery, tagFilter]);
 
   // Handlers
   async function afterTagging(label: string, count: number) {
@@ -1051,7 +1067,12 @@ export default function ProjectsTable() {
             display: { xs: "none", md: "block" },
             borderRight: "1px solid",
             borderColor: "divider",
+            // The parent clips, so without a height and its own scrollbar a
+            // long tag tree simply runs off the bottom of the page with no way
+            // to reach the rest of it. DDU has over a hundred tags.
+            height: "100%",
             minHeight: 0,
+            overflowY: "auto",
           }}
         >
           <ProjectTagTreePane

@@ -32,11 +32,14 @@ interface ExportResult {
 export default function FileMenu() {
   const api = useApi();
   const projectId = useProjectScope();
-  const { data: projects, mutate: mutateProjects } =
-    api.get<Project[]>("projects");
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  // Ten recent projects, fetched when the menu is opened rather than on every
+  // page that mounts this bar: the list is the whole catalogue, 2.45 MB at
+  // DDU's 7,204 projects, for ten menu items.
+  const { data: projects, mutate: mutateProjects } = api.get<Project[]>(
+    open ? "projects" : null
+  );
   // Quit is Electron's to offer, and the check is deferred to an effect: this
   // menu is rendered by the app bar on every route, so reading `window` during
   // render broke server rendering of all of them.
@@ -140,14 +143,12 @@ export default function FileMenu() {
         />
         <Divider />
         {Array.isArray(projects) &&
+          // The server returns the list ordered by -last_access, so the ten
+          // most recent are the first ten. The sort this replaces ran in
+          // place, which reordered SWR's cached array under every other
+          // consumer of it.
           projects
-            .sort((a: Project, b: Project) => {
-              const dateA = new Date(a.last_access);
-              const dateB = new Date(b.last_access);
-              return dateA.getTime() - dateB.getTime();
-            })
-            .slice(-10)
-            .reverse()
+            .slice(0, 10)
             .map((project: Project) => (
               <CCP4i2MenuItem
                 key={project.id}

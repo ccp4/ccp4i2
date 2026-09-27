@@ -11,6 +11,7 @@ import { useCCP4i2Window } from "../app-context";
 import { File, Job, Project } from "../types/models";
 import { useJob, useProjectJobs } from "../utils";
 import { useApi } from "../api";
+import { apiJson } from "../api-fetch";
 import { useTaskInterface } from "./task-provider";
 import { JobDragChip } from "../components/job-drag-chip";
 
@@ -28,7 +29,9 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
 
   const { jobs: project_jobs } = useProjectJobs(job?.project);
 
-  const { data: projects } = api.get<Project[]>("projects");
+  // No project list here either. This provider is mounted on every authed
+  // page and wanted the catalogue only to turn one job's project id into its
+  // uuid, at drop time; that is one fetch of one project, when it happens.
 
   const setContextJob = useCallback(
     (job: Job, context_job: Job) => {
@@ -50,12 +53,17 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
       if (!objectPath) return;
       if (!file) return;
       if (!project_jobs) return;
-      if (!projects) return;
+      // The util needs the project the dragged file's job belongs to; fetch
+      // that one rather than holding 7,204 of them against the chance.
+      const jobOfFile = project_jobs.find((theJob) => theJob.id === file.job);
+      const project = jobOfFile
+        ? await apiJson<Project>(`projects/${jobOfFile.project}`).catch(() => null)
+        : null;
       const setParameterArg = fileItemToParameterArg(
         file,
         objectPath,
         project_jobs,
-        projects
+        project ? [project] : []
       );
       setInFlight(true);
       //Not sure how to trigger onChange
@@ -63,7 +71,7 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
       await mutateContainer();
       setInFlight(false);
     },
-    [project_jobs, projects, fileItemToParameterArg]
+    [project_jobs, fileItemToParameterArg]
   );
 
   // Rows in the job list are both draggable and clickable. Without a distance
