@@ -41,7 +41,9 @@ def test_stage_only_needs_no_campaign():
         assert [e["label"] for e in manifest["datasets"]] == LABELS
         assert manifest["provenance"]["run_mode"] == "stage_only"
         assert manifest["provenance"]["contract"].startswith("CCP4I2_PANDDA_INVOCATION_CONTRACT")
-        assert manifest["provenance"]["sizing_hint"] == {"datasets": 3, "cell_volume_class": "small"}
+        hint = manifest["provenance"]["sizing_hint"]
+        assert (hint["datasets"], hint["cell_volume_class"], hint["local_cpus"]) == (3, "small", 3)
+        assert hint["estimated_peak_gib"] == pytest.approx(6.1, abs=0.05)   # 6.0 baseline + 3 x 4 MB x 4 x 3 CPUs
 
         job_id = ET.parse(job / "params.xml").find(".//jobId").text
         db_job = models.Job.objects.get(uuid=job_id)
@@ -139,7 +141,11 @@ def test_dispatch_submits_and_waits(fake_batch):
         # One submission, of the staged tree, with the contract's argv and the sizing hint.
         (sub,) = fake_batch.submissions
         assert sub["tree"].endswith("/staging/datasets") and sub["out_dir"].endswith("/pandda2_out")
-        assert "--dataset_range" in " ".join(sub["argv"]) and set(sub["sizing_hint"]) == {"datasets", "cell_volume_class"}
+        assert sub["argv"][0] == "pandda2.analyse", sub["argv"][:2]      # the program is argv[0]
+        assert "--dataset_range" in " ".join(sub["argv"])
+        hint = sub["sizing_hint"]
+        assert set(hint) == {"datasets", "cell_volume_class", "local_cpus", "estimated_peak_gib"}
+        assert hint["local_cpus"] == 4 and hint["estimated_peak_gib"] > 0
         # The record is target-tagged, in the job directory and in the typed output.
         rec = dispatch_record.read_record(job)
         assert rec["target"] == "batch" and rec["handle"] == "fake-1" and rec["state"] == "submitted"

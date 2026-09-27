@@ -84,6 +84,30 @@ Axis B is consumed by the PanDDA orchestrator's dispatch mode (design note
 A target therefore needs no CCP4i2 knowledge beyond the four methods, and a
 task that dispatches needs no platform knowledge at all.
 
+## Notes for a target author, from the first real run
+
+Materia's Batch target ran the seam end to end on 27 September 2026; three
+of its five start-up failures were about the node, not the contract, and are
+worth knowing before writing a target:
+
+- **`argv[0]` is the program.** `submit` receives the full command,
+  program first; build the command from it alone and never assume which
+  program the image runs.
+- **`sizing_hint` carries `estimated_peak_gib`**, alongside `datasets`,
+  `cell_volume_class` and `local_cpus`. Choose a pool from that number; do
+  not re-derive it.
+- **The task runs as an unprivileged user on read-only site-packages with
+  no writable `HOME`.** `HOME`, `NUMBA_CACHE_DIR`, `MPLCONFIGDIR` and
+  `RAY_TMPDIR` must all be exported and created by the task command itself
+  (numba, matplotlib and Ray each write caches and die without one).
+- **Anything containing a platform variable belongs in the command the task
+  runs, not in the container's run options.** Run options reach the
+  container runtime as argv and are never shell-expanded;
+  `--workdir $AZ_BATCH_NODE_MOUNTS_DIR/...` in run options is a literal
+  string.
+- **Ship the whole model.** A scoring model that is five files and shipped as
+  two fails after loading every dataset, not at start.
+
 ## What a deployment does
 
 1. Put the target class in the deployment's own package (for Materia,

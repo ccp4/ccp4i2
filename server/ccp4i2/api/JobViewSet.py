@@ -73,6 +73,33 @@ from . import serializers
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
+
+#: Statuses a job may be started from. Anything else -- running, queued,
+#: finished, failed -- is refused with the reason, never silently accepted
+#: (a re-run of a failed job did nothing on Materia, 2026-09-27; the right
+#: move is to clone it, and the response says so).
+RUNNABLE_JOB_STATUSES = frozenset({models.Job.Status.PENDING, models.Job.Status.UNKNOWN})
+
+
+def _not_runnable(job):
+    if job.status in RUNNABLE_JOB_STATUSES:
+        return None
+    # An interactive task's Run opens (or reopens) its session, and a job with
+    # an open session is RUNNING: open_session already refuses what must be
+    # refused (a queued job, or one running under a real process).
+    from ..lib.utils.jobs.interactive import is_interactive_job
+    if is_interactive_job(job):
+        return None
+    label = job.get_status_display().lower()
+    if job.status in models.TERMINAL_JOB_STATUSES:
+        advice = "clone it and run the clone"
+    elif job.status == models.Job.Status.RUNNING_REMOTELY:
+        advice = "reconcile it (reconcile_dispatch) instead"
+    else:
+        advice = "wait for it, or cancel it first"
+    return {"error": "job_not_runnable", "status": job.status,
+            "reason": f"job {job.number} is {label}; {advice}"}
+
 class JobViewSet(ModelViewSet):
     """
     Django REST Framework ViewSet for managing CCP4 crystallographic computing jobs.
@@ -901,6 +928,9 @@ class JobViewSet(ModelViewSet):
             from ..lib.utils.jobs.context_run import run_job_context_aware
 
             job = models.Job.objects.get(id=pk)
+            refusal = _not_runnable(job)
+            if refusal:
+                return Response(refusal, status=409)
 
             # Execute job using context-aware backend
             result = run_job_context_aware(job)
@@ -994,6 +1024,9 @@ class JobViewSet(ModelViewSet):
             )
 
             job = models.Job.objects.get(id=pk)
+            refusal = _not_runnable(job)
+            if refusal:
+                return Response(refusal, status=409)
 
             # Parse request body: synchronous, and an optional on_unavailable hint
             # ("queue" => fall back to async dispatch instead of being told no).

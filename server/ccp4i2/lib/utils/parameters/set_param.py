@@ -19,31 +19,35 @@ from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 logger = logging.getLogger(__name__)
 
 
-def normalize_object_path(object_path: str) -> str:
+SECTIONS = ("inputData", "controlParameters", "outputData", "guiParameters", "guiAdmin")
+
+
+def normalize_object_path(object_path: str, task_name: str = None) -> str:
     """
-    Normalize object paths from frontend to match backend container structure.
+    Every path form a caller may reasonably write, reduced to the one the
+    container resolves: ``<task>.<section>.<name>[...]``.
 
-    The frontend JSON encoder includes the full hierarchy path which includes
-    `.container.` (e.g., `prosmart_refmac.container.inputData.XYZIN`), but the
-    backend container structure doesn't have that extra level.
+    Accepted (all name the same parameter):
+      ``prosmart_refmac.container.inputData.XYZIN``   the frontend's full path
+      ``prosmart_refmac.inputData.XYZIN``
+      ``container.inputData.XYZIN``
+      ``inputData.XYZIN``                              the API docstring's form
 
-    This function strips the `.container.` segment if present after the task name.
-
-    Args:
-        object_path: Path like "prosmart_refmac.container.inputData.XYZIN"
-
-    Returns:
-        Normalized path like "prosmart_refmac.inputData.XYZIN"
+    The first two never needed ``task_name``; the last two do, and were
+    rejected with an error that named the leaf as missing and the root as
+    the search origin, which reads as "no such parameter" (Materia,
+    2026-09-27).
     """
-    # Split into parts
-    parts = object_path.split('.')
-
-    # If second element is 'container', remove it
-    # e.g., ['prosmart_refmac', 'container', 'inputData', 'XYZIN']
-    #    -> ['prosmart_refmac', 'inputData', 'XYZIN']
+    parts = [p for p in object_path.split('.') if p]
+    if not parts:
+        return object_path
+    if parts[0] == 'container':
+        parts = ([task_name] if task_name else []) + parts[1:]
+    elif parts[0] in SECTIONS and task_name:
+        parts = [task_name] + parts
+    # Strip a '.container.' segment after the task name.
     if len(parts) >= 2 and parts[1] == 'container':
         parts = [parts[0]] + parts[2:]
-
     return '.'.join(parts)
 
 
@@ -111,7 +115,7 @@ def set_parameter(
 
     try:
         # Normalize path to strip .container. segment if present from frontend
-        normalized_path = normalize_object_path(object_path)
+        normalized_path = normalize_object_path(object_path, job.task_name)
 
         # Set parameter through plugin's container using modern context-aware method
         # This ensures proper file handling, validation, hierarchy, and database sync
@@ -122,7 +126,16 @@ def set_parameter(
 
         # Use modern CContainer.set_parameter() which auto-detects CPluginScript parent
         # and enables database synchronization when appropriate
-        obj = plugin.container.set_parameter(normalized_path, value, skip_first=True)
+        try:
+            obj = plugin.container.set_parameter(normalized_path, value, skip_first=True)
+        except AttributeError as err:
+            # Say what was tried, in the caller's terms: the underlying error
+            # names the leaf as missing and the root as the origin, which reads
+            # as "no such parameter in this task".
+            raise AttributeError(
+                f"no parameter at '{object_path}' (resolved as '{normalized_path}'; "
+                f"a path is '<section>.<NAME>' or '{job.task_name}.<section>.<NAME>', "
+                f"sections: {', '.join(SECTIONS)}): {err}") from err
 
         # Save parameters to input_params.xml (user control stage)
         # Use CPluginScript.saveDataToXml which uses ParamsXmlHandler for proper filtering

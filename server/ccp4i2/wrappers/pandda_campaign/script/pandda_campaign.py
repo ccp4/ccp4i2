@@ -442,7 +442,10 @@ class pandda_campaign(CPluginScript):
             return CPluginScript.FAILED
         self._write_program_xml(state='submitting')
         try:
-            handle = target.submit(self._staging_root / 'datasets', list(self.commandLine),
+            # argv[0] is the program: a target builds its command from this
+            # alone and must not need to know what the image runs.
+            handle = target.submit(self._staging_root / 'datasets',
+                                   [contract.PROGRAM] + list(self.commandLine),
                                    self._out_dir(), self._sizing_hint())
         except Exception as err:  # noqa: BLE001 -- the target's failure is this job's failure
             self.appendErrorReport(227, f"run target '{name}' refused the submission: "
@@ -570,15 +573,21 @@ class pandda_campaign(CPluginScript):
                 cells.append((c.a, c.b, c.c, c.alpha, c.beta, c.gamma))
             except Exception:
                 continue
-        return contract.sizing_hint(len(self.container.inputData.DATASETS), cells)
+        hint = contract.sizing_hint(len(self.container.inputData.DATASETS), cells)
+        # The one number a target choosing a pool actually needs, computed
+        # here so the 6.1 formula lives in one place (Materia, 2026-09-27).
+        cpus = self._local_cpus()
+        hint['local_cpus'] = cpus
+        hint['estimated_peak_gib'] = round(
+            contract.estimate_peak_gib(hint['datasets'], hint['cell_volume_class'], cpus), 1)
+        return hint
 
     @staticmethod
     def _physical_gib():
-        try:
-            import psutil
-            return psutil.virtual_memory().total / 2 ** 30
-        except Exception:
-            return None
+        """What this process can use: the cgroup limit inside a container,
+        the host's memory otherwise (lib/utils/system_memory.py)."""
+        from ccp4i2.lib.utils.system_memory import usable_gib
+        return usable_gib()
 
     @staticmethod
     def _read(path) -> str:
