@@ -110,7 +110,15 @@ export function DataTable<T extends Record<string, any>>({
       <TableContainer
         ref={parentRef}
         sx={{
-          flex: 1,
+          // flex-basis 0 with minHeight 0 is what makes this a definite
+          // height rather than one derived from its content. The virtualiser
+          // measures this element: given a content-sized height it concludes
+          // the viewport is enormous, renders all 7,204 rows, and the
+          // ancestors' overflow:hidden clips the lot -- rows to the bottom of
+          // the window and no scrollbar anywhere.
+          flex: "1 1 0",
+          minHeight: 0,
+          maxHeight: "100%",
           overflow: "auto",
         }}
       >

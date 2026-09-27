@@ -1084,7 +1084,17 @@ export default function ProjectsTable() {
           />
         </Box>
 
-      <Box sx={{ flex: 1, overflow: "hidden", minHeight: 0 }}>
+      <Box
+        sx={{
+          flex: "1 1 0",
+          minHeight: 0,
+          overflow: "hidden",
+          // A flex column, so the table's height: 100% has a parent height to
+          // resolve against.
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {viewMode === "cards" ? (
           // Virtualized Card Grid View
           <VirtualizedCardGrid
