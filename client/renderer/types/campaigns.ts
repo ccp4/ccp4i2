@@ -86,6 +86,12 @@ export interface ProjectGroup {
   id: number;
   name: string;
   type: ProjectGroupType;
+  /**
+   * Member projects, excluding the parent. Annotated by the list endpoint,
+   * so it costs nothing per row; optional because a group that did not come
+   * from that endpoint may not carry it.
+   */
+  member_count?: number;
   /** Saved binding sites for Moorhen viewer navigation */
   sites?: CampaignSite[];
 }

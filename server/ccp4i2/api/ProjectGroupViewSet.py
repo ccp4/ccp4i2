@@ -7,7 +7,7 @@ coordinates and FreeR flags, and member projects each represent a dataset
 soaked with a different compound.
 """
 import logging
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.http import FileResponse
 from django.conf import settings
 from rest_framework.viewsets import ModelViewSet
@@ -47,7 +47,7 @@ class ProjectGroupViewSet(ModelViewSet):
         - remove_member: Remove a project from the group
     """
 
-    queryset = models.ProjectGroup.objects.prefetch_related("memberships").all()
+    queryset = models.ProjectGroup.objects.all()
     serializer_class = serializers.ProjectGroupSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
     permission_classes = [IsAuthenticated]
@@ -59,8 +59,36 @@ class ProjectGroupViewSet(ModelViewSet):
         return serializers.ProjectGroupSerializer
 
     def get_queryset(self):
-        """Filter by type if provided in query params."""
-        queryset = super().get_queryset()
+        """Filter by type, and count members in the same query as the rows.
+
+        Two costs per campaign, both paid on every listing, neither visible
+        from the page that pays them.
+
+        ``member_count`` was a ``SerializerMethodField`` calling
+        ``obj.memberships.filter(...).count()``. A ``.filter()`` on a related
+        manager cannot use ``prefetch_related`` -- the prefetch caches the
+        whole set, and filtering it goes back to the database -- so the old
+        ``prefetch_related("memberships")`` was loaded and then ignored, and a
+        COUNT ran per campaign anyway. An annotation gets it in the same query
+        as the rows.
+
+        ``ProjectGroupSerializer`` declares ``fields = "__all__"``, which
+        includes the ``projects`` M2M, so DRF fetched every member project id
+        of every campaign -- another query each, and a payload nothing on the
+        landing page reads. Prefetching makes that one query for the whole
+        page; dropping the field would be better still, but it is part of the
+        response shape and not this change's to remove.
+        """
+        queryset = super().get_queryset().annotate(
+            member_total=Count(
+                "memberships",
+                filter=Q(memberships__type=models.ProjectGroupMembership
+                         .MembershipType.MEMBER),
+                distinct=True,
+            )
+        )
+        queryset = queryset.prefetch_related(
+            "projects" if self.action == "list" else "memberships")
         group_type = self.request.query_params.get("type")
         if group_type:
             queryset = queryset.filter(type=group_type)

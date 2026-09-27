@@ -285,6 +285,15 @@ class ProjectGroupSerializer(ModelSerializer):
         fields = "__all__"
 
     def get_member_count(self, obj):
+        """Member projects, from the viewset's annotation where there is one.
+
+        The fallback is for a group that did not come from that queryset --
+        a create or update response, where the object is the saved instance
+        and there is exactly one of it.
+        """
+        annotated = getattr(obj, "member_total", None)
+        if annotated is not None:
+            return annotated
         return obj.memberships.filter(
             type=models.ProjectGroupMembership.MembershipType.MEMBER
         ).count()
