@@ -21,6 +21,7 @@ from ..db import models
 from ..lib.kpi_values import kpi_map
 from ..lib.response import api_success, api_error
 from ..lib import pandda_export
+from ..wrappers.pandda_campaign.script import pandda_invocation
 from ..lib import campaign_scene
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -598,12 +599,27 @@ class ProjectGroupViewSet(ModelViewSet):
                     "acedrg_job_id": acedrg_job.id if acedrg_job else None,
                     "has_dimple": True,
                     "has_acedrg": acedrg_job is not None,
+                    "resolution": pandda_export.dataset_resolution(dimple_job),
                 })
 
+            # What PanDDA would actually process this set at, and whether the
+            # data or the comparator floor decided that. A campaign smaller
+            # than max_shell_datasets is processed at the resolution of its
+            # worst crystal however good the rest are, so the client can warn
+            # before anyone pays for a run.
+            resolutions = [d["resolution"] for d in datasets if d["resolution"]]
+            shell, dragged = pandda_invocation.shell_resolution(resolutions)
             return Response({
                 "datasets": datasets,
                 "total_ready": len([d for d in datasets if d["has_dimple"]]),
                 "total_with_dict": len([d for d in datasets if d["has_acedrg"]]),
+                "resolution": {
+                    "best": min(resolutions) if resolutions else None,
+                    "worst": max(resolutions) if resolutions else None,
+                    "processing": shell,
+                    "dragged_by_comparator_floor": dragged,
+                    "max_shell_datasets": pandda_invocation.MAX_SHELL_DATASETS,
+                },
             })
 
         except Exception as e:

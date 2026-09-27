@@ -39,6 +39,15 @@
                     <toolTip>Concurrency inside PanDDA. Changes how fast it runs and how fast it hits the memory ceiling; it does not lower peak memory.</toolTip>
                 </qualifiers>
             </content>
+            <content id="MAX_SHELL_DATASETS">
+                <className>CInt</className>
+                <qualifiers>
+                    <min>2</min>
+                    <default>60</default>
+                    <guiLabel>Maximum datasets per resolution shell</guiLabel>
+                    <toolTip>PanDDA's --max_shell_datasets, default 60. It is also the floor below which PanDDA takes comparator datasets REGARDLESS of resolution, and a dataset is processed at the worst resolution among its comparators. So on a campaign with fewer datasets than this, every dataset is a comparator and one bad crystal sets the resolution for the whole run. Set it below the number of good datasets to make the resolution filter bite.</toolTip>
+                </qualifiers>
+            </content>
             <content id="MIN_CHARACTERISATION_DATASETS">
                 <className>CInt</className>
                 <qualifiers>

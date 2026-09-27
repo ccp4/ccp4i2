@@ -20,7 +20,12 @@ def test_argv_carries_both_defensive_literals():
     assert argv[argv.index("--local_cpus") + 1] == "6"
     assert argv[argv.index("--data_dirs") + 1] == "/s/datasets"
     assert argv[argv.index("--min_characterisation_datasets") + 1] == "25", "PanDDA's default, explicit"
-    assert c.build_argv("/s", "/o", 1, 4)[-1] == "4"
+    assert argv[argv.index("--max_shell_datasets") + 1] == "60", "PanDDA's default, explicit"
+    # By flag rather than by position: the argv grows, and asserting on the
+    # last element made adding a switch look like a regression.
+    small = c.build_argv("/s", "/o", 1, 4, 30)
+    assert small[small.index("--min_characterisation_datasets") + 1] == "4"
+    assert small[small.index("--max_shell_datasets") + 1] == "30"
     assert argv[argv.index("--out_dir") + 1] == "/o/pandda2_out"
 
 
@@ -182,3 +187,35 @@ def test_probe_records_the_commit_of_an_editable_checkout(tmp_path):
     (checkout / ".git" / "refs" / "heads" / "main").unlink()
     (checkout / ".git" / "packed-refs").write_text("# pack-refs\n9876543210ab refs/heads/main\n")
     assert c.probe_executable(launcher)["commit"] == "9876543210ab"
+
+
+# -- the resolution a set will actually be processed at ---------------------
+
+
+def test_one_bad_crystal_sets_the_resolution_for_the_whole_run():
+    """The campaign is processed at the worst resolution among comparators,
+    and below max_shell_datasets every dataset is a comparator whatever its
+    resolution. DDU's 50-dataset CDK4 campaign was processed at 6.71 A, the
+    resolution of one crystal, while 48 of the 50 were better than 4 A.
+    """
+    resolutions = [2.0 + 0.02 * i for i in range(48)] + [6.48, 6.71]
+    shell, dragged = c.shell_resolution(resolutions, max_shell_datasets=60)
+    assert shell == 6.71 and dragged is True
+
+
+def test_a_shell_smaller_than_the_set_makes_the_filter_bite():
+    """The remedy: below the dataset count, the floor stops swallowing the
+    bad crystals and the resolution comes from the data."""
+    resolutions = [2.0 + 0.02 * i for i in range(48)] + [6.48, 6.71]
+    shell, dragged = c.shell_resolution(resolutions, max_shell_datasets=30)
+    assert shell == resolutions[29] and dragged is False
+
+
+def test_removing_the_bad_crystals_works_too():
+    good = [2.0 + 0.02 * i for i in range(48)]
+    shell, dragged = c.shell_resolution(good, max_shell_datasets=60)
+    assert shell == max(good) and dragged is True, "still the worst, but the worst is good now"
+
+
+def test_no_resolutions_is_not_an_error():
+    assert c.shell_resolution([], max_shell_datasets=60) == (None, False)

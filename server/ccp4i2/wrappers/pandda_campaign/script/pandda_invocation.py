@@ -44,11 +44,29 @@ DICT_REGEX = "dict.cif"
 #: (``--min_characterisation_datasets`` default).
 MIN_DATASETS = 25
 
+#: PanDDA's ``--max_shell_datasets`` default, and the reason a campaign can be
+#: processed at a resolution nothing in it deserves.
+#:
+#: The comparator filter (``comparators/filter_resolution.py``) walks datasets
+#: best resolution first and takes one when it is better than the dataset being
+#: processed, OR when fewer than ``max_shell_datasets`` have been taken so far.
+#: Then ``process_dataset`` sets
+#:
+#:     processing_res = max(comparator resolutions)
+#:
+#: So on a campaign with FEWER datasets than this, the second branch is always
+#: true, every dataset becomes a comparator whatever its resolution, and the
+#: single worst crystal sets the resolution for the entire run. DDU's
+#: 50-dataset CDK4 campaign was processed at 6.71 A -- the resolution of one
+#: crystal -- while 48 of its 50 datasets were better than 4 A.
+MAX_SHELL_DATASETS = 60
+
 
 def build_argv(data_dirs, out_dir, local_cpus: int,
-               min_characterisation_datasets: int = MIN_DATASETS) -> List[str]:
+               min_characterisation_datasets: int = MIN_DATASETS,
+               max_shell_datasets: int = MAX_SHELL_DATASETS) -> List[str]:
     """The contract's argv, argument for argument, both defensive literals
-    included, plus the one statistical knob a small run needs. ``data_dirs``
+    included, plus the two statistical knobs a campaign needs. ``data_dirs``
     is the staged ``datasets/`` directory."""
     return [
         "--data_dirs", str(data_dirs),
@@ -61,7 +79,26 @@ def build_argv(data_dirs, out_dir, local_cpus: int,
         "--ligand_pdb_regex", LIGAND_PDB_REGEX,
         "--dataset_range", DATASET_RANGE,
         "--min_characterisation_datasets", str(int(min_characterisation_datasets)),
+        "--max_shell_datasets", str(int(max_shell_datasets)),
     ]
+
+
+def shell_resolution(resolutions, max_shell_datasets: int = MAX_SHELL_DATASETS):
+    """The resolution this set would be processed at, and why.
+
+    Returns ``(resolution, dragged)``: the resolution the best dataset in the
+    set would be processed at, and whether the comparator floor is what put it
+    there rather than the data. ``dragged`` is true exactly when there are no
+    more datasets than ``max_shell_datasets``, because then every dataset is a
+    comparator however bad it is (see MAX_SHELL_DATASETS above).
+
+    Returns ``(None, False)`` for an empty set.
+    """
+    values = sorted(r for r in resolutions if r)
+    if not values:
+        return None, False
+    taken = min(len(values), int(max_shell_datasets))
+    return values[taken - 1], len(values) <= int(max_shell_datasets)
 
 
 # --- scratch: Ray's socket lives under RAY_TMPDIR, and AF_UNIX is short ---
