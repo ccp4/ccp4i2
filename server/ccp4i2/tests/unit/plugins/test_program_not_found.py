@@ -165,3 +165,18 @@ def test_get_command_with_nothing_to_go_on_says_so(tmp_path):
     with pytest.raises(CException) as excinfo:
         plugin.getCommand()
     assert 'TASKCOMMAND' in str(excinfo.value)
+
+
+def test_an_unsatisfactory_job_is_not_told_it_failed(tmp_path):
+    """UNSATISFACTORY is a completion: the job ran, wrote its outputs and
+    judged them wanting. Counted as failure, it gets "The job failed" written
+    above its own verdict -- which is how 50 PanDDA receipts on DDU came to
+    claim they had failed while carrying the maps and models they had just
+    written.
+    """
+    plugin = _plugin(tmp_path)
+    plugin.appendErrorReport(202, "2 events had no map", stack=False)
+    plugin.recordCauses(plugin.UNSATISFACTORY)
+    codes = [e.get("code") for e in plugin.errorReport.entries()]
+    assert 991 not in codes, "an unsatisfactory job did not fail"
+    assert 202 in codes, "its own verdict is still recorded"

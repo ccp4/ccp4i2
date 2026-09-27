@@ -28,6 +28,7 @@ This module reads and reports; it moves no bytes and touches no database.
 """
 import csv
 import logging
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -40,6 +41,18 @@ PROCESSED_DIR = "processed_datasets"
 EVENTS_YAML = "events.yaml"
 MODELLED_DIR = "modelled_structures"
 LIGAND_FILES_DIR = "ligand_files"
+#: The staged tree's own names, as pandda_campaign.pandda_staging writes them.
+#: Imported rather than guessed would be better, but the receipt must import on
+#: a machine with no campaign wrapper present, so they are mirrored with this
+#: note: pandda_staging.MODEL_NAME, .DICT_NAME and .LIGAND_DIR_NAME.
+STAGED_MODEL_NAME = "final.pdb"
+STAGED_DICT_NAME = "dict.cif"
+STAGED_LIGAND_DIR = "compound"
+#: Where that tree sits relative to the run's output directory: both are
+#: children of the campaign job's own directory (pandda_campaign writes
+#: staging/ beside pandda2_out/).
+STAGING_DIR_NAME = "staging"
+STAGED_DATASETS_DIR = "datasets"
 #: What PanDDA names every residue it builds, whatever the dictionary said.
 PANDDA_RESIDUE_NAME = "LIG"
 
@@ -89,6 +102,11 @@ class DatasetOutputs:
     ligand_id: Optional[str] = None
     #: That dictionary itself, so the receipt can carry it with the poses.
     dictionary: Optional[Path] = None
+    #: What PanDDA linked but this machine cannot follow, by name, with the
+    #: target it recorded. See ``dangling_target``.
+    unresolved: Dict[str, str] = field(default_factory=dict)
+    #: What was taken from the staged input tree instead, by name.
+    from_staging: Dict[str, Path] = field(default_factory=dict)
 
     # -- what was declared vs what arrived -------------------------------
     @property
@@ -112,15 +130,24 @@ class DatasetOutputs:
         the receipt is complete."""
         missing = []
         if self.apo_model is None:
-            missing.append("apo model (-pandda-input.pdb)")
+            missing.append(self._why("apo model (-pandda-input.pdb)", "apo_model"))
         if self.zmap is None:
-            missing.append("Z-map")
+            missing.append(self._why("Z-map", "zmap"))
         for event in self.events:
             if event.event_map is None:
                 missing.append(f"event {event.idx}: event map")
             if event.build is not None and event.build.path is None:
                 missing.append(f"event {event.idx}: candidate pose")
         return missing
+
+    def _why(self, what: str, key: str) -> str:
+        """A shortfall, said precisely: absent, or linked to somewhere this
+        machine cannot reach."""
+        target = self.unresolved.get(key)
+        if not target:
+            return what
+        return (f"{what}: PanDDA linked it to {target}, which does not exist "
+                "here -- the run used a different path for the share")
 
 
 def _float(value) -> Optional[float]:
@@ -130,12 +157,40 @@ def _float(value) -> Optional[float]:
         return None
 
 
+def dangling_target(path: Path) -> Optional[str]:
+    """Where a symlink points, when it points nowhere reachable from here.
+
+    None when ``path`` is not a symlink, or is one that resolves. This is the
+    difference between "PanDDA did not write it" and "PanDDA wrote a link this
+    machine cannot follow", and the two want different answers: the first is a
+    failed run, the second is a mount that does not match the one the run
+    used. Reported as "missing", the second sends a reader looking for a file
+    that is there.
+
+    It happens whenever PanDDA runs somewhere the share sits at a different
+    absolute path -- an Azure Batch node mounting it under
+    $AZ_BATCH_NODE_MOUNTS_DIR while the job's own machine has it at
+    /mnt/projects. PanDDA links its input model and its ligand dictionary into
+    its output tree using the paths it was given, so both links carry the
+    other machine's prefix.
+    """
+    try:
+        if not path.is_symlink():
+            return None
+        if path.exists():           # follows the link
+            return None
+        return os.readlink(path)
+    except OSError:
+        return None
+
+
 def _existing(path: Path) -> Optional[Path]:
     """``path`` if it names a real file (through any symlink), else None.
 
     PanDDA's ``-pandda-input.pdb`` is a symlink into the staging tree; the
     receipt must copy what it points at, and a dangling link is a missing
-    file, not a present one.
+    file, not a present one. ``dangling_target`` above says which of the two
+    happened, and ``read_dataset`` can fall back to the staged original.
     """
     try:
         resolved = path.resolve(strict=True)
@@ -253,17 +308,35 @@ def read_ligand_id(dataset_dir: Path) -> Optional[str]:
     if not ligand_dir.is_dir():
         return None
     for path in sorted(ligand_dir.glob("*.cif")):
-        try:
-            doc = gemmi.cif.read(str(path))
-        except Exception:      # noqa: BLE001 - an unreadable copy is no code
-            continue
-        blocks = [b for b in doc if b.name != "comp_list"
-                  and b.find_values("_chem_comp_atom.atom_id")]
-        preferred = [b for b in blocks if b.name != f"comp_{PANDDA_RESIDUE_NAME}"] or blocks
-        if preferred:
-            name = preferred[0].name
-            return name[len("comp_"):] if name.startswith("comp_") else name
+        code = _ligand_id_from(path)
+        if code:
+            return code
     return None
+
+
+def _ligand_id_from(path) -> Optional[str]:
+    """That component code, from one dictionary file.
+
+    Split out because the dictionary is not always the copy under
+    ligand_files/: when PanDDA's copy is a link this machine cannot follow,
+    the receipt reads the staged original instead, and the code has to come
+    from whichever file it actually used.
+    """
+    import gemmi
+
+    if path is None:
+        return None
+    try:
+        doc = gemmi.cif.read(str(path))
+    except Exception:      # noqa: BLE001 - an unreadable copy is no code
+        return None
+    blocks = [b for b in doc if b.name != "comp_list"
+              and b.find_values("_chem_comp_atom.atom_id")]
+    preferred = [b for b in blocks if b.name != f"comp_{PANDDA_RESIDUE_NAME}"] or blocks
+    if not preferred:
+        return None
+    name = preferred[0].name
+    return name[len("comp_"):] if name.startswith("comp_") else name
 
 
 def _centroid(record: dict) -> Optional[tuple]:
@@ -275,10 +348,21 @@ def _centroid(record: dict) -> Optional[tuple]:
     return None
 
 
-def read_dataset(tree_root, dtag: str) -> DatasetOutputs:
+def read_dataset(tree_root, dtag: str, staged_dir=None) -> DatasetOutputs:
     """Everything the tree holds for ``dtag``, and everything it says it
     should hold. Raises ``DatasetNotFound`` when there is no dataset
-    directory at all; every lesser absence is a shortfall, reported."""
+    directory at all; every lesser absence is a shortfall, reported.
+
+    ``staged_dir`` is this dataset's directory in the tree the campaign
+    staged -- the record of what PanDDA was given. Two of the things a
+    receipt wants are not written by PanDDA but linked by it from there: the
+    apo model and the ligand dictionary. When those links do not resolve (a
+    run on a machine that mounts the share elsewhere), the staged originals
+    are the same files, present and readable, so the receipt takes them and
+    says it did. Without it a whole campaign harvests with no reference
+    coordinates and no dictionary, which is what happened on DDU on
+    2026-09-27.
+    """
     tree_root = Path(tree_root)
     dataset_dir = tree_root / PROCESSED_DIR / dtag
     if not dataset_dir.is_dir():
@@ -317,15 +401,46 @@ def read_dataset(tree_root, dtag: str) -> DatasetOutputs:
             raw=record,
         ))
 
+    apo_link = dataset_dir / f"{dtag}-pandda-input.pdb"
+    apo_model = _existing(apo_link)
+    dictionary = find_dictionary(dataset_dir)
+    unresolved, from_staging = {}, {}
+
+    target = dangling_target(apo_link)
+    if target:
+        unresolved["apo_model"] = target
+    for path in sorted((dataset_dir / LIGAND_FILES_DIR).glob("*.cif")) if (
+            dataset_dir / LIGAND_FILES_DIR).is_dir() else []:
+        target = dangling_target(path)
+        if target:
+            unresolved["dictionary"] = target
+            break
+
+    staged = Path(staged_dir) if staged_dir else None
+    if staged is not None and staged.is_dir():
+        if apo_model is None:
+            fallback = _existing(staged / STAGED_MODEL_NAME)
+            if fallback is not None:
+                apo_model, from_staging["apo_model"] = fallback, fallback
+        if dictionary is None:
+            for candidate in (staged / STAGED_LIGAND_DIR / STAGED_DICT_NAME,
+                              staged / STAGED_DICT_NAME):
+                fallback = _existing(candidate)
+                if fallback is not None:
+                    dictionary, from_staging["dictionary"] = fallback, fallback
+                    break
+
     return DatasetOutputs(
         dtag=dtag,
         directory=dataset_dir,
-        apo_model=_existing(dataset_dir / f"{dtag}-pandda-input.pdb"),
+        apo_model=apo_model,
         zmap=_existing(dataset_dir / f"{dtag}-z_map.native.ccp4"),
         mean_map=_existing(dataset_dir / f"{dtag}-ground-state-average-map.native.ccp4"),
         pandda_model=_existing(dataset_dir / MODELLED_DIR / f"{dtag}-pandda-model.pdb"),
         events=events,
         events_table_present=bool(table),
-        ligand_id=read_ligand_id(dataset_dir),
-        dictionary=find_dictionary(dataset_dir),
+        ligand_id=read_ligand_id(dataset_dir) or _ligand_id_from(dictionary),
+        dictionary=dictionary,
+        unresolved=unresolved,
+        from_staging=from_staging,
     )
