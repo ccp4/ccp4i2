@@ -31,19 +31,27 @@ BOND_PREFIX = "_chem_comp_bond."
 #: PDBx ``value_order`` tokens -> the ``type`` tokens the old reader's map
 #: accepts (``single, double, triple, aromatic, deloc`` and upper-case
 #: variants of the first three). Keys are matched case-insensitively.
+#: Two spellings are in use for the same column: the wwPDB four-letter ones
+#: (``SING, DOUB, TRIP, AROM, DELO``) and the full words acedrg writes
+#: (``SINGLE, DOUBLE, TRIPLE, AROMATIC, DELOC``). The map used to know only
+#: the four-letter form, so every ``DOUBLE`` from acedrg fell to a single-bond
+#: fallback: a staged amide read by PanDDA as C-O single, given a hydrogen by
+#: the conformer generator, and built tetrahedral (Martin, 2026-09-27, from
+#: the job panel).
 VALUE_ORDER_TO_TYPE = {
-    "sing": "single",
-    "doub": "double",
-    "trip": "triple",
-    "arom": "aromatic",
-    "delo": "deloc",
+    "sing": "single", "single": "single",
+    "doub": "double", "double": "double",
+    "trip": "triple", "triple": "triple",
+    "arom": "aromatic", "aromatic": "aromatic",
+    "delo": "deloc", "deloc": "deloc",
 }
 
-#: What an unrecognised ``value_order`` token (``quad``, ``pi``, ``poly``)
-#: becomes. A bond of *some* order keeps the molecule connected, which is the
-#: property the old reader loses; the exact order is left to the newer reader,
-#: which keeps reading ``value_order``. Logged when it happens.
-FALLBACK_TYPE = "single"
+
+class UnknownBondOrder(ValueError):
+    """A ``value_order`` token the map does not know. Staging refuses rather
+    than write a bond of a guessed order: the fallback that used to keep the
+    molecule "connected" produced wrong chemistry that nothing downstream
+    could notice, which is worse than a staging error naming the token."""
 
 
 def bond_spellings(block) -> set:
@@ -60,19 +68,20 @@ def _bond_blocks(doc):
 
 
 def type_token(value_order: str, aromatic_flag: str = "") -> str:
-    """The ``type`` token equivalent to a PDBx ``value_order`` token.
+    """The ``type`` token equivalent to a ``value_order`` token.
 
     ``pdbx_aromatic_flag == 'Y'`` wins over the order token, as the old
-    reader treats ``aromatic`` as an order in its own right.
+    reader treats ``aromatic`` as an order in its own right. An unknown token
+    (``quad``, ``pi``, ``poly``) raises :class:`UnknownBondOrder`.
     """
     if aromatic_flag.strip().upper() == "Y":
         return "aromatic"
     token = VALUE_ORDER_TO_TYPE.get(value_order.strip().lower())
     if token is None:
-        logger.warning(
-            "prepare_dict_for_pandda: unrecognised value_order %r, "
-            "writing type=%s", value_order, FALLBACK_TYPE)
-        token = FALLBACK_TYPE
+        raise UnknownBondOrder(
+            f"bond order {value_order!r} is not one this staging knows "
+            f"({', '.join(sorted(set(VALUE_ORDER_TO_TYPE)))}); the dictionary "
+            "cannot be staged for PanDDA without guessing")
     return token
 
 

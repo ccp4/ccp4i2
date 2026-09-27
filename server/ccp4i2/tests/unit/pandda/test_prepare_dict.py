@@ -10,7 +10,7 @@ import pytest
 gemmi = pytest.importorskip("gemmi", reason="needs gemmi")
 
 from ccp4i2.wrappers.pandda_campaign.script.pandda_dict import (
-    FALLBACK_TYPE, bond_spellings, needs_normalising, prepare_dict_for_pandda,
+    UnknownBondOrder, bond_spellings, needs_normalising, prepare_dict_for_pandda,
     type_token)
 from .conftest import pdbx_spelling, source_files
 
@@ -119,7 +119,87 @@ def test_dictionary_without_a_bond_table_passes_through(tmp_path):
     ("SING", "N", "single"), ("sing", "", "single"), ("DOUB", "N", "double"),
     ("TRIP", "N", "triple"), ("AROM", "Y", "aromatic"), ("DELO", "N", "deloc"),
     ("SING", "Y", "aromatic"),   # the flag wins
-    ("QUAD", "N", FALLBACK_TYPE),  # unknown: connected beats collapsed
 ])
 def test_type_token_mapping(value_order, flag, expected):
     assert type_token(value_order, flag) == expected
+
+
+# ---------------------------------------------------------------------------
+# Full-word value_order tokens (what acedrg writes), and unknown tokens.
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("value_order, flag, expected", [
+    ("DOUB", "N", "double"), ("DOUBLE", "N", "double"), ("double", "", "double"),
+    ("SING", "N", "single"), ("SINGLE", "N", "single"),
+    ("TRIP", "N", "triple"), ("TRIPLE", "N", "triple"),
+    ("AROM", "Y", "aromatic"), ("AROMATIC", "N", "aromatic"),
+    ("DELO", "N", "deloc"), ("DELOC", "N", "deloc"),
+    ("SINGLE", "Y", "aromatic"),          # the aromatic flag wins
+])
+def test_every_spelling_of_an_order_maps_to_the_readers_token(value_order, flag, expected):
+    assert type_token(value_order, flag) == expected
+
+
+def test_an_unknown_order_refuses_rather_than_guessing():
+    """Reversed from "connected beats collapsed": a guessed order produced a
+    wrong molecule that nothing downstream could notice."""
+    with pytest.raises(UnknownBondOrder, match="QUAD"):
+        type_token("QUAD")
+
+
+ACETAMIDE_FULL_WORDS = """data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+LIG LIG 'acetamide' non-polymer 9 4
+data_comp_LIG
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+LIG C1 C CH3 0 0.0 0.0 0.0
+LIG C2 C C 0 1.5 0.0 0.0
+LIG O1 O O 0 2.1 1.1 0.0
+LIG N1 N NH2 0 2.1 -1.2 0.0
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.value_order
+_chem_comp_bond.pdbx_aromatic_flag
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+LIG C1 C2 SINGLE N 1.500 0.016
+LIG C2 O1 DOUBLE N 1.226 0.017
+LIG C2 N1 SINGLE N 1.353 0.012
+"""
+
+
+def test_a_double_bond_spelled_in_full_stays_double_when_staged(tmp_path):
+    """The bug: DOUBLE fell to the single fallback, and PanDDA, which reads
+    only the added type column, built a tetrahedral amide."""
+    import gemmi
+    src = tmp_path / "amide.cif"
+    src.write_text(ACETAMIDE_FULL_WORDS)
+    staged = prepare_dict_for_pandda(src, tmp_path / "staging")
+    assert staged != src, "a value_order-only dictionary must be rewritten with a type column"
+    block = gemmi.cif.read(str(staged))["comp_LIG"]
+    types = {(r[0], r[1]): r[2] for r in block.find("_chem_comp_bond.", ["atom_id_1", "atom_id_2", "type"])}
+    assert types[("C2", "O1")] == "double"
+    assert types[("C2", "N1")] == "single" and types[("C1", "C2")] == "single"
+
+
+def test_a_dictionary_with_an_unknown_order_is_refused_at_staging(tmp_path):
+    src = tmp_path / "odd.cif"
+    src.write_text(ACETAMIDE_FULL_WORDS.replace("C2 O1 DOUBLE", "C2 O1 QUAD"))
+    with pytest.raises(UnknownBondOrder, match="QUAD"):
+        prepare_dict_for_pandda(src, tmp_path / "staging")
