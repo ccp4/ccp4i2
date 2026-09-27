@@ -21,7 +21,7 @@ import {
 } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useApi } from "../api";
-import { apiPost } from "../api-fetch";
+import { apiJson, apiPost } from "../api-fetch";
 import { Project } from "../types/models";
 
 interface RunningProcessesProps {
@@ -57,20 +57,27 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
     jobsAndProcessesDialogOpen ? "active_jobs/" : null,
     jobsAndProcessesDialogOpen ? 5000 : 0
   );
-  const { data: projects } = api.get<Project[]>("projects/");
+  // No project list here. This provider is mounted on every authed page, and
+  // the only thing it wanted the catalogue for is the one lookup below --
+  // 2.45 MB at DDU's 7,204 projects, on every page, to turn one name into one
+  // id when someone clicks a row in a dialog that is usually closed.
   // Handle new API response format: {success: true, data: {active_jobs: [...]}}
   const runningProcesses =
     activeJobs?.success ? activeJobs.data?.active_jobs : [];
 
   const onSelectRow = useCallback(
-    (row: RunningProcess) => {
-      const project = projects?.find((project) => project.name === row.project);
+    async (row: RunningProcess) => {
+      // The list endpoint answers an exact ?name=, so ask it for this one.
+      const matches = await apiJson<Project[]>(
+        `projects?name=${encodeURIComponent(row.project)}`
+      );
+      const project = Array.isArray(matches) ? matches[0] : undefined;
       if (project) {
         const url = `/ccp4i2/project/${project.id}/job/${row.job_id}`;
         window.open(url, "_blank");
       }
     },
-    [projects]
+    []
   );
 
   const onCancelJob = useCallback(

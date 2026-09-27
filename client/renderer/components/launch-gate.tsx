@@ -29,7 +29,32 @@ export const LaunchGate: React.FC<{ children: React.ReactNode }> = ({
   });
 
   if (status === "ready") {
-    return <Fade in>{<Box sx={{ height: "100%" }}>{children}</Box>}</Fade>;
+    // A flex column, not a plain block. Every page inside this gate starts
+    // its own height chain with flex: 1, and a flex item needs a flex
+    // container to be one -- against a block parent it is inert, each child
+    // sizes to its content, and the chain that was meant to end in a
+    // scrollable pane ends in an element as tall as its contents. The project
+    // list showed it: MuiTableContainer-root computed 1252 x 8409px with
+    // flex: 1 1 0% already set, so the virtualiser measured a viewport
+    // thousands of pixels tall, windowed nothing, and the ancestors'
+    // overflow: hidden clipped the result -- rows to the bottom of the window
+    // and no scrollbar anywhere.
+    return (
+      <Fade in>
+        {
+          <Box
+            sx={{
+              height: "100%",
+              minHeight: 0,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {children}
+          </Box>
+        }
+      </Fade>
+    );
   }
 
   return (

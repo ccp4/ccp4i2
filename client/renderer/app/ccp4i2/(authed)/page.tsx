@@ -21,7 +21,11 @@ function ProjectsHome() {
   useTopBar({ title: "CCP4i2 Projects" });
 
   return (
-    <Stack sx={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
+    // overflow auto rather than hidden: the panes below manage their own
+    // scrolling, but if any height in the chain ever fails to resolve, this
+    // lets the page scroll instead of clipping the list with no way to reach
+    // the rest of it.
+    <Stack sx={{ flex: 1, minHeight: 0, overflow: "auto" }}>
       {isEmpty ? (
         <Box sx={{ flex: 1, overflow: "auto" }}>
           <WelcomeChooser />
