@@ -8,7 +8,7 @@ pytest.importorskip("yaml", reason="needs PyYAML")
 
 from ccp4i2.wrappers.pandda_events.script.pandda_tree import (
     DatasetNotFound, display_contour, find_event_map, read_dataset, read_events_yaml, read_ligand_id)
-from .synthetic_tree import event_record, make_tree, write_map
+from .synthetic_tree import APO_PDB, DICT_CIF, event_record, make_tree, write_map
 
 
 @pytest.fixture
@@ -70,11 +70,13 @@ def test_shortfalls_name_what_did_not_arrive(tmp_path):
     assert ds.apo_model is None, "a dangling -pandda-input.pdb symlink is a missing file"
     assert ds.n_events == 3 and ds.n_event_maps == 2
     assert ds.n_poses_expected == 3 and ds.n_poses == 2
-    assert ds.shortfalls() == [
-        "apo model (-pandda-input.pdb)",
-        "event 2: event map",
-        "event 3: candidate pose",
-    ]
+    shortfalls = ds.shortfalls()
+    # A link this machine cannot follow is said as that, not as an absence:
+    # "missing" sends a reader looking for a file PanDDA did write.
+    assert shortfalls[0].startswith("apo model (-pandda-input.pdb): PanDDA linked it to ")
+    assert "does not exist here" in shortfalls[0]
+    assert shortfalls[1:] == ["event 2: event map", "event 3: candidate pose"]
+    assert "apo_model" in ds.unresolved
 
 
 def test_partial_run_without_events_table(tmp_path):
@@ -127,3 +129,71 @@ def test_display_contour_follows_the_maps_spread_and_is_capped_by_the_optimal(tr
     write_map(flat, 2.0)
     assert display_contour(flat, 0.9) == 0.9, "no spread: the optimal, if any"
     assert display_contour(flat, None) is None
+
+
+# -- links PanDDA wrote that this machine cannot follow ----------------------
+
+
+def test_the_staged_original_stands_in_for_a_link_that_does_not_resolve(tmp_path):
+    """PanDDA links, rather than writes, two of the things a receipt wants.
+
+    Run on a machine that mounts the share elsewhere -- an Azure Batch node
+    with it under $AZ_BATCH_NODE_MOUNTS_DIR -- it records those links with
+    that machine's prefix, and they dangle for the job that harvests them.
+    On DDU on 2026-09-27 a whole 50-dataset campaign harvested with no
+    reference coordinates and no ligand dictionary because of it.
+
+    The staged tree is the record of what PanDDA was given, and it is right
+    here, so the receipt takes the originals from it.
+    """
+    tree = make_tree(tmp_path / "out", {"xtal-0007": [event_record(1)]}, staged_apo=False)
+    staged = tmp_path / "staging" / "datasets" / "xtal-0007"
+    (staged / "compound").mkdir(parents=True)
+    (staged / "final.pdb").write_text(APO_PDB)
+    (staged / "compound" / "dict.cif").write_text(DICT_CIF.format(code="MZ0"))
+
+    ds = read_dataset(tree, "xtal-0007", staged_dir=staged)
+
+    assert ds.apo_model == staged / "final.pdb"
+    assert ds.from_staging["apo_model"] == staged / "final.pdb"
+    assert ds.unresolved["apo_model"].endswith("xtal-0007-gone.pdb")
+    # Taken from the staging tree, the receipt is complete: no shortfall.
+    assert "apo model" not in " ".join(ds.shortfalls())
+
+
+def test_the_dictionary_comes_from_staging_when_its_link_dangles(tmp_path):
+    tree = make_tree(tmp_path / "out", {"xtal-0007": [event_record(1)]}, ligand_code=None)
+    dataset_dir = tree / "processed_datasets" / "xtal-0007"
+    (dataset_dir / "ligand_files" / "dict.cif").symlink_to(
+        tmp_path / "somewhere-else" / "dict.cif"
+    )
+    staged = tmp_path / "staging" / "datasets" / "xtal-0007"
+    (staged / "compound").mkdir(parents=True)
+    (staged / "compound" / "dict.cif").write_text(DICT_CIF.format(code="MZ0"))
+
+    ds = read_dataset(tree, "xtal-0007", staged_dir=staged)
+
+    assert ds.dictionary == staged / "compound" / "dict.cif"
+    assert ds.ligand_id == "MZ0", "the code comes from whichever file was used"
+    assert ds.unresolved["dictionary"].endswith("dict.cif")
+
+
+def test_a_link_that_resolves_is_still_preferred(tmp_path):
+    """Nothing changes for a run whose paths line up: PanDDA's own copy wins,
+    and nothing is reported as unresolved."""
+    tree = make_tree(tmp_path / "out", {"xtal-0007": [event_record(1)]})
+    staged = tmp_path / "staging" / "datasets" / "xtal-0007"
+    staged.mkdir(parents=True)
+    (staged / "final.pdb").write_text(APO_PDB)
+
+    ds = read_dataset(tree, "xtal-0007", staged_dir=staged)
+
+    assert ds.apo_model is not None and ds.from_staging == {} and ds.unresolved == {}
+
+
+def test_no_staged_tree_leaves_the_old_behaviour(tmp_path):
+    """The fallback is a fallback: without it the shortfall is still reported."""
+    tree = make_tree(tmp_path / "out", {"xtal-0007": [event_record(1)]}, staged_apo=False)
+    ds = read_dataset(tree, "xtal-0007", staged_dir=tmp_path / "not-there")
+    assert ds.apo_model is None
+    assert ds.shortfalls()[0].startswith("apo model")

@@ -3059,14 +3059,20 @@ class CPluginScript(CData):
                 logger.warning(f"[recordCauses] Could not write diagnostic.xml: {err}")
             self._causesRecorded = False      # the verdict, when it comes, still records
             return
+        # UNSATISFACTORY is a completion, not a failure: the job ran, produced
+        # its outputs and judged them wanting. Counted as failure here it gets
+        # "The job failed" written into its diagnostics above its own real
+        # verdict, which is how 50 PanDDA receipts on DDU came to claim they
+        # had failed while carrying the maps and models they had just written.
         succeeded = (status == self.SUCCEEDED)
-        self.absorbPendingCauses(downgrade=succeeded)
+        completed = succeeded or status == self.UNSATISFACTORY
+        self.absorbPendingCauses(downgrade=completed)
 
         inherited = [e for e in self.errorReport.entries() if e.get('fromSubjob')]
         if succeeded and not inherited:
             return
 
-        if not succeeded:
+        if not completed:
             self.recordThatItFailed()
 
         from ccp4i2.core.base_object.error_reporting import (
