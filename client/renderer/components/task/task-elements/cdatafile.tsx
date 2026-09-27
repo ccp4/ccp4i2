@@ -328,18 +328,44 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     );
   }, [dbFileId, fileOptions]);
 
-  // Fetch file metadata by UUID if not found in fileOptions
-  // This handles files from subjobs or external sources (drag-drop, etc.)
+  // A file from a subjob or another project is not in fileOptions, and the
+  // Autocomplete needs an option object to render its value. Everything that
+  // needs is already in the parameter -- dbFileId, baseName, annotation --
+  // and for a file outside this project getOptionLabel falls back to
+  // `annotation || name` anyway, because its job is not among projectJobs.
+  //
+  // So the display costs nothing. This matters at scale: a pandda_campaign
+  // job carries 146 such references, and fetching each one took 173 ms, so
+  // the interface spent 25 seconds of round trips filling in fields that the
+  // parameters already described.
+  const optionFromParameter = useMemo<CCP4i2File | null>(() => {
+    if (!dbFileId || selectedFileInOptions) return null;
+    const contents = item?._value ?? {};
+    return {
+      uuid: dbFileId,
+      name: contents?.baseName?._value ?? "",
+      annotation: contents?.annotation?._value ?? "",
+    } as CCP4i2File;
+  }, [dbFileId, selectedFileInOptions, item]);
+
+  // The full record is only needed by things the user does to a file -- the
+  // drag payload below wants id, type, sub_type, content and job, which the
+  // parameter does not carry. dragstart cannot await, so this is armed when
+  // the pointer reaches the file, which always precedes a drag.
+  const [needsFileRecord, setNeedsFileRecord] = useState(false);
   const { data: fetchedFile } = api.get<CCP4i2File>(
-    dbFileId && !selectedFileInOptions ? `files_by_uuid/${dbFileId}/` : null
+    dbFileId && !selectedFileInOptions && needsFileRecord
+      ? `files_by_uuid/${dbFileId}/`
+      : null
   );
 
-  // Combine fileOptions with fetched external file if needed
+  // Combine fileOptions with the selected file when it is not one of them:
+  // the record once fetched, otherwise the one described by the parameter.
   const displayOptions = useMemo(() => {
-    if (!fetchedFile || selectedFileInOptions) return fileOptions;
-    // Add the fetched file to the beginning of the list (it's the selected one)
-    return [fetchedFile, ...fileOptions];
-  }, [fileOptions, fetchedFile, selectedFileInOptions]);
+    const selected = fetchedFile ?? optionFromParameter;
+    if (!selected || selectedFileInOptions) return fileOptions;
+    return [selected, ...fileOptions];
+  }, [fileOptions, fetchedFile, optionFromParameter, selectedFileInOptions]);
 
   // Update value when item changes
   useEffect(() => {
@@ -348,15 +374,16 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
       setValue(nullFile);
       return;
     }
-    // First check fileOptions, then check fetchedFile
+    // fileOptions first, then the fetched record, then what the parameter
+    // itself says the file is.
     const selectedFile =
       selectedFileInOptions ||
       (fetchedFile &&
         fetchedFile.uuid?.replace(/-/g, "") === dbFileId.replace(/-/g, "")
         ? fetchedFile
-        : null);
+        : optionFromParameter);
     setValue(selectedFile || nullFile);
-  }, [item, dbFileId, selectedFileInOptions, fetchedFile]);
+  }, [item, dbFileId, selectedFileInOptions, fetchedFile, optionFromParameter]);
 
   // Reset expansion when children disappear
   useEffect(() => {
@@ -676,6 +703,12 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
         {/* File type icon — native HTML5 draggable + right-click context menu */}
         <Avatar
           draggable={!!hasFile}
+          // The drag payload needs the file's full record, and dragstart
+          // cannot wait for a fetch. Arming it when the pointer arrives (or
+          // the icon takes focus) means the one file being touched is
+          // resolved, rather than every file on the page at mount.
+          onPointerEnter={() => setNeedsFileRecord(true)}
+          onFocus={() => setNeedsFileRecord(true)}
           onDragStart={handleFileDragStart}
           src={`/svgicons/${item?._class?.slice(1)}.svg`}
           alt={item?._class || "File type"}
