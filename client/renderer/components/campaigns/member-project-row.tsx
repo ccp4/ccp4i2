@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState, useMemo } from "react";
+import { getStatusColour } from "../../lib/job-status-colour";
 import { useRouter } from "next/navigation";
 import {
   Avatar,
@@ -30,15 +31,6 @@ import { Job } from "../../types/models";
 import { SmilesView } from "./smiles-view";
 
 // Status ID to color mapping (matching legacy)
-const STATUS_COLORS: Record<number, string> = {
-  0: "#AAA", // Unknown
-  1: "#FFF", // Created
-  2: "#FFA", // Pending
-  3: "#AAF", // Running
-  4: "#FDA", // Interrupted
-  5: "#FAA", // Failed
-  6: "#AFA", // Finished
-};
 
 interface MemberProjectRowProps {
   project: {
@@ -288,7 +280,7 @@ export function MemberProjectRow({
                   sx={{
                     width: 32,
                     height: 32,
-                    bgcolor: STATUS_COLORS[job.status] || "#AAA",
+                    bgcolor: getStatusColour(job.status),
                   }}
                   src={`/svgicons/${job.task_name}.svg`}
                 >

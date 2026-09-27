@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { getStatusColour } from "../../lib/job-status-colour";
 import { useRouter } from "next/navigation";
 import {
   Alert,
@@ -45,15 +46,6 @@ import { ProjectTagChips } from "../project-tag-chips";
 import { SiteVerdictChips } from "./site-verdict-chips";
 
 // Status ID to color mapping (matching legacy CCP4i2)
-const STATUS_COLORS: Record<number, string> = {
-  0: "#AAA", // Unknown
-  1: "#FFF", // Created
-  2: "#FFA", // Pending
-  3: "#AAF", // Running
-  4: "#FDA", // Interrupted
-  5: "#FAA", // Failed
-  6: "#AFA", // Finished
-};
 
 interface VirtualizedMemberProjectsTableProps {
   projects: MemberProjectWithSummary[];
@@ -552,7 +544,7 @@ function MemberProjectRow({
                   sx={{
                     width: 32,
                     height: 32,
-                    bgcolor: STATUS_COLORS[job.status] || "#AAA",
+                    bgcolor: getStatusColour(job.status),
                     border: "1px solid rgba(0,0,0,0.1)",
                   }}
                   src={`/svgicons/${job.task_name}.svg`}

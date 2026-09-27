@@ -17,6 +17,7 @@ import { useJob } from "../../../utils";
 import { useApi } from "../../../api";
 import { apiPost } from "../../../api-fetch";
 import { programTargets, RunTarget } from "../../../lib/run-targets";
+import { PanddaResolutionNotice } from "./pandda-resolution-notice";
 
 /**
  * pandda_campaign — run PanDDA 2 over a declared list of datasets.
@@ -166,6 +167,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             PanDDA needs at least 25 datasets to characterise a ground state. The list as
             submitted is the record of the run; add a dataset the campaign rule missed with +.
           </Typography>
+          {/* Said here, beside the list, because the list is the remedy. */}
+          <PanddaResolutionNotice jobId={props.job?.id} />
         </Paper>
         <CCP4i2ContainerElement
           {...props}
