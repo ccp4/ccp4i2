@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { getStatusSeverity } from "../../lib/job-status-colour";
 import {
   Box,
   Paper,
@@ -178,20 +179,7 @@ interface JobItemProps {
 }
 
 const JobItem: React.FC<JobItemProps> = ({ job, onSelect, onLoad, customColors }) => {
-  const getStatusColor = (status: number) => {
-    switch (status) {
-      case 1:
-        return "warning";
-      case 2:
-        return "info";
-      case 6:
-        return "success";
-      case 5:
-        return "error";
-      default:
-        return "default";
-    }
-  };
+  const getStatusColor = getStatusSeverity;
 
   const getStatusText = (status: number) => {
     switch (status) {

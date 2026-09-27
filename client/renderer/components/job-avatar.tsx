@@ -3,6 +3,7 @@ import { Job } from "../types/models";
 import { forwardRef, useMemo } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { useTheme } from "../theme/theme-provider";
+import { getStatusColour, isWorking } from "../lib/job-status-colour";
 
 interface CCP4i2JobAvatarProps {
   job: Job;
@@ -10,30 +11,14 @@ interface CCP4i2JobAvatarProps {
 export const CCP4i2JobAvatar = forwardRef<HTMLDivElement, CCP4i2JobAvatarProps>(
   ({ job, ...props }, ref) => {
     const { customColors } = useTheme();
-    const bgColor = useMemo(() => {
-      switch (job?.status) {
-        case 0:
-          return "#AAA";
-        case 1:
-          return "#FFF";
-        case 2:
-          return "#FFA";
-        case 3:
-          return "#AAF";
-        case 4:
-          return "#FDA";
-        case 5:
-          return "#FAA";
-        case 6:
-          return "#AFA";
-        default:
-          return "#AAA";
-      }
-    }, [job]);
+    const bgColor = useMemo(() => getStatusColour(job?.status ?? 0), [job]);
 
-    // Animation for running status
+    // Animation for a job that is doing something -- including one whose
+    // program runs on a Batch node, which is no less running for being
+    // somewhere else. Gated on RUNNING alone, a dispatched job sat looking
+    // inert for the hours its run took.
     const runningAnimation =
-      job?.status === 3
+      isWorking(job?.status ?? 0)
         ? {
             animation: "avatarPulse 2s infinite",
             "@keyframes avatarPulse": {
