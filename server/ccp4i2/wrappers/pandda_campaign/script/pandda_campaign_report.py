@@ -100,9 +100,28 @@ class pandda_campaign_report(Report):
                               f"the best event score {stats.get('best_score') or '-'}. Each event is "
                               "delivered to its dataset's project by fan-out; look at it there, in the "
                               "scene the receipt job writes.")
+        # Said before the numbers, because a run processed far below its own
+        # data is not a result to read -- it is a run to do again. PanDDA
+        # processes a dataset at the worst resolution among its comparators,
+        # so one bad crystal can set the resolution for a whole campaign.
+        processing = stats.get('median_resolution')
+        best_input = stats.get('best_input_resolution')
+        dragged = stats.get('n_input_better_than_processing') or 0
+        if processing and best_input and processing > best_input + 0.5 and dragged:
+            fold.addText(text=(
+                f"WARNING: processed at {processing:.2f} A, though {dragged} of its datasets are "
+                f"better than that and the best is {best_input:.2f} A. PanDDA processes a dataset at "
+                f"the worst resolution among its comparators, and takes comparators regardless of "
+                f"resolution until it has max_shell_datasets of them -- so on a campaign smaller than "
+                f"that, one bad crystal sets the resolution for every dataset. Events found at "
+                f"{processing:.2f} A say little about fragments. Remove the low-resolution datasets, "
+                f"or lower MAX_SHELL_DATASETS below the number of good ones, and run it again."),
+                style="color:#b71c1c; font-weight:600;")
+
         headline = fold.addTable(transpose=True)
         headline.addData(title='Datasets analysed', data=[stats.get('n_analysed', '-')])
         headline.addData(title='Median processing resolution (A)', data=[stats.get('median_resolution') or '-'])
+        headline.addData(title='Best dataset resolution (A)', data=[stats.get('best_input_resolution') or '-'])
         headline.addData(title='Events', data=[stats.get('n_events', '-')])
         headline.addData(title='Datasets with events', data=[stats.get('n_datasets_with_events', '-')])
         headline.addData(title='Sites', data=[stats.get('n_sites', '-')])

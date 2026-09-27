@@ -82,6 +82,7 @@ class pandda_campaign(CPluginScript):
         227: {'description': 'the run target refused the submission'},
         228: {'description': 'PanDDA dispatched to a run target; the job waits for the reconcile'},
         229: {'description': 'the dispatched run was cancelled'},
+        230: {'description': 'the run will be processed at the resolution of its worst crystal'},
     }
 
     def __init__(self, *args, **kwargs):
@@ -224,6 +225,25 @@ class pandda_campaign(CPluginScript):
                          name=f'{self.TASKNAME}.container.controlParameters.MIN_CHARACTERISATION_DATASETS',
                          severity=SEVERITY_WARNING)
 
+        resolution, worst, dragged = self._resolution_outlook()
+        if resolution is not None and dragged and worst is not None:
+            best = min(r for r in self._dataset_resolutions() if r)
+            if worst > best + 0.5:
+                error.append(
+                    klass=self.TASKNAME, code=230,
+                    details=(
+                        f'every dataset will be processed at {worst:.2f} A, the resolution of the '
+                        f'worst crystal in the set, though the best is {best:.2f} A. PanDDA takes '
+                        f'comparators regardless of resolution until it has max_shell_datasets '
+                        f'({self._max_shell_datasets()}) of them, and a dataset is processed at the '
+                        f'worst resolution among its comparators; with {n} datasets that floor is '
+                        'never reached, so one bad crystal sets the resolution for the whole run. '
+                        'Either remove the low-resolution datasets from the list, or lower '
+                        'MAX_SHELL_DATASETS below the number of good ones'
+                    ),
+                    name=f'{self.TASKNAME}.container.controlParameters.MAX_SHELL_DATASETS',
+                    severity=SEVERITY_WARNING)
+
         if self._mode() == 'local':
             scratch = self._scratch_dir()
             if not contract.scratch_fits(scratch):
@@ -314,7 +334,8 @@ class pandda_campaign(CPluginScript):
 
     def makeCommandAndScript(self):
         argv = contract.build_argv(self._staging_root / 'datasets', self._out_dir(),
-                                   self._local_cpus(), self._min_datasets())
+                                   self._local_cpus(), self._min_datasets(),
+                                   self._max_shell_datasets())
         self.commandLine = list(argv)
         self.container.outputData.PROVENANCE_ARGV.set(' '.join([contract.PROGRAM] + argv))
         if self._resolved:
@@ -505,6 +526,39 @@ class pandda_campaign(CPluginScript):
         configured = self._configured_min_datasets()
         n = len(self.container.inputData.DATASETS)
         return min(configured, n) if n else configured
+
+    def _max_shell_datasets(self) -> int:
+        par = self.container.controlParameters
+        return (int(par.MAX_SHELL_DATASETS) if par.MAX_SHELL_DATASETS.isSet()
+                else contract.MAX_SHELL_DATASETS)
+
+    def _dataset_resolutions(self):
+        """Each dataset's nominal resolution, from its MTZ header.
+
+        The header carries it, so this is a read of a few milliseconds per
+        file. Completeness would mean counting reflections against
+        gemmi.count_reflections -- about fifty times dearer -- and is
+        deliberately not done here.
+        """
+        import gemmi
+
+        out = []
+        for item in self.container.inputData.DATASETS:
+            if not item.HKLIN.isSet():
+                continue
+            try:
+                out.append(gemmi.read_mtz_file(str(item.HKLIN.fullPath)).resolution_high())
+            except Exception:      # noqa: BLE001 - an unreadable file is not this check's business
+                continue
+        return out
+
+    def _resolution_outlook(self):
+        """``(shell_resolution, worst, dragged)`` for the configured set."""
+        resolutions = self._dataset_resolutions()
+        if not resolutions:
+            return None, None, False
+        shell, dragged = contract.shell_resolution(resolutions, self._max_shell_datasets())
+        return shell, max(resolutions), dragged
 
     def _local_cpus(self) -> int:
         par = self.container.controlParameters

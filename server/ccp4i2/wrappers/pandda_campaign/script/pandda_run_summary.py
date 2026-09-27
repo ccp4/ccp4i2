@@ -38,6 +38,9 @@ from ccp4i2.wrappers.pandda_events.script.pandda_tree import (
 
 SITES_TABLE = "pandda_analyse_sites.csv"
 DATASET_YAML = "processed_dataset.yaml"
+#: What PanDDA wrote about its inputs, including each dataset's own
+#: resolution -- which is not the resolution it was processed at.
+INPUT_YAML = "input.yaml"
 
 #: Bins for the histograms; Reinspect's default, wide enough for a campaign
 #: and readable for a handful of events.
@@ -237,6 +240,29 @@ def bin_values(values, nbins: int = HISTOGRAM_BINS) -> List[Dict[str, float]]:
     return [{"centre": round(lo + width * (i + 0.5), 4), "count": counts[i]} for i in range(nbins)]
 
 
+def read_input_resolutions(tree) -> Dict[str, float]:
+    """Each dataset's OWN resolution, as PanDDA recorded it on input.
+
+    Kept apart from the processing resolution on purpose: the gap between the
+    two is the thing worth reporting. A dataset is processed at the worst
+    resolution among its comparators, so a campaign can be processed at 6.71 A
+    while every dataset in it but one is better than 4 A.
+    """
+    path = Path(tree) / INPUT_YAML
+    if not path.is_file():
+        return {}
+    try:
+        data = load_pandda_yaml(path) or {}
+    except Exception:       # noqa: BLE001 - a summary is never worth failing over
+        return {}
+    out = {}
+    for dtag, record in (data.get("Datasets") or {}).items():
+        value = _float(((record or {}).get("Reflections") or {}).get("Resolution"))
+        if value:
+            out[dtag] = value
+    return out
+
+
 def summarise_run(tree) -> Dict[str, object]:
     """Everything the report shows about a run, from the tree alone."""
     tree = Path(tree)
@@ -282,6 +308,8 @@ def summarise_run(tree) -> Dict[str, object]:
         site["n_datasets"] = len(site_datasets.get(idx, ()))
 
     analysed = [d for d in datasets if d["analysed"]]
+    input_resolutions = read_input_resolutions(tree)
+    processing_resolution = _median([d["resolution"] for d in analysed])
     stats = {
         "n_datasets": len(datasets),
         "n_analysed": len(analysed),
@@ -293,6 +321,13 @@ def summarise_run(tree) -> Dict[str, object]:
                                      if e["hit_probability"] is not None), default=None),
         "best_score": max((e["score"] for e in events if e["score"] is not None), default=None),
         "median_resolution": _median([d["resolution"] for d in analysed]),
+        "best_input_resolution": min(input_resolutions.values()) if input_resolutions else None,
+        "median_input_resolution": _median(list(input_resolutions.values())),
+        "worst_input_resolution": max(input_resolutions.values()) if input_resolutions else None,
+        "n_input_better_than_processing": sum(
+            1 for r in input_resolutions.values()
+            if processing_resolution and r < processing_resolution - 0.5
+        ) if input_resolutions else None,
     }
     histograms = {
         "event_fraction": bin_values([e["event_fraction"] for e in events]),

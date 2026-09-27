@@ -32,6 +32,8 @@ import logging
 import os
 import tempfile
 from pathlib import Path
+
+from django.core.exceptions import ValidationError
 from xml.etree import ElementTree as ET
 
 from django.http import FileResponse, Http404
@@ -948,6 +950,84 @@ class JobViewSet(ModelViewSet):
         except Exception as err:
             logger.exception("Unexpected error running job %s", pk, exc_info=err)
             return api_error(f"Unexpected error: {str(err)}", status=500)
+
+    @action(detail=True, methods=["get"])
+    def pandda_resolution(self, request, pk=None):
+        """What resolution this pandda_campaign job would be processed at.
+
+        GET /api/jobs/123/pandda_resolution/
+
+        PanDDA processes a dataset at the WORST resolution among its
+        comparators, and takes comparators regardless of resolution until it
+        has ``max_shell_datasets`` of them. So a campaign with fewer datasets
+        than that is processed at the resolution of its worst crystal, however
+        good the rest are, and nothing says so until the run is over. This
+        reports it before anyone pays for one.
+
+        Reads each dataset's MTZ header -- a few milliseconds per file.
+        Completeness is not reported: an MTZ header does not carry it.
+        """
+        import gemmi
+
+        from ..wrappers.pandda_campaign.script import pandda_invocation
+
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist as err:
+            return api_error(str(err), status=404)
+
+        params = self._pandda_dataset_files(job)
+        datasets = []
+        for dtag, path in params:
+            resolution = None
+            try:
+                if path and Path(path).is_file():
+                    resolution = round(gemmi.read_mtz_file(str(path)).resolution_high(), 2)
+            except Exception:      # noqa: BLE001 - an unreadable file reports nothing
+                resolution = None
+            datasets.append({"dtag": dtag, "resolution": resolution})
+
+        resolutions = [d["resolution"] for d in datasets if d["resolution"]]
+        max_shell = pandda_invocation.MAX_SHELL_DATASETS
+        shell, dragged = pandda_invocation.shell_resolution(resolutions, max_shell)
+        return api_success({
+            "datasets": datasets,
+            "best": min(resolutions) if resolutions else None,
+            "worst": max(resolutions) if resolutions else None,
+            "processing": shell,
+            "dragged_by_comparator_floor": dragged,
+            "max_shell_datasets": max_shell,
+        })
+
+    @staticmethod
+    def _pandda_dataset_files(job):
+        """``(dtag, hklin path)`` for each dataset in a pandda_campaign job."""
+        from xml.etree import ElementTree
+
+        path = Path(job.directory) / "input_params.xml"
+        if not path.is_file():
+            return []
+        try:
+            root = ElementTree.parse(path).getroot()
+        except ElementTree.ParseError:
+            return []
+        out = []
+        for item in root.iter("CPanddaDataset"):
+            dtag = item.findtext("DTAG") or ""
+            hklin = item.find("HKLIN")
+            if hklin is None:
+                continue
+            project = hklin.findtext("project")
+            base = hklin.findtext("baseName")
+            rel = hklin.findtext("relPath") or ""
+            if not (project and base):
+                continue
+            try:
+                directory = models.Project.objects.get(uuid=project).directory
+            except (models.Project.DoesNotExist, ValidationError):
+                continue
+            out.append((dtag, str(Path(directory) / rel / base)))
+        return out
 
     @action(detail=True, methods=["post"])
     def reconcile_dispatch(self, request, pk=None):
