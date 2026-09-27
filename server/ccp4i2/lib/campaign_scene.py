@@ -31,6 +31,7 @@ synchronous ViewSet today and a background worker tomorrow.
 """
 import logging
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Optional
 
 import gemmi
@@ -912,3 +913,233 @@ def _first_site_view(group) -> Optional[dict]:
     if site is None:
         return None
     return _site_view(site)
+
+
+# ---------------------------------------------------------------------------
+# A site of a PanDDA run, across every dataset that has an event there
+# ---------------------------------------------------------------------------
+
+#: Members are drawn from their receipts by job number and parameter rather
+#: than by file id, the way a receipt's own scenes reference their outputs:
+#: it survives a project move, and it does not require a File row to have
+#: been gleaned under a name this module would have to guess.
+POSE_STYLE = "CBs"
+
+
+def _run_site_member(member, used_names: set, files: list, elements: list):
+    """The scene pieces for one event of one dataset at a run's site.
+
+    Returns ``(entry, None)`` or ``(None, reason)``. The pose is the drawn
+    thing; the receipt's apo model is what the fit is computed from, because
+    a fit needs a protein and the pose is three dozen atoms of ligand. Both
+    come from the same receipt, so they are in the same frame by
+    construction.
+
+    The receipt's dictionary travels with the pose. PanDDA writes a pose with
+    the component code it built from and a viewer with no dictionary guesses
+    the bonding -- which is how a receipt came to be read as a ligand with
+    the wrong bonds rather than as the right ligand drawn badly.
+    """
+    receipt = models.Job.objects.filter(uuid=member["receipt"]["uuid"]).first()
+    if receipt is None:
+        return None, "receipt job not found"
+    if not member.get("has_pose"):
+        return None, "no autobuilt pose for this event"
+
+    apo = models.File.objects.filter(job=receipt, job_param_name="XYZIN_APO").first()
+    if apo is None or not apo.path.exists():
+        return None, "receipt has no apo model to fit on"
+
+    project_uuid = member["project"]["uuid"]
+    name = _safe_name(f"{member['project']['name']}_e{member['event_idx']}", used_names)
+    position = member["position"]
+    files.append({
+        "name": name,
+        "kind": "coordinates",
+        "job": receipt.number,
+        "param": f"EVENTS[{position}].POSE",
+        "projectId": project_uuid,
+    })
+    element = {"file": name, "representations": [{"style": POSE_STYLE}]}
+
+    dictionary = models.File.objects.filter(job=receipt, job_param_name="DICT").first()
+    if dictionary is not None:
+        dict_name = _safe_name(f"{name}_dict", used_names)
+        files.append({
+            "name": dict_name,
+            "kind": "dictionary",
+            "job": receipt.number,
+            "param": "DICT",
+            "projectId": project_uuid,
+        })
+        element["dictionaries"] = [dict_name]
+
+    elements.append(element)
+    return {
+        "name": name,
+        "element": element,
+        "sticks": element["representations"][0],
+        "coord_path": apo.path,
+        "project": SimpleNamespace(name=member["project"]["name"]),
+        "member": member,
+    }, None
+
+
+def _member_site_point(entry) -> Optional[list]:
+    """Where this member's event sits in the frame the scene draws it in.
+
+    The event centroid is in its own dataset's frame; the fit is what carries
+    it into the exemplar's. Averaging these over the members is how the site
+    gets a position in the exemplar frame at all: PanDDA's own site centroid
+    is in the frame of whichever dataset it chose as its reference, which is
+    not the campaign's parent and is not recorded in a form this can use.
+    """
+    centroid = entry["member"].get("centroid")
+    if not centroid:
+        return None
+    fit = entry.get("fit")
+    if fit is None or not fit.ok:
+        return list(centroid)
+    moved = fit.transform().apply(gemmi.Position(*centroid))
+    return [moved.x, moved.y, moved.z]
+
+
+def build_run_site_scene(group, site: dict, run: Optional[dict] = None,
+                         superpose: bool = True) -> dict:
+    """Every ligand PanDDA built at one site of one run, in one frame.
+
+    The panoptic view the curated site scene cannot give before anyone has
+    voted: the exemplar drawn once as a ribbon, and the autobuilt pose of
+    every event at this site drawn on top, each fitted onto the exemplar.
+    Membership is the run's own ``site_idx`` and nothing else -- no verdict is
+    required, and none is implied. These are candidates to be judged, which is
+    the whole point of looking at them together.
+
+    ``site`` is a site of ``pandda_site_index.build_site_index``; the caller
+    chooses the run, so that one index serves the panel and the scene and the
+    two cannot disagree about which run they are showing.
+
+    **No maps.** A pose is coordinates and can be moved into the exemplar's
+    frame by a matrix; an event map cannot, so a scene of twenty datasets'
+    event maps would be twenty maps in twenty frames, all but one of them
+    wrong. The receipt's own event scene is where a map belongs, at the
+    contour that receipt recorded for it, in the frame it was computed in --
+    which is why each member here carries the reference to open it.
+    """
+    files: list = []
+    elements: list = []
+    used_names: set = set()
+    stats = {
+        "site": {"site_idx": site["site_idx"], "centroid": site.get("centroid")},
+        "run": run,
+        "members_claimed": len(site.get("members", [])),
+        "members_drawn": 0,
+        "skipped": [],            # [{project, dtag, event_idx, reason}]
+        "parent_present": False,
+        "reference": None,
+        "pocket_residues": 0,
+        "drawn": [],              # [{project, dtag, event_idx, score, nearest}]
+        "superpose": [],
+        "centre": None,           # the site in the exemplar's frame
+    }
+
+    ref_name, ref_path, ref_element = _parent_reference(
+        group, used_names, files, elements, stats
+    )
+
+    entries: list = []
+    for member in site.get("members", []):
+        entry, reason = _run_site_member(member, used_names, files, elements)
+        if entry is None:
+            stats["skipped"].append({
+                "project": member["project"]["name"], "dtag": member["dtag"],
+                "event_idx": member["event_idx"], "reason": reason,
+            })
+            continue
+        entry["sticks"]["colour"] = HIT_COLOURS[stats["members_drawn"] % len(HIT_COLOURS)]
+        stats["members_drawn"] += 1
+        entries.append(entry)
+
+    movers = entries
+    if ref_name is None:
+        ref_name, ref_path, ref_element, movers = _promote_hit(entries, stats)
+
+    # -- Two passes, because the site's position is not known in advance ----
+    #
+    # A global fit first, to learn where this site is in the exemplar's
+    # frame; then a fit local to that point, which is the one the scene
+    # keeps. The curated site scene skips the first pass because a
+    # CampaignSite already carries an origin in the right frame. A run site
+    # carries a centroid in PanDDA's own reference frame, which is a
+    # different thing and cannot be used as if it were this one.
+    superpose_entries: list = []
+    if superpose and ref_path is not None and movers:
+        _superpose(ref_name, ref_path, movers, stats)
+        points = [p for p in (_member_site_point(e) for e in entries) if p]
+        centre = None
+        if points:
+            centre = [sum(axis) / len(points) for axis in zip(*points)]
+            stats["centre"] = centre
+        stats["superpose"] = []
+        superpose_entries = _superpose(ref_name, ref_path, movers, stats, centre=centre)
+    else:
+        points = [p for p in (_member_site_point(e) for e in entries) if p]
+        if points:
+            stats["centre"] = [sum(axis) / len(points) for axis in zip(*points)]
+
+    centre = stats["centre"]
+
+    # -- The pocket, from the exemplar alone -------------------------------
+    pocket_selection = None
+    if ref_path is not None and centre is not None:
+        try:
+            exemplar = gemmi.read_structure(str(ref_path))
+        except Exception as exc:  # noqa: BLE001 - no pocket beats no scene
+            logger.warning("Could not read exemplar %s: %s", ref_path, exc)
+            exemplar = None
+        if exemplar is not None:
+            cids = pocket_residue_cids(exemplar, centre)
+            stats["pocket_residues"] = len(cids)
+            if cids:
+                pocket_selection = "||".join(cids)
+                ref_element["representations"].insert(
+                    1,
+                    {"style": "CBs", "selection": pocket_selection,
+                     "colour": POCKET_STICK_COLOUR},
+                )
+
+    for entry in entries:
+        member = entry["member"]
+        stats["drawn"].append({
+            "project": member["project"]["name"],
+            "dtag": member["dtag"],
+            "event_idx": member["event_idx"],
+            "score": member.get("score"),
+            "hit_probability": member.get("hit_probability"),
+            "receipt": member["receipt"],
+            "position": member["position"],
+        })
+
+    view: dict = {}
+    if centre is not None:
+        # Moorhen's view origin is the negation of the point to centre on
+        # (see site_position for the trap this is the other side of).
+        view["origin"] = [-centre[0], -centre[1], -centre[2]]
+    if pocket_selection:
+        view["slab"] = {"file": ref_name, "selection": pocket_selection,
+                        "pad": ENVIRONMENT_RADIUS}
+
+    label = f"site {site['site_idx']}"
+    if run and run.get("number"):
+        label += f" of run {run.get('project') or ''}/{run['number']}".rstrip("/")
+    scene = {
+        "scene": f"{group.name} - {label}",
+        "version": 1,
+        "authoredIn": {"projectName": group.name},
+        "files": files,
+        **({"superpose": superpose_entries} if superpose_entries else {}),
+        "elements": elements,
+        **({"view": view} if view else {}),
+        "resolver": {"onMissingResidues": "clamp-and-log"},
+    }
+    return {"scene": scene, "stats": stats}
