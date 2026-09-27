@@ -84,6 +84,12 @@ RUNNABLE_JOB_STATUSES = frozenset({models.Job.Status.PENDING, models.Job.Status.
 def _not_runnable(job):
     if job.status in RUNNABLE_JOB_STATUSES:
         return None
+    # An interactive task's Run opens (or reopens) its session, and a job with
+    # an open session is RUNNING: open_session already refuses what must be
+    # refused (a queued job, or one running under a real process).
+    from ..lib.utils.jobs.interactive import is_interactive_job
+    if is_interactive_job(job):
+        return None
     label = job.get_status_display().lower()
     if job.status in models.TERMINAL_JOB_STATUSES:
         advice = "clone it and run the clone"
