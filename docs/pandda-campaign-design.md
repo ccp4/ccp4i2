@@ -958,6 +958,75 @@ reconciliation depends on it landing first.
 
 ---
 
+### 9.2 The run's own site axis, navigable before anybody has judged anything
+
+Landed 2026-09-27. §9 above is about where PanDDA's sites *end up* — merged
+into `CampaignSite`, with verdicts that survive a rerun. This is about the
+interval before that merge, which turns out to be where most of the looking
+happens.
+
+The problem was noticed from the using end: reinspect was couched around
+sites, and the federated design scatters a run's events into one receipt per
+dataset, so a **panoptic view across the ligands at one site became hard to
+get at**. The reason is that fan-out is dtag-keyed and site-blind — 
+`plan_fanout` walks the staging manifest's `datasets` and nothing else — so
+after fan-out the only surviving record of the grouping is `SITE_IDX` on
+individual events inside individual receipts, and nothing joined them back up.
+
+`build_site_scene` cannot fill the gap, and should not be changed to.
+Membership there is *the verdict and nothing else* (§9), which is right for
+annotation and useless for a run that finished ten minutes ago: nobody has
+voted, so every curated site is empty.
+
+So there are two site axes, and the distinction is load-bearing:
+
+| | curated | the run's |
+|---|---|---|
+| identity | `CampaignSite`, a uuid, stable across runs | `site_idx`, renumbered every run |
+| membership | a `hit` verdict at this site | the run's own `site_idx` on an event |
+| position | `origin` in the parent's frame | derived from member events (§9's rule) |
+| what it is for | the record | looking at what was just found |
+
+**The index is computed, never stored** (`lib/utils/jobs/pandda_site_index.py`).
+Each receipt's own parameters say which run and dataset it is for, where the
+tree is, and what its events are; the tree's sites table is consulted for
+nothing but comparison. Computing beats recording because a recorded index
+goes stale against a rerun or a second fan-out, and because runs fanned out
+before this existed are navigable too — including the run that prompted it.
+
+**The scene draws poses and no maps** (`campaign_scene.build_run_site_scene`).
+A pose is coordinates and a matrix moves it into the exemplar's frame; an
+event map cannot be moved, so a scene of twenty datasets' event maps would be
+nineteen maps in the wrong place. Each member instead carries the reference
+that opens its own receipt's event scene, where the map is at the contour that
+receipt recorded, in the frame it was computed in.
+
+**Two fitting passes, because the site's position is not known in advance.** A
+`CampaignSite` carries an origin in the parent's frame and the curated scene
+fits locally on it straight away. A run site carries a centroid in PanDDA's
+own reference frame, which is a different frame and not recoverable from the
+tree, so: fit globally, transform each member's event centroid through its
+own fit, average them to learn where the site is in the exemplar's frame, then
+refit locally on that point and keep the second fit.
+
+**PanDDA renumbers sites every run**, as a function of which datasets went in,
+so site 3 of one run is not site 3 of the next. Nothing matches the two axes
+by number. The link is **adoption**: a person promotes a run site to a
+`CampaignSite`, which is exactly the invariant `CampaignSite` already states —
+an automated process may propose sites and record observations, but may not
+delete or move a site an evaluation refers to. Adoption is not built yet and
+is the obvious next piece.
+
+Endpoints: `GET projectgroups/{id}/pandda-sites/` (the index, with the runs it
+could be showing) and `GET projectgroups/{id}/pandda-sites/{site_idx}/scene/`.
+
+**For the panel that consumes this:** a ccp4i2 Moorhen side bar must either
+embed the project browser or carry an affordance that launches it as a modal.
+The Moorhen page is full-window, so a panel that shows only its own subject
+strands the user with no way back into the project.
+
+---
+
 ## 10. Everything gleanable is also backed by a persistent artefact
 
 The standing doctrine, from [PROJECT_RECOVERY.md](PROJECT_RECOVERY.md):

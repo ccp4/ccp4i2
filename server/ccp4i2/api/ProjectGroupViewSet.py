@@ -23,6 +23,7 @@ from ..lib.response import api_success, api_error
 from ..lib import pandda_export
 from ..wrappers.pandda_campaign.script import pandda_invocation
 from ..lib import campaign_scene
+from ..lib.utils.jobs import pandda_site_index
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -1063,4 +1064,72 @@ class ProjectGroupViewSet(ModelViewSet):
             logger.exception(
                 "Failed to update site %s of group %s", site_id, pk, exc_info=e
             )
+            return api_error(str(e), status=500)
+
+    @action(detail=True, methods=["get"], url_path="pandda-sites")
+    def pandda_sites(self, request, pk=None):
+        """The sites a PanDDA run found over this campaign, and what sits at each.
+
+        The run's own site axis, not the curated one: membership is PanDDA's
+        ``site_idx`` and no verdict is needed, which is what makes it usable
+        the moment a run has been fanned out. ``sites`` is a navigable index
+        -- per site its centroid, its rollups, and every event with the
+        receipt job to open it in -- and ``runs`` lists every run this
+        campaign holds receipts from, so a caller can offer the choice.
+
+        Query parameters:
+            run=<uuid>: index this run's receipts. Default: the run whose
+                newest receipt is newest.
+
+        Returns:
+            Response: ``{"run", "runs", "tree", "sites", "unsited", "stats"}``
+                (see ``lib.utils.jobs.pandda_site_index``).
+        """
+        try:
+            group = self.get_object()
+            return Response(pandda_site_index.build_site_index(
+                group, run_job_uuid=request.query_params.get("run") or None))
+        except Exception as e:
+            logger.exception("Failed to index PanDDA sites for group %s", pk, exc_info=e)
+            return api_error(str(e), status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        url_path=r"pandda-sites/(?P<site_idx>[0-9]+)/scene",
+    )
+    def pandda_site_scene(self, request, pk=None, site_idx=None):
+        """A Moorhen scene of every ligand PanDDA built at one site of one run.
+
+        The exemplar drawn once, and the autobuilt pose of every event at this
+        site on top of it, each fitted onto the exemplar. No verdict is
+        required and none is implied: these are candidates to be judged
+        together, which is the view the curated site scene cannot give before
+        anybody has judged them.
+
+        Query parameters:
+            run=<uuid>: which run's sites these are. Default: the latest.
+            superpose=none: draw every dataset in its own frame.
+
+        Returns:
+            Response: ``{"scene": <MoorhenScene>, "stats": {...}}``, the same
+                envelope as ``site_scene``.
+        """
+        try:
+            group = self.get_object()
+            index = pandda_site_index.build_site_index(
+                group, run_job_uuid=request.query_params.get("run") or None)
+            wanted = int(site_idx)
+            site = next((s for s in index["sites"] if s["site_idx"] == wanted), None)
+            if site is None:
+                return api_error(
+                    f"Site {wanted} is not a site of this run", status=404)
+            return Response(campaign_scene.build_run_site_scene(
+                group, site, run=index["run"],
+                superpose=request.query_params.get("superpose") != "none",
+            ))
+        except Exception as e:
+            logger.exception(
+                "Failed to build PanDDA site scene %s for group %s", site_idx, pk,
+                exc_info=e)
             return api_error(str(e), status=500)
