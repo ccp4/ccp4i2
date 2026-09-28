@@ -108,3 +108,54 @@ class TestAgainstRealTasks:
 
         assert "container.inputData.F_SIGF" in names
         assert not [p for p in names if p.endswith(".F_SIGF.dbFileId")]
+
+
+class TestWhatTheRendererActuallyEmits:
+    """The assertion that was missing, and that a table-to-table comparison
+    cannot make: the names in a RENDERED command must be names the parser
+    accepts.
+
+    Without this, a root mismatch went unnoticed -- the table is keyed from the
+    container's own name down ("container.inputData.F_SIGF") while
+    ``objectPath()`` is rooted at the plugin above it
+    ("freerflag.container.inputData.F_SIGF"), so every lookup missed and the
+    renderer fell back to '--container.inputData.F_SIGF', which i2run rejects.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _needs_plugins(self):
+        pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)")
+
+    @pytest.mark.parametrize(
+        "task_name", ("freerflag", "prosmart_refmac", "servalcat_pipe")
+    )
+    def test_paths_rooted_at_the_plugin_still_find_their_name(self, task_name):
+        from ccp4i2.core.CCP4Container import CContainer
+        from ccp4i2.core.tasks import get_plugin_class
+        from ccp4i2.lib.utils.jobs.i2run import minimal_path
+
+        plugin = get_plugin_class(task_name)(parent=None)
+        container = plugin.container
+        names = argument_names(container)
+        accepted = set(names.values())
+
+        def parameters(node):
+            """Leaves only: the renderer recurses into sub-containers rather
+            than naming them."""
+            for child in node.children():
+                if isinstance(child, CContainer):
+                    yield from parameters(child)
+                else:
+                    yield child
+
+        checked = 0
+        for parameter in parameters(container):
+            rendered = minimal_path(parameter.objectPath(), container, names)
+            assert rendered in accepted, (
+                f"{task_name}: rendered '--{rendered}' for "
+                f"{parameter.objectPath()}, which is not a name the parser "
+                f"carries"
+            )
+            checked += 1
+
+        assert checked > 0, f"no parameters found for {task_name}"

@@ -595,6 +595,38 @@ class PluginPopulator:
                 parsed_values[key] = val
                 has_key_value_syntax = True
 
+        # Special handling for fileUse=, which names a file by where it came
+        # from ("[3].XYZOUT", "prosmart_refmac[-1].XYZOUT") instead of by a
+        # database id nobody can read or retype. Resolved to the same fields a
+        # dbFileId reference would set.
+        #
+        # Until this existed the key fell through to the generic key=value
+        # path, which set a dead `fileUse` attribute and left the parameter
+        # UNSET: `--F_SIGF "fileUse=3.FREEROUT"` configured an empty plugin,
+        # silently, and the job failed later looking like something else.
+        if has_key_value_syntax and "fileUse" in parsed_values:
+            from ccp4i2.lib.utils.files.file_use import (
+                FileUseError,
+                resolve_file_use,
+            )
+
+            reference = parsed_values.pop("fileUse")
+            plugin_parent = (
+                target._find_plugin_parent()
+                if hasattr(target, "_find_plugin_parent")
+                else None
+            )
+            project_id = getattr(plugin_parent, "_dbProjectId", None)
+            if not project_id:
+                raise FileUseError(
+                    f"fileUse={reference} needs a project to resolve against, "
+                    f"and this plugin has no database context"
+                )
+            # Deliberately not caught: a reference that cannot be resolved must
+            # stop the run, not quietly leave the input unset.
+            parsed_values.update(resolve_file_use(project_id, reference))
+            logger.info("Resolved fileUse=%s to %s", reference, parsed_values)
+
         # Special handling for sequence files with seqFile= (CAsuDataFile)
         if has_key_value_syntax and "seqFile" in parsed_values:
             from ccp4i2.lib.utils.formats.seq_to_asu import convert_sequence_file_to_asu

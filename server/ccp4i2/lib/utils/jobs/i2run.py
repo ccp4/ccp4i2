@@ -133,6 +133,27 @@ def i2run_command_line(job: models.Job):
     return i2run_working_directory(), arguments, command_line
 
 
+def _table_key(full_path: str, container: CCP4Container) -> str:
+    """*full_path* rooted the way the argument table is rooted.
+
+    The table is keyed from the container's own name down
+    ("container.inputData.XYZIN"), but ``objectPath()`` is rooted at whatever
+    is above it -- "freerflag.container.inputData.XYZIN" once the plugin that
+    owns the container is in the picture, which it now always is, because
+    get_job_container keeps the plugin alive on purpose.
+
+    The old minimiser never noticed: it compared suffixes, so a differing root
+    was invisible to it. An exact lookup has to be told.
+    """
+    prefix = container.objectPath()
+    root = container.objectName()
+    if full_path == prefix:
+        return root
+    if full_path.startswith(f"{prefix}."):
+        return f"{root}.{full_path[len(prefix) + 1:]}"
+    return full_path
+
+
 def minimal_path(full_path, container: CCP4Container, names=None) -> str:
     """The name i2run accepts for the parameter at *full_path*.
 
@@ -154,7 +175,7 @@ def minimal_path(full_path, container: CCP4Container, names=None) -> str:
     if names is None:
         names = argument_names(container)
 
-    name = names.get(full_path)
+    name = names.get(full_path) or names.get(_table_key(full_path, container))
     if name is not None:
         return name
 
@@ -274,10 +295,48 @@ def extend_i2run(
     return command
 
 
+def _file_use_text(node) -> str:
+    """``fileUse=[N].PARAM`` for a file another job produced, else "".
+
+    This is what makes a rendered command editable. The first thing anyone does
+    with a surfaced i2run call is change its inputs, and nobody can retype
+    ``dbFileId=a3ed78ad466845a88765271c38d15149`` or work out what it was --
+    whereas ``[3].XYZOUT`` says which job and which output, and edits cleanly
+    to ``[-1].XYZOUT`` or ``prosmart_refmac[-1].XYZOUT`` for a script.
+
+    An ABSOLUTE reference is rendered on purpose. Relative ones are for people
+    to write: a command that meant "the latest refmac" would quietly resolve
+    somewhere else next week, and a surfaced command should reproduce the job
+    it was surfaced from.
+
+    Empty for an imported file, which has no producing job to name.
+    """
+    from ....db import models
+    from ..files.file_use import file_use_for_file
+
+    try:
+        db_id = str(node.dbFileId)
+    except Exception:
+        return ""
+    if not db_id:
+        return ""
+
+    the_file = models.File.objects.filter(uuid=db_id).select_related("job").first()
+    if the_file is None:
+        return ""
+    reference = file_use_for_file(the_file)
+    return f'"fileUse={reference}"' if reference else ""
+
+
 def handle_element(item: CData) -> str:
     # If this is a simple element, then simply return the corresponding quoted string value
     if _is_leaf(item):
         return f'"{str(item)}"'
+
+    if _is_file(item) and _file_is_registered(item):
+        file_use = _file_use_text(item)
+        if file_use:
+            return file_use
 
     def traverse(node, path_parts, is_root=False):
         results = []
