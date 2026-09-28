@@ -180,13 +180,22 @@ fragment store, no containment set and no lineage walk.
 
 ## 8. Traps
 
-**Frame.** In the site view every pose is superposed into the exemplar's frame for
-display. A pose nudged there and taken into a model is being read in *transformed*
-coordinates, and must reach the dataset's own frame -- the inverse fit applied
-before it is placed. This is the same class of error as the site-origin negation,
-and it will look entirely correct in the view that produced it. It is the one trap
-from the first draft that survives, because it belongs to the site view rather
-than to the storage design.
+**Frame -- avoidable by construction, if the site view stays read-mostly.** In
+the site view every pose is superposed into the exemplar's frame for display. A
+pose nudged *there* and taken into a model would be read in transformed
+coordinates and would need the inverse fit applied before storage -- the same
+class of error as the site-origin negation, and it would look entirely correct in
+the view that produced it.
+
+The way not to have this problem is to not put a modelling commit in the
+superposed view at all. The site views judge and dispatch; modelling happens in
+the dataset view, in the dataset's own frame. Then no coordinate ever crosses a
+frame boundary on the write path, and the inverse fit is needed nowhere.
+
+This is the strongest argument for the view model in
+[`moorhen-view-model.md`](moorhen-view-model.md): it is not tidiness, it removes
+a whole class of silent error. If a modelling commit is ever added to a
+superposed view, the inverse fit becomes mandatory and this trap returns.
 
 **A push is a whole model, so it can quietly lose work.** Pushing from a session
 that loaded a stale head replaces newer content with older. The parent check (§5)
