@@ -5,7 +5,7 @@ onto the newly merged data --- but only when the two cells agree to within
 Clipper's 1 A tolerance. On a fragment campaign the FreeR set comes from one
 reference crystal and is extended onto every other crystal, whose cells drift
 by a percent or so; on a 185 A axis that is already outside the tolerance.
-The whole CDK4/CyclinD1 pre-screen of September 2026 failed this way, 23 of
+A whole fragment pre-screen failed this way, 23 of
 26 crystals, each with 'Aimless did not produce FreeR output' and no hint that
 the cell test was the reason.
 

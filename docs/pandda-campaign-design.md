@@ -589,7 +589,7 @@ and the OS killed it at ~3.5 min; at `--local_cpus 2` it still climbed
 needs 30–40 GB+.**
 
 A production data point is sharper still, and worse: a **50**-dataset
-CDK4/CyclinD1 campaign (58 × 64 × 186 Å) with autobuild is on record **OOMing a
+large-cell campaign (58 × 64 × 186 Å) with autobuild is on record **OOMing a
 128 GiB node**, and completing in 2 h 29 min on 256 GiB. So "≥128 GB for ~120
 datasets" understates it — 50 datasets on a long-axis cell can exceed 128 GB.
 Dataset count is not the variable to reason from on its own; cell volume moves
@@ -1568,8 +1568,8 @@ is getting real PanDDA inputs and outputs.
 |---|---|---|
 | A **contract-conformant staged tree**, 201 datasets: `Projects.csv` + `datasets/xtal-NNNN/{final.pdb, final.mtz, dict.cif, ligand.pdb}` | `BAZ2B/` | The exact shape §3.2 must produce. Staging can be tested by *reproducing* it from CCP4i2 projects and diffing |
 | A **real, complete output tree** over all 201 datasets — `analyses/pandda_analyse_events.csv`, `processed_datasets/`, 62 event maps | `BAZ2B/pandda2_subset60/` | The receipt reader's fixture (§7.1), and the fan-out fixture (§8.4), with no run required |
-| A **partial output tree** (no events table, no event maps) | `CDK4CyclinD1/pandda2_out/` | The incomplete-run case for fan-out and receipts (§8.4) |
-| A **large-cell campaign** (58 × 64 × 186 Å) | `CDK4CyclinD1/` | The sizing case §6.1 quotes |
+| A **partial output tree** (no events table, no event maps) | `<large-cell-campaign>/pandda2_out/` | The incomplete-run case for fan-out and receipts (§8.4) |
+| A **large-cell campaign** (58 × 64 × 186 Å) | `<large-cell-campaign>/` | The sizing case §6.1 quotes |
 | **A/B/C path comparison** + `ABC_report.md` | `pathx_runs/` | Evidence on the §6.5 experiment, including its own honest account of what is confounded |
 
 Two things the fixtures do **not** give us:
@@ -1595,7 +1595,7 @@ input. A complete run over all 201 BAZ2B datasets already exists on the
 volume at `BAZ2B/pandda2_subset60/` (the name notwithstanding: its
 `input.yaml` lists 201 datasets, and it has the events table and 62 event
 maps), which makes it the fixture for the receipt over a real run and for
-fan-out (§8.4) with no run required. `CDK4CyclinD1/pandda2_out/`, named
+fan-out (§8.4) with no run required. The large-cell campaign's `pandda2_out/`, named
 above, is an *incomplete* run — no events table, no event maps — and is
 useful only as the partial-tree case.
 
@@ -1626,7 +1626,7 @@ useful only as the partial-tree case.
   `UNSATISFACTORY` and **still gleans what arrived** (§7.2) — the assertion is
   the `File` rows, not the status alone. And glean finds every nested `CDataFile` — assert `File` rows for
   event maps *inside* the `CList`, since that is the load-bearing assumption of
-  §7.1. Read against `CDK4CyclinD1/pandda2_out/`, including its
+  §7.1. Read against the large-cell campaign's `pandda2_out/`, including its
   zero-event datasets.
 - **v1 item 6:** fan-out twice over the same manifest creates nothing the second
   time; fan-out over a **partial** tree creates receipts for what is there and
