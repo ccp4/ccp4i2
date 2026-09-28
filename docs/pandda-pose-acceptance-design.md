@@ -139,18 +139,24 @@ provenance, the job list and the file browser all work without special cases.
    not the same row. Separate table referencing the evaluation, or a nullable
    relation? **Leaning:** separate, referencing.
 
-3. **Ligand dictionaries.** Refinement needs restraints for *every* ligand in the
-   model. Composing N poses from N datasets means merging N dictionaries, or
-   composing one. This is campaign-side work and touches no generic task, but it
-   is real and is the most likely source of refinement failures. Needs its own
-   section before implementation.
+3. **Ligand dictionaries — smaller than it first appears.** Composition is *per
+   dataset*, and a dataset is one crystal soaked with one compound, so its
+   accepted poses are several **copies of the same ligand** and need the one
+   dictionary that project already holds. There is no N-way merge. The site
+   *scene* is where N datasets meet and needs a dictionary per pose; composition
+   is not. The bounded exception is a co-frag soak, two compounds and so two
+   codes (`DRG` + `LIG`), which the existing co-frags ingest already models. The
+   only open question is what to do when a dataset has no dictionary at all:
+   refuse to compose, or compose and let refinement fail with a legible reason.
 
-4. **Chain and residue numbering.** N fragments each called `LIG` or `DRG` in their
-   own numbering need a deterministic assignment, or refinement sees duplicates.
+4. **Chain and residue numbering.** Several copies of one ligand code in a model is
+   ordinary crystallography, but the copies still need distinct chain or residue
+   assignment, deterministically, or refinement sees duplicates.
 
-5. **Clash policy.** Two accepted poses at adjacent subsites can overlap, and
-   alternate conformations of one site are a legitimate case wanting altlocs.
-   Refuse, flag, or model as altloc — but never silently interleave.
+5. **Clash policy.** Two accepted poses can overlap — and because they are copies
+   of the same compound, "two placements in overlapping density" is more likely to
+   mean an alternate conformation than two genuine subsites. Refuse, flag, or
+   model as altloc, but never silently interleave.
 
 ## 7. Traps
 
