@@ -1020,6 +1020,17 @@ is the obvious next piece.
 Endpoints: `GET projectgroups/{id}/pandda-sites/` (the index, with the runs it
 could be showing) and `GET projectgroups/{id}/pandda-sites/{site_idx}/scene/`.
 
+**What site-ordered work then breaks, and the plan for it:** one dataset has
+events at several sites, so accepting a pose at one site and then meeting the
+same dataset at the next means the second acceptance must land on the model that
+already holds the first ligand. Today it would not -- `coordinate_selector` is
+not in `REFINE_TASK_NAMES`, so a push does not advance the model of record at
+all. The plan is in
+[`pandda-pose-acceptance-design.md`](pandda-pose-acceptance-design.md): record
+the acceptance, derive the model as `base + (accepted - contained(base))`, and
+take containment from the `FileUse` lineage that already exists. It adds tables
+and touches no generic task.
+
 **For the panel that consumes this:** a ccp4i2 Moorhen side bar must either
 embed the project browser or carry an affordance that launches it as a modal.
 The Moorhen page is full-window, so a panel that shows only its own subject
