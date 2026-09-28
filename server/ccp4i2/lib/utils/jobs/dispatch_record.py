@@ -128,6 +128,7 @@ def reconcile(job, *, run=None) -> dict:
         state = "unknown"
     record = write_record(job_dir, state=state, polled_at=_now())
     if state not in TERMINAL_STATES:
+        _refresh_report(job)
         return {"action": "none", "state": state, "reason": f"the run is {state}"}
 
     stderr = None
@@ -149,6 +150,32 @@ def reconcile(job, *, run=None) -> dict:
                 "reason": result.get("error", "the job could not be started")}
     return {"action": "harvest_started", "state": state,
             "reason": f"the run {state}; the job is completing from it"}
+
+
+def _refresh_report(job) -> None:
+    """Let the job's plugin bring its report up to date, if it can.
+
+    A dispatched run's plugin is not the process doing the work, so its
+    report is written at submit and then nothing touches it until harvest.
+    A task that can say more from what the run has written so far offers
+    ``refreshRemoteReport``; one that cannot is left alone. Never raises:
+    reconcile answers about the run, and a report is not the answer.
+    """
+    from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
+
+    try:
+        plugin_result = get_plugin_with_context(job)
+        if not plugin_result.success:
+            return
+        refresh = getattr(plugin_result.data, "refreshRemoteReport", None)
+        if callable(refresh):
+            refresh()
+    except Exception as err:      # noqa: BLE001 - a report is never worth the poll
+        # Name the job defensively: whatever made the plugin unloadable may
+        # be the very attribute an identifier would read, and an exception
+        # raised while reporting one defeats the point of catching it.
+        logger.warning("could not refresh the report of job %s: %s",
+                       getattr(job, "uuid", "?"), err)
 
 
 def reconcile_all(*, run=None):

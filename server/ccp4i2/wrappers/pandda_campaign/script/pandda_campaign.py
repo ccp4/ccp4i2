@@ -699,6 +699,37 @@ class pandda_campaign(CPluginScript):
                 except Exception as e:      # noqa: BLE001 - a report is never worth a job
                     logger.debug('running report not written: %s', e)
 
+    def refreshRemoteReport(self) -> dict:
+        """Rewrite program.xml from the output tree of a run happening elsewhere.
+
+        A dispatched run's plugin is not the process doing the work, so
+        nothing here rewrites the report between submit and harvest and the
+        job's Report page stays frozen on "handed to a run target" however
+        long the run takes. The tree is the progress, though: PanDDA makes a
+        directory per dataset and fills each one in turn, so counting it says
+        how far along the run is. ``reconcile`` calls this each time the user
+        asks how the run is doing (docs/run-target-dispatch.md).
+
+        Returns the summary it counted. Never raises: a report is not worth
+        an error, and the caller is only polling.
+        """
+        summary = {}
+        try:
+            self._staging_root = Path(self.workDirectory) / 'staging'
+            manifest_path = Path(self.workDirectory) / 'manifest.json'
+            if self._manifest is None and manifest_path.is_file():
+                self._manifest = json.loads(manifest_path.read_text())
+            summary = self._record_tree()
+            record = dispatch_record.read_record(self.workDirectory) or {}
+            state = record.get('state') or 'dispatched'
+            # The report speaks of the job, not of the target's vocabulary:
+            # a run that is still going is 'dispatched' whatever the target
+            # calls it, and a terminal state is left for the harvest to write.
+            self._write_program_xml(state='dispatched' if state not in ('failed',) else 'failed')
+        except Exception as e:      # noqa: BLE001 - a report is never worth a job
+            logger.warning('remote report not refreshed: %s', e)
+        return summary
+
     def _write_program_xml(self, state: str, failure: str = ''):
         root = ET.Element('pandda_campaign')
         ET.SubElement(root, 'state').text = state

@@ -854,11 +854,16 @@ export const useJobDirectory = (
   // Use adaptive polling - fast when job is running, no polling when idle
   const pollInterval = isJobActive ? DIRECTORY_ACTIVE_POLL_INTERVAL : 0;
 
+  // The job's own directory, not the project's. The project listing walked
+  // every job to deliver one: on a campaign parent whose PanDDA job holds a
+  // directory per dataset that was ~2000 entries per poll, every few seconds
+  // while the job ran. projectId is kept in the signature because callers
+  // pass it and the browser still wants it for file actions.
   const { data: directory, mutate: mutateDirectory } = api.get_endpoint<any>(
-    projectId
+    activeJob?.id
       ? {
-          type: "projects",
-          id: projectId,
+          type: "jobs",
+          id: activeJob.id,
           endpoint: "directory",
         }
       : null,
