@@ -39,37 +39,13 @@ export const JobDirectoryView: React.FC<JobDirectoryViewProps> = ({
     };
   }, []);
 
-  const directoryData = useMemo(() => {
-    if (!directory || !job || !directory.container) {
-      return null;
-    }
-    let dirNode = directory.container.find(
-      (item: any) => item.name === "CCP4_JOBS"
-    );
-    if (!dirNode) {
-      return [];
-    }
-    const jobNumberElements = job.number.split(".").reverse();
-    let cumulativePath: string = dirNode.path;
-    while (jobNumberElements.length > 0) {
-      const jobNumber = jobNumberElements.pop();
-      if (!dirNode.contents || !Array.isArray(dirNode.contents)) {
-        console.error(`dirNode.contents is not an array:`, dirNode.contents);
-        return [];
-      }
-      dirNode = dirNode.contents.find(
-        (item: any) => item.name === `job_${jobNumber}`
-      );
-      cumulativePath += `/job_${jobNumber}`;
-      if (!dirNode) {
-        console.error(`job_${jobNumber} not found in ${cumulativePath}`);
-        return null;
-      }
-      if (jobNumberElements.length === 0) {
-        return dirNode.contents || [];
-      }
-    }
-  }, [job, project, directory]);
+  // jobs/<id>/directory answers with this job's own contents, so there is
+  // nothing to walk: the old listing was the whole project and this had to
+  // descend CCP4_JOBS/job_N/job_M to find the part it wanted.
+  const directoryData = useMemo(
+    () => (directory?.container as FileSystemItem[]) ?? null,
+    [directory]
+  );
 
   return directory ? (
     <>

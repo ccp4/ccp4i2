@@ -124,3 +124,37 @@ def test_a_target_the_deployment_no_longer_registers_is_an_error_result(tmp_path
     dr.write_record(tmp_path, target="local")
     out = dr.reconcile(job, run=lambda j: None)
     assert out["action"] == "error" and "does not run programs" in out["reason"]
+
+
+def test_a_running_job_gets_its_report_refreshed(registered, tmp_path, monkeypatch):
+    """While the run is still going reconcile does nothing to the job, but it
+    asks the plugin to bring its report up to date: the page that says what
+    the run is doing was otherwise frozen at submit for the whole run."""
+    from ccp4i2.lib.utils.jobs import dispatch_record as module
+
+    job = FakeJob(tmp_path, models.Job.Status.RUNNING_REMOTELY)
+    dr.new_record(tmp_path, target="batch", handle="batch-42")
+    FakeBatch.state = "running"
+    called = []
+
+    class Plugin:
+        def refreshRemoteReport(self):
+            called.append(True)
+
+    monkeypatch.setattr(module, "_refresh_report",
+                        lambda j: Plugin().refreshRemoteReport())
+    result = dr.reconcile(job)
+
+    assert result["action"] == "none" and result["state"] == "running"
+    assert called == [True]
+
+
+def test_a_task_with_no_report_to_refresh_is_left_alone(registered, tmp_path):
+    """_refresh_report is duck-typed: a task that offers no such method, or a
+    plugin that will not load, must not turn a poll into an error."""
+    job = FakeJob(tmp_path, models.Job.Status.RUNNING_REMOTELY)
+    dr.new_record(tmp_path, target="batch", handle="batch-42")
+    FakeBatch.state = "running"
+    # The stub job cannot load a plugin at all, which is the harshest case:
+    # the failure happens inside the refresh and must stay inside it.
+    assert dr.reconcile(job)["action"] == "none"

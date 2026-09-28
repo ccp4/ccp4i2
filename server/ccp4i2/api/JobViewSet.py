@@ -36,7 +36,7 @@ from pathlib import Path
 from django.core.exceptions import ValidationError
 from xml.etree import ElementTree as ET
 
-from django.http import FileResponse, Http404
+from django.http import FileResponse, Http404, JsonResponse
 from pytz import timezone
 from rest_framework.decorators import action
 from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
@@ -1610,6 +1610,35 @@ class JobViewSet(ModelViewSet):
                 "Unexpected error validating job %s", pk, exc_info=err
             )
             return api_error(f"Unexpected error: {str(err)}", status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.JobSerializer,
+    )
+    def directory(self, request, pk=None):
+        """
+        List this job's own directory tree.
+
+        GET /api/jobs/123/directory/
+
+        Same node shape as ``projects/<id>/directory``, rooted at the job
+        rather than the project, because that is what the job's Directory
+        tab shows. The project-wide listing had to walk every job to deliver
+        one, which on a campaign parent with a PanDDA job (a directory per
+        dataset) is thousands of entries per poll.
+        """
+        from ..lib.utils.navigation.list_project import list_job
+
+        try:
+            result = list_job(pk)
+        except models.Job.DoesNotExist as err:
+            return api_error(f"Job not found: {err}", status=404)
+        try:
+            return JsonResponse({"status": "Success", "container": result})
+        except TypeError as err:
+            logger.exception("Failed encoding listing of job %s", pk, exc_info=err)
+            return JsonResponse({"status": "Failed", "container": {"Reason": "TypeError"}})
 
     @action(
         detail=True,

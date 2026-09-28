@@ -54,6 +54,34 @@ def get_directory_tree(
     return tree
 
 
+def list_job(the_job_id, max_depth=10, max_files=50000):
+    """List one job's own directory, by job id or uuid.
+
+    The project-wide listing walks every job in the project: on a campaign
+    parent whose PanDDA job holds a directory per dataset that is thousands
+    of entries to deliver a few, once per poll while the job runs. A job's
+    tree is what the interface actually shows, so serve that.
+
+    Returns the contents of the job directory itself (not a node wrapping
+    it), so the caller reads it exactly as it reads the project listing's
+    job node. A job whose directory does not exist yet lists as empty.
+    """
+    query = {"uuid": the_job_id} if _looks_like_uuid(the_job_id) else {"pk": the_job_id}
+    the_job = models.Job.objects.get(**query)
+    directory = the_job.directory
+    if not os.path.isdir(directory):
+        return []
+    return get_directory_tree(str(directory), max_depth=max_depth, max_files=max_files)
+
+
+def _looks_like_uuid(value) -> bool:
+    try:
+        uuid.UUID(str(value))
+    except (ValueError, AttributeError, TypeError):
+        return False
+    return True
+
+
 def list_project(the_project_uuid: str, max_depth=10, max_files=50000):
     """
     List all files and directories in a project directory.
