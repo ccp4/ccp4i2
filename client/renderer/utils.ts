@@ -222,6 +222,10 @@ export interface JobData {
   getValidationColor: (item: any) => string;
   getErrors: (item: any) => ValidationError[];
   useFileDigest: (objectPath: string, cacheKey?: string | number) => SWRResponse<any, Error>;
+  /** Invalidate a parameter's cached digest(s) without subscribing; see useJob. */
+  mutateFileDigest: (objectPath: string) => Promise<unknown>;
+  /** Invalidate every cached file content without subscribing; see useJob. */
+  mutateFileContent: () => Promise<unknown>;
   fetchDigest: (objectPath: string) => Promise<any | null>;
   callPluginMethod: (
     methodName: string,
@@ -1490,6 +1494,38 @@ export const useJob = (jobId: number | null | undefined): JobData => {
     });
   };
 
+  // Invalidate a parameter's cached digest(s), or every cached file content,
+  // WITHOUT subscribing to them. This is what an element that renders once
+  // per file needs after an upload: useFileDigest/useFileContent in such an
+  // element fetched a digest and the whole file for every file on mount (948
+  // requests for a 158-dataset PanDDA job, which exhausted the database's
+  // connection slots and starved the run check). A key-matched mutate
+  // revalidates only the subscribers that are mounted -- the elements that
+  // actually display a digest or content. The digest key may carry a
+  // cacheKey suffix ("&_f=..."), hence the prefix match.
+  const mutateFileDigest = useCallback(
+    (objectPath: string): Promise<unknown> => {
+      if (!job?.id || !objectPath) return Promise.resolve();
+      const digestKey = `jobs/${job.id}/digest?object_path=${objectPath}`;
+      return mutate(
+        (key) =>
+          typeof key === "string" &&
+          (key === digestKey || key.startsWith(`${digestKey}&`))
+      );
+    },
+    [job?.id]
+  );
+  const mutateFileContent = useCallback(
+    (): Promise<unknown> =>
+      mutate(
+        (key) =>
+          typeof key === "string" &&
+          key.startsWith("files_by_uuid/") &&
+          key.endsWith("/download/")
+      ),
+    []
+  );
+
   /**
    * Imperatively fetch the digest for a file parameter.
    * Use this in onChange callbacks for predictable, deterministic behavior.
@@ -1660,6 +1696,8 @@ export const useJob = (jobId: number | null | undefined): JobData => {
     getValidationColor,
     getErrors,
     useFileDigest,
+    mutateFileDigest,
+    mutateFileContent,
     fetchDigest,
     callPluginMethod,
     fileItemToParameterArg,

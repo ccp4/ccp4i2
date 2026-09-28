@@ -276,9 +276,16 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const { value: selectionString, update: updateSelectionString } =
     useTaskItem(selectionItemName);
 
-  // Only fetch digest when a file has been uploaded (has dbFileId)
+  // Fetch the digest only when there is a file AND the atom-selection
+  // builder can appear (the ifAtomSelection qualifier): its composition
+  // drives nothing else here, and this element renders once per model file
+  // in a task -- 158 of them on a PanDDA campaign job, none with a builder.
   const hasFile = Boolean(value?.dbFileId);
-  const digestPath = hasFile && item?._objectPath ? item._objectPath : "";
+  const wantsComposition = Boolean(
+    qualifiers?.ifAtomSelection ?? item?._qualifiers?.ifAtomSelection
+  );
+  const digestPath =
+    hasFile && wantsComposition && item?._objectPath ? item._objectPath : "";
   const { data: fileDigest, mutate: mutateDigest } = useFileDigest(digestPath) as {
     data: CPdbDataFileDigest | undefined;
     mutate: () => void;
