@@ -189,7 +189,8 @@ class JobViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Manual ?project= / ?project__uuid= filtering. The DjangoFilterBackend is
+        # Manual ?project= / ?project__uuid= / ?task_name= / ?status= / ?parent=
+        # filtering. The DjangoFilterBackend is
         # NOT active (a second REST_FRAMEWORK block in settings.py drops
         # DEFAULT_FILTER_BACKENDS), so filterset_fields=["project"] is inert and
         # `jobs/?project=<pk>` would otherwise return jobs across ALL projects —
@@ -202,6 +203,28 @@ class JobViewSet(ModelViewSet):
         project_uuid = self.request.query_params.get("project__uuid")
         if project_uuid is not None:
             queryset = queryset.filter(project__uuid=project_uuid)
+        # The remaining filters are additive with the two above. Without them a
+        # caller asking for "the pandda_campaign jobs" got the whole table
+        # (180k rows on a production instance) and had to filter client-side.
+        task_name = self.request.query_params.get("task_name")
+        if task_name is not None:
+            queryset = queryset.filter(task_name=task_name)
+        status = self.request.query_params.get("status")
+        if status is not None:
+            try:
+                queryset = queryset.filter(status=int(status))
+            except ValueError:
+                queryset = queryset.none()
+        parent = self.request.query_params.get("parent")
+        if parent is not None:
+            # ?parent=null (or "none") selects top-level jobs; otherwise a job id.
+            if parent.lower() in ("null", "none", ""):
+                queryset = queryset.filter(parent__isnull=True)
+            else:
+                try:
+                    queryset = queryset.filter(parent_id=int(parent))
+                except ValueError:
+                    queryset = queryset.none()
         return queryset
 
     def destroy(self, request, *args, **kwargs):
