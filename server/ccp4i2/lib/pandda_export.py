@@ -122,8 +122,10 @@ def _find_dictionary_cif(acedrg_job) -> Optional[Path]:
 def dataset_resolution(dimple_job) -> Optional[float]:
     """The nominal resolution of a dimple job's reflections, or None.
 
-    From the MTZ header, which carries it: a few milliseconds per file, so a
-    fifty-dataset campaign can be reported on in well under a second.
+    From the MTZ header, which carries it, and read header-only: a few
+    milliseconds per file, so a fifty-dataset campaign can be reported on in
+    well under a second. (Reading the reflections as well made this 80 ms a
+    file over a network share.)
     Completeness is NOT returned -- an MTZ header does not carry it, and
     counting reflections against gemmi.count_reflections costs about fifty
     times as much per file.
@@ -136,7 +138,7 @@ def dataset_resolution(dimple_job) -> Optional[float]:
         if not path.is_file():
             continue
         try:
-            return round(gemmi.read_mtz_file(str(path)).resolution_high(), 2)
+            return round(gemmi.read_mtz_file(str(path), with_data=False).resolution_high(), 2)
         except Exception:      # noqa: BLE001 - an unreadable file reports nothing
             return None
     return None

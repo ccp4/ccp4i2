@@ -532,25 +532,47 @@ class pandda_campaign(CPluginScript):
         return (int(par.MAX_SHELL_DATASETS) if par.MAX_SHELL_DATASETS.isSet()
                 else contract.MAX_SHELL_DATASETS)
 
-    def _dataset_resolutions(self):
-        """Each dataset's nominal resolution, from its MTZ header.
+    def _dataset_headers(self):
+        """``[(resolution_high, cell), ...]`` for each readable reflection
+        file, read once per configured DATASETS list.
 
-        The header carries it, so this is a read of a few milliseconds per
-        file. Completeness would mean counting reflections against
-        gemmi.count_reflections -- about fifty times dearer -- and is
-        deliberately not done here.
+        The header carries both, so each file is opened header-only
+        (``with_data=False``): reading the reflections too cost a 158-dataset
+        campaign 13 s warm on DDU's share, and the run check read every file
+        twice (outlook, then the best-resolution line of the warning) and a
+        third time for the sizing hint, on top of three database queries per
+        ``fullPath``. Cold, that passed the ingress timeout and the run
+        dialog gave up with "could not check the job". The cache is keyed on
+        the list as configured (identity and name of each file), never on
+        ``fullPath``, so a hit costs no query.
         """
         import gemmi
 
-        out = []
-        for item in self.container.inputData.DATASETS:
+        datasets = self.container.inputData.DATASETS
+        key = tuple((str(item.HKLIN.dbFileId) if item.HKLIN.dbFileId.isSet() else '',
+                     str(item.HKLIN.baseName)) for item in datasets if item.HKLIN.isSet())
+        cached = getattr(self, '_headers_cache', None)
+        if cached is not None and cached[0] == key:
+            return cached[1]
+        headers = []
+        for item in datasets:
             if not item.HKLIN.isSet():
                 continue
             try:
-                out.append(gemmi.read_mtz_file(str(item.HKLIN.fullPath)).resolution_high())
+                mtz = gemmi.read_mtz_file(str(item.HKLIN.fullPath), with_data=False)
             except Exception:      # noqa: BLE001 - an unreadable file is not this check's business
                 continue
-        return out
+            c = mtz.cell
+            headers.append((mtz.resolution_high(), (c.a, c.b, c.c, c.alpha, c.beta, c.gamma)))
+        self._headers_cache = (key, headers)
+        return headers
+
+    def _dataset_resolutions(self):
+        """Each dataset's nominal resolution, from its MTZ header (see
+        ``_dataset_headers``). Completeness would mean counting reflections
+        against gemmi.count_reflections -- about fifty times dearer -- and is
+        deliberately not done here."""
+        return [resolution for resolution, _cell in self._dataset_headers()]
 
     def _resolution_outlook(self):
         """``(shell_resolution, worst, dragged)`` for the configured set."""
@@ -616,17 +638,7 @@ class pandda_campaign(CPluginScript):
         return specs
 
     def _sizing_hint(self):
-        import gemmi
-        cells = []
-        for item in self.container.inputData.DATASETS:
-            if not item.HKLIN.isSet():
-                continue
-            try:
-                mtz = gemmi.read_mtz_file(str(item.HKLIN.fullPath))
-                c = mtz.cell
-                cells.append((c.a, c.b, c.c, c.alpha, c.beta, c.gamma))
-            except Exception:
-                continue
+        cells = [cell for _resolution, cell in self._dataset_headers()]
         hint = contract.sizing_hint(len(self.container.inputData.DATASETS), cells)
         # The one number a target choosing a pool actually needs, computed
         # here so the 6.1 formula lives in one place (Materia, 2026-09-27).
