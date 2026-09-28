@@ -231,8 +231,8 @@ export interface BatchFileItem {
  * Accepts variable-length numbers (1-8 digits), with or without zero-padding.
  *
  * Examples that match:
- * - dls12092024_x0203_NCL-00028921_xia_3dii
- * - dls041225_CDK4D1_12_NCL-00030882_AutoProcST
+ * - dls01012024_x0001_NCL-00012345_xia_3dii
+ * - dls041225_target_12_NCL-00023456_AutoProcST
  * - mx12345-1_xtal1_ncl-28921_autoproc.mtz
  * - test_NCL_12345_data
  */

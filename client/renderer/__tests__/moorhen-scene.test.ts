@@ -62,7 +62,7 @@ files:
     job: 14
     param: XYZOUT
   - name: reference
-    url: https://ddudatabase/api/ccp4i2/fileBy/abc
+    url: https://example.invalid/api/ccp4i2/fileBy/abc
   - name: external
     relativeUrl: /api/proxy/pdbe/entry-files/download/foo.cif
 domains:

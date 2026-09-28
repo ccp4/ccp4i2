@@ -15,9 +15,9 @@ import { useApi } from "../../../api";
  * printed a median processing resolution as though it were a fact about the
  * data.
  *
- * DDU's 50-dataset CDK4 campaign was processed at 6.71 A, the resolution of
- * one crystal, while 48 of its 50 datasets were better than 4 A. No fragment
- * is findable there. Removing 14 low-resolution datasets and running the same
+ * A 50-dataset campaign was processed at 6.71 A, the resolution of a single
+ * crystal, while 48 of its 50 datasets were better than 4 A. No fragment is
+ * findable there. Removing 14 low-resolution datasets and running the same
  * software over the same crystals gave 2.97 A, interpretable density, and
  * poses that sit in it.
  *

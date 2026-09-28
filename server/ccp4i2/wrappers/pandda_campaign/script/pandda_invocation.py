@@ -57,7 +57,7 @@ MIN_DATASETS = 25
 #: So on a campaign with FEWER datasets than this, the second branch is always
 #: true, every dataset becomes a comparator whatever its resolution, and the
 #: single worst crystal sets the resolution for the entire run. DDU's
-#: 50-dataset CDK4 campaign was processed at 6.71 A -- the resolution of one
+#: 50-dataset campaign was processed at 6.71 A -- the resolution of one
 #: crystal -- while 48 of its 50 datasets were better than 4 A.
 MAX_SHELL_DATASETS = 60
 

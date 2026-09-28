@@ -26,8 +26,8 @@ Dry run by default; nothing is written without ``--commit``.
 Usage:
     python manage.py backfill_complete_mtz                     # dry run, every project
     python manage.py backfill_complete_mtz --commit
-    python manage.py backfill_complete_mtz --campaign Legacy_M3_EEK_DSI_poised_group --commit
-    python manage.py backfill_complete_mtz --projectname dls12092024_x0203_NCL-00028921_xia_3dii
+    python manage.py backfill_complete_mtz --campaign <campaign-name> --commit
+    python manage.py backfill_complete_mtz --projectname <project-name>
     python manage.py backfill_complete_mtz --commit --limit 10  # a first, small batch
 """
 from django.core.management.base import BaseCommand, CommandError

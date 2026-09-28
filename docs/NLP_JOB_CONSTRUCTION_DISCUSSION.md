@@ -118,7 +118,7 @@ layer on the API, not instead of it.
 
 The Compounds NLP work proved out an architecture chemists like:
 
-> *"CDK4 pyrimidines registered by Alice in 2025 with HTRF IC50 < 100 nM"*
+> *"kinase pyrimidines registered by Alice in 2025 with HTRF IC50 < 100 nM"*
 
 → deterministic resolution, click-to-confirm, redirect to the rich display
 surface that already exists. The chemist saves a few minutes of clicking

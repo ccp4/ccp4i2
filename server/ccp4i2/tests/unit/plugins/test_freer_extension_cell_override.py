@@ -3,7 +3,7 @@
 In COMPLETE mode the freerflag wrapper joins the observed data with the input
 FreeR set by reflection index (``makeHklin`` -> ``merge_mtz_files``, gemmi).
 That join refused any pair of cells outside Clipper's 1 A test, which a
-campaign's shared free set fails on most of its crystals: the CDK4/CyclinD1
+campaign's shared free set fails on most of its crystals: a large-cell
 pre-screen of September 2026 lost 23 of 26 datasets to it, after the
 aimless_pipe pre-check had already been overridden.
 

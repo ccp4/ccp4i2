@@ -71,10 +71,10 @@ def test_every_catalogue_code_is_distinct():
 
 def test_cell_classes_and_sizing():
     baz2b = (82.5, 97.0, 58.1, 90, 90, 90)          # small bromodomain
-    cdk4 = (58.0, 64.0, 186.0, 90, 90, 90)          # long axis
+    large = (58.0, 64.0, 186.0, 90, 90, 90)         # long axis
     assert c.cell_volume_class(baz2b) == "small"
-    assert c.cell_volume_class(cdk4) == "large"
-    assert c.sizing_hint(3, [baz2b, cdk4]) == {"datasets": 3, "cell_volume_class": "large"}
+    assert c.cell_volume_class(large) == "large"
+    assert c.sizing_hint(3, [baz2b, large]) == {"datasets": 3, "cell_volume_class": "large"}
     assert c.sizing_hint(0, []) == {"datasets": 0, "cell_volume_class": "small"}
     small = c.estimate_peak_gib(60, "small", 4)
     large = c.estimate_peak_gib(120, "large", 6)
@@ -195,7 +195,7 @@ def test_probe_records_the_commit_of_an_editable_checkout(tmp_path):
 def test_one_bad_crystal_sets_the_resolution_for_the_whole_run():
     """The campaign is processed at the worst resolution among comparators,
     and below max_shell_datasets every dataset is a comparator whatever its
-    resolution. DDU's 50-dataset CDK4 campaign was processed at 6.71 A, the
+    resolution. A 50-dataset campaign was processed at 6.71 A, the
     resolution of one crystal, while 48 of the 50 were better than 4 A.
     """
     resolutions = [2.0 + 0.02 * i for i in range(48)] + [6.48, 6.71]
