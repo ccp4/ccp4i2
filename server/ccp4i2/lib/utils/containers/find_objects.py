@@ -17,6 +17,13 @@ def find_objects(within, func, multiple=False, growing_list=None, growing_name=N
     """
     Recursively searches for objects within a container or list that match a given condition.
 
+    .. warning::
+       **Broken, and no longer called.** It reads ``within.CONTENTS``, which
+       modern ``CContainer`` does not define, so every call raises
+       ``AttributeError``. Use ``CData.find_children_matching(predicate)`` or
+       ``find_children_by_type(type)`` instead --- they traverse via
+       ``children()``, which is where the hierarchy actually lives.
+
     Args:
         within (CCP4Container.CContainer or list): The container or list to search within.
         func (callable): A function that takes an object and returns True if the object matches the condition.

@@ -30,6 +30,7 @@ import datetime
 import json
 import logging
 import os
+import sys
 import tempfile
 from pathlib import Path
 
@@ -58,7 +59,11 @@ from ..lib.utils.files.staged_upload import StagedUploadError
 from ..lib.utils.helpers.object_method import object_method
 from ..lib.utils.helpers.plugin_method import plugin_method as call_plugin_method
 from ..lib.utils.jobs.clone import clone_job
-from ..lib.utils.jobs.i2run import i2run_for_job
+from ..lib.utils.jobs.i2run import (
+    i2run_ccp4_setup,
+    i2run_command_line,
+    i2run_environment,
+)
 from ..lib.utils.jobs.preview import preview_job
 from ..lib.utils.navigation.dependencies import (
     delete_job_and_dependents,
@@ -1404,20 +1409,71 @@ class JobViewSet(ModelViewSet):
 
         Response Format:
             {
-                "status": "Success",
-                "command": "i2run task_name -p project_path ..."
+                "success": true,
+                "data": {
+                    "command": "task_name --project_name proj --PARAM ...",
+                    "command_line": "ccp4-python -m ccp4i2.cli.i2run task_name ...",
+                    "working_directory": "/path/to/server" | null,
+                    "environment": {"CCP4I2_PROJECTS_DIR": "/path"},
+                    "ccp4_setup": "/path/to/ccp4/bin/ccp4.setup-sh" | null,
+                    "platform": "darwin"
+                }
             }
+
+        ``command`` is the argument list alone (what i2run itself parses);
+        ``command_line`` is the whole thing, ready to paste into a terminal.
+        ``working_directory`` is where it has to be run from, or null when it
+        runs from anywhere.
+
+        ``environment`` is the variables this server runs with that a fresh
+        terminal would not have, ``ccp4_setup`` the script to source first
+        (null on Windows, which has none), and ``platform`` is
+        ``sys.platform`` so the client can quote for the right shell. A client
+        should render all of it, in that order, and display ``command_line``
+        last: a command run without ``environment`` can address a different
+        database and give no sign of it.
 
         Example:
             GET /api/jobs/123/i2run_command/
         """
         try:
             the_job = models.Job.objects.get(id=pk)
-            response_string = i2run_for_job(the_job)
-            return api_success({"command": response_string})
+            working_directory, arguments, command_line = i2run_command_line(
+                the_job
+            )
+            if not command_line:
+                # No container means no parameters to render, and a command
+                # with none is worse than an error: it looks runnable.
+                return api_error(
+                    f"Could not read the parameters of job {the_job.number} "
+                    f"({the_job.task_name}), so there is no i2run command to show.",
+                    status=400,
+                )
+            return api_success(
+                {
+                    "command": arguments,
+                    "command_line": command_line,
+                    "working_directory": (
+                        str(working_directory) if working_directory else None
+                    ),
+                    # What this server runs with that a terminal will not.
+                    # Without these the command can address a different
+                    # database entirely and look like it worked.
+                    "environment": i2run_environment(),
+                    "ccp4_setup": i2run_ccp4_setup(),
+                    # So the client can quote for the right shell.
+                    "platform": sys.platform,
+                }
+            )
         except (ValueError, models.Job.DoesNotExist) as err:
             logging.exception("Failed to retrieve job with id %s", pk, exc_info=err)
             return api_error(str(err), status=400)
+        except Exception as err:
+            # Rendering walks the whole parameter container, so a task with an
+            # awkward parameter can raise anything. A 400 carrying the reason
+            # beats a 500 the UI can only report as "failed".
+            logging.exception("Failed to build i2run command for job %s", pk, exc_info=err)
+            return api_error(f"Could not build the i2run command: {err}", status=400)
 
     @action(
         detail=True,
