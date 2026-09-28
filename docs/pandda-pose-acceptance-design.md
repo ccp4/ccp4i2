@@ -11,10 +11,11 @@ every dataset that has an event there, judge the poses together, and move on to
 the next site. That ordering is what makes the view worth having, and it is also
 what breaks the model-building path.
 
-One dataset commonly has events at several sites. In campaign 68 (`CDK4CyclinD1Fragments`,
-PanDDA job 16) there are 94 events over 36 datasets: site 1 has 15 events in 12
-datasets, site 2 has 22 in 14, site 4 has 22 in 18. Datasets recur across sites by
-construction.
+One dataset commonly has events at several sites. A representative run over a
+few dozen datasets yields of the order of a hundred events spread across a
+couple of dozen sites, with the handful of largest sites holding most of them
+and each drawing on ten to twenty datasets. Datasets therefore recur across
+sites by construction, not by accident.
 
 So the sequence is: accept a pose for dataset X at site 1, work through twenty
 other datasets, then arrive at site 2 where X appears again. The second
@@ -136,7 +137,8 @@ fragment store, no containment set and no lineage walk.
   on a new table; existing models gain at most a reverse accessor, which costs
   nothing and changes no query.
 * **No migration alters an existing table.** New tables only -- so no risk to
-  DDU's production data, the failure mode that bit migration 0024.
+  an existing production deployment's data, the failure mode that bit
+  migration 0024.
 * **No generic task is modified, and none is added.** The push already creates a
   `coordinate_selector` job; this changes what is recorded about that job, not
   what the job is.
