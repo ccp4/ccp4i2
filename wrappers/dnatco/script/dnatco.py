@@ -30,7 +30,7 @@ class dnatco(CPluginScript):
     TASKMODULE = 'wrappers'  # Where this plugin will appear on gui
     TASKNAME = 'dnatco'      # Task name - should be same as class name
     TASKVERSION= 0.1         # Version of this plugin
-    TASKCOMMAND = '/opt/ccp4-20260629/bin/dnatco.sh'   # The command to run the executable
+    TASKCOMMAND = 'dnatco.bat' if sys.platform.startswith('win') else 'dnatco.sh'   # The command to run the executable
     MAINTAINER = 'martin.maly@mrclmb.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from DNATCO' },
