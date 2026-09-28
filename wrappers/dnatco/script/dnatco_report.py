@@ -127,9 +127,9 @@ class dnatco_report(Report):
                     table.addData(title=tier_title, data=tier1.values())
 
         # Add tables for lengths and angles with concerns
-        for entry_name, dataset_key, label_name, value_label in [
-            ("Bond lengths", "lengths", "Bond", "Value (&#197;)"),
-            ("Bond angles", "angles", "Angle", "Value (°)"),
+        for entry_name, dataset_key, label_name, value_label, reference_label in [
+            ("Bond lengths", "lengths", "Bond", "Value (&#197;)", "Reference (&#197;)"),
+            ("Bond angles", "angles", "Angle", "Value (°)", "Reference (°)"),
         ]:
             if compare_two_jsons:
                 entries = json_naval_data2.get(dataset_key, []) if json_naval_data2 else []
@@ -150,6 +150,7 @@ class dnatco_report(Report):
                     table.addData(title="Residue", data=[item['residue'] for item in concerned])
                     table.addData(title=label_name, data=[item['name'] for item in concerned])
                     table.addData(title=value_label, data=[f"{item['value']:.2f}" for item in concerned])
+                    table.addData(title=reference_label, data=[f"{item['reference']:.2f}" for item in concerned])
                     table.addData(title="NAVAL", data=[item['naval_tier'] for item in concerned])
                     table.addData(title="ProSco", data=[f"{item['prosco']:.2f}" for item in concerned])
                     table.addData(title="pGroup", data=[item['pGroup'] for item in concerned])
@@ -491,10 +492,18 @@ class dnatco_report(Report):
         Create `residue` field in the format "authChain/compound authSeqId.insCode altId" for display.
 
         """
+        REFERENCE_GEOMETRY_VALUES = json.loads(
+            Path(__file__).with_name("PDB-NA-RS_angles_lengths_modes.json").read_text()
+        )
         concerned = []
         for item in items:
+            compound = str(item.get('compound', '')).strip().upper()
+            reference_values = REFERENCE_GEOMETRY_VALUES.get(compound, {}) if compound else {}
             for detail in item.get('details', []):
                 if detail.get('naval_tier') in ['Of Concern', 'Allowed'] or detail.get('pGroup') in ['Rare', 'Unique', 'Ambiguous', 'Outlier', None]:
+                    name = detail.get('name')
+                    name_underscore = str(name).strip().replace('-', '_')
+                    reference = reference_values.get(name_underscore, "-")
                     concerned.append({
                         'model': item.get('model'),
                         'chain': item.get('chain'),
@@ -504,6 +513,7 @@ class dnatco_report(Report):
                         'authChain': item.get('authChain'),
                         'authSeqId': item.get('authSeqId'),
                         'compound': item.get('compound'),
+                        'reference': reference,
                         'residue': self._format_geometry_location({
                             'authChain': item.get('authChain'),
                             'compound': item.get('compound'),
@@ -511,7 +521,7 @@ class dnatco_report(Report):
                             'insCode': item.get('insCode'),
                             'altId': item.get('altId'),
                         }),
-                        'name': self._format_geometry_name(detail.get('name')),
+                        'name': self._format_geometry_name(name),
                         'value': detail.get('value'),
                         'pGroup': (
                             detail.get('pGroup')
@@ -527,6 +537,7 @@ class dnatco_report(Report):
                     })
         if not concerned:
             return []
+        
         # Group by naval_tier (Of Concern -> Allowed -> others), then by prosco
         tier_order = {'Of Concern': 0, 'Allowed': 1}
         def _sort_key(x):
