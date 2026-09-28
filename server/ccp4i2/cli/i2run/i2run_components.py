@@ -19,6 +19,10 @@ from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.tasks import get_plugin_class
 from ccp4i2.core import CCP4Data
+from ccp4i2.lib.utils.parameters.argument_names import (
+    compute_minimum_paths,
+    leaf_paths,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -81,118 +85,22 @@ class KeywordExtractor:
 
     @staticmethod
     def _get_leaf_paths(container: CContainer) -> List[Dict[str, Any]]:
+        """Traverse the container and collect every leaf parameter.
+
+        Delegates to lib.utils.parameters.argument_names, which is the single
+        authority for how a parameter may be named on a command line -- shared
+        with the renderer behind the job panel's "i2run command" button, so
+        that what it prints is what this parser accepts.
         """
-        Traverse container hierarchy and collect all leaf parameters.
-
-        Args:
-            container: Root container to traverse
-
-        Returns:
-            List of keyword dictionaries with path, object, and qualifiers
-        """
-        def traverse(node, path_parts):
-            results = []
-
-            if isinstance(node, CContainer):
-                # Traverse children
-                for child in node.children():
-                    child_path = path_parts + [child.objectName()]
-                    results.extend(traverse(child, child_path))
-            else:
-                # Leaf node - create keyword entry
-                path = ".".join(path_parts)
-                qualifiers = {}
-
-                if hasattr(node, "get_merged_metadata"):
-                    meta = node.get_merged_metadata("qualifiers")
-                    if meta:
-                        qualifiers = meta
-
-                results.append({
-                    "path": path,
-                    "object": node,
-                    "qualifiers": qualifiers
-                })
-
-            return results
-
-        # Start traversal from container
-        all_leaves = traverse(container, [container.objectName()])
-
-        # Deduplicate by path (keep first occurrence)
-        unique = {}
-        for leaf in all_leaves:
-            if leaf["path"] not in unique:
-                unique[leaf["path"]] = leaf
-
-        return list(unique.values())
+        return leaf_paths(container)
 
     @staticmethod
     def _compute_minimum_paths(keywords: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Compute minimum unique paths and flag ambiguous simple names.
+
+        Delegates to lib.utils.parameters.argument_names (see above).
         """
-        Compute minimum unique paths and identify ambiguous simple names.
-
-        For each keyword:
-        - minimumPath: Shortest suffix that uniquely identifies it
-        - simpleName: Just the last path element
-        - isAmbiguousSimpleName: Whether this simple name appears multiple times
-        - isShortestForSimpleName: Whether this is the shortest path for its simple name
-
-        Args:
-            keywords: List of keyword dictionaries
-
-        Returns:
-            Enhanced keyword list with path metadata
-        """
-        paths = [kw["path"].split(".") for kw in keywords]
-
-        # Build simple name mapping
-        simple_name_map = {}
-        for i, kw in enumerate(keywords):
-            this_path = paths[i]
-            simple_name = this_path[-1]
-            kw["simpleName"] = simple_name
-
-            if simple_name not in simple_name_map:
-                simple_name_map[simple_name] = []
-            simple_name_map[simple_name].append(i)
-
-        # Mark ambiguous simple names and identify shortest path
-        for simple_name, indices in simple_name_map.items():
-            if len(indices) > 1:
-                # Ambiguous - find shortest path
-                shortest_idx = min(indices, key=lambda idx: len(paths[idx]))
-                for idx in indices:
-                    keywords[idx]["isAmbiguousSimpleName"] = True
-                    keywords[idx]["isShortestForSimpleName"] = (idx == shortest_idx)
-            else:
-                # Unique
-                keywords[indices[0]]["isAmbiguousSimpleName"] = False
-                keywords[indices[0]]["isShortestForSimpleName"] = True
-
-        # Compute minimum unique paths
-        for i, kw in enumerate(keywords):
-            this_path = paths[i]
-
-            # Try increasing suffix lengths until unique
-            for suffix_len in range(1, len(this_path) + 1):
-                candidate = ".".join(this_path[-suffix_len:])
-
-                # Check if any other path shares this suffix
-                matches = [
-                    j for j, other_path in enumerate(paths)
-                    if len(other_path) >= suffix_len
-                    and other_path[-suffix_len:] == this_path[-suffix_len:]
-                ]
-
-                if len(matches) == 1 and matches[0] == i:
-                    kw["minimumPath"] = candidate
-                    break
-            else:
-                # Fallback: use full path
-                kw["minimumPath"] = ".".join(this_path)
-
-        return keywords
+        return compute_minimum_paths(keywords)
 
 
 # ============================================================================

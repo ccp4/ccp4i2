@@ -14,6 +14,7 @@ from ccp4i2.core import CCP4Container
 
 from ccp4i2.db import models
 from ..containers.get_container import get_job_container
+from ..parameters.argument_names import argument_names
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -132,27 +133,40 @@ def i2run_command_line(job: models.Job):
     return i2run_working_directory(), arguments, command_line
 
 
-def minimal_path(full_path, container: CCP4Container) -> str:
+def minimal_path(full_path, container: CCP4Container, names=None) -> str:
+    """The name i2run accepts for the parameter at *full_path*.
+
+    Looks the answer up in the one table that decides it
+    (``lib.utils.parameters.argument_names``), which is also what i2run's
+    argparse arguments are built from --- so a rendered command cannot name a
+    parameter in a spelling the parser rejects.
+
+    This used to re-derive the answer by walking the container and testing
+    ``objectPath().endswith("." + candidate)`` for every candidate suffix of
+    every parameter: a second implementation of the same rule, and a few
+    hundred thousand predicate calls per render on a task the size of
+    ``servalcat_pipe``.
+
+    *names* is the precomputed table; it is built once per render and threaded
+    through, because building it instantiates nothing but does walk the
+    container.
     """
-    Get the minimal unique path of a container relative to another container.
-    Starts with the last element and adds path elements until the path is unique.
-    """
-    full_parts = full_path.split(".")
+    if names is None:
+        names = argument_names(container)
 
-    # Start with the last element and gradually add more elements
-    for i in range(1, len(full_parts) + 1):
-        # Take the last i elements
-        candidate_path_parts = full_parts[-i:]
-        candidate_path = ".".join(candidate_path_parts)
+    name = names.get(full_path)
+    if name is not None:
+        return name
 
-        # Test if this path is unique within the container
-        if _is_path_unique(candidate_path, container, full_path):
-            logger.debug("%s -> %s", full_path, candidate_path)
-            return candidate_path
-
-    # If no unique shorter path found, return the full relative path
-    logger.debug("%s -> %s (not shortened)", full_path, ".".join(full_parts))
-    return ".".join(full_parts)
+    # Not a parameter i2run exposes (it should be, for anything we render).
+    # Fall back to the path relative to the container rather than inventing a
+    # spelling, and say so, because this is the shape of a real bug.
+    logger.warning(
+        "No i2run argument name for %s; falling back to the relative path",
+        full_path,
+    )
+    parts = full_path.split(".")
+    return ".".join(parts[1:]) if len(parts) > 1 else full_path
 
 
 def _is_list(object: CData) -> bool:
@@ -203,10 +217,16 @@ def _is_leaf(object: CData) -> bool:
 
 
 def extend_i2run(
-    command: str, element: CData, container: CCP4Container, exclude: list[str] = None
+    command: str,
+    element: CData,
+    container: CCP4Container,
+    exclude: list[str] = None,
+    names: dict = None,
 ) -> str:
     if exclude is None:
         exclude = []
+    if names is None:
+        names = argument_names(container)
 
     def should_skip_child(child, exclude):
         return child.objectName() in exclude or child.objectName() == "temporary"
@@ -223,14 +243,14 @@ def extend_i2run(
         for grandchild in child:
             element_text = handle_element(grandchild)
             if len(element_text) > 0:
-                command += f" --{minimal_path(child.objectPath(), container)}"
+                command += f" --{minimal_path(child.objectPath(), container, names)}"
                 command += f" {element_text}"
         return command
 
     def handle_nonleaf_child(command, child, container):
         element_text = handle_element(child)
         if len(element_text) > 0:
-            command += f" --{minimal_path(child.objectPath(), container)}"
+            command += f" --{minimal_path(child.objectPath(), container, names)}"
             command += f" {element_text}"
         return command
 
@@ -240,12 +260,12 @@ def extend_i2run(
         if is_unset_nonlist_noncontainer(child):
             return command
         if _is_container(child):
-            return extend_i2run(command, child, container, exclude)
+            return extend_i2run(command, child, container, exclude, names)
         if _is_list(child):
             return handle_list_child(command, child, container)
         if not _is_leaf(child):
             return handle_nonleaf_child(command, child, container)
-        command += f' --{minimal_path(child.objectPath(), container)} "{str(child)}"'
+        command += f' --{minimal_path(child.objectPath(), container, names)} "{str(child)}"'
         return command
 
     for child in element.children():
@@ -320,22 +340,3 @@ def handle_element(item: CData) -> str:
 
     leaf_texts = traverse(item, [], is_root=True)
     return " ".join(leaf_texts)
-
-
-def _is_path_unique(candidate_path, container, full_path):
-    """Does *candidate_path* name exactly one object in *container*?
-
-    Uses ``find_children_matching``, the traversal CData actually offers. The
-    previous implementation went through ``lib.utils.containers.find_objects``,
-    which reads ``within.CONTENTS`` --- an attribute modern ``CContainer`` does
-    not have, so every call raised ``AttributeError`` and the whole
-    i2run-command endpoint returned a 400.
-    """
-    if candidate_path == full_path:
-        return True
-
-    suffix = f".{candidate_path}"
-    matches = container.find_children_matching(
-        lambda x: hasattr(x, "objectPath") and x.objectPath().endswith(suffix)
-    )
-    return len(matches) == 1
