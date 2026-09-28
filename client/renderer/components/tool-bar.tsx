@@ -77,6 +77,13 @@ export default function ToolBar() {
   const [showHelpPanel, setShowHelpPanel] = useState(false);
   const [showI2RunDialog, setShowI2RunDialog] = useState(false);
   const [i2RunCommand, setI2RunCommand] = useState<string>("");
+  const [i2RunDirectory, setI2RunDirectory] = useState<string | null>(null);
+  const [i2RunEnvironment, setI2RunEnvironment] = useState<Record<
+    string,
+    string
+  > | null>(null);
+  const [i2RunCcp4Setup, setI2RunCcp4Setup] = useState<string | null>(null);
+  const [i2RunPlatform, setI2RunPlatform] = useState<string | null>(null);
   const { setMessage } = usePopcorn();
   const { confirmTaskRun } = useRunCheck();
   const { setJobTabValue } = useJobTab();
@@ -153,17 +160,50 @@ export default function ToolBar() {
     }
   };
 
+  // The endpoint answers in the standard envelope, {success, data: {...}} --
+  // reading `command` off the top level (as this did) yields undefined for
+  // every job, so the button silently did nothing at all.
   const handleI2Run = async () => {
-    if (job) {
-      const result: { status: string; command: string } = await apiGet(
-        `jobs/${job.id}/i2run_command`
-      );
-      if (result?.command) {
-        navigator.clipboard.writeText(result.command);
-        setMessage("i2run command copied to clipboard");
-        setI2RunCommand(result.command);
-        setShowI2RunDialog(true);
+    if (!job) return;
+    try {
+      const result: {
+        success?: boolean;
+        error?: string;
+        data?: {
+          command?: string;
+          command_line?: string;
+          working_directory?: string | null;
+          environment?: Record<string, string> | null;
+          ccp4_setup?: string | null;
+          platform?: string | null;
+        };
+      } = await apiGet(`jobs/${job.id}/i2run_command`);
+
+      // Prefer the ready-to-run line; fall back to the bare argument list so a
+      // client talking to an older server still shows something true.
+      const command = result?.data?.command_line ?? result?.data?.command;
+      if (!command) {
+        setMessage(
+          `Could not build an i2run command for this job${
+            result?.error ? `: ${result.error}` : ""
+          }`,
+          "error"
+        );
+        return;
       }
+      setI2RunCommand(command);
+      setI2RunDirectory(result?.data?.working_directory ?? null);
+      setI2RunEnvironment(result?.data?.environment ?? null);
+      setI2RunCcp4Setup(result?.data?.ccp4_setup ?? null);
+      setI2RunPlatform(result?.data?.platform ?? null);
+      setShowI2RunDialog(true);
+    } catch (error) {
+      setMessage(
+        `Could not build an i2run command: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+        "error"
+      );
     }
   };
 
@@ -283,6 +323,9 @@ export default function ToolBar() {
         icon: <Code />,
         onClick: handleI2Run,
         show: panelWidth > 1200,
+        // Needs a job to render. Without this the overflow menu offered it on
+        // a narrow panel with nothing loaded, where it could only no-op.
+        available: job?.id != null,
       },
     ],
     [panelWidth, job, projectId, router, exportItems]
@@ -369,6 +412,10 @@ export default function ToolBar() {
       <I2RunDialog
         open={showI2RunDialog}
         command={i2RunCommand}
+        workingDirectory={i2RunDirectory}
+        environment={i2RunEnvironment}
+        ccp4Setup={i2RunCcp4Setup}
+        platform={i2RunPlatform}
         onClose={() => setShowI2RunDialog(false)}
       />
     </>

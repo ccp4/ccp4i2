@@ -18,8 +18,27 @@ class Command(BaseCommand):
     requires_system_checks = []
 
     def add_arguments(self, parser):
-        # Don't add any arguments - we'll handle them manually in handle()
-        pass
+        """Collect the task name and its parameters verbatim.
+
+        A task's parameters come from its ``.def.xml`` and are only known once
+        the task name has been read, so they cannot be declared here. But
+        declaring *nothing* does not mean "accept anything": Django parses
+        argv before ``handle()`` runs, so every argument was rejected --
+        ``manage.py i2run freerflag --project_name gamma`` died with
+        ``error: unrecognized arguments: freerflag --project_name gamma``.
+        The command was therefore unusable from a shell, and only worked for
+        the i2run test tier, which fakes ``sys.argv`` and calls
+        ``call_command('i2run')`` with no arguments at all.
+
+        ``REMAINDER`` takes the task name and everything after it untouched,
+        for ``handle()`` to hand to the runner.
+        """
+        parser.add_argument(
+            "i2run_args",
+            nargs=argparse.REMAINDER,
+            metavar="task_name [--PARAM value ...]",
+            help="Task name followed by that task's own parameters.",
+        )
 
     def handle(self, *args, **options):
         """
@@ -30,10 +49,21 @@ class Command(BaseCommand):
         - If present, configure the job but do not execute it
         - Remove the flag before passing args to CCP4i2RunnerDjango
         """
-        # sys.argv structure: ['manage.py', 'i2run', 'task_name', ...args...]
-        # We want everything after 'i2run'
-        the_args = sys.argv[2:]
+        # Normally the arguments arrive through the parser, in options. The
+        # i2run test tier instead sets sys.argv and calls call_command with no
+        # arguments (see tests/i2run/utils.py), so fall back to that shape.
+        the_args = list(options.get("i2run_args") or [])
+        if not the_args:
+            # sys.argv structure: ['manage.py', 'i2run', 'task_name', ...args...]
+            the_args = sys.argv[2:]
         logger.info(f"i2run args: {the_args}")
+
+        if not the_args:
+            self.stderr.write(
+                "i2run needs a task name, e.g. "
+                "manage.py i2run freerflag --project_name my_project"
+            )
+            return
 
         # Check for --i2run_configure flag and remove it from args
         configure_only = False

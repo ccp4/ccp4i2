@@ -1,3 +1,19 @@
+# i2run invocations
+
+Two entry points, both of which parse the same arguments:
+
+    # anywhere a pip-installed ccp4i2 is importable (what the job panel's
+    # "i2run command" button renders)
+    ccp4-python -m ccp4i2.cli.i2run <task> --project_name <proj> [--PARAM value ...]
+
+    # from a dev checkout's server/ directory
+    ccp4-python manage.py i2run <task> --project_name <proj> [--PARAM value ...]
+
+The `i2run` console script declared in pyproject.toml is shadowed on a normal
+CCP4 setup by the legacy Qt `$CCP4/bin/i2run`, so prefer `-m`.
+
+Worked parameter examples follow.
+
 ccp4-python manage.py i2run prosmart_refmac --project_name refmac_gamma_test_0
 case1 = """aimless_pipe \
  --UNMERGEDFILES \

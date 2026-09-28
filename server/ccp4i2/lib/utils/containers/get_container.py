@@ -1,38 +1,45 @@
 import logging
 
-from ccp4i2.core.tasks import locate_def_xml
-from ccp4i2.core import CCP4Container
 from ....db import models
+from ..plugins.get_plugin import get_job_plugin
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def get_job_container(the_job: models.Job):
     """
-    Retrieves and loads a job container for the given job.
+    Return the parameter container for a job, populated from its params file.
 
-    This function looks up the definition file for the specified job task,
-    creates a container, and loads its contents from the definition file.
-    It then attempts to load additional data from either 'params.xml' or
-    'input_params.xml' located in the job's directory.
+    Delegates to :func:`get_job_plugin`, which is the loader the rest of the
+    server uses. The obvious-looking alternative --- build a bare
+    ``CContainer`` and call ``loadContentsFromXml`` on the task's ``.def.xml``
+    --- does not work and does not say so: ``CContainer.loadContentsFromXml``
+    routes to ``setEtree(root, ignore_missing=True)``, a ``.def.xml`` root
+    (``<ccp4i2><ccp4i2_header/><ccp4i2_body/></ccp4i2>``) is not
+    container-shaped, and ``ignore_missing`` swallows the mismatch. The result
+    is a container with **zero children** and no error, which is what made the
+    i2run-command button render ``<task> --project_name <proj>`` and nothing
+    else.
 
     Args:
-        the_job (Job): The job object containing task information and directory paths.
+        the_job (Job): the job whose parameters to load.
 
     Returns:
-        CCP4Container.CContainer: The loaded job container.
+        CContainer: the job's container, or None if the plugin could not load.
     """
-    defFile = locate_def_xml(the_job.task_name)
-    container = CCP4Container.CContainer()
-    container.loadContentsFromXml(defFile)
+    plugin = get_job_plugin(the_job)
+    if plugin is None:
+        logger.error("No plugin for job %s (task %s)", the_job.id, the_job.task_name)
+        return None
 
-    params_path = the_job.directory / "params.xml"
-    fallback_params_path = the_job.directory / "input_params.xml"
-    if the_job.status in [models.Job.Status.UNKNOWN, models.Job.Status.PENDING]:
-        params_path = the_job.directory / "input_params.xml"
-        fallback_params_path = the_job.directory / "params.xml"
-    if (params_path).exists():
-        container.loadDataFromXml(str(params_path))
-    else:
-        container.loadDataFromXml(str(fallback_params_path))
+    container = plugin.container
+
+    # Keep the plugin alive for as long as the container is. A parent owns its
+    # children here: HierarchicalObject.__del__ calls destroy(), which
+    # recursively destroys children and deletes them from __dict__. So letting
+    # the plugin be collected empties the container the caller is still
+    # holding --- `get_job_plugin(job).container` has 0 children where
+    # `p = get_job_plugin(job); p.container` has 4.
+    container._i2run_owner = plugin
+
     return container
