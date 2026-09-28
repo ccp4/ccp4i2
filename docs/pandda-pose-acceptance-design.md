@@ -40,144 +40,164 @@ Three failure modes, which a fix should be judged against separately:
 Chaining file to file fixes (1) and can detect (3). Nothing makes (2) go away,
 because it is inherent in "the model of record is the output of a job".
 
-## 3. Proposal: acceptance is the durable fact, the model is derived
+## 3. What was wrong with the first proposal
 
-Do not add a ligand to the file just augmented. Record the **acceptance**, and
-make the built model a function of the accepted set:
+The first version of this document proposed storing accepted poses as fragments
+and deriving the model as `base + (accepted - contained(base))`, composed server
+side. Martin's objection killed it, and it is recorded here because the reasoning
+generalises.
 
-```
-built(dataset) = base + (accepted − contained(base))
-```
+Composing server side means "Add ligand here" stops being a Coot operation and
+becomes a round trip, after which a composed PDB has to **replace the coordinate
+set in Coot**. That destroys the loop the work actually consists of: place the
+ligand, jiggle it, adapt the neighbouring side chains, look again. Nobody models
+a ligand in one shot, and a design that is only correct if they do is not a
+design.
 
-* `base` — the dataset's current model of record (DIMPLE early on, the most
-  recently refined ligand-bearing model later).
-* `accepted` — poses a person has accepted, each stored with its coordinates.
-* `contained(base)` — those already present in `base`.
+Worse, it makes the database's claim falsifiable by the next mouse click. If the
+row says "pose accepted at site 2" and the person then deletes the ligand
+coot-matically, the database asserts a provenance that the model does not
+support, and nothing detects it.
 
-**Set difference, not append.** Append is correct only for the first refinement;
-after that the base already holds the earlier ligands and appending doubles them.
+The mistake was making the **modelling act** trigger the **commitment**. They are
+different things happening at different times, and only the second belongs to the
+server.
 
-Properties that matter for this workflow: order-independent, idempotent, and with
-no parent to race against. Visit sites in any order, revisit, undo — the model is
-always the same function of the same facts, and it is correct *immediately*,
-which is what removes failure mode 2.
+## 4. Proposal: edit locally, commit explicitly, derive the record
 
-This follows the grain of `SiteEvaluation`, which already makes the human verdict
-the durable thing that survives a rerun. An accepted pose is that verdict's
-physical counterpart.
+**The modelling act stays entirely in Coot.** "Add ligand here" does what it does
+today: places the pose in the local coordinate set, instantly, and the person
+jiggles it and adapts the protein around it. No round trip, no replacement of the
+coordinate set, no change to that loop at all.
 
-## 4. Containment, from provenance that already exists
+**The commitment is the push**, which already exists. At that moment the client
+holds the authoritative molecule -- every adjustment included -- and sends it
+whole. One round trip, at a moment the person chose.
 
-`FileUse(file, job, role, job_param_name)` already records the coordinate file
-each job consumed. So containment needs no geometric matching:
+**The record is derived from what was pushed, not asserted alongside it.** On
+commit, the server reconciles the campaign's per-site record against the molecule
+it just received: a site with a ligand in it is modelled, a site without one is
+not. Delete the ligand in Coot and push, and the site-2 record withdraws itself,
+because it was never an independent claim.
 
-> A pose is in the base **iff** a file it was composed into is, or is an ancestor
-> of, the base — walked through `FileUse`.
+That is the inversion the objection forces, and it is worth stating plainly:
 
-Containment is therefore inherited along a refinement chain for free: refine,
-refine again, and the lineage still passes through the file that first held the
-ligand.
+> Do not record the acceptance and derive the model. **Record the model and
+> derive the acceptance.**
 
-Geometric matching is explicitly rejected as the primary mechanism. Refinement
-*moves* the ligand, and two poses at adjacent subsites can fall inside any
-tolerance worth picking.
+Geometry is the right tool *here*, where it was the wrong tool for deciding
+whether a fragment was already incorporated, because the question genuinely is
+spatial: is there a ligand at this site in this model.
 
-**Stamp at composition, not at refinement.** When the composed model is written we
-know exactly which poses went into it and what file resulted, so the record is
-written there. Nothing needs to hook refinement completion — which is what keeps
-generic tasks out of this entirely.
+**Origin is still worth keeping**, and geometry cannot supply it: "this ligand
+came from event 3 of site 2 of run 16" is real provenance that a spatial check
+cannot reconstruct. So the origin is recorded when a person takes a pose into
+their model, and treated as a *hint about where the ligand came from*, reconciled
+against the pushed molecule at every commit. It never defines the model.
 
-**Degradation.** A refinement launched from the job list, outside any campaign
-flow, still writes `FileUse`, so lineage still reaches a known artefact and
-containment is still exact. It fails only for a coordinate file imported from
-outside with no lineage at all. There the honest behaviour is to **refuse to
-compose and say the base's contents are unknown** — a silent double-add produces a
-model that looks plausible and refines to nonsense.
+## 5. The model of record, and why the latency goes away
 
-## 5. Footprint
+Failure mode 2 (§2) does not need composition to fix. It needs the push to count.
 
-This is the section for reviewers who do not consider PanDDA core. The intent is
-that this work is **additive and campaign-scoped**, and that a reviewer can
-satisfy themselves of that quickly.
+For campaign purposes the head of a dataset is **the most recent campaign
+coordinate artefact**: the latest push if there is one after the latest
+refinement, else the latest refinement. A push is synchronous, so the moment you
+finish at site 1, site 2 will load a model containing that ligand. No job has to
+finish first.
+
+This is a campaign-side resolver -- a different question from "what has been
+refined", asked by campaign views only. `REFINE_TASK_NAMES` and every generic
+consumer of it are untouched.
+
+Staleness and forking (failure modes 1 and 3) are then handled by the ordinary
+mechanism: the session records which artefact it loaded, the push declares that
+parent, and the server rejects a push whose parent is no longer the head. On
+conflict the person is told what changed, rather than silently producing a
+sibling. There is no containment set, no lineage walk, and no set difference,
+because there is no fragment store to reconcile -- the model is the model.
+
+## 6. Footprint
+
+This is the section for reviewers who do not consider PanDDA core, and the
+objection in §3 made it smaller: with no server-side composer there is no
+fragment store, no containment set and no lineage walk.
 
 **Added**
 
 | | |
 |---|---|
-| `AcceptedPose` | new table: dataset, site, event, coordinates, provenance. Campaign-scoped, beside `CampaignSite` / `SiteEvaluation`. |
-| pose ↔ composed-file rows | new table recording which poses went into which composed coordinate file. |
-| composition service | new module under `lib/`, plus endpoints under the existing campaign viewset. |
+| per-site modelling record | new table: dataset, site, event of origin, and the artefact it was last reconciled against. Campaign-scoped, beside `CampaignSite` / `SiteEvaluation`. |
+| campaign head resolver | new function: the latest campaign coordinate artefact for a dataset. Read-only over existing tables. |
+| reconciliation on push | new code on the existing push path, plus a parent check. |
 
 **Not touched**
 
 * **No column is added to `File`, `Job` or `FileUse`.** Every new foreign key lives
   on a new table; existing models gain at most a reverse accessor, which costs
   nothing and changes no query.
-* **No migration alters an existing table.** New tables only — which also means no
-  risk to DDU's production data, the failure mode that bit migration 0024.
-* **No generic task is modified.** `servalcat_pipe`, `refmac`, `prosmart_refmac`
-  and friends are unchanged and unaware. Composition happens *before* refinement
-  and produces an ordinary coordinate file; the refinement task cannot tell it
-  from a file a user picked by hand.
-* **No change to `REFINE_TASK_NAMES`** or to how the model of record is chosen.
+* **No migration alters an existing table.** New tables only -- so no risk to
+  DDU's production data, the failure mode that bit migration 0024.
+* **No generic task is modified, and none is added.** The push already creates a
+  `coordinate_selector` job; this changes what is recorded about that job, not
+  what the job is.
+* **No change to `REFINE_TASK_NAMES`**, or to how any non-campaign view resolves a
+  model. The campaign head is a separate question, asked by campaign views only.
+* **No change to the Coot editing loop.** "Add ligand here" is untouched, and that
+  is now a design requirement rather than an accident.
 
-The composed model enters the normal CCP4i2 data flow as a job output, so
-provenance, the job list and the file browser all work without special cases.
+## 7. Decisions needed
 
-## 6. Decisions needed
+1. **Does a push become the campaign head immediately, or on an explicit
+   "commit"?** Immediately is simpler and matches what a person expects after
+   pressing the button. The cost is that an exploratory push -- someone trying
+   something and thinking better of it -- moves the head. **Leaning:** immediate,
+   with an undo that pushes the previous artefact back, rather than a second
+   ceremony before every save.
 
-1. **Carrier for the composed model.** Reuse the existing `coordinate_selector`
-   task (XYZIN → XYZOUT; already what "Push to CCP4i2" creates), or add a
-   campaign-scoped `campaign_compose` wrapper? Reuse adds no task to the task
-   list but leaves the job's purpose legible only from its title; a new wrapper is
-   self-describing and still purely additive, at the cost of one more entry in a
-   task list colleagues already find long. **Leaning:** new wrapper, for honest
-   provenance — but this is the decision most worth challenging.
+2. **What the reconciliation does when it disagrees with the origin record.** A
+   ligand present at a site with no recorded origin is fine and needs no comment.
+   A recorded origin with no ligand present means the person removed it:
+   withdraw silently, or tell them what was withdrawn? **Leaning:** tell them, once,
+   in the panel -- silent withdrawal of a decision is the behaviour Reinspect
+   existed to stop.
 
-2. **Where `AcceptedPose` sits relative to `SiteEvaluation`.** A `hit` verdict with
-   no placed ligand is meaningful — judged a hit, not yet modelled — so they are
-   not the same row. Separate table referencing the evaluation, or a nullable
-   relation? **Leaning:** separate, referencing.
+3. **Tolerance for "a ligand is at this site".** A site is a point and a ligand is
+   a cloud of atoms; the test needs a radius, and adjacent subsites make it
+   matter. Probably the same environment radius the site scene already uses for
+   pocket residues, so a person sees the same neighbourhood the check uses.
 
-3. **Ligand dictionaries — smaller than it first appears.** Composition is *per
-   dataset*, and a dataset is one crystal soaked with one compound, so its
-   accepted poses are several **copies of the same ligand** and need the one
-   dictionary that project already holds. There is no N-way merge. The site
-   *scene* is where N datasets meet and needs a dictionary per pose; composition
-   is not. The bounded exception is a co-frag soak, two compounds and so two
-   codes (`DRG` + `LIG`), which the existing co-frags ingest already models. The
-   only open question is what to do when a dataset has no dictionary at all:
-   refuse to compose, or compose and let refinement fail with a legible reason.
+4. **Dictionaries, now a small question.** Composition never crosses datasets, and
+   a dataset is one crystal soaked with one compound, so its ligands are copies of
+   the same code and use the dictionary that project already holds. A co-frag soak
+   is bounded at two codes (`DRG` + `LIG`), which the existing ingest models. The
+   only open case is a dataset with no dictionary at all: refuse the push, or
+   accept it and let refinement fail with a legible reason.
 
-4. **Chain and residue numbering.** Several copies of one ligand code in a model is
-   ordinary crystallography, but the copies still need distinct chain or residue
-   assignment, deterministically, or refinement sees duplicates.
+5. **Chain and residue numbering.** Several copies of one ligand code is ordinary
+   crystallography, but they need deterministic assignment or refinement sees
+   duplicates. Note this now happens in **Coot**, client side, as part of placing
+   the pose -- not in a server-side composer.
 
-5. **Clash policy.** Two accepted poses can overlap — and because they are copies
-   of the same compound, "two placements in overlapping density" is more likely to
-   mean an alternate conformation than two genuine subsites. Refuse, flag, or
-   model as altloc, but never silently interleave.
-
-## 7. Traps
+## 8. Traps
 
 **Frame.** In the site view every pose is superposed into the exemplar's frame for
-display. A pose nudged there and accepted is being read in *transformed*
-coordinates, and must be stored in the dataset's own frame — the inverse fit
-applied before writing. This is the same class of error as the site-origin
-negation, and it will look entirely correct in the view that produced it.
+display. A pose nudged there and taken into a model is being read in *transformed*
+coordinates, and must reach the dataset's own frame -- the inverse fit applied
+before it is placed. This is the same class of error as the site-origin negation,
+and it will look entirely correct in the view that produced it. It is the one trap
+from the first draft that survives, because it belongs to the site view rather
+than to the storage design.
 
-**Historical coordinates.** Once a pose is incorporated and refined, the refined
-position supersedes the accepted one, which must never be re-applied over it.
-Keying containment on identity rather than geometry gives this for free.
+**A push is a whole model, so it can quietly lose work.** Pushing from a session
+that loaded a stale head replaces newer content with older. The parent check (§5)
+is what makes that visible; without it the failure is silent and looks like
+someone else's edit vanishing.
 
-**Asymmetric undo.** Before incorporation, un-accepting is dropping a row and
-recomposing — free. After, the ligand is in the refined model and removing it is a
-deletion against the base producing a new artefact. Acceptance is *provisional*
-until refinement and *committed* after, and the interface should show which poses
-are still provisional so a person can see what a refinement is about to make
-permanent.
+**Two people at one dataset.** Site-ordered work makes collisions likelier than
+dataset-ordered work did, because two people can be at the same site in the same
+campaign at once. The parent check catches it; the message needs to name who.
 
-## 8. Not in scope
+## 9. Not in scope
 
 Adoption of a run site as a `CampaignSite`; the side panel; any change to how
 refinement is run or to what counts as the model of record.
