@@ -39,6 +39,7 @@ import {
 } from "@mui/icons-material";
 import { useDndContext, useDroppable } from "@dnd-kit/core";
 
+import { useSWRConfig } from "swr";
 import { doDownload, useApi } from "../../../api";
 import { ACTIVE_JOB_STATUSES, useJob, useProject, useProjectFiles } from "../../../utils";
 import { CCP4i2TaskElementProps } from "./task-element";
@@ -154,12 +155,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   iconMenuItems,
 }) => {
   const api = useApi();
-  const {
-    fileItemToParameterArg,
-    mutateContainer,
-    useFileDigest,
-    useFileContent,
-  } = useJob(job.id);
+  const { fileItemToParameterArg, mutateContainer } = useJob(job.id);
 
   const {
     item,
@@ -185,8 +181,36 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   );
   const { jobs: projectJobs } = useProject(job.project);
   const { data: projects } = api.get<Project[]>("projects");
-  const { mutate: mutateDigest } = useFileDigest(`${item?._objectPath}`);
-  const { mutate: mutateContent } = useFileContent(`${item?._objectPath}`);
+  // Invalidate the digest and content caches after a change; never subscribe
+  // to them here. This element renders once per file in a task, and
+  // subscribing fetched a digest and the whole file for every one of them on
+  // mount: 948 requests for a 158-dataset PanDDA job, each digest loading the
+  // full parameter set server-side, enough to exhaust the database's
+  // connection slots (max_connections 50 on DDU) and to queue the run check
+  // past the ingress timeout. The elements that show a digest or content
+  // (csimpledatafile, cminimtzdatafile, previews) fetch their own, and a
+  // key-matched mutate revalidates exactly those that are mounted.
+  const { mutate: mutateSwr } = useSWRConfig();
+  const digestKey = `jobs/${job.id}/digest?object_path=${item?._objectPath}`;
+  const mutateDigest = useCallback(
+    () =>
+      mutateSwr(
+        (key) =>
+          typeof key === "string" &&
+          (key === digestKey || key.startsWith(`${digestKey}&`))
+      ),
+    [mutateSwr, digestKey]
+  );
+  const mutateContent = useCallback(
+    () =>
+      mutateSwr(
+        (key) =>
+          typeof key === "string" &&
+          key.startsWith("files_by_uuid/") &&
+          key.endsWith("/download/")
+      ),
+    [mutateSwr]
+  );
   const [value, setValue] = useState<CCP4i2File>(nullFile);
   const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
   const [browseDialogOpen, setBrowseDialogOpen] = useState(false);
