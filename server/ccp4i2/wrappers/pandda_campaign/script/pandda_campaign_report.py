@@ -89,7 +89,19 @@ class pandda_campaign_report(Report):
         datasets = node.findall('datasets/dataset')
 
         fold = self.addFold(label='Analysis', brief='Analysis', initiallyOpen=True)
-        if not events:
+        # The events table is written at the end of a run, so mid-run there is
+        # nothing in `events` however many the datasets have already found.
+        # Saying "PanDDA found no events" then is simply untrue, and it sat
+        # above a per-dataset column showing several.
+        pending = stats.get('events_table') == 'False'
+        counted = self._n(stats.get('n_events')) or 0
+        if pending:
+            fold.addText(text=(
+                f"The run is still going. Its datasets report {int(counted)} event(s) so far, counted "
+                f"from each dataset as it finishes. PanDDA writes the events table, and with it the "
+                f"sites, the scores and which events it judges interesting, only when the whole run "
+                f"ends -- so those are empty below until then."))
+        elif not events:
             fold.addText(text='PanDDA found no events. The per-dataset table below shows how far each '
                               'dataset got: how many comparators it had, how many candidate events '
                               'survived the size and score filters.')

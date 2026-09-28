@@ -211,3 +211,56 @@ def test_the_report_without_analysis_still_renders():
     xml = "<pandda_campaign><state>running</state><n_datasets>4</n_datasets></pandda_campaign>"
     report = pandda_campaign_report(xmlnode=etree.fromstring(xml), jobInfo={}, jobStatus="Running")
     assert "PanDDA is running" in ET.tostring(report.as_data_etree(), encoding="unicode")
+
+
+# --- events before the table exists -----------------------------------------
+# PanDDA writes analyses/pandda_analyse_events.csv at the END of a run but each
+# dataset's events.yaml as it goes, so a run in progress reported "0 events"
+# beside a per-dataset column showing several.
+
+def _dataset(root, name, n_events=None, analysed=True):
+    import yaml
+    d = root / "processed_datasets" / name
+    d.mkdir(parents=True)
+    if analysed:
+        (d / f"{name}-z_map.native.ccp4").write_bytes(b"map")
+    summary = {"Processing Resolution": 2.4, "Comparator Datasets": [1, 2],
+               "Selected Model": 1}
+    if n_events is not None:
+        summary["Selected Model Events"] = list(range(1, n_events + 1))
+    (d / "processed_dataset.yaml").write_text(
+        yaml.safe_dump({"Summary": summary, "Models": {1: {}}}))
+    return d
+
+
+def test_events_are_counted_from_the_datasets_until_the_table_is_written(tmp_path):
+    from ccp4i2.wrappers.pandda_campaign.script.pandda_run_summary import summarise_run
+
+    _dataset(tmp_path, "xtal-0000", n_events=2)
+    _dataset(tmp_path, "xtal-0001", n_events=3)
+    _dataset(tmp_path, "xtal-0002", n_events=None, analysed=False)
+
+    stats = summarise_run(tmp_path)["stats"]
+
+    assert stats["events_table"] is False
+    assert stats["n_events"] == 5
+    assert stats["n_datasets_with_events"] == 2
+    assert stats["n_analysed"] == 2
+    # Only the table carries these, so they stay empty rather than reading 0.
+    assert stats["best_score"] is None and stats["best_hit_probability"] is None
+
+
+def test_the_table_wins_once_it_exists(tmp_path):
+    from ccp4i2.wrappers.pandda_campaign.script.pandda_run_summary import summarise_run
+
+    _dataset(tmp_path, "xtal-0000", n_events=2)
+    analyses = tmp_path / "analyses"
+    analyses.mkdir()
+    (analyses / "pandda_analyse_events.csv").write_text(
+        "dtag,event_idx,1-BDC,z_peak,cluster_size,x,y,z,site_idx,Noise,interesting\n"
+        "xtal-0000,1,0.05,5.0,100,1,2,3,1,0,True\n")
+
+    stats = summarise_run(tmp_path)["stats"]
+
+    assert stats["events_table"] is True
+    assert stats["n_events"] == 1
