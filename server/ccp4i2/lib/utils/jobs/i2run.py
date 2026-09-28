@@ -167,6 +167,15 @@ def _is_file(object: CData) -> bool:
     return isinstance(object, (CCP4File.CDataFile, CDataFile))
 
 
+def _file_is_registered(node) -> bool:
+    """Is this file identified by a database id?"""
+    try:
+        db_id = getattr(node, "dbFileId", None)
+        return db_id is not None and db_id.isSet()
+    except Exception:
+        return False
+
+
 def _is_leaf(object: CData) -> bool:
     """
     Return True if the object is a leaf node.
@@ -272,6 +281,27 @@ def handle_element(item: CData) -> str:
 
         else:
             child_nodes = node.children() if hasattr(node, "children") else []
+
+            # A registered file needs its dbFileId and nothing else. The id
+            # identifies the row, and the row carries the rest -- so emitting
+            # project/baseName/relPath alongside it is redundant, and worse
+            # than redundant: it makes an inconsistent command representable
+            # (edit baseName, leave dbFileId, and the two now disagree about
+            # which file is meant).
+            #
+            # contentFlag is deliberately omitted too, and that one matters.
+            # It is set by INTROSPECTION when the file is registered, so a
+            # command restating it can contradict the file it names -- asking
+            # anyone to supply it by hand for a database file is dangerous.
+            # Verified: `--F_SIGF "dbFileId=<uuid>"` alone runs a job to
+            # completion, contentFlag and all.
+            if _is_file(node) and _file_is_registered(node):
+                child_nodes = [
+                    child
+                    for child in child_nodes
+                    if child.objectName() == "dbFileId"
+                ]
+
             filtered_nodes = [
                 child
                 for child in child_nodes

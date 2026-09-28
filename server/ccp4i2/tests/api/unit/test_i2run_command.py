@@ -132,6 +132,33 @@ def test_an_input_file_is_rendered(client, job):
     assert "merged_intensities_Xe.mtz" in command, command
 
 
+def test_a_registered_file_renders_as_its_id_alone(client, job, gamma_mtz):
+    """dbFileId identifies the row and the row carries the rest, so anything
+    else alongside it is redundant -- and makes an inconsistent command
+    representable (edit baseName, leave dbFileId, and they disagree).
+
+    contentFlag especially must NOT be restated: it is set by introspection
+    when the file is registered, so a hand-editable copy of it in the command
+    can contradict the file it names."""
+    _set(
+        client,
+        job,
+        f"{TASK}.inputData.F_SIGF",
+        {
+            "dbFileId": "00477e8c18224a099779746d384aee8e",
+            "baseName": "merged_intensities_Xe.mtz",
+            "relPath": "CCP4_IMPORTED_FILES",
+            "contentFlag": 1,
+        },
+    )
+
+    command = _i2run(client, job)["command"]
+
+    assert "dbFileId=00477e8c18224a099779746d384aee8e" in command, command
+    for redundant in ("baseName=", "relPath=", "project=", "contentFlag="):
+        assert redundant not in command, f"{redundant} still rendered: {command}"
+
+
 def test_the_environment_the_server_runs_with_is_reported(client, job, monkeypatch):
     """The GUI's server can be running on a projects directory a fresh terminal
     knows nothing about. Rendering the command without saying so hands someone
