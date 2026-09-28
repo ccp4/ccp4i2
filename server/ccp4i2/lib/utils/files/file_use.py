@@ -52,6 +52,7 @@ which made relative indexing untrustworthy, and was the reason to write this
 down.
 """
 
+import difflib
 import logging
 import re
 from dataclasses import dataclass
@@ -160,6 +161,58 @@ def parse_file_use(text: str) -> FileUseRef:
     )
 
 
+def _did_you_mean(name: str, candidates) -> str:
+    """" Did you mean 'X'?" for the nearest candidate, else "".
+
+    A typo is the likeliest reason a reference does not resolve, and the
+    alternative -- printing i2run's usage -- is no help at all here: a task like
+    servalcat_pipe has 219 arguments, so the answer would be buried. The
+    relevant list is always short (the parameters of one job, or the registered
+    task names), so name it.
+    """
+    candidates = [str(c) for c in candidates if c]
+    if not candidates:
+        return ""
+    close = difflib.get_close_matches(name, candidates, n=1, cutoff=0.6)
+    if close and close[0] != name:
+        return f" Did you mean '{close[0]}'?"
+    # difflib is strict about case and about short strings; fall back to a
+    # case-insensitive exact hit, which is a typo people make constantly.
+    lowered = {c.lower(): c for c in candidates}
+    if name.lower() in lowered and lowered[name.lower()] != name:
+        return f" Did you mean '{lowered[name.lower()]}'?"
+    return ""
+
+
+def _and_these_exist(label: str, names, limit: int = 12) -> str:
+    """A short, sorted inventory of what is actually available."""
+    unique = sorted({str(n) for n in names if n})
+    if not unique:
+        return ""
+    shown = unique[:limit]
+    more = "" if len(unique) == len(shown) else f", and {len(unique) - len(shown)} more"
+    return f" {label}: {', '.join(shown)}{more}."
+
+
+def _known_task_names():
+    from ....core.tasks import TASKS
+
+    return list(TASKS)
+
+
+def _param_names_on(job):
+    """Every parameter name *job* has a file under, output or input."""
+    from ....db import models
+
+    outputs = models.File.objects.filter(job=job).values_list(
+        "job_param_name", flat=True
+    )
+    inputs = models.FileUse.objects.filter(job=job).values_list(
+        "job_param_name", flat=True
+    )
+    return set(outputs) | set(inputs)
+
+
 def _candidate_jobs(project, ref: FileUseRef):
     """The jobs a reference could mean, in creation order.
 
@@ -169,6 +222,12 @@ def _candidate_jobs(project, ref: FileUseRef):
 
     jobs = models.Job.objects.filter(project=project)
     if ref.task_name is not None:
+        known = _known_task_names()
+        if ref.task_name not in known:
+            raise FileUseError(
+                f"'{ref.task_name}' is not a task."
+                f"{_did_you_mean(ref.task_name, known)}"
+            )
         return list(jobs.filter(task_name=ref.task_name).order_by("id"))
     # Unqualified: sub-jobs are not what anyone means by "the last job".
     return [job for job in jobs.order_by("id") if "." not in job.number]
@@ -195,9 +254,16 @@ def _files_on(job, param_name: str):
     )
 
 
-def _pick(files, ref: FileUseRef, what: str):
+def _pick(files, ref: FileUseRef, what: str, job=None):
     if not files:
-        raise FileUseError(f"{what} has no file for '{ref.param_name}'")
+        available = _param_names_on(job) if job is not None else ()
+        detail = (
+            _did_you_mean(ref.param_name, available)
+            + _and_these_exist("It has", available)
+            if available
+            else " That job has no files at all - has it run?"
+        )
+        raise FileUseError(f"{what} has no file for '{ref.param_name}'.{detail}")
     try:
         return files[ref.param_index]
     except IndexError:
@@ -224,6 +290,7 @@ def _resolve_ref(project, ref: FileUseRef):
             _files_on(job, ref.param_name),
             ref,
             f"job {job.number} ({job.task_name})",
+            job,
         )
 
     candidates = _candidate_jobs(project, ref)
@@ -241,9 +308,22 @@ def _resolve_ref(project, ref: FileUseRef):
             if files
         ]
         if not with_file:
+            available = set()
+            for candidate in candidates:
+                available |= _param_names_on(candidate)
+            # An empty inventory is a different diagnosis from a wrong name:
+            # the jobs exist but have produced nothing, which usually means
+            # they have not been run.
+            detail = (
+                _did_you_mean(ref.param_name, available)
+                + _and_these_exist("Between them they have", available)
+                if available
+                else f" None of those {len(candidates)} job(s) have any files "
+                f"-- have they run?"
+            )
             raise FileUseError(
                 f"no {described} in project '{project.name}' have a file for "
-                f"'{ref.param_name}'"
+                f"'{ref.param_name}'.{detail}"
             )
         try:
             job, files = with_file[ref.index]
@@ -252,7 +332,7 @@ def _resolve_ref(project, ref: FileUseRef):
                 f"[{ref.index}]: only {len(with_file)} {described} in "
                 f"'{project.name}' have a '{ref.param_name}'"
             ) from None
-        return _pick(files, ref, f"job {job.number} ({job.task_name})")
+        return _pick(files, ref, f"job {job.number} ({job.task_name})", job)
 
     # Qualified, non-negative: a literal ordinal within that task's jobs.
     try:
@@ -263,7 +343,10 @@ def _resolve_ref(project, ref: FileUseRef):
             f"{len(candidates)} {described}"
         ) from None
     return _pick(
-        _files_on(job, ref.param_name), ref, f"job {job.number} ({job.task_name})"
+        _files_on(job, ref.param_name),
+        ref,
+        f"job {job.number} ({job.task_name})",
+        job,
     )
 
 

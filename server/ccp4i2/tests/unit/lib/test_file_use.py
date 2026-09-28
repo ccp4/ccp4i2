@@ -7,6 +7,8 @@ import pytest
 
 from ccp4i2.lib.utils.files.file_use import (
     FileUseError,
+    _and_these_exist,
+    _did_you_mean,
     parse_file_use,
 )
 
@@ -80,3 +82,60 @@ class TestWhatItRefuses:
         'invalid literal for int()'."""
         with pytest.raises(FileUseError):
             parse_file_use(text)
+
+
+class TestTheSuggestions:
+    """A reference that does not resolve must say why and offer the near miss.
+
+    Printing i2run's usage instead is no help: servalcat_pipe has 219
+    arguments, so the answer would be buried. The relevant list is always short
+    -- the parameters of one job, or the registered task names.
+    """
+
+    def test_a_near_miss_is_offered(self):
+        assert _did_you_mean("freer_flag", ["freerflag", "refmac"]) == (
+            " Did you mean 'freerflag'?"
+        )
+
+    def test_wrong_case_alone_is_offered(self):
+        """difflib is strict about case and about short strings, and case is
+        the typo people actually make."""
+        assert _did_you_mean("freerout", ["FREEROUT", "F_SIGF"]) == (
+            " Did you mean 'FREEROUT'?"
+        )
+
+    def test_an_exact_hit_suggests_nothing(self):
+        assert _did_you_mean("FREEROUT", ["FREEROUT"]) == ""
+
+    def test_nothing_remotely_close_suggests_nothing(self):
+        assert _did_you_mean("QQQQQQ", ["FREEROUT", "F_SIGF"]) == ""
+
+    def test_no_candidates_suggests_nothing(self):
+        assert _did_you_mean("anything", []) == ""
+
+    def test_the_inventory_is_sorted_and_deduplicated(self):
+        assert _and_these_exist("It has", ["B", "A", "B", None]) == (
+            " It has: A, B."
+        )
+
+    def test_a_long_inventory_is_capped(self):
+        text = _and_these_exist("It has", [f"P{i}" for i in range(20)], limit=3)
+        assert text.startswith(" It has: P0, P1, P10")
+        assert "and 17 more" in text
+
+    def test_an_empty_inventory_says_nothing(self):
+        assert _and_these_exist("It has", []) == ""
+
+
+def test_the_messages_are_ascii_only():
+    """These strings reach print() in the i2run management command's error
+    path. On Windows that console is cp1252, and a UnicodeEncodeError raised
+    from inside a try/except is the documented way to lose a job silently
+    (CLAUDE.md). An em dash slipped in here and was caught this way."""
+    import inspect
+
+    from ccp4i2.lib.utils.files import file_use
+
+    source = inspect.getsource(file_use)
+    offenders = sorted({char for char in source if ord(char) > 127})
+    assert not offenders, f"non-ASCII in file_use.py: {offenders}"

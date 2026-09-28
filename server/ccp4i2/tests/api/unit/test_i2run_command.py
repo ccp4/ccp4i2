@@ -201,3 +201,51 @@ def test_no_setup_script_is_claimed_when_there_is_none(client, job, monkeypatch,
     monkeypatch.setenv("CCP4", str(tmp_path / "nothing here"))
 
     assert _i2run(client, job)["ccp4_setup"] is None
+
+
+class TestFileUseFailures:
+    """A fileUse reference that does not resolve must fail loudly, and say
+    enough to fix it. These need a project and a job, so they live here rather
+    than in the CCP4-free parser tests."""
+
+    def test_an_unknown_task_name_suggests_a_real_one(self, project):
+        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+
+        with pytest.raises(FileUseError) as caught:
+            resolve_file_use(project, "freer_flag[-1].FREEROUT")
+
+        message = str(caught.value)
+        assert "is not a task" in message, message
+        assert "Did you mean 'freerflag'?" in message, message
+
+    def test_an_unrun_job_says_so_rather_than_blaming_the_name(self, project, job):
+        """Distinct diagnosis: the job exists and the parameter may be spelled
+        correctly -- there is simply nothing there yet."""
+        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+
+        with pytest.raises(FileUseError) as caught:
+            resolve_file_use(project, f"[{job.number}].FREEROUT")
+
+        message = str(caught.value)
+        assert "no file for 'FREEROUT'" in message, message
+        assert "has it run?" in message, message
+
+    def test_a_missing_job_number_is_named(self, project, job):
+        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+
+        with pytest.raises(FileUseError) as caught:
+            resolve_file_use(project, "[999].FREEROUT")
+
+        assert "no job numbered 999" in str(caught.value)
+
+    def test_a_reference_that_cannot_resolve_raises_rather_than_unsetting(
+        self, client, job
+    ):
+        """The failure this replaces: fileUse= fell through to the generic
+        key=value path, set a dead attribute and left the parameter UNSET, so
+        the command configured an empty plugin and failed later looking like
+        something else."""
+        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+
+        with pytest.raises(FileUseError):
+            resolve_file_use(job.project, "[999].NOPE")
