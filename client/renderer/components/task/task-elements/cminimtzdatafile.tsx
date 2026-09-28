@@ -3,7 +3,6 @@ import { PropsWithChildren } from "react";
 import { CDataFileElement } from "./cdatafile";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useMemo } from "react";
-import { BaseSpacegroupCellElement } from "./base-spacegroup-cell-element";
 import { useJob, useProject } from "../../../utils";
 import { selectMtzColumnsEnhanced, SiblingInput } from "./mtz-column-dialog";
 import { usePopcorn } from "../../../providers/popcorn-provider";
@@ -22,20 +21,19 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
   props
 ) => {
   const { job, itemName, onChange, visibility, children } = props;
-  const { useTaskItem, useFileDigest, uploadFileParam, container } = useJob(job.id);
+  const { useTaskItem, mutateFileDigest, uploadFileParam, container } = useJob(job.id);
   const { mutateJobs, mutateFiles } = useProject(job.project);
   const { setMessage } = usePopcorn();
   const { requestImportProvenance } = useImportProvenance();
-  const { item, value } = useTaskItem(itemName);
+  const { item } = useTaskItem(itemName);
 
-  // Only fetch digest when a file has been uploaded (has dbFileId)
-  const hasFile = Boolean(value?.dbFileId);
-  const digestPath = hasFile && item?._objectPath ? item._objectPath : "";
-  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(digestPath);
-
-  const infoContent = useMemo(
-    () => <BaseSpacegroupCellElement data={fileDigest} />,
-    [fileDigest]
+  // Refresh the digest after an upload without subscribing to it (see
+  // useJob.mutateFileDigest). The subscription that used to be here fed an
+  // infoContent prop that CDataFileElement declares but never renders, so
+  // it fetched one digest per MTZ field for nothing.
+  const mutateDigest = useCallback(
+    () => mutateFileDigest(item?._objectPath ?? ""),
+    [mutateFileDigest, item?._objectPath]
   );
 
   /**
@@ -199,11 +197,7 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
 
   return (
     <Stack direction="column">
-      <CDataFileElement
-        {...props}
-        infoContent={infoContent}
-        setFiles={setFiles}
-      >
+      <CDataFileElement {...props} setFiles={setFiles}>
         {children}
       </CDataFileElement>
     </Stack>

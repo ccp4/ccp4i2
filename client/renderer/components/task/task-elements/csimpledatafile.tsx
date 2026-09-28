@@ -14,13 +14,16 @@ export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (
   props
 ) => {
   const { job, itemName, onChange, visibility } = props;
-  const { useTaskItem, useFileDigest, uploadFileParam } = useJob(job.id);
+  const { useTaskItem, mutateFileDigest, uploadFileParam } = useJob(job.id);
   const { mutateFiles, mutateJobs } = useProject(job.project);
   const { requestImportProvenance } = useImportProvenance();
   const { item } = useTaskItem(itemName);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(
-    item?._objectPath
+  // Refresh the digest after an upload without subscribing to it (see
+  // useJob.mutateFileDigest): one of these renders per file in a task.
+  const mutateDigest = useCallback(
+    () => mutateFileDigest(item?._objectPath ?? ""),
+    [mutateFileDigest, item?._objectPath]
   );
   const previousSelectedFiles = useRef<FileList | null>(null);
 
