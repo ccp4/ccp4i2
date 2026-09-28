@@ -23,6 +23,7 @@ import xml.etree.ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
 from core import CCP4Utils
+import sys
 
 
 class dnatco(CPluginScript):
