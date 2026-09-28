@@ -310,12 +310,22 @@ def summarise_run(tree) -> Dict[str, object]:
     analysed = [d for d in datasets if d["analysed"]]
     input_resolutions = read_input_resolutions(tree)
     processing_resolution = _median([d["resolution"] for d in analysed])
+    # PanDDA writes the events table at the END of a run, but each dataset's
+    # own events.yaml as it goes. Counting only the table made a run in
+    # progress report "0 events" beside a per-dataset column plainly showing
+    # several -- and, worse, the report saying PanDDA had found none. Where
+    # the table is absent, count what the datasets themselves say; the rest
+    # (sites, scores, which event is interesting) exists only in the table
+    # and stays empty until it is written.
+    events_table = (tree / ANALYSES_DIR / EVENTS_TABLE).is_file()
+    per_dataset_events = [d["n_events"] for d in datasets if d["n_events"]]
     stats = {
         "n_datasets": len(datasets),
         "n_analysed": len(analysed),
-        "n_events": len(events),
+        "events_table": events_table,
+        "n_events": len(events) if events_table else sum(per_dataset_events),
         "n_sites": len(sites),
-        "n_datasets_with_events": len(by_dataset),
+        "n_datasets_with_events": len(by_dataset) if events_table else len(per_dataset_events),
         "n_interesting": sum(1 for e in events if e["interesting"]),
         "best_hit_probability": max((e["hit_probability"] for e in events
                                      if e["hit_probability"] is not None), default=None),

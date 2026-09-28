@@ -64,3 +64,47 @@ def test_the_number_helper_is_total():
     assert Report._n(None) is None
     assert Report._n("None") is None
     assert Report._n("n/a") is None
+
+
+MID_RUN = """
+<pandda_campaign>
+  <state>dispatched</state>
+  <analysis><stats>
+    <events_table>False</events_table>
+    <n_analysed>35</n_analysed>
+    <n_events>26</n_events>
+    <n_datasets_with_events>13</n_datasets_with_events>
+  </stats></analysis>
+</pandda_campaign>
+"""
+
+FINISHED_EMPTY = """
+<pandda_campaign>
+  <state>finished</state>
+  <analysis><stats>
+    <events_table>True</events_table>
+    <n_analysed>35</n_analysed>
+    <n_events>0</n_events>
+  </stats></analysis>
+</pandda_campaign>
+"""
+
+
+def _texts(report):
+    return " ".join(e.text or "" for e in report.as_data_etree().iter()
+                    if (e.text or "").strip())
+
+
+def test_a_run_still_going_does_not_claim_no_events_were_found():
+    """The events table is written at the end, so mid-run `events` is empty
+    however many the datasets have found. Saying PanDDA found none then sat
+    above a per-dataset column plainly showing several."""
+    text = _texts(_render(MID_RUN))
+    assert "found no events" not in text
+    assert "still going" in text
+    assert "26 event(s) so far" in text
+
+
+def test_a_finished_run_with_nothing_still_says_so():
+    text = _texts(_render(FINISHED_EMPTY))
+    assert "found no events" in text
