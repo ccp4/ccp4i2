@@ -104,9 +104,13 @@ class pandda_campaign_report(Report):
         # data is not a result to read -- it is a run to do again. PanDDA
         # processes a dataset at the worst resolution among its comparators,
         # so one bad crystal can set the resolution for a whole campaign.
-        processing = stats.get('median_resolution')
-        best_input = stats.get('best_input_resolution')
-        dragged = stats.get('n_input_better_than_processing') or 0
+        # Numbers, not the text they arrive as: `stats` is read straight off
+        # the XML, so every value here is a string and arithmetic on one
+        # raised rather than rendering (the whole Analysis section became a
+        # REPORT_GENERATION_FAILED the moment a run had both resolutions).
+        processing = self._n(stats.get('median_resolution'))
+        best_input = self._n(stats.get('best_input_resolution'))
+        dragged = int(self._n(stats.get('n_input_better_than_processing')) or 0)
         if processing and best_input and processing > best_input + 0.5 and dragged:
             fold.addText(text=(
                 f"WARNING: processed at {processing:.2f} A, though {dragged} of its datasets are "
@@ -229,6 +233,17 @@ class pandda_campaign_report(Report):
             bar = plot.append('barchart', col=1, tcol=2)
             bar.append('colour', '#1976d2')
         parent.addDiv(style='clear:both;')
+
+    @staticmethod
+    def _n(value):
+        """``value`` as a float, or None when it is not a number.
+
+        The report reads its stats as XML text; anything doing arithmetic or
+        ``:.2f`` formatting with one needs it as a number first."""
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return None
 
     @staticmethod
     def _f(value):
