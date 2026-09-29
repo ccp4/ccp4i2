@@ -44,7 +44,7 @@ results are committed under `server/.test-baselines/<build>/`.
 
 | Build | Result | Notes |
 |---|---|---|
-| `ccp4-20260904` | 203 passed · 0 failed · 21 skipped | current; Coot exposes only `molecules_container_t` (handled by `lib/coot_api.py`); ships `pandda2.analyse`. **Caveat:** its RDKit 2025.09 breaks acedrg for any ligand with no stereocentre (`KeyError: '_CIPRank'`), which the suite does not cover; a CCP4 bundle bug, reported. Fragment campaigns should supply dictionaries rather than derive them from SMILES on this build |
+| `ccp4-20260904` | 203 passed · 0 failed · 21 skipped | current; Coot exposes only `molecules_container_t` (handled by `lib/coot_api.py`); ships `pandda2.analyse`. **Caveat:** its RDKit 2025.09 breaks acedrg for some ligands with `KeyError: '_CIPRank'` — the newer RDKit no longer sets `_CIPRank` on atoms it has not CIP-ranked, and `acedrgRDKit.py` reads it unconditionally. Not every molecule, and not simply the achiral ones: toluene and benzoic acid are fine, indole (`acedrg -i 'c1ccc2[nH]ccc2c1'`) and real fragment dictionaries are not. Works on `ccp4-20260702`, whose acedrg is byte-identical — only RDKit changed (2023.03.3 → 2025.09.6). The suite does not cover it; a CCP4 bundle bug, reported upstream. Fragment campaigns should supply dictionaries rather than derive them from SMILES on this build |
 | `ccp4-20260702` | 203 passed · 0 failed · 21 skipped | previous; identical skip set |
 
 All 21 skips are environment gaps (no shelx or xds binaries, documented test
