@@ -246,11 +246,22 @@ task_name[jobIndex].jobParamName                  # no param index
 [jobIndex].jobParamName                           # minimal
 ```
 
-`jobIndex` is positive (count from the start of the project's job list) or negative (count back from the end). `paramIndex` defaults to 0. If `task_name` is given, only jobs of that task are considered. Examples:
+`jobIndex`'s meaning depends on whether a task is named, and `paramIndex` defaults to 0:
 
-- `[-1].XYZOUT[0]` — first XYZOUT from the most recent job in the project
+- **Unqualified and non-negative** — a **job number**, as shown in the project. `[3]` is job 3. Matched as a string, so a sub-job can be named outright: `[3.1].XYZOUT`.
+- **Unqualified and negative** — counting back through the project's top-level jobs in **creation order**, so `[-1]` is the most recent. (Not by job number: `Job.number` is a string holding `"1"` or `"1.1"`, so ordering it lexically puts job 11 before job 2.)
+- **Task-qualified** — an ordinal within that task's jobs, in creation order, so `prosmart_refmac[0]` is the first and `[-1]` the last. ("Job number 2, but only if it happens to be a refmac" would be no use.)
+
+A **negative** reference skips jobs that have not got the named file: "the XYZOUT of the most recent refmac" means the most recent refmac that produced one, not one configured a minute ago and never run. An absolute reference stays literal — ask for job 3 and you get job 3, or an error saying it has no such file. Parameter names are matched case-insensitively.
+
+Examples:
+
+- `[-1].XYZOUT[0]` — first XYZOUT from the most recent job that has one
+- `[3].XYZOUT` — XYZOUT of job 3
 - `prosmart_refmac[-1].XYZOUT` — XYZOUT from the most recent prosmart_refmac job
 - `refmac[-2].HKLOUT[0]` — HKLOUT from the second-to-last refmac job
+
+An unqualified reference resolves against what a job **produced** before what it **consumed**. Four tasks carry the same file parameter name in both `inputData` and `outputData` (`molrep_pipe` and `dr_mr_modelbuild_pipeline` pass `F_SIGF` and `FREERFLAG` through, `servalcat_pipe` has `METALCOORD_RESTRAINTS`, `adding_stats_to_mmcif_i2` has `FPHIOUT`/`DIFFPHIOUT`), so on such a job the reference is ambiguous and this precedence decides it. i2run's command line says the direction outright instead, with `fileOut=` and `fileIn=`.
 
 The typical caller flow is `resolve_fileuse → set_parameter({dbFileId})` — this endpoint is the wiring primitive that pairs with `POST /jobs/{id}/set_parameter/` whenever the input being bound is the output of a previous job (rather than freshly uploaded content).
 

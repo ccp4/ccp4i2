@@ -77,13 +77,23 @@ class FileUseRef:
     Exactly one of *job_number* (an absolute reference, matched as a string so
     "3.1" works) and *index* (an ordinal, negative counting from the end) is
     set.
+
+    *param_index* defaults to 0, the first file, as the service contract for
+    ``GET /projects/{id}/resolve_fileuse/`` documents. The CLI and the endpoint
+    must not disagree about what an omitted index means.
     """
 
     param_name: str
     task_name: Optional[str] = None
     job_number: Optional[str] = None
     index: Optional[int] = None
-    param_index: int = -1
+    param_index: int = 0
+    #: The parameter text exactly as written, brackets included
+    #: ("DICT_LIST[0]"). A real job_param_name can END in an index -- the File
+    #: row for a CList element is recorded as 'DICT_LIST[0]' -- so "PARAM[n]"
+    #: is genuinely ambiguous between a name and a name-plus-index. Resolution
+    #: tries this literally before falling back to the split form.
+    param_token: Optional[str] = None
 
 
 # taskName[index].PARAM[index]
@@ -107,6 +117,14 @@ _BARE = re.compile(
 )
 
 
+def _param_token(parts) -> str:
+    """The parameter text as written: "DICT_LIST" or "DICT_LIST[0]"."""
+    raw = parts.get("param_index")
+    return (
+        parts["param_name"] if raw is None else f"{parts['param_name']}[{raw}]"
+    )
+
+
 def parse_file_use(text: str) -> FileUseRef:
     """Parse a fileUse reference, or raise FileUseError saying what was wrong."""
     text = (text or "").strip()
@@ -115,7 +133,7 @@ def parse_file_use(text: str) -> FileUseRef:
 
     def param_index_of(parts):
         raw = parts.get("param_index")
-        return int(raw) if raw is not None else -1
+        return int(raw) if raw is not None else 0
 
     match = _QUALIFIED.match(text)
     if match:
@@ -125,6 +143,7 @@ def parse_file_use(text: str) -> FileUseRef:
             task_name=parts["task_name"],
             index=int(parts["index"]),
             param_index=param_index_of(parts),
+            param_token=_param_token(parts),
         )
 
     for pattern in (_BRACKETED, _BARE):
@@ -138,11 +157,13 @@ def parse_file_use(text: str) -> FileUseRef:
                 param_name=parts["param_name"],
                 index=int(raw),
                 param_index=param_index_of(parts),
+                param_token=_param_token(parts),
             )
         return FileUseRef(
             param_name=parts["param_name"],
             job_number=raw,
             param_index=param_index_of(parts),
+            param_token=_param_token(parts),
         )
 
     # A bare negative parses as a reference but can never reach us through
@@ -237,58 +258,82 @@ def _candidate_jobs(project, ref: FileUseRef):
     return [job for job in jobs.order_by("id") if "." not in job.number]
 
 
-def _files_on(job, param_name: str, role):
-    """Files *job* names as *param_name* in the given direction.
+def _role_of_owned(the_file, job):
+    """Which direction *job* saw a file it owns, from its FileUse row."""
+    from ....db import models
 
-    The role is the whole point of splitting the syntax into ``fileIn=`` and
-    ``fileOut=``. Four tasks carry the same file parameter name in both
-    inputData and outputData -- ``molrep_pipe`` and
-    ``dr_mr_modelbuild_pipeline`` pass ``F_SIGF`` and ``FREERFLAG`` straight
-    through, ``servalcat_pipe`` has ``METALCOORD_RESTRAINTS``,
-    ``adding_stats_to_mmcif_i2`` has ``FPHIOUT``/``DIFFPHIOUT`` -- so a single
-    keyword would have needed an arbitrary precedence rule to decide what
-    ``[5].F_SIGF`` meant. Naming the direction removes the ambiguity instead of
-    resolving it by fiat.
+    use = models.FileUse.objects.filter(file=the_file, job=job).first()
+    if use is not None:
+        return use.role
+    # No row: an imported file is an input to the job it was imported for,
+    # anything else a job owns, it produced.
+    return (
+        models.FileUse.Role.IN
+        if the_file.directory == models.File.Directory.IMPORT_DIR
+        else models.FileUse.Role.OUT
+    )
 
-    Matched case-insensitively, because getting the case wrong is the typo
-    people actually make and there is nothing to gain by refusing it: no two
-    parameters anywhere in the registry differ only by case (7496 upper, 2036
-    lower, 249 mixed, zero collisions). What this must NOT do is upper-case the
-    name: parameter names are only *conventionally* capitalised, and
-    PHIL-derived ones are lower-case
-    (``phaser__crystal_symmetry__unit_cell``), a few classic ones are mixed
-    (``F_SIGFanom``), and every task carries ``jobTitle``/``jobStatus``.
+
+def _files_on(job, ref: FileUseRef, role):
+    """Files *job* names as the reference's parameter, in the given direction.
+
+    Two record types have to be consulted, and neither alone is enough:
+
+    * **File** rows are the files *job* owns -- produced or imported. They carry
+      the full parameter name, including a list index: a CList element is
+      recorded as ``DICT_LIST[0]``.
+    * **FileUse** rows are what *job* consumed, including files another job
+      owns. ``fileIn=[2].FREERFLAG`` needs this: the file belongs to job 1.
+
+    And the parameter text is tried literally ("DICT_LIST[0]") before the split
+    form ("DICT_LIST", index 0), because a genuine parameter name can end in an
+    index and the syntax cannot tell the two apart by itself.
+
+    Beware a live-data wrinkle: for a CList element the File row says
+    ``DICT_LIST[0]`` while the FileUse row for the very same file says only
+    ``[0]`` -- the list's name is dropped when the use is recorded. That is a
+    bug in the recording, not here, and it cannot be worked around safely by
+    name (two file lists on one job would both record ``[0]``). Consulting File
+    rows first is what makes list elements resolvable at all.
+
+    Matched case-insensitively: no two parameters anywhere in the registry
+    differ only by case. Never upper-cased -- capitalisation is a convention
+    with real exceptions (PHIL parameters are lower-case, some classic ones are
+    mixed, every task has jobTitle/jobStatus).
     """
     from ....db import models
 
-    for lookup in (
-        {"job_param_name": param_name},
-        {"job_param_name__iexact": param_name},
-    ):
-        file_ids = models.FileUse.objects.filter(
-            job=job, role=role, **lookup
-        ).values_list("file_id", flat=True)
-        files = list(
-            models.File.objects.filter(id__in=file_ids)
-            .select_related("job__project")
-            .order_by("id")
-        )
-        if files:
-            return files
+    tokens = [ref.param_token or ref.param_name]
+    if ref.param_name not in tokens:
+        tokens.append(ref.param_name)
 
-        # Defensive fallback for a file with no FileUse row for its own job.
-        # An imported file is an INPUT to the job it was imported for; anything
-        # else a job owns, it produced.
-        want_import = role == models.FileUse.Role.IN
-        owned = [
-            f
-            for f in models.File.objects.filter(job=job, **lookup)
-            .select_related("job__project")
-            .order_by("id")
-            if (f.directory == models.File.Directory.IMPORT_DIR) == want_import
-        ]
-        if owned:
-            return owned
+    for token in tokens:
+        for lookup in (
+            {"job_param_name": token},
+            {"job_param_name__iexact": token},
+        ):
+            # Files this job owns, filtered to the direction it saw them.
+            owned = [
+                f
+                for f in models.File.objects.filter(job=job, **lookup)
+                .select_related("job__project")
+                .order_by("id")
+                if _role_of_owned(f, job) == role
+            ]
+            if owned:
+                return owned
+
+            # Files this job consumed, whoever owns them.
+            file_ids = models.FileUse.objects.filter(
+                job=job, role=role, **lookup
+            ).values_list("file_id", flat=True)
+            used = list(
+                models.File.objects.filter(id__in=file_ids)
+                .select_related("job__project")
+                .order_by("id")
+            )
+            if used:
+                return used
     return []
 
 
@@ -302,8 +347,9 @@ def _pick(files, ref: FileUseRef, what: str, job=None, role=None):
             else " That job has no files at all - has it run?"
         )
         raise FileUseError(f"{what} has no file for '{ref.param_name}'.{detail}")
+    index = 0 if len(files) == 1 else ref.param_index
     try:
-        return files[ref.param_index]
+        return files[index]
     except IndexError:
         raise FileUseError(
             f"{what} has {len(files)} file(s) for '{ref.param_name}'; "
@@ -325,7 +371,7 @@ def _resolve_ref(project, ref: FileUseRef, role):
                 f"no job numbered {ref.job_number} in project '{project.name}'"
             )
         return _pick(
-            _files_on(job, ref.param_name, role),
+            _files_on(job, ref, role),
             ref,
             f"job {job.number} ({job.task_name})",
             job,
@@ -344,7 +390,7 @@ def _resolve_ref(project, ref: FileUseRef, role):
         with_file = [
             (job, files)
             for job, files in (
-                (job, _files_on(job, ref.param_name, role)) for job in candidates
+                (job, _files_on(job, ref, role)) for job in candidates
             )
             if files
         ]
@@ -384,7 +430,7 @@ def _resolve_ref(project, ref: FileUseRef, role):
             f"{len(candidates)} {described}"
         ) from None
     return _pick(
-        _files_on(job, ref.param_name, role),
+        _files_on(job, ref, role),
         ref,
         f"job {job.number} ({job.task_name})",
         job,
@@ -392,46 +438,92 @@ def _resolve_ref(project, ref: FileUseRef, role):
     )
 
 
-def file_dict_for_file(the_file) -> dict:
-    """The key=value fields that identify *the_file* to a CDataFile."""
-    # Imported here, not at module scope: parse_file_use is pure, and a
-    # pure parser should be testable without a configured Django.
+def file_dict_for_file(the_file, with_full_path: bool = False) -> dict:
+    """The key=value fields that identify *the_file* to a CDataFile.
+
+    ``relPath`` comes from the job's own directory relative to the project's,
+    not from a constructed ``CCP4_JOBS/job_<number>``: a sub-job numbered "3.1"
+    lives at ``CCP4_JOBS/job_3/job_1``, which the constructed form gets wrong.
+
+    ``fullPath`` is included only on request, because it must NOT reach a
+    CDataFile: setting it alongside baseName rewrites baseName to the whole
+    absolute path, which is how ``<baseName>/Users/.../xyzout.pdb</baseName>``
+    appeared in a configured job. The service contract for
+    ``GET /projects/{id}/resolve_fileuse/`` promises the field, so the endpoint
+    asks for it; the i2run populator does not.
+    """
+    from pathlib import Path
+
     from ....db import models
 
+    project_dir = Path(the_file.job.project.directory)
     file_dict = {
         "project": str(the_file.job.project.uuid).replace("-", ""),
         "baseName": the_file.name,
         "dbFileId": str(the_file.uuid).replace("-", ""),
     }
+
     if the_file.directory == models.File.Directory.IMPORT_DIR:
         file_dict["relPath"] = "CCP4_IMPORTED_FILES"
+        full_path = project_dir / "CCP4_IMPORTED_FILES" / the_file.name
     else:
-        file_dict["relPath"] = f"CCP4_JOBS/job_{the_file.job.number}"
+        job_dir = Path(the_file.job.directory)
+        try:
+            file_dict["relPath"] = str(job_dir.relative_to(project_dir))
+        except ValueError:
+            # Not under the project (a relocated or imported project): keep
+            # whatever of the path is meaningful rather than inventing one.
+            parts = job_dir.parts
+            if "CCP4_JOBS" in parts:
+                file_dict["relPath"] = str(
+                    Path(*parts[parts.index("CCP4_JOBS"):])
+                )
+            else:
+                file_dict["relPath"] = job_dir.name
+        full_path = job_dir / the_file.name
+
+    if with_full_path:
+        file_dict["fullPath"] = str(full_path)
     return file_dict
 
 
 FILE_IN = "fileIn"
 FILE_OUT = "fileOut"
 
+#: Accepted but deprecated. ``fileUse=`` is what the CLI README documented and
+#: what Qt-era i2run took, so scripts in the wild use it. It names no direction,
+#: so it resolves against what a job produced before what it consumed -- the
+#: same precedence the resolve_fileuse endpoint keeps, for the same reason.
+FILE_USE = "fileUse"
+
+FILE_KEYWORDS = (FILE_IN, FILE_OUT, FILE_USE)
+
 
 def _role_of(keyword: str):
-    """The FileUse role a keyword names."""
+    """The FileUse role a keyword names, or None for the directionless alias."""
     from ....db import models
 
     if keyword == FILE_IN:
         return models.FileUse.Role.IN
     if keyword == FILE_OUT:
         return models.FileUse.Role.OUT
+    if keyword == FILE_USE:
+        return None
     raise FileUseError(
         f"'{keyword}=' is not a file reference. Use '{FILE_OUT}=' for a file a "
         f"job produced, or '{FILE_IN}=' for one it consumed"
     )
 
 
-def resolve_file_reference(project, keyword: str, text: str) -> dict:
+def resolve_file_reference(
+    project, keyword: str, text: str, with_full_path: bool = False
+) -> dict:
     """Resolve ``fileIn=``/``fileOut=`` *text* against *project*.
 
-    *project* is a Project instance, its uuid, or its name.
+    *project* is a Project instance, its uuid, or its name. *with_full_path*
+    adds ``fullPath``, which the resolve_fileuse endpoint's contract promises
+    and which must not be passed to a CDataFile (see
+    :func:`file_dict_for_file`).
     """
     from ....db import models
 
@@ -447,10 +539,31 @@ def resolve_file_reference(project, keyword: str, text: str) -> dict:
             except models.Project.DoesNotExist:
                 raise FileUseError(f"no project '{text_project}'") from None
 
+    from ....db import models
+
     role = _role_of(keyword)
-    the_file = _resolve_ref(the_project, parse_file_use(text), role)
+    ref = parse_file_use(text)
+
+    if role is None:
+        # Directionless (the fileUse= alias): produced first, then consumed.
+        # Keeping one precedence rule here means the endpoint and the command
+        # line cannot disagree about what an undirected reference means.
+        first_error = None
+        for candidate in (models.FileUse.Role.OUT, models.FileUse.Role.IN):
+            try:
+                the_file = _resolve_ref(the_project, ref, candidate)
+            except FileUseError as err:
+                if first_error is None:
+                    first_error = err
+                continue
+            break
+        else:
+            raise first_error
+    else:
+        the_file = _resolve_ref(the_project, ref, role)
+
     logger.info("%s=%s -> %s", keyword, text, the_file.name)
-    return file_dict_for_file(the_file)
+    return file_dict_for_file(the_file, with_full_path=with_full_path)
 
 
 def file_reference_for_file(the_file, rendering_job=None):

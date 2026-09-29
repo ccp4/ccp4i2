@@ -316,65 +316,7 @@ class CCP4i2RunnerBase(object):
         """
         raise NotImplementedError("pluginWithArgs must be implemented in subclasses")
 
-    @staticmethod
-    def parseFileUse(fileUse):
-        """
-        Parse fileUse string into components.
-
-        Supports formats like:
-        - task_name[jobIndex].jobParamName[paramIndex]
-        - jobIndex.jobParamName[paramIndex]
-        - etc.
-
-        Args:
-            fileUse: FileUse string to parse
-
-        Returns:
-            Dict with task_name, jobIndex, jobParamName, paramIndex
-        """
-        fileUseParser_tN_jI_jP_pI = re.compile(
-            r"^(?P<task_name>.+)\[(?P<jobIndex>.+)\]\.(?P<jobParamName>.+)\[(?P<paramIndex>.+)\].*$"
-        )
-        fileUseParser_jI_jP_pI = re.compile(
-            r"^(?P<jobIndex>.+)\.(?P<jobParamName>.*)\[(?P<paramIndex>.+)\].*$"
-        )
-        fileUseParser_tN_jI_jP = re.compile(
-            r"^(?P<task_name>.+)\[(?P<jobIndex>.+)\]\.(?P<jobParamName>.+).*$"
-        )
-        fileUseParser_jI_jP = re.compile(r"^(?P<jobIndex>.+)\.(?P<jobParamName>.+).*$")
-
-        result = {
-            "task_name": None,
-            "jobIndex": None,
-            "jobParamName": None,
-            "paramIndex": -1,
-        }
-
-        logger.debug(f"Trying to match [{fileUse}]")
-
-        try:
-            matches = fileUseParser_tN_jI_jP_pI.match(fileUse)
-            result.update(matches.groupdict())
-            result["jobIndex"] = int(result["jobIndex"])
-            result["paramIndex"] = int(result["paramIndex"])
-            return result
-        except AttributeError:
-            try:
-                matches = fileUseParser_jI_jP_pI.match(fileUse)
-                result.update(matches.groupdict())
-                result["jobIndex"] = int(result["jobIndex"])
-                result["paramIndex"] = int(result["paramIndex"])
-                return result
-            except AttributeError:
-                try:
-                    matches = fileUseParser_tN_jI_jP.match(fileUse)
-                    result.update(matches.groupdict())
-                    result["jobIndex"] = int(result["jobIndex"])
-                    result["paramIndex"] = int(result["paramIndex"])
-                    return result
-                except AttributeError:
-                    matches = fileUseParser_jI_jP.match(fileUse)
-                    result.update(matches.groupdict())
-                    result["jobIndex"] = int(result["jobIndex"])
-                    result["paramIndex"] = int(result["paramIndex"])
-                    return result
+    # parseFileUse was here. The reference syntax and its resolution now live
+    # in lib/utils/files/file_use.py, shared with the resolve_fileuse endpoint
+    # and the i2run command renderer, so one place decides what [-1].XYZOUT
+    # means. This copy had no callers at all.

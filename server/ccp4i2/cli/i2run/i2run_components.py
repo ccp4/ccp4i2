@@ -609,9 +609,18 @@ class PluginPopulator:
         # which set a dead attribute and left the parameter UNSET: the command
         # configured an empty plugin, silently, and the job failed later looking
         # like something else.
-        file_keywords = [k for k in ("fileIn", "fileOut") if k in parsed_values]
+        # fileUse= is accepted as a deprecated alias. It is what the CLI README
+        # documented and what Qt-era i2run took, so scripts in the wild use it;
+        # letting it fall through to the generic key=value path would set a dead
+        # attribute and leave the parameter UNSET, which is the silent failure
+        # this whole change exists to remove. It names no direction, so it
+        # resolves against what a job produced before what it consumed.
+        from ccp4i2.lib.utils.files.file_use import FILE_KEYWORDS
+
+        file_keywords = [k for k in FILE_KEYWORDS if k in parsed_values]
         if has_key_value_syntax and file_keywords:
             from ccp4i2.lib.utils.files.file_use import (
+                FILE_USE,
                 FileUseError,
                 resolve_file_reference,
             )
@@ -623,6 +632,13 @@ class PluginPopulator:
                 )
             keyword = file_keywords[0]
             reference = parsed_values.pop(keyword)
+            if keyword == FILE_USE:
+                logger.warning(
+                    "fileUse=%s is deprecated; say the direction with "
+                    "fileOut= (a file a job produced) or fileIn= (one it "
+                    "consumed). Resolving as produced-then-consumed.",
+                    reference,
+                )
             plugin_parent = (
                 target._find_plugin_parent()
                 if hasattr(target, "_find_plugin_parent")
