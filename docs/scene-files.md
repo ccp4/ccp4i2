@@ -650,8 +650,17 @@ Quick reference of all templates and what they display:
 | `ccp4mg_edit_nomrbump.scene.xml` | XYZOUT | Spline | Auto |
 | `pdbview_edit.scene.xml` | XYZOUT | Spline | Auto |
 | `prosmart_refmac_1.scene.xml` | *(empty)* | Used as base by refmac report | -- |
-| `MakeLink.scene.xml` | *(empty)* | Placeholder | -- |
 | `dr_mr_modelbuild_pipeline_1.scene.xml` | *(empty)* | Placeholder | -- |
+
+`MakeLink.scene.xml` was deleted once MakeLink stopped needing one. Its
+CCP4mg template and the `picture()` method that cloned it had been dead for
+some time -- every call was commented out behind a `#FIXME`. AceDRG link mode
+already writes the regularised linked pair, so declaring that pair as an
+output is enough: the Moorhen job view infers what to load from the gleaned
+files, with no scene file and no per-task registration. That is the cheapest
+version of the migration this document describes -- for a task whose outputs
+need no unusual presentation, the answer is to publish the files and delete
+the scene.
 
 ---
 

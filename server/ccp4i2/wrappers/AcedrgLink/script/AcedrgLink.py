@@ -1,4 +1,33 @@
+import shutil
+
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+
+def _find_linked_dimer(work_directory, link_id):
+    """The regularised linked pair AceDRG builds, as (coordinates, dictionary).
+
+    Link mode does internally what JLigand drives libcheck and refmac to do:
+    it builds the two monomers joined, and regularises the result with
+    servalcat. That leaves a single merged residue whose coordinates are the
+    only picture of the link a user can actually look at.
+
+    The pair is found by suffix rather than by name. AceDRG has renamed it
+    once already -- UNL_for_link -> LIG_for_link -- and the wrapper went on
+    naming the old file, so both outputs silently pointed at nothing. The two
+    do not share a directory: coordinates land in the work directory, the
+    dictionary in <LINK_ID>_TMP.
+    """
+    searched = [work_directory, work_directory / f"{link_id}_TMP"]
+    found = {}
+    for suffix in (".pdb", ".cif"):
+        for directory in searched:
+            if not directory.is_dir():
+                continue
+            matches = sorted(directory.glob(f"*_for_link{suffix}"))
+            if matches:
+                found[suffix] = matches[0]
+                break
+    return found.get(".pdb"), found.get(".cif")
 
 
 class AcedrgLink(CPluginScript):
@@ -22,6 +51,28 @@ class AcedrgLink(CPluginScript):
         out = self.container.outputData
         out.CIF_OUT.fullPath = self.workDirectory / f"{inp.LINK_ID}_link.cif"
         out.CIF_OUT.annotation = f"Link dictionary: {inp.ANNOTATION or inp.LINK_ID}"
-        unl_path = self.workDirectory / f"{inp.LINK_ID}_TMP" / "UNL_for_link"
-        out.UNL_PDB.fullPath = unl_path.with_suffix(".pdb")
-        out.UNL_CIF.fullPath = unl_path.with_suffix(".cif")
+        # The linked pair, so the job's Moorhen view can show the link in 3D.
+        # Left unset when AceDRG wrote none: an output pointing at a file that
+        # is not there is gleaned as nothing and reported as nothing.
+        dimer_pdb, dimer_cif = _find_linked_dimer(self.workDirectory, str(inp.LINK_ID))
+        if dimer_pdb is not None:
+            out.UNL_PDB.fullPath = self._adopt(dimer_pdb)
+            out.UNL_PDB.annotation = f"Linked pair: {inp.ANNOTATION or inp.LINK_ID}"
+        if dimer_cif is not None:
+            out.UNL_CIF.fullPath = self._adopt(dimer_cif)
+            out.UNL_CIF.annotation = f"Linked pair dictionary: {inp.ANNOTATION or inp.LINK_ID}"
+
+    def _adopt(self, path):
+        """Bring an output out of AceDRG's scratch directory into the job's own.
+
+        A CDataFile records a base name against the job directory, so it
+        cannot express a file one level down in <LINK_ID>_TMP: the path comes
+        back pointing at the job directory, where nothing of that name exists,
+        and the gleaner publishes nothing. Copying is also the safer place for
+        it -- the scratch directory is AceDRG's to delete.
+        """
+        if path.parent == self.workDirectory:
+            return path
+        destination = self.workDirectory / path.name
+        shutil.copyfile(path, destination)
+        return destination
