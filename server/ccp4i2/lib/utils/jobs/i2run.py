@@ -133,6 +133,26 @@ def i2run_command_line(job: models.Job):
     return i2run_working_directory(), arguments, command_line
 
 
+def _table_key(full_path: str, container: CCP4Container) -> str:
+    """*full_path* rooted the way the argument table is rooted.
+
+    The table is keyed from the container's own name down
+    ("container.inputData.XYZIN"), but ``objectPath()`` is rooted at whatever
+    is above it -- "freerflag.container.inputData.XYZIN" once the plugin that
+    owns the container is in the picture, which it now always is, because
+    get_job_container keeps the plugin alive on purpose.
+
+    The old minimiser never noticed: it compared suffixes, so a differing root
+    was invisible to it. An exact lookup has to be told.
+    """
+    prefix = container.objectPath()
+    root = container.objectName()
+    if full_path == prefix:
+        return root
+    if full_path.startswith(f"{prefix}."):
+        return f"{root}.{full_path[len(prefix) + 1:]}"
+    return full_path
+
 def minimal_path(full_path, container: CCP4Container, names=None) -> str:
     """The name i2run accepts for the parameter at *full_path*.
 
@@ -154,7 +174,7 @@ def minimal_path(full_path, container: CCP4Container, names=None) -> str:
     if names is None:
         names = argument_names(container)
 
-    name = names.get(full_path)
+    name = names.get(full_path) or names.get(_table_key(full_path, container))
     if name is not None:
         return name
 
