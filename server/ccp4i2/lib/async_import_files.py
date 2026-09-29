@@ -9,6 +9,8 @@ import asyncio
 import logging
 import shutil
 import uuid
+
+from ccp4i2.core.base_object.fundamental_types import qualified_parameter_name
 from pathlib import Path
 from typing import Optional
 
@@ -72,7 +74,11 @@ async def import_input_files_async(job, plugin, db_handler):
                         await db_handler.register_input_file(
                             job_uuid=job.uuid,
                             file_uuid=uuid.UUID(file_uuid_str),
-                            param_name=file_obj.objectName(),
+                            # Qualified, not the leaf's own name: a CList names
+                            # its elements "[0]", so the bare name loses which
+                            # list the file went into and two file lists on one
+                            # job both record "[0]".
+                            param_name=qualified_parameter_name(file_obj),
                         )
                         logger.info(f"Registered existing file for {file_obj.objectName()}")
                         files_imported += 1
@@ -139,7 +145,9 @@ async def import_external_file_async(job, file_obj, db_handler):
 
     # Map to legacy field names for database operations
     metadata = {
-        'name': file_obj.objectName(),
+        # Qualified: a CList element's own name is just its index, so
+        # "DICT_LIST[0]" rather than "[0]".
+        'name': qualified_parameter_name(file_obj),
         'file_type': get_file_type_from_class(file_obj),
         'content_flag': core_metadata.get('contentFlag'),
         'sub_type': core_metadata.get('subType'),
