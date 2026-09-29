@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { LinearProgress, Paper } from "@mui/material";
+import { Box, LinearProgress, Paper, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
@@ -8,6 +8,8 @@ import { InlineField } from "../task-elements/inline-field";
 import { useJob } from "../../../utils";
 import { useBoolToggle } from "../task-elements/shared-hooks";
 import { apiJson } from "../../../api-fetch";
+import { MonomerPicker } from "../../monomer/monomer-picker";
+import type { MonomerAtomDetail } from "../../../lib/monomer-molblock";
 
 // Layout constants
 const LABEL_WIDTH = "14rem";
@@ -24,6 +26,8 @@ interface MonomerBond {
 interface MonomerInfo {
   atoms: string[];
   bonds: MonomerBond[];
+  /** The same atoms in the same order, with element and charge, for drawing. */
+  atom_details?: MonomerAtomDetail[];
 }
 
 /** Dict keyed by monomer code -> { atoms, bonds } */
@@ -46,12 +50,20 @@ function useMonomerInfo(resName: string | undefined): MonomerInfo {
 
     let cancelled = false;
     const code = resName.trim().toUpperCase();
-    apiJson<{ success: boolean; data?: { atoms: string[]; bonds: MonomerBond[] } }>(
-      `monomer-info/${code}`
-    )
+    apiJson<{
+      success: boolean;
+      data?: { atoms: string[]; bonds: MonomerBond[]; atom_details?: MonomerAtomDetail[] };
+    }>(`monomer-info/${code}`)
       .then((res) => {
         if (!cancelled && res.success && res.data) {
-          setInfo({ atoms: res.data.atoms, bonds: res.data.bonds });
+          setInfo({
+            atoms: res.data.atoms,
+            bonds: res.data.bonds,
+            atom_details: res.data.atom_details ?? [],
+          });
+        } else if (!cancelled) {
+          // Not the previous monomer's atoms under a new name.
+          setInfo(EMPTY_MONOMER);
         }
       })
       .catch((err) => {
@@ -72,6 +84,100 @@ function useBondLabels(bonds: MonomerBond[] | undefined): string[] {
   return useMemo(
     () => (bonds ?? []).map((b) => `${b.atom1}-${b.atom2}`),
     [bonds]
+  );
+}
+
+/** Which of the monomer's parameters a click on its drawing sets. */
+type PickTarget = "link" | "delete" | "bond" | "charge";
+
+const PICK_HINTS: Record<PickTarget, string> = {
+  link: "Click the atom that bonds to the other monomer",
+  delete: "Click the atom to delete",
+  bond: "Click the bond whose order should change",
+  charge: "Click the atom whose charge should change",
+};
+
+/** The dictionary bond an "A1-A2" label names, whichever way round it was written. */
+function bondFromLabel(bonds: MonomerBond[], label?: string) {
+  if (!label) return null;
+  return bonds.find(
+    (b) => `${b.atom1}-${b.atom2}` === label || `${b.atom2}-${b.atom1}` === label
+  ) ?? null;
+}
+
+interface MonomerPanelProps {
+  monomer: MonomerInfo;
+  title?: string;
+  emptyMessage: string;
+  linkAtom?: string;
+  deleteAtom?: string;
+  chargeAtom?: string;
+  /** "A1-A2", as the bond dropdown holds it. */
+  bond?: string;
+  onPick: (target: PickTarget, value: string) => void;
+}
+
+/**
+ * One monomer drawn from its dictionary, with a choice of what a click sets.
+ * Picking an atom to delete, a bond or a charge also ticks that option's box
+ * below: choosing one is asking for it.
+ */
+function MonomerPanel({
+  monomer,
+  title,
+  emptyMessage,
+  linkAtom,
+  deleteAtom,
+  chargeAtom,
+  bond,
+  onPick,
+}: MonomerPanelProps) {
+  const [target, setTarget] = useState<PickTarget>("link");
+  const selectedAtom =
+    target === "link" ? linkAtom : target === "delete" ? deleteAtom : target === "charge" ? chargeAtom : null;
+  const selectedBond = target === "bond" ? bondFromLabel(monomer.bonds, bond) : null;
+  // The atom queued for deletion stays visible while other things are picked.
+  const markedAtoms = useMemo(
+    () => (deleteAtom && target !== "delete" ? [deleteAtom] : []),
+    [deleteAtom, target]
+  );
+
+  return (
+    <Box sx={{ my: 1, maxWidth: 360 }}>
+      <ToggleButtonGroup
+        size="small"
+        exclusive
+        value={target}
+        onChange={(_, value: PickTarget | null) => value && setTarget(value)}
+        aria-label="What a click on the drawing sets"
+        sx={{ mb: 0.5, flexWrap: "wrap" }}
+      >
+        <ToggleButton value="link">Linking atom</ToggleButton>
+        <ToggleButton value="delete">Delete</ToggleButton>
+        <ToggleButton value="bond">Bond order</ToggleButton>
+        <ToggleButton value="charge">Charge</ToggleButton>
+      </ToggleButtonGroup>
+      <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 0.5 }}>
+        {PICK_HINTS[target]}
+      </Typography>
+      <MonomerPicker
+        atomDetails={monomer.atom_details ?? []}
+        bonds={monomer.bonds}
+        mode={target === "bond" ? "bond" : "atom"}
+        selectedAtom={selectedAtom ?? null}
+        selectedBond={selectedBond}
+        markedAtoms={markedAtoms}
+        onPickAtom={(name) => onPick(target, name)}
+        onPickBond={(atom1, atom2) => {
+          // Store the label the way the dictionary lists the bond, so the
+          // dropdown recognises it as one of its own entries.
+          const found = bondFromLabel(monomer.bonds, `${atom1}-${atom2}`);
+          onPick("bond", found ? `${found.atom1}-${found.atom2}` : `${atom1}-${atom2}`);
+        }}
+        title={title}
+        emptyMessage={emptyMessage}
+      />
+    </Box>
   );
 }
 
@@ -101,12 +207,18 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: LINK_MODE } = useTaskItem("LINK_MODE");
 
   // _LIST / _TYPE UI fields and their plain backend counterparts
-  const { value: DELETE_1_LIST } = useTaskItem("DELETE_1_LIST");
-  const { value: DELETE_2_LIST } = useTaskItem("DELETE_2_LIST");
-  const { value: CHARGE_1_LIST } = useTaskItem("CHARGE_1_LIST");
-  const { value: CHARGE_2_LIST } = useTaskItem("CHARGE_2_LIST");
-  const { value: CHANGE_BOND_1_LIST } = useTaskItem("CHANGE_BOND_1_LIST");
-  const { value: CHANGE_BOND_2_LIST } = useTaskItem("CHANGE_BOND_2_LIST");
+  const { value: DELETE_1_LIST, item: delete1ListItem } = useTaskItem("DELETE_1_LIST");
+  const { value: DELETE_2_LIST, item: delete2ListItem } = useTaskItem("DELETE_2_LIST");
+  const { value: CHARGE_1_LIST, item: charge1ListItem } = useTaskItem("CHARGE_1_LIST");
+  const { value: CHARGE_2_LIST, item: charge2ListItem } = useTaskItem("CHARGE_2_LIST");
+  const { value: CHANGE_BOND_1_LIST, item: changeBond1ListItem } = useTaskItem("CHANGE_BOND_1_LIST");
+  const { value: CHANGE_BOND_2_LIST, item: changeBond2ListItem } = useTaskItem("CHANGE_BOND_2_LIST");
+  const { item: toggleDelete1Item } = useTaskItem("TOGGLE_DELETE_1");
+  const { item: toggleDelete2Item } = useTaskItem("TOGGLE_DELETE_2");
+  const { item: toggleChange1Item } = useTaskItem("TOGGLE_CHANGE_1");
+  const { item: toggleChange2Item } = useTaskItem("TOGGLE_CHANGE_2");
+  const { item: toggleCharge1Item } = useTaskItem("TOGGLE_CHARGE_1");
+  const { item: toggleCharge2Item } = useTaskItem("TOGGLE_CHARGE_2");
   const { value: CHANGE_BOND_1_TYPE } = useTaskItem("CHANGE_BOND_1_TYPE");
   const { value: CHANGE_BOND_2_TYPE } = useTaskItem("CHANGE_BOND_2_TYPE");
   const { value: DELETE_1, item: delete1Item } = useTaskItem("DELETE_1");
@@ -262,6 +374,43 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       setParameter({ object_path: change2TypeItem._objectPath, value: CHANGE_BOND_2_TYPE });
   }, [CHANGE_BOND_2_TYPE, CHANGE_2_TYPE, change2TypeItem?._objectPath, setParameter]);
 
+  // A click on a monomer's drawing sets the same parameter its dropdown does;
+  // the syncs above carry it on to the fields the script reads.
+  const pickHandler = (
+    atomItem: any,
+    targets: Record<Exclude<PickTarget, "link">, { item: any; toggle: any; on: boolean }>
+  ) => (target: PickTarget, value: string) => {
+    if (target === "link") {
+      if (atomItem?._objectPath) setParameter({ object_path: atomItem._objectPath, value });
+      return;
+    }
+    const { item, toggle, on } = targets[target];
+    if (item?._objectPath) setParameter({ object_path: item._objectPath, value });
+    if (!on && toggle?._objectPath) setParameter({ object_path: toggle._objectPath, value: true });
+  };
+  const onPick1 = pickHandler(atomItem1, {
+    delete: { item: delete1ListItem, toggle: toggleDelete1Item, on: toggleDelete1.value },
+    bond: { item: changeBond1ListItem, toggle: toggleChange1Item, on: toggleChange1.value },
+    charge: { item: charge1ListItem, toggle: toggleCharge1Item, on: toggleCharge1.value },
+  });
+  const onPick2 = pickHandler(atomItem2, {
+    delete: { item: delete2ListItem, toggle: toggleDelete2Item, on: toggleDelete2.value },
+    bond: { item: changeBond2ListItem, toggle: toggleChange2Item, on: toggleChange2.value },
+    charge: { item: charge2ListItem, toggle: toggleCharge2Item, on: toggleCharge2.value },
+  });
+
+  // Say why a panel is empty, rather than showing a blank box.
+  const emptyMessage = (type: string | undefined, tlc: string | undefined, dictCodes: string[]) => {
+    if (type === "CIF") {
+      return dictCodes.length === 0 ? "Choose a dictionary file to draw its monomer" : "Choose a residue name";
+    }
+    return tlc?.trim()
+      ? `"${tlc.trim().toUpperCase()}" is not in the CCP4 monomer library`
+      : "Type a residue name to draw it";
+  };
+  const monTitle = (type: string | undefined, tlc: string | undefined, cif: string | undefined) =>
+    (type === "CIF" ? cif : tlc?.trim().toUpperCase()) || undefined;
+
   if (!container) return <LinearProgress />;
 
   // Build qualifier overrides for monomer-dependent fields.
@@ -324,6 +473,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   <CCP4i2TaskElement itemName="ATOM_NAME_1_TLC" {...props} qualifiers={mon1AtomQuals} />
                 </InlineField>
               )}
+              <MonomerPanel
+                monomer={mon1}
+                title={monTitle(MON_1_TYPE, RES_NAME_1_TLC, RES_NAME_1_CIF)}
+                emptyMessage={emptyMessage(MON_1_TYPE, RES_NAME_1_TLC, dict1Codes)}
+                linkAtom={currentAtom1}
+                deleteAtom={toggleDelete1.value ? DELETE_1_LIST : undefined}
+                chargeAtom={toggleCharge1.value ? CHARGE_1_LIST : undefined}
+                bond={toggleChange1.value ? CHANGE_BOND_1_LIST : undefined}
+                onPick={onPick1}
+              />
               <CCP4i2TaskElement itemName="TOGGLE_DELETE_1" {...props} qualifiers={{ guiLabel: "Delete atom" }} />
               {toggleDelete1.value && (
                 <CCP4i2TaskElement itemName="DELETE_1_LIST" {...props} qualifiers={mon1DeleteQuals} />
@@ -396,6 +555,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   <CCP4i2TaskElement itemName="ATOM_NAME_2_TLC" {...props} qualifiers={mon2AtomQuals} />
                 </InlineField>
               )}
+              <MonomerPanel
+                monomer={mon2}
+                title={monTitle(MON_2_TYPE, RES_NAME_2_TLC, RES_NAME_2_CIF)}
+                emptyMessage={emptyMessage(MON_2_TYPE, RES_NAME_2_TLC, dict2Codes)}
+                linkAtom={currentAtom2}
+                deleteAtom={toggleDelete2.value ? DELETE_2_LIST : undefined}
+                chargeAtom={toggleCharge2.value ? CHARGE_2_LIST : undefined}
+                bond={toggleChange2.value ? CHANGE_BOND_2_LIST : undefined}
+                onPick={onPick2}
+              />
               <CCP4i2TaskElement itemName="TOGGLE_DELETE_2" {...props} qualifiers={{ guiLabel: "Delete atom" }} />
               {toggleDelete2.value && (
                 <CCP4i2TaskElement itemName="DELETE_2_LIST" {...props} qualifiers={mon2DeleteQuals} />
