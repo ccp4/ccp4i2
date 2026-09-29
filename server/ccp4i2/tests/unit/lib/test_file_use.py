@@ -6,6 +6,9 @@ syntax can be tested wherever CI runs.
 import pytest
 
 from ccp4i2.lib.utils.files.file_use import (
+    FILE_IN,
+    FILE_OUT,
+    FILE_USE,
     FileUseError,
     _and_these_exist,
     _did_you_mean,
@@ -47,8 +50,10 @@ class TestTheForms:
             1,
         )
 
-    def test_the_default_parameter_index_is_the_last(self):
-        assert parse_file_use("[3].XYZOUT").param_index == -1
+    def test_the_default_parameter_index_is_the_first(self):
+        """0, as the service contract for resolve_fileuse documents. The CLI and
+        the endpoint must not disagree about what an omitted index means."""
+        assert parse_file_use("[3].XYZOUT").param_index == 0
 
 
 class TestWhatItRefuses:
@@ -139,3 +144,39 @@ def test_the_messages_are_ascii_only():
     source = inspect.getsource(file_use)
     offenders = sorted({char for char in source if ord(char) > 127})
     assert not offenders, f"non-ASCII in file_use.py: {offenders}"
+
+
+class TestTheParameterToken:
+    """A real job_param_name can END in an index, so "PARAM[n]" is ambiguous
+    between a name and a name-plus-index, and the raw text has to survive
+    parsing.
+
+    Found on live data: a CList element's File row records
+    ``job_param_name='DICT_LIST[0]'``, so a command rendered from it said
+    ``fileIn=[2].DICT_LIST[0]`` and then failed to resolve, because parsing
+    split it into 'DICT_LIST' + index 0 and nothing is recorded under that.
+    """
+
+    def test_the_raw_parameter_text_is_kept(self):
+        ref = parse_file_use("[2].DICT_LIST[0]")
+        assert ref.param_token == "DICT_LIST[0]"
+        # Still available split, for the ordinary meaning of an index.
+        assert ref.param_name == "DICT_LIST"
+        assert ref.param_index == 0
+
+    def test_a_plain_name_is_its_own_token(self):
+        ref = parse_file_use("[2].XYZIN")
+        assert ref.param_token == "XYZIN"
+        assert ref.param_index == 0
+
+
+class TestTheDeprecatedAlias:
+    """fileUse= was documented in the CLI README and taken by Qt-era i2run, so
+    scripts in the wild use it. It must not fall through to the generic
+    key=value path, which would leave the parameter silently unset."""
+
+    def test_the_keyword_set_includes_the_alias(self):
+        from ccp4i2.lib.utils.files.file_use import FILE_KEYWORDS
+
+        assert set(FILE_KEYWORDS) == {FILE_IN, FILE_OUT, FILE_USE}
+        assert (FILE_IN, FILE_OUT, FILE_USE) == ("fileIn", "fileOut", "fileUse")
