@@ -119,10 +119,22 @@ version bump always touches the client pin as well (`scripts/cut-alpha.sh` edits
 both files and greps to confirm), so the `client/` rule already claims it, and
 the invariant is checked directly by the **Version lockstep** job below.
 
-Two ways to break the skipping, both tempting: putting `paths-ignore` back, and
-adding a second workflow that reports the same job names for docs changes. The
-second one is worse than it looks: a PR touching docs and code runs both, and a
-passing stub can mask a failing build.
+**Never skip a MATRIX job at job level.** A skipped job publishes the
+unexpanded template as its check name — `Unit + API tests (Python ${{
+matrix.python-version }})` — because there is no matrix to expand for a job that
+never ran. The required contexts `(Python 3.11)` and `(Python 3.13)` then never
+report, sit at "Expected", and the pull request cannot be merged. That is the
+same breakage `paths-ignore` used to cause, arriving by a different route: it was
+introduced by gating `unit-tests` at job level and a docs-only PR hit it
+immediately (#659). So `unit-tests` runs always and skips every *step*, which
+keeps the names right and costs seconds. `frontend-tests` and the three builds
+are not matrix jobs, so their names are static and they are safely gated at job
+level.
+
+Three ways to break the skipping, all tempting: putting `paths-ignore` back,
+gating a matrix job as above, and adding a second workflow that reports the same
+job names for docs changes. The last is worse than it looks: a PR touching docs
+and code runs both, and a passing stub can mask a failing build.
 
 **The version lockstep is checked on every pull request, in seconds.** An alpha
 app and its backend are strictly bound: the app pins the EXACT version it
