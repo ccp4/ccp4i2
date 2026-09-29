@@ -1,8 +1,41 @@
+from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+
+def _has_atoms(structure):
+    """True if the structure holds at least one atom.
+
+    gemmi hands back an empty Structure for a file it cannot make sense of
+    instead of raising, so a successful read says nothing about whether there
+    is a model in it.
+    """
+    for model in structure:
+        for chain in model:
+            for residue in chain:
+                for _atom in residue:
+                    return True
+    return False
 
 
 class MakeLink(CPluginScript):
     TASKNAME = 'MakeLink'
+
+    # Applying the link to a model is the half of this task that can fail
+    # quietly: AceDRG writes the dictionary, and everything after that is our
+    # own gemmi code. Every way it can fail to produce the model the user
+    # asked for now ends the job as failed, rather than Finished with nothing.
+    ERROR_CODES = {
+        301: {'description': 'The input model could not be read'},
+        302: {'description': 'The input model contains no atoms'},
+        303: {'description': 'The generated dictionary does not describe the requested link'},
+        304: {'description': 'Failed to apply the link to the input model'},
+        305: {'description': 'No residue pair in the model matches the requested link, '
+                             'so no link record was added'},
+        306: {'description': 'An input model was given but "Apply links to model" is not '
+                             'selected, so the model will not be modified',
+              'severity': CCP4ErrorHandling.SEVERITY_WARNING},
+        307: {'description': '"Apply links to model" is selected but no input model was given'},
+    }
 
     def __init__(self, *args, **kws):
         super(MakeLink, self).__init__(*args, **kws)
@@ -70,7 +103,25 @@ class MakeLink(CPluginScript):
         ctrl.MODEL_RES_LIST.setQualifier('allowUndefined', True)
 
         # Now call parent validity() which will use our updated allowUndefined settings
-        return super(MakeLink, self).validity()
+        error = super(MakeLink, self).validity()
+
+        # The two ways of asking for a model and not getting one. In the task
+        # interface XYZIN is nested inside the TOGGLE_LINK checkbox so neither
+        # is reachable, but i2run, a cloned job and the REST API can all set
+        # the two independently -- and the job used to finish happily either way.
+        if ctrl.TOGGLE_LINK and not inp.XYZIN.isSet():
+            error.append(
+                klass=self.TASKNAME, code=307,
+                details='Select an input model, or turn off "Apply links to model"',
+                name=f'{self.TASKNAME}.container.inputData.XYZIN',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        if inp.XYZIN.isSet() and not ctrl.TOGGLE_LINK:
+            error.append(
+                klass=self.TASKNAME, code=306,
+                details=self.ERROR_CODES[306]['description'],
+                name=f'{self.TASKNAME}.container.controlParameters.TOGGLE_LINK',
+                severity=CCP4ErrorHandling.SEVERITY_WARNING)
+        return error
 
     def createLinkInstruction(self):
        instruct = "LINK:"
@@ -248,18 +299,32 @@ class MakeLink(CPluginScript):
           else:
              raise Exception("Cannot find link_list block in dictionary: "+cif_file_path)
        except Exception as e:
+          # Reported, not just printed: without this the caller silently
+          # skipped applying the link and the job still finished successfully.
           print("Error: %s" % e)
-          print("Cannot continue.")
-          print("")
+          self.appendErrorReport(303, str(e))
        return None
     
     def applyLinksToModel(self,link_bond_value):
-       if not link_bond_value:
-          return
+       """Add the link record to the input model. Returns a CPluginScript status.
+
+       Nothing here is optional once the user has asked for it: every way this
+       can fail to produce the model returns FAILED with a reported error, so
+       the job does not finish successfully holding no model.
+       """
        if not self.container.controlParameters.TOGGLE_LINK:
-          return
+          # Not asked for. validity() has already warned if a model was given.
+          if self.container.inputData.XYZIN.isSet():
+             print("")
+             print("An input model was given but 'Apply links to model' is not selected;"
+                   " the model will not be modified.")
+          return CPluginScript.SUCCEEDED
        if not self.container.inputData.XYZIN.isSet():
-          return
+          self.appendErrorReport(307, self.ERROR_CODES[307]['description'])
+          return CPluginScript.FAILED
+       if not link_bond_value:
+          # get_link_bond_value() has already reported 303.
+          return CPluginScript.FAILED
        path = self.container.inputData.XYZIN.fullPath.__str__().rstrip()
 
        threshold = 0.0
@@ -337,7 +402,7 @@ class MakeLink(CPluginScript):
 
             if len(link_list) == 0:
                print("No matching links found - no links will be added to the model")
-               return
+               return 0
 
             for a1,a2,asu in link_list:
                 st.connections.append(create_link(st.connections,a1,a2,linkid,asu))
@@ -356,44 +421,74 @@ class MakeLink(CPluginScript):
                 for res,atom in remove_atoms:
                   print("Removed atom: "+atom.name+" from residue: "+str(res))
                   res.remove_atom(atom.name,atom.altloc)
+            return len(link_list)
        
          link_desc = [rname1,aname1,del1,rname2,aname2,del2,link_id,threshold]
          doc_in = None
          modelOut = None
          try: # try to read CIF file
            doc_in = gemmi.cif.read(path)
-         except:
-           try: # try to read PDB file
-             st = gemmi.read_structure(path)
-             if st:
-               for model in st:
-                 apply_links_to_model(st,model,link_desc)
-               modelOut = str(self.workDirectory / "ModelWithLinks.pdb")
-               st.write_pdb(modelOut,use_linkr=True)
-             else:
-               raise Exception("Cannot read input model: "+path)
-           except:
-             raise Exception("Cannot read input model: "+path)
+         except Exception:
+           doc_in = None
 
-         if doc_in: # Input is CIF file:
+         links_made = 0
+         if doc_in is None: # Input is a PDB file
+           try:
+             st = gemmi.read_structure(path)
+           except Exception as e:
+             self.appendErrorReport(301, path+" ("+str(e)+")")
+             return CPluginScript.FAILED
+           # gemmi returns an EMPTY structure for a file it cannot make sense
+           # of rather than raising, so "did it parse" is not the question --
+           # "did it contain a model" is. Without this the task wrote out a
+           # two-line PDB and called it "Model with links applied".
+           if not _has_atoms(st):
+             self.appendErrorReport(302, path)
+             return CPluginScript.FAILED
+           for model in st:
+             links_made += apply_links_to_model(st,model,link_desc)
+           modelOut = str(self.workDirectory / "ModelWithLinks.pdb")
+           st.write_pdb(modelOut,use_linkr=True)
+         else: # Input is a CIF file
             doc_out = gemmi.cif.Document()
+            seen_atoms = False
             for block in doc_in:
               st = gemmi.make_structure_from_block(block)
               if st:
+                if not _has_atoms(st):
+                  continue
+                seen_atoms = True
                 for model in st:
-                  apply_links_to_model(st,model,link_desc)
+                  links_made += apply_links_to_model(st,model,link_desc)
                 doc_out.add_copied_block(st.make_mmcif_document().sole_block())
+            if not seen_atoms:
+              self.appendErrorReport(302, path)
+              return CPluginScript.FAILED
             modelOut = str(self.workDirectory / "ModelWithLinks.cif")
             doc_out.write_file(modelOut)
-   
+
+         # Setting TOGGLE_LINK *and* supplying a model asserts that there is a
+         # link here to be found. If none is, that expectation was wrong and
+         # the user needs to know which of the residue names, atom names or
+         # search distance is at fault -- so this is an error, not a warning.
+         # Handing back an unmodified copy of their own model tells them
+         # nothing, and is neither of the two outcomes the task promises.
+         if links_made == 0:
+           self.appendErrorReport(
+             305,
+             "%s(%s) - %s(%s) within %.3f A" % (rname1,aname1,rname2,aname2,threshold))
+           return CPluginScript.FAILED
+
          self.container.outputData.XYZOUT.setFullPath(modelOut)
-         self.container.outputData.XYZOUT.annotation.set('Model with links applied')
+         self.container.outputData.XYZOUT.annotation.set(
+             'Model with %d link%s applied' % (links_made, '' if links_made == 1 else 's'))
          print("Completed applying links to model: "+modelOut)
-                
+         return CPluginScript.SUCCEEDED
+
        except Exception as e:
          print("Error: %s" % e)
-         print("Cannot continue.")
-         print("")
+         self.appendErrorReport(304, str(e))
+         return CPluginScript.FAILED
 
 
     #The startProcess method is where you build in the pipeline logic
@@ -466,6 +561,7 @@ class MakeLink(CPluginScript):
 
         from ccp4i2.core import CCP4Utils
         pipelineXMLStructure = etree.Element("MakeLink")
+        linkStatus = CPluginScript.SUCCEEDED
         
         for iPlugin, AcedrgLinkPlugin in enumerate(self.AcedrgLinkPlugins):
             self.container.outputData.CIF_OUT.setFullPath(self.workDirectory / (AcedrgLinkPlugin.container.inputData.LINK_ID.__str__()+"_link.cif"))
@@ -473,7 +569,8 @@ class MakeLink(CPluginScript):
             
             #Create link records, if an input model is provided
             link_bond_value = self.get_link_bond_value(self.container.outputData.CIF_OUT.fullPath.__str__())
-            self.applyLinksToModel(link_bond_value)
+            if self.applyLinksToModel(link_bond_value) == CPluginScript.FAILED:
+                linkStatus = CPluginScript.FAILED
             
             self.container.outputData.CIF_OUT.annotation.set("Link dictionary: "+self.container.inputData.ANNOTATION.__str__())
             self.container.outputData.UNL_PDB = AcedrgLinkPlugin.container.outputData.UNL_PDB.fullPath.__str__()
@@ -490,4 +587,8 @@ class MakeLink(CPluginScript):
         with open(self.makeFileName("PROGRAMXML"),"w") as pipelineXMLFile:
             CCP4Utils.writeXML(pipelineXMLFile,etree.tostring(pipelineXMLStructure))
         
+        # The dictionary is written either way, but a job asked to update the
+        # model and unable to do so is a failed job, not a finished one.
+        if linkStatus == CPluginScript.FAILED:
+            return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
