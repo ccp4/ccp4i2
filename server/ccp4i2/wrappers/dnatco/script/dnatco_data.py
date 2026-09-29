@@ -7,6 +7,7 @@ dnatco and dnatco_pipe reports, and the pre-run nucleic-acid check. Pure
 gemmi + stdlib so the reports can import it on the server.
 """
 
+import functools
 import json
 from pathlib import Path
 
@@ -22,6 +23,45 @@ NAVAL_TIERS = ("Preferred", "Allowed", "Of Concern")
 # group is not "Common" (rare values can still sit inside the allowed range).
 CONCERN_TIERS = ("Of Concern", "Allowed")
 CONCERN_PGROUPS = ("Rare", "Unique", "Ambiguous", "Outlier", None)
+
+# Modal bond lengths and angles of the standard nucleotides, measured over the
+# PDB-NA-RS reference set, so a geometry term flagged Of Concern can be shown
+# next to the value it is expected to take. Keyed by compound, then by the
+# geometry term's name with "-" written as "_" (as DNATCO's own NAVAL output
+# names it, e.g. "C1'-C2'" -> "C1'_C2'").
+REFERENCE_GEOMETRY_FILE = "PDB-NA-RS_angles_lengths_modes.json"
+
+
+@functools.lru_cache(maxsize=1)
+def reference_geometry_values():
+    """{compound: {term: modal value}} from the PDB-NA-RS reference table.
+
+    Read once and cached: the report asks for it per geometry term. Returns
+    {} if the table is missing or unreadable, so a report still draws (every
+    reference then reads as "-").
+    """
+    path = Path(__file__).with_name(REFERENCE_GEOMETRY_FILE)
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            data = json.load(handle)
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def reference_value(compound, name):
+    """The reference value for geometry term ``name`` of ``compound``, or None.
+
+    None for a modified or non-standard residue, which the reference set does
+    not cover, and for a term it does not list.
+    """
+    if not compound or name is None:
+        return None
+    values = reference_geometry_values().get(str(compound).strip().upper())
+    if not values:
+        return None
+    value = values.get(str(name).strip().replace("-", "_"))
+    return value if isinstance(value, (int, float)) else None
 
 
 def _num(value, cast=float):
@@ -208,20 +248,26 @@ def concerned_items(entries):
     Keeps terms whose NAVAL tier is not Preferred or whose probability group
     is not Common, and orders them most worrying first: Of Concern before
     Allowed, then ascending ProSco (a low probability score is worse).
+
+    Each term also carries ``reference``, the value the PDB-NA-RS reference
+    set expects for it, or None where that set does not cover the residue.
     """
     tier_order = {"Of Concern": 0, "Allowed": 1}
     concerned = []
     for item in entries or []:
+        compound = item.get("compound")
         for detail in item.get("details", []) or []:
             tier = detail.get("naval_tier")
             pgroup = detail.get("pGroup")
             if tier not in CONCERN_TIERS and pgroup not in CONCERN_PGROUPS:
                 continue
             prosco = detail.get("prosco")
+            name = detail.get("name")
             concerned.append({
                 "residue": format_residue(item),
-                "name": format_geometry_name(detail.get("name")),
+                "name": format_geometry_name(name),
                 "value": detail.get("value"),
+                "reference": reference_value(compound, name),
                 "pGroup": pgroup if pgroup is not None else "Unique",
                 "prosco": prosco if isinstance(prosco, (int, float)) else 0.0,
                 "naval_tier": tier or "",

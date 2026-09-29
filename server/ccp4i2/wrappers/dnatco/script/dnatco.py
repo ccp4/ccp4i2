@@ -56,16 +56,25 @@ def dnatco_js_path():
 def find_dnatco_command():
     """What to launch DNATCO with.
 
-    Prefer the CCP4 launcher script, resolved through program discovery so a
-    user can relocate it from Preferences -> Program locations. When no
-    launcher resolves (a bundle without one, or Windows) but the bundled
-    dnatco.js is present, run it with CCP4's ``node`` directly -- that is
-    all the launcher does. Falls through to the launcher name so a missing
-    install is reported as "dnatco.sh not found" rather than "node not
-    found".
+    The launcher CCP4 ships does one thing: ``node $CCP4/dnatco/bin/dnatco.js``.
+    So there are two equivalent ways in, and which is preferred depends on the
+    platform.
+
+    On POSIX, prefer the launcher script, resolved through program discovery so
+    a user can relocate it from Preferences -> Program locations.
+
+    On Windows the launcher is a batch file, and a job is started with
+    ``subprocess`` (no shell), which reaches ``CreateProcess`` -- and that
+    cannot execute a ``.bat`` at all. (The same trap as ccp4-python.bat on the
+    Electron side.) So there we drive dnatco.js with ``node`` ourselves, which
+    is a real executable, and keep the batch file only as the last resort that
+    names the missing install.
+
+    Either way this falls through to the launcher name, so an absent DNATCO is
+    reported as "dnatco.sh not found" rather than "node not found".
     """
     launcher = dnatco_launcher_name()
-    if resolve_program(launcher):
+    if os.name != "nt" and resolve_program(launcher):
         return launcher
     if dnatco_js_path() is not None and resolve_program("node"):
         return "node"
