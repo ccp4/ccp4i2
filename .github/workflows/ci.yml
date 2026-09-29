@@ -47,8 +47,58 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # What does this changeset actually need? The rule lives in
+  # .github/scripts/changes-need.sh so it can be run locally.
+  #
+  # Gated with a job-level `if`, never with `paths-ignore` on the trigger: a
+  # REQUIRED check whose workflow never runs never reports, and the pull request
+  # waits for it forever. A job skipped by a condition satisfies the
+  # requirement. That distinction is why the docs-only path is built this way
+  # (#555), and this extends the same mechanism.
+  scope:
+    name: Scope
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.decide.outputs.backend }}
+      frontend: ${{ steps.decide.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: decide
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            .github/scripts/changes-need.sh \
+              "${{ github.event.pull_request.base.sha }}" \
+              "${{ github.event.pull_request.head.sha }}" merge-base \
+              | tee -a "$GITHUB_OUTPUT"
+          else
+            .github/scripts/changes-need.sh \
+              "${{ github.event.before }}" "${{ github.sha }}" direct \
+              | tee -a "$GITHUB_OUTPUT"
+          fi
+
+  # Seconds, and unconditional: an alpha app pins the EXACT backend version it
+  # requires and refuses any other, so that pin and ccp4i2.__version__ must
+  # agree. Nothing checked it -- release.yml compares the tag with __version__
+  # and never the client pin, and cut-alpha.sh only holds the invariant for
+  # bumps that go through it. Either file can break it, so this does not gate on
+  # paths.
+  version-lockstep:
+    name: Version lockstep
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: .github/scripts/check-version-lockstep.sh
+
   unit-tests:
     name: Unit + API tests (Python ${{ matrix.python-version }})
+    needs: scope
+    # A client-only change cannot break the Python suites. If that ever stops
+    # being true -- a contract test that reads a client fixture, say -- widen
+    # the rule rather than relying on this comment.
+    if: needs.scope.outputs.backend == 'true'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -131,6 +181,10 @@ jobs:
     # scene lifting, diagnostics parsing, and the task-interface parameter
     # coverage ratchet, which is only a ratchet if something pulls it.
     name: Frontend tests
+    needs: scope
+    # vitest with mocked fetch and tsc: nothing here reaches the server, so a
+    # server-only change cannot alter the outcome.
+    if: needs.scope.outputs.frontend == 'true'
     runs-on: ubuntu-latest
 
     steps:

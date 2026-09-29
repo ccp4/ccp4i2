@@ -23,8 +23,12 @@ on:
       - django
 
 jobs:
-  # Decides whether anything other than documentation changed. The rule lives
-  # in .github/scripts/changes-need-build.sh so it can be run locally.
+  # Decides whether the desktop package needs building. The rule lives in
+  # .github/scripts/changes-need.sh (shared with ci.yml) so it can be run
+  # locally. It used to be "anything that is not documentation", which packaged
+  # three desktop apps for a server-only change -- and these builds run npm in
+  # client/ and packages/ and read nothing under server/, so they could not say
+  # anything about it. macOS bills at 10x and Windows at 2x.
   changes:
     runs-on: ubuntu-latest
     outputs:
@@ -37,13 +41,14 @@ jobs:
         shell: bash
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            build="$(.github/scripts/changes-need-build.sh \
+            decided="$(.github/scripts/changes-need.sh \
               "${{ github.event.pull_request.base.sha }}" \
               "${{ github.event.pull_request.head.sha }}" merge-base)"
           else
-            build="$(.github/scripts/changes-need-build.sh \
+            decided="$(.github/scripts/changes-need.sh \
               "${{ github.event.before }}" "${{ github.sha }}" direct)"
           fi
+          build="$(printf '%s\n' "$decided" | sed -n 's/^build=//p')"
           echo "build=${build}" >> "$GITHUB_OUTPUT"
           echo "Desktop build needed: ${build}"
 

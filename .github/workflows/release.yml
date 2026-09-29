@@ -55,6 +55,14 @@ jobs:
         with:
           python-version: '3.11'
 
+      # The app pins the EXACT backend version it requires and refuses any
+      # other, so a release whose pin and __version__ disagree ships an app
+      # that will not run. Checked on every PR too (ci.yml), but a release is
+      # the moment it actually matters.
+      - name: Assert the desktop pin matches the backend version
+        shell: bash
+        run: .github/scripts/check-version-lockstep.sh
+
       - id: check
         name: Assert tag == ccp4i2.__version__
         working-directory: server
