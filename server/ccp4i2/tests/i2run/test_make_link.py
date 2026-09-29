@@ -29,6 +29,15 @@ def test_6ndn():
             assert structure[0].count_atom_sites() > 0
             links = [c for c in structure.connections if c.link_id == "LYS-PLP"]
             assert links, "no LYS-PLP connection in the output model"
+            # AceDRG also regularises the two monomers joined. That pair is
+            # what the subjob's Moorhen view shows, so it has to be a real
+            # output and not a path to a file AceDRG never wrote.
+            dimers = sorted((job / "job_1").glob("*_for_link.pdb"))
+            assert dimers, "AceDRG wrote no linked pair"
+            dimer = read_pdb(str(dimers[0]))
+            assert dimer[0].count_atom_sites() > 0
+            assert sorted((job / "job_1").glob("*_for_link.cif")), \
+                "linked-pair dictionary not brought into the job directory"
 
 
 def test_6ndn_mmcif_gets_a_struct_conn():
