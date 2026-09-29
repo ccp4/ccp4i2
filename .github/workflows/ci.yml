@@ -95,10 +95,22 @@ jobs:
   unit-tests:
     name: Unit + API tests (Python ${{ matrix.python-version }})
     needs: scope
+    # The skip is on the STEPS, not on the job, and it has to be. Skipping a
+    # MATRIX job publishes the unexpanded template as the check name --
+    # "Unit + API tests (Python ${{ matrix.python-version }})" -- because there
+    # is no matrix to expand for a job that never ran. The required contexts
+    # "(Python 3.11)" and "(Python 3.13)" then never report, sit at "Expected",
+    # and the pull request cannot be merged: exactly the breakage paths-ignore
+    # used to cause (#555), reintroduced by gating the job. A docs-only PR hit
+    # it immediately (#659).
+    #
+    # Running the job with every step skipped keeps the names right and costs
+    # seconds. frontend-tests is not a matrix job, so its name is static and it
+    # is safely gated at job level.
+    #
     # A client-only change cannot break the Python suites. If that ever stops
     # being true -- a contract test that reads a client fixture, say -- widen
     # the rule rather than relying on this comment.
-    if: needs.scope.outputs.backend == 'true'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -110,20 +122,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        if: needs.scope.outputs.backend == 'true'
 
       - uses: actions/setup-python@v5
+        if: needs.scope.outputs.backend == 'true'
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: server/pyproject.toml
 
       - name: Install the server and its test toolchain
+        if: needs.scope.outputs.backend == 'true'
         working-directory: server
         run: |
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
       - name: Assert CCP4 really is absent
+        if: needs.scope.outputs.backend == 'true'
         # The point of this job is that these suites need no CCP4. If a runner
         # image ever grew one, the job would silently start proving less.
         run: |
@@ -139,13 +155,16 @@ jobs:
       # library for years and no cmapcoeff job ever wrote a program.xml.
       # Stdlib only and instant, so it runs before the suites.
       - name: Missing-API check (lxml-only APIs off lxml)
+        if: needs.scope.outputs.backend == 'true'
         run: python3 scripts/check_lxml_api.py
 
       - name: Unit tests
+        if: needs.scope.outputs.backend == 'true'
         working-directory: server
         run: python -m pytest ccp4i2/tests/unit/ -q
 
       - name: API tests
+        if: needs.scope.outputs.backend == 'true'
         working-directory: server
         run: python -m pytest ccp4i2/tests/api/unit/ -q
 
@@ -155,6 +174,7 @@ jobs:
       # which killed the whole pytest session -- so it is wired into CI here
       # to stop that recurring silently.
       - name: Async execution tests
+        if: needs.scope.outputs.backend == 'true'
         working-directory: server
         run: python -m pytest ccp4i2/tests/async_execution/ -q
 
@@ -163,6 +183,7 @@ jobs:
       # fixtures still come from the external test101 checkout skip themselves
       # when it is absent, the same way tests/api/unit/ does.
       - name: Database tests
+        if: needs.scope.outputs.backend == 'true'
         working-directory: server
         run: python -m pytest ccp4i2/tests/db/ -q
 
@@ -172,6 +193,7 @@ jobs:
       # that, and the gap is how a file-deleting bug reached a user. No CCP4
       # binaries, about five seconds.
       - name: API configuration tests
+        if: needs.scope.outputs.backend == 'true'
         working-directory: server
         run: python -m pytest ccp4i2/tests/api/config/ -q
 
