@@ -136,7 +136,7 @@ def extract_monomer_atoms_bonds(cif_file_path: str) -> Dict[str, Any]:
     try:
         doc = gemmi.cif.read_file(cif_file_path)
     except Exception:
-        return {"atoms": [], "bonds": []}
+        return _empty_monomer()
 
     # Find the comp block — try comp_* blocks, fall back to last block
     block = None
@@ -147,7 +147,7 @@ def extract_monomer_atoms_bonds(cif_file_path: str) -> Dict[str, Any]:
     if block is None and len(doc) > 0:
         block = doc[-1]
     if block is None:
-        return {"atoms": [], "bonds": []}
+        return _empty_monomer()
 
     return _extract_atoms_bonds_from_block(block)
 
@@ -195,15 +195,50 @@ def extract_all_monomers_atoms_bonds(cif_file_path: str) -> Dict[str, Dict[str, 
     return monomers
 
 
+def _empty_monomer() -> Dict[str, Any]:
+    """The shape every extractor returns, so no caller has to guess a key."""
+    return {"atoms": [], "bonds": [], "atom_details": []}
+
+
+def _formal_charge(atom) -> int:
+    """A chem_comp atom's formal charge as a whole number, 0 when absent.
+
+    The dictionaries carry this as a float ("0.000", "1.000"), and gemmi has
+    named it differently across versions, so ask for what is there.
+    """
+    for attribute in ("charge", "formal_charge"):
+        value = getattr(atom, attribute, None)
+        if value is None:
+            continue
+        try:
+            return int(round(float(value)))
+        except (TypeError, ValueError):
+            continue
+    return 0
+
+
 def _extract_atoms_bonds_from_block(block: gemmi.cif.Block) -> Dict[str, Any]:
-    """Extract non-hydrogen atoms and bonds from a single CIF comp block."""
+    """Extract non-hydrogen atoms and bonds from a single CIF comp block.
+
+    ``atoms`` is the atom names, and ``atom_details`` the same atoms in the
+    same order with the element and formal charge the depiction needs. Two
+    keys rather than one because ``atoms`` is a list of plain names that
+    callers match against, and because the order is the contract: a client
+    building a molecule from this can rely on index i meaning atoms[i], and
+    so never has to map a depiction's atom indices back to dictionary names.
+    """
     try:
         comp = gemmi.make_chemcomp_from_block(block)
     except Exception:
-        return {"atoms": [], "bonds": []}
+        return _empty_monomer()
 
     # Non-hydrogen atoms
-    atoms = [a.id for a in comp.atoms if a.el.name != "H"]
+    heavy = [a for a in comp.atoms if a.el.name != "H"]
+    atoms = [a.id for a in heavy]
+    atom_details = [
+        {"name": a.id, "element": a.el.name, "charge": _formal_charge(a)}
+        for a in heavy
+    ]
     atom_set = set(atoms)
 
     # Bonds between non-hydrogen atoms
@@ -225,7 +260,7 @@ def _extract_atoms_bonds_from_block(block: gemmi.cif.Block) -> Dict[str, Any]:
                 "type": bond_type_map.get(b.type.name, b.type.name),
             })
 
-    return {"atoms": atoms, "bonds": bonds}
+    return {"atoms": atoms, "bonds": bonds, "atom_details": atom_details}
 
 
 def generate_all_molblocks(cif_file_path: str) -> Dict[str, str]:
