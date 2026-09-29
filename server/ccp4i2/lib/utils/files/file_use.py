@@ -200,17 +200,21 @@ def _known_task_names():
     return list(TASKS)
 
 
-def _param_names_on(job):
-    """Every parameter name *job* has a file under, output or input."""
+def _param_names_on(job, role=None):
+    """Parameter names *job* has a file under, optionally for one role only."""
     from ....db import models
 
-    outputs = models.File.objects.filter(job=job).values_list(
-        "job_param_name", flat=True
-    )
-    inputs = models.FileUse.objects.filter(job=job).values_list(
-        "job_param_name", flat=True
-    )
-    return set(outputs) | set(inputs)
+    uses = models.FileUse.objects.filter(job=job)
+    if role is not None:
+        uses = uses.filter(role=role)
+    names = set(uses.values_list("job_param_name", flat=True))
+    if not names and role is None:
+        names = set(
+            models.File.objects.filter(job=job).values_list(
+                "job_param_name", flat=True
+            )
+        )
+    return names
 
 
 def _candidate_jobs(project, ref: FileUseRef):
@@ -233,30 +237,64 @@ def _candidate_jobs(project, ref: FileUseRef):
     return [job for job in jobs.order_by("id") if "." not in job.number]
 
 
-def _files_on(job, param_name: str):
-    """Files *job* names as *param_name*: its outputs, else the inputs it used."""
+def _files_on(job, param_name: str, role):
+    """Files *job* names as *param_name* in the given direction.
+
+    The role is the whole point of splitting the syntax into ``fileIn=`` and
+    ``fileOut=``. Four tasks carry the same file parameter name in both
+    inputData and outputData -- ``molrep_pipe`` and
+    ``dr_mr_modelbuild_pipeline`` pass ``F_SIGF`` and ``FREERFLAG`` straight
+    through, ``servalcat_pipe`` has ``METALCOORD_RESTRAINTS``,
+    ``adding_stats_to_mmcif_i2`` has ``FPHIOUT``/``DIFFPHIOUT`` -- so a single
+    keyword would have needed an arbitrary precedence rule to decide what
+    ``[5].F_SIGF`` meant. Naming the direction removes the ambiguity instead of
+    resolving it by fiat.
+
+    Matched case-insensitively, because getting the case wrong is the typo
+    people actually make and there is nothing to gain by refusing it: no two
+    parameters anywhere in the registry differ only by case (7496 upper, 2036
+    lower, 249 mixed, zero collisions). What this must NOT do is upper-case the
+    name: parameter names are only *conventionally* capitalised, and
+    PHIL-derived ones are lower-case
+    (``phaser__crystal_symmetry__unit_cell``), a few classic ones are mixed
+    (``F_SIGFanom``), and every task carries ``jobTitle``/``jobStatus``.
+    """
     from ....db import models
 
-    outputs = list(
-        models.File.objects.filter(job=job, job_param_name=param_name)
-        .select_related("job__project")
-        .order_by("id")
-    )
-    if outputs:
-        return outputs
-    used_ids = models.FileUse.objects.filter(
-        job=job, job_param_name=param_name
-    ).values_list("file_id", flat=True)
-    return list(
-        models.File.objects.filter(id__in=used_ids)
-        .select_related("job__project")
-        .order_by("id")
-    )
+    for lookup in (
+        {"job_param_name": param_name},
+        {"job_param_name__iexact": param_name},
+    ):
+        file_ids = models.FileUse.objects.filter(
+            job=job, role=role, **lookup
+        ).values_list("file_id", flat=True)
+        files = list(
+            models.File.objects.filter(id__in=file_ids)
+            .select_related("job__project")
+            .order_by("id")
+        )
+        if files:
+            return files
+
+        # Defensive fallback for a file with no FileUse row for its own job.
+        # An imported file is an INPUT to the job it was imported for; anything
+        # else a job owns, it produced.
+        want_import = role == models.FileUse.Role.IN
+        owned = [
+            f
+            for f in models.File.objects.filter(job=job, **lookup)
+            .select_related("job__project")
+            .order_by("id")
+            if (f.directory == models.File.Directory.IMPORT_DIR) == want_import
+        ]
+        if owned:
+            return owned
+    return []
 
 
-def _pick(files, ref: FileUseRef, what: str, job=None):
+def _pick(files, ref: FileUseRef, what: str, job=None, role=None):
     if not files:
-        available = _param_names_on(job) if job is not None else ()
+        available = _param_names_on(job, role) if job is not None else ()
         detail = (
             _did_you_mean(ref.param_name, available)
             + _and_these_exist("It has", available)
@@ -273,7 +311,7 @@ def _pick(files, ref: FileUseRef, what: str, job=None):
         ) from None
 
 
-def _resolve_ref(project, ref: FileUseRef):
+def _resolve_ref(project, ref: FileUseRef, role):
     """The file *ref* names in *project*."""
     from ....db import models
 
@@ -287,10 +325,11 @@ def _resolve_ref(project, ref: FileUseRef):
                 f"no job numbered {ref.job_number} in project '{project.name}'"
             )
         return _pick(
-            _files_on(job, ref.param_name),
+            _files_on(job, ref.param_name, role),
             ref,
             f"job {job.number} ({job.task_name})",
             job,
+            role,
         )
 
     candidates = _candidate_jobs(project, ref)
@@ -304,13 +343,15 @@ def _resolve_ref(project, ref: FileUseRef):
         # Relative: only jobs that actually have the file count.
         with_file = [
             (job, files)
-            for job, files in ((job, _files_on(job, ref.param_name)) for job in candidates)
+            for job, files in (
+                (job, _files_on(job, ref.param_name, role)) for job in candidates
+            )
             if files
         ]
         if not with_file:
             available = set()
             for candidate in candidates:
-                available |= _param_names_on(candidate)
+                available |= _param_names_on(candidate, role)
             # An empty inventory is a different diagnosis from a wrong name:
             # the jobs exist but have produced nothing, which usually means
             # they have not been run.
@@ -332,7 +373,7 @@ def _resolve_ref(project, ref: FileUseRef):
                 f"[{ref.index}]: only {len(with_file)} {described} in "
                 f"'{project.name}' have a '{ref.param_name}'"
             ) from None
-        return _pick(files, ref, f"job {job.number} ({job.task_name})", job)
+        return _pick(files, ref, f"job {job.number} ({job.task_name})", job, role)
 
     # Qualified, non-negative: a literal ordinal within that task's jobs.
     try:
@@ -343,10 +384,11 @@ def _resolve_ref(project, ref: FileUseRef):
             f"{len(candidates)} {described}"
         ) from None
     return _pick(
-        _files_on(job, ref.param_name),
+        _files_on(job, ref.param_name, role),
         ref,
         f"job {job.number} ({job.task_name})",
         job,
+        role,
     )
 
 
@@ -368,13 +410,29 @@ def file_dict_for_file(the_file) -> dict:
     return file_dict
 
 
-def resolve_file_use(project, text: str) -> dict:
-    """Resolve a fileUse reference against *project* to CDataFile fields.
+FILE_IN = "fileIn"
+FILE_OUT = "fileOut"
+
+
+def _role_of(keyword: str):
+    """The FileUse role a keyword names."""
+    from ....db import models
+
+    if keyword == FILE_IN:
+        return models.FileUse.Role.IN
+    if keyword == FILE_OUT:
+        return models.FileUse.Role.OUT
+    raise FileUseError(
+        f"'{keyword}=' is not a file reference. Use '{FILE_OUT}=' for a file a "
+        f"job produced, or '{FILE_IN}=' for one it consumed"
+    )
+
+
+def resolve_file_reference(project, keyword: str, text: str) -> dict:
+    """Resolve ``fileIn=``/``fileOut=`` *text* against *project*.
 
     *project* is a Project instance, its uuid, or its name.
     """
-    # Imported here, not at module scope: parse_file_use is pure, and a
-    # pure parser should be testable without a configured Django.
     from ....db import models
 
     if isinstance(project, models.Project):
@@ -389,25 +447,46 @@ def resolve_file_use(project, text: str) -> dict:
             except models.Project.DoesNotExist:
                 raise FileUseError(f"no project '{text_project}'") from None
 
-    the_file = _resolve_ref(the_project, parse_file_use(text))
-    logger.info("fileUse %s -> %s", text, the_file.name)
+    role = _role_of(keyword)
+    the_file = _resolve_ref(the_project, parse_file_use(text), role)
+    logger.info("%s=%s -> %s", keyword, text, the_file.name)
     return file_dict_for_file(the_file)
 
 
-def file_use_for_file(the_file) -> Optional[str]:
-    """The fileUse reference naming *the_file*, or None if there isn't one.
+def file_reference_for_file(the_file, rendering_job=None):
+    """``(keyword, reference)`` naming *the_file*, or None if there isn't one.
 
-    None for an imported file: its File row points at the job that imported it
-    and the parameter it was imported for, so a reference to it from that same
-    job would be circular. Those render as a path instead, which is also what
-    someone redirecting a command at new data wants to edit.
+    A file is named by the job that OWNS it -- the one that produced it, or
+    imported it -- which is what its File row records, and in the DIRECTION
+    that job saw it, which is what its FileUse role records. So the MTZ
+    imported for job 2 renders as ``fileIn=[2].F_SIGF`` to every later job that
+    uses it, and job 2's own FREEROUT renders as ``fileOut=[2].FREEROUT``.
+
+    The one case with no reference is the owning job itself: rendering job 2's
+    command, ``[2].F_SIGF`` would point at the job being described, which is
+    circular and useless to edit. Pass *rendering_job* to get None there, so
+    the caller can fall back to the database id.
+
+    (Testing the import directory instead, as this first did, was too blunt: it
+    refused the useful case as well, and imported files are exactly the ones a
+    person most wants to redirect at new data.)
     """
-    # Imported here, not at module scope: parse_file_use is pure, and a
-    # pure parser should be testable without a configured Django.
     from ....db import models
 
-    if the_file.directory == models.File.Directory.IMPORT_DIR:
+    if the_file.job is None or not the_file.job_param_name:
         return None
-    if the_file.job is None or the_file.job_param_name is None:
+    if rendering_job is not None and the_file.job_id == rendering_job.id:
         return None
-    return f"[{the_file.job.number}].{the_file.job_param_name}"
+
+    use = models.FileUse.objects.filter(file=the_file, job=the_file.job).first()
+    if use is not None:
+        keyword = FILE_IN if use.role == models.FileUse.Role.IN else FILE_OUT
+    else:
+        # No row for the owning job: an import is an input to it, anything
+        # else it owns, it produced.
+        keyword = (
+            FILE_IN
+            if the_file.directory == models.File.Directory.IMPORT_DIR
+            else FILE_OUT
+        )
+    return keyword, f"[{the_file.job.number}].{the_file.job_param_name}"

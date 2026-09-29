@@ -39,6 +39,7 @@ def i2run_for_job(job: models.Job):
             "guiParameters",
             "temporary",
         ],
+        job=job,
     )
     return command
 
@@ -242,6 +243,7 @@ def extend_i2run(
     container: CCP4Container,
     exclude: list[str] = None,
     names: dict = None,
+    job=None,
 ) -> str:
     if exclude is None:
         exclude = []
@@ -261,14 +263,14 @@ def extend_i2run(
 
     def handle_list_child(command, child, container):
         for grandchild in child:
-            element_text = handle_element(grandchild)
+            element_text = handle_element(grandchild, job)
             if len(element_text) > 0:
                 command += f" --{minimal_path(child.objectPath(), container, names)}"
                 command += f" {element_text}"
         return command
 
     def handle_nonleaf_child(command, child, container):
-        element_text = handle_element(child)
+        element_text = handle_element(child, job)
         if len(element_text) > 0:
             command += f" --{minimal_path(child.objectPath(), container, names)}"
             command += f" {element_text}"
@@ -280,7 +282,7 @@ def extend_i2run(
         if is_unset_nonlist_noncontainer(child):
             return command
         if _is_container(child):
-            return extend_i2run(command, child, container, exclude, names)
+            return extend_i2run(command, child, container, exclude, names, job)
         if _is_list(child):
             return handle_list_child(command, child, container)
         if not _is_leaf(child):
@@ -294,8 +296,9 @@ def extend_i2run(
     return command
 
 
-def _file_use_text(node) -> str:
-    """``fileUse=[N].PARAM`` for a file another job produced, else "".
+def _file_use_text(node, rendering_job=None) -> str:
+    """``fileOut=[N].PARAM`` / ``fileIn=[N].PARAM`` for a file another job
+    owns, else "".
 
     This is what makes a rendered command editable. The first thing anyone does
     with a surfaced i2run call is change its inputs, and nobody can retype
@@ -308,10 +311,14 @@ def _file_use_text(node) -> str:
     somewhere else next week, and a surfaced command should reproduce the job
     it was surfaced from.
 
-    Empty for an imported file, which has no producing job to name.
+    Empty only when the file is owned by the job being rendered -- a job that
+    imported its own input, where a reference would point at the job being
+    described. Everything else, imported files included, is named by its owning
+    job: the MTZ imported for job 2 is ``[2].F_SIGF`` to every later job that
+    uses it.
     """
     from ....db import models
-    from ..files.file_use import file_use_for_file
+    from ..files.file_use import file_reference_for_file
 
     try:
         db_id = str(node.dbFileId)
@@ -323,17 +330,20 @@ def _file_use_text(node) -> str:
     the_file = models.File.objects.filter(uuid=db_id).select_related("job").first()
     if the_file is None:
         return ""
-    reference = file_use_for_file(the_file)
-    return f'"fileUse={reference}"' if reference else ""
+    reference = file_reference_for_file(the_file, rendering_job)
+    if not reference:
+        return ""
+    keyword, text = reference
+    return f'"{keyword}={text}"'
 
 
-def handle_element(item: CData) -> str:
+def handle_element(item: CData, rendering_job=None) -> str:
     # If this is a simple element, then simply return the corresponding quoted string value
     if _is_leaf(item):
         return f'"{str(item)}"'
 
     if _is_file(item) and _file_is_registered(item):
-        file_use = _file_use_text(item)
+        file_use = _file_use_text(item, rendering_job)
         if file_use:
             return file_use
 
