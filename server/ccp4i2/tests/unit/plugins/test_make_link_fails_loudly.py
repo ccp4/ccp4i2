@@ -1,0 +1,119 @@
+"""MakeLink must not finish successfully holding no model.
+
+AceDRG writes the link dictionary; applying that link to the user's model is
+our own gemmi code, and every way it could fail used to be a bare `return` or
+a swallowed exception, leaving a job that said Finished and produced nothing
+(or, worse, an empty two-line PDB annotated "Model with links applied").
+
+Reported by Martin Maly against CCP4 9.0.015; the same holes were here.
+"""
+import pytest
+
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.tasks import get_plugin_class
+from ccp4i2.pipelines.MakeLink.script.MakeLink import _has_atoms
+
+gemmi = pytest.importorskip("gemmi", reason="_has_atoms works on gemmi structures")
+
+
+@pytest.fixture
+def plugin():
+    # Kept alive by the fixture: a destroyed plugin empties the container.
+    return get_plugin_class("MakeLink")(parent=None, name="mk")
+
+
+def codes(error, severity=None):
+    """The error codes in a CErrorReport, optionally only at one severity."""
+    return [item["code"] for item in error.entries()
+            if severity is None or item["severity"] == severity]
+
+
+# --- _has_atoms: the empty-structure trap -------------------------------
+
+def test_has_atoms_is_false_for_a_structure_gemmi_could_not_fill(tmp_path):
+    # gemmi returns an EMPTY structure for junk rather than raising, which is
+    # how a garbage input file became a valid-looking "model with links".
+    junk = tmp_path / "junk.pdb"
+    junk.write_text("this is not a model file at all\nnonsense\n")
+    assert _has_atoms(gemmi.read_structure(str(junk))) is False
+
+
+def test_has_atoms_is_true_for_a_real_model():
+    structure = gemmi.Structure()
+    model = gemmi.Model("1")
+    chain = gemmi.Chain("A")
+    residue = gemmi.Residue()
+    residue.name = "LYS"
+    atom = gemmi.Atom()
+    atom.name = "NZ"
+    residue.add_atom(atom)
+    chain.add_residue(residue)
+    model.add_chain(chain)
+    structure.add_model(model)
+    assert _has_atoms(structure) is True
+
+
+# --- validity(): the two ways to ask for a model and not get one --------
+
+def test_a_model_without_the_toggle_warns_but_does_not_block(plugin, tmp_path):
+    model = tmp_path / "in.pdb"
+    model.write_text("END\n")
+    plugin.container.inputData.XYZIN.setFullPath(str(model))
+    plugin.container.controlParameters.TOGGLE_LINK = False
+    error = plugin.validity()
+    assert 306 in codes(error, CCP4ErrorHandling.SEVERITY_WARNING)
+    # Advisory only: the dictionary is still a perfectly good result.
+    assert 306 not in codes(error, CCP4ErrorHandling.SEVERITY_ERROR)
+
+
+def test_the_toggle_without_a_model_is_an_error(plugin):
+    plugin.container.controlParameters.TOGGLE_LINK = True
+    error = plugin.validity()
+    assert 307 in codes(error, CCP4ErrorHandling.SEVERITY_ERROR)
+
+
+def test_toggle_and_model_together_raise_neither(plugin, tmp_path):
+    model = tmp_path / "in.pdb"
+    model.write_text("END\n")
+    plugin.container.inputData.XYZIN.setFullPath(str(model))
+    plugin.container.controlParameters.TOGGLE_LINK = True
+    error = plugin.validity()
+    assert 306 not in codes(error)
+    assert 307 not in codes(error)
+
+
+# --- applyLinksToModel(): the guard paths return a status ---------------
+
+def test_no_toggle_is_success_not_failure(plugin):
+    # Nothing was asked for, so the job is still a good job.
+    plugin.container.controlParameters.TOGGLE_LINK = False
+    assert plugin.applyLinksToModel(1.5) == CPluginScript.SUCCEEDED
+
+
+def test_toggle_without_a_model_fails(plugin):
+    plugin.container.controlParameters.TOGGLE_LINK = True
+    assert plugin.applyLinksToModel(1.5) == CPluginScript.FAILED
+
+
+def test_no_link_in_the_dictionary_fails(plugin, tmp_path):
+    # get_link_bond_value() returned None: it could not find the link it just
+    # asked AceDRG to make. That used to be a silent skip.
+    model = tmp_path / "in.pdb"
+    model.write_text("END\n")
+    plugin.container.inputData.XYZIN.setFullPath(str(model))
+    plugin.container.controlParameters.TOGGLE_LINK = True
+    assert plugin.applyLinksToModel(None) == CPluginScript.FAILED
+
+
+def test_an_unreadable_model_fails_rather_than_writing_an_empty_one(plugin, tmp_path):
+    junk = tmp_path / "junk.pdb"
+    junk.write_text("this is not a model file at all\nnonsense\n")
+    plugin.container.inputData.XYZIN.setFullPath(str(junk))
+    plugin.container.controlParameters.TOGGLE_LINK = True
+    plugin.container.inputData.RES_NAME_1_TLC.set("LYS")
+    plugin.container.inputData.RES_NAME_2_TLC.set("PLP")
+    plugin.container.inputData.ATOM_NAME_1.set("NZ")
+    plugin.container.inputData.ATOM_NAME_2.set("C4A")
+    assert plugin.applyLinksToModel(1.5) == CPluginScript.FAILED
+    assert not plugin.container.outputData.XYZOUT.isSet()
