@@ -294,10 +294,48 @@ def extend_i2run(
     return command
 
 
+def _file_use_text(node) -> str:
+    """``fileUse=[N].PARAM`` for a file another job produced, else "".
+
+    This is what makes a rendered command editable. The first thing anyone does
+    with a surfaced i2run call is change its inputs, and nobody can retype
+    ``dbFileId=a3ed78ad466845a88765271c38d15149`` or work out what it was --
+    whereas ``[3].XYZOUT`` says which job and which output, and edits cleanly
+    to ``[-1].XYZOUT`` or ``prosmart_refmac[-1].XYZOUT`` for a script.
+
+    An ABSOLUTE reference is rendered on purpose. Relative ones are for people
+    to write: a command that meant "the latest refmac" would quietly resolve
+    somewhere else next week, and a surfaced command should reproduce the job
+    it was surfaced from.
+
+    Empty for an imported file, which has no producing job to name.
+    """
+    from ....db import models
+    from ..files.file_use import file_use_for_file
+
+    try:
+        db_id = str(node.dbFileId)
+    except Exception:
+        return ""
+    if not db_id:
+        return ""
+
+    the_file = models.File.objects.filter(uuid=db_id).select_related("job").first()
+    if the_file is None:
+        return ""
+    reference = file_use_for_file(the_file)
+    return f'"fileUse={reference}"' if reference else ""
+
+
 def handle_element(item: CData) -> str:
     # If this is a simple element, then simply return the corresponding quoted string value
     if _is_leaf(item):
         return f'"{str(item)}"'
+
+    if _is_file(item) and _file_is_registered(item):
+        file_use = _file_use_text(item)
+        if file_use:
+            return file_use
 
     def traverse(node, path_parts, is_root=False):
         results = []
