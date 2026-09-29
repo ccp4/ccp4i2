@@ -123,6 +123,24 @@ class MakeLink(CPluginScript):
                 severity=CCP4ErrorHandling.SEVERITY_WARNING)
         return error
 
+    def normaliseResidueCodes(self):
+        """Upper-case (and trim) the monomer-library residue codes.
+
+        AceDRG finds LYS.cif for "Lys" but then looks inside it for a comp
+        called "Lys", and fails. The task interface and the monomer-info
+        endpoint both upper-case the lookup, so the atom dropdown filled
+        normally and the job looked ready to run. Every library code is upper
+        case, so normalise once here, before the instruction, the link id and
+        the model matching all read the name. CIF-mode names come from the
+        user's own dictionary and are left exactly as it spells them.
+        """
+        for field in (self.container.inputData.RES_NAME_1_TLC,
+                      self.container.inputData.RES_NAME_2_TLC):
+            if field.isSet():
+                code = str(field).strip().upper()
+                if code != str(field):
+                    field.set(code)
+
     def createLinkInstruction(self):
        instruct = "LINK:"
 
@@ -496,6 +514,7 @@ class MakeLink(CPluginScript):
         self.AcedrgLinkPlugins = []
         self.completedPlugins = []
 
+        self.normaliseResidueCodes()
         print("Creating link instruction")
         instruct = self.createLinkInstruction()
         if instruct == CPluginScript.FAILED:

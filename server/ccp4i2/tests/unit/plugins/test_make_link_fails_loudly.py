@@ -117,3 +117,31 @@ def test_an_unreadable_model_fails_rather_than_writing_an_empty_one(plugin, tmp_
     plugin.container.inputData.ATOM_NAME_2.set("C4A")
     assert plugin.applyLinksToModel(1.5) == CPluginScript.FAILED
     assert not plugin.container.outputData.XYZOUT.isSet()
+
+
+# --- residue codes: "Lys" is LYS -----------------------------------------
+# AceDRG finds LYS.cif for "Lys", then looks inside it for a comp "Lys" and
+# stops. The task interface upper-cases its own lookup, so the atom dropdown
+# filled and nothing warned before the job failed (BAZ2B campaign, 2026-09-29).
+
+def test_library_codes_are_upper_cased_before_the_instruction(plugin):
+    inp = plugin.container.inputData
+    inp.RES_NAME_1_TLC.set("Lys")
+    inp.RES_NAME_2_TLC.set(" glu ")
+    inp.ATOM_NAME_1.set("NZ")
+    inp.ATOM_NAME_2.set("CD")
+    plugin.normaliseResidueCodes()
+    assert str(inp.RES_NAME_1_TLC) == "LYS"
+    assert str(inp.RES_NAME_2_TLC) == "GLU"
+    instruct = plugin.createLinkInstruction()
+    assert "RES-NAME-1 LYS " in instruct
+    assert "RES-NAME-2 GLU " in instruct
+
+
+def test_a_dictionary_code_is_left_as_the_dictionary_spells_it(plugin):
+    # CIF mode names a comp in the user's own file, which may be lower case.
+    inp = plugin.container.inputData
+    inp.MON_1_TYPE.set("CIF")
+    inp.RES_NAME_1_CIF.set("Lig")
+    plugin.normaliseResidueCodes()
+    assert str(inp.RES_NAME_1_CIF) == "Lig"
