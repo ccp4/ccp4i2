@@ -159,3 +159,57 @@ class TestWhatTheRendererActuallyEmits:
             checked += 1
 
         assert checked > 0, f"no parameters found for {task_name}"
+
+
+class TestTheCaseInvariant:
+    """fileUse matches a parameter name case-insensitively, which is only safe
+    because no two parameters anywhere differ only by case. That is a property
+    of every def.xml in the registry, not something this code controls, so it
+    is asserted rather than assumed.
+
+    Parameter names are conventionally capitalised but only conventionally --
+    PHIL-derived ones are lower-case, a few classic ones are mixed, and every
+    task carries jobTitle/jobStatus -- so nothing may normalise by
+    upper-casing.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _needs_plugins(self):
+        pytest.importorskip("libtbx.phil", reason="needs libtbx (CCP4/cctbx)")
+
+    def test_no_task_has_two_parameters_differing_only_by_case(self):
+        import collections
+
+        from ccp4i2.core.CCP4Container import CContainer
+        from ccp4i2.core.tasks import TASKS, get_plugin_class
+
+        collisions = []
+        for task_name in TASKS:
+            try:
+                plugin = get_plugin_class(task_name)(parent=None)
+            except Exception:
+                # A task whose plugin will not import is another test's problem.
+                continue
+
+            names = []
+
+            def walk(node):
+                for child in node.children():
+                    if isinstance(child, CContainer):
+                        walk(child)
+                    else:
+                        names.append(child.objectName())
+
+            walk(plugin.container)
+
+            by_lower = collections.defaultdict(set)
+            for name in names:
+                by_lower[name.lower()].add(name)
+            for variants in by_lower.values():
+                if len(variants) > 1:
+                    collisions.append((task_name, sorted(variants)))
+
+        assert not collisions, (
+            "parameters differing only by case make case-insensitive fileUse "
+            f"matching ambiguous: {collisions[:5]}"
+        )

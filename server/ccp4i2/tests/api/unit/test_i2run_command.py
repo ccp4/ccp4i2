@@ -209,10 +209,13 @@ class TestFileUseFailures:
     than in the CCP4-free parser tests."""
 
     def test_an_unknown_task_name_suggests_a_real_one(self, project):
-        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+        from ccp4i2.lib.utils.files.file_use import (
+            FileUseError,
+            resolve_file_reference,
+        )
 
         with pytest.raises(FileUseError) as caught:
-            resolve_file_use(project, "freer_flag[-1].FREEROUT")
+            resolve_file_reference(project, "fileOut", "freer_flag[-1].FREEROUT")
 
         message = str(caught.value)
         assert "is not a task" in message, message
@@ -221,20 +224,26 @@ class TestFileUseFailures:
     def test_an_unrun_job_says_so_rather_than_blaming_the_name(self, project, job):
         """Distinct diagnosis: the job exists and the parameter may be spelled
         correctly -- there is simply nothing there yet."""
-        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+        from ccp4i2.lib.utils.files.file_use import (
+            FileUseError,
+            resolve_file_reference,
+        )
 
         with pytest.raises(FileUseError) as caught:
-            resolve_file_use(project, f"[{job.number}].FREEROUT")
+            resolve_file_reference(project, "fileOut", f"[{job.number}].FREEROUT")
 
         message = str(caught.value)
         assert "no file for 'FREEROUT'" in message, message
         assert "has it run?" in message, message
 
     def test_a_missing_job_number_is_named(self, project, job):
-        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+        from ccp4i2.lib.utils.files.file_use import (
+            FileUseError,
+            resolve_file_reference,
+        )
 
         with pytest.raises(FileUseError) as caught:
-            resolve_file_use(project, "[999].FREEROUT")
+            resolve_file_reference(project, "fileOut", "[999].FREEROUT")
 
         assert "no job numbered 999" in str(caught.value)
 
@@ -245,7 +254,10 @@ class TestFileUseFailures:
         key=value path, set a dead attribute and left the parameter UNSET, so
         the command configured an empty plugin and failed later looking like
         something else."""
-        from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_file_use
+        from ccp4i2.lib.utils.files.file_use import (
+            FileUseError,
+            resolve_file_reference,
+        )
 
         with pytest.raises(FileUseError):
-            resolve_file_use(job.project, "[999].NOPE")
+            resolve_file_reference(job.project, "fileOut", "[999].NOPE")

@@ -595,22 +595,34 @@ class PluginPopulator:
                 parsed_values[key] = val
                 has_key_value_syntax = True
 
-        # Special handling for fileUse=, which names a file by where it came
-        # from ("[3].XYZOUT", "prosmart_refmac[-1].XYZOUT") instead of by a
-        # database id nobody can read or retype. Resolved to the same fields a
-        # dbFileId reference would set.
+        # Special handling for fileIn= / fileOut=, which name a file by where
+        # it came from ("fileOut=[3].XYZOUT", "fileIn=prosmart_refmac[-1].F_SIGF")
+        # instead of by a database id nobody can read or retype. Resolved to the
+        # same fields a dbFileId reference would set.
         #
-        # Until this existed the key fell through to the generic key=value
-        # path, which set a dead `fileUse` attribute and left the parameter
-        # UNSET: `--F_SIGF "fileUse=3.FREEROUT"` configured an empty plugin,
-        # silently, and the job failed later looking like something else.
-        if has_key_value_syntax and "fileUse" in parsed_values:
+        # The direction is part of the keyword because four tasks carry the same
+        # file parameter name in both inputData and outputData (molrep_pipe and
+        # dr_mr_modelbuild_pipeline pass F_SIGF and FREERFLAG through), so a
+        # single keyword would have needed an arbitrary precedence rule.
+        #
+        # Until this existed the key fell through to the generic key=value path,
+        # which set a dead attribute and left the parameter UNSET: the command
+        # configured an empty plugin, silently, and the job failed later looking
+        # like something else.
+        file_keywords = [k for k in ("fileIn", "fileOut") if k in parsed_values]
+        if has_key_value_syntax and file_keywords:
             from ccp4i2.lib.utils.files.file_use import (
                 FileUseError,
-                resolve_file_use,
+                resolve_file_reference,
             )
 
-            reference = parsed_values.pop("fileUse")
+            if len(file_keywords) > 1:
+                raise FileUseError(
+                    "give fileIn= or fileOut=, not both: "
+                    + ", ".join(f"{k}={parsed_values[k]}" for k in file_keywords)
+                )
+            keyword = file_keywords[0]
+            reference = parsed_values.pop(keyword)
             plugin_parent = (
                 target._find_plugin_parent()
                 if hasattr(target, "_find_plugin_parent")
@@ -619,13 +631,15 @@ class PluginPopulator:
             project_id = getattr(plugin_parent, "_dbProjectId", None)
             if not project_id:
                 raise FileUseError(
-                    f"fileUse={reference} needs a project to resolve against, "
+                    f"{keyword}={reference} needs a project to resolve against, "
                     f"and this plugin has no database context"
                 )
             # Deliberately not caught: a reference that cannot be resolved must
             # stop the run, not quietly leave the input unset.
-            parsed_values.update(resolve_file_use(project_id, reference))
-            logger.info("Resolved fileUse=%s to %s", reference, parsed_values)
+            parsed_values.update(
+                resolve_file_reference(project_id, keyword, reference)
+            )
+            logger.info("Resolved %s=%s to %s", keyword, reference, parsed_values)
 
         # Special handling for sequence files with seqFile= (CAsuDataFile)
         if has_key_value_syntax and "seqFile" in parsed_values:
