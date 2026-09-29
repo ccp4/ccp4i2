@@ -1969,3 +1969,33 @@ class CList(CData):
 #CFilePath = CString
 #CHostName = CString
 #CJobStatus = CInt
+
+
+def qualified_parameter_name(obj) -> str:
+    """The parameter name *obj* should be recorded under in the database.
+
+    A ``CList`` names its elements by index alone -- ``item.rename(f"[{i}]")``
+    -- so a file inside one answers ``"[0]"`` to ``objectName()``. That is the
+    element's name, not the parameter's: the list's name lives on the parent.
+    Recording the bare index loses which list a file went into, and two file
+    lists on one job then record ``"[0]"`` twice, indistinguishably.
+
+    This walks up through enclosing lists and puts the name back together, so a
+    file in ``DICT_LIST`` is ``"DICT_LIST[0]"``. Anything not inside a list is
+    its own name, unchanged.
+    """
+    name = obj.objectName() if hasattr(obj, "objectName") else ""
+    if not name:
+        return name
+
+    current = obj
+    while name.startswith("["):
+        parent = current.parent() if callable(getattr(current, "parent", None)) else None
+        if not isinstance(parent, CList):
+            break
+        parent_name = parent.objectName() if hasattr(parent, "objectName") else ""
+        if not parent_name:
+            break
+        name = f"{parent_name}{name}"
+        current = parent
+    return name

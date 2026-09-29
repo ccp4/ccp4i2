@@ -1185,7 +1185,10 @@ class CPluginScript(CData):
             List of (name, file_obj) tuples for all CDataFile descendants
         """
         from ccp4i2.core.base_object.base_classes import CDataFile
-        from ccp4i2.core.base_object.fundamental_types import CList
+        from ccp4i2.core.base_object.fundamental_types import (
+            CList,
+            qualified_parameter_name,
+        )
 
         results = []
 
@@ -1199,8 +1202,12 @@ class CPluginScript(CData):
                 for i, item in enumerate(child):
                     # If the list item is a CDataFile, add it
                     if isinstance(item, CDataFile):
-                        # Use list element name if available, otherwise use index
-                        item_name = item.objectName() if item.objectName() else f"{child.objectName()}[{i}]"
+                        # Always qualified. The old form was
+                        #   item.objectName() if item.objectName() else f"{child.objectName()}[{i}]"
+                        # whose fallback could never fire: CList renames every
+                        # element to "[i]", which is truthy, so the name was
+                        # always the bare index and the list's name was lost.
+                        item_name = qualified_parameter_name(item)
                         results.append((item_name, item))
                     # If the list item is a container, recurse into it
                     elif hasattr(item, 'children'):
