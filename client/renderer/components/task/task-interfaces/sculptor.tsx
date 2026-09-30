@@ -96,12 +96,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2TaskElement
           itemName="PRUNING"
           {...props}
-          qualifiers={{ guiLabel: "Side chain pruning" }}
+          qualifiers={{ guiLabel: "Side chain pruning (if blank, Sculptor's default)" }}
         />
         <CCP4i2TaskElement
           itemName="BFACTOR"
           {...props}
-          qualifiers={{ guiLabel: "B-factor treatment" }}
+          qualifiers={{ guiLabel: "B-factor treatment (if blank, Sculptor's default)" }}
         />
       </CCP4i2ContainerElement>
     </Paper>

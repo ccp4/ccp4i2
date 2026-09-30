@@ -12,6 +12,19 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
+def sequence_name(identifier: str) -> str:
+    """The name ClustalW is given for a sequence: its header's first word,
+    and for a PDB header ("4HG7:A|PDBID|CHAIN|SEQUENCE", "4HG7_1|Chain A|...")
+    just the entry and chain. The report names a sequence by the third
+    |-field, which is right for UniProt ("sp|Q01094|E2F1_HUMAN") and said
+    "CHAIN" for every PDB sequence."""
+    words = identifier.split()
+    ident = words[0] if words else ""
+    if re.match(r"^[0-9A-Za-z]{4}[:_][0-9A-Za-z,]+\|", ident):
+        ident = ident.split("|")[0].replace(":", "_")
+    return ident
+
+
 class clustalw(CPluginScript):
     TASKNAME = 'clustalw'
     # Resolve the binary under $CCP4/libexec when CCP4 is present; fall back to a
@@ -48,7 +61,7 @@ class clustalw(CPluginScript):
                 sequenceStack = []
                 sequenceStack_check = []
                 for sequenceFile in self.container.inputData.SEQIN:
-                    possibleNameRoot = '>'+sequenceFile.fileContent.identifier.__str__()
+                    possibleNameRoot = '>'+sequence_name(sequenceFile.fileContent.identifier.__str__())
                     if len(possibleNameRoot.strip()) == 1:
                         possibleNameRoot = ">unk"
                     possibleName = possibleNameRoot
@@ -138,8 +151,13 @@ class clustalw(CPluginScript):
         if self.container.inputData.SEQUENCELISTORALIGNMENT == 'ALIGNMENT':
           anno = anno + re.sub('Alignment: ','',str(self.container.inputData.ALIGNMENTIN.annotation)) + ', '
         else:
+          # A file's annotation, or failing that (an imported file has
+          # none) its sequence's name: 'Alignment: ,' named nothing.
           for seq in self.container.inputData.SEQIN:
-            anno = anno + str(seq.annotation) + ', '
+            label = str(seq.annotation).strip() if seq.annotation.isSet() else ''
+            if not label:
+              label = sequence_name(str(seq.fileContent.identifier)) or seq.baseName.__str__()
+            anno = anno + label + ', '
         self.container.outputData.ALIGNMENTOUT.annotation = anno[0:-2]
 
         return CPluginScript.SUCCEEDED

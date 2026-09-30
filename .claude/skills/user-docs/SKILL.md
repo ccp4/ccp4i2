@@ -125,6 +125,18 @@ request whatever its base.
   the widgets. A page whose task name is not its directory or an `ALIASES`
   entry names it with `"task"` in `shots.json`.
 
+## Write the judgement down
+
+Every page says, in plain words, what an experienced user would know and a
+program cannot see: when to use the task and when not; the numbers that
+mean success or failure (Phaser TFZ and LLG, Molrep's TF/sigma contrast,
+R-free against R, completeness in the outer shell); the traps (reuse the
+free set a model was refined against; a selection that matches nothing
+is accepted silently); and what to do next. The scenarios are the same
+knowledge as executable recipes, asserting their own outcome. Both are
+meant to outlive this interface: they are the seed of LLM-agnostic
+knowledge for agentic CCP4 (Martin, 2026-09-30).
+
 ## Writing a page for a task that has none
 
 Draft from the task's own sources: its `def.xml` (parameters, defaults,

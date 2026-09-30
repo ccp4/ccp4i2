@@ -48,8 +48,13 @@ export const CListElement: React.FC<CListElementProps> = ({
     onChange,
   });
 
+  // An interface that gives the list no label gets its items' label
+  // ("Atomic model") before the parameter's name, which is never meant for
+  // users ("XYZIN_LIST", "DICT_LIST" and "UNMERGEDFILES" all showed).
   const guiLabel =
     qualifiers?.guiLabel ||
+    item?._subItem?._qualifiers?.guiLabel ||
+    item?._value?.[0]?._qualifiers?.guiLabel ||
     item?._objectPath?.split(".").at(-1) ||
     "Unnamed List";
 
