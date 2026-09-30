@@ -58,6 +58,14 @@ export const CListElement: React.FC<CListElementProps> = ({
     item?._objectPath?.split(".").at(-1) ||
     "Unnamed List";
 
+  // The list's label names the list. An item that has a label of its own
+  // ("Atomic model") keeps it, rather than every row repeating the list's
+  // ("Models to superpose"); an item without one still takes the list's, so
+  // it never falls back to its bare name ("[0]").
+  const { guiLabel: _listLabel, ...qualifiersWithoutLabel } = qualifiers || {};
+  const itemQualifiers = (content: any) =>
+    content?._qualifiers?.guiLabel ? qualifiersWithoutLabel : qualifiers;
+
   const borderColor = itemName && item ? validationColor : "divider";
 
   if (!isVisible) return null;
@@ -116,7 +124,7 @@ export const CListElement: React.FC<CListElementProps> = ({
                       {...restProps}
                       itemName={itemPath}
                       job={job}
-                      qualifiers={qualifiers}
+                      qualifiers={itemQualifiers(content)}
                       onChange={onChange}
                     />
                   </Box>
