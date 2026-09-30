@@ -50,6 +50,39 @@ export function extractDictCompIds(cifText: string): string[] {
   return out;
 }
 
+/**
+ * comp_ids a dictionary can build a molecule of: its `data_comp_<X>` blocks
+ * that list atoms. A link dictionary (MakeLink's) has none: its blocks are
+ * `mod_` and `link_`, which modify monomers defined elsewhere.
+ */
+export function buildableCompIds(cifText: string): string[] {
+  const out: string[] = [];
+  for (const block of cifText.split(/^data_/m).slice(1)) {
+    const name = block.match(/^\S+/)?.[0] ?? "";
+    if (!name.startsWith("comp_") || name === "comp_list") continue;
+    if (/^_chem_comp_atom\./m.test(block)) out.push(name.slice("comp_".length));
+  }
+  return out;
+}
+
+/**
+ * A number to read a dictionary under when the molecule it is for does not
+ * exist yet.
+ *
+ * Coot files each dictionary entry under the molecule number it was read
+ * for, and a lookup for molecule N sees only the entries filed under N or
+ * under "any molecule" (-999999, Coot's global store). A molecule built FROM
+ * a dictionary has no number until it is built, so the dictionary is read
+ * under a number no molecule will ever have, the monomer is built from that,
+ * and the dictionary is then attached to the new molecule under its own
+ * number. Nothing is filed under "any", so another molecule with a residue
+ * of the same name never inherits this chemistry.
+ */
+let nextPrivateNumber = 1_000_000;
+export function privateDictionaryNumber(): number {
+  return nextPrivateNumber++;
+}
+
 function unwrapList(payload: any): DictionaryFile[] {
   const data = payload && typeof payload === "object" && "success" in payload ? payload.data : payload;
   return Array.isArray(data) ? data : [];
@@ -73,6 +106,34 @@ export async function fetchCompanionDictionaryFiles(fileId: number): Promise<Dic
     console.warn(`[dictionaries] could not list companions of file ${fileId}:`, err);
     return [];
   }
+}
+
+/**
+ * The dictionaries written by a job's subjobs, nearest generation first.
+ * A pipeline's own dictionary may describe no whole monomer (MakeLink's is a
+ * link); the subjob that made it may have written one that does (AcedrgLink
+ * writes the linked pair's).
+ */
+export async function fetchSubjobDictionaryFiles(jobId: number, maxDepth = 3): Promise<DictionaryFile[]> {
+  const out: DictionaryFile[] = [];
+  let generation = [jobId];
+  for (let depth = 0; depth < maxDepth && generation.length > 0; depth++) {
+    const next: number[] = [];
+    for (const parent of generation) {
+      try {
+        const children = unwrapList(await apiGet(`jobs/?parent=${parent}`));
+        for (const child of children) {
+          next.push(child.id);
+          const files = unwrapList(await apiGet(`files/?job=${child.id}`));
+          out.push(...files.filter((f: any) => f.type === DICTIONARY_TYPE));
+        }
+      } catch (err) {
+        console.warn(`[dictionaries] could not list subjobs of job ${parent}:`, err);
+      }
+    }
+    generation = next;
+  }
+  return out;
 }
 
 /** Download each dictionary's text. A file that cannot be read is skipped. */

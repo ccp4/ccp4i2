@@ -38,6 +38,10 @@ def test_6ndn():
             assert dimer[0].count_atom_sites() > 0
             assert sorted((job / "job_1").glob("*_for_link.cif")), \
                 "linked-pair dictionary not brought into the job directory"
+            # With a model, the model is the coordinate result: the pair's
+            # dictionary is published, its coordinates are not.
+            assert (job / "LYS-PLP_linked_pair.cif").is_file()
+            assert not (job / "LYS-PLP_linked_pair.pdb").exists()
 
 
 def test_6ndn_mmcif_gets_a_struct_conn():
@@ -115,6 +119,13 @@ def test_several_edits_declared_as_lists():
         deleted = [row for row in mod.find("_chem_mod_atom.", ["function", "atom_id"])
                    if row[0] == "delete"]
         assert [row[1] for row in deleted] == ["OE2"]
+        # No model: the linked pair is the job's coordinate result, published
+        # with its dictionary so a viewer draws it with the right chemistry.
+        pair = read_pdb(str(job / "LYS-GLU_linked_pair.pdb"))
+        assert pair[0].count_atom_sites() > 0
+        pair_doc = cif.read(str(job / "LYS-GLU_linked_pair.cif"))
+        assert any(block.name.startswith("comp_") and block.name != "comp_list"
+                   for block in pair_doc)
 
 
 def test_a_refused_link_reports_acedrgs_reason():

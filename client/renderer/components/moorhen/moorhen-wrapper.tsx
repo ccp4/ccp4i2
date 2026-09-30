@@ -39,12 +39,15 @@ import { useMoorhenSession } from "../../hooks/use-moorhen-session";
 import { isElectronWindow, moorhenUrlPrefix } from "../../lib/moorhen-asset-path";
 import { prefetchMoorhenWasm } from "../../lib/moorhen-wasm-prefetch";
 import {
+  buildableCompIds,
   COORDINATE_TYPES,
   DICTIONARY_TYPE,
   fetchCompanionDictionaryFiles,
   fetchDictionaryTexts,
   fetchJobDictionaryFiles,
+  fetchSubjobDictionaryFiles,
   loadWithDictionaries,
+  privateDictionaryNumber,
   provenanceOf,
   type DictionaryFile,
   type DictionaryToAttach,
@@ -534,74 +537,106 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     return newMap;
   }, [commandCentre, store, dispatch]);
 
-  const fetchDict = useCallback(async (url: string) => {
-    if (!commandCentre.current) return;
-    const fileContent = await apiText(url);
-    // Load all monomers in the dictionary into coot's global store
+  /**
+   * Build a molecule of each monomer a dictionary describes, at the centre
+   * of the view, with that dictionary attached to it and to nothing else.
+   *
+   * Moorhen's own import reads the dictionary into Coot's global store and
+   * builds from there; that entry would then be inherited by every molecule
+   * with a residue of the same name. Here it is read under a private number
+   * (see privateDictionaryNumber), and the dictionary is attached to the new
+   * molecule once it has a number of its own. Returns the molecules built.
+   */
+  const loadMoleculesFromDictionary = useCallback(async (
+    dict: DictionaryToAttach,
+    uniqueIdBase: string,
+    opts: { centre?: boolean } = {},
+  ): Promise<moorhen.Molecule[]> => {
+    const built: moorhen.Molecule[] = [];
+    if (!commandCentre.current) return built;
+    const compIds = buildableCompIds(dict.text);
+    if (compIds.length === 0) return built;
+    const privateNumber = privateDictionaryNumber();
     await commandCentre.current.cootCommand(
       {
         returnType: "status",
         command: "read_dictionary_string",
-        commandArgs: [fileContent, -999999],
+        commandArgs: [dict.text, privateNumber],
         changesMolecules: [],
       },
       false
     );
-    // Extract monomer codes from the CIF content (data_comp_XXX blocks, excluding comp_list)
-    const monomerCodes: string[] = [];
-    const blockPattern = /^data_comp_(\S+)/gm;
-    let match;
-    while ((match = blockPattern.exec(fileContent)) !== null) {
-      const code = match[1];
-      if (code !== "list") {
-        monomerCodes.push(code);
-      }
-    }
-    // Fallback: if no comp_ blocks found, try the legacy block name pattern
-    if (monomerCodes.length === 0) {
-      const legacyPattern = /^data_(\S+)/gm;
-      while ((match = legacyPattern.exec(fileContent)) !== null) {
-        monomerCodes.push(match[1]);
-      }
-    }
     const originCoords = getOrigin().map((coord: number) => -coord);
-    let centredFirst = false;
-    for (const code of monomerCodes) {
+    const provenance = provenanceOf([dict]);
+    for (const code of compIds) {
       const result = (await commandCentre.current.cootCommand(
         {
           returnType: "status",
           command: "get_monomer_and_position_at",
-          commandArgs: [code, -999999, ...originCoords],
+          commandArgs: [code, privateNumber, ...originCoords],
         },
         true
       )) as moorhen.WorkerResponse<number>;
-      if (result.data.result.status === "Completed") {
-        const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
-        newMolecule.uniqueId = `${url}#${code}`;
-        newMolecule.molNo = result.data.result.result;
-        newMolecule.name = code;
-        newMolecule.setBackgroundColour(backgroundColor);
-        newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
-        newMolecule.coordsFormat = "mmcif";
-        await Promise.all([
-          newMolecule.fetchDefaultColourRules(),
-          newMolecule.addDict(fileContent),
-        ]);
-        if (!centredFirst) {
-          // Pass "" (not "/*/*/*/*"): centreAndAlignViewOn appends "*" and
-          // "CA" to the CID internally, so passing "/*/*/*/*" produces the
-          // malformed "/*/*/*/**" selector and a WebAssembly.Exception from
-          // Coot. The empty-string branch in moorhen's implementation falls
-          // back to the correct "/*/*/*/*" wildcard internally.
-          newMolecule.centreAndAlignViewOn("", false, 100);
-          centredFirst = true;
-        }
-        await newMolecule.fetchIfDirtyAndDraw("ligands");
-        dispatch(addMolecule(newMolecule));
-        dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
+      const molNo = result.data.result.result;
+      if (result.data.result.status !== "Completed" || molNo == null || molNo < 0) {
+        console.warn(`[dictionary] Coot could not build ${code} from its dictionary`);
+        continue;
       }
+      const newMolecule = new MoorhenMolecule(requireMoorhenInstance(moorhenInstanceRef));
+      newMolecule.uniqueId = `${uniqueIdBase}#${code}`;
+      newMolecule.molNo = molNo;
+      newMolecule.name = code;
+      newMolecule.setBackgroundColour(backgroundColor);
+      newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
+      newMolecule.coordsFormat = "mmcif";
+      await Promise.all([
+        newMolecule.fetchDefaultColourRules(),
+        newMolecule.addDict(dict.text),
+      ]);
+      if (provenance.size > 0) dictSourcesRef.current.set(molNo, provenance);
+      if (opts.centre !== false && built.length === 0) {
+        // Pass "" (not "/*/*/*/*"): centreAndAlignViewOn appends "*" and
+        // "CA" to the CID internally, so passing "/*/*/*/*" produces the
+        // malformed "/*/*/*/**" selector and a WebAssembly.Exception from
+        // Coot. The empty-string branch in moorhen's implementation falls
+        // back to the correct "/*/*/*/*" wildcard internally.
+        newMolecule.centreAndAlignViewOn("", false, 100);
+      }
+      await newMolecule.fetchIfDirtyAndDraw("ligands");
+      dispatch(addMolecule(newMolecule));
+      dispatch(showMolecule({ molNo } as any));
+      built.push(newMolecule);
     }
-  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, getOrigin, dispatch]);
+    return built;
+  }, [commandCentre, backgroundColor, defaultBondSmoothness, getOrigin, dispatch]);
+
+  /**
+   * A job that wrote dictionaries and no coordinates (ImportDictionary,
+   * MakeLink run without a model): draw the monomers its dictionaries
+   * describe. When they describe none -- MakeLink's is modifications and a
+   * link -- try the dictionaries its subjobs wrote, where AcedrgLink leaves
+   * the linked pair.
+   */
+  const loadDictionaryOnlyJob = useCallback(async (
+    jobId: number,
+    ownDictionaries: DictionaryFile[],
+    opts: { centre?: boolean } = {},
+  ): Promise<number> => {
+    let built = 0;
+    for (const files of [ownDictionaries, null]) {
+      const candidates = files ?? (await fetchSubjobDictionaryFiles(jobId));
+      for (const dict of await fetchDictionaryTexts(candidates, projectInfo?.id)) {
+        const url = `/api/proxy/ccp4i2/files/${dict.fileId}/download/`;
+        const molecules = await loadMoleculesFromDictionary(dict, url, {
+          centre: opts.centre !== false && built === 0,
+        });
+        built += molecules.length;
+      }
+      if (built > 0) break;
+    }
+    if (built > 0) dispatch(setRequestDrawScene(true));
+    return built;
+  }, [loadMoleculesFromDictionary, dispatch]);
 
   const fetchFile = useCallback(async (
     fileId: number,
@@ -641,11 +676,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         isMask: isMaskSubType(fileInfo.sub_type),
         subType: fileInfo.sub_type,
       });
-    } else if (fileInfo.type === "application/refmac-dictionary") {
+    } else if (fileInfo.type === DICTIONARY_TYPE) {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      await fetchDict(url);
+      await loadMoleculesFromDictionary({ text: await apiText(url), fileId }, url);
     }
-  }, [fetchMolecule, fetchMap, fetchMapFile, fetchDict]);
+  }, [fetchMolecule, fetchMap, fetchMapFile, loadMoleculesFromDictionary]);
 
   /**
    * Load all output files from a job into Moorhen.
@@ -716,6 +751,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
     }
 
+    // STEP 2b: No coordinates: draw the monomers the job's dictionaries
+    // describe instead (ImportDictionary, MakeLink run without a model).
+    // Imported files count here: an imported dictionary is ImportDictionary's result.
+    if (!coordFile) {
+      const ownDictionaries = files.filter((f: { type: string }) => f.type === DICTIONARY_TYPE);
+      if (ownDictionaries.length > 0) await loadDictionaryOnlyJob(jobId, ownDictionaries, { centre: false });
+    }
+
     // STEP 3: Load all maps (MTZ coefficients and real-space CCP4 maps / masks)
     for (const file of jobOutputFiles) {
       if (file.type === "application/CCP4-mtz-map") {
@@ -743,7 +786,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       }
       dispatch(setRequestDrawScene(true));
     }
-  }, [commandCentre, dispatch, fetchMap, fetchMapFile, loadStructureFromText]);
+  }, [commandCentre, dispatch, fetchMap, fetchMapFile, loadStructureFromText, loadDictionaryOnlyJob]);
 
   // Handle map contour level changes from the control panel slider
   const handleMapContourLevelChange = useCallback(
@@ -1470,10 +1513,17 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       // Opened on a job: the job's dictionaries (own and inputs) are the ones.
       const jobDictionaries =
         jobId && hasCoordinates ? await fetchJobDictionaryFiles(jobId) : undefined;
+      // Opened on a job with dictionaries and no coordinates: the monomers
+      // the dictionaries describe are the job's result, so draw those.
+      const dictionaryOnlyJob = Boolean(jobId) && !hasCoordinates;
       for (const [index, fileId] of fileIds.entries()) {
         const info = infos[index];
-        if (hasCoordinates && info?.type === DICTIONARY_TYPE) continue;
+        if ((hasCoordinates || dictionaryOnlyJob) && info?.type === DICTIONARY_TYPE) continue;
         await fetchFile(fileId, { dictionaryFiles: jobDictionaries });
+      }
+      if (dictionaryOnlyJob) {
+        const ownDictionaries = infos.filter((info) => info?.type === DICTIONARY_TYPE);
+        if (ownDictionaries.length > 0) await loadDictionaryOnlyJob(jobId as number, ownDictionaries);
       }
     })();
   }, [fileIds, cootInitialized]);
