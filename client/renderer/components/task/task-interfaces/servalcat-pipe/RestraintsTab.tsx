@@ -14,9 +14,6 @@ interface RestraintsTabProps extends CCP4i2TaskInterfaceProps {
   prosmartProteinAdvanced: any;
   prosmartNucleicAcidToggle: any;
   prosmartNucleicAcidAdvanced: any;
-  libgToggle: any;
-  libgOption: any;
-  libgAdvanced: any;
   platonyzerToggle: any;
   metalCoordRun: any;
   metalCoordGenOrUse: any;
@@ -35,9 +32,6 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
     prosmartProteinAdvanced,
     prosmartNucleicAcidToggle,
     prosmartNucleicAcidAdvanced,
-    libgToggle,
-    libgOption,
-    libgAdvanced,
     platonyzerToggle,
     metalCoordRun,
     metalCoordGenOrUse,
@@ -857,69 +851,9 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
         )}
       </CCP4i2ContainerElement>
 
-      {/* libg - nucleic acid base restraints */}
-      <CCP4i2ContainerElement
-        {...taskProps}
-        itemName=""
-        qualifiers={{
-          guiLabel: "Libg - nucleic acid base restraints",
-        }}
-        containerHint="FolderLevel"
-      >
-        {!hasNucleotideChains && (
-          <Typography variant="body2" sx={{ fontStyle: "italic" }}>
-            Input atomic model contains no nucleotide chains
-          </Typography>
-        )}
-        {hasNucleotideChains && (
-          <>
-            <CCP4i2TaskElement
-              {...taskProps}
-              itemName="libg.TOGGLE"
-              qualifiers={{
-                guiLabel:
-                  "Generate nucleic acid base restraints using libg",
-              }}
-            />
-            {isTruthy(libgToggle) && (
-              <>
-                <CCP4i2TaskElement
-                  {...taskProps}
-                  itemName="libg.OPTION"
-                  qualifiers={{
-                    guiLabel: "Restraint types:",
-                  }}
-                />
-                <CCP4i2TaskElement
-                  {...taskProps}
-                  itemName="libg.BP"
-                  qualifiers={{
-                    guiLabel: "Include base pair restraints",
-                  }}
-                  visibility={() => libgOption === "MANUAL"}
-                />
-                <CCP4i2TaskElement
-                  {...taskProps}
-                  itemName="libg.ADVANCED"
-                  qualifiers={{
-                    guiLabel: "Show advanced options",
-                  }}
-                />
-                {isTruthy(libgAdvanced) && (
-                  <CCP4i2TaskElement
-                    {...taskProps}
-                    itemName="libg.KEYWORDS"
-                    qualifiers={{
-                      guiLabel: "Additional libg keywords:",
-                      guiMode: "multiLine",
-                    }}
-                  />
-                )}
-              </>
-            )}
-          </>
-        )}
-      </CCP4i2ContainerElement>
+      {/* Libg (nucleic-acid base restraints) was offered here and never
+          run: ccp4i2 has no wrapper for it (nor did prosmart_refmac run it).
+          The libg binary ships with CCP4, so a wrapper could restore it. */}
     </>
   );
 };

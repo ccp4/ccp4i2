@@ -11,7 +11,6 @@ interface AdvancedTabProps extends CCP4i2TaskInterfaceProps {
   isSpa: boolean;
   bfacSetUse: any;
   randomizeUse: any;
-  scatteringFactors: any;
   resCustom: any;
   blurUse: any;
   runAdpAnalysis: any;
@@ -24,7 +23,6 @@ export const AdvancedTab: React.FC<AdvancedTabProps> = (props) => {
     isSpa,
     bfacSetUse,
     randomizeUse,
-    scatteringFactors,
     resCustom,
     blurUse,
     runAdpAnalysis,
@@ -77,12 +75,8 @@ export const AdvancedTab: React.FC<AdvancedTabProps> = (props) => {
           itemName="SCATTERING_FACTORS"
           qualifiers={{ guiLabel: "Diffraction experiment type:" }}
         />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="SCATTERING_ELECTRON"
-          qualifiers={{ guiLabel: "Form factor calculation:" }}
-          visibility={() => scatteringFactors === "electron"}
-        />
+        {/* SCATTERING_ELECTRON (Mott-Bethe / Gaussian) was offered here and
+            never read: servalcat has no such choice. */}
 
         <CCP4i2TaskElement
           {...taskProps}

@@ -13,7 +13,6 @@ interface InputDataTabProps extends CCP4i2TaskInterfaceProps {
   intensitiesAvailable: boolean;
   hydrUse: any;
   addWaters: any;
-  useAnomalous: any;
   HKLINValue: any;
 }
 
@@ -25,7 +24,6 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
     intensitiesAvailable,
     hydrUse,
     addWaters,
-    useAnomalous,
     HKLINValue,
     ...taskProps
   } = props;
@@ -227,19 +225,15 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
           [1, 2].includes(HKLINValue.contentFlag)
         }
       >
-        <FieldRow>
-          <CCP4i2TaskElement
-            {...taskProps}
-            itemName="USEANOMALOUS"
-            qualifiers={{ guiLabel: "Use anomalous" }}
-          />
-          <CCP4i2TaskElement
-            {...taskProps}
-            itemName="USEANOMALOUSFOR"
-            qualifiers={{ guiLabel: "Use for:" }}
-            visibility={() => isTruthy(useAnomalous)}
-          />
-        </FieldRow>
+        {/* USEANOMALOUS / USEANOMALOUSFOR were offered here ("SAD
+            refinement") but nothing read them: servalcat's refine_xtal has
+            no anomalous refinement, and the wrapper makes the anomalous map
+            from anomalous pairs whatever they said. */}
+        <Typography variant="body2">
+          An anomalous difference map is calculated from these data
+          automatically. Servalcat does not refine against the anomalous
+          signal.
+        </Typography>
       </CCP4i2ContainerElement>
     </>
   );

@@ -253,3 +253,32 @@ def test_complete_mtz_survives_cleanup(cif8xfm, mtz8xfm):
             f"COMPLETE_MTZ.mtz missing from pipeline dir {job} after REFMAC_CLEANUP"
         )
         read_mtz_file(str(complete))
+
+
+# Platonyzer restraints for zinc sites. The toggle was shown in the interface
+# and never read, so the restraints were never made; this fails if they are
+# not made, or not given to the refinement. 1tf6 (TFIIIA zinc fingers with
+# DNA) has cysteine-coordinated zinc sites, which Platonyzer restrains; a
+# histidine-only site (carbonic anhydrase) gets no restraints from it.
+def test_1tf6_platonyzer():
+    with download(redo_cif("1tf6")) as cif, download(redo_mtz("1tf6")) as mtz:
+        args = ["servalcat_pipe"]
+        args += ["--XYZIN", cif]
+        args += ["--HKLIN", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
+        args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FREE]"]
+        args += ["--F_SIGF_OR_I_SIGI", "F_SIGF"]
+        args += ["--NCYCLES", "2"]
+        args += ["--platonyzer.TOGGLE", "True"]
+        for flag in ["VALIDATE_IRIS", "VALIDATE_BAVERAGE", "VALIDATE_RAMACHANDRAN",
+                     "VALIDATE_MOLPROBITY", "RUN_ADP_ANALYSIS",
+                     "RUN_COORDADPDEV_ANALYSIS"]:
+            args += [f"--{flag}", "False"]
+        with i2run(args) as job:
+            restraints = list(job.glob("job_*/XYZOUT.restraints"))
+            assert restraints, "Platonyzer did not run"
+            assert restraints[0].stat().st_size > 0, "Platonyzer wrote no restraints"
+            keywords = list(job.glob("job_*/keywords.txt"))
+            assert any(f"@{restraints[0]}" in k.read_text() or
+                       restraints[0].name in k.read_text() for k in keywords), \
+                "The refinement was not given the Platonyzer restraints"
+            assert (job / "XYZOUT.pdb").exists() or (job / "CIFFILE.cif").exists()
