@@ -26,6 +26,9 @@ type InputType = "text" | "int" | "float" | "checkbox";
 const DEBOUNCE_DELAY = 1000;
 
 const isValueValid = (value: InputValue, type: InputType): boolean => {
+  // Empty is unset, and unset is valid here: whether a parameter must be set
+  // is the server's call (validity()), not this field's.
+  if (value === null || value === undefined || value === "") return true;
   if (type === "int") {
     return typeof value === "string"
       ? /^\d+$/.test(value)
