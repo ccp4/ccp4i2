@@ -174,8 +174,20 @@ async function shoot(shot) {
   await page.send("Page.navigate", { url: `${BASE}/ccp4i2/project/${project.id}/job/${jobId(shot.job)}` });
   await sleep(shot.settle || spec.settle || 15000);
   await page.evaluate(PAGE_HELPERS);
-  // Developer mode starts on in every session: turn it off as a user would.
-  await page.evaluate(() => __cap.click("View"));
+  // The page can still be compiling or fetching after the settle time (a
+  // restarted server, a recompiled interface): wait for its menu bar rather
+  // than fail on "Nothing to click labelled View".
+  for (let tries = 0; ; tries++) {
+    try {
+      // Developer mode starts on in every session: turn it off as a user would.
+      await page.evaluate(() => __cap.click("View"));
+      break;
+    } catch (e) {
+      if (tries >= 20) throw e;
+      await sleep(3000);
+      await page.evaluate(PAGE_HELPERS);
+    }
+  }
   await sleep(400);
   await page.evaluate(() => __cap.click("Turn Dev Mode Off"));
   await sleep(1200);
@@ -190,6 +202,17 @@ async function shoot(shot) {
       const toggle = el.closest("[aria-expanded]") || el.closest("[role=button]") || el;
       if (toggle.getAttribute("aria-expanded") !== "true") toggle.click();
     }, heading);
+    await sleep(1500);
+  }
+  // "click": press controls that have no visible label, by CSS selector
+  // (a file row's "Expand options" chevron). Every match is pressed; a
+  // selector matching nothing fails the shot, as a missing label does.
+  for (const selector of shot.click || []) {
+    await page.evaluate((sel) => {
+      const els = document.querySelectorAll(sel);
+      if (!els.length) throw new Error(`Nothing matches ${sel}`);
+      els.forEach((el) => el.click());
+    }, selector);
     await sleep(1500);
   }
   // Bring the section into view, then measure it and its fields.

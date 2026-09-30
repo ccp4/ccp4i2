@@ -5,115 +5,94 @@ Make Ligand Coordinate and Restraint Dictionaries with Acedrg
 The *Make Ligand* task uses the program
 `ACEDRG <https://www2.mrc-lmb.cam.ac.uk/groups/murshudov/content/acedrg/acedrg.html>`__
 to derive stereo-chemical information about monomers/ligands (or small
-molecules). *ACEDRG* can derive "ideal" bond lengths, angles for an
+molecules). *ACEDRG* can derive "ideal" bond lengths and angles for an
 unknown monomer/ligand. It also generates information about planar
-groups and stereo-chemical properties in the monomer/ligand. The minumum
-information Acedrg requires is element types of atoms in the
-monomer/ligand, and the basic bonding pattern in the monomer/ligand,
-such as atom connnections and bond-orders
+groups and stereo-chemical properties in the monomer/ligand. The minimum
+information Acedrg requires is the element types of the atoms in the
+monomer/ligand, and the basic bonding pattern, such as atom connections
+and bond orders.
 
+The result is a restraint dictionary for refinement (given to the
+*Refinement* task as an additional geometry dictionary), and coordinates
+of the ligand in an optimised conformation, for fitting into density.
+
+The pictures on this page make a dictionary for Nutlin-3a, the MDM2
+inhibitor of the Ligand Tutorial data that comes with CCP4i2, from its
+SMILES string.
 
 Input
 =====
 
-   .. figure:: input_1.png
-      :alt: Figure 1: Main *Make Ligand* options
+.. figure:: acedrg_input.png
+   :alt: Figure 1: Make Ligand input
 
-      Figure 1: Main *Make Ligand* options
+   Figure 1: Make Ligand input
 
-   *Make Ligand* accepts SMILES strings (either as a file or pasted
-   text) and MOL files as input. Also *Lidia: Coot's Ligand Builder* can
-   be used to generate the input for *ACEDRG* The choice of input method
-   is selected using drop-down menu\ **(1)**.
+The menu **(1)** chooses how the ligand is described: *a SMILES string*
+typed or pasted into the box that appears **(2)**; *a SMILES file*; *a MOL
+or SDF file*; *a MOL2 file*; or *a CIF dictionary*, to regenerate or
+improve the restraints of an existing dictionary (for instance one from
+the PDB's Chemical Component Dictionary). A SMILES string is drawn below
+the box as soon as it is entered, so that a mistake in it (a missing
+stereocentre, a wrong bond order) can be seen before the job is run. Give
+the stereochemistry: Nutlin-3a is the (4S,5R) enantiomer, written with
+``@`` and ``@@`` in the SMILES.
 
-   If the menu is set to *"a MOL file"* or *"a SMILES file"*, then a
-   file of the appropriate type must be loaded/selected in the data
-   selector menu\ **(2)**.
+*a sketch* opened Coot's Lidia sketcher in the Qt interface. Current CCP4
+installations no longer include Lidia; if it is chosen where Lidia is
+missing, the task says so before it is run. Draw the molecule in another
+program and give its SMILES string or MOL file instead.
 
-   If the menu is set to *"a SMILES string"*, then a text box is shown
-   into which a SMILES string may be typed/pasted\ **(3)**.
+The three-letter code **(3)** names the monomer in the dictionary and the
+coordinates, and so in the model once the ligand is fitted. It must not
+clash with a code already in the model, and should not reuse a code from
+the CCP4 monomer library for a different compound. (The example uses
+``NUT``, the PDB's code for Nutlin-3a. The library already holds a
+dictionary for it, so the refinement on the next page needs none; a new
+compound would.)
 
-   Clicking the *Run* button will then run *ACEDRG* with the *MOL* or
-   *SMILES* as input.
-   .. figure:: lidia.png
-      :alt: Figure 2:*Lidia*
+Although *ACEDRG* attempts to name atoms sensibly, it is sometimes
+desirable to match the atom names to those in a similar structure. For
+instance, if the ligand to be generated contains a large group of atoms
+in common with those of another ligand, it can be useful to make sure the
+same atoms have the same names. This can be done by changing the atom
+matching menu **(4)** from *nothing* to either: *a specific code*, in which
+case a text box appears into which the three-letter code of the existing
+reference ligand should be typed; *user dictionary*, in which case a
+dictionary from the project or a file should be supplied; or *all
+monomers*, in which case the whole CCP4/Refmac monomer library is searched
+for a matching group of atoms.
 
-      Figure 2:*Lidia*
+If the monomer contains a metal atom, a *Metal coordination* section
+offers to take the metal's coordination from a structure in which it is
+bound.
 
-   If the menu is set to *"a sketch"*, then when the *"Run"* button is
-   pressed, the first thing that will happen is that *Lidia*\ (Figure 2)
-   will be launched. When *"a sketch"* is selected an option to provide
-   a starting point for the sketch is also shown. The starting point
-   input may be a *MOL* file or output from a previous *Make Ligand*
-   job. *Lidia* is a molecular sketcker provided by *COOT*. It allows
-   the user to create 2D (with stereo-isomer information) sketches of
-   molecules. The output of *Lidia* is subsequently passed to *ACEDRG*
-   by the *Make Ligand* task. In order for this to happen correctly, the
-   user **must** click *Apply*\ **(6)** then *Close*\ **(7)** when
-   finished sketching with *Lidia*.
-
-   The 3-letter code to be given to the monomer should be typed into
-   text box\ **(4)**
-
-   .. figure:: input_2.png
-      :alt: Figure 3: Main *Make Ligand* options with SMILES input box
-
-      Figure 3: Main *Make Ligand* options with SMILES input box
-
-   Although *ACEDRG* attempts to name atoms sensibly, it is sometimes
-   desirable to try to match the atom names to those in a similar
-   structure. For instance, if the ligand to be generated contains a
-   large group of atoms in common with those of another ligand, it can
-   be useful to make sure the same atoms have the same names. This can
-   be done by changing the atom matching menu\ **(5)** from *nothing* to
-   either: *a specific 3-letter code*, in which case a text box appears
-   into which the 3-letter code of the existing reference ligand should
-   be typed; or *use dictionary* in which case a CCP4i2 *Geometry
-   dictionary* data selector appears - an existing dictionary in the
-   CCP4i2 database or dictionary file should supplied; or *all monomers*
-   in which case the whole CCP4/refmac5 monomer library is searched for
-   a matching group of atoms.
-
-Advanced options
-================
-
-   .. figure:: advanced.png
-      :alt: Figure 4:*Advanced options*
-
-      Figure 4:*Advanced options*
-
-   This task has one advanced option - the number of random RDKIT
-   starting structures. The task will attempt to generate a sensible
-   geometric conformation of the generated ligand atoms, in addition to
-   the restraint dictionary. The RDKIT library is used to optimize the
-   geometry. In order to avoid finding a local minimum, several initial
-   arrangements of atoms are optimized; the optimized geometry with the
-   lowest energy of them all is accepted. The more initial conformations
-   are used, the more likely a better optimal geometry will be found.
+*Conformer generation* **(5)** controls the coordinates. The task
+generates a sensible conformation of the ligand as well as the restraint
+dictionary, optimising the geometry with RDKit from several random
+starting conformations and keeping the one of lowest energy: the more
+starting conformations, the more likely the best is found. If the input
+already has good coordinates (a MOL file from a structure, say), they can
+be used as the starting point instead. By default ACEDRG adds or removes
+hydrogens to give the protonation state expected at neutral pH; this can
+be turned off, to keep the protonation as given.
 
 Results
 =======
 
-   .. figure:: report_1.png
-      :alt: Figure 5:*Report - 2D picture*
+.. figure:: acedrg_report.png
+   :alt: Figure 2: Make Ligand report
 
-      Figure 5:*Report - 2D picture*
+   Figure 2: Make Ligand report
 
-   The report is very simple and consists of 3 parts:
+The report is simple. It gives the SMILES string of the ligand as ACEDRG
+understood it **(6)** and a 2D drawing of it **(7)**: check both against
+what was intended, especially the stereochemistry (the wedges) and the
+charges. The output data **(8)** are the MOL file from RDKit, the
+restraint dictionary, and the coordinates of the ligand in its optimised
+conformation.
 
-   A 2D depiction of the generated ligand and the corresponding SMILES
-   string.
-
-   .. figure:: report_2.png
-      :alt: Figure 6:*Report - 3D picture*
-
-      Figure 6:*Report - 3D picture*
-
-   A 3D representation of the optimized geometry
-
-   .. figure:: report_3.png
-      :alt: Figure 7:*Report - Input and output files*
-
-      Figure 7:*Report - Input and output files*
-
-   A list of output data and any input data files.
+The dictionary is what the *Refinement* task needs for a compound not in
+the monomer library (its *Additional geometry dictionaries*), and the
+coordinates are the starting point for fitting the ligand into density,
+in Coot or Moorhen, or automatically with *SubstituteLigand*.

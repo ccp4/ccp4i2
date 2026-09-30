@@ -1,0 +1,48 @@
+{
+  "scenario": "../../../tools/scenario_refine.py",
+  "project": "MDM2",
+  "viewport": [1400, 2400],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "edstats_input.png",
+      "job": 8,
+      "tabs": ["Task interface"],
+      "section": "Input Data",
+      "through": "Options",
+      "callouts": [
+        {"text": "Model to analyse", "badge": "1"},
+        {"text": "Map coefficients", "badge": "2"},
+        {"text": "Resolution range: leave blank to use the full range of the map coefficients", "badge": "3"},
+        {"text": "Map values are averaged separately for main- and side-chains", "badge": "4"},
+        {"text": "Adjust the rejection criteria for flagging up the outliers in Coot", "badge": "5"}
+      ]
+    },
+    {
+      "out": "edstats_report.png",
+      "job": 4,
+      "tabs": ["Report"],
+      "viewport": [1400, 3000],
+      "section": {"text": "The ZD scores are accuracy metrics", "scroll": true},
+      "until": "Correlation analysis: water molecules",
+      "callouts": []
+    },
+    {
+      "out": "edstats_ligands.png",
+      "job": 4,
+      "tabs": ["Report"],
+      "expand": ["Correlation analysis: ligands and other solutes"],
+      "section": "Correlation analysis: ligands and other solutes",
+      "until": "Chain A: complete per-residue metrics",
+      "callouts": []
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/edstats/script/edstats.def.xml": "bf086560f3afd527860b234c7f1f24e11d020822",
+    "server/ccp4i2/wrappers/edstats/script/edstats.py": "1e94d6c7e2b12037e27d2d5268bc1d4c14e46b08",
+    "server/ccp4i2/wrappers/edstats/script/edstats_report.py": "395d94b41408f333e9921138930e399a8fbbfd3d",
+    "client/renderer/components/task/task-interfaces/edstats.tsx": "23f672807b1ac8d4275572a68c24d90d28c0e435",
+    "docs/user/tools/scenario_refine.py": "cb5135ccb2aa061d17ad9faa2fc3bbe4b583b10c"
+  }
+}

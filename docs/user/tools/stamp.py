@@ -169,11 +169,15 @@ def labels(shots: dict):
 
 @cache
 def element_text() -> str:
-    """The shared widgets' own words ("Click a card to edit ..."). Searched for
+    """The shared widgets' and data classes' own words. Searched for
     labels but not fingerprinted: every page uses them, so a change to one
     would mark every page stale and the warning would stop meaning anything."""
+    shared = sorted(ELEMENTS.rglob("*.tsx"))
+    # And the data classes' own labels ("Observed data", "Free R set"), which
+    # a field shows when neither its def.xml nor its interface names it.
+    shared += sorted((SERVER / "core").glob("CCP4*Data*.py"))
     return " ".join(f.read_text(encoding="utf-8", errors="replace")
-                    for f in sorted(ELEMENTS.rglob("*.tsx")))
+                    for f in shared)
 
 
 def missing_labels(page: str, shots: dict) -> list[str]:

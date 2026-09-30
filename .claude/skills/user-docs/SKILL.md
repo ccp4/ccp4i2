@@ -98,7 +98,17 @@ request whatever its base.
   ccp4-python's site-packages, not the worktree's: run ad-hoc checks with
   `PYTHONPATH=$PWD` from `server/`, or a fix will seem not to work.
 - **Collapsed report folds** photograph as headings only: list them under
-  `"expand"` in the shot.
+  `"expand"` in the shot. Controls with no visible label (a file row's
+  "Expand options" chevron) are pressed by CSS selector under `"click"`.
+- **Badges sit in the left margin**, so they cannot point into a right-hand
+  column: two badges on one row overlap. Badge the left column and say
+  "beside it" in the text (the Aimless overall summary).
+- **A section that appears only for some choices** (rigid-body groups,
+  metal coordination) cannot be a callout on a default job: describe it in
+  the text rather than change the job to show it.
+- **An unrun clone shows what autofill does, and fails to do.** Values the
+  GUI fills only when a file is picked (cell, wavelength) stay empty on a job
+  made by i2run or cloning: that is a bug in the page, not the scenario.
 - **The Next dev server hits the background time limit** on long sessions;
   "Nothing to click labelled View" everywhere means it is gone: restart it.
 - **Heavy reports need longer to settle** (`"settle": 30000` in the shot);
