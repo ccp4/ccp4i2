@@ -43,7 +43,12 @@ def test_gamma_sad():
         # ccp4-20251105 suite landed R-work ~0.21, the 20260520 suite ~0.242
         # for an identical (correctly phased, FOM ~0.78) result. A genuine
         # phasing/build failure produces R-factors of 0.4+, well above these.
-        _check_output(job, min_fom=0.7, max_rwork=0.27, max_rfree=0.30)
+        _check_output(job, max_rwork=0.27, max_rfree=0.30, min_trace_cc=40)
+        # The SHELX route: SHELXE density modification and tracing ran. Only
+        # the React interface used to select it, so every i2run/API "shelx"
+        # job ran crank2's own route instead, and this test passed on that.
+        log = (job / "log.txt").read_text(errors="replace")
+        assert "Running shelxe with hand 1" in log, "SHELXE did not run"
 
 
 @requires_program("shelxc", "shelxd", "shelxe")
@@ -71,16 +76,24 @@ def test_gamma_siras():
         read_pdb(str(job / "n_REFMAC5.pdb"))
         # See note in test_gamma_sad: thresholds tolerate CCP4-version drift
         # (20260520 suite lands R-work ~0.244, FOM ~0.765 for a good result).
-        _check_output(job, min_fom=0.7, max_rwork=0.27, max_rfree=0.30)
+        _check_output(job, max_rwork=0.27, max_rfree=0.30, min_trace_cc=40)
 
 
-def _check_output(job, min_fom, max_rwork, max_rfree):
+def _check_output(job, max_rwork, max_rfree, min_fom=None, min_trace_cc=None):
+    """min_fom for crank2's route (its "FOM is" lines); min_trace_cc for the
+    SHELX route, whose phasing measure is SHELXE's trace CC (above ~25% is
+    usually solved)."""
     for name in ["FPHOUT_2FOFC", "FPHOUT_DIFF", "FPHOUT_HL", "FREEROUT"]:
         read_mtz_file(str(job / f"{name}.mtz"))
     log = (job / "log.txt").read_text()
     foms = [float(x) for x in re.findall(r"FOM is (0\.\d+)", log)]
     rworks = [float(x) for x in re.findall(r"R factor .* (0\.\d+)", log)]
     rfrees = [float(x) for x in re.findall(r"R-free .* (0\.\d+)", log)]
-    assert max(foms) > min_fom
+    if min_fom is not None:
+        assert max(foms) > min_fom
+    if min_trace_cc is not None:
+        ccs = [float(x) for x in re.findall(r"best correlation coef\. (\d+\.?\d*)", log)]
+        assert ccs, "SHELXE reported no trace CC"
+        assert max(ccs) > min_trace_cc
     assert min(rworks) < max_rwork
     assert min(rfrees) < max_rfree
