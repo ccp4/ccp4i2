@@ -24,8 +24,9 @@ contexts), and the shared API contract it consumes lives in
 Domain knowledge that is not derivable from the code lives in `.claude/skills/`,
 one skill per topic, loaded on demand by Claude Code. Each is a router to the
 sources of truth plus the judgement they cannot express; none copies generated
-material. First skill: `moorhen-scenes` (authoring, validating and changing
-Moorhen scene files).
+material. Skills: `moorhen-scenes` (authoring, validating and changing Moorhen scene
+files); `user-docs` (the task help in `docs/user/`: converting Qt-era pages,
+capturing figures from the running app, writing missing pages).
 
 ## Key Directories
 

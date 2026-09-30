@@ -1,0 +1,46 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": true,
+  "shots": [
+    {
+      "out": "ProvideAsuContents_input.png",
+      "job": 8,
+      "tabs": ["Task interface"],
+      "section": "Optionally load existing ASU content file to edit",
+      "through": "Solvent analysis",
+      "callouts": [
+        "ASU contents",
+        {
+          "text": "Click a card to edit"
+        },
+        {
+          "text": "Molecular weight:"
+        },
+        "Reflections (for the Matthews analysis)"
+      ]
+    },
+    {
+      "out": "ProvideAsuContents_report.png",
+      "job": 2,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "AU content - sequences",
+        "scroll": true
+      },
+      "from": "AU content - sequences",
+      "until": "Input Data",
+      "callouts": []
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents.def.xml": "2c93ea6fe79d3a078ee9ef29ef0f84cbe9a61f4c",
+    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents.py": "83d6c2e99d31d26e5c805ae4470fb53512d68d6e",
+    "server/ccp4i2/wrappers/ProvideAsuContents/script/ProvideAsuContents_report.py": "c79289a1ad0c695962f429dd88fa213d0eea65bf",
+    "client/renderer/components/task/task-interfaces/ProvideAsuContents.tsx": "4c0a6542e043a869d37ccab36db1fa2247ac7f53",
+    "docs/user/tools/scenario_mr.py": "10fc5729c5470ba9addb4e085daf319c9a650fed"
+  }
+}

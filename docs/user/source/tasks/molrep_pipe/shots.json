@@ -1,0 +1,117 @@
+{
+  "scenario": "../../../tools/scenario_mr2.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    2200
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "molrep_input.png",
+      "job": 5,
+      "tabs": [
+        "Task interface",
+        "Input Data and Protocol"
+      ],
+      "section": "Experimental data",
+      "through": "Extra Steps",
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "1"
+        },
+        {
+          "field": "Free R set",
+          "badge": "2"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "3"
+        },
+        {
+          "field": "AU contents",
+          "badge": "4"
+        },
+        {
+          "text": "The number of monomers to search for",
+          "badge": "5"
+        },
+        {
+          "text": "Fixed Model",
+          "badge": "6"
+        },
+        {
+          "text": "Extra Steps",
+          "badge": "7"
+        }
+      ]
+    },
+    {
+      "out": "molrep_options.png",
+      "job": 5,
+      "tabs": [
+        "Task interface",
+        "Basic Options"
+      ],
+      "section": "Search parameters",
+      "through": "Modify search model",
+      "callouts": [
+        {
+          "text": "Search in space group(s)",
+          "badge": "8"
+        },
+        {
+          "text": "Use data in resolution range from low",
+          "badge": "9"
+        },
+        {
+          "text": "Modify search model",
+          "badge": "10"
+        }
+      ]
+    },
+    {
+      "out": "molrep_report.png",
+      "job": 2,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3000
+      ],
+      "section": "Molecular replacement",
+      "until": "Shift field refinement",
+      "callouts": [],
+      "expand": [
+        "Molecular replacement"
+      ]
+    },
+    {
+      "out": "molrep_refinement.png",
+      "job": 2,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2600
+      ],
+      "expand": [
+        "Summary of refinement"
+      ],
+      "section": "Summary of refinement",
+      "until": "Per cycle statistics",
+      "callouts": []
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/molrep_pipe/script/molrep_pipe.def.xml": "42046d7d50797f4138040d4a1b60ebd1a48930b9",
+    "server/ccp4i2/pipelines/molrep_pipe/script/molrep_pipe.py": "d18abef8f238215e4685d517ddc00e75ed195b6a",
+    "server/ccp4i2/pipelines/molrep_pipe/script/molrep_pipe_report.py": "f8ea0bcdaa516e1bd5c4a43301b87d91b050ce24",
+    "client/renderer/components/task/task-interfaces/molrep_pipe.tsx": "990382a76b9783214a53b6f9569c341da0383bdf",
+    "docs/user/tools/scenario_mr2.py": "88785c233944df99edf3d3d4ce8c5d503f6c37d7"
+  }
+}

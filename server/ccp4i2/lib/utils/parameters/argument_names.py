@@ -53,8 +53,12 @@ def leaf_paths(container: CContainer) -> List[Dict[str, Any]]:
                 results.extend(traverse(child, path_parts + [child.objectName()]))
         else:
             qualifiers = {}
-            if hasattr(node, "get_merged_metadata"):
-                meta = node.get_merged_metadata("qualifiers")
+            # callable(), not hasattr(): a CProgramColumnGroup answers any
+            # attribute name (with None, if it names no column), so hasattr()
+            # was true and calling it crashed i2run for ctruncate and others.
+            get_meta = getattr(node, "get_merged_metadata", None)
+            if callable(get_meta):
+                meta = get_meta("qualifiers")
                 if meta:
                     qualifiers = meta
             results.append(

@@ -462,6 +462,17 @@ def file_dict_for_file(the_file, with_full_path: bool = False) -> dict:
         "baseName": the_file.name,
         "dbFileId": str(the_file.uuid).replace("-", ""),
     }
+    # What the file holds, as the app sets it when a project file is picked
+    # (set_input_by_context._set_file_from_db). Without it a file named by
+    # fileIn=/fileOut= reached a task with contentFlag unset: a pipeline took
+    # it, and the sub-job it handed it to refused it ("got 0, requires one of
+    # IPAIR, FPAIR, IMEAN, FMEAN"), as phaser_simple_phil did.
+    if the_file.content is not None:
+        file_dict["contentFlag"] = the_file.content
+    if the_file.sub_type is not None:
+        file_dict["subType"] = the_file.sub_type
+    if the_file.annotation:
+        file_dict["annotation"] = the_file.annotation
 
     if the_file.directory == models.File.Directory.IMPORT_DIR:
         file_dict["relPath"] = "CCP4_IMPORTED_FILES"

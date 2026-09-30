@@ -1,0 +1,281 @@
+
+<html> <head>
+<title>CCP4i2 Data Classes - Brief Introduction</title>
+</head>
+
+<body>
+<h1>CCP4i2 Data Classes</h1>
+<a href="#introduction">Introduction</a><br/>
+<a href="#containers">Containers</a><br/>
+
+<h3>Current Data Classes</h3>
+<h4>CCP4Annotation</h4>
+<a href="./CCP4Annotation.html#CAnnotation">CAnnotation</a> Annotation text with user id and time<br/>
+<a href="./CCP4Annotation.html#CAnnotationList">CAnnotationList</a> A list of annotation<br/>
+<a href="./CCP4Annotation.html#CAuthor">CAuthor</a> Placeholder for bibliographic author<br/>
+<a href="./CCP4Annotation.html#CBibReference">CBibReference</a> Bibliographic reference<br/>
+<a href="./CCP4Annotation.html#CBibReferenceGroup">CBibReferenceGroup</a> Set of bibliographic references for a task<br/>
+<a href="./CCP4Annotation.html#CFont">CFont</a> Simplified Qt font options<br/>
+<a href="./CCP4Annotation.html#CHostName">CHostName</a> Computer name<br/>
+<a href="./CCP4Annotation.html#CHostname">CHostname</a> <br/>
+<a href="./CCP4Annotation.html#CMetaDataTag">CMetaDataTag</a> This class will extend list of enumerators if new value for string is entered<br/>
+<a href="./CCP4Annotation.html#CMetaDataTagList">CMetaDataTagList</a> <br/>
+<a href="./CCP4Annotation.html#CServerGroup">CServerGroup</a> One or more compute servers used in "remote" running<br/>
+<a href="./CCP4Annotation.html#CTime">CTime</a> The time. Uses Python time module<br/>
+<a href="./CCP4Annotation.html#CUserAddress">CUserAddress</a> User id and platform node<br/>
+<a href="./CCP4Annotation.html#CUserId">CUserId</a> A user ID<br/>
+<h4>CCP4CootData</h4>
+<a href="./CCP4CootData.html#CCootHistoryDataFile">CCootHistoryDataFile</a> <br/>
+<h4>CCP4Data</h4>
+<a href="./CCP4Data.html#CBoolean">CBoolean</a> A Boolean<br/>
+<a href="./CCP4Data.html#CFloat">CFloat</a> A float<br/>
+<a href="./CCP4Data.html#CFloatRange">CFloatRange</a> Two floats defining start and end of range<br/>
+<a href="./CCP4Data.html#CFollowFromJob">CFollowFromJob</a> <br/>
+<a href="./CCP4Data.html#CI2DataType">CI2DataType</a> <br/>
+<a href="./CCP4Data.html#CInt">CInt</a> An integer<br/>
+<a href="./CCP4Data.html#CIntRange">CIntRange</a> Two integers defining start and end of range<br/>
+<a href="./CCP4Data.html#CJobStatus">CJobStatus</a> <br/>
+<a href="./CCP4Data.html#CJobTitle">CJobTitle</a> <br/>
+<a href="./CCP4Data.html#COneWord">COneWord</a> A single word string - no white space<br/>
+<a href="./CCP4Data.html#CPatchSelection">CPatchSelection</a> <br/>
+<a href="./CCP4Data.html#CRange">CRange</a> Base class for CIntRange and CFloatRange<br/>
+<a href="./CCP4Data.html#CRangeSelection">CRangeSelection</a> <br/>
+<a href="./CCP4Data.html#CString">CString</a> A string<br/>
+<a href="./CCP4Data.html#CTable">CTable</a> <br/>
+<a href="./CCP4Data.html#CUUID">CUUID</a> <br/>
+<h4>CCP4File</h4>
+<a href="./CCP4File.html#CDataFile">CDataFile</a> A data file - expected  to have associated class for file contents<br/>
+<a href="./CCP4File.html#CDataFileContent">CDataFileContent</a> Base class for classes holding file contents<br/>
+<a href="./CCP4File.html#CExePath">CExePath</a> <br/>
+<a href="./CCP4File.html#CExePathList">CExePathList</a> <br/>
+<a href="./CCP4File.html#CExportedFile">CExportedFile</a> <br/>
+<a href="./CCP4File.html#CExportedFileList">CExportedFileList</a> <br/>
+<a href="./CCP4File.html#CFileFunction">CFileFunction</a> List of recognised XML file functions<br/>
+<a href="./CCP4File.html#CFilePath">CFilePath</a> A file path<br/>
+<a href="./CCP4File.html#CI2XmlDataFile">CI2XmlDataFile</a> A reference to an XML file with CCP4i2 Header<br/>
+<a href="./CCP4File.html#CI2XmlHeader">CI2XmlHeader</a> Container for header info from XML file<br/>
+<a href="./CCP4File.html#CMmcifData">CMmcifData</a> Generic mmCIF data.
+     This is intended to be a base class for other classes
+     specific to coordinates, reflections or geometry data.<br/>
+<a href="./CCP4File.html#CMmcifDataFile">CMmcifDataFile</a> A generic mmCIF format file.
+     This is intended to be a base class for other classes
+     specific to coordinates, reflections or geometry data.<br/>
+<a href="./CCP4File.html#CPostscriptDataFile">CPostscriptDataFile</a> An postscript format file<br/>
+<a href="./CCP4File.html#CProjectId">CProjectId</a> The CCP4i2 database project id - a global unique id<br/>
+<a href="./CCP4File.html#CProjectName">CProjectName</a> The name of a CCP4i project or directory alias<br/>
+<a href="./CCP4File.html#CSceneDataFile">CSceneDataFile</a> An xml format file for defining scene in CCP4mg.<br/>
+<a href="./CCP4File.html#CSearchPath">CSearchPath</a> <br/>
+<a href="./CCP4File.html#CSearchPathList">CSearchPathList</a> <br/>
+<a href="./CCP4File.html#CTextDataFile">CTextDataFile</a> A text data file<br/>
+<a href="./CCP4File.html#CVersion">CVersion</a> A (string) version number of the form n.m.i<br/>
+<a href="./CCP4File.html#CXmgrDataFile">CXmgrDataFile</a> An xmgr format file.
+     This is the input format for xmgrace, as output by scala 
+     or aimless<br/>
+<a href="./CCP4File.html#CXmlDataFile">CXmlDataFile</a> A reference to an XML file<br/>
+<h4>CCP4MathsData</h4>
+<a href="./CCP4MathsData.html#CAngle">CAngle</a> An angle<br/>
+<a href="./CCP4MathsData.html#CEulerRotation">CEulerRotation</a> <br/>
+<a href="./CCP4MathsData.html#CMatrix33">CMatrix33</a> <br/>
+<a href="./CCP4MathsData.html#CTransformation">CTransformation</a> <br/>
+<a href="./CCP4MathsData.html#CXyz">CXyz</a> <br/>
+<a href="./CCP4MathsData.html#CXyzBox">CXyzBox</a> <br/>
+<h4>CCP4ModelData</h4>
+<a href="./CCP4ModelData.html#CAtomSelection">CAtomSelection</a> <br/>
+<a href="./CCP4ModelData.html#CBlastData">CBlastData</a> <br/>
+<a href="./CCP4ModelData.html#CBlastDataFile">CBlastDataFile</a> <br/>
+<a href="./CCP4ModelData.html#CBlastItem">CBlastItem</a> <br/>
+<a href="./CCP4ModelData.html#CChemComp">CChemComp</a> <br/>
+<a href="./CCP4ModelData.html#CContainsSeMet">CContainsSeMet</a> <br/>
+<a href="./CCP4ModelData.html#CDictData">CDictData</a> <br/>
+<a href="./CCP4ModelData.html#CDictDataFile">CDictDataFile</a> A refmac dictionary file<br/>
+<a href="./CCP4ModelData.html#CElement">CElement</a> 
+  Chemical element
+  <br/>
+<a href="./CCP4ModelData.html#CEnsemble">CEnsemble</a> An ensemble of models. Typically, this would be a set of related
+     PDB files, but models could also be xtal or EM maps. This should
+     be indicated by the types entry.
+     A single ensemble is a CList of structures.<br/>
+<a href="./CCP4ModelData.html#CEnsembleList">CEnsembleList</a> <br/>
+<a href="./CCP4ModelData.html#CEnsemblePdbDataFile">CEnsemblePdbDataFile</a> A PDB coordinate file containing ensemble of structures as 'NMR' models<br/>
+<a href="./CCP4ModelData.html#CHhpredData">CHhpredData</a> <br/>
+<a href="./CCP4ModelData.html#CHhpredDataFile">CHhpredDataFile</a> <br/>
+<a href="./CCP4ModelData.html#CHhpredItem">CHhpredItem</a> <br/>
+<a href="./CCP4ModelData.html#CHomolog">CHomolog</a> <br/>
+<a href="./CCP4ModelData.html#CHomologList">CHomologList</a> <br/>
+<a href="./CCP4ModelData.html#CMDLMolDataFile">CMDLMolDataFile</a> A molecule definition file (MDL)<br/>
+<a href="./CCP4ModelData.html#CMonomer">CMonomer</a> A monomer compound. ?smiles<br/>
+<a href="./CCP4ModelData.html#CPdbData">CPdbData</a> Contents of a PDB file - a subset with functionality for GUI<br/>
+<a href="./CCP4ModelData.html#CPdbDataFile">CPdbDataFile</a> A PDB coordinate file<br/>
+<a href="./CCP4ModelData.html#CPdbDataFileList">CPdbDataFileList</a> <br/>
+<a href="./CCP4ModelData.html#CPdbEnsembleItem">CPdbEnsembleItem</a> <br/>
+<a href="./CCP4ModelData.html#CRefmacNcs">CRefmacNcs</a> Definition of a NCS for Refmac - not implemented yet<br/>
+<a href="./CCP4ModelData.html#CRefmacRigidDomain">CRefmacRigidDomain</a> Definition of a rigid domain for Refmac<br/>
+<a href="./CCP4ModelData.html#CResidueRange">CResidueRange</a> A residue range selection<br/>
+<a href="./CCP4ModelData.html#CResidueRangeList">CResidueRangeList</a> A list of residue range selections<br/>
+<a href="./CCP4ModelData.html#CSeqAlignDataFile">CSeqAlignDataFile</a> A (multiple) sequence alignment file<br/>
+<a href="./CCP4ModelData.html#CSeqDataFile">CSeqDataFile</a> A sequence file<br/>
+<a href="./CCP4ModelData.html#CSeqDataFileList">CSeqDataFileList</a> <br/>
+<a href="./CCP4ModelData.html#CSequence">CSequence</a> 
+  A string of sequence one-letter codes
+  Need to be able to parse common seq file formats
+  Do we need to support alternative residues
+  What about nucleic/polysach?
+  <br/>
+<a href="./CCP4ModelData.html#CSequenceAlignment">CSequenceAlignment</a> 
+  An alignment of two or more sequences.
+  Each sequence is obviously related to class CSequence, but
+  will also contain gaps relevant to the alignment. We could
+  implement the contents as a list of CSequence objects?
+  The alignment is typically formatted in a file as consecutive 
+  or interleaved sequences.
+  <br/>
+<a href="./CCP4ModelData.html#CSequenceMeta">CSequenceMeta</a> <br/>
+<a href="./CCP4ModelData.html#CTLSDataFile">CTLSDataFile</a> A refmac TLS file<br/>
+<h4>CCP4PerformanceData</h4>
+<a href="./CCP4PerformanceData.html#CAtomCountPerformance">CAtomCountPerformance</a> <br/>
+<a href="./CCP4PerformanceData.html#CDataReductionPerformance">CDataReductionPerformance</a> <br/>
+<a href="./CCP4PerformanceData.html#CExpPhasPerformance">CExpPhasPerformance</a> <br/>
+<a href="./CCP4PerformanceData.html#CModelBuildPerformance">CModelBuildPerformance</a> <br/>
+<a href="./CCP4PerformanceData.html#CPerformanceIndicator">CPerformanceIndicator</a> <br/>
+<a href="./CCP4PerformanceData.html#CPhaseErrorPerformance">CPhaseErrorPerformance</a> <br/>
+<a href="./CCP4PerformanceData.html#CRefinementPerformance">CRefinementPerformance</a> <br/>
+<a href="./CCP4PerformanceData.html#CSuperposePerformance">CSuperposePerformance</a> <br/>
+<a href="./CCP4PerformanceData.html#CTestObsConversionsPerformance">CTestObsConversionsPerformance</a> <br/>
+<h4>CCP4RefmacData</h4>
+<a href="./CCP4RefmacData.html#CRefmacAnomalousAtom">CRefmacAnomalousAtom</a> <br/>
+<a href="./CCP4RefmacData.html#CRefmacRestraintsDataFile">CRefmacRestraintsDataFile</a> <br/>
+<a href="./CCP4RefmacData.html#CRefmacRigidGroupItem">CRefmacRigidGroupItem</a> <br/>
+<a href="./CCP4RefmacData.html#CRefmacRigidGroupList">CRefmacRigidGroupList</a> <br/>
+<a href="./CCP4RefmacData.html#CRefmacRigidGroupSegment">CRefmacRigidGroupSegment</a> <br/>
+<h4>CCP4XtalData</h4>
+<a href="./CCP4XtalData.html#CAltSpaceGroup">CAltSpaceGroup</a> <br/>
+<a href="./CCP4XtalData.html#CAltSpaceGroupList">CAltSpaceGroupList</a> <br/>
+<a href="./CCP4XtalData.html#CAnomalousColumnGroup">CAnomalousColumnGroup</a> 
+  Selection of F/I and AnomF/I columns from MTZ.
+  Expected to be part of ab initio phasing dataset ( CDataset)
+  <br/>
+<a href="./CCP4XtalData.html#CAnomalousIntensityColumnGroup">CAnomalousIntensityColumnGroup</a> 
+  Selection of I and AnomI columns from MTZ.
+  Expected to be part of ab initio phasing dataset ( CDataset)
+  <br/>
+<a href="./CCP4XtalData.html#CAnomalousScatteringElement">CAnomalousScatteringElement</a> Definition of a anomalous scattering element<br/>
+<a href="./CCP4XtalData.html#CAsuComponent">CAsuComponent</a> A component of the asymmetric unit. This is for use in MR, defining
+     what we are searching for. There are similarities to CCrystalComponents
+     and it should maybe be merged.<br/>
+<a href="./CCP4XtalData.html#CAsuComponentList">CAsuComponentList</a> <br/>
+<a href="./CCP4XtalData.html#CAtomicFormFactors">CAtomicFormFactors</a> 
+  Table of form factors for element v wavelength
+  <br/>
+<a href="./CCP4XtalData.html#CCell">CCell</a> A unit cell<br/>
+<a href="./CCP4XtalData.html#CCellAngle">CCellAngle</a> A cell angle<br/>
+<a href="./CCP4XtalData.html#CCellLength">CCellLength</a> A cell length<br/>
+<a href="./CCP4XtalData.html#CColumnGroup">CColumnGroup</a> Groups of columns in MTZ - probably from analysis by hklfile<br/>
+<a href="./CCP4XtalData.html#CColumnGroupItem">CColumnGroupItem</a> Definition of set of columns that form a 'group'<br/>
+<a href="./CCP4XtalData.html#CColumnGroupList">CColumnGroupList</a> <br/>
+<a href="./CCP4XtalData.html#CColumnType">CColumnType</a> A list of recognised MTZ column types<br/>
+<a href="./CCP4XtalData.html#CColumnTypeList">CColumnTypeList</a> A list of acceptable MTZ column types<br/>
+<a href="./CCP4XtalData.html#CCrystalComponents">CCrystalComponents</a> A list of sequences, monomers and anomalous scatterers expected in a crystal<br/>
+<a href="./CCP4XtalData.html#CCrystalCompositionLabel">CCrystalCompositionLabel</a> 
+  Serves as column header for CCrystalComposition - is a name for a composition model
+  The composition model can be for one of three units
+  <br/>
+<a href="./CCP4XtalData.html#CCrystalCompositionTable">CCrystalCompositionTable</a>  A table of crystal components v. composition models<br/>
+<a href="./CCP4XtalData.html#CCrystalName">CCrystalName</a> <br/>
+<a href="./CCP4XtalData.html#CDataset">CDataset</a> 
+  The experimental data model for ab initio phasing
+  <br/>
+<a href="./CCP4XtalData.html#CDatasetList">CDatasetList</a> <br/>
+<a href="./CCP4XtalData.html#CDatasetName">CDatasetName</a> <br/>
+<a href="./CCP4XtalData.html#CExperimentalDataType">CExperimentalDataType</a> Experimental data type e.g. native or peak<br/>
+<a href="./CCP4XtalData.html#CFPairColumnGroup">CFPairColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CFSigFColumnGroup">CFSigFColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CFormFactor">CFormFactor</a> 
+  The for factor (Fp and Fpp) for a giving element and wavelength
+  <br/>
+<a href="./CCP4XtalData.html#CFreeRColumnGroup">CFreeRColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CFreeRDataFile">CFreeRDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CGenericReflDataFile">CGenericReflDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CHLColumnGroup">CHLColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CIPairColumnGroup">CIPairColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CISigIColumnGroup">CISigIColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CImageFile">CImageFile</a> <br/>
+<a href="./CCP4XtalData.html#CImosflmXmlDataFile">CImosflmXmlDataFile</a> An iMosflm data file<br/>
+<a href="./CCP4XtalData.html#CImportUnmerged">CImportUnmerged</a> <br/>
+<a href="./CCP4XtalData.html#CImportUnmergedList">CImportUnmergedList</a> <br/>
+<a href="./CCP4XtalData.html#CMapCoeffsDataFile">CMapCoeffsDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CMapColumnGroup">CMapColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CMapDataFile">CMapDataFile</a> A CCP4 Map file<br/>
+<a href="./CCP4XtalData.html#CMergeMiniMtz">CMergeMiniMtz</a> <br/>
+<a href="./CCP4XtalData.html#CMergeMiniMtzList">CMergeMiniMtzList</a> <br/>
+<a href="./CCP4XtalData.html#CMiniMtzDataFile">CMiniMtzDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CMiniMtzDataFileList">CMiniMtzDataFileList</a> <br/>
+<a href="./CCP4XtalData.html#CMmcifReflData">CMmcifReflData</a> Reflection data in mmCIF format<br/>
+<a href="./CCP4XtalData.html#CMmcifReflDataFile">CMmcifReflDataFile</a> A reflection file in mmCIF format<br/>
+<a href="./CCP4XtalData.html#CMtzColumn">CMtzColumn</a> An MTZ column with column label and column type<br/>
+<a href="./CCP4XtalData.html#CMtzColumnGroup">CMtzColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CMtzColumnGroupType">CMtzColumnGroupType</a> <br/>
+<a href="./CCP4XtalData.html#CMtzData">CMtzData</a> Some of the data contents of an MTZ file<br/>
+<a href="./CCP4XtalData.html#CMtzDataFile">CMtzDataFile</a> An MTZ experimental data file<br/>
+<a href="./CCP4XtalData.html#CMtzDataset">CMtzDataset</a> <br/>
+<a href="./CCP4XtalData.html#CObsDataFile">CObsDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CPhaserSolDataFile">CPhaserSolDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CPhasingGroup">CPhasingGroup</a> <br/>
+<a href="./CCP4XtalData.html#CPhiFomColumnGroup">CPhiFomColumnGroup</a> <br/>
+<a href="./CCP4XtalData.html#CPhsDataFile">CPhsDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CProgramColumnGroup">CProgramColumnGroup</a> A group of MTZ columns required for program input<br/>
+<a href="./CCP4XtalData.html#CProgramColumnGroup0">CProgramColumnGroup0</a> <br/>
+<a href="./CCP4XtalData.html#CReindexOperator">CReindexOperator</a> <br/>
+<a href="./CCP4XtalData.html#CResolutionRange">CResolutionRange</a> <br/>
+<a href="./CCP4XtalData.html#CRunBatchRange">CRunBatchRange</a> <br/>
+<a href="./CCP4XtalData.html#CRunBatchRangeList">CRunBatchRangeList</a> <br/>
+<a href="./CCP4XtalData.html#CShelxFADataFile">CShelxFADataFile</a> <br/>
+<a href="./CCP4XtalData.html#CShelxLabel">CShelxLabel</a> <br/>
+<a href="./CCP4XtalData.html#CSpaceGroup">CSpaceGroup</a> A string holding the space group<br/>
+<a href="./CCP4XtalData.html#CSpaceGroupCell">CSpaceGroupCell</a> Cell space group and parameters<br/>
+<a href="./CCP4XtalData.html#CUnmergedDataContent">CUnmergedDataContent</a> <br/>
+<a href="./CCP4XtalData.html#CUnmergedDataFile">CUnmergedDataFile</a>  Handle MTZ, XDS and scalepack files. Allow wildcard filename<br/>
+<a href="./CCP4XtalData.html#CUnmergedDataFileList">CUnmergedDataFileList</a> <br/>
+<a href="./CCP4XtalData.html#CUnmergedMtzDataFile">CUnmergedMtzDataFile</a> <br/>
+<a href="./CCP4XtalData.html#CWavelength">CWavelength</a> Wavelength in Angstrom<br/>
+
+
+<a name="introduction"><h3>Introduction</h3>
+
+<p>These Python data classes are used by by CCP4i2 and by compatible pipelines and wrappers. It is the objective that these classes cover all the crystallographic data and that CCP4i2 provides widgets suitable for each data class. The classes are in modules named <i>CCP4Whatever</i> and the classes are named <i>CWhatever</i> (the C is for CCP4 as distinct from Q for Qt). The key fuctionality of each class is:</p>
+<ul>
+  <li>Read/write XML definition of the class to a <i>.def.xml</i> file</li>
+  <li>Read/write XML data contained in an instance of the class to a <i>.data.xml</i> file</li>
+  <li>Validate the data. Eg. check that data is within allowed ranges</li>
+  <li>Method to 'fix' bad data - this is particular to each class and never applied by the data class library itself</li>
+</ul>
+<p>It is intended that the classes should also provide useful scientific functionality.</p>
+<p>All data classes are ultimately derived from <i>CCP4Data.CData</i>. There are 'simple' classes:  <i>CBoolean</i>,  <i>CFloat</i>,  <i>CInt</i>,  <i>CString</i> etc. which are derived from <i>CCP4Data.CBaseData</i>. These can be sub-classed but the ues of <i>qualifiers</i> is intended to minimise the need to sub-class. For example <i>CInt</i> has the optional qualifiers <i>min</i> and <i>max</i> which can be define the limits of allowed values. These limits are then used in the <i>CInt.validate()</i> method. For example in Python code qualifiers for <i>CCellLength</i> are set:</p>
+<pre>
+  class CCellLength(CFloat):
+    QUALIFIERS = { 'min' : 0.0,
+                   'toolTip' : 'Cell length in Angstrom' }
+</pre>
+<p>In this example the <i>toolTip</i> shows the other important use of qualifiers: to provide helpful information for the GUI.</p>
+
+<p>'Complex' classes contain other classes - the contents are defined by a <i>CONTENTS</i> statement in the class:
+
+<pre>
+class CCell(CData):
+    CONTENTS = 
+              {  'a' :     { 'class' : CCellLength },
+                 'b' :     { 'class' : CCellLength },
+                 'c' :     { 'class' : CCellLength },
+                 'alpha' : { 'class' : CCellAngle },
+                 'beta'  : { 'class' : CCellAngle },
+                 'gamma' : { 'class' : CCellAngle }  }
+</pre>
+
+<p>Nothing else would be required to define a functional <i>CCell</i> class. The CData.build() method will build the required data structure for the class from this definition.</p>
+<p>There is also support for lists and tables as <i>CList</i> and <i>CTable</i> which (unlike Python lists) must have all elements of the same data type which can be any CData class other than CList or CTable. These are both derived from <i>CCollection</i> which handles a <i>subItem</i> which is the definition of the type of the elements of the CList or CTable.</p>
+
+<a name="containers"> <h3>Containers</h3>
+<p><i>CCP4Container.CContainer</i> is a sub-class of <i>CCP4Data.CData</i> that can hold a set of  <i>CCP4Data.CData</i> objects that are defined at run time; the definition usually comes from an XML <i>def</i> file. Typically a CContainer will hold all of the data for one pipeline, wrapper or GUI. CContainers can contain other CContainers and it is recommended that the container for a pipeline or wrapper has three sub-containers called 'inputData', 'outputData' and 'parameters' to distinguish the different functions of the data. The content of the <i>def</i> file can be defined most easily using the <i>defEd</i> program.</p>
+<hr>
+<address></address>
+Class list last updated: 15:51 20/Oct/16
+</body> </html>

@@ -274,7 +274,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const isExpanded = hasValidationError || isManuallyExpanded || forceExpanded;
 
   const guiLabel =
-    qualifiers?.guiLabel || item?._objectPath?.split(".").at(-1) || "";
+    qualifiers?.guiLabel ?? item?._objectPath?.split(".").at(-1) ?? "";
 
   // Drag and drop — drop target (only for pending job inputs)
   const { isOver, setNodeRef } = useDroppable({

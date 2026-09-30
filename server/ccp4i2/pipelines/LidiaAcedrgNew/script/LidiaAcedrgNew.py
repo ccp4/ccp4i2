@@ -14,6 +14,7 @@ class LidiaAcedrgNew(CPluginScript):
     ERROR_CODES = {
         201: {'description': 'Expected output file not made', 'severity': CCP4ErrorHandling.SEVERITY_WARNING},
         202: {'description': 'Failed to create sub-plugin', 'severity': CCP4ErrorHandling.SEVERITY_ERROR},
+        203: {'description': 'Sketching needs Coot\'s Lidia sketcher, which this CCP4 installation does not have', 'severity': CCP4ErrorHandling.SEVERITY_ERROR},
     }
 
     def validity(self):
@@ -35,8 +36,26 @@ class LidiaAcedrgNew(CPluginScript):
                     err.get('name', ''),
                     err.get('severity', 0)
                 )
-            return filtered
+            error = filtered
+        # "a sketch" runs Coot's Lidia as a desktop program. Current CCP4
+        # (Coot 1) ships no lidia, so say so before Run, not after it fails.
+        if mode == 'SKETCH' and not self._lidiaAvailable():
+            error.append(klass=self.TASKNAME, code=203,
+                details="Sketching needs Coot's Lidia sketcher, which this CCP4 "
+                        "installation does not have: give a SMILES string or a "
+                        "MOL file instead",
+                name=f'{self.TASKNAME}.container.inputData.MOLSMILESORSKETCH',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
+
+    @staticmethod
+    def _lidiaAvailable():
+        import os
+        try:
+            from ccp4i2.wrappers.Lidia.script.Lidia import _lidiaPath
+            return os.path.isfile(_lidiaPath()[0])
+        except Exception:
+            return False
 
     def process(self):
         

@@ -12,7 +12,7 @@ class phaser_ep_auto_phil_report(PhaserReportBase):
         if overall is not None:
             fom = overall.findtext("fom")
             llg = completion.get("llg") if completion is not None else None
-            parent.addText(text=f"Overall figure of merit {fom}" + (f", log-likelihood {llg}" if llg else ""),
+            parent.addText(text=f"Overall figure of merit {fom}" + (f", log-likelihood gain {llg}" if llg else ""),
                            style="font-weight:bold;")
         if completion is not None and completion.get("converged") == "False":
             parent.addText(text="Substructure completion did not converge within the cycles allowed",

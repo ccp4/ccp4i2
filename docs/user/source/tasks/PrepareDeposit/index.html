@@ -1,0 +1,51 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Prepare files for deposition</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>The final stage of the crystallographic structure solution is the deposition of the final structure and the observations in the Protein Data Bank (PDB). The PDB require that the files be provided in a standard form, specifically the observations and the atomic model must be in CIF format and and TLS contributions to the refinement calculation must be included. This task will automatically prepare the required files in the appropriate formats.</p>
+      <h2>Input</h2>
+      <img src="PrepareDeposit_task_1.png">
+      <p>Firstly, the type of observations used for the final refinement must be specified, whether amplitudes or intensities <b class="img-ref">(1)</b>.</p>
+      <p>Next, any optional files required to reproduce the final
+      refinement must be specified. These may include the AU content
+      data for the crystallized species, in case not all of the
+      structure was built; the refined TLS parameters from the final
+      refinement in the case of TLS refinement (most cases); and the
+      dictionary for any ligands or other non-standard monomers in the
+      crystal <b class="img-ref">(2)</b>. If the AU content data is
+      provided then the task report will show the sequence alignment
+      of final model to the expected sequence as a final check on the
+      correctness of the model.</p>
+      <p>The refined atomic model <b class="img-ref">(3)</b>, the observations against which the model was refined <b class="img-ref">(4)</b>, and the Free-R set must then be specified so that the refinement result can be confirmed <b class="img-ref">(5)</b>. The observations may be amplitudes or intensities as specified previously, but must be the same as used in the final refinement.</p>
+      <p>Finally a folder must be selected, into which the deposition files 'Reflections.cif' and 'Coordinates.cif' will be placed <b class="img-ref">(6)</b>.</p>
+      <br/>
+
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <img src="PrepareDeposit_report_1.png">
+      <p>The deposition task will run refmac to try and reproduce the refinement statistics from the end of the structure refinement. You should check the refinement statistics to make sure that they match the final refinement cycle. If not, check that you have provided any necessary TLS and dictionary files.</p>
+      <p>The CIF files for deposition will be placed in the folder specified in the task input.</p>
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+
+AU content

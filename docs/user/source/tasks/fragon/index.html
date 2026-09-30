@@ -1,0 +1,71 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Molecular replacement with fragments (Fragon)</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>The Fragon task uses the program Phaser to place fragments of secondary structure such as ideal alpha helices or ensembles of beta strands. These fragments are likely to be highly similar to some regions of the target structure but will only correspond to a tiny fraction of the protein. Hence the signal to noise ratio will be very low. This means that the log-likelihood gain scoring used in Phaser will enrich the solution list with correctly placed fragments but will not be sufficient to discriminate correct from incorrect placements. Therefore, attempts are made to improved the poor starting phases calculated from each placed fragment by density modification with ACORN. If the phases improve sufficiently (monitored by a correlation coefficient) the the improved phases can be used for automated model building   </p>
+
+      <h2>Input</h2>
+      <img src="fragon_task_1.png">
+      <p>First the experimental data must be selected <b class="img-ref">(1)</b>. A set of observations is required.</p>
+      <p>The composition of the asymmetric unit must be defined  <b class="img-ref">(2)</b> in one of two ways. Ideally you should provide the contents of the crystallographic asymmetric unit. This should have been entered in the Define AU contents task but can be entered here by clicking the "Specify AU contents" button and selecting one or more sequence file(s). Alternatively you can enter the estimated solvent content of the crystal.</p>
+      <p>There are three choices for the fragment to search with <b class="img-ref">(3)</b>. Firstly, you can select an ideal poly-alanine helix of between 5 and 20 residues. Secondary structure prediction may help guide your choice but in general a few runs with lengths of 10, 12 and 14 residues is a good starting point.</p>
+      <p>Secondly, you can choose ensembles of single beta strands with between 3 and 5 residues or from a number of ensembles of pairs of parallel and antiparallel 5 residue ideal beta strands with varying angles between the strands.</p>
+      <p>Thirdly, you can input your own choice of starting fragment. Any model that works in Phaser is suitable. </p>
+      <p>Next you need to choose the number of copies of the fragment to search for <b class="img-ref">(4)</b>. In general, unless you are certain that your structure contains multiple (straight) helices, one or two copies is a good starting point. If you know there are multiple copies of the protein in the asymmetric unit then search for that number of copies of the fragment. Although there are limits to the size that the search tree can grow to in Phaser, searching for multiple copies when the signal to noise does not increase as subsequent fragments are placed will result in very long Phaser run times.</p>
+      <br>
+
+      <h2>Basic options</h2>
+      <img src="fragon_task_2.png">
+      <p>You can specify the maximum number of potential Phaser solutions to test <b class="img-ref">(1)</b>. Unless you select the option to test all solutions <b class="img-ref">(2)</b>, Fragon will stop once a solution with a correlation coefficient (CC) from density modification above the value specified here <b class="img-ref">(3)</b> is found. </p>
+      <p>The Phaser search uses OpenMP parallelisation and multiple potential solutions can be tested with density modification in parallel. Set the number of CPUs to use here <b class="img-ref">(4)</b>. If you have access to a multi-CPU machine with lots (>8) of cores it is probably most efficient to run several Fragon tasks searching for different fragments as the OpenMP speed-up of Phaser (usually the slowest step) decreases above about 8 parallel threads.</p>
+       <p>Finally you can choose to search alternative space groups, the input space group only or, when relevant, both hands of enantiomorphic space groups (the default) <b class="img-ref">(5)</b>. </p>
+      <br/>
+   
+      <h2>Advanced options</h2>
+      <img src="fragon_task_3.png">
+      <p>The default options for all of these parameters have been successfully used on several large test-sets so changing them is not advised unless you have exhaustively tried different search models. </p>
+      <p> One option you may wish to adjust is the purging of solutions between successive fragment searches <b class="img-ref">(1)</b>. The fewer partial solutions carried forward, the faster the Phaser run. However, when there are multiple partial solutions this means that the previous search did not find a clear solution so pruning too aggressively may lead to failure. 100 potential solutions seems a good compromise and has been well tested.</p>
+      <p>If Phaser detects translational non-crystallographic symmetry (tNCS) and the search fails you may want to try again with this <b class="img-ref">(2)</b> option selected.</p>
+       <p>You can alter more parameters in the Phaser search by selecting this <b class="img-ref">(3)</b> option. No further help is given as if you think you need to alter these options you will know what they do.</p>
+      <br/>
+      
+      <img src="fragon_task_4.png">
+            <p>When searching with one of the supplied ensembles of beta strands by default the pair of strands is refined as a single rigid-body. You can choose <b class="img-ref">(4)</b> to further rigid-body refine each strand separately or split the strands in half around the central C-alpha of the strands and refine each half separately.  </p>
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+      
+      <h2>Before fragments have been placed</h2>
+      <img src="fragon_report_1.png">
+      <p>Whilst Phaser is running to place the fragment(s), the report will look like this. The current Phaser stage is shown here <b class="img-ref">(1)</b>. Depending on how easily Phaser is able to place the fragments this stage may take a while.</p>
+      <br>
+      <h2>Once fragments have been placed</h2>
+      <img src="fragon_report_2.png">
+      <p>When Phaser has placed the fragments. The report will look like this. The number of solutions found by Phaser and the log-likelihood gain (LLG) and translation-function Z-score (TF Z-score) for the top solution are reported <b class="img-ref">(1)</b>. If Phaser found more solutions than requested only the solutions up to the number requested will be tested with density modification with ACORN <b class="img-ref">(2)</b>. This table <b class="img-ref">(3)</b> lists the LLG and TF Z-score for these solutions. As the results of density modification with ACORN are obtained this table shows which solutions are currently being tested and will update with the correlation coefficient (CC) from density modification. </p>
+      <br>
+      <h2>Final results</h2>
+      <img src="fragon_report_3.png">
+      <p>Once all the solutions have been tested, or a solution with a correlation coefficient (CC) from density modification above the value specified has been found, Fragon will stop. The best CC <b class="img-ref">(1)</b> and if the value suggests the phases will be sufficiently good for automated model building <b class="img-ref">(2)</b> is reported. </p>
+      <p>The output data for the best scoring solution comprise: The coordinates for the placed fragment <b class="img-ref">(3)</b>, the phases after density modification <b class="img-ref">(4)</b> and map-coefficients suitable for viewing in Coot <b class="img-ref">(5)</b>. </p>
+      <p>Follow-on tasks include manual model building <b class="img-ref">(6)</b> - usually to inspect the quality of the map - and automated model building <b class="img-ref">(7)</b> .
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+{
+  "scenario": "../../../tools/scenario_maps.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "chltofom_input.png",
+      "job": 18,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": []
+    },
+    {
+      "out": "chltofom_report.png",
+      "job": 11,
+      "tabs": [
+        "Report"
+      ],
+      "section": "Input Data",
+      "until": "Bibliographic references",
+      "callouts": [
+        {
+          "text": "Output Data",
+          "badge": "2"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/chltofom/script/chltofom.def.xml": "641fbf61ce402b50345e3ec98c7ed83657b75bfd",
+    "server/ccp4i2/wrappers/chltofom/script/chltofom.py": "e8bb2e4cb2f189a298b1f42cb4b72996f1d07ad9",
+    "server/ccp4i2/wrappers/chltofom/script/chltofom_report.py": "43a7edf872e078f1579618435e4ba958d7a61e9e",
+    "client/renderer/components/task/task-interfaces/chltofom.tsx": "579fc03cb48f8ee72ee42cad42c43b62a7a07949",
+    "docs/user/tools/scenario_maps.py": "42eba6a1f5bd6db6cfd51d248e0843314ad2f0df"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": true,
+  "shots": [
+    {
+      "out": "modelcraft_input.png",
+      "job": 11,
+      "tabs": ["Task interface"],
+      "section": "Reflection data",
+      "until": "Options",
+      "callouts": [
+        "Reflections",
+        "Free R set",
+        {
+          "text": "Calculate initial phases"
+        },
+        "Asymmetric unit contents",
+        "Starting model"
+      ]
+    },
+    {
+      "out": "modelcraft_options.png",
+      "job": 11,
+      "tabs": ["Task interface"],
+      "viewport": [1400, 2000],
+      "section": "Options",
+      "through": "Optional pipeline steps",
+      "callouts": [
+        {
+          "text": "Run for"
+        },
+        {
+          "text": "Run a quicker basic pipeline"
+        },
+        {
+          "text": "Build selenomethionine"
+        },
+        {
+          "text": "Use twinned refinement"
+        },
+        {
+          "text": "Optional pipeline steps"
+        }
+      ]
+    },
+    {
+      "out": "modelcraft_report.png",
+      "job": 5,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "Summary",
+        "scroll": true
+      },
+      "from": "Summary",
+      "until": "Picture",
+      "callouts": [
+        {
+          "text": "Cycle",
+          "closest": "table"
+        },
+        {
+          "text": "Plot",
+          "closest": ".MuiPaper-root"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/modelcraft/script/modelcraft.def.xml": "04a7658804e852a4534a87c8280199368dc9d9da",
+    "server/ccp4i2/wrappers/modelcraft/script/modelcraft.py": "d2ed5ac03078af83a1e5a39c8d66036a21762bd3",
+    "server/ccp4i2/pipelines/phaser_ep/script/phaser_EP_report.py": "3ce44e66421d5b8d5da1029276739f432219f644",
+    "client/renderer/components/task/task-interfaces/modelcraft.tsx": "6ea403e61a7cb518fb1b4048e8652fa1fea3b9d0",
+    "docs/user/tools/scenario_mr.py": "10fc5729c5470ba9addb4e085daf319c9a650fed"
+  }
+}

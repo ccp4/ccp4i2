@@ -1,0 +1,53 @@
+
+<html> <head>
+<title>CCP4i2 Data Classes - Brief Introduction</title>
+</head>
+
+<body>
+<h1>CCP4i2 Data Classes</h1>
+<a href="#introduction">Introduction</a><br/>
+<a href="#containers">Containers</a><br/>
+
+<h3>Current Data Classes</h3>
+INSERT_CLASS_LINKS_HERE
+
+<a name="introduction"><h3>Introduction</h3>
+
+<p>These Python data classes are used by by CCP4i2 and by compatible pipelines and wrappers. It is the objective that these classes cover all the crystallographic data and that CCP4i2 provides widgets suitable for each data class. The classes are in modules named <i>CCP4Whatever</i> and the classes are named <i>CWhatever</i> (the C is for CCP4 as distinct from Q for Qt). The key fuctionality of each class is:</p>
+<ul>
+  <li>Read/write XML definition of the class to a <i>.def.xml</i> file</li>
+  <li>Read/write XML data contained in an instance of the class to a <i>.data.xml</i> file</li>
+  <li>Validate the data. Eg. check that data is within allowed ranges</li>
+  <li>Method to 'fix' bad data - this is particular to each class and never applied by the data class library itself</li>
+</ul>
+<p>It is intended that the classes should also provide useful scientific functionality.</p>
+<p>All data classes are ultimately derived from <i>CCP4Data.CData</i>. There are 'simple' classes:  <i>CBoolean</i>,  <i>CFloat</i>,  <i>CInt</i>,  <i>CString</i> etc. which are derived from <i>CCP4Data.CBaseData</i>. These can be sub-classed but the ues of <i>qualifiers</i> is intended to minimise the need to sub-class. For example <i>CInt</i> has the optional qualifiers <i>min</i> and <i>max</i> which can be define the limits of allowed values. These limits are then used in the <i>CInt.validate()</i> method. For example in Python code qualifiers for <i>CCellLength</i> are set:</p>
+<pre>
+  class CCellLength(CFloat):
+    QUALIFIERS = { 'min' : 0.0,
+                   'toolTip' : 'Cell length in Angstrom' }
+</pre>
+<p>In this example the <i>toolTip</i> shows the other important use of qualifiers: to provide helpful information for the GUI.</p>
+
+<p>'Complex' classes contain other classes - the contents are defined by a <i>CONTENTS</i> statement in the class:
+
+<pre>
+class CCell(CData):
+    CONTENTS = 
+              {  'a' :     { 'class' : CCellLength },
+                 'b' :     { 'class' : CCellLength },
+                 'c' :     { 'class' : CCellLength },
+                 'alpha' : { 'class' : CCellAngle },
+                 'beta'  : { 'class' : CCellAngle },
+                 'gamma' : { 'class' : CCellAngle }  }
+</pre>
+
+<p>Nothing else would be required to define a functional <i>CCell</i> class. The CData.build() method will build the required data structure for the class from this definition.</p>
+<p>There is also support for lists and tables as <i>CList</i> and <i>CTable</i> which (unlike Python lists) must have all elements of the same data type which can be any CData class other than CList or CTable. These are both derived from <i>CCollection</i> which handles a <i>subItem</i> which is the definition of the type of the elements of the CList or CTable.</p>
+
+<a name="containers"> <h3>Containers</h3>
+<p><i>CCP4Container.CContainer</i> is a sub-class of <i>CCP4Data.CData</i> that can hold a set of  <i>CCP4Data.CData</i> objects that are defined at run time; the definition usually comes from an XML <i>def</i> file. Typically a CContainer will hold all of the data for one pipeline, wrapper or GUI. CContainers can contain other CContainers and it is recommended that the container for a pipeline or wrapper has three sub-containers called 'inputData', 'outputData' and 'parameters' to distinguish the different functions of the data. The content of the <i>def</i> file can be defined most easily using the <i>defEd</i> program.</p>
+<hr>
+<address></address>
+Class list last updated: INSERT_DATE
+</body> </html>

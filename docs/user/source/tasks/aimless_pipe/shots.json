@@ -1,0 +1,193 @@
+{
+  "scenario": "../../../tools/scenario_refine.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    2000
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "aimless_pipe_input.png",
+      "job": 5,
+      "tabs": [
+        "Task interface",
+        "Input Data"
+      ],
+      "click": [
+        "[aria-label='Expand options']"
+      ],
+      "viewport": [
+        1400,
+        2800
+      ],
+      "section": "Select unmerged data files",
+      "through": "Fraction of reflections in generated FreeR set",
+      "callouts": [
+        {
+          "text": "Unmerged reflection files",
+          "badge": "1.1"
+        },
+        {
+          "field": "crystal name",
+          "badge": "1.2"
+        },
+        {
+          "field": "Batch range(s) to exclude",
+          "badge": "1.3"
+        },
+        {
+          "text": "Resolution range (Å)",
+          "badge": "1.4"
+        },
+        {
+          "text": "automatically cut resolution range based on a first Aimless run",
+          "badge": "1.5"
+        },
+        {
+          "field": "Options for symmetry determination",
+          "badge": "1.6"
+        },
+        {
+          "text": "Reference data are",
+          "badge": "1.7"
+        },
+        {
+          "field": "Free R set",
+          "badge": "1.8"
+        },
+        {
+          "field": "Fraction of reflections in generated FreeR set",
+          "badge": "1.9"
+        }
+      ]
+    },
+    {
+      "out": "aimless_pipe_important.png",
+      "job": 5,
+      "tabs": [
+        "Task interface",
+        "Important Options"
+      ],
+      "viewport": [
+        1400,
+        2800
+      ],
+      "section": "Options for symmetry determination in Pointless",
+      "through": "Options for scaling and merging in Aimless",
+      "callouts": [
+        {
+          "text": "Maximum resolution for scoring set by CC(1/2) in P1 >",
+          "badge": "2.1"
+        },
+        {
+          "text": "override default parameters for estimation of maximum resolution",
+          "badge": "2.2"
+        },
+        {
+          "text": "override default parameters for SD correction",
+          "badge": "2.3"
+        }
+      ]
+    },
+    {
+      "out": "aimless_pipe_additional.png",
+      "job": 5,
+      "tabs": [
+        "Task interface",
+        "Additional Options"
+      ],
+      "viewport": [
+        1400,
+        2800
+      ],
+      "section": "Options for symmetry determination in Pointless",
+      "through": "Options for scaling in Aimless",
+      "callouts": [
+        {
+          "text": "Choice of cell setting conventions:",
+          "badge": "3.1"
+        },
+        {
+          "text": "Option to remove centred lattice absences in Pointless",
+          "badge": "3.2"
+        },
+        {
+          "text": "with relative B-factor",
+          "badge": "3.3"
+        },
+        {
+          "text": "override default parameters for outlier rejection",
+          "badge": "3.4"
+        }
+      ]
+    },
+    {
+      "out": "aimless_pipe_report_key.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2600
+      ],
+      "section": "Key summary",
+      "callouts": [
+        {
+          "text": "Key summary",
+          "badge": "4.1"
+        },
+        {
+          "text": "Automatic resolution cutoff was requested and applied, original",
+          "badge": "4.2"
+        },
+        {
+          "text": "Phaser also finds no evidence of twinning",
+          "badge": "4.3"
+        },
+        {
+          "text": "A free-R set has been created",
+          "badge": "4.4"
+        }
+      ]
+    },
+    {
+      "out": "aimless_pipe_report_overall.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        5000
+      ],
+      "section": "Overall summary",
+      "callouts": [
+        {
+          "text": "Space group determination",
+          "badge": "5.1"
+        },
+        {
+          "text": "Analysis as a function of resolution",
+          "badge": "5.2"
+        },
+        {
+          "text": "Wilson plot B:",
+          "badge": "5.3"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/aimless_pipe/script/aimless_pipe.def.xml": "7b725d0f64169e5b83fbdb3a8b458b4937b26e0d",
+    "server/ccp4i2/pipelines/aimless_pipe/script/aimless_pipe.py": "ed8cfee4190d3b2410c574dd914499b4745a6870",
+    "server/ccp4i2/pipelines/aimless_pipe/script/aimless_pipe_report.py": "14f14527af1701380b1e031566c24c1737766ed2",
+    "client/renderer/components/task/task-interfaces/aimless-pipe/AdditionalOptionsTab.tsx": "a90aa6403e31aad21784fbcd3c4affb77ec00050",
+    "client/renderer/components/task/task-interfaces/aimless-pipe/ImportantOptionsTab.tsx": "abe04c886b52780d8b1746c58056efa1831ba7c2",
+    "client/renderer/components/task/task-interfaces/aimless-pipe/InputDataTab.tsx": "259b7ca54ac13047d541b3d0928cb5ebb7c02199",
+    "client/renderer/components/task/task-interfaces/aimless-pipe/index.tsx": "e3d5924bc7c4f756aa279424cd2a465e46d0c54e",
+    "docs/user/tools/scenario_refine.py": "cb5135ccb2aa061d17ad9faa2fc3bbe4b583b10c"
+  }
+}

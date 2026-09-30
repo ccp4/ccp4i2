@@ -1,0 +1,54 @@
+{
+  "scenario": "../../../tools/scenario_prep.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    2000
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "clustalw_input.png",
+      "job": 26,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Input type",
+      "through": "Sequences",
+      "callouts": [
+        {
+          "text": "Sequences",
+          "badge": "1"
+        }
+      ]
+    },
+    {
+      "out": "clustalw_report.png",
+      "job": 21,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2600
+      ],
+      "section": "Sequence Alignment",
+      "until": "Bibliographic references",
+      "callouts": [
+        {
+          "text": "Protein Sequence Alignment (ClustalW)",
+          "badge": "2"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/clustalw/script/clustalw.def.xml": "6a3e152c392ada5445d585153ce4068836306362",
+    "server/ccp4i2/wrappers/clustalw/script/clustalw.py": "8c5a26789577f58c51f362c1f7749d2ebdf7aa22",
+    "server/ccp4i2/wrappers/clustalw/script/clustalw_report.py": "2128781fdc20076546bc04f61e6488f88e9ed521",
+    "client/renderer/components/task/task-interfaces/clustalw.tsx": "f513720b6d9a80ed9168aaf9e6714c7a1d8170c2",
+    "docs/user/tools/scenario_prep.py": "aecf354063a48a2e2ba3b5cf94378ce2c78f902e"
+  }
+}

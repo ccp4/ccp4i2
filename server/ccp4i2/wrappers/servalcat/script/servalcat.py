@@ -640,6 +640,11 @@ class servalcat(CPluginScript):
                 keywordFile.write(
                     f"\n@{self.container.inputData.METALCOORD_RESTRAINTS.fullPath}")
 
+        if self.container.inputData.PLATONYZER_RESTRAINTS.isSet():
+            with open(keywordFilePath, "a+") as keywordFile:
+                keywordFile.write(
+                    f"\n@{self.container.inputData.PLATONYZER_RESTRAINTS.fullPath}")
+
         if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
                 if self.container.controlParameters.PROSMART_PROTEIN_SGMN.isSet():

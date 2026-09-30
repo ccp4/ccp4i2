@@ -24,9 +24,9 @@ class parrot_report(Report):
           n = (1.0-solc)/v
           s = ""
           if pseq > 0.98:
-            parent.append( "<p>The solvent content is set to %4.1f%% corresponding to %5.1f copies of the sequence in the asymmetric unit.</p>"%(100*solc,n) )
+            parent.append( "<p>The solvent content is set to %4.1f%% corresponding to %5.1f times the asymmetric unit contents.</p>"%(100*solc,n) )
           else:
-            parent.append( "<p>The solvent content is set to %4.1f%% corresponding to %5.1f copies of the sequence in the asymmetric unit. <i>This is only an estimate. Please check.</i></p>"%(100*solc,n) )
+            parent.append( "<p>The solvent content is set to %4.1f%% corresponding to %5.1f times the asymmetric unit contents. <i>This is only an estimate. Please check.</i></p>"%(100*solc,n) )
         except Exception as e:
           parent.append( "<p>THERE WAS A PROBLEM REPORTING THE SOLVENT CONTENT %s</p>"%(e,) )
 
@@ -89,8 +89,8 @@ class parrot_report(Report):
           graph = parent.addFlotGraph( title="Progress by cycle", xmlnode=self.xmlnode, select=".//Cycles/Cycle", style="width:450px;height:300px;margin:0 auto;float:left;border:0px;" )
           graph.addData(title="Cycle", select="Number" )
           graph.addData(title="Mean_FOM",               select="MeanFOM")
-          graph.addData(title="Fcorrel<sub>work</sub>", select="Fcorrel")
-          graph.addData(title="Fcorrel<sub>free</sub>", select="FreeFcorrel" )
+          graph.addData(title="Fcorrel_work", select="Fcorrel")
+          graph.addData(title="Fcorrel_free", select="FreeFcorrel" )
           graph.addData(title="NCS_correlation_(mean)",     select="NCScormean" )
           graph.addData(title="NCS_volume_(mean)", select="NCSvolmean" )
           graph.addData(title="NCS_volume_(max)",  select="NCSvolmax" )

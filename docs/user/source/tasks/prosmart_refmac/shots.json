@@ -1,0 +1,265 @@
+{
+  "scenario": "../../../tools/scenario_refine.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1600
+  ],
+  "draft": true,
+  "settle": 25000,
+  "shots": [
+    {
+      "out": "refmac_input.png",
+      "job": 7,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Main inputs",
+      "through": "Additional geometry dictionaries",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1.1"
+        },
+        {
+          "field": "Observed data",
+          "badge": "1.2"
+        },
+        {
+          "field": "Free R set",
+          "badge": "1.3"
+        },
+        {
+          "field": "Phases",
+          "badge": "1.4"
+        },
+        {
+          "text": "Ligand restraint dictionaries",
+          "badge": "1.5"
+        }
+      ]
+    },
+    {
+      "out": "refmac_options.png",
+      "job": 7,
+      "tabs": [
+        "Task interface",
+        "Input data"
+      ],
+      "section": "Options",
+      "callouts": [
+        {
+          "field": "Refinement mode (restrained or rigid body):",
+          "badge": "1.6"
+        },
+        {
+          "field": "Use riding hydrogens during refinement",
+          "badge": "1.7"
+        },
+        {
+          "field": "Add waters",
+          "badge": "1.8"
+        },
+        {
+          "field": "Crystal is twinned",
+          "badge": "1.9"
+        }
+      ]
+    },
+    {
+      "out": "refmac_parameterisation.png",
+      "job": 7,
+      "tabs": [
+        "Task interface",
+        "Parameterisation"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": "B-factors",
+      "through": "Conformer groups and occupancy refinement",
+      "callouts": [
+        {
+          "text": "B-factors",
+          "badge": "3.1"
+        },
+        {
+          "text": "Scaling",
+          "badge": "3.2"
+        },
+        {
+          "text": "Translation-Libration-Screw (TLS)",
+          "badge": "3.3"
+        },
+        {
+          "text": "Weights",
+          "badge": "3.4"
+        },
+        {
+          "text": "Conformer groups and occupancy refinement",
+          "badge": "3.5"
+        }
+      ]
+    },
+    {
+      "out": "refmac_restraints.png",
+      "job": 7,
+      "tabs": [
+        "Task interface",
+        "Restraints"
+      ],
+      "viewport": [
+        1400,
+        2600
+      ],
+      "section": "Non-crystallographic symmetry (NCS)",
+      "through": "Platonyzer",
+      "callouts": [
+        {
+          "text": "Non-crystallographic symmetry (NCS)",
+          "badge": "4.1"
+        },
+        {
+          "text": "Jelly-body",
+          "badge": "4.2"
+        },
+        {
+          "text": "ProSMART - protein",
+          "badge": "4.3"
+        },
+        {
+          "field": "Generate restraints for protein chain(s):",
+          "badge": "4.4"
+        },
+        {
+          "text": "External restraints",
+          "badge": "4.5"
+        },
+        {
+          "text": "Platonyzer",
+          "badge": "4.6"
+        }
+      ]
+    },
+    {
+      "out": "refmac_output.png",
+      "job": 7,
+      "tabs": [
+        "Task interface",
+        "Output"
+      ],
+      "section": "Output options",
+      "through": "Validation and analysis",
+      "callouts": [
+        {
+          "field": "Output calculated riding hydrogens to file",
+          "badge": "5.1"
+        },
+        {
+          "text": "Map calculation",
+          "badge": "5.2"
+        },
+        {
+          "text": "Validation and analysis",
+          "badge": "5.3"
+        }
+      ]
+    },
+    {
+      "out": "refmac_advanced.png",
+      "job": 7,
+      "tabs": [
+        "Task interface",
+        "Advanced"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": "Experiment",
+      "through": "Extra keywords",
+      "callouts": [
+        {
+          "text": "Experiment",
+          "badge": "6.1"
+        },
+        {
+          "text": "Resolution",
+          "badge": "6.2"
+        },
+        {
+          "text": "Sequence and structure",
+          "badge": "6.3"
+        },
+        {
+          "text": "Extra keywords",
+          "badge": "6.4"
+        }
+      ]
+    },
+    {
+      "out": "refmac_report_summary.png",
+      "job": 3,
+      "tabs": [
+        "Report"
+      ],
+      "settle": 30000,
+      "viewport": [
+        1400,
+        2000
+      ],
+      "section": "Refinement",
+      "until": "Per cycle statistics",
+      "callouts": [
+        {
+          "text": "R-factor/R-free",
+          "badge": "7.1"
+        },
+        {
+          "text": "Chain B-factors",
+          "badge": "7.2"
+        },
+        {
+          "text": "Current weight applied to X-ray term",
+          "badge": "7.3"
+        },
+        {
+          "text": "Coot added",
+          "badge": "7.4"
+        }
+      ]
+    },
+    {
+      "out": "refmac_report_molprobity.png",
+      "job": 3,
+      "tabs": [
+        "Report"
+      ],
+      "settle": 30000,
+      "viewport": [
+        1400,
+        2400
+      ],
+      "expand": [
+        "MolProbity analysis"
+      ],
+      "section": "MolProbity analysis",
+      "until": "Detailed breakdown of outliers",
+      "callouts": []
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac.def.xml": "46a3af07fffb15a53e48288f09ae0c113398f27f",
+    "server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac.py": "9794724d801b2a3c7e9290c4af35d45cb93bc392",
+    "server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac_report.py": "18376d0863f178a4c0b3ce83eb732219aecc0117",
+    "client/renderer/components/task/task-interfaces/prosmart-refmac/AdvancedTab.tsx": "64bdd5e9d4f516a90f78c13629c9881b464ebc91",
+    "client/renderer/components/task/task-interfaces/prosmart-refmac/InputDataTab.tsx": "76ca34aa3f5365170af52a97aaf6f31fe6f9afa5",
+    "client/renderer/components/task/task-interfaces/prosmart-refmac/OutputTab.tsx": "2a70b03e79b5a50715bf052d240854d08f4840eb",
+    "client/renderer/components/task/task-interfaces/prosmart-refmac/ParameterisationTab.tsx": "ae00040eb26525be1cf8fc4ae6b469442b3d5c2f",
+    "client/renderer/components/task/task-interfaces/prosmart-refmac/RestraintsTab.tsx": "591c27a6e29db272a596589bf85cc1c720884eba",
+    "client/renderer/components/task/task-interfaces/prosmart-refmac/index.tsx": "b0af391f8e99c92c7ada46f01b848fa6676a8586",
+    "docs/user/tools/scenario_refine.py": "cb5135ccb2aa061d17ad9faa2fc3bbe4b583b10c"
+  }
+}

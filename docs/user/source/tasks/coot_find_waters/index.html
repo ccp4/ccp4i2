@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>TASK NAME</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>The 'Find Waters' task searches an electron density map for any water-like peaks which are not already accounted for by atoms in an atomic model. Water molecules are added to account for any peaks which appear to be waters on the basis of size and distance from existing features.</p>
+      <p>The map is masked by the masking atoms and a search is made of features in the map about the electron density cut-off value. Waters are added if the feature is approximately water-sized and can make sensible hydrogen bonds to the protein atoms. The new waters are added to the atomic model as a new chain. </p>
+      <h2>Input</h2>
+      <img src="coot_find_waters_task_1.png">
+      <p>The input data objects are an atomic model describing the known parts of the structure, and a set of electron density map coefficients. The map should be a normal rather than difference map, i.e. weighted F<sub>obs</sub> coefficients from experimental phasing or density modification, or 2mF<sub>o</sub>-DF<sub>c</sub> coefficients from refinment.</p>
+      <br/>
+      <h2>Options</h2>
+      <img src="coot_find_waters_task_2.png">
+      <p>The minimum and maximum allowable distances between new waters and the masking molecule (usually the protein) may be set. Defaults are 2.4 and 3.2 &Aring;.</p>
+      <br/>
+
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <p>The results tab reports the number of waters added to the structure, along with the input and output files.</p>
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,56 @@
+{
+  "scenario": "../../../tools/scenario_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "coordinate_selector_input.png",
+      "job": 20,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "These coordinates should be used as",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "coordinate_selector_report.png",
+      "job": 14,
+      "tabs": [
+        "Report"
+      ],
+      "section": "Summary",
+      "until": "Bibliographic references",
+      "callouts": [
+        {
+          "text": "Summary",
+          "badge": "3"
+        },
+        {
+          "text": "Output Data",
+          "badge": "4"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/coordinate_selector/script/coordinate_selector.def.xml": "6a29a51e004eda1710742887a4cc00fcffafad4b",
+    "server/ccp4i2/wrappers/coordinate_selector/script/coordinate_selector.py": "29d6f63e04e8a9867326a5dc0e6d8b11c129b459",
+    "server/ccp4i2/wrappers/coordinate_selector/script/coordinate_selector_report.py": "c5f7b31489cf3ed83458060d8055a6beefc0b125",
+    "client/renderer/components/task/task-interfaces/coordinate_selector.tsx": "731ce704ef05dc5a0cc2f05543421135f09252ed",
+    "docs/user/tools/scenario_tools.py": "ecd8d49f10137b2241781f095b748f476260937a"
+  }
+}

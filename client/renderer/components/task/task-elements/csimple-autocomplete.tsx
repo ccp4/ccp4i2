@@ -87,7 +87,7 @@ export const CSimpleAutocompleteElement: React.FC<
     }
 
     const processedGuiLabel =
-      qualifiers?.guiLabel || objectPath?.split(".").at(-1) || "Select option";
+      qualifiers?.guiLabel ?? objectPath?.split(".").at(-1) ?? "Select option";
     const processedGuiMode = qualifiers?.guiMode || "autocomplete";
     const processedOnlyEnumerators = qualifiers?.onlyEnumerators === true;
 

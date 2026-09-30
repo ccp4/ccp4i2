@@ -451,7 +451,10 @@ def _input_files(job: Job):
 
 def _output_files(job: Job):
     """Generate output file metadata for report."""
-    for file in File.objects.filter(job=job):
+    # Not the files the job imported: they are recorded against it (it
+    # brought them into the project) but they are its inputs, and they were
+    # listed a second time as outputs, under their parameter's name.
+    for file in File.objects.filter(job=job).exclude(directory=PATH_FLAG_IMPORT_DIR):
         try:
             output_file = {
                 "filetypeid": FILETYPES_TEXT.index(file.type.name),

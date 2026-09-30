@@ -396,11 +396,14 @@
         <className>CBoolean</className>
         <qualifiers>
           <toolTip>Select this option if you wish to use SHELXC->SHELXD->SHELXE in the pipeline (the actual pipeline and parameters can be found in Advanced Options)</toolTip>
-          <default>False</default>
+          <default>True</default>
         </qualifiers>
       </content>
       <content id="SHELX_SEPAR">
         <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+        </qualifiers>
       </content>
       <content id="DNA">
         <className>CBoolean</className>
@@ -1200,7 +1203,7 @@
         <className>CBoolean</className>
         <qualifiers>
           <toolTip>Use the "combined" Crank2 building algorithm - a multivariate SAD function combining information from anomalous and non-anomalous signal from data, density modification and model building</toolTip>
-          <default>True</default>
+          <default>False</default>
         </qualifiers>
       </content>
       <content id="COMB_PHDMMB_MINBIGCYC">
@@ -1306,6 +1309,7 @@
           <onlyEnumerators>True</onlyEnumerators>
           <menuText>Buccaneer,ARP/wARP</menuText>
           <enumerators>buccaneer,arpwarp</enumerators>
+          <default>buccaneer</default>
           <allowUndefined>True</allowUndefined>
         </qualifiers>
       </content>

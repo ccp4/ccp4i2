@@ -19,3 +19,9 @@ def test_cdk2_cdk6_alignment(fasta_cdk2, fasta_cdk6):
         root = tree.getroot()
         scores = root.findall(".//PairwiseScore")
         assert len(scores) >= 1, "No pairwise scores in program.xml"
+
+        # The alignment says what it aligns ('Alignment: ,' named nothing).
+        from ccp4i2.db import models
+        out = models.File.objects.filter(job_param_name="ALIGNMENTOUT").first()
+        assert out is not None and out.annotation.replace("Alignment:", "").strip(" ,"), \
+            out.annotation if out else "no ALIGNMENTOUT"

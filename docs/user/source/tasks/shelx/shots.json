@@ -1,0 +1,158 @@
+{
+  "scenario": "../../../tools/scenario_ep_shelx.py",
+  "project": "GammaXe",
+  "viewport": [1400, 2400],
+  "shots": [
+    {
+      "out": "shelx_input.png",
+      "job": 9,
+      "tabs": ["Task interface", "Input Data"],
+      "settle": 25000,
+      "section": {
+        "text": "Start pipeline with",
+        "scroll": true
+      },
+      "from": "Start pipeline with",
+      "callouts": [
+        {
+          "field": "Start pipeline with",
+          "badge": "1.1"
+        },
+        {
+          "field": "Give the protein sequence",
+          "badge": "1.2"
+        },
+        {
+          "field": "Substructure atom",
+          "badge": "1.3"
+        },
+        {
+          "field": "Input unmerged/merged SCA/XDS/SHELX format",
+          "badge": "1.4"
+        },
+        {
+          "field": "Reflections",
+          "badge": "1.5"
+        },
+        {
+          "field": "Add a second wavelength (MAD)",
+          "badge": "1.6"
+        },
+        {
+          "text": "Input native observations (Crystal #2)",
+          "badge": "1.7"
+        },
+        {
+          "text": "Exclude free",
+          "badge": "1.8"
+        }
+      ]
+    },
+    {
+      "out": "shelx_important.png",
+      "job": 9,
+      "tabs": ["Task interface", "Important Options"],
+      "section": {
+        "text": "Residues/monomer",
+        "scroll": true
+      },
+      "from": "Residues/monomer",
+      "callouts": []
+    },
+    {
+      "out": "shelx_advanced.png",
+      "job": 9,
+      "tabs": ["Task interface", "Advanced Options"],
+      "viewport": [1400, 5200],
+      "settle": 25000,
+      "section": {
+        "text": "Note: empty input fields mean",
+        "scroll": true
+      },
+      "from": "Note: empty input fields mean",
+      "callouts": [
+        {
+          "field": "High resolution cutoff",
+          "badge": "3.1"
+        },
+        {
+          "field": "Num. trials",
+          "badge": "3.2"
+        },
+        {
+          "field": "Minimum distance between atoms",
+          "badge": "3.3"
+        },
+        {
+          "field": "Number of model building cycles",
+          "badge": "3.4"
+        },
+        {
+          "field": "Custom program keywords (comma separated)",
+          "badge": "3.5"
+        },
+        {
+          "field": "Custom program arguments (comma separated)",
+          "badge": "3.6"
+        }
+      ]
+    },
+    {
+      "out": "shelx_fa.png",
+      "job": 7,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["FA estimation and/or other substructure detection preparations"],
+      "section": "FA estimation and/or other substructure detection preparations",
+      "callouts": []
+    },
+    {
+      "out": "shelx_substrdet.png",
+      "job": 7,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Substructure determination"],
+      "section": "Substructure determination",
+      "callouts": []
+    },
+    {
+      "out": "shelx_shelxe.png",
+      "job": 7,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Phasing, density modification and model building"],
+      "section": "Phasing, density modification and model building",
+      "callouts": []
+    },
+    {
+      "out": "shelx_building.png",
+      "job": 7,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Iterative model building and refinement"],
+      "section": "Iterative model building and refinement",
+      "callouts": []
+    },
+    {
+      "out": "shelx_ref.png",
+      "job": 7,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Macromolecular reciprocal space refinement"],
+      "section": "Macromolecular reciprocal space refinement",
+      "callouts": []
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/shelx/script/shelx.def.xml": "045d91dd44ee98d1565950db1892b5e69e3ff3c0",
+    "server/ccp4i2/pipelines/shelx/script/shelx_script.py": "814e90d9bd09123b4e71d9ae28ae151ac3921f2e",
+    "server/ccp4i2/pipelines/shelx/script/shelx_report.py": "aae517dce44b5c10e93d6f7f8c437fd2f2d5b8d7",
+    "client/renderer/components/task/task-interfaces/shelx.tsx": "59d5fb95f6316ca44cb05ad5d16ca3ac7c99f364",
+    "docs/user/tools/scenario_ep_shelx.py": "ef321b5b4225370d2561f4d726b28629656fc874"
+  }
+}

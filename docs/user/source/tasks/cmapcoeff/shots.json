@@ -1,0 +1,50 @@
+{
+  "scenario": "../../../tools/scenario_maps.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "cmapcoeff_input.png",
+      "job": 20,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Type of map to create",
+      "through": "Output options",
+      "callouts": [
+        {
+          "field": "Map type",
+          "badge": "1"
+        },
+        {
+          "text": "First dataset",
+          "badge": "2"
+        },
+        {
+          "text": "Second dataset",
+          "badge": "3"
+        },
+        {
+          "text": "Basic operations on map coefficients",
+          "badge": "4"
+        },
+        {
+          "text": "Produce a map file too",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/cmapcoeff/script/cmapcoeff.def.xml": "6024a78d826ea192df5915db53e8f4bf53bb3638",
+    "server/ccp4i2/wrappers/cmapcoeff/script/cmapcoeff.py": "4c0e6119c06e0d2a6070b4b82a0330c74b2546c6",
+    "server/ccp4i2/wrappers/cmapcoeff/script/cmapcoeff_report.py": "bdfa8e5d00a541990810125d3dbb4342f362eeee",
+    "client/renderer/components/task/task-interfaces/cmapcoeff.tsx": "db466b67661a3b10ef907697a58300cdf23812bc",
+    "docs/user/tools/scenario_maps.py": "42eba6a1f5bd6db6cfd51d248e0843314ad2f0df"
+  }
+}

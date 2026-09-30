@@ -1,0 +1,50 @@
+{
+  "scenario": "../../../tools/scenario_prep.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    2000
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "sculptor_input.png",
+      "job": 28,
+      "tabs": [
+        "Task interface"
+      ],
+      "viewport": [
+        1400,
+        2600
+      ],
+      "section": "Input Data",
+      "through": "B-factor treatment (if blank, Sculptor's default)",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Provide target sequence as:",
+          "badge": "2"
+        },
+        {
+          "field": "Aligned sequences",
+          "badge": "3"
+        },
+        {
+          "text": "Model modification",
+          "badge": "4"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/sculptor/script/sculptor.def.xml": "854cfbc9343fca4237c92a66d9766a17bf8253be",
+    "server/ccp4i2/wrappers/sculptor/script/sculptor.py": "6ea22dd3db3f95c4ac1ea41eabc7695f7e80ce9a",
+    "server/ccp4i2/wrappers/sculptor/script/sculptor_report.py": "60057922b527d3d9965e0155ca7caab47a9f36b4",
+    "client/renderer/components/task/task-interfaces/sculptor.tsx": "4f8cd3c27a312bc6addbaac80450d4b0d73a7ee5",
+    "docs/user/tools/scenario_prep.py": "aecf354063a48a2e2ba3b5cf94378ce2c78f902e"
+  }
+}

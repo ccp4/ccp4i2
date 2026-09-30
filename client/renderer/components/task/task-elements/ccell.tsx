@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { Typography } from "@mui/material";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob } from "../../../utils";
 import { FieldRow } from "./field-row";
@@ -48,8 +49,17 @@ export const CCellElement: React.FC<CCP4i2TaskElementProps> = (props) => {
 
   if (!isVisible || !item) return null;
 
+  // The cell's label names the group; each parameter keeps its own (a, b,
+  // c, alpha...). Passing the cell's qualifiers down labelled all six "Cell".
+  const { guiLabel, ...childQualifiers } = qualifiers || {};
+
   return (
     <FieldShell hoverable={false}>
+      {guiLabel && (
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+          {guiLabel}
+        </Typography>
+      )}
       {/* Container controls width - children are full-width and get constrained here */}
       <FieldRow equalWidth={false} size="xs">
         {childNames.map((childName: string) => {
@@ -58,6 +68,7 @@ export const CCellElement: React.FC<CCP4i2TaskElementProps> = (props) => {
             <CCP4i2TaskElement
               key={childObjectPath}
               {...props}
+              qualifiers={childQualifiers}
               itemName={childObjectPath}
             />
           );

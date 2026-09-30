@@ -24,6 +24,16 @@ class edstats(CPluginScript):
           st = gemmi.read_structure(src)
           st.write_pdb(self._pdbFilePath)
 
+      # The resolution range defaults to that of the map coefficients, which
+      # the job already has: nobody should have to read it off the file.
+      if not (self.container.inputData.RES_LOW.isSet() and self.container.inputData.RES_HIGH.isSet()):
+          import gemmi
+          mtz = gemmi.read_mtz_file(str(self.container.inputData.FPHIIN1.fullPath))
+          if not self.container.inputData.RES_LOW.isSet():
+              self.container.inputData.RES_LOW = round(mtz.resolution_low(), 2)
+          if not self.container.inputData.RES_HIGH.isSet():
+              self.container.inputData.RES_HIGH = round(mtz.resolution_high(), 2)
+
       self.cfftPlugin1 = self.makeCfftPlugin1 ( )
       error = self.cfftPlugin1.process ( )
       if error == CPluginScript.FAILED:

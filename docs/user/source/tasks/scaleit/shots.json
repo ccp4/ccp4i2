@@ -1,0 +1,63 @@
+{
+  "scenario": "../../../tools/scenario_maps.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "scaleit_input.png",
+      "job": 16,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input Data",
+      "callouts": [
+        {
+          "text": "Observed data",
+          "badge": "1"
+        },
+        {
+          "field": "Maximum resolution used (Å)",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "scaleit_report.png",
+      "job": 9,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Comparison of datasets using SCALEIT",
+        "scroll": true
+      },
+      "until": "Input Data",
+      "callouts": [
+        {
+          "text": "Results from scaling",
+          "badge": "3"
+        },
+        {
+          "text": "Totals over all resolution ranges",
+          "badge": "4"
+        },
+        {
+          "text": "Normal probability analysis of isomorphous differences",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/scaleit/script/scaleit.def.xml": "a0b548d87a0a63751954369f949d45a30d77523a",
+    "server/ccp4i2/wrappers/scaleit/script/scaleit.py": "272a9dcd9aae72e95dfb66841c4cf73a736b9241",
+    "server/ccp4i2/wrappers/scaleit/script/scaleit_report.py": "6b297f296b89050739ae50fd5b9c5377b812d65f",
+    "client/renderer/components/task/task-interfaces/scaleit.tsx": "9c64b147f59ae58602193178ade9dc80ae87ef0c",
+    "docs/user/tools/scenario_maps.py": "42eba6a1f5bd6db6cfd51d248e0843314ad2f0df"
+  }
+}

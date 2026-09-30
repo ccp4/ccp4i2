@@ -1,0 +1,57 @@
+/* extra styles for aimless_pipe documentation */
+
+p.wide {
+    /*width:98%;*/
+    /*width:65%;*/
+    width:auto;
+text-align:left justify;
+/* top right bottom left */
+margin: 6px 4px 0 4px;
+}
+ol li {
+text-align:left;
+list-style-position:outside;
+width:65%;
+}
+
+h4 {
+text-align:left;
+}
+p.footnote {
+ width: 100%;
+ height: 2px;
+ text-align:left;
+}
+
+figure img {
+    margin:5px;
+}
+
+figure figcaption {
+      display:block;
+      background-color:Beige;
+}
+figure {
+      margin-top:4px;
+      margin-bottom:4px;
+      margin-left:4px;
+      margin-right:4px;
+      padding:3px;
+}
+figure.small {
+      width:32%;
+}
+figure.smaller {
+      width:20%;
+}
+
+figure.threequarter {
+      width:75%;
+}
+figure.full {
+      width:98%;
+}
+
+.equation {
+    font-family:serif;
+}

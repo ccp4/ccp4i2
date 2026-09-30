@@ -18,6 +18,8 @@ interface CChainSelectProps {
   options: string[];
   /** Label for the field */
   label?: string;
+  /** Shown while no chain is chosen, saying what that means ("all chains") */
+  emptyText?: string;
   sx?: SxProps<Theme>;
   visibility?: boolean | (() => boolean);
   disabled?: boolean | (() => boolean);
@@ -36,6 +38,7 @@ export const CChainSelectElement: React.FC<CChainSelectProps> = ({
   itemName,
   options,
   label = "Chains",
+  emptyText,
   sx,
   visibility,
   disabled: disabledProp,
@@ -92,6 +95,7 @@ export const CChainSelectElement: React.FC<CChainSelectProps> = ({
           <TextField
             {...params}
             label={label}
+            placeholder={localValue.length === 0 ? emptyText : undefined}
             size="small"
             slotProps={{
               inputLabel: { shrink: true, disableAnimation: true },

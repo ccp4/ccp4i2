@@ -26,6 +26,9 @@ type InputType = "text" | "int" | "float" | "checkbox";
 const DEBOUNCE_DELAY = 1000;
 
 const isValueValid = (value: InputValue, type: InputType): boolean => {
+  // Empty is unset, and unset is valid here: whether a parameter must be set
+  // is the server's call (validity()), not this field's.
+  if (value === null || value === undefined || value === "") return true;
   if (type === "int") {
     return typeof value === "string"
       ? /^\d+$/.test(value)
@@ -71,8 +74,10 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
     onChange,
   });
 
+  // ?? not ||: an interface's explicit guiLabel "" means no label (the
+  // field sits beside its own text); || showed the parameter name ("FRAC").
   const guiLabel =
-    qualifiers?.guiLabel || objectPath?.split(".").at(-1) || "";
+    qualifiers?.guiLabel ?? objectPath?.split(".").at(-1) ?? "";
   const isMultiLine = qualifiers?.guiMode === "multiLine";
   const tooltipText = qualifiers?.toolTip || objectPath || "";
 

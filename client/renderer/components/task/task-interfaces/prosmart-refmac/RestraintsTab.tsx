@@ -161,6 +161,7 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
                   itemName="prosmartProtein.CHAINLIST_1"
                   options={xyzinComposition?.peptides || []}
                   label=" "
+                  emptyText="all chains"
                   visibility={() => isTruthy(prosmartProteinToggle)}
                 />
               </Box>
@@ -382,6 +383,7 @@ export const RestraintsTab: React.FC<RestraintsTabProps> = (props) => {
                   itemName="prosmartNucleicAcid.CHAINLIST_1"
                   options={xyzinComposition?.nucleics || []}
                   label=" "
+                  emptyText="all chains"
                   visibility={() =>
                     isTruthy(prosmartNucleicAcidToggle)
                   }

@@ -1,0 +1,99 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Make Ligand Coordinate and Restraint Dictionaries with Acedrg</title>
+
+</head>
+<body>
+
+<p>The <em>Make Ligand</em> task uses the program <a href="https://www2.mrc-lmb.cam.ac.uk/groups/murshudov/content/acedrg/acedrg.html">ACEDRG</a> to derive stereo-chemical information about monomers/ligands (or small molecules). <em>ACEDRG</em> can derive "ideal" bond lengths, angles for an unknown monomer/ligand. It also generates information about planar groups and stereo-chemical properties in the monomer/ligand. The minumum information Acedrg requires is element types of atoms in the monomer/ligand, and the basic bonding pattern in the monomer/ligand, such as atom connnections and bond-orders</p>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+
+      <h2>Input data</h2>
+      <figure><img src="input_1.png" alt="First overview fof ACEDRG main input"><figcaption> Figure 1: Main <em>Make Ligand</em> options</figcaption></figure>
+      <p><em>Make Ligand</em> accepts SMILES strings (either as a file or pasted text) and MOL files as input. Also <em>Lidia: Coot's Ligand Builder</em> can be used to generate the input for <em>ACEDRG</em>
+      The choice of input method is selected using drop-down menu<b class="img-ref">(1)</b>. </p>
+      <p>If the menu is set to <em>"a MOL file"</em> or <em>"a SMILES file"</em>, 
+      then a file of the appropriate type must be loaded/selected in the data
+      selector menu<b class="img-ref">(2)</b>. 
+      </p>
+      <p>
+      If the menu is set to  <em>"a SMILES string"</em>, then a text box is shown into which a SMILES string may be typed/pasted<b class="img-ref">(3)</b>.
+      </p>
+      Clicking the <em>Run</em> button will then run <em>ACEDRG</em> with the <em>MOL</em> or <em>SMILES</em> as input.
+      </p>
+      <br/>
+      <figure><img src="lidia.png" alt="Lidia in use"><figcaption> Figure 2:<em>Lidia</em></figcaption></figure>
+      <p>
+      If the menu is set to <em>"a sketch"</em>, then when the  <em>"Run"</em> button is pressed, the first thing that will
+      happen is that <em>Lidia</em>(Figure 2) will be launched. When <em>"a sketch"</em> is selected an option to provide a starting point
+      for the sketch is also shown. The starting point input may be a <em>MOL</em> file or output from a previous <em>Make Ligand</em> job.
+      <em>Lidia</em> is a molecular sketcker provided by <em>COOT</em>. It allows the user to create 2D (with stereo-isomer information) sketches
+      of molecules. The output of <em>Lidia</em> is subsequently passed to  <em>ACEDRG</em> by the <em>Make Ligand</em> task. In order for this to
+      happen correctly, the user <b><em>must</em></b> click <em>Apply</em><b class="img-ref">(6)</b> then <em>Close</em><b class="img-ref">(7)</b> when finished sketching with <em>Lidia</em>.
+      </p>
+      <p>
+      The 3-letter code to be given to the monomer should be typed into text box<b class="img-ref">(4)</b>
+      </p>
+      <br/>
+      <figure><img src="input_2.png" alt="ACEDRG main input with SMILES input box"><figcaption> Figure 3: Main <em>Make Ligand</em> options with SMILES input box</figcaption></figure>
+      <p>
+      Although <em>ACEDRG</em> attempts to name atoms sensibly, it is sometimes desirable to try to match the atom names to those in a similar structure. For instance,
+      if the ligand to be generated contains a large group of atoms in common with those of another ligand, it can be useful to make sure the same atoms have the same
+      names. This can be done by changing the atom matching menu<b class="img-ref">(5)</b> from <em>nothing</em> to either: <em>a specific 3-letter code</em>, in which
+      case a text box appears into which the 3-letter code of the existing reference ligand should be typed; or <em>use dictionary</em> in which case a CCP4i2 <em>Geometry dictionary</em>
+      data selector appears - an existing dictionary in the CCP4i2 database or dictionary file should supplied; or <em>all monomers</em> in which case the whole CCP4/refmac5 monomer
+      library is searched for a matching group of atoms.
+      </p>
+    </div>
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Advanced options</label>
+    <div id="tab-content2" class="tab-content">
+      
+      <h2>Advanced options</h2>
+      <figure><img src="advanced.png" alt="Advanced options - RDKIT conformers"><figcaption> Figure 4:<em>Advanced options</em></figcaption></figure>
+      <p>
+      This task has one advanced option - the number of random RDKIT starting structures. The task will attempt to generate a sensible geometric
+      conformation of the generated ligand atoms, in addition to the restraint dictionary. The RDKIT library is used to optimize the geometry. In
+      order to avoid finding a local minimum, several initial arrangements of atoms are optimized; the optimized geometry with the lowest energy
+      of them all is accepted. The more initial conformations are used, the more likely a better optimal geometry will be found.
+      </p>
+      <br/>
+
+    </div>
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab3">
+    <label for="tab3">Results</label>
+    <div id="tab-content3" class="tab-content">
+      
+      <h2>Results</h2>
+      <figure><img src="report_1.png" alt="Acedrg task report 1 - 2D picture"><figcaption> Figure 5:<em>Report - 2D picture</em></figcaption></figure>
+      <p>
+      The report is very simple and consists of 3 parts:
+      </p>
+      <p>A 2D depiction of the generated ligand and the corresponding SMILES string.</p>
+      <br/>
+      <figure><img src="report_2.png" alt="Acedrg task report 1 - 3D picture"><figcaption> Figure 6:<em>Report - 3D picture</em></figcaption></figure>
+      <p>A 3D representation of the optimized geometry</p>
+      <br/>
+      <figure><img src="report_3.png" alt="Acedrg task report 1 - Output files"><figcaption> Figure 7:<em>Report - Input and output files</em></figcaption></figure>
+      <p>A list of output data and any input data files.</p>
+      <br/>
+
+    </div>
+  </dt>
+</dl>
+
+</body>
+</html>
+

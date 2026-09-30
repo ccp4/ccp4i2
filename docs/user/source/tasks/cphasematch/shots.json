@@ -1,0 +1,59 @@
+{
+  "scenario": "../../../tools/scenario_maps.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "cphasematch_input.png",
+      "job": 19,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Observed data",
+          "badge": "1"
+        },
+        {
+          "field": "Phases",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "cphasematch_report.png",
+      "job": 13,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "The mean phase error is",
+        "scroll": true
+      },
+      "until": "Input Data",
+      "callouts": [
+        {
+          "text": "The mean phase error is",
+          "badge": "3"
+        },
+        {
+          "text": "Group of 2 graphs",
+          "badge": "4"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/cphasematch/script/cphasematch.def.xml": "6dc1f682f9d869e703e411620cede7da16f8ec48",
+    "server/ccp4i2/wrappers/cphasematch/script/cphasematch.py": "a4dc1471e25cb60f9ed17b10272694920eba24c1",
+    "server/ccp4i2/wrappers/cphasematch/script/cphasematch_report.py": "277e390f0c0a6cb6480cea8915ab93418a721e6d",
+    "client/renderer/components/task/task-interfaces/generic.tsx": "1058a8115a1d3b56a51168e286dee71dc12dee32",
+    "docs/user/tools/scenario_maps.py": "42eba6a1f5bd6db6cfd51d248e0843314ad2f0df"
+  }
+}

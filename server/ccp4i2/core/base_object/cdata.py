@@ -1220,6 +1220,9 @@ class CData(HierarchicalObject):
                 value = None
             elif text.lower() in ('true', 'false'):
                 value = text.lower() == 'true'
+            elif key in ('onlyEnumerators', 'allowUndefined', 'mustExist', 'saveToDb', 'fromPreviousJob') \
+                    and text.strip().lower() in ('1', '0', 'yes', 'no'):
+                value = text.strip().lower() in ('1', 'yes')
             elif ',' in text:
                 # List of values
                 value = [item.strip() for item in text.split(',')]

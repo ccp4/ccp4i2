@@ -85,7 +85,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <Typography variant="body2">
           How severe is side-chain truncation for non-conserved residues:
         </Typography>
-        <CCP4i2TaskElement itemName="MODE" {...props} />
+        <CCP4i2TaskElement itemName="MODE" {...props} qualifiers={{ guiLabel: "Truncation" }} />
       </CCP4i2ContainerElement>
     </Paper>
   );

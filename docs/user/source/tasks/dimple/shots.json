@@ -1,0 +1,73 @@
+{
+  "scenario": "../../../tools/scenario_mr2.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    2200
+  ],
+  "settle": 25000,
+  "draft": true,
+  "task": "i2Dimple",
+  "shots": [
+    {
+      "out": "dimple_input.png",
+      "job": 6,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input coordinates",
+      "through": "Control parameters",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Reflections",
+          "badge": "2"
+        },
+        {
+          "field": "Free R set",
+          "badge": "3"
+        },
+        {
+          "field": "R-factor threshold to force MR",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "dimple_report.png",
+      "job": 3,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3000
+      ],
+      "section": {
+        "text": "Initial and final values",
+        "scroll": true
+      },
+      "until": "Summary",
+      "callouts": [
+        {
+          "text": "Initial and final values",
+          "badge": "5"
+        },
+        {
+          "text": "Blobs found:",
+          "badge": "6"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/i2Dimple/script/i2Dimple.def.xml": "213c6c2563fc1db78963b4428667ed7c23639c9c",
+    "server/ccp4i2/wrappers/i2Dimple/script/i2Dimple.py": "2bccdbd03daaf565cba395cf865246117a0d3b06",
+    "server/ccp4i2/wrappers/i2Dimple/script/i2Dimple_report.py": "b708ab9e7970fc05c653bd812eb3a48122a8c233",
+    "client/renderer/components/task/task-interfaces/i2Dimple.tsx": "93014684b023ad0d05804425eebfc8daca928364",
+    "docs/user/tools/scenario_mr2.py": "88785c233944df99edf3d3d4ce8c5d503f6c37d7"
+  }
+}

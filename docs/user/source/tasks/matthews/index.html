@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Estimate AU content</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>This task estimates the number of copies of a structure in a
+      crystal cell based on
+      the volume of the cell and the estimated structure molecular
+      weight. It reports the number of copies of the
+      structure that would give a crystal solvent content consistent
+      with usually observed values. The estimated number of copies can
+      be useful guidance to molecular replacement programs. <a href="../../../../html/matthews_coef.html#matthews_number">Details</a></p>
+      <h2>Input</h2>
+      <img src="matthews_task_1.png">
+      <p>The task interface requires an MTZ experimental data file <b class="img-ref">1</b>
+      from which it can read the cell parameters and calculate the
+      cell volume. The expected AU contents can be entered as a
+      <i>AU content</i> object which contains a list of
+      seqeunces<b class="img-ref">2</b>, or the number of amino acid residues in the structure
+      or the structure molecular weight.</p>
+      <p>The results are calculated for the data provided and listed
+      in a box at the bottom of the input tab <b class="img-ref">3</b>. If you 'Run'
+      the task a permanent report of the result is created.</p>
+      <br/>
+
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+{
+  "scenario": "../../../tools/scenario_maps.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "density_calculator_input.png",
+      "job": 21,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "text": "Scattering form factor",
+          "badge": "2"
+        },
+        {
+          "text": "Resolution limit",
+          "badge": "3"
+        },
+        {
+          "text": "Advanced Options",
+          "badge": "4"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/density_calculator/script/density_calculator.def.xml": "0274ea0bf813ddba94d547dd8a61d70b5119dc10",
+    "server/ccp4i2/wrappers/density_calculator/script/density_calculator.py": "8e14fb43d62c08bf2b39495c176510d6fd8cf8e4",
+    "server/ccp4i2/wrappers/density_calculator/script/density_calculator_report.py": "aefdbe995b428538aaba1596d0139b101f6fb445",
+    "client/renderer/components/task/task-interfaces/density_calculator.tsx": "9e363eb0d7e9ad5c730afadfdd613cf43b97dbd8",
+    "docs/user/tools/scenario_maps.py": "42eba6a1f5bd6db6cfd51d248e0843314ad2f0df"
+  }
+}

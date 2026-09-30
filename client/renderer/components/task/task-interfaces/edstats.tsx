@@ -34,13 +34,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Options" }}
         containerHint="FolderLevel"
       >
-        <Typography variant="body2">Specify the resolution range you would like to use</Typography>
+        <Typography variant="body2">Resolution range: leave blank to use the full range of the map coefficients</Typography>
         <CCP4i2TaskElement itemName="RES_LOW" {...props} qualifiers={{ guiLabel: "Low resolution limit" }} />
         <CCP4i2TaskElement itemName="RES_HIGH" {...props} qualifiers={{ guiLabel: "High resolution limit" }} />
         <Typography variant="body2">Map values are averaged separately for main- and side-chains</Typography>
         <CCP4i2TaskElement itemName="MAIN_AVERAGING" {...props} qualifiers={{ guiLabel: "Main-chain averaging is to be performed across" }} />
         <CCP4i2TaskElement itemName="SIDE_AVERAGING" {...props} qualifiers={{ guiLabel: "Side-chain averaging is to be performed across" }} />
-        <CCP4i2TaskElement itemName="SCALING" {...props} />
+        <CCP4i2TaskElement itemName="SCALING" {...props} qualifiers={{ guiLabel: "Rescale the Q-Q plot" }} />
         <CCP4i2TaskElement itemName="SCALING_TYPE" {...props} qualifiers={{ guiLabel: "Rescale Q-Q plot using" }} />
         <Typography variant="body2">Adjust the rejection criteria for flagging up the outliers in Coot</Typography>
         <CCP4i2TaskElement itemName="SIGMA_RZ_MINUS" {...props} qualifiers={{ guiLabel: "Accuracy metrics: RZ- <" }} />
