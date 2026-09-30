@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { LinearProgress, Paper } from "@mui/material";
+import { Box, LinearProgress, Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
@@ -20,7 +20,9 @@ import {
 } from "../../../lib/monomer-edits";
 
 // Layout constants
-const LABEL_WIDTH = "14rem";
+// Inside a monomer section, which may have half the pane.
+const MONOMER_LABEL_WIDTH = "7.5rem";
+const MONOMER_FIELD = "14rem";
 const SHORT_FIELD = "10rem";
 const DROPDOWN_FIELD = "16rem";
 
@@ -294,14 +296,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ initiallyOpen: true }}
         containerHint="BlockLevel"
       >
-        <InlineField label="Get ligand description from" width={DROPDOWN_FIELD} labelWidth={LABEL_WIDTH}>
+        <InlineField label="Source" width={MONOMER_FIELD} labelWidth={MONOMER_LABEL_WIDTH}>
           <CCP4i2TaskElement itemName={`MON_${n}_TYPE`} {...props} qualifiers={{ guiLabel: " " }} />
         </InlineField>
         {mon.isCIF && (
           <CCP4i2TaskElement itemName={`DICT_${n}`} {...props} onChange={mon.handleDictChange} />
         )}
         {mon.isCIF ? (
-          <InlineField label="Residue name" width={DROPDOWN_FIELD} labelWidth={LABEL_WIDTH}>
+          <InlineField label="Residue name" width={MONOMER_FIELD} labelWidth={MONOMER_LABEL_WIDTH}>
             <CCP4i2TaskElement
               itemName={`RES_NAME_${n}_CIF`}
               {...props}
@@ -309,7 +311,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             />
           </InlineField>
         ) : (
-          <InlineField label="Residue name" width={SHORT_FIELD} labelWidth={LABEL_WIDTH}>
+          <InlineField label="Residue name" width={SHORT_FIELD} labelWidth={MONOMER_LABEL_WIDTH}>
             <CCP4i2TaskElement itemName={`RES_NAME_${n}_TLC`} {...props} qualifiers={{ guiLabel: " " }} />
           </InlineField>
         )}
@@ -331,8 +333,19 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
       <CCP4i2Tabs>
         <CCP4i2Tab key="inputData" label="Input data">
-          {monomerSection(1, mon1, "First monomer to be linked")}
-          {monomerSection(2, mon2, "Second monomer to be linked")}
+          {/* The two halves of one link, side by side when the pane has room
+              for both; the grid follows the pane's width, not the window's. */}
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))",
+              gap: 1,
+              alignItems: "start",
+            }}
+          >
+            {monomerSection(1, mon1, "First monomer to be linked")}
+            {monomerSection(2, mon2, "Second monomer to be linked")}
+          </Box>
 
           {/* --- Bond order --- */}
           <InlineField label="Order of the bond between linked atoms" width={SHORT_FIELD}>
