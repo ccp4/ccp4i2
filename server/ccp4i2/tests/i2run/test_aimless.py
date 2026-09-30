@@ -119,3 +119,19 @@ def test_mdm2():
     args = ["aimless_pipe", "--UNMERGEDFILES", f"file={mtz}"]
     with i2run(args) as job:
         check_result(job, "P 61 2 2", 1.25, 0.068)
+
+
+def test_mdm2_crystal_and_dataset_names_are_used():
+    """The names given for a file label the output, under the project's name.
+    The file already carries AUTOMATIC/DEFAULT/NATIVE; the given names were
+    dropped (HKL_base counted as a second dataset), and once used, the
+    project part came out as "None" (sub-jobs did not know the project)."""
+    mtz = demoData("mdm2", "mdm2_unmerged.mtz")
+    args = ["aimless_pipe", "--UNMERGEDFILES", "crystalName=hg7",
+            "dataset=DS1", f"file={mtz}"]
+    with i2run(args) as job:
+        out = read_mtz_file(str(job / "HKLOUT_0-observed_data.mtz"))
+        named = [(d.project_name, d.crystal_name, d.dataset_name)
+                 for d in out.datasets if d.dataset_name != "HKL_base"]
+        assert [n[1:] for n in named] == [("hg7", "DS1")], named
+        assert named[0][0] not in ("None", "", "AUTOMATIC"), named

@@ -31,9 +31,12 @@ class pointless(CPluginScript):
         if self.container.inputData.UNMERGEDFILES[i].crystalName.isSet() and \
                self.container.inputData.UNMERGEDFILES[i].dataset.isSet():
             if (merged or ndatasets<2):
+                # One word: pointless splits keywords on spaces.
+                import re
+                crystal = str(self.container.inputData.UNMERGEDFILES[i].crystalName)
+                project = re.sub(r'\W', '_', str(getattr(self, '_dbProjectName', None) or crystal))
                 self.appendCommandScript("NAME PROJECT %s CRYSTAL %s DATASET %s" % \
-                                         (self._dbProjectName,
-                                   self.container.inputData.UNMERGEDFILES[i].crystalName,
+                                         (project, crystal,
                                    self.container.inputData.UNMERGEDFILES[i].dataset))
         hklin_command = 'HKLIN'
         # if mmCIF, set blockname

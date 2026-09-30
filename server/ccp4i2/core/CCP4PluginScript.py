@@ -3831,6 +3831,10 @@ class CPluginScript(CData):
                 logger.debug(f"Propagated dbHandler to nested plugin")
             if hasattr(self, '_dbProjectId') and self._dbProjectId is not None:
                 plugin_instance._dbProjectId = self._dbProjectId
+            # And its name: pointless writes it into the MTZ dataset path, as
+            # project/crystal/dataset ("None/hg7/DS1" without it).
+            if getattr(self, '_dbProjectName', None) is not None:
+                plugin_instance._dbProjectName = self._dbProjectName
                 logger.debug(f"[DEBUG makePluginObject] Propagated dbProjectId to nested plugin")
 
             # Handle database job creation for sub-job
