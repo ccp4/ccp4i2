@@ -40,7 +40,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <Typography variant="body2">Map values are averaged separately for main- and side-chains</Typography>
         <CCP4i2TaskElement itemName="MAIN_AVERAGING" {...props} qualifiers={{ guiLabel: "Main-chain averaging is to be performed across" }} />
         <CCP4i2TaskElement itemName="SIDE_AVERAGING" {...props} qualifiers={{ guiLabel: "Side-chain averaging is to be performed across" }} />
-        <CCP4i2TaskElement itemName="SCALING" {...props} />
+        <CCP4i2TaskElement itemName="SCALING" {...props} qualifiers={{ guiLabel: "Rescale the Q-Q plot" }} />
         <CCP4i2TaskElement itemName="SCALING_TYPE" {...props} qualifiers={{ guiLabel: "Rescale Q-Q plot using" }} />
         <Typography variant="body2">Adjust the rejection criteria for flagging up the outliers in Coot</Typography>
         <CCP4i2TaskElement itemName="SIGMA_RZ_MINUS" {...props} qualifiers={{ guiLabel: "Accuracy metrics: RZ- <" }} />
