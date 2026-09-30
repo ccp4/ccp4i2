@@ -455,10 +455,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="INPUT_SEQUENCE"
+              qualifiers={{ guiLabel: "Give the protein sequence" }}
               onChange={onToggle(setInputSequence)}
             />
             {inputSequence && (
-              <CCP4i2TaskElement {...props} itemName="SEQIN" onChange={handleSeqinChange} />
+              <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Asymmetric unit contents" }} itemName="SEQIN" onChange={handleSeqinChange} />
             )}
             {!inputSequence && (
               <CCP4i2TaskElement
@@ -483,10 +484,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="INPUT_PHASES"
+              qualifiers={{ guiLabel: "Start from phases already known" }}
               onChange={onToggle(setInputPhases)}
             />
             {inputPhases && (
-              <CCP4i2TaskElement {...props} itemName="FPHIN_HL" />
+              <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Starting phases" }} itemName="FPHIN_HL" />
             )}
           </CCP4i2ContainerElement>
 
@@ -631,6 +633,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               <CCP4i2TaskElement
                 {...props}
                 itemName="MAD2"
+                qualifiers={{ guiLabel: "Add a second wavelength (MAD)" }}
                 onChange={onToggle(setMad2)}
               />
               {mad2 && (
@@ -666,6 +669,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD3"
+                  qualifiers={{ guiLabel: "Add a third wavelength" }}
                   onChange={onToggle(setMad3)}
                 />
                 {mad3 && (
@@ -702,6 +706,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD4"
+                  qualifiers={{ guiLabel: "Add a fourth wavelength" }}
                   onChange={onToggle(setMad4)}
                 />
                 {mad4 && (
@@ -739,6 +744,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="NATIVE"
+              qualifiers={{ guiLabel: "Add a native dataset" }}
               onChange={onToggle(setNative)}
             />
             {native && (
@@ -775,9 +781,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: "Exclude free" }}
             containerHint="FolderLevel"
           >
-            <CCP4i2TaskElement {...props} itemName="FREE" />
+            <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Free R set" }} itemName="FREE" />
             {freeVal === "existing" && (
-              <CCP4i2TaskElement {...props} itemName="FREERFLAG" />
+              <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Existing Free R set" }} itemName="FREERFLAG" />
             )}
             {freeVal === "new" && (
               <Box
