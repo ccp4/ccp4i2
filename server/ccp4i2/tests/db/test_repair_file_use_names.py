@@ -8,6 +8,7 @@ seed the damage deliberately.
 """
 from io import StringIO
 from pathlib import Path
+from shutil import rmtree
 
 from django.core.management import call_command
 from django.test import TestCase, override_settings
@@ -34,6 +35,10 @@ class RepairBase(TestCase):
     task = "coot1"
 
     def setUp(self):
+        # Take the directory away again, as the sibling snapshot tests do.
+        # Without this the tier leaves CCP4I2_REPAIR_FILEUSE_TEST_DIR behind in
+        # the tree, untracked, for everyone who runs it.
+        self.addCleanup(rmtree, PROJECTS_DIR, ignore_errors=True)
         self.project_dir = PROJECTS_DIR / "repair"
         self.job_dir = self.project_dir / "CCP4_JOBS" / "job_1"
         self.job_dir.mkdir(parents=True, exist_ok=True)
