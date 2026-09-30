@@ -321,6 +321,84 @@
            <content id="CHANGE_2_TYPE">
               <className>CString</className>
            </content>
+           <!-- The modified monomer, declared: which atoms are gone, what order
+                a bond now has, what charge an atom now carries. The plugin
+                writes AceDRG's instructions from these (link_instruction.py).
+                The single-edit fields above (TOGGLE_DELETE_1, DELETE_1, ...)
+                remain so that older jobs and i2run commands keep working;
+                the plugin folds them into these lists. -->
+           <content id="DELETE_ATOMS_1">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <guiLabel>Atoms deleted from monomer 1</guiLabel>
+                 <toolTip>Dictionary names of the atoms to remove; their hydrogens go with them</toolTip>
+              </qualifiers>
+              <subItem>
+                 <className>CString</className>
+                 <qualifiers/>
+              </subItem>
+           </content>
+           <content id="BOND_ORDERS_1">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <guiLabel>Bond orders changed in monomer 1</guiLabel>
+                 <toolTip>Bonds of the monomer and the order each should have</toolTip>
+              </qualifiers>
+              <subItem>
+                 <className>CMakeLinkBondOrder</className>
+                 <qualifiers/>
+              </subItem>
+           </content>
+           <content id="CHARGES_1">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <guiLabel>Formal charges changed in monomer 1</guiLabel>
+                 <toolTip>Atoms of the monomer and the formal charge each should carry</toolTip>
+              </qualifiers>
+              <subItem>
+                 <className>CMakeLinkCharge</className>
+                 <qualifiers/>
+              </subItem>
+           </content>
+           <content id="DELETE_ATOMS_2">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <guiLabel>Atoms deleted from monomer 2</guiLabel>
+                 <toolTip>Dictionary names of the atoms to remove; their hydrogens go with them</toolTip>
+              </qualifiers>
+              <subItem>
+                 <className>CString</className>
+                 <qualifiers/>
+              </subItem>
+           </content>
+           <content id="BOND_ORDERS_2">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <guiLabel>Bond orders changed in monomer 2</guiLabel>
+                 <toolTip>Bonds of the monomer and the order each should have</toolTip>
+              </qualifiers>
+              <subItem>
+                 <className>CMakeLinkBondOrder</className>
+                 <qualifiers/>
+              </subItem>
+           </content>
+           <content id="CHARGES_2">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+                 <guiLabel>Formal charges changed in monomer 2</guiLabel>
+                 <toolTip>Atoms of the monomer and the formal charge each should carry</toolTip>
+              </qualifiers>
+              <subItem>
+                 <className>CMakeLinkCharge</className>
+                 <qualifiers/>
+              </subItem>
+           </content>
            <content id="XYZIN">
               <className>CPdbDataFile</className>
               <qualifiers>
@@ -402,6 +480,9 @@
 #    DELETE ATOM [ATOM] [MOL (1 or 2)]
 #    CHANGE BOND [ATOM1] [ATOM2] [BOND TYPE] [MOL (1 or 2)]
 #    CHANGE CHARGE [MOL (1 or 2)] [ATOM] [CHARGE]
+#
+# Each DELETE removes one atom: write DELETE again for the next.
+# These are checked before the job runs.
 #
 # Examples:
 #

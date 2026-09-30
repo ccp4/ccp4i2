@@ -145,3 +145,80 @@ def test_a_dictionary_code_is_left_as_the_dictionary_spells_it(plugin):
     inp.RES_NAME_1_CIF.set("Lig")
     plugin.normaliseResidueCodes()
     assert str(inp.RES_NAME_1_CIF) == "Lig"
+
+
+# --- the edits as a description ------------------------------------------
+# DELETE_ATOMS_n / BOND_ORDERS_n / CHARGES_n hold the modified monomer; the
+# plugin writes AceDRG's words (test_make_link_instruction.py pins those).
+
+def test_the_edit_lists_hold_their_own_types(plugin):
+    # An unresolved subItem silently becomes CString (docs/cdata.md).
+    inp = plugin.container.inputData
+    assert type(inp.DELETE_ATOMS_1.makeItem()).__name__ == "CString"
+    assert type(inp.BOND_ORDERS_1.makeItem()).__name__ == "CMakeLinkBondOrder"
+    assert type(inp.CHARGES_2.makeItem()).__name__ == "CMakeLinkCharge"
+
+
+def _set_link(plugin):
+    inp = plugin.container.inputData
+    inp.RES_NAME_1_TLC.set("LYS")
+    inp.RES_NAME_2_TLC.set("GLU")
+    inp.ATOM_NAME_1.set("NZ")
+    inp.ATOM_NAME_2.set("CD")
+
+
+def test_the_instruction_is_written_from_the_lists(plugin):
+    _set_link(plugin)
+    c = plugin.container
+    c.set_parameter("inputData.DELETE_ATOMS_2", ["OE2", "OXT"], skip_first=True)
+    c.set_parameter("inputData.BOND_ORDERS_2",
+                    [{"ATOM_1": "CD", "ATOM_2": "OE1", "ORDER": "DOUBLE"}], skip_first=True)
+    c.set_parameter("inputData.CHARGES_1", [{"ATOM": "NZ", "CHARGE": 0}], skip_first=True)
+    instruct = plugin.createLinkInstruction()
+    assert instruct.endswith(
+        "CHANGE CHARGE 1 NZ 0"
+        " DELETE ATOM OE2 2 DELETE ATOM OXT 2 CHANGE BOND CD OE1 DOUBLE 2")
+
+
+def test_the_single_edit_fields_of_older_jobs_are_folded_in(plugin):
+    # An older job, a clone of one, or an i2run command written for them.
+    inp = plugin.container.inputData
+    inp.TOGGLE_DELETE_2 = True
+    inp.DELETE_2.set("OE2")
+    inp.TOGGLE_CHANGE_2 = True
+    inp.CHANGE_BOND_2.set("CD -- OE1")
+    inp.CHANGE_2_TYPE.set("DOUBLE")
+    inp.TOGGLE_CHARGE_1 = True
+    inp.CHARGE_1.set("NZ")
+    inp.CHARGE_1_VALUE.set(0)
+    assert plugin.monomerEdits(2).deletes == ["OE2"]
+    assert plugin.monomerEdits(2).bond_orders == [("CD", "OE1", "DOUBLE")]
+    assert plugin.monomerEdits(1).charges == [("NZ", 0)]
+
+
+def test_an_unticked_single_edit_is_not_folded_in(plugin):
+    inp = plugin.container.inputData
+    inp.TOGGLE_DELETE_2 = False
+    inp.DELETE_2.set("OE2")
+    assert plugin.monomerEdits(2).is_empty()
+
+
+def test_a_contradictory_description_blocks_the_job(plugin):
+    _set_link(plugin)
+    plugin.container.set_parameter("inputData.DELETE_ATOMS_1", ["NZ"], skip_first=True)
+    error = plugin.validity()
+    assert 308 in codes(error, CCP4ErrorHandling.SEVERITY_ERROR)
+    assert plugin.createLinkInstruction() == CPluginScript.FAILED
+
+
+def test_extra_instructions_that_would_hang_acedrg_block_the_job(plugin):
+    _set_link(plugin)
+    plugin.container.controlParameters.EXTRA_ACEDRG_INSTRUCTIONS.set("CHANGE OE1 DOUBLE 2")
+    assert 309 in codes(plugin.validity(), CCP4ErrorHandling.SEVERITY_ERROR)
+    assert plugin.createLinkInstruction() == CPluginScript.FAILED
+
+
+def test_the_default_extra_instructions_are_only_comments(plugin):
+    # The box ships with a syntax crib; it must not itself be an error.
+    _set_link(plugin)
+    assert 309 not in codes(plugin.validity())

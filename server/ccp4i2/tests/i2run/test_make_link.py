@@ -87,3 +87,31 @@ def test_residue_codes_typed_in_mixed_case():
             structure = read_pdb(str(job / "ModelWithLinks.pdb"))
             links = [c for c in structure.connections if c.link_id == "LYS-PLP"]
             assert links, "no LYS-PLP connection in the output model"
+
+
+def test_several_edits_declared_as_lists():
+    """The edit lists drive AceDRG: a deletion and a bond order on GLU, a
+    charge on LYS -- three kinds of edit, two monomers, one instruction."""
+    args = ["MakeLink"]
+    args += ["--RES_NAME_1_TLC", "LYS"]
+    args += ["--RES_NAME_2_TLC", "GLU"]
+    args += ["--ATOM_NAME_1_TLC", "NZ"]
+    args += ["--ATOM_NAME_2_TLC", "CD"]
+    args += ["--ATOM_NAME_1", "NZ"]
+    args += ["--ATOM_NAME_2", "CD"]
+    args += ["--DELETE_ATOMS_2", "OE2"]
+    args += ["--BOND_ORDERS_2", "ATOM_1=CD", "ATOM_2=OE1", "ORDER=DOUBLE"]
+    args += ["--CHARGES_1", "ATOM=NZ", "CHARGE=0"]
+    args += ["--TOGGLE_LINK", "False"]
+    with i2run(args, allow_errors=True) as job:
+        instruction = (job / "link_instruction.txt").read_text()
+        assert "DELETE ATOM OE2 2" in instruction
+        assert "CHANGE CHARGE 1 NZ 0" in instruction
+        assert "CHANGE BOND CD OE1 DOUBLE 2" in instruction
+        doc = cif.read(str(job / "LYS-GLU_link.cif"))
+        assert "link_LYS-GLU" in doc
+        # OE2 is gone from the modified GLU.
+        mod = doc["mod_GLUm1"]
+        deleted = [row for row in mod.find("_chem_mod_atom.", ["function", "atom_id"])
+                   if row[0] == "delete"]
+        assert [row[1] for row in deleted] == ["OE2"]
