@@ -41,4 +41,27 @@ section and numbers the fields the text refers to. It finds fields by the label
 the user sees, so when a label changes the capture fails and names it: that is
 the moment to reread the page's text too.
 
-Pages converted so far: `tasks/parrot`. The rest still show the Qt interface.
+Which pages are converted, and which still show the Qt interface, is on the
+generated status page (`tools/status.py`).
+
+## Keeping a page true: stamps
+
+A page describes its task as it was when it was checked. Each `shots.json`
+records, under `"sources"`, the git blob id of every file the page was checked
+against: the task's def.xml, script and report (from `core/tasks.py`), its
+interface and what that imports from `task-interfaces/`, and the scenario.
+`tools/stamp.py` finds these files itself; nothing is listed by hand.
+
+```bash
+python3 docs/user/tools/stamp.py check          # which pages are stale, and why
+python3 docs/user/tools/stamp.py diff parrot    # what changed since it was stamped
+python3 docs/user/tools/stamp.py stamp parrot   # it still holds (or was re-captured)
+```
+
+`check` also reports any label a shot is keyed on (section, callout, from/until)
+that no longer appears in those files, which would break the next capture.
+
+A pull request that touches a stamped file runs the user-docs CI job, which
+warns on the PR, naming the page and the files. It never fails: many changes
+leave the page right. Read the diff, then re-capture or restamp in the same
+pull request. The status page marks stale pages too.

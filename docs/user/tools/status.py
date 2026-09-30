@@ -9,6 +9,9 @@ categories) the page is one of:
   Qt        it still shows the Qt interface
   none      there is no page
 
+A current or draft page is also marked *stale* when the files it describes
+have changed since it was checked against them (tools/stamp.py).
+
 conf.py calls write_status(); run directly to print the counts.
 """
 import json
@@ -81,8 +84,13 @@ def state(task):
     return ("draft" if draft else "current"), doc
 
 
+def is_stale(task):
+    from stamp import staleness  # stamp imports this module
+    return bool(staleness(ALIASES.get(task, task)))
+
+
 def write_status(out: Path):
-    counts = {"current": 0, "draft": 0, "Qt": 0, "none": 0}
+    counts = {"current": 0, "draft": 0, "Qt": 0, "none": 0, "stale": 0}
     seen = set()
     rows = []
     for title, tasks in chooser_categories():
@@ -90,12 +98,15 @@ def write_status(out: Path):
                     ".. list-table::\n   :widths: 40 20\n\n")
         for task in tasks:
             s, page = state(task)
+            stale = s in ("current", "draft") and is_stale(task)
             if task not in seen:
                 counts[s] += 1
+                counts["stale"] += stale
                 seen.add(task)
             name = f":doc:`{task} <tasks/{page}>`" if page else task
-            rows.append(f"   * - {name}\n     - {s}\n")
-    total = sum(counts.values())
+            shown = f"{s}, **stale**" if stale else s
+            rows.append(f"   * - {name}\n     - {shown}\n")
+    total = sum(v for k, v in counts.items() if k != "stale")
     head = (
         "####################\n"
         "Documentation status\n"
@@ -104,10 +115,13 @@ def write_status(out: Path):
         "task chooser offers. *current*: pictures captured from this app;\n"
         "*draft*: the same, newly written and awaiting review by someone who\n"
         "knows the program; *Qt*: the page still shows the Qt interface;\n"
-        "*none*: no page yet.\n\n"
+        "*none*: no page yet. *stale*: the task's interface, def.xml, script,\n"
+        "report or scenario has changed since the page was checked against\n"
+        "them, so it may no longer be right (``tools/stamp.py``).\n\n"
         f"Of {total} tasks: **{counts['current']} current**, "
         f"{counts['draft']} draft, {counts['Qt']} Qt, "
-        f"{counts['none']} with no page.\n")
+        f"{counts['none']} with no page"
+        + (f"; {counts['stale']} stale" if counts["stale"] else "") + ".\n")
     out.write_text(head + "".join(rows), encoding="utf-8")
     return counts
 

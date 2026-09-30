@@ -30,6 +30,7 @@ request whatever its base.
 | Page directories not named after their task | `ALIASES` in `tools/status.py` |
 | What a page shows | its `shots.json`; the scenario it names |
 | The first converted page, as a model | `source/tasks/parrot/` + `tools/scenario_parrot.py` |
+| Whether a page still matches its task | `"sources"` in its `shots.json`; `tools/stamp.py check` |
 
 ## Converting a page: the order that works
 
@@ -57,6 +58,10 @@ request whatever its base.
    the new interface does differently, and numbers the new menus changed.
 6. Run `tools/compress_images.py` on new figures; build with
    `tools/build.sh` (the warnings ratchet).
+7. **Stamp the page** (`tools/stamp.py stamp <page>`) once its text and
+   figures agree with the task. The stamp records what the page was checked
+   against; without one the page counts as stale. Restamp only after reading
+   `stamp.py diff`: a stamp is a claim that someone looked.
 
 ## Traps
 
@@ -93,6 +98,12 @@ request whatever its base.
   "Nothing to click labelled View" everywhere means it is gone: restart it.
 - **Heavy reports need longer to settle** (`"settle": 30000` in the shot);
   "Nothing to click labelled View" on a report page is usually that.
+- **A stamp sees the task's own files, not everything it uses.** Shared
+  widgets (`task-elements/`) and a pipeline's sub-wrappers are left out on
+  purpose: every page uses the widgets, so a change to one would flag them
+  all and the warning would stop being read. The label check still searches
+  the widgets. A page whose task name is not its directory or an `ALIASES`
+  entry names it with `"task"` in `shots.json`.
 
 ## Writing a page for a task that has none
 

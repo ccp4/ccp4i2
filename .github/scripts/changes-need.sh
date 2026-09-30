@@ -44,7 +44,10 @@ everything() {
 
 # The user help is documentation that can break (RST errors, missing figures),
 # so it is built whenever it changes, even when nothing else runs. The task
-# chooser claims it too: the help's status page is generated from it.
+# chooser claims it too: the help's status page is generated from it. So does
+# any file a help page was checked against (the "sources" its shots.json
+# records, plus the registries that decide them): the job then warns, naming
+# the pages that may now be out of date (docs/user/tools/stamp.py).
 userdocs=false
 
 nothing() {
@@ -66,7 +69,12 @@ fi
 # Nothing changed at all.
 [ -n "$changed" ] || nothing
 if printf '%s\n' "$changed" \
-     | grep -qE '^(docs/user/|client/renderer/components/task/task-chooser\.tsx$)'; then
+     | grep -qE '^(docs/user/|client/renderer/components/task/task-chooser\.tsx$|client/renderer/components/task/task-interfaces/task-container\.tsx$|server/ccp4i2/core/tasks\.py$)'; then
+  userdocs=true
+fi
+stamped="$(grep -hoE '"[^"]+": "[0-9a-f]{40}"' docs/user/source/tasks/*/shots.json 2>/dev/null \
+             | sed -E 's/^"([^"]+)".*/\1/' | sort -u)"
+if [ -n "$stamped" ] && printf '%s\n' "$changed" | grep -qxF -f <(printf '%s\n' "$stamped"); then
   userdocs=true
 fi
 

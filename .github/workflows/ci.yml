@@ -216,6 +216,14 @@ jobs:
           python-version: "3.13"
       - run: pip install -r docs/user/requirements.txt
       - run: docs/user/tools/build.sh "$RUNNER_TEMP/userdocs"
+      # A help page whose task has changed since it was checked: a warning on
+      # the PR naming the page and the files, never a failure (the change may
+      # well leave the page right; stamp.py diff shows, stamp.py stamp says so).
+      - name: Help pages the change may have outdated
+        run: |
+          python3 docs/user/tools/stamp.py check --github
+          { echo '### User help drift'; echo '```'
+            python3 docs/user/tools/stamp.py check; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: user-docs
