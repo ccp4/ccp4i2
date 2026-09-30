@@ -188,11 +188,11 @@ class arp_warp_classic(CPluginScript):
       awa_oroot = os.path.join(self.workDirectory, 'PSP', awa_prefix + '_warpNtrace')
       del awa_prefix, mtz_ext, ending
 
-      annotation = self.jobNumberString() + ' 2mFo-DFc map coefficients from ARP/WARP'
+      annotation = '2mFo-DFc map coefficients from ARP/WARP'
       self.container.outputData.FPHIOUT.annotation = annotation
       self.container.outputData.FPHIOUT.subType = 1
 
-      annotation = self.jobNumberString() + ' mFo-DFc map coefficients from ARP/WARP'
+      annotation = 'mFo-DFc map coefficients from ARP/WARP'
       self.container.outputData.DIFFPHIOUT.annotation = annotation
       self.container.outputData.DIFFPHIOUT.subType = 2
 
@@ -212,7 +212,7 @@ class arp_warp_classic(CPluginScript):
         match_dummy = re.search('^ATOM .+ DUM +DUM ', pdb_records, flags=re.M)
         if match_dummy:
           xyzdum = str(self.container.outputData.XYZDUM.fullPath)
-          annotation = self.jobNumberString() + ' ARP/WARP model with dummy atoms'
+          annotation = 'ARP/WARP model with dummy atoms'
           self.container.outputData.XYZDUM.annotation = annotation
           self.container.outputData.XYZDUM.subType = 1
           with open(xyzdum, 'w') as ostream:
@@ -221,7 +221,7 @@ class arp_warp_classic(CPluginScript):
           pdb_records = pdb_records[:match_dummy.start()]
 
         xyzout = str(self.container.outputData.XYZOUT.fullPath)
-        annotation = self.jobNumberString() + ' ARP/WARP model'
+        annotation = 'ARP/WARP model'
         self.container.outputData.XYZOUT.annotation = annotation
         self.container.outputData.XYZOUT.subType = 1
         with open(xyzout, 'w') as ostream:
