@@ -274,6 +274,10 @@ function useMonomer(
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem, container, setParameter, fetchDigest } = useJob(props.job.id);
   const toggleLink = useBoolToggle(useTaskItem, "TOGGLE_LINK");
+  // A cloned or autofilled job can carry a model with the toggle off, which
+  // validity() warns about; the model stays in view so the warning can be acted on.
+  const { item: xyzinItem } = useTaskItem("XYZIN");
+  const showModel = Boolean(toggleLink.value || xyzinItem?.dbFileId);
   const { value: LINK_MODE } = useTaskItem("LINK_MODE");
   const { value: BOND_ORDER } = useTaskItem("BOND_ORDER");
   const linkOrder = (dictionaryOrder(BOND_ORDER) ?? "SINGLE") as BondOrder;
@@ -360,7 +364,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             containerHint="FolderLevel"
           >
             <CCP4i2TaskElement itemName="TOGGLE_LINK" {...props} qualifiers={{ guiLabel: "Apply links to model" }} />
-            {toggleLink.value && (
+            {showModel && (
               <CCP4i2ContainerElement
                 {...props}
                 itemName=""
@@ -368,23 +372,27 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 containerHint="BlockLevel"
               >
                 <CCP4i2TaskElement itemName="XYZIN" {...props} />
-                <InlineField label="Apply links" width={DROPDOWN_FIELD}>
-                  <CCP4i2TaskElement itemName="LINK_MODE" {...props} qualifiers={{ guiLabel: " " }} />
-                </InlineField>
-                {LINK_MODE === "AUTO" && (
-                  <InlineField label="within" width={SHORT_FIELD} hint="times the dictionary value for this bond">
-                    <CCP4i2TaskElement itemName="LINK_DISTANCE" {...props} qualifiers={{ guiLabel: " " }} />
-                  </InlineField>
-                )}
-                {LINK_MODE === "MANUAL" && (
-                  <InlineField label="Create link between residues:" width={DROPDOWN_FIELD}>
-                    <CCP4i2TaskElement itemName="MODEL_RES_LIST" {...props} qualifiers={{ guiLabel: " " }} />
-                  </InlineField>
-                )}
-                {LINK_MODE === "MANUAL" && (
-                  <InlineField label="Filter list by atom proximity:" width={SHORT_FIELD}>
-                    <CCP4i2TaskElement itemName="MODEL_LINK_DISTANCE" {...props} qualifiers={{ guiLabel: " " }} />
-                  </InlineField>
+                {toggleLink.value && (
+                  <>
+                    <InlineField label="Apply links" width={DROPDOWN_FIELD}>
+                      <CCP4i2TaskElement itemName="LINK_MODE" {...props} qualifiers={{ guiLabel: " " }} />
+                    </InlineField>
+                    {LINK_MODE === "AUTO" && (
+                      <InlineField label="within" width={SHORT_FIELD} hint="times the dictionary value for this bond">
+                        <CCP4i2TaskElement itemName="LINK_DISTANCE" {...props} qualifiers={{ guiLabel: " " }} />
+                      </InlineField>
+                    )}
+                    {LINK_MODE === "MANUAL" && (
+                      <InlineField label="Create link between residues:" width={DROPDOWN_FIELD}>
+                        <CCP4i2TaskElement itemName="MODEL_RES_LIST" {...props} qualifiers={{ guiLabel: " " }} />
+                      </InlineField>
+                    )}
+                    {LINK_MODE === "MANUAL" && (
+                      <InlineField label="Filter list by atom proximity:" width={SHORT_FIELD}>
+                        <CCP4i2TaskElement itemName="MODEL_LINK_DISTANCE" {...props} qualifiers={{ guiLabel: " " }} />
+                      </InlineField>
+                    )}
+                  </>
                 )}
               </CCP4i2ContainerElement>
             )}

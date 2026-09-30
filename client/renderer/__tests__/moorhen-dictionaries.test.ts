@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { extractDictCompIds, loadWithDictionaries, provenanceOf } from "../lib/moorhen-dictionaries";
+import {
+  buildableCompIds,
+  extractDictCompIds,
+  loadWithDictionaries,
+  privateDictionaryNumber,
+  provenanceOf,
+} from "../lib/moorhen-dictionaries";
 
 const CIF = "data_comp_list\nloop_\n_chem_comp.id\nLIG\ndata_comp_LIG\n#\ndata_comp_DRG\n";
 
@@ -22,6 +28,51 @@ class FakeMolecule {
 describe("extractDictCompIds", () => {
   it("lists the components and skips the list header", () => {
     expect(extractDictCompIds(CIF)).toEqual(["LIG", "DRG"]);
+  });
+});
+
+// Shaped like AcedrgLink's two dictionaries: the linked pair (a whole
+// monomer with atoms) and the link itself (modifications and a link only).
+const LINKED_PAIR = `data_comp_list
+loop_
+_chem_comp.id
+LIG
+data_comp_LIG
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+LIG N
+`;
+const LINK_ONLY = `data_program_info
+data_mod_list
+data_link_list
+data_mod_LYSm1
+loop_
+_chem_mod_atom.mod_id
+LYSm1
+data_link_LYS-GLU
+`;
+
+describe("buildableCompIds", () => {
+  it("lists the components that have atoms", () => {
+    expect(buildableCompIds(LINKED_PAIR)).toEqual(["LIG"]);
+  });
+
+  it("finds nothing to build in a link dictionary", () => {
+    expect(buildableCompIds(LINK_ONLY)).toEqual([]);
+  });
+
+  it("skips a component block with no atoms", () => {
+    expect(buildableCompIds(CIF)).toEqual([]);
+  });
+});
+
+describe("privateDictionaryNumber", () => {
+  it("never repeats and stays clear of Coot's special numbers and molecule numbers", () => {
+    const a = privateDictionaryNumber();
+    const b = privateDictionaryNumber();
+    expect(b).not.toBe(a);
+    expect(Math.min(a, b)).toBeGreaterThanOrEqual(1_000_000);
   });
 });
 
