@@ -559,7 +559,10 @@ def ep_results_xml(result, parent):
         etree.SubElement(node, "Number").text = str(i + 1)
         etree.SubElement(node, "PDB").text = str(hand.PDBfile)
         etree.SubElement(node, "MTZ").text = str(hand.MTZfile)
-        etree.SubElement(node, "LLG").text = f"{hand.getLogLikelihood():.1f}"
+        # getLogLikelihood() is the target Phaser minimises, the negative of
+        # the gain: recorded as it came, the report's LLG column read -1060
+        # for a hand whose completion log said LLG +1060.
+        etree.SubElement(node, "LLG").text = f"{-hand.getLogLikelihood():.1f}"
         stats = hand.allStats
         try:
             fom = list(stats.FOM_bin)
