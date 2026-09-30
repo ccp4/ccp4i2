@@ -2,57 +2,52 @@
 SYMMETRY MATCH MODEL TO REFERENCE
 #################################
 
-   The model matching task is a tool to enable the simple comparison of
-   atomic models. It uses the crystal symmetry to move chains, ligands
-   and waters of an atomic model, in order to place them in the same
-   part of the unit cell as an existing model. It can optionally be used
-   to change the origin on which the model is defined, for example for
-   comparing different molecular replacement results.
+This task compares atomic models placed in different parts of the unit
+cell. It uses the crystal symmetry to move the chains, ligands and waters
+of one model to lie in the same part of the cell as another, and can
+change the origin on which the model is defined: for example to compare
+different molecular replacement solutions, or to bring a new solution
+onto the frame of a known structure.
+
+The pictures on this page move a molecular replacement solution (from the
+*Molrep* page) onto the model it was solved with.
 
 Input
 =====
 
-   |image1|
+.. figure:: csymmatch_input.png
+   :alt: Figure 1: Csymmatch input
 
-   Two atomic models must be selected. The first atomic model **(1)** is
-   the model to be moved. This model will be broken up into connected
-   fragments, and each fragment will be moved using the crystal symmetry
-   to best overlap the second model. A distance criterion is used to
-   determine what constitutes a connected fragment - by varying this
-   criterion the behaviour of the program can be adjusted.
+   Figure 1: Csymmatch input
 
-   The second atomic model **(2)** is the model to be matched. This
-   model is fixed, and is not moved or altered in any way.
+The first model **(1)** is the one to be moved. It is broken into
+connected fragments, and each fragment is moved by the crystal symmetry to
+overlap the second model best. The second model **(2)** is the fixed
+reference; it is not moved or altered.
 
-   Two options may be specified **(3)**: an optional change of origin
-   and/or hand may be applied to best match the models. A change of hand
-   is meaningless for most biological structures, but is useful when
-   comparing heavy atom substructures which are typically subject to
-   hand ambiguity. Note that the origin shift is not restricted obey
-   symmetry constraints. 
-   
-   The connectivity criterion (radius to use for stitching) may also be
-   specified: the model is normally moved a chain at a time, however if
-   monomers within the same chain are separated by more than the
-   connectivity distance (default 2A) they are moved separately. This allows chains
-   to remain intact while moving solvent molecules and ligands
-   individually.
+An origin and/or hand change may be tried as well **(3)**. A change of hand
+is meaningless for most biological structures, but useful for heavy-atom
+substructures, which have a hand ambiguity. Note that the origin shift is
+not restricted to obey symmetry constraints.
+
+The connectivity radius **(4)** decides what counts as one fragment. A
+model is normally moved a chain at a time, but monomers of the same chain
+more than this distance apart (2 Å by default) are moved separately, which
+keeps chains intact while moving waters and ligands individually.
 
 Results
 =======
 
-      |image2|
-      
-      The report describes any origin or hand shift which has been
-      applied to the model, and the number of connected fragments into
-      which the model was divided for matching. Check for a change of
-      hand - a hand change is meaningless for anything other than a
-      heavy atom substructure, and usually indicates a problem in
-      matching the molecules. Also check whether any change of origin is
-      consistent with the spacegroup symmetry.
+.. figure:: csymmatch_report.png
+   :alt: Figure 2: Csymmatch report
 
-      The model fragments and associated symmetry transformations are
-      also reported.
+   Figure 2: Csymmatch report
 
-.. |image1| image:: csymmatch_task_1.png
-.. |image2| image:: csymmatch_report_1.png
+The report says whether an origin shift **(5)** or a change of hand was
+applied, and how many fragments the model was divided into. Check for a
+change of hand: for anything but a substructure it usually means the
+models could not be matched. Check too that an origin shift is one the
+space group allows. The fragments' symmetry operators and scores follow
+**(6)**. Here the Molrep solution is moved by an origin shift of (0, ½, 0)
+and the operator x+½, -y+½, -z onto the frame of the original model, as
+one fragment.

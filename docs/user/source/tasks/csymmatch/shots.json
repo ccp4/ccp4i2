@@ -1,0 +1,71 @@
+{
+  "scenario": "../../../tools/scenario_mr2.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    2200
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "csymmatch_input.png",
+      "job": 7,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Atomic model to be moved",
+      "through": "Options",
+      "callouts": [
+        {
+          "text": "Atomic model to be moved",
+          "badge": "1"
+        },
+        {
+          "text": "Fixed (reference) atomic model",
+          "badge": "2"
+        },
+        {
+          "text": "Try all possible origins and hands",
+          "badge": "3"
+        },
+        {
+          "field": "Radius to use in stitching floating fragments to chains",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "csymmatch_report.png",
+      "job": 4,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "A change of origin",
+        "scroll": true
+      },
+      "until": "Input Data",
+      "callouts": [
+        {
+          "text": "A change of origin",
+          "badge": "5"
+        },
+        {
+          "text": "Transformations and scores",
+          "badge": "6"
+        }
+      ],
+      "expand": [
+        "Transformations and scores"
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/csymmatch/script/csymmatch.def.xml": "f5436329b0c06db10e464cba2a1d51aa13701d30",
+    "server/ccp4i2/wrappers/csymmatch/script/csymmatch.py": "72ba0accaaa376eb1b7cc9b1836b067ffaf97114",
+    "server/ccp4i2/pipelines/phaser_pipeline/script/phaser_pipeline_report.py": "3701545b2b25913ca9f06e4c9439be31416e0796",
+    "client/renderer/components/task/task-interfaces/csymmatch.tsx": "c1f9404ac52ac33c8360de2ec982f7390cfa0fe8",
+    "docs/user/tools/scenario_mr2.py": "88785c233944df99edf3d3d4ce8c5d503f6c37d7"
+  }
+}

@@ -1,19 +1,55 @@
-======
+######
 DIMPLE
-======
+######
 
-`DIMPLE <https://journals.iucr.org/a/issues/2013/a1/00/a50958/a50958.pdf>`_ (DIfference Map PipeLinE)Automated difference map generation pipeline to allow for quick assessment of crystal data to see if a ligand has bound to the structure. It is a joint development by the CCP4 software group and the Diamond light source. It is an automated software pipeline for rapidly processing crystals that contain a known protein and possibly a ligand bound to this protein. 
+`DIMPLE <https://journals.iucr.org/a/issues/2013/a1/00/a50958/a50958.pdf>`_
+(DIfference Map PipeLinE) quickly refines a known structure against new
+data from the same crystal form and finds the "blobs": places of
+unexplained density, where a ligand may have bound. It is a joint
+development of the CCP4 software group and Diamond Light Source, meant
+for crystals of a known protein soaked or co-crystallised with a ligand:
+within a few seconds an experienced user can see whether density for the
+ligand is there.
 
-**DIMPLE** takes the already known “apo” structure for the target protein and compares it with the electron density map for the same, crystallised structure (and possibly bound ligand) interpreted from the X-ray diffraction images. It then presents the user with a set of snapshot images illustrating the regions where there are large areas of electron density unaccounted for by the protein structure model. Within a few seconds, an experienced user can decipher from these images if any of this unaccounted for density indicates a bound ligand. A positive result can mean that the rest of the batch of crystals for this particular ligand can be discarded allowing for a more efficient use of the beam time and saving the user from lots of potentially unnecessary processing.
+DIMPLE checks that the data match the model (reindexing if needed), runs
+rigid-body refinement, falling back to molecular replacement if the
+R-factor stays above a threshold, then restrained refinement (jelly-body,
+then restrained), and finally searches the difference map for blobs.
+Please visit the `official site <http://ccp4.github.io/dimple/>`_ for more.
 
-The main goal is to present a user with a quick answer to the question of whether or not they have a bound ligand or drug candidate in their crystal. 
+The pictures on this page run DIMPLE with the model and native data of the
+*gamma* demo that comes with CCP4i2.
 
-**DIMPLE** can work only with reflection datasets that include mean intensities.
- 
-Please visit the `official site <http://ccp4.github.io/dimple/>`_ to get more information.
+Input
+=====
 
-    
-**References**
+.. figure:: dimple_input.png
+   :alt: Figure 1: DIMPLE input
 
-`Wojdyr, M., Keegan, R., Winter, G., Ashton, A. (2013) DIMPLE - a pipeline for the rapid generation of difference maps from protein crystals with putatively bound ligands. Acta Cryst. A69: s299 <https://doi.org/10.1107/S0108767313097419>`_
+   Figure 1: DIMPLE input
 
+The model **(1)**, typically the refined apo structure; the data **(2)**;
+and the free R set **(3)**. Use the free set the model was refined against,
+so that R-free stays meaningful. The R-factor threshold **(4)** decides
+when rigid-body refinement is judged to have failed and molecular
+replacement is run instead (default 0.45).
+
+Results
+=======
+
+.. figure:: dimple_report.png
+   :alt: Figure 2: DIMPLE report
+
+   Figure 2: DIMPLE report
+
+The report gives the R-factors and geometry before and after refinement
+**(5)** with a graph of the cycles, and the blobs found **(6)**: their
+scores and positions, largest first. Here rigid-body refinement took R to
+0.21 at 3.5 Å, so no molecular replacement was needed, and the restrained
+refinement ended at R 0.237 and R-free 0.248. There is no ligand in these
+crystals, and the model has no waters or ions, so the two blobs found are
+most likely unmodelled solvent: look at them, with the output model and
+maps, in Coot or Moorhen.
+
+The *Summary* below repeats DIMPLE's own log of the steps, and the outputs
+are the refined model and its map coefficients.
