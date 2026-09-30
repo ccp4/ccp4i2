@@ -8,6 +8,7 @@
 #   backend=true|false     the Python unit + API suites
 #   frontend=true|false    the client's vitest + tsc
 #   build=true|false       the mac/win/linux desktop packages
+#   userdocs=true|false    the Sphinx build of the user help (docs/user/)
 #
 # Replaces changes-need-build.sh, which answered only the build question, and
 # answered it for every non-documentation change -- so a server-only pull
@@ -37,11 +38,18 @@ set -u
 base="${1:-}"; head="${2:-}"; mode="${3:-merge-base}"
 
 everything() {
-  echo "backend=true"; echo "frontend=true"; echo "build=true"; exit 0
+  echo "backend=true"; echo "frontend=true"; echo "build=true"
+  echo "userdocs=true"; exit 0
 }
 
+# The user help is documentation that can break (RST errors, missing figures),
+# so it is built whenever it changes, even when nothing else runs. The task
+# chooser claims it too: the help's status page is generated from it.
+userdocs=false
+
 nothing() {
-  echo "backend=false"; echo "frontend=false"; echo "build=false"; exit 0
+  echo "backend=false"; echo "frontend=false"; echo "build=false"
+  echo "userdocs=${userdocs}"; exit 0
 }
 
 if [ -z "$base" ] || [ -z "$head" ] \
@@ -57,6 +65,10 @@ fi
 
 # Nothing changed at all.
 [ -n "$changed" ] || nothing
+if printf '%s\n' "$changed" \
+     | grep -qE '^(docs/user/|client/renderer/components/task/task-chooser\.tsx$)'; then
+  userdocs=true
+fi
 
 # Documentation only: a *.md anywhere, docs/, LICENSE, or a test baseline under
 # server/.test-baselines/ (evidence about a run, never an input to one).
@@ -95,3 +107,4 @@ echo "backend=${backend}"
 echo "frontend=${frontend}"
 # The desktop package is built from client/ and packages/ alone.
 echo "build=${frontend}"
+echo "userdocs=${userdocs}"
