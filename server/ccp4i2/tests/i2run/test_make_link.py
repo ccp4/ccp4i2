@@ -60,3 +60,30 @@ def test_6ndn_mmcif_gets_a_struct_conn():
             rows = list(block.find("_struct_conn.", ["conn_type_id", "ccp4_link_id"]))
             assert any(row[0] == "covale" and row[1] == "LYS-PLP" for row in rows), \
                 "no covale _struct_conn row carrying ccp4_link_id LYS-PLP"
+
+
+def test_residue_codes_typed_in_mixed_case():
+    """"Lys" and "plp" link as LYS and PLP, as the atom dropdown implied.
+
+    AceDRG found LYS.cif for "Lys", then looked inside it for a comp "Lys"
+    and stopped, failing every MakeLink job typed that way.
+    """
+    with download(pdbe_pdb("6ndn")) as pdb:
+        args = ["MakeLink"]
+        args += ["--RES_NAME_1_TLC", "Lys"]
+        args += ["--RES_NAME_2_TLC", "plp"]
+        args += ["--ATOM_NAME_1_TLC", "NZ"]
+        args += ["--ATOM_NAME_2_TLC", "C4A"]
+        args += ["--ATOM_NAME_1", "NZ"]
+        args += ["--ATOM_NAME_2", "C4A"]
+        args += ["--TOGGLE_DELETE_2", "True"]
+        args += ["--DELETE_2", "O4A"]
+        args += ["--BOND_ORDER", "DOUBLE"]
+        args += ["--TOGGLE_LINK", "True"]
+        args += ["--XYZIN", pdb]
+        with i2run(args, allow_errors=True) as job:
+            doc = cif.read(str(job / "LYS-PLP_link.cif"))
+            assert "link_LYS-PLP" in doc
+            structure = read_pdb(str(job / "ModelWithLinks.pdb"))
+            links = [c for c in structure.connections if c.link_id == "LYS-PLP"]
+            assert links, "no LYS-PLP connection in the output model"
