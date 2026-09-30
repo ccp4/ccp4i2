@@ -569,11 +569,11 @@ class dm_multidomain(CPluginScript):
         self.container.outputData.ABCDOUT.contentFlag.set(
             CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM)
         self.container.outputData.ABCDOUT.annotation = \
-            self.jobNumberString() + ' Phases from multi-domain NCS averaging'
+            'Phases from multi-domain NCS averaging'
         self.container.outputData.FPHIOUT.contentFlag.set(1)
         self.container.outputData.FPHIOUT.subType.set(1)
         self.container.outputData.FPHIOUT.annotation = \
-            self.jobNumberString() + ' Map coefficients from multi-domain dm'
+            'Map coefficients from multi-domain dm'
 
         # capture the per-body averaging masks (disjoint mode-0 CCP4 maps) as
         # outputs, so they can be gleaned and overlaid (e.g. in Moorhen) to
@@ -588,7 +588,7 @@ class dm_multidomain(CPluginScript):
                 # so the Moorhen viewers / scene format render it as a mask.
                 maskout[-1].subType.set(maskout[-1].SUBTYPE_MASK)
                 maskout[-1].annotation = \
-                    self.jobNumberString() + f' NCS averaging mask: {name}'
+                    f'NCS averaging mask: {name}'
 
         # build the result XML: loggraph tables + per-cycle + per-domain NCS
         # correlations, as substrate for a graphically rich report.

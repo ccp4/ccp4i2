@@ -14,6 +14,13 @@ def test_parrot():
         xml = ET.parse(job / "program.xml")
         foms = [float(e.text) for e in xml.findall(".//MeanFOM")]
         assert max(foms) > 0.794
+        # File pickers put the job number first; the annotation must not
+        # (it once began "Job #<uuid>").
+        params = ET.parse(job / "params.xml")
+        for name in ["ABCDOUT", "FPHIOUT"]:
+            annotation = params.find(f".//outputData/{name}/annotation").text
+            assert annotation.endswith("from density modification")
+            assert not annotation.startswith("Job")
 
 
 def test_parrot_honours_asu_copies():

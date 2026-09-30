@@ -36,11 +36,10 @@ class parrot(CPluginScript):
     def  processOutputFiles(self):
       # Need to set the expected content flag  for phases data
       self.container.outputData.ABCDOUT.contentFlag.set(CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL)
-      print('parrot.processOutputFiles jobNumberString',self.jobNumberString())
-      self.container.outputData.ABCDOUT.annotation = self.jobNumberString() + ' Phases from density modification'
+      self.container.outputData.ABCDOUT.annotation = 'Phases from density modification'
       self.container.outputData.FPHIOUT.contentFlag.set(1)
       self.container.outputData.FPHIOUT.subType.set(1)
-      self.container.outputData.FPHIOUT.annotation = self.jobNumberString() + ' Map coefficients from density modification'
+      self.container.outputData.FPHIOUT.annotation = 'Map coefficients from density modification'
       
       # extend XML output
       rootNode = etree.Element("ParrotResult")
