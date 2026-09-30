@@ -1,0 +1,38 @@
+{
+  "scenario": "../../../tools/scenario_SubstituteLigand.py",
+  "project": "MDM2_Nutlin",
+  "draft": true,
+  "viewport": [1400, 1600],
+  "shots": [
+    {
+      "out": "SubstituteLigand_input.png",
+      "job": 2,
+      "tabs": ["Task interface"],
+      "section": "Ligand geometry",
+      "until": "Reflection data",
+      "callouts": ["Ligand provided as", "SMILES string", "Code for the fitted ligand", "Placement of the starting model", "Starting model"]
+    },
+    {
+      "out": "SubstituteLigand_data.png",
+      "job": 2,
+      "tabs": ["Task interface"],
+      "section": "Reflection data",
+      "through": "Free R flag",
+      "callouts": ["Observed data provided as", "Free R set"]
+    },
+    {
+      "out": "SubstituteLigand_report.png",
+      "job": 1,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "section": {
+        "text": "Key reflection summary",
+        "scroll": true
+      },
+      "from": "Key reflection summary",
+      "until": "Summary of refinement",
+      "callouts": [],
+      "settle": 30000
+    }
+  ]
+}

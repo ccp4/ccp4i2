@@ -1,0 +1,48 @@
+{
+  "scenario": "../../../tools/scenario_servalcat_pipe.py",
+  "project": "CDK2_NU6102",
+  "draft": true,
+  "viewport": [1400, 1400],
+  "shots": [
+    {
+      "out": "servalcat_input.png",
+      "job": 2,
+      "tabs": ["Task interface", "Input Data"],
+      "section": "Data source",
+      "until": "Additional geometry dictionaries",
+      "callouts": ["Data type:", "Diffraction data are", "Atomic model", "Reflections", "Free R set", "Twin refinement"]
+    },
+    {
+      "out": "servalcat_options.png",
+      "job": 2,
+      "tabs": ["Task interface", "Input Data"],
+      "section": "Options",
+      "callouts": ["Number of refinement cycles:", "Use riding hydrogens during refinement", "Add waters and then perform"]
+    },
+    {
+      "out": "servalcat_restraints.png",
+      "job": 2,
+      "tabs": ["Task interface", "Restraints"],
+      "section": "Weights",
+      "until": "MetalCoord External Restraints for Metals",
+      "callouts": ["Weigh the experimental data using", "Use local non-crystallographic symmetry (NCS) restraints", "Use jelly-body restraints"]
+    },
+    {
+      "out": "servalcat_advanced.png",
+      "job": 2,
+      "tabs": ["Task interface", "Advanced"],
+      "section": "Resolution and experiment",
+      "callouts": ["Use custom resolution limits", "Diffraction experiment type:"]
+    },
+    {
+      "out": "servalcat_report.png",
+      "job": 1,
+      "tabs": ["Report"],
+      "viewport": [1900, 2600],
+      "section": {"text": "Summary of refinement", "scroll": true},
+      "from": "Summary of refinement",
+      "until": "Per cycle statistics",
+      "callouts": [{"text": "Initial", "closest": "table"}, {"text": "Plot", "closest": ".MuiPaper-root"}]
+    }
+  ]
+}

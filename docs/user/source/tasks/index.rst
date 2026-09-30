@@ -135,6 +135,7 @@ Refinement
 .. toctree::
    :maxdepth: 1
 
+   servalcat_pipe/index
    prosmart_refmac/index
    tls/index
    coot_refinement/index
@@ -149,6 +150,7 @@ Ligands
    :maxdepth: 1
 
    LidiaAcedrgNew/index
+   SubstituteLigand/index
 
 ======================
 Valiation and analysis
