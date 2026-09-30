@@ -23,6 +23,11 @@ def test_gamma_xe():
             gemmi.read_mtz_file(str(job / f"{mtz}.mtz"))
         xml = ET.parse(job / "program.xml")
         assert len(xml.findall("Hands/Hand")) >= 1
+        # A gain, as the completion reports it: once recorded with its sign
+        # reversed (Phaser's minimisation target), so the table read -1060.
+        hand_llg = float(xml.findtext("Hands/Hand/LLG"))
+        assert hand_llg > 0
+        assert abs(hand_llg - float(xml.find("Completion").get("llg"))) < 20
         assert float(xml.findtext("Overall/fom")) > 0.3
         assert len(xml.findall("Sites/Site")) >= 4
         assert xml.findtext("Sites/Site/Element") == "XE"
