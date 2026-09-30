@@ -43,9 +43,9 @@ Input
    The molecular weight of the whole contents is shown **(3)**. Give the
    reflection data **(4)** and the task works out, from the cell, how many
    copies of these contents the asymmetric unit could hold, with the
-   solvent content and probability of each **(5)**; the most probable is
-   highlighted. Here one copy of the complex leaves 47% solvent, by far
-   the likeliest.
+   solvent content and probability of each, in the panel beside it; the
+   most probable is highlighted. Here one copy of the complex leaves 47%
+   solvent, by far the likeliest.
 
 Results
 =======

@@ -34,11 +34,11 @@ Input
 Search models
 -------------
 
-   Each entry in the list **(3)** is one component of the asymmetric unit:
+   Each entry in the list is one component of the asymmetric unit:
    here beta-lactamase and BLIP. For each, give
 
    - a one-word **label**, used in the report to say what was placed;
-   - how many **copies** of it to search for;
+   - how many **copies** of it to search for **(3)**;
    - its **models**: one structure, or several superimposed structures of
      the same component making an *ensemble*. Superimpose them yourself
      first; Phaser does not. An ensemble lets Phaser weight what the
@@ -46,7 +46,9 @@ Search models
    - for each model, its **similarity** to your molecule, as sequence
      identity or expected RMS deviation. Phaser's likelihood needs it; a
      rough value is better than none (0.9 identity is a common guess for a
-     model of the same protein).
+     model of the same protein). The *Identity* and *Rms* fields are behind
+     the arrow at the end of the model's row; they open by themselves only
+     when neither is set.
 
    Use each model's atom selection to leave out what is unlikely to match,
    such as flexible termini and loops. Components are searched for in the

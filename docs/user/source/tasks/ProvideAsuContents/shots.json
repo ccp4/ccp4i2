@@ -2,7 +2,7 @@
   "scenario": "../../../tools/scenario_mr.py",
   "project": "BetaBlip",
   "viewport": [1400, 1600],
-  "draft": false,
+  "draft": true,
   "shots": [
     {
       "out": "ProvideAsuContents_input.png",
@@ -13,16 +13,12 @@
       "callouts": [
         "ASU contents",
         {
-          "text": "BETA",
-          "closest": ".MuiCard-root"
+          "text": "Click a card to edit"
         },
         {
           "text": "Molecular weight:"
         },
-        "Reflections (for the Matthews analysis)",
-        {
-          "text": "Matthews Analysis"
-        }
+        "Reflections (for the Matthews analysis)"
       ]
     },
     {

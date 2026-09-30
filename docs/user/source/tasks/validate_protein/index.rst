@@ -58,12 +58,18 @@ Results
 
    The Iris charts come first **(1)**: each ring is a metric and each
    segment a residue, coloured from good to poor; hover over a residue to
-   read its values. Look for residues poor on several rings at once.
+   read its values; the panel beside the chart shows the selected
+   residue's scores as percentiles. Look for residues poor on
+   several rings at once.
 
-   *MolProbity Analyses* summarises the model's geometry: the MolProbity
+   *MolProbity Analyses* **(2)** summarises the model's geometry: the MolProbity
    score, clashscore, RMS bond and angle deviations and the percentages of
    Ramachandran, rotamer and C-beta outliers, with each kind of outlier
-   listed below the summary.
+   listed below the summary. Here, straight from five cycles of ModelCraft
+   at 3.0 Å, 4% of residues are Ramachandran outliers and the clashscore
+   is 44: a model that needs rebuilding and refinement, and the charts
+   show where.
+
    *B-factor Analyses* gives the mean and spread of the B-factors for the
    whole model and for each chain, by main chain, side chains, waters,
    ligands and ions. *Ramachandran Analyses* plots each residue's backbone

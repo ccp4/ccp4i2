@@ -70,7 +70,9 @@ Results
    8 or more is usually a solution; the LLG measures how much better the
    placed model explains the data than none.
 
-   Here beta-lactamase is placed with a TFZ of 10.4, and the LLG is 474.
+   Here beta-lactamase is placed with a TFZ of 10.4 in the search (24.4
+   after refinement of the placement, the value in the solutions table),
+   and the LLG is 474.
    The solution is clear, but it is not complete: the AU contents say BLIP
    is there too. Searching for both with the expert task places BLIP as
    well (TFZ 18.6), and the LLG rises to 1054. When the LLG is well below

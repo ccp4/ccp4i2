@@ -111,7 +111,9 @@ const PAGE_HELPERS = () => {
         .filter(visible)
         .filter((e) => [...e.childNodes].some((n) => n.nodeType === 3 && norm(n.textContent) === norm(text)));
       if (!hits.length) throw new Error(`No field labelled "${text}"`);
-      return hits[0];
+      // A field's own <label>/<legend> before a folder heading of the same
+      // text ("Reflections" is both, in several interfaces).
+      return hits.find((e) => e.tagName === "LABEL" || e.tagName === "LEGEND") || hits[0];
     },
     // A field: its label's form control, or the row that holds a radio group.
     field(text) {
