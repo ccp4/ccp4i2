@@ -28,6 +28,11 @@ def test_dimple():
             job=job_record, job_param_name="COMPLETE_MTZ"
         ).first()
         assert complete is not None, "COMPLETE_MTZ not gleaned as a tracked output"
+        # Every output says what it is (they were listed as 'final.pdb',
+        # 'FPHIOUT.mtz' and 'DIFFPHIOUT.mtz').
+        for param in ("XYZOUT", "FPHIOUT", "DIFFPHIOUT"):
+            gleaned = models.File.objects.filter(job=job_record, job_param_name=param).first()
+            assert gleaned is not None and gleaned.annotation, f"{param} has no annotation"
         complete_path = Path(complete.path)
         assert complete_path.is_file(), (
             f"tracked COMPLETE_MTZ {complete_path} missing on disk"

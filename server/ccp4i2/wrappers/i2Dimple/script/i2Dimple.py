@@ -72,6 +72,13 @@ class i2Dimple(CPluginScript):
         error = self.splitHklout(outputFiles,outputColumns,infile=infile)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
+        # Say what they are: unannotated, the report and file pickers named
+        # them only 'final.pdb', 'FPHIOUT.mtz' and 'DIFFPHIOUT.mtz'.
+        out = self.container.outputData
+        out.FPHIOUT.annotation.set('Weighted map from DIMPLE (2mFo-DFc)')
+        out.DIFFPHIOUT.annotation.set('Weighted difference map from DIMPLE (mFo-DFc)')
+        if out.XYZOUT.isSet():
+            out.XYZOUT.annotation.set('Model refined by DIMPLE')
                 
         #Create (dummy) PROGRAMXML
         from lxml import etree
