@@ -12,39 +12,18 @@ Run from server/ with ccp4-python, against a scratch home, never a live one:
 It makes the project CDK2_CyclinA with four jobs: ASU contents,
 refinement of the partial model, parrot, and an unrun clone of parrot.
 """
-import os
-import subprocess
-import sys
-import urllib.request
-from pathlib import Path
-
 import gemmi
+
+from scenario_common import clone_last, fetch, i2run as _i2run, inputs_dir
 
 PROJECT = "CDK2_CyclinA"
 CODE = "1h1s"
-URLS = {
-    "model": f"https://www.ebi.ac.uk/pdbe/entry-files/download/pdb{CODE}.ent",
-    "mtz": f"https://pdb-redo.eu/db/{CODE}/{CODE}_final.mtz",
-}
+MODEL = f"https://www.ebi.ac.uk/pdbe/entry-files/download/pdb{CODE}.ent"
+MTZ = f"https://pdb-redo.eu/db/{CODE}/{CODE}_final.mtz"
 
 
-def scratch_home() -> Path:
-    home = os.environ.get("CCP4I2_HOME")
-    if not home:
-        sys.exit("Set CCP4I2_HOME to a scratch directory: this script "
-                 "creates a project and must not touch a live database.")
-    for live in (".ccp4i2", ".ccp4i2-django", ".ccp4i2x"):
-        if Path(home).resolve() == (Path.home() / live).resolve():
-            sys.exit(f"CCP4I2_HOME is the live home {home}; use a scratch one.")
-    return Path(home)
-
-
-def fetch(kind: str, work: Path) -> Path:
-    path = work / Path(URLS[kind]).name
-    if not path.exists():
-        print(f"Fetching {URLS[kind]}")
-        urllib.request.urlretrieve(URLS[kind], path)
-    return path
+def i2run(*args):
+    _i2run(PROJECT, *args)
 
 
 def one_letter(entity) -> str:
@@ -57,9 +36,9 @@ def one_letter(entity) -> str:
     return "".join(letters)
 
 
-def prepare(work: Path):
+def prepare(work):
     """Sequences of the two entities, and the CDK2-only partial model."""
-    structure = gemmi.read_structure(str(fetch("model", work)))
+    structure = gemmi.read_structure(str(fetch(MODEL)))
     structure.setup_entities()
     polymers = [e for e in structure.entities
                 if e.entity_type == gemmi.EntityType.Polymer]
@@ -77,20 +56,10 @@ def prepare(work: Path):
     return sequences, partial
 
 
-def i2run(*args: str):
-    cmd = [sys.executable, "-m", "ccp4i2.cli.i2run", *args,
-           "--project_name", PROJECT]
-    print("i2run", args[0])
-    subprocess.run(cmd, check=True, env={
-        **os.environ, "DJANGO_SETTINGS_MODULE": "ccp4i2.config.settings"})
-
-
 def main():
-    home = scratch_home()
-    work = home / "scenario_inputs"
-    work.mkdir(parents=True, exist_ok=True)
+    work = inputs_dir()
     sequences, partial = prepare(work)
-    mtz = fetch("mtz", work)
+    mtz = fetch(MTZ)
 
     asu = []
     for name, description in (("CDK2", "Cyclin-dependent kinase 2"),
@@ -117,16 +86,7 @@ def main():
           "--XYZIN_MR", "fileUse=prosmart_refmac[-1].XYZOUT",
           "--CYCLES", "10")
 
-    # A clone of the parrot job: the input screenshots show a job being set
-    # up, not one that has run.
-    subprocess.run([sys.executable, "manage.py", "shell", "-c", (
-        "from ccp4i2.db.models import Job\n"
-        "from ccp4i2.lib.utils.jobs.clone import clone_job\n"
-        f"job = Job.objects.filter(project__name='{PROJECT}', "
-        "task_name='parrot').order_by('-id').first()\n"
-        "clone_job(str(job.uuid))\n")],
-        check=True, env={**os.environ,
-                         "DJANGO_SETTINGS_MODULE": "ccp4i2.config.settings"})
+    clone_last(PROJECT, "parrot")
 
 
 if __name__ == "__main__":

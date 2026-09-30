@@ -184,18 +184,23 @@ async function shoot(shot) {
   // (Two steps: an error thrown in a timer callback would never reach us.)
   await page.evaluate((sec) => __cap.section(sec).scrollIntoView({ block: "start" }), shot.section);
   await sleep(800);
-  const measured = await page.evaluate((sec, labels, until, from) => {
+  const measured = await page.evaluate((sec, labels, until, from, through) => {
     const section = __cap.rect(__cap.section(sec));
     // "until": end the crop where that text begins (a report's file lists).
     if (until) section.height = __cap.rect(__cap.containing(until)).y - 12 - section.y;
+    // "through": extend the crop to the end of a later folder.
+    if (through) {
+      const t = __cap.rect(__cap.section(through));
+      section.height = t.y + t.height - section.y;
+    }
     // "from": start the crop where that text begins (below a report's tab bar).
     if (from) {
-      const top = __cap.rect(__cap.containing(from)).y - 12;
+      const top = __cap.rect(__cap.containing(from)).y - 4;
       section.height -= top - section.y;
       section.y = top;
     }
     return { section, fields: labels.map((l) => __cap.rect(__cap.target(l))) };
-  }, shot.section, shot.callouts || [], shot.until || null, shot.from || null);
+  }, shot.section, shot.callouts || [], shot.until || null, shot.from || null, shot.through || null);
   // Number the fields: a badge in a margin left of the section, level with each.
   const margin = (shot.callouts || []).length ? 36 : 0;
   await page.evaluate((sec, fields) => {
