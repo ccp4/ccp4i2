@@ -22,6 +22,16 @@ from ccp4i2.wrappers.phaser_phil.script.phaser_shims import (
 from ccp4i2.wrappers.phaser_phil.script import phaser_run
 
 
+
+def hand_names(setting, count):
+    """What each hand Phaser wrote is, in its order. 'off' (the default) phases
+    the substructure as given, 'on' only its inverse, 'both' the given one
+    then the inverse. Naming by position alone called an inverted-only run's
+    single hand "original"."""
+    if str(setting) == "on":
+        return ["inverted"] * count
+    return ["original", "inverted"][:count]
+
 class phaser_ep_auto_phil(phaser_phil):
 
     TASKNAME = "phaser_ep_auto_phil"
@@ -128,6 +138,8 @@ class phaser_ep_auto_phil(phaser_phil):
         out = self.container.outputData
         work_dir = str(self.getWorkDirectory())
         hands = ["", ".hand"] if getattr(result, "second_hand", False) else [""]
+        setting = self.find_phil("phaser.keywords.hand")
+        names = hand_names(setting if setting is not None else "off", len(hands))
         for i, hand in enumerate(hands):
             xyz = os.path.join(work_dir, f"PHASER.1{hand}.pdb")
             hkl = os.path.join(work_dir, f"PHASER.1{hand}.mtz")
@@ -135,7 +147,7 @@ class phaser_ep_auto_phil(phaser_phil):
                 if not os.path.exists(path):
                     self.appendErrorReport(201, path, severity=CCP4ErrorHandling.SEVERITY_ERROR)
                     return CPluginScript.FAILED
-            label = "original hand" if i == 0 else "reversed hand"
+            label = f"{names[i]} hand"
             out.XYZOUT.append(out.XYZOUT.makeItem())
             out.XYZOUT[-1].setFullPath(xyz)
             out.XYZOUT[-1].annotation.set(f"Substructure sites - {label}")
@@ -150,7 +162,7 @@ class phaser_ep_auto_phil(phaser_phil):
                 outputContentFlags=[CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL, 1],
                 infileList=out.HKLOUT)
             for i in range(len(out.ABCDOUT)):
-                label = "original hand" if i == 0 else "reversed hand"
+                label = f"{names[i]} hand"
                 out.ABCDOUT[i].annotation.set(f"Phase estimates - {label}")
                 out.MAPOUT[i].annotation.set(f"Phased map - {label}")
                 out.MAPOUT[i].contentFlag.set(1)
