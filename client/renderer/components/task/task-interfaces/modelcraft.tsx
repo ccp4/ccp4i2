@@ -30,8 +30,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Reflection data" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="F_SIGF" {...props} />
-        <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
+        <CCP4i2TaskElement
+          itemName="F_SIGF"
+          {...props}
+          qualifiers={{ guiLabel: "Reflections" }}
+        />
+        <CCP4i2TaskElement
+          itemName="FREERFLAG"
+          {...props}
+          qualifiers={{ guiLabel: "Free R set" }}
+        />
         <CCP4i2TaskElement
           itemName="USE_MODEL_PHASES"
           {...props}
@@ -42,7 +50,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         />
         {!useModelPhases.value && (
           <>
-            <CCP4i2TaskElement itemName="PHASES" {...props} />
+            <CCP4i2TaskElement
+          itemName="PHASES"
+          {...props}
+          qualifiers={{ guiLabel: "Starting phases" }}
+        />
             <CCP4i2TaskElement
               itemName="UNBIASED"
               {...props}
@@ -62,7 +74,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Asymmetric unit contents" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="ASUIN" {...props} />
+        <CCP4i2TaskElement
+          itemName="ASUIN"
+          {...props}
+          qualifiers={{ guiLabel: "Asymmetric unit contents" }}
+        />
       </CCP4i2ContainerElement>
 
       {/* Starting model */}
@@ -72,7 +88,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Starting model (optional)" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="XYZIN" {...props} />
+        <CCP4i2TaskElement
+          itemName="XYZIN"
+          {...props}
+          qualifiers={{ guiLabel: "Starting model" }}
+        />
         <Typography variant="caption" color="text.secondary" sx={{ pl: 1 }}>
           If a starting model is provided it will always be used, regardless of
           the phase source. Clear this field for a fully de novo build.

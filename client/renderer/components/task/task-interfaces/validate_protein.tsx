@@ -20,8 +20,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Model data" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="XYZIN_1" {...props} />
-        <CCP4i2TaskElement itemName="F_SIGF_1" {...props} />
+        <CCP4i2TaskElement
+          itemName="XYZIN_1"
+          {...props}
+          qualifiers={{ guiLabel: "Atomic model" }}
+        />
+        <CCP4i2TaskElement
+          itemName="F_SIGF_1"
+          {...props}
+          qualifiers={{ guiLabel: "Reflections (optional, for the fit to density)" }}
+        />
         <InlineField label="Label dataset 1 as">
           <CCP4i2TaskElement
             itemName="NAME_1"
@@ -47,8 +55,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           qualifiers={{ initiallyOpen: true }}
           containerHint="BlockLevel"
         >
-          <CCP4i2TaskElement itemName="XYZIN_2" {...props} />
-          <CCP4i2TaskElement itemName="F_SIGF_2" {...props} />
+          <CCP4i2TaskElement
+            itemName="XYZIN_2"
+            {...props}
+            qualifiers={{ guiLabel: "Atomic model" }}
+          />
+          <CCP4i2TaskElement
+            itemName="F_SIGF_2"
+            {...props}
+            qualifiers={{ guiLabel: "Reflections (optional, for the fit to density)" }}
+          />
           <InlineField label="Label dataset 2 as">
             <CCP4i2TaskElement
               itemName="NAME_2"
