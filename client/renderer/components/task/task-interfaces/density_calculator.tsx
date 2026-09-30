@@ -62,7 +62,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <InlineField label="Oversampling rate">
             <CCP4i2TaskElement itemName="RATE" {...props} qualifiers={{ guiLabel: " " }} />
           </InlineField>
-          <InlineField label="Blurring mode">
+          <InlineField label="Blurring mode" width="16rem">
             <CCP4i2TaskElement itemName="BLUR_MODE" {...props} qualifiers={{ guiLabel: " " }} />
           </InlineField>
           {BLUR_MODE === "custom" && (

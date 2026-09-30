@@ -31,7 +31,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Type of map to create" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="MAPTYPE" {...props} />
+        <CCP4i2TaskElement itemName="MAPTYPE" {...props} qualifiers={{ guiLabel: "Map type" }} />
       </CCP4i2ContainerElement>
 
       {/* First dataset */}
