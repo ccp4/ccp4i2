@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 from gemmi import read_mtz_file
@@ -130,8 +131,12 @@ def test_mdm2_crystal_and_dataset_names_are_used():
     args = ["aimless_pipe", "--UNMERGEDFILES", "crystalName=hg7",
             "dataset=DS1", f"file={mtz}"]
     with i2run(args) as job:
+        from ccp4i2.db.models import Job
+        project = Job.objects.get(number="1").project.name
         out = read_mtz_file(str(job / "HKLOUT_0-observed_data.mtz"))
         named = [(d.project_name, d.crystal_name, d.dataset_name)
                  for d in out.datasets if d.dataset_name != "HKL_base"]
         assert [n[1:] for n in named] == [("hg7", "DS1")], named
-        assert named[0][0] not in ("None", "", "AUTOMATIC"), named
+        # (an MTZ holds 64 characters of the project name)
+        assert re.sub(r"\W", "_", project).startswith(named[0][0]), named
+        assert len(named[0][0]) > len("hg7"), named

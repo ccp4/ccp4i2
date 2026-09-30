@@ -310,6 +310,7 @@ async def create_plugin_for_job(job, db_handler):
     # Set database context using the proper API
     plugin.setDbData(
         handler=db_handler,
+        projectName=job.project.name,
         projectId=str(job.project.uuid),
         jobNumber=job.number,
         jobId=str(job.uuid)
