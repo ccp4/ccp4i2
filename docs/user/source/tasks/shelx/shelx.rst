@@ -5,7 +5,7 @@ SHELXC/D/E experimental phasing task
 Input Data
 ==========
 
-   The "Automated structure solution - Shelxcde" experimental phasing
+   The "Automated structure solution - SHELXC/D/E" experimental phasing
    task builds a model automatically from intensities or amplitudes from
    single or multiple-wavelength anomalous diffraction (SAD/MAD) or
    single isomorphous replacement (SIRAS) experiments. The user can
@@ -13,11 +13,11 @@ Input Data
    below:
 
    #. Substructure detection with
-      `SHELXD <http://shelx.uni-ac.gwdg.de/SHELX/shelxd_mm_keywords.php>`__
+      `SHELXD <https://shelx.uni-goettingen.de/shelxd_mm_keywords.php>`__
       using FA values obtained from
-      `SHELXC <http://shelx.uni-ac.gwdg.de/SHELX/shelxc_keywords.php>`__
+      `SHELXC <https://shelx.uni-goettingen.de/shelxc_keywords.php>`__
    #. Density modification and poly-alanine tracing with
-      `SHELXE <http://shelx.uni-ac.gwdg.de/SHELX/shelxe_keywords.php>`__
+      `SHELXE <https://shelx.uni-goettingen.de/shelxe_keywords.php>`__
    #. Model building with
       `Buccaneer <http://www.ccp4.ac.uk/html/cbuccaneer.html>`__, or
       `ARP/wARP <http://www.embl-hamburg.de/ARP/Manual/UserGuide7.5.html>`__
@@ -25,10 +25,15 @@ Input Data
       `REFMAC <http://www.ccp4.ac.uk/html/refmac5.html>`__
    #. Model refinement with REFMAC
 
+   The pictures on this page come from the demo data that ships with
+   CCP4i2: the ear domain of gamma-adaptin soaked in xenon, home-source
+   SAD data to 1.8 Å, solved here from scratch: two xenon sites
+   requested, 120 of the 134 residues built.
+
 Input
 -----
 
-   .. figure:: shelxcde-input-labels.png
+   .. figure:: shelx_input.png
       :alt: Figure 1: Main input
 
       Figure 1: Main input
@@ -39,8 +44,8 @@ Input
    start the pipeline at Density modification and poly-Ala tracing.
 
    Inputting a protein sequence **(1.2)** is beneficial for model
-   building. If it is not available, click off the Input protein
-   sequence option and input the number of protein residues per monomer.
+   building. If it is not available, untick *Give the protein sequence*
+   and give the number of protein residues per monomer instead.
 
    Input the substructure atom element symbol (i.e. Se for Selenium) and
    the number of substructure atoms in the asymmetric unit **(1.3)**.
@@ -76,28 +81,28 @@ Input
    dataset is always used for building and refinement but it can be also
    used for SIRAS phasing: If only a single anomalous dataset is input
    together with the native data, an option to switch between the SIRAS
-   and SAD phasing can be selected under the "Important Paramaters" tab.
+   and SAD phasing can be selected under the "Important Options" tab.
    Finally, a previously defined cross-validation or "free" set can be
    input **(1.8)** or the cross-validation can be turned off, otherwise
-   the default is to define a new set
+   the default is to define a new set.
 
 Important Options
 -----------------
 
-   .. figure:: crank2-important-options.png
+   .. figure:: shelx_important.png
       :alt: Figure 2: Important options
 
       Figure 2: Important options
 
    This page (and the next one) offers options that can improve results
-   if default (automatically determined) values are not optimal. From
-   the number of protein residues per monomer, the interface will obtain
-   a guess for the number of molecules in the asymmetric unit and the
-   solvent content based on a Matthew's coefficient analysis. These
-   values are only a guess and (re-)running the task with 'correct'
-   values can significantly improve results.
+   if default (automatically determined) values are not optimal. Left
+   empty, the number of molecules in the asymmetric unit and the solvent
+   content are estimated when the task runs, from a Matthews coefficient
+   analysis shown in the report. These values are only a guess and
+   (re-)running the task with 'correct' values can significantly improve
+   results.
 
-   .. figure:: shelxcde-advanced-options-labels.png
+   .. figure:: shelx_advanced.png
       :alt: Figure 3: Advanced options
 
       Figure 3: Advanced options
@@ -116,12 +121,11 @@ Advanced Options
    cycles of model building in SHELXE\ **(3.4)** or adjusting the
    solvent content and inputting the correct NCS copies in the
    "Important options" section. If the substructure is correct, it is
-   faster to re-run SHELXE with different options from the "SHELX
-   phasing and building" pipeline starting at Density modification and
-   poly-Ala tracing. The partial model and initial phases can also be
-   input to the "CRANK2 phasing & building" pipeline and starting at
-   Substructure improvement. For all steps, the gui provides the ability
-   to input custom keywords for individual programs (i.e. **(3.5)**,
+   faster to clone the job and re-run SHELXE with different options,
+   starting the pipeline at Density modification and poly-Ala tracing.
+   The partial model and initial phases can also be given to the *CRANK2
+   phasing and building* task, starting at Substructure improvement. For
+   all steps, the interface lets you give custom keywords for individual programs (i.e. **(3.5)**,
    **(3.6)**). For example, inputting -t5 to SHELXE for predominantly
    beta sheet proteins can provide improved tracing, but also increase
    run time. Please look at all the documentation for individual
@@ -135,18 +139,12 @@ Results
    performance for each step. After and typically also while each step
    is being performed, a summary with statistics indicating the
    performance is provided. For many graphs, a shaded gray area is shown
-   to indicate a region with poor statistics. For some steps, the user
-   may click on a button on the bottom right panel of the Results
-   section to stop the current step. If the button is pressed, the step
-   will be stopped after finishing the current iteration and the next
-   step of the pipeline will follow. This can be used to save time if
-   the user is happy with the results of the current step as indicated
-   by the Results report.
+   to indicate a region with poor statistics.
 
 FA estimation
 -------------
 
-   .. figure:: danosigdano.png
+   .. figure:: shelx_fa.png
       :alt: Figure 4: Anomalous difference to noise versus resolution
 
       Figure 4: Anomalous difference to noise versus resolution
@@ -185,7 +183,7 @@ FA estimation
 Substructure detection
 ----------------------
 
-   .. figure:: shelxd-occ-cc-ccweak.png
+   .. figure:: shelx_substrdet.png
       :alt: Figure 7: Summary, Occupancy and CC versus CCweak for the trials graphs
 
       Figure 7: Summary, Occupancy and CC versus CCweak for the trials
@@ -216,13 +214,17 @@ Substructure detection
 Density modification and poly-alanine trace
 -------------------------------------------
 
-   .. figure:: shelxe-summary-cc.png
+   .. figure:: shelx_shelxe.png
       :alt: Figure 9: Summary and correlation coefficient of enantiomorphs
 
       Figure 9: Summary and correlation coefficient of enantiomorphs
 
    The results and summary of running density modification and initial
-   model building for both substructure enantiomorphs is presented. A
+   model building for both substructure enantiomorphs is presented. In
+   the gamma-adaptin example in the figure both hands trace well, with
+   correlation coefficients of 55.8 and 53.1, above the threshold of 40
+   at which SHELXE stops; it chooses hand 1, and 119 residues are traced
+   into its map. A
    significant difference in between both hands for the correlation
    coefficient in model building (Figure 9),
 
@@ -254,7 +256,7 @@ Density modification and poly-alanine trace
 Model building
 --------------
 
-   .. figure:: residues-per-cycle-and-rcomb.png
+   .. figure:: shelx_building.png
       :alt: Figure 13: Summary and graphs of Residues, FOM and Rfactors
 
       Figure 13: Summary and graphs of Residues, FOM and Rfactors
@@ -267,7 +269,7 @@ Model building
 Model refinement
 ----------------
 
-   .. figure:: refine-refmac.png
+   .. figure:: shelx_ref.png
       :alt: Figure 14: Summary and graphs of Rfactors
 
       Figure 14: Summary and graphs of Rfactors

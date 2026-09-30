@@ -1,0 +1,171 @@
+{
+  "scenario": "../../../tools/scenario_ep_shelx.py",
+  "project": "GammaXe",
+  "viewport": [1400, 2400],
+  "shots": [
+    {
+      "out": "crank2_input.png",
+      "job": 8,
+      "tabs": ["Task interface", "Input Data"],
+      "settle": 25000,
+      "section": {
+        "text": "Start pipeline with",
+        "scroll": true
+      },
+      "from": "Start pipeline with",
+      "callouts": [
+        {
+          "field": "Start pipeline with",
+          "badge": "1.1"
+        },
+        {
+          "text": "Input partial model (MR-SAD, model rebuilding)",
+          "badge": "1.2"
+        },
+        {
+          "field": "Give the protein sequence",
+          "badge": "1.3"
+        },
+        {
+          "field": "Substructure atom",
+          "badge": "1.4"
+        },
+        {
+          "field": "Input unmerged/merged SCA/XDS/SHELX format",
+          "badge": "1.5"
+        },
+        {
+          "field": "Reflections",
+          "badge": "1.6"
+        },
+        {
+          "field": "Add a second wavelength (MAD)",
+          "badge": "1.7"
+        },
+        {
+          "text": "Input native observations (Crystal #2)",
+          "badge": "1.8"
+        },
+        {
+          "text": "Exclude free",
+          "badge": "1.9"
+        }
+      ]
+    },
+    {
+      "out": "crank2_important.png",
+      "job": 8,
+      "tabs": ["Task interface", "Important Options"],
+      "section": "Crystal composition",
+      "callouts": []
+    },
+    {
+      "out": "crank2_advanced.png",
+      "job": 8,
+      "tabs": ["Task interface", "Advanced Options"],
+      "viewport": [1400, 5200],
+      "settle": 25000,
+      "section": {
+        "text": "Note: empty input fields mean",
+        "scroll": true
+      },
+      "from": "Note: empty input fields mean",
+      "callouts": [
+        {
+          "field": "High resolution cutoff",
+          "badge": "3.1"
+        },
+        {
+          "field": "Num. trials",
+          "badge": "3.2"
+        },
+        {
+          "field": "Minimum distance between atoms",
+          "badge": "3.3"
+        },
+        {
+          "field": "Maximum number of cycles",
+          "badge": "3.4"
+        },
+        {
+          "field": "Custom program keywords (comma separated)",
+          "badge": "3.5"
+        },
+        {
+          "field": "Custom keywords for building program",
+          "badge": "3.6"
+        }
+      ]
+    },
+    {
+      "out": "crank2_fa.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["FA estimation and/or other substructure detection preparations"],
+      "section": "FA estimation and/or other substructure detection preparations",
+      "callouts": []
+    },
+    {
+      "out": "crank2_substrdet.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Substructure determination"],
+      "section": "Substructure determination",
+      "callouts": []
+    },
+    {
+      "out": "crank2_phasing.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Iterative substructure improvement and phasing"],
+      "section": "Iterative substructure improvement and phasing",
+      "callouts": []
+    },
+    {
+      "out": "crank2_hand.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Hand determination"],
+      "section": "Hand determination",
+      "callouts": []
+    },
+    {
+      "out": "crank2_dm.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Density modification with Fourier recycling"],
+      "section": "Density modification with Fourier recycling",
+      "callouts": []
+    },
+    {
+      "out": "crank2_building.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Combined iterative model building with density modification with phased refinement"],
+      "section": "Combined iterative model building with density modification with phased refinement",
+      "callouts": []
+    },
+    {
+      "out": "crank2_ref.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 3200],
+      "settle": 40000,
+      "expand": ["Macromolecular reciprocal space refinement"],
+      "section": "Macromolecular reciprocal space refinement",
+      "callouts": []
+    }
+  ]
+}

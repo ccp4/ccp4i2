@@ -150,6 +150,7 @@ const PAGE_HELPERS = () => {
     // (the table holding a cell, the plot holding a title).
     target(spec) {
       if (typeof spec === "string") return this.field(spec);
+      if (spec.field) return this.field(spec.field);
       const el = this.containing(spec.text);
       const t = spec.closest ? el.closest(spec.closest) : el;
       if (!t) throw new Error(`"${spec.text}" is in no ${spec.closest}`);
@@ -196,7 +197,18 @@ async function shoot(shot) {
   await page.evaluate((sec) => __cap.section(sec).scrollIntoView({ block: "start" }), shot.section);
   await sleep(800);
   const measured = await page.evaluate((sec, labels, until, from, through) => {
-    const section = __cap.rect(__cap.section(sec));
+    const el = __cap.section(sec);
+    const section = __cap.rect(el);
+    // A scrolling panel is often taller than what is in it: end the crop at
+    // the bottom of its lowest visible content.
+    if (typeof sec === "object") {
+      let bottom = section.y;
+      for (const d of el.querySelectorAll("*")) {
+        const r = d.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0 && r.bottom > bottom) bottom = r.bottom;
+      }
+      section.height = Math.min(section.height, bottom + 12 - section.y);
+    }
     // "until": end the crop where that text begins (a report's file lists).
     if (until) section.height = __cap.rect(__cap.containing(until)).y - 12 - section.y;
     // "through": extend the crop to the end of a later folder.
@@ -213,31 +225,34 @@ async function shoot(shot) {
     return { section, fields: labels.map((l) => __cap.rect(__cap.target(l))) };
   }, shot.section, shot.callouts || [], shot.until || null, shot.from || null, shot.through || null);
   // Number the fields: a badge in a margin left of the section, level with each.
-  const margin = (shot.callouts || []).length ? 36 : 0;
-  await page.evaluate((sec, fields) => {
+  const margin = (shot.callouts || []).length ? 48 : 0;
+  // A callout may carry its own badge text ("1.1"), as the older pages number.
+  const badges = (shot.callouts || []).map((c) => (c && c.badge) || null);
+  await page.evaluate((sec, fields, badges) => {
     if (fields.length) {
       // Blank the margin: the job list and its divider sit there.
       const strip = document.createElement("div");
       Object.assign(strip.style, {
         position: "fixed", zIndex: 99998, background: "white",
-        left: `${sec.x - 52}px`, width: "52px", top: `${sec.y - 10}px`,
+        left: `${sec.x - 64}px`, width: "64px", top: `${sec.y - 10}px`,
         height: `${sec.height + 20}px`,
       });
       document.body.appendChild(strip);
     }
     fields.forEach((f, i) => {
       const b = document.createElement("div");
-      b.textContent = String(i + 1);
+      b.textContent = badges[i] || String(i + 1);
       Object.assign(b.style, {
-        position: "fixed", zIndex: 99999, left: `${sec.x - 32}px`,
-        top: `${f.y + f.height / 2 - 13}px`, width: "26px", height: "26px",
+        position: "fixed", zIndex: 99999, left: `${sec.x - 44}px`,
+        top: `${f.y + f.height / 2 - 13}px`, minWidth: "26px", height: "26px",
+        padding: "0 5px", boxSizing: "border-box",
         borderRadius: "13px", background: "#c62828", color: "white",
         font: "bold 15px/26px Roboto, Arial, sans-serif", textAlign: "center",
         boxShadow: "0 1px 3px rgba(0,0,0,.4)",
       });
       document.body.appendChild(b);
     });
-  }, measured.section, measured.fields);
+  }, measured.section, measured.fields, badges);
   const pad = 8;
   const left = Math.max(0, measured.section.x - pad - margin);
   const clip = {

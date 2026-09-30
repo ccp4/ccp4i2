@@ -11,7 +11,7 @@ Crank2 experimental phasing task
 
    #. Substructure detection with
       `SHELXD <https://shelx.uni-goettingen.de/shelxd_mm_keywords.php>`__
-      or PRASA (to be released in 2016) using FA values obtained from
+      or PRASA or CRUNCH2, using FA values obtained from
       `SHELXC <https://shelx.uni-goettingen.de/shelxc_keywords.php>`__,
       `AFRO <http://www.ccp4.ac.uk/html/afro.html>`__ or
       `ECALC <http://www.ccp4.ac.uk/html/ecalc.html>`__
@@ -31,10 +31,15 @@ Crank2 experimental phasing task
       or SHELXE iterated with model refinement with REFMAC
    #. Model refinement with REFMAC
 
+   The pictures on this page come from the demo data that ships with
+   CCP4i2: the ear domain of gamma-adaptin soaked in xenon, home-source
+   SAD data to 1.8 Å, solved here from scratch: two xenon sites
+   requested, 120 of the 134 residues built.
+
 Input Data
 ==========
 
-   .. figure:: crank2-input-labels.png
+   .. figure:: crank2_input.png
       :alt: Figure 1: Main input
 
       Figure 1: Main input
@@ -51,8 +56,8 @@ Input Data
    give better results. It is recommended to try both approaches.
 
    Inputting a protein sequence **(1.3)** is beneficial for model
-   building. If it is not available, click off the Input protein
-   sequence option and input the number of protein residues per monomer.
+   building. If it is not available, untick *Give the protein sequence*
+   and give the number of protein residues per monomer instead.
 
    Input the substructure atom element symbol (i.e. Se for Selenium) and
    the number of substructure atoms in the asymmetric unit **(1.4)**.
@@ -96,7 +101,7 @@ Input Data
    can be also used for SIRAS phasing: If only a single anomalous
    dataset is input together with the native data, an option to switch
    between the SIRAS and SAD phasing can be selected under the
-   "Important Paramaters" tab. Finally, a previously defined
+   "Important Options" tab. Finally, a previously defined
    cross-validation or "free" set can be input **(1.9)** or the
    cross-validation can be turned off, otherwise the default is to
    define a new set
@@ -104,20 +109,20 @@ Input Data
 Important Options
 -----------------
 
-   .. figure:: crank2-important-options.png
+   .. figure:: crank2_important.png
       :alt: Figure 2: Important options
 
       Figure 2: Important options
 
    This page (and the next one) offers options that can improve results
-   if default (automatically determined) values are not optimal. From
-   the number of protein residues per monomer, the interface will obtain
-   a guess for the number of molecules in the asymmetric unit and the
-   solvent content based on a Matthew's coefficient analysis. These
-   values are only a guess and (re-)running the task with 'correct'
-   values can significantly improve results.
+   if default (automatically determined) values are not optimal. Left
+   empty, the number of molecules in the asymmetric unit and the solvent
+   content are estimated by Crank2 when it runs, from a Matthews
+   coefficient analysis shown in the report. These values are only a
+   guess and (re-)running the task with 'correct' values can
+   significantly improve results.
 
-   .. figure:: crank2-advanced-options-labels.png
+   .. figure:: crank2_advanced.png
       :alt: Figure 3: Advanced options
 
       Figure 3: Advanced options
@@ -134,10 +139,9 @@ Advanced Options
    adjust the minimum distance between atoms **(3.3)** to 1.5. Another
    useful option that can improve results is more iterations in model
    building.\ **(3.4)** If you wish to improve a partial model, it is
-   generally better to "continue" the previous job by inputting the
-   partially built model and phases from it by using the "CRANK2 phasing
-   & building" button that appears below the report from a completed
-   job. For all steps, the gui provides the ability to input custom
+   generally better to continue from the previous job: clone it, start
+   the pipeline at model building, and give the partially built model and
+   the phases from it. For all steps, the interface lets you give custom
    keywords for individual programs (i.e. **(3.5)**, **(3.6)**). Please
    look at all the documentation for individual programs (links shown
    above) to see supported keywords. Multiple options can be inputted,
@@ -150,18 +154,12 @@ Results
    performance for each step. After and typically while each step is
    being performed, a summary with statistics indicating the performance
    is provided. For many graphs, a shaded gray area is shown to indicate
-   a region of poor statistics. For some steps, the user may click on a
-   button on the bottom right panel of the Results section to stop the
-   current step. If the button is pressed, the step will be stopped
-   after finishing the current iteration and the next step of the
-   pipeline will follow. This can be used to save time if the user is
-   happy with the results of the current step as indicated by the
-   Results report.
+   a region of poor statistics.
 
 FA estimation
 -------------
 
-   .. figure:: danosigdano.png
+   .. figure:: crank2_fa.png
       :alt: Figure 4: Anomalous difference to noise versus resolution
 
       Figure 4: Anomalous difference to noise versus resolution
@@ -200,7 +198,7 @@ FA estimation
 Substructure detection
 ^^^^^^^^^^^^^^^^^^^^^^
 
-   .. figure:: shelxd-occ-cc-ccweak.png
+   .. figure:: crank2_substrdet.png
       :alt: Figure 7: Summary, Occupancy and CC versus CCweak for the trials graphs
 
       Figure 7: Summary, Occupancy and CC versus CCweak for the trials graphs
@@ -230,7 +228,7 @@ Substructure detection
 Substructure improvement and phasing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   .. figure:: phasing-summary.png
+   .. figure:: crank2_phasing.png
       :alt: Figure 9: Phasing summary
 
       Figure 9: Phasing summary
@@ -253,10 +251,16 @@ Substructure improvement and phasing
 Hand determination
 ^^^^^^^^^^^^^^^^^^
 
-   .. figure:: hand-det-crank2.png
+   .. figure:: crank2_hand.png
       :alt: Figure 10: Hand determination summary
 
       Figure 10: Hand determination summary
+
+   In the gamma-adaptin example in the figure, the second hand scores
+   19.5 against 0.0 (phasing CLD 6.27 against 1.17) and density
+   modification improves it faster throughout: a clear choice. Which hand
+   is "first" is arbitrary here: SHELXD found the sites from scratch, in
+   whichever hand it happened on.
 
    Reciprocal space information from substructure phasing can not, in
    general, resolve the correct enantiomorph. However, in many cases
@@ -278,20 +282,20 @@ Hand determination
    may happen that the map based indicators fail and the wrong hand is
    picked. Such case can be often recognized by small discrimination
    between the scores and the CLD values of both hands around 0.
-   Although such cases are rate, it is recommended to rerun the job with
-   the other hand
+   Although such cases are rare, it is recommended to rerun the job with
+   the other hand.
    The SHELX pipeline does not attempt to determine the hand; instead,
    it runs SHELXE density modification and building with both hands and
    the correct hand is simply the one that leads to a model built.
    However, the contrast of the map for both hands in the initial
-   density modification is reported in a plot (Figure X+2); a
-   significantly better contrast such as shown in the Figure X+2 is a
-   good indicator of the correct hand.
+   density modification is reported in a plot; a significantly better
+   contrast for one hand is a good indicator of the correct hand. The
+   *SHELXC/D/E phasing and building* task takes this route; see its page.
 
 Density modification
 ^^^^^^^^^^^^^^^^^^^^
 
-   .. figure:: denmod-summary-crank2.png
+   .. figure:: crank2_dm.png
       :alt: Figure 11: Density modification summary
 
       Figure 11: Density modification summary
@@ -310,7 +314,7 @@ Density modification
 Model building
 ^^^^^^^^^^^^^^
 
-   .. figure:: residues-per-cycle-and-rcomb.png
+   .. figure:: crank2_building.png
       :alt: Figure 12: Summary and graphs of Residues, FOM and Rfactors
 
       Figure 12: Summary and graphs of Residues, FOM and Rfactors
@@ -323,7 +327,7 @@ Model building
 Model refinement
 ^^^^^^^^^^^^^^^^
 
-   .. figure:: refine-refmac.png
+   .. figure:: crank2_ref.png
       :alt: Figure 13: Summary and graphs of Rfactors
 
       Figure 13: Summary and graphs of Rfactors
