@@ -199,8 +199,11 @@ class import_merged(CPluginScript):
       
         # Is FreeR generation switched off?
         if self.container.controlParameters.SKIP_FREER:
-            # No freeR generation, leave as is, eg from StarAniso
+            # No freeR generation, leave as is, eg from StarAniso. Return:
+            # without it, a FreeR set was completed or generated anyway and
+            # the analysis ran a second time, so the option did nothing.
             self.process2(CPluginScript.SUCCEEDED)
+            return
 
         # HASFREER records whether the *imported* file carried FreeR. It must
         # NOT disable completion when the user supplied a separate FREERFLAG --

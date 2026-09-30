@@ -254,3 +254,18 @@ def test_merged_xds():
             free_mtz = gemmi.read_mtz_file(str(job / "FREEOUT.mtz"))
             free_mtz.ensure_asu()
             assert free_mtz.rfree_column() is not None, "FREEOUT.mtz missing FreeR"
+
+
+def test_skip_freer_makes_no_free_set():
+    """'Do not copy or generate a FreeR set' (ticked for StarAniso data, whose
+    free set must not be regenerated). process1 started the analysis and then
+    carried on, so a free set was made anyway and the analysis ran twice."""
+    args = ["import_merged"]
+    args += ["--HKLIN", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--SKIP_FREER", "True"]
+    with i2run(args) as job:
+        assert (job / "OBSOUT.mtz").exists()
+        assert not (job / "FREEOUT.mtz").exists(), "A free set was made anyway"
+        analyses = [d for d in job.glob("job_*") if (d / "params.xml").exists()
+                    and "aimless_pipe" in (d / "params.xml").read_text()]
+        assert len(analyses) == 1, f"The analysis ran {len(analyses)} times"
