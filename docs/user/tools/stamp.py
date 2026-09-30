@@ -44,6 +44,7 @@ from status import ALIASES, REPO, TASK_PAGES, TASKS_PY
 INTERFACES = REPO / "client/renderer/components/task/task-interfaces"
 CONTAINER = INTERFACES / "task-container.tsx"
 ELEMENTS = REPO / "client/renderer/components/task/task-elements"
+COMPONENTS = REPO / "client/renderer/components"
 SERVER = REPO / "server/ccp4i2"
 
 
@@ -86,8 +87,8 @@ def resolve_import(base: Path, spec: str) -> Path | None:
 
 
 def interface_files(task: str) -> list[Path]:
-    """The task's registered interface and what it imports from within
-    task-interfaces/ (shared task-elements are every page's, so not here)."""
+    """The task's registered interface and the components it imports (MakeLink's
+    monomer editor), but not the shared task elements, which are every page's."""
     text = CONTAINER.read_text(encoding="utf-8")
     m = re.search(rf'^\s*"?{re.escape(task)}"?:\s*(\w+),', text, flags=re.M)
     if not m:
@@ -97,10 +98,12 @@ def interface_files(task: str) -> list[Path]:
         return []
     start = resolve_import(CONTAINER, imp.group(1))
     found, todo = [], [start] if start else []
-    root = INTERFACES.resolve()
+    root = COMPONENTS.resolve()
+    shared = ELEMENTS.resolve()
     while todo:
         f = todo.pop()
-        if f in found or root not in f.parents or f == CONTAINER.resolve():
+        if (f in found or root not in f.parents or shared in f.parents
+                or f == CONTAINER.resolve()):
             continue
         found.append(f)
         for spec in re.findall(r'from\s+"(\.{1,2}/[^"]+)"',
@@ -163,7 +166,9 @@ def labels(shots: dict):
         for callout in shot.get("callouts", []):
             if isinstance(callout, str):
                 yield out, callout
-            else:
+            elif not callout.get("dynamic"):
+                # "dynamic": text the page makes from data ("delete O4A"),
+                # which no source contains.
                 yield out, callout.get("field") or callout.get("text")
 
 

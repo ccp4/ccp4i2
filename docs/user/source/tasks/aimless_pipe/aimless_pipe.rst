@@ -252,15 +252,15 @@ bits/reflection against resolution: the curve the automatic cutoff
 reads, falling to 0.1 bits/reflection at 1.35 Å for these data.
 
 .. rubric:: Space group determination
-      :name: space-group-determination
+   :name: space-group-determination
 
-   | Remember that the space group is only a hypothesis until the
-      structure is satisfactory solved and refined. 
+| Remember that the space group is only a hypothesis until the
+  structure is satisfactorily solved and refined.
 
-   | `Details of symmetry determination are here <./symmetry.html>`__
+| `Details of symmetry determination are here <./symmetry.html>`__
 
-   .. rubric:: Scaling and merging
-      :name: scaling-and-merging
+.. rubric:: Scaling and merging
+   :name: scaling-and-merging
 
-   | `Details of the results of scaling and merging are
-      here <./scaling_and_merging.html>`__
+| `Details of the results of scaling and merging are
+  here <./scaling_and_merging.html>`__

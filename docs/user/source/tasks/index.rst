@@ -153,11 +153,12 @@ Ligands
    :maxdepth: 1
 
    LidiaAcedrgNew/index
+   MakeLink/index
    SubstituteLigand/index
 
-======================
-Valiation and analysis
-======================
+=======================
+Validation and analysis
+=======================
 .. toctree::
    :maxdepth: 1
 
