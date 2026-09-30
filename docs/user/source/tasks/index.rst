@@ -185,12 +185,15 @@ Reflection data tools
    :maxdepth: 1
 
    pointless_reindexToMatch/index
+   scaleit/index
+   cpatterson/index
    cphasematch/index
    cmapcoeff/index
    ctruncate/index
    chltofom/index
    freerflag/index
    matthews/index
+   density_calculator/index
 
 
 =====================

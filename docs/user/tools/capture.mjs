@@ -68,9 +68,17 @@ async function connect(wsUrl) {
   await new Promise((r, e) => { ws.onopen = r; ws.onerror = e; });
   let id = 0;
   const pending = new Map();
+  // The page's own errors, kept so that a crash can be reported, not guessed.
+  const pageErrors = [];
   ws.onmessage = (ev) => {
     const m = JSON.parse(ev.data);
     if (m.id && pending.has(m.id)) { pending.get(m.id)(m); pending.delete(m.id); }
+    else if (m.method === "Runtime.exceptionThrown") {
+      const d = m.params.exceptionDetails;
+      pageErrors.push(`exception: ${d.exception?.description || d.text}`);
+    } else if (m.method === "Runtime.consoleAPICalled" && m.params.type === "error") {
+      pageErrors.push(`console.error: ${m.params.args.map((a) => a.value ?? a.description).join(" ")}`);
+    }
   };
   const send = (method, params = {}) => new Promise((r) => {
     const i = ++id;
@@ -90,7 +98,7 @@ async function connect(wsUrl) {
     }
     return m.result?.result?.value;
   };
-  return { ws, send, evaluate };
+  return { ws, send, evaluate, pageErrors };
 }
 
 // ---- page-side helpers (serialised into the page) ------------------------------
@@ -171,6 +179,7 @@ async function shoot(shot) {
   const [w, h] = shot.viewport || spec.viewport || [1400, 1000];
   await page.send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 2, mobile: false });
   await page.send("Page.enable");
+  await page.send("Runtime.enable");
   await page.send("Page.navigate", { url: `${BASE}/ccp4i2/project/${project.id}/job/${jobId(shot.job)}` });
   await sleep(shot.settle || spec.settle || 15000);
   await page.evaluate(PAGE_HELPERS);
@@ -183,7 +192,15 @@ async function shoot(shot) {
       await page.evaluate(() => __cap.click("View"));
       break;
     } catch (e) {
-      if (tries >= 20) throw e;
+      if (tries >= 20) {
+        // Keep what the page showed instead: a crashed page has no menu.
+        const shotOnFail = await page.send("Page.captureScreenshot", { format: "png" });
+        fs.writeFileSync(path.join(outDir, `${shot.out}.failed.png`),
+          Buffer.from(shotOnFail.result.data, "base64"));
+        fs.writeFileSync(path.join(outDir, `${shot.out}.failed.txt`),
+          page.pageErrors.join("\n") + "\n");
+        throw e;
+      }
       await sleep(3000);
       await page.evaluate(PAGE_HELPERS);
     }

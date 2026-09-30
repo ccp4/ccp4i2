@@ -1,0 +1,33 @@
+{
+  "scenario": "../../../tools/scenario_maps.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "cpatterson_input.png",
+      "job": 17,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Observed data",
+          "badge": "1"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/cpatterson/script/cpatterson.def.xml": "8ad1194ad66b4b3d5eef814acda2199d5385f978",
+    "server/ccp4i2/wrappers/cpatterson/script/cpatterson.py": "6fd5a5227d63f6354bceb74bb6bb5ac30593e5d8",
+    "server/ccp4i2/wrappers/cpatterson/script/cpatterson_report.py": "849003dd7172be392d54540e864c4ab97772bb33",
+    "client/renderer/components/task/task-interfaces/cpatterson.tsx": "b7b21362637b406594fe0e547b32c90956eddb48",
+    "docs/user/tools/scenario_maps.py": "42eba6a1f5bd6db6cfd51d248e0843314ad2f0df"
+  }
+}

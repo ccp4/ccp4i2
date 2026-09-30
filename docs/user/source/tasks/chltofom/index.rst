@@ -2,22 +2,34 @@
 Convert between Hendrickson-Lattman coefficients and phi/FOM
 ############################################################
 
-   This task will convert phase probabilities between the two common
-   forms: Hendrickson-Lattman coefficients, and phase and
-   figure-of-merit. *Note that you should never do this, except to
-   generate phases for export. CCP4i2 will convert phases internally as
-   and when required. Converting to phase and figure-of-merit loses
-   information.*
+This task converts phase probabilities between their two common forms:
+Hendrickson-Lattman (HL) coefficients, and a phase with a figure of merit
+(FOM). *There is rarely a reason to do this except to export phases for
+another program.* CCP4i2 converts phases internally as and when a task
+needs them, and converting HL coefficients to phase and FOM loses
+information: HL coefficients can describe a bimodal phase probability
+(as SAD phasing gives), and a single phase and FOM cannot.
+
+The pictures on this page convert the HL coefficients supplied with the
+*gamma* demo that comes with CCP4i2.
 
 Input
 =====
 
-   |image1|
-   
-   The input to the task is a set of phases. If the phases are in the
-   form of Hendrickson-Lattman coefficients, they will be converted to
-   phase and figure-of-merit. If they are in the form of phase and
-   figure-of-merit, they will be converted to Hendrickson-Lattman
-   coefficients.
+.. figure:: chltofom_input.png
+   :alt: Figure 1: chltofom input
 
-.. |image1| image:: chltofom_task_1.png
+   Figure 1: chltofom input
+
+The input is a set of phases. HL coefficients are converted to phase and
+FOM; a phase and FOM are converted to HL coefficients.
+
+Results
+=======
+
+.. figure:: chltofom_report.png
+   :alt: Figure 2: chltofom report
+
+   Figure 2: chltofom report
+
+The report lists the converted phases among the outputs **(2)**.

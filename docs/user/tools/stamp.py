@@ -92,7 +92,10 @@ def interface_files(task: str) -> list[Path]:
     text = CONTAINER.read_text(encoding="utf-8")
     m = re.search(rf'^\s*"?{re.escape(task)}"?:\s*(\w+),', text, flags=re.M)
     if not m:
-        return []
+        # No interface of its own: the generic one, built from the def.xml,
+        # is what the page shows.
+        generic = INTERFACES / "generic.tsx"
+        return [generic.resolve()] if generic.is_file() else []
     imp = re.search(rf'import\s+{m.group(1)}\s+from\s+"(\./[^"]+)"', text)
     if not imp:
         return []
@@ -150,6 +153,8 @@ def fingerprint(page: str, shots: dict | None = None) -> dict:
 
 
 def normalise(text: str) -> str:
+    # Sources spell some characters as escapes ("(\u00C5)" in a .tsx).
+    text = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), text)
     return re.sub(r"\s+", " ", text.replace("&nbsp;", " ")).strip()
 
 
