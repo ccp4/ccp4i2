@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { LinearProgress, Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
@@ -14,13 +15,27 @@ import { useJob } from "../../../utils";
 /** The SAD phasing pipeline over Phaser's own PHIL: the EP task's inputs plus
  * a Free-R set, a SHELX substructure search, the hands, and the steps afterwards. */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { container, useTaskItem } = useJob(props.job.id);
+  const { container, useTaskItem, fetchDigest } = useJob(props.job.id);
   const { expertLevel, changeExpertLevel } = usePhilExpertLevel(props.job);
   const { value: compBy } = useTaskItem("COMP_BY");
   const { value: partialBy } = useTaskItem("PARTIAL_BY");
   const { value: substructureBy } = useTaskItem("SUBSTRUCTURE_BY");
   const { value: runParrot } = useTaskItem("RUNPARROT");
   const { value: runModelcraft } = useTaskItem("RUNMODELCRAFT");
+
+  // The wavelength is in the reflection file: take it from there when the
+  // data are chosen, as the classic phaser_EP interface did, rather than ask
+  // for what the page already knows. Still editable, e.g. for a remote edge.
+  const { item: fSigFItem } = useTaskItem("F_SIGF");
+  const { forceUpdate: setWavelength } = useTaskItem("WAVELENGTH");
+  const takeWavelengthFromData = useCallback(async () => {
+    if (!fSigFItem?._objectPath) return;
+    const digest = await fetchDigest(fSigFItem._objectPath);
+    const wavelength = digest?.wavelengths?.at(-1);
+    if (wavelength && wavelength > 0 && wavelength < 9) {
+      await setWavelength(wavelength);
+    }
+  }, [fSigFItem?._objectPath, fetchDigest, setWavelength]);
 
   if (!container) return <LinearProgress />;
 
@@ -34,7 +49,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: "Anomalous data" }}
             containerHint="FolderLevel"
           >
-            <CCP4i2TaskElement itemName="F_SIGF" {...props} />
+            <CCP4i2TaskElement
+              itemName="F_SIGF"
+              {...props}
+              onChange={takeWavelengthFromData}
+            />
             <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
             <CCP4i2TaskElement itemName="WAVELENGTH" {...props} />
           </CCP4i2ContainerElement>
