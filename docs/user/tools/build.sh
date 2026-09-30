@@ -12,7 +12,10 @@ here="$(cd "$(dirname "$0")" && pwd)"
 docs="$(dirname "$here")"
 out="${1:-$docs/_build}"
 log="$(mktemp)"
-sphinx-build -q -b html "$docs/source" "$out" 2>"$log" || { cat "$log"; exit 1; }
+# -E: a fresh environment every time. Sphinx does not repeat the warnings of
+# documents it does not rebuild, so an incremental build undercounts, and a
+# baseline "lowered" from one fails in CI.
+sphinx-build -E -q -b html "$docs/source" "$out" 2>"$log" || { cat "$log"; exit 1; }
 count="$(grep -cE 'WARNING|ERROR' "$log" || true)"
 baseline="$(cat "$here/warnings-baseline.txt")"
 echo "Built $out: $count warnings (baseline $baseline)"
