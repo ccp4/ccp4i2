@@ -106,6 +106,11 @@ request whatever its base.
 - **A section that appears only for some choices** (rigid-body groups,
   metal coordination) cannot be a callout on a default job: describe it in
   the text rather than change the job to show it.
+- **Viewing a pending job can change it.** A capture opens the job page as a
+  user would, and a component that writes on mount rewrites the job: the
+  atom-selection builder erased every clone's selection until #702. After a
+  capture, diff the clone's input_params.xml against its original when a
+  value looks missing, and suspect the page before the scenario.
 - **An unrun clone shows what autofill does, and fails to do.** Values the
   GUI fills only when a file is picked (cell, wavelength) stay empty on a job
   made by i2run or cloning: that is a bug in the page, not the scenario.
