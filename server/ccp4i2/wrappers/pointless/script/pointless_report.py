@@ -1,3 +1,4 @@
+import os
 # Normally would use findall (http://www.w3schools.com/findall/) to access the program output but
 # I've added some convenience functions (haspath(),ifselect(),select() etc) to tidy up the Python code
 # So here if the program output has a TwinWarning append some text to the report.  append() parses
@@ -288,11 +289,11 @@ class pointless_report(Report):
         s = ""
         if aindx is None:
           s = 'No alternative indexing to test relative to reference file '+\
-              hklreffile.get('name')
+              os.path.basename(hklreffile.get('name'))
         else:
           aindx = aindx.text
-          s = 'Sole alternative indexing '+aindx +' relative to reference file\n'+\
-              hklreffile.get('name')
+          s = 'Sole alternative indexing '+aindx +' relative to reference file '+\
+              os.path.basename(hklreffile.get('name'))
         if s != "":
           parent.append(html_linebreak(s))
 
@@ -585,14 +586,14 @@ class pointless_report(Report):
       if len(self.xmlnode.findall(".//XYZIN"))>0:
         reffile, refSG = self.refSpaceGroup('XYZIN')
         if refSG is not None:
-          parent.append('Reference reflection list generated from coordinate file'+ reffile+'<br/>' + \
+          parent.append('Reference reflection list generated from coordinate file '+ os.path.basename(reffile)+'<br/>' + \
                     'Space group '+ refSG )
       else:
         # HKLREF reference
         reffile, refSG = self.refSpaceGroup('HKLREF')
         if refSG is not None:
           parent.append('Determining best alternative indexing relative to reference file: ' + 
-                        '<br/> ' + reffile + '<br/>' + 
+                        os.path.basename(reffile) + '<br/>' + 
                         'Space group '+ refSG )
         else:
             parent.append('Determining best alternative indexing relative to first input file: ')
@@ -957,15 +958,15 @@ class pointless_report(Report):
       fold = parent.addFold(label="Alternative index scores",brief='IndexScores',
                             initiallyOpen=open1)
       if len(self.xmlnode.findall("XYZREF"))>0:
-        fold.append('Reference reflection list generated from coordinate file'+ \
-                    self.xmlnode.findall("XYZREF")[0].text+'<br/>' + \
+        fold.append('Reference reflection list generated from coordinate file '+ \
+                    os.path.basename(self.xmlnode.findall("XYZREF")[0].text)+'<br/>' + \
                     'Space group '+self.xmlnode.findall("XYZREFspacegroup")[0].text )
 
       else:
         reffile, refSG = self.refSpaceGroup('HKLREF')
         if refSG is not None:
             fold.append('Determining best alternative indexing relative to reference file: ' + \
-                        reffile + '<br/>' + \
+                        os.path.basename(reffile) + '<br/>' + \
                         'Space group '+ refSG  )
         else:
             fold.append('Determining best alternative indexing relative to first input file: ')            

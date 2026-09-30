@@ -4971,9 +4971,12 @@ class CUnmergedDataContent(CDataFileContent):
                         self.wavelength = ds.wavelength
                     break
 
-        # Number of datasets
+        # Number of datasets. Not HKL_base: every MTZ has that one, so
+        # counting it made a single-dataset file look like two, and pointless
+        # then ignored the crystal and dataset names the user gave.
         if hasattr(self, 'numberofdatasets') and self.numberofdatasets is not None:
-            self.numberofdatasets = len(mtz.datasets)
+            self.numberofdatasets = len(
+                [ds for ds in mtz.datasets if ds.dataset_name != 'HKL_base'])
 
         # Number of lattices (count of batches) and batch numbers
         if has_batch:

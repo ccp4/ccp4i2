@@ -16,6 +16,7 @@ from ccp4i2.core import CCP4Utils
 # Get the path to test data
 CCP4I2_ROOT = Path(CCP4Utils.getCCP4I2Dir())
 TEST_MTZ = CCP4I2_ROOT / "wrappers/pointless/test_data/brap_pk_6A.mtz"
+TEST_MDM2 = CCP4I2_ROOT / "demo_data/mdm2/mdm2_unmerged.mtz"
 TEST_SCA_MERGED = CCP4I2_ROOT / "demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled.sca"
 TEST_SCA_UNMERGED = CCP4I2_ROOT / "demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled_unmerged.sca"
 # XDS writes .HKL, and so does scalepack in some pipelines, so these exercise
@@ -261,3 +262,11 @@ class TestXdsVersusScalepackDetection:
 
 if __name__ == '__main__':
     pytest.main([__file__, '-v'])
+
+
+def test_hkl_base_is_not_counted_as_a_dataset():
+    """Every MTZ carries HKL_base; a file with one real dataset has one.
+    Counted as two, pointless dropped the crystal/dataset names given."""
+    data = CUnmergedDataContent()
+    data.loadFile(str(TEST_MDM2))
+    assert int(data.numberofdatasets) == 1

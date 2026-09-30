@@ -34,7 +34,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Options" }}
         containerHint="FolderLevel"
       >
-        <Typography variant="body2">Specify the resolution range you would like to use</Typography>
+        <Typography variant="body2">Resolution range: leave blank to use the full range of the map coefficients</Typography>
         <CCP4i2TaskElement itemName="RES_LOW" {...props} qualifiers={{ guiLabel: "Low resolution limit" }} />
         <CCP4i2TaskElement itemName="RES_HIGH" {...props} qualifiers={{ guiLabel: "High resolution limit" }} />
         <Typography variant="body2">Map values are averaged separately for main- and side-chains</Typography>

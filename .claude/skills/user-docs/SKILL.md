@@ -80,6 +80,11 @@ request whatever its base.
 - **An exception thrown inside a page-side timer never rejects**: the capture
   hangs. Keep page steps synchronous and sleep on the Node side.
 - **JPEG is wrong for screenshots**: 256-colour PNG is smaller and sharper.
+- **Never run an interactive task in a scenario.** Some tasks' "program" is a
+  desktop window: qtpisa opens QtPISA, the coot and ccp4mg tasks open theirs,
+  Lidia's "sketch" input opens a sketcher. Run from a scenario, they pop up on
+  the developer's screen (qtpisa did, 2026-09-30). Document them from an unrun
+  job's interface and prose only.
 - **Make the scenario check its own story.** A run can succeed and show
   nothing: SubstituteLigand "fitted" no ligand because the atom selection
   `not (NUT or HOH)` matched nothing and left the parent's ligand in the
