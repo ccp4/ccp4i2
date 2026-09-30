@@ -1275,10 +1275,13 @@ class SubstituteLigand(CPluginScript):
                     ligand_indices = ','.join(str(imol) for imol in ligand_imols)
                     mc.merge_molecules(imol_protein, ligand_indices)
             else:
+                n_to_copy = 0
                 print("  No ligands found by fit_ligand")
 
             # Write output coordinates
             mc.write_coordinates(imol_protein, xyzout)
+            self._recordLigandFit(ligandCode, len(ligands_found or []),
+                                  n_to_copy, xyzout)
 
             # Clean up coot intermediate files
             shutil.rmtree("coot-backup", ignore_errors=True)
@@ -1315,6 +1318,24 @@ class SubstituteLigand(CPluginScript):
                     pass
 
         return error
+
+    def _recordLigandFit(self, ligandCode, sitesFound, placed, xyzout):
+        """Record what Coot's fit_ligand did, for the report: the ligand, the
+        sites it found, and where the copies it placed are in the model."""
+        fit = etree.SubElement(self.xmlroot, 'LIGAND_FIT')
+        etree.SubElement(fit, 'Code').text = str(ligandCode)
+        etree.SubElement(fit, 'SitesFound').text = str(sitesFound)
+        etree.SubElement(fit, 'Placed').text = str(placed)
+        try:
+            import gemmi
+            model = gemmi.read_structure(xyzout)[0]
+            for chain in model:
+                for residue in chain:
+                    if residue.name == str(ligandCode):
+                        etree.SubElement(fit, 'Residue').text = \
+                            f'{chain.name}/{residue.seqid.num}'
+        except Exception as e:
+            print(f"  Could not list the placed ligands: {e}")
 
     def _checkAnomalousData(self):
         """Check if observation data has anomalous signal and extract wavelength."""
