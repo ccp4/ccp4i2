@@ -115,3 +115,27 @@ def test_several_edits_declared_as_lists():
         deleted = [row for row in mod.find("_chem_mod_atom.", ["function", "atom_id"])
                    if row[0] == "delete"]
         assert [row[1] for row in deleted] == ["OE2"]
+
+
+def test_a_refused_link_reports_acedrgs_reason():
+    """Deleting GLU's OXT leaves its carbonyl carbon with valence 3, which
+    AceDRG refuses. The job must fail saying so -- not with a traceback from
+    looking for the dictionary AceDRG never wrote."""
+    args = ["MakeLink"]
+    args += ["--RES_NAME_1_TLC", "LYS"]
+    args += ["--RES_NAME_2_TLC", "GLU"]
+    args += ["--ATOM_NAME_1_TLC", "NZ"]
+    args += ["--ATOM_NAME_2_TLC", "CD"]
+    args += ["--ATOM_NAME_1", "NZ"]
+    args += ["--ATOM_NAME_2", "CD"]
+    args += ["--DELETE_ATOMS_2", "OE2"]
+    args += ["--DELETE_ATOMS_2", "OXT"]
+    args += ["--BOND_ORDERS_2", "ATOM_1=CD", "ATOM_2=OE1", "ORDER=DOUBLE"]
+    args += ["--TOGGLE_LINK", "False"]
+    with i2run(args, allow_errors=True) as job:
+        diagnostic = (job / "diagnostic.xml").read_text()
+        assert "total valence of 3" in diagnostic
+        assert "FileNotFoundError" not in diagnostic
+        # Two deletions from one monomer, each with its own DELETE.
+        instruction = (job / "link_instruction.txt").read_text()
+        assert "DELETE ATOM OE2 2 DELETE ATOM OXT 2" in instruction

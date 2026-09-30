@@ -581,6 +581,12 @@ class MakeLink(CPluginScript):
 #        return CPluginScript.FAILED
         
         AcedrgLinkResult = self.AcedrgLinkPlugins[-1].process()
+        if AcedrgLinkResult != CPluginScript.SUCCEEDED:
+            # Stop here: going on only fails again looking for the dictionary
+            # AceDRG did not write, and that traceback used to be the first
+            # error the user saw, above AceDRG's own reason.
+            print("AceDRG did not make the link; see its errors below")
+            return CPluginScript.FAILED
 
         return CPluginScript.SUCCEEDED
 
