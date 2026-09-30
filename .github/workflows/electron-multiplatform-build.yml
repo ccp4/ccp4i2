@@ -21,6 +21,15 @@ on:
   pull_request:
     branches:
       - django
+  # Dispatched by retarget.yml when a pull request's base changes to django:
+  # the pull_request trigger above never fires for a PR that was opened against
+  # another branch, so its required build checks would otherwise never report.
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Branch to scope the changes against (empty runs everything)
+        required: false
+        default: ''
 
 jobs:
   # Decides whether the desktop package needs building. The rule lives in
@@ -39,11 +48,17 @@ jobs:
           fetch-depth: 0
       - id: decide
         shell: bash
+        env:
+          BASE_BRANCH: ${{ inputs.base }}
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             decided="$(.github/scripts/changes-need.sh \
               "${{ github.event.pull_request.base.sha }}" \
               "${{ github.event.pull_request.head.sha }}" merge-base)"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            base="${BASE_BRANCH:+origin/$BASE_BRANCH}"
+            decided="$(.github/scripts/changes-need.sh \
+              "$base" "${{ github.sha }}" merge-base)"
           else
             decided="$(.github/scripts/changes-need.sh \
               "${{ github.event.before }}" "${{ github.sha }}" direct)"
