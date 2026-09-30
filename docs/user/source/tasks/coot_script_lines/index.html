@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>Coot Scripting from CCP4i2</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+</head>
+<body>
+
+<h1>Coot Scripting from CCP4i2</h1>
+
+<p>The user can provide their own script to be run non-graphically by Coot. This is a useful way to access the model building Coot tools quickly. The task interface has input options for the user to enter models, maps and difference maps and (in the <i>Options</i> tab) a text edit field to enter a coot script. When you click <i>Run</i> a Coot script is generated that causes Coot to import and display the selected files and then has the script you have entered and finally has a command to close down Coot.</p>
+<p>Here is a simple example of a script that could be entered to perform a protein fit:
+<pre>
+fit_protein(MolHandle_0)
+write_pdb_file(MolHandle_0,os.path.join(dropDir,"refined.pdb"))
+</pre>
+<p>If one each of model, map and difference map have also been selected then the final Coot script will look like this:
+<pre>
+MolHandle_0=read_pdb('/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_52/XYZOUT.pdb')
+MapHandle_0=make_and_draw_map('/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_4/FPHIOUT.mtz', 'F', 'PHI', 'PHI', 0, 0)
+DifmapHandle_0=make_and_draw_map('/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_4/DIFFPHIOUT.mtz', 'F', 'PHI', 'PHI', 0, 1)
+dropDir="/Users/lizp/Desktop/test_projects/test1/CCP4_JOBS/job_79/COOT_FILE_DROP"
+
+fit_protein(MolHandle_0)
+write_pdb_file(MolHandle_0,os.path.join(dropDir,"refined.pdb"))
+
+coot_real_exit(0)
+</pre>
+<p>Some point  note here:
+<br/>The ids for the imported models and maps have been assigned to variables called <i>MolHandle_</i>i, <i>MapHandle_</i>i and <i>DifmapHandle_</i>i where i is 0 to the number of entered files of that type. You will need to substitute these variable names for the imported data into your script.
+<br/>CCP4i2 automatically creates a 'drop directory' for any Coot output files  and after Coot has finished CCP4i2 will treat all files in that directory as output from the job and save them to the CCP4i2 database so they can be easily accessed by subsequent jobs. Within the script the drop directory is in variable name <i>dropDir</i>. Your script should include a command such as <i>write_pdb_file</i> to write files to the drop directory.
+<br/>The choice of output file name is  down to you but since it will be seen in the GUI try to make it something meaningful.
+<br/>If you need to debug the running of your script it can be useful to look in the <i>Project directory</i> view (one of the tabs on the left hand side of the project window) - open the directory for your task (will be at the bottom for a recently run task) and look at the files <i>script.py</i> (the Coot script) and <i>log.txt</i> (the Coot output) and the sub-directory <i>COOT_FILE_DROP</i>.
+</body> </html>

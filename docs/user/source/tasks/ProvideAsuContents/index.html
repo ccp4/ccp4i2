@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Define AU contents</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>This task allows you to import the sequences expected in the
+      structure from a variety of sequence file formats or a coordinate
+      file. You can enter the expected number of copies - it is not
+      critical that this is correct. The information is saved to a
+      <i>AU content</i> object that is used in any subsequent task
+      requiring sequence information. The <i>AU content</i> object
+      corresponds to a 
+      file with the extension <i>.asu.xml</i>. You can use this task to edit an
+      existing <i>AU content</i> - select the object to load it and
+      then make any changes. </p>
+      
+      <h2>Input</h2>
+      <img src="ProvideAsuContents_task_1.png">
+      <p>You can select an existing <i>AU content</i> object to edit<b class="img-ref">(1)</b>.</p>
+      <p>You may need to click on a <i>Show list</i> button to enter
+      more that one sequence <b class="img-ref">(2)</b> and then use
+      the +/- buttons <b class="img-ref">(3)</b> to edit the list of
+      sequences.</p>
+      <p>A sequence may be entered by cut-n-paste into the window or
+      loading from a sequence or coordinate file  <b
+      class="img-ref">(4)</b>. Any white space and most unexpected
+      characters in the input will be removed before saving but if the
+      sequence contains invalid letters (BJOUXZ) this will be
+      highlighted as they may be from comments or some other issue
+      that requires your attention. If a loaded file contains multiple
+      sequences you will have the chance to select those required and
+     the sequence list will be extended for more than one sequence
+      input.</p>
+      <p>If you already have a sequence loaded using earlier versions
+      of CCP4i2 then you can add the seqeunce object to a AU content.</p>
+  </dt>
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <img src="ProvideAsuContents_report_1.png">
+      <p>The imported sequences and input and output files are reported.</p>
+
+    </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+
