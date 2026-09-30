@@ -1,0 +1,43 @@
+{
+  "scenario": "../../../tools/scenario_ep.py",
+  "project": "GammaXe",
+  "draft": true,
+  "viewport": [1400, 1800],
+  "shots": [
+    {
+      "out": "phaser_ep_auto_input.png",
+      "job": 5,
+      "tabs": ["Task interface", "Input data"],
+      "section": "Anomalous data",
+      "through": "Composition of the asymmetric unit",
+      "callouts": ["Anomalous reflections", "Wavelength (A)", "Heavy-atom sites", "Anomalous scatterers to look for", "Cycles of log-likelihood-gradient completion", "Partial model"]
+    },
+    {
+      "out": "phaser_ep_auto_report.png",
+      "job": 2,
+      "tabs": ["Report"],
+      "viewport": [1400, 2800],
+      "settle": 30000,
+      "section": {
+        "text": "Overall figure of merit",
+        "scroll": true
+      },
+      "from": "Overall figure of merit",
+      "until": "Phaser's summary, module by module",
+      "callouts": [
+        {
+          "text": "Overall figure of merit"
+        },
+        {
+          "text": "Hands"
+        },
+        {
+          "text": "Substructure ("
+        },
+        {
+          "text": "Substructure completion"
+        }
+      ]
+    }
+  ]
+}

@@ -46,12 +46,14 @@ def i2run(project: str, *args: str):
 
 
 def clone_last(project: str, task: str):
-    """An unrun clone of the project's last <task> job: the input figures
-    show a job being set up, not one that has run."""
+    """An unrun clone of the project's last top-level <task> job: the input
+    figures show a job being set up, not one that has run. Top-level only: a
+    pipeline's sub-job of the same task is newer, and is not what the user
+    set up (the Phaser EP pipeline runs phaser_ep_auto_phil inside it)."""
     subprocess.run([sys.executable, "manage.py", "shell", "-c", (
         "from ccp4i2.db.models import Job\n"
         "from ccp4i2.lib.utils.jobs.clone import clone_job\n"
         f"job = Job.objects.filter(project__name='{project}', "
-        f"task_name='{task}').order_by('-id').first()\n"
+        f"task_name='{task}', parent__isnull=True).order_by('-id').first()\n"
         "clone_job(str(job.uuid))\n")],
         check=True, env={**os.environ, **DJANGO})

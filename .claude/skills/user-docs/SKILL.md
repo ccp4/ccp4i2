@@ -81,6 +81,16 @@ request whatever its base.
   site. The selection language wants `not (NUT) and not (HOH)`; a name that
   matches nothing is accepted silently. Assert the outcome (the ligand is in
   the output model) and, where the truth is known, measure against it.
+- **Clone the top-level job.** A pipeline can run a sub-job of another task
+  that also has a page (the Phaser EP pipeline runs phaser_ep_auto_phil);
+  `clone_last` takes top-level jobs only, or it clones the sub-job.
+- **A script outside `server/` imports the INSTALLED ccp4i2** from
+  ccp4-python's site-packages, not the worktree's: run ad-hoc checks with
+  `PYTHONPATH=$PWD` from `server/`, or a fix will seem not to work.
+- **Collapsed report folds** photograph as headings only: list them under
+  `"expand"` in the shot.
+- **The Next dev server hits the background time limit** on long sessions;
+  "Nothing to click labelled View" everywhere means it is gone: restart it.
 - **Heavy reports need longer to settle** (`"settle": 30000` in the shot);
   "Nothing to click labelled View" on a report page is usually that.
 

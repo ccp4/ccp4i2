@@ -182,6 +182,15 @@ async function shoot(shot) {
     await page.evaluate((t) => __cap.click(t), tab);
     await sleep(2500);
   }
+  // "expand": open folds by their heading (a report's collapsed sections).
+  for (const heading of shot.expand || []) {
+    await page.evaluate((t) => {
+      const el = __cap.containing(t);
+      const toggle = el.closest("[aria-expanded]") || el.closest("[role=button]") || el;
+      if (toggle.getAttribute("aria-expanded") !== "true") toggle.click();
+    }, heading);
+    await sleep(1500);
+  }
   // Bring the section into view, then measure it and its fields.
   // (Two steps: an error thrown in a timer callback would never reach us.)
   await page.evaluate((sec) => __cap.section(sec).scrollIntoView({ block: "start" }), shot.section);

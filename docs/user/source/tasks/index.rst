@@ -63,6 +63,8 @@ Experimental phasing
 .. toctree::
    :maxdepth: 1
 
+   phaser_ep_phil/index
+   phaser_ep_auto_phil/index
    crank2/crank2
    shelx/shelx
    phaser_EP_LLG/index
