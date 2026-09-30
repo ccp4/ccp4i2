@@ -219,6 +219,8 @@ def monomer_info(request, code):
                 "code": code_upper,
                 "atoms": result["atoms"],
                 "bonds": result["bonds"],
+                # Same atoms, same order, with what a 2D depiction needs.
+                "atom_details": result.get("atom_details", []),
             },
         })
     except Exception as e:

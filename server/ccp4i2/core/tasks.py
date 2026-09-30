@@ -103,6 +103,7 @@ TASKS = {
         pluginPath="ccp4i2.pipelines.MakeLink.script.MakeLink:MakeLink",
         defXmlPath="pipelines/MakeLink/script/MakeLink.def.xml",
         reportPath="ccp4i2.pipelines.MakeLink.script.MakeLink_report:MakeLink_report",
+        dataTypes=("ccp4i2.pipelines.MakeLink.script.makelink_types",),
     ),
     "MakeMonster": Task(
         title="Export monster mtz",

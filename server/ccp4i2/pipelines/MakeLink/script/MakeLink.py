@@ -1,5 +1,8 @@
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.pipelines.MakeLink.script.link_instruction import (
+    MonomerEdits, edit_problems, edit_words, extra_instruction_problems, instruction_words,
+)
 
 
 def _has_atoms(structure):
@@ -35,6 +38,8 @@ class MakeLink(CPluginScript):
                              'selected, so the model will not be modified',
               'severity': CCP4ErrorHandling.SEVERITY_WARNING},
         307: {'description': '"Apply links to model" is selected but no input model was given'},
+        308: {'description': 'The changes to a monomer contradict each other'},
+        309: {'description': 'The extra AceDRG instructions would be misread by AceDRG'},
     }
 
     def __init__(self, *args, **kws):
@@ -121,7 +126,62 @@ class MakeLink(CPluginScript):
                 details=self.ERROR_CODES[306]['description'],
                 name=f'{self.TASKNAME}.container.controlParameters.TOGGLE_LINK',
                 severity=CCP4ErrorHandling.SEVERITY_WARNING)
+
+        # The edits are a description, so a contradiction in one is found
+        # here rather than by AceDRG halfway through a run.
+        for monomer in (1, 2):
+            link_atom = getattr(inp, f'ATOM_NAME_{monomer}')
+            for problem in edit_problems(
+                    self.monomerEdits(monomer), str(link_atom) if link_atom.isSet() else ''):
+                error.append(
+                    klass=self.TASKNAME, code=308,
+                    details=f'Monomer {monomer}: {problem}',
+                    name=f'{self.TASKNAME}.container.inputData.DELETE_ATOMS_{monomer}',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR)
+        # A malformed CHANGE or ADD section does not fail in AceDRG: it hangs.
+        if ctrl.EXTRA_ACEDRG_INSTRUCTIONS.isSet():
+            for problem in extra_instruction_problems(str(ctrl.EXTRA_ACEDRG_INSTRUCTIONS)):
+                error.append(
+                    klass=self.TASKNAME, code=309, details=problem,
+                    name=f'{self.TASKNAME}.container.controlParameters.EXTRA_ACEDRG_INSTRUCTIONS',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR)
         return error
+
+    def monomerEdits(self, monomer):
+        """The declared edits to monomer 1 or 2, as a MonomerEdits.
+
+        DELETE_ATOMS_n, BOND_ORDERS_n and CHARGES_n are the description. The
+        single-edit fields that came before them (TOGGLE_DELETE_n + DELETE_n,
+        TOGGLE_CHANGE_n + CHANGE_BOND_n + CHANGE_n_TYPE, TOGGLE_CHARGE_n +
+        CHARGE_n + CHARGE_n_VALUE) are folded in, so an older job, a clone of
+        one, or an i2run command written for them still asks for the same
+        thing. Repeats are harmless; edit_words() writes each edit once.
+        """
+        inp = self.container.inputData
+        n = str(monomer)
+        edits = MonomerEdits()
+        for name in getattr(inp, 'DELETE_ATOMS_' + n):
+            edits.deletes.append(str(name).strip())
+        for bond in getattr(inp, 'BOND_ORDERS_' + n):
+            edits.bond_orders.append(
+                (str(bond.ATOM_1).strip(), str(bond.ATOM_2).strip(), str(bond.ORDER).strip()))
+        for charge in getattr(inp, 'CHARGES_' + n):
+            value = int(charge.CHARGE) if charge.CHARGE.isSet() else 0
+            edits.charges.append((str(charge.ATOM).strip(), value))
+
+        if getattr(inp, 'TOGGLE_DELETE_' + n) and getattr(inp, 'DELETE_' + n).isSet():
+            edits.deletes.append(str(getattr(inp, 'DELETE_' + n)).strip())
+        if getattr(inp, 'TOGGLE_CHANGE_' + n) and getattr(inp, 'CHANGE_BOND_' + n).isSet():
+            atoms = str(getattr(inp, 'CHANGE_BOND_' + n)).split(' -- ')
+            order = getattr(inp, 'CHANGE_' + n + '_TYPE')
+            edits.bond_orders.append((
+                atoms[0].strip(), atoms[1].strip() if len(atoms) == 2 else '',
+                str(order).strip() if order.isSet() else ''))
+        if getattr(inp, 'TOGGLE_CHARGE_' + n) and getattr(inp, 'CHARGE_' + n).isSet():
+            value = getattr(inp, 'CHARGE_' + n + '_VALUE')
+            edits.charges.append((
+                str(getattr(inp, 'CHARGE_' + n)).strip(), int(value) if value.isSet() else 0))
+        return edits
 
     def normaliseResidueCodes(self):
         """Upper-case (and trim) the monomer-library residue codes.
@@ -185,72 +245,32 @@ class MakeLink(CPluginScript):
        if self.container.controlParameters.BOND_ORDER:
           instruct += " BOND-TYPE " + self.container.controlParameters.BOND_ORDER.__str__()
 
-       if self.container.inputData.TOGGLE_DELETE_1:
-          if not self.container.inputData.DELETE_1.isSet():
-             print("Error - required parameter is not set: DELETE_1")
+       # The edits are written from their declared form, never assembled
+       # piecewise: see link_instruction.py for why.
+       for monomer in (1, 2):
+          edits = self.monomerEdits(monomer)
+          link_atom = str(getattr(self.container.inputData, f'ATOM_NAME_{monomer}'))
+          problems = edit_problems(edits, link_atom)
+          if problems:
+             for problem in problems:
+                print(f"Error - monomer {monomer}: {problem}")
+                self.appendErrorReport(308, f"Monomer {monomer}: {problem}")
              return CPluginScript.FAILED
-          instruct += " DELETE ATOM " + self.container.inputData.DELETE_1.__str__() + " 1"
+          words = edit_words(edits, monomer)
+          if words:
+             instruct += " " + " ".join(words)
 
-       if self.container.inputData.TOGGLE_DELETE_2:
-          if not self.container.inputData.DELETE_2.isSet():
-             print("Error - required parameter is not set: DELETE_2")
+       extra = self.container.controlParameters.EXTRA_ACEDRG_INSTRUCTIONS
+       if extra.isSet():
+          problems = extra_instruction_problems(str(extra))
+          if problems:
+             for problem in problems:
+                print("Error - " + problem)
+                self.appendErrorReport(309, problem)
              return CPluginScript.FAILED
-          instruct += " DELETE ATOM " + self.container.inputData.DELETE_2.__str__() + " 2"
-
-       if self.container.inputData.TOGGLE_CHANGE_1:
-          if not self.container.inputData.CHANGE_BOND_1.isSet():
-             print("Error - required parameter is not set: CHANGE_BOND_1")
-             return CPluginScript.FAILED
-          if not self.container.inputData.CHANGE_1_TYPE.isSet():
-             print("Error - required parameter is not set: CHANGE_1_TYPE")
-             return CPluginScript.FAILED
-          atoms = self.container.inputData.CHANGE_BOND_1.__str__().split(" -- ")
-          if len(atoms) != 2:
-             print("Error interpreting bond: "+self.container.inputData.CHANGE_BOND_1.__str__()+" : "+str(bonds))
-             return CPluginScript.FAILED
-          instruct += " CHANGE BOND " + atoms[0] + " " + atoms[1] + " " + self.container.inputData.CHANGE_1_TYPE.__str__() + " 1"
-
-       if self.container.inputData.TOGGLE_CHANGE_2:
-          if not self.container.inputData.CHANGE_BOND_2.isSet():
-             print("Error - required parameter is not set: CHANGE_BOND_2")
-             return CPluginScript.FAILED
-          if not self.container.inputData.CHANGE_2_TYPE.isSet():
-             print("Error - required parameter is not set: CHANGE_2_TYPE")
-             return CPluginScript.FAILED
-          atoms = self.container.inputData.CHANGE_BOND_2.__str__().split(" -- ")
-          if len(atoms) != 2:
-             print("Error interpreting bond: "+self.container.inputData.CHANGE_BOND_2.__str__()+" : "+str(bonds))
-             return CPluginScript.FAILED
-          instruct += " CHANGE BOND " + atoms[0] + " " + atoms[1] + " " + self.container.inputData.CHANGE_2_TYPE.__str__() + " 2"
-
-       #MN Patch to handle changes in formal charge
-       if self.container.inputData.TOGGLE_CHARGE_1:
-          if not self.container.inputData.CHARGE_1.isSet():
-             print("Error - required parameter is not set: CHARGE_1")
-             return CPluginScript.FAILED
-          if not self.container.inputData.CHARGE_1_VALUE.isSet():
-             print("Error - required parameter is not set: CHARGE_1_VALUE")
-             return CPluginScript.FAILED
-          instruct += " CHANGE CHARGE 1 " + self.container.inputData.CHARGE_1.__str__() + " " + self.container.inputData.CHARGE_1_VALUE.__str__()
-
-       if self.container.inputData.TOGGLE_CHARGE_2:
-          if not self.container.inputData.CHARGE_2.isSet():
-             print("Error - required parameter is not set: CHARGE_2")
-             return CPluginScript.FAILED
-          if not self.container.inputData.CHARGE_2_VALUE.isSet():
-             print("Error - required parameter is not set: CHARGE_2_VALUE")
-             return CPluginScript.FAILED
-          instruct += " CHANGE CHARGE 2 " + self.container.inputData.CHARGE_2.__str__() + " " + self.container.inputData.CHARGE_2_VALUE.__str__()
-       ##END MN CHARGE PATCH##
-
-
-       if self.container.controlParameters.EXTRA_ACEDRG_INSTRUCTIONS.isSet():
-            for kwLine in str(self.container.controlParameters.EXTRA_ACEDRG_INSTRUCTIONS).split('\n'):
-                kw = kwLine.lstrip().rstrip()
-                #print 'kw','['+str(kw)+']'
-                if len(kw)>0:
-                   if str(kw)[0] != '#':
-                      instruct += " " + kw
+          words = instruction_words(str(extra))
+          if words:
+             instruct += " " + " ".join(words)
 
        return instruct
     
@@ -561,6 +581,12 @@ class MakeLink(CPluginScript):
 #        return CPluginScript.FAILED
         
         AcedrgLinkResult = self.AcedrgLinkPlugins[-1].process()
+        if AcedrgLinkResult != CPluginScript.SUCCEEDED:
+            # Stop here: going on only fails again looking for the dictionary
+            # AceDRG did not write, and that traceback used to be the first
+            # error the user saw, above AceDRG's own reason.
+            print("AceDRG did not make the link; see its errors below")
+            return CPluginScript.FAILED
 
         return CPluginScript.SUCCEEDED
 

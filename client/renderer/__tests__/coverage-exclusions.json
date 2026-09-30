@@ -78,5 +78,21 @@
         "SUBSTRDET_OPTIMIZE_SOL"
       ]
     }
+  ],
+  "MakeLink": [
+    {
+      "reason": [
+        "The single-edit form's staging fields. Qt offered one atom to delete, one",
+        "bond to change and one atom to recharge per monomer, each chosen from a",
+        "dropdown held in these *_LIST / CHANGE_BOND_n_TYPE fields and copied into",
+        "the field the script read. Each monomer is now edited on its drawing, into",
+        "DELETE_ATOMS_n, BOND_ORDERS_n and CHARGES_n, which hold any number of each;",
+        "the script-facing single fields (DELETE_n, CHANGE_BOND_n, CHANGE_n_TYPE,",
+        "CHARGE_n, CHARGE_n_VALUE and their toggles) are still read, so older jobs",
+        "show and run as before. Nothing reads these any more."
+      ],
+      "parameters": ["DELETE_1_LIST", "DELETE_2_LIST", "CHANGE_BOND_1_LIST", "CHANGE_BOND_2_LIST",
+                     "CHANGE_BOND_1_TYPE", "CHANGE_BOND_2_TYPE", "CHARGE_1_LIST", "CHARGE_2_LIST"]
+    }
   ]
 }

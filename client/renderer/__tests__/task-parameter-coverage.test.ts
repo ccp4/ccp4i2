@@ -121,6 +121,14 @@ interface Exposure {
    * declared parameter starting with it is reachable.
    */
   prefixes: string[];
+  /**
+   * Exact families from a templated hook, ``useTaskItem(`ATOM_NAME_${n}_TLC`)``:
+   * each interpolation stands for one word, so this reaches ATOM_NAME_1_TLC
+   * and ATOM_NAME_2_TLC but not ATOM_NAME_1. MakeLink binds each monomer's
+   * parameters in one hook called per monomer, and a bare prefix ("ATOM_NAME_")
+   * would claim more than that reaches.
+   */
+  patterns: RegExp[];
   /** A computed `itemName` that is neither of the two readable idioms. */
   dynamic: boolean;
 }
@@ -161,6 +169,14 @@ function exposedParameters(module: string): Exposure {
     names.add(m[1]);
   }
 
+  const patterns: RegExp[] = [];
+  for (const m of source.matchAll(/useTaskItem\(\s*`([A-Za-z_][\w.]*\$\{[^`]*)`/g)) {
+    const pieces = m[1].split(/\$\{[^}]*\}/);
+    if (pieces.every((piece) => /^[\w.]*$/.test(piece))) {
+      patterns.push(new RegExp(`^${pieces.join("[A-Za-z0-9]+")}$`));
+    }
+  }
+
   const prefixes: string[] = [];
   for (const m of source.matchAll(/itemName=\{\s*`([A-Za-z_][\w.]*)\$\{/g)) {
     prefixes.push(m[1]);
@@ -184,7 +200,7 @@ function exposedParameters(module: string): Exposure {
     (m) => !/^\s*key\s*$/.test(m[1]) && !/^\s*`[A-Za-z_][\w.]*\$\{/.test(m[1])
   );
 
-  return { names, autoRendered, excluded, prefixes, dynamic: unreadable };
+  return { names, autoRendered, excluded, prefixes, patterns, dynamic: unreadable };
 }
 
 /**
@@ -261,6 +277,7 @@ function reachable(
       if (name === leaf || name.split(".").pop() === leaf) return true;
     }
     if (exposure.prefixes.some((p) => leaf.startsWith(p))) return true;
+    if (exposure.patterns.some((r) => r.test(leaf))) return true;
   }
 
   // The whole section, or some container on the way down to this parameter.

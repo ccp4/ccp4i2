@@ -30,9 +30,37 @@ def _find_linked_dimer(work_directory, link_id):
     return found.get(".pdb"), found.get(".cif")
 
 
+def acedrg_stop_reason(work_directory, link_id):
+    """Why AceDRG stopped, in its own words, or None if it left none.
+
+    AceDRG writes the reason to <LINK_ID>_errorInfo.txt ("Comp Lys can not be
+    found in ...", "atom C in monomer GLU has a total valence of 3, which is
+    not allowed!"). Without this the job reported only the log lines before
+    it, which never include the one that matters.
+    """
+    path = work_directory / f"{link_id}_errorInfo.txt"
+    try:
+        text = path.read_text(errors="replace").strip()
+    except OSError:
+        return None
+    return " ".join(text.split()) or None
+
+
 class AcedrgLink(CPluginScript):
     TASKNAME = "AcedrgLink"
     TASKCOMMAND = "acedrg"
+    ERROR_CODES = {
+        201: {'description': 'AceDRG could not make the link'},
+    }
+
+    def postProcessCheck(self, processId=None):
+        status, exit_status, exit_code = super().postProcessCheck(processId)
+        if status != CPluginScript.SUCCEEDED:
+            reason = acedrg_stop_reason(self.workDirectory, str(self.container.inputData.LINK_ID))
+            if reason:
+                print("AceDRG stopped: " + reason)
+                self.appendErrorReport(201, reason)
+        return status, exit_status, exit_code
 
     def makeCommandAndScript(self):
         inp = self.container.inputData
