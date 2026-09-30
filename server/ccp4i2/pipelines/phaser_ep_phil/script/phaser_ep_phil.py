@@ -16,7 +16,10 @@ from lxml import etree
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
-from ccp4i2.wrappers.phaser_ep_auto_phil.script.phaser_ep_auto_phil import phaser_ep_auto_phil
+from ccp4i2.wrappers.phaser_ep_auto_phil.script.phaser_ep_auto_phil import (
+    hand_names,
+    phaser_ep_auto_phil,
+)
 
 EP_INPUTS = ("F_SIGF", "WAVELENGTH", "XYZIN_HA", "PARTIAL_BY", "XYZIN_PARTIAL", "ELEMENTS",
              "LLGC_CYCLES", "PURE_ANOMALOUS", "COMP_BY", "ASUFILE", "SEQUENCES", "SOLVENT_FRACTION")
@@ -154,8 +157,11 @@ class phaser_ep_phil(PhilPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
+    def handName(self, hand):
+        return hand_names(self.container.inputData.HAND, len(self.hands()))[hand]
+
     def runParrot(self, hand):
-        label = "original" if hand == 0 else "inverted"
+        label = self.handName(hand)
         try:
             plugin = self.makePluginObject("parrot")
             plugin.container.inputData.F_SIGF.set(self.container.inputData.F_SIGF)
@@ -180,7 +186,7 @@ class phaser_ep_phil(PhilPluginScript):
         return CPluginScript.SUCCEEDED
 
     def runModelCraft(self, hand):
-        label = "original" if hand == 0 else "inverted"
+        label = self.handName(hand)
         try:
             plugin = self.makePluginObject("modelcraft")
             plugin.container.inputData.F_SIGF.set(self.container.inputData.F_SIGF)

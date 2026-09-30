@@ -42,3 +42,18 @@ def test_gamma_with_parrot():
         assert xml.find("inverted/ParrotResult") is not None
         assert sorted(f.name for f in job.glob("FPHIOUT_*.mtz")) == ["FPHIOUT_1.mtz", "FPHIOUT_2.mtz"]
         assert len(list(job.glob("ABCDOUT_*.mtz"))) == 4      # two from Phaser, two from parrot
+
+
+@pytest.mark.order("first")
+def test_gamma_inverted_hand_only_is_called_inverted():
+    """With only the inverted hand phased, Phaser writes one hand, and it was
+    labelled "original" everywhere: its phases, maps, sites and the parrot
+    results filed under it."""
+    with i2run(_args(parrot="True") + ["--HAND", "on"]) as job:
+        xml = ET.parse(job / "program.xml").getroot()
+        assert xml.find(".//inverted/ParrotResult") is not None
+        assert xml.find(".//original/ParrotResult") is None
+        params = ET.parse(job / "params.xml").getroot()
+        annotations = [e.text or "" for e in params.iter("annotation")]
+        assert any("inverted hand" in a for a in annotations), annotations
+        assert not any("original hand" in a for a in annotations), annotations

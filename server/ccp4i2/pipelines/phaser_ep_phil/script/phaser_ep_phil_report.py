@@ -23,12 +23,16 @@ class phaser_ep_phil_report(Report):
             parent = self
         shelx = self.xmlnode.find("ShelxCD")
         if shelx is not None:
+            # The report class lives in wrappers/ShelxCDE (as the classic
+            # phaser_EP report imports it) and draws with defaultReport; the
+            # old path and drawContent both failed, into the except below,
+            # so this section only ever said "report unavailable".
             try:
-                from ccp4i2.wrappers.ShelxCD.script.ShelxCD_report import ShelxCD_report
+                from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
                 fold = parent.addFold(label="Substructure search (SHELXC/D)", initiallyOpen=False)
-                ShelxCD_report(xmlnode=shelx, jobStatus="nooutput").drawContent(jobStatus=jobStatus, parent=fold)
-            except Exception:
-                parent.addText(text="SHELXC/D ran (report unavailable)")
+                ShelxCD_report(xmlnode=shelx, jobStatus="nooutput").defaultReport(parent=fold)
+            except Exception as err:
+                parent.addText(text=f"SHELXC/D ran (report unavailable: {err})")
         node = self.xmlnode.find("PhaserEpResults")
         if node is None:
             parent.addText(text="Phaser has not reported yet" if (jobStatus or "").lower() == "running"
