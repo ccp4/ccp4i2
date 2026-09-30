@@ -108,9 +108,10 @@ FILE_SPECIAL_FIELDS = {
     "relpath",  # Computed from directory flag and job number
 }
 
-# Directory flag constants (matching legacy CCP4DbApi)
-PATH_FLAG_JOB_DIR = 0
-PATH_FLAG_IMPORT_DIR = 1
+# Directory flags: the values File.directory holds. They were defined here
+# as 0/1, against 1/2 everywhere else, so relpath put a job's own files in
+# CCP4_IMPORTED_FILES and gave imported ones no path at all.
+from .ccp4i2_static_data import PATH_FLAG_IMPORT_DIR, PATH_FLAG_JOB_DIR  # noqa: E402
 
 
 class CCP4i2DjangoDbApi(object):

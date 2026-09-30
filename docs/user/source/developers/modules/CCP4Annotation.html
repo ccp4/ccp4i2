@@ -1,0 +1,335 @@
+<html>
+<a name="CAnnotation"><h3>CAnnotation:  Annotation text with user id and time</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Annotation.html#CAnnotation">CCP4Annotation.CAnnotation</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>text</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>author</td><td><a href="./CCP4Annotation.html#CUserId">CUserId</a></td></tr>
+<tr><td>time</td><td><a href="./CCP4Annotation.html#CTime">CTime</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Enter your comments</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CAnnotationList"><h3>CAnnotationList:  A list of annotation</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4Annotation.html#CAnnotationList">CCP4Annotation.CAnnotationList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4Annotation.html#CAnnotation">CAnnotation</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>0</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CAuthor"><h3>CAuthor:  Placeholder for bibliographic author</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4Annotation.html#CAuthor">CCP4Annotation.CAuthor</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CBibReference"><h3>CBibReference:  Bibliographic reference</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Annotation.html#CBibReference">CCP4Annotation.CBibReference</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>authorList</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>title</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>url</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>selected</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+<tr><td>source</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>pmid</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CBibReferenceGroup"><h3>CBibReferenceGroup:  Set of bibliographic references for a task</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Annotation.html#CBibReferenceGroup">CCP4Annotation.CBibReferenceGroup</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>taskName</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>version</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>references</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>title</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CFont"><h3>CFont:  Simplified Qt font options</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Annotation.html#CFont">CCP4Annotation.CFont</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>style</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>pointSize</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>weight</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>family</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CHostName"><h3>CHostName:  Computer name</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4Annotation.html#CHostName">CCP4Annotation.CHostName</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Hostname as mycomputer.myplace.ac.uk</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CHostname"><h3>CHostname</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4Annotation.html#CHostName">CCP4Annotation.CHostName</a> -> <a href="./CCP4Annotation.html#CHostname">CCP4Annotation.CHostname</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Hostname as mycomputer.myplace.ac.uk</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+<a name="CMetaDataTag"><h3>CMetaDataTag:  This class will extend list of enumerators if new value for string is entered</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Annotation.html#CMetaDataTag">CCP4Annotation.CMetaDataTag</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>tag</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>enumeratorsFunction</td><td><i>instancemethod</i></td><td><b>None</b></td><td></td></tr>
+<tr><td>addEnumeratorFunction</td><td><i>instancemethod</i></td><td><b>None</b></td><td></td></tr>
+</table>
+<a name="CMetaDataTagList"><h3>CMetaDataTagList</h3>
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CCollection">CCP4Data.CCollection</a> -> <a href="./CCP4Data.html#CList">CCP4Data.CList</a> -> <a href="./CCP4Annotation.html#CMetaDataTagList">CCP4Annotation.CMetaDataTagList</a>
+
+<h4>Contents of class:</h4>
+List of <a href="./CCP4Annotation.html#CMetaDataTag">CMetaDataTag</a>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>list</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>listMinLength</td><td><i>int</i></td><td><b>1</b></td><td>Inclusive minimum length of list</td></tr>
+<tr><td>listMaxLength</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>Inclusive maximum length of list</td></tr>
+<tr><td>listCompare</td><td><i>int</i></td><td><b>NotImplemented</b></td><td>If has value 1/-1 consecutive items in list must be greater/less than preceeding item. The list item class must have a __cmp__() method.</td></tr>
+</table>
+<a name="CServerGroup"><h3>CServerGroup:  One or more compute servers used in "remote" running</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Annotation.html#CServerGroup">CCP4Annotation.CServerGroup</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>customCodeFile</td><td><a href="./CCP4File.html#CDataFile">CDataFile</a></td></tr>
+<tr><td>keyFilename</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>ccp4Dir</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>tempDir</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>validate</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>maxTries</td><td><a href="./CCP4Data.html#CInt">CInt</a></td></tr>
+<tr><td>sge_root</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>name</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>mechanism</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+<tr><td>timeout</td><td><a href="./CCP4Data.html#CFloat">CFloat</a></td></tr>
+<tr><td>queueOptionsFile</td><td><a href="./CCP4File.html#CDataFile">CDataFile</a></td></tr>
+<tr><td>serverList</td><td><a href="./CCP4Data.html#CList">CList</a></td></tr>
+<tr><td>userExtensible</td><td><a href="./CCP4Data.html#CBoolean">CBoolean</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CTime"><h3>CTime:  The time. Uses Python time module</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CInt">CCP4Data.CInt</a> -> <a href="./CCP4Annotation.html#CTime">CCP4Annotation.CTime</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>int</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>Time and date as hh:mm dd/mm/yyyy</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>10</b></td><td></td></tr>
+<tr><td>min</td><td><i>int</i></td><td><b>0</b></td><td>The inclusive maximum allowed value</td></tr>
+<tr><td>max</td><td><i>int</i></td><td><b>None</b></td><td>The inclusive minimum allowed value</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of allowed or recommended values - see onlyEnumerators</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A Python list of strings, matching items in enumerators list, to appear on GUI menu</td></tr>
+<tr><td>format</td><td><i>str</i></td><td><b>%H:%M %d/%b/%y</b></td><td>Argument to Python time.strftime to display time in human readable format</td></tr>
+</table>
+<a name="CUserAddress"><h3>CUserAddress:  User id and platform node</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Annotation.html#CUserAddress">CCP4Annotation.CUserAddress</a>
+
+<h4>Contents of class:</h4>
+<table>
+<tr><td>userId</td><td><a href="./CCP4Annotation.html#CUserId">CUserId</a></td></tr>
+<tr><td>platformNode</td><td><a href="./CCP4Data.html#CString">CString</a></td></tr>
+</table>
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>dict</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>User id as me@myplace.ac.uk and machine name</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+</table>
+<a name="CUserId"><h3>CUserId:  A user ID</h3>
+
+<a href="./CCP4Data.html#CData">CCP4Data.CData</a> -> <a href="./CCP4Data.html#CBaseData">CCP4Data.CBaseData</a> -> <a href="./CCP4Data.html#CString">CCP4Data.CString</a> -> <a href="./CCP4Annotation.html#CUserId">CCP4Annotation.CUserId</a>
+
+<h4>Contents of class:</h4>
+This is a simple class without contents
+
+
+<h4>Qualifiers for class:</h4>
+<table>
+<tr><td>allowUndefined</td><td><i>bool</i></td><td><b>True</b></td><td></td></tr>
+<tr><td>default</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>toolTip</td><td><i>str</i></td><td><b>User id as me@myplace.ac.uk</b></td><td></td></tr>
+<tr><td>guiLabel</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>guiDefinition</td><td><i>dict</i></td><td><b>{}</b></td><td></td></tr>
+<tr><td>helpFile</td><td><i>str</i></td><td><b>NotImplemented</b></td><td></td></tr>
+<tr><td>saveToDb</td><td><i>bool</i></td><td><b>False</b></td><td>Save this data in the database</td></tr>
+<tr><td>charWidth</td><td><i>int</i></td><td><b>-1</b></td><td></td></tr>
+<tr><td>minLength</td><td><i>int</i></td><td><b>None</b></td><td>Minimum length of string</td></tr>
+<tr><td>maxLength</td><td><i>int</i></td><td><b>None</b></td><td>Maximum length of string</td></tr>
+<tr><td>onlyEnumerators</td><td><i>bool</i></td><td><b>False</b></td><td>If this is true then the enumerators are obligatory - otherwise they are treated as recommended values</td></tr>
+<tr><td>enumerators</td><td><i>list</i></td><td><b>[]</b></td><td>A list of allowed or recommended values for string</td></tr>
+<tr><td>menuText</td><td><i>list</i></td><td><b>[]</b></td><td>A list of strings equivalent to the enumerators that will appear in the GUI</td></tr>
+<tr><td>allowedCharsCode</td><td><i>int</i></td><td><b>0</b></td><td>Flag if the text is limited to set of allowed characters</td></tr>
+</table>
+</html>

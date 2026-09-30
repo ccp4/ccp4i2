@@ -1,0 +1,43 @@
+{
+  "scenario": "../../../tools/scenario_link.py",
+  "project": "PLP_Link",
+  "viewport": [1000, 3600],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "makelink_input.png",
+      "job": 2,
+      "tabs": ["Task interface", "Input data"],
+      "section": "First monomer to be linked",
+      "through": "Apply links to model (optional)",
+      "callouts": [
+        {"text": "First monomer to be linked", "badge": "1"},
+        {"text": "Click the atom that bonds to the other monomer", "badge": "2"},
+        {"text": "Second monomer to be linked", "badge": "3"},
+        {"text": "delete O4A", "badge": "4", "dynamic": true},
+        {"text": "Order of the bond between linked atoms", "badge": "5"},
+        {"text": "Apply links to model (optional)", "badge": "6"}
+      ]
+    },
+    {
+      "out": "makelink_report.png",
+      "job": 1,
+      "tabs": ["Report"],
+      "viewport": [1400, 1600],
+      "section": "Output Data",
+      "until": "Bibliographic references",
+      "callouts": []
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/MakeLink/script/MakeLink.def.xml": "329c55696ea61b8ce3e9b1fa65dc7fc4e52daa28",
+    "server/ccp4i2/pipelines/MakeLink/script/MakeLink.py": "0ff67a2cbaaeede8ced7ff437e9a9df46a6eb204",
+    "server/ccp4i2/pipelines/MakeLink/script/MakeLink_report.py": "a4d3d9c6f5e18a666605fe78ddf97bb9a6546e47",
+    "client/renderer/components/monomer/monomer-editor.tsx": "1d3f57e218e9048f0c464cdd50a977c51dff89fc",
+    "client/renderer/components/monomer/monomer-layout.ts": "64a07a74029ef5448909c79b9ead02aca591273b",
+    "client/renderer/components/monomer/monomer-picker.tsx": "ec6675320c66e5d47a5946935a645cb38c63c80d",
+    "client/renderer/components/task/task-interfaces/MakeLink.tsx": "33fa26e2c32cd892fcad26a8aee3cb804e1b917f",
+    "docs/user/tools/scenario_link.py": "95a974bb872b8e90dde2c4d1db75fdf0cc106cd3"
+  }
+}

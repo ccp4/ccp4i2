@@ -173,7 +173,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               <CCP4i2TaskElement
                 {...props}
                 itemName="HKLIN"
-                qualifiers={{ guiLabel: "MTZFile (for Matthews volume calc)" }}
+                qualifiers={{ guiLabel: "Reflections (for the Matthews analysis)" }}
                 onChange={() => mutateHKLINDigest()}
               />
               {/* Show MTZ file info when digest is available */}

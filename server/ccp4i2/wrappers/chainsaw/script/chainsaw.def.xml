@@ -57,12 +57,17 @@
           <className>CInt</className>
           <qualifiers>
 	    <onlyEnumerators>True</onlyEnumerators>
+            <!-- The first sequence, as the wrapper already assumed when this
+                 was unset: without it the target menu showed nothing
+                 selected on a job made by i2run or cloning. -->
+            <default>0</default>
           </qualifiers>
       </content>
       <content id="MODE">
         <className>CString</className>
         <qualifiers>
           <enumerators>MIXS,MIXA,MAXI</enumerators>
+          <menuText>truncate to gamma atom (mixed model),truncate to beta atom,keep the atoms common to both residues</menuText>
           <onlyEnumerators>1</onlyEnumerators>
 	  <default>MIXS</default>
         </qualifiers>

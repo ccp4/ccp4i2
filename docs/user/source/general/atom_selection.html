@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>Atom selection</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+</head>
+<body>
+
+<table class="banner">
+<tr>
+<!--<td rowspan="2" width="200" ><img src="../ccp4i2.png" alt="CCP4 web logo"/></td>-->
+<td><img width=75 src="ccp4i2.png" alt="CCP4 web logo"/></td>
+<td class="logohead">CCP4i2 &mdash; Atom selection</td>
+</tr>
+</table>
+
+
+<table class="navigationBar"><tr>
+<th><a href="CCP4i1Projects.html">CCP4i projects</a></th>
+<th><a href="data_files.html">Experimental data</a></th>
+<th><a href="model_data.html">Model data</a></th> 
+<th><a href="atom_selection.html">Atom selection</a></th> 
+<th><a href="servers.html">Servers</a></th> 
+<!-- <th><a href="customisation.html">Customisation</a></th>  -->
+</tr></table>
+
+
+
+
+<div class="content">
+<a name="contents"/><h3>Contents</h3>
+<br/><a href="#cids">Coordinate Ids</a>
+<br/><a href="#selection_operators">Selection operators</a>
+<br/><a href="#examples">Examples of selection commands</a>
+
+</div>
+
+
+
+<a name="cids"/><h4>Coordinate IDs</h4>
+<p>A coordinate ID is an text string that has the following format:</p>
+<pre>
+         /mdl/chn/seq(res).ic/atm[elm]:aloc
+</pre>
+<p>where</p>
+
+                  <table cellpadding="5"  >
+                     <tr>
+                        <td align="center"><b><i><font face="times">Item</font></i></b></td>
+                        <td align="center"><b><i><font face="times">Description</font></i></b></td>
+                     </tr>
+                     <tr><td><font face="courier">mdl</font></td>
+                        <td align="center" valign="top"><font face="helvetica">the number of the model (usually an NMR model)</font></td>
+                     </tr>
+                     <tr>
+                        <td ><font face="courier">chn</font></td>
+                        <td ><font face="helvetica">chain ID</font></td>
+                     </tr>
+                     <tr>
+                        <td ><font face="courier">seq</font></td>
+                        <td >residue sequence number</td>
+                     </tr>
+                     <tr>
+                        <td><font face="courier">res</font></td>
+                        <td>residue name</td>
+                     </tr>
+                     <tr>
+                        <td><font face="courier">ic</font></td>
+                        <td>residue insertion code</td>
+                     </tr>
+                     <tr>
+                        <td><font face="courier">atm</font></td>
+                        <td>atom name</td>
+                     </tr>
+                     <tr>
+                        <td><font face="courier">elm</font></td>
+                        <td>chemical element ID</td>
+                     </tr>
+                     <tr>
+                        <td><font face="courier">aloc</font></td>
+                        <td>alternative location indicator</td>
+                     </tr>
+                  </table>
+
+<p>The residue name and atom element type are usually redundant, that is they are not essential to uniquely identify an atom, and do not need to be included when entering a CID. But note that all spaces in the coordinate ID are ignored and this means that certain 
+atom names will be interpreted correctly only if the chemical element 
+name is supplied (compare Calcium <font face="courier">CA[CA]</font> and 
+Carbon in alpha-position <font face="courier">CA[C]</font>).</p>
+<p>Any item in the coordinate ID may be replaced by a wildcard
+ <font face="courier">"*"</font>, which means an indefinite value for
+ that item. The wildcard value is automatically implied for any
+ missing item except the chain ID, insertion code and alternative
+ location indicator:
+</p>
+
+<ul>
+<li>A missing chain ID is interpreted as an empty ID
+<font face="courier">""</font> if there is a slash <font face="courier">"/"</font>
+ after it. In all other cases, the missing chain ID is
+ interpreted as a wildcard <font face="courier">"*"</font>.
+</li>
+<li>A missing insertion code is interpreted as a wildcard
+ <font face="courier">"*"</font> if the residue sequence number is
+ not specified or set to a wildcard. In all other cases,
+ a missing insertion code is interpreted as
+ <font face="courier">""</font> ('no insertion code').
+</li>
+<li>A missing alternative location indicator is defaulted
+ to a wildcard <font face="courier">"*"</font> if no atom name
+ or chemical element name is given. If any value for
+ atom and/or chemical element name is given , even though a
+ wildcard, then a missing alternative location
+ indicator is defaulted to <font face="courier">""</font>
+ ('no alternative location indicator').
+</li>
+</ul>
+
+<p>
+A coordinate ID may be incomplete. Below are the rules for
+interpretation of incomplete IDs. Curling brackets
+<font face="courier">{..}</font> denote parts of an ID string that may
+be omitted as a whole:
+</p>
+
+<ol>
+<li>If the ID starts with slash <font face="courier">"/"</font> then
+ it is interpreted as
+ <font face="courier">
+ /mdl { /chn { /seq(res).ic { /atm[elm]:aloc }}}
+</font>
+</li>
+<li>If the ID starts with a letter:
+<font face="courier"> chn { /seq(res).ic { /atm[elm]:aloc }} </font>
+</li>
+<li>If ID starts with a (possibly negative) number,
+ bracket <font face="courier">"("</font> or dot
+ <font face="courier">"."</font>:
+ <font face="courier">seq(res).ic { /atm[elm]:aloc }</font>
+</li>
+<li>If none of the previous cases apply but the ID string contains
+ square bracket <font face="courier">"["</font> or colon
+<font face="courier">":"</font>, it is interpreted as
+<font face="courier">atm[elm]:aloc</font>
+</li>
+</ol>
+
+<p>Below are examples of valid coordinate IDs:</p>
+
+<table cellpadding="5">
+<tr>
+<td align="center"><b><i><font face="times">Coordinate ID</font></i></b></td>
+<td align="center"><b><i><font face="times">Description</font></i></b></td>
+</tr>
+<tr>
+<td><font face="courier"> /1/A/33(SER).B/CA[C].A</font></td>
+<td>model 1, chain A, residue SER with sequence
+ number 33 and insertion code B, C-alpha atom in alternative
+ location A.</td>
+</tr>
+<tr>
+<td><font face="courier"> /1/A/*(SER).*</font></td>
+<td>any SER residue in chain A, model 1.
+</td>
+</tr>
+<tr>
+<td><font face="courier"> /1/A/(SER)</font></td>
+<td>any SER residue with no insertion code in chain A, model 1.</td>
+</tr>
+<tr>
+<td><font face="courier"> /1//(SER)</font></td>
+<td>any SER residue with no insertion code in chain without a chain ID, model 1.</td>
+</tr>
+<tr>
+<td><font face="courier"> /1/A/*.*/CA[C]</font></td>
+<td>any C-alpha atom with no alternative location indicator in chain A, model 1, in residues with any sequence number and insertion code.</td>
+</tr>
+<tr>
+<td><font face="courier"> /1/A/*/CA[C]</font></td>
+<td>any C-alpha atom with no alternative location indicator in chain A, model 1, in residues with any sequence number and no insertion code.</td>
+</tr>
+<tr>
+<td><font face="courier"> A/*/CA</font></td>
+<td>any C-alpha or Calcium atom with no alternative location indicator in chain A of any model, in residues with any sequence number and no insertion code.</td>
+</tr>
+<tr>
+<td><font face="courier"> CA[C]</font></td>
+<td>any C-alpha atom with no alternative location indicator in any chain, any model, in residues with any sequence number and no insertion code.</td>
+</tr>
+<tr>
+<td><font face="courier"> CA</font></td>
+<td>any atom of chain CA with no alternative location indicator, in any model, in residues with any sequence number and no insertion code.</td>
+</tr>
+</table>
+<br/>
+<p>The following coordinate IDs are incorrect:</p>
+<pre>
+  1.   /A/23/CA[C]      stating with a slash implies that the model number will be given
+  2.   /1/CG[C]         the residue is not defined 
+  3.   /-15             stating with a slash implies that the model number will be given
+  4.   */*(*).*/*[*]:*
+</pre>
+
+
+
+
+<a name="selection_operators"/><h4>Selection Operators</h4>
+<p>Complex selection commands are built up from CIDs, aliases and commands connected by the operators</p>
+<table>
+<tr><td><i>a <b>or</b> b</i></td>
+<td>select all atoms defined by <i>a</i> and <i>b</i></td></tr>
+<tr><td><i>a <b>and</b> b</i></td>
+<td>select only the atoms in both <i>a</i> and <i>b</i></td></tr>
+<tr><td><i><b>not</b> a</i></td>
+<td>select atoms that are not in <i>a</i></td></tr>
+<tr><td><i>a <b>xor</b> b</i></td>
+<td>select all atoms that are in <i>a</i> or <i>b</i> but not in both</td></tr>
+<tr><td><i>a <b>excl</b> b</i></td>
+<td>select the atoms that are in <i>a</i> but exclude those in <i>b</i>. This is equivalent to 'and not'.</td></tr>
+</table>
+<p>The selection components can also be grouped by using curly brace.  Note that curly brace are used to be distinct from the brackets used to denote residue types in the CID.</p>
+
+<a name="examples"/><h5>Examples of Selection Commands</h5>
+<p>
+<br/><b>(GLU,ASP)/(O) and neighb (HIS)/NE2,ND1 5</b>
+<br/>Select oxygen atoms in glutamic acid or aspartic acid residues within 5A of the ND1 or NE2 of a histidine residue
+<br/><b>{ /CA,N,C,O and {A/10-25 or A/35-40} } or (MTX)</b>
+<br/>Select the main chain atoms for two given ranges of residues and any residue with residue name MTX
+</p>
+
+
+</body>
+</html>

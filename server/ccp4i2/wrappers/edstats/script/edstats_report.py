@@ -4,6 +4,26 @@ from ccp4i2.core.CCP4ClipperUtils import is_aminoacid
 from ccp4i2.report import Report
 
 
+def _outliers(group, metric, above=None, below=None):
+    """The residues of a group whose metric passes a threshold. Selected here,
+    not by a select path with a comparison in it: findall() does not evaluate
+    comparisons, returns nothing, and every outlier table came out empty."""
+    chosen = []
+    for residue in group.findall("Residue"):
+        try:
+            value = float(residue.findtext(metric))
+        except (TypeError, ValueError):
+            continue
+        if (above is not None and value > above) or (below is not None and value < below):
+            chosen.append(residue)
+    return chosen
+
+
+def _none_if_empty(div, nodes):
+    if not nodes:
+        div.append("<p><i>None.</i></p>")
+
+
 class edstats_report(Report):
   TASKNAME = 'edstats'
   CSS_VERSION = '0.1.0'
@@ -157,7 +177,7 @@ class edstats_report(Report):
 
         tab_div = results.addDiv (style="float:left;")
         tab_div.append ( "<p >Main chain: </p>" )
-        bad_mc_negatives+bad_mc_positives
+        _none_if_empty(tab_div, bad_mc_negatives+bad_mc_positives)
         table = tab_div.addTable(selectNodes = bad_mc_negatives+bad_mc_positives,
                                         id='bad_mc_positives' )
 
@@ -172,6 +192,7 @@ class edstats_report(Report):
             table.addData(title=subtitle, subtitle=subtitle, select=select)
 
         tab_div.append ( "<p>Side chains: </p>" )
+        _none_if_empty(tab_div, bad_sc_negatives+bad_sc_positives)
 
         table = tab_div.addTable(selectNodes = bad_sc_negatives+bad_sc_positives,
                                         id='bad_sc_positives' )
@@ -237,7 +258,9 @@ class edstats_report(Report):
 
         tab_div = waters_folder.addDiv (style="float:left; width:28%; padding-right:50px;")
         tab_div.append ( "<p >The entries in the following table may not be water molecules but part of a bigger, undetermined structure (a ligand, perhaps?): </p>" )
-        table = tab_div.addTable(select=".//edstats_report/waters/Residue[ZDpa>3.0]",
+        nodes = _outliers(waters, "ZDpa", above=3.0)
+        _none_if_empty(tab_div, nodes)
+        table = tab_div.addTable(selectNodes=nodes,
                                         id='bad_water_positives' )
 
         for title,subtitle,select in [ [ "Residue",    "Chain" ,  "Chain"  ],
@@ -254,7 +277,9 @@ class edstats_report(Report):
 
         tab_div.append ( "<p>The following entries sit in weak density or next to noise peaks. In the former case, removing them might improve R-free</p>" )
 
-        table = tab_div.addTable(select=".//edstats_report/waters/Residue[ZDma<-3.0]",
+        nodes = _outliers(waters, "ZDma", below=-3.0)
+        _none_if_empty(tab_div, nodes)
+        table = tab_div.addTable(selectNodes=nodes,
                                         id='bad_water_negatives' )
 
         for title,subtitle,select in [ [ "Residue",    "Chain" ,  "Chain"  ],
@@ -295,9 +320,8 @@ class edstats_report(Report):
         p.append( 'showlegend', 'true' )
         p.append( 'xintegral', 'false' )
         p.append( 'yintegral', 'false' )
-        p.append( 'xlabel',
-                  '(density is less precise)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +\
-                  'ZO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(density is more precise)' )
+        # Plain text: an axis title is not HTML, so &nbsp; was drawn literally.
+        p.append( 'xlabel', 'ZO (density less precise to more precise)' )
         p.append( 'ylabel', 'ZD scores' )
         p.append( 'xrange',  min = '0.0' )
         p.append( 'yrange',  rightaxis='true', min = '0.0', max = '250.0' )
@@ -338,7 +362,9 @@ class edstats_report(Report):
 
         tab_div = ligands_folder.addDiv (style="float:left; width:30%; padding-right:50px;")
         tab_div.append ( "<p >The ligand models in the following table may be incomplete or fit density poorly: </p>" )
-        table = tab_div.addTable(select=".//edstats_report/ligands/Residue[ZDpa>3.0]",
+        nodes = _outliers(ligands, "ZDpa", above=3.0)
+        _none_if_empty(tab_div, nodes)
+        table = tab_div.addTable(selectNodes=nodes,
                                         id='bad_ligand_positives' )
 
         for title,subtitle,select in [ [ "Residue",    "Chain" ,  "Chain"  ],
@@ -356,7 +382,9 @@ class edstats_report(Report):
 
         tab_div.append ( "<p>The following ligands sit in weak density or next to noise peaks. In the former case, removing them might improve R-free</p>" )
 
-        table = tab_div.addTable(select=".//edstats_report/ligands/Residue[ZDma<-3.0]",
+        nodes = _outliers(ligands, "ZDma", below=-3.0)
+        _none_if_empty(tab_div, nodes)
+        table = tab_div.addTable(selectNodes=nodes,
                                         id='bad_ligand_negatives' )
 
         for title,subtitle,select in [ [ "Residue",    "Chain" ,  "Chain"  ],

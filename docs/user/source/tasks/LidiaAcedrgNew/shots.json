@@ -1,0 +1,86 @@
+{
+  "scenario": "../../../tools/scenario_refine.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    2000
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "acedrg_input.png",
+      "job": 6,
+      "tabs": [
+        "Task interface",
+        "Main inputs"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": "Ligand geometry provided as",
+      "through": "Conformer generation",
+      "callouts": [
+        {
+          "field": "Ligand geometry provided as",
+          "badge": "1"
+        },
+        {
+          "field": "Smiles",
+          "badge": "2"
+        },
+        {
+          "field": "Three letter code for result",
+          "badge": "3"
+        },
+        {
+          "field": "Atom name matching",
+          "badge": "4"
+        },
+        {
+          "text": "Conformer generation",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "acedrg_report.png",
+      "job": 2,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        2400
+      ],
+      "section": {
+        "text": "SMILES String:",
+        "scroll": true
+      },
+      "until": "Bibliographic references",
+      "callouts": [
+        {
+          "text": "SMILES String:",
+          "badge": "6"
+        },
+        {
+          "text": "2D Structures",
+          "badge": "7"
+        },
+        {
+          "text": "Output Data",
+          "badge": "8"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/LidiaAcedrgNew/script/LidiaAcedrgNew.def.xml": "78b0f7d3e487c3144a5c04c66f0ad3d85e6e87f3",
+    "server/ccp4i2/pipelines/LidiaAcedrgNew/script/LidiaAcedrgNew.py": "332b90429b733ddf99f7905042cc50e15c114ffe",
+    "server/ccp4i2/pipelines/LidiaAcedrgNew/script/LidiaAcedrgNew_report.py": "01e84c61a403ce4f40311c732bd74f5fd350f89b",
+    "client/renderer/components/rdkit-view.tsx": "1b6742b3a6fa162baeebdec88a6bf23ed2195b83",
+    "client/renderer/components/task/task-interfaces/LidiaAcedrgNew.tsx": "1accb9e671b882f11d5ac1a247282ae8f424f728",
+    "docs/user/tools/scenario_refine.py": "cb5135ccb2aa061d17ad9faa2fc3bbe4b583b10c"
+  }
+}

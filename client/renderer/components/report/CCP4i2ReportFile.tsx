@@ -54,7 +54,9 @@ export function CCP4i2ReportFile(props: { uuid: string }) {
           />
         </ListItemAvatar>
         <ListItemText>
-          {file.annotation || file.job_param_name || ""}
+          {/* An unannotated file (an imported one) is known by its name, not by
+              the parameter it filled ("XYZIN"). */}
+          {file.annotation || file.name || file.job_param_name || ""}
         </ListItemText>
       </ListItemButton>
     </ListItem>

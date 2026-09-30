@@ -114,7 +114,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2ContainerElement
           {...props}
           itemName=""
-          qualifiers={{ guiLabel: "Reference density and atmomic models" }}
+          qualifiers={{ guiLabel: "Reference density and atomic models" }}
           containerHint="FolderLevel"
           initiallyOpen={true}
         >

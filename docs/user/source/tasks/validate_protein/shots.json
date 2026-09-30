@@ -1,0 +1,55 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": true,
+  "shots": [
+    {
+      "out": "validate_protein_input.png",
+      "job": 12,
+      "tabs": ["Task interface"],
+      "section": "Model data",
+      "through": "Which validation and analysis tools should be run?",
+      "callouts": [
+        "Atomic model",
+        "Reflections (optional, for the fit to density)",
+        {
+          "text": "Label dataset 1 as"
+        },
+        {
+          "text": "Compare against a second dataset"
+        },
+        {
+          "text": "Which validation and analysis tools"
+        }
+      ]
+    },
+    {
+      "out": "validate_protein_report.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "MolProbity Analyses",
+        "scroll": true
+      },
+      "until": "B-factor Analyses",
+      "callouts": [
+        {
+          "text": "Iris"
+        },
+        {
+          "text": "MolProbity Analyses"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/validate_protein/script/validate_protein.def.xml": "015157c6c0ff155bd674dd27784c5938dcf235b6",
+    "server/ccp4i2/wrappers/validate_protein/script/validate_protein.py": "be4082e5702f9110b883a0de455de56fe421c488",
+    "server/ccp4i2/wrappers/validate_protein/script/validate_protein_report.py": "ec150bdc670308559ac82c85775b1400ab0de119",
+    "client/renderer/components/task/task-interfaces/validate_protein.tsx": "c792834c2898d0bb7125635bf1fc5c728caeae37",
+    "docs/user/tools/scenario_mr.py": "10fc5729c5470ba9addb4e085daf319c9a650fed"
+  }
+}

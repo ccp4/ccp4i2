@@ -1,0 +1,68 @@
+{
+  "scenario": "../../../tools/scenario_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "gesamt_input.png",
+      "job": 19,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Pairwise (2 structures) or multiple alignment",
+      "through": "Options",
+      "callouts": [
+        {
+          "text": "Structure to move",
+          "badge": "1"
+        },
+        {
+          "text": "Fixed structure",
+          "badge": "2"
+        },
+        {
+          "text": "Options",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "gesamt_report.png",
+      "job": 13,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Superimposed",
+        "scroll": true
+      },
+      "until": "List of equivalenced residues",
+      "callouts": [
+        {
+          "text": "Superimposed",
+          "badge": "4"
+        },
+        {
+          "text": "Transformation matrix",
+          "badge": "5"
+        },
+        {
+          "text": "RMSD vs. residue",
+          "badge": "6"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/gesamt/script/gesamt.def.xml": "e0051998474687209a9edd8f9190f3d74c20fe06",
+    "server/ccp4i2/wrappers/gesamt/script/gesamt.py": "b1ee8149e2924f0faced724d3d7d1495246e0384",
+    "server/ccp4i2/wrappers/gesamt/script/gesamt_report.py": "25d9aa9e94a49dfe3191734ad51a121282e01711",
+    "client/renderer/components/task/task-interfaces/gesamt.tsx": "39e32fcaf4b73963b66a1f08252ee63f9997a5f9",
+    "docs/user/tools/scenario_tools.py": "ecd8d49f10137b2241781f095b748f476260937a"
+  }
+}

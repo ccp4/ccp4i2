@@ -24,7 +24,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: mergedOrUnmerged } = useTaskItem("MERGED_OR_UNMERGED");
   const { value: hydrUse } = useTaskItem("HYDR_USE");
   const { value: addWaters } = useTaskItem("ADD_WATERS");
-  const { value: useAnomalous } = useTaskItem("USEANOMALOUS");
   const { value: weightOpt } = useTaskItem("WEIGHT_OPT");
   const { value: bfacSetUse } = useTaskItem("BFACSETUSE");
   const { value: randomizeUse } = useTaskItem("RANDOMIZEUSE");
@@ -45,9 +44,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: prosmartNucleicAcidAdvanced } = useTaskItem(
     "prosmartNucleicAcid.ADVANCED"
   );
-  const { value: libgToggle } = useTaskItem("libg.TOGGLE");
-  const { value: libgOption } = useTaskItem("libg.OPTION");
-  const { value: libgAdvanced } = useTaskItem("libg.ADVANCED");
   const { value: platonyzerToggle } = useTaskItem("platonyzer.TOGGLE");
   const { value: metalCoordRun } = useTaskItem(
     "metalCoordPipeline.RUN_METALCOORD"
@@ -58,7 +54,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: metalCoordAdvanced } = useTaskItem(
     "metalCoordPipeline.TOGGLE_ADVANCED"
   );
-  const { value: scatteringFactors } = useTaskItem("SCATTERING_FACTORS");
   const { value: resCustom } = useTaskItem("RES_CUSTOM");
   const { value: blurUse } = useTaskItem("BLURUSE");
   const { value: runAdpAnalysis } = useTaskItem("RUN_ADP_ANALYSIS");
@@ -108,7 +103,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             intensitiesAvailable={intensitiesAvailable}
             hydrUse={hydrUse}
             addWaters={addWaters}
-            useAnomalous={useAnomalous}
             HKLINValue={HKLINValue}
           />
         </CCP4i2Tab>
@@ -134,9 +128,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             prosmartProteinAdvanced={prosmartProteinAdvanced}
             prosmartNucleicAcidToggle={prosmartNucleicAcidToggle}
             prosmartNucleicAcidAdvanced={prosmartNucleicAcidAdvanced}
-            libgToggle={libgToggle}
-            libgOption={libgOption}
-            libgAdvanced={libgAdvanced}
             platonyzerToggle={platonyzerToggle}
             metalCoordRun={metalCoordRun}
             metalCoordGenOrUse={metalCoordGenOrUse}
@@ -156,7 +147,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             isSpa={isSpa}
             bfacSetUse={bfacSetUse}
             randomizeUse={randomizeUse}
-            scatteringFactors={scatteringFactors}
             resCustom={resCustom}
             blurUse={blurUse}
             runAdpAnalysis={runAdpAnalysis}

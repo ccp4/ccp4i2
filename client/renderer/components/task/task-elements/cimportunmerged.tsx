@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob, valueOfItem } from "../../../utils";
 import { apiGet } from "../../../api-fetch";
@@ -102,6 +102,25 @@ export const CImportUnmergedElement: React.FC<CCP4i2TaskElementProps> = (
     ]
   );
 
+  // The cell and wavelength are the file's: fill them from its digest when
+  // they are unset, not only when the file is picked here. A job whose file
+  // came from i2run, a clone or autopopulation otherwise showed six empty
+  // cell boxes for a cell the page already knew. Names are left alone:
+  // those are the user's to choose.
+  useEffect(() => {
+    if (job.status !== 1 || !item || !fileDigest || !setParameterNoMutate) return;
+    const updates: Record<string, any> = {};
+    if (fileDigest.cell && !(cell?.a > 0)) updates.cell = fileDigest.cell;
+    if (fileDigest.wavelength && !(wavelength > 0)) updates.wavelength = fileDigest.wavelength;
+    if (Object.keys(updates).length === 0) return;
+    (async () => {
+      await setParameterNoMutate({ object_path: item._objectPath, value: updates });
+      await Promise.all([mutateContainer(), mutateParams_xml()]);
+    })();
+    // Once per digest: the values it writes make the conditions false.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fileDigest, item?._objectPath, job.status]);
+
   // Helper function for object paths
   const getObjectPath = (field: string) =>
     item ? `${item._objectPath}.${field}` : null;
@@ -163,7 +182,7 @@ export const CImportUnmergedElement: React.FC<CCP4i2TaskElementProps> = (
         </Grid2>
         <Grid2 size={{ xs: 8 }}>
           <Typography variant="body1">
-            {fileDigest?.batchs && JSON.stringify(fileDigest.batchs)}
+            {fileDigest?.batchs && String(fileDigest.batchs)}
           </Typography>
         </Grid2>
 

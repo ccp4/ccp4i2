@@ -43,7 +43,7 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         <CCP4i2TaskElement
           {...taskProps}
           itemName="WAVELENGTH"
-          qualifiers={{ guiLabel: "Wavelength" }}
+          qualifiers={{ guiLabel: "Wavelength (Å; if blank, taken from the data)" }}
         />
         <CCP4i2TaskElement {...taskProps} itemName="FREERFLAG" />
       </CCP4i2ContainerElement>
@@ -65,7 +65,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         qualifiers={{ guiLabel: "Additional geometry dictionaries" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement {...taskProps} itemName="DICT_LIST" />
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="DICT_LIST"
+          qualifiers={{ guiLabel: "Ligand restraint dictionaries" }}
+        />
       </CCP4i2ContainerElement>
 
       {/* Options */}
@@ -110,6 +114,7 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
           <CCP4i2TaskElement
             {...taskProps}
             itemName="HYDR_ALL"
+            qualifiers={{ guiLabel: "Hydrogens" }}
             visibility={() => isTruthy(hydrUse)}
           />
         </FieldRow>
@@ -123,7 +128,7 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
           <CCP4i2TaskElement
             {...taskProps}
             itemName="REFPRO_RSR_RWORK_LIMIT"
-            qualifiers={{ guiLabel: "or lower" }}
+            qualifiers={{ guiLabel: "if R-work is at most" }}
             visibility={() => isTruthy(addWaters)}
           />
         </FieldRow>

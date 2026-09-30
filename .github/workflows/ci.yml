@@ -61,6 +61,7 @@ jobs:
     outputs:
       backend: ${{ steps.decide.outputs.backend }}
       frontend: ${{ steps.decide.outputs.frontend }}
+      userdocs: ${{ steps.decide.outputs.userdocs }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -196,6 +197,38 @@ jobs:
         if: needs.scope.outputs.backend == 'true'
         working-directory: server
         run: python -m pytest ccp4i2/tests/api/config/ -q
+
+  user-docs:
+    # The user help (docs/user/) is RST that can break: a bad directive, a
+    # figure that is referenced and missing. Build it whenever it changes, even
+    # on a pull request that runs nothing else, and fail on more warnings than
+    # the recorded baseline (tools/warnings-baseline.txt). The built site is an
+    # artifact, so a reviewer can read the pages as users will. Figures are not
+    # captured here: that needs CCP4 and a running app (docs/user/README.md).
+    name: User docs
+    needs: scope
+    if: needs.scope.outputs.userdocs == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r docs/user/requirements.txt
+      - run: docs/user/tools/build.sh "$RUNNER_TEMP/userdocs"
+      # A help page whose task has changed since it was checked: a warning on
+      # the PR naming the page and the files, never a failure (the change may
+      # well leave the page right; stamp.py diff shows, stamp.py stamp says so).
+      - name: Help pages the change may have outdated
+        run: |
+          python3 docs/user/tools/stamp.py check --github
+          { echo '### User help drift'; echo '```'
+            python3 docs/user/tools/stamp.py check; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: user-docs
+          path: ${{ runner.temp }}/userdocs
+          retention-days: 7
 
   frontend-tests:
     # The client had 278 vitest tests and no job running them, so nothing on a

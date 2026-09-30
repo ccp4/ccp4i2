@@ -1,0 +1,50 @@
+{
+  "scenario": "../../../tools/scenario_ep.py",
+  "project": "GammaXe",
+  "draft": true,
+  "viewport": [1400, 1800],
+  "shots": [
+    {
+      "out": "phaser_ep_auto_input.png",
+      "job": 5,
+      "tabs": ["Task interface", "Input data"],
+      "section": "Anomalous data",
+      "through": "Composition of the asymmetric unit",
+      "callouts": ["Anomalous reflections", "Wavelength (A)", "Heavy-atom sites", "Anomalous scatterers to look for", "Cycles of log-likelihood-gradient completion", "Partial model"]
+    },
+    {
+      "out": "phaser_ep_auto_report.png",
+      "job": 2,
+      "tabs": ["Report"],
+      "viewport": [1400, 2800],
+      "settle": 30000,
+      "section": {
+        "text": "Overall figure of merit",
+        "scroll": true
+      },
+      "from": "Overall figure of merit",
+      "until": "Phaser's summary, module by module",
+      "callouts": [
+        {
+          "text": "Overall figure of merit"
+        },
+        {
+          "text": "Hands"
+        },
+        {
+          "text": "Substructure ("
+        },
+        {
+          "text": "Substructure completion"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/phaser_ep_auto_phil/script/phaser_ep_auto_phil.def.xml": "5d170c14709316703f40203d517be5bb9cfddcb2",
+    "server/ccp4i2/wrappers/phaser_ep_auto_phil/script/phaser_ep_auto_phil.py": "a2047151b3287edd998fb581ba2f7d6e25824366",
+    "server/ccp4i2/wrappers/phaser_ep_auto_phil/script/phaser_ep_auto_phil_report.py": "c35ea0e3e7cb687e13a9ed55fe449704a514bdc9",
+    "client/renderer/components/task/task-interfaces/phaser_ep_auto_phil.tsx": "b67cd7b9e8a9d803d0517d189a6dcdab3baeb6a6",
+    "docs/user/tools/scenario_ep.py": "1e98762feec0262a7defae52761f65a1fd74daca"
+  }
+}

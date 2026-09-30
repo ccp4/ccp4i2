@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+   <meta name="AUTHOR" content="Liz"/>
+   <title>CCP4i Projects</title>
+<link rel="stylesheet" type="text/css" href="../ccp4i2.css" title="CCP4i2" />
+<link rev="made" href="mailto:ccp4gui@ccp4.ac.uk" />
+</head>
+<body>
+
+<table class="banner">
+<tr>
+<!--<td rowspan="2" width="200" ><img src="../ccp4i2.png" alt="CCP4 web logo"/></td>-->
+<td><img width=75 src="ccp4i2.png" alt="CCP4 web logo"/></td>
+<td class="logohead">CCP4i2 &mdash; Viewing Old CCP4i Projects</td>
+</tr>
+</table>
+
+<table class="navigationBar"><tr>
+<th><a href="CCP4i1Projects.html">CCP4i projects</a></th> 
+<th><a href="data_files.html">Experimental data</a></th> 
+<th><a href="model_data.html">Model data</a></th> 
+<th><a href="atom_selection.html">Atom selection</a></th> 
+<th><a href="servers.html">Servers</a></th> 
+<!-- <th><a href="customisation.html">Customisation</a></th> -->
+</tr></table>
+
+<div class="content">
+<a name="contents"/><h3>Contents</h3>
+<a href="#introduction">Introduction</a>
+<br/><a href="#tidying">Tidying CCP4i Projects</a>
+<br/><a href="#copying">Copying files into CCP4i2 projects</a>
+<br/><a href="#associating_projects">Associating projects</a>
+
+</div>
+
+<a name="introduction"><h4>Introduction</h4>
+<p>The <i>CCP4i Project Viewer</i> in CCP4i2 will enable you to view and
+organise old
+projects and copy data into new CCP4i2 projects but it has no facility
+for running old CCP4i jobs. The viewer is accessed via <i>View old
+CCP4i projects</i> on the<i>Projects</i> menu and has the options to
+access the default projects (in the CCP4i <i>directories.def</i> in
+<i>.CCP4</i> sub-directory of your home directory) or you can select
+a different CCP4i <i>directories.def</i>.</p>
+<img src="./ccp4i_viewer.png" alt="CCP4i project viewer" style="height:300px">
+<p>The projects in the database are listed
+on the left-hand side of the viewer window.  If you click on a project
+then the <i>database.def</i> for that project is read and the jobs and
+input/output files are displayed. The input files are indicated by a
+red arrow on the bottom right of the file icon.  Clicking on a job
+will display the log file or clicking on the file will display it
+either in the right side of the window or a separate viewer.  There
+are additional <i>View</i> options on context menus (right mouse click
+on the job or file).</p>
+
+<a name="tidying"><h4>Tidying CCP4i Projects</h4>
+<p>If there are problems loading the old projects you can view a
+summary by clicking the <i>Show load errors</i> tool.  If a project directory
+or file is not found it is highlighted in red in the viewer.  The
+context menu (right mouse click on the project or file) has a
+<i>Find</i> option that will open a file browser for you to find the
+right directory or file. If missing projects or files are found the
+old CCP4i database files are updated.</p>
+<p>To organise the projects there is a toolbar option to <i>Add folder</i> that will create
+folders. You can drag-and-drop the projects into the folders. Folders
+can be nested. The folder information is stored in a supplementary
+file <i>your_home_area/.CCP4I2/i1supplement/folders.xml</i> but note
+that this is only for CCP4i2 and is not understood in CCP4i.</p>
+<p>Old CCP4i did not make copies of input data files in the project
+directory but this interface has the option to <i>Collect input
+files</i> on the project context menu. This will copy all found input
+files to an <i>IMPORTED_FILES</i> directory in the project directory
+and will update the CCP4i database file appropriately.</p>
+
+<a name="copying"><h4>Copying files into CCP4i2 projects</h4>
+<p>Files listed in the CCP4i project viewer can be drag-n-dropped onto
+CCP4i2 input file icons. There is also a <i>Copy</i> option on the
+file context menu and a <i>Paste</i> option on the file input icon
+menu. If you are moving old-style 'monster' MTZ
+files then you will be asked to select the appropriate columns.</p>
+
+<a name="associating_projects"><h4>Associating projects</h4>
+<img src="./associates_projects.png" alt="Associated project tab" style="float:left">
+<p>It is possible to associate an old CCP4i project with a CCP4i2
+project and then the jobs and files for the old project are listed in
+a tab in the project viewer for the new project. 
+It is easier to view and drag-n-drop from this associated CCP4i
+project. To associate projects there are two options on the CCP4i
+project context menu: <i>Make CCP4i2 project</i> will create a new
+CCP4i2 project or <i>Associate with CCP4i2 project</i> will associate
+with an existing project.</p>
+</body>
+</html>

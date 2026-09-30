@@ -507,24 +507,14 @@ class CMtzDataFile(CDataFile):
             "subType": {'default': None},
             "contentFlag": {'min': 0, 'default': None},
         }
-    def __init__(self, parent=None, name=None, **kwargs):
-        """
-        Initialize CMtzDataFile.
-
-        Args:
-            parent: Parent object in hierarchy
-            name: Object name
-            **kwargs: Additional keyword arguments
-        """
-        super().__init__(parent=parent, name=name, **kwargs)
-
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
+        # No per-instance qualifiers here. This set guiLabel 'Experimental
+        # data' (and a tooltip and fileExtensions) on every instance, and an
+        # instance qualifier outranks a class's defaults, so every subclass
+        # showed 'Experimental data' in place of its own label: a Free R set
+        # field so labelled sat beside the real reflections. The class
+        # qualifiers above already give CMtzDataFile itself all three.
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
-        # Note: fileContentClassName='CMtzData' is already set in CMtzDataFile decorator
-        # Note: MIME type now comes from ccp4i2_static_data.py via get_file_type_from_class()
-        self.set_qualifier('guiLabel', 'Experimental data')
-        self.set_qualifier('toolTip', 'MTZ format reflection data file')
-        self.set_qualifier('fileExtensions', ['mtz'])
 
     def fileExtensions(self):
         """
@@ -4981,9 +4971,12 @@ class CUnmergedDataContent(CDataFileContent):
                         self.wavelength = ds.wavelength
                     break
 
-        # Number of datasets
+        # Number of datasets. Not HKL_base: every MTZ has that one, so
+        # counting it made a single-dataset file look like two, and pointless
+        # then ignored the crystal and dataset names the user gave.
         if hasattr(self, 'numberofdatasets') and self.numberofdatasets is not None:
-            self.numberofdatasets = len(mtz.datasets)
+            self.numberofdatasets = len(
+                [ds for ds in mtz.datasets if ds.dataset_name != 'HKL_base'])
 
         # Number of lattices (count of batches) and batch numbers
         if has_batch:

@@ -294,3 +294,28 @@ def test_complete_mtz_survives_cleanup():
         )
         # Sanity: it is a readable MTZ with reflection data
         read_mtz_file(str(complete))
+
+
+def test_8xfm_prosmart_reference_model_is_imported(cif8xfm, mtz8xfm):
+    """A ProSMART reference model lives outside inputData (in the task's
+    prosmartProtein container). It must be imported into the project like
+    any input: it was read from where it lay and never recorded, so a clone
+    of the job came up without its reference."""
+    args = ["prosmart_refmac"]
+    args += ["--XYZIN", cif8xfm]
+    args += ["--F_SIGF", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
+    args += ["--FREERFLAG", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
+    args += ["--prosmartProtein.TOGGLE", "True"]
+    args += ["--prosmartProtein.REFERENCE_MODELS", f"fullPath={cif8xfm}"]
+    args += ["--NCYCLES", "1"]
+    args += ["--VALIDATE_MOLPROBITY", "False"]
+    with i2run(args) as job:
+        import xml.etree.ElementTree as ET
+        root = ET.parse(job / "input_params.xml").getroot()
+        refs = [el for el in root.iter("CPdbDataFile")
+                if any(p.tag == "REFERENCE_MODELS" for p in root.iter()
+                       if el in list(p))]
+        assert refs, "no reference model in input_params.xml"
+        for ref in refs:
+            assert (ref.findtext("dbFileId") or "").strip(), ET.tostring(ref)
+            assert ref.findtext("relPath") == "CCP4_IMPORTED_FILES", ET.tostring(ref)

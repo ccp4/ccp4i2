@@ -18,7 +18,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Input data" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="XYZIN_LIST" {...props} />
+        <CCP4i2TaskElement
+          itemName="XYZIN_LIST"
+          {...props}
+          qualifiers={{ guiLabel: "Models to superpose" }}
+        />
         <CCP4i2TaskElement
           itemName="OVERRIDEID"
           {...props}

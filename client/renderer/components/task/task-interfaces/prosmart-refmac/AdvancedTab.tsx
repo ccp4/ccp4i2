@@ -64,6 +64,7 @@ export const AdvancedTab: React.FC<AdvancedTabProps> = (props) => {
             <CCP4i2TaskElement
               {...taskProps}
               itemName="HYDR_ALL"
+              qualifiers={{ guiLabel: "Hydrogens" }}
               visibility={() => isTruthy(hydrUse)}
             />
           </FieldRow>

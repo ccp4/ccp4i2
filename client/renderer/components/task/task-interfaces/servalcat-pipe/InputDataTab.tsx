@@ -13,7 +13,6 @@ interface InputDataTabProps extends CCP4i2TaskInterfaceProps {
   intensitiesAvailable: boolean;
   hydrUse: any;
   addWaters: any;
-  useAnomalous: any;
   HKLINValue: any;
 }
 
@@ -25,7 +24,6 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
     intensitiesAvailable,
     hydrUse,
     addWaters,
-    useAnomalous,
     HKLINValue,
     ...taskProps
   } = props;
@@ -60,7 +58,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         qualifiers={{ guiLabel: "Main inputs" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement {...taskProps} itemName="container.inputData.XYZIN" />
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="container.inputData.XYZIN"
+          qualifiers={{ guiLabel: "Atomic model" }}
+        />
 
         {/* X-ray merged inputs */}
         {isXtal && isMerged && (
@@ -84,7 +86,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
                 Using <strong>amplitudes</strong>
               </Typography>
             )}
-            <CCP4i2TaskElement {...taskProps} itemName="FREERFLAG" />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="FREERFLAG"
+              qualifiers={{ guiLabel: "Free R set" }}
+            />
           </>
         )}
 
@@ -96,7 +102,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
               itemName="HKLIN_UNMERGED"
               qualifiers={{ guiLabel: "Unmerged reflection data" }}
             />
-            <CCP4i2TaskElement {...taskProps} itemName="FREERFLAG" />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="FREERFLAG"
+              qualifiers={{ guiLabel: "Free R set" }}
+            />
           </>
         )}
 
@@ -147,7 +157,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         qualifiers={{ guiLabel: "Additional geometry dictionaries" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement {...taskProps} itemName="DICT_LIST" />
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="DICT_LIST"
+          qualifiers={{ guiLabel: "Ligand restraint dictionaries" }}
+        />
       </CCP4i2ContainerElement>
 
       {/* Options */}
@@ -175,6 +189,7 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
             {...taskProps}
             itemName="HYDR_ALL"
             visibility={() => isTruthy(hydrUse)}
+            qualifiers={{ guiLabel: "Hydrogens" }}
           />
         </FieldRow>
 
@@ -227,19 +242,15 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
           [1, 2].includes(HKLINValue.contentFlag)
         }
       >
-        <FieldRow>
-          <CCP4i2TaskElement
-            {...taskProps}
-            itemName="USEANOMALOUS"
-            qualifiers={{ guiLabel: "Use anomalous" }}
-          />
-          <CCP4i2TaskElement
-            {...taskProps}
-            itemName="USEANOMALOUSFOR"
-            qualifiers={{ guiLabel: "Use for:" }}
-            visibility={() => isTruthy(useAnomalous)}
-          />
-        </FieldRow>
+        {/* USEANOMALOUS / USEANOMALOUSFOR were offered here ("SAD
+            refinement") but nothing read them: servalcat's refine_xtal has
+            no anomalous refinement, and the wrapper makes the anomalous map
+            from anomalous pairs whatever they said. */}
+        <Typography variant="body2">
+          An anomalous difference map is calculated from these data
+          automatically. Servalcat does not refine against the anomalous
+          signal.
+        </Typography>
       </CCP4i2ContainerElement>
     </>
   );

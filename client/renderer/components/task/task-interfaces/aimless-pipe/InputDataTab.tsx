@@ -303,7 +303,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         qualifiers={{ guiLabel: "Select unmerged data files" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="UNMERGEDFILES" {...taskProps} />
+        <CCP4i2TaskElement
+          itemName="UNMERGEDFILES"
+          {...taskProps}
+          qualifiers={{ guiLabel: "Unmerged reflection files" }}
+        />
         <MmcifBlockSelector jobId={props.job.id} />
       </CCP4i2ContainerElement>
 

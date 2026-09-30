@@ -21,6 +21,16 @@ export const CCP4i2ReportObjectGallery: React.FC<CCP4i2ReportElementProps> = (
     }
     return [];
   }, [props.item, props.job]);
+  // One object is not a gallery: show it, without a list to choose from
+  // (Make Ligand's single 2D drawing sat beside a list of one, titled with
+  // its internal key, "Div_3").
+  if (childItems.length === 1) {
+    return (
+      <Paper sx={{ borderRadius: "2px", display: "inline-block" }}>
+        <CCP4i2ReportElement {...props} iItem={0} item={childItems[0]} />
+      </Paper>
+    );
+  }
   return (
     <Paper
       sx={{
@@ -48,11 +58,8 @@ export const CCP4i2ReportObjectGallery: React.FC<CCP4i2ReportElementProps> = (
                     setSelected(iItem);
                   }}
                 >
-                  {$(childItem).attr("title")
-                    ? $(childItem).attr("title")
-                    : $(childItem).attr("key")
-                    ? $(childItem).attr("key")
-                    : `Object ${iItem}`}
+                  {/* Not the key: "Div_3" means nothing to a reader. */}
+                  {$(childItem).attr("title") || `Object ${iItem + 1}`}
                 </ListItem>
               ))}
           </Paper>

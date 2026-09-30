@@ -305,6 +305,11 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   >({});
   const [isBuilderExpanded, setIsBuilderExpanded] = useState(false);
   const [manualEdit, setManualEdit] = useState(false);
+  // Whether the user has used the builder in this session. Until they have,
+  // the builder's string (all chains, no filters) is not a choice anyone
+  // made, and writing it would erase the selection the job already has: a
+  // cloned or reopened job lost its "(NUT)" the moment it was displayed.
+  const [builderUsed, setBuilderUsed] = useState(false);
   // Local state for the text field to prevent re-render issues while typing
   const [localSelectionText, setLocalSelectionText] = useState<string>("");
   const [isTyping, setIsTyping] = useState(false);
@@ -383,7 +388,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 
   // Update backend when selection changes (debounced effect)
   useEffect(() => {
-    if (manualEdit || !updateSelectionString || job.status !== 1) return;
+    if (!builderUsed || manualEdit || !updateSelectionString || job.status !== 1) return;
 
     const timeoutId = setTimeout(async () => {
       if (generatedSelection !== selectionString) {
@@ -403,6 +408,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     updateSelectionString,
     mutateContainer,
     manualEdit,
+    builderUsed,
     job.status,
   ]);
 
@@ -418,6 +424,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
       return next;
     });
     setManualEdit(false);
+    setBuilderUsed(true);
   }, []);
 
   // Handle select all/none chains
@@ -429,6 +436,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
         setSelectedChains(new Set());
       }
       setManualEdit(false);
+      setBuilderUsed(true);
     },
     [chains]
   );
@@ -455,6 +463,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
         return next;
       });
       setManualEdit(false);
+      setBuilderUsed(true);
     },
     []
   );
@@ -470,6 +479,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
         };
       });
       setManualEdit(false);
+      setBuilderUsed(true);
     },
     []
   );
@@ -511,6 +521,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
       return next;
     });
     setManualEdit(false);
+    setBuilderUsed(true);
   }, []);
 
   // Handle residue name toggle
@@ -521,6 +532,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
       return next;
     });
     setManualEdit(false);
+    setBuilderUsed(true);
   }, []);
 
   // Get chain type label

@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Merge experimental data objects to MTZ</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>CCP4i2 now uses <a href="../../general/data_files.html"><i>experimental data objects</i></a> where each
+      object is one 'mini' MTZ file. Each experimental data object
+      is one instance of either reflections, phases, map coefficients or
+      free R sets. This task will recreate an old-style 'monster' MTZ
+      from experimental data objects. Note that there may be an easier
+      way to get the data you require: on the CCP4i2 <i>Job
+      list</i> for many jobs the context menu (right-mouse click) has
+      an <i>Export</i> sub-menu which will include an option to export
+      an old-style MTZ of the data associated with that job.</p>
+      <h2>Input</h2>
+      <img src="./mergeMtz_task_1.png">
+      <p>The input is a list of experimental data objects with the
+      column names to be given to the columns in the output
+      file. Select the experimental data object <b
+      class="img-ref">(1)</b> and edit or remove the tag to be added
+      to each column name.<b class="img-ref">(2)</b>
+      The default output column names are shown as a comma-separated
+      list of names compounded from the column names in the input file
+      and the tag. These can be edited manually if necessary.<b class="img-ref">(3)</b></p>
+      <p>The list of data objects can be extended by clicking the 'Add
+      input..' button.<b class="img-ref">(4)</b></p>
+      <p>Enter a name for the output file.<b class="img-ref">(5)</b></p>
+      </div>
+  </dt>
+</ul>
+
+</body>
+</html>
+

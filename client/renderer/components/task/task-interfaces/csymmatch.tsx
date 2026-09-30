@@ -50,7 +50,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           itemName="CONNECTIVITY_RADIUS"
           qualifiers={{
             guiLabel:
-              "Radius to use in stiching floating fragments to chains",
+              "Radius to use in stitching floating fragments to chains",
           }}
         />
       </CCP4i2ContainerElement>

@@ -260,3 +260,46 @@ def test_merged_free_r_other_crystal(tmp_path):
             "FREERFLAG_OUT should carry the data's cell, so later jobs on this "
             "dataset can use it without repeating the reconciliation"
         )
+
+
+# Nutlin-3a, with its stereochemistry (demo_data/mdm2/README.html)
+NUTLIN_3A = ("COc1ccc(c(OC(C)C)c1)C2=N[C@H]([C@H](N2C(=O)N3CCNC(=O)C3)"
+             "c4ccc(Cl)cc4)c5ccc(Cl)cc5")
+
+
+def test_substitute_ligand_fits_and_reports():
+    """The parent's own ligand and waters removed by the atom selection, so
+    Coot has an empty site to fit Nutlin-3a into; the fit is recorded, and
+    the report shows the final (servalcat) refinement and the fit. The report
+    used to show Dimple's intermediate REFMAC run, and nothing on the fit."""
+    import xml.etree.ElementTree as ET
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.reporting.i2_report import generate_job_report
+
+    args = ["SubstituteLigand"]
+    args += ["--XYZIN", "fullPath=" + demoData("mdm2", "4hg7.cif"),
+             "selection/text=not (NUT) and not (HOH)"]
+    args += ["--UNMERGEDFILES", "file=" + demoData("mdm2", "mdm2_unmerged.mtz")]
+    args += ["--SMILESIN", NUTLIN_3A]
+    args += ["--PIPELINE", "DIMPLE"]
+    with i2run(args) as job_dir:
+        names = {r.name for ch in gemmi.read_structure(str(job_dir / "XYZOUT.pdb"))[0]
+                 for r in ch}
+        assert "DRG" in names and "NUT" not in names, sorted(names)
+
+        fit = ET.parse(job_dir / "program.xml").getroot().find(".//LIGAND_FIT")
+        assert fit is not None, "The ligand fit was not recorded"
+        assert int(fit.findtext("Placed")) >= 1
+        assert fit.findall("Residue"), "The placed ligand's position was not recorded"
+
+        job = models.Job.objects.filter(number=job_dir.name.replace("job_", "")).first()
+        report = ET.tostring(generate_job_report(job), encoding="unicode")
+        assert "Ligand fitting" in report and "Coot placed" in report
+        assert "Refmac R-factors" not in report, "The report shows Dimple's REFMAC run"
+        # The final R from servalcat's last cycle (R1work for the intensities
+        # aimless gives it, Rwork for amplitudes) must be what is reported.
+        summary = ET.parse(job_dir / "program.xml").getroot().findall(
+            ".//SERVALCAT_FIRST//cycle")[-1].find("data/summary")
+        final_r = summary.findtext("R1work") or summary.findtext("Rwork")
+        assert final_r and f"{float(final_r):.4f}" in report, \
+            f"The report does not show servalcat's final R ({final_r})"

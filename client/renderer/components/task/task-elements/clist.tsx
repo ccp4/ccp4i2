@@ -48,10 +48,23 @@ export const CListElement: React.FC<CListElementProps> = ({
     onChange,
   });
 
+  // An interface that gives the list no label gets its items' label
+  // ("Atomic model") before the parameter's name, which is never meant for
+  // users ("XYZIN_LIST", "DICT_LIST" and "UNMERGEDFILES" all showed).
   const guiLabel =
     qualifiers?.guiLabel ||
+    item?._subItem?._qualifiers?.guiLabel ||
+    item?._value?.[0]?._qualifiers?.guiLabel ||
     item?._objectPath?.split(".").at(-1) ||
     "Unnamed List";
+
+  // The list's label names the list. An item that has a label of its own
+  // ("Atomic model") keeps it, rather than every row repeating the list's
+  // ("Models to superpose"); an item without one still takes the list's, so
+  // it never falls back to its bare name ("[0]").
+  const { guiLabel: _listLabel, ...qualifiersWithoutLabel } = qualifiers || {};
+  const itemQualifiers = (content: any) =>
+    content?._qualifiers?.guiLabel ? qualifiersWithoutLabel : qualifiers;
 
   const borderColor = itemName && item ? validationColor : "divider";
 
@@ -111,7 +124,7 @@ export const CListElement: React.FC<CListElementProps> = ({
                       {...restProps}
                       itemName={itemPath}
                       job={job}
-                      qualifiers={qualifiers}
+                      qualifiers={itemQualifiers(content)}
                       onChange={onChange}
                     />
                   </Box>

@@ -45,6 +45,7 @@ class servalcat_pipe(CPluginScript):
         112: {'description': 'Missing required output from sub-plugin'},
         113: {'description': 'ADP analysis failed'},
         114: {'description': 'Coordinate/ADP deviation analysis failed'},
+        115: {'description': 'Platonyzer restraints failed'},
     }
 
     def __init__(self, *args, **kws):
@@ -55,6 +56,7 @@ class servalcat_pipe(CPluginScript):
         self.prosmartProteinPlugin = None
         self.prosmartNucleicAcidPlugin = None
         self.metalCoordPlugins = []
+        self.platonyzerPlugin = None
         self.servalcatPlugin = None
         self.cootPlugin = None
         self.servalcatPostCootPlugin = None
@@ -131,6 +133,7 @@ class servalcat_pipe(CPluginScript):
         Phase 1: ProSMART protein restraints (optional)
         Phase 2: ProSMART nucleic acid restraints (optional)
         Phase 3: MetalCoord restraints (optional)
+        Phase 3b: Platonyzer metal-site restraints (optional)
         Phase 4: Servalcat refinement (required)
         Phase 5: Water addition + re-refinement (optional)
         Phase 6: Validation and analysis (optional)
@@ -157,6 +160,13 @@ class servalcat_pipe(CPluginScript):
         phase3_error = self._runMetalCoords()
         if phase3_error and phase3_error.maxSeverity() >= 4:
             return phase3_error
+
+        # =================================================================
+        # Phase 3b: Platonyzer restraints for metal sites
+        # =================================================================
+        phase3b_error = self._runPlatonyzer()
+        if phase3b_error and phase3b_error.maxSeverity() >= 4:
+            return phase3b_error
 
         # =================================================================
         # Phase 4: Servalcat refinement
@@ -421,6 +431,48 @@ class servalcat_pipe(CPluginScript):
     # =========================================================================
     # Phase 4: Servalcat refinement
     # =========================================================================
+
+    def _modelForRefinement(self):
+        """The model the first servalcat run refines: MetalCoord's, when it
+        rewrote the links, else the input."""
+        mc = self.container.metalCoordPipeline
+        xyz = self.container.outputData.METALCOORD_XYZ
+        if (mc.RUN_METALCOORD and mc.GENERATE_OR_USE == "GENERATE"
+                and mc.LINKS != "NOTTOUCH" and xyz.isSet()
+                and os.path.isfile(str(xyz.fullPath))):
+            return xyz
+        return self.container.inputData.XYZIN
+
+    def _runPlatonyzer(self):
+        """Run Platonyzer for metal-site restraints (optional).
+
+        It rewrites the model's links for the metal sites and writes REFMAC
+        keywords restraining them; servalcat reads both. The toggle used to
+        be shown and never read (only prosmart_refmac ran Platonyzer)."""
+        error = CErrorReport()
+        if not self.container.platonyzer.TOGGLE:
+            return error
+        try:
+            plugin = self.makePluginObject('Platonyzer')
+            plugin.container.inputData.XYZIN.set(self._modelForRefinement())
+            plugin.container.controlParameters.MODE = \
+                self.container.platonyzer.MODE
+            plugin.container.controlParameters.RM_VDW = \
+                self.container.platonyzer.RM_VDW
+            status = plugin.process()
+        except Exception as e:
+            self.appendErrorReport(115, f'Platonyzer could not be run: {e}\n'
+                                   f'{traceback.format_exc()}')
+            error.append(self.__class__.__name__, 115,
+                         f'Platonyzer could not be run: {e}', 'platonyzer', 4)
+            return error
+        if status != CPluginScript.SUCCEEDED:
+            self.appendErrorReport(115, 'Platonyzer failed: see its sub-job')
+            error.append(self.__class__.__name__, 115,
+                         'Platonyzer failed: see its sub-job', 'platonyzer', 4)
+            return error
+        self.platonyzerPlugin = plugin
+        return error
 
     def _runServalcat(self):
         """Run the main servalcat refinement."""
@@ -689,6 +741,13 @@ class servalcat_pipe(CPluginScript):
                 self.container.prosmartNucleicAcid.DMAX
             result.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS = \
                 self.prosmartNucleicAcidPlugin.container.outputData.RESTRAINTS
+
+        # Platonyzer restraints, and the model with its metal-site links
+        # (a later run's inputCoordinates, below, still take precedence).
+        if self.platonyzerPlugin is not None:
+            out = self.platonyzerPlugin.container.outputData
+            result.container.inputData.PLATONYZER_RESTRAINTS.set(out.RESTRAINTS)
+            result.container.inputData.XYZIN.set(out.XYZOUT)
 
         # Manual weight override
         if withWeight >= 0.:

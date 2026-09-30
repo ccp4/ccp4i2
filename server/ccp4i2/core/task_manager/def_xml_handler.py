@@ -21,6 +21,11 @@ from ..base_object.fundamental_types import (
 from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
 
 
+# Qualifiers that are yes/no, whatever spelling a def.xml uses for them.
+BOOLEAN_QUALIFIERS = frozenset({
+    "onlyEnumerators", "allowUndefined", "mustExist", "saveToDb", "fromPreviousJob",
+})
+
 class DefXmlParser:
     """Parser for CCP4i2 .def.xml task definition files."""
 
@@ -275,6 +280,12 @@ class DefXmlParser:
                 result[tag] = None
             elif text.lower() in ("true", "false"):
                 result[tag] = text.lower() == "true"
+            elif tag in BOOLEAN_QUALIFIERS and text.strip().lower() in ("1", "0", "yes", "no"):
+                # 37 def.xml qualifiers say <onlyEnumerators>1</...>; kept as
+                # the string "1" it was true to Python but not to the
+                # interface (=== true), which then offered a free text box
+                # for a closed menu (Sculptor's pruning, Chainsaw's mode).
+                result[tag] = text.strip().lower() in ("1", "yes")
             elif tag in ("enumerators", "menuText", "fileExtensions"):
                 # These are always arrays, even with a single value
                 if "," in text:

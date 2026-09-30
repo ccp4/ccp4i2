@@ -1,0 +1,214 @@
+#########################
+CCP4i2 Task Documentation
+#########################
+
+==========================================================
+Import merged data, AU Contents, alignments or coordinates
+==========================================================
+.. toctree::
+   :maxdepth: 1
+
+   import_merged/index
+   ProvideAsuContents/index
+   ProvideSequence/index
+   ProvideAlignment/index
+   AlternativeImportXIA2/index
+   coordinate_selector/index
+   splitMtz/index
+   import_serial/index
+
+
+======================
+Integrate X-ray images
+======================
+.. toctree::
+   :maxdepth: 1
+
+   xia2_dials/index
+   xia2_xds/index
+   imosflm/index
+   dials/image_viewer
+   dials/rlattice_viewer
+   dui/index
+
+
+=================================
+X-ray data reduction and analysis
+=================================
+.. toctree::
+   :maxdepth: 1
+
+   aimless_pipe/index
+   freerflag/index
+   matthews/index
+   srf/index
+   AUSPEX/index
+
+
+===================================
+AlphaFold and RoseTTAFold Utilities
+===================================
+.. toctree::
+   :maxdepth: 1
+
+   ccp4mg_edit_model/index
+   mrparse/index
+   editbfac/index
+   slicendice/index
+   arcimboldo/index
+
+====================
+Experimental phasing
+====================
+.. toctree::
+   :maxdepth: 1
+
+   phaser_ep_phil/index
+   phaser_ep_auto_phil/index
+   crank2/crank2
+   shelx/shelx
+   phaser_EP_LLG/index
+   
+
+*Use* `fprime <https://www.ccp4.ac.uk/fprime/>`_ *to calculates anomalous scattering factors (f' and f") if needed*
+
+==============
+Bioinformatics
+==============
+.. toctree::
+   :maxdepth: 1
+
+   ccp4mg_edit_model/index
+   ccp4mg_edit_nomrbump/index
+   chainsaw/index
+   sculptor/index
+   ensemble_phaser/index
+   clustalw/index
+   mrparse/index
+   findmyseq/index
+
+=====================
+Molecular replacement
+=====================
+.. toctree::
+   :maxdepth: 1
+
+   mrbump_basic/index
+   phaser_simple_phil/index
+   phaser_pipeline/index
+   molrep_pipe/index
+   csymmatch/index
+   ample/index
+   fragon/index
+   comit/index
+   dimple/index
+   morda_i2/index
+   phaser_pipeline/single_atom
+   
+
+====================
+Density Modification
+====================
+.. toctree::
+   :maxdepth: 1
+
+   acorn/index
+   parrot/index
+
+===========================
+Model building and graphics
+===========================
+.. toctree::
+   :maxdepth: 1
+
+   buccaneer_build_refine_mr/index
+   arp_warp_classic/index
+   modelcraft/index
+   coot_rebuild/index
+   coot_find_waters/index
+   coot_script_lines/index
+   nautilus_build_refine/index
+   ccp4mg_general/index
+   shelxeMR/index
+   dr_mr_modelbuild_pipeline/index
+
+==========
+Refinement
+==========
+.. toctree::
+   :maxdepth: 1
+
+   servalcat_pipe/index
+   prosmart_refmac/index
+   tls/index
+   coot_refinement/index
+   lorestr_i2/index
+   pairef/index
+   shift_field/index
+
+=======
+Ligands
+=======
+.. toctree::
+   :maxdepth: 1
+
+   LidiaAcedrgNew/index
+   MakeLink/index
+   SubstituteLigand/index
+
+=======================
+Validation and analysis
+=======================
+.. toctree::
+   :maxdepth: 1
+
+   validate_protein/index
+   edstats/index
+   privateer/index
+   pisapipe/index
+   zanuda/zanuda
+
+
+=====================
+Export and Deposition
+=====================
+.. toctree::
+   :maxdepth: 1
+
+   PrepareDeposit/index
+   mergeMtz/index
+
+=====================
+Reflection data tools
+=====================
+.. toctree::
+   :maxdepth: 1
+
+   pointless_reindexToMatch/index
+   scaleit/index
+   cpatterson/index
+   cphasematch/index
+   cmapcoeff/index
+   ctruncate/index
+   chltofom/index
+   freerflag/index
+   matthews/index
+   density_calculator/index
+
+
+=====================
+Coordinate data tools
+=====================
+.. toctree::
+   :maxdepth: 1
+
+   gesamt/index
+   coordinate_selector/index
+   fractional_coordinates/index
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

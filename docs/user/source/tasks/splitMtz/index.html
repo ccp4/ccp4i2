@@ -1,0 +1,48 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../task.css">
+
+<title>Split MTZ into experimental data objects</title>
+
+</head>
+<body>
+
+<dl class="tabs">
+  <dt>
+    <input type="radio" checked name="tabs" id="tab1">
+    <label for="tab1">Input</label>
+    <div id="tab-content1" class="tab-content">
+
+      <p>CCP4i2 now uses <a href="../../general/data_files.html"><i>experimental data objects</i></a> where each
+      object is one 'mini' MTZ file. Each experimental data object
+      is one instance of either reflections, phases, map coefficients or
+      free R sets. This task will split an old style, 'monster' MTZ,
+      containing mixed data,
+      into 'mini' MTZs.</p>
+      <h2>Input</h2>
+      <img src="splitMtz_task_1.png">
+      <p>Select the old style, 'monster' MTZ file. <b class="img-ref">(1)</b></p>
+      <p>The column data in the file is analysed and the new style
+      experimental data objects are listed. <b class="img-ref">(2)</b>
+      Beware some redundant data in the old-style files does not
+      correspond to any experimental data type (e.g. <i>ISYM</i> columns). Check the boxes to select the experimental data objects you want
+      to import to CCP4i2. </p>
+      
+
+    </dt>
+    <!--
+  <dt>
+    <input type="radio" name="tabs" id="tab2">
+    <label for="tab2">Results</label>
+    <div id="tab-content2" class="tab-content">
+
+      <p>INSERT TEXT HERE</p>
+
+    </div>
+  </dt>
+  -->
+</ul>
+
+</body>
+</html>
+

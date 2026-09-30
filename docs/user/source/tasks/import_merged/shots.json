@@ -1,0 +1,53 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": true,
+  "shots": [
+    {
+      "out": "import_merged_input.png",
+      "job": 7,
+      "tabs": ["Task interface"],
+      "viewport": [1400, 2200],
+      "section": "Input data",
+      "callouts": [
+        "Reflections",
+        {
+          "text": "MTZ Reflection Data"
+        },
+        {
+          "text": "No FreeR flag found"
+        },
+        "Select resolution range (\u00c5)",
+        "Free R set",
+        "Fraction of reflections in generated freeR set",
+        "Do not copy or generate a FreeR set"
+      ]
+    },
+    {
+      "out": "import_merged_report.png",
+      "job": 1,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "Import of merged data",
+        "scroll": true
+      },
+      "from": "Import of merged data",
+      "until": "Overall summary",
+      "callouts": [
+        {
+          "text": "Key summary"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/pipelines/import_merged/script/import_merged.def.xml": "64f3ca6b94d37634967d0d432d7574aa3e1a04bf",
+    "server/ccp4i2/pipelines/import_merged/script/import_merged.py": "d092be90544170f6bee71305eaaefad2007ce697",
+    "server/ccp4i2/pipelines/import_merged/script/import_merged_report.py": "416af9d3b0b0ed344abf3b96d5623475cddf234d",
+    "client/renderer/components/task/task-interfaces/import_merged.tsx": "0968ce7432a2864bbfe9f32f146659250fa2d13a",
+    "docs/user/tools/scenario_mr.py": "10fc5729c5470ba9addb4e085daf319c9a650fed"
+  }
+}

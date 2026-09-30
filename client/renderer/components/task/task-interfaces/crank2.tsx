@@ -499,7 +499,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             />
             {inputPartial.value && (
               <>
-                <CCP4i2TaskElement {...props} itemName="XYZIN" />
+                <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Partial model" }} itemName="XYZIN" />
                 <CCP4i2TaskElement
                   {...props}
                   itemName="PARTIAL_AS_SUBSTR"
@@ -522,10 +522,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="INPUT_SEQUENCE"
+              qualifiers={{ guiLabel: "Give the protein sequence" }}
               onChange={inputSequence.onChange}
             />
             {inputSequence.value && (
-              <CCP4i2TaskElement {...props} itemName="SEQIN" onChange={handleSeqinChange} />
+              <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Asymmetric unit contents" }} itemName="SEQIN" onChange={handleSeqinChange} />
             )}
             {!inputSequence.value && (
               <CCP4i2TaskElement
@@ -549,10 +550,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="INPUT_PHASES"
+              qualifiers={{ guiLabel: "Start from phases already known" }}
               onChange={inputPhases.onChange}
             />
             {inputPhases.value && (
-              <CCP4i2TaskElement {...props} itemName="FPHIN_HL" />
+              <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Starting phases" }} itemName="FPHIN_HL" />
             )}
           </CCP4i2ContainerElement>
 
@@ -696,6 +698,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD2"
+                  qualifiers={{ guiLabel: "Add a second wavelength (MAD)" }}
                   onChange={mad2.onChange}
                 />
                 {mad2.value && (
@@ -732,6 +735,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD3"
+                  qualifiers={{ guiLabel: "Add a third wavelength" }}
                   onChange={mad3.onChange}
                 />
                 {mad3.value && (
@@ -768,6 +772,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD4"
+                  qualifiers={{ guiLabel: "Add a fourth wavelength" }}
                   onChange={mad4.onChange}
                 />
                 {mad4.value && (
@@ -805,6 +810,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="NATIVE"
+              qualifiers={{ guiLabel: "Add a native dataset" }}
               onChange={native.onChange}
             />
             {native.value && (
@@ -841,9 +847,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: "Exclude free" }}
             containerHint="FolderLevel"
           >
-            <CCP4i2TaskElement {...props} itemName="FREE" />
+            <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Free R set" }} itemName="FREE" />
             {freeVal === "existing" && (
-              <CCP4i2TaskElement {...props} itemName="FREERFLAG" />
+              <CCP4i2TaskElement {...props} qualifiers={{ guiLabel: "Existing Free R set" }} itemName="FREERFLAG" />
             )}
             {freeVal === "new" && (
               <InlineField label="consisting of" width="6rem" hint="% of reflections">
@@ -1169,6 +1175,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="DO_HANDDET"
+              qualifiers={{ guiLabel: "Determine the hand" }}
               onChange={doHanddet.onChange}
             />
             {doHanddet.value && (
