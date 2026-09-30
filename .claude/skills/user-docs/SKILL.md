@@ -67,6 +67,14 @@ The mechanics are in `docs/user/README.md`; do not copy them here.
 - **An exception thrown inside a page-side timer never rejects**: the capture
   hangs. Keep page steps synchronous and sleep on the Node side.
 - **JPEG is wrong for screenshots**: 256-colour PNG is smaller and sharper.
+- **Make the scenario check its own story.** A run can succeed and show
+  nothing: SubstituteLigand "fitted" no ligand because the atom selection
+  `not (NUT or HOH)` matched nothing and left the parent's ligand in the
+  site. The selection language wants `not (NUT) and not (HOH)`; a name that
+  matches nothing is accepted silently. Assert the outcome (the ligand is in
+  the output model) and, where the truth is known, measure against it.
+- **Heavy reports need longer to settle** (`"settle": 30000` in the shot);
+  "Nothing to click labelled View" on a report page is usually that.
 
 ## Writing a page for a task that has none
 
