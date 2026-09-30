@@ -10,6 +10,7 @@ categories) the page is one of:
 conf.py calls write_status(); run directly to print the counts.
 """
 import re
+from functools import cache
 from pathlib import Path
 
 DOCS = Path(__file__).resolve().parent.parent
@@ -43,11 +44,24 @@ def chooser_categories():
                 r'title:\s*"([^"]+)"[\s\S]*?tasks:\s*\[([^\]]*)\]', block)]
 
 
+@cache
+def task_documents():
+    """{page directory: its document}, from the tasks index's toctrees
+    (a page is not always index.rst: crank2/crank2, dials/image_viewer)."""
+    docs = {}
+    index = (TASK_PAGES / "index.rst").read_text(encoding="utf-8")
+    for entry in re.findall(r"^   (\S+/\S+)\s*$", index, flags=re.M):
+        docs.setdefault(entry.split("/")[0], entry)
+    return docs
+
+
 def state(task):
-    page = TASK_PAGES / ALIASES.get(task, task)
-    if not (page / "index.rst").exists():
+    directory = ALIASES.get(task, task)
+    doc = task_documents().get(directory)
+    if doc is None or not (TASK_PAGES / f"{doc}.rst").exists():
         return "none", None
-    return ("current" if (page / "shots.json").exists() else "Qt"), page.name
+    current = (TASK_PAGES / directory / "shots.json").exists()
+    return ("current" if current else "Qt"), doc
 
 
 def write_status(out: Path):
@@ -62,7 +76,7 @@ def write_status(out: Path):
             if task not in seen:
                 counts[s] += 1
                 seen.add(task)
-            name = f":doc:`{task} <tasks/{page}/index>`" if page else task
+            name = f":doc:`{task} <tasks/{page}>`" if page else task
             rows.append(f"   * - {name}\n     - {s}\n")
     total = sum(counts.values())
     head = (
