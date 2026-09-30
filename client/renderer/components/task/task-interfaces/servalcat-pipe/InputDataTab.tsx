@@ -191,6 +191,7 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
             {...taskProps}
             itemName="HYDR_ALL"
             visibility={() => isTruthy(hydrUse)}
+            qualifiers={{ guiLabel: "Hydrogens" }}
           />
         </FieldRow>
 
