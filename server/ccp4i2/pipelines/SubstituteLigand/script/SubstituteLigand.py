@@ -950,7 +950,7 @@ class SubstituteLigand(CPluginScript):
                 details=(
                     f"{description[:1].upper()}{description[1:]} has been given, "
                     f"but {chosen}, so it will be ignored.\n\n"
-                    f"Set 'Chemistry of the ligand' to '{menuEntry}' to use it, or "
+                    f"Set 'Ligand provided as' to '{menuEntry}' to use it, or "
                     "clear the field so the job does not appear to read something "
                     "it does not."
                 ),

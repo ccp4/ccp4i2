@@ -60,7 +60,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         qualifiers={{ guiLabel: "Main inputs" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement {...taskProps} itemName="container.inputData.XYZIN" />
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="container.inputData.XYZIN"
+          qualifiers={{ guiLabel: "Atomic model" }}
+        />
 
         {/* X-ray merged inputs */}
         {isXtal && isMerged && (
@@ -84,7 +88,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
                 Using <strong>amplitudes</strong>
               </Typography>
             )}
-            <CCP4i2TaskElement {...taskProps} itemName="FREERFLAG" />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="FREERFLAG"
+              qualifiers={{ guiLabel: "Free R set" }}
+            />
           </>
         )}
 
@@ -96,7 +104,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
               itemName="HKLIN_UNMERGED"
               qualifiers={{ guiLabel: "Unmerged reflection data" }}
             />
-            <CCP4i2TaskElement {...taskProps} itemName="FREERFLAG" />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="FREERFLAG"
+              qualifiers={{ guiLabel: "Free R set" }}
+            />
           </>
         )}
 
@@ -147,7 +159,11 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         qualifiers={{ guiLabel: "Additional geometry dictionaries" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement {...taskProps} itemName="DICT_LIST" />
+        <CCP4i2TaskElement
+          {...taskProps}
+          itemName="DICT_LIST"
+          qualifiers={{ guiLabel: "Ligand restraint dictionaries" }}
+        />
       </CCP4i2ContainerElement>
 
       {/* Options */}

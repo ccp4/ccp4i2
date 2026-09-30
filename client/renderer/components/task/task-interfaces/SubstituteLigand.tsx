@@ -19,7 +19,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Ligand geometry" }}
         containerHint="BlockLevel"
       >
-        <CCP4i2TaskElement {...props} itemName="LIGANDAS" />
+        <CCP4i2TaskElement
+          {...props}
+          itemName="LIGANDAS"
+          qualifiers={{ guiLabel: "Ligand provided as" }}
+        />
         <CCP4i2TaskElement
           {...props}
           itemName="SMILESIN"
@@ -30,11 +34,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           {...props}
           itemName="MOLIN"
           visibility={() => ligandAs === "MOL"}
+          qualifiers={{ guiLabel: "Ligand as an MDL Mol file" }}
         />
         <CCP4i2TaskElement
           {...props}
           itemName="DICTIN"
           visibility={() => ligandAs === "DICT"}
+          qualifiers={{ guiLabel: "Ligand restraint dictionary" }}
         />
         <CCP4i2TaskElement
           {...props}
@@ -49,7 +55,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Refinement type" }}
         containerHint="BlockLevel"
       >
-        <CCP4i2TaskElement {...props} itemName="PIPELINE" />
+        <CCP4i2TaskElement
+          {...props}
+          itemName="PIPELINE"
+          qualifiers={{ guiLabel: "Placement of the starting model" }}
+        />
       </CCP4i2ContainerElement>
       <CCP4i2ContainerElement
         itemName=""
@@ -58,7 +68,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Starting coordinates" }}
         containerHint="BlockLevel"
       >
-        <CCP4i2TaskElement {...props} itemName="XYZIN" />
+        <CCP4i2TaskElement
+          {...props}
+          itemName="XYZIN"
+          qualifiers={{ guiLabel: "Starting model" }}
+        />
         <CCP4i2TaskElement
           {...props}
           itemName="STARTING_DICT_LIST"
@@ -86,6 +100,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           {...props}
           itemName="F_SIGF_IN"
           visibility={() => obsAs === "MERGED"}
+          qualifiers={{ guiLabel: "Merged reflections" }}
         />
       </CCP4i2ContainerElement>
       <CCP4i2ContainerElement
@@ -95,7 +110,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         qualifiers={{ guiLabel: "Free R flag" }}
         containerHint="BlockLevel"
       >
-        <CCP4i2TaskElement {...props} itemName="FREERFLAG_IN" />
+        <CCP4i2TaskElement
+          {...props}
+          itemName="FREERFLAG_IN"
+          qualifiers={{ guiLabel: "Free R set" }}
+        />
       </CCP4i2ContainerElement>
     </>
   );

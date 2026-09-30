@@ -91,6 +91,7 @@ export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
             <CCP4i2TaskElement
               {...taskProps}
               itemName="OCCUPANCY_SELECTION"
+              qualifiers={{ guiLabel: "Occupancy groups (group ID, chain, residue range)" }}
             />
 
             <CCP4i2TaskElement
