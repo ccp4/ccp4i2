@@ -26,6 +26,27 @@ const RDKitContext = createContext<RDKitContextType>({
   error: null,
 });
 
+// RDKit can be initialised once per page: its bindings register globally, and
+// a second initRDKitModule() rejects ("Cannot register public name
+// 'StringList' twice") however it is called. The provider has two ways to
+// start it (the <Script> onLoad, and a fallback for when that never fires),
+// and when both ran, the loser's error hid the module the winner had loaded:
+// SMILES fields showed "Failed to load molecule viewer". Both now await this.
+let rdkitOnce: Promise<RDKitModule> | null = null;
+const loadRDKitOnce = (args: object): Promise<RDKitModule> => {
+  if (!rdkitOnce) {
+    // @ts-ignore - initRDKitModule is defined by the loaded script
+    rdkitOnce = (window as any).initRDKitModule(args).then((module: any) => {
+      module.prefer_coordgen(true);
+      return module as RDKitModule;
+    });
+    rdkitOnce!.catch(() => {
+      rdkitOnce = null; // a failed load may be retried
+    });
+  }
+  return rdkitOnce!;
+};
+
 /**
  * Hook to access RDKit module from context.
  * Returns { rdkitModule, isLoading, error }
@@ -78,9 +99,8 @@ export const RDKitProvider: React.FC<PropsWithChildren> = ({ children }) => {
           : undefined;
       if (!g) return false;
       try {
-        const module = await g(createArgs);
+        const module = await loadRDKitOnce(createArgs);
         if (cancelled) return true;
-        module.prefer_coordgen(true);
         setRdkitModule(module);
         setIsLoading(false);
       } catch {
@@ -116,9 +136,7 @@ export const RDKitProvider: React.FC<PropsWithChildren> = ({ children }) => {
         id="rdkit-script"
         onLoad={async () => {
           try {
-            // @ts-ignore - initRDKitModule is defined by the loaded script
-            const module = await initRDKitModule(createArgs);
-            module.prefer_coordgen(true);
+            const module = await loadRDKitOnce(createArgs);
             setRdkitModule(module);
             setIsLoading(false);
           } catch (err) {
