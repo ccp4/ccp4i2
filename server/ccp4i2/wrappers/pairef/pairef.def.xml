@@ -58,9 +58,9 @@
             </qualifiers>
         </content>
         <content id="TLSIN">
-            <className>CDataFile</className>
+            <className>CTLSDataFile</className>
             <qualifiers>
-	            <guiLabel>TLS Input Parameters</guiLabel>
+	            <guiLabel>TLS groups</guiLabel>
                 <mustExist>False</mustExist>
                 <isDirectory>False</isDirectory>
                 <label>TLS Input Params</label>
@@ -80,7 +80,7 @@
           <className>CString</className>
            <qualifiers>
                <onlyEnumerators>True</onlyEnumerators>
-               <menuText>semi automated resolution shells, manual resolutions shells, automated resolution shells (0.05 A)</menuText>
+               <menuText>A number of shells of a given width,Shells listed explicitly,Automatic (0.05 &#197; shells)</menuText>
                <enumerators>semi,manual,auto</enumerators>
                <default>semi</default>
            </qualifiers>

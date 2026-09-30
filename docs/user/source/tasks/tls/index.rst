@@ -1,29 +1,63 @@
-+++
-TLS
-+++
- 
- **task generate or edit TLS set definitions**
+########################################
+Define or import TLS groups (ProvideTLS)
+########################################
 
+This task makes a set of TLS group definitions for refinement, either
+drawn up from a model or imported from a TLS file or text. It does not
+refine anything itself: its output is a file that
+:doc:`../prosmart_refmac/index` (and PAIREF) can use. The refinement task
+can also choose TLS groups by itself (its *automatic* TLS mode, on the
+Parameterisation tab); make them here when you want to decide the groups.
 
-`TLS Motion Determination (TLSMD) <http://skuld.bmsc.washington.edu/~tlsmd/>`_ analyzes a macromolecular crystal structure for evidence of flexibility, e.g. local or inter-domain motions. It does this by partitioning individual chains into multiple segments that are modeled as rigid bodies undergoing TLS (Translation/Libration/Screw) vibrational (anisotropic) motion. It generates all possible partitions up to a maximum number of segments. Each trial partition is scored by how well it explains the observed atomic displacement parameters (**B values**) that came out of crystallographic refinement.
+TLS (Translation/Libration/Screw) describes the anisotropic motion of a
+group of atoms as one rigid body, with about 20 parameters per group instead of
+six per atom. It suits medium resolution, where individual anisotropic
+B-factors are out of reach but the displacements are clearly not
+isotropic: domains that move relative to each other, or copies of a
+molecule in the asymmetric unit that move differently, whose residual
+B-factors are then similar enough for NCS restraints between them.
 
-Suitable for medium resolution, when full anisotropy is impossible
-Per group (20 parameters):
+When to use it: typically at medium resolution (around 2–3 Å), once
+refinement with isotropic B-factors has converged. One group per chain is
+a sound start; split a chain into domains only when they move
+independently. Refinement reports whether TLS helped: R-free should fall.
+If it does not, leave TLS out.
 
-• **Translation** – 6 parameters
+The pictures on this page come from the MDM2 project of the refinement
+route: a single chain, residues 18–108, defined as one group. (At 1.35 Å
+these data would not need TLS; they show how the task works.)
 
-• **Libration** – 6 parameters
+Input
+=====
 
-• **Screw rotation** – 8 parameters
+.. figure:: tls_input.png
+   :alt: Figure 1: TLS input
 
-    ``TLS refinement is useful when there is NCS. It is often the case that different copies of a molecule in the asymmetric unit have different overall displacements. These can be accounted for by refining TLS parameters for each molecule. The residual atomic displacement parameters (B factors) should then be similar between molecules, and NCS restraints can be applied between them.``
+   Figure 1: TLS input
 
-*TLS rigid body model is highly dependent on the quality of the crystal lattice, and conformational flexibility unique to the protein.*
- 
- .. toggle-header::
-        :header:  **more**
-        
-                 TLS (Translation/Libration/Screw) is a mathematical model that predicts the local positional displacement of atoms in a crystal structure based on an underlying assumption that each atom acts as a member of a rigid body that is displaced normally about a mean position. This displacement is seen crystallographically as non-spherical electron density at the atomic positions. The net displacement results both from actual vibration of the molecule in the crystal and from the static disorder within the crystal lattice that results from trapping different microconformers of the molecule in different unit cells making up the crystal lattice. The TLS formalism was originally developed to confirm rigid body displacement for small molecule crystallography, which yields high resolution data and precise anisotropic thermal parameters. Its success in predicting the thermal parameters for small molecules makes it tempting for use in macromolecular crystallography where it could potentially be used to find domain and loop flexibility in proteins; however, the challenges in applying the TLS model to macromolecular structures are different than those encountered with small molecules. Most macromolecular structures do not diffract to a high enough resolution to solve for individual atomic anisotropic thermal parameters (six per atom), so isotropic thermal parameters (one per atom) are used instead.
+A model **(1)**, whose chains and residue ranges the task can offer, or an
+existing TLS file **(2)** to start from. The groups are edited as a table
+**(3)**, one row per residue range: rows with the same group ID form one
+group. **Suggest from coordinates** fills the table with one group per
+chain; the import buttons read groups from a TLS file or pasted text. The
+**Free text** tab edits the same definitions in Refmac's own syntax.
 
+Results
+=======
 
-TLS Refinement tutorial can be found `here <https://www2.mrc-lmb.cam.ac.uk/groups/murshudov/content/tutorials/refmac_tutorial/files/part_2.html>`_
+.. figure:: tls_report.png
+   :alt: Figure 2: TLS report
+
+   Figure 2: TLS report
+
+The report shows the definitions written **(4)**, in Refmac's syntax: here
+one group, chain A residues 18 to 108. The TLS file is annotated with the
+number of groups it defines. To use it, choose *explicit TLS group
+definitions* under TLS on the refinement task's Parameterisation tab, and
+pick the file there.
+
+`TLS Motion Determination (TLSMD) <http://skuld.bmsc.washington.edu/~tlsmd/>`_
+partitions chains into TLS groups from a refined model's B-factors, if
+you want a data-driven division. A `TLS refinement tutorial
+<https://www2.mrc-lmb.cam.ac.uk/groups/murshudov/content/tutorials/refmac_tutorial/files/part_2.html>`_
+covers the refinement side.

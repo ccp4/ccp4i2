@@ -17,46 +17,84 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   return (
     <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
-      {/* Input Data */}
       <CCP4i2ContainerElement
         {...props}
         itemName=""
-        qualifiers={{ guiLabel: "Input Data" }}
+        qualifiers={{ guiLabel: "Input data" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement itemName="SH_TYPE" {...props} qualifiers={{ guiLabel: "Run Pairef with" }} />
-        <CCP4i2TaskElement itemName="USE_PREREF" {...props} />
-        <CCP4i2TaskElement itemName="F_SIGF" {...props} />
+        {/* The reflections must extend beyond the resolution the model
+            was refined at: the shells to test are the ones past it. */}
+        <CCP4i2TaskElement itemName="F_SIGF" {...props}
+          qualifiers={{ guiLabel: "Reflections, to beyond the resolution the model was refined at" }} />
         <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
-        <CCP4i2TaskElement itemName="UNMERGED" {...props} />
-        <CCP4i2TaskElement itemName="DICT" {...props} />
+        <CCP4i2TaskElement itemName="DICT" {...props}
+          qualifiers={{ guiLabel: "Restraint dictionary (the one the model was refined with)" }} />
+        <CCP4i2TaskElement itemName="UNMERGED" {...props}
+          qualifiers={{ guiLabel: "Unmerged reflections (optional: adds data statistics per shell)" }} />
         <CCP4i2TaskElement itemName="REFMAC_KEYWORD_FILE" {...props} />
+      </CCP4i2ContainerElement>
+
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Resolution shells" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="SH_TYPE" {...props} qualifiers={{ guiLabel: "Shells to add" }} />
+        <CCP4i2TaskElement itemName="INIRES" {...props}
+          qualifiers={{ guiLabel: "Starting resolution (Å; 0 reads it from the model)" }} />
         {shType === "semi" && (
           <>
-            <CCP4i2TaskElement itemName="NSHELL" {...props} qualifiers={{ guiLabel: "Add" }} />
-            <CCP4i2TaskElement itemName="WSHELL" {...props} qualifiers={{ guiLabel: "resolution shells of width" }} />
+            <CCP4i2TaskElement itemName="NSHELL" {...props} qualifiers={{ guiLabel: "Number of shells" }} />
+            <CCP4i2TaskElement itemName="WSHELL" {...props} qualifiers={{ guiLabel: "Width of each shell (Å)" }} />
           </>
         )}
         {shType === "manual" && (
-          <CCP4i2TaskElement itemName="MANSHELL" {...props} qualifiers={{ guiLabel: "Explicitly define shells" }} />
+          <CCP4i2TaskElement itemName="MANSHELL" {...props}
+            qualifiers={{ guiLabel: "Shell limits (Å), highest first, comma-separated: 2.1,2.0,1.9" }} />
         )}
-        <CCP4i2TaskElement itemName="NPRECYCLES" {...props} qualifiers={{ guiLabel: "Number of pre-refinement cycles is" }} />
-        {useShake.value && (
-          <CCP4i2TaskElement itemName="SHAKE" {...props} />
-        )}
-        <CCP4i2TaskElement itemName="USE_SHAKE" {...props} />
-        <CCP4i2TaskElement itemName="RESETBFAC" {...props} />
-        <CCP4i2TaskElement itemName="COMPLETE" {...props} />
-        <CCP4i2TaskElement itemName="INIRES" {...props} qualifiers={{ guiLabel: "Manually set the initial resolution (use if required)" }} />
-        <CCP4i2TaskElement itemName="NCYCLES" {...props} qualifiers={{ guiLabel: "Number of refinement cycles to perform" }} />
-        <CCP4i2TaskElement itemName="AUTO_WGT" {...props} />
+        <CCP4i2TaskElement itemName="COMPLETE" {...props}
+          qualifiers={{ guiLabel: "Complete cross-validation (repeat for every free set; slow)" }} />
+      </CCP4i2ContainerElement>
+
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Refinement" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="NCYCLES" {...props}
+          qualifiers={{ guiLabel: "Refinement cycles at each resolution" }} />
+        <CCP4i2TaskElement itemName="AUTO_WGT" {...props} qualifiers={{ guiLabel: "Automatic weighting" }} />
         {!autoWgt.value && (
-          <CCP4i2TaskElement itemName="WGT_TRM" {...props} />
+          <CCP4i2TaskElement itemName="WGT_TRM" {...props} qualifiers={{ guiLabel: "Weight" }} />
         )}
-        <CCP4i2TaskElement itemName="FIXED_TLS" {...props} />
+        <CCP4i2TaskElement itemName="USE_PREREF" {...props}
+          qualifiers={{ guiLabel: "Refine the model at the starting resolution first" }} />
+        {usePreref.value && (
+          <>
+            <CCP4i2TaskElement itemName="NPRECYCLES" {...props}
+              qualifiers={{ guiLabel: "Pre-refinement cycles" }} />
+            <CCP4i2TaskElement itemName="RESETBFAC" {...props}
+              qualifiers={{ guiLabel: "Reset B-factors to their mean before pre-refinement" }} />
+            <CCP4i2TaskElement itemName="USE_SHAKE" {...props}
+              qualifiers={{ guiLabel: "Randomise coordinates before pre-refinement" }} />
+            {useShake.value && (
+              <CCP4i2TaskElement itemName="SHAKE" {...props}
+                qualifiers={{ guiLabel: "Mean coordinate shift (Å)" }} />
+            )}
+          </>
+        )}
+        <CCP4i2TaskElement itemName="FIXED_TLS" {...props}
+          qualifiers={{ guiLabel: "Refine TLS" }} />
         {fixedTls.value && (
-          <CCP4i2TaskElement itemName="TLSCYC" {...props} />
+          <>
+            <CCP4i2TaskElement itemName="TLSIN" {...props} />
+            <CCP4i2TaskElement itemName="TLSCYC" {...props}
+              qualifiers={{ guiLabel: "TLS refinement cycles" }} />
+          </>
         )}
       </CCP4i2ContainerElement>
     </Paper>

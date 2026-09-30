@@ -1,76 +1,100 @@
-==================================
+##################################
 Space Group Validation with Zanuda
-==================================
+##################################
 
-`Zanuda <http://scripts.iucr.org/cgi-bin/paper?S1399004714014795>`_ was developed to automate the validation of space group in case of the presence of pseudosymmetry and twinning. The program can be used to restore the correct space group in structures which were intentionally solved in low symmetry space groups including P1 (the highest symmetry = the smallest cell volume). The validation is based on the results of a series of refinements in space groups, which are compatible with the observed unit cell parameters.
+`Zanuda <http://scripts.iucr.org/cgi-bin/paper?S1399004714014795>`_ checks
+whether a structure was solved in the right space group. It matters when
+there is *pseudosymmetry*: an approximate global symmetry close enough to
+exact that a structure can be solved and partly refined in the wrong space
+group, with some pseudosymmetry operations treated as crystallographic and
+vice versa. The usual sign is refinement that stalls, with R-free stuck at
+about 35% or higher, and a map that stays imperfect (breaks in the main
+chain, poor solvent) without suggesting anything to rebuild. It is common
+after molecular replacement. Zanuda can also restore the right space group
+to a structure deliberately solved in a lower symmetry, down to P1.
 
-If the pseudosymmetry is very close to an exact crystallographic symmetry, the structure can be solved and partially refined in the **wrong space group**. Typically, in such false structures all or some of the *pseudosymmetry operations are treated as crystallographic symmetry operations and vice versa*. Such misassignment is not uncommon when the structure is solved by molecular replacement (MR) and ``it becomes apparent, when the R-free ceases to decrease at about 35% or even at a higher value, and no further model rebuilding and refinement can improve it.`` At this point the electron density map remains imperfect (breaks in the main chain electron density, poor solvent peaks) while does not suggest any particular ways of model improvement.
+Zanuda assumes the model is already refined well enough (R-free about 40%
+or better), though not necessarily in the true space group, and that the
+pseudosymmetry is close enough to exact symmetry for refinement to reach
+the global minimum when the constraints change. It ignores candidate
+operations whose Cα r.m.s.d. exceeds 3 Å.
 
-In case of space group validation with Zanuda was made the next assumptions:
+The pictures on this page come from the MDM2 project of the refinement
+route: the refined model in its space group, P6\ :sub:`5`\ 22, with one
+molecule in the asymmetric unit.
 
-    * The pseudosymmetry operations, if any, are close enough to exact symmetry operations and, therefore, refinement converges to the global minimum when wrong symmetry constraints are removed and correct constraints are imposed.
+Input
+=====
 
-    * The errors in individual macromolecules do not hinder the difference between pseudosymmetry and crystallographic symmetry, i.e. the model is already refined well enough (R-free around or below 40%). ``However it is not assumed that this refinement has been performed in the true space group``.
+.. figure:: zanuda_input.png
+   :alt: Figure 1: Zanuda input
 
-The search for a minimum free energy and, as a consequence, the regular packing of molecules in a crystal lattice often leads to a symmetric relationship between the molecules. A characteristic of a crystal is that it has unit translations in three dimensions, also called three-dimensional translational symmetry, corresponding to the repetition of the unit cells. Application of the symmetry operators, such as rotation, reflection, or inversion, leaves the entire crystal unchanged if the space group was chosen right. There are 230 different ways to combine the allowed symmetry operations in a crystal, leading to 230 space groups. They can be found in the `International Tables for Crystallography <https://it.iucr.org/Ac/>`_
-Only 65 space groups are “biological”. The reason is that in protein crystals, the application of mirror planes and inversion centers (centers of symmetry) would change the asymmetry of the amino acids: An l-amino acid would become a d-amino acid, but these are never found in proteins.
+   Figure 1: Zanuda input
 
-**How do we deduce the Space Group in practice?**
+The data and free R set **(1)**, and the refined model **(2)**.
 
-• We start in reciprocal space (point group)
+Results
+=======
 
-• We go all way back from symmetry in reciprocal space to crystal space group
+.. figure:: zanuda_report.png
+   :alt: Figure 2: Zanuda report
 
-    Data processing gives values of the unit cell parameters
+   Figure 2: Zanuda report
 
-    Lattice symmetry is derived from the unit cell parameters
+The report opens with the verdict **(3)**, then shows the three steps
+behind it. Step 1 **(4)** places the model in the highest-symmetry space
+group the cell allows (the *supergroup*) and scores it. Step 2 **(5)**
+refines it in every subgroup of that supergroup, first as rigid bodies
+(R-work (RB)) and then with restraints, and picks the best. Step 3
+**(6)** starts from the best and adds candidate symmetry back one element
+at a time, keeping each only if the fit holds.
 
-    Comparison of related intensities gives crystal point group
+Here Zanuda tested ten subgroups. The best, C121, has an R-free of 0.327;
+back in P6\ :sub:`5`\ 22 it is 0.342. That difference comes only from
+imposing symmetry: a subgroup always fits slightly better, because it has
+more parameters. What counts is whether the difference is large. It is
+not, and Zanuda concludes: "R-factor in the original subgroup is (almost)
+the best. The original spacegroup assignment seems to be correct." With one
+molecule in the asymmetric unit there was no pseudosymmetry to find.
 
-    Systematic absences allow to reduce the number of possible space groups
+A result worth acting on looks different: a lower-symmetry group whose
+R-free is clearly lower (several per cent) than the original's, and a
+final space group different from the one you started in. The output model
+and maps are then in the space group Zanuda chose, named in their
+annotations **(7)**; refine from them.
 
-    Space group is only a hypothesis until structure is complete
+The R factors are from Zanuda's own short refinements and are higher than
+the full refinement's (0.235 / 0.247 for this model). Compare them only
+with each other.
 
------------
-Point Group
------------
+-----------------
+More on the ideas
+-----------------
 
-In three-dimensional objects, such as crystals, symmetry elements may be present in several combinations.  In fact, in crystals there are 32 possible combinations of symmetry elements.  These operations can be thus combined to form a group of symmetry operations. These groups of operations are called **point groups** because the symmetry elements of these operations all pass through a single point of the object. Examples for point group symmetry operations are **rotation axes**, **inversion axes**, and **mirror planes**. ``In case of point group you have a point to which all symmetry operations go through`` with a net result that the actual molecule does not change.
+Crystallographic symmetry is global and exact; non-crystallographic
+symmetry (NCS) is local and approximate; pseudosymmetry is global and
+approximate. An NCS operation is defined by the best overlap of two
+molecules, a pseudosymmetry operation by the best match of the whole
+crystal with its transformed copy, so the two are in general different
+operations. With one molecule per asymmetric unit there is no
+pseudosymmetry.
 
-More about **Symmetry in Crystallography** you can find `here <http://xrayweb.chem.ou.edu/notes/symmetry.html>`__
-
---------------
-Pseudosymmetry
---------------
-
-Crystals have an ordered internal arrangement of atoms i.e. the atoms are arranged in a symmetrical fashion on a three-dimensional network referred to as a lattice.
-Symmetry operator defines a rotation and a translation of the crystal such that each atom in the repositioned copy matches a certain atom in the original. **Pseudo-symmetry operations** are defined similarly, except that the coordinates of matching atoms are not required to coincide exactly. Therefore, it is convenient to define a **pseudo-symmetry space group (PSSG)** which contains both all the operations from the crystal space group and all the pseudo-symmetry operations.
-
-.. note::
-    Noncrystallographic symmetry (NCS) and pseudo-symmetry are different concepts. An NCS operation is local and is defined by the best overlap of two NCS-related molecules after applying the NCS operation to one of them. In contrast, the pseudo-symmetry operation is global and is defined by the best match between the entire crystal and its transformed copy. Thus, the NCS operation and the pseudo-symmetry operation relating the same two molecules are in general different operations and may coincide only in special cases.
-
-**Crystallographic symmetry**: symmetry is **global** and **exact**
-
-**Generic Non-Crystallographic Symmetry (NCS)**: symmetry is	**local** and **approximate**
-
-**Pseudosymmetry**: symmetry is **global**	and	**approximate**
-
-In structures with one molecule per asymmetric unit (AU) there is no pseudosymmetry and PSSG coincides with the space group of the crystal. In many cases of NCS the global mapping of the crystal on itself cannot be defined even formally and PSSG remains equal to the crystal space group.
-
-**Zanuda imposes the upper limit of 3 Å for the C-α r.m.s.d. between the structure and its copy generated by an additional global operation**. Global operations with larger values of r.m.s.d. are ignored as they are unlikely to be misinterpreted.
-
-
-
+Only 65 of the 230 space groups are possible for chiral molecules such as
+proteins: mirror planes and inversion centres would turn L-amino acids
+into D. The space group is deduced step by step (lattice symmetry from the
+cell, point group from related intensities, space group from systematic
+absences), and it remains a hypothesis until the structure is complete.
 
 **References**
 
-`Lebedev A.  & Isupov M.  (2014). Acta Cryst. D70, 2430–2443. <http://scripts.iucr.org/cgi-bin/paper?S1399004714014795>`_
+`Lebedev A. & Isupov M. (2014). Acta Cryst. D70, 2430–2443.
+<http://scripts.iucr.org/cgi-bin/paper?S1399004714014795>`_
 
-`Drenth J. (2007) Principles of Protein X-Ray Crystallography. Springer-Verlag New York  <https://www.springer.com/gp/book/9780387333342>`_
+`Drenth J. (2007) Principles of Protein X-Ray Crystallography.
+Springer-Verlag New York <https://www.springer.com/gp/book/9780387333342>`_
 
+**Acknowledgements**
 
-**ACKNOWLEDGEMENTS**
-
-This article uses materials provided by Andrey Lebedev.
-
-More about **space group validation with Zanuda** you can find `here <https://www.ccp4.ac.uk/newsletters/newsletter48/articles/Zanuda/zanuda.html>`__
+This page uses material provided by Andrey Lebedev. More about space group
+validation with Zanuda `here
+<https://www.ccp4.ac.uk/newsletters/newsletter48/articles/Zanuda/zanuda.html>`__.

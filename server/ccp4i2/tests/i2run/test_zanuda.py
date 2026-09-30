@@ -22,3 +22,12 @@ def test_zanuda_8xfm(cif8xfm, mtz8xfm):
         for name in ["FPHIOUT", "DIFFPHIOUT"]:
             mtz_file = job / f"{name}.mtz"
             assert mtz_file.exists(), f"No {name}: {list(job.iterdir())}"
+
+        # Each output says what it is and in which space group (they were
+        # listed as 'zanuda.pdb', 'FPHIOUT.mtz' and 'DIFFPHIOUT.mtz').
+        from ccp4i2.db import models
+        job_record = models.Job.objects.filter(number=job.name.replace("job_", "")).first()
+        for param in ("XYZOUT", "FPHIOUT", "DIFFPHIOUT"):
+            gleaned = models.File.objects.filter(job=job_record, job_param_name=param).first()
+            assert gleaned is not None and "Zanuda" in (gleaned.annotation or ""), \
+                f"{param} has no annotation"

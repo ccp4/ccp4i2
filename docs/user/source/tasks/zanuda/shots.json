@@ -1,0 +1,74 @@
+{
+  "scenario": "../../../tools/scenario_refine_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "zanuda_input.png",
+      "job": 53,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Reflection data",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "field": "Observed data",
+          "badge": "1"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "zanuda_report.png",
+      "job": 49,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "R-factor in the original",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "R-factor in the original",
+          "badge": "3"
+        },
+        {
+          "text": "Step 1.",
+          "badge": "4"
+        },
+        {
+          "text": "Step 2.",
+          "badge": "5"
+        },
+        {
+          "text": "Step 3.",
+          "badge": "6"
+        },
+        {
+          "text": "Model in P 65 2 2 from Zanuda",
+          "badge": "7"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/zanuda/script/zanuda.def.xml": "ede37cf3b77e733ef3a8b0756465b9ad61a90db9",
+    "server/ccp4i2/wrappers/zanuda/script/zanuda.py": "413068e1769eb965009f247efa7fe5220a3dc478",
+    "server/ccp4i2/wrappers/zanuda/script/zanuda_report.py": "83b897b39e657ea8fec276cfbf03105b518d8ae6",
+    "client/renderer/components/task/task-interfaces/zanuda.tsx": "501896e4fa7d70e5bb5bfb7803472f4c8efa0408",
+    "docs/user/tools/scenario_refine_tools.py": "db3813309963b4c213c27128b9f58c7d78619300"
+  }
+}

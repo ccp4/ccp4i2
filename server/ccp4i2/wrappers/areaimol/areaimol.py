@@ -1,4 +1,5 @@
 import base64
+import re
 import sys
 
 import gemmi
@@ -7,6 +8,31 @@ from lxml import etree
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.smartie import smartie
+
+
+# "LEU A  54   -28.5": a residue, its chain and number, and its change in
+# accessible area, three to a line under "Differences for individual chains".
+_RESIDUE_DIFFERENCE = re.compile(
+    r"([A-Z0-9]{1,3})\s+(\S)\s+(-?\d+[A-Z]?)\s+(-?\d+\.\d+)")
+
+
+def parse_areas(log_text):
+    """What a user runs AREAIMOL to learn, from its log: the total accessible
+    area of each model read, and in comparison mode the total difference and
+    the residues whose area changes, largest change first."""
+    totals = [float(x) for x in re.findall(r"^\s*TOTAL AREA:\s+(-?[\d.]+)", log_text, re.M)]
+    difference = re.search(r"^\s*TOTAL AREA DIFFERENCE:\s+(-?[\d.]+)", log_text, re.M)
+    residues = []
+    block = re.search(r"Differences for individual chains\.(.*?)Total area difference",
+                      log_text, re.S)
+    if block:
+        for name, chain, number, change in _RESIDUE_DIFFERENCE.findall(block.group(1)):
+            residues.append({"name": name, "chain": chain, "number": number,
+                             "change": float(change)})
+    residues.sort(key=lambda r: r["change"])
+    return {"totals": totals,
+            "difference": float(difference.group(1)) if difference else None,
+            "residues": residues}
 
 
 class areaimol(CPluginScript):
@@ -69,6 +95,22 @@ class areaimol(CPluginScript):
             logText = etree.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"rb") as logFile:
                 logText.text = base64.b64encode(logFile.read())
+            try:
+                with open(self.makeFileName("LOG"), encoding="utf-8", errors="replace") as logFile:
+                    areas = parse_areas(logFile.read())
+                areasNode = etree.SubElement(xmlStructure, "Areas")
+                for total in areas["totals"]:
+                    etree.SubElement(areasNode, "Total").text = "%.1f" % total
+                if areas["difference"] is not None:
+                    etree.SubElement(areasNode, "Difference").text = "%.1f" % areas["difference"]
+                for r in areas["residues"]:
+                    node = etree.SubElement(areasNode, "Residue")
+                    for key in ("name", "chain", "number"):
+                        etree.SubElement(node, key).text = r[key]
+                    etree.SubElement(node, "change").text = "%.1f" % r["change"]
+            except Exception as e:
+                print("WARNING: could not read the areas from the log:", e)
+
             try:
                 smartie_text = ""
                 smartie_logfile = smartie.parselog(self.makeFileName("LOG"))

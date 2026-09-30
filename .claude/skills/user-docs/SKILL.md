@@ -124,6 +124,21 @@ request whatever its base.
   all and the warning would stop being read. The label check still searches
   the widgets. A page whose task name is not its directory or an `ALIASES`
   entry names it with `"task"` in `shots.json`.
+- **A report's text is parsed as XML.** HTML entities (`&Aring;`, `&sup2;`,
+  `&rarr;`) are undefined there and fail the whole report; write the
+  characters. Escape anything taken from a log (`27 < 50` broke PAIREF's).
+  Build a new report in a unit test (`test_pairef_results.py`), which
+  catches both before a capture does.
+- **"Application error: a client-side exception"** on a job page was the
+  resizable panels' generated ids differing between server and client; the
+  project and job layouts now give them fixed ids. If it comes back, the
+  capture's `.failed.txt` has the exception.
+- **`task[1]` counts unrun clones; `task[-1]` skips jobs without the file.**
+  To name one particular earlier job, use its number: `fileOut=[1].HKLOUT[0]`.
+- **Run `capture.mjs` in a shell that has not sourced CCP4**: its setup puts
+  Node 20 first on the PATH ("WebSocket is not defined").
+- **Omit `"section"` for a first look** at a new page: the shot takes the
+  whole open tab, which shows what the sections and labels are called.
 
 ## Write the judgement down
 

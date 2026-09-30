@@ -1,56 +1,80 @@
-======================
-Shift field refinement
-======================
+###################################
+Shift field refinement (Sheetbend)
+###################################
 
-The task performs model morphing by shift field refinement. This is a very fast form of preliminary refinement which can be applied as a precursor to conventional refinement. Shift field refinement can be applied at any resolution (at low resolution is particularly suited to correcting large shifts in secondary structure elements in molecular replacement) and used to refine B factors.
+Sheetbend moves a model towards the data by refining a *shift field*: a
+smooth displacement, fitted over the whole cell, that every atom follows.
+Because the field is smooth, it can move whole secondary-structure elements
+at once from low-resolution data, which is what a molecular replacement
+solution from a homologue usually needs before conventional refinement can
+take over. It is very fast, and can refine B-factors the same way.
 
------
+Use it on a fresh molecular replacement solution, or on a model placed in a
+cryo-EM map or a different crystal form. Do not use it on a model that is
+already refined: atomic refinement does better from there.
+
+The pictures on this page come from the MDM2 project of the refinement
+route: Sheetbend applied to the molecular replacement solution that Phaser
+found with a Chainsaw model of MDMX (see :doc:`../ensemble_phaser/index`).
+
 Input
------
+=====
 
-A reflection file and model coordinate file must be provided as a task's input. **Reflection file** should contain the data for the unknown, work structure. The required columns are F and phi or F, sigF, and a set of HL coefficients from a phasing, phase improvement, or refinement program.
+.. figure:: sheetbend_input.png
+   :alt: Figure 1: Sheetbend input
 
+   Figure 1: Sheetbend input
 
-For coordinate refinement, the calculation would normally start at low resolution (6Å), and then increase to 3 or 4Å before moving to regular refinement. 
+The data and free R set **(1)**, and the model to move **(2)**. The free R
+set is optional: at the low resolution Sheetbend starts from, very few
+reflections are free, and their R factor is noisy.
 
-.. image:: image_1.png
-        :scale: 50 %
-        :align: center
+.. figure:: sheetbend_options.png
+   :alt: Figure 2: Sheetbend options
 
-Depending on the speed and fit required, b-factor refinement may be usefully performed at higher resolutions. 
+   Figure 2: Sheetbend options
 
-.. image:: image_2.png
-        :scale: 50 %
-        :align: center
+What to refine **(3)**: coordinates by default; isotropic or anisotropic
+B-factors as well or instead. The number of cycles **(4)** and the
+resolution **(5)**: "6.0, 3.0" means the first cycle uses data to 6 Å and
+the last to 3 Å, stepping between them, so the large shifts are fitted
+first. The radius of each cycle's shift field is the resolution times the
+sphere-radius factor in the advanced options.
 
-1. Automatically set the radius in proportion to the resolution for the current cycle. The resolution is multiplied by this factor to get the radius (Default 4.0)
+Results
+=======
 
-2. Select to perform pseudo-regularization
+.. figure:: sheetbend_report.png
+   :alt: Figure 3: Sheetbend report
 
-3. A number of cycles to perform. For coordinates, 10-20 is probably reasonable, B-factor refinement is faster (Default 1)
+   Figure 3: Sheetbend report
 
-------
-Output
-------
+The report lists R and R-free at the start of each cycle **(6)**. They are
+calculated with that cycle's data only, so they can be compared only
+between cycles at the same resolution: the numbers rise as the resolution
+extends, even while the model improves.
 
-The program outputs table of R-factors (and, if a flag is provided, free R-factor) at the start of each cycle. Note that these are based on the reflections used for a given cycle, which may change if the resolution changes from cycle to cycle. Values are therefore not comparable from cycle to cycle unless the resolution is unchanged. As a result, the values are only really useful for evaluating radius settings using the same resolution settings.
+To see what Sheetbend achieved, compare the model before and after at one
+resolution. Here, at 3 Å, R fell from 0.566 to 0.557 and R-free from 0.564
+to 0.551; at 6 Å, R-free fell from 0.670 to 0.621. That is a real but
+modest improvement, as it should be for this model: Chainsaw has already
+cut back the side chains that differ between MDMX and MDM2, and a smooth
+shift cannot rebuild what is missing. Take the moved model into
+refinement (:doc:`../prosmart_refmac/index`) or model building.
 
-The free-R factor is very noisy at low resolutions and degrades performance, so the use of a free set is probably inadvisable.
-
+The output model **(7)** is annotated "Model after shift-field refinement".
 
 ----------------
 Acknowledgements
 ----------------
 
-This article uses materials kindly provided by **Professor Kevin Cowtan**, whose help is greatly appreciated.
+This page uses material provided by **Professor Kevin Cowtan**.
 
+`Macromolecular refinement using shift field optimization and
+regularization, a talk by K. Cowtan
+<https://www.youtube.com/watch?v=V9EmwP0mqUY&t=135s>`_
 
-Read more `here <http://www.ysbl.york.ac.uk/~cowtan/sheetbend/csheetbend.html>`_
+**Reference**
 
-
-`Macromolecular refinement using shift field optimization and regularization talk by K. Cowtan <https://www.youtube.com/watch?v=V9EmwP0mqUY&t=135s>`_
-
-
-**References**
-
-`Cowtan, K., Metcalfe, S. & Bond, P. (2020). Acta Cryst. D76, 1192-1200. <https://journals.iucr.org/d/issues/2020/12/00/di5041/>`_
+`Cowtan, K., Metcalfe, S. & Bond, P. (2020). Acta Cryst. D76, 1192-1200.
+<https://journals.iucr.org/d/issues/2020/12/00/di5041/>`_

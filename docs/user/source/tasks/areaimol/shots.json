@@ -1,0 +1,82 @@
+{
+  "scenario": "../../../tools/scenario_refine_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "areaimol_input.png",
+      "job": 55,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Model",
+          "badge": "1"
+        },
+        {
+          "field": "Second model, to compare with the first",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "areaimol_options.png",
+      "job": 55,
+      "tabs": [
+        "Task interface",
+        "Parameters"
+      ],
+      "section": {
+        "text": "Differences mode",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "field": "Differences mode",
+          "badge": "3"
+        },
+        {
+          "field": "Output mode",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "areaimol_report.png",
+      "job": 51,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Accessible surface area",
+        "scroll": true
+      },
+      "until": "AREAIMOL summary",
+      "callouts": [
+        {
+          "text": "Accessible area of the first model",
+          "badge": "5"
+        },
+        {
+          "text": "Change in area",
+          "closest": "table",
+          "badge": "6"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/areaimol/areaimol.def.xml": "1b97a444d5be681587d42a56f1da1f3ac85be6a7",
+    "server/ccp4i2/wrappers/areaimol/areaimol.py": "946c0e326dada00213c6b81102a2adbe057ce01d",
+    "server/ccp4i2/wrappers/areaimol/areaimol_report.py": "952ebcb958baeb0671de3c06fa91e9b4c40c0f08",
+    "client/renderer/components/task/task-interfaces/generic.tsx": "1058a8115a1d3b56a51168e286dee71dc12dee32",
+    "docs/user/tools/scenario_refine_tools.py": "db3813309963b4c213c27128b9f58c7d78619300"
+  }
+}

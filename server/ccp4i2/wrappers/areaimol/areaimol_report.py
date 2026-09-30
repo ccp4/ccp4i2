@@ -20,6 +20,33 @@ class areaimol_report(Report):
             plotLine.append('colour','blue')
             plotLine.append('symbolsize','0')
 
+    def addAreas(self):
+        """The result first: accessible areas and, when two models were
+        compared, the residues whose accessible area changes."""
+        totals = [n.text for n in self.xmlnode.findall(".//Areas/Total")]
+        if not totals:
+            return
+        fold = self.addFold(label="Accessible surface area", initiallyOpen=True)
+        difference = self.xmlnode.findtext(".//Areas/Difference")
+        if difference is None:
+            fold.append("<p>Total accessible area: %s Å²</p>" % totals[0])
+            return
+        fold.append(
+            "<p>Accessible area of the first model %s Å², of the second %s "
+            "Å². Over the atoms the two share, the first has %s "
+            "Å² %s accessible area: negative where something present only "
+            "in the first model covers the surface.</p>" % (
+                totals[0], totals[1] if len(totals) > 1 else "?",
+                difference.lstrip("-"),
+                "less" if difference.startswith("-") else "more"))
+        if self.xmlnode.findall(".//Areas/Residue"):
+            fold.append("<p>Residues whose accessible area changes, largest change first:</p>")
+            table = fold.addTable(select=".//Areas", transpose=False, id="residue_differences")
+            for title, select in (("Residue", "Residue/name"), ("Chain", "Residue/chain"),
+                                  ("Number", "Residue/number"),
+                                  ("Change in area (Å²)", "Residue/change")):
+                table.addData(title=title, select=select)
+
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(
             self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw
@@ -29,6 +56,7 @@ class areaimol_report(Report):
             self.append("<p><b>The job is currently running.</b></p>")
 
         if jobStatus not in ["Running", "Running remotely"]:
+            self.addAreas()
             try:
                 summaryText = ""
                 if len(self.xmlnode.findall(".//SummaryText"))>0:
@@ -37,7 +65,9 @@ class areaimol_report(Report):
                     for node in xmlNodes:
                         summaryText += base64.b64decode(node.text).decode()
                 if summaryText:
-                    fold = self.addFold(label="Summary", initiallyOpen=True)
+                    # The numbers are above; this is the program's own account.
+                    fold = self.addFold(label="AREAIMOL summary",
+                                        initiallyOpen=not self.xmlnode.findall(".//Areas/Total"))
                     fold.addPre(text=summaryText)
             except:
                 pass

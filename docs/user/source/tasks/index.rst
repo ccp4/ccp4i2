@@ -205,6 +205,8 @@ Coordinate data tools
    gesamt/index
    coordinate_selector/index
    fractional_coordinates/index
+   areaimol/index
+   modelASUCheck/index
 
 Indices and tables
 ==================

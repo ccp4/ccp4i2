@@ -16,8 +16,10 @@ export default function JobLayout(props: PropsWithChildren) {
           <JobMenuProvider>
             <JobTabProvider>
               <FileMenuProvider>
-                <PanelGroup direction="horizontal">
-                  <Panel>{props.children}</Panel>
+                {/* Explicit ids, as in project/[id]/layout.tsx: generated
+                    ones can differ between server and client and crash the page. */}
+                <PanelGroup id="job-panels" direction="horizontal">
+                  <Panel id="job-content">{props.children}</Panel>
                 </PanelGroup>
               </FileMenuProvider>
             </JobTabProvider>

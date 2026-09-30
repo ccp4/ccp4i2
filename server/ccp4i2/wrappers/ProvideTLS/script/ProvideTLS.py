@@ -36,6 +36,9 @@ class ProvideTLS(CPluginScript):
 
         with open(self.container.outputData.TLSFILE.fullPath.__str__(), "w") as myFile:
             myFile.write(tls_text)
+        groups = len(re.findall(r"^\s*TLS\b", tls_text, flags=re.M))
+        self.container.outputData.TLSFILE.annotation.set(
+            "TLS definitions, %d group%s" % (groups, "" if groups == 1 else "s"))
 
         from lxml import etree
         root = etree.Element('ProvideTLSOutput')

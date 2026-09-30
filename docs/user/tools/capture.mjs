@@ -132,7 +132,11 @@ const PAGE_HELPERS = () => {
     },
     // A folder of the interface ("Input data", "Controls"): its whole panel.
     // Or {text, scroll: true}: the scrolling panel that shows that text (a report).
+    // No section: the open tab's whole panel, for a first look at a new page.
     section(spec) {
+      if (spec == null) {
+        return [...document.querySelectorAll("[role=tabpanel]")].find(visible) || document.body;
+      }
       if (typeof spec === "object") {
         let el = this.containing(spec.text);
         while (el && !/auto|scroll/.test(getComputedStyle(el).overflowY)) el = el.parentElement;

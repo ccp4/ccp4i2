@@ -1,0 +1,54 @@
+{
+  "scenario": "../../../tools/scenario_refine_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "fractional_coordinates_input.png",
+      "job": 45,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Input model",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "text": "Input model",
+          "badge": "1"
+        }
+      ]
+    },
+    {
+      "out": "fractional_coordinates_report.png",
+      "job": 36,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Input Data",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "mmCIF with fractional coordinates",
+          "badge": "2"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/add_fractional_coords/script/add_fractional_coords.def.xml": "6dd42dd8df929cf3bc65036d84a4209a1ccd12e4",
+    "server/ccp4i2/wrappers/add_fractional_coords/script/add_fractional_coords.py": "c1a709d2c726ecba7fb1a3ff07add887e04fc92b",
+    "server/ccp4i2/wrappers/add_fractional_coords/script/add_fractional_coords_report.py": "2479484c58866bc7cbeb1af612dc231901b53231",
+    "client/renderer/components/task/task-interfaces/add_fractional_coords.tsx": "c1865759583874548a61093aceb5ebf00edb0a70",
+    "docs/user/tools/scenario_refine_tools.py": "db3813309963b4c213c27128b9f58c7d78619300"
+  }
+}

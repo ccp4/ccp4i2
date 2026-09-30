@@ -1,5 +1,6 @@
 
 import os
+import re
 import shutil
 import xml.etree.ElementTree as etree
 
@@ -7,6 +8,30 @@ import numpy
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.report import Report
+
+
+def inline_svg(text):
+    """An SVG file's text, fit to go inside a report element: without its XML
+    declaration and DOCTYPE, which are legal only at the start of a document.
+    Embedded as they came, they made the whole report fail to parse ("XML or
+    text declaration not at start of entity")."""
+    text = re.sub(r"^\s*<\?xml[^>]*\?>", "", text)
+    return re.sub(r"<!DOCTYPE[^>\[]*(\[[^\]]*\])?\s*>", "", text).lstrip()
+
+
+def fit_svg(text, size):
+    """Scale an SVG drawn at a fixed size to fit a size-by-size box: give it
+    a viewBox from its own width and height, then the box's dimensions. (The
+    Cremer-Pople sphere is drawn at 430 px and overflowed its 250 px box
+    across the plot beside it.)"""
+    m = re.search(r'<svg\b[^>]*?\swidth="([\d.]+)"[^>]*?\sheight="([\d.]+)"', text)
+    if not m or "viewBox" in text[:m.end()]:
+        return text
+    w, h = m.group(1), m.group(2)
+    tag = m.group(0)
+    fitted = (tag.replace(f'width="{w}"', f'width="{size}"', 1)
+                 .replace(f'height="{h}"', f'height="{size}" viewBox="0 0 {w} {h}"', 1))
+    return text.replace(tag, fitted, 1)
 
 
 class privateer_report(Report):
@@ -22,7 +47,7 @@ class privateer_report(Report):
 
     # Read the SVG content for inline embedding in the report
     with open(imageFileJob, 'r') as f:
-        imageFileSvg = f.read()
+        imageFileSvg = fit_svg(inline_svg(f.read()), 250)
 
     background_pyranosesSrc = os.path.join(CCP4Utils.getCCP4I2Dir(), 'wrappers/privateer/script/mercator_pyranoses.png' )
     background_pyranosesJob = os.path.join(jobInfo['fileroot'], 'mercator_pyranoses.png' )
@@ -244,7 +269,7 @@ class privateer_report(Report):
             svg_filename = os.path.join ( directory, glycan.text )
 
             svg_file = open(svg_filename, 'r')
-            svg_string = svg_file.read()
+            svg_string = inline_svg(svg_file.read())
             svg_file.close()
 
             svg_string_partitioned = svg_string.partition("width=\"")
@@ -295,7 +320,7 @@ class privateer_report(Report):
                                 svg_filename_permutation = os.path.join ( directory, permutationsvg )
 
                                 svg_file_permutation = open(svg_filename_permutation, 'r')
-                                svg_string_permutation = svg_file_permutation.read()
+                                svg_string_permutation = inline_svg(svg_file_permutation.read())
                                 svg_file_permutation.close()
 
                                 # svg_string_partitioned_permutation = svg_string_permutation.partition("width=\"")
