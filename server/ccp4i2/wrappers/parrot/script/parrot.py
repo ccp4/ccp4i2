@@ -27,7 +27,11 @@ class parrot(CPluginScript):
           self.refHklin = None
 
       self.seqin = os.path.join(self.workDirectory,'seqin.fasta')
-      self.container.inputData.ASUIN.writeFasta(self.seqin)
+      # Write every copy (writeMulti): parrot estimates the solvent content as
+      # N copies of whatever seqin holds and guesses N by Matthews probability.
+      # With one copy of each sequence the copy count the ASU declares is lost,
+      # and the guess can be wrong (AHIR, 6 copies: parrot chose 9).
+      self.container.inputData.ASUIN.writeFasta(self.seqin, writeMulti=True)
 
     def  processOutputFiles(self):
       # Need to set the expected content flag  for phases data
