@@ -1,0 +1,72 @@
+# Re-runs the gates when a pull request's base branch changes.
+# ============================================================================
+# Stacked pull requests are routine here: the user-help work lands as a chain
+# of PRs, each based on the branch below it, and they are flattened by
+# retargeting the top one to django. GitHub starts no workflow when a base
+# changes, so the checks left on the head commit are the ones computed against
+# the OLD base, and they are wrong in two ways:
+#
+#   * ci.yml's Scope job diffed against the old base. If the top PR's own
+#     changes were client- or docs-only, the Python suites were skipped and
+#     report green, although against django the PR carries server changes
+#     (#704, 2026-09-30).
+#   * electron-multiplatform-build.yml triggers only for PRs into django, so
+#     for a PR opened against another branch its required build checks never
+#     ran at all.
+#
+# This dispatches both workflows on the head branch with the new base, so they
+# scope their changes against it and post their checks on the head commit.
+#
+# Why a separate workflow, not `types: [edited]` on ci.yml itself: `edited`
+# also fires for every title or body edit. On ci.yml that would start a run
+# that cancels the real one in progress (its concurrency group), and a run
+# whose jobs are skipped posts "skipped" on the head commit, which replaces an
+# earlier failure and satisfies the required check. Here, an edit that is not
+# a base change skips one job that nothing requires.
+#
+# Pull requests from forks are left alone: their token cannot dispatch
+# workflows. Close and reopen such a PR after retargeting it instead.
+# ============================================================================
+
+name: Rerun CI on retarget
+
+on:
+  pull_request:
+    types: [edited]
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  rerun:
+    name: Rerun CI against the new base
+    if: >-
+      github.event.changes.base != null &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch the gates on the head branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          OLD_BASE: ${{ github.event.changes.base.ref.from }}
+        run: |
+          echo "Base changed from ${OLD_BASE} to ${BASE_REF}; re-running on ${HEAD_REF}"
+          # The head branch's own copy of each workflow is the one that runs. A
+          # branch cut before the `base` input existed rejects it, so fall back
+          # to a plain dispatch, which scopes nothing out and runs everything.
+          dispatch() {
+            gh workflow run "$1" --repo "$REPO" --ref "$HEAD_REF" -f base="$BASE_REF" \
+              || gh workflow run "$1" --repo "$REPO" --ref "$HEAD_REF" \
+              || { echo "::warning::Could not dispatch $1 on ${HEAD_REF}; close and reopen the PR to run it."; return 1; }
+          }
+          status=0
+          dispatch ci.yml || status=1
+          # Its pull_request trigger is limited to django; match that.
+          if [ "$BASE_REF" = "django" ]; then
+            dispatch electron-multiplatform-build.yml || status=1
+          fi
+          exit $status

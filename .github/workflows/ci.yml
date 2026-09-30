@@ -40,7 +40,14 @@ on:
   push:
     branches:
       - django
-  workflow_dispatch: {}
+  # Also dispatched by retarget.yml when a pull request's base changes, with
+  # `base` naming the new base branch; see that workflow for why.
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Branch to scope the changes against (empty runs everything)
+        required: false
+        default: ''
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -67,11 +74,18 @@ jobs:
           fetch-depth: 0
       - id: decide
         shell: bash
+        env:
+          BASE_BRANCH: ${{ inputs.base }}
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             .github/scripts/changes-need.sh \
               "${{ github.event.pull_request.base.sha }}" \
               "${{ github.event.pull_request.head.sha }}" merge-base \
+              | tee -a "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # An empty or unknown base makes the script run everything.
+            base="${BASE_BRANCH:+origin/$BASE_BRANCH}"
+            .github/scripts/changes-need.sh "$base" "${{ github.sha }}" merge-base \
               | tee -a "$GITHUB_OUTPUT"
           else
             .github/scripts/changes-need.sh \
