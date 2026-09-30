@@ -2148,21 +2148,15 @@ class CPluginScript(CData):
             return ""
 
     def jobNumberString(self) -> str:
-        """
-        Return a string representation of the job number for annotations.
+        """The job's number as the project shows it ("3", "2.1"), or '' if
+        the job has none (run outside a project).
 
-        In a full CCP4i2 environment with database integration, this would
-        return something like "Job #123". For standalone testing without
-        database, returns the task name.
-
-        Returns:
-            String describing the job (e.g., "parrot" or "Job #123")
+        File pickers already show a file's job number before its annotation,
+        so annotations should not start with this.
         """
-        # When running standalone (no database integration), use task name
-        # In full CCP4i2, this would query the database for the job number
-        if hasattr(self, 'jobId') and self.jobId:
-            return f"Job #{self.jobId}"
-        return self.TASKNAME or "Job"
+        if self._dbJobNumber is None:
+            return ''
+        return str(self._dbJobNumber)
 
     def startProcess(self) -> CErrorReport:
         """
