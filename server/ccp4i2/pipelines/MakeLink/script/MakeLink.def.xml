@@ -540,10 +540,24 @@
               </qualifiers>
            </content>
            <content id="UNL_PDB">
-              <className>CString</className>
+              <className>CPdbDataFile</className>
+              <qualifiers>
+                 <mustExist>False</mustExist>
+                 <allowUndefined>True</allowUndefined>
+                 <saveToDb>True</saveToDb>
+                 <guiLabel>Linked pair</guiLabel>
+                 <toolTip>The two linked monomers as one residue, regularised by AceDRG. Written only when no input model was given</toolTip>
+              </qualifiers>
            </content>
            <content id="UNL_CIF">
-              <className>CString</className>
+              <className>CDictDataFile</className>
+              <qualifiers>
+                 <mustExist>False</mustExist>
+                 <allowUndefined>True</allowUndefined>
+                 <saveToDb>True</saveToDb>
+                 <guiLabel>Linked pair dictionary</guiLabel>
+                 <toolTip>Restraints for the linked pair drawn as one residue</toolTip>
+              </qualifiers>
            </content>
         </container>
     </ccp4i2_body>

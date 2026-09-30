@@ -110,10 +110,10 @@ class MakeLink(CPluginScript):
         # Now call parent validity() which will use our updated allowUndefined settings
         error = super(MakeLink, self).validity()
 
-        # The two ways of asking for a model and not getting one. In the task
-        # interface XYZIN is nested inside the TOGGLE_LINK checkbox so neither
-        # is reachable, but i2run, a cloned job and the REST API can all set
-        # the two independently -- and the job used to finish happily either way.
+        # The two ways of asking for a model and not getting one. The task
+        # interface shows XYZIN when TOGGLE_LINK is on or a model is already
+        # set (a cloned or autofilled job), so each message can be acted on
+        # there; i2run and the REST API can set the two independently.
         if ctrl.TOGGLE_LINK and not inp.XYZIN.isSet():
             error.append(
                 klass=self.TASKNAME, code=307,
@@ -343,6 +343,32 @@ class MakeLink(CPluginScript):
           self.appendErrorReport(303, str(e))
        return None
     
+    def publishLinkedPair(self, acedrgLinkPlugin):
+       """Copy AceDRG's linked pair into this job as its own outputs.
+
+       The dictionary always: it describes the linked pair as one residue.
+       The coordinates only when no input model was given; with a model, the
+       model with its links applied (XYZOUT) is the job's coordinate result,
+       and a second coordinate output would be offered to the next job's
+       model slot beside it.
+       """
+       from pathlib import Path
+       import shutil
+
+       sub = acedrgLinkPlugin.container.outputData
+       out = self.container.outputData
+       link_id = str(acedrgLinkPlugin.container.inputData.LINK_ID)
+       pairs = [(sub.UNL_CIF, out.UNL_CIF, "_linked_pair.cif")]
+       if not self.container.inputData.XYZIN.isSet():
+          pairs.append((sub.UNL_PDB, out.UNL_PDB, "_linked_pair.pdb"))
+       for source, target, suffix in pairs:
+          if not source.isSet() or not Path(str(source.fullPath)).is_file():
+             continue
+          destination = self.workDirectory / (link_id + suffix)
+          shutil.copyfile(str(source.fullPath), str(destination))
+          target.setFullPath(str(destination))
+          target.annotation.set(str(source.annotation))
+
     def applyLinksToModel(self,link_bond_value):
        """Add the link record to the input model. Returns a CPluginScript status.
 
@@ -618,8 +644,7 @@ class MakeLink(CPluginScript):
                 linkStatus = CPluginScript.FAILED
             
             self.container.outputData.CIF_OUT.annotation.set("Link dictionary: "+self.container.inputData.ANNOTATION.__str__())
-            self.container.outputData.UNL_PDB = AcedrgLinkPlugin.container.outputData.UNL_PDB.fullPath.__str__()
-            self.container.outputData.UNL_CIF = AcedrgLinkPlugin.container.outputData.UNL_CIF.fullPath.__str__()
+            self.publishLinkedPair(AcedrgLinkPlugin)
             
             #Catenate output XMLs (AcedrgLink may not produce PROGRAMXML)
             programXmlPath = AcedrgLinkPlugin.makeFileName("PROGRAMXML")
