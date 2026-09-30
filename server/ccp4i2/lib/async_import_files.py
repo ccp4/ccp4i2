@@ -46,10 +46,22 @@ async def import_input_files_async(job, plugin, db_handler):
     """
     files_imported = 0
 
-    # Find all input files using modern hierarchical traversal
-    # plugin.container.inputData contains the input file objects
-    input_data = plugin.container.inputData if hasattr(plugin.container, 'inputData') else plugin.container
-    input_files = input_data.find_all_files()
+    # Every file the job reads: inputData's, and those in the task's other
+    # sections (prosmart_refmac keeps its ProSMART reference models in a
+    # top-level prosmartProtein container). Only outputData is not input.
+    # Searching inputData alone left a reference model given to i2run
+    # unimported: the job read it from where it lay, the project never had
+    # it, and a clone of the job came up without it.
+    container = plugin.container
+    if hasattr(container, 'inputData'):
+        input_files = []
+        for section in container.children():
+            if section.objectName() == 'outputData':
+                continue
+            if hasattr(section, 'find_all_files'):
+                input_files.extend(section.find_all_files())
+    else:
+        input_files = container.find_all_files()
     logger.info(f"Found {len(input_files)} input file objects")
 
     for file_obj in input_files:
