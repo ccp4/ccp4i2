@@ -39,6 +39,17 @@ ALIASES = {
     "coot_rsr_morph": "coot_refinement",
     "dials_image": "dials",
     "phaser_pipeline_phil": "phaser_pipeline",
+    # One page for the single-file import tasks.
+    "ImportCoordinate": "import_files",
+    "ImportSequence": "import_files",
+    "ImportAsuContent": "import_files",
+    "ImportDictionary": "import_files",
+    "ImportMap": "import_files",
+    "ImportObs": "import_files",
+    "ImportUnmerged": "import_files",
+    "ImportMapCoeffs": "import_files",
+    "ImportFreeR": "import_files",
+    "ImportPhases": "import_files",
 }
 
 

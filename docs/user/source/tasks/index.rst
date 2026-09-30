@@ -9,6 +9,7 @@ Import merged data, AU Contents, alignments or coordinates
    :maxdepth: 1
 
    import_merged/index
+   import_files/index
    ProvideAsuContents/index
    ProvideSequence/index
    ProvideAlignment/index

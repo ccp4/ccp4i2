@@ -8,7 +8,7 @@ shots.json records, under "sources", the git blob id of every file it was
 checked against; a page whose files no longer match is *stale*.
 
 The files are found, not listed by hand: the page's task (its directory, or
-status.ALIASES, or "task" in shots.json), its def.xml, plugin and report modules
+status.ALIASES, or "task" or "tasks" in shots.json), their def.xml, plugin and report modules
 from server/ccp4i2/core/tasks.py, its interface from task-container.tsx plus the
 files that interface imports from its own directory tree, and the scenario that
 built the project the pictures were taken from.
@@ -124,6 +124,12 @@ def page_task(directory: str, shots: dict) -> str:
     return reverse.get(directory, directory)
 
 
+def page_tasks(directory: str, shots: dict) -> list[str]:
+    """The tasks a page documents: usually one, several for a shared page
+    ("tasks" in shots.json, as the import tasks' page has)."""
+    return list(shots["tasks"]) if "tasks" in shots else [page_task(directory, shots)]
+
+
 def shots_path(page: str) -> Path:
     return TASK_PAGES / page / "shots.json"
 
@@ -134,18 +140,19 @@ def load(page: str) -> dict:
 
 def sources(page: str, shots: dict | None = None) -> list[Path]:
     shots = shots if shots is not None else load(page)
-    task = page_task(page, shots)
-    entry = task_entries().get(task, {})
     files = []
-    if "defXmlPath" in entry:
-        files.append(SERVER / entry["defXmlPath"])
-    for key in ("pluginPath", "reportPath"):
-        if key in entry and (f := module_file(entry[key])):
-            files.append(f)
-    files += interface_files(task)
+    for task in page_tasks(page, shots):
+        entry = task_entries().get(task, {})
+        if "defXmlPath" in entry:
+            files.append(SERVER / entry["defXmlPath"])
+        for key in ("pluginPath", "reportPath"):
+            if key in entry and (f := module_file(entry[key])):
+                files.append(f)
+        files += interface_files(task)
     if "scenario" in shots:
         files.append((shots_path(page).parent / shots["scenario"]).resolve())
-    return [f for f in files if f.exists()]
+    unique = list(dict.fromkeys(files))
+    return [f for f in unique if f.exists()]
 
 
 def fingerprint(page: str, shots: dict | None = None) -> dict:

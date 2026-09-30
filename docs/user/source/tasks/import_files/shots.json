@@ -1,0 +1,111 @@
+{
+  "scenario": "../../../tools/scenario_import.py",
+  "project": "Imports",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 20000,
+  "draft": true,
+  "tasks": [
+    "ImportCoordinate",
+    "ImportSequence",
+    "ImportAsuContent",
+    "ImportDictionary",
+    "ImportUnmerged",
+    "ImportObs",
+    "ImportFreeR",
+    "ImportMapCoeffs",
+    "ImportPhases",
+    "ImportMap"
+  ],
+  "shots": [
+    {
+      "out": "import_obs_input.png",
+      "job": 16,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Extract observations from MTZ",
+      "callouts": [
+        {
+          "field": "MTZ file",
+          "badge": "1"
+        },
+        {
+          "field": "Columns (only needed if the file is ambiguous)",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "import_obs_report.png",
+      "job": 6,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Input Data",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "Observation columns F,SIGF",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "import_map_input.png",
+      "job": 20,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Map file to import",
+      "callouts": [
+        {
+          "field": "Map file",
+          "badge": "4"
+        },
+        {
+          "field": "Map type",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/ImportCoordinate/script/ImportCoordinate.def.xml": "a34bb43e635cfe6909728a20961e889196481004",
+    "server/ccp4i2/wrappers/ImportCoordinate/script/ImportCoordinate.py": "75da3b99acb7429ce517c4ec67f12e67f1b8bde4",
+    "client/renderer/components/task/task-interfaces/ImportCoordinate.tsx": "eeb6762b4a09ec7b3ea7cc8e9efd34108281a3c8",
+    "server/ccp4i2/wrappers/ImportSequence/script/ImportSequence.def.xml": "97241949623a4045a2a32758600c2a54f4660bbf",
+    "server/ccp4i2/wrappers/ImportSequence/script/ImportSequence.py": "3a2edb0c39fec69888d870fad8bc50911b0c8919",
+    "client/renderer/components/task/task-interfaces/ImportSequence.tsx": "608a96a91a8abf7143e7785ba6086c0dc3634100",
+    "server/ccp4i2/wrappers/ImportAsuContent/script/ImportAsuContent.def.xml": "97332731b7a1e487798b525e50379a1f20f3904f",
+    "server/ccp4i2/wrappers/ImportAsuContent/script/ImportAsuContent.py": "615ddf370a4e338854bff706b42d255209d0453f",
+    "client/renderer/components/task/task-interfaces/ImportAsuContent.tsx": "d77b285d53c2bf8a8a6f6f680aea8b701be50acb",
+    "server/ccp4i2/wrappers/ImportDictionary/script/ImportDictionary.def.xml": "cc7d056aa418f6864dc26db3f5c57ae153d90f21",
+    "server/ccp4i2/wrappers/ImportDictionary/script/ImportDictionary.py": "e49058a62e5f85f146decc6925dd12e30ddb00bc",
+    "client/renderer/components/task/task-interfaces/ImportDictionary.tsx": "6ae2a5a2f6535d99407c8bd62fa3b033470d2864",
+    "server/ccp4i2/wrappers/ImportUnmerged/script/ImportUnmerged.def.xml": "96f482fb7ab047a66d3331892a1257262ec7a6a1",
+    "server/ccp4i2/wrappers/ImportUnmerged/script/ImportUnmerged.py": "f6efa2ca67c893aa9c66f678c3be171e6b544619",
+    "client/renderer/components/task/task-interfaces/ImportUnmerged.tsx": "c69ce4ab152659884bf070531ddd28b6ad61fb0a",
+    "server/ccp4i2/wrappers/ImportObs/script/ImportObs.def.xml": "1047317d2df7abcabe52a89e504cf43c6b3aed04",
+    "server/ccp4i2/wrappers/ImportObs/script/ImportObs.py": "b93e1ec6b9a26eda2311853e3b00518e1d7e006c",
+    "client/renderer/components/task/task-interfaces/ImportObs.tsx": "b2bc73389c20686df5c33a578aa031a118710140",
+    "server/ccp4i2/wrappers/ImportFreeR/script/ImportFreeR.def.xml": "8e4180204d116e38c9b3ae1eda8cf2191021d515",
+    "server/ccp4i2/wrappers/ImportFreeR/script/ImportFreeR.py": "9826140ab8573825fd9bb6edd2bc51638ebb16a3",
+    "client/renderer/components/task/task-interfaces/ImportFreeR.tsx": "cff0143ad95ee70e511cd1a11c0e96f8760428fd",
+    "server/ccp4i2/wrappers/ImportMapCoeffs/script/ImportMapCoeffs.def.xml": "da31139d55bad4be037d529110ff261d9926ad1b",
+    "server/ccp4i2/wrappers/ImportMapCoeffs/script/ImportMapCoeffs.py": "27c72d059f1f39c70e177e0367bc7e3ebfae64b1",
+    "client/renderer/components/task/task-interfaces/ImportMapCoeffs.tsx": "89d234cf9b71596c829b072ad5f0a9e873962f63",
+    "server/ccp4i2/wrappers/ImportPhases/script/ImportPhases.def.xml": "a7efab0ebb6674c440469337a8afedc51e5fe339",
+    "server/ccp4i2/wrappers/ImportPhases/script/ImportPhases.py": "40cfaf68ba60703f64a79cad63759da22a7cb491",
+    "client/renderer/components/task/task-interfaces/ImportPhases.tsx": "7bbf5d6cbb900cb92bbd084061ee5592f4fe77c8",
+    "server/ccp4i2/wrappers/ImportMap/script/ImportMap.def.xml": "f0f7afd242cfa50b442beabb02f1eeea43f5c19a",
+    "server/ccp4i2/wrappers/ImportMap/script/ImportMap.py": "51fc76b4316b257b49fe33503dfd0615aa60042d",
+    "client/renderer/components/task/task-interfaces/ImportMap.tsx": "059aea08804c8ec9bb90dd97ef021852babb1077",
+    "docs/user/tools/scenario_import.py": "11de57347c98e8a3f6e3d6aa15d2f8e6be5ff622"
+  }
+}

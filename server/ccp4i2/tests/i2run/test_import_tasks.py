@@ -103,6 +103,14 @@ def test_import_mapcoeffs_explicit_columns():
     args += ["--COLUMNS", "FPHIOUT_F,FPHIOUT_PHI"]
     with i2run(args) as job:
         _check_mtz(_find_output(job, ".mtz"), ["F", "PHI"])
+        # The output says what it is and where it came from. (It read "Map
+        # coefficient from mergedForMakingCif columns HKL_base/[...]".)
+        from ccp4i2.db import models
+        record = models.Job.objects.filter(number=job.name.replace("job_", "")).first()
+        out = models.File.objects.filter(job=record, job_param_name="FPHIOUT").first()
+        assert out.annotation.startswith(
+            "Map coefficient columns FPHIOUT_F,FPHIOUT_PHI from mergedForMakingCif.mtz"), out.annotation
+        assert "HKL_base" not in out.annotation
 
 
 def test_import_mapcoeffs_ambiguous_fails():
