@@ -1,0 +1,43 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": false,
+  "shots": [
+    {
+      "out": "ProvideAsuContents_input.png",
+      "job": 8,
+      "tabs": ["Task interface"],
+      "section": "Optionally load existing ASU content file to edit",
+      "through": "Solvent analysis",
+      "callouts": [
+        "ASU contents",
+        {
+          "text": "BETA",
+          "closest": ".MuiCard-root"
+        },
+        {
+          "text": "Molecular weight:"
+        },
+        "Reflections (for the Matthews analysis)",
+        {
+          "text": "Matthews Analysis"
+        }
+      ]
+    },
+    {
+      "out": "ProvideAsuContents_report.png",
+      "job": 2,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "AU content - sequences",
+        "scroll": true
+      },
+      "from": "AU content - sequences",
+      "until": "Input Data",
+      "callouts": []
+    }
+  ]
+}

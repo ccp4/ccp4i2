@@ -1,0 +1,72 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": true,
+  "shots": [
+    {
+      "out": "modelcraft_input.png",
+      "job": 11,
+      "tabs": ["Task interface"],
+      "section": "Reflection data",
+      "until": "Options",
+      "callouts": [
+        "Reflections",
+        "Free R set",
+        {
+          "text": "Calculate initial phases"
+        },
+        "Asymmetric unit contents",
+        "Starting model"
+      ]
+    },
+    {
+      "out": "modelcraft_options.png",
+      "job": 11,
+      "tabs": ["Task interface"],
+      "viewport": [1400, 2000],
+      "section": "Options",
+      "through": "Optional pipeline steps",
+      "callouts": [
+        {
+          "text": "Run for"
+        },
+        {
+          "text": "Run a quicker basic pipeline"
+        },
+        {
+          "text": "Build selenomethionine"
+        },
+        {
+          "text": "Use twinned refinement"
+        },
+        {
+          "text": "Optional pipeline steps"
+        }
+      ]
+    },
+    {
+      "out": "modelcraft_report.png",
+      "job": 5,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "Summary",
+        "scroll": true
+      },
+      "from": "Summary",
+      "until": "Picture",
+      "callouts": [
+        {
+          "text": "Cycle",
+          "closest": "table"
+        },
+        {
+          "text": "Plot",
+          "closest": ".MuiPaper-root"
+        }
+      ]
+    }
+  ]
+}

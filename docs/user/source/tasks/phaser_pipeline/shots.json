@@ -1,0 +1,41 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": true,
+  "shots": [
+    {
+      "out": "phaser_pipeline_input.png",
+      "job": 10,
+      "tabs": ["Task interface", "Input data"],
+      "viewport": [1400, 2400],
+      "section": "Reflections",
+      "through": "Composition of the asymmetric unit",
+      "callouts": []
+    },
+    {
+      "out": "phaser_pipeline_report.png",
+      "job": 4,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "Phaser:",
+        "scroll": true
+      },
+      "from": "Phaser:",
+      "until": "Phaser's summary, module by module",
+      "callouts": [
+        {
+          "text": "Phaser:"
+        },
+        {
+          "text": "Solutions"
+        },
+        {
+          "text": "Search strategy"
+        }
+      ]
+    }
+  ]
+}

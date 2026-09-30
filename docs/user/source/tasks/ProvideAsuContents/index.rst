@@ -2,43 +2,61 @@
 Define AU contents
 ##################
 
-   This task allows you to import the sequences expected in the
-   structure from a variety of sequence file formats or a coordinate
-   file. You can enter the expected number of copies - it is not
-   critical that this is correct. The information is saved to a *AU
-   content* object that is used in any subsequent task requiring
-   sequence information. The *AU content* object corresponds to a file
-   with the extension *.asu.xml*. You can use this task to edit an
-   existing *AU content* - select the object to load it and then make
-   any changes.
+   This task records what the asymmetric unit is expected to hold: each
+   protein, DNA or RNA sequence and how many copies of it. The result, an
+   *AU contents* file (``.asu.xml``), is what later tasks read when they
+   need to know the composition: molecular replacement for the scattering
+   content, density modification for the solvent content, model building
+   for what to build. You can also use the task to edit existing AU
+   contents: load them, change them and save a new version.
+
+   The number of copies matters. Tasks estimate the solvent content from
+   the whole contents, so the wrong number of copies gives the wrong
+   solvent content. If you are not sure, give the task the reflection data
+   and use the Matthews analysis to choose.
+
+   The pictures on this page come from the demo data that ships with
+   CCP4i2: the beta-lactamase / BLIP complex, one copy of each.
 
 Input
 =====
 
-   |image1|
-   You can select an existing *AU content* object to edit\ **(1)**.
+   |input|
 
-   You may need to click on a *Show list* button to enter more that one
-   sequence **(2)** and then use the +/- buttons **(3)** to edit the
-   list of sequences.
+   To edit AU contents you already have, load them first **(1)**; the list
+   below is filled from them.
 
-   A sequence may be entered by cut-n-paste into the window or loading
-   from a sequence or coordinate file **(4)**. Any white space and most
-   unexpected characters in the input will be removed before saving but
-   if the sequence contains invalid letters (BJOUXZ) this will be
-   highlighted as they may be from comments or some other issue that
-   requires your attention. If a loaded file contains multiple sequences
-   you will have the chance to select those required and the sequence
-   list will be extended for more than one sequence input.
+   Each sequence is a card **(2)** showing its name, polymer type, number
+   of copies, length and the start of the sequence; click a card to edit
+   it. *Add Sequence* adds one; *Import from PDB* fetches every polymer
+   chain of a PDB entry at once, replacing the list.
 
-   If you already have a sequence loaded using earlier versions of
-   CCP4i2 then you can add the seqeunce object to a AU content.
+   In the editor for a sequence, give the number of copies in the
+   asymmetric unit, the polymer type, a name and, optionally, a
+   description. Paste the sequence, or load it: from a sequence file, a
+   coordinate file (choosing the chain if there are several), or fetched
+   by accession code from UniProt or the PDB. Spaces and line breaks are
+   removed; any other letter outside the standard residues (including X
+   for an unknown residue) is flagged, because it usually means a comment
+   or a modified residue has crept in.
+
+   The molecular weight of the whole contents is shown **(3)**. Give the
+   reflection data **(4)** and the task works out, from the cell, how many
+   copies of these contents the asymmetric unit could hold, with the
+   solvent content and probability of each **(5)**; the most probable is
+   highlighted. Here one copy of the complex leaves 47% solvent, by far
+   the likeliest.
 
 Results
 =======
 
-      |image2|
-      The imported sequences and input and output files are reported.
+   |report|
 
-.. |image1| image:: ProvideAsuContents_task_1.png
-.. |image2| image:: ProvideAsuContents_report_1.png
+   The report lists each sequence with its number of copies and, if the
+   reflection data were given, the Matthews analysis: for each possible
+   number of copies of the contents, the solvent content, the Matthews
+   coefficient and its probability, with the molecular weights and the
+   cell volume they were calculated from.
+
+.. |input| image:: ProvideAsuContents_input.png
+.. |report| image:: ProvideAsuContents_report.png

@@ -35,6 +35,7 @@ ALIASES = {
     "molrep_selfrot": "srf",
     "coot_rsr_morph": "coot_refinement",
     "dials_image": "dials",
+    "phaser_pipeline_phil": "phaser_pipeline",
 }
 
 

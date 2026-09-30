@@ -92,6 +92,7 @@ Molecular replacement
    :maxdepth: 1
 
    mrbump_basic/index
+   phaser_simple_phil/index
    phaser_pipeline/index
    molrep_pipe/index
    csymmatch/index

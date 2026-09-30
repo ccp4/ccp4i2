@@ -1,6 +1,6 @@
-######
+##############
 FindMySequence
-######
+##############
 
    FindMySequence is a neural-network-based approach for the rapid identification of unknown proteins in X-ray crystallography and cryo-EM. The implementation in i2 will find the most plausible sequence in a database (sequence search mode) for the user.
 

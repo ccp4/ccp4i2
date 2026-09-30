@@ -1,103 +1,82 @@
-#############
-Import merged
-#############
+#############################
+Import merged reflection data
+#############################
 
-   You will usually start a project with unmerged data or even images
-   but if you have already merged data then this task will import it
-   into CCP4I2 - converting to the MTZ format if necessary and creating
-   a Reflection data object and also a FreeR data object if FreeR data
-   is available. The task will then run some of the tools usually
-   associated with Data Reduction to provide a report on the quality of
-   the data.
+   You will usually start a project with unmerged data, or with images,
+   and reduce them within CCP4i2. When your data are already merged, this
+   task brings them in: it reads the file, makes the reflection data object
+   later tasks use, makes or completes a Free R set, and runs the data
+   reduction analysis on the data so you can judge their quality.
+
+   It reads MTZ, mmCIF (the structure-factor files the PDB distributes,
+   ``xxxx-sf.cif``), Scalepack, SHELX ``.hkl`` and merged XDS_ASCII files,
+   telling them apart by their contents rather than their names. Unmerged
+   data belong in the data reduction tasks instead: this task recognises
+   them and says so.
+
+   The pictures on this page come from the demo data that ships with
+   CCP4i2: the merged amplitudes of the beta-lactamase / BLIP complex at
+   3.0 Å.
 
 Input
 =====
 
-   The input to this task requires spacegroup, cell and wavelength - if
-   this information is present in the file it will be read and displayed
-   - otherwise you will have to enter the data. MTZ files may contain
-   multiple sets of reflection data and you will be required to select
-   the set you want to use.
-   The task will import files in the usual CCP4 MTZ format, mmCIF format
-   (as is usually distributed by the PDB (PDBe, RCSB, PDBj) with a file
-   name of the form **xnyz\ sf.ent**) and Scalepack format (usually has
-   extension *.sca*). The latter two formats are readable files whose
-   first few lines are of the form:
+   |input|
 
-Merged reflection data file formats
------------------------------------
+   Choose the file **(1)**. What the task shows next depends on what the
+   file holds **(2)**:
 
-MMCIF
-^^^^^
+   - An **MTZ** file may hold several sets of observations, for example
+     mean and anomalous intensities; each is listed with its columns and
+     kind, and you pick the one to import. Map coefficients, phases and
+     Free R flags are not observations and are not offered.
+   - An **mmCIF** file may hold several reflection blocks; pick one, then
+     the kind of data in it.
+   - **Scalepack**, **SHELX** and **XDS** files carry less about the
+     crystal, so the task asks for what they lack: the space group, the
+     cell, the crystal and dataset names and the wavelength (and, for
+     SHELX, whether the file holds intensities or amplitudes). Scalepack
+     files give the space group and cell but not the wavelength.
 
-   ::
+   The task also says what it found about Free R flags **(3)**: a valid set
+   in the file, one that may be invalid, or none, in which case a new set
+   is made. You can restrict the resolution range imported **(4)**; the
+   highest resolution in the file is shown beside it.
 
-      data_r4oogsf
-      # 
-      _audit.revision_id    1_0
-      _audit.creation_date  2014-04-16
-      _audit.update_record   'Initial release' 
-      # 
-      _cell.entry_id      4oog 
-      _cell.length_a      157.9720 
-      _cell.length_b      183.8040 
-      _cell.length_c      61.2890 
-      ...
-      ...
-      loop_
-      _refln.crystal_id
-      _refln.wavelength_id
-      _refln.scale_group_code
-      _refln.index_h
-      _refln.index_k
-      _refln.index_l
-      _refln.status
-      _refln.F_meas_au
-      _refln.F_meas_sigma_au
-      1 1 1    0    0    2 o  108.900   1.6000 
-      1 1 1    0    0    4 o   73.900   1.1000 
-      1 1 1    0    0    6 o   32.700   0.5000 
-      1 1 1    0    0   10 o   19.100   0.5000 
-      1 1 1    0    0   12 o   56.300   0.9000 
+The Free R set
+--------------
 
-   MMCIF files are very flexible and very variable, beware the same
-   format may contain atomic coordinates rather than reflection data.
-   The file may or may not contain space group, cell and wavelength
-   information.
+   Any Free R set in the file is read and completed: reflections flagged
+   free stay free, none used in refinement becomes free, and reflections
+   with no flag are partitioned at the usual fraction. To use a set from
+   elsewhere, for example the parent structure's in a series of complexes,
+   give it as the Free R set **(5)**; it overrides one in the file. If
+   there is neither, a new set is made, with 5% of the reflections unless
+   you give another fraction **(6)**; possible twinning operators are taken
+   into account.
 
-   .. rubric:: Scalepack
-      :name: scalepack
+   Tick *Do not copy or generate a FreeR set* **(7)** to import the data
+   alone. This is ticked automatically for StarAniso output, whose free set
+   must be kept as StarAniso made it. By default a Free R set is cut to the
+   resolution of the data, and one whose cell differs from the data's is
+   replaced by a new set unless you accept it.
 
-   ::
+Results
+=======
 
-          1
-       -987
-         108.742    61.679    71.652    90.000    97.151    90.000 c2        
-       -50   0   2  3530.5   733.8
-       -50   0   3   210.8   357.2
-       -50   0   6  1930.8   547.3
+   |report|
 
-   This file format contains spacegroup and cell data but not
-   wavelength.
+   The report first says what was imported: the file, the columns and
+   whether they are intensities or amplitudes, and what happened to the
+   Free R set. The data from the file are what later tasks use.
 
-   .. rubric:: Other formats
-      :name: other-formats
+   The rest is a data reduction report on the imported data, for analysis
+   only: nothing from it is used later. *Key summary* **(1)** gives the
+   resolution estimates and headline statistics, *Overall summary* the
+   statistics as a function of resolution and the Wilson plot, and further
+   sections the analyses of twinning, translational NCS and anisotropy.
+   Look at these before going further: a twinned or anisotropic data set
+   changes what to do next.
 
-   CCP4I2 supports the commonly used reflection file formats but there
-   are some others which can be converted to MTZ by the appropriate CCP4
-   program. Unmerged data files should be imported via the Data Reduction task
-
-   ================== ==================
-   Program:           Format:
-   convert2mtz        CNS, PHS and SHELX
-   dtrek2mtz          d*trek
-   ================== ==================
-
-   Results
-
-   .. container:: tab-content
-      :name: tab-content2
-
-      The report from this job is a sub-set of the report from the Data
-      reduction task, 
-      see `documentation here <../aimless_pipe/aimless_pipe.html>`__
+.. |input| image:: import_merged_input.png
+.. |report| image:: import_merged_report.png

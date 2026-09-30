@@ -1,0 +1,46 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": false,
+  "shots": [
+    {
+      "out": "import_merged_input.png",
+      "job": 7,
+      "tabs": ["Task interface"],
+      "viewport": [1400, 2200],
+      "section": "Input data",
+      "callouts": [
+        "Reflections",
+        {
+          "text": "MTZ Reflection Data"
+        },
+        {
+          "text": "No FreeR flag found"
+        },
+        "Select resolution range (\u00c5)",
+        "Free R set",
+        "Fraction of reflections in generated freeR set",
+        "Do not copy or generate a FreeR set"
+      ]
+    },
+    {
+      "out": "import_merged_report.png",
+      "job": 1,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "Import of merged data",
+        "scroll": true
+      },
+      "from": "Import of merged data",
+      "until": "Overall summary",
+      "callouts": [
+        {
+          "text": "Key summary"
+        }
+      ]
+    }
+  ]
+}

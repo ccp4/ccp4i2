@@ -1,6 +1,6 @@
-##########
+#################################################################
 Data reduction, molecular replacement and model building pipeline
-##########
+#################################################################
 
 This is a pipeline for building a structure starting from unmerged data, an asymmetric unit
 description (set of sequences), and optionally a molecular replacement search model and ligand

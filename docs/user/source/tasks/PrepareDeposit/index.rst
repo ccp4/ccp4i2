@@ -1,6 +1,6 @@
-############################
+#########################################
 Prepare and validate files for deposition
-############################
+#########################################
 
    The final stage of the crystallographic structure solution is the
    deposition of the final structure and the observations in the Protein

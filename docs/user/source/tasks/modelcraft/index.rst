@@ -2,6 +2,15 @@
 ModelCraft
 ##########
 
+.. note::
+
+   The *Input* and *Results* sections of this page are a draft, written
+   for the new interface from the task's code. The pipeline description is
+   the original. Not yet reviewed by ModelCraft's developers.
+
+The pictures on this page come from the demo data that ships with CCP4i2:
+the beta-lactamase / BLIP complex, built from the expert Phaser solution.
+
 ModelCraft is an automated model-building pipeline for X-ray crystallography.
 It is based on the BUCCANEER and NAUTILUS model-building pipelines,
 but with the following enhancements:
@@ -54,71 +63,55 @@ to fix side chains.
 Input
 =====
 
-|image_reflections1|
+|input|
 
-Reflections and a free-R set must be selected in the Reflection data panel.
-An initial set of phases is also required in order to produce a map for model-building.
-However, if starting after molecular-replacement,
-the initial phases for building would usually come from refinement of the placed model,
-and this is handled internally in the pipeline.
+Give the reflections **(1)** and the Free R set **(2)** used for this
+crystal. By default the phases come from refining the starting model
+**(3)**, the usual case after molecular replacement. After experimental
+phasing, untick this and give the phases instead; if they are unbiased
+(experimental), say so, and they are used as restraints in refinement
+until the model is good enough, R-free 35% or better, not to need them.
+There is no need to run density modification first: ModelCraft runs
+Parrot itself.
 
-|image_reflections2|
+The AU contents **(4)** give the sequences to build and how many copies of
+each, which also set the solvent content: get the copies right.
 
-If you would like to specify a different set of starting phases,
-for example if you have done experimental phasing
-or density modification using a program such as ACORN,
-then uncheck the box to the left of
-"Get initial phases from refining the starting model" and select the phases.
-Density modification does not *need* to be done in the case of experimental phases
-as PARROT is used internally.
-If the phases do not contain model bias,
-then check the bottom box to use an MLHL likelihood calculation in REFMAC.
-This is only used at the start of the pipeline until R-free gets to 35% or better.
+A starting model **(5)** is used whenever it is given, whatever the source
+of the phases: after molecular replacement, the MR solution. Remove parts
+you think wrong, with the atom selection or beforehand, and include heavy
+atoms you are confident of. Clear it for a build from the phases alone.
 
-|image_asu|
+|options|
 
-The asymmetric unit (AU) contents need to be selected.
-There is a "Define AU contents" task for this purpose,
-which can be run though the Task menu
-or by clicking the plus button on the left of the message
-followed by the "New AU contents" button.
-The AU contents provides two pieces of information for the pipeline:
-the protein, RNA and DNA sequences to be built by BUCCANEER and NAUTILUS,
-and the number of copies to calculate the the solvent fraction for PARROT.
-Check the "Build methionine (MET) as selenomethionine (MSE)" box
-if the protein is a selenomethionine derivative.
+ModelCraft runs for up to 25 cycles, stopping early when R-free has not
+improved for 4 **(1)**; untick the stop to run them all. The basic
+pipeline **(2)** is quicker: it builds with Buccaneer and Nautilus and
+refines with REFMAC, running Parrot and Sheetbend on the first cycle only,
+and sets the cycles to 5. Build selenomethionine instead of methionine for
+SeMet protein **(3)**, and use twinned refinement only when you are sure
+the crystal is twinned **(4)**. The optional steps of the pipeline
+described above can each be turned off **(5)**.
 
-|image_model|
+Results
+=======
 
-A model *must* be provided if it is the source of the starting phases,
-but a starting model can still be specified otherwise.
-It may be helpful to remove incorrect parts of the model before starting,
-instead of relying on the protein pruning steps within ModelCraft.
-Including non-incorporated heavy atoms in the input model
-(e.g. not S or Se that are part of the protein) should also improve the phases.
-ModelCraft will avoid clashes with these atoms
-so only include atoms if you are confident of their positions.
-A sub-selection of the model can be made using the "Atom selection" widget.
+|report|
 
-|image_options|
+The summary **(1)** gives the best cycle's residues built, waters, R-work
+and R-free, and what R-free says about the model: above 0.50, very
+incomplete or wrong; above 0.40, substantially incomplete; above 0.35,
+correct in places but needing work; below, approaching completion. The
+graph **(2)** follows the residues built and the R-factors cycle by cycle.
+The model from the best cycle is the output, with its maps and phases.
 
-By default, the pipeline will run for up to 25 cycles,
-stopping automatically if the model does not improve
-for 4 cycles, but these numbers are adjustable.
-It may help to run for more cycles in difficult cases.
-Uncheck the box to the left of "Stop automatically"
-to make the pipeline run to the full number of cycles.
-There is also an option to run a quicker basic pipeline
-that only uses BUCCANEER, NAUTILUS and REFMAC
-(although PARROT and SHEETBEND are still used on the first cycle if applicable).
-Finally, there is an option to use twinned refinement,
-but this should only be done if you are sure your crystal is twinned.
-
-.. |image_reflections1| image:: reflections1.png
-.. |image_reflections2| image:: reflections2.png
-.. |image_asu| image:: asu.png
-.. |image_model| image:: model.png
-.. |image_options| image:: options.png
+Here ModelCraft, run for 5 cycles from the expert Phaser solution, kept
+both chains whole (263 and 165 residues) and reached R-work 0.26 and
+R-free 0.38 at 3.0 Å. It also built two short fragments, 8 residues each,
+that the AU contents do not account for: pieces built into density that
+belongs to something else, or to nothing. Look at anything the model holds
+beyond its expected contents before refining further. More cycles, the
+default 25 with automatic stopping, would usually do better.
 
 Reference
 =========
@@ -126,3 +119,7 @@ Reference
 | *ModelCraft*: an advanced automated model-building pipeline using *Buccaneer*  
 | P. Bond, K. Cowtan *Acta Cryst. D* **78** (2022)
 | `https://doi.org/10.1107/S2059798322007732 <https://doi.org/10.1107/S2059798322007732>`_
+
+.. |input| image:: modelcraft_input.png
+.. |options| image:: modelcraft_options.png
+.. |report| image:: modelcraft_report.png

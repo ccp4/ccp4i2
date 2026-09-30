@@ -1,0 +1,42 @@
+{
+  "scenario": "../../../tools/scenario_mr.py",
+  "project": "BetaBlip",
+  "viewport": [1400, 1600],
+  "draft": true,
+  "shots": [
+    {
+      "out": "validate_protein_input.png",
+      "job": 12,
+      "tabs": ["Task interface"],
+      "section": "Model data",
+      "through": "Which validation and analysis tools should be run?",
+      "callouts": [
+        "Atomic model",
+        "Reflections (optional, for the fit to density)",
+        {
+          "text": "Label dataset 1 as"
+        },
+        {
+          "text": "Compare against a second dataset"
+        },
+        {
+          "text": "Which validation and analysis tools"
+        }
+      ]
+    },
+    {
+      "out": "validate_protein_report.png",
+      "job": 6,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "settle": 30000,
+      "section": {
+        "text": "MolProbity Analyses",
+        "scroll": true
+      },
+      "from": "MolProbity Analyses",
+      "until": "Ramachandran Analyses",
+      "callouts": []
+    }
+  ]
+}
