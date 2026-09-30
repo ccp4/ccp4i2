@@ -11,6 +11,7 @@ Welcome to CCP4i2's documentation !
 
    tutorials/index
    tasks/index
+   status
    i2run/i2run
    general/tasklist
    updatelog/index

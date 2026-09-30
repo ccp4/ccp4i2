@@ -90,3 +90,11 @@ html_context = {
 html_static_path = ['_static']
 
 html_css_files = ['https://github.com/bwithd/sphinx-material/blob/main/sphinx_material/sphinx_material/static/stylesheets/application.css']
+
+# The documentation status page, regenerated from the task chooser on every
+# build so it cannot go stale (tools/status.py).
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent / "tools"))
+import status as _status
+_status.write_status(_Path(__file__).resolve().parent / "status.rst")
