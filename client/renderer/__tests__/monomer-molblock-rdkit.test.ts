@@ -77,6 +77,29 @@ beforeAll(async () => {
   }
 }, 60000);
 
+describe("CIF element symbols", () => {
+  it("are written as a molfile spells them, and RDKit takes the result", () => {
+    // Dictionaries write CL and BR. RDKit's molfile reader tolerates those,
+    // but the molblock is kept canonical for any reader that does not.
+    const atoms = [
+      { name: "C1", element: "C", charge: 0 },
+      { name: "CL1", element: "CL", charge: 0 },
+      { name: "BR1", element: "BR", charge: 0 },
+    ];
+    const bonds = [
+      { atom1: "C1", atom2: "CL1", type: "single" },
+      { atom1: "C1", atom2: "BR1", type: "single" },
+    ];
+    const block = buildMolblock(atoms, bonds, "HAL");
+    expect(block).toMatch(/ Cl  0/);
+    expect(block).toMatch(/ Br  0/);
+    if (!RDKit) return expect.unreachable("RDKit WASM failed to load");
+    const mol = RDKit.get_mol(block);
+    expect(mol, "RDKit rejected Cl/Br").toBeTruthy();
+    mol?.delete();
+  });
+});
+
 describe("the molblock is one RDKit accepts", () => {
   for (const [code, monomer] of Object.entries(MONOMERS)) {
     it(`${code} parses and lays out`, () => {

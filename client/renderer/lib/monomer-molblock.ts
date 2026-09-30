@@ -25,6 +25,8 @@ export interface MonomerAtomDetail {
   name: string;
   element: string;
   charge: number;
+  /** Hydrogens the dictionary bonds to this atom; not drawn, but counted. */
+  hydrogens?: number;
 }
 
 /** Molfile bond-block codes. */
@@ -54,6 +56,20 @@ function chargeCode(charge: number): number {
   const rounded = Math.round(charge);
   if (rounded > 3 || rounded < -3) return 0;
   return 4 - rounded;
+}
+
+/**
+ * An element symbol as a molfile spells it: "Cl", "Br", where CIF
+ * dictionaries write "CL", "BR". RDKit's molfile reader happens to accept
+ * either (checked against the bundled MinimalLib), and the server already
+ * sends gemmi's normalised symbol; this keeps the molblock canonical for any
+ * reader that is stricter, and is the one place every depiction passes
+ * through. (In SMILES the case is not cosmetic -- "CL" is not chlorine --
+ * which is one more reason the picker never goes that way.)
+ */
+export function elementSymbol(element: string | undefined): string {
+  const symbol = (element || "C").trim().slice(0, 3);
+  return symbol.charAt(0).toUpperCase() + symbol.slice(1).toLowerCase();
 }
 
 function padLeft(text: string, width: number): string {
@@ -99,7 +115,7 @@ export function buildMolblock(
   ];
 
   for (const atom of atomDetails) {
-    const symbol = (atom.element || "C").slice(0, 3);
+    const symbol = elementSymbol(atom.element);
     lines.push(
       `${coordinate(0)}${coordinate(0)}${coordinate(0)} ${symbol.padEnd(3)} 0` +
         `${counts(chargeCode(atom.charge ?? 0))}`

@@ -81,6 +81,12 @@ def test_formal_charge_is_a_whole_number(monomer):
     assert all(isinstance(value, int) for value in charges.values())
 
 
+def test_hydrogens_are_counted_on_the_atom_that_carries_them(monomer):
+    # Not drawn, but a valence count over an edited monomer needs them.
+    assert {d["name"]: d["hydrogens"] for d in monomer["atom_details"]} == {
+        "N1": 1, "C2": 0, "O3": 0}
+
+
 def test_bond_orders_survive(monomer):
     assert {(b["atom1"], b["atom2"]): b["type"] for b in monomer["bonds"]} == {
         ("N1", "C2"): "single", ("C2", "O3"): "double"}

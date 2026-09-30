@@ -221,7 +221,9 @@ def _extract_atoms_bonds_from_block(block: gemmi.cif.Block) -> Dict[str, Any]:
     """Extract non-hydrogen atoms and bonds from a single CIF comp block.
 
     ``atoms`` is the atom names, and ``atom_details`` the same atoms in the
-    same order with the element and formal charge the depiction needs. Two
+    same order with the element and formal charge the depiction needs, and
+    the number of hydrogens the dictionary bonds to each: the hydrogens are
+    not drawn, but a valence count over an edited monomer needs them. Two
     keys rather than one because ``atoms`` is a list of plain names that
     callers match against, and because the order is the contract: a client
     building a molecule from this can rely on index i meaning atoms[i], and
@@ -235,11 +237,20 @@ def _extract_atoms_bonds_from_block(block: gemmi.cif.Block) -> Dict[str, Any]:
     # Non-hydrogen atoms
     heavy = [a for a in comp.atoms if a.el.name != "H"]
     atoms = [a.id for a in heavy]
+    atom_set = set(atoms)
+    hydrogen_ids = {a.id for a in comp.atoms if a.el.name == "H"}
+    hydrogens = {name: 0 for name in atoms}
+    for b in comp.rt.bonds:
+        a1, a2 = b.id1.atom, b.id2.atom
+        if a1 in atom_set and a2 in hydrogen_ids:
+            hydrogens[a1] += 1
+        elif a2 in atom_set and a1 in hydrogen_ids:
+            hydrogens[a2] += 1
     atom_details = [
-        {"name": a.id, "element": a.el.name, "charge": _formal_charge(a)}
+        {"name": a.id, "element": a.el.name, "charge": _formal_charge(a),
+         "hydrogens": hydrogens[a.id]}
         for a in heavy
     ]
-    atom_set = set(atoms)
 
     # Bonds between non-hydrogen atoms
     bond_type_map = {

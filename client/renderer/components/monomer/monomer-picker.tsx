@@ -26,6 +26,7 @@ import {
   type MonomerBond,
 } from "../../lib/monomer-molblock";
 import { bondKey, bondLines, layoutMonomer, type MonomerLayout } from "./monomer-layout";
+import { editedCharge, editedOrder, type MonomerEdits } from "../../lib/monomer-edits";
 
 export type PickMode = "atom" | "bond" | "none";
 
@@ -38,8 +39,14 @@ export interface MonomerPickerProps {
   selectedAtom?: string | null;
   /** The bond currently chosen, drawn as selected; order does not matter. */
   selectedBond?: { atom1: string; atom2: string } | null;
-  /** Atoms to mark without selecting them, e.g. ones queued for deletion. */
+  /** Atoms to mark without selecting them, e.g. ones a warning is about. */
   markedAtoms?: string[];
+  /**
+   * Edits drawn over the dictionary: deleted atoms faded, changed bonds at
+   * their new order, changed charges on the label. The layout stays the
+   * unedited monomer's, so no half-made set of edits can stop it drawing.
+   */
+  edits?: MonomerEdits;
   onPickAtom?: (name: string) => void;
   onPickBond?: (atom1: string, atom2: string) => void;
   width?: number;
@@ -81,6 +88,7 @@ export function MonomerPicker({
   selectedAtom = null,
   selectedBond = null,
   markedAtoms,
+  edits,
   onPickAtom,
   onPickBond,
   width = 320,
@@ -114,6 +122,7 @@ export function MonomerPicker({
   }, [rdkitModule, atomDetails, bonds, width, height]);
 
   const marked = useMemo(() => new Set(markedAtoms ?? []), [markedAtoms]);
+  const deleted = useMemo(() => new Set(edits?.deletes ?? []), [edits]);
   const selectedBondKey = selectedBond
     ? bondKey(selectedBond.atom1, selectedBond.atom2)
     : null;
@@ -121,6 +130,7 @@ export function MonomerPicker({
   const lineColour = theme.palette.text.primary;
   const selectionColour = theme.palette.primary.main;
   const markColour = theme.palette.warning.main;
+  const editColour = theme.palette.secondary.main;
 
   if (atomDetails.length === 0) {
     return <Placeholder height={height} title={title} message={emptyMessage} />;
@@ -171,10 +181,16 @@ export function MonomerPicker({
           const key = bondKey(bond.atom1, bond.atom2);
           const isSelected = key === selectedBondKey;
           const label = `${bond.atom1}-${bond.atom2}`;
+          const newOrder = edits ? editedOrder(edits, bond.atom1, bond.atom2) : null;
+          const shown = newOrder ? { ...bond, type: newOrder.toLowerCase() } : bond;
+          const isGone = deleted.has(bond.atom1) || deleted.has(bond.atom2);
           return (
             <g
               key={key}
               data-bond={label}
+              data-order={shown.type}
+              data-deleted={isGone ? "true" : undefined}
+              opacity={isGone ? 0.35 : 1}
               role={bondsPickable ? "button" : undefined}
               tabIndex={bondsPickable ? 0 : undefined}
               aria-label={bondsPickable ? `Bond ${label}` : undefined}
@@ -204,15 +220,16 @@ export function MonomerPicker({
                   strokeWidth={12}
                 />
               )}
-              {bondLines(bond, DOUBLE_BOND_GAP).map((line, index) => (
+              {bondLines(shown, DOUBLE_BOND_GAP).map((line, index) => (
                 <line
                   key={index}
                   x1={line.x1}
                   y1={line.y1}
                   x2={line.x2}
                   y2={line.y2}
-                  stroke={isSelected ? selectionColour : lineColour}
-                  strokeWidth={isSelected ? 3 : 1.6}
+                  stroke={isSelected ? selectionColour : newOrder ? editColour : lineColour}
+                  strokeWidth={isSelected ? 3 : newOrder ? 2.2 : 1.6}
+                  strokeDasharray={isGone ? "3 3" : undefined}
                   strokeLinecap="round"
                 />
               ))}
@@ -223,12 +240,20 @@ export function MonomerPicker({
         {layout.atoms.map((atom) => {
           const isSelected = atom.name === selectedAtom;
           const isMarked = marked.has(atom.name);
+          const isGone = deleted.has(atom.name);
+          const newCharge = edits ? editedCharge(edits, atom.name) : null;
+          const charge = newCharge ?? atom.charge;
           const colour =
-            ELEMENT_COLOURS[atom.element?.toUpperCase() ?? ""] ?? lineColour;
+            newCharge !== null
+              ? editColour
+              : ELEMENT_COLOURS[atom.element?.toUpperCase() ?? ""] ?? lineColour;
           return (
             <g
               key={atom.name}
               data-atom={atom.name}
+              data-deleted={isGone ? "true" : undefined}
+              data-charge={charge}
+              opacity={isGone ? 0.4 : 1}
               role={atomsPickable ? "button" : undefined}
               tabIndex={atomsPickable ? 0 : undefined}
               aria-label={atomsPickable ? `Atom ${atom.name}` : undefined}
@@ -271,12 +296,13 @@ export function MonomerPicker({
                 fontFamily={theme.typography.fontFamily}
                 fill={isSelected ? selectionColour : colour}
                 fontWeight={isSelected ? 700 : 500}
+                textDecoration={isGone ? "line-through" : undefined}
                 style={{ userSelect: "none", pointerEvents: "none" }}
               >
                 {atom.name}
-                {atom.charge !== 0 && (
+                {charge !== 0 && (
                   <tspan fontSize={7} dy={-4}>
-                    {superscriptCharge(atom.charge)}
+                    {superscriptCharge(charge)}
                   </tspan>
                 )}
               </text>
