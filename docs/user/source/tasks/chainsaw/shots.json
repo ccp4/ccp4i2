@@ -1,0 +1,64 @@
+{
+  "scenario": "../../../tools/scenario_prep.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    2000
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "chainsaw_input.png",
+      "job": 27,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input Data",
+      "through": "Simple Options",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Aligned sequences",
+          "badge": "2"
+        },
+        {
+          "field": "Identifier of the target sequence in this alignment",
+          "badge": "3"
+        },
+        {
+          "field": "Truncation",
+          "badge": "4"
+        }
+      ]
+    },
+    {
+      "out": "chainsaw_report.png",
+      "job": 22,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Deleted",
+        "scroll": true
+      },
+      "until": "Bibliographic references",
+      "callouts": [
+        {
+          "text": "Deleted",
+          "badge": "5"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/chainsaw/script/chainsaw.def.xml": "d6de6872dbfb99e85fc02b71103a05620a30767f",
+    "server/ccp4i2/wrappers/chainsaw/script/chainsaw.py": "5ca0df0c7631c3f8bb169f93f2e7a30741da8719",
+    "server/ccp4i2/wrappers/chainsaw/script/chainsaw_report.py": "e5eb8dfb802004ddfd4fa31611af09e83c0906b5",
+    "client/renderer/components/task/task-interfaces/chainsaw.tsx": "e9ad70d46a5d640940ed125b92af0b9998d72918",
+    "docs/user/tools/scenario_prep.py": "aecf354063a48a2e2ba3b5cf94378ce2c78f902e"
+  }
+}

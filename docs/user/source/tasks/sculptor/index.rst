@@ -2,61 +2,54 @@
 Truncate search model - SCULPTOR
 ################################
 
-   Difficult molecular replacement problems (e.g. homology less than
-   30%) can be helped by trimming loops and side chains from the target
-   model where it has poor sequence alignment to the search sequence. To
-   run this task you can enter either the search sequence for which the
-   task will perform an alignment to the template structure or you may
-   import your preferred alignment. You may get a better alignment of
-   the template and target sequence from tools such as HHPred, PROMALS3D
-   or FFAS. The supported sequence and alignment formats are described
-   in the `Model data documentation <../../general/model_data.html>`__.
+Difficult molecular replacement problems (homology below about 30%, say)
+can be helped by trimming loops and side chains from the search model
+where they align poorly with the target. Sculptor, from Phenix, does this
+with finer control than *Chainsaw*: over how gaps and poorly aligned
+regions are deleted, how side chains are pruned, and how B-factors are
+set to express which parts of the model are least reliable. Give it
+either the target sequence, which it aligns with the model itself, or
+your own alignment; a better alignment than a simple pairwise one may be
+had from HHpred, PROMALS3D or FFAS. The supported formats are described in
+the `Model data documentation <../../general/model_data.html>`__.
+
+The pictures on this page set Sculptor up on the same MDMX model and
+alignment as the *Chainsaw* page.
 
 Input
 =====
 
-   |image1|
-   Select the template structure\ **(1)**
+.. figure:: sculptor_input.png
+   :alt: Figure 1: Sculptor input
 
-   Choose to enter the target sequence or an alignment\ **(2)**
+   Figure 1: Sculptor input
 
-   Select and alignment file and specify which sequence in the file is
-   the target.\ **(3)**
+The model to edit **(1)**. Whether the target is given as an alignment
+(with the identifier of the target sequence in it) or as a sequence to be
+aligned **(2)**. The alignment and the target in it **(3)**.
 
-Options
--------
+*Model modification* **(4)**: how side chains are pruned, and how the
+B-factors of the output are set. Left blank, each takes Sculptor's own
+default. The pruning choices (see the
+`Phenix documentation <https://www.phenix-online.org/documentation/reference/sculptor.html>`__):
 
-   |image2|
-   **(1)**\ Pruning side chain alternative modes (from `Phenix
-   documentation <https://www.phenix-online.org/documentation/reference/sculptor.html>`__):
-   **schwarzenbacher** Implements the algorithm published by
-   Schwarzenbacher et al. (2004), who propose that for optimal molecular
-   replacement results a residue sidechain should be truncated if
-   aligned with a non-identical residue, and not truncated otherwise.
-   The level of truncation is controlled by the pruning_level parameter,
-   and defaults to 3 (which corresponds to Cgamma) and can be controlled
-   by the pruning_level parameter of the schwarzenbacher scope.
-   **Similarity** Uses sequence similarity values for deciding the level
-   of truncation. Residues above full_truncation_limit are not truncated
-   at all, those below the full_truncation_limit are truncated to Cbeta,
-   and those in between are truncated according to the pruning_level
-   parameter (all available from the similarity scopei). Results tend to
-   be similar to those given by the Schwarzenbacher algorithm; however,
-   it is possible to get high similarity values (and full sidechain
-   preservation) for certain substitutions (i.e. TYR to PHE), and
-   low-sequence similarity zones can end up being truncated to Cbeta.
+- *schwarzenbacher*: truncate a side chain aligned with a non-identical
+  residue, by default to the gamma atom; keep identical residues whole.
+- *similarity*: decide from the similarity of the aligned residues:
+  residues above a similarity limit are kept whole, those well below it
+  truncated to the beta carbon, and those between truncated part way.
+  Results are similar to Schwarzenbacher's, but a similar substitution
+  (Tyr to Phe, say) keeps its side chain, and low-similarity regions may
+  be cut back to the beta carbon.
 
-   **(2)**\ B factor of model: **original** This uses the original
-   B-factor of atoms. This is primarily intended as a contributor to a
-   combination, but can also be used to manipulate current B-factors,
-   e.g. set them to a constant value. **asa** This calculates accessible
-   surface area for an isolated chain and transforms the raw values to
-   B-factors. A high ASA-value indicates a potential for flexibility.
-   The calculation can be configured by the precision and probe_radius
-   parameters of the asa scope. **similarity** Low sequence similarity
-   regions tend to be more dissimilar.
+The B-factor choices: *original* keeps the model's own; *asa* sets them
+from the accessible surface area of the isolated chain (exposed atoms are
+more likely to be flexible); *similarity* raises them where the sequence
+similarity is low, where the model is least likely to be right.
 
+Results
+=======
 
-
-.. |image1| image:: sculptor_task_1.png
-.. |image2| image:: sculptor_task_2.png
+The edited model is the output, ready to use as a search model; the
+report says whether the job finished. Compare it with the input in
+Coot or Moorhen to see what was removed.

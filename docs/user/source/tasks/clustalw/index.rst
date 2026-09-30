@@ -2,31 +2,49 @@
 Align sequences - CLUSTALW
 ##########################
 
-   This interface accesses a small part of ClustalW2 functionality in
-   order to align two or more protein sequences using default program
-   parameters.
+This task aligns two or more protein sequences with ClustalW2, using the
+program's default parameters. In a structure solution its usual job is the
+first step of preparing a molecular replacement search model: aligning the
+target sequence with the sequence of a homologue of known structure, so
+that *Chainsaw* or *Sculptor* can prune the homologue to match.
+
+A pairwise alignment is only as good as the similarity behind it. Above
+about 40% identity ClustalW's alignment is usually reliable; below about
+30%, regions (loops especially) may be misaligned, and a profile-based
+alignment (HHpred, for instance) is worth the trouble.
+
+The pictures on this page align MDM2 (the target, from the Ligand
+Tutorial data that comes with CCP4i2) with its homologue MDMX (PDB entry
+3dab), which is 57% identical.
 
 Input
 =====
 
-   |image1|
-   You can enter input sequences with all sequences in an alignment file
-   or as a list of sequences.\ **(1)**
+.. figure:: clustalw_input.png
+   :alt: Figure 1: ClustalW input
 
-   To enter multiple sequences files select the first in the *Sequence*
-   line **(2)** and then click the '+' button **(3)** to create the next
-   element in the sequence list.
+   Figure 1: ClustalW input
 
-   The supported formats for alignment and sequences files are described
-   in the `Model data documentation <../../general/model_data.html>`__.
-   CCP4i2 will convert imported alignment and sequences files to its
-   internal standard formats: Clustal for alignment files and Fasta for
-   sequence files.
+Give the sequences either as a list of sequence files **(1)**, adding one
+row per sequence with **+**, or as one alignment file to realign. Put the
+target first: the tasks that use the alignment take its first sequence as
+the target unless told otherwise. The supported formats are described in
+the `Model data documentation <../../general/model_data.html>`__; CCP4i2
+converts imported alignments to Clustal format and sequences to FASTA.
 
 Results
 =======
 
-      The results are output in a Clustal format alignment file and are
-      shown in the report.
+.. figure:: clustalw_report.png
+   :alt: Figure 2: ClustalW report
 
-.. |image1| image:: clustalw_task_1.png
+   Figure 2: ClustalW report
+
+The report shows the alignment **(2)**, coloured by residue, with a line
+marking each column as fully conserved (*), strongly similar (:) or weakly
+similar (.). Check it before using it: long runs of gaps in the homologue
+mean parts of the target it cannot model, and a region with no conserved
+columns is probably misaligned. Here the N-terminal tag of the MDM2
+construct has no counterpart in MDMX, and the domains align over their
+length. *Alignment statistics* gives the pairwise scores. The alignment
+file is the output, for Chainsaw, Sculptor or the Phaser ensembler.

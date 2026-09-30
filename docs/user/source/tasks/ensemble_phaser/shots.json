@@ -1,0 +1,60 @@
+{
+  "scenario": "../../../tools/scenario_prep.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    2000
+  ],
+  "settle": 25000,
+  "draft": true,
+  "task": "phaser_ensembler",
+  "shots": [
+    {
+      "out": "ensembler_input.png",
+      "job": 29,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "through": "Optional multiple sequence alignment",
+      "callouts": [
+        {
+          "text": "Models to superpose",
+          "badge": "1"
+        },
+        {
+          "field": "Sequence identity to place in header",
+          "badge": "2"
+        },
+        {
+          "field": "Optional multiple sequence alignment",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "ensembler_report.png",
+      "job": 24,
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        1800
+      ],
+      "section": "Log stream from phaser.ensembler",
+      "until": "Bibliographic references",
+      "callouts": [],
+      "expand": [
+        "Log stream from phaser.ensembler"
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/phaser_ensembler/script/phaser_ensembler.def.xml": "4b5d6cce24fae5835714d5d16d8709d17458fa0b",
+    "server/ccp4i2/wrappers/phaser_ensembler/script/phaser_ensembler.py": "02fbb3e130ea6c2be4c756012ae8b39308b67905",
+    "server/ccp4i2/wrappers/phaser_ensembler/script/phaser_ensembler_report.py": "d0103b9f60007bfd5ca54463f26513a8e0cf68f4",
+    "client/renderer/components/task/task-interfaces/phaser_ensembler.tsx": "135ee4c91f96f686dd2e388f1fd484096cd43207",
+    "docs/user/tools/scenario_prep.py": "aecf354063a48a2e2ba3b5cf94378ce2c78f902e"
+  }
+}
