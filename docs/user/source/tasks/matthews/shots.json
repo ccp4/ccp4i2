@@ -1,0 +1,51 @@
+{
+  "scenario": "../../../tools/scenario_tools.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "matthews_input.png",
+      "job": 16,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Cell parameters from reflection data",
+      "through": "Calculate molecular weight from...",
+      "callouts": [
+        {
+          "field": "Experimental data",
+          "badge": "1"
+        },
+        {
+          "field": "Mode",
+          "badge": "2"
+        },
+        {
+          "field": "Contents of biological unit",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "matthews_report.png",
+      "job": 10,
+      "tabs": [
+        "Report"
+      ],
+      "section": "Matthews coefficient analysis",
+      "callouts": []
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/matthews/script/matthews.def.xml": "8b74eafeeab87efdd94bfd4d90486ae37afc62a3",
+    "server/ccp4i2/wrappers/matthews/script/matthews.py": "764feeb8786a50e11d90df5660ee75056406b3b8",
+    "server/ccp4i2/wrappers/matthews/script/matthews_report.py": "daceac10860c469d2f1764e7ddb8dc80fb2ae04b",
+    "client/renderer/components/task/task-interfaces/matthews.tsx": "b14c5200e44a35584dc4bafdbcec2707ee6fb970",
+    "docs/user/tools/scenario_tools.py": "ecd8d49f10137b2241781f095b748f476260937a"
+  }
+}
