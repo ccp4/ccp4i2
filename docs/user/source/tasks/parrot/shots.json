@@ -1,0 +1,58 @@
+{
+  "scenario": "../../../tools/scenario_parrot.py",
+  "project": "CDK2_CyclinA",
+  "viewport": [1400, 1000],
+  "shots": [
+    {
+      "out": "parrot_input.png",
+      "job": 4,
+      "tabs": ["Task interface", "Main inputs"],
+      "section": "Input data",
+      "viewport": [1400, 1400],
+      "callouts": ["Reflections", "Free R set", "Asymmetric unit contents", "Starting phases", "Starting map", "Use of NCS"]
+    },
+    {
+      "out": "parrot_controls.png",
+      "job": 4,
+      "tabs": ["Task interface", "Main inputs"],
+      "section": "Controls",
+      "viewport": [1400, 1400],
+      "callouts": ["Number of cycles", "Apply anisotropy correction", "Maximum resolution", "Estimated solvent content"]
+    },
+    {
+      "out": "parrot_reference.png",
+      "job": 4,
+      "tabs": ["Task interface", "Reference structures"],
+      "section": "Reference density and atomic models",
+      "callouts": []
+    },
+    {
+      "out": "parrot_report.png",
+      "job": 3,
+      "tabs": ["Report"],
+      "viewport": [1400, 2600],
+      "section": {
+        "text": "The solvent content is set",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "text": "The solvent content is set"
+        },
+        {
+          "text": "Solvent content",
+          "closest": "table"
+        },
+        {
+          "text": "Plot",
+          "closest": ".MuiPaper-root"
+        },
+        {
+          "text": "Solvent content analysis"
+        }
+      ],
+      "until": "Input Data",
+      "from": "The solvent content is set"
+    }
+  ]
+}
