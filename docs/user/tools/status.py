@@ -19,6 +19,7 @@ from pathlib import Path
 DOCS = Path(__file__).resolve().parent.parent
 REPO = DOCS.parent.parent
 CHOOSER = REPO / "client/renderer/components/task/task-chooser.tsx"
+TASKS_PY = REPO / "server/ccp4i2/core/tasks.py"
 TASK_PAGES = DOCS / "source/tasks"
 
 # Pages whose directory is not the task's name.
@@ -37,12 +38,21 @@ ALIASES = {
 }
 
 
+@cache
+def superseded():
+    """Tasks with a successor: the chooser hides them, so they need no page."""
+    text = TASKS_PY.read_text(encoding="utf-8")
+    return set(re.findall(
+        r'"(\w+)":\s*Task\((?:(?!\n    "\w+":\s*Task\()[\s\S])*?successor="\w+"', text))
+
+
 def chooser_categories():
-    """[(category title, [task names])], as the task chooser lists them."""
+    """[(category title, [task names])], as the task chooser shows them."""
     text = CHOOSER.read_text(encoding="utf-8")
     block = text[text.index("const TASK_CATEGORIES"):]
     block = block[:block.index("\n];")]
-    return [(title, re.findall(r'"([^"]+)"', tasks))
+    hidden = superseded()
+    return [(title, [t for t in re.findall(r'"([^"]+)"', tasks) if t not in hidden])
             for title, tasks in re.findall(
                 r'title:\s*"([^"]+)"[\s\S]*?tasks:\s*\[([^\]]*)\]', block)]
 
