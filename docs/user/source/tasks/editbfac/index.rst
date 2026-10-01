@@ -15,7 +15,7 @@ uses.
 Use it when you have a predicted model and want to choose what to search
 with. It does not use your data or your crystal, so it cannot say which
 region will be found: that is for the molecular-replacement task that
-follows (:doc:`../phaser_mr_phil/phaser_mr_phil`). To edit a *homologue's*
+follows (:doc:`../phaser_mr_phil/index`). To edit a *homologue's*
 model by an alignment (not a predicted model by its confidence) use
 Sculptor or Chainsaw. SliceNDice does this preparation itself and then runs
 Phaser with each of the pieces; use this task when you want to see and
