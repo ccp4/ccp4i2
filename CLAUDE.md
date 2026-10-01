@@ -395,6 +395,7 @@ class Task:
     successor: str = None       # the task that replaces this one (chooser hides this one)
     interactive: bool = False   # its "program" is a window in the app: Run opens a
                                 # session instead of dispatching (docs/moorhen-task-design.md)
+    searchTerms: tuple = ()     # chooser search terms the title lacks ("sad", "refmac", "alphafold")
 ```
 
 Accessors (lazy, cached — they import the plugin module on first use) live in the

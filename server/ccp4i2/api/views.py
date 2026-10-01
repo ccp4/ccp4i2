@@ -22,6 +22,7 @@ _TASK_LOOKUP = {key: {
     # The task's program is a window in the app: Run opens a session rather
     # than dispatching, and the client opens the session window.
     "interactive": task.interactive,
+    "searchTerms": list(task.searchTerms),
 } for key, task in TASKS.items()}
 
 
