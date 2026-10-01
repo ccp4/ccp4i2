@@ -1,0 +1,74 @@
+{
+  "scenario": "../../../tools/scenario_mr_tasks.py",
+  "project": "MDM2",
+  "task": "AMPLE",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "ample_input.png",
+      "job": 118,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Input sequence"
+      },
+      "callouts": [
+        {
+          "field": "Sequence",
+          "badge": "1"
+        },
+        {
+          "field": "Reflections",
+          "badge": "2"
+        },
+        {
+          "field": "Do you have existing models?",
+          "badge": "3"
+        },
+        {
+          "field": "Model generation",
+          "badge": "4"
+        },
+        {
+          "field": "Number of processors",
+          "badge": "5"
+        }
+      ]
+    },
+    {
+      "out": "ample_advanced.png",
+      "job": 118,
+      "tabs": [
+        "Advanced Options"
+      ],
+      "section": "Rebuilding options",
+      "until": "Extra command-line arguments",
+      "callouts": [
+        {
+          "field": "Run SHELXE after MR",
+          "badge": "6"
+        },
+        {
+          "field": "Better but slower ensembling",
+          "badge": "7"
+        }
+      ]
+    }
+  ],
+  "kept": {
+    "image_1.png": "The AMPLE workflow figure from Bibby et al. 2012, explained in the text; it is the paper's diagram, not a picture of any interface."
+  },
+  "sources": {
+    "server/ccp4i2/wrappers/AMPLE/script/AMPLE.def.xml": "8e7e96ff1ba8a984248ed55a76b075da557d847a",
+    "server/ccp4i2/wrappers/AMPLE/script/AMPLE.py": "6b6ef305caf2cea08834bcffc2b9ea3c8d9c172e",
+    "server/ccp4i2/wrappers/AMPLE/script/AMPLE_report.py": "e217fb646f8e300c3ebb2adab19c1b267e8ab5ea",
+    "client/renderer/components/task/task-interfaces/ample.tsx": "92021e5dc32b105db04a8ce7fbb4de98a91ffe1e",
+    "docs/user/tools/scenario_mr_tasks.py": "e2b9dddaceac6a696a6dfd1bb7d7fd74adacabc9"
+  }
+}

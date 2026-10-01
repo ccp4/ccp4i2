@@ -1,0 +1,52 @@
+tab  TASK INTERFACE
+tab* REPORT
+tab  COMMENTS
+tab  DIRECTORY
+tab  LOGS
+button   TASK MENU
+button   CLONE JOB
+button   HELP
+button   BIBLIOGRAPHY
+text     1
+text     Place in cryo-EM map
+text     Cryo-EM hand assignment: the model is placed into the map and into its mirror image, and the better real-space fit (map-model correlation) w
+table    Hand | Placed | Map-model CC | molrep score | Verdict  (2 rows)
+  row    Original (as given) | yes | 0.7284 | 0.6244 | ✓ recommended – confident
+  row    Inverted (mirror image) | yes | 0.0531 | 0.0747 | 
+text     A clear winner: the recommended hand's model fits the map well and the two hands are well separated. Both hands are provided below; the reco
+text     Original hand
+table    RF | TF | TF/sig | TF contrast | PFind | PF | PFmod | wRfac | Score | Contrast | FOM  (5 rows)
+  row    1.0 | 1.0 | 108.2 | 89.415 | 1.0 | 1.0 | 1.0 | 0.461 | 0.6178 | 0.0 | 0.6178
+  row    2.0 | 1.0 | 109.3 | 89.799 | 1.0 | 1.0 | 1.0 | 0.457 | 0.6244 | 0.0 | 0.6244
+  row    3.0 | 1.0 | 8.995 | 3.03 | 1.0 | 1.0 | 1.0 | 0.573 | 0.0469 | 0.0 | 0.6244
+  row    4.0 | 1.0 | 8.217 | 1.826 | 1.0 | 1.0 | 1.0 | 0.574 | 0.0423 | 0.0 | 0.6244
+field    Plot = Best TF peak score vs RF peak No
+  menu   Best TF peak score vs RF peak No | TF/sig(TF) vs RF peak No
+text     Inverted hand
+table    RF | TF | TF/sig | TF contrast | PFind | PF | PFmod | wRfac | Score | Contrast | FOM  (5 rows)
+  row    1.0 | 1.0 | 11.27 | 2.372 | 1.0 | 1.0 | 1.0 | 0.461 | 0.051 | 0.0 | 0.051
+  row    2.0 | 1.0 | 11.12 | 2.168 | 1.0 | 1.0 | 1.0 | 0.457 | 0.0504 | 0.0 | 0.051
+  row    3.0 | 1.0 | 14.35 | 3.38 | 1.0 | 1.0 | 1.0 | 0.573 | 0.0627 | 0.0 | 0.0627
+  row    4.0 | 1.0 | 13.37 | 3.6 | 1.0 | 1.0 | 1.0 | 0.574 | 0.064 | 0.0 | 0.064
+field    Plot = Best TF peak score vs RF peak No
+  menu   Best TF peak score vs RF peak No | TF/sig(TF) vs RF peak No
+text     Input Data 2 files
+item     7b5o.pdb
+item     emd_12042.map
+text     Output Data 6 files
+item     Model placed in the original-hand map (recommended)
+item     Model placed in the inverted-hand map
+item     Original-hand map trimmed to the model (recommended)
+item     Inverted-hand map trimmed to the model
+item     Mask around the original-hand model (recommended)
+item     Mask around the inverted-hand model
+table      (3 rows)
+  row    Created | 18:54 01-Oct-2026
+  row    Finished | 18:54 01-Oct-2026
+  row    Status | Finished
+text     Bibliographic references
+text     0 Vagin A, Teplyakov A
+text     Molecular replacement with MOLREP.
+text     Acta Crystallogr D Biol Crystallogr. 2010;66(Pt 1):22-25.
+text     What next:
+button   Refinement - Servalcat

@@ -1,0 +1,105 @@
+{
+  "scenario": "../../../tools/scenario_mr_tasks.py",
+  "project": "Gamma",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "task": "SIMBAD",
+  "shots": [
+    {
+      "out": "simbad_input.png",
+      "job": 29,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input reflections",
+      "callouts": [
+        {
+          "field": "Reflections",
+          "badge": "1"
+        },
+        {
+          "field": "Search level:",
+          "badge": "2"
+        },
+        {
+          "field": "Organism:",
+          "badge": "3"
+        },
+        {
+          "field": "Number of processors",
+          "badge": "4"
+        }
+      ],
+      "through": "Number of processors"
+    },
+    {
+      "out": "simbad_advanced.png",
+      "job": 29,
+      "tabs": [
+        "Task interface",
+        "Advanced options"
+      ],
+      "callouts": [
+        {
+          "field": "Rotation Search Program:",
+          "badge": "5"
+        },
+        {
+          "field": "Molecular Replacement Program:",
+          "badge": "6"
+        },
+        {
+          "field": "Number of Molecules to place",
+          "badge": "7"
+        },
+        {
+          "field": "Process all possible hits:",
+          "badge": "8"
+        },
+        {
+          "field": "Check alternative space groups:",
+          "badge": "9"
+        }
+      ]
+    },
+    {
+      "out": "simbad_lattice.png",
+      "job": 28,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Lattice Parameter Search Results",
+        "scroll": true
+      },
+      "until": "Summary",
+      "expand": [
+        "Lattice Parameter Search Results",
+        "Molecular Replacement Search Results"
+      ]
+    },
+    {
+      "out": "simbad_summary.png",
+      "job": 28,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "SIMBAD Summary",
+        "scroll": true
+      },
+      "until": "Citations"
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/SIMBAD/script/SIMBAD.def.xml": "0cf6e6325d7bb76d2543c01b3c78cc56881b52a3",
+    "server/ccp4i2/wrappers/SIMBAD/script/SIMBAD.py": "b3f7ee4e0eefb677dfb9f8581859c1daa7b912a3",
+    "server/ccp4i2/wrappers/SIMBAD/script/SIMBAD_report.py": "a4b38df38da397354adfcb53035d9efb86deba55",
+    "client/renderer/components/task/task-interfaces/SIMBAD.tsx": "fdf1388d4e0a07380ac0e003903c2e9cee70be54",
+    "docs/user/tools/scenario_mr_tasks.py": "e2b9dddaceac6a696a6dfd1bb7d7fd74adacabc9"
+  }
+}

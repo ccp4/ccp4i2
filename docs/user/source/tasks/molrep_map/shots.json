@@ -1,0 +1,72 @@
+{
+  "scenario": "../../../tools/scenario_mr_tasks.py",
+  "project": "CAK",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "molrep_map_input.png",
+      "job": 2,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": {
+        "text": "Input data",
+        "scroll": true
+      },
+      "callouts": [
+        {
+          "field": "Model to place",
+          "badge": "1"
+        },
+        {
+          "field": "Cryo-EM map",
+          "badge": "2"
+        },
+        {
+          "field": "Half map 1 (optional, for cross-validated refinement)",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "molrep_map_report.png",
+      "job": 1,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Cryo-EM hand assignment",
+        "scroll": true
+      },
+      "until": "Inverted hand",
+      "callouts": [
+        {
+          "text": "Hand",
+          "closest": "table",
+          "badge": "4"
+        },
+        {
+          "text": "A clear winner",
+          "badge": "5"
+        },
+        {
+          "text": "Original hand",
+          "badge": "6"
+        }
+      ]
+    }
+  ],
+  "task": "molrep_map",
+  "sources": {
+    "server/ccp4i2/wrappers/molrep_map/script/molrep_map.def.xml": "c718619031df3b1cb529b1ec4ce02b8b92d13a58",
+    "server/ccp4i2/wrappers/molrep_map/script/molrep_map.py": "59d5c674155933d9489b81afe91b558811283f9d",
+    "server/ccp4i2/wrappers/molrep_map/script/molrep_map_report.py": "3d56f12dd8b4e436e2f0c943bd4bef779a7c18e0",
+    "client/renderer/components/task/task-interfaces/generic.tsx": "1058a8115a1d3b56a51168e286dee71dc12dee32",
+    "docs/user/tools/scenario_mr_tasks.py": "e2b9dddaceac6a696a6dfd1bb7d7fd74adacabc9"
+  }
+}
