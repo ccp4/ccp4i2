@@ -236,6 +236,61 @@ async function shoot(shot) {
     }, selector);
     await sleep(1500);
   }
+  // "outline": the page as text instead of a picture, for finding out what a
+  // new page's sections and labels are called (a full-page screenshot read
+  // for that costs many times more). Written to <out>.outline.txt and printed.
+  if (shot.outline) {
+    const lines = await page.evaluate((sec) => {
+      // No section: the job's panel (its fixed id, project/[id]/layout.tsx),
+      // not the whole page with the job list beside it.
+      const root = sec == null
+        ? (document.querySelector('[data-panel-id="project-content"]') || __cap.section(null))
+        : __cap.section(sec);
+      const text = (el) => (el ? el.innerText || el.textContent || "" : "").replace(/\s+/g, " ").trim();
+      const out = [];
+      root.querySelectorAll('[role="tab"]').forEach((t) => {
+        if (t.offsetParent) out.push(`tab${t.getAttribute("aria-selected") === "true" ? "*" : " "} ${text(t)}`);
+      });
+      const seen = new Set();
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+      for (let el = walker.currentNode; el; el = walker.nextNode()) {
+        if ([...seen].some((s) => s.contains(el)) || !el.getClientRects().length) continue;
+        const cls = el.className && el.className.baseVal === undefined ? String(el.className) : "";
+        if (cls.includes("MuiAccordionSummary-root")) {
+          out.push(`section  ${text(el)}`); seen.add(el);
+        } else if (el.tagName === "TABLE") {
+          const head = [...el.querySelectorAll("thead th, tr:first-child th")].map(text);
+          const rows = [...el.querySelectorAll("tbody tr")];
+          out.push(`table    ${head.join(" | ")}  (${rows.length} rows)`);
+          rows.slice(0, 4).forEach((r) => out.push(`  row    ${[...r.children].map(text).join(" | ")}`));
+          seen.add(el);
+        } else if (cls.includes("MuiFormControlLabel-root")) {
+          const box = el.querySelector("input");
+          out.push(`check    [${box && box.checked ? "x" : " "}] ${text(el)}`); seen.add(el);
+        } else if (cls.includes("MuiFormControl-root") || cls.includes("MuiTextField-root")) {
+          const label = text(el.querySelector("label"));
+          const input = el.querySelector("input, textarea");
+          const shown = text(el.querySelector('[role="combobox"], .MuiSelect-select'));
+          const value = shown || (input ? input.value : "");
+          out.push(`field    ${label || "(no label)"} = ${value.slice(0, 90)}`); seen.add(el);
+        } else if (el.tagName === "BUTTON" && text(el) && el.getAttribute("role") !== "tab") {
+          out.push(`button   ${text(el)}`); seen.add(el);
+        } else if ((el.tagName === "LI" || cls.includes("MuiListItemText-root")) && text(el)) {
+          out.push(`item     ${text(el).slice(0, 140)}`); seen.add(el);
+        } else if (/^(P|PRE|H[1-6])$/.test(el.tagName) && text(el)) {
+          out.push(`text     ${text(el).slice(0, 140)}`); seen.add(el);
+        }
+      }
+      return out;
+    }, shot.section ?? null);
+    const out = path.join(outDir, `${shot.out}.outline.txt`);
+    fs.writeFileSync(out, lines.join("\n") + "\n");
+    console.log(`--- ${shot.out} (job ${shot.job}, ${(shot.tabs || []).join(" > ")})`);
+    console.log(lines.join("\n"));
+    page.ws.close();
+    await browser.send("Target.closeTarget", { targetId });
+    return;
+  }
   // Bring the section into view, then measure it and its fields.
   // (Two steps: an error thrown in a timer callback would never reach us.)
   await page.evaluate((sec) => __cap.section(sec).scrollIntoView({ block: "start" }), shot.section);
