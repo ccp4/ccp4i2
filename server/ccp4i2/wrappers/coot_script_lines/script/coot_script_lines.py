@@ -10,7 +10,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class coot_script_lines(CPluginScript):
     TASKNAME = 'coot_script_lines'
-    TASKCOMMAND = 'coot'
+    # Coot 1, as CCP4 9 ships it ("coot-1"; the interactive coot1 task names
+    # it too). It asked for "coot", which a CCP4 9 install does not have: the
+    # job found nothing, or another Coot on PATH (a Homebrew one that could not
+    # load its own libraries, here).
+    TASKCOMMAND = 'coot-1'
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
 
@@ -29,6 +33,16 @@ class coot_script_lines(CPluginScript):
         self.appendCommandLine(['--no-state-script','--no-graphics','--python','--script',cootScriptPath])
 
         cootScript = open(cootScriptPath,"w")
+        # Coot 1 keeps its scripting API in modules, not the script's globals
+        # (read_pdb was undefined); the starting-point scripts use it bare.
+        cootScript.write("import os\n"
+                         "try:\n"
+                         "    import coot\n"
+                         "    from coot import *\n"
+                         "    import coot_utils\n"
+                         "    from coot_utils import *\n"
+                         "except ImportError:\n"
+                         "    pass\n\n")
         
         i = 1
         for XYZIN in self.container.inputData.XYZIN:
@@ -62,7 +76,14 @@ class coot_script_lines(CPluginScript):
             cootScript.write ('try:\n')
             for scriptLine in scriptLines:
                 cootScript.write('    '+scriptLine+'\n')
-            cootScript.write('except:\n    coot_real_exit(0)\n')
+            # Print what went wrong before leaving: it exited silently, so a
+            # script calling a function Coot 1 lacks made nothing and said
+            # nothing. Exit non-zero, so the job fails with the traceback in
+            # its log rather than finishing with no output.
+            cootScript.write('except Exception:\n'
+                             '    import traceback\n'
+                             '    traceback.print_exc()\n'
+                             '    coot_real_exit(1)\n')
             cootScript.write ('\n')
           
         cootScript.write("coot_real_exit(0)\n")
