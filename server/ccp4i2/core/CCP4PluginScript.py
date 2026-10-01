@@ -3067,7 +3067,13 @@ class CPluginScript(CData):
         # had failed while carrying the maps and models they had just written.
         succeeded = (status == self.SUCCEEDED)
         completed = succeeded or status == self.UNSATISFACTORY
-        self.absorbPendingCauses(downgrade=completed)
+        # Only a job that succeeded survived a subjob's failure, so only then
+        # is that failure a warning. A pipeline that ends UNSATISFACTORY
+        # because a step failed (aimless_pipe turns a failed step into
+        # UNSATISFACTORY to keep what it made) must still report the step's
+        # error as one: downgraded with it, the pipeline "failed and reported
+        # nothing" (test_failure_surfacing).
+        self.absorbPendingCauses(downgrade=succeeded)
 
         inherited = [e for e in self.errorReport.entries() if e.get('fromSubjob')]
         if succeeded and not inherited:
