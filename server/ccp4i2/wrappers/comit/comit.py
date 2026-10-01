@@ -1,4 +1,5 @@
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4XtalData import CObsDataFile
 
 
 class comit(CPluginScript):
@@ -6,7 +7,11 @@ class comit(CPluginScript):
     TASKCOMMAND = "comit"
 
     def processInputFiles(self):
-        self.makeHklinGemmi(["F_SIGF", "F_PHI_IN"])
+        # comit reads amplitudes (F_SIGF_F, F_SIGF_SIGF): convert intensities.
+        # (Data from aimless are intensities; the job died in clipper with
+        # "Missing column ... F_SIGF_F".)
+        self.makeHklinGemmi([{"name": "F_SIGF", "target_contentFlag": CObsDataFile.CONTENT_FLAG_FMEAN},
+                             "F_PHI_IN"])
 
     def makeCommandAndScript(self):
         params = self.container.controlParameters
