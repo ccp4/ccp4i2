@@ -20,6 +20,7 @@ The mechanics are in `docs/user/README.md`; the traps, by stage, are in
 |---|---|
 | How to build, run the app, capture | `docs/user/README.md` |
 | Progress per chooser task (current / draft / Qt / none / stale) | `python3 docs/user/tools/status.py`; `status.rst` each build |
+| What is left, by chooser category (to choose a route) | `python3 docs/user/tools/status.py todo` |
 | Everything about one task, from source | `python3 docs/user/tools/taskcard.py <task>` |
 | What a page shows, and from which project | its `shots.json`; the scenario it names |
 | Page directories not named after their task; pages for several tasks | `ALIASES` in `tools/status.py`; `"task"` / `"tasks"` in `shots.json` |
@@ -93,8 +94,12 @@ tokens and five to eight minutes, and its reports found nine real defects
 the outlines had not. Expect the review to be real work: read each page's
 "not in the checked facts" list, check or cut those claims, then fix the
 defects, restart Django, clear the reports and recapture **one page at a
-time**. A field relabelled by a fix breaks the shots that name it
-(`"field"` matches the whole label): update them before recapturing.
+time** (`capture.mjs` now queues on a lock, so parallel captures wait
+rather than contend). A field relabelled by a fix breaks the shots that
+name it (`"field"` matches the whole label): update them before recapturing.
+
+The prompt is short: "Read `.claude/skills/user-docs/subagent-brief.md` and
+follow it", then the route's specifics; the brief holds the rest.
 
 ## Write the judgement down
 

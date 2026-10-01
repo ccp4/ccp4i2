@@ -43,6 +43,9 @@ the user sees, so when a label changes the capture fails and names it: that is
 the moment to reread the page's text too. A shot with `"outline": true` prints
 the page as text instead (tabs, sections, fields and their values, report
 tables): the cheap way to learn what a new page's sections and labels are.
+Captures run one at a time: each waits on a lock (`ccp4i2-capture.lock` in
+the temporary directory) while another runs, since several at once against
+one dev server slowed every shot five-fold.
 
 To learn about a task before writing its page:
 
@@ -54,7 +57,8 @@ cd server && env CCP4I2_HOME=... DJANGO_SETTINGS_MODULE=ccp4i2.config.settings \
 ```
 
 Which pages are converted, and which still show the Qt interface, is on the
-generated status page (`tools/status.py`).
+generated status page (`tools/status.py`); `tools/status.py todo` lists what
+is left, by the chooser's categories.
 
 ## Keeping a page true: stamps
 

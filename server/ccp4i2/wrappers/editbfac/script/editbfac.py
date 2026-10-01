@@ -97,25 +97,32 @@ class editbfac(CPluginScript):
         master_phil = iotbx.phil.parse(process_predicted_model.master_phil_str)
         self.params = master_phil.extract()
         p = self.params.process_predicted_model
+        # Plain Python values, not the parameters themselves. (They were passed
+        # as CFloat/CInt/CBoolean objects: 1 / pae ** CFloat raised inside
+        # cctbx's PAE clustering, which swallows the exception and returns
+        # None, so every job given a PAE file failed with "'NoneType' object
+        # is not iterable".)
+        c = self.container.controlParameters
+        val = lambda item, kind: kind(item.value)
         # standard options
-        p.b_value_field_is = self.container.controlParameters.BTREATMENT.__str__()  # 'plddt'
-        p.remove_low_confidence_residues = self.container.controlParameters.CONFCUT      # True
-        p.split_model_by_compact_regions = self.container.controlParameters.COMPACTREG   # True
-        p.maximum_domains = self.container.controlParameters.MAXDOM  # 3
-        p.domain_size = self.container.controlParameters.DOMAINSIZE.__float__()      # 15 Angstroms is this a float or what ? Not clear
-        p.minimum_domain_length = self.container.controlParameters.MINDOML  # 10 nb. this is a float in the phil
-        p.maximum_fraction_close = self.container.controlParameters.MAXFRACCL
-        p.minimum_sequential_residues = self.container.controlParameters.MINSEQRESI
-        p.minimum_remainder_sequence_length = self.container.controlParameters.MINREMSEQL
-        p.minimum_plddt = self.container.controlParameters.MINLDDT.__float__() # 0.7
-        p.maximum_rmsd = self.container.controlParameters.MAXRMSD.__float__() # 1.5
+        p.b_value_field_is = str(c.BTREATMENT)  # 'plddt'
+        p.remove_low_confidence_residues = val(c.CONFCUT, bool)
+        p.split_model_by_compact_regions = val(c.COMPACTREG, bool)
+        p.maximum_domains = val(c.MAXDOM, int)
+        p.domain_size = val(c.DOMAINSIZE, float)
+        p.minimum_domain_length = val(c.MINDOML, float)
+        p.maximum_fraction_close = val(c.MAXFRACCL, float)
+        p.minimum_sequential_residues = val(c.MINSEQRESI, int)
+        p.minimum_remainder_sequence_length = val(c.MINREMSEQL, int)
+        p.minimum_plddt = val(c.MINLDDT, float)
+        p.maximum_rmsd = val(c.MAXRMSD, float)
         # pae options
-        p.pae_power = self.container.controlParameters.PAEPOWER
-        p.pae_cutoff = self.container.controlParameters.PAECUTOFF
-        p.pae_graph_resolution = self.container.controlParameters.PAEGRAPHRES
+        p.pae_power = val(c.PAEPOWER, float)
+        p.pae_cutoff = val(c.PAECUTOFF, float)
+        p.pae_graph_resolution = val(c.PAEGRAPHRES, float)
         # distance model options
-        p.weight_by_ca_ca_distance = self.container.controlParameters.WEIGHTCA  # False
-        p.distance_power = self.container.controlParameters.DISTPOW  # 1.0
+        p.weight_by_ca_ca_distance = val(c.WEIGHTCA, bool)
+        p.distance_power = val(c.DISTPOW, float)
 
     def convertFile(self, inFile):
         self.filelist = []

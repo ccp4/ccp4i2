@@ -47,6 +47,27 @@ const jobId = (number) => {
   return job.id;
 };
 
+// ---- One capture at a time ---------------------------------------------------
+// Several captures at once (subagents drafting pages in parallel) slowed every
+// shot five-fold, against one dev server. Queue on a lock directory instead;
+// one left by a capture that died is taken over after 20 minutes.
+const LOCK = path.join(os.tmpdir(), "ccp4i2-capture.lock");
+for (let waited = 0; ; waited += 2000) {
+  try {
+    fs.mkdirSync(LOCK);
+    break;
+  } catch {
+    let age = 0;
+    try { age = Date.now() - fs.statSync(LOCK).mtimeMs; } catch { continue; }
+    if (age > 20 * 60 * 1000) { fs.rmSync(LOCK, { recursive: true, force: true }); continue; }
+    if (waited % 60000 === 0) console.log("Waiting for another capture to finish...");
+    await sleep(2000);
+  }
+}
+const releaseLock = () => fs.rmSync(LOCK, { recursive: true, force: true });
+process.on("exit", releaseLock);
+for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(1));
+
 // ---- Chrome over the DevTools protocol ---------------------------------------
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "capture-chrome-"));
 const chrome = spawn(CHROME, [
