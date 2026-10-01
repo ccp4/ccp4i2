@@ -60,6 +60,12 @@ Which pages are converted, and which still show the Qt interface, is on the
 generated status page (`tools/status.py`); `tools/status.py todo` lists what
 is left, by the chooser's categories.
 
+Every merge to `django` that touches the help publishes it to
+https://ccp4.github.io/ccp4i2/ (`.github/workflows/user-docs-pages.yml`), which
+the app's Help button opens at `tasks/<task name>/index.html`. `conf.py` writes
+a redirect there for each task whose page lives elsewhere, or that has none
+yet, and puts a "Draft" banner on pages whose `shots.json` says `"draft": true`.
+
 ## Keeping a page true: stamps
 
 A page describes its task as it was when it was checked. Each `shots.json`
