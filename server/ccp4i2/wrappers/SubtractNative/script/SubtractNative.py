@@ -47,7 +47,7 @@ class SubtractNative(CPluginScript):
             EDCalculator = clipper.EDcalc_aniso_float(2.5)
             EDCalculator(xmap, atoms)
         except Exception as err:
-            print(err.message)
+            print(err)  # (it printed err.message, which Python 3 exceptions lack)
 
         mymap -= xmap
 
@@ -56,4 +56,7 @@ class SubtractNative(CPluginScript):
         mapout.open_write(mapoutPath)
         mapout.export_xmap_float(mymap)
         mapout.close_write()
+        self.container.outputData.MAPOUT.annotation.set(
+            "Map less %g of the model's calculated density"
+            % float(self.container.controlParameters.FRACTION))
         return CPluginScript.SUCCEEDED

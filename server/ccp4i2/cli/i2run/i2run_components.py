@@ -657,6 +657,20 @@ class PluginPopulator:
             )
             logger.info("Resolved %s=%s to %s", keyword, reference, parsed_values)
 
+        # A bare dbFileId= (a file named by its database id, as the app names
+        # one) gets the rest of what identifies the file -- project, baseName,
+        # contentFlag, subType -- as fileIn=/fileOut= do. Alone it left the
+        # file with no path when the job was validated, so requiredContentFlag
+        # was never checked: a PDB-format model went to a task that needs
+        # mmCIF, passed validation, and the job failed parsing it as mmCIF.
+        if (has_key_value_syntax and "dbFileId" in parsed_values
+                and not file_keywords
+                and not any(k in parsed_values for k in ("baseName", "fullPath", "relPath"))):
+            from ccp4i2.lib.utils.files.file_use import resolve_db_file_id
+
+            parsed_values = {**resolve_db_file_id(parsed_values["dbFileId"]), **parsed_values}
+            logger.info("Resolved dbFileId to %s", parsed_values)
+
         # Special handling for sequence files with seqFile= (CAsuDataFile)
         if has_key_value_syntax and "seqFile" in parsed_values:
             from ccp4i2.lib.utils.formats.seq_to_asu import convert_sequence_file_to_asu

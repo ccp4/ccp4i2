@@ -39,6 +39,7 @@ ALIASES = {
     "coot_rsr_morph": "coot_refinement",
     "dials_image": "dials",
     "phaser_pipeline_phil": "phaser_pipeline",
+    "adding_stats_to_mmcif_i2": "PrepareDeposit",
     # One page for Phaser MR over PHIL, whole or in steps.
     "phaser_mr_auto_phil": "phaser_mr_phil",
     "phaser_mr_frf_phil": "phaser_mr_phil",

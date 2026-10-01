@@ -44,3 +44,23 @@ def test_what_the_record_does_not_know_is_left_out(test_project_path):
     fields = file_dict_for_file(the_file)
     # Absent, not None: a None would unset what the file itself declares.
     assert "contentFlag" not in fields and "subType" not in fields
+
+
+def test_a_bare_db_file_id_resolves_to_the_same_fields(test_project_path):
+    # i2run's dbFileId= gave the id alone, so the file had no path when the
+    # job was validated and its content was never checked: a PDB-format
+    # model passed for a task that needs mmCIF, and the job failed later.
+    from ccp4i2.lib.utils.files.file_use import resolve_db_file_id
+
+    the_file = _file(test_project_path, content=4, sub_type=1)
+    assert resolve_db_file_id(str(the_file.uuid)) == file_dict_for_file(the_file)
+
+
+def test_an_unknown_db_file_id_is_an_error(test_project_path):
+    import pytest
+
+    from ccp4i2.lib.utils.files.file_use import FileUseError, resolve_db_file_id
+
+    _file(test_project_path)
+    with pytest.raises(FileUseError):
+        resolve_db_file_id(str(uuid.uuid4()))

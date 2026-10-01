@@ -5,7 +5,7 @@ report failed to parse: "XML or text declaration not at start of entity".
 """
 import xml.etree.ElementTree as ET
 
-from ccp4i2.wrappers.privateer.script.privateer_report import fit_svg, inline_svg
+from ccp4i2.report.svg import fit_svg, inline_svg
 
 SVG = """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">

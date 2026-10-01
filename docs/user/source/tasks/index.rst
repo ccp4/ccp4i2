@@ -143,6 +143,7 @@ Refinement
    servalcat_pipe/index
    prosmart_refmac/index
    tls/index
+   SubtractNative/index
    coot_refinement/index
    lorestr_i2/index
    pairef/index
@@ -208,6 +209,7 @@ Coordinate data tools
    coordinate_selector/index
    fractional_coordinates/index
    areaimol/index
+   pdbset_ui/index
    modelASUCheck/index
 
 Indices and tables

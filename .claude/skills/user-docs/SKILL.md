@@ -80,6 +80,10 @@ request whatever its base.
 - **An exception thrown inside a page-side timer never rejects**: the capture
   hangs. Keep page steps synchronous and sleep on the Node side.
 - **JPEG is wrong for screenshots**: 256-colour PNG is smaller and sharper.
+- **Never send a scenario's data to an outside service.** The deposition
+  task's "Use validation server" is on by default and uploads the structure
+  to wwPDB: scenarios pass `--SENDTOVALIDATIONSERVER False`. PdbView
+  (`pdbview_edit`) opens a desktop editor, like QtPISA: not scriptable.
 - **Never run an interactive task in a scenario.** Some tasks' "program" is a
   desktop window: qtpisa opens QtPISA, the coot and ccp4mg tasks open theirs,
   Lidia's "sketch" input opens a sketcher. Run from a scenario, they pop up on

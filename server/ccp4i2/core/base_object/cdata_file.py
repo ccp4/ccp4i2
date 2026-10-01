@@ -1697,15 +1697,23 @@ class CDataFile(CData):
 
                 if not is_compatible:
                     obj_path = self.object_path()
-                    # Map flag values to human-readable names
-                    flag_names = {
-                        1: 'IPAIR (I+/I-)',
-                        2: 'FPAIR (F+/F-)',
-                        3: 'IMEAN',
-                        4: 'FMEAN'
-                    }
-                    actual_name = flag_names.get(actual_flag, str(actual_flag))
-                    required_names = ', '.join(flag_names.get(f, str(f)) for f in required_flags)
+                    # Name the flags in this class's own terms (CONTENT_ANNOTATION,
+                    # indexed from flag 1). A fixed table of reflection-data
+                    # names told a user a coordinate file "requires one of:
+                    # FPAIR (F+/F-)" when it needed mmCIF.
+                    names = list(getattr(self.__class__, 'CONTENT_ANNOTATION', None) or [])
+
+                    def flag_name(flag):
+                        try:
+                            flag = int(flag)
+                        except (TypeError, ValueError):
+                            return str(flag)
+                        if flag == 0:
+                            return 'content not recognised'
+                        return names[flag - 1] if 0 < flag <= len(names) else str(flag)
+
+                    actual_name = flag_name(actual_flag)
+                    required_names = ', '.join(flag_name(f) for f in required_flags)
                     report.append(
                         klass=self.__class__.__name__,
                         code=104,

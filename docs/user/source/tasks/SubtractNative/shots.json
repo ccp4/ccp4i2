@@ -1,0 +1,59 @@
+{
+  "scenario": "../../../tools/scenario_deposit.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "subtract_input.png",
+      "job": 99,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input data",
+      "callouts": [
+        {
+          "field": "Map coefficients",
+          "badge": "1"
+        },
+        {
+          "field": "Atomic model",
+          "badge": "2"
+        },
+        {
+          "field": "Fraction to subtract",
+          "badge": "3"
+        }
+      ]
+    },
+    {
+      "out": "subtract_report.png",
+      "job": 97,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Input Data",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "Map less 0.5",
+          "badge": "4"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/SubtractNative/script/SubtractNative.def.xml": "c2435bd83c3dd7dec6c50a8fa958dc845f87bb45",
+    "server/ccp4i2/wrappers/SubtractNative/script/SubtractNative.py": "5a53f68b5c266cb332785123429cf8423a578849",
+    "server/ccp4i2/wrappers/SubtractNative/script/SubtractNative_report.py": "74678b53356ec89a8a7994d83e496772547d2547",
+    "client/renderer/components/task/task-interfaces/SubtractNative.tsx": "5d0c86e04998627ed48f89c42b2e60e56416bcaa",
+    "docs/user/tools/scenario_deposit.py": "64a1654d7c24869edca2000399b91290b1a770d7"
+  }
+}

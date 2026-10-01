@@ -1,0 +1,55 @@
+{
+  "scenario": "../../../tools/scenario_deposit.py",
+  "project": "MDM2",
+  "viewport": [
+    1400,
+    1800
+  ],
+  "settle": 25000,
+  "draft": true,
+  "shots": [
+    {
+      "out": "pdbset_input.png",
+      "job": 98,
+      "tabs": [
+        "Task interface"
+      ],
+      "section": "Input Data",
+      "callouts": [
+        {
+          "field": "Atomic model",
+          "badge": "1"
+        },
+        {
+          "field": "Pdbset keywords, one per line",
+          "badge": "2"
+        }
+      ]
+    },
+    {
+      "out": "pdbset_report.png",
+      "job": 96,
+      "tabs": [
+        "Report"
+      ],
+      "section": {
+        "text": "Input Data",
+        "scroll": true
+      },
+      "until": "creationtime",
+      "callouts": [
+        {
+          "text": "Model edited by pdbset",
+          "badge": "3"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/pdbset_ui/script/pdbset_ui.def.xml": "8e455b858784973c1d273b73a7f76c8cb92bf867",
+    "server/ccp4i2/wrappers/pdbset_ui/script/pdbset_ui.py": "3d63004fefc662ace6c6ba8778d9d99caac26411",
+    "server/ccp4i2/wrappers/pdbset_ui/script/pdbset_ui_report.py": "ab6cfa37b05e39b5d4d41ebbca3149982e2b9959",
+    "client/renderer/components/task/task-interfaces/pdbset_ui.tsx": "bdc4cb7ec724e94442cefd6dad481367106b792f",
+    "docs/user/tools/scenario_deposit.py": "64a1654d7c24869edca2000399b91290b1a770d7"
+  }
+}

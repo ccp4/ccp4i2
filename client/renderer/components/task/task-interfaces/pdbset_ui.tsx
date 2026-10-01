@@ -21,7 +21,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <Typography variant="subtitle2">Input Structure</Typography>
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
         <Typography variant="subtitle2">Keywords</Typography>
-        <CCP4i2TaskElement itemName="EXTRA_PDBSET_KEYWORDS" {...props} />
+        {/* Several keywords are usual, one per line: a single-line field
+            showed "EXCLUDE SIDE" and "CHAIN M" as "EXCLUDE SIDECHAIN M". */}
+        <CCP4i2TaskElement itemName="EXTRA_PDBSET_KEYWORDS" {...props}
+          qualifiers={{ guiMode: "multiLine", guiLabel: "Pdbset keywords, one per line" }} />
       </CCP4i2ContainerElement>
     </Paper>
   );

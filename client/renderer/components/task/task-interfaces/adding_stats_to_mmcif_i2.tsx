@@ -234,8 +234,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         />
         <CCP4i2TaskElement itemName="SCALEDUNMERGED" {...props} />
         <CCP4i2TaskElement itemName="CIFSTATSOUT" {...props} qualifiers={{ guiLabel: "Scaling statistics (mmCIF)", toolTip: "Preferred over XML when available" }} />
-        <CCP4i2TaskElement itemName="AIMLESSXML" {...props} />
-        <CCP4i2TaskElement itemName="REFMACINPUTPARAMSXML" {...props} />
+        <CCP4i2TaskElement itemName="AIMLESSXML" {...props}
+          qualifiers={{ guiLabel: "Scaling job's report (used when there are no mmCIF statistics)" }} />
+        <CCP4i2TaskElement itemName="REFMACINPUTPARAMSXML" {...props}
+          qualifiers={{ guiLabel: "Refinement job's parameters" }} />
         <CCP4i2TaskElement
           itemName="FREERFLAG"
           {...props}
