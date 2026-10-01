@@ -1,12 +1,18 @@
 {
   "scenario": "../../../tools/scenario_ep_shelx.py",
   "project": "GammaXe",
-  "viewport": [1400, 2400],
+  "viewport": [
+    1400,
+    2400
+  ],
   "shots": [
     {
       "out": "shelx_input.png",
       "job": 9,
-      "tabs": ["Task interface", "Input Data"],
+      "tabs": [
+        "Task interface",
+        "Input Data"
+      ],
       "settle": 25000,
       "section": {
         "text": "Start pipeline with",
@@ -51,7 +57,10 @@
     {
       "out": "shelx_important.png",
       "job": 9,
-      "tabs": ["Task interface", "Important Options"],
+      "tabs": [
+        "Task interface",
+        "Important Options"
+      ],
       "section": {
         "text": "Residues/monomer",
         "scroll": true
@@ -62,8 +71,14 @@
     {
       "out": "shelx_advanced.png",
       "job": 9,
-      "tabs": ["Task interface", "Advanced Options"],
-      "viewport": [1400, 5200],
+      "tabs": [
+        "Task interface",
+        "Advanced Options"
+      ],
+      "viewport": [
+        1400,
+        5200
+      ],
       "settle": 25000,
       "section": {
         "text": "Note: empty input fields mean",
@@ -100,52 +115,119 @@
     {
       "out": "shelx_fa.png",
       "job": 7,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["FA estimation and/or other substructure detection preparations"],
+      "expand": [
+        "FA estimation and/or other substructure detection preparations"
+      ],
       "section": "FA estimation and/or other substructure detection preparations",
       "callouts": []
     },
     {
       "out": "shelx_substrdet.png",
       "job": 7,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Substructure determination"],
+      "expand": [
+        "Substructure determination"
+      ],
       "section": "Substructure determination",
       "callouts": []
     },
     {
       "out": "shelx_shelxe.png",
       "job": 7,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Phasing, density modification and model building"],
+      "expand": [
+        "Phasing, density modification and model building"
+      ],
       "section": "Phasing, density modification and model building",
       "callouts": []
     },
     {
       "out": "shelx_building.png",
       "job": 7,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Iterative model building and refinement"],
+      "expand": [
+        "Iterative model building and refinement"
+      ],
       "section": "Iterative model building and refinement",
       "callouts": []
     },
     {
       "out": "shelx_ref.png",
       "job": 7,
-      "tabs": ["Report"],
-      "viewport": [1400, 3200],
+      "tabs": [
+        "Report"
+      ],
+      "viewport": [
+        1400,
+        3200
+      ],
       "settle": 40000,
-      "expand": ["Macromolecular reciprocal space refinement"],
+      "expand": [
+        "Macromolecular reciprocal space refinement"
+      ],
       "section": "Macromolecular reciprocal space refinement",
       "callouts": []
+    },
+    {
+      "out": "cfom-trials.png",
+      "job": 7,
+      "tabs": [
+        "Report"
+      ],
+      "plots": [
+        {
+          "menu": "CC against CCweak",
+          "choose": "Distribution of CFOM from trials"
+        }
+      ],
+      "section": {
+        "graph": "Distribution of CFOM from trials"
+      }
+    },
+    {
+      "out": "shelxe-contrast.png",
+      "job": 7,
+      "tabs": [
+        "Report"
+      ],
+      "plots": [
+        {
+          "menu": "Correlation coef. vs building cycle",
+          "choose": "Contrast in the initial density modification"
+        }
+      ],
+      "section": {
+        "graph": "Contrast in the initial density modification"
+      }
     }
   ],
   "sources": {
@@ -154,5 +236,11 @@
     "server/ccp4i2/pipelines/shelx/script/shelx_report.py": "aae517dce44b5c10e93d6f7f8c437fd2f2d5b8d7",
     "client/renderer/components/task/task-interfaces/shelx.tsx": "59d5fb95f6316ca44cb05ad5d16ca3ac7c99f364",
     "docs/user/tools/scenario_ep_shelx.py": "ef321b5b4225370d2561f4d726b28629656fc874"
+  },
+  "kept": {
+    "anom-cchalf.png": "Anomalous CC1/2 needs unmerged (half-dataset) data; the GammaXe scenario imports merged data, whose report offers Dano/Sigdano, completeness and I/SigI instead. A plot alone: still true.",
+    "signed-anom-diff-correl-MAD.png": "MAD only; the GammaXe scenario is SAD. A plot alone.",
+    "shelxe-residues.png": "The new interface's version of this graph has a garbled x-axis (building cycles read 0 1 2 0 1 2 2 2 3): a report defect to fix; the Qt plot is kept until then.",
+    "shelxe-chain-length.png": "The new interface's version of this graph has a garbled x-axis (building cycles read 0 1 2 0 1 2 2 2 3): a report defect to fix; the Qt plot is kept until then."
   }
 }

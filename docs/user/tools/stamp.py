@@ -173,7 +173,10 @@ def labels(shots: dict):
         # "dynamic_section": a section whose label no source here holds, such
         # as a PHIL scope's caption, which comes from the program's own
         # parameter definitions at run time.
-        if section and not shot.get("dynamic_section"):
+        # A {graph: ...} section and "plots" name graphs by the titles the
+        # program writes into its report: no source file holds them.
+        if section and not shot.get("dynamic_section") and not (
+                isinstance(section, dict) and "graph" in section):
             yield out, section["text"] if isinstance(section, dict) else section
         for key in ("from", "until", "through"):
             if isinstance(shot.get(key), str):
@@ -218,6 +221,23 @@ def pages() -> list[str]:
     return sorted(p.parent.name for p in TASK_PAGES.glob("*/shots.json"))
 
 
+def uncaptured_figures(page: str, shots: dict) -> list[str]:
+    """Figures the page directory's documents use that no shot makes and
+    shots.json does not keep on purpose ({"kept": {"x.png": "why"}}).
+
+    A page counted as converted once it had a shots.json, so the Qt-era
+    pictures on its other documents (aimless_pipe's sub-pages: 15 of 20
+    figures) were invisible. A Qt picture of a plot alone can stay, with a
+    reason; one showing Qt's controls is to be recaptured."""
+    made = {s["out"] for s in shots.get("shots", []) if "out" in s}
+    kept = set(shots.get("kept", {}))
+    used = set()
+    for doc in (TASK_PAGES / page).glob("*.rst"):
+        for target in re.findall(r"(?:image|figure)::\s*(\S+)", doc.read_text(encoding="utf-8")):
+            used.add(Path(target).name)
+    return sorted(used - made - kept)
+
+
 def staleness(page: str) -> list[str]:
     """Why the page may be out of date; empty if it is not."""
     shots = load(page)
@@ -229,6 +249,7 @@ def staleness(page: str) -> list[str]:
     reasons += [f"{f} is new" for f in now if f not in recorded]
     reasons += [f"{f} is gone" for f in recorded if f not in now]
     reasons += [f"label gone from the interface: {m}" for m in missing_labels(page, shots)]
+    reasons += [f"Qt-era figure, not captured or kept: {f}" for f in uncaptured_figures(page, shots)]
     return reasons
 
 
