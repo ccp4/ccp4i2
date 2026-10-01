@@ -43,6 +43,10 @@ Each was met for real; most cost an hour the first time.
   too long took three new jobs with it.
 - **Deleting a project leaves its directory**: files imported again get
   `_1` names. Remove the directory too before rebuilding a project.
+- **Never merge, switch or rebase the worktree while a scenario or test
+  runs from it.** A merge with conflicts leaves markers in the wrappers the
+  running job imports ("Plugin 'slicendice' not found in registry"), and an
+  hour-long run is void. Wait, or use a second worktree.
 - **A script outside `server/` imports the INSTALLED ccp4i2** from
   ccp4-python's site-packages: run checks from `server/`, or with
   `PYTHONPATH`, or a fix will seem not to work.

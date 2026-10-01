@@ -57,7 +57,10 @@ class slicendice_report(Report):
         table.addData(title="Splits", data=[s.findtext("SolID") for s in sols])
         table.addData(title="Search models (residues)",
                       data=["; ".join(splits.get(s.findtext("SolID"), [])) for s in sols])
-        for title, tag in (("LLG", "llg"), ("TFZ", "tfz"), ("R", "srf"), ("R-free", "sre")):
+        # SliceNDice's LLG and TFZ per split are those of Phaser's last listed
+        # solution, not its best: labelled as SliceNDice's, beside each piece's own.
+        for title, tag in (("LLG (SliceNDice)", "llg"), ("TFZ (SliceNDice)", "tfz"),
+                           ("R", "srf"), ("R-free", "sre")):
             table.addData(title=title, data=[s.findtext(tag) for s in sols])
         # Each search model's placement (Phaser's best solution, in the order
         # placed). SliceNDice's own TFZ is one number per split; a lobe placed
@@ -73,7 +76,9 @@ class slicendice_report(Report):
                 where = ("residues " + models[i]) if i is not None and i < len(models) else "model %s" % c.get("cluster")
                 gain = float(c.get("llg") or 0) - previous
                 previous = float(c.get("llg") or 0)
-                parts.append("%s: TFZ %s, LLG +%.0f, %s clashes" % (where, c.get("tfz"), gain, c.get("clashes")))
+                clashes = c.get("clashes")
+                parts.append("%s: TFZ %s, LLG +%.0f, %s clash%s" % (
+                    where, c.get("tfz"), gain, clashes, "" if clashes == "1" else "es"))
                 if c.get("tfz") and float(c.get("tfz")) < 8:
                     unsure.append(where)
             text = "%s split%s, each search model as Phaser placed it: %s." % (

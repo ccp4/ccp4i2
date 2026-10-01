@@ -100,6 +100,6 @@ def test_report_names_the_piece_not_placed(tmp_path):
 </RunInfo></SliceNDice>""")
     text = report_text(xml, tmp_path)
     assert "Partly solved" in text
-    assert "residues 288-302, 320-506: TFZ 26.4, LLG +482" in text
+    assert "residues 288-302, 320-506: TFZ 26.4, LLG +482, 1 clash;" in text
     assert "residues 225-287, 303-319: TFZ 6.0, LLG +18, 19 clashes" in text
     assert "residues 225-287, 303-319 probably did not find its place" in text
