@@ -22,7 +22,6 @@ import { Job } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
 import { apiGet, apiPost } from "../api-fetch";
 import { useRouter } from "next/navigation";
-import { HelpIframe } from "./help_iframe";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { useRunCheck } from "../providers/run-check-provider";
 import { useJobTab } from "../providers/job-tab-provider";
@@ -33,6 +32,12 @@ import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-conte
 import { openSessionWindow, useIsInteractiveTask } from "../lib/interactive-tasks";
 import { useProjectJobs } from "../utils";
 import { mutate } from "swr";
+
+// The help built from docs/user and published to GitHub Pages on every merge
+// (.github/workflows/user-docs-pages.yml). Every task has a page at
+// tasks/<task name>/index.html there: its own, a redirect to the page it
+// shares, or one to the task list. (It opened the Qt interface's help.)
+const USER_HELP_URL = "https://ccp4.github.io/ccp4i2";
 
 interface ToolbarButton {
   label: string;
@@ -74,7 +79,6 @@ export default function ToolBar() {
   );
   const { mutateJobs } = useProjectJobs(projectId);
   const router = useRouter();
-  const [showHelpPanel, setShowHelpPanel] = useState(false);
   const [showI2RunDialog, setShowI2RunDialog] = useState(false);
   const [i2RunCommand, setI2RunCommand] = useState<string>("");
   const [i2RunDirectory, setI2RunDirectory] = useState<string | null>(null);
@@ -288,7 +292,7 @@ export default function ToolBar() {
         onClick: () => {
           if (window?.open) {
             window.open(
-              `https://ccp4i2.gitlab.io/rstdocs/tasks/${job?.task_name}/index.html`
+              `${USER_HELP_URL}/tasks/${job?.task_name}/index.html`
             );
           }
         },
@@ -401,11 +405,6 @@ export default function ToolBar() {
           <BibliographyDialog
             jobId={bibliographyJobId}
             onClose={() => setBibliographyJobId(null)}
-          />
-          <HelpIframe
-            url={`/help/html/tasks/${job?.task_name}/index.html`}
-            open={showHelpPanel}
-            handleClose={() => setShowHelpPanel(false)}
           />
         </Stack>
       </div>
