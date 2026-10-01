@@ -428,7 +428,19 @@ class PluginPopulator:
                                         # Normal CData object - navigate directly
                                         current = attr
 
-                                if current is not None:
+                                if current is not None and nested_parts[-1] in (
+                                        "fileIn", "fileOut", "fileUse", "dbFileId") \
+                                        and isinstance(current, CDataFile):
+                                    # A file inside a list item named the way a
+                                    # top-level file is ("pdbItemList/structure/
+                                    # fileOut=chainsaw[-1].XYZOUT"): resolved by
+                                    # the same code, so it is that job's file,
+                                    # recorded as used. Without this the keyword
+                                    # set a dead attribute and the file was unset.
+                                    PluginPopulator._handle_file_with_subvalues(
+                                        current, [f"{nested_parts[-1]}={val}"])
+                                    logger.info(f"    Resolved {key}={val!r}")
+                                elif current is not None:
                                     final_key = nested_parts[-1]
                                     # For CData objects, attributes are created dynamically
                                     # For attributes that collide with HierarchicalObject properties,
