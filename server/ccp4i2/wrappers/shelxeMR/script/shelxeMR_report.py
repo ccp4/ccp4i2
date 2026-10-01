@@ -23,11 +23,18 @@ class shelxeMR_report(Report):
 
         results = self.addResults()
         
-        parent.append("<p>Results for Shelxe for MR Run</p>")
-        
-        if not SHELMR_DYN:
-       	    bestCC = float(self.xmlnode.findall('.//RunInfo/BestCycle/BestCC')[0].text)
-       	    parent.append("<p>The optimal Correlation Coefficient during the run was found to be :- %f </p>"%(bestCC))
+        # The best trace, in numbers: the plot alone gave none.
+        best = self.xmlnode.find('.//RunInfo/BestCycle') if self.xmlnode is not None else None
+        if best is not None and best.findtext('BestCC'):
+            try:
+                residues = int(float(best.findtext('ChainLen')) * int(best.findtext('NumChains')))
+                parent.append(
+                    "<p>Best trace: cycle %s, CC %s%% for the traced structure against the "
+                    "data, %d residues in %s chain(s).</p>"
+                    % (best.findtext('BCycle'), best.findtext('BestCC'), residues,
+                       best.findtext('NumChains')))
+            except (TypeError, ValueError):
+                pass
 
         graph_height = 300
         graph_width = 500
@@ -35,7 +42,7 @@ class shelxeMR_report(Report):
         graph = parent.addFlotGraph( title="Results by Shelxe Trace Cycle", select=".//RunInfo/Cycle",style="height:%dpx; width:%dpx; float:left; border:0px;" % (graph_height, graph_width),outputXml=self.outputXml,internalId="SummaryGraph" )
         graph.addData (title="Cycle",  select="NCycle" )
         graph.addData (title="Corr.Coef.", select="CorrelationCoef")
-        graph.addData (title="Corr.Coef.", select="AverageChainLen")
+        graph.addData (title="Average chain length", select="AverageChainLen")
         
         p = graph.addPlotObject()
         p.append('title', 'Correlation Coefficient by Trace Cycle')

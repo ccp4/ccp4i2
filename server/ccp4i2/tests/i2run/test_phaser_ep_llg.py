@@ -18,3 +18,7 @@ def test_gamma_xe():
     with i2run(args) as job:
         mtz = gemmi.read_mtz_file(str(job / "LLGMAPOUT_1.mtz"))
         assert [c.label for c in mtz.columns][3:] == ["F", "PHI"]
+        params = (job / "params.xml").read_text()
+        # One hand, and no empty "sites" file offered as a structure.
+        assert "original hand" not in params
+        assert "PHASER.1.pdb" not in params

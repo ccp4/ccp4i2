@@ -715,7 +715,9 @@ class dm_multidomain(CPluginScript):
             rows = []
             for line in m.group(2).splitlines():
                 vals = re.findall(r'[-\d]+\.\d+', line)
-                if len(vals) >= 3 and all(
+                # >= 2: with two copies (the commonest case) each row
+                # has two values; >= 3 dropped every one of them.
+                if len(vals) >= 2 and all(
                         abs(float(v)) <= 1.5 for v in vals):
                     rows.append([float(v) for v in vals])
                 elif rows:

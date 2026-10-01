@@ -117,16 +117,15 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               {...props}
               itemName="TIMEFAC"
               qualifiers={{
-                guiLabel:
-                  "Time factor for helix and peptide search (Recommended setting: 1-4",
+                guiLabel: "Time factor for helix and peptide search",
               }}
             />
             <Typography
               variant="body2"
               sx={{ pl: 2, mb: 1, color: "text.secondary" }}
             >
-              , where 1 is the quickest, up to 4 with increasingly
-              thorough, but slower, searches)
+              1 to 4: 1 is the quickest; higher values search more thoroughly,
+              and more slowly.
             </Typography>
             <CCP4i2TaskElement
               {...props}

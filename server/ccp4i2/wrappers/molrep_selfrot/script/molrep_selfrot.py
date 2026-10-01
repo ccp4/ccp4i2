@@ -1,3 +1,5 @@
+import re
+
 from lxml import etree
 
 from ccp4i2.core import CCP4Utils
@@ -147,8 +149,15 @@ class molrep_selfrot(molrep_mr.molrep_mr):
 
             elif inPattersonBlock:
                 try:
+                    # Fixed-width columns fuse when a value fills its field:
+                    # the origin peak prints "0.6335E+05281.92".
+                    strippedLine = re.sub(r'(E[+-]\d\d)(?=\d)', r'\1 ', strippedLine)
                     splitLine = strippedLine.split()
-                    if strippedLine.startswith('INFO') and 'pseudo-translation' in strippedLine:
+                    # "pseudo-translation was not detected." names it too: that
+                    # line opened the block, which then swallowed the rotation
+                    # peaks and put a "detected" banner under Molrep's "not".
+                    if strippedLine.startswith('INFO') and 'pseudo-translation' in strippedLine \
+                            and 'not detected' not in strippedLine:
                         self.subElementOfTypeWithText(pattersonNode, 'INFO', strippedLine.split(':', 1)[1].strip())
                         inPseudoTranslationBlock = True
                         pseudoTransNode = etree.SubElement(pattersonNode, 'PseudoTranslation')

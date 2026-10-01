@@ -67,10 +67,17 @@ class shelxeMR(CPluginScript):
         pdbfile_out = os.path.join(self.getWorkDirectory(), "shelxrun.pdb")
         if os.path.exists(pdbfile_out):
             self.container.outputData.XYZOUT = pdbfile_out
-        self.container.outputData.XYZOUT.annotation = "Co-ordinate file for model built by Shelxe"
         self.convToMTZ()
         # Parse the shelxe logfile & then split the output mtz into mini-mtz's
-        self.parseLogfile()
+        sxlog = self.parseLogfile()
+        # The trace is poly-alanine: say so, and how good it is, where later
+        # tasks offer it.
+        try:
+            self.container.outputData.XYZOUT.annotation = (
+                f"SHELXE poly-Ala trace: {int(float(sxlog.avgChainLength) * int(sxlog.numChains))} "
+                f"residues in {sxlog.numChains} chain(s), CC {sxlog.CC}%")
+        except (TypeError, ValueError, AttributeError):
+            self.container.outputData.XYZOUT.annotation = "SHELXE poly-Ala trace"
         outputFiles = ['FPHIOUT']
         outputColumns = ['FWT,PHWT']
         error = self.splitHklout(outputFiles, outputColumns, os.path.join(self.getWorkDirectory(), 'sftools_out.mtz'))
@@ -99,6 +106,8 @@ class shelxeMR(CPluginScript):
         xmlfile = open(self.xmlout, 'wb')
         xmlString= etree.tostring(rootNode, pretty_print=True)
         xmlfile.write(xmlString)
+        xmlfile.close()
+        return sxlog
 
     def makeCommandAndScript(self):
         print("Constructing command script (KJS-24/09-shelxeMR)")
