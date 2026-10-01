@@ -193,6 +193,26 @@ def test_a_pipeline_that_carried_on_still_shows_what_it_carried_on_past(tmp_path
     assert 'first attempt failed' in entries[0]['details']
 
 
+def test_a_pipeline_ending_unsatisfactory_keeps_its_steps_error(tmp_path):
+    """UNSATISFACTORY is not a failure (no "The job failed"), but neither has
+    the job survived the step that failed under it: aimless_pipe turns a
+    failed step into UNSATISFACTORY to keep what it made. The step's error
+    stays an error, or the pipeline "failed and reported nothing".
+    """
+    parent = _plugin(tmp_path)
+    child_dir = tmp_path / 'job_1'
+    child_dir.mkdir()
+    child = _plugin(child_dir, parent=parent)
+    child.errorReport.append(klass='pointless', code=101, details='exited with code 1',
+                             severity=SEVERITY_ERROR)
+
+    child.recordCauses(CPluginScript.FAILED)
+    parent.recordCauses(CPluginScript.UNSATISFACTORY)
+
+    inherited = [e for e in parent.errorReport.entries() if e['name'] == 'job_1']
+    assert inherited and inherited[0]['severity'] == SEVERITY_ERROR
+
+
 def test_severity_only_ever_moves_down_as_a_cause_travels(tmp_path):
     top = _plugin(tmp_path)
     middle_dir = tmp_path / 'job_1'
