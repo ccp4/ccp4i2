@@ -4,6 +4,10 @@ Its outputs were "Positioned coordinates for solution 1", "SingleMR.1.mtz"
 (no annotation) and "H-L Co-efficients1", and its report opened with
 Phaser's own text: the R-factor and the atoms placed (on 3njw, two sulfurs
 completed to 132 atoms, R 22.3%) were nowhere a user would look.
+
+Phaser completes each placement in turn, so the log's final LLG/R pairs are
+one per placement (six on 3njw), not rounds of one; the kept solution is
+the one with the highest LLG, wherever it falls in the log.
 """
 import xml.etree.ElementTree as ET
 
@@ -12,14 +16,9 @@ import pytest
 gemmi = pytest.importorskip("gemmi")
 smr = pytest.importorskip("ccp4i2.wrappers.phaser_singleMR.phaser_singleMR")
 
-LOG = """
-   Final Log-Likelihood = 6051.11
-   Final R-factor =  25.9
-   Final Log-Likelihood = 7194.38
-   Final R-factor =  22.6
-   Final Log-Likelihood = 7347.56
-   Final R-factor =  22.3
-"""
+LOG = "".join(f"   Final Log-Likelihood = {llg}\n   Final R-factor =  {r}\n" for llg, r in [
+    ("4438.86", "31.0"), ("4425.49", "31.2"), ("6046.67", "26.0"),
+    ("6051.17", "25.9"), ("7327.06", "22.3"), ("7347.56", "22.3")])
 
 
 def write_atoms(path, elements):
@@ -41,8 +40,8 @@ def write_atoms(path, elements):
 def test_summary(tmp_path):
     pdb = write_atoms(tmp_path / "SingleMR.1.pdb", ["S", "S"] + ["N"] * 130)
     summary = smr.summarise(LOG, pdb)
-    assert [(c.get("llg"), c.get("r")) for c in summary.findall("Cycle")] == [
-        ("6051.11", "25.9"), ("7194.38", "22.6"), ("7347.56", "22.3")]
+    assert len(summary.findall("Completion")) == 6
+    assert (summary.find("Best").get("llg"), summary.find("Best").get("r")) == ("7347.56", "22.3")
     atoms = summary.find("Atoms")
     assert atoms.get("total") == "132"
     assert {e.get("name"): e.get("count") for e in atoms} == {"N": "130", "S": "2"}
@@ -56,8 +55,15 @@ def test_report_leads_with_the_result(tmp_path):
     root.append(smr.summarise(LOG, pdb))
     report = phaser_singleMR_report(xmlnode=root, jobInfo={}, jobStatus="Finished")
     text = ET.tostring(report.as_data_etree(), encoding="unicode")
-    assert "Solution 1 has 132 atoms (130 N, 2 S); after 3 rounds" in text
-    assert "R 22.3%, LLG 7347.56" in text
+    assert "Phaser completed 6 placements" in text
+    assert "solution 1 (kept here), has 132 atoms (130 N, 2 S): LLG 7347.56, R 22.3%" in text
+
+
+def test_best_is_the_highest_llg_not_the_last():
+    log = ("Final Log-Likelihood = 900.0\nFinal R-factor = 21.0\n"
+           "Final Log-Likelihood = 100.0\nFinal R-factor = 45.0\n")
+    best = smr.summarise(log).find("Best")
+    assert (best.get("llg"), best.get("r")) == ("900.0", "21.0")
 
 
 def test_acorn_report_states_the_correlation():

@@ -58,7 +58,9 @@ def main():
           # then a search model of its own. SliceNDice 0.1.3 (CCP4 9) keeps
           # only one split directory for MR, whichever its glob lists last,
           # so a range of splits tries one of them, often the unsplit model.
-          "--MIN_SPLITS", "2", "--MAX_SPLITS", "2")
+          "--MIN_SPLITS", "2", "--MAX_SPLITS", "2",
+          # Phaser searching for two models took over an hour on one core.
+          "--NPROC", "8")
 
     for task in ("editbfac", "slicendice"):
         clone_last(PROJECT, task)

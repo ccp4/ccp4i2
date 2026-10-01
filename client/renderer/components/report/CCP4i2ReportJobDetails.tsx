@@ -6,6 +6,14 @@ import { SimpleObjectTable } from "../simple-object-table";
  *Handles  <CCP4i2ReportJobDetails key="JobDetails_249" class="" style="" creationtime="19:23 20-Mar-2025" finishtime="19:25 20-Mar-2025" status="Finished"/>
  *
  * */
+// What each attribute is, for people: the table showed the raw attribute
+// names (creationtime, finishtime, status) at the foot of every report.
+const LABELS: Record<string, string> = {
+  creationtime: "Created",
+  finishtime: "Finished",
+  status: "Status",
+};
+
 export const CCP4i2ReportJobDetails: React.FC<CCP4i2ReportElementProps> = (
   props
 ) => {
@@ -15,7 +23,7 @@ export const CCP4i2ReportJobDetails: React.FC<CCP4i2ReportElementProps> = (
     const object: any = {};
     $.each(props.item.attributes, function (index, attr) {
       if (!["key", "class", "style"].includes(attr.name))
-        object[attr.name] = attr.value;
+        object[LABELS[attr.name] ?? attr.name] = attr.value;
       setObject(object);
     });
   }, [props.item, props.job]);

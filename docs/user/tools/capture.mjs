@@ -286,8 +286,16 @@ async function shoot(shot) {
           rows.slice(0, 4).forEach((r) => out.push(`  row    ${[...r.children].map(text).join(" | ")}`));
           seen.add(el);
         } else if (cls.includes("MuiFormControlLabel-root")) {
+          // A label with no input is a group's title (a radio group's caption),
+          // not an option: printed as a checkbox it read as a blank choice.
           const box = el.querySelector("input");
-          out.push(`check    [${box && box.checked ? "x" : " "}] ${text(el)}`); seen.add(el);
+          if (!box) {
+            if (text(el).trim()) out.push(`text     ${text(el)}`);
+          } else {
+            const kind = box.type === "radio" ? "radio" : "check";
+            out.push(`${kind.padEnd(8)} [${box.checked ? "x" : " "}] ${text(el)}`);
+          }
+          seen.add(el);
         } else if (cls.includes("MuiFormControl-root") || cls.includes("MuiTextField-root")) {
           const label = text(el.querySelector("label"));
           const input = el.querySelector("input, textarea");

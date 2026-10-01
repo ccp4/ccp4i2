@@ -1,0 +1,23 @@
+{
+  "scenario": "../../../tools/scenario_atomic.py",
+  "project": "LassoPeptide",
+  "viewport": [1400, 1400],
+  "settle": 20000,
+  "draft": true,
+  "shots": [
+    {"out": "acorn_input.png", "job": 6, "tabs": ["Task interface", "Input Data"],
+     "section": "Run ACORN with", "viewport": [1400, 1000],
+     "callouts": [{"text": "Run ACORN with", "badge": "1"}, {"field": "Reflections", "badge": "2"}, {"field": "Phases", "badge": "3"}]},
+    {"out": "acorn_advanced.png", "job": 6, "tabs": ["Task interface", "Advanced Acorn Parameters"],
+     "section": "General ACORN phase improvement parameters", "viewport": [1400, 1400]},
+    {"out": "acorn_report.png", "job": 4, "tabs": ["Report"], "section": "Results for Acorn Run",
+     "callouts": [{"field": "Plot", "badge": "4"}]}
+  ],
+  "sources": {
+    "server/ccp4i2/wrappers/acorn/script/acorn.def.xml": "77c885bfb031a071ee5bb9c17f97036f04d81d37",
+    "server/ccp4i2/wrappers/acorn/script/acorn.py": "14008c936049546cc66ae6a6c4452deb661f97dd",
+    "server/ccp4i2/wrappers/acorn/script/acorn_report.py": "2de789355db0fe908317998d9952c17457c4da87",
+    "client/renderer/components/task/task-interfaces/acorn.tsx": "3676d4ea9c610fa890b1ab1254fe379125de4a89",
+    "docs/user/tools/scenario_atomic.py": "baf0c36d3a31942320faf76b6a99b86e375d11ff"
+  }
+}
